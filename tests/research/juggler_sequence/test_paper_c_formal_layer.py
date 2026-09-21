@@ -52,7 +52,11 @@ def test_the_four_new_results_are_asked_about() -> None:
                  "reachesOne_of_lt_two_hundred_sixty_one", "seed_lemma",
                  "tao_rate_implies_conjecture", "contagion_of_production_inequality",
                  "zeta_pos_49", "tao_rate_iff_conjecture",
-                 "conjecture_of_cylinder_bound_of_production"):
+                 "conjecture_of_cylinder_bound_of_production",
+                 "BlockLock.block_lock", "FiberParity.fiber_lock",
+                 "FiberParity.poor_logMass_le", "Production.contagion_averaged",
+                 "Production.zeta2avg_pos", "Production.logMass_contagion_averaged",
+                 "Production.conjecture_of_tao_rate_averaged"):
         assert name in asked, name
 
 

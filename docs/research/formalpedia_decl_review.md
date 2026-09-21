@@ -465,7 +465,7 @@ theorem poor_count_le' {u : ℕ} (hu : 10 ^ 6 ≤ u) {η₀ : ℝ} (hη0 : 0 < �
 
 *Statement names: `poor_count_le'`, `poor_logMass_le`*
 
-*Runners-up: `nonpoor_fiber_logMass_ge` (0.073), `poor_logMass_le` (0.071)*
+*Runners-up: `nonpoor_fiber_logMass_ge` (0.073), `poor_logMass_le` (0.07)*
 
 *If this row describes a definition rather than a theorem: `Poor`*
 

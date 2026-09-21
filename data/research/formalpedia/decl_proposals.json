@@ -5222,19 +5222,19 @@
         {
           "decl": "block_count",
           "line": 512,
-          "score": 0.143,
+          "score": 0.14,
           "trust": "kernel"
         },
         {
           "decl": "gridPoint_near_count",
           "line": 365,
-          "score": 0.126,
+          "score": 0.124,
           "trust": "kernel"
         },
         {
           "decl": "gridPoint_half_count",
           "line": 314,
-          "score": 0.116,
+          "score": 0.114,
           "trust": "kernel"
         }
       ],
@@ -5244,12 +5244,12 @@
         {
           "decl": "Unstable",
           "line": 359,
-          "score": 0.045
+          "score": 0.044
         },
         {
           "decl": "gridRes",
           "line": 190,
-          "score": 0.035
+          "score": 0.034
         }
       ],
       "id": "J-oe-fiber-block-lock",
@@ -5269,7 +5269,7 @@
         {
           "decl": "poor_count_le'",
           "line": 168,
-          "score": 0.203,
+          "score": 0.201,
           "trust": "kernel"
         },
         {
@@ -5281,7 +5281,7 @@
         {
           "decl": "poor_logMass_le",
           "line": 312,
-          "score": 0.071,
+          "score": 0.07,
           "trust": "kernel"
         }
       ],
@@ -5308,19 +5308,19 @@
         {
           "decl": "zeta2avg_pos",
           "line": 526,
-          "score": 0.171,
-          "trust": "kernel"
-        },
-        {
-          "decl": "logMass_contagion_averaged",
-          "line": 548,
-          "score": 0.139,
+          "score": 0.16,
           "trust": "kernel"
         },
         {
           "decl": "production_two_averaged",
           "line": 160,
-          "score": 0.135,
+          "score": 0.132,
+          "trust": "kernel"
+        },
+        {
+          "decl": "logMass_contagion_averaged",
+          "line": 548,
+          "score": 0.131,
           "trust": "kernel"
         }
       ],
@@ -5330,12 +5330,12 @@
         {
           "decl": "errAddAvg",
           "line": 138,
-          "score": 0.042
+          "score": 0.039
         },
         {
           "decl": "errOEavg",
           "line": 132,
-          "score": 0.039
+          "score": 0.036
         }
       ],
       "id": "J-oe-averaged-two-productions-reach-the-depth-two-ceiling",
@@ -5348,7 +5348,7 @@
         "zeta2avg_pos",
         "logMass_contagion_averaged",
         "conjecture_of_tao_rate_averaged",
-        "conjecture_of_cylinder_bound_averaged"
+        "conjecture_of_cylinder_averaged"
       ],
       "statement": "With the poor-fiber tail, Paper C's contagion recursion needs only two productions, and they reach the depth-two ceiling. Taking the OE family over all of A cap (x^(3/8), x^(3/4)] rather than over the rest -- legitimate because the E-images are even and the OE-images odd, which is the only disjointness ever used -- Corollary of J-oe-poor-fiber-tail at V = x^(3/8), whose error x^(-1/8) is the shape"
     },

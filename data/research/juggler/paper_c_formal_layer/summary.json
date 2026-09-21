@@ -31,11 +31,16 @@
     "Problems.Juggler.FateNumerics",
     "Problems.Juggler.FateFiberParity",
     "Problems.Juggler.FateThinFibers",
-    "Problems.Juggler.FateContagionBound"
+    "Problems.Juggler.FateContagionBound",
+    "Problems.Juggler.FateBlockLock",
+    "Problems.Juggler.FateFiberLock",
+    "Problems.Juggler.FateResonanceCount",
+    "Problems.Juggler.FatePoorTail",
+    "Problems.Juggler.FatePoorProduction"
   ],
   "artifact": {
-    "asked": 415,
-    "recorded": 415,
+    "asked": 460,
+    "recorded": 460,
     "axiom_lists": [
       "",
       "propext",
@@ -43,16 +48,16 @@
       "propext, Quot.sound"
     ]
   },
-  "appendix_a_names": 447,
+  "appendix_a_names": 499,
   "surface": {
-    "modules": 63,
-    "declarations": 1827,
+    "modules": 68,
+    "declarations": 1896,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
   },
   "table": {
-    "rows": 41,
+    "rows": 46,
     "lean": [
       "Fate classes closed; trichotomy; exclusion (Lemma 2.1)",
       "Even block is an interval (Lemma 3.1)",
@@ -63,7 +68,12 @@
       "Monotone pairing (Lemma 4.1')",
       "Fiber parity (Lemma 4.2), goodness unpacked",
       "Thin fibers (Lemma 4.3): the count on \\((u,2u]\\) and the log-mass of the bad \\(m>U\\)",
-      "Theorem 5.3 at exponent \\(13/40\\), unconditional: two productions, no hypothesis",
+      "Theorem 5.3 at exponent \\(13/40\\), unconditional: two productions at the pointwise coefficient, no hypothesis",
+      "Block lock (Lemma 5.14): a fiber's parity share leaves \\(\\tfrac12\\) only by locking onto a rational step of small denominator",
+      "Fiber lock (Lemma 5.15), by Dirichlet approximation",
+      "Resonance count, the arc count behind Theorem 5.16",
+      "Poor-fiber tail (Theorem 5.16) and the share on an arbitrary set (Corollary 5.17)",
+      "Theorem 5.18, contagion by two productions at the averaged coefficient: Theorem 5.3 for every \\(0<\\lambda\\le100/203\\) with no hypothesis, and Theorem 7.2 and Corollary 8.4 with their contagion hypothesis discharged at \\(e>103/203\\)",
       "Fate contagion at the failure set, log-mass form (Corollary 5.5(2), first clause)",
       "Production words \\(V_k=(OE)^{k-1}OEE\\) are prefix-free (Section 5.7, Appendix D)",
       "The side condition \\(e(C)>\\tfrac{27}{40}\\) of the unconditional criteria, at \\(C=30\\), by rational bounds on \\(e\\), \\(\\log 2\\) and \\(\\log_2 3\\)",
@@ -107,5 +117,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "dba35b875fea97f6110dc35ef2d017016689723a"
+  "git_commit": "591d9a52ed31b2c2bad5bbd89efa625807870b89"
 }

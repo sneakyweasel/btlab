@@ -4,6 +4,8 @@ The canonical manuscript is [juggler_fate_almost_all_note.md](juggler_fate_almos
 
 The local 11 September 2026 rebuild refreshes source hashes after a shared Lean refactor and repairs Unicode text encoding in the PDF template. It preserves the mathematical text, title and date; it does not update the deposited version.
 
+The local 21 September 2026 revision adds Section 5.8, the two-production route to Theorem 1 through the poor-fiber tail, with five further Lean modules (FateBlockLock, FateFiberLock, FateResonanceCount, FatePoorTail, FatePoorProduction) wired into the barrel and the axiom artifact. Theorem 1 is stated for every lambda below lambda_ideal, about 0.4927, and is machine-checked with no hypothesis for lambda at most 100/203, above the deposited lambda** of about 0.4926; Theorems 3 and 4 and the closing target use the threshold 1 - lambda_ideal, machine-checked as 103/203, with the depth constants unchanged. Sections 5.7, 6.3 and 7.1 gain the Collatz identity behind the ideal coefficient, the exponent bridge to Paper B and the counterexample {3 * 2^k} to the Collatz analogue of Theorem 1; Section 5.6 records that the depth-two gap is closed; the companion references carry their Zenodo DOIs and current titles; the date moves to 21 September. Between the deposit and this revision the intermediate rebuilds of 13 to 20 September had already raised the unconditional exponent of the pointwise route from 3/10 to 13/40, lowered the hypothesis-free rate threshold from 7/10 to 27/40, named the thirty-first module and added the Corollary 5.4/5.5 rows. None of this updates the deposited version.
+
 ## Build and provenance
 
 From the repository root, with Pandoc and XeLaTeX installed:
@@ -23,9 +25,9 @@ In `formal`, using its pinned Lean toolchain and Lake manifest, run `lake build 
 python tools/check_paper_c_numeric.py --axiom-output path/to/AxiomCheckPaperC.actual
 ```
 
-The arithmetic check requires mpmath. It recomputes the finite-production roots and depth constants at 90 decimal digits, checks exact nested landing endpoints and finite word counts, and checks the printed formal interface against the supplied fresh axiom output. The release review built the Paper C target and matched all 141 printed axiom reports. Only `propext`, `Classical.choice` and `Quot.sound` occur in those reports.
+The arithmetic check requires mpmath. It recomputes the finite-production roots and depth constants at 90 decimal digits, checks exact nested landing endpoints and finite word counts, and checks the printed formal interface against the supplied fresh axiom output. The 21 September 2026 review built the Paper C target and matched all 460 printed axiom reports. Only `propext`, `Classical.choice` and `Quot.sound` occur in those reports, and two declarations rest on no axiom at all.
 
-These checks do not formalize the analytic proofs. In particular, Proposition 4.4, the share-law estimate, production assembly in Appendix D and the limiting analytic arguments remain mathematical prose. The hypotheses for a time-bounded almost-all result and Appendix C's Hypothesis L remain open. No assertion excludes every nontrivial cycle or unbounded orbit.
+These checks do not formalize the analytic proofs. In particular, Proposition 4.4, the share-law estimate, production assembly in Appendix D and the limiting analytic arguments remain mathematical prose; since the 21 September revision they are the first route to Theorem 1 and no longer on its critical path, the second route being formalized end to end. The hypotheses for a time-bounded almost-all result and Appendix C's Hypothesis L remain open. No assertion excludes every nontrivial cycle or unbounded orbit.
 
 ## Corrections in this version
 

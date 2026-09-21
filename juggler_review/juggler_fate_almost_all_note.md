@@ -1,7 +1,7 @@
 ---
 title: "Fate Contagion and Termination Criteria for the Juggler Map"
 author: Philippe Cochin
-date: 9 September 2026
+date: 21 September 2026
 keywords:
   - Juggler map
   - Juggler sequence
@@ -24,25 +24,36 @@ its square root and an odd positive integer to the integer part of
 its three-halves power. We prove that every nonempty set \(A\) closed
 under taking preimages satisfies
 \(\sum_{n\in A,\,n\le x}1/n\ge c(\log x)^\lambda\), for all
-sufficiently large \(x\) and every \(0<\lambda<\lambda^{**}\), where
-\(\lambda^{**}\approx0.4926\) is an explicitly specified root. Thus every realized cycle basin and the set of unbounded orbits,
-if nonempty, obey this lower bound. The proof combines exact inverse intervals, a monotone
-parity sweep, classical exponential-sum estimates, and a finite list
-of disjoint parity productions.
+sufficiently large \(x\) and every \(0<\lambda<\lambda_{\mathrm{ideal}}\), where
+\(\lambda_{\mathrm{ideal}}\approx0.4927\) is the root of
+\(2^{-\lambda}+(1/3)(3/4)^{\lambda}=1\). Thus every realized cycle
+basin and the set of unbounded orbits, if nonempty, obey this lower
+bound. Two proofs are given. The first combines exact inverse
+intervals, a monotone parity sweep, classical exponential-sum estimates
+and six disjoint parity productions, and reaches every
+\(\lambda<\lambda^{**}\approx0.4926\), an explicitly specified root. The
+second uses two productions and no exponential sum: the fibers whose
+parity share is far from \(1/2\) have finite total logarithmic
+mass, by a continued-fraction lock, so the production coefficient may
+be averaged. That proof is formalized in Lean 4 with no hypothesis for
+every \(\lambda\le100/203\), which exceeds \(\lambda^{**}\).
 
 For any fixed \(N_0\ge2\) such that every start in \([1,N_0]\) reaches
 \(1\), universal termination is equivalent to an eventual-entry
 statement: all but \(O(y(\log y)^{-e})\) odd starts in \((y,2y]\)
-enter \([1,N_0]\), for some \(e>1-\lambda^{**}\). We give sufficient
+enter \([1,N_0]\), for some \(e>1-\lambda_{\mathrm{ideal}}\); the threshold
+\(103/203\) is machine-checked. We give sufficient
 parity-cylinder and exponential-moment hypotheses at depth
 \(O(\log\log y)\) for a stronger statement with a time bound. These
 hypotheses remain unproved. A first-letter decomposition identifies
 the contribution of failures beginning with two odd steps, and an
 abstract production model describes possible improvements of the
 exponent. A separate appendix gives a conditional exponent
-\(0.5392\). Selected combinatorial lemmas are formalized in
-Lean 4; the analytic estimates are mathematical arguments outside the
-formalization, and the numerical experiments are observations.
+\(0.5392\). The contagion theorem, the reductions that use it and
+the combinatorial layer are formalized in Lean 4 at the exponents
+stated; the analytic estimates of the first route are mathematical
+arguments outside the formalization, and the numerical experiments are
+observations.
 Neither universal termination nor the exclusion of a nontrivial
 cycle or an unbounded orbit is established.
 
@@ -88,7 +99,7 @@ productions and the finite composites in Appendix D. Applied to the fate classes
 reach \(1\), the failures have logarithmic count
 \(\gg(\log x)^\lambda\) and, on infinitely many dyadic blocks,
 natural density \(\gg(\log y)^{\lambda-1}\), for every
-\(0<\lambda<\lambda^{**}\). This excludes no fate; it fixes the
+\(0<\lambda<\lambda_{\mathrm{ideal}}\). This excludes no fate; it fixes the
 quantitative shape of the trichotomy.
 
 *Odd generation.* A set that is closed both forwards and backwards
@@ -105,7 +116,7 @@ target \(f(N)\to\infty\) arbitrarily slowly. For the Juggler map,
 contagion and odd generation together turn a bounded-target statement
 into the conjecture: every positive integer reaches \(1\) if and only
 if all but \(O(y(\log y)^{-e})\) odd starts in \((y,2y]\) enter
-\([1,N_0]\), for some \(e>1-\lambda^{**}\approx0.5074\) (Theorem 3). The
+\([1,N_0]\), for some \(e>1-\lambda_{\mathrm{ideal}}\approx0.5073\) (Theorem 3). The
 threshold is the complement of the contagion exponent. The Collatz preimage lower bound of Krasikov--Lagarias [7],
 discussed with its target restriction in Section 1.3, does not
 by itself yield this implication.
@@ -136,14 +147,8 @@ value is \(260\); the certified computational value is
 \(3.5\cdot 10^8\) [11]).
 
 **Theorem 1 (fate contagion).** Let \(A\subseteq\mathbb N\) be nonempty
-and backward-closed, and let \(0<\lambda<\lambda^{**}\approx0.4926\), the
-root of
-\[
-2^{-\lambda}+\tfrac19(\tfrac38)^\lambda+\tfrac29(\tfrac34)^\lambda
- +\sum_{k=2}^{6}3^{-(k+1)}\left(\tfrac12(\tfrac34)^k\right)^\lambda=1.
-\tag{1.1}
-\]
-(The \(V_5\) truncation of the first seven terms is \(0.4924\); the \(V_4\) truncation of the first six terms is \(0.4916\); the \(V_3\) truncation of the first five is \(0.4891\); the \(OEOEE\) truncation of the first four is \(0.4801\); the pairing-only root of the first three is \(0.4480\).)
+and backward-closed, and let \(0<\lambda<\lambda_{\mathrm{ideal}}\approx0.4927\),
+the root of \(2^{-\lambda}+\tfrac13(\tfrac34)^\lambda=1\).
 There are \(c>0\) and \(x_0\), depending on \(A\) and \(\lambda\), with
 \[
 \sum_{\substack{n\in A\\ n\le x}}\frac1n\ \ge\ c\,(\log x)^{\lambda}
@@ -152,12 +157,30 @@ There are \(c>0\) and \(x_0\), depending on \(A\) and \(\lambda\), with
 Consequently each fate class realized by at least one start — \(R\),
 the basin of any existing nontrivial cycle, the divergent set —
 satisfies this bound, and on infinitely many dyadic blocks has natural
-density \(\gg(\log y)^{\lambda-1}\). (Theorem 5.3, Corollaries 5.4,
-5.5.)
+density \(\gg(\log y)^{\lambda-1}\). (Theorems 5.3 and 5.18,
+Corollaries 5.4, 5.5.)
 
-The finite productions in Section 5.7 and Appendix D give this
-exponent. Their formal infinite series has limiting root
-\(0.4927\), but only the stated finite truncation is used here.
+The exponent has two proofs. The route of Sections 4--5 and Appendix D
+--- the block average of Proposition 4.4, the monotone sweep and the
+six finite productions of Section 5.7 --- gives every
+\(\lambda<\lambda^{**}\approx0.4926\), the root of
+\[
+2^{-\lambda}+\tfrac19(\tfrac38)^\lambda+\tfrac29(\tfrac34)^\lambda
+ +\sum_{k=2}^{6}3^{-(k+1)}\left(\tfrac12(\tfrac34)^k\right)^\lambda=1.
+\tag{1.1}
+\]
+(The \(V_5\) truncation of the first seven terms is \(0.4924\); the \(V_4\) truncation of the first six terms is \(0.4916\); the \(V_3\) truncation of the first five is \(0.4891\); the \(OEOEE\) truncation of the first four is \(0.4801\); the pairing-only root of the first three is \(0.4480\).)
+The two-production route of Section 5.8 uses no exponential sum: the
+fibers whose parity share is far from \(\tfrac12\) have finite total
+logarithmic mass, so the pointwise coefficient \(\tfrac29\) of the
+\(OE\) family may be replaced by the averaged one, and the recursion
+reaches every \(\lambda<\lambda_{\mathrm{ideal}}\). That route is formalized
+in Lean 4 with no hypothesis for every \(\lambda\le100/203=0.49261\ldots\),
+which exceeds \(\lambda^{**}\); the range
+\(100/203<\lambda<\lambda_{\mathrm{ideal}}\) is one choice of a parameter
+\(\eta_0\) away and is not separately certified. The formal infinite
+series of the finite productions has the same limiting root
+\(\lambda_{\mathrm{ideal}}\).
 The ideal characteristic model in Proposition 5.12 has root
 \(1\); the other run-model values, including \(0.8414\), are
 conditional calculations and are not attained density exponents.
@@ -172,10 +195,10 @@ odd image fails to. (Theorem 6.1; Lean.)
 
 **Theorem 3 (the conjecture as an almost-all statement).** The
 following are equivalent: (i) every positive integer reaches \(1\);
-(ii) for some \(0<\lambda<\lambda^{**}\), the starts \(n\le x\) whose
+(ii) for some \(0<\lambda<\lambda_{\mathrm{ideal}}\), the starts \(n\le x\) whose
 orbit never enters \([1,N_0]\) have logarithmic count
-\(o((\log x)^{\lambda})\); (iii) for some \(e>1-\lambda^{**}\approx0.5074\)
-and all large \(y\), \(\#\{n\ \text{odd}\in(y,2y]:\ n\notin R\}\le y(\log y)^{-e}\).
+\(o((\log x)^{\lambda})\); (iii) for some \(e>1-\lambda_{\mathrm{ideal}}\approx0.5073\)
+(the threshold \(103/203\) is machine-checked) and all large \(y\), \(\#\{n\ \text{odd}\in(y,2y]:\ n\notin R\}\le y(\log y)^{-e}\).
 (Corollary 7.1, Theorems 7.2, 7.3.)
 
 **Theorem 4 (the frontier reduction).** Let
@@ -184,7 +207,9 @@ and all large \(y\), \(\#\{n\ \text{odd}\in(y,2y]:\ n\notin R\}\le y(\log y)^{-e
 \(e_q^{\rm Az}(C)=2(C(1-q\log_2 3)-1)^2/
 (C(\log_2 3)^2\ln2)\). Assume \(C\ge5\). The following hypotheses give
 the indicated, case-dependent bounds. Each implies (iii) of Theorem 3
-whenever its displayed rate exceeds \(1-\lambda^{**}\):
+whenever its displayed rate exceeds \(1-\lambda_{\mathrm{ideal}}\); the
+constants \(C\) below are those of the threshold \(1-\lambda^{**}\),
+which the new threshold leaves unchanged:
 
 (a) *cylinder form* \(\mathrm H(C,A)\): no \(O\)-rooted,
 \(L(y)\)-bad itinerary cylinder of depth \(d(y)\) exceeds its fair
@@ -241,8 +266,8 @@ majorant, not a lower bound on the actual discrepancy.
 
 Under a localization of the triple parity discrepancy of nested floor
 powers to sub-dyadic intervals — stated as an explicit hypothesis in
-Appendix C; it is Theorem 4.12 of the working draft [12], and its
-status is described there — the exponent of Theorem 1 improves to
+Appendix C; Paper B [12] lists the short-interval localization it
+needs among its open questions — the exponent of Theorem 1 improves to
 \(\lambda^{***}\approx0.5392\), the rate threshold of Theorem 3 to
 \(0.4608\), and the least depth constant of Theorem 4 to \(C\ge 18\).
 Nothing in Sections 2--12 depends on Appendix C.
@@ -270,7 +295,7 @@ each, all from outside this paper:
 
 Theorem 1 adds one sentence to each: whichever of the three acts at
 all acts on a set of logarithmic count \(\gg(\log x)^\lambda\)
-for every \(0<\lambda<\lambda^{**}\).
+for every \(0<\lambda<\lambda_{\mathrm{ideal}}\).
 
 ### 1.3 Related work
 
@@ -281,7 +306,7 @@ all starts have finite stopping time (descend below themselves). The
 analogous exact statement fails for the Juggler map: the parities of
 \(\lfloor n^{3/2}\rfloor\), \(\lfloor\lfloor n^{3/2}\rfloor^{3/2}\rfloor\),
 \(\dots\) are Diophantine, not algebraic, and their equidistribution
-is proved only to depth four (Paper B, [12]).
+is proved only through the words of length five (Paper B, [12]).
 
 *Tao's theorem.* Tao [6] proved that for any \(f(N)\to\infty\), almost
 all Collatz orbits (in logarithmic density) attain a value below
@@ -309,8 +334,9 @@ Deeper nesting is Paper B's subject.
 
 *Companion papers.* Paper A [11] proves period lower bounds for a
 hypothetical cycle from a certified descent floor (cycle financing,
-walk-charge envelope); Paper B [12] proves parity equidistribution of
-nested floor powers to depth four with power savings. Neither is
+walk-charge envelope); Paper B [12] proves that the five-step
+power-envelope certificates have density \(7/8\), with a power saving,
+from the parity equidistribution of nested floor powers. Neither is
 reproved here; both enter as citations, and one statement of the
 type Paper B proves enters Appendix C as an explicit hypothesis.
 
@@ -318,7 +344,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the thirty-one modules this paper cites and builds with
+imports exactly the thirty-six modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -344,9 +370,14 @@ constants; they prove nothing and are labelled wherever they appear.
 | Block average (Proposition 4.4), asymptotic | human proof; the exact layer, the slow sum \(O(m')\), the two-sided count of the block and the deduction of (4.1) and of the asymptotic form from the two remaining exponential-sum bounds are Lean, those two bounds are not |
 | Share law and its three corollaries (Lemma 4.5, Corollary 4.6) | human proof; the phase expansion with its cubic remainder, the range of the quadratic phase with its threshold \([-\tfrac56,\tfrac16]\), and the integral \(\tfrac{25}{108}\) are Lean, the equidistribution and the measure identifications are not |
 | Production inequality (5.2) with the \(V\)-ladder terms of Section 5.7 | human proof; the \(E\)-family and the \(OE\)-fiber family are Lean with explicit errors, the block-average family needs the two exponential-sum bounds and the ladder needs Appendix D |
-| Theorem 5.3 at exponent \(13/40\), unconditional: two productions, no hypothesis | Lean |
-| Fate contagion at the failure set, log-mass form (Corollary 5.5(2), first clause) | Lean, unconditionally at exponent \(13/40\): the failure set is backward-closed by Lemma 2.1 and nonempty by assumption, so Theorem 5.3 applies to it |
-| Fate contagion, the remaining clauses (Corollary 5.4; the natural-density clause of Corollary 5.5(2); Corollaries 5.5(1), 5.5(3)) | human proof; the dyadic pigeonhole of Corollary 5.4 and the instantiations of Theorem 5.3 at the reach-one class, at a cycle basin and at the divergent starts are not formalized, and neither is the log-mass clause in the remaining range \(13/40<\lambda<\lambda^{**}\) |
+| Theorem 5.3 at exponent \(13/40\), unconditional: two productions at the pointwise coefficient, no hypothesis | Lean; superseded in exponent by the averaged route below |
+| Block lock (Lemma 5.14): a fiber's parity share leaves \(\tfrac12\) only by locking onto a rational step of small denominator | Lean |
+| Fiber lock (Lemma 5.15), by Dirichlet approximation | Lean |
+| Resonance count, the arc count behind Theorem 5.16 | Lean |
+| Poor-fiber tail (Theorem 5.16) and the share on an arbitrary set (Corollary 5.17) | Lean |
+| Theorem 5.18, contagion by two productions at the averaged coefficient: Theorem 5.3 for every \(0<\lambda\le100/203\) with no hypothesis, and Theorem 7.2 and Corollary 8.4 with their contagion hypothesis discharged at \(e>103/203\) | Lean; the supremum \(\lambda_{\mathrm{ideal}}\) and the range \(100/203<\lambda<\lambda_{\mathrm{ideal}}\) are the choice of \(\eta_0\), human |
+| Fate contagion at the failure set, log-mass form (Corollary 5.5(2), first clause) | Lean, unconditionally at exponent \(100/203\) and, by the pointwise route, at \(13/40\): the failure set is backward-closed by Lemma 2.1 and nonempty by assumption, so Theorem 5.18 applies to it |
+| Fate contagion, the remaining clauses (Corollary 5.4; the natural-density clause of Corollary 5.5(2); Corollaries 5.5(1), 5.5(3)) | human proof; the dyadic pigeonhole of Corollary 5.4 and the instantiations of Theorem 5.18 at the reach-one class, at a cycle basin and at the divergent starts are not formalized, and neither is the log-mass clause in the remaining range \(100/203<\lambda<\lambda_{\mathrm{ideal}}\) |
 | Production words \(V_k=(OE)^{k-1}OEE\) are prefix-free (Section 5.7, Appendix D) | Lean, for the whole family and not only the six; the disjointness of source sets it feeds needs Appendix D's analytic layer, which is human |
 | The side condition \(e(C)>\tfrac{27}{40}\) of the unconditional criteria, at \(C=30\), by rational bounds on \(e\), \(\log 2\) and \(\log_2 3\) | Lean; the least such \(C\) (\(23\)) and the paper's own threshold through \(\lambda^{**}\) stay with the audit |
 | Cube fibers full or alternating (Lemma 4.7) | Lean |
@@ -1224,7 +1255,7 @@ For comparison: the elementary sweep alone, without Proposition 4.4,
 gives \(2^{-\lambda}+\tfrac2{21}(\tfrac34)^\lambda=1\), root
 \(0.138\); perfect fiber equidistribution at this depth would
 give \(2^{-\lambda}+\tfrac13(\tfrac34)^\lambda=1\), root
-\(\lambda_{\rm ideal}\approx0.4927\), the ceiling of the depth-two
+\(\lambda_{\mathrm{ideal}}\approx0.4927\), the ceiling of the depth-two
 method.
 
 **Theorem 5.3 (logarithmic density of a backward-closed set).** Let
@@ -1300,7 +1331,11 @@ bound \(\mathrm H(C,A)\) with \(e(C)>\tfrac{27}{40}\)
 (`Production.conjecture_of_cylinder_bound`). The paper's
 conditional forms need \(e>1-\lambda^{**}\approx0.51\) and the
 production inequality (5.2); the price of dropping the exponential sums
-is the stronger rate.
+at the pointwise coefficient is the stronger rate. Section 5.8 removes
+that price: at the averaged coefficient the same two productions give
+every \(\lambda\le100/203\) with no hypothesis, and the two reductions
+at \(e>103/203\) (`Production.conjecture_of_tao_rate_averaged`,
+`Production.conjecture_of_cylinder_averaged`).
 
 **Corollary 5.4 (natural density, infinitely often).** For every
 \(\lambda<\lambda^{**}\) there is \(c>0\) such that for every
@@ -1345,9 +1380,12 @@ map and therefore is not a counterexample for that larger class.
 
 *Sharpness of the constants.* The monotone pairing gives
 \(\tfrac13H_m-2\); the observed floor on good fibers is \(0.328\) at
-\(\alpha_m\approx\tfrac13\) (Section 11). The remaining depth-two gap
-\(0.448\to 0.4927\) is a dynamical averaging problem for the
-low-even set \(P=\{m:G_m/H_m\le 0.40\}\). The nominal exponent
+\(\alpha_m\approx\tfrac13\) (Section 11). The depth-two gap
+\(0.448\to 0.4927\) was a dynamical averaging problem for the
+low-even set \(P=\{m:G_m/H_m\le 0.40\}\); Section 5.8 closes it
+without averaging over \(A\), because \(P\) has finite total
+logarithmic mass (Theorem 5.16), so that the pointwise \(\tfrac13\) of
+the pairing is not needed. The nominal exponent
 \(\rho_w\) gives a useful scale diagnostic for candidate productions,
 but Model calculation 5.13 shows that it does not collapse the actual
 nested fiber to one monomial interval. The finite \(V_k\) constructions
@@ -1376,6 +1414,24 @@ the second being the log-mass coefficient when the fiber realizes the
 fair share \(2^{-|w|}\). Formula (5.7) returns every coefficient in
 this section and in Appendix C: \(c_E=1\), \(c_{OE}=c_{OEE}=\tfrac13\),
 \(c_{OOEEE}=\tfrac19\).
+
+*A Collatz identity.* With \(\rho_w=(\tfrac32)^b2^{-(|w|-b)}\) for a
+word with \(b\) odd letters, (5.7) simplifies to
+\(c^{\rm ideal}_w=3^{-b}\): the ideal coefficient depends only on the
+odd count, and \(3^{-b}\) is the probability that the \(b\) residue
+conditions modulo three demanded by the odd backward steps of the
+shortcut Collatz map all hold. Hence
+\(\sum_wc^{\rm ideal}_w\rho_w^{\lambda}=\sum_w2^{-|w|}\rho_w^{\lambda-1}\),
+the exponential moment at \(\lambda-1\) of the fair-coin Collatz walk
+over the same words; over a complete prefix-free family its two
+classical roots, Kraft equality at \(0\) and the martingale identity
+\(\mathbb E\rho=\tfrac12(\tfrac32+\tfrac12)=1\) at \(1\), sit at
+\(\lambda=1\) and \(\lambda=2\). The root \(1\) of Proposition 5.12 is
+Kraft equality read one exponential level up; the depth-two model,
+which lacks the ascending word \(OO\), has the root
+\(\lambda_{\mathrm{ideal}}\), and Section 5.8 reaches that root as a
+supremum. The identity moves no constant; it says which half of this
+paper the Collatz walk reaches, the ceiling and not the engine.
 
 **Proposition 5.12 (an ideal-model critical exponent).** For
 \(0<\eta\le1\), define \(\lambda(\eta)\) as the root in
@@ -1500,6 +1556,189 @@ is asserted. Adding just \(V_2\) to the conditional construction
 in Appendix C would give root \(0.5665\); the analogous infinite
 model gives \(0.5769\). These comparisons are not the exponents
 claimed in Theorems 1 or C.5.
+
+### 5.8 The averaged coefficient: two productions without exponential sums
+
+Section 5.1 splits the \(OE\)-images into two families, item 2 over the
+even blocks, where Proposition 4.4 controls the share, and item 3 over
+the rest, where the pointwise floor of Lemma 4.2 applies, and the
+ladder of Section 5.7 recovers part of what the pointwise floor loses.
+The split exists only to serve the block average. This section takes
+the \(OE\) family over all of \(A\cap(x^{3/8},x^{3/4}]\) at once ---
+the \(E\)-images are even and the \(OE\)-images odd, which is the only
+disjointness Section 5.1 uses --- and replaces the pointwise
+coefficient by an averaged one, at the price of discarding the fibers
+whose parity share is far from \(\tfrac12\). Those fibers have finite
+total logarithmic mass, so the price is nothing. No exponential sum,
+Vaaler approximation or second-derivative test appears below; the
+tools are Dirichlet approximation and counting, and the chain is
+formalized end to end. Full proofs are in the laboratory note [14];
+the statements are given here with their constants.
+
+*Notation.* For \(m\ge10^6\) let \(\Phi(m)\) be the \(OE\) fiber of
+Lemma 3.2, \(H_m=|\Phi(m)|\), \(G_m\) the number of its members whose
+image is even, and \(\sigma_m=G_m/H_m\) the parity share. The proof of
+Lemma 4.2 writes the parity of the image of the \(j\)-th member as the
+half-cell of a real \(x_j\) whose consecutive steps lie in an interval
+\([A_m,A_m+\eta_m]\) with \(A_m=\tfrac32m^{2/3}\) and
+\(\eta_m\le m^{-1/3}\) (Lean: `FiberParity.xval_step`); put
+\(\alpha_m=\{A_m\}\). By Lemmas 3.2 and 4.2, \(\eta_mH_m\le0.6903\)
+for \(m\ge10^6\).
+
+**Lemma 5.14 (block lock).** Let \(m\ge10^6\) and let \(p/q\) be in
+lowest terms with \(q\ge1\). Then
+\[
+\Bigl|\sigma_m-\tfrac12\Bigr|\ \le\
+4\,|q\alpha_m-p|\ +\ \frac{5}{2q}\ +\ \frac{3.77\,q}{H_m}.
+\]
+
+*Proof.* Cut the fiber into consecutive blocks of \(q\) members. Inside a
+block the points \(\{x_j\}\) form a translate of the grid
+\(\tfrac1q\mathbb Z\) perturbed by at most
+\(\varepsilon=|q\alpha_m-p|+q\eta_m\), because \(\gcd(p,q)=1\) makes
+the \(q\) points \(\{y+ip/q\}\) a full grid; a \(\tfrac1q\)-grid meets
+a half-circle within \(\tfrac12\) of evenly, and at most
+\(2\varepsilon q+1\) of its points lie within \(\varepsilon\) of a
+given point, so each block's even count is within
+\(4\varepsilon q+\tfrac52\) of \(q/2\); the remainder block contributes
+at most \(q\). Summing, \(|G_m-\tfrac12H_m|\le4\varepsilon
+H_m+5H_m/(2q)+q\), and \(1+4\eta_mH_m\le3.77\). \(\square\)
+
+**Lemma 5.15 (fiber lock).** Let \(\eta_0\in(0,\tfrac12]\) and
+\(m\ge10^6\) with \(H_m\ge1280/\eta_0^2\). If
+\(|\sigma_m-\tfrac12|\ge\eta_0\), then some integer \(q\) with
+\(1\le q\le3.77/\eta_0\) satisfies \(\|q\alpha_m\|\le32/(\eta_0H_m)\).
+
+*Proof.* Put \(\theta=\eta_0/16\) and \(H_0=\lfloor\theta H_m\rfloor\ge
+\theta H_m/2\). Dirichlet's theorem gives \(q\le H_0\) and \(p\) with
+\(|q\alpha_m-p|<1/H_0\), and passing to lowest terms decreases both
+\(q\) and \(|q\alpha_m-p|\). In Lemma 5.14 the first term is then at
+most \(8/(\theta H_m)=128/(\eta_0H_m)\le\eta_0/10\) and the third at
+most \(3.77\theta=0.2356\,\eta_0\), so \(|\sigma_m-\tfrac12|\ge\eta_0\)
+forces \(5/(2q)\ge0.6644\,\eta_0\), that is \(q\le3.77/\eta_0\); and
+\(|q\alpha_m-p|<1/H_0\le32/(\eta_0H_m)\). \(\square\)
+
+**Theorem 5.16 (poor-fiber tail).** Let \(\eta_0\in(0,\tfrac12]\),
+\(P_{\eta_0}=\{m\ge10^6:|\sigma_m-\tfrac12|\ge\eta_0\}\) and
+\(u_0(\eta_0)=\max(10^6,(1950/\eta_0^2)^3)\). For every \(u\ge u_0\),
+\[
+\#\bigl(P_{\eta_0}\cap(u,2u]\bigr)\le\frac{430}{\eta_0^2}\,u^{2/3},
+\]
+and for every \(U\ge u_0\),
+\(\sum_{m\in P_{\eta_0},\,m>U}1/m\le2100\,U^{-1/3}/\eta_0^2\).
+
+*Proof.* On \((u,2u]\), \(H_m\ge\tfrac23u^{1/3}-1\) (Lemma 3.2), and
+\(u\ge(1950/\eta_0^2)^3\) makes Lemma 5.15 available with
+\(Q=3.77/\eta_0\) and \(\delta=32/(\eta_0H_m)\). Every poor \(m\) is
+therefore resonant, \(\|q\alpha_m\|\le\delta\) for some \(q\le Q\), and
+the arc count of Lemma 4.3, applied for each \(q\le Q\) in turn to the
+sequence \(q\cdot\tfrac32m^{2/3}\), whose steps and total increase
+scale by \(q\), bounds the resonant \(m\) by
+\((0.882u^{2/3}+2)\bigl(2Q\delta(2u)^{1/3}+Q(Q+1)\bigr)\le430u^{2/3}/\eta_0^2\).
+The second bound is the first summed over dyadic blocks. \(\square\)
+
+The constants are crude and the exponent is not: the census finds the
+true density of the fibers with \(\sigma_m\le0.40\) between
+\(1.4u^{-1/3}\) and \(2.1u^{-1/3}\) over \(u\in[10^5,10^8]\) [14]. What
+is used below is only that the tail vanishes: the poor set has finite
+total logarithmic mass, so it can support no set at every scale.
+
+**Corollary 5.17 (the share on an arbitrary set).** For
+\(\eta_0\in(0,\tfrac12]\), \(V\ge u_0(\eta_0)\) and every set
+\(S\subseteq(V,\infty)\) of integers,
+\[
+\sum_{m\in S}\frac{\sigma_m}{m}\ \ge\ \Bigl(\frac12-\eta_0\Bigr)\sum_{m\in S}\frac1m\ -\ \frac{1050}{\eta_0^2}\,V^{-1/3}.
+\]
+
+*Proof.* Off \(P_{\eta_0}\) the bound holds termwise; on
+\(S\cap P_{\eta_0}\) use \(\sigma_m\ge0\) and discard at most
+\(1/(2m)\) per term, which Theorem 5.16 sums to at most
+\(1050\,V^{-1/3}/\eta_0^2\). \(\square\)
+
+**Theorem 5.18 (contagion by two productions).** Let \(A\) be nonempty
+and backward-closed, \(0<\eta_0\le\tfrac14\), and \(\lambda>0\) with
+\[
+\zeta(\lambda,\eta_0)=2^{-\lambda}+\tfrac23\bigl(\tfrac12-\eta_0\bigr)\bigl(\tfrac34\bigr)^{\lambda}-1>0.
+\]
+There are \(K>0\) and \(t_1\) with \(g_A(t)\ge Kt^{\lambda}\) for
+\(t\ge t_1\), hence \(\sum_{n\in A,\,n\le x}1/n\ge K(\log x)^\lambda\)
+for \(x\ge x_0\). Consequently the conclusion of Theorem 5.3 holds for
+every \(0<\lambda<\lambda_{\mathrm{ideal}}\), the root of
+\(2^{-\lambda}+\tfrac13(\tfrac34)^\lambda=1\),
+\(\lambda_{\mathrm{ideal}}=0.49265798\ldots\): given such a \(\lambda\), some
+\(\eta_0\) has \(\zeta(\lambda,\eta_0)>0\).
+
+*Proof.* For \(m\in A\cap(x^{3/8},x^{3/4}-1]\) the fibers \(\Phi(m)\) lie
+in \((\sqrt x,x]\), are pairwise disjoint and disjoint from the
+\(E\)-images, each \(n\in\Phi(m)\) has \(1/n>(m+1)^{-4/3}\), and
+\(H_m(m+1)^{-4/3}\ge\tfrac2{3m}(1-O(m^{-1/3}))\) by Lemma 3.2. Corollary
+5.17 with \(V=x^{3/8}\), whose error \(V^{-1/3}=x^{-1/8}\) has the shape
+Lemma 4.3 already contributes, gives the \(OE\) family log-mass at
+least \(\tfrac23(\tfrac12-\eta_0)(1-O(x^{-1/8}))\,g_A(3t/4)-700x^{-1/8}/\eta_0^2\),
+and with item 1 of Section 5.1 unchanged,
+\[
+g_A(t)\ \ge\ (1-\varepsilon_1(t))\,g_A(t/2)
++\Bigl(\tfrac13-\tfrac23\eta_0-\varepsilon_7(t)\Bigr)g_A(3t/4)-\varepsilon_8(t),
+\]
+with \(\varepsilon_7,\varepsilon_8\to0\) for fixed \(\eta_0\). Lemma 5.1
+with the seed of Lemma 5.2 finishes as in Theorem 5.3. \(\square\)
+
+Corollaries 5.4 and 5.5 use Theorem 5.3 only through its conclusion,
+so by Theorem 5.18 each holds for every \(\lambda<\lambda_{\mathrm{ideal}}\);
+so do Corollary 7.1 and Theorems 7.2 and 7.3, which are stated in that
+form.
+
+Lean: the whole chain. `BlockLock.block_lock` in
+`formal/Problems/Juggler/FateBlockLock.lean` is Lemma 5.14 before
+division by \(H_m\), a statement about an arbitrary real sequence with
+steps in \([a,a+\eta]\); `FiberParity.fiber_lock` in
+`FateFiberLock.lean` is Lemma 5.15, through Dirichlet's theorem in
+lowest terms (`exists_coprime_approx`) and the fiber instantiation
+`fiber_block_lock`; `FiberParity.resonance_count_le'` in
+`FateResonanceCount.lean` is the arc count; `FiberParity.poor_count_le'`
+and `poor_logMass_le` in `FatePoorTail.lean` are the two bounds of
+Theorem 5.16, and `nonpoor_fiber_logMass_ge` the per-fiber bound behind
+Corollary 5.17. In `FatePoorProduction.lean`,
+`Production.production_two_averaged` is the production inequality
+above, with error \(2e^{-t/8}\) on the \(OE\) coefficient and
+\(2e^{-t/2}+\tfrac23e^{-3t/4}+1400e^{-t/8}/\eta_0^2\) additive, under
+the one new hypothesis \(3(1280/\eta_0^2+1)\le e^{t/8}\), which is the
+block condition of Lemma 5.15 at \(U=\lfloor e^{3t/8}\rfloor\) and the
+whole cost of averaging; `Production.contagion_averaged` is Theorem
+5.18 with \(\lambda\) and \(\eta_0\) free and \(\zeta(\lambda,\eta_0)>0\)
+as its hypothesis. The exponent is a separate arithmetic certificate:
+`Production.zeta2avg_pos` checks \(0.710737\le2^{-100/203}\) and
+\(216967/250000\le(\tfrac34)^{100/203}\) as \(203\)rd powers in exact
+integer arithmetic, so that \(\zeta(100/203,10^{-5})>2.05\cdot10^{-5}\),
+and `zeta2avg_antitone` extends it to every \(\lambda\le100/203\).
+Hence `Production.logMass_contagion_averaged`: for every nonempty
+backward-closed \(A\) and every \(0<\lambda\le100/203\), with no
+hypothesis, \(\sum_{n\in A,\,n\le x}1/n\ge K(\log x)^\lambda\) for
+\(x\ge x_0\), above \(\lambda^{**}=0.4925715\ldots\) of the first route;
+and with it `failures_logMass_averaged` (Corollary 5.5(2) at
+\(100/203\)), `conjecture_of_tao_rate_averaged` (Theorem 7.2 at
+\(e>103/203\)) and `conjecture_of_cylinder_averaged` (Corollary
+8.4 at \(e(C)>103/203\)). The certificate is re-derived in exact
+rational arithmetic by `oe_rest_average.exponent_certificate`, with the
+smaller denominators enumerated: \(67/136\) also lies in
+\((\lambda^{**},\lambda_{\mathrm{ideal}})\) but leaves a tenth of the margin,
+and \(33/67\) falls short of \(\lambda^{**}\). The break-even is
+\(\eta_0=4.69\cdot10^{-5}\) at \(100/203\) and \(8.60\cdot10^{-5}\) at
+\(\lambda^{**}\); the range \(100/203<\lambda<\lambda_{\mathrm{ideal}}\) is
+the choice of \(\eta_0\) in Theorem 5.18 and is not separately
+certified.
+
+What changes is the critical path of Theorem 1, not its number:
+Proposition 4.4 with its two exponential-sum bounds, the ladder of
+Section 5.7 with Appendix D, and the statements of Lemmas 4.1, 4.1' and
+4.2 are no longer needed for the exponent; one step of Lemma 4.2's
+proof, the step interval, is. What does not change: the supremum is
+approached and not attained, \(\eta_0\) being fixed before \(x\), as in
+Theorem 5.3; the constants are large (at \(\eta_0=4.3\cdot10^{-5}\),
+\(u_0\approx1.2\cdot10^{36}\), \(x_0\approx10^{96}\), \(t_1\approx221\));
+and no standing question moves --- the exponent is below \(1\), the
+rate of Theorem 7.2 is not proved, no cycle is excluded and no orbit is
+shown to reach \(1\).
 
 ## 6. Odd generation and the exact first-letter decomposition
 
@@ -1651,7 +1890,7 @@ the walk charge bound the *states* of a hypothetical cycle (minimum
 \(>3.5\cdot 10^8\), period \(\ge 780239\)). Theorem 1 constrains the
 basin: if the cycle exists, its basin is a two-way closed class with
 the cycle's states as seeds and log-count \(\gg(\log x)^\lambda\) for every
-\(0<\lambda<\lambda^{**}\). In the present argument the
+\(0<\lambda<\lambda_{\mathrm{ideal}}\). In the present argument the
 two estimates do not meet: finance bounds the seed, contagion the growth from
 the seed, and no inequality bounds a basin from above. Paper B [12]
 controls the descending branches of (6.1) — the fairness of the
@@ -1660,23 +1899,31 @@ depth-5 theorems, of deeper contracting words — on dyadic blocks;
 Appendix C uses one statement of that type on sub-dyadic intervals as
 an explicit hypothesis. Neither touches \(\psi_F\): the ascending
 branch \(OO\) sends mass to \(x^{3/2}\), and its return is the
-nested-floor parity at all depths.
+nested-floor parity at all depths. The two papers' large-deviation
+exponents are one rate function read at two levels: the \(L\)-bad
+condition of Section 8 at depth \(d=CL\) demands an odd share above
+\(p_C=(1-1/C)/\log_23\), and \(e(C)/C\to1-H(\log2/\log3)=0.050044\)
+bits as \(C\to\infty\), the exponent of Lagarias's Theorem D [3] that
+Paper B's Section 6 uses; Paper B sits at \(L=0\), where the threshold
+is \(\log2/\log3\) itself. The gap is \(4.8\cdot10^{-3}\) at \(C=100\)
+and closes like \(1/C\).
 
 ## 7. The almost-all equivalence
 
 **Corollary 7.1 (logarithmic form).** The following are equivalent:
 (1) every \(n\ge 1\) reaches \(1\); (2) for some
-\(\lambda<\lambda^{**}\), \(\sum_{n\le x,\ n\notin R}1/n=o((\log x)^{\lambda})\);
-(3) for some \(0<\lambda<\lambda^{**}\), the starts \(n\le x\) whose orbit
+\(\lambda<\lambda_{\mathrm{ideal}}\), \(\sum_{n\le x,\ n\notin R}1/n=o((\log x)^{\lambda})\);
+(3) for some \(0<\lambda<\lambda_{\mathrm{ideal}}\), the starts \(n\le x\) whose orbit
 never enters \([1,N_0]\) have logarithmic count \(o((\log x)^{\lambda})\).
 
 *Proof.* (1)\(\Rightarrow\)(3): the set is empty. (3)\(\Rightarrow\)(2):
 an orbit that enters \([1,N_0]\) reaches \(1\), so \(F\) is contained
 in the set of (3). (2)\(\Rightarrow\)(1): \(F\) is backward-closed; if
-it were nonempty, Theorem 5.3 would contradict (2). \(\square\)
+it were nonempty, Theorem 5.18 (Theorem 5.3 below \(\lambda^{**}\))
+would contradict (2). \(\square\)
 
 **Theorem 7.2 (a Tao-type bound with rate implies the conjecture).**
-Suppose that for some \(e>1-\lambda^{**}\approx0.5074\) and all
+Suppose that for some \(e>1-\lambda_{\mathrm{ideal}}\approx0.5073\) and all
 sufficiently large \(y\),
 \[
 \#\{n\ \text{odd},\ y<n\le 2y:\ n\notin R\}\ \le\ \frac{y}{(\log y)^{e}} .
@@ -1684,7 +1931,7 @@ sufficiently large \(y\),
 Then \(R=\mathbb N\).
 
 *Proof.* By decreasing \(e\) if necessary, assume
-\(1-\lambda^{**}<e<1\); the hypothesis is preserved for large
+\(1-\lambda_{\mathrm{ideal}}<e<1\); the hypothesis is preserved for large
 \(y\). Suppose \(F\ne\emptyset\). By Theorem 6.1 every \(n\in F\)
 lies in the \(E\)-tree of an odd member of \(F\). For an odd
 \(n_0\in F\) the level-\(j\) set \(S_j(n_0)\) of its \(E\)-tree has
@@ -1702,12 +1949,13 @@ Hence
 &\ll(\log x)^{1-e}\log\log x.
 \end{aligned}
 \]
-By Theorem 5.3 the left side is \(\ge K(\log x)^{\lambda}\) for every
-\(\lambda<\lambda^{**}\) and all large \(x\). Choosing
-\(\lambda\in(1-e,\lambda^{**})\) gives a contradiction. \(\square\)
+By Theorem 5.18 (Theorem 5.3 below \(\lambda^{**}\)) the left side is
+\(\ge K(\log x)^{\lambda}\) for every \(\lambda<\lambda_{\mathrm{ideal}}\)
+and all large \(x\). Choosing \(\lambda\in(1-e,\lambda_{\mathrm{ideal}})\)
+gives a contradiction. \(\square\)
 
 **Theorem 7.3 (equivalence).** Every positive integer reaches \(1\) if
-and only if there is \(e>1-\lambda^{**}\) such that
+and only if there is \(e>1-\lambda_{\mathrm{ideal}}\) such that
 \(\#\{n\ \text{odd}\in(y,2y]:\ n\notin R\}\le y(\log y)^{-e}\) for all
 large \(y\).
 
@@ -1721,9 +1969,14 @@ bound of Theorem 5.3 as a hypothesis, as for Theorem 7.2; and
 Theorem 5.3 replaced by the production inequality (5.2), so that the
 chain from \(\mathrm H(C,A)\) to the conjecture has (5.2) as its only
 analytic input, for any \(\lambda\le 0.49\) with \(1-\lambda<e(C)\)
-(\(C\ge 19\) still suffices: \(e(19)=0.527>0.51\)).
+(\(C\ge 19\) still suffices: \(e(19)=0.527>0.51\)). With the
+contagion hypothesis discharged by Theorem 5.18,
+`Production.conjecture_of_tao_rate_averaged` is Theorem 7.2 at
+\(e>103/203\) and `Production.conjecture_of_cylinder_averaged`
+is Corollary 8.4 at \(e(C)>103/203\), with no hypothesis on the
+contagion side (Section 5.8).
 
-The threshold \(1-\lambda^{**}\) is the complement of the contagion
+The threshold \(1-\lambda_{\mathrm{ideal}}\) is the complement of the contagion
 exponent; with \(\lambda^{***}\) of Appendix C it becomes \(0.4608\).
 Any improvement of the contagion exponent lowers the rate required of
 the almost-all statement, and \(\lambda\to 1\) would make any positive
@@ -1754,6 +2007,21 @@ sum, and by itself cannot contradict a logarithmic error bound.
 This comparison explains why the particular argument of Theorem
 7.2 does not transfer. It does not exclude other almost-all-to-all
 arguments for Collatz.
+
+*The analogue of Theorem 1 fails for Collatz, by exhibit.* For the
+shortcut map \(n\mapsto n/2\), \(n\mapsto(3n+1)/2\), the set
+\(A=\{3\cdot2^k:k\ge0\}\) is backward-closed: a multiple of three has
+no odd preimage, since \(2\cdot3\cdot2^k-1\equiv2\pmod3\), so the fiber
+of \(3\cdot2^k\) is \(\{3\cdot2^{k+1}\}\); the same holds for the
+standard map. \(A\) is infinite, its counting function is
+\(\lfloor\log_2(x/3)\rfloor+1\), and its reciprocal sum is exactly
+\(\tfrac23\). What separates the two maps is not fiber size but
+worst-case backward log-mass: the even block of \(m\) returns log-mass
+at least \(\tfrac1m(1-\tfrac2m)\) for every \(m\) (Lemma 3.1, item 1 of
+Section 5.1), whereas the Collatz fiber of \(m\) returns \(\tfrac1m\)
+in the mean over \(m\) and exactly \(\tfrac1{2m}\) on every multiple of
+three. Theorem 1 quantifies over every backward-closed set, so the
+worst case governs and the mean is irrelevant.
 
 Tao's theorem [6] has an arbitrarily slowly growing target and
 logarithmic-density exceptional set. Our eventual-entry equivalence
@@ -2551,7 +2819,7 @@ fiber model would replace it by \(1/4\). If \(c\) denotes either
 coefficient, the homogeneous exponent \(e_c>0\) is the root of
 \(\tfrac12 2^{e_c}+c(4/3)^{e_c}=1\). Numerically it is
 \(0.3391\) for \(c=1/3\), and
-\(1-\lambda_{\rm ideal}=0.5073\) for \(c=1/4\).
+\(1-\lambda_{\mathrm{ideal}}=0.5073\) for \(c=1/4\).
 These values describe the upper comparison, not a proved exact
 decay rate of a nonempty failure set.
 
@@ -2775,14 +3043,20 @@ eventual-entry equivalence requires no conjectural cylinder
 estimate. Theorems 8.3, 9.1 and 9.2 are implications from explicit
 unproved hypotheses; Appendix C is conditional on an additional
 localized discrepancy estimate. Selected finite computations and
-Lean proofs have the scopes listed in Section 1.4 and Appendix A.
+Lean proofs have the scopes listed in Section 1.4 and Appendix A;
+since the revision of 21 September 2026 the contagion theorem itself is
+formalized with no hypothesis for every \(\lambda\le100/203\), and what
+stays outside the formalization is the analytic first route
+(Proposition 4.4, Lemma 4.5 and Appendix D), no longer on the critical
+path, and the dyadic pigeonhole of Corollary 5.4.
 
 One sufficient remaining target is
 \[
 \#\{n\text{ odd in }(y,2y]:\tau(n)>\lceil CL(y)\rceil\}
- \ll y(\log y)^{-e},\qquad e>1-\lambda^{**},
+ \ll y(\log y)^{-e},\qquad e>1-\lambda_{\mathrm{ideal}},
 \]
-for a fixed \(C\) and all sufficiently large \(y\). This would
+for a fixed \(C\) and all sufficiently large \(y\); the threshold
+\(103/203\) is machine-checked with no hypothesis. This would
 imply universal termination by Theorem 7.2. Universal termination
 alone gives no uniform time bound of this form in the present
 argument. The equivalent statement in Theorem 7.3 concerns
@@ -2800,7 +3074,7 @@ No nontrivial cycle or unbounded orbit is excluded by this paper.
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
 root `formal/Problems/JugglerFatePaper.lean` imports exactly the
-thirty-one modules named here and builds with
+thirty-six modules named here and builds with
 `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -2842,7 +3116,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lemma 4.2 (fiber parity), in `Problems/Juggler/FateFiberParity.lean` | `FiberParity.xval`, `FiberParity.two_xval`, `FiberParity.floor_two_xval`, `FiberParity.cell_xval_even_iff`, `FiberParity.xval_step`, `FiberParity.xval_step_ge`, `FiberParity.xval_step_le`, `FiberParity.xval_step_mono`, `FiberParity.oeFiber`, `FiberParity.mem_oeFiber`, `FiberParity.oeFiber_eq_image`, `FiberParity.oeFiber_card`, `FiberParity.evenImageCount`, `FiberParity.fiber_ge_rpow`, `FiberParity.fiber_lt_rpow`, `FiberParity.rpow_four_thirds_succ_ge`, `FiberParity.rpow_four_thirds_succ_le`, `FiberParity.rpow_two_thirds_succ_le`, `FiberParity.oeFiber_card_ge`, `FiberParity.oeFiber_card_le`, `FiberParity.Am`, `FiberParity.alpha`, `FiberParity.eps`, `FiberParity.Good`, `FiberParity.eps_le`, `FiberParity.step_ge`, `FiberParity.step_le`, `FiberParity.fiber_parity_good` |
 | Lemma 4.3 (thin fibers), in `Problems/Juggler/FateThinFibers.lean` | `FiberParity.span_ge_of_step`, `FiberParity.arc_count_le`, `FiberParity.Am_step_le`, `FiberParity.Am_step_ge`, `FiberParity.eps_antitone`, `FiberParity.bad_mem_arc`, `FiberParity.two_rpow_third_le`, `FiberParity.two_rpow_two_thirds_le`, `FiberParity.rpow_two_thirds_ge`, `FiberParity.eps_div_eps_double`, `FiberParity.Am_double_sub_le`, `FiberParity.bad_count_le`, `FiberParity.bad_block_logMass_le`, `FiberParity.bad_sum_dyadic_le`, `FiberParity.eps_pow_two_mul`, `FiberParity.two_rpow_neg_third_le`, `FiberParity.bad_logMass_le` |
 | Theorem 5.3 given (5.2), Theorem 7.3, Corollary 8.4 through (5.2), in `Problems/Juggler/FateContagionBound.lean` | `productionRate`, `productionCoeff`, `productionRate_pos`, `productionRate_ge`, `productionRate_le`, `productionRate_le_one`, `productionCoeff_ge`, `productionCoeff_nonneg`, `zeta`, `zeta_antitone`, `le_rpow_div_of_pow_le`, `zeta_pos_49`, `seedConst`, `gA`, `gA_seed`, `logMass_ge_gA`, `contagion_of_production_inequality`, `logMass_contagion_of_production`, `oddFailures_eq_empty`, `tao_rate_iff_conjecture`, `conjecture_of_cylinder_bound_of_production` |
-| Proposition 4.4 (its two exponential-sum bounds, the fast sum and the product sum; the exact layer, the slow sum, the block count and the deduction of (4.1) and of the asymptotic form from those two bounds are Lean), the share law 4.5 and Corollary 4.6 (the phase expansion, the range of the quadratic phase and the integral 25/108 are Lean, the equidistribution and the measure identifications are not), the production inequality (5.2) (its `E`-family and `OE`-fiber family are Lean with explicit errors and give Theorem 5.3 at exponent 13/40 unconditionally; the block-average family and the ladder are not), Corollary 5.4 and every clause of Corollary 5.5 except 5.5(2)'s log-mass bound at exponent 13/40 (the dyadic pigeonhole is not formalized, nor is that bound in the remaining range \(13/40<\lambda<\lambda^{**}\), and neither are the instantiations of Theorem 5.3 at the reach-one class, at a cycle basin or at the divergent starts), Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C; Theorems 5.3, 7.2, 7.3 and Corollary 8.4 only with (5.2) or the contagion bound as a hypothesis | human proofs |
+| Proposition 4.4 (its two exponential-sum bounds, the fast sum and the product sum; the exact layer, the slow sum, the block count and the deduction of (4.1) and of the asymptotic form from those two bounds are Lean), the share law 4.5 and Corollary 4.6 (the phase expansion, the range of the quadratic phase and the integral 25/108 are Lean, the equidistribution and the measure identifications are not), the production inequality (5.2) (its `E`-family and `OE`-fiber family are Lean with explicit errors and give Theorem 5.3 at exponent 13/40 unconditionally, and the averaged `OE` family of Section 5.8 gives it at 100/203; the block-average family and the ladder are not Lean and are no longer needed for the exponent), Corollary 5.4 and every clause of Corollary 5.5 except 5.5(2)'s log-mass bound at exponent 100/203 (the dyadic pigeonhole is not formalized, nor is that bound in the remaining range \(100/203<\lambda<\lambda_{\mathrm{ideal}}\), and neither are the instantiations of Theorem 5.3 at the reach-one class, at a cycle basin or at the divergent starts), Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C; Theorem 5.3 in the range \(100/203<\lambda<\lambda_{\mathrm{ideal}}\), and Theorems 7.2, 7.3 and Corollary 8.4 with the contagion bound as a hypothesis outside the exponents of Section 5.8 | human proofs |
 | Theorem 9.1 (one-sided form, exact, by exponential moments), in `Problems/Juggler/FateOneSided.lean` | `OneSided.cylinder_split`, `OneSided.LBad_of_LBad_append`, `OneSided.sum_allWords_succ`, `OneSided.sum_pow_oddCount_le`, `OneSided.badWeight`, `OneSided.badWeight_nonneg`, `OneSided.badWeight_le_card`, `OneSided.badMass`, `OneSided.OneSidedShare`, `OneSided.badMass_succ_le`, `OneSided.card_cylinder_zero_le`, `OneSided.badMass_one_le`, `OneSided.badMass_le`, `OneSided.oddFailures_card_le_badMass`, `OneSided.one_sided_bound`, `OneSided.klDiv`, `OneSided.tilt`, `OneSided.tilt_ge_one`, `OneSided.tilt_pow_ratio`, `OneSided.one_sided_bound_kl` |
 | Theorem 9.1's consequence (the conjecture from the one-sided hypothesis), in `Problems/Juggler/FateOneSidedCorollary.lean` | `OneSided.OneSidedBound`, `OneSided.OneSidedExact`, `OneSided.oneSidedExponent`, `OneSided.OneSidedShare.mono`, `OneSided.oneSidedBound_of_exact`, `OneSided.klDiv_nonneg`, `OneSided.exp_le_rpow_scale`, `OneSided.pow_le_rpow_scale`, `OneSided.oddFailures_le_of_one_sided`, `OneSided.implies_conjecture_of_contagion`, `OneSided.one_sided_implies_conjecture`, `OneSided.exact_share_implies_conjecture` |
 | Section 9.2's consequences (the conjecture from the pressure and no-momentum hypotheses), in `Problems/Juggler/FatePressureCorollary.lean` | `Pressure.oddFailures_subset_live`, `Pressure.PressureBound`, `Pressure.NoMomentumBound`, `Pressure.momentumExponent`, `Pressure.absorb`, `Pressure.oddFailures_le_of_pressure`, `Pressure.pressure_conj_of_contagion`, `Pressure.pressure_implies_conjecture`, `Pressure.oddFailures_le_of_noMomentum`, `Pressure.noMomentum_conj_of_contagion`, `Pressure.noMomentum_implies_conjecture` |
@@ -2850,6 +3124,11 @@ abstract lemmas listed here, not the analytic density estimates.
 | Section 10(d), the bias energy supplying the exceptional atoms, in `Problems/Juggler/FateEnergyAtoms.lean` | `OneSided.OneSidedShareExc.mono_err`, `Energy.bias`, `Energy.energyOn`, `Energy.biasEnergy`, `Energy.badEnergy`, `Energy.violators`, `Energy.badEnergy_le_biasEnergy`, `Energy.card_allWords`, `Energy.mass_violators_le`, `Energy.oneSidedShareExc_of_energy`, `Energy.wordCount_cylinder`, `Energy.biasEnergy_eq`, `Energy.EnergyBound`, `Energy.oneSidedBoundExc_of_energy`, `Energy.energy_conj_of_contagion`, `Energy.energy_implies_conjecture` |
 | Section 10(d), the collapsed component, in `Problems/Juggler/FateCollapse.lean` | `Collapse.fiber`, `Collapse.window`, `Collapse.windowBias`, `Collapse.card_filter_window`, `Collapse.card_window`, `Collapse.windowBias_eq_sum`, `Collapse.abs_alt_sum_le`, `Collapse.Icc_eq_Ico`, `Collapse.abs_windowBias_le`, `Collapse.lt_sq_succ_of_floorPower_eq`, `Collapse.pre`, `Collapse.iterate_succ_eq`, `Collapse.fiber_succ`, `Collapse.pre_filter_even`, `Collapse.blockSum`, `Collapse.oddPart`, `Collapse.oddPart_nonneg`, `Collapse.fiber_succ_eq`, `Collapse.evenCount`, `Collapse.evenCount_le`, `Collapse.le_evenCount`, `Collapse.blockSum_sub_le`, `Collapse.sum_abs_oddPart_sub_le`, `Collapse.collapse_bias_le`, `Collapse.fiber_succ_sandwich`, `Collapse.collapse_bias_two_step` |
 | Section 8.4, the unconditional criteria at `C = 30` with every constant a numeral, in `Problems/Juggler/FateCertified.lean` | `Certified.e_ge`, `Certified.e_le`, `Certified.log_le_of_pow_le`, `Certified.le_log_of_pow_le`, `Certified.logb_two_le`, `Certified.le_logb_two`, `Certified.log_two_le`, `Certified.le_log_two`, `Certified.le_logb_three`, `Certified.logb_three_le`, `Certified.le_log_lo`, `Certified.le_log_hi`, `Certified.log_lo_le`, `Certified.log_hi_le`, `Certified.logb_three_pos`, `Certified.pC_thirty_ge`, `Certified.pC_thirty_le`, `Certified.klHalf_ge_of`, `Certified.klHalf_le_of`, `Certified.klHalf_thirty_ge`, `Certified.klHalf_thirty_le`, `Certified.chernoffExponent_thirty_gt`, `Certified.chernoffExponent_thirty_lt`, `Certified.cylinder_bound_thirty`, `Certified.pressure_thirty`, `Certified.klDiv_half`, `Certified.oneSidedExponent_half`, `Certified.logb_tilt_thirty_le`, `Certified.one_sided_thirty` |
+| Lemma 5.14 (block lock), in `Problems/Juggler/FateBlockLock.lean` | `BlockLock.gridRes`, `BlockLock.fract_grid`, `BlockLock.gridRes_mul_inj`, `BlockLock.grid_reindex`, `BlockLock.grid_half_count`, `BlockLock.grid_near_count`, `BlockLock.span_bounds`, `BlockLock.block_count`, `BlockLock.block_chain`, `BlockLock.block_lock` |
+| Lemma 5.15 (fiber lock), in `Problems/Juggler/FateFiberLock.lean` | `FiberParity.evenImageCount_eq_fract`, `FiberParity.eps_mul_Hlen_le`, `FiberParity.exists_coprime_approx`, `FiberParity.fiber_block_lock`, `FiberParity.fiber_lock` |
+| The resonance count behind Theorem 5.16, in `Problems/Juggler/FateResonanceCount.lean` | `FiberParity.Resonant`, `FiberParity.resonant_mem_arc`, `FiberParity.Am_window_le`, `FiberParity.shifted_arc_count_le`, `FiberParity.resonance_count_one`, `FiberParity.resonance_count_le`, `FiberParity.resonance_count_le'` |
+| Theorem 5.16 (poor-fiber tail) and the non-poor fiber bound of Corollary 5.17, in `Problems/Juggler/FatePoorTail.lean` | `FiberParity.Poor`, `FiberParity.oeFiber_nonempty`, `FiberParity.resonant_mono`, `FiberParity.poor_resonant`, `FiberParity.poor_count_le`, `FiberParity.poor_count_le'`, `FiberParity.poor_block_logMass_le`, `FiberParity.poor_sum_dyadic_le`, `FiberParity.poor_logMass_le`, `FiberParity.nonpoor_fiber_logMass_ge` |
+| Theorem 5.18 and its consequences (Section 5.8), in `Problems/Juggler/FatePoorProduction.lean` | `Production.family_OE_averaged`, `Production.errOEavg`, `Production.errAddAvg`, `Production.production_two_averaged`, `Production.coef2avg`, `Production.err2avg`, `Production.coef2avg_ge`, `Production.coef2avg_nonneg`, `Production.err2avg_nonneg`, `Production.err2avg_le`, `Production.production_two_averaged_sum`, `Production.errorsAvg_le`, `Production.errorsAvg_vanish`, `Production.zeta2avg_antitone`, `Production.contagion_averaged`, `Production.zeta2avg_pos`, `Production.logMass_contagion_averaged`, `Production.failures_logMass_averaged`, `Production.conjecture_of_tao_rate_averaged`, `Production.conjecture_of_cylinder_averaged` |
 
 ## Appendix B. Constants and artifacts
 
@@ -2868,6 +3147,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | + \(V_6=OEOEOEOEOEOEE\) (\(\lambda^{**}\), Theorem 1; elementary, audited) | \(\ldots,(\tfrac1{2187},\tfrac{729}{8192})\) | \(0.4926\) |
 | pairing + \(OOEEE\) (\(\lambda^{***}\), Appendix C, conditional) | pairing terms and \((\tfrac19,\tfrac9{32})\) | \(0.5392\) |
 | depth-two ideal-share model | \((\tfrac13,\tfrac34)\) | \(0.4927\) |
+| two productions at the averaged coefficient, \(\eta_0\downarrow0\) (\(\lambda_{\mathrm{ideal}}\), Theorem 5.18; Lean to \(100/203\)) | \((\tfrac13-\tfrac23\eta_0,\tfrac34)\) | \(0.4927\) |
 | + \(OOOEE\), \(OOEOE\) (closed: fibers \(P^{5/32}\); Lemma 3.9 leftover \(P^{89/96}\)) | \(\ldots,(\tfrac2{27},\tfrac{27}{64})\) | \(0.5561\) |
 | pairing + \(OEOEE\) + \(OOEEE\) (model comparison) | pairing terms and \((\tfrac4{27},\tfrac9{32})\) | \(0.5665\) |
 | conditional infinite \(V_k=(OE)^{k-1}OEE\) model | \(\ldots,(3^{-(k+2)},(\tfrac34)^k\tfrac38)_{k\ge1}\) | \(0.4927\) |
@@ -2879,7 +3159,9 @@ abstract lemmas listed here, not the analytic density estimates.
 | abstract ceiling, all \(O\)-runs at the ideal share (Proposition 5.12) | \(2^{-\lambda}+\tfrac13(\tfrac32)^{\lambda}=1\) | \(1\) |
 
 *Depth constants.* The least integer values below use the three
-explicitly named rate thresholds; intermediate \(V_2\) through
+explicitly named rate thresholds; the threshold \(1-\lambda_{\mathrm{ideal}}=0.5073\)
+of the second route gives the same integers as \(0.5074\) in every
+column; intermediate \(V_2\) through
 \(V_5\) have complementary thresholds \(0.5199\), \(0.5109\),
 \(0.5084\), and \(0.5076\), respectively.
 
@@ -3015,13 +3297,33 @@ use the roots of the displayed defining equations.
 
   SHA-256: `d8991fd05c076875a0e8fd75692a10bb31930c289a3812de07212b620645acca`
 
+- `formal/Problems/Juggler/FateBlockLock.lean`
+
+  SHA-256: `b4fdc02e5b41b8759156f5aa1b3f208854d2e6c994a3963e24aa164df498bed7`
+
+- `formal/Problems/Juggler/FateFiberLock.lean`
+
+  SHA-256: `f82aceb5a06642f7f55ea1b1bbee317ea487c46e97cbf52aecbd920dc9d10007`
+
+- `formal/Problems/Juggler/FateResonanceCount.lean`
+
+  SHA-256: `f39eca082166b63d15989946e8ae54279bb9a4b779d5440d0c970212883f4aa1`
+
+- `formal/Problems/Juggler/FatePoorTail.lean`
+
+  SHA-256: `773c579e2ba303dc49f1488020ea142b0b35ea26573707ebfd6afca7c4dd284b`
+
+- `formal/Problems/Juggler/FatePoorProduction.lean`
+
+  SHA-256: `0fc332ef6b54bebbe4de215b03ac582a2d0cc38d82a391d23856624599940283`
+
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `b6a9aba0a8e5c85ba06bbd049d0f7a42f4fb27762831b1e2fc587b7428a9fe66`
+  SHA-256: `fc979266353d29d179fa03b98c1eca161d607df68d855f70876c1554dc7b6654`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `a9e7db1534190fe3263d4f0633878f329d9b6b4288896db7ddd91202e6fc671b`
+  SHA-256: `f59f1d87418d74369e3c79e3131809d3c4f62e5a9c09b91a4c539b0736aa3f8e`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 
@@ -3029,7 +3331,7 @@ use the roots of the displayed defining equations.
 
 - `src/research/juggler_sequence/tao_reduction.py`
 
-  SHA-256: `ba4f9a6bbb23992901ed9681965444a646ed6969f9403c14828ffba33636bc8a`
+  SHA-256: `7d4cc3e0dbf197232c084e0aa6fe89cff7deb77bdab2d52523f5bcfc58a9e14f`
 
 - `docs/theory/figures/render_paper_c_figures.py`
 
@@ -3508,7 +3810,16 @@ only the results identified in Section 1.4 and Appendix A.
 
 ## Availability and version
 
-This version is prepared as a Zenodo preprint. The accompanying
+The Zenodo record
+[doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165)
+of 9 September 2026 is version 1.0.0 of this paper.
+The present revision, of 21 September 2026, is not deposited; it adds
+Section 5.8 with its Lean layer, the corresponding rows of Section 1.4
+and Appendices A and B, the remarks of Sections 5.7, 6.3 and 7.1, the
+exponent \(\lambda_{\mathrm{ideal}}\) in the statements, and the current
+forms of the companion references. The changes between the deposit and
+this revision are listed in the build guide, `PAPER_C_BUILD.md`, in the
+repository. The accompanying
 source package contains the Markdown and LaTeX sources, figures,
 the local Lean dependency closure with its pinned toolchain,
 numerical audit code, archived experiment records, and a manifest
@@ -3549,19 +3860,23 @@ in this version of Paper C govern this preprint.
     *Bull. Amer. Math. Soc. (N.S.)* 12 (1985), 183–216.
     [doi:10.1090/S0273-0979-1985-15349-2](https://doi.org/10.1090/S0273-0979-1985-15349-2).
 11. P. Cochin, "Lower Bounds for Cycle Lengths in the Juggler Map"
-    (Paper A), preprint, version consulted 9 September 2026;
+    (Paper A), Zenodo version 1.0.0, 9 September 2026,
+    [doi:10.5281/zenodo.22676453](https://doi.org/10.5281/zenodo.22676453);
+    revision of 21 September 2026 at
     `docs/theory/juggler_finite_dynamics_note.md` in the repository
     https://github.com/sneakyweasel/btlab/.
-12. P. Cochin, "Parity equidistribution of nested floor powers, with
-    descent applications to the Juggler map" (Paper B), working draft,
-    2026; `docs/theory/juggler_parity_discrepancy_note.md`, same
-    repository.
+12. P. Cochin, "Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers" (Paper B), Zenodo version
+    1.0.0, 21 September 2026,
+    [doi:10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934);
+    revision of 20 September 2026 at
+    `docs/theory/juggler_parity_discrepancy_note.md`, same repository.
 13. S. W. Graham and G. Kolesnik, *Van der Corput's Method of
     Exponential Sums*, London Mathematical Society Lecture Note
     Series 126, Cambridge University Press, Cambridge, 1991.
-14. P. Cochin, research notes on fate contagion and the Tao-type
-    reduction for the Juggler map, 2026;
-    `docs/theory/juggler_fate_contagion_note.md` and
-    `docs/theory/juggler_tao_reduction_note.md`, same repository.
+14. P. Cochin, research notes on fate contagion, the Tao-type
+    reduction and the poor-fiber tail for the Juggler map, 2026;
+    `docs/theory/juggler_fate_contagion_note.md`,
+    `docs/theory/juggler_tao_reduction_note.md` and
+    `docs/theory/juggler_oe_poor_fiber_tail_note.md`, same repository.
 15. L. Kuipers and H. Niederreiter, *Uniform Distribution of
     Sequences*, Wiley-Interscience, New York, 1974.

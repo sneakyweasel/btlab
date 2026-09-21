@@ -1,5 +1,184 @@
 # Research journal
 
+## 2026-09-21 -- Paper C revised to the averaged route: Theorem 1 at lambda_ideal, 100/203 machine-checked
+
+- **Objective:** Philippe asked for Paper C to be reviewed and updated to
+  the latest progress. The deposit of 9 September (version 1.0.0) is
+  unchanged; this is the local revision.
+- **What the manuscript was behind on.** The Lean layer had passed it: the
+  poor-fiber tail and the two-production recursion at the averaged
+  coefficient (20 September, five modules outside the barrel) give
+  Theorem 5.3 for every \(\lambda\le100/203\) with no hypothesis, above
+  the deposited \(\lambda^{**}\), and discharge the contagion hypothesis of
+  Theorem 7.2 and Corollary 8.4 at \(e>103/203\); the 19 September bridge
+  findings (the Collatz identity \(c_w=3^{-b}\), the exponent bridge
+  \(e(C)/C\to0.050044\) bits, the counterexample \(\{3\cdot2^k\}\)) were in
+  the ledger only; the companion references named Paper B by its old
+  title, Paper A by a version "consulted", neither by DOI, and Appendix C
+  cited a "Theorem 4.12" Paper B no longer has.
+- **The revision.** New Section 5.8 (Lemma 5.14 block lock, Lemma 5.15
+  fiber lock, Theorem 5.16 poor-fiber tail with 430 and 2100, Corollary
+  5.17, Theorem 5.18 with \(\zeta(\lambda,\eta_0)\)), proofs as sketches
+  with the constants, the Lean paragraph naming the chain and the
+  certificate. Theorem 1, the overview, Theorem 3, Theorem 4's preamble,
+  Corollary 7.1, Theorems 7.2 and 7.3 and Section 12 now carry
+  \(\lambda_{\mathrm{ideal}}\approx0.4927\), root of
+  \(2^{-\lambda}+\tfrac13(3/4)^\lambda=1\), with the first route kept as
+  (1.1) and \(\lambda^{**}\); the depth constants are unchanged at the new
+  threshold (checked: 19; 19, 41, 223, 1586). Section 5.6 records the
+  depth-two gap closed; 5.7 gains the Collatz identity; 6.3 the exponent
+  bridge; 7.1 the exhibit and the log-mass dichotomy. Section 1.4 and
+  Appendix A gain the rows and the declaration names, Appendix B the
+  exponent row and five digests, the references their DOIs and current
+  titles (Paper B cited by title and subtitle), the Availability
+  paragraph the deposit-versus-revision statement. Date 21 September;
+  61 pages, from 55.
+- **The formal surface.** The barrel imports thirty-six modules; the
+  artifact asks 460 declarations (45 new theorems, defs not asked, as
+  before) and every list is a subset of Mathlib's three; the probe is
+  consistent (39 Lean rows, 5 human). One peer name,
+  `Production.conjecture_of_cylinder_bound_averaged`, was 65 characters
+  qualified and wrapped Lean's report over three lines, which the probe
+  reads as "no recorded result"; `set_option format.width` does not
+  unwrap `#print axioms`, so the theorem is renamed
+  `conjecture_of_cylinder_averaged` (59, the limit) in the module, the
+  note, the ledger, the tao_reduction probe and the manuscript, the
+  journal left as history. FatePoorProduction rebuilt in 43 s.
+- **Gates.** `build_paper_c.py` three passes with one overfull box fixed
+  (a DOI link in the Availability paragraph), `--check` green, numeric
+  checker all_checks_passed with the fresh axiom output matching the
+  record; formal-layer, oe_rest_average, fate_contagion, collatz_bridge,
+  layer-architecture and formalpedia tests green; ledger rendered and
+  checked (seven rows annotated: trust surface prefixed with the new
+  counts, the six results told where the paper carries them); the four
+  formalpedia artifacts regenerated after the ledger, the only dirty
+  peer Lean being line-ending churn. Pandoc could not read `\rm` inside
+  the abstract's math when it renders the Zenodo description, so the new
+  macro is `\mathrm`; the PDF is unchanged by that.
+- **Not done, and said so in the text.** The range
+  \(100/203<\lambda<\lambda_{\mathrm{ideal}}\) is one choice of \(\eta_0\)
+  away and is not certified; the supremum is not attained; the constants
+  are astronomical (\(x_0\approx10^{96}\)); no cycle is excluded and no
+  orbit reaches 1 by this. No Zenodo new version was made.
+
+## 2026-09-21 -- Five unread sources read; the Paper B open risk closes, and three egress claims were false
+
+- **Objective:** Philippe asked which papers the laboratory still could not
+  reach, then fetched them one at a time onto the Desktop.
+- **The premise did not survive the first probe.** Of the hosts recorded in
+  `literature/*.json` as refused by egress policy, four answered 200 on the
+  first try -- `images.math.cnrs.fr`, `dmtcs.episciences.org`,
+  `content.wolfram.com` and `arxiv.org`. Only matwbn (403) and ResearchGate
+  (proxy refusal) were genuinely shut. `hal.science` returns 200 with a body
+  reading "Making sure you are not a bot", which looks like a successful fetch
+  and is not one; its **search API is open** and handed back the arXiv id and
+  the DOI in one call. Philippe supplied the two that stayed shut.
+- **Read in full:** Terras 1976 (13 pp, ICM scan), Monks 2002, Knight's
+  *A Small Collatz Rule without the Plus One*, Eliahou-Fromentin-Simonetto's
+  falling-time paper, and Hikawa-Nakanishi's January manuscript (searched
+  decisively, not line by line). Eliahou 2011 read at its article page.
+- **The Paper B open risk is closed and the answer is no.** The January paper
+  contains no asymptotic of any kind and never names A076227, A100982 or
+  A260591. The prior-art clock splits: counting objects from January 2026,
+  asymptotic layer from July, oscillating prefactor in none of the three.
+- **Terras 1976 discharges the bridge caveat and opens a 1976 question.** His
+  only asymptotic statement is Theorem 1.17, `F(k) -> 0` monotonely; the proof
+  writes the very binomial tail Lagarias's Theorem D bounds and estimates it by
+  the **central limit theorem**. "Density since 1976, exponent since 1985" now
+  rests on his text. But Definition 1.13 already counts survivors by length and
+  weight (his *modified binomial coefficient*) and Theorem 1.14 gives them a
+  gated Pascal recursion -- so the recursion's provenance is a 1976 question and
+  **the comparison with Winkler and the toolkit has not been run**.
+- **Registered, eight:** `kay-2021-characteristic-zero-one-strings`,
+  `winkler-2015-stopping-time-behavior`, `winkler-2026-connection-thresholds`,
+  `garner-1981-collatz-algorithm`, `terras-1978-density-addendum`,
+  `wirsching-1998-dynamical-system`, `thaler-2025-delta-recurrence`,
+  `barina-2021-convergence-verification`. Rewritten from the texts, eight more.
+  Registry at 203 entries, loading clean.
+- **The nearest unread neighbour is now named.**
+  `winkler-2026-connection-thresholds` -- Beatty first passage at slope
+  `lambda = log2 3`, opposite side of the boundary -- has no URL or identifier
+  anywhere. It is the likeliest remaining home of Paper B prior art.
+- **Two over-corrections recorded** in `negative_knowledge.md`: Knight's online
+  date and the Eliahou bound, both correct facts rejected because of the channel
+  they arrived through. Attribution of `17,026,679,261` settled: it is Eliahou
+  2011's, a cycle-**length** bound, and the dossier's own "correction" of it was
+  itself too strong.
+- **Terras's Table A reproduces, at an off-by-one read off the definitions.**
+  His Definition 0.1 and (0) make `F(k)` the density of `chi(n) >= k`; our `N_k`
+  counts `chi > k`; so `F(k) = N_(k-1)/2^(k-1)`. All seventeen usable rows agree,
+  worst relative deviation `6.62e-4` at `k = 40` against a five-figure printed
+  table, while the naive alignment misses by at least `4.0e-2`. Pinned in
+  `tests/research/juggler_sequence/test_terras_table_a.py`.
+- **The check nearly went green for nothing.** Six of Table A's rows —
+  `k = 30, 60, 90, 700, 800, 900` — are exactly the free lengths, where `M_k = 0`
+  and `N_k = 2 N_(k-1)`, so the density is offset-invariant and the two
+  alignments are indistinguishable. My first pass matched on three of them and
+  read that as partial confirmation of the *wrong* indexing. The control test
+  now asserts the naive alignment fails on every row able to detect it.
+- **First draft of that test failed on three counts** — an exhausted fixture, a
+  tolerance tighter than the printed precision, and a free-length relation I had
+  stated as `N_k = N_(k-1)` when it is `N_k = 2 N_(k-1)`. Recorded because the
+  test was written from an explanation rather than from the measurements.
+- **All three Winkler September preprints recovered and read**, after every
+  automated route failed (ResearchGate refuses the proxy and serves the browser
+  pane a security check, which was not attempted; `mikewinkler.co.nf` no longer
+  resolves; CORE, fatcat and Wayback give nothing; OpenAlex confirms all three
+  are gold OA with the ResearchGate DOI as their *only* location). Philippe
+  fetched them. His homepage is `www.mikematics.de`.
+- **A scope sentence in the prior-art note was false, and is narrowed.** It said
+  no source read states an oscillating prefactor or an amplitude. Winkler's
+  qx+1 preprint of 14 September, **Corollary 12**, states an exact normalized
+  oscillation for A100982 = `M_d`: with `R_q(r) = r a_q(r)/binom(m_r-1, r-1)`,
+  `liminf = 1` and `limsup = alpha_q/(alpha_q-1)` (`2.7095112914` at `q = 3`),
+  with the equality orders classified as the one-sided best-approximation
+  denominators. Corollary 11 gives the growth constants, `B_3 = 2.8395137305`.
+  The laboratory's claim **survives, narrower**: different object (`M_d` not
+  `N_d`), different normalisation, and an envelope rather than an almost-periodic
+  function with a jump measure and a Fourier identity — but the same mechanism,
+  and it must now be cited. The false sentence was written when that paper was
+  known only through an OEIS comment, which carried the sandwich and not §7.
+- **The candidate identity was refuted the same day it was proposed.**
+  `winkler-2026-coefficient-first-passage` (8 September) is *not*
+  `winkler-2026-connection-thresholds` under a new title — different paper, and
+  it does not cite that one. Keeping them as separate records instead of merging
+  on a title resemblance is what the `knight-2026-small-collatz-rule` error
+  taught. Its own content is exact and structural (Beatty–Ferrers bijection,
+  nested matroid, rook polynomials, the power-of-two law as an exact sub-family
+  count) with **no asymptotics** — it credits those to Hikawa.
+- **The recursion comparison is run, and Terras 1976 Theorem 1.14 *is* the
+  survivor recursion** (`test_terras_recursion.py`, 46 checks, exact to
+  `k = 16`). His Definition 1.12 admissibility is `3^ones > 2^i` in integers —
+  our no-contracting-prefix condition verbatim — and his gate
+  `c(a,k) = [a < k(1-gamma)]` says the word is still active, so (11) is Pascal
+  restricted to survivors. `word_counts(k)[k-a]` is the active part of `n(a,k)`,
+  so **Paper B's joint (length, weight) table is Terras's**; `N_k` and `M_k` are
+  his active and terminal row sums; and `sum_a n(a,k) = 2 N_(k-1)` **derives**
+  the Table A offset that this morning's test could only measure. Strip the gate
+  and you count all `2^k` words — that is the control.
+- **This lands on the deposited Paper B.** Its *"This recursion is not new"*
+  subsection credits Zarubin (11 Aug 2019), Winkler (12 Sep 2017) and eq. (48)
+  of the September Hikawa — all three the one-index `N_k = 2 N_(k-1) - M_k`,
+  which follows from Theorem 1.14 by summing over `a` and splitting the row. The
+  antecedent is **1976**, in a paper the manuscript already carries as reference
+  [4]. An attribution correction, not a retraction — the subsection claims
+  nothing as new — but it is in a text with a public DOI and wants a v1.0.1.
+- **The manuscript was ahead of the internal notes all along.** Reading the
+  deposited Paper B showed it already cites Winkler §7, names Corollary 12, gets
+  its liminf/limsup right and quantifies the gap (envelope `2.7095` against
+  `psi`'s span `1.06`, "too coarse by a factor near thirty"), and already prints
+  the Terras DOI. The false blanket sentence was in
+  `paper_b_prior_art_and_names.md`, **not** in the paper. Most of this session's
+  "findings" were the register catching up with its own manuscript. Three stale
+  passages on that page cleared.
+- **Not done, and named:** Knight's published ScienceDirect text has no lawful
+  open copy and stays unread; `winkler-2026-connection-thresholds` is now known
+  not to be public at all — cited by the August revision and by nothing else, so
+  it needs an author request (`mike.winkler@ruhr-uni-bochum.de`); Terras's
+  Table A row at `k = 900` is still held out as a scan-reading question.
+- **Decision:** `PARK`. No mathematical claim moved; this is provenance, register
+  and one regression. The three obligations above are the next questions.
+
 ## 2026-09-21 -- Paper A cites Paper B by its Zenodo DOI
 
 - **Objective:** Philippe asked for Paper A to be updated after Paper B's

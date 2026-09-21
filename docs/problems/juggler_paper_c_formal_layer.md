@@ -108,9 +108,12 @@ The production inequality itself and the root \(\lambda^{**}\) stay
 human.
 
 **The build root (COMPUTATIONALLY VERIFIED).**
-`formal/Problems/JugglerFatePaper.lean` imports exactly the thirty-one
-modules Paper C cites; `formal/AxiomCheckPaperC.lean` prints the axioms
-of the 415 cited declarations and `AxiomCheckPaperC.expected` records
+`formal/Problems/JugglerFatePaper.lean` imports exactly the thirty-six
+modules Paper C cites (thirty-one until 21 September 2026, when the five
+modules of the averaged route, `FateBlockLock`, `FateFiberLock`,
+`FateResonanceCount`, `FatePoorTail` and `FatePoorProduction`, joined it
+with Section 5.8 of the manuscript); `formal/AxiomCheckPaperC.lean`
+prints the axioms of the 460 cited declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 

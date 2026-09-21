@@ -583,7 +583,7 @@ theorem conjecture_of_tao_rate_averaged {e : ℝ} (he : 103 / 203 < e)
 
 /-- **Corollary 8.4 at the averaged exponent.** A cylinder bound `H(C, A)` at all large scales
 with `A > C + e(C)` and `e(C) > 103/203`, above a certified floor `N₀`, gives the conjecture. -/
-theorem conjecture_of_cylinder_bound_averaged {N₀ : ℕ} (hN : 2 ≤ N₀)
+theorem conjecture_of_cylinder_averaged {N₀ : ℕ} (hN : 2 ≤ N₀)
     (hfloor : ∀ m, 1 ≤ m → m ≤ N₀ → ReachesOne m) (C A : ℝ) (hC : 5 ≤ C)
     (hA : C + chernoffExponent C < A)
     (hcyl : ∃ y₁ : ℕ, ∀ y, y₁ ≤ y → CylinderBound N₀ C A y)

@@ -78,6 +78,11 @@ CITED_MODULES = (
     "Problems.Juggler.FateFiberParity",
     "Problems.Juggler.FateThinFibers",
     "Problems.Juggler.FateContagionBound",
+    "Problems.Juggler.FateBlockLock",
+    "Problems.Juggler.FateFiberLock",
+    "Problems.Juggler.FateResonanceCount",
+    "Problems.Juggler.FatePoorTail",
+    "Problems.Juggler.FatePoorProduction",
 )
 
 #: verification-table rows the paper marks Lean, with the module that carries each
@@ -116,6 +121,11 @@ TABLE_LEAN_ROWS = {
     "Lemma 4.3": "FateThinFibers",
     "Theorem 5.3": "FateContagionBound",
     "Theorem 7.3": "FateContagionBound",
+    "Block lock": "FateBlockLock",
+    "Fiber lock": "FateFiberLock",
+    "Resonance count": "FateResonanceCount",
+    "Poor-fiber tail": "FatePoorTail",
+    "averaged coefficient": "FatePoorProduction",
 }
 
 _IMPORT = re.compile(r"^import\s+([A-Za-z0-9_.]+)\s*$", re.M)

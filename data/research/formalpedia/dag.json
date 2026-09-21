@@ -1566,7 +1566,9 @@
       "ledger": [
         "J-oe-fiber-block-lock"
       ],
-      "papers": [],
+      "papers": [
+        "Paper C"
+      ],
       "trust": {
         "kernel": 21
       }
@@ -1817,7 +1819,9 @@
       "ledger": [
         "J-oe-averaged-two-productions-reach-the-depth-two-ceiling"
       ],
-      "papers": [],
+      "papers": [
+        "Paper C"
+      ],
       "trust": {
         "kernel": 20
       }
@@ -1832,7 +1836,9 @@
       "ledger": [
         "J-oe-poor-fiber-tail"
       ],
-      "papers": [],
+      "papers": [
+        "Paper C"
+      ],
       "trust": {
         "kernel": 14
       }
@@ -3336,6 +3342,7 @@
         "Problems.Juggler.FateCollapse",
         "Problems.Juggler.FateEnergyAtoms",
         "Problems.Juggler.FateFirstLetter",
+        "Problems.Juggler.FatePoorProduction",
         "Problems.Juggler.FateProductionWords",
         "Problems.Juggler.FateShareLaw",
         "Problems.Juggler.TerminationFloor257"
@@ -3452,8 +3459,8 @@
     }
   },
   "totals": {
-    "edges": 261,
-    "edges_before_reduction": 2020,
+    "edges": 262,
+    "edges_before_reduction": 2023,
     "ledger_rows_placed": 463,
     "nodes": 212
   }

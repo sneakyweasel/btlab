@@ -29,11 +29,16 @@ import Problems.Juggler.FateNumerics
 import Problems.Juggler.FateFiberParity
 import Problems.Juggler.FateThinFibers
 import Problems.Juggler.FateContagionBound
+import Problems.Juggler.FateBlockLock
+import Problems.Juggler.FateFiberLock
+import Problems.Juggler.FateResonanceCount
+import Problems.Juggler.FatePoorTail
+import Problems.Juggler.FatePoorProduction
 
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the thirty-one modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the thirty-six modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -303,4 +308,27 @@ This barrel is not imported by `Problems.lean`; build it with
 is `Problems.JugglerParityPaper`; this one shares `TerminationFloor257` and, through `FateChernoff`,
 `FatePressure` and `FateTaoReduction`, `RateFreeDensity` and `LiveCountWeight` with Paper A, and no module
 with Paper B.
+
+## The averaged route, since 21 September 2026 (Section 5.8 of the paper)
+
+* `FateBlockLock` — Lemma 5.14, the block lock: a fiber's parity share leaves `1/2` only by
+  locking onto a rational step of small denominator (`BlockLock.block_lock`, on the two grid
+  counts `grid_half_count` and `grid_near_count`).
+* `FateFiberLock` — Lemma 5.15, the fiber lock by Dirichlet approximation
+  (`FiberParity.fiber_lock`, through `exists_coprime_approx` and the fiber instantiation
+  `fiber_block_lock`; `evenImageCount_eq_fract` is the parity bridge).
+* `FateResonanceCount` — the arc count behind Theorem 5.16 (`FiberParity.resonance_count_le'`).
+* `FatePoorTail` — Theorem 5.16, the poor-fiber tail: the `η₀`-poor fibers number at most
+  `430 u^{2/3}/η₀²` on `(u, 2u]` and carry tail mass at most `2100 U^{-1/3}/η₀²`
+  (`FiberParity.poor_count_le'`, `poor_logMass_le`), and the non-poor fiber bound
+  (`nonpoor_fiber_logMass_ge`).
+* `FatePoorProduction` — Theorem 5.18: the two-production recursion at the averaged
+  coefficient `(2/3)(1/2 - η₀)` (`Production.production_two_averaged`,
+  `Production.contagion_averaged`), certified at `η₀ = 10⁻⁵` and `λ = 100/203`
+  (`Production.zeta2avg_pos`), hence Theorem 5.3 for every `0 < λ ≤ 100/203` with no
+  hypothesis (`Production.logMass_contagion_averaged`), above the paper's first-route
+  `λ** ≈ 0.4926`; Corollary 5.5(2) at that exponent (`failures_logMass_averaged`); and
+  Theorem 7.2 and Corollary 8.4 with their contagion hypothesis discharged at `e > 103/203`
+  (`conjecture_of_tao_rate_averaged`, `conjecture_of_cylinder_averaged`). Nothing in
+  its dependency graph is an exponential sum.
 -/

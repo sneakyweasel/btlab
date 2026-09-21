@@ -539,7 +539,7 @@ def unconditional_depth_drop(
         "by_q": rows,
         "lean": (
             "Production.logMass_contagion_averaged and"
-            " conjecture_of_cylinder_bound_averaged,"
+            " conjecture_of_cylinder_averaged,"
             " Problems/Juggler/FatePoorProduction.lean"
         ),
     }

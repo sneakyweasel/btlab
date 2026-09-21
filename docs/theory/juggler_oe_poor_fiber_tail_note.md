@@ -555,7 +555,7 @@ Theorem 7.2 asks for: `conjecture_of_tao_rate_averaged` needs
 \(e>103/203=0.50739\ldots\), where the unconditional
 `conjecture_of_tao_rate` needs \(e>27/40=0.675\) and Paper C's
 *conditional* form needs \(e>0.51\). The unconditional threshold is now
-below the manuscript's conditional one. `conjecture_of_cylinder_bound_averaged`
+below the manuscript's conditional one. `conjecture_of_cylinder_averaged`
 is Corollary 8.4 at the same exponent.
 
 What does **not** move: Theorem 7.2 stays conditional on a rate nobody has;
