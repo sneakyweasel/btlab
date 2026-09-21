@@ -99,6 +99,7 @@ DOSSIER_ALIASES: dict[str, str] = {
     "cycle_length_seven": "length_seven_cycles",
     "gapped_cycle_itinerary": "gapped_cycle_word",
     "itinerary_language": "word_language",
+    "negative_valley_windows": "negative_m_cycles",
     "odd_odd_residuals": "odd_odd_residual",
     "oeoee_audit": "oeoee_production",
     "tao_reduction": "tao_almost_bounded",

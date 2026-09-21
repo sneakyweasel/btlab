@@ -1,5 +1,59 @@
 # Research journal
 
+## 2026-09-21 -- Corollary 29 does transpose to 3n-1, and it improves a constant Paper D's open values do not turn on
+
+- **What happened.** This morning's entry reclassified Hercher's Corollary 29 from method
+  wall to `OPEN, WORTH TRYING`, because Lemma 6 had moved the first open value to \(m=62\)
+  and \(0.30\) bits would close it against his \(1.30\). I tried it. The mechanism carries;
+  the number does not, because the number belongs to a different constant.
+- **Lemma 26 has a negative-side statement, and it is exact.** Lemma 1 makes the run exact,
+  so the run from a local minimum contributes \(T(y)<\kappa(a)/u\) with
+  \(\kappa(a)=1-(2/3)^a\), which is precisely the factor Lemma 2 discards and precisely what
+  his Remark 7 keeps. The relation between consecutive minima,
+  \(u_i=(2/3)^{a_i}(2^{r_i}(u_{i+1}+1)-1)\), is his with the sign flipped, so the one, two
+  and three-run averaging goes over case for case with the same rationals. The residue drop
+  carries too and is sharper here, because every minimum of a window is above the floor, so
+  what matters is the least member of the class above the floor rather than the least
+  positive one. The first amendment's "no negative-side statement yet" was wrong.
+- **The measurement, and why I had the wrong target.** Corollary 29 improves Theorem 27's
+  m-free constant. Paper D's open values are not decided by any m-free bound: at \(m=62\)
+  the chaining display, the one a finance constant moves, clears by \(41.4\) bits. What
+  holds the row open is Lemma 6's cap, and the cap is minimised with **four** minima at the
+  floor at \(m=62\) and five at \(m=63\). An averaging argument can act on nothing else, and
+  a block of four is too short for averaging to be worth much: four consecutive local minima
+  above \(2^{51}\) average \(0.9013\) where \(0.8137\) is needed, five average \(0.8689\)
+  where \(0.6509\) is needed. Just over half of what \(m=62\) asks, a third of what \(m=63\)
+  asks, charging the method no boundary loss at all.
+- **The evidence runs the right way.** The verdict rests on concrete starts --
+  \(2255557997555713\), runs \(12,7,5,6\) -- walked on the map, which bound from below what
+  any averaging can give. A branch-and-bound over residue classes, which is Corollary 29's
+  own machinery on this side, closes within a part in ten thousand of them, so they are not
+  an artifact of a weak search. They are orbit windows, not windows of a known cycle, so
+  they refute the method rather than the conclusion -- which is the right target, since both
+  refinements use only the floor and the local step relations and never the cycle's closure.
+- **Why the block is short.** \(d\) minima near the floor must fit their runs and halvings
+  into the floor's \(51\) bits, so short runs are forced and short runs waste \(\kappa\). A
+  single minimum is worth nothing whatever: \(2^{51}+1\) has \(a=51\) and
+  \(\kappa=1-10^{-9}\). Seven consecutive minima average \(0.770\), which is \(0.376\)
+  bits -- so the refinement is worth real bits, just not where Lemma 6 puts the block at
+  \(m=62\).
+- **The known-bad input, which is unusually tight.** With the floor at a real cycle's own
+  least element the window bound must spare that cycle, and at \(17\) the two minima sit at
+  \(0.541975\) against a ceiling of \(0.541992\). Scaling \(\kappa\) by \(99/100\) excludes
+  both known cycles. That is now a test.
+- **What did not change.** Nothing in the manuscript. Version 1.1.0 stands at \(m\le61\),
+  and none of Paper D's pinned inputs were touched, so the release manifest still holds at
+  `b4efe1c5`. The new machinery is a support module beside the probe, not a probe.
+- **The second lesson, beside this morning's.** When a refinement is quoted as worth so many
+  bits, the bits belong to a constant, and before borrowing them one has to check that the
+  constant is the one the open case turns on. Here it was not, and the two constants were a
+  factor of forty apart in slack.
+- **Where it might still land.** The window constants grow with the floor and the block
+  grows with \(m\). At \(2^{60}\), \(m=76\) demands \(0.7535\) against an attained
+  \(0.7579\) -- short by \(0.008\) bits -- and \(m=75\) is undecided, since bounding the
+  block average from above would need a different tree from the one built here. Worth
+  remeasuring before that floor is run, not before.
+
 ## 2026-09-21 -- A method wall expired without anyone noticing, and the test that should have noticed was measuring the wrong bound
 
 - **What happened.** Earlier today I filed both of Hercher's m-free refinements as method

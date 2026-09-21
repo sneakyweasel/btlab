@@ -291,6 +291,73 @@ Pinned: `valley_cap`, `valley_excluded`, `valley_refined` in the probe;
 `test_the_valley_refinement_spares_the_cycles_that_exist` and
 `test_the_valley_refinement_closes_three_more_values_of_m`.
 
+## Hercher's Corollary 29 transposed: the mechanism carries, the constant is the wrong one
+
+**Measured 21 September 2026**, after Lemma 6 had moved the first open value to \(m=62\)
+and made the arithmetic of Corollary 29's \(1.30\) bits look sufficient. It is not, and the
+reason is not arithmetic.
+
+*The negative-side Lemma 26.* Lemma 1 makes the run exact, so the run from a local minimum
+\(y\) with \(u=y-1\) and \(a=v_2(u)\) contributes
+\(T(y)=\sum_{k<a}1/(3g^k(y)-1)<\kappa(a)/u\), \(\kappa(a)=1-(2/3)^a\). That factor is what
+Lemma 2 throws away and what Hercher's Remark 7 keeps as \(3(1-(2/3)^k)/n\); the relation
+between consecutive minima is \(u_i=(2/3)^{a_i}(2^{r_i}(u_{i+1}+1)-1)\) against his
+\(n_i=(2/3)^{k_i}(2^{\ell_i}n_{i+1}+1)-1\), the same shape with the sign flipped. His one,
+two and three-run averaging therefore carries case for case, with the same rationals. The
+residue drop carries too, and sharper: Lemma 5 makes each case word a residue class, and
+because every minimum of a window is above the floor, the drop uses the least member of the
+class *above the floor*.
+
+*What it is worth here.* Corollary 29 improves the m-free constant of Theorem 27, and the
+open values of this note are not decided by any m-free bound — at \(m=62\) the chaining
+display clears by \(41.4\) bits. What holds the row open is Lemma 6's cap, which is
+minimised with four minima at the floor at \(m=62\) and five at \(m=63\), and averaging can
+act on nothing but that block. Write \(\rho(y)=T(y)(X_0-1)\in[0,1]\), the valley's
+contribution in units of Lemma 2's own one-per-valley.
+
+| block | needed at | \(\rho\) average demanded | attained above \(2^{51}\) | start of the window | delivered / needed (bits) |
+|---|---|---|---|---|---|
+| 1 | — | — | \(0.999999999\) | \(2^{51}+1\) | \(0.000\) |
+| 4 | \(m=62\) | \(0.8137\) | \(0.9013\) | \(2255557997555713\) | \(0.150/0.297\) |
+| 5 | \(m=63\) | \(0.6509\) | \(0.8689\) | \(2266848965985921\) | \(0.203/0.619\) |
+| 6 | \(m=64\), first of its two survivors | \(0.5424\) | \(0.7992\) | \(2343202629650049\) | \(0.323/0.882\) |
+| 7 | — | — | \(0.7703\) | \(2258052872963713\) | \(0.376\) |
+
+The second survivor at \(m=64\) is worse still: its block is a single minimum, which demands
+\(0.2512\) against an attainable \(1.0\).
+
+The attained column is concrete integers, each walked on the map, so it bounds from below
+what any averaging argument can give; the demanded column charges the method no boundary
+loss at all. It is short by rather more than the rounding: **just over half of what
+\(m=62\) needs and a third of what \(m=63\) needs.** The windows are orbit segments, not
+segments of a known cycle — none is known above the floor — so they refute the method and
+not the conclusion; that is the right target, because Lemma 26 and Corollary 29 use only the
+floor and the local step relations along a few consecutive runs and never the cycle's
+closure, and these windows satisfy every local constraint, their runs summing to thirty
+against an \(o\) of \(5.2\cdot10^{13}\). The reason the block matters so much is
+the 2-adic budget: \(d\) minima near the floor must fit their runs and halvings into the
+floor's \(51\) bits, which forces short runs, and short runs waste \(\kappa\). One minimum
+alone is worth nothing at all, because \(2^{51}+1\) has \(a=51\).
+
+**Known-bad input.** Set the floor at a real cycle's own least element and the window
+ceiling must still leave room for that cycle's minima. It does, and barely: at \(17\) the
+two minima sit at \(0.541975\) against a ceiling of \(0.541992\), and at \(5\) the single
+minimum sits at \(5/9\) against \(0.5556\). Scaling \(\kappa\) by \(99/100\) makes the
+ceiling exclude both, which is the check the bound was run against before it was believed.
+
+**Status: CLOSE at this floor.** Recorded in
+[negative_knowledge.md](../negative_knowledge.md) under the Hercher heading. Nothing enters
+the manuscript, because nothing there moves. At \(2^{60}\) the same measurement is within
+\(0.008\) bits at \(m=76\) and undecided at \(m=75\), so it is worth remeasuring before that
+floor is run.
+
+Pinned: `research.juggler_sequence.negative_valley_windows` (support module, not a probe and
+not an input of Paper D's release manifest);
+`test_herchers_lemma_26_transposes_and_its_window_bound_spares_the_real_cycles`,
+`test_a_stronger_run_factor_excludes_the_cycles_that_exist`,
+`test_herchers_corollary_29_transposes_but_improves_the_wrong_constant` and
+`test_the_window_witnesses_sit_on_the_residue_trees_ceiling`.
+
 ## Open questions
 
 - The floor stands at \(2^{51}\) since the GPU sweep of 21 September 2026. With Lemma 6 in
