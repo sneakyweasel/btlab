@@ -1,5 +1,42 @@
 # Research journal
 
+## 2026-09-21 -- The 3n-1 m-cycle note started: no m-cycles with m <= 49 above 2^44, given Rhin
+
+- **Objective:** Philippe asked for the \(3n-1\) \(m\)-cycle note to be started, after the
+  assessment that it is the one place this week where the laboratory holds an input nobody
+  else has, the \(2^{44}\) floor, and a template nobody has run there.
+- **Prior art by name first.** "3x−1 problem" cycles and "3n−1" negative Collatz cycles on
+  arXiv for 2025–2026: nothing beyond the registry. Simons 2007 does \(m=2\) floor-free and
+  says the method stops there; Simons–de Weger and Hercher are \(3n+1\) only; Simons 2008
+  skips the map.
+- **The constants, derived rather than borrowed.** The odd step subtracts, so in
+  \(u=y-1\) an odd run is exact multiplication, \(g^k(y)-1=(3/2)^k(y-1)\), the run length is
+  \(v_2(y-1)\) and a run of \(a\) odd steps starts at \(y\ge2^a+1\) (Lemma 8 mirrored,
+  tight at 5 and 17). The cycle product \(3^o2^{-K}\prod(1-1/(3y))=1\) gives
+  \(\Lambda<\sum_i1/(y_i-1)\le m/(x_{\min}-1)\) over the local minima, constant one where
+  Hercher's positive side has \(97/54\). The chaining is \(u_{i+1}<u_i^{\delta}/2\),
+  \(\delta=\log_23\), tight on the 17-cycle (\(16\to40\) against \(40.5\)), and it bounds
+  the odd count by a tower of height \(m\).
+- **The template, run exactly.** Rhin's ceiling \(K_3(m)\) is the larger root of a convex
+  function; below it the admissible lengths \(\Lambda(K)<m/(X_0-1)\) are enumerated by the
+  three-gap walk and each is tested against the tower. At \(2^{44}\): every \(m\le49\)
+  excluded, no admissible length below the ceiling at all for \(m\le43\), the closest call
+  \(1.4\) bits at \(m=49\), \(K=757698850864\); at \(m=50\) four lengths remain,
+  \(539722056247\) to \(1193652440098\), the input for lattice reduction. Floors: \(2^{40}\)
+  gives 44, \(2^{48}\) still 49, \(2^{60}\) gives 68, which is Simons–de Weger's number on
+  the other side at their floor, \(2^{68}\) gives 82 against Hercher's 91 with the valley
+  arrangement. Six seconds.
+- **The known-bad inputs.** With the floor set at 17 the template leaves the 17-cycle's
+  length 11 at \(m=2\); at 5 it leaves length 3 at \(m=1\); one above each it does not. The
+  cycle equation is checked in exact rationals on all three cycles.
+- **Written.** The branch (`negative_m_cycles`: probe, eleven tests, dossier, rendered table),
+  the manuscript draft `collatz_3n_minus_1_m_cycles_note.md` with the lemmas proved and the
+  theorem stated with Rhin as its one external input, two ledger rows, the index rebuilt.
+- **Not done, and said so.** Simons–de Weger 2005 is not yet read in full (the archive is
+  shut here; the PDF has to come from Philippe); no lattice reduction; no Lean for the three
+  lemmas; no Juggler cycle is excluded, since the bridge is word-level; nothing about
+  divergence on either map.
+
 ## 2026-09-21 -- Paper C: Corollary 5.4 and the fate instantiations are Lean; every clause of Theorem 1 at 100/203
 
 - **Objective:** Philippe chose the Lean closure from the options offered

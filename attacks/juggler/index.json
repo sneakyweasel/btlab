@@ -3906,6 +3906,23 @@
       "nk_cluster": "The pointwise floor is tight at every cycle, and slack at every leftover"
     },
     {
+      "id": "negative_m_cycles",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/negative_m_cycles.py",
+      "test": "tests/research/juggler_sequence/test_negative_m_cycles.py",
+      "dossier": "docs/problems/juggler_negative_m_cycles.md",
+      "data_dir": "data/research/juggler/negative_m_cycles",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-negative-m-cycle-lemmas",
+        "J-negative-m-cycles-excluded-through-49"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "nil_horizontal_weyl",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/nil_horizontal_weyl.py",

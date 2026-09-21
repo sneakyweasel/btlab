@@ -1,0 +1,156 @@
+# m-cycles of the 3n−1 map: the Simons–de Weger template on the negative side
+
+Status: **PROMOTE** (a theorem with one external input, and a paper candidate)
+
+Standalone phase on the Collatz bridge, following
+[juggler_negative_floor_3x1](juggler_negative_floor_3x1.md) and
+[juggler_collatz_finance_mirror](juggler_collatz_finance_mirror.md). Not a halt theorem for
+either map, not a Juggler cycle exclusion, and not a change to \(N_0\). The manuscript is
+[collatz_3n_minus_1_m_cycles_note.md](../theory/collatz_3n_minus_1_m_cycles_note.md).
+
+## Problem
+
+The \(3n-1\) map \(g(y)=y/2\) (\(y\) even), \((3y-1)/2\) (\(y\) odd) on the positive integers
+is the shortcut \(3n+1\) map read on the negative integers. Its known cycles are \(1\),
+\((5,7,10)\) and the eleven-element cycle at \(17\), and every start below \(2^{44}\) reaches
+one of them (the laboratory's certificate). An \(m\)-cycle is a cycle with \(m\) odd runs,
+equivalently \(m\) local minima. Simons 2007 proves there is exactly one nontrivial 2-cycle,
+floor-free, and says his method stops at \(m\ge3\); Simons–de Weger 2005 and Hercher 2023
+exclude \(3n+1\) \(m\)-cycles for \(m\le68\) and \(m\le91\) from verification floors; nobody
+has run that template on \(3n-1\), because nobody had a floor there. Run it.
+
+## Exact statement
+
+For which \(m\) does the \(3n-1\) map have no \(m\)-cycle whose least element is at least
+\(2^{44}\), hence (by the floor) no \(m\)-cycle other than the two known ones with an even
+step? What does each larger floor buy, and which lengths \(K\) does the template leave at
+the first open \(m\)?
+
+## Current literature
+
+- `simons-2007-inductive-two-cycles-3x1`, read in full: exactly one nontrivial 2-cycle of
+  \(3x-1\), at \(17\), floor-free; the method stops at \(m\ge3\). **known**; the note's
+  \(m\le2\) rows reprove a weaker, floor-dependent form of it.
+- `simons-2008-m-cycles-generalized-syracuse`, read in full: the five-step template (floor,
+  cycle-equation bound on \(\Lambda\), Crandall's lemma, Rhin's bound, lattice reduction),
+  applied to \(3x+q\), \(px+q\), Guy's permutation and the Roelants problem; nothing on
+  \(3x-1\). **extended**: the template transposed, with the negative-side constants derived
+  here.
+- `simons-de-weger-2005-collatz-m-cycles`: \(m\le68\) for \(3n+1\) at \(X_0>2.5\cdot2^{60}\),
+  later \(75\). **Not yet read in full**; Acta Arithmetica's archive is shut to this
+  environment. The transposition at \(2^{60}\) gives \(68\) as well, which is a plausibility
+  check on the constants and not a reproduction.
+- `hercher-2023-collatz-m-cycles`, read from the PDF: \(m\le91\) for \(3n+1\) at
+  \(695\cdot2^{60}\), with the valley arrangement and Lemma 8. **known**; the plain template
+  here gives \(82\) at \(2^{68}\), so his refinement is worth about nine values of \(m\) and is
+  the next thing to transpose.
+- `rhin-1987-pade-irrationality`: \(\Lambda>e^{-13.3(0.46057+\log K)}\), the form Paper A
+  Corollary 4.11 and `juggler_cycle_gap_baker` use. **known**, the one external input.
+- `sinisalo-2003-collatz-minimal-cycle-lengths`: Table 2 is the \(m\)-free survivor table on
+  this side. **known**.
+- Prior-art search by name, 21 September 2026: "3x−1 problem" cycles, "3n−1" negative Collatz
+  cycles 2025–2026 on arXiv; nothing beyond the records above. The two earlier sweeps for a
+  \(3x-1\) floor (19 and 20 September) found none in print.
+
+## Branch budget
+
+- **Target:** the largest \(M\) such that no \(m\)-cycle with \(m\le M\) exists above the
+  \(2^{44}\) floor, by the Simons–de Weger template with negative-side constants.
+- **Novelty hypothesis:** the first \(m\)-cycle theorem for \(3n-1\) with \(m\ge3\), and the
+  first floor to feed one.
+- **Falsifier:** a real cycle failing the inequalities — the template must leave the
+  \(17\)-cycle's length \(11\) at \(m=2\) when the floor is set at \(17\), and the
+  \((5,7,10)\) length \(3\) at \(m=1\) with the floor at \(5\).
+- **Already killed by?:** none. The finance-mirror cluster reproduced Eliahou and Hercher on
+  the positive side and priced the negative side as a table; the floor branch supplied the
+  floor; neither ran the \(m\)-cycle step, and the journal of 20 September named it the best
+  next question.
+- **Existing machinery:** `neg_cycle_finance`, `neg_prefix_noncontracting`,
+  `neg_cycle_expanding` (Lean, `CollatzBridge.lean`); `lambda_juggler`, the continued
+  fraction of \(\log2/\log3\) and the three-gap walk (`collatz_finance_mirror`); the floor
+  certificate (`negative_floor_3x1`).
+- **Maximum Phase-0 scope:** the tables at the five floors and the survivor lengths at the
+  first open \(m\).
+- **Promotion criterion:** \(M\ge3\) with the known cycles surviving the same test.
+- **Stop criterion:** a negative-side constant that does not carry, or an admissible length
+  the tower cannot reach at every \(m\ge3\).
+
+## Balanced-ternary formulation
+
+Not used. The objects are the parity word of a cycle and the linear form
+\(o\log3-K\log2\).
+
+## Why BT may be relevant
+
+It is not; recorded for the template.
+
+## Candidate operations / invariants
+
+The run identity \(g^k(y)-1=(3/2)^k(y-1)\), the run length \(v_2(y-1)\), the cycle product
+\(3^o2^{-K}\prod(1-1/(3y))=1\), the chaining \(u_{i+1}<u_i^{\delta}/2\) with
+\(\delta=\log_23\), the three-gap walk for the admissible lengths, Rhin's ceiling. All
+**EXACT — HUMAN PROOF** in the note except Rhin (external) and the window enumeration (exact
+arithmetic at 80 digits).
+
+## Experiments
+
+`python -m research.juggler_sequence.negative_m_cycles` writes
+`data/research/juggler/negative_m_cycles/summary.json` and
+[juggler_negative_m_cycles.md](../research/juggler_negative_m_cycles.md): per floor and per
+\(m\), the bound on \(\Lambda\), Rhin's ceiling \(K_3(m)\), the admissible lengths below it,
+the least one \(K_0(m)\), the closest margin in bits and the survivors.
+
+## Conjectures
+
+None. The \(3n-1\) analogue of the Collatz conjecture, that \(1\), \(5\) and \(17\) are the
+only cycles and no orbit diverges, is not a laboratory conjecture and is not touched.
+
+## Counterexamples
+
+The known cycles are the witnesses that the inequalities are sound: with the floor at their
+least element they pass every test, and with the floor one above it they do not.
+`tests/research/juggler_sequence/test_negative_m_cycles.py`.
+
+## Formalization
+
+None new. The negative-side finance and word shape are Lean already
+(`neg_cycle_finance`, `neg_prefix_noncontracting`, `neg_cycle_expanding`,
+`neg_cycle_word_is_juggler_shape` in `CollatzBridge.lean`). Lemmas 1–3 of the note are
+elementary and are the natural next Lean; Rhin's bound would enter as a hypothesis, as
+`cycleMin_length_of_rhin` does on the Juggler side.
+
+## Results
+
+- **Theorem (EXACT — HUMAN PROOF, one external input).** Given Rhin's bound, the \(3n-1\) map
+  has no \(m\)-cycle with \(1\le m\le49\) whose least element is at least \(2^{44}\); with
+  the floor, none with \(m\le49\) other than \((5,7,10)\) and the cycle at \(17\). For
+  \(m\le43\) no admissible length lies below Rhin's ceiling at all; for \(44\le m\le49\) the
+  admissible lengths are excluded by the chaining, the closest by \(1.4\) bits at \(m=49\),
+  \(K=757698850864\).
+- **The floors (COMPUTATIONALLY VERIFIED).** \(2^{40}\): \(m\le44\); \(2^{44}\) and
+  \(2^{48}\): \(m\le49\); \(2^{60}\): \(m\le68\); \(2^{68}\): \(m\le82\).
+- **What the template leaves at \(m=50\), floor \(2^{44}\):** the lengths
+  \(539722056247\), \(757698850864\), \(975675645481\), \(1193652440098\), with \(22.4\),
+  \(15.0\), \(7.8\), \(2.9\) bits of room; at \(2^{48}\) only the last.
+- **Sanity.** With the floor at \(17\), \(m=2\) leaves \(K=11\); at \(5\), \(m=1\) leaves
+  \(K=3\); the chaining is tight on the \(17\)-cycle (\(16\to40\) against \(40.5\)).
+
+## Open questions
+
+- Lattice reduction (Simons–de Weger step 5) on the four lengths at \(m=50\), then upward.
+- Hercher's valley arrangement transposed, worth about nine values of \(m\) at \(2^{68}\).
+- The Eliahou-type period lattice on this side at \(2^{44}\).
+- Reading Simons–de Weger 2005 in full, for attribution and for their sharper constants.
+
+## Decision
+
+`PROMOTE`. The template carries with the sign flipped, the constants improve rather than
+worsen (the odd step subtracts), and the result is a theorem nobody has stated about a map
+the literature names but has not verified. Best next question: what lattice reduction does
+to the four lengths at \(m=50\).
+
+## Publication assessment
+
+Status: `PAPER_CANDIDATE`. A short note, the length of Simons 2007: the floor as a
+computational certificate, the theorem with Rhin cited, the tables, the open lengths. Its
+first paragraph should say it is a transposition.

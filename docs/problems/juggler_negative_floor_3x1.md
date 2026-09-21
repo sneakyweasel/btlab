@@ -278,6 +278,13 @@ inequality converts.
 Best next question: none from the mathematics. The next floor is a
 scheduling decision — \(2^{48}\) overnight here, \(2^{68}\) on a GPU.
 
+*21 September 2026.* The floor now feeds a theorem: the Simons–de Weger
+\(m\)-cycle template, transposed in
+[juggler_negative_m_cycles](juggler_negative_m_cycles.md), excludes every
+\(m\)-cycle with \(m\le49\) above \(2^{44}\), given Rhin. By its tables
+\(2^{48}\) buys nothing over \(2^{44}\) there, so the next floor stays a
+scheduling decision.
+
 ## Publication assessment
 
 Status: `STRUCTURAL`. A computational certificate plus a one-line
