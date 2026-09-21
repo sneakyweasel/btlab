@@ -9,6 +9,21 @@
   },
   "inputs": [
     {
+      "path": "data/research/juggler/cycle_finance/budget_opt.json",
+      "mode": "text",
+      "sha256": "06d7926fb31e0a3138d373f4295927390b5c30bb27b558815d576a5c7cf3e9f3"
+    },
+    {
+      "path": "data/research/juggler/cycle_finance/exceptions_parity.json",
+      "mode": "text",
+      "sha256": "b185c1a93879e1f02289f1c2aaed69405f0713d38eab0ed09b9b401f067c6bff"
+    },
+    {
+      "path": "data/research/juggler/cycle_finance/summary.json",
+      "mode": "text",
+      "sha256": "8a0f4dee8f1512c244d7b0df8db23b3bf480e75c8588d3a4edc7f1e19928395d"
+    },
+    {
       "path": "data/research/juggler/cycle_rank_curvature/controls.json",
       "mode": "text",
       "sha256": "817386d65902d1efa8f27ff245a18eb76cc7fa1ab73d6338a669054eb53a5101"
@@ -589,6 +604,11 @@
       "sha256": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71"
     },
     {
+      "path": "src/research/juggler_sequence/cycle_finance.py",
+      "mode": "text",
+      "sha256": "267c164900c7cfe4827e7d5c7e5cd162bedee59ab86646faea25c71638d97b5c"
+    },
+    {
       "path": "src/research/juggler_sequence/cycle_rank_curvature.py",
       "mode": "text",
       "sha256": "cc487330c5adbee3c8b5d1ac6109a07d7eb566e44d7ea35b8ec35dd03e282279"
@@ -601,7 +621,7 @@
     {
       "path": "tools/build_paper_a.py",
       "mode": "text",
-      "sha256": "dd5e18a8b25843f7d0c5ef1e26a0b69772e790d847a739c4c317e8e182c2127d"
+      "sha256": "3128cd1927fd5b95efb758039d9502132851f81c9d6370ae96785fc22c20ff81"
     },
     {
       "path": "tools/check_paper_a_numeric.py",

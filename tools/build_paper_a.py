@@ -50,7 +50,16 @@ BUILD_INPUTS = ["tools/build_paper_a.py", "tools/paper_a/article.tex",
                 "data/research/juggler/negative_floor_3x1/chunks.json",
                 "data/research/juggler/negative_floor_3x1/runs.json",
                 "data/research/juggler/negative_floor_3x1/verify_3x1.c",
-                "data/research/juggler/negative_floor_3x1/verify_3x1_jump.c"]
+                "data/research/juggler/negative_floor_3x1/verify_3x1_jump.c",
+                # The finance record that Section 1.2 names as the computation and that
+                # Appendix B sends the reader to.  It sat outside the manifest until
+                # 21 September 2026, which is exactly why the provenance pin could go on
+                # naming a commit that held neither table: nothing compared them to
+                # anything.  The probe writes the three tables.
+                "src/research/juggler_sequence/cycle_finance.py",
+                "data/research/juggler/cycle_finance/exceptions_parity.json",
+                "data/research/juggler/cycle_finance/budget_opt.json",
+                "data/research/juggler/cycle_finance/summary.json"]
 # The PDF lives in `juggler_review/` now, and is exported only under the
 # historical name the Zenodo deposit carries. The companion site links the
 # published DOIs instead of serving its own copy, so `public/papers/` and
