@@ -20,7 +20,7 @@ def release(tmp_path):
         p = tmp_path / rel
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text("fixture\n", encoding="utf-8")
-    meta = {"title": "Paper", "creators": [{"name": "Author"}], "version": "v1",
+    meta = {"title": "Paper", "creators": [{"name": "Author", "orcid": B.ORCID}], "version": "v1",
             "license": "cc-by-4.0", "keywords": [], "description": "Abstract"}
     (tmp_path / B.METADATA).write_text(json.dumps(meta), encoding="utf-8")
     manifest = {"schema": 1, "canonical_source": B.SOURCE,

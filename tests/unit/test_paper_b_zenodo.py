@@ -27,7 +27,9 @@ def test_stale_zenodo_pdf_is_rejected(tmp_path):
     meta = json.loads((ROOT / B.METADATA).read_text(encoding="utf-8"))
     (tmp_path / B.METADATA).parent.mkdir(parents=True, exist_ok=True)
     (tmp_path / B.METADATA).write_text(json.dumps(meta), encoding="utf-8")
-    (tmp_path / B.ZENODO_FIELDS).write_text(B.zenodo_fields(meta), encoding="utf-8")
+    for target in (B.ZENODO_FIELDS, B.DOCS_FIELDS):
+        (tmp_path / target).parent.mkdir(parents=True, exist_ok=True)
+        (tmp_path / target).write_text(B.zenodo_fields(meta), encoding="utf-8")
     B.check_exports(tmp_path)
     (tmp_path / B.ZENODO_PDF).write_bytes(b"old PDF")
     with pytest.raises(ValueError, match="Stale generated copy"):
@@ -45,7 +47,7 @@ def _paper_b_tree(dest: Path) -> Path:
     digest fix let this test past its first assertion and into the mutation.  A test
     that pins one gate should not be able to fail a different one.
     """
-    names = [B.METADATA, B.BUILD_MANIFEST, B.ZENODO_FIELDS,
+    names = [B.METADATA, B.BUILD_MANIFEST, B.ZENODO_FIELDS, B.DOCS_FIELDS,
              "docs/theory/juggler_parity_discrepancy_note.tex",
              "tools/paper_b/article.tex", "tools/paper_b/layout.lua",
              "tools/build_paper_b.py"]

@@ -34,6 +34,10 @@ PDF = f'juggler_review/{STEM}.pdf'
 ZENODO_DIR = 'juggler_review/zenodo_paper_b'
 ZENODO_PDF = f'{ZENODO_DIR}/Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf'
 ZENODO_FIELDS = f'{ZENODO_DIR}/ZENODO_FIELDS.txt'
+# build_paper_b_kit.py packages this second copy of the same sheet into both
+# archives. Nothing regenerated it, so it sat at the pre-deposit text while the
+# kit's copy moved on; sync writes both now and check compares both.
+DOCS_FIELDS = 'docs/theory/paper_b_zenodo_fields.txt'
 # The PDF is written straight into juggler_review/ now, so the only export
 # left is the historical name the Zenodo deposit carries. The companion site
 # links the published DOI instead of serving a copy.
@@ -70,19 +74,26 @@ def zenodo_fields(meta: dict) -> str:
     """
     row = meta.get('metadata', meta)
     doi, published = row.get('doi'), row.get('publication_date')
-    standing = (
-        f'Describes the deposit at doi:{doi}; this build does not upload a new version.\n\n'
-        if doi else
-        'Prepared metadata only; no external record has been created.\n\n'
-    )
+    deposited = row.get('deposited_version')
+    ahead = bool(doi and deposited and deposited != row['version'])
+    if ahead:
+        standing = (
+            f'Prepared revision {row["version"]}; the record at doi:{doi} holds version '
+            f'{deposited}, and this build does not upload a new version.\n\n'
+        )
+    elif doi:
+        standing = f'Describes the deposit at doi:{doi}; this build does not upload a new version.\n\n'
+    else:
+        standing = 'Prepared metadata only; no external record has been created.\n\n'
     date_field = (
-        f'PUBLICATION DATE\n{published}\n\n' if published else
+        f'PUBLICATION DATE\n{published}\n\n' if published and not ahead else
         'PUBLICATION DATE\nUse the actual date this version is first made public.\n\n'
     )
     return (
         'GENERATED FROM docs/theory/; do not edit this export.\n'
         + standing
         + f"TITLE\n{row['title']}\n\nCREATOR\n{row['creators'][0]['name']}\n"
+        + f"ORCID: {row['creators'][0]['orcid']} (https://orcid.org/{row['creators'][0]['orcid']})\n"
         'Affiliation: none\n\nRESOURCE TYPE\nPublication / Preprint\n\n'
         f"VERSION\n{row['version']}\n\nLICENSE\n{row['license']}\n\n"
         + date_field
@@ -100,7 +111,8 @@ def sync(root: Path) -> None:
     # newline='' writes the LF this string already holds. Without it Python's text
     # mode emits CRLF on Windows, and build_paper_b_kit.py checksums this file's RAW
     # bytes, so the kit's SHA256SUMS became a property of the packager's platform.
-    (root / ZENODO_FIELDS).write_text(fields, encoding='utf-8', newline='')
+    for target in (ZENODO_FIELDS, DOCS_FIELDS):
+        (root / target).write_text(fields, encoding='utf-8', newline='')
 
 
 def digest(path: Path, mode: str = 'binary') -> str:
@@ -152,10 +164,10 @@ def check_exports(root: Path) -> None:
         src, dest = root / source, root / target
         if not dest.is_file() or src.read_bytes() != dest.read_bytes():
             raise ValueError(f'Stale generated copy: {target}; run --sync')
-    fields = (root / ZENODO_FIELDS).read_text(encoding='utf-8')
     expected = zenodo_fields(json.loads((root / METADATA).read_text(encoding='utf-8')))
-    if fields != expected:
-        raise ValueError('Stale Zenodo fields; run --sync')
+    for target in (ZENODO_FIELDS, DOCS_FIELDS):
+        if (root / target).read_text(encoding='utf-8') != expected:
+            raise ValueError(f'Stale Zenodo fields: {target}; run --sync')
 
 
 def run(command: list[str], cwd: Path, log: Path | None = None) -> bytes:

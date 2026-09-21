@@ -55,6 +55,8 @@ BUILD_INPUTS = ["tools/build_paper_a.py", "tools/paper_a/article.tex",
 # historical name the Zenodo deposit carries. The companion site links the
 # published DOIs instead of serving its own copy, so `public/papers/` and
 # `dist/papers/` are gone.
+#: Zenodo takes the bare identifier, not the URL, beside the creator's name.
+ORCID = "0009-0004-1939-3382"
 PDF_EXPORTS = ["juggler_review/zenodo_paper_a/Lower_bounds_for_nontrivial_cycles_of_the_Juggler_map.pdf"]
 
 
@@ -133,6 +135,7 @@ def zenodo_fields(meta: dict) -> str:
     return ("GENERATED FROM docs/theory/; do not edit this export.\n"
             "Metadata for the local revision; this build does not upload a new version.\n\n"
             f"TITLE\n{meta['title']}\n\nCREATOR\n{meta['creators'][0]['name']}\n"
+            f"ORCID: {meta['creators'][0]['orcid']} (https://orcid.org/{meta['creators'][0]['orcid']})\n"
             "Affiliation: none\n\nRESOURCE TYPE\nPublication / Preprint\n\n"
             f"VERSION\n{meta['version']}\n\nLICENSE\n{meta['license']}\n\n"
             "PUBLICATION DATE\nUse the actual date this version is first made public.\n\n"
@@ -151,7 +154,9 @@ def write_metadata(root: Path, pandoc: str) -> None:
         '--to=plain', '--wrap=none'], input=abstract + '\n' + acknowledgment, encoding='utf-8')
     description = '\n'.join('<p>' + escape(p.replace('\n', ' ')) + '</p>' for p in plain.strip().split('\n\n'))
     # A reusable field sheet, not an API call or a claim of a published DOI.
-    meta = {"title": title, "creators": [{"name": author.rsplit(' ', 1)[1] + ', ' + author.rsplit(' ', 1)[0]}],
+    meta = {"title": title,
+            "creators": [{"name": author.rsplit(' ', 1)[1] + ', ' + author.rsplit(' ', 1)[0],
+                          "orcid": ORCID}],
             "upload_type": "publication", "publication_type": "preprint", "access_right": "open",
             "license": "cc-by-4.0", "language": "eng", "version": datetime.strptime(date, '%d %B %Y').date().isoformat(),
             "keywords": ['Juggler map', 'Juggler sequence', 'floor-power map', 'cycle financing', 'integer dynamics'],

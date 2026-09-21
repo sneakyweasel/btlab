@@ -1,18 +1,19 @@
 GENERATED FROM docs/theory/; do not edit this export.
-Prepared metadata only; no external record has been created.
+Prepared revision 1.0.1; the record at doi:10.5281/zenodo.22864934 holds version 1.0.0, and this build does not upload a new version.
 
 TITLE
 Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers
 
 CREATOR
 Cochin, Philippe
+ORCID: 0009-0004-1939-3382 (https://orcid.org/0009-0004-1939-3382)
 Affiliation: none
 
 RESOURCE TYPE
 Publication / Preprint
 
 VERSION
-2026-09-19-preprint
+1.0.1
 
 LICENSE
 cc-by-4.0
