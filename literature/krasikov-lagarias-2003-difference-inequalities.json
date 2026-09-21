@@ -1,0 +1,26 @@
+{
+ "authors": [
+  "Ilia Krasikov",
+  "Jeffrey C. Lagarias"
+ ],
+ "id": "krasikov-lagarias-2003-difference-inequalities",
+ "identifiers": {
+  "arxiv": "math/0205002"
+ },
+ "notes": "Acta Arithmetica 109 (2003) 237-258; arXiv math/0205002, 30 April 2002. READ FROM THE PDF, 21 September 2026, local copy under literature/sources/. Cited as reference 7 of Paper C, whose Section 1.3 uses it as the Collatz-side comparison, but not recorded here until now. THE THEOREM: for any fixed positive integer a not divisible by 3 and all large enough x depending on a, at least x^0.84 of the integers below x have a in their forward orbit under the 3x+1 shortcut map T(n) = n/2 (even), (3n+1)/2 (odd). THE METHOD is Krasikov's 1989 system I_k of difference inequalities on the residue classes mod 3^k. Write pi*_a(x) for the count of n <= x reaching a with the whole orbit staying below x, and phi^m_k(y) for the infimum of pi*_a(2^y a) over a = m mod 3^k not lying on a cycle. The fertile classes are a = 2 mod 3, the ones whose odd preimage (2a-1)/3 is an odd integer, and splitting them mod 9 gives three productions with alpha = log2 3: a = 2 mod 9 contributes the doubled odd preimage (4m-2)/3 at exponent alpha-2, a = 5 mod 9 contributes nothing because its odd preimage is divisible by three and therefore barren forever, and a = 8 mod 9 contributes (2m-1)/3 at alpha-1. Each also contributes the 4m term at exponent -2. Level k-1 is defined as the minimum over the three lifts. The system becomes a linear program L^NT_k(lambda) whose feasibility certifies phi >= c lambda^y and hence the exponent log2(lambda). PRIOR VALUES they cite: Crandall 1978 first bound; Krasikov 1989 k=2 gives 0.43; Wirsching k=3 gives 0.48; Applegate-Lagarias 1995 k=9 with a truncation step gives 0.81. Their contribution is showing the untruncated system, which contains advanced variables, still yields legitimate bounds, and a k=11 computation then gives 0.84. They note the published exponents are truncations of the computed ones, so 0.43 is 0.4366 cut down and 0.84 is 0.8418 cut down. TRANSPOSED TO 3n-1 HERE, 21 September 2026 (negative_preimage_density, J-kl-preimage-density-transposes-to-3n-1): the relabelling m -> -m mod 3^k carries their system onto the corresponding system for g(y) = y/2 (even), (3y-1)/2 (odd) coefficient for coefficient, so the two linear programs are one program and the exponent transposes unchanged. The reason is that their method reads only residues mod 3^k and the doubling and odd-preimage structure, and negation commutes with doubling while sending (2a-1)/3 to (2a+1)/3. Solved independently for both maps, the exponents agree to the solver's tolerance at every k from 2 to 11, and k=11 returns 0.8418 for both, reproducing their published figure. WHAT IT DOES NOT GIVE, per Paper C Section 1.3: a counting lower bound of x^0.84 is compatible with a convergent reciprocal sum, so it is not a divergent logarithmic lower bound and cannot play the role Paper C's fate contagion plays for the Juggler map.",
+ "problem_area": "collatz",
+ "project_relationship": "extended",
+ "relevant_concepts": [
+  "preimage trees",
+  "difference inequalities",
+  "nonlinear programming",
+  "3n-1 map",
+  "preimage density"
+ ],
+ "status": "theorem",
+ "title": "Bounds for the 3x+1 Problem using Difference Inequalities",
+ "url": {
+  "arxiv": "https://arxiv.org/abs/math/0205002"
+ },
+ "year": 2003
+}

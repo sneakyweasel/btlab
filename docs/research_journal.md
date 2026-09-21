@@ -1,5 +1,49 @@
 # Research journal
 
+## 2026-09-21 -- Krasikov-Lagarias read from the source and transposed to 3n-1: the exponent is 0.84 on both sides, because negation is an isomorphism
+
+- **Objective:** Philippe asked for the paper from the source and for the transposition I
+  had called the concrete thing worth doing.
+- **The source.** arXiv math/0205002, Acta Arith. 109 (2003) 237-258, fetched and read.
+  It was cited as Paper C's reference 7 and had never been recorded in `literature/`; it
+  is now. Their theorem: for any target \(a\) not divisible by three and all large
+  \(x\), at least \(x^{0.84}\) of the integers below \(x\) reach \(a\) under the
+  \(3x+1\) shortcut map.
+- **The result.** The same bound holds for \(3n-1\), with the same exponent, and the
+  proof is that \(m\mapsto-m\bmod3^k\) carries their difference inequality system onto
+  the corresponding one coefficient for coefficient. Fertile classes \(2\bmod3\) go to
+  \(1\bmod3\), the mod-nine split \(2,5,8\) goes to \(7,4,1\), \((4m-2)/3\) goes
+  to \((4m+2)/3\) and \((2m-1)/3\) to \((2m+1)/3\). Their method never looks at the
+  sign of the added constant.
+- **Why this is a corollary and not a paper.** Once pointed out, the symmetry is accepted
+  on sight. The work was reading the source carefully enough to see that the system is
+  purely residue-theoretic. It belongs as a remark beside Paper D.
+- **Verified from both directions.** The bijection is exact integer arithmetic over every
+  class for \(k\le10\). Independently, both systems were solved: the exponents agree at
+  every \(k\) from 2 to 11, reading \(0.4366\) up to \(0.8418\).
+- **The check that mattered.** At \(k=11\), their own \(k\), the solver returns
+  \(0.8418\), and at \(k=2\) it returns \(0.4366\). Those truncate to the \(0.84\)
+  and \(0.43\) the literature reports, truncation rather than rounding being forced by
+  the fact that a published exponent has to be a valid lower bound. Reproducing both
+  anchors is what says the system solved here is theirs rather than something adjacent.
+- **Two solvers.** A scipy linear program written from their \(L^{NT}_k(\lambda)\), and a
+  Collatz-Wielandt iteration on the monotone homogeneous map left after eliminating the
+  level \(k-1\) variables. They agree at every \(k\le8\). Only the second is committed,
+  because scipy is not a declared dependency.
+- **Two known-bad inputs, both bit.** Substituting the \(3x+1\) odd preimage into the
+  \(3n-1\) tree identity satisfies it in none of 396 cases. And the identity fails on
+  every fertile cycle member: the first run reported 30 mismatches, which turned out to be
+  exactly the cycle members times the three window sizes. The \(3n-1\) map has fifteen of
+  them against one cycle for \(3x+1\), so the not-in-a-cycle hypothesis carries more
+  weight here than in the source.
+- **One error caught in passing.** I asserted the \(k=2\) value equals the published
+  \(0.43\) under rounding; \(0.4366\) rounds to \(0.44\). The convention is
+  truncation, which the \(k=11\) figure then confirmed.
+- **What this does not do.** It is a counting bound, not a divergent logarithmic one, so it
+  is not a substitute for Paper C's fate contagion and does not feed the almost-all
+  equivalence. Paper C's Section 1.3 already says so for the \(3x+1\) side and the
+  sentence transposes with the theorem.
+
 ## 2026-09-21 -- A method wall expired without anyone noticing, and the test that should have noticed was measuring the wrong bound
 
 - **What happened.** Earlier today I filed both of Hercher's m-free refinements as method
