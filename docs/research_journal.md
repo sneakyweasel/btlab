@@ -1,5 +1,53 @@
 # Research journal
 
+## 2026-09-21 -- Paper A's provenance pin was already false on the day it was deposited, and no gate in the repository was in a position to say so
+
+- **What happened.** Section 1.2 of Paper A prints a commit and tells the reader it is the
+  repository state that produced the finance tables. It named `7802f78b`, of 31 August 2026.
+  Checked file by file against `git show`, with CRLF normalised: all twelve entries of
+  `BUILD_INPUTS` are absent there, because the builder itself postdates the commit, and so
+  are `exceptions_parity.json` and `budget_opt.json`. Those last two are the ones that bite.
+  Appendix B sends the reader to the `lengths` array of the first for the complete list of
+  141 exceptional lengths, and the pin block names the second in its own text as the run-type
+  table. A reader following the pin found neither file.
+- **It is not rot.** The deposit-era manuscript at `8a99f4b6` already carried the same pin and
+  already named both files, and both had been added to the repository after `7802f78b`. So
+  version 1.0.0, deposited 9 September 2026, shipped with a provenance line that was false
+  the day it went up. Twelve days, on a public record.
+- **Why nothing caught it.** `build_paper_a.py --check` compares the live files to the digests
+  in `paper_a_release.json`, and the builder writes that manifest from those same live files.
+  The manifest and the tree agree by construction, so the check can never disagree with
+  itself, and the commit in the manuscript is never read at all. Paper D reached the same
+  state twice (`b5fed743`, `d3df4e85`) and was repinned by hand both times, because a hand
+  was all there was.
+- **The second hole, which is the one that let it happen to those two files.**
+  `cycle_finance.py` and its three tables were not in `BUILD_INPUTS`. The manifest held no
+  digest for any of them, so the four files the paper points hardest at were the four nothing
+  compared to anything. Widened: 127 recorded inputs where there were 123.
+- **The fix.** `tools/paper_pin.py` asks whether every file the release manifest calls an
+  input is byte-identical at the commit the paper names, and whether that commit is an
+  ancestor of HEAD. The editorial texts are exempt and only they, since the manuscript is
+  where the pin is written and cannot precede itself. Paper A now pins `bf018a78`, where all
+  124 hold. `tests/integration/test_paper_release_gates.py` runs it for every paper.
+- **Made to fail before it was trusted.** Four controls: the replaced pin (123 of 124 wrong),
+  a pin one input behind (1 of 124, the builder), a commit not in the repository, and a commit
+  off this branch. All four fire; the real pin still verifies. The one-input case is the one
+  worth having -- the loud failure was never the risk.
+- **CI was checking out shallow.** `actions/checkout@v4` defaults to depth 1, so every pin
+  would have been unverifiable and the new gate would have skipped forever while reporting
+  no failure. `fetch-depth: 0` on the python job, and a second test that fails if *every*
+  paper's pin skips, so an all-skip suite cannot read as a pass.
+- **Papers B and C were checked and make no commit-level claim.** They name the repository in
+  prose with no commit, so they have nothing to falsify and are reported as such rather than
+  passing quietly. Paper D verifies at 14 of 14.
+- **The lesson.** A claim that no gate reads is not a weak claim, it is an unchecked one, and
+  the direction of the rot is not predictable from the claim's wording: this pin was written
+  in good faith and was wrong within a day. The narrower rule is that a manifest written from
+  the tree it validates cannot establish provenance against anything, only self-consistency.
+- **Not uploaded.** Philippe performs the deposit. The correction folds into the Paper A new
+  version already in preparation; `docs/theory/paper_deposits.md` records the state of the
+  record meanwhile.
+
 ## 2026-09-21 -- A method wall expired without anyone noticing, and the test that should have noticed was measuring the wrong bound
 
 - **What happened.** Earlier today I filed both of Hercher's m-free refinements as method

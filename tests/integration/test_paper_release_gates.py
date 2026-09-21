@@ -34,6 +34,9 @@ def _load(path: Path):
     return module
 
 
+paper_pin = _load(ROOT / "tools/paper_pin.py")
+
+
 def test_every_paper_build_tool_is_discovered() -> None:
     """Three today.  A fourth must be picked up automatically, not added by hand."""
     names = {p.name for p in BUILDERS}
@@ -52,3 +55,46 @@ def test_the_paper_gate_exists_and_passes_on_the_live_repository(builder: Path) 
     check = getattr(module, "check", None)
     assert callable(check), f"{builder.name} has no check(); a paper without a gate"
     check(ROOT)
+
+
+@pytest.mark.parametrize("builder", BUILDERS, ids=lambda p: p.stem)
+def test_the_provenance_pin_names_a_commit_that_holds_the_inputs(builder: Path) -> None:
+    """A paper's printed commit must be one a reader can actually follow.
+
+    The gate above cannot see this.  It compares the live files to the digests in the
+    paper's own release manifest, and the builder writes that manifest from those same
+    live files, so the two agree by construction and the commit in the manuscript is
+    never read.  Paper A's pin was therefore free to name a commit of 31 August 2026
+    at which two of the data files its Appendix B points to did not exist, and it went
+    on naming it through the 9 September deposit and for twelve days after.
+
+    `tools/paper_pin.py` has the whole argument.  A paper that prints no repository
+    block skips here, because it makes no claim to falsify; Papers B and C are in that
+    state today, and the test below keeps a suite of nothing but skips from reading as
+    a pass.
+    """
+    module = _load(builder)
+    try:
+        paper_pin.verify(ROOT, module)
+    except (paper_pin.NoPinClaimed, paper_pin.PinUnavailable) as exc:
+        pytest.skip(str(exc))
+
+
+def test_at_least_one_paper_pin_was_really_verified() -> None:
+    """Guard the skips above from swallowing the gate whole.
+
+    Both skip paths are legitimate one paper at a time and worthless all at once: a
+    shallow checkout, which CI took by default until `fetch-depth: 0` was set, makes
+    every pin unverifiable, and a suite that skips every one of them has checked
+    nothing while reporting no failure.  This says so instead.
+    """
+    verified = []
+    for builder in BUILDERS:
+        try:
+            verified.append(paper_pin.verify(ROOT, _load(builder)))
+        except (paper_pin.NoPinClaimed, paper_pin.PinUnavailable):
+            continue
+    assert verified, (
+        "no paper's provenance pin could be verified at all. Either every manuscript "
+        "has lost its repository block, or this checkout has no history to check it "
+        "against -- clone with full depth, or check out with fetch-depth 0 in CI.")

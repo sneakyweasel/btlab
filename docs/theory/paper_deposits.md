@@ -12,6 +12,20 @@ operation.
 | C | Fate Contagion and Termination Criteria for the Juggler Map | [10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165) | [zenodo.org/records/22678165](https://zenodo.org/records/22678165) |
 | D | No m-cycles of the 3n−1 map for m ≤ 58 | [10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190) | [zenodo.org/records/22876190](https://zenodo.org/records/22876190) |
 
+**Paper A's deposited 1.0.0 carries a false provenance line, corrected in the repository and
+not yet on the record.** Its Section 1.2 names commit `7802f78b` of 31 August 2026 as the
+state that produced the finance tables. Two files the paper points the reader to,
+`exceptions_parity.json` for the 141 exceptional lengths and `budget_opt.json` for the
+run-type table, were added to the repository after that commit and do not exist there, so the
+line was already wrong on 9 September 2026, the day 1.0.0 was deposited. It is not rot: it
+shipped that way. The repository revision now pins `bf018a78`, where all 124 files the
+release manifest records as inputs are byte-identical to the versions the paper reports, and
+`tools/paper_pin.py` holds every paper to that from inside the release gate. Nothing has been
+uploaded. The correction goes up with the Paper A new version already in preparation, through
+the existing record's new-version operation, which keeps the concept DOI; the deposited PDF
+is not otherwise affected, because Appendix B identifies the tables by content and both are
+byte-identical to the versions 1.0.0 reports.
+
 **Paper D version 1.1.0 is prepared and not deposited.** It proves the same theorem for
 \(m\le61\) where 1.0.0 proved \(m\le58\), by adding the valley-count lemma; the floor is
 unchanged. It goes up through the existing record's new-version operation, which keeps the
