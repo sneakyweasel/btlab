@@ -37,17 +37,24 @@ DECL_KEYWORD = r"(?:theorem|lemma|def|abbrev|instance|structure)"
 #: name is the absence of one of those, not a word boundary.
 DECL_TAIL = r"(?![A-Za-z0-9_'!?])"
 
+#: An attribute block in front of the keyword, on the declaration's own line. 70 declarations
+#: in ``formal/`` are written ``@[simp] theorem foo``; the index reads them
+#: (``tools/formalpedia.py``, ``_ATTR``) and without this the gate would deny all 70.
+DECL_ATTR = r"(?:@\[[^\]]*\][ \t]*)*"
+
 #: The name a declaration line opens with, captured.
 DECL_NAME = r"([A-Za-z_][A-Za-z0-9_'!?.]*)"
 
 #: Every declaration a file opens, by name.
-DECL_LINE = re.compile(rf"^\s*{DECL_MODIFIER}{DECL_KEYWORD}\s+{DECL_NAME}", re.MULTILINE)
+DECL_LINE = re.compile(
+    rf"^\s*{DECL_ATTR}{DECL_MODIFIER}{DECL_KEYWORD}\s+{DECL_NAME}", re.MULTILINE
+)
 
 
 def _declares(text: str, name: str) -> bool:
     """Does ``text`` open a declaration named exactly ``name``?"""
     return re.search(
-        rf"^\s*{DECL_MODIFIER}{DECL_KEYWORD}\s+{re.escape(name)}{DECL_TAIL}",
+        rf"^\s*{DECL_ATTR}{DECL_MODIFIER}{DECL_KEYWORD}\s+{re.escape(name)}{DECL_TAIL}",
         text,
         re.MULTILINE,
     ) is not None
@@ -478,8 +485,8 @@ def test_no_row_credits_native_decide_to_a_kernel_checked_declaration():
                 # into the neighbour below and could be credited with the neighbour's
                 # `native_decide`. 31 theorem blocks in `formal/` over-ran that way.
                 block = re.search(
-                    rf"(?:^|\n)\s*{DECL_MODIFIER}theorem\s+{re.escape(name)}{DECL_TAIL}"
-                    rf"(.*?)(?=\n\s*(?:{DECL_MODIFIER}{DECL_KEYWORD}|/--)|\Z)",
+                    rf"(?:^|\n)\s*{DECL_ATTR}{DECL_MODIFIER}theorem\s+{re.escape(name)}{DECL_TAIL}"
+                    rf"(.*?)(?=\n\s*(?:{DECL_ATTR}{DECL_MODIFIER}{DECL_KEYWORD}|/--)|\Z)",
                     text, re.S)
                 if block is not None:
                     assert "native_decide" in block.group(1), (

@@ -52,12 +52,34 @@ REVIEW = ROOT / "docs" / "research" / "formalpedia_decl_review.md"
 JEV = ROOT / "data" / "research" / "formalpedia" / "jev_verdicts.json"
 COVERAGE = ROOT / "docs" / "research" / "formalpedia_coverage_review.md"
 
+_ATTR = r"@\[[^\]]*\][ \t]*"
+"""An attribute block in front of a declaration, on the declaration's own line.
+
+Same line, deliberately.  An attribute written on the line *above* leaves the keyword at the
+start of its own line, where the pattern already finds it; letting this group cross a newline
+would move the match back onto the attribute and report every such declaration one line early.
+"""
+
+_MODIFIER = r"(?:private\s+|protected\s+|noncomputable\s+)*"
+
 DECL = re.compile(
-    r"^(?:private\s+|protected\s+|noncomputable\s+)*"
+    rf"^[ \t]*(?:{_ATTR})*{_MODIFIER}"
     r"(?P<kind>theorem|lemma|def|abbrev|instance|structure)\s+"
     r"(?P<name>[A-Za-z_][A-Za-z0-9_'!?.]*)",
     re.MULTILINE,
 )
+"""Every declaration a file opens.  Run against :func:`blank_comments` output, never raw text.
+
+Three forms were invisible here and each failed silently, which is the only way this index
+fails.  ``@[simp] theorem foo`` -- 70 of them -- had no room for the attribute and were absent
+from the index outright.  An indented declaration was unreachable because the pattern anchored
+at ``^`` with nothing after it.  And the ``^`` anchor was simultaneously the only guard against
+prose: ``formal/`` writes long docstrings, and a line wrapping so that ``theorem`` lands at
+column 0 put six English words -- ``of``, ``at``, ``needs``, ``nothing`` -- into the index as
+declarations.  Allowing indentation without blanking comments first adds a seventh.  So the two
+changes are one change: the anchor stops carrying a job it was never doing on purpose, and
+:func:`blank_comments` takes it over.
+"""
 IMPORT = re.compile(r"^import\s+([A-Za-z_][A-Za-z0-9_.']*)", re.MULTILINE)
 IDENT = re.compile(r"[A-Za-z][A-Za-z0-9_']*_[A-Za-z0-9_']+")
 """A bare Lean identifier in prose.  Ledger rows name their theorems this way -- not in
@@ -80,6 +102,48 @@ def sources() -> list[Path]:
 
 def module_of(path: Path) -> str:
     return ".".join(path.relative_to(FORMAL).with_suffix("").parts)
+
+
+def blank_comments(text: str) -> str:
+    """Replace every comment byte with a space, keeping all offsets and newlines in place.
+
+    Offsets are the point.  The declaration scan runs on this, while each declaration's
+    docstring and trust are sliced out of the original text at the positions this reports,
+    so a blanker that shortened anything would misreport every line after the first comment.
+
+    Lean block comments nest -- ``/- outer /- inner -/ still outer -/`` -- so this scans
+    rather than running the non-greedy ``/-.*?-/`` used elsewhere in this file, which closes
+    such a comment at the inner ``-/`` and hands the tail back as if it were code.  String
+    literals are honoured too, so a ``--`` inside one opens nothing.
+    """
+    out = list(text)
+    i, n, depth = 0, len(text), 0
+    while i < n:
+        if depth == 0 and text[i] == '"':
+            i += 1
+            while i < n and text[i] != '"':
+                i += 2 if text[i] == "\\" else 1
+            i += 1
+        elif text.startswith("/-", i):
+            depth += 1
+            out[i] = out[i + 1] = " "
+            i += 2
+        elif depth and text.startswith("-/", i):
+            depth -= 1
+            out[i] = out[i + 1] = " "
+            i += 2
+        elif depth:
+            if text[i] != "\n":
+                out[i] = " "
+            i += 1
+        elif text.startswith("--", i):
+            end = text.find("\n", i)
+            end = n if end == -1 else end
+            out[i:end] = " " * (end - i)
+            i = end
+        else:
+            i += 1
+    return "".join(out)
 
 
 def _docstring(text: str, start: int) -> str:
@@ -129,13 +193,28 @@ def declares(text: str, name: str, kind: str = "theorem") -> bool:
     `power_bound_word_strict`.  A guard written as ``f"theorem {name}" in text`` therefore still
     passes after its theorem is deleted, as long as one of those neighbours survives -- which is
     precisely the event such a guard exists to catch.
+
+    It reads the same forms :data:`DECL` does, and for the same reason: this answers "is the
+    theorem still here", so every form it cannot read reports a live theorem deleted.  It took
+    a bare ``kind`` with room for neither an attribute nor a modifier, so ``@[simp] theorem f``
+    and ``private theorem f`` both answered False.  The tail rejects ``!`` and ``?`` as well as
+    word characters, since Lean admits all three in a name and ``foo`` must not match ``foo!``.
     """
-    return re.search(rf"(?:^|\n)\s*{kind}\s+{re.escape(name)}(?![A-Za-z0-9_'])", text) is not None
+    return re.search(
+        rf"(?:^|\n)[ \t]*(?:{_ATTR})*{_MODIFIER}{kind}\s+{re.escape(name)}(?![A-Za-z0-9_'!?])",
+        text,
+    ) is not None
 
 
 def declarations(path: Path) -> list[dict[str, Any]]:
+    """Every declaration in one file: what it is called, where it sits, what checks it.
+
+    The scan runs on comment-blanked text and the docstring and trust of each hit are sliced
+    from the original at the same offsets -- so prose cannot be read as a declaration, while
+    the prose *belonging* to a declaration is still read.
+    """
     text = io.open(path, encoding="utf-8").read()
-    hits = list(DECL.finditer(text))
+    hits = list(DECL.finditer(blank_comments(text)))
     out: list[dict[str, Any]] = []
     for i, m in enumerate(hits):
         end = hits[i + 1].start() if i + 1 < len(hits) else len(text)
@@ -281,10 +360,12 @@ count outside it stayed reassuring.
 """
 
 
-_COMMENT = re.compile(r"/-.*?-/|--[^\n]*", re.S)
 _IDENT = re.compile(r"[A-Za-z_][A-Za-z0-9_'.]*")
-_HEAD = re.compile(r"(?:^|\n)\s*(?:private\s+|protected\s+|noncomputable\s+)*"
+_HEAD = re.compile(rf"(?:^|\n)[ \t]*(?:{_ATTR})*{_MODIFIER}"
                    r"(?:theorem|lemma|def|abbrev|instance)\s+([A-Za-z_][A-Za-z0-9_'!?.]*)")
+"""Where each proof body starts, for the citation scan.  Carries :data:`DECL`'s alternation
+because a head this cannot see is not a boundary: the body above it runs on through the
+declaration into its neighbour, and picks up whatever the neighbour cites."""
 
 
 def trust_closure(index: dict[str, Any]) -> set[str]:
@@ -308,11 +389,16 @@ def trust_closure(index: dict[str, Any]) -> set[str]:
     names = {d["name"] for d in decls}
     bodies: dict[tuple[str, str], str] = {}
     for path in sorted({d["file"] for d in decls}):
-        text = Path(path).read_text(encoding="utf-8")
+        # Blanked once, for both jobs: it keeps prose from opening a body, and it is the
+        # comment strip this line already did -- minus the non-greedy `/-.*?-/` that used to
+        # do it, which closes a nested comment early and hands the tail back as if it were a
+        # proof. Comments must go either way: a docstring naming a compiled lemma is prose,
+        # not a dependency.
+        text = blank_comments(Path(path).read_text(encoding="utf-8"))
         heads = list(_HEAD.finditer(text))
         for i, m in enumerate(heads):
             end = heads[i + 1].start() if i + 1 < len(heads) else len(text)
-            bodies[(path, m.group(1))] = _COMMENT.sub(" ", text[m.end():end])
+            bodies[(path, m.group(1))] = text[m.end():end]
 
     cites: dict[tuple[str, str], set[str]] = {}
     for key, body in bodies.items():

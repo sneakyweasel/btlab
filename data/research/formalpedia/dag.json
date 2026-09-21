@@ -348,7 +348,7 @@
       }
     },
     "BTCalculus.OpFragSemantic": {
-      "declarations": 58,
+      "declarations": 60,
       "depends_on": [
         "BTCalculus.OpFragNewman",
         "BTCalculus.Rewrite"
@@ -359,7 +359,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 58
+        "kernel": 60
       }
     },
     "BTCalculus.PadicLifting": {
@@ -893,7 +893,7 @@
       }
     },
     "Problems.Collatz.NegativeMCycles": {
-      "declarations": 22,
+      "declarations": 24,
       "depends_on": [],
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "ledger": [
@@ -901,7 +901,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 22
+        "kernel": 24
       }
     },
     "Problems.Collatz.Shortcut": {
@@ -935,7 +935,7 @@
       }
     },
     "Problems.Juggler.CollatzBridge": {
-      "declarations": 68,
+      "declarations": 81,
       "depends_on": [
         "Problems.Juggler.CycleCore",
         "Problems.Juggler.RateFreeDensity"
@@ -955,7 +955,7 @@
         "Paper A"
       ],
       "trust": {
-        "kernel": 68
+        "kernel": 81
       }
     },
     "Problems.Juggler.CriticalCostKernel": {
@@ -1320,7 +1320,7 @@
       }
     },
     "Problems.Juggler.CycleRunAlphabet": {
-      "declarations": 18,
+      "declarations": 20,
       "depends_on": [
         "Problems.Juggler.ItineraryStats",
         "Problems.Juggler.TowerAbsorption"
@@ -1332,7 +1332,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 18
+        "kernel": 20
       }
     },
     "Problems.Juggler.Cycles": {
@@ -1383,7 +1383,7 @@
       }
     },
     "Problems.Juggler.DepthOneMainTerm": {
-      "declarations": 22,
+      "declarations": 24,
       "depends_on": [],
       "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
       "ledger": [
@@ -1391,7 +1391,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 22
+        "kernel": 24
       }
     },
     "Problems.Juggler.Envelope": {
@@ -1924,7 +1924,7 @@
       }
     },
     "Problems.Juggler.FateProductionWords": {
-      "declarations": 7,
+      "declarations": 9,
       "depends_on": [
         "Problems.Juggler.ItineraryStats"
       ],
@@ -1936,7 +1936,7 @@
         "Paper C"
       ],
       "trust": {
-        "kernel": 7
+        "kernel": 9
       }
     },
     "Problems.Juggler.FateRecursion": {
@@ -2094,7 +2094,7 @@
       }
     },
     "Problems.Juggler.GapTransferWW": {
-      "declarations": 9,
+      "declarations": 8,
       "depends_on": [
         "Problems.Juggler.GapTransfer"
       ],
@@ -2106,11 +2106,11 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 9
+        "kernel": 8
       }
     },
     "Problems.Juggler.GlobalDefect": {
-      "declarations": 36,
+      "declarations": 38,
       "depends_on": [
         "Problems.Juggler.Equality"
       ],
@@ -2123,7 +2123,7 @@
         "Paper C"
       ],
       "trust": {
-        "kernel": 36
+        "kernel": 38
       }
     },
     "Problems.Juggler.GuardResidueFamily": {
@@ -2144,7 +2144,7 @@
       }
     },
     "Problems.Juggler.Itinerary": {
-      "declarations": 33,
+      "declarations": 35,
       "depends_on": [
         "Problems.Juggler.Termination"
       ],
@@ -2158,11 +2158,11 @@
         "Paper C"
       ],
       "trust": {
-        "kernel": 33
+        "kernel": 35
       }
     },
     "Problems.Juggler.ItineraryStats": {
-      "declarations": 39,
+      "declarations": 45,
       "depends_on": [
         "Problems.Juggler.Itinerary"
       ],
@@ -2175,7 +2175,7 @@
         "Paper C"
       ],
       "trust": {
-        "kernel": 39
+        "kernel": 45
       }
     },
     "Problems.Juggler.LandingParity": {
@@ -2212,7 +2212,7 @@
       }
     },
     "Problems.Juggler.LeftoverFamilies": {
-      "declarations": 180,
+      "declarations": 179,
       "depends_on": [
         "Problems.Juggler.LeftoverShort"
       ],
@@ -2237,7 +2237,7 @@
         "Paper A"
       ],
       "trust": {
-        "kernel": 180
+        "kernel": 179
       }
     },
     "Problems.Juggler.LeftoverShort": {
@@ -2487,7 +2487,7 @@
       }
     },
     "Problems.Juggler.PaperBCertificateLengths": {
-      "declarations": 24,
+      "declarations": 26,
       "depends_on": [
         "Problems.Juggler.PaperBCertificates"
       ],
@@ -2497,7 +2497,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 24
+        "kernel": 26
       }
     },
     "Problems.Juggler.PaperBCertificateRecursion": {
@@ -2533,7 +2533,7 @@
       }
     },
     "Problems.Juggler.PaperBChainRule": {
-      "declarations": 27,
+      "declarations": 32,
       "depends_on": [],
       "file": "formal/Problems/Juggler/PaperBChainRule.lean",
       "ledger": [
@@ -2545,7 +2545,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 27
+        "kernel": 32
       }
     },
     "Problems.Juggler.PaperBChernoff": {
@@ -2593,7 +2593,7 @@
       }
     },
     "Problems.Juggler.PaperBJumpTransposition": {
-      "declarations": 22,
+      "declarations": 30,
       "depends_on": [],
       "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
       "ledger": [
@@ -2603,11 +2603,11 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 22
+        "kernel": 30
       }
     },
     "Problems.Juggler.PaperBLevelWindow": {
-      "declarations": 47,
+      "declarations": 44,
       "depends_on": [
         "Problems.Juggler.PaperBCertificateLengths",
         "Problems.Juggler.RateFreeDensity"
@@ -2619,7 +2619,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 47
+        "kernel": 44
       }
     },
     "Problems.Juggler.PaperBMarkov": {
@@ -3345,7 +3345,7 @@
       }
     },
     "Problems.Juggler.WalkTransport": {
-      "declarations": 25,
+      "declarations": 26,
       "depends_on": [
         "Problems.Juggler.CycleCore"
       ],
@@ -3359,7 +3359,7 @@
         "Paper A"
       ],
       "trust": {
-        "kernel": 25
+        "kernel": 26
       }
     },
     "Problems.JugglerFatePaper": {
@@ -3474,7 +3474,7 @@
       }
     },
     "Representation.Words": {
-      "declarations": 31,
+      "declarations": 33,
       "depends_on": [],
       "file": "formal/Representation/Words.lean",
       "ledger": [
@@ -3483,7 +3483,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 31
+        "kernel": 33
       }
     }
   },

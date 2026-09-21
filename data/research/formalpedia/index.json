@@ -94,6 +94,32 @@
         "BT-encode-unique",
         "C-append-plus"
       ],
+      "line": 24,
+      "module": "Representation.Words",
+      "name": "negate_negate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Representation/Words.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BT-encode-unique",
+        "C-append-plus"
+      ],
+      "line": 27,
+      "module": "Representation.Words",
+      "name": "toInt_negate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Representation/Words.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BT-encode-unique",
+        "C-append-plus"
+      ],
       "line": 30,
       "module": "Representation.Words",
       "name": "toInt_eq_zero_iff",
@@ -5730,6 +5756,30 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Collatz/NegativeMCycles.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-negative-m-cycles-excluded-through-58"
+      ],
+      "line": 56,
+      "module": "Problems.Collatz.NegativeMCycles",
+      "name": "negTIter_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/NegativeMCycles.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-negative-m-cycles-excluded-through-58"
+      ],
+      "line": 58,
+      "module": "Problems.Collatz.NegativeMCycles",
+      "name": "negTIter_succ",
+      "trust": "kernel"
+    },
+    {
       "doc": "**One odd step, in the conjugated variable.** For `u` even, `g (u + 1) = 3 (u / 2) + 1`: the odd step subtracts, so on `u = y - 1` it is exactly halve-then-triple.",
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "kind": "theorem",
@@ -7016,9 +7066,49 @@
       "file": "formal/Problems/Engine/InformationField.lean",
       "kind": "theorem",
       "ledger": [],
+      "line": 95,
+      "module": "Problems.Engine.InformationField",
+      "name": "perturb_compose",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 99,
+      "module": "Problems.Engine.InformationField",
+      "name": "compose_apply",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
       "line": 103,
       "module": "Problems.Engine.InformationField",
       "name": "compose_assoc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 107,
+      "module": "Problems.Engine.InformationField",
+      "name": "compose_id_left",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 110,
+      "module": "Problems.Engine.InformationField",
+      "name": "compose_id_right",
       "trust": "kernel"
     },
     {
@@ -7029,6 +7119,26 @@
       "line": 115,
       "module": "Problems.Engine.InformationField",
       "name": "trajectory",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 119,
+      "module": "Problems.Engine.InformationField",
+      "name": "trajectory_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 123,
+      "module": "Problems.Engine.InformationField",
+      "name": "trajectory_succ",
       "trust": "kernel"
     },
     {
@@ -7099,6 +7209,36 @@
       "line": 163,
       "module": "Problems.Engine.InformationField",
       "name": "perturbationSize_eq_zero_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 167,
+      "module": "Problems.Engine.InformationField",
+      "name": "perturbationSize_id",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 171,
+      "module": "Problems.Engine.InformationField",
+      "name": "physicalEffect_id",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 174,
+      "module": "Problems.Engine.InformationField",
+      "name": "leverage_id",
       "trust": "kernel"
     },
     {
@@ -7359,6 +7499,16 @@
       "line": 429,
       "module": "Problems.Engine.InformationField",
       "name": "informationCost_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 432,
+      "module": "Problems.Engine.InformationField",
+      "name": "informationCost_id",
       "trust": "kernel"
     },
     {
@@ -7662,6 +7812,36 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 690,
+      "module": "Problems.Engine.InformationField",
+      "name": "mem_noiseRegion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 693,
+      "module": "Problems.Engine.InformationField",
+      "name": "mem_ordinaryRegion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 697,
+      "module": "Problems.Engine.InformationField",
+      "name": "mem_originalRegion",
+      "trust": "kernel"
+    },
+    {
       "doc": "The three regimes cover the landscape.",
       "file": "formal/Problems/Engine/InformationField.lean",
       "kind": "theorem",
@@ -7742,6 +7922,26 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 789,
+      "module": "Problems.Engine.InformationField",
+      "name": "totalValue_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 792,
+      "module": "Problems.Engine.InformationField",
+      "name": "totalValue_cons",
+      "trust": "kernel"
+    },
+    {
       "doc": "The total value does not depend on the mining order.",
       "file": "formal/Problems/Engine/InformationField.lean",
       "kind": "theorem",
@@ -7759,6 +7959,26 @@
       "line": 805,
       "module": "Problems.Engine.InformationField",
       "name": "waitingCost",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 809,
+      "module": "Problems.Engine.InformationField",
+      "name": "waitingCost_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Engine/InformationField.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 812,
+      "module": "Problems.Engine.InformationField",
+      "name": "waitingCost_cons",
       "trust": "kernel"
     },
     {
@@ -9823,6 +10043,63 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 102,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWord_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 104,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWord_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 107,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWord_length",
+      "trust": "kernel"
+    },
+    {
       "doc": "A prefix of the word is the word of the prefix.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
@@ -9858,6 +10135,63 @@
       "line": 132,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "wordConst",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 137,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "wordConst_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 139,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "wordConst_even",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 141,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "wordConst_odd",
       "trust": "kernel"
     },
     {
@@ -10431,6 +10765,63 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 469,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "evenCharge_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 471,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "evenCharge_even",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 474,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "evenCharge_odd",
+      "trust": "kernel"
+    },
+    {
       "doc": "The odd-step constant and the even-step charge differ by the multiplier gap: `wordConst w + 2 ^ |w| = 3 ^ o + evenCharge w`.",
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "kind": "theorem",
@@ -10580,6 +10971,82 @@
       "line": 542,
       "module": "Problems.Juggler.CollatzBridge",
       "name": "parityWordZ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 546,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWordZ_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 548,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "parityWordZ_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 552,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "shortcutZIter_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzBridge.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-survivor-count-is-a-collatz-residue-count",
+        "J-collatz-even-step-charge-identity",
+        "J-collatz-walk-charge-is-sharp",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-juggler-cycle-words-are-collatz-negative-cycle-words",
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-negative-floor-makes-the-mirror-unconditional"
+      ],
+      "line": 554,
+      "module": "Problems.Juggler.CollatzBridge",
+      "name": "shortcutZIter_succ",
       "trust": "kernel"
     },
     {
@@ -22382,6 +22849,32 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cycle-run-alphabet",
+        "J-cycle-band-discrepancy"
+      ],
+      "line": 195,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "climbRun_length",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cycle-run-alphabet",
+        "J-cycle-band-discrepancy"
+      ],
+      "line": 200,
+      "module": "Problems.Juggler.CycleRunAlphabet",
+      "name": "climbRun_oddCount",
+      "trust": "kernel"
+    },
+    {
       "doc": "`OOE^k ++ OE` is an exponent gap exactly while `k \u2264 2`.",
       "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
       "kind": "theorem",
@@ -24587,6 +25080,18 @@
       "ledger": [
         "J-depth-one-arithmetic-layer"
       ],
+      "line": 46,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "e_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-depth-one-arithmetic-layer"
+      ],
       "line": 48,
       "module": "Problems.Juggler.DepthOneMainTerm",
       "name": "e_add",
@@ -24614,6 +25119,18 @@
       "line": 61,
       "module": "Problems.Juggler.DepthOneMainTerm",
       "name": "e_intCast",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-depth-one-arithmetic-layer"
+      ],
+      "line": 66,
+      "module": "Problems.Juggler.DepthOneMainTerm",
+      "name": "e_one",
       "trust": "kernel"
     },
     {
@@ -35552,6 +36069,30 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateProductionWords.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-production-words-are-prefix-free"
+      ],
+      "line": 40,
+      "module": "Problems.Juggler.FateProductionWords",
+      "name": "Vword_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateProductionWords.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-production-words-are-prefix-free"
+      ],
+      "line": 42,
+      "module": "Problems.Juggler.FateProductionWords",
+      "name": "Vword_succ",
+      "trust": "kernel"
+    },
+    {
       "doc": "`V_(k+1)` has length `2k + 3`: the `k` copies of `OE` and the closing `OEE`.",
       "file": "formal/Problems/Juggler/FateProductionWords.lean",
       "kind": "theorem",
@@ -40216,20 +40757,6 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/Juggler/GapTransferWW.lean",
-      "kind": "instance",
-      "ledger": [
-        "J-cyclemin-gap-power-transfer",
-        "J-cyclemin-period-lower-bound",
-        "J-cyclemin-closure-threshold"
-      ],
-      "line": 144,
-      "module": "Problems.Juggler.GapTransferWW",
-      "name": "of",
-      "trust": "kernel"
-    },
-    {
       "doc": "**The closure threshold.** If the Diophantine budget holds on every nontrivial cycle and cycle minima obey the matching lower bound `n log n > (2/C) L^{p+1}`, then every cycle word based at a minimum `n >= 2` is empty: there is no nontrivial cycle. This is the numerical content of the standing reopen condition \"a lower bound on the cycle minimum in terms of the period\" (`docs/problems/juggler_cycle_method_ceilings.md`). Neither hypothesis is proved here. The Wu-Wang instance `p = 4.1163051` sets the unconditional target at `n >> L^{5.1163051}`; since `p >= 1` for every irrational, no instance of this scheme can ask for less than `n >> L^{2}`.",
       "file": "formal/Problems/Juggler/GapTransferWW.lean",
       "kind": "theorem",
@@ -40293,6 +40820,30 @@
       "line": 20,
       "module": "Problems.Juggler.GlobalDefect",
       "name": "powGap_add",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/GlobalDefect.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-global-defect-identity"
+      ],
+      "line": 24,
+      "module": "Problems.Juggler.GlobalDefect",
+      "name": "powGap_zero_addend",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/GlobalDefect.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-global-defect-identity"
+      ],
+      "line": 27,
+      "module": "Problems.Juggler.GlobalDefect",
+      "name": "powGap_zero_exp",
       "trust": "kernel"
     },
     {
@@ -41731,6 +42282,26 @@
       "line": 156,
       "module": "Problems.Juggler.IdealCycleMin",
       "name": "CountBound.admitsProp",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/IdealCycleMin.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 159,
+      "module": "Problems.Juggler.IdealCycleMin",
+      "name": "CountBound.admitsProp_zeroPlus",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/IdealCycleMin.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 164,
+      "module": "Problems.Juggler.IdealCycleMin",
+      "name": "CountBound.admitsProp_onePlus",
       "trust": "kernel"
     },
     {
@@ -43983,6 +44554,32 @@
         "J-itinerary-semantics",
         "J-fixed-itinerary-image-monotone"
       ],
+      "line": 43,
+      "module": "Problems.Juggler.Itinerary",
+      "name": "image_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/Itinerary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-itinerary-semantics",
+        "J-fixed-itinerary-image-monotone"
+      ],
+      "line": 45,
+      "module": "Problems.Juggler.Itinerary",
+      "name": "image_cons",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/Itinerary.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-itinerary-semantics",
+        "J-fixed-itinerary-image-monotone"
+      ],
       "line": 48,
       "module": "Problems.Juggler.Itinerary",
       "name": "bit_even",
@@ -44543,6 +45140,42 @@
       "ledger": [
         "J-exponent-expanding-append"
       ],
+      "line": 24,
+      "module": "Problems.Juggler.ItineraryStats",
+      "name": "oddCount_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/ItineraryStats.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-exponent-expanding-append"
+      ],
+      "line": 26,
+      "module": "Problems.Juggler.ItineraryStats",
+      "name": "oddCount_even_cons",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/ItineraryStats.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-exponent-expanding-append"
+      ],
+      "line": 29,
+      "module": "Problems.Juggler.ItineraryStats",
+      "name": "oddCount_odd_cons",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/ItineraryStats.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-exponent-expanding-append"
+      ],
       "line": 32,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "oddCount_replicate_even",
@@ -44618,6 +45251,42 @@
       "line": 91,
       "module": "Problems.Juggler.ItineraryStats",
       "name": "evenCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/ItineraryStats.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-exponent-expanding-append"
+      ],
+      "line": 96,
+      "module": "Problems.Juggler.ItineraryStats",
+      "name": "evenCount_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/ItineraryStats.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-exponent-expanding-append"
+      ],
+      "line": 98,
+      "module": "Problems.Juggler.ItineraryStats",
+      "name": "evenCount_even_cons",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/ItineraryStats.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-exponent-expanding-append"
+      ],
+      "line": 101,
+      "module": "Problems.Juggler.ItineraryStats",
+      "name": "evenCount_odd_cons",
       "trust": "kernel"
     },
     {
@@ -48869,31 +49538,6 @@
       "line": 1996,
       "module": "Problems.Juggler.LeftoverFamilies",
       "name": "no_cycle_itinerary_three_even_eooeoe",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/Juggler/LeftoverFamilies.lean",
-      "kind": "theorem",
-      "ledger": [
-        "J-leftover-ooooooeee",
-        "J-two-even-leftover-ee",
-        "J-two-even-leftover-eoe",
-        "J-first-e-transport-ee",
-        "J-first-e-transport-eoe",
-        "J-three-even-eee",
-        "J-three-even-eoee",
-        "J-three-even-eooee",
-        "J-three-even-eoooee",
-        "J-three-even-eeoe",
-        "J-three-even-eoeoe",
-        "J-three-even-eooeoe",
-        "J-gapped-cycle-itinerary-ee",
-        "J-gapped-cycle-itinerary-eoe"
-      ],
-      "line": 2029,
-      "module": "Problems.Juggler.LeftoverFamilies",
-      "name": "at",
       "trust": "kernel"
     },
     {
@@ -53956,16 +54600,6 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/Juggler/MonomialSplitting.lean",
-      "kind": "lemma",
-      "ledger": [],
-      "line": 149,
-      "module": "Problems.Juggler.MonomialSplitting",
-      "name": "needs",
-      "trust": "kernel"
-    },
-    {
       "doc": "**Lemma 3.8, the constant `c\u2086`.** With `p = \u03b1 - 2`, `q = \u03b2 - 2` the lemma needs `min_{s>0} max(|1 - s|, |p - q s|) > 0`. Over the ordered pairs of `E` the minimum is `1/14`, attained at `(\u03b1, \u03b2) = (11/8, 5/4)`, where `p = -5/8`, `q = -3/4`; the two V-shapes cross at `s = 13/14`.",
       "file": "formal/Problems/Juggler/MonomialSplitting.lean",
       "kind": "theorem",
@@ -56976,6 +57610,30 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 175,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "blockWord_length",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-certificate-length-window"
+      ],
+      "line": 178,
+      "module": "Problems.Juggler.PaperBCertificateLengths",
+      "name": "blockWord_oddCount",
+      "trust": "kernel"
+    },
+    {
       "doc": "**The window is attained.** When some power of three lies in `[2 ^ (L-1), 2 ^ L)`, the word `O^o E^(L-o)` is a minimal certificate: every proper prefix either is all odd (where `3 ^ k > 2 ^ k`) or is `O^o E^j` with `j < L - o`, where the window's lower bound `2 ^ (L-1) \u2264 3 ^ o` is exactly what stops it contracting early.",
       "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
       "kind": "theorem",
@@ -57908,6 +58566,38 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition",
+        "J-paper-b-count-is-the-level-zero-bad-count"
+      ],
+      "line": 61,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "iter_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition",
+        "J-paper-b-count-is-the-level-zero-bad-count"
+      ],
+      "line": 63,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "iter_cons",
+      "trust": "kernel"
+    },
+    {
       "doc": "Every step exponent is positive.",
       "file": "formal/Problems/Juggler/PaperBChainRule.lean",
       "kind": "theorem",
@@ -58081,6 +58771,54 @@
       "line": 151,
       "module": "Problems.Juggler.PaperBChainRule",
       "name": "oddCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition",
+        "J-paper-b-count-is-the-level-zero-bad-count"
+      ],
+      "line": 156,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "oddCount_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition",
+        "J-paper-b-count-is-the-level-zero-bad-count"
+      ],
+      "line": 158,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "oddCount_cons_O",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBChainRule.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-defect-coefficient-chain",
+        "J-paper-b-linearisation-E-lt-2",
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-screen-is-a-walk-condition",
+        "J-paper-b-count-is-the-level-zero-bad-count"
+      ],
+      "line": 161,
+      "module": "Problems.Juggler.PaperBChainRule",
+      "name": "oddCount_cons_E",
       "trust": "kernel"
     },
     {
@@ -59010,9 +59748,79 @@
         "J-paper-b-transposition-costs-the-barrier-mass",
         "J-paper-b-sturmian-zero-law-is-the-empty-window"
       ],
+      "line": 74,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "barrierMass_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-jump-spectrum-is-the-survivor-sequence",
+        "J-paper-b-transposition-costs-the-barrier-mass",
+        "J-paper-b-sturmian-zero-law-is-the-empty-window"
+      ],
+      "line": 76,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "barrierMass_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-jump-spectrum-is-the-survivor-sequence",
+        "J-paper-b-transposition-costs-the-barrier-mass",
+        "J-paper-b-sturmian-zero-law-is-the-empty-window"
+      ],
       "line": 78,
       "module": "Problems.Juggler.PaperBJumpTransposition",
       "name": "barrierMass_eq_ite",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-jump-spectrum-is-the-survivor-sequence",
+        "J-paper-b-transposition-costs-the-barrier-mass",
+        "J-paper-b-sturmian-zero-law-is-the-empty-window"
+      ],
+      "line": 82,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "stepFlat_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-jump-spectrum-is-the-survivor-sequence",
+        "J-paper-b-transposition-costs-the-barrier-mass",
+        "J-paper-b-sturmian-zero-law-is-the-empty-window"
+      ],
+      "line": 84,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "stepFlat_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-jump-spectrum-is-the-survivor-sequence",
+        "J-paper-b-transposition-costs-the-barrier-mass",
+        "J-paper-b-sturmian-zero-law-is-the-empty-window"
+      ],
+      "line": 87,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "stepRise_apply",
       "trust": "kernel"
     },
     {
@@ -59055,6 +59863,48 @@
       "line": 103,
       "module": "Problems.Juggler.PaperBJumpTransposition",
       "name": "run",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-jump-spectrum-is-the-survivor-sequence",
+        "J-paper-b-transposition-costs-the-barrier-mass",
+        "J-paper-b-sturmian-zero-law-is-the-empty-window"
+      ],
+      "line": 107,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "run_nil",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-jump-spectrum-is-the-survivor-sequence",
+        "J-paper-b-transposition-costs-the-barrier-mass",
+        "J-paper-b-sturmian-zero-law-is-the-empty-window"
+      ],
+      "line": 109,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "run_cons_true",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-b-jump-spectrum-is-the-survivor-sequence",
+        "J-paper-b-transposition-costs-the-barrier-mass",
+        "J-paper-b-sturmian-zero-law-is-the-empty-window"
+      ],
+      "line": 112,
+      "module": "Problems.Juggler.PaperBJumpTransposition",
+      "name": "run_cons_false",
       "trust": "kernel"
     },
     {
@@ -59319,19 +60169,6 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
-      "kind": "instance",
-      "ledger": [
-        "J-empty-window-holds-at-every-level",
-        "J-free-lengths-are-never-adjacent"
-      ],
-      "line": 163,
-      "module": "Problems.Juggler.PaperBLevelWindow",
-      "name": "at",
-      "trust": "kernel"
-    },
-    {
       "doc": "**A whole-number level is only a shift of the length.** At `c = 2`, that is `\u039b = 1`, the window at length `L` is Paper B's window at length `L - 1`. This is worth stating because it says where the new content is and where it is not. It is proved here at `c = 2` only; the same re-indexing holds at `c = 2 ^ k` by the same argument. So a whole-number level proves nothing Paper B did not already have, and the content of this file is at the *fractional* levels -- which is also the only place its strict barrier agrees with Paper C's non-strict one. `certWindowAt_twelve_empty_at_paperC_level` is the worked instance at such a level.",
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
@@ -59449,19 +60286,6 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
-      "kind": "instance",
-      "ledger": [
-        "J-empty-window-holds-at-every-level",
-        "J-free-lengths-are-never-adjacent"
-      ],
-      "line": 323,
-      "module": "Problems.Juggler.PaperBLevelWindow",
-      "name": "at",
-      "trust": "kernel"
-    },
-    {
       "doc": "The odd count of a window is bounded by the length, at any level at or below the start.",
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "kind": "theorem",
@@ -59472,19 +60296,6 @@
       "line": 327,
       "module": "Problems.Juggler.PaperBLevelWindow",
       "name": "certWindowAt_le",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
-      "kind": "theorem",
-      "ledger": [
-        "J-empty-window-holds-at-every-level",
-        "J-free-lengths-are-never-adjacent"
-      ],
-      "line": 348,
-      "module": "Problems.Juggler.PaperBLevelWindow",
-      "name": "nothing",
       "trust": "kernel"
     },
     {
@@ -76354,6 +77165,20 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/WalkTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cyclemin-walk-transport-envelope",
+        "J-flight-envelope-transport",
+        "J-flight-height-law"
+      ],
+      "line": 183,
+      "module": "Problems.Juggler.WalkTransport",
+      "name": "walkWeight_zero",
+      "trust": "kernel"
+    },
+    {
       "doc": "One more letter adds one to the odd count exactly when that letter is odd.",
       "file": "formal/Problems/Juggler/WalkTransport.lean",
       "kind": "theorem",
@@ -86967,6 +87792,30 @@
       "ledger": [
         "BTC-op-fragment-nd-semantic"
       ],
+      "line": 259,
+      "module": "BTCalculus.OpFragSemantic",
+      "name": "signFactor_false",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/OpFragSemantic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTC-op-fragment-nd-semantic"
+      ],
+      "line": 260,
+      "module": "BTCalculus.OpFragSemantic",
+      "name": "signFactor_true",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/OpFragSemantic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTC-op-fragment-nd-semantic"
+      ],
       "line": 262,
       "module": "BTCalculus.OpFragSemantic",
       "name": "signFactor_ne_zero",
@@ -92894,7 +93743,7 @@
       ]
     },
     "BTCalculus.OpFragSemantic": {
-      "declarations": 58,
+      "declarations": 60,
       "file": "formal/BTCalculus/OpFragSemantic.lean",
       "imports": [
         "BTCalculus.OpFragNewman",
@@ -93832,7 +94681,7 @@
       ]
     },
     "Problems.Collatz.NegativeMCycles": {
-      "declarations": 22,
+      "declarations": 24,
       "file": "formal/Problems/Collatz/NegativeMCycles.lean",
       "imports": [],
       "ledger": [
@@ -93927,7 +94776,7 @@
       "ledger": []
     },
     "Problems.Engine.InformationField": {
-      "declarations": 92,
+      "declarations": 109,
       "file": "formal/Problems/Engine/InformationField.lean",
       "imports": [],
       "ledger": []
@@ -94261,7 +95110,7 @@
       "ledger": []
     },
     "Problems.Juggler.CollatzBridge": {
-      "declarations": 68,
+      "declarations": 81,
       "file": "formal/Problems/Juggler/CollatzBridge.lean",
       "imports": [
         "Problems.Juggler.CycleCore",
@@ -94812,7 +95661,7 @@
       "ledger": []
     },
     "Problems.Juggler.CycleRunAlphabet": {
-      "declarations": 18,
+      "declarations": 20,
       "file": "formal/Problems/Juggler/CycleRunAlphabet.lean",
       "imports": [
         "Problems.Juggler.ItineraryStats",
@@ -94913,7 +95762,7 @@
       "ledger": []
     },
     "Problems.Juggler.DepthOneMainTerm": {
-      "declarations": 22,
+      "declarations": 24,
       "file": "formal/Problems/Juggler/DepthOneMainTerm.lean",
       "imports": [],
       "ledger": [
@@ -95546,7 +96395,7 @@
       ]
     },
     "Problems.Juggler.FateProductionWords": {
-      "declarations": 7,
+      "declarations": 9,
       "file": "formal/Problems/Juggler/FateProductionWords.lean",
       "imports": [
         "Problems.Juggler.ItineraryStats"
@@ -95750,7 +96599,7 @@
       ]
     },
     "Problems.Juggler.GapTransferWW": {
-      "declarations": 9,
+      "declarations": 8,
       "file": "formal/Problems/Juggler/GapTransferWW.lean",
       "imports": [
         "Problems.Juggler.GapTransfer"
@@ -95774,7 +96623,7 @@
       ]
     },
     "Problems.Juggler.GlobalDefect": {
-      "declarations": 36,
+      "declarations": 38,
       "file": "formal/Problems/Juggler/GlobalDefect.lean",
       "imports": [
         "Problems.Juggler.Defect"
@@ -95824,7 +96673,7 @@
       "ledger": []
     },
     "Problems.Juggler.IdealCycleMin": {
-      "declarations": 152,
+      "declarations": 154,
       "file": "formal/Problems/Juggler/IdealCycleMin.lean",
       "imports": [
         "Problems.Juggler.CycleMinFudge",
@@ -95864,7 +96713,7 @@
       "ledger": []
     },
     "Problems.Juggler.Itinerary": {
-      "declarations": 33,
+      "declarations": 35,
       "file": "formal/Problems/Juggler/Itinerary.lean",
       "imports": [
         "Problems.Juggler.Termination"
@@ -95891,7 +96740,7 @@
       "ledger": []
     },
     "Problems.Juggler.ItineraryStats": {
-      "declarations": 39,
+      "declarations": 45,
       "file": "formal/Problems/Juggler/ItineraryStats.lean",
       "imports": [
         "Problems.Juggler.Itinerary"
@@ -95962,7 +96811,7 @@
       "ledger": []
     },
     "Problems.Juggler.LeftoverFamilies": {
-      "declarations": 180,
+      "declarations": 179,
       "file": "formal/Problems/Juggler/LeftoverFamilies.lean",
       "imports": [
         "Problems.Juggler.BunchedTight",
@@ -96255,7 +97104,7 @@
       ]
     },
     "Problems.Juggler.MonomialSplitting": {
-      "declarations": 10,
+      "declarations": 9,
       "file": "formal/Problems/Juggler/MonomialSplitting.lean",
       "imports": [],
       "ledger": []
@@ -96455,7 +97304,7 @@
       ]
     },
     "Problems.Juggler.PaperBCertificateLengths": {
-      "declarations": 24,
+      "declarations": 26,
       "file": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
       "imports": [
         "Problems.Juggler.PaperBCertificates"
@@ -96513,7 +97362,7 @@
       ]
     },
     "Problems.Juggler.PaperBChainRule": {
-      "declarations": 27,
+      "declarations": 32,
       "file": "formal/Problems/Juggler/PaperBChainRule.lean",
       "imports": [],
       "ledger": [
@@ -96589,7 +97438,7 @@
       ]
     },
     "Problems.Juggler.PaperBJumpTransposition": {
-      "declarations": 22,
+      "declarations": 30,
       "file": "formal/Problems/Juggler/PaperBJumpTransposition.lean",
       "imports": [],
       "ledger": [
@@ -96611,7 +97460,7 @@
       ]
     },
     "Problems.Juggler.PaperBLevelWindow": {
-      "declarations": 47,
+      "declarations": 44,
       "file": "formal/Problems/Juggler/PaperBLevelWindow.lean",
       "imports": [
         "Problems.Juggler.LogCells",
@@ -97512,7 +98361,7 @@
       ]
     },
     "Problems.Juggler.WalkTransport": {
-      "declarations": 25,
+      "declarations": 26,
       "file": "formal/Problems/Juggler/WalkTransport.lean",
       "imports": [
         "Problems.Juggler.CycleCore"
@@ -97864,7 +98713,7 @@
       ]
     },
     "Representation.Words": {
-      "declarations": 31,
+      "declarations": 33,
       "file": "formal/Representation/Words.lean",
       "imports": [],
       "ledger": [
@@ -97882,13 +98731,13 @@
     }
   },
   "totals": {
-    "declarations": 7134,
-    "declarations_with_a_ledger_row": 5231,
+    "declarations": 7198,
+    "declarations_with_a_ledger_row": 5277,
     "ledger_rows_naming_a_file": 466,
     "modules": 317,
     "trust": {
       "compiler": 56,
-      "kernel": 7078
+      "kernel": 7142
     }
   }
 }
