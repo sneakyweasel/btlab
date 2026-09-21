@@ -83,6 +83,7 @@ CITED_MODULES = (
     "Problems.Juggler.FateResonanceCount",
     "Problems.Juggler.FatePoorTail",
     "Problems.Juggler.FatePoorProduction",
+    "Problems.Juggler.FateDyadicDensity",
 )
 
 #: verification-table rows the paper marks Lean, with the module that carries each
@@ -126,6 +127,8 @@ TABLE_LEAN_ROWS = {
     "Resonance count": "FateResonanceCount",
     "Poor-fiber tail": "FatePoorTail",
     "averaged coefficient": "FatePoorProduction",
+    "Corollary 5.4 (natural density": "FateDyadicDensity",
+    "three fate classes": "FateDyadicDensity",
 }
 
 _IMPORT = re.compile(r"^import\s+([A-Za-z0-9_.]+)\s*$", re.M)

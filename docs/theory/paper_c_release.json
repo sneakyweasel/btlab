@@ -16,7 +16,7 @@
     {
       "path": "data/research/juggler/paper_c_publication_review/validation.json",
       "mode": "text",
-      "sha256": "c116bb3e961dd9e397ab4e51e62ae3672f1e346f81ff0b2b6f9a45183f1ebd41"
+      "sha256": "cefc2110c2bf76e0ea88a4c9c24e93b14ef8373f22626afbb5e3aeeae0b1703b"
     },
     {
       "path": "data/research/juggler/tao_reduction/summary.json",
@@ -26,7 +26,7 @@
     {
       "path": "docs/theory/PAPER_C_BUILD.md",
       "mode": "text",
-      "sha256": "9c08bea2fa8ed3c407dab2d3c70d1e9e6a4262e3f2674664e374d9751db2898b"
+      "sha256": "33089f69ca95b3b28c7f6afbb98fe66ca8c59b8871290966b43d3096b4e7f093"
     },
     {
       "path": "docs/theory/figures/paper_c_decomposition.png",
@@ -51,17 +51,17 @@
     {
       "path": "docs/theory/juggler_fate_almost_all_note.md",
       "mode": "text",
-      "sha256": "4d783573de84bc35c3547180cbc3c9cc43ecd7370ebfa0afd22712ee4587a18f"
+      "sha256": "6827df21b4678e51170f467874a1db95ec04fb8a3e093d6369957a23d513a66c"
     },
     {
       "path": "formal/AxiomCheckPaperC.expected",
       "mode": "text",
-      "sha256": "f59f1d87418d74369e3c79e3131809d3c4f62e5a9c09b91a4c539b0736aa3f8e"
+      "sha256": "b8569df4c76a94d8665940b04dba86739d773a796d8683e7801ede5c654ddc24"
     },
     {
       "path": "formal/AxiomCheckPaperC.lean",
       "mode": "text",
-      "sha256": "cf0ae097245bc6fd5b1e6feeaccdfa9fbc45152ba782038f2fd2e12313e7fc7d"
+      "sha256": "b0ba8d80d9ef285cfb201da8e5e9a09bb4a614580a77013fe45d172c35efb452"
     },
     {
       "path": "formal/Problems/Juggler/Certificates.lean",
@@ -177,6 +177,11 @@
       "path": "formal/Problems/Juggler/FateCylinderEnergy.lean",
       "mode": "text",
       "sha256": "274cd6b960bdd1de8c1b637bd2dee86c8cbe67e883e25937812dadcbe98d6a0b"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateDyadicDensity.lean",
+      "mode": "text",
+      "sha256": "f5065c952302de36981e147f5ae95804eaa16d34a38459025a65e10b5a24e4fe"
     },
     {
       "path": "formal/Problems/Juggler/FateEnergyAtoms.lean",
@@ -401,7 +406,7 @@
     {
       "path": "formal/Problems/JugglerFatePaper.lean",
       "mode": "text",
-      "sha256": "fc979266353d29d179fa03b98c1eca161d607df68d855f70876c1554dc7b6654"
+      "sha256": "ce57dde1ab5f47f98277f4b870641f864727a4136b617627773e531e2b6753c2"
     },
     {
       "path": "formal/lake-manifest.json",
@@ -426,7 +431,7 @@
     {
       "path": "src/research/juggler_sequence/paper_c_formal_layer.py",
       "mode": "text",
-      "sha256": "cb83aebd0ef3e6f0bacceecbffe97e8b99dc352dd40abbe690c122ea81c25e4c"
+      "sha256": "bb2df552f23832be9288e6505a4f925d044b2379a66de334a94bc5a20553c547"
     },
     {
       "path": "src/research/juggler_sequence/tao_reduction.py",
@@ -458,12 +463,12 @@
     {
       "path": "juggler_review/juggler_fate_almost_all_note.pdf",
       "mode": "binary",
-      "sha256": "4d1d2f7f1f75e987cae98de02380f0d533607f414907b5a0e4e7a12a007298db"
+      "sha256": "a4b1eb44a29c31bdcd0fe2732c48b9f92769dfed2f1a5e7326aadaf7eb0899f5"
     },
     {
       "path": "docs/theory/cochin-juggler-fates.tex",
       "mode": "text",
-      "sha256": "8423d25fc896192ec6e38829e0fc7775d24d546ebb1e153d439006ccada5d4cd"
+      "sha256": "f424071692cd11d85e03a73e47a6a7220f1e90e93f93013341b3dcd7aebecbb8"
     },
     {
       "path": "docs/theory/paper_c_zenodo.json",

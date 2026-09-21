@@ -185,6 +185,7 @@ import Problems.Juggler.FateBlockAverage
 import Problems.Juggler.FateShareLaw
 import Problems.Juggler.FateProduction
 import Problems.Juggler.FatePoorProduction
+import Problems.Juggler.FateDyadicDensity
 import Problems.Juggler.FateProductionWords
 import Problems.Juggler.FateOneSided
 import Problems.Juggler.FateOneSidedCorollary

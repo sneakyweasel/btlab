@@ -280,6 +280,7 @@ LAYERS: dict[str, Path] = {
     "FateProduction": JUGGLER_DIR / "FateProduction.lean",
     "FateProductionWords": JUGGLER_DIR / "FateProductionWords.lean",
     "FatePoorProduction": JUGGLER_DIR / "FatePoorProduction.lean",
+    "FateDyadicDensity": JUGGLER_DIR / "FateDyadicDensity.lean",
     "FateOneSided": JUGGLER_DIR / "FateOneSided.lean",
     "FateOneSidedCorollary": JUGGLER_DIR / "FateOneSidedCorollary.lean",
     "FatePressureCorollary": JUGGLER_DIR / "FatePressureCorollary.lean",

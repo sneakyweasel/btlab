@@ -372,7 +372,7 @@ Paper B proves enters Appendix C as an explicit hypothesis.
 Statements carry one of four roles. \emph{Lean}: the exact combinatorial
 layer is formalized in Lean 4; the root
 \texttt{\nolinkurl{formal/Problems/JugglerFatePaper.lean}} imports
-exactly the thirty-six modules this paper cites and builds with
+exactly the thirty-seven modules this paper cites and builds with
 \texttt{lake\ build\ Problems.JugglerFatePaper}, without
 \texttt{\nolinkurl{sorry}} and without
 \texttt{\nolinkurl{native_decide}};
@@ -449,13 +449,15 @@ Fate contagion at the failure set, log-mass form (Corollary 5.5(2),
 first clause) & Lean, unconditionally at exponent \(100/203\) and, by
 the pointwise route, at \(13/40\): the failure set is backward-closed by
 Lemma 2.1 and nonempty by assumption, so Theorem 5.18 applies to it \\
-Fate contagion, the remaining clauses (Corollary 5.4; the
-natural-density clause of Corollary 5.5(2); Corollaries 5.5(1), 5.5(3))
-& human proof; the dyadic pigeonhole of Corollary 5.4 and the
-instantiations of Theorem 5.18 at the reach-one class, at a cycle basin
-and at the divergent starts are not formalized, and neither is the
-log-mass clause in the remaining range
-\(100/203<\lambda<\lambda_{\mathrm{ideal}}\) \\
+Corollary 5.4 (natural density, infinitely often): the dyadic
+pigeonhole, from the shell bound of Theorem 5.18 & Lean, for every
+\(0<\lambda\le100/203\) with no hypothesis and with the constant
+\(K/12\); the range \(100/203<\lambda<\lambda_{\mathrm{ideal}}\) is
+human, as for Theorem 5.18 \\
+Corollary 5.5 at the three fate classes: the reach-one class, the
+failures, the basin of a cycle state and the divergent starts, each in
+log-mass form and in dyadic-block form & Lean, at exponent \(100/203\),
+by instantiating Theorem 5.18 and Corollary 5.4 through Lemma 2.1 \\
 Production words \(V_k=(OE)^{k-1}OEE\) are prefix-free (Section 5.7,
 Appendix D) & Lean, for the whole family and not only the six; the
 disjointness of source sets it feeds needs Appendix D's analytic layer,
@@ -1535,6 +1537,28 @@ nontrivial cycle \(C\), or divergence. Then
 
 \emph{Proof.} Lemma 2.1 and Theorem 5.3. \(\square\)
 
+Lean: Corollary 5.4 is
+\texttt{\nolinkurl{Density.exists_block_of_shell}} in
+\texttt{\nolinkurl{formal/Problems/Juggler/FateDyadicDensity.lean}}, the
+pigeonhole from a shell bound \(K(\log X)^\lambda\le\ell_A(\sqrt X,X]\)
+with the constant \(K/12\): the shell is covered by the blocks
+\((X/2^{j+1},X/2^j]\), \(j\le\log_2X\), at most \(3\log X\) of them, a
+block's log-mass is at most \(2\,\#(A\cap(y/2,y])/y\), and
+\(\log X<2\log y\) on the shell;
+\texttt{\nolinkurl{Density.natDensity_averaged}} is the corollary for
+every \(0<\lambda\le100/203\) with no hypothesis, on Theorem 5.18.
+Corollary 5.5 is the instantiation at the fate classes through Lemma
+2.1: \texttt{\nolinkurl{Density.reachesOne_logMass_averaged}} and
+\texttt{\nolinkurl{Density.reachesOne_natDensity_averaged}} for \(R\);
+\texttt{\nolinkurl{Production.failures_logMass_averaged}} and
+\texttt{\nolinkurl{Density.failures_natDensity_averaged}} for the
+failures; \texttt{\nolinkurl{Density.basin_logMass_averaged}},
+\texttt{\nolinkurl{Density.basin_natDensity_averaged}},
+\texttt{\nolinkurl{Density.escapes_logMass_averaged}} and
+\texttt{\nolinkurl{Density.escapes_natDensity_averaged}} for the basin
+of a cycle state and for the divergent starts. What stays human is the
+range \(100/203<\lambda<\lambda_{\mathrm{ideal}}\), as for Theorem 5.18.
+
 \subsection{5.6 Remarks}\label{remarks}
 
 \emph{The status of stronger density bounds.} The theorem gives a
@@ -1864,7 +1888,8 @@ g_A(t)\ \ge\ (1-\varepsilon_1(t))\,g_A(t/2)
 Corollaries 5.4 and 5.5 use Theorem 5.3 only through its conclusion, so
 by Theorem 5.18 each holds for every
 \(\lambda<\lambda_{\mathrm{ideal}}\); so do Corollary 7.1 and Theorems
-7.2 and 7.3, which are stated in that form.
+7.2 and 7.3, which are stated in that form. Both corollaries are Lean at
+\(100/203\) (Section 5.5).
 
 Lean: the whole chain. \texttt{\nolinkurl{BlockLock.block_lock}} in
 \texttt{\nolinkurl{formal/Problems/Juggler/FateBlockLock.lean}} is Lemma
@@ -3337,7 +3362,8 @@ finite computations and Lean proofs have the scopes listed in Section
 contagion theorem itself is formalized with no hypothesis for every
 \(\lambda\le100/203\), and what stays outside the formalization is the
 analytic first route (Proposition 4.4, Lemma 4.5 and Appendix D), no
-longer on the critical path, and the dyadic pigeonhole of Corollary 5.4.
+longer on the critical path; Corollaries 5.4 and 5.5 are formalized at
+that exponent as well.
 
 One sufficient remaining target is \[
 \#\{n\text{ odd in }(y,2y]:\tau(n)>\lceil CL(y)\rceil\}
@@ -3362,7 +3388,7 @@ excluded by this paper.
 All in \texttt{\nolinkurl{formal/Problems/Juggler/FateContagion.lean}}
 unless noted. The root
 \texttt{\nolinkurl{formal/Problems/JugglerFatePaper.lean}} imports
-exactly the thirty-six modules named here and builds with
+exactly the thirty-seven modules named here and builds with
 \texttt{lake\ build\ Problems.JugglerFatePaper} without
 \texttt{\nolinkurl{sorry}} and without
 \texttt{\nolinkurl{native_decide}};
@@ -3757,14 +3783,12 @@ production inequality (5.2) (its \texttt{\nolinkurl{E}}-family and
 give Theorem 5.3 at exponent 13/40 unconditionally, and the averaged
 \texttt{\nolinkurl{OE}} family of Section 5.8 gives it at 100/203; the
 block-average family and the ladder are not Lean and are no longer
-needed for the exponent), Corollary 5.4 and every clause of Corollary
-5.5 except 5.5(2)'s log-mass bound at exponent 100/203 (the dyadic
-pigeonhole is not formalized, nor is that bound in the remaining range
-\(100/203<\lambda<\lambda_{\mathrm{ideal}}\), and neither are the
-instantiations of Theorem 5.3 at the reach-one class, at a cycle basin
-or at the divergent starts), Sections 8--10 except Lemma 8.2, the
-explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem
-9.2 and Proposition 9.3, Appendix C; Theorem 5.3 in the range
+needed for the exponent), Corollaries 5.4 and 5.5 in the range
+\(100/203<\lambda<\lambda_{\mathrm{ideal}}\) (at \(100/203\) both are
+Lean, in \texttt{\nolinkurl{Problems/Juggler/FateDyadicDensity.lean}}),
+Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3,
+Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3,
+Appendix C; Theorem 5.3 in the range
 \(100/203<\lambda<\lambda_{\mathrm{ideal}}\), and Theorems 7.2, 7.3 and
 Corollary 8.4 with the contagion bound as a hypothesis outside the
 exponents of Section 5.8 & human proofs \\
@@ -3972,7 +3996,23 @@ Theorem 5.18 and its consequences (Section 5.8), in
 \texttt{\nolinkurl{Production.logMass_contagion_averaged}},
 \texttt{\nolinkurl{Production.failures_logMass_averaged}},
 \texttt{\nolinkurl{Production.conjecture_of_tao_rate_averaged}},
-\texttt{\nolinkurl{Production.conjecture_of_cylinder_averaged}} \\*
+\texttt{\nolinkurl{Production.conjecture_of_cylinder_averaged}} \\
+Corollary 5.4 and Corollary 5.5 at the fate classes (Section 5.5), in
+\texttt{\nolinkurl{Problems/Juggler/FateDyadicDensity.lean}} &
+\texttt{\nolinkurl{Density.blockCount}},
+\texttt{\nolinkurl{Density.block_logMass_le}},
+\texttt{\nolinkurl{Density.block_index}},
+\texttt{\nolinkurl{Density.halfLogMass_le_blocks}},
+\texttt{\nolinkurl{Density.exists_block_of_shell}},
+\texttt{\nolinkurl{Density.natDensity_of_shell_bound}},
+\texttt{\nolinkurl{Density.natDensity_averaged}},
+\texttt{\nolinkurl{Density.reachesOne_logMass_averaged}},
+\texttt{\nolinkurl{Density.reachesOne_natDensity_averaged}},
+\texttt{\nolinkurl{Density.failures_natDensity_averaged}},
+\texttt{\nolinkurl{Density.basin_logMass_averaged}},
+\texttt{\nolinkurl{Density.basin_natDensity_averaged}},
+\texttt{\nolinkurl{Density.escapes_logMass_averaged}},
+\texttt{\nolinkurl{Density.escapes_natDensity_averaged}} \\*
 \end{longtable}
 
 \endgroup
@@ -4267,15 +4307,20 @@ SHA-256):
   SHA-256:
   \texttt{\nolinkurl{0fc332ef6b54bebbe4de215b03ac582a2d0cc38d82a391d23856624599940283}}
 \item
+  \texttt{\nolinkurl{formal/Problems/Juggler/FateDyadicDensity.lean}}
+
+  SHA-256:
+  \texttt{\nolinkurl{f5065c952302de36981e147f5ae95804eaa16d34a38459025a65e10b5a24e4fe}}
+\item
   \texttt{\nolinkurl{formal/Problems/JugglerFatePaper.lean}}
 
   SHA-256:
-  \texttt{\nolinkurl{fc979266353d29d179fa03b98c1eca161d607df68d855f70876c1554dc7b6654}}
+  \texttt{\nolinkurl{ce57dde1ab5f47f98277f4b870641f864727a4136b617627773e531e2b6753c2}}
 \item
   \texttt{\nolinkurl{formal/AxiomCheckPaperC.expected}}
 
   SHA-256:
-  \texttt{\nolinkurl{f59f1d87418d74369e3c79e3131809d3c4f62e5a9c09b91a4c539b0736aa3f8e}}
+  \texttt{\nolinkurl{b8569df4c76a94d8665940b04dba86739d773a796d8683e7801ede5c654ddc24}}
 \item
   \texttt{\nolinkurl{src/research/juggler_sequence/fate_contagion.py}}
 

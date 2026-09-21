@@ -344,7 +344,7 @@ type Paper B proves enters Appendix C as an explicit hypothesis.
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the thirty-six modules this paper cites and builds with
+imports exactly the thirty-seven modules this paper cites and builds with
 `lake build Problems.JugglerFatePaper`, without `sorry` and without
 `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
 dependencies of every cited name and `AxiomCheckPaperC.expected`
@@ -377,7 +377,8 @@ constants; they prove nothing and are labelled wherever they appear.
 | Poor-fiber tail (Theorem 5.16) and the share on an arbitrary set (Corollary 5.17) | Lean |
 | Theorem 5.18, contagion by two productions at the averaged coefficient: Theorem 5.3 for every \(0<\lambda\le100/203\) with no hypothesis, and Theorem 7.2 and Corollary 8.4 with their contagion hypothesis discharged at \(e>103/203\) | Lean; the supremum \(\lambda_{\mathrm{ideal}}\) and the range \(100/203<\lambda<\lambda_{\mathrm{ideal}}\) are the choice of \(\eta_0\), human |
 | Fate contagion at the failure set, log-mass form (Corollary 5.5(2), first clause) | Lean, unconditionally at exponent \(100/203\) and, by the pointwise route, at \(13/40\): the failure set is backward-closed by Lemma 2.1 and nonempty by assumption, so Theorem 5.18 applies to it |
-| Fate contagion, the remaining clauses (Corollary 5.4; the natural-density clause of Corollary 5.5(2); Corollaries 5.5(1), 5.5(3)) | human proof; the dyadic pigeonhole of Corollary 5.4 and the instantiations of Theorem 5.18 at the reach-one class, at a cycle basin and at the divergent starts are not formalized, and neither is the log-mass clause in the remaining range \(100/203<\lambda<\lambda_{\mathrm{ideal}}\) |
+| Corollary 5.4 (natural density, infinitely often): the dyadic pigeonhole, from the shell bound of Theorem 5.18 | Lean, for every \(0<\lambda\le100/203\) with no hypothesis and with the constant \(K/12\); the range \(100/203<\lambda<\lambda_{\mathrm{ideal}}\) is human, as for Theorem 5.18 |
+| Corollary 5.5 at the three fate classes: the reach-one class, the failures, the basin of a cycle state and the divergent starts, each in log-mass form and in dyadic-block form | Lean, at exponent \(100/203\), by instantiating Theorem 5.18 and Corollary 5.4 through Lemma 2.1 |
 | Production words \(V_k=(OE)^{k-1}OEE\) are prefix-free (Section 5.7, Appendix D) | Lean, for the whole family and not only the six; the disjointness of source sets it feeds needs Appendix D's analytic layer, which is human |
 | The side condition \(e(C)>\tfrac{27}{40}\) of the unconditional criteria, at \(C=30\), by rational bounds on \(e\), \(\log 2\) and \(\log_2 3\) | Lean; the least such \(C\) (\(23\)) and the paper's own threshold through \(\lambda^{**}\) stay with the audit |
 | Cube fibers full or alternating (Lemma 4.7) | Lean |
@@ -1366,6 +1367,25 @@ Theorem 5.3 and Corollary 5.4. In particular:
 
 *Proof.* Lemma 2.1 and Theorem 5.3. \(\square\)
 
+Lean: Corollary 5.4 is `Density.exists_block_of_shell` in
+`formal/Problems/Juggler/FateDyadicDensity.lean`, the pigeonhole from a
+shell bound \(K(\log X)^\lambda\le\ell_A(\sqrt X,X]\) with the constant
+\(K/12\): the shell is covered by the blocks \((X/2^{j+1},X/2^j]\),
+\(j\le\log_2X\), at most \(3\log X\) of them, a block's log-mass is at
+most \(2\,\#(A\cap(y/2,y])/y\), and \(\log X<2\log y\) on the shell;
+`Density.natDensity_averaged` is the corollary for every
+\(0<\lambda\le100/203\) with no hypothesis, on Theorem 5.18. Corollary
+5.5 is the instantiation at the fate classes through Lemma 2.1:
+`Density.reachesOne_logMass_averaged` and
+`Density.reachesOne_natDensity_averaged` for \(R\);
+`Production.failures_logMass_averaged` and
+`Density.failures_natDensity_averaged` for the failures;
+`Density.basin_logMass_averaged`, `Density.basin_natDensity_averaged`,
+`Density.escapes_logMass_averaged` and
+`Density.escapes_natDensity_averaged` for the basin of a cycle state
+and for the divergent starts. What stays human is the range
+\(100/203<\lambda<\lambda_{\mathrm{ideal}}\), as for Theorem 5.18.
+
 ### 5.6 Remarks
 
 *The status of stronger density bounds.* The theorem gives a
@@ -1686,7 +1706,7 @@ with the seed of Lemma 5.2 finishes as in Theorem 5.3. \(\square\)
 Corollaries 5.4 and 5.5 use Theorem 5.3 only through its conclusion,
 so by Theorem 5.18 each holds for every \(\lambda<\lambda_{\mathrm{ideal}}\);
 so do Corollary 7.1 and Theorems 7.2 and 7.3, which are stated in that
-form.
+form. Both corollaries are Lean at \(100/203\) (Section 5.5).
 
 Lean: the whole chain. `BlockLock.block_lock` in
 `formal/Problems/Juggler/FateBlockLock.lean` is Lemma 5.14 before
@@ -3048,7 +3068,7 @@ since the revision of 21 September 2026 the contagion theorem itself is
 formalized with no hypothesis for every \(\lambda\le100/203\), and what
 stays outside the formalization is the analytic first route
 (Proposition 4.4, Lemma 4.5 and Appendix D), no longer on the critical
-path, and the dyadic pigeonhole of Corollary 5.4.
+path; Corollaries 5.4 and 5.5 are formalized at that exponent as well.
 
 One sufficient remaining target is
 \[
@@ -3074,7 +3094,7 @@ No nontrivial cycle or unbounded orbit is excluded by this paper.
 
 All in `formal/Problems/Juggler/FateContagion.lean` unless noted. The
 root `formal/Problems/JugglerFatePaper.lean` imports exactly the
-thirty-six modules named here and builds with
+thirty-seven modules named here and builds with
 `lake build Problems.JugglerFatePaper`
 without `sorry` and without `native_decide`;
 `formal/AxiomCheckPaperC.expected` records the axioms of every name
@@ -3116,7 +3136,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lemma 4.2 (fiber parity), in `Problems/Juggler/FateFiberParity.lean` | `FiberParity.xval`, `FiberParity.two_xval`, `FiberParity.floor_two_xval`, `FiberParity.cell_xval_even_iff`, `FiberParity.xval_step`, `FiberParity.xval_step_ge`, `FiberParity.xval_step_le`, `FiberParity.xval_step_mono`, `FiberParity.oeFiber`, `FiberParity.mem_oeFiber`, `FiberParity.oeFiber_eq_image`, `FiberParity.oeFiber_card`, `FiberParity.evenImageCount`, `FiberParity.fiber_ge_rpow`, `FiberParity.fiber_lt_rpow`, `FiberParity.rpow_four_thirds_succ_ge`, `FiberParity.rpow_four_thirds_succ_le`, `FiberParity.rpow_two_thirds_succ_le`, `FiberParity.oeFiber_card_ge`, `FiberParity.oeFiber_card_le`, `FiberParity.Am`, `FiberParity.alpha`, `FiberParity.eps`, `FiberParity.Good`, `FiberParity.eps_le`, `FiberParity.step_ge`, `FiberParity.step_le`, `FiberParity.fiber_parity_good` |
 | Lemma 4.3 (thin fibers), in `Problems/Juggler/FateThinFibers.lean` | `FiberParity.span_ge_of_step`, `FiberParity.arc_count_le`, `FiberParity.Am_step_le`, `FiberParity.Am_step_ge`, `FiberParity.eps_antitone`, `FiberParity.bad_mem_arc`, `FiberParity.two_rpow_third_le`, `FiberParity.two_rpow_two_thirds_le`, `FiberParity.rpow_two_thirds_ge`, `FiberParity.eps_div_eps_double`, `FiberParity.Am_double_sub_le`, `FiberParity.bad_count_le`, `FiberParity.bad_block_logMass_le`, `FiberParity.bad_sum_dyadic_le`, `FiberParity.eps_pow_two_mul`, `FiberParity.two_rpow_neg_third_le`, `FiberParity.bad_logMass_le` |
 | Theorem 5.3 given (5.2), Theorem 7.3, Corollary 8.4 through (5.2), in `Problems/Juggler/FateContagionBound.lean` | `productionRate`, `productionCoeff`, `productionRate_pos`, `productionRate_ge`, `productionRate_le`, `productionRate_le_one`, `productionCoeff_ge`, `productionCoeff_nonneg`, `zeta`, `zeta_antitone`, `le_rpow_div_of_pow_le`, `zeta_pos_49`, `seedConst`, `gA`, `gA_seed`, `logMass_ge_gA`, `contagion_of_production_inequality`, `logMass_contagion_of_production`, `oddFailures_eq_empty`, `tao_rate_iff_conjecture`, `conjecture_of_cylinder_bound_of_production` |
-| Proposition 4.4 (its two exponential-sum bounds, the fast sum and the product sum; the exact layer, the slow sum, the block count and the deduction of (4.1) and of the asymptotic form from those two bounds are Lean), the share law 4.5 and Corollary 4.6 (the phase expansion, the range of the quadratic phase and the integral 25/108 are Lean, the equidistribution and the measure identifications are not), the production inequality (5.2) (its `E`-family and `OE`-fiber family are Lean with explicit errors and give Theorem 5.3 at exponent 13/40 unconditionally, and the averaged `OE` family of Section 5.8 gives it at 100/203; the block-average family and the ladder are not Lean and are no longer needed for the exponent), Corollary 5.4 and every clause of Corollary 5.5 except 5.5(2)'s log-mass bound at exponent 100/203 (the dyadic pigeonhole is not formalized, nor is that bound in the remaining range \(100/203<\lambda<\lambda_{\mathrm{ideal}}\), and neither are the instantiations of Theorem 5.3 at the reach-one class, at a cycle basin or at the divergent starts), Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C; Theorem 5.3 in the range \(100/203<\lambda<\lambda_{\mathrm{ideal}}\), and Theorems 7.2, 7.3 and Corollary 8.4 with the contagion bound as a hypothesis outside the exponents of Section 5.8 | human proofs |
+| Proposition 4.4 (its two exponential-sum bounds, the fast sum and the product sum; the exact layer, the slow sum, the block count and the deduction of (4.1) and of the asymptotic form from those two bounds are Lean), the share law 4.5 and Corollary 4.6 (the phase expansion, the range of the quadratic phase and the integral 25/108 are Lean, the equidistribution and the measure identifications are not), the production inequality (5.2) (its `E`-family and `OE`-fiber family are Lean with explicit errors and give Theorem 5.3 at exponent 13/40 unconditionally, and the averaged `OE` family of Section 5.8 gives it at 100/203; the block-average family and the ladder are not Lean and are no longer needed for the exponent), Corollaries 5.4 and 5.5 in the range \(100/203<\lambda<\lambda_{\mathrm{ideal}}\) (at \(100/203\) both are Lean, in `Problems/Juggler/FateDyadicDensity.lean`), Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C; Theorem 5.3 in the range \(100/203<\lambda<\lambda_{\mathrm{ideal}}\), and Theorems 7.2, 7.3 and Corollary 8.4 with the contagion bound as a hypothesis outside the exponents of Section 5.8 | human proofs |
 | Theorem 9.1 (one-sided form, exact, by exponential moments), in `Problems/Juggler/FateOneSided.lean` | `OneSided.cylinder_split`, `OneSided.LBad_of_LBad_append`, `OneSided.sum_allWords_succ`, `OneSided.sum_pow_oddCount_le`, `OneSided.badWeight`, `OneSided.badWeight_nonneg`, `OneSided.badWeight_le_card`, `OneSided.badMass`, `OneSided.OneSidedShare`, `OneSided.badMass_succ_le`, `OneSided.card_cylinder_zero_le`, `OneSided.badMass_one_le`, `OneSided.badMass_le`, `OneSided.oddFailures_card_le_badMass`, `OneSided.one_sided_bound`, `OneSided.klDiv`, `OneSided.tilt`, `OneSided.tilt_ge_one`, `OneSided.tilt_pow_ratio`, `OneSided.one_sided_bound_kl` |
 | Theorem 9.1's consequence (the conjecture from the one-sided hypothesis), in `Problems/Juggler/FateOneSidedCorollary.lean` | `OneSided.OneSidedBound`, `OneSided.OneSidedExact`, `OneSided.oneSidedExponent`, `OneSided.OneSidedShare.mono`, `OneSided.oneSidedBound_of_exact`, `OneSided.klDiv_nonneg`, `OneSided.exp_le_rpow_scale`, `OneSided.pow_le_rpow_scale`, `OneSided.oddFailures_le_of_one_sided`, `OneSided.implies_conjecture_of_contagion`, `OneSided.one_sided_implies_conjecture`, `OneSided.exact_share_implies_conjecture` |
 | Section 9.2's consequences (the conjecture from the pressure and no-momentum hypotheses), in `Problems/Juggler/FatePressureCorollary.lean` | `Pressure.oddFailures_subset_live`, `Pressure.PressureBound`, `Pressure.NoMomentumBound`, `Pressure.momentumExponent`, `Pressure.absorb`, `Pressure.oddFailures_le_of_pressure`, `Pressure.pressure_conj_of_contagion`, `Pressure.pressure_implies_conjecture`, `Pressure.oddFailures_le_of_noMomentum`, `Pressure.noMomentum_conj_of_contagion`, `Pressure.noMomentum_implies_conjecture` |
@@ -3129,6 +3149,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | The resonance count behind Theorem 5.16, in `Problems/Juggler/FateResonanceCount.lean` | `FiberParity.Resonant`, `FiberParity.resonant_mem_arc`, `FiberParity.Am_window_le`, `FiberParity.shifted_arc_count_le`, `FiberParity.resonance_count_one`, `FiberParity.resonance_count_le`, `FiberParity.resonance_count_le'` |
 | Theorem 5.16 (poor-fiber tail) and the non-poor fiber bound of Corollary 5.17, in `Problems/Juggler/FatePoorTail.lean` | `FiberParity.Poor`, `FiberParity.oeFiber_nonempty`, `FiberParity.resonant_mono`, `FiberParity.poor_resonant`, `FiberParity.poor_count_le`, `FiberParity.poor_count_le'`, `FiberParity.poor_block_logMass_le`, `FiberParity.poor_sum_dyadic_le`, `FiberParity.poor_logMass_le`, `FiberParity.nonpoor_fiber_logMass_ge` |
 | Theorem 5.18 and its consequences (Section 5.8), in `Problems/Juggler/FatePoorProduction.lean` | `Production.family_OE_averaged`, `Production.errOEavg`, `Production.errAddAvg`, `Production.production_two_averaged`, `Production.coef2avg`, `Production.err2avg`, `Production.coef2avg_ge`, `Production.coef2avg_nonneg`, `Production.err2avg_nonneg`, `Production.err2avg_le`, `Production.production_two_averaged_sum`, `Production.errorsAvg_le`, `Production.errorsAvg_vanish`, `Production.zeta2avg_antitone`, `Production.contagion_averaged`, `Production.zeta2avg_pos`, `Production.logMass_contagion_averaged`, `Production.failures_logMass_averaged`, `Production.conjecture_of_tao_rate_averaged`, `Production.conjecture_of_cylinder_averaged` |
+| Corollary 5.4 and Corollary 5.5 at the fate classes (Section 5.5), in `Problems/Juggler/FateDyadicDensity.lean` | `Density.blockCount`, `Density.block_logMass_le`, `Density.block_index`, `Density.halfLogMass_le_blocks`, `Density.exists_block_of_shell`, `Density.natDensity_of_shell_bound`, `Density.natDensity_averaged`, `Density.reachesOne_logMass_averaged`, `Density.reachesOne_natDensity_averaged`, `Density.failures_natDensity_averaged`, `Density.basin_logMass_averaged`, `Density.basin_natDensity_averaged`, `Density.escapes_logMass_averaged`, `Density.escapes_natDensity_averaged` |
 
 ## Appendix B. Constants and artifacts
 
@@ -3317,13 +3338,17 @@ use the roots of the displayed defining equations.
 
   SHA-256: `0fc332ef6b54bebbe4de215b03ac582a2d0cc38d82a391d23856624599940283`
 
+- `formal/Problems/Juggler/FateDyadicDensity.lean`
+
+  SHA-256: `f5065c952302de36981e147f5ae95804eaa16d34a38459025a65e10b5a24e4fe`
+
 - `formal/Problems/JugglerFatePaper.lean`
 
-  SHA-256: `fc979266353d29d179fa03b98c1eca161d607df68d855f70876c1554dc7b6654`
+  SHA-256: `ce57dde1ab5f47f98277f4b870641f864727a4136b617627773e531e2b6753c2`
 
 - `formal/AxiomCheckPaperC.expected`
 
-  SHA-256: `f59f1d87418d74369e3c79e3131809d3c4f62e5a9c09b91a4c539b0736aa3f8e`
+  SHA-256: `b8569df4c76a94d8665940b04dba86739d773a796d8683e7801ede5c654ddc24`
 
 - `src/research/juggler_sequence/fate_contagion.py`
 

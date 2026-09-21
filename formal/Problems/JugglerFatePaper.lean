@@ -34,11 +34,12 @@ import Problems.Juggler.FateFiberLock
 import Problems.Juggler.FateResonanceCount
 import Problems.Juggler.FatePoorTail
 import Problems.Juggler.FatePoorProduction
+import Problems.Juggler.FateDyadicDensity
 
 /-!
 # Paper C barrel — everything the repository checks for the fate-contagion note
 
-`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the thirty-six modules
+`docs/theory/juggler_fate_almost_all_note.md`. This file imports exactly the thirty-seven modules
 that paper cites and nothing else, so that a reader can build the formal side of Paper C on
 its own rather than selecting modules by hand out of the umbrella `Problems.Juggler`. It is a
 laboratory target, not a claim: building it does **not** corroborate the paper's counting.
@@ -285,16 +286,16 @@ bound's supply of those atoms, and Appendix C have no machine check of any kind.
 The two corollaries Theorem 1 states in its own sentence are here in exactly one half, and it
 is worth being precise about which. `Production.failures_logMass_ge` **is** Corollary 5.5(2)'s
 log-mass bound — if some start does not reach `1`, the failures carry log-mass at least
-`K (log x)^λ` — unconditionally, for every `0 < λ ≤ 13/40`. Corollary 5.4 is not here: its
-proof spreads `g_A(log X)` over the `(1/2)log₂ X + 2` dyadic blocks of `(√X, X]` and takes the
-best one, and that pigeonhole is not formalised anywhere in this repository. So the
-natural-density clause of 5.5(2), which is Corollary 5.4 read at the failure set, is not here
-either. Corollary 5.5(1) and 5.5(3) — the same bounds at the reach-one class, at the basin of
-a nontrivial cycle, and at the divergent starts — are one instantiation away, since Lemma 2.1
-gives each of those classes backward-closed (`reachesOne_backwardClosed`,
-`ancestor_backwardClosed`, `escapes_backwardClosed`) and `logMass_contagion_elementary` asks
-for nothing more, but no such instantiation is written as a named theorem, so the paper's Lean
-column does not claim them.
+`K (log x)^λ` — unconditionally, for every `0 < λ ≤ 13/40`. Corollary 5.4 is here since 21 September 2026 (`FateDyadicDensity`,
+`Density.exists_block_of_shell`: the shell `(√X, X]` is covered by at most `3 log X` dyadic
+blocks and the best one is at least the average, with the constant `K/12`), for every
+`0 < λ ≤ 100/203` with no hypothesis (`Density.natDensity_averaged`), and so are Corollary
+5.5(1), 5.5(2) and 5.5(3) in both forms: the reach-one class, the failures, the basin of a
+state and the divergent starts, each backward-closed by Lemma 2.1
+(`reachesOne_backwardClosed`, `not_reachesOne_backwardClosed`, `ancestor_backwardClosed`,
+`escapes_backwardClosed`) and instantiated as a named theorem
+(`Density.reachesOne_natDensity_averaged` and its siblings). What is not here is the range
+`100/203 < λ < λ_ideal`, which is the choice of `η₀` and stays human.
 
 Theorems 7.2, 7.3, Corollary 8.4 and the corollaries of
 Theorem 9.1 (with and without exceptional atoms), Theorem 9.2 and Proposition 9.3 are here
@@ -331,4 +332,11 @@ with Paper B.
   Theorem 7.2 and Corollary 8.4 with their contagion hypothesis discharged at `e > 103/203`
   (`conjecture_of_tao_rate_averaged`, `conjecture_of_cylinder_averaged`). Nothing in
   its dependency graph is an exponential sum.
+* `FateDyadicDensity` — Corollary 5.4, the dyadic pigeonhole from a shell bound
+  (`Density.exists_block_of_shell`, constant `K/12`; `Density.natDensity_averaged` at
+  `100/203` with no hypothesis), and Corollary 5.5 at the fate classes in log-mass and
+  dyadic-block form (`Density.reachesOne_logMass_averaged`, `reachesOne_natDensity_averaged`,
+  `failures_natDensity_averaged`, `basin_logMass_averaged`, `basin_natDensity_averaged`,
+  `escapes_logMass_averaged`, `escapes_natDensity_averaged`). Every clause of Theorem 1 is
+  therefore Lean at `100/203`.
 -/

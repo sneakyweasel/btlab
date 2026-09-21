@@ -599,13 +599,13 @@ File: figures/paper_c_dependencies.png Graphic file (type bmp)
 File: figures/paper_c_productions.png Graphic file (type bmp)
 <figures/paper_c_productions.png>
  [9] [10] [11] [12] [13] [14] [15] [16] [17]
-[18] [19] [20] [21] [22] [23] [24]
+[18] [19] [20] [21] [22] [23] [24] [25]
 File: figures/paper_c_decomposition.png Graphic file (type bmp)
 <figures/paper_c_decomposition.png>
- [25] [26] [27] [28] [29] [30] [31] [32]
+ [26] [27] [28] [29] [30] [31] [32]
 [33] [34] [35] [36] [37] [38] [39] [40] [41] [42] [43] [44] [45] [46] [47]
 [48] [49] [50] [51] [52] [53]
-Underfull \hbox (badness 3138) in paragraph at lines 4296--4307
+Underfull \hbox (badness 3138) in paragraph at lines 4341--4352
 \TU/lmr/m/n/10.95 code is run by \TU/lmtt/m/n/10.95 python -m research.juggler_
 sequence.fate_contagion \TU/lmr/m/n/10.95 and \TU/lmtt/m/n/10.95 python
  []
@@ -621,7 +621,7 @@ Package rerunfilecheck Info: File `cochin-juggler-fates.out' has not changed.
 Here is how much of TeX's memory you used:
  14293 strings out of 402560
  272698 string characters out of 5437925
- 1115986 words of memory out of 5000000
+ 1128986 words of memory out of 5000000
  43259 multiletter control sequences out of 15000+600000
  636173 words of font info for 98 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191

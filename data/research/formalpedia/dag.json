@@ -1694,6 +1694,23 @@
         "kernel": 7
       }
     },
+    "Problems.Juggler.FateDyadicDensity": {
+      "declarations": 14,
+      "depends_on": [
+        "Problems.Juggler.FatePoorProduction"
+      ],
+      "file": "formal/Problems/Juggler/FateDyadicDensity.lean",
+      "ledger": [
+        "J-fate-classes-density-averaged",
+        "J-fate-dyadic-pigeonhole"
+      ],
+      "papers": [
+        "Paper C"
+      ],
+      "trust": {
+        "kernel": 14
+      }
+    },
     "Problems.Juggler.FateEnergyAtoms": {
       "declarations": 16,
       "depends_on": [
@@ -3340,9 +3357,9 @@
         "Problems.Juggler.FateBlockAverage",
         "Problems.Juggler.FateCertified",
         "Problems.Juggler.FateCollapse",
+        "Problems.Juggler.FateDyadicDensity",
         "Problems.Juggler.FateEnergyAtoms",
         "Problems.Juggler.FateFirstLetter",
-        "Problems.Juggler.FatePoorProduction",
         "Problems.Juggler.FateProductionWords",
         "Problems.Juggler.FateShareLaw",
         "Problems.Juggler.TerminationFloor257"
@@ -3459,9 +3476,9 @@
     }
   },
   "totals": {
-    "edges": 262,
-    "edges_before_reduction": 2023,
-    "ledger_rows_placed": 463,
-    "nodes": 212
+    "edges": 263,
+    "edges_before_reduction": 2055,
+    "ledger_rows_placed": 465,
+    "nodes": 213
   }
 }

@@ -1,5 +1,46 @@
 # Research journal
 
+## 2026-09-21 -- Paper C: Corollary 5.4 and the fate instantiations are Lean; every clause of Theorem 1 at 100/203
+
+- **Objective:** Philippe chose the Lean closure from the options offered
+  after the revision: the dyadic pigeonhole of Corollary 5.4 and the three
+  instantiations of Corollary 5.5, the last human steps of Theorem 1.
+- **The module.** `FateDyadicDensity.lean`, namespace `Density`, imports
+  `FatePoorProduction` and Mathlib's exponential bounds. The pigeonhole is
+  `exists_block_of_shell`: from \(K(\log X)^\lambda\le\ell_A(\sqrt X,X]\)
+  with \(0<\lambda\le1\), \(X\ge3\), some \(y\in(\sqrt X,X]\) has
+  \(\#(A\cap(y/2,y])\ge(K/12)\,y(\log y)^{\lambda-1}\). The cover is the
+  blocks \((X/2^{j+1},X/2^j]\) with \(j=\lfloor\log_2(X/n)\rfloor\)
+  (`block_index`, `halfLogMass_le_blocks` through
+  `Finset.sum_fiberwise_of_maps_to`, so no disjointness proof), at most
+  \(3\log X\) of them by `Real.log_two_gt_d9`; a block's log-mass is at most
+  \(2\#/y\) (`block_logMass_le`); the best block is at least the average
+  (`Finset.exists_le_of_sum_le`); \(y^2>X\) turns \((\log X)^{\lambda-1}\)
+  into \((\log y)^{\lambda-1}\) at the cost of \(2^{1-\lambda}\le2\).
+  `natDensity_of_shell_bound` reads it from \(g_A\), `natDensity_averaged`
+  composes it with Theorem 5.18 at \(100/203\), and the fate classes are
+  seven one-line instantiations through Lemma 2.1 (`reachesOne_one`,
+  `ancestor_refl` supply the members). Compiled clean on the first run,
+  one deprecated tactic replaced; all names at most 59 characters
+  qualified.
+- **The paper.** Section 1.4 loses its last human row for Theorem 1 and
+  gains two Lean rows; a Lean paragraph follows Corollary 5.5; Section 12
+  and Appendix A say what stays human, the range
+  \(100/203<\lambda<\lambda_{\mathrm{ideal}}\); Appendix A and B gain the
+  row and the digest; the barrel imports 37 modules and its docstring no
+  longer says the pigeonhole is unformalized anywhere; the artifact asks
+  473 declarations, all on subsets of Mathlib's three; the probe is
+  consistent with 41 Lean rows and 4 human. 61 pages.
+- **Gates.** `lake build` of both barrels, the artifact regenerated with no
+  wrapped report, hashes refreshed, numeric checker passing, release check
+  green, the layer-architecture, formal-layer, audit, citation,
+  control-character and link tests green, ledger rendered (two rows added,
+  the trust surface recounted), the four formalpedia artifacts regenerated
+  after the ledger, the branch index rebuilt.
+- **Not done.** The range above \(100/203\) is still the choice of
+  \(\eta_0\); Corollary 5.4 gives no bound on every block, only on a
+  block inside every shell; no fate is decided. No Zenodo new version.
+
 ## 2026-09-21 -- Paper C revised to the averaged route: Theorem 1 at lambda_ideal, 100/203 machine-checked
 
 - **Objective:** Philippe asked for Paper C to be reviewed and updated to

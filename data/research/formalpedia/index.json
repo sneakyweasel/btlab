@@ -32389,6 +32389,188 @@
       "trust": "kernel"
     },
     {
+      "doc": "`#(A \u2229 (y/2, y])`, the count on the dyadic block of Corollary 5.4.",
+      "file": "formal/Problems/Juggler/FateDyadicDensity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-fate-dyadic-pigeonhole",
+        "J-fate-classes-density-averaged"
+      ],
+      "line": 38,
+      "module": "Problems.Juggler.FateDyadicDensity",
+      "name": "blockCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A block's log-mass is at most `2 #(A \u2229 (y/2, y]) / y`, because every member exceeds `y/2`.",
+      "file": "formal/Problems/Juggler/FateDyadicDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-dyadic-pigeonhole",
+        "J-fate-classes-density-averaged"
+      ],
+      "line": 45,
+      "module": "Problems.Juggler.FateDyadicDensity",
+      "name": "block_logMass_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every `1 \u2264 n \u2264 X` lies in the block `(X/2^{j+1}, X/2^j]` with `j = \u230alog\u2082(X/n)\u230b`.",
+      "file": "formal/Problems/Juggler/FateDyadicDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-dyadic-pigeonhole",
+        "J-fate-classes-density-averaged"
+      ],
+      "line": 66,
+      "module": "Problems.Juggler.FateDyadicDensity",
+      "name": "block_index",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The shell `(\u221aX, X]` is covered by the blocks `(X/2^{j+1}, X/2^j]`, `j < J`, that reach above `\u221aX`, whenever `X < 2^J`; so its log-mass is at most the sum of their log-masses.",
+      "file": "formal/Problems/Juggler/FateDyadicDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-dyadic-pigeonhole",
+        "J-fate-classes-density-averaged"
+      ],
+      "line": 83,
+      "module": "Problems.Juggler.FateDyadicDensity",
+      "name": "halfLogMass_le_blocks",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Paper C Corollary 5.4, the pigeonhole.** If the shell log-mass of `A` at `X \u2265 3` is at least `K (log X)^\u03bb` with `0 < \u03bb \u2264 1`, then some block `(y/2, y]` with `\u221aX < y \u2264 X` holds at least `(K/12) y (log y)^{\u03bb-1}` members of `A`.",
+      "file": "formal/Problems/Juggler/FateDyadicDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-dyadic-pigeonhole",
+        "J-fate-classes-density-averaged"
+      ],
+      "line": 127,
+      "module": "Problems.Juggler.FateDyadicDensity",
+      "name": "exists_block_of_shell",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Paper C Corollary 5.4 (natural density, infinitely often), from a shell bound.** If `g_A(t) \u2265 K t^\u03bb` for all `t \u2265 t\u2081`, with `0 < \u03bb \u2264 1`, then there is `c > 0` such that for every large `X` some `y` with `\u221aX < y \u2264 X` has `#(A \u2229 (y/2, y]) \u2265 c y (log y)^{\u03bb-1}`; the blocks found are distinct for `X` running through powers of `4`, so there are infinitely many.",
+      "file": "formal/Problems/Juggler/FateDyadicDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-dyadic-pigeonhole",
+        "J-fate-classes-density-averaged"
+      ],
+      "line": 245,
+      "module": "Problems.Juggler.FateDyadicDensity",
+      "name": "natDensity_of_shell_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Paper C Corollary 5.4 for every `0 < \u03bb \u2264 100/203`, with no hypothesis.** For every nonempty backward-closed `A`, on a dyadic block inside every shell `(\u221aX, X]` with `X` large, `A` has natural density at least `c (log y)^{\u03bb-1}`. Theorem 5.18 (`contagion_averaged`) supplies the shell bound.",
+      "file": "formal/Problems/Juggler/FateDyadicDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-dyadic-pigeonhole",
+        "J-fate-classes-density-averaged"
+      ],
+      "line": 270,
+      "module": "Problems.Juggler.FateDyadicDensity",
+      "name": "natDensity_averaged",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Corollary 5.5(1), log-mass form.** The reach-one class `R` is backward-closed and contains `1`, so `\u03a3_{n \u2208 R, n \u2264 x} 1/n \u2265 K (log x)^\u03bb` for every `0 < \u03bb \u2264 100/203`.",
+      "file": "formal/Problems/Juggler/FateDyadicDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-dyadic-pigeonhole",
+        "J-fate-classes-density-averaged"
+      ],
+      "line": 283,
+      "module": "Problems.Juggler.FateDyadicDensity",
+      "name": "reachesOne_logMass_averaged",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Corollary 5.5(1), dyadic-block form.**",
+      "file": "formal/Problems/Juggler/FateDyadicDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-dyadic-pigeonhole",
+        "J-fate-classes-density-averaged"
+      ],
+      "line": 290,
+      "module": "Problems.Juggler.FateDyadicDensity",
+      "name": "reachesOne_natDensity_averaged",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Corollary 5.5(2), dyadic-block form.** If some start `a` does not reach `1`, the failures have natural density at least `c (log y)^{\u03bb-1}` on a dyadic block inside every large shell; the log-mass form is `Production.failures_logMass_averaged`.",
+      "file": "formal/Problems/Juggler/FateDyadicDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-dyadic-pigeonhole",
+        "J-fate-classes-density-averaged"
+      ],
+      "line": 299,
+      "module": "Problems.Juggler.FateDyadicDensity",
+      "name": "failures_natDensity_averaged",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Corollary 5.5(3) for a cycle, log-mass form.** The basin of a state `m \u2265 1`, the starts whose orbit passes through `m`, is backward-closed and contains `m`; for a periodic `m` it is the basin of that cycle.",
+      "file": "formal/Problems/Juggler/FateDyadicDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-dyadic-pigeonhole",
+        "J-fate-classes-density-averaged"
+      ],
+      "line": 308,
+      "module": "Problems.Juggler.FateDyadicDensity",
+      "name": "basin_logMass_averaged",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Corollary 5.5(3) for a cycle, dyadic-block form.**",
+      "file": "formal/Problems/Juggler/FateDyadicDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-dyadic-pigeonhole",
+        "J-fate-classes-density-averaged"
+      ],
+      "line": 316,
+      "module": "Problems.Juggler.FateDyadicDensity",
+      "name": "basin_natDensity_averaged",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Corollary 5.5(3) for divergence, log-mass form.** If some orbit diverges, the divergent starts carry log-mass at least `K (log x)^\u03bb`.",
+      "file": "formal/Problems/Juggler/FateDyadicDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-dyadic-pigeonhole",
+        "J-fate-classes-density-averaged"
+      ],
+      "line": 324,
+      "module": "Problems.Juggler.FateDyadicDensity",
+      "name": "escapes_logMass_averaged",
+      "trust": "kernel"
+    },
+    {
+      "doc": "**Corollary 5.5(3) for divergence, dyadic-block form.**",
+      "file": "formal/Problems/Juggler/FateDyadicDensity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-fate-dyadic-pigeonhole",
+        "J-fate-classes-density-averaged"
+      ],
+      "line": 331,
+      "module": "Problems.Juggler.FateDyadicDensity",
+      "name": "escapes_natDensity_averaged",
+      "trust": "kernel"
+    },
+    {
       "doc": "A share bound with exceptional atoms and a smaller error is one with a larger error.",
       "file": "formal/Problems/Juggler/FateEnergyAtoms.lean",
       "kind": "theorem",
@@ -93606,6 +93788,7 @@
         "Problems.Juggler.FateContagionBound",
         "Problems.Juggler.FateCylinderCorollary",
         "Problems.Juggler.FateCylinderEnergy",
+        "Problems.Juggler.FateDyadicDensity",
         "Problems.Juggler.FateEnergyAtoms",
         "Problems.Juggler.FateFiberLock",
         "Problems.Juggler.FateFiberParity",
@@ -94860,6 +95043,25 @@
         {
           "id": "J-fate-cylinder-energy",
           "statement": "Paper C Section 10(d), the counting half of the Parseval display. For an arbitrary finite set S of starts, write #[w] for the starts of S whose length-|w| itinerary is w (wordCount), D(w) = #[wO] - #[w]/2 for the first-letter bias (bias) and C_t = sum over |w| = t of #[w]^2 for the cylinder energy (energy). A cylinder splits into its two children, #[w] = #[wE] + #[wO] (wordCount_split), because the (t+1)-st letter of an itinerary is the parity of the t-th image (itinerary_succ_append). Hence sum over |w| = t of D(w)^2 = C_{t+1}/2 - C_t/4 exactly (sum_bias_sq), which is the second equality of the note's display; the algebra behind it is (b - (a+b)/2)^2 = (a^2+b^2)/2 - (a+b)^2/4. NOT formalized: the first equality, Parseval for the Walsh sums on the same starts -- no Walsh transform appears in the module -- and the quantitative bound on these sums that would supply an exceptional-atom estimate. Nothing here bounds a discrepancy and nothing here is a halt theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.FateDyadicDensity": {
+      "declarations": 14,
+      "file": "formal/Problems/Juggler/FateDyadicDensity.lean",
+      "imports": [
+        "Problems.Juggler.FatePoorProduction"
+      ],
+      "ledger": [
+        {
+          "id": "J-fate-dyadic-pigeonhole",
+          "statement": "Paper C Corollary 5.4 (natural density, infinitely often): the dyadic pigeonhole, from a shell bound. If K (log X)^lambda <= sum_{sqrt X < n <= X, n in A} 1/n with 0 < lambda <= 1, K > 0 and X >= 3, then some y with sqrt X < y <= X has #(A cap (y/2, y]) >= (K/12) y (log y)^(lambda-1) (Density.exists_block_of_shell; the block is Ioc (y/2) y in the natural numbers, blockCount). PROOF, the manuscript's: the shell (sqrt X, X] is covered by the blocks (X/2^(j+1), X/2^j] for j <= log_2 X, at most 3 log X of them since log 2 > 1/2 (halfLogMass_le_blocks, through Finset.sum_fiberwise_of_maps_to on j = floor(log_2(X/n)), block_index); a block's log-mass is at most 2 #/y because every member exceeds y/2 (block_logMass_le); the best block is at least the average (Finset.exists_le_of_sum_le); and y^2 > X gives log y > (log X)/2, which with lambda - 1 < 0 turns (log X)^(lambda-1) into (log y)^(lambda-1) at the cost of 2^(1-lambda) <= 2. From g_A(t) >= K t^lambda for t >= t_1 this is Corollary 5.4 with c = K/12 for every X >= ceil(e^t_1) + 3 (natDensity_of_shell_bound), and with Theorem 5.18 (Production.contagion_averaged at eta_0 = 10^-5) it holds for every 0 < lambda <= 100/203 with no hypothesis (natDensity_averaged). Kernel-checked on propext, Classical.choice, Quot.sound. The blocks found are distinct as X runs through the powers of 4, so there are infinitely many; no bound on every block is claimed, the range 100/203 < lambda < lambda_ideal stays with Theorem 5.18's human clause, and no fate is decided. In Paper C since the revision of 2026-09-21 (Section 1.4, the Lean paragraph after Corollary 5.5, Appendix A).",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        },
+        {
+          "id": "J-fate-classes-density-averaged",
+          "statement": "Paper C Corollary 5.5 (fate contagion) at every 0 < lambda <= 100/203, each clause in its log-mass form and its dyadic-block form, as named theorems: (1) the reach-one class R, backward-closed and containing 1, has sum_{n in R, n <= x} 1/n >= K (log x)^lambda for x >= x_0 (Density.reachesOne_logMass_averaged) and natural density >= c (log y)^(lambda-1) on a dyadic block inside every large shell (reachesOne_natDensity_averaged); (2) if some start fails, the failures have the same bounds (Production.failures_logMass_averaged, Density.failures_natDensity_averaged); (3) the basin of any state m >= 1, the starts whose orbit passes through m, has them (basin_logMass_averaged, basin_natDensity_averaged) -- the paper's clause is the case of a periodic m, the basin of that cycle -- and so do the divergent starts if some orbit diverges (escapes_logMass_averaged, escapes_natDensity_averaged). Each is one instantiation of Production.logMass_contagion_averaged or Density.natDensity_averaged through Lemma 2.1 (reachesOne_backwardClosed with reachesOne_one, not_reachesOne_backwardClosed, ancestor_backwardClosed with ancestor_refl, escapes_backwardClosed). Kernel-checked on propext, Classical.choice, Quot.sound. With J-fate-dyadic-pigeonhole every clause of Paper C's Theorem 1 is Lean at 100/203; what stays human is the range 100/203 < lambda < lambda_ideal. Not a halt theorem: no fate is shown to occur, each clause is conditional on its class being nonempty except the first.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
@@ -97070,6 +97272,7 @@
         "Problems.Juggler.FateContagionBound",
         "Problems.Juggler.FateCylinderCorollary",
         "Problems.Juggler.FateCylinderEnergy",
+        "Problems.Juggler.FateDyadicDensity",
         "Problems.Juggler.FateEnergyAtoms",
         "Problems.Juggler.FateFiberLock",
         "Problems.Juggler.FateFiberParity",
@@ -97100,7 +97303,7 @@
       "ledger": [
         {
           "id": "J-paper-c-trust-surface",
-          "statement": "UPDATED 2026-09-21: the barrel imports exactly the thirty-six modules Paper C cites, the thirty-one below plus FateBlockLock, FateFiberLock, FateResonanceCount, FatePoorTail and FatePoorProduction, wired in with Section 5.8 of the manuscript (the averaged two-production route); the artifact asks 460 declarations and records 460, every list a subset of Mathlib's three; the verification table has 39 Lean rows and 5 human proofs. ORIGINAL ROW: Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the thirty-one modules the paper cites (TerminationFloor257, FateBlockAverage, FateShareLaw, FateProduction, FateProductionWords, FateOneSided, FateOneSidedCorollary, FatePressureCorollary, FateOneSidedAtoms, FateEnergyAtoms, FateCollapse, FateCertified, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound; FateProductionWords wired in 2026-09-19, when Appendix A's count was corrected from thirty to thirty-one and TerminationFloor257 was named for the first time) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has thirty-two Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2) and unconditionally at 3/10, Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, Corollary 8.4, and Theorem 9.1 in exact form by exponential moments and its consequence, the conjecture from the one-sided hypothesis, and the conjecture from the pressure and no-momentum hypotheses of Section 9.2, Theorem 9.1 with the exceptional atoms of Section 10(d), the bias energy supplying those atoms, the collapsed component's bias bound, and the unconditional criteria at C = 30 with every constant a numeral) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the asymptotic bookkeeping of Sections 8--10). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
+          "statement": "UPDATED 2026-09-21: the barrel imports exactly the thirty-seven modules Paper C cites, the thirty-one below plus FateBlockLock, FateFiberLock, FateResonanceCount, FatePoorTail and FatePoorProduction, wired in with Section 5.8 of the manuscript (the averaged two-production route), and FateDyadicDensity, Corollary 5.4 with Corollary 5.5 at the fate classes, the same day; the artifact asks 473 declarations and records 473, every list a subset of Mathlib's three; the verification table has 41 Lean rows and 4 human proofs. ORIGINAL ROW: Paper C's Lean surface, as a build target and an axiom artifact. formal/Problems/JugglerFatePaper.lean imports exactly the thirty-one modules the paper cites (TerminationFloor257, FateBlockAverage, FateShareLaw, FateProduction, FateProductionWords, FateOneSided, FateOneSidedCorollary, FatePressureCorollary, FateOneSidedAtoms, FateEnergyAtoms, FateCollapse, FateCertified, FateContagion, FateCylinderEnergy, CubeFiber, TiltedShare, FateRecursion, FateFirstLetter, FateLandingWindow, FateWindowCount, FateSweep, FateSweepMonotone, FateChernoff, FatePressure, FateTaoReduction, FateSeed, FateCylinderCorollary, FateNumerics, FateFiberParity, FateThinFibers, FateContagionBound; FateProductionWords wired in 2026-09-19, when Appendix A's count was corrected from thirty to thirty-one and TerminationFloor257 was named for the first time) and is a lake default target; formal/AxiomCheckPaperC.lean prints the axioms of the cited declarations and AxiomCheckPaperC.expected records them: every line is a subset of [propext, Classical.choice, Quot.sound], no sorryAx, no Lean.ofReduceBool (native_decide). formalpedia's paper surface carries Paper C (root Problems.JugglerFatePaper): no declaration it reaches runs the compiler and none cites one that does. The verification table has thirty-two Lean rows (including Lemma 4.1', Lemmas 4.2 and 4.3, Lemma 5.2, Theorem 5.3 given the production inequality (5.2) and unconditionally at 3/10, Theorem 7.2 and Theorem 7.3 with the contagion bound as a hypothesis, Corollary 8.4, and Theorem 9.1 in exact form by exponential moments and its consequence, the conjecture from the one-sided hypothesis, and the conjecture from the pressure and no-momentum hypotheses of Section 9.2, Theorem 9.1 with the exceptional atoms of Section 10(d), the bias energy supplying those atoms, the collapsed component's bias bound, and the unconditional criteria at C = 30 with every constant a numeral) and four human proofs (the block average 4.4, the share law, the production inequality (5.2), the asymptotic bookkeeping of Sections 8--10). FateNumerics holds the two numerical moves the fiber lemmas share, roots by powering and Bernoulli at a point; FateWindowCount holds the counting move, a sequence rising by at least d has at most w/d + 1 terms in a window of width w. This row records the artifact, not a theorem; nothing here bounds a density.",
           "tag": "COMPUTATIONALLY VERIFIED"
         }
       ]
@@ -97402,13 +97605,13 @@
     }
   },
   "totals": {
-    "declarations": 7098,
-    "declarations_with_a_ledger_row": 5195,
-    "ledger_rows_naming_a_file": 463,
-    "modules": 315,
+    "declarations": 7112,
+    "declarations_with_a_ledger_row": 5209,
+    "ledger_rows_naming_a_file": 465,
+    "modules": 316,
     "trust": {
       "compiler": 56,
-      "kernel": 7042
+      "kernel": 7056
     }
   }
 }

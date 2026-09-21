@@ -2,7 +2,7 @@
   "review_date": "2026-09-09",
   "scope": "Independent arithmetic and finite checks; not formal verification of the analytic proofs.",
   "existing_audit": {
-    "git_commit": "591d9a52ed31b2c2bad5bbd89efa625807870b89",
+    "git_commit": "7b5308c18582f9f4818cc5911c9a143b922026c3",
     "paper": "docs/theory/juggler_fate_almost_all_note.md",
     "N0": 350000000,
     "checks": {
@@ -722,11 +722,12 @@
       "Problems.Juggler.FateFiberLock",
       "Problems.Juggler.FateResonanceCount",
       "Problems.Juggler.FatePoorTail",
-      "Problems.Juggler.FatePoorProduction"
+      "Problems.Juggler.FatePoorProduction",
+      "Problems.Juggler.FateDyadicDensity"
     ],
     "artifact": {
-      "asked": 460,
-      "recorded": 460,
+      "asked": 473,
+      "recorded": 473,
       "axiom_lists": [
         "",
         "propext",
@@ -734,16 +735,16 @@
         "propext, Quot.sound"
       ]
     },
-    "appendix_a_names": 499,
+    "appendix_a_names": 513,
     "surface": {
-      "modules": 68,
-      "declarations": 1896,
+      "modules": 69,
+      "declarations": 1910,
       "compiler_trusted": [],
       "compiler_dependent": [],
       "open": []
     },
     "table": {
-      "rows": 46,
+      "rows": 47,
       "lean": [
         "Fate classes closed; trichotomy; exclusion (Lemma 2.1)",
         "Even block is an interval (Lemma 3.1)",
@@ -761,6 +762,8 @@
         "Poor-fiber tail (Theorem 5.16) and the share on an arbitrary set (Corollary 5.17)",
         "Theorem 5.18, contagion by two productions at the averaged coefficient: Theorem 5.3 for every \\(0<\\lambda\\le100/203\\) with no hypothesis, and Theorem 7.2 and Corollary 8.4 with their contagion hypothesis discharged at \\(e>103/203\\)",
         "Fate contagion at the failure set, log-mass form (Corollary 5.5(2), first clause)",
+        "Corollary 5.4 (natural density, infinitely often): the dyadic pigeonhole, from the shell bound of Theorem 5.18",
+        "Corollary 5.5 at the three fate classes: the reach-one class, the failures, the basin of a cycle state and the divergent starts, each in log-mass form and in dyadic-block form",
         "Production words \\(V_k=(OE)^{k-1}OEE\\) are prefix-free (Section 5.7, Appendix D)",
         "The side condition \\(e(C)>\\tfrac{27}{40}\\) of the unconditional criteria, at \\(C=30\\), by rational bounds on \\(e\\), \\(\\log 2\\) and \\(\\log_2 3\\)",
         "Cube fibers full or alternating (Lemma 4.7)",
@@ -789,7 +792,6 @@
         "Block average (Proposition 4.4), asymptotic",
         "Share law and its three corollaries (Lemma 4.5, Corollary 4.6)",
         "Production inequality (5.2) with the \\(V\\)-ladder terms of Section 5.7",
-        "Fate contagion, the remaining clauses (Corollary 5.4; the natural-density clause of Corollary 5.5(2); Corollaries 5.5(1), 5.5(3))",
         "Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.1, Theorem 9.2 and Proposition 9.3 in their exact forms)"
       ],
       "other": [
@@ -801,7 +803,7 @@
   },
   "fresh_lean_axiom_audit": {
     "matches_recorded": true,
-    "declarations": 458,
+    "declarations": 471,
     "forbidden": [],
     "build": "passed"
   },

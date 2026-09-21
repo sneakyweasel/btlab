@@ -476,3 +476,17 @@ open Problems.Juggler
 #print axioms Production.failures_logMass_averaged
 #print axioms Production.conjecture_of_tao_rate_averaged
 #print axioms Production.conjecture_of_cylinder_averaged
+-- The closure of 21 September 2026: Corollary 5.4 and Corollary 5.5 at the fate classes
+#print axioms Density.block_logMass_le
+#print axioms Density.block_index
+#print axioms Density.halfLogMass_le_blocks
+#print axioms Density.exists_block_of_shell
+#print axioms Density.natDensity_of_shell_bound
+#print axioms Density.natDensity_averaged
+#print axioms Density.reachesOne_logMass_averaged
+#print axioms Density.reachesOne_natDensity_averaged
+#print axioms Density.failures_natDensity_averaged
+#print axioms Density.basin_logMass_averaged
+#print axioms Density.basin_natDensity_averaged
+#print axioms Density.escapes_logMass_averaged
+#print axioms Density.escapes_natDensity_averaged

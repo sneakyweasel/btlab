@@ -56,7 +56,9 @@ def test_the_four_new_results_are_asked_about() -> None:
                  "BlockLock.block_lock", "FiberParity.fiber_lock",
                  "FiberParity.poor_logMass_le", "Production.contagion_averaged",
                  "Production.zeta2avg_pos", "Production.logMass_contagion_averaged",
-                 "Production.conjecture_of_tao_rate_averaged"):
+                 "Production.conjecture_of_tao_rate_averaged",
+                 "Density.exists_block_of_shell", "Density.natDensity_averaged",
+                 "Density.failures_natDensity_averaged"):
         assert name in asked, name
 
 

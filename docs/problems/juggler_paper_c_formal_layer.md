@@ -107,13 +107,35 @@ discharged through (5.2) is `conjecture_of_cylinder_bound_of_production`.
 The production inequality itself and the root \(\lambda^{**}\) stay
 human.
 
+**Corollary 5.4 and the fate classes (EXACT — LEAN VERIFIED, 21 September
+2026).** The dyadic pigeonhole that Paper C left in prose is
+`Density.exists_block_of_shell` in `FateDyadicDensity.lean`: from
+\(K(\log X)^\lambda\le\ell_A(\sqrt X,X]\) with \(0<\lambda\le1\) and \(X\ge3\),
+some \(y\in(\sqrt X,X]\) has \(\#(A\cap(y/2,y])\ge(K/12)\,y(\log y)^{\lambda-1}\).
+The shell is covered by the blocks \((X/2^{j+1},X/2^j]\), \(j\le\log_2X\), at
+most \(3\log X\) of them (`halfLogMass_le_blocks`, through
+`Finset.sum_fiberwise_of_maps_to` on \(j=\lfloor\log_2(X/n)\rfloor\)); a block's
+log-mass is at most \(2\#/y\) (`block_logMass_le`); the best block is at least the
+average (`Finset.exists_le_of_sum_le`); and \(y^2>X\) gives \(\log y>\tfrac12\log X\),
+which with \(\lambda-1<0\) costs the factor \(2^{1-\lambda}\le2\). With Theorem 5.18
+this is Corollary 5.4 for every \(0<\lambda\le100/203\) with no hypothesis
+(`natDensity_averaged`), and Corollary 5.5 is its instantiation at the fate classes
+through Lemma 2.1: `reachesOne_logMass_averaged`, `reachesOne_natDensity_averaged`,
+`failures_natDensity_averaged` (the log-mass form being
+`Production.failures_logMass_averaged`), `basin_logMass_averaged`,
+`basin_natDensity_averaged`, `escapes_logMass_averaged`,
+`escapes_natDensity_averaged`. Every clause of Theorem 1 is now Lean at \(100/203\);
+what stays human is the range \(100/203<\lambda<\lambda_{\mathrm{ideal}}\).
+
 **The build root (COMPUTATIONALLY VERIFIED).**
-`formal/Problems/JugglerFatePaper.lean` imports exactly the thirty-six
+`formal/Problems/JugglerFatePaper.lean` imports exactly the thirty-seven
 modules Paper C cites (thirty-one until 21 September 2026, when the five
 modules of the averaged route, `FateBlockLock`, `FateFiberLock`,
 `FateResonanceCount`, `FatePoorTail` and `FatePoorProduction`, joined it
-with Section 5.8 of the manuscript); `formal/AxiomCheckPaperC.lean`
-prints the axioms of the 460 cited declarations and `AxiomCheckPaperC.expected` records
+with Section 5.8 of the manuscript, and `FateDyadicDensity`, Corollary 5.4
+with the fate instantiations of Corollary 5.5, the same day);
+`formal/AxiomCheckPaperC.lean` prints the axioms of the 473 cited
+declarations and `AxiomCheckPaperC.expected` records
 them, every list a subset of `propext`, `Classical.choice`,
 `Quot.sound`, no `sorryAx`, no `native_decide`.
 
