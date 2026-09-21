@@ -6346,7 +6346,7 @@
       "decision": "CLOSE",
       "ledger_ids": [],
       "aliases": [],
-      "nk_cluster": "Hercher's two m-free refinements do not reach the 3n-1 side"
+      "nk_cluster": "Hercher's two m-free refinements: Theorem 27 is a wall, Corollary 29 stopped being one"
     },
     {
       "id": "survivor_count_decay",
