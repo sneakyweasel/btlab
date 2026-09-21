@@ -441,7 +441,7 @@
     {
       "path": "tools/build_paper_c.py",
       "mode": "text",
-      "sha256": "4b6cb6b1a302f274d2270002daab454cf38c956a472e93ef16a536a592f32dae"
+      "sha256": "b9d6e62d9c3285cfd9a2e4a67e78395ef11e9c36aa96643b75a8b37caa74f722"
     },
     {
       "path": "tools/check_paper_c_numeric.py",

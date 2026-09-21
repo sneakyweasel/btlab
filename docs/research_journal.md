@@ -1,5 +1,59 @@
 # Research journal
 
+## 2026-09-21 -- The ORCID reaches all four papers, and the field sheet that no build was regenerating
+
+- **Objective:** Philippe asked for the ORCID
+  [0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382) on the four papers. Paper D
+  already carried it, on its title page and in its Zenodo metadata, so the work was bringing
+  A, B and C up to D's pattern rather than inventing one.
+- **What landed.** Each of `tools/paper_{a,b,c}/article.tex` renders the identifier as a
+  linked line under the email; each `paper_*_zenodo.json` carries `creators[0].orcid`; each
+  generated `ZENODO_FIELDS.txt` carries an `ORCID:` line. Confirmed by extracting page 1 of
+  all four rebuilt PDFs, not by reading the template back.
+- **The decision that was Philippe's.** Paper B's repository PDF was still byte-identical to
+  the deposited 1.0.0 file, and `paper_deposits.md` records a deliberate policy of not editing
+  a deposited manuscript in place. He chose the title page plus a version bump over leaving B's
+  metadata-only. B is now prepared 1.0.1: the manuscript markdown is byte-identical to the
+  deposited edition -- no section, theorem, constant or equation moved -- and only the front
+  matter differs. A and C needed no such decision; their local revisions were already ahead of
+  their deposits.
+- **The generator had to stop asserting the deposit.** `build_paper_b.py` printed "Describes
+  the deposit at doi:..." whenever the row carried a DOI, which would have been false for a
+  revision prepared after it. The row now names `deposited_version`, and the standing line and
+  the publication-date field follow it -- the same rule the function's own docstring already
+  stated for the fields it governs. All four branches exercised: ahead, at-deposit, no-DOI, and
+  a legacy row with no `deposited_version`, which keeps the old behaviour.
+- **What the ORCID work turned up.** `docs/theory/paper_b_zenodo_fields.txt` is a second copy
+  of the field sheet that `build_paper_b_kit.py` packages into both deposit archives, and no
+  build regenerated it. It had drifted back to the pre-deposit text -- no record created, version
+  2026-09-19-preprint -- while the kit's copy moved on. An ORCID added only to the kit copy would
+  never have reached the shipped archives. `sync` writes both now and `check` compares both,
+  named separately so the message says which one drifted. Made to fail first: appending a line to
+  the docs copy raises `Stale Zenodo fields: docs/theory/paper_b_zenodo_fields.txt`, and the
+  restored copy passes.
+- **Where the ORCID is not.** On the live records for A, B and C. They were deposited before it
+  and Paper D's was not; attaching it is a metadata edit on a published record, which Zenodo
+  allows without a new version but only from the owning account. `paper_deposits.md` now carries
+  a table of which record has it, so the gap is tracked in the repository rather than in a
+  conversation.
+- **Left alone deliberately.** `ZENODO_README.md` still says no DOI has been reserved and no
+  upload has happened, both false since Paper B's deposit, and `paper_b_release_check.json`
+  says the same in `publication_status`. Only the ORCID and version lines were corrected there;
+  the rest is pre-existing staleness that ships inside the deposit archives and is its own task.
+  `paper_b_review.md` keeps its "no DOI, ORCID ... has been invented" sentence: it is an
+  explicitly dated 9 September record and the sentence is still true of what was done then.
+- **Gates.** `build_paper_{a,b,c,d}.py --check` and `build_paper_b_kit.py --check` all pass;
+  48 tests pass across the paper suites. Three fixtures needed the new metadata shape --
+  `zenodo_fields` is strict about `orcid` on purpose, since a row without one means the constant
+  went missing and a quietly dropped line is the failure being guarded against. Paper B's release
+  check is re-pinned to the rebuilt artifacts, with a `front_matter_revision` field recording
+  which of its checks were re-run against them (page bounds, fonts, compiler checks, metadata
+  agreement) and which were not (visual comparison, symbolic derivation, standalone rebuild,
+  integration suite).
+- **Note for the session that flagged it.** The `KeyError: 'orcid'` in `build_paper_a.py` that
+  the Krasikov-Lagarias commit recorded as unrelated red was this work mid-edit, between the
+  builder change and the fixture that follows it. It is resolved.
+
 ## 2026-09-21 -- Krasikov-Lagarias read from the source and transposed to 3n-1: the exponent is 0.84 on both sides, because negation is an isomorphism
 
 - **Objective:** Philippe asked for the paper from the source and for the transposition I

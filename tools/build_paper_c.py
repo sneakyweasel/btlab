@@ -50,6 +50,8 @@ FIGURES = ["paper_c_productions.png", "paper_c_decomposition.png", "paper_c_depe
 # historical name the Zenodo deposit carries. The companion site links the
 # published DOIs instead of serving its own copy, so `public/papers/` and
 # `dist/papers/` are gone.
+#: Zenodo takes the bare identifier, not the URL, beside the creator's name.
+ORCID = "0009-0004-1939-3382"
 PDF_EXPORTS = ["juggler_review/zenodo_paper_c/Fate_Contagion_Juggler_Map.pdf"]
 
 
@@ -217,7 +219,9 @@ def write_metadata(root: Path, pandoc: str) -> None:
         '--to=plain', '--wrap=none'], input=abstract + '\n' + acknowledgment, encoding='utf-8')
     description = '\n'.join('<p>' + escape(p.replace('\n', ' ')) + '</p>' for p in plain.strip().split('\n\n'))
     # A reusable field sheet, not an API call or a claim of a published DOI.
-    meta = {"title": title, "creators": [{"name": author.rsplit(' ', 1)[1] + ', ' + author.rsplit(' ', 1)[0]}],
+    meta = {"title": title,
+            "creators": [{"name": author.rsplit(' ', 1)[1] + ', ' + author.rsplit(' ', 1)[0],
+                          "orcid": ORCID}],
             "upload_type": "publication", "publication_type": "preprint", "access_right": "open",
             "license": "cc-by-4.0", "language": "eng", "version": datetime.strptime(date, '%d %B %Y').date().isoformat(),
             "keywords": ['Juggler map', 'preimage sets', 'logarithmic counting', 'parity cylinders', 'integer dynamics'],

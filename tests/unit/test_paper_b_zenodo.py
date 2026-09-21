@@ -27,6 +27,7 @@ def test_stale_zenodo_pdf_is_rejected(tmp_path):
     meta = json.loads((ROOT / B.METADATA).read_text(encoding="utf-8"))
     (tmp_path / B.METADATA).parent.mkdir(parents=True, exist_ok=True)
     (tmp_path / B.METADATA).write_text(json.dumps(meta), encoding="utf-8")
+    (tmp_path / B.ZENODO_FIELDS).parent.mkdir(parents=True, exist_ok=True)
     (tmp_path / B.ZENODO_FIELDS).write_text(B.zenodo_fields(meta), encoding="utf-8")
     B.check_exports(tmp_path)
     (tmp_path / B.ZENODO_PDF).write_bytes(b"old PDF")
