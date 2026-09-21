@@ -6,6 +6,7 @@ No m-cycles of the 3n−1 map for m ≤ 58
 
 CREATOR
 Cochin, Philippe
+ORCID: 0009-0004-1939-3382 (https://orcid.org/0009-0004-1939-3382)
 Affiliation: none
 
 RESOURCE TYPE

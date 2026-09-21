@@ -72,7 +72,7 @@
     {
       "path": "tools/build_paper_d.py",
       "mode": "text",
-      "sha256": "077f8b4a6ee3bfc36d5a19da29c738e873eb74c098bb757037d15b11a065b807"
+      "sha256": "f79ecc498a37c4552e75f3ba2dc9c47e42c3c34764cdd868ad32508a3a6c1d42"
     },
     {
       "path": "tools/check_3n_minus_1_note_numeric.py",
@@ -82,7 +82,7 @@
     {
       "path": "tools/paper_d/article.tex",
       "mode": "text",
-      "sha256": "de7d03ecd54d7a2cbfaa7b8f198f684b21afc203db63669a547b53c4e499ea4d"
+      "sha256": "1a78454a3f45690e28cb17bdd4a8f97746e01dd222ac375d299522838b56dd3d"
     },
     {
       "path": "tools/paper_d/layout.lua",
@@ -94,17 +94,17 @@
     {
       "path": "juggler_review/collatz_3n_minus_1_m_cycles_note.pdf",
       "mode": "binary",
-      "sha256": "b7f7e394db98d300e8851769aa74aeb80a75c0dc97e3430c8b2f0ac5aa11497c"
+      "sha256": "cb2158e8ae91b18ee406c8159e0ddefd15f3d1b4884ff816bf056dd0b51edb9c"
     },
     {
       "path": "docs/theory/cochin-3n-minus-1-m-cycles.tex",
       "mode": "text",
-      "sha256": "e5d5ee2751fbf0bdf08ed7dae3f02ea803e1825f69a47b954990a57211865f85"
+      "sha256": "ef64906ebec594942e897f8b38200fa74d4295601ee12b71a6880eb588547a60"
     },
     {
       "path": "docs/theory/paper_d_zenodo.json",
       "mode": "text",
-      "sha256": "eaaa099ac54bf440b3541eb23decb11b2f2102454ea5e3c84a5a22e598968630"
+      "sha256": "eb576d0d9a75cbf7190e06a29a31d24ef475cd16e57398ecc48c80fef28005c3"
     }
   ]
 }

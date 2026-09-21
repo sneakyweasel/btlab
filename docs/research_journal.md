@@ -1,5 +1,62 @@
 # Research journal
 
+## 2026-09-21 -- The not-covered band read: 96 rows against their files, 89 rejoined, and the band falls from 96 to 52
+
+- **Objective:** work the coverage audit's bottom band, the 96 resolved rows Jev put below
+  0.25, the way the nine short mis-joins and the doubtful band were worked.
+- **What the band was, measured before any row was edited.** `claim_broader` was the
+  highest failure mode on all 96, and the median statement ran 846 characters against 158
+  for a covered row. Four measurements decided the remedy. Extending `decl` to the
+  declarations a statement *names* moved ten sample rows by a median 0.14 and cleared the
+  bar once. Dropping the scope disclaimers moved nothing, so the v2 wording already
+  discounts them. Adding the declarations a claim names in *other* files moved three of
+  five a long way, 0.07 to 0.47 on one, but the ledger gate requires `decl` to be declared
+  in the row's own file, so that is a cost of the convention and not a remedy. Joining
+  three rows by hand after reading their files in full moved two over the bar, 0.08 to 0.59
+  and 0.05 to 0.51. So the band was a backlog of part-for-whole joins, and the candidates
+  had to come from reading each file, not from matching names in prose.
+- **The recurring shape.** A claim states several results and the row records one of them,
+  usually the last or the most specialized. `J-envelope-lt-pow` opened with the exact
+  statement of `envelope_lt_pow` and recorded only the itinerary specialization.
+  `J-cycle-direction-change-contraction` stated three inequalities and recorded the third.
+  `J-odd-run-recursive` asserted two things and recorded one. The unrecorded theorems are
+  usually stated in words, never by Lean name, which is why the regex pass under-read them.
+- **Eight readers, twelve rows each, then machine checks.** Every proposed name had to
+  exist in the row's own file, be resolvable by the ledger's own gate, be unclaimed, and
+  not already be recorded. 719 names were proposed; 663 were written. Fourteen were
+  collisions where two rows sharing a file were given the same declaration, settled by
+  which claim names it, with two settled by hand: `energy_eq_dot` to the determinant row,
+  whose only bridge from a determinant to energies it is, and the `ooeFamily` definitions
+  to Proposition E.3's row, which writes all four defining polynomials. Forty-two were
+  dropped because the ledger gate's regex does not resolve `noncomputable def` or a name
+  ending in a prime; that is a gap between the index and the gate, left as found.
+- **Result.** 89 rows rejoined, from a median of one declaration to six. The band falls
+  from 96 to 52: fifteen rows are now covered, twenty-eight doubtful. The audit reads 130
+  covered, 66 doubtful, 52 not covered, from 114, 38 and 96. Biggest single moves: the
+  minimal-prefix row 0.11 to 0.86, the rotation-average row 0.03 to 0.67, the thin-fibers
+  row 0.05 to 0.65.
+- **One real mis-tag, found and narrowed.** `BTN-sdrm-separation` was tagged
+  `EXACT — LEAN VERIFIED` and closed with the state count M(lambda,U) = |R(lambda,U)|.
+  `residual_separation` gives the distinguishing word; Mealy minimality is formalized
+  nowhere, and `Transducer.lean` says so in as many words. The claim now states what the
+  Lean states and marks the state count as not formalized. That row reads 0.56, covered.
+  It is the only one of the 96 that asserted undisclosed unformalized mathematics.
+- **What the remaining 52 are.** Eighteen name an assertion no declaration in their file
+  states, and in almost every case the theorem exists in another module, which the
+  one-row-one-file rule cannot record; 27 rows of the band cite such a declaration.
+  Five were already complete, their whole claim carried by what they record. Thirty
+  improved without clearing the bar, and are the long paper-section summaries whose
+  remaining text is narration rather than assertion.
+- **Two things worth a later look.** `J-cyclemin-fudge` lists eight words whose only
+  CycleMin-shaped rotation is themselves; `CycleMinFudge.lean` has seven such theorems,
+  and the missing word OOOOOOOEEEE appears to satisfy the property, so a theorem looks
+  absent rather than the claim miscounted. And three names in
+  `CubicChargeMonotonicity.lean` are declared twice under different namespaces, so any
+  check that resolves a declaration by short name is ambiguous there.
+- **Gates.** The seventeen ledger tests, the formalpedia file and the ledger constants
+  pass, 63 in all, and `render_theorem_ledger.py --check` is clean. The index was rebuilt
+  because it embeds ledger statements and the one narrowed statement changed it; the
+  rebuild's only delta is that statement.
 ## 2026-09-21 -- Paper D exists as an object: builder, manifest, metadata, kit, and the editorial pass; nothing uploaded
 
 - **Objective:** Philippe asked for everything needed to publish the 3n-1 note on Zenodo.
