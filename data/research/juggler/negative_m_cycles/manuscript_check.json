@@ -261,13 +261,30 @@
    ]
   },
   "found_in": {
-   "odd_starts_cpu": "summary.json",
-   "odd_starts_gpu": "gpu_runs.json",
-   "peak_log2_gpu": "gpu_runs.json",
+   "odd_starts_cpu": [
+    "runs.json",
+    "summary.json"
+   ],
+   "odd_starts_gpu": [
+    "gpu_runs.json"
+   ],
+   "peak_log2_gpu": [
+    "gpu_runs.json"
+   ],
    "max_steps": {
-    "544": "summary.json",
-    "704": "summary.json",
-    "847": "gpu_runs.json"
+    "544": [
+     "chunks.json",
+     "summary.json"
+    ],
+    "704": [
+     "chunks.json",
+     "runs.json",
+     "summary.json"
+    ],
+    "847": [
+     "gpu_runs.json",
+     "summary.json"
+    ]
    }
   },
   "scope": "presence in the certificate's records only; the certificate itself is not re-run here"

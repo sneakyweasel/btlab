@@ -477,12 +477,15 @@ def main() -> int:
             vals.add(obj)
         return vals
 
-    found = {"odd_starts_cpu": None, "odd_starts_gpu": None, "peak_log2_gpu": None,
-             "max_steps": {str(v): None for v in note["floor_max_steps"]}}
+    # Every record that carries the number, not just the last one scanned: a number can appear
+    # in several records (the sweep's 847 is in both gpu_runs.json and the probe's summary), and
+    # recording one of them made the report depend on which files happen to exist.
+    found = {"odd_starts_cpu": [], "odd_starts_gpu": [], "peak_log2_gpu": [],
+             "max_steps": {str(v): [] for v in note["floor_max_steps"]}}
     for p in sorted(CERT_DIR.glob("*.json")) if CERT_DIR.is_dir() else []:
         blob = p.read_text(encoding="utf-8", errors="replace")
         if str(note["floor_odd_starts_cpu"]) in blob:
-            found["odd_starts_cpu"] = p.name
+            found["odd_starts_cpu"].append(p.name)
         try:
             data = json.loads(blob)
         except json.JSONDecodeError:
@@ -490,27 +493,27 @@ def main() -> int:
         recorded = max_steps_values(data)
         for v in note["floor_max_steps"]:
             if v in recorded:
-                found["max_steps"][str(v)] = p.name
+                found["max_steps"][str(v)].append(p.name)
         if p.name == "gpu_runs.json" and note["floor_odd_starts_gpu"] is not None:
             for rec in data:
                 if rec.get("clean") and rec.get("range") == [2 ** 44, floor]:
                     if rec["odd_starts"] == note["floor_odd_starts_gpu"]:
-                        found["odd_starts_gpu"] = p.name
+                        found["odd_starts_gpu"].append(p.name)
                     if note["floor_peak_log2_gpu"] is not None and abs(rec["peak_log2"] - note["floor_peak_log2_gpu"]) <= 0.051:
-                        found["peak_log2_gpu"] = p.name
+                        found["peak_log2_gpu"].append(p.name)
     report["floor_certificate_numbers"] = {
         "note": {"odd_starts_cpu": note["floor_odd_starts_cpu"], "odd_starts_gpu": note["floor_odd_starts_gpu"],
                  "peak_log2_gpu": note["floor_peak_log2_gpu"], "max_steps": note["floor_max_steps"]},
         "found_in": found,
         "scope": "presence in the certificate's records only; the certificate itself is not re-run here"}
-    if found["odd_starts_cpu"] is None:
+    if not found["odd_starts_cpu"]:
         fail(f"the CPU odd-start count {note['floor_odd_starts_cpu']} is not in any certificate record under {CERT_DIR}")
-    if any(v is None for v in found["max_steps"].values()):
+    if any(not v for v in found["max_steps"].values()):
         fail(f"a greatest step count in the note is not a max_steps entry of the certificate: {found['max_steps']}")
     if F > 44:
-        if note["floor_odd_starts_gpu"] is None or found["odd_starts_gpu"] is None:
+        if note["floor_odd_starts_gpu"] is None or not found["odd_starts_gpu"]:
             fail(f"the GPU sweep's odd-start count is not stated or not the clean record's for [2^44, 2^{F})")
-        if note["floor_peak_log2_gpu"] is not None and found["peak_log2_gpu"] is None:
+        if note["floor_peak_log2_gpu"] is not None and not found["peak_log2_gpu"]:
             fail("the GPU sweep's peak exponent does not match the record")
 
     report["problems"] = problems
