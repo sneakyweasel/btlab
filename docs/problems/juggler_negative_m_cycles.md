@@ -139,10 +139,34 @@ least element they pass every test, and with the floor one above it they do not.
 
 ## Formalization
 
-None new. The negative-side finance and word shape are Lean already
-(`neg_cycle_finance`, `neg_prefix_noncontracting`, `neg_cycle_expanding`,
-`neg_cycle_word_is_juggler_shape` in `CollatzBridge.lean`). Lemmas 1–3 of the note are
-elementary and are the natural next Lean; Rhin's bound would enter as a hypothesis, as
+**Lemmas 1 and 3 are Lean** (21 September 2026): `Problems.Collatz.NegativeMCycles`, twenty
+declarations, in the `Problems` barrel so the default build covers them. Thirteen depend on
+Mathlib's three standard axioms, five on none at all (the `decide` computations on the known
+cycles), two are derived; no `sorry`, no `native_decide`.
+
+The formalization writes the start of an odd run as \(y=2^a m+1\) with \(m\) odd, which
+removes every truncated subtraction and puts the run in closed form
+(`negT_run_iter`: \(g^k(2^a m+1)=3^k2^{a-k}m+1\) for \(k\le a\)). Lemma 1's clauses are
+`negT_run_odd`, `negT_run_even`, `negT_start_ge`, `negT_localMax`, packaged at an odd start
+by `negT_lemma_one` with the \(v_2\) decomposition `negT_run_decomp`; Lemma 3 is
+`negT_chain_nat` (the integer half, \(2u'<3^am\)) and `negT_chain_real` (the exponent,
+\(u'<u^{\delta}/2\)), packaged as `negT_lemma_three`. The three known cycles and the sign of
+the map are checked inside the kernel (`negT_sign_is_minus`, `negT_cycle_seventeen`,
+`negT_chain_tight_at_17`: \(2\cdot40<81\), one unit of slack, which is the note's tightness
+remark). Guard test `tests/research/juggler_sequence/test_negative_m_cycles_lean.py`.
+
+**What formalizing changed.** The closed form needs no parity assumption on \(m\): the powers
+of two alone keep the state odd through the run, and oddness enters only to know the run
+stops at \(a\). The hypotheses of `negT_run_iter`, `negT_run_odd` and `negT_localMax` are
+correspondingly weaker than the note's Lemma 1 as written.
+
+**Not formalized.** Lemma 2, whose content is the cycle equation and the bound on
+\(\Lambda\), both real-analytic. Its first clause \(\Lambda>0\) is `neg_cycle_expanding` on
+the conjugate side, with `neg_cycle_finance`, `neg_prefix_noncontracting` and
+`neg_cycle_word_is_juggler_shape` in `CollatzBridge.lean`; the conjugation \(x=-y\) that
+carries one side to the other is not itself formalized, because `Problems.Collatz` sits below
+`Problems.Juggler` and importing the bridge from it would invert the layering. It belongs in
+the Paper D barrel, which does not exist yet. Rhin's bound would enter as a hypothesis, as
 `cycleMin_length_of_rhin` does on the Juggler side.
 
 ## Results

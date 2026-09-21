@@ -9,7 +9,7 @@
   },
   "pages": 7,
   "inputs": {
-    "docs/theory/collatz_3n_minus_1_m_cycles_note.md": "422739a3bafc8854925c501d118993cd183cd1ff51a8bee739e74cc396447c77",
+    "docs/theory/collatz_3n_minus_1_m_cycles_note.md": "9185ccaecaa6fa0d0a0099aefbd9620633ee77e96d5c36bc1fd65714335a6b66",
     "tools/collatz_note/article.tex": "de7d03ecd54d7a2cbfaa7b8f198f684b21afc203db63669a547b53c4e499ea4d",
     "tools/collatz_note/layout.lua": "37514155670379b4ab80ee9a5704bc0877c4233d257039ff26ea999add03ec1f",
     "tools/build_3n_minus_1_note.py": "69327788fbceaf91927c499f34057f1d0692a821c2dc357dcea0eccae24d9e0a",
@@ -19,6 +19,6 @@
     "data/research/juggler/negative_m_cycles/manuscript_check.json": "54b10f0eb3598f886a368d0c4a1795b181c83f68087243d8ee44c06227ffc07b"
   },
   "outputs": {
-    "juggler_review/collatz_3n_minus_1_m_cycles_note.pdf": "858e5adecf6c3c82de81c779701386be7b48b7b7cdcee12a5110eda4cd71562b"
+    "juggler_review/collatz_3n_minus_1_m_cycles_note.pdf": "868ac972d3dd836cf3f83d62130cead931dcbb19d31d447981ba89822411712d"
   }
 }

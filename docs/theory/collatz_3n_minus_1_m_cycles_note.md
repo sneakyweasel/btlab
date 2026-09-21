@@ -338,9 +338,22 @@ the negative Collatz cycles (Paper A, Section 5.9, and `CollatzBridge.lean`), bu
 shape does not transport a realization, so a \(3n-1\) \(m\)-cycle theorem constrains Juggler
 cycle words and nothing more. It does not settle the \(3n-1\) cycle question, \(m\) being
 bounded, and it says nothing about divergence on either map. Hercher's refinement is not transposed; the
-Eliahou-type lattice of admissible periods on this side is not written. Lemmas 1–3 are
-elementary and are not yet in Lean; the negative-side finance and word shape that surround
-them are (`neg_cycle_finance`, `neg_prefix_noncontracting`, `neg_cycle_expanding`).
+Eliahou-type lattice of admissible periods on this side is not written.
+
+Lemmas 1 and 3 are machine-checked (`Problems.Collatz.NegativeMCycles`, twenty declarations,
+Lean 4 with Mathlib, no `sorry` and nothing off the kernel). The formalization writes the
+start of an odd run as \(y=2^a m+1\) with \(m\) odd, which removes every truncated
+subtraction and puts the run in closed form,
+\(g^k(2^a m+1)=3^k 2^{a-k} m+1\) for \(k\le a\); Lemma 1's four clauses and Lemma 3's two
+halves are read off it, and the known cycles are checked against the same definitions inside
+the kernel. Formalizing it sharpened one hypothesis: the closed form needs no parity
+assumption on \(m\), since the powers of two alone keep the state odd through the run, and
+oddness of \(m\) is used only to know that the run stops at \(a\). Lemma 2 is not in Lean: its
+content is the cycle equation and the bound on \(\Lambda\), which are real-analytic. Its first
+clause, \(\Lambda>0\), is the negative-cycle expansion already in Lean on the conjugate side
+(`neg_cycle_expanding`), together with the negative-side finance and word shape
+(`neg_cycle_finance`, `neg_prefix_noncontracting`); the conjugation \(x=-y\) that carries one
+to the other is stated in this note and is not itself formalized.
 
 ## 8. Verification
 
@@ -354,7 +367,10 @@ on the contracting side returns [SdW] Lemma 18 at their floor. The floor's certi
 with the branch `negative_floor_3x1`: the CPU chunk reports below \(2^{44}\), and above it the
 GPU sweep's chunk reports, its calibration on the CPU's range and the three spot-check
 windows (`python -m research.juggler_sequence.negative_floor_gpu calibrate`, `sweep 44 51`,
-`spot`).
+`spot`). `lake build Problems.Collatz.NegativeMCycles` checks Lemmas 1 and 3; the module is
+in the `Problems` barrel, so the default build covers it, and
+`tests/research/juggler_sequence/test_negative_m_cycles_lean.py` holds it to no `sorry`, no `native_decide` and
+the three standard axioms.
 
 ## References
 

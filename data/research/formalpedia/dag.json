@@ -892,6 +892,18 @@
         "kernel": 7
       }
     },
+    "Problems.Collatz.NegativeMCycles": {
+      "declarations": 22,
+      "depends_on": [],
+      "file": "formal/Problems/Collatz/NegativeMCycles.lean",
+      "ledger": [
+        "J-negative-m-cycles-excluded-through-58"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 22
+      }
+    },
     "Problems.Collatz.Shortcut": {
       "declarations": 14,
       "depends_on": [],
@@ -3478,7 +3490,7 @@
   "totals": {
     "edges": 263,
     "edges_before_reduction": 2055,
-    "ledger_rows_placed": 465,
-    "nodes": 213
+    "ledger_rows_placed": 466,
+    "nodes": 214
   }
 }

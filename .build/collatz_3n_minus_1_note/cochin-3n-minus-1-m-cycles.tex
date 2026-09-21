@@ -484,11 +484,28 @@ Juggler cycle words and nothing more. It does not settle the \(3n-1\)
 cycle question, \(m\) being bounded, and it says nothing about
 divergence on either map. Hercher's refinement is not transposed; the
 Eliahou-type lattice of admissible periods on this side is not written.
-Lemmas 1--3 are elementary and are not yet in Lean; the negative-side
-finance and word shape that surround them are
+
+Lemmas 1 and 3 are machine-checked
+(\texttt{\nolinkurl{Problems.Collatz.NegativeMCycles}}, twenty
+declarations, Lean 4 with Mathlib, no \texttt{\nolinkurl{sorry}} and
+nothing off the kernel). The formalization writes the start of an odd
+run as \(y=2^a m+1\) with \(m\) odd, which removes every truncated
+subtraction and puts the run in closed form,
+\(g^k(2^a m+1)=3^k 2^{a-k} m+1\) for \(k\le a\); Lemma 1's four clauses
+and Lemma 3's two halves are read off it, and the known cycles are
+checked against the same definitions inside the kernel. Formalizing it
+sharpened one hypothesis: the closed form needs no parity assumption on
+\(m\), since the powers of two alone keep the state odd through the run,
+and oddness of \(m\) is used only to know that the run stops at \(a\).
+Lemma 2 is not in Lean: its content is the cycle equation and the bound
+on \(\Lambda\), which are real-analytic. Its first clause,
+\(\Lambda>0\), is the negative-cycle expansion already in Lean on the
+conjugate side (\texttt{\nolinkurl{neg_cycle_expanding}}), together with
+the negative-side finance and word shape
 (\texttt{\nolinkurl{neg_cycle_finance}},
-\texttt{\nolinkurl{neg_prefix_noncontracting}},
-\texttt{\nolinkurl{neg_cycle_expanding}}).
+\texttt{\nolinkurl{neg_prefix_noncontracting}}); the conjugation
+\(x=-y\) that carries one to the other is stated in this note and is not
+itself formalized.
 
 \section{8. Verification}\label{verification}
 
@@ -507,6 +524,12 @@ Lemma 18 at their floor. The floor's certificate is with the branch
 on the CPU's range and the three spot-check windows
 (\texttt{python\ -m\ research.juggler\_sequence.negative\_floor\_gpu\ calibrate},
 \texttt{sweep\ 44\ 51}, \texttt{\nolinkurl{spot}}).
+\texttt{lake\ build\ Problems.Collatz.NegativeMCycles} checks Lemmas 1
+and 3; the module is in the \texttt{\nolinkurl{Problems}} barrel, so the
+default build covers it, and
+\texttt{\nolinkurl{tests/research/juggler_sequence/test_negative_m_cycles_lean.py}}
+holds it to no \texttt{\nolinkurl{sorry}}, no
+\texttt{\nolinkurl{native_decide}} and the three standard axioms.
 
 \section{References}\label{references}
 

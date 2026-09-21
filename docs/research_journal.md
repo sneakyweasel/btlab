@@ -1,5 +1,73 @@
 # Research journal
 
+## 2026-09-21 -- Lemmas 1 and 3 of the 3n-1 note are Lean; the closed form needed one hypothesis less than the note claims
+
+- **Objective:** Philippe asked for the Lean of the note's lemmas, on the way to Paper D.
+- **The module.** `Problems.Collatz.NegativeMCycles`, twenty declarations, added to the
+  `Problems` barrel so the default build covers it. Thirteen rest on Mathlib's three standard
+  axioms, five on none at all (the `decide` computations on the known cycles), two are
+  derived; no `sorry`, no `native_decide`. `lake build Problems` is green at 8978 jobs.
+- **The formulation that made it easy.** Writing the start of an odd run as \(y=2^am+1\)
+  with \(m\) odd removes every truncated subtraction: the odd step is exactly
+  \(u\mapsto3(u/2)\) on \(u=y-1\), so the run is
+  \(g^k(2^am+1)=3^k2^{a-k}m+1\) for \(k\le a\) (`negT_run_iter`), and all four clauses of
+  Lemma 1 read off it. Lemma 3 splits into an integer half, \(2u'<3^am\)
+  (`negT_chain_nat`), and one real step, \(3^am\le u^{\delta}\), which is \(2^{\delta}=3\)
+  with \(m\le m^{\delta}\) (`negT_chain_real`).
+- **What the proof assistant found.** The closed form needs no parity assumption on \(m\):
+  the powers of two alone keep the state odd through the run, and oddness enters only to know
+  the run stops at \(a\). Lean's unused-variable linter flagged the hypothesis, and three
+  statements are now strictly more general than the note's Lemma 1 as written. The note and
+  the dossier say so.
+- **Against a known-bad input.** The three cycles are checked inside the kernel, and so is the
+  sign: `negT_sign_is_minus` records \(g(17)=25\) where the shortcut \(3n+1\) map gives
+  \(26\), so a sign flip falsifies the module. `negT_chain_tight_at_17` is
+  \(2\cdot40<81\), one unit of slack, which is the note's tightness remark and the reason a
+  weaker constant than \(u^{\delta}/2\) would not do.
+- **Lemma 2 is not in Lean**, and the note now says why: the cycle equation and the bound on
+  \(\Lambda\) are real-analytic. Its first clause \(\Lambda>0\) is `neg_cycle_expanding`
+  on the conjugate side, but the conjugation \(x=-y\) is not formalized, because
+  `Problems.Collatz` sits below `Problems.Juggler` and importing the bridge from it would
+  invert the layering. It belongs in the Paper D barrel, which does not exist yet.
+- **Recorded.** Note Sections 7 and 8, the dossier's Formalization section, the theorem row
+  (its `lean` field was empty and now names the module; the tag stays `EXACT — HUMAN PROOF`,
+  since the Lean covers two lemmas and not the theorem), a guard test, and the index. The
+  index and the dependency graph were rebuilt after checking that the one dirty peer Lean file
+  differs only in line endings, so no unlanded declaration could be baked in; the four Jev
+  artifacts dirty in the tree are a peer's concurrent run and are left to them.
+
+## 2026-09-21 -- The doubtful band read: 61 rows against their files, 31 edited, mostly statements that named lemmas the row never recorded
+
+- **Objective:** Philippe asked for the doubtful band of the coverage audit, the 61 resolved
+  rows Jev put between 0.25 and 0.5, worked the way the nine short mis-joins were.
+- **Method.** For each row, the statement beside its recorded declarations and the unclaimed
+  declarations of its file ranked by word overlap, in four batches; every name to be added
+  looked up for existence, trust and prior claim before the edit; the JSON edited by a
+  round-trip-checked script that recomputes `lean_trust` from the index.
+- **What the band was.** Not mis-joins, mostly. The recurring shape is a statement that
+  narrates its own assembly and names in-file lemmas the row never recorded: the fudge row
+  names `absorb_even_step`, `family_slack139` and the unique-rotation theorem; the Chernoff
+  row names eleven engine lemmas; the pressure-form row four; the monotone-pairing row its
+  six sibling theorems; the transport row its four floor-loss lemmas; the escape row its
+  five step lemmas; the two finance-leftover rows their floor theorems and companions.
+  Those lists are now recorded, 21 rows in all. Six terse statements were spelled out
+  (`p ~ -p`-style shorthand, missing moduli and hypotheses). `BTL-trichotomy` was joined to
+  `lift_trichotomy` alone, which says singleton, all or none without the conditions; the
+  three case theorems were in the file, and the root counterexample x^2+x is marked as not
+  formalized. `OST-np-same-energy-same-OnF` held `fold_on_F_iff` while stating
+  `same_energy_same_OnF`; re-joined, and `fold_on_F_iff` went to `OST-np-fold-s3`, whose
+  "so T_B(s) lies on F iff" clause it is. Thirty rows were left alone: Paper-section
+  summaries whose theorem states the mathematics and whose remaining text is commentary.
+- **Re-asked.** 31 coverage requests, 38.9k tokens: 21 covered (0.5 to 0.9), 7 doubtful, 3
+  filed as not covered. Those three went down after gaining declarations: the λ=1 interval
+  row at 0.22 is a plain false negative, both halves and the word lemma are recorded; the
+  fudge and census-eighteen rows carry long assembly narratives, and more declarations gave
+  Jev more to compare. The score is a reading list, not a merit function. Seven offer
+  verdicts stale, re-asked for 21.7k tokens. The audit now stands at 114 covered, 38
+  doubtful, 96 not covered, from 94, 61 and 93.
+- **Gates.** `render_theorem_ledger.py --check`, the seventeen ledger tests, formalpedia.
+  The index on disk is a peer's uncommitted rebuild and is not staged here.
+
 ## 2026-09-21 -- The nine short mis-joins repaired: seven part-for-whole joins and two terse statements over exact joins; six now read as covered, three doubtful, none not covered
 
 - **Objective:** Philippe asked to fix the nine short claims the coverage digest had indexed
@@ -248,8 +316,28 @@
   that fails on a weakened floor, dossier, ledger row, index rebuilt. The proved
   direction was already kernel-checked as `power_bound_contracts` in Envelope.lean,
   which the OEIS draft now names.
-- **Decision:** `PARK`. Best next question: an arithmetic reason a near-drop value
-  cannot sit within one floor of `m^{2^{f_o}}` at a dangerous `o`.
+- **The push, later the same day.** The best next question as I had phrased it
+  was backwards: a counterexample needs a near-drop value about
+  `0.69 f_O m ln m` units BELOW its ideal, not within one floor of it, and
+  since single floors lose under a unit that is a count of earlier near-drops
+  near `m`, a Diophantine count over `{o log2 3}`, not the arithmetic of nested
+  powers. Doing that count exactly is the refined bound: under
+  `2O/m <= ln 2`, `x_j >= (m/2)^{rho_j}` and the run structure give
+  `S <= (1 + 2/m)(sum_{o<O} (2/m)^{2^{f_o}} + 2/m^2)`, monotone in `m`, with
+  `f_o` exact. Least admissible `O`: 16266 at `10^6`, 31867 at `10^7`, 111202
+  at `10^8`, and the admissible ones sit at the dangerous denominators plus
+  multiples of 665. The sweep went to `10^7` in five chunks: no uncertified
+  drop among 4999999 odd starts, 42 past the cap and run without it, the
+  largest excursion 89981517 digits at `m = 7110201`. The range 7 to 9 million
+  ran on GMP integers through gmpy2, an independent implementation, after pure
+  Python stalled on 7110201; the identity was not measured there. So every orbit with fewer
+  than 31867 odd letters in its excursion drops at its first contracting
+  length. Near-drops measured: the relative shortfall below the ideal never
+  exceeds 1.4e-05 for `m >= 10^5`, against the `6e-4` a counterexample would
+  need at `O = 665`. Paper B's machinery has nothing to add to a proof here;
+  the obstruction is unchanged in shape.
+- **Decision:** `PARK`. Best next question: an integer form of the drop
+  criterion that Lean can carry; the sweep to `10^8` is the cheap alternative.
 
 ## 2026-09-21 -- The 3n-1 note read for publication: sound, not ready; its numbers independently checked, the ceilings off by one corrected, the PDF built
 
