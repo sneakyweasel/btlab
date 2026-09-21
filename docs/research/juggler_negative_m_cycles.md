@@ -104,6 +104,19 @@ The same enumerate-and-test with the window on the contracting side, at their fl
 | 71 | 64 | (5750934602875680, 3364081086781987, 36.3, 592.9); (11985484530117643, 7011059003092348, 13.5, 623.6) |
 | 72 | 102 | (5750934602875680, 3364081086781987, 44.2, 601.3); (11985484530117643, 7011059003092348, 29.8, 632.4); (17736419132993323, 10375140089874335, 15.4, 308.2); (18220034457359606, 10658036919402709, 15.4, 666.8); (23970969060235286, 14022118006184696, 0.9, 316.2); (24454584384601569, 14305014835713070, 1.0, 705.3) |
 
+## The valley-count refinement at the verified floor
+
+Lemmas 1, 2 and 3 as one constraint system rather than two separate relaxations: excluded through m = 61, first open m = 62 (the plain tables give 58 and 59).
+
+| m | survivors before | survivors after |
+|---|---|---|
+| 59 | 2 | none |
+| 60 | 2 | none |
+| 61 | 4 | none |
+| 62 | 9 | [83130157078217] |
+| 63 | 13 | [83130157078217] |
+| 64 | 23 | [83130157078217, 766512153894657] |
+
 ## The cycles that exist pass the same test
 
 - least element 5: K = 3, o = 2, m = 1; cycle equation exact: True; finance bound 8.49 ≥ x_min - 1 = 4: True; tower bound 3.71 < x_min - 1: True

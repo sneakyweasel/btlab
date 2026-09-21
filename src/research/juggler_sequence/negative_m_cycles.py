@@ -358,6 +358,98 @@ def sdw_lemma18_reproduction() -> dict[str, Any]:
 
 
 # ---------------------------------------------------------------------------------------------
+# The valley-count refinement: Lemmas 1, 2 and 3 used together instead of twice separately
+# ---------------------------------------------------------------------------------------------
+#
+# Write ``b_i = log2 u_i`` for the conjugated local minima of an m-cycle above the floor.
+# The note's three lemmas are three linear constraints and one objective on the same vector:
+#
+#     (floor)     b_i >= L0 = log2(X0 - 1)                      every minimum is above the floor
+#     (chaining)  b_{i+1} <= delta b_i - 1                      Lemma 3
+#     (odd steps) sum b_i >= o                                  Lemma 1, a_i <= b_i, summed
+#     (objective) Lambda < sum 2^{-b_i}                         Lemma 2
+#
+# Lemma 2 relaxes this to ``Lambda < m 2^{-L0}`` by putting every minimum at the floor, and
+# Lemma 3 relaxes it to ``L0 >= o / B(m)`` by ignoring the objective. Both relaxations are
+# loose at once: a cycle cannot have all its valleys at the floor *and* carry o odd steps,
+# because the chaining caps how fast the minima can climb away from the floor. Keeping the
+# system intact is the transposition of the arrangement behind Hercher's Main Theorem 21.
+#
+# The feasible set is a polytope and ``sum 2^{-b_i}`` is convex, so the maximum sits at a
+# vertex: a block of r minima at the floor, one free coordinate, the rest riding the chaining
+# ceiling. ``valley_cap`` maximizes over r, and a length is excluded when its Lambda already
+# exceeds that maximum.
+
+
+def _valley_profile(r: int, c: mpf, m: int, L0: mpf) -> list[mpf]:
+    """r minima at the floor, the next at ``c``, the rest on the chaining ceiling from ``c``."""
+    vals = [L0] * r
+    if r < m:
+        vals.append(c)
+        b = c
+        for _ in range(m - r - 1):
+            b = delta() * b - 1
+            vals.append(b)
+    return vals
+
+
+def valley_cap(m: int, o: int, X0: int) -> mpf:
+    """The largest ``sum 2^{-b_i}`` any m-cycle above ``X0`` with ``o`` odd steps can have.
+
+    An upper bound on ``Lambda`` that uses the floor, the chaining and the odd-step count
+    together. It is never weaker than Lemma 2's ``m / (X0 - 1)``, and is much stronger once
+    ``o`` is large enough that most valleys have to climb."""
+    with mp.workdps(_DPS):
+        L0 = log(mpf(X0) - 1) / log(2)
+        d = delta()
+        best = mpf(0)
+        for r in range(m + 1):
+            if r == m:
+                if m * L0 >= o:
+                    best = max(best, m * mpf(2) ** (-L0))
+                continue
+            lo, hi = L0, d * L0 - 1
+            if sum(_valley_profile(r, hi, m, L0)) < o:
+                continue            # even the ceiling cannot carry o odd steps with r at the floor
+            if sum(_valley_profile(r, lo, m, L0)) >= o:
+                c = lo
+            else:
+                for _ in range(200):
+                    mid = (lo + hi) / 2
+                    if sum(_valley_profile(r, mid, m, L0)) < o:
+                        lo = mid
+                    else:
+                        hi = mid
+                c = hi
+            best = max(best, sum(mpf(2) ** (-v) for v in _valley_profile(r, c, m, L0)))
+        return best
+
+
+def valley_excluded(m: int, K: int, X0: int) -> bool:
+    """Does the valley count exclude a length that the plain chaining leaves open?"""
+    with mp.workdps(_DPS):
+        o, lam = lambda_juggler(K)
+        return lam >= valley_cap(m, o, X0)
+
+
+def valley_refined(rows: list[dict[str, Any]], X0: int) -> dict[str, Any]:
+    """Re-test every survivor of a floor's table against the valley cap."""
+    out, excluded_through = [], 0
+    still_open = None
+    for r in rows:
+        left = [s for s in r["survivors"] if not valley_excluded(r["m"], s["K"], X0)]
+        row = {"m": r["m"], "survivors_before": len(r["survivors"]),
+               "survivors_after": [s["K"] for s in left],
+               "excluded": r["excluded"] or not left}
+        out.append(row)
+        if row["excluded"] and excluded_through == r["m"] - 1:
+            excluded_through = r["m"]
+        elif still_open is None and not row["excluded"]:
+            still_open = r["m"]
+    return {"excluded_through": excluded_through, "first_open_m": still_open, "rows": out}
+
+
+# ---------------------------------------------------------------------------------------------
 # One row of the table
 # ---------------------------------------------------------------------------------------------
 
@@ -508,6 +600,7 @@ def probe_payload() -> dict[str, Any]:
         "tables": tables,
         "m_free_survivors_at_floor": mfree[:12],
         "sdw_lemma18_reproduction": sdw_lemma18_reproduction(),
+        "valley_refinement": valley_refined(at_floor["rows"], 2 ** FLOOR_LOG2),
         "classification": {
             "label": CLASS_EXCLUDED if M >= 1 else "NEGATIVE_M_CYCLES_TABLES_INCONCLUSIVE",
             "excluded_through_at_floor": M,
@@ -561,6 +654,17 @@ def render_markdown(data: dict[str, Any]) -> str:
         desc = "; ".join(f"({s['o']}, {s['L']}, {s['log2_slack']:.1f}, {s['falls_when_X0_over_2_50']:.1f})"
                          for s in r["survivors"]) or "none"
         lines.append(f"| {m} | {r['admissible_count']} | {desc} |")
+    v = data["valley_refinement"]
+    lines += ["", "## The valley-count refinement at the verified floor", "",
+              "Lemmas 1, 2 and 3 as one constraint system rather than two separate relaxations: "
+              f"excluded through m = {v['excluded_through']}, first open m = {v['first_open_m']} "
+              f"(the plain tables give {data['classification']['excluded_through_at_floor']} and "
+              f"{data['classification']['first_open_m']}).", "",
+              "| m | survivors before | survivors after |", "|---|---|---|"]
+    for row in v["rows"]:
+        if row["survivors_before"] or row["survivors_after"]:
+            lines.append(f"| {row['m']} | {row['survivors_before']} | "
+                         f"{row['survivors_after'] or 'none'} |")
     lines += ["", "## The cycles that exist pass the same test", ""]
     for c in data["known_cycles_survive"]:
         lines.append(f"- least element {c['cycle_min']}: K = {c['K']}, o = {c['o']}, m = {c['m']}; "

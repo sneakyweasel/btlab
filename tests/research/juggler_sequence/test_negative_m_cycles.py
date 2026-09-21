@@ -153,6 +153,41 @@ def test_the_four_lengths_at_m_50_die_at_the_recorded_floors() -> None:
     assert kills == [44.01, 44.57, 45.48, 48.58], kills
 
 
+def test_the_valley_refinement_spares_the_cycles_that_exist() -> None:
+    """The known-bad input for the refinement, and the reason to believe it.
+
+    ``valley_cap`` keeps the floor, the chaining and the odd-step count as one system instead
+    of relaxing them separately. Set the floor at a real cycle's own least element and the cap
+    must still leave room for that cycle's Lambda, or the refinement is excluding the truth.
+    Checked on (5, 7, 10) and on the eleven-element cycle at 17."""
+    with mp.workdps(60):
+        for K, o, m, xmin in ((3, 2, 1, 5), (11, 7, 2, 17)):
+            lam = o * log(3) - K * log(2)
+            cap = nm.valley_cap(m, o, xmin)
+            assert lam < cap, (K, float(lam), float(cap))
+            assert not nm.valley_excluded(m, K, xmin)
+
+
+def test_the_valley_refinement_closes_three_more_values_of_m() -> None:
+    """At the verified floor the refinement reaches m <= 61 where the separate relaxations
+    reach 58: the two lengths open at m = 59 and 60, and the four at 61, all fall. One length
+    survives at m = 62. The cap is never weaker than Lemma 2's m/(X0 - 1)."""
+    data = json.loads(nm.JSON_PATH.read_text(encoding="utf-8"))
+    v = data["valley_refinement"]
+    assert v["excluded_through"] == 61 and v["first_open_m"] == 62
+    assert data["classification"]["excluded_through_at_floor"] == 58
+    rows = {r["m"]: r for r in v["rows"]}
+    assert rows[59]["survivors_before"] == 2 and rows[59]["survivors_after"] == []
+    assert rows[61]["survivors_before"] == 4 and rows[61]["survivors_after"] == []
+    assert rows[62]["survivors_after"] == [83130157078217]
+    with mp.workdps(60):
+        X0 = 2 ** nm.FLOOR_LOG2
+        for m in (10, 40, 58, 59, 62):
+            o = next(s["o"] for r in data["tables"]["2^51"]["rows"] if r["m"] >= 59
+                     for s in r["survivors"])
+            assert nm.valley_cap(m, o, X0) <= mpf(m) / (X0 - 1) * (1 + mpf("1e-9"))
+
+
 def test_herchers_two_m_free_refinements_do_not_reach() -> None:
     """Hercher 2023 read from the source on 21 September 2026, and both refinements measured
     against what this side needs. Neither reaches, and this pins why.

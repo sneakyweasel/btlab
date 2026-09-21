@@ -12950,6 +12950,403 @@
       ]
     }
   },
+  "valley_refinement": {
+    "excluded_through": 61,
+    "first_open_m": 62,
+    "rows": [
+      {
+        "m": 1,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 2,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 3,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 4,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 5,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 6,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 7,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 8,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 9,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 10,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 11,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 12,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 13,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 14,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 15,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 16,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 17,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 18,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 19,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 20,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 21,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 22,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 23,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 24,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 25,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 26,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 27,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 28,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 29,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 30,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 31,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 32,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 33,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 34,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 35,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 36,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 37,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 38,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 39,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 40,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 41,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 42,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 43,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 44,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 45,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 46,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 47,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 48,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 49,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 50,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 51,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 52,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 53,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 54,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 55,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 56,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 57,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 58,
+        "survivors_before": 0,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 59,
+        "survivors_before": 2,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 60,
+        "survivors_before": 2,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 61,
+        "survivors_before": 4,
+        "survivors_after": [],
+        "excluded": true
+      },
+      {
+        "m": 62,
+        "survivors_before": 9,
+        "survivors_after": [
+          83130157078217
+        ],
+        "excluded": false
+      },
+      {
+        "m": 63,
+        "survivors_before": 13,
+        "survivors_after": [
+          83130157078217
+        ],
+        "excluded": false
+      },
+      {
+        "m": 64,
+        "survivors_before": 23,
+        "survivors_after": [
+          83130157078217,
+          766512153894657
+        ],
+        "excluded": false
+      }
+    ]
+  },
   "classification": {
     "label": "NEGATIVE_M_CYCLES_EXCLUDED_BELOW_M",
     "excluded_through_at_floor": 58,

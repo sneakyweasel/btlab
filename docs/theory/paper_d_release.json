@@ -42,7 +42,7 @@
     {
       "path": "data/research/juggler/negative_m_cycles/summary.json",
       "mode": "text",
-      "sha256": "3f34572035393a535307753359b045f154c6ab519aa4b5a3d12dcbfdcb325dda"
+      "sha256": "d12128c0c1bd9e95e878e5087ef0c16babb50b018095bd7f6407b51bae9e49cd"
     },
     {
       "path": "docs/theory/PAPER_D_BUILD.md",
@@ -67,7 +67,7 @@
     {
       "path": "src/research/juggler_sequence/negative_m_cycles.py",
       "mode": "text",
-      "sha256": "28bad2f228980a1512a5d10a29ceee7f6d7602a64fa2558bdb7a3dd5ec42c291"
+      "sha256": "d68976880aef49c2ef25d205407748b3ab9a7e7994c178b665db1db8c24197f9"
     },
     {
       "path": "tools/build_paper_d.py",

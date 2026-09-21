@@ -1,5 +1,37 @@
 # Research journal
 
+## 2026-09-21 -- The valley arrangement transposed: m <= 61 at the same floor, three values by argument
+
+- **Objective:** Philippe said proceed on the one Hercher mechanism the earlier measurements
+  had left open, the arrangement behind his Main Theorem 21.
+- **What it is, read from the source.** A pigeonhole over cyclic windows of \(m_2\)
+  consecutive runs: some window carries at least \((m_2/m)K\) odd steps, and the chaining
+  inside it then forces one local minimum to be astronomically large, so its contribution to
+  the reciprocal sum vanishes. The effect is to cut the count that multiplies \(1/X_0\).
+- **What it becomes on this side.** The note's three lemmas are already three constraints and
+  one objective on the same vector \(b_i=\log_2u_i\): the floor \(b_i\ge L_0\), the
+  chaining \(b_{i+1}\le\delta b_i-1\), the odd-step count \(\sum b_i\ge o\), and
+  \(\Lambda<\sum2^{-b_i}\). Lemma 2 relaxes it by putting every minimum at the floor and
+  Lemma 3 by dropping the objective; both are loose at once. Keeping the system intact needs
+  no pigeonhole at all, because the cyclic structure is already in the constraints.
+- **The optimization.** The feasible set is a polytope and the objective is convex, so the
+  maximum is at a vertex: a block of \(r\) minima at the floor, one free coordinate, the
+  rest on the chaining ceiling. Maximize over \(r\).
+- **Result: \(m\le61\) at \(2^{51}\)**, against \(58\) from the separate relaxations.
+  The two lengths open at \(m=59\) and \(60\) fall, and the four at \(61\);
+  \(83130157078217\) survives at \(m=62\). Three values of \(m\) with no change to the
+  floor, where the two refinements measured earlier today gave nothing.
+- **Caught one error on the way.** The first pass reduced the largest coordinates when
+  pulling the total down to \(o\); the objective is steepest at the small ones, so that
+  under-estimated the maximum and would have biased the exclusions in my favour. Redone with
+  bisection on the free coordinate; the answer held.
+- **Known-bad input.** With the floor at their own least element, \((5,7,10)\) and the cycle
+  at \(17\) both clear the cap, so the refinement is not excluding the truth; and the cap is
+  checked never to exceed Lemma 2's \(m/(X_0-1)\), so it can only help.
+- **Not in the paper.** Version 1.0.0 says \(m\le58\) and is correct. Raising it needs the
+  constraint system and the vertex argument written as a lemma -- the enumeration is argued,
+  not proved -- and then a new version of the Zenodo record. That is Philippe's call.
+
 ## 2026-09-21 -- Hercher read at Theorem 27 and Corollary 29: both m-free refinements are an order of magnitude too small for this side
 
 - **Objective:** Philippe said proceed on transposing Hercher's residue-class tracking, which

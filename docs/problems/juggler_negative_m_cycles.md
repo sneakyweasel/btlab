@@ -221,14 +221,59 @@ the Paper D barrel, which does not exist yet. Rhin's bound would enter as a hypo
   does not carry. Their Lemma 7 constant \(c_m\) is, algebraically, the
   \(2^{-(B-m)/((\delta-1)B)}\) of the note's Lemma 3.
 
+## The valley-count refinement: m <= 61 at the same floor, not yet in the paper
+
+**Derived 21 September 2026**, transposing the arrangement behind Hercher's Main Theorem 21.
+The three lemmas are three constraints and one objective on the same vector
+\(b_i=\log_2 u_i\) over the local minima of an \(m\)-cycle:
+
+| | |
+|---|---|
+| floor | \(b_i\ge L_0=\log_2(X_0-1)\) |
+| chaining (Lemma 3) | \(b_{i+1}\le\delta b_i-1\) |
+| odd steps (Lemma 1, summed) | \(\sum b_i\ge o\) |
+| objective (Lemma 2) | \(\Lambda<\sum 2^{-b_i}\) |
+
+The note relaxes this twice over: Lemma 2 puts every minimum at the floor and gets
+\(\Lambda<m/(X_0-1)\), Lemma 3 drops the objective and gets \(L_0\ge o/B(m)\). Both are
+loose at once, because a cycle cannot have all its valleys at the floor *and* carry \(o\)
+odd steps: the chaining caps how fast the minima climb away from the floor. Keeping the
+system intact is the refinement.
+
+The feasible set is a polytope and \(\sum2^{-b_i}\) is convex, so its maximum sits at a
+vertex: a block of \(r\) minima at the floor, one free coordinate, the rest on the chaining
+ceiling. `valley_cap(m, o, X0)` maximizes over \(r\); a length is excluded when its
+\(\Lambda\) already exceeds that maximum.
+
+**Result at the verified floor \(2^{51}\): \(m\le61\)**, against \(m\le58\) from the
+separate relaxations. The two lengths open at \(m=59\) and \(60\) fall, and so do the four
+at \(61\); one length, \(83130157078217\), survives at \(m=62\). Three values of \(m\)
+gained by argument, with no change to the floor.
+
+**Known-bad input.** With the floor set at their own least element, \((5,7,10)\) and the
+cycle at \(17\) both still clear the cap, so the refinement is not excluding the truth. The
+cap is also checked never to exceed Lemma 2's \(m/(X_0-1)\), so it can only help.
+
+**Status: not in the deposited paper.** Paper D version 1.0.0 states \(m\le58\) and is
+correct as it stands. Raising it to \(61\) means writing the constraint system and the
+vertex argument as a lemma, with the polytope and convexity spelled out, and then a new
+version of the record. The vertex enumeration in particular is argued, not yet proved: that a
+block at the floor followed by the ceiling is the maximizing family needs writing out.
+
+Pinned: `valley_cap`, `valley_excluded`, `valley_refined` in the probe;
+`test_the_valley_refinement_spares_the_cycles_that_exist` and
+`test_the_valley_refinement_closes_three_more_values_of_m`.
+
 ## Open questions
 
 - The floor stands at \(2^{51}\) since the GPU sweep of 21 September 2026. \(2^{52}\) to
   \(2^{55}\) buy nothing; \(2^{56}\) (about 32 hours of the card) buys \(m\le63\), \(2^{59}\)
   buys \(64\), \(2^{60}\) (about 21 days) buys \(68\). Verifier, driver, calibration and
   sweep records are archived with `negative_floor_3x1`.
-- Hercher's valley arrangement (his Main Theorem 21) transposed, worth about nine values of
-  \(m\) at \(2^{68}\). His other two m-free refinements were read from the source on
+- Hercher's valley arrangement (his Main Theorem 21) **transposed on 21 September 2026**,
+  and worth three values of \(m\) at \(2^{51}\): see the section above. Writing it as a
+  lemma, with the vertex argument proved rather than argued, is what stands between it and a
+  version 1.1.0 of Paper D. His other two m-free refinements were read from the source on
   21 September 2026 and measured: Corollary 29's residue tracking gains \(1.30\) bits of
   effective floor where \(4.18\) are needed to close \(m=59\), and Theorem 27's constant is
   \(0.23\) bits tighter than this side's kernel-checked one and leaves the period bound at
