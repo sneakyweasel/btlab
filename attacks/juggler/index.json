@@ -6345,7 +6345,7 @@
       "decision": "CLOSE",
       "ledger_ids": [],
       "aliases": [],
-      "nk_cluster": null
+      "nk_cluster": "Hercher's two m-free refinements do not reach the 3n-1 side"
     },
     {
       "id": "survivor_count_decay",

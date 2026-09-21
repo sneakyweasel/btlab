@@ -153,6 +153,40 @@ def test_the_four_lengths_at_m_50_die_at_the_recorded_floors() -> None:
     assert kills == [44.01, 44.57, 45.48, 48.58], kills
 
 
+def test_herchers_two_m_free_refinements_do_not_reach() -> None:
+    """Hercher 2023 read from the source on 21 September 2026, and both refinements measured
+    against what this side needs. Neither reaches, and this pins why.
+
+    Corollary 29 tracks residue classes modulo powers of two so that a verified floor does the
+    work of a larger one: on his side 1536 * 2^60 does the work of 3781 * 2^60, a factor 2.46,
+    or 1.30 bits. Closing even the first open value here, m = 59, needs Lemma 2's bound to
+    tighten by 4.18 bits. Short by more than an order of magnitude.
+
+    Theorem 27 replaces the m-dependent bound by an m-free one, Lambda < (1/4) * o / X0 in the
+    normalisation of this side. That is 0.23 bits tighter than the laboratory's own constant,
+    which is proved in Lean (neg_cycle_finance: 2 (y-1)(3^o - 2^K) <= (K-o) 3^o, i.e.
+    Lambda <~ (1/2) * (K-o) / (y-1)). The m-free period bound does not move under it: the
+    surviving lengths are near-convergents of log2/log3 and sit far apart, so a seventeen per
+    cent change of the window does not remove the least one.
+    """
+    data = json.loads(nm.JSON_PATH.read_text(encoding="utf-8"))
+    rows = {r["m"]: r for r in data["tables"]["2^51"]["rows"]}
+    with mp.workdps(50):
+        X0 = mpf(2) ** 51
+        needed = {m: float(log(max(mpf(m) / mpf(s["Lambda"]) + 1 for s in rows[m]["survivors"]) / X0, 2))
+                  for m in range(59, 64)}
+        assert 4.17 < needed[59] < 4.19, needed[59]
+        assert all(4.1 < v < 4.3 for v in needed.values()), needed
+        hercher_bits = float(log(mpf(3781) / 1536, 2))
+        assert 1.29 < hercher_bits < 1.31, hercher_bits
+        assert needed[59] > 3 * hercher_bits, "if this ever fails, the transposition is worth trying"
+        # the two m-free constants, per unit of total cycle length
+        x = log(2) / log(3)
+        lab, herch = mpf("0.5") * (1 - x), mpf("0.25") * x
+        assert 1.16 < float(lab / herch) < 1.18, float(lab / herch)
+        assert float(log(lab / herch, 2)) < 0.25
+
+
 def test_contracting_walk_agrees_with_a_direct_scan_and_differs_from_the_other_side() -> None:
     """The walk mirrored to the 3n+1 side lists exactly the K with frac(Kx) < eps; the known-bad
     input is the expanding-side list, which it must not reproduce."""

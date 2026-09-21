@@ -33,6 +33,46 @@ in an index that is reachable; and when a channel-based rejection is recorded,
 record what would overturn it. Related: the four hosts recorded as egress-blocked
 that answered 200 on the first try, in the same day's reading.
 
+## Hercher's two m-free refinements do not reach the 3n-1 side
+
+Recorded 21 September 2026, after reading Hercher 2023 at Theorem 27, Lemma 26 and
+Corollary 29 from the arXiv PDF. Both were proposed here as ways to strengthen Paper D
+without raising the verification floor. Both were measured against what this side needs, and
+neither reaches. The proposal was mine and it was too optimistic; the measurement is the
+correction.
+
+**Corollary 29, residue-class tracking.** He tracks the local minimum modulo powers of two
+across the Lemma 26 cases and drops any case whose residue class has its least member above
+the bound he needs, so a verified floor of \(1536\cdot2^{60}\) does the work of
+\(3781\cdot2^{60}\). That is a factor \(2.46\), or \(1.30\) bits of effective floor.
+Closing the first open value of Paper D, \(m=59\) at the floor \(2^{51}\), requires
+Lemma 2's bound to tighten by \(4.18\) bits; \(m=60\) to \(63\) require \(4.20\) to
+\(4.27\). Short by more than a factor of ten in the window, and the shortfall is not close
+enough to be worth an attempt at a sharper negative-side case analysis.
+
+**Theorem 27, the m-free averaging.** In the normalisation of this side it reads
+\(\Lambda<\tfrac14 o/X_0\), a constant of \(0.1577\) per unit of total cycle length
+against the laboratory's \(0.1845\). It is therefore \(0.23\) bits tighter than what this
+side already has — and what this side already has is kernel-checked (`neg_cycle_finance`,
+\(2(y-1)(3^o-2^K)\le(K-o)3^o\)), where his needs a case analysis over one, two or three
+consecutive runs. Transposing it would buy \(0.23\) bits at the cost of reproving a case
+analysis. Worse, it buys nothing at all in practice: the m-free period bound is unchanged at
+\(85137581\) under the tighter constant, because the surviving lengths are near-convergents
+of \(\log2/\log3\) and sit far apart, so a seventeen per cent change of the window removes
+none of them.
+
+Kind: `METHOD WALL` for both, at the measured sizes, not `REFUTED`: the methods are correct
+on their own side and would work here, they are simply an order of magnitude too small.
+
+Do not reopen: Corollary 29 or Theorem 27 as a route to \(m\ge59\), or to a better period
+bound, at any floor near \(2^{51}\).
+
+Still open, and a different mechanism: the valley arrangement behind his Main Theorem 21,
+which is what carries him to \(m\le91\). His Lemma 8 is already the note's Lemma 1.
+
+Pinned: [tests/research/juggler_sequence/test_negative_m_cycles.py](../tests/research/juggler_sequence/test_negative_m_cycles.py),
+`test_herchers_two_m_free_refinements_do_not_reach`.
+
 ## A realization law of FD type cannot give Juggler a Steiner theorem
 
 Killed claim, raised and refuted the same day (19 September 2026): "a perfect

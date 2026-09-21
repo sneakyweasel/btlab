@@ -227,7 +227,13 @@ the Paper D barrel, which does not exist yet. Rhin's bound would enter as a hypo
   \(2^{55}\) buy nothing; \(2^{56}\) (about 32 hours of the card) buys \(m\le63\), \(2^{59}\)
   buys \(64\), \(2^{60}\) (about 21 days) buys \(68\). Verifier, driver, calibration and
   sweep records are archived with `negative_floor_3x1`.
-- Hercher's valley arrangement transposed, worth about nine values of \(m\) at \(2^{68}\).
+- Hercher's valley arrangement (his Main Theorem 21) transposed, worth about nine values of
+  \(m\) at \(2^{68}\). His other two m-free refinements were read from the source on
+  21 September 2026 and measured: Corollary 29's residue tracking gains \(1.30\) bits of
+  effective floor where \(4.18\) are needed to close \(m=59\), and Theorem 27's constant is
+  \(0.23\) bits tighter than this side's kernel-checked one and leaves the period bound at
+  \(85137581\). Both are recorded as method walls in
+  [negative_knowledge](../negative_knowledge.md); do not reopen them.
 - The Eliahou-type period lattice on this side at \(2^{44}\).
 - Their Lemma 7 constant \(c_m\to0.30576\) against the \((B-m)/(\delta-1)\) term here, a
   bookkeeping comparison that would move nothing at \(2^{44}\) but is owed to the note.
