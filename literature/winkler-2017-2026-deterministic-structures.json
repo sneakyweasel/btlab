@@ -1,15 +1,14 @@
 {
+  "authors": [
+    "Mike Winkler"
+  ],
   "id": "winkler-2017-2026-deterministic-structures",
-  "title": "Deterministic Structures in the Stopping Time Dynamics of the 3x+1 Problem",
-  "authors": ["Mike Winkler"],
-  "year": 2026,
   "identifiers": {
     "arxiv": "1709.03385"
   },
-  "url": {
-    "arxiv": "https://arxiv.org/abs/1709.03385"
-  },
+  "notes": "A LATER REVISION IS HELD, AND EVERY CITATION WE CARRY IS OFF BY ONE. Recorded here 21 September 2026. The copy at literature/sources/winkler-2017-2026-deterministic-structures-rev-2026-08-23.pdf is 29 pages and reads 'Revised August 23, 2026'. arXiv still stops at v8 (28 July 2026, 28 pages), so this revision is NOT on arXiv; it is the ResearchGate copy, which is the one the OEIS pointer 'See pp. 2, 4, 13' uses and whose pagination this entry recorded as unresolvable. THE RENUMBERING, observed in the revision: the row-sum result that this entry calls Proposition 9 is PROPOSITION 10 ('Row sums count surviving classes'); the OEIS identification called Remark 10 is REMARK 11; the exact coverage density called Proposition 26 is PROPOSITION 27, printing delta_N = 3/4 + sum_n |C_n| 2^(-sigma_n); and item 8 is a THEOREM, not a Proposition. Hikawa's September paper credits 'Winkler's Proposition 8' for the counting identity, which is the v8 numbering too. ANY CITATION BY NUMBER MUST NAME THE VERSION. REMARK 11 ALSO CARRIES TWO OEIS POINTERS THIS ENTRY DID NOT HAVE: A020914 for the coefficient stopping times sigma_n, and A177789 for the class lists, beside A100982 and A076227. Neither was swept in juggler_oeis_neighbourhood.md. ITS BIBLIOGRAPHY NAMED FIVE SOURCES MISSING FROM THIS REGISTER, all now created: garner-1981-collatz-algorithm, terras-1978-density-addendum, thaler-2025-delta-recurrence, wirsching-1998-dynamical-system and -- the one that matters -- winkler-2026-connection-thresholds, a fourth Winkler 2026 on Beatty first passage at slope lambda = log2 3, with no URL anywhere. Its reference [6] also supplied the Terras 1976 DOI, 10.4064/aa-30-3-241-252. SCOPE OF THIS READING: the revision's statement list, the four renumbered items above, Remark 11 and the bibliography were read first-hand; the revision was NOT read in full and no claim is made about what else changed between v8 and it. The v8 content below stands as a record of v8. PRIOR NOTES, AT ARXIV V8. docs/problems/juggler_jump_spectrum.md. Read in full at v8, 28 July 2026, 28 pages. Exact finite structure only. Proposition 8 is the Pascal-type recursion R(k,n) = R(k-1,n) + R(k-1,n-1); Proposition 9 proves that the row sum w(k) counts the residue classes modulo 2^k that have not reached their coefficient stopping time by time k, which is exactly this laboratory's N_k; Remark 10 identifies w(k) as A076227 and the column sums as A100982; Proposition 26 gives an exact coverage density, tabulated to N = 18. NO ASYMPTOTIC OF ANY KIND -- no growth constant, no power of k, no oscillation. Page 2 credits the asymptotic side elsewhere: the concurrent study of Hikawa derives logarithmic asymptotics for the associated counting sequences A100982 and A076227. The OEIS pointer See pp. 2, 4, 13 is to the ResearchGate copy, whose pagination differs from arXiv v8. A separate September 2026 preprint of the same author, Coefficient First-Passage Words for the 3x+1 Map, doi 10.13140/RG.2.2.31257.79200, refines A100982 by a local cut statistic through a Beatty-Ferrers model and is likewise exact-finite, with no asymptotic.",
   "problem_area": "collatz",
+  "project_relationship": "known",
   "relevant_concepts": [
     "coefficient stopping time",
     "admissible position vectors",
@@ -17,7 +16,10 @@
     "A076227",
     "A100982"
   ],
-  "project_relationship": "known",
-  "status": "preprint",
-  "notes": "docs/problems/juggler_jump_spectrum.md. Read in full at v8, 28 July 2026, 28 pages. Exact finite structure only. Proposition 8 is the Pascal-type recursion R(k,n) = R(k-1,n) + R(k-1,n-1); Proposition 9 proves that the row sum w(k) counts the residue classes modulo 2^k that have not reached their coefficient stopping time by time k, which is exactly this laboratory's N_k; Remark 10 identifies w(k) as A076227 and the column sums as A100982; Proposition 26 gives an exact coverage density, tabulated to N = 18. NO ASYMPTOTIC OF ANY KIND -- no growth constant, no power of k, no oscillation. Page 2 credits the asymptotic side elsewhere: the concurrent study of Hikawa derives logarithmic asymptotics for the associated counting sequences A100982 and A076227. The OEIS pointer See pp. 2, 4, 13 is to the ResearchGate copy, whose pagination differs from arXiv v8. A separate September 2026 preprint of the same author, Coefficient First-Passage Words for the 3x+1 Map, doi 10.13140/RG.2.2.31257.79200, refines A100982 by a local cut statistic through a Beatty-Ferrers model and is likewise exact-finite, with no asymptotic."
+  "status": "read in full at arXiv v8; a later revision of 2026-08-23 is held and renumbers every citation",
+  "title": "Deterministic Structures in the Stopping Time Dynamics of the 3x+1 Problem",
+  "url": {
+    "arxiv": "https://arxiv.org/abs/1709.03385"
+  },
+  "year": 2026
 }

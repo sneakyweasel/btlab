@@ -12,8 +12,8 @@ Hikawa, *Collatz Parity Vector Toolkit* v1.0, 4 July 2026,
 [github.com/hikawa94/Collatz-Parity-Vector-Toolkit](https://github.com/hikawa94/Collatz-Parity-Vector-Toolkit),
 deposited at [doi:10.5281/zenodo.21186540](https://doi.org/10.5281/zenodo.21186540);
 its code was run and its published sample output compared against ours. It is
-a declared supplement to his January and July papers, which are unread here;
-see the open risk below.
+a declared supplement to his January and July papers, **both since read in
+full** (21 September 2026); see the retired open risk below.
 
 | this laboratory | the literature | Hikawa's toolkit |
 |---|---|---|
@@ -23,14 +23,18 @@ see the open risk below.
 | survivor count `N_d` | **A076227** | `D_Unconverged` |
 | minimal certificate count `M_d = 2 N_(d-1) - N_d` | **A100982**; Winkler's `a_3(r)`, a rational Catalan number | `B_Converged` |
 | minimal certificate length | **dropping time** (A126241; A020914, K. Spage comment, 22 Oct 2009); **glide** (Roosendaal) | `Glide` |
-| `word_counts(d)[o]`, survivors by odd count | — | Counting by Hamming Weight, `W[d][u]` |
+| `word_counts(d)[o]`, survivors by odd count | **Terras 1976, Def. 1.13**, as the active part of `n(a,k)` with `a = d - o` | Counting by Hamming Weight, `W[d][u]` |
 | free length / empty window | the gaps of the Beatty sequence `ceil(d log2 3)` | his zero rows |
 | free lengths never adjacent | the defining property of **A022921** | — |
 | free lengths | **A054414** (the Beatty complement) | his zero rows |
 | nonzero `M_d` in order | **A186009** ("A100982 with 1 prepended") | `W(d)` totals |
 | boundary mass `M_d / 2^d` | the frequency comment on **A186008**, T. D. Noe, Feb 2011 | — |
-| the joint (length, weight) table | **not in OEIS**, checked four readings -- every marginal is, the table is not. A214494 agrees for 24 terms and is the slope-1/2 ballot triangle, not ours | Counting by Hamming Weight |
-| survivor recursion `stepFlat` | — | `W[k][d] = W[k-1][d] + W[k-1][d-1]` |
+| the joint (length, weight) table | **CORRECTED 21 Sep 2026: it is displayed in OEIS**, as the `%e` example table of **A076227**, contributed by _Mike Winkler_, 12 Sep 2017 — rows `n`, columns `k` = odd count, entries `2,1` / `3,1` / `3,4,1` / `7,5,1` / `12,6,1` / `12,18,7,1`, identical to `word_counts`. Earlier readings searched for it as a *sequence* and missed the example field of the entry this page already cites. Its origin is older still: the active part of Terras 1976's `n(a,k)`, Def. 1.13 | Counting by Hamming Weight |
+| survivor recursion `stepFlat` | **Terras 1976, Thm 1.14** (gated Pascal recursion on `n(a,k)`); Winkler's row recursion (Prop. 8 at arXiv v8 / **Prop. 9–10** in the Aug 2026 revision); **the OEIS had the attribution first** -- A260591's reference line reads *See Theorem 1.14, Eq. (11) ("Modified binomial recursion")* (found 21 Sep 2026) | `W[k][d] = W[k-1][d] + W[k-1][d-1]` |
+| survivors by (length, weight) `n(a,k)` | **Terras 1976, Def. 1.13**: the *modified binomial coefficient*, admissible words of length `k` with `a` zeros — **verified identical to `word_counts`** | Counting by Hamming Weight |
+| survivor condition on a word | **Terras 1976, Def. 1.12**: *admissible*, `e_0 + ... + e_(i-1) > i gamma`, `gamma = ln2/ln3` | the convergence-condition formula |
+| coefficient stopping times `sigma_n` | **A020914** (Winkler, Remark 11) | — |
+| the class lists | **A177789** (Winkler, Remark 11) | — |
 
 One row carries three outside names and a fourth that only we use: the
 minimal certificate length is the dropping time in the Collatz literature, the
@@ -53,9 +57,11 @@ identification.
   `eta = 1 - H((log_2 3)^(-1)) = 0.0500444728...`. "Known since 1976" holds for
   the density and not for the rate, which is known since 1985. Recorded at
   `J-proposition-j-on-collatz-is-terras`, corrected on branch
-  `claude/goofy-kare-1a92fd`. The caveat travels with it: Terras 1976 itself
-  could not be read here (matwbn is behind an anti-bot gate), so this rests on
-  Lagarias's annotation of Terras rather than on Terras's text.
+  `claude/goofy-kare-1a92fd`. **The caveat is discharged, 21 September 2026:**
+  Terras 1976 has been read in full from the ICM scan, and his only asymptotic
+  statement is Theorem 1.17, `F(k) -> 0` monotonely, proved by estimating the
+  very binomial tail Theorem D bounds with the *central limit theorem*. The
+  attribution now rests on his text, not on Lagarias's annotation of it.
 - **The OEIS sequences.** `N_d` is A076227 and `M_d` is A100982; neither is
   ours. That the gaps of A020914 are 1 or 2 is the *defining property* of
   A022921, elementary and in OEIS since 2009 — so the level-zero shadow of
@@ -84,7 +90,76 @@ So the **objects** have prior art from 4 July 2026 and the **theorems** are not
 settled by it. No novelty disclaimer should be widened past that line on the
 strength of this page.
 
-## The open risk, stated plainly
+## The open risk — closed, 21 September 2026
+
+**All three ResearchGate papers have now been read from their own PDFs**, the
+January Hikawa–Nakanishi paper last, and none of the three contains the limit
+theory this risk was about. January has no asymptotic whatever — no growth
+constant, no power of the length, no oscillation — and never names A076227,
+A100982 or A260591; July adds the logarithmic rate and the `d^(-3/2)`
+conjecture; September keeps those and drops the surrounding claims. So the clock
+splits: **counting objects from January 2026, asymptotic layer from July, and the
+oscillating prefactor in none of them.**
+
+Two obligations replace it, and both are sharper than the risk they retire.
+
+1. ~~**The recursion is a 1976 question, not a 2017 one.**~~ **Run and settled,
+   21 September 2026** — [test_terras_recursion.py](../../tests/research/juggler_sequence/test_terras_recursion.py),
+   46 checks. **Terras 1976 Theorem 1.14 is the survivor recursion.** His
+   Definition 1.12 admissibility, `e_0+...+e_(i-1) > i gamma` with
+   `gamma = ln2/ln3`, is in integers `3^ones > 2^i` — our no-contracting-prefix
+   condition verbatim. His gate `c(a,k) = [a < k(1-gamma)]` is `(k-a) > k gamma`,
+   i.e. *the word is still active*, so (11) is Pascal restricted to survivors.
+   Verified exactly to `k = 16`:
+
+   - `word_counts(k)[k-a]` — **Paper B's joint (length, weight) table — is the
+     active part of `n(a,k)`.** The joint table is Terras's, 1976.
+   - `N_k` is his **active** row sum; `M_k` is his **terminal** row sum.
+   - `sum_a n(a,k) = 2 N_(k-1)`, which *derives* the offset
+     `F(k) = N_(k-1)/2^(k-1)` that
+     [test_terras_table_a.py](../../tests/research/juggler_sequence/test_terras_table_a.py)
+     measured against Table A — because admissible splits as active plus
+     terminal and `N_k + M_k = 2 N_(k-1)`.
+   - Strip the gate and the recursion counts all `2^k` words. The gate is the
+     content, and that is the control in the test file.
+   - **The OEIS had the attribution before this note did.** A260591 (terminal
+     words by length; Horn and Wilson, 2015) carries the reference *Riho Terras
+     ... See Theorem 1.14, Eq. (11) ("Modified binomial recursion")*; A186008
+     states `M_d/2^d` as the dropping-time frequency (2011); A186109 reads his
+     Table A; A126241 states his `tau` and Conjecture 2.9. The four entries this
+     note checked -- A076227, A100982, A020914, A177789 -- are the Terras-free
+     ones, and that is where Philippe's edits of 21 September 2026 go: A076227
+     (link and three comments, draft #182, in review) and A100982 (link and two
+     comments, drafted; `a(n)` is the single cell `n(A020914(n)-n, A020914(n))`
+     of Terras's table, because `(2^(k-1), 2^k)` holds at most one power of 3,
+     brute-forced to `n = 27`).
+
+   **This lands on the deposited Paper B.** Its subsection *"This recursion is
+   not new"* credits Zarubin's A076227 formula of 11 August 2019, Winkler's of
+   12 September 2017, and equation (48) of the September Hikawa — all three the
+   one-index form `N_k = 2 N_(k-1) - M_k`. That form follows from Theorem 1.14
+   by summing over `a` and splitting the row. The antecedent is **1976**, in a
+   paper the manuscript already carries as reference [4], and forty-one years
+   older than the earliest credit in that paragraph. The subsection claims
+   nothing as new, so this is an attribution correction, not a retraction — but
+   it is in a deposited text with a public DOI and wants a v1.0.1.
+2. **`winkler-2026-connection-thresholds` is the nearest unread neighbour.**
+   Winkler's August 2026 revision, reference [10], describes it as a first-passage
+   problem at the same Beatty slope `lambda = log2 3`, on the opposite side of the
+   boundary, and states the two constructions are not the same. That is the Paper
+   B meander verbatim. It has **no URL and no identifier anywhere**; it is the one
+   source in this cluster with no retrieval route.
+
+**And every Winkler citation on this page is off by one.** The copy now held is
+the revision of 23 August 2026, 29 pages; arXiv stops at v8 (28 July, 28 pages).
+In the revision the row-sum result is **Proposition 10**, the OEIS identification
+**Remark 11**, the exact coverage density **Proposition 27**, and item 8 is a
+*Theorem*. Hikawa's September paper credits "Winkler's Proposition 8" on the v8
+numbering too. Cite Winkler by number only with the version attached. Remark 11
+adds two OEIS pointers absent from the table below: **A020914** for the
+coefficient stopping times and **A177789** for the class lists.
+
+### The risk as it was first written
 
 There are **three** ResearchGate papers, not two, and no full text of any of
 them has been read here. But "unread" was too strong when first written on
@@ -189,11 +264,32 @@ conjugation (Williams, Proposition 3.11); and the two-sided bound on `M_d`
 
 - That `N_d / 2^d ~ C rho^d d^(-3/2)` with a CONSTANT `C` is **false**: the
   prefactor is an almost-periodic function of `frac(d BETA)` and does not
-  converge (`J-paper-b-meander-prefactor-is-almost-periodic`). No source read
-  in this audit states an oscillating prefactor, an amplitude, or anything
-  equivalent — and a `Theta` cannot distinguish one from a constant. The July
-  Hikawa text names the phase as a plausibility in one sentence (Section 7.3)
-  and nothing more; see the bound below.
+  converge (`J-paper-b-meander-prefactor-is-almost-periodic`). A `Theta` cannot
+  distinguish an oscillating prefactor from a constant, so Hikawa's conjecture
+  does not reach it, and the July text names the phase as a plausibility in one
+  sentence (Section 7.3) and nothing more.
+
+  **Narrowed 21 September 2026, and the sentence this replaces was false.** It
+  read: *"No source read in this audit states an oscillating prefactor, an
+  amplitude, or anything equivalent."* Winkler's **qx+1 preprint of 14 September
+  2026, Corollary 12**, states an exact oscillation with an amplitude. With
+  `R_q(r) = r a_q(r) / binom(m_r(q)-1, r-1)` he proves `liminf R_q = 1` and
+  `limsup R_q = alpha_q/(alpha_q - 1)` — for `q = 3`, upper envelope
+  `2.7095112914` — the liminf attained exactly on the lower equality orders, the
+  limsup approached along the upper ones, and `R_q(r)` strictly below the
+  envelope throughout. Corollary 11 adds the growth constants,
+  `B_3 = 2.8395137305` for A100982.
+
+  **The claim survives, narrower, and now has a neighbour.** Winkler's object is
+  `M_d` (A100982), not `N_d`; his normalisation is against the Beatty binomial,
+  not against `rho^d d^(-3/2)`; and his statement is a two-sided envelope with an
+  equality classification, not an almost-periodic function carrying a jump
+  measure and a Fourier identity. Those are different theorems. But they run on
+  the same mechanism — the fluctuation governed by the one-sided approximation to
+  `log2 3`, i.e. by records of `frac(r alpha)` — and anything written up from this
+  cluster must cite Corollary 12 and say what it adds to it. The blanket
+  no-source sentence was written when this paper was known only through an OEIS
+  comment, which carried the sandwich and not Section 7.
 - Its structure: discontinuous exactly on the rotation orbit
   (`J-psi-jumps-are-the-rotation-orbit-of-zero`), reconstructible from its
   jump measure to 91 per cent of its `L2` variation with no fitted parameter

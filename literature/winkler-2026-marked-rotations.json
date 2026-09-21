@@ -1,10 +1,12 @@
 {
-  "authors": ["Mike Winkler"],
+  "authors": [
+    "Mike Winkler"
+  ],
   "id": "winkler-2026-marked-rotations",
   "identifiers": {
     "doi": "10.13140/RG.2.2.22015.57761"
   },
-  "notes": "docs/theory/paper_b_prior_art_and_names.md, and the ledger row J-winkler-sandwich-holds-on-the-laboratory-counts. Dated 13 September 2026; reference [14] of the qx+1 paper and the general marked-rotation theory that paper deliberately avoids. Read 2026-09-19 only to the extent it is public. Two endpoint-normalized passage families f_r(alpha) and c_r(alpha) of positive compositions against the Beatty boundary m_r = floor(alpha r), the upper family ending at m_r and the lower at the crossing level m_r + 1. His midpoint identity lives on a strictly larger family, adding 2 q_k and q_k + q_(k+1), which has no counterpart here.",
+  "notes": "READ at abstract and main-result level 21 September 2026, 30 pages, dated 13 September 2026, from literature/sources/winkler-2026-marked-rotations-2026-09-13.pdf; doi 10.13140/RG.2.2.22015.57761. The entry previously said 'read only to the extent it is public' and carried no URL. CONTENT. For irrational alpha > 1 and m_r = floor(alpha r), two opposite families of positive compositions constrained by the Beatty boundary m_r, counted by f_r(alpha) and c_r(alpha), the upper family ending at m_r and the lower at the crossing level. Their enumeration is governed by the number of cyclic starting positions satisfying the prefix inequalities. MAIN RESULT: the maximum number of admissible cyclic markings equals the ADDITIVE FACTORIZATION HEIGHT of a boundary point in the associated Beatty lattice -- a direct link between cyclic composition counting and the geometry of ONE-SIDED DIOPHANTINE APPROXIMATION. Consequence: the midpoint identity f_r + c_r = (2/r) binom(m_r - 1, r - 1) is classified completely, holding exactly at the record indices q_k of frac(alpha n), their doubles 2 q_k, and the sums q_k + q_(k+1) of consecutive record indices. That classification is the larger family this register recorded as having no counterpart here; the earlier note that it 'adds 2 q_k and q_k + q_(k+1)' is confirmed from the text. SCOPE OF THIS READING: abstract, introduction and the stated main result and consequence. The 30-page body was not read line by line and no claim is made about its proofs. It is the general theory that winkler-2026-admissible-qx1-sequences deliberately avoids, so if the Paper B oscillation is to be compared with anything at full strength, it is this.",
   "problem_area": "collatz",
   "project_relationship": "known",
   "relevant_concepts": [
@@ -12,8 +14,10 @@
     "Beatty passage counts",
     "factorization heights"
   ],
-  "status": "preprint, partially read",
+  "status": "read (abstract and main result), 2026-09-21, from the ResearchGate PDF",
   "title": "Marked Rotations and Factorization Heights for Dual Beatty Passage Counts",
-  "url": {},
+  "url": {
+    "doi": "https://doi.org/10.13140/RG.2.2.22015.57761"
+  },
   "year": 2026
 }

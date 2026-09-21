@@ -1,26 +1,26 @@
 {
-  "id": "monks-2002-3x1-minus-the-plus",
-  "title": "3x+1 Minus the +",
   "authors": [
     "Kenneth G. Monks"
   ],
-  "year": 2002,
+  "id": "monks-2002-3x1-minus-the-plus",
   "identifiers": {
     "doi": "10.46298/dmtcs.297"
   },
-  "url": {
-    "doi": "https://doi.org/10.46298/dmtcs.297",
-    "journal": "https://dmtcs.episciences.org/297",
-    "pdf": "https://dmtcs.episciences.org/297/pdf"
-  },
+  "notes": "Discrete Mathematics and Theoretical Computer Science 5 (2002) 47-54. READ IN FULL 21 September 2026 from the journal PDF at literature/sources/monks-2002-3x1-minus-the-plus-dmtcs-5-47-54.pdf. The earlier record said dmtcs.episciences.org was egress-blocked 'as is every other route tried'; it answered 200 on 21 September. Kenneth G. Monks, Department of Mathematics, University of Scranton; received Aug 10 2001, accepted April 9 2002. THEOREM 1: there are INFINITELY MANY functions R(n) = r_i n for n = i mod d, with r_i rational, such that the 3x+1 conjecture holds if and only if the R-orbit of 2^n contains 2 for every positive n; the explicit witness is the Fractran rule (1/11, 136/15, 5/17, 4/5, 26/21, 7/13, 1/7, 33/4, 5/2, 7) with d = 1021020. Furthermore the R-orbit of 2^n contains 2^n, 2^T(n), 2^(T^2(n)), ... and no other powers of two. THEOREM 2: the R-orbit of an arbitrary positive integer is a constant multiple of an orbit containing a power of 2. COROLLARY 1 IS THE PART THAT MATTERS HERE: any cycle {x_0, ..., x_(m-1)} of positive integers for the 3x+1 function satisfies sum_{i in E} floor(x_i / 2) = sum_{i in O} floor(x_i / 2) + k, with O the odd indices, E the even, k = |O|. That is a FLOOR IDENTITY ON A CYCLE derived from an addition-free rewriting of the map, which is structurally the shape the Juggler cycle branches keep producing; whether it is more than a restatement of the cycle equation is NOT CLAIMED and must be checked before anyone says so. knight-2026-small-collatz-rule re-derives the same identity from his own coefficient system and calls it well known. THE STATED METHOD, which is the reusable part: 'a general mechanism for deriving mathematical results about the iterative dynamics of arbitrary integer functions from Fractran algorithms'. THE COMPARISON THIS REGISTER OPENED REMAINS OPEN. Monks and Knight buy the removal of the +1 by ENLARGING THE STATE SPACE (a million conditions, then thirty); the Juggler buys it by MOVING TO THE EXPONENT and paying a floor. Which trade is cheaper, and whether the two constructions meet, is still a comparison this laboratory has not made -- but it is now a comparison between two texts that have both been read.",
   "problem_area": "collatz-reformulations",
+  "project_relationship": "known",
   "relevant_concepts": [
     "FRACTRAN",
     "addition-free simulation",
     "multiplication-only rule",
     "state-space enlargement"
   ],
-  "project_relationship": "unassessed",
-  "status": "NOT CONSULTED",
-  "notes": "Discrete Mathematics and Theoretical Computer Science 5 (2002), 47-54. NOT READ -- dmtcs.episciences.org is egress-blocked in this container, as is every other route tried. Registered 20 September 2026 as the prior art of knight-2026-small-collatz-rule. ATTESTED, NOT OBSERVED: via Conway's FRACTRAN it constructs a rule that simulates the Collatz map using MULTIPLICATION ONLY, eliminating the +1, at the cost of 1021020 conditions. Note 1021020 = 2^2 * 3 * 5 * 7 * 11 * 13 * 17, a primorial-shaped modulus, which is consistent with a residue construction but is this laboratory's arithmetic observation and not the paper's. WHY IT IS HERE. The Juggler map is ALREADY addition-free -- J(n) = floor(sqrt n) on evens and floor(n^(3/2)) on odds, with no +1 anywhere -- and J-juggler-is-collatz-one-exponential-up is the claim that it is Collatz one exponential up. So Monks and Knight are COMPETING addition-free models of the same dynamics, and the comparison is sharp: they buy the removal of the +1 by ENLARGING THE STATE SPACE (FRACTRAN residues, a million conditions, then thirty); the Juggler buys it by MOVING TO THE EXPONENT and paying a FLOOR. Both trade the +1 for something. Which trade is cheaper, and whether the two constructions meet, is an open comparison this laboratory has never made. Do not cite for anything until read."
+  "status": "read in full, 2026-09-21, from the DMTCS PDF",
+  "title": "3x+1 Minus the +",
+  "url": {
+    "doi": "https://doi.org/10.46298/dmtcs.297",
+    "journal": "https://dmtcs.episciences.org/297",
+    "pdf": "https://dmtcs.episciences.org/297/pdf"
+  },
+  "year": 2002
 }

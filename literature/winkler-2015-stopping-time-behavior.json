@@ -1,0 +1,25 @@
+{
+  "authors": [
+    "Mike Winkler"
+  ],
+  "id": "winkler-2015-stopping-time-behavior",
+  "identifiers": {
+    "arxiv": "1504.00212",
+    "doi": "10.48550/arXiv.1504.00212"
+  },
+  "notes": "READ 21 September 2026 from arXiv:1504.00212v4 (6 Oct 2021, 18 pages) at literature/sources/winkler-2015-stopping-time-behavior-arxiv-1504.00212v4.pdf. Registered hours earlier from the Hikawa-Nakanishi bibliography; OpenAlex independently confirmed it (author A5085940378, Ruhr University Bochum, 29 March 2015) before the text arrived. CONTENT. With sigma_n = floor(1 + n log2 3), the starting numbers of finite stopping time sigma(s) = sigma_n form residue classes mod 2^(sigma_n); z_n counts them and is A100982 -- so THE IDENTIFICATION OF A100982 WITH THE RESIDUE-CLASS COUNT IS 2015, not 2017 and not 2026. The paper's centrepiece is a CONJECTURED closed recursion, z_n = binom(m + n - 2, m) - sum_(i=2)^(n-1) binom(floor((3(n-i)+delta)/2), n-i) z_i with m = floor((n-1) log2 3) - (n-1) and delta taking different values within the sum at intervals of 5 or 6 terms, yielding an iterative algorithm for z_n at n > 6. It is stated as a conjecture, verified to n <= 53 per his later OEIS comment. HIS HOMEPAGE IS www.mikematics.de, printed on the title page -- NOT mikewinkler.co.nf, which OEIS links for his older PDFs and which no longer resolves. Correcting the note written earlier today under winkler-2026-coefficient-first-passage. Reached via Diophantine equations on binary tuples; the machinery is the same stopping-time-word apparatus later developed in winkler-2017-2026-deterministic-structures.",
+  "problem_area": "collatz",
+  "project_relationship": "known",
+  "relevant_concepts": [
+    "stopping time",
+    "coefficient stopping time",
+    "parity word"
+  ],
+  "status": "read in full, 2026-09-21, from arXiv:1504.00212v4",
+  "title": "New Results on the Stopping Time Behavior of the Collatz 3x + 1 Function",
+  "url": {
+    "arxiv": "https://arxiv.org/abs/1504.00212",
+    "arxiv_pdf": "https://arxiv.org/pdf/1504.00212v4"
+  },
+  "year": 2015
+}

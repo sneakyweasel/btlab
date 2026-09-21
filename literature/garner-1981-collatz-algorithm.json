@@ -1,0 +1,23 @@
+{
+  "authors": [
+    "Lynn E. Garner"
+  ],
+  "id": "garner-1981-collatz-algorithm",
+  "identifiers": {
+    "jstor": "2044308"
+  },
+  "notes": "Proc. Amer. Math. Soc. 82(1) (May 1981) 19-22. NOT READ. Registered 21 September 2026 from reference [2] of the August 2026 revision of winkler-2017-2026-deterministic-structures, where Winkler cites 'Garner [2, p. 20]' beside 'Lagarias [4, p. 8]' as the prior formulations of the affine iterate formula T^(sigma_n)(x) = (3^(n+1) x + S(alpha)) / 2^(sigma_n). WHY IT MATTERS HERE. That affine formula is the laboratory's cycle equation and the Bohm-Sontacchi identity used throughout the Juggler finance branch; the register credits it to Bohm-Sontacchi and to Lagarias, and a 1981 PAMS statement of it is earlier than either citation we carry. Do not cite for anything until read.",
+  "problem_area": "collatz",
+  "project_relationship": "unassessed",
+  "relevant_concepts": [
+    "affine iterate formula",
+    "parity word",
+    "cycle equation"
+  ],
+  "status": "NOT CONSULTED",
+  "title": "On the Collatz 3n + 1 Algorithm",
+  "url": {
+    "jstor": "https://www.jstor.org/stable/2044308"
+  },
+  "year": 1981
+}

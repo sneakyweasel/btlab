@@ -1,0 +1,23 @@
+{
+  "authors": [
+    "David C. Kay"
+  ],
+  "id": "kay-2021-characteristic-zero-one-strings",
+  "identifiers": {
+    "doi": "10.4236/ajcm.2021.113015"
+  },
+  "notes": "American Journal of Computational Mathematics 11 (2021) 226-239. NOT READ. Registered 21 September 2026 from the bibliography of hikawa-nakanishi-2026-parity-vector-analysis (reference [6]), read first-hand from the author PDF. WHY IT MATTERS HERE. The January paper's abstract names three foundations -- Terras, Roosendaal and Kay -- and Kay was absent from this register entirely, so one of the three declared sources of the parity-vector line was invisible to the laboratory. A 'characteristic zero-one string' is the parity word under a third name, after Terras's encoding vector and Winkler's coefficient stopping-time word; the naming spread is itself the reason the Paper B novelty search kept missing prior art. SCIRP is open access, so this should be readable without help. Do not cite for anything until read.",
+  "problem_area": "collatz",
+  "project_relationship": "unassessed",
+  "relevant_concepts": [
+    "parity word",
+    "characteristic zero-one string",
+    "stopping time"
+  ],
+  "status": "NOT CONSULTED",
+  "title": "Collatz Sequences and Characteristic Zero-One Strings: Progress on the 3x + 1 Problem",
+  "url": {
+    "doi": "https://doi.org/10.4236/ajcm.2021.113015"
+  },
+  "year": 2021
+}

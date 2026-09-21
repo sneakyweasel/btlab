@@ -1,5 +1,38 @@
 # Negative knowledge
 
+## Two over-corrections in one week: a right fact rejected for a good-looking reason
+
+Recorded 21 September 2026, after five sources were read at last and three
+recorded blocks turned out not to exist. The failure mode is not credulity. It is
+its opposite: a correct fact arriving through a channel the laboratory distrusts,
+being rejected *because of the channel*, with a plausible-sounding reason
+attached that made the rejection look like rigour.
+
+- **Knight's online date.** `knight-2026-collatz-high-cycles` recorded that
+  search summaries volunteer "September 23, 2025", dismissed it as "the HAL
+  preprint's day and month with the wrong year", and refused to record it.
+  Crossref gives the record creation as `2025-09-24T03:49:46Z` — the evening of
+  23 September 2025 in US time. The summaries were reporting the real date. The
+  coincidence that made it look like contamination was the fact.
+- **The Eliahou bound.** `juggler_oeis_neighbourhood.md` wrote that a first
+  version read \(17{,}026{,}679{,}261\) as "the cycle length" and "that was
+  wrong". Eliahou's own summary calls it a *longueur*. The first reading was
+  right; what it lacked was the convention (\(p+q\), not \(q\)). The subsection's
+  real contribution is the convention, and it billed itself as a refutation.
+
+Kind: **not a refutation** — a method note. Both rejections were defensible when
+made and both cost real time: the Knight date sat as `STILL UNKNOWN` for a day,
+and the Eliahou attribution was parked for weeks behind an egress claim that was
+never tested.
+
+**The rule this yields.** A provenance rejection needs the same standard as a
+mathematical one — a check that could have come out the other way. "This came
+from a search summary" and "this host is blocked" are hypotheses about the
+channel, not observations about the fact. Probe the host; look the identifier up
+in an index that is reachable; and when a channel-based rejection is recorded,
+record what would overturn it. Related: the four hosts recorded as egress-blocked
+that answered 200 on the first try, in the same day's reading.
+
 ## A realization law of FD type cannot give Juggler a Steiner theorem
 
 Killed claim, raised and refuted the same day (19 September 2026): "a perfect
@@ -515,9 +548,15 @@ finding, and do not write the asymptotic up as a discovery -- it is a refinement
 of Theorem D and of Conjecture 7.1. What survives the search is the prefactor
 itself: the oscillation in `frac(d beta)`, the jump spectrum, the closed form for
 `a_1`, and the Fourier identity, none of which appears in any source that could
-be read. Two of those sources are ResearchGate-gated and were read at abstract
-level only, so that last clause is bounded by what was readable. Source-by-source
-reading: [jump spectrum](problems/juggler_jump_spectrum.md).
+be read. **The readability caveat is discharged, 21 September 2026.** All four
+sources of the cluster have now been read from their own texts -- the January
+Hikawa-Nakanishi paper last, the one the clause was bounded by -- and the January
+text contains no asymptotic at all: no growth constant, no power of the length,
+no oscillation, and it never names A076227, A100982 or A260591. So the prefactor
+clause is no longer bounded by what was readable; it is bounded only by the
+sources themselves. The prior-art clock splits: the counting objects start in
+January 2026, the asymptotic layer not until July. Source-by-source reading:
+[jump spectrum](problems/juggler_jump_spectrum.md).
 
 ## Paper B: the offset composite must subtract the frozen integer floor
 

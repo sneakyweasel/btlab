@@ -1,0 +1,22 @@
+{
+  "authors": [
+    "David Barina"
+  ],
+  "id": "barina-2021-convergence-verification",
+  "identifiers": {
+    "doi": "10.1007/s11227-020-03368-x"
+  },
+  "notes": "The Journal of Supercomputing 77(3) (2021) 2681-2688. NOT READ. Registered 21 September 2026 from reference [4] of knight-2026-small-collatz-rule, read first-hand, which cites it for the empirical range 1 to 10^20. DISTINCT FROM barina-2025-collatz-verification-limit, which this register already carries for the 2^71 floor; same author, earlier paper, different floor. Registered because verification floors are load-bearing here -- the Juggler floor N_0 = 350000000 and the Collatz floors are quoted side by side in the cycle branches -- and a floor quoted from the wrong Barina would be a silent error. Do not cite for anything until read.",
+  "problem_area": "collatz",
+  "project_relationship": "unassessed",
+  "relevant_concepts": [
+    "verification floor",
+    "convergence check"
+  ],
+  "status": "NOT CONSULTED",
+  "title": "Convergence verification of the Collatz problem",
+  "url": {
+    "doi": "https://doi.org/10.1007/s11227-020-03368-x"
+  },
+  "year": 2021
+}

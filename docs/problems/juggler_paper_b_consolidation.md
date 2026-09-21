@@ -26,10 +26,19 @@ here by running its code rather than by reading about it; `M_d` is A100982
 and carries Winkler's sandwich; the minimal certificate length is the
 literature's dropping time and the computational community's glide. See
 [Paper B prior art and external names](../theory/paper_b_prior_art_and_names.md)
-for the full translation table, for the line between objects that have prior
-art and theorems that do not, and for the open risk: Hikawa's two papers are
-unread here because ResearchGate 403s this environment, so nothing is settled
-about whether his texts contain the limit theory.
+for the full translation table and for the line between objects that have prior
+art and theorems that do not.
+
+**The open risk is closed, 21 September 2026, and the answer is no.** All three
+papers of the Hikawa line have been read from their own texts, the January
+Hikawa-Nakanishi paper last. None of the three contains the limit theory the risk
+was about. January has no asymptotic at all -- no growth constant, no power of
+the length, no oscillation -- and does not even name A076227 or A100982; July
+adds the logarithmic rate (its Theorem 6.3) and the `d^(-3/2)` conjecture
+(7.1); September keeps both and drops the rest. The oscillation and the
+prefactor appear in none of them. So the prior-art clock splits: the **counting
+objects** start in January 2026, six months before the toolkit; the **asymptotic
+layer** starts in July. Neither covers what this cluster claims.
 
 ## Branch budget
 

@@ -1,21 +1,24 @@
 {
-  "id": "eliahou-2011-cycles-non-triviaux-iii",
-  "title": "Le probleme 3n+1 : y a-t-il des cycles non triviaux ? (III)",
   "authors": [
     "Shalom Eliahou"
   ],
-  "year": 2011,
-  "identifiers": {},
-  "url": {
-    "cnrs": "https://images.math.cnrs.fr/le-probleme-3n1-y-a-t-il-des-cycles-non-triviaux-iii/"
+  "id": "eliahou-2011-cycles-non-triviaux-iii",
+  "identifiers": {
+    "doi": "10.60868/dmt0-jf29"
   },
+  "notes": "docs/problems/juggler_oeis_neighbourhood.md. Images des Mathematiques, CNRS, published 20 December 2011, DOI 10.60868/dmt0-jf29, CC BY-NC-ND 4.0; Shalom Eliahou, Universite du Littoral Cote d'Opale. The third part of an expository series by the author of eliahou-1993-collatz-cycle-lengths. THE EGRESS CLAIM WAS FALSE. The earlier record said images.math.cnrs.fr, its page-freeze mirror, idm-old.math.cnrs.fr and lmpa.univ-littoral.fr were 'all refused by this environment's egress policy'. On 21 September 2026 the CNRS article page answered 200 with the correct title and its full summary; the saved copy is at literature/sources/eliahou-2011-cycles-non-triviaux-iii.html. THE NUMBER IS ATTRIBUTED, AND IT IS A CYCLE LENGTH. The article's own summary states that it shows the Collatz transformation admits, in the positive integers, no nontrivial cycle of length strictly less than 17026679261 -- it excludes length 18 first and ends by excluding 18 billion. So 17026679261 IS Eliahou's, it IS this article, and it IS a lower bound on cycle LENGTH. The register had it as 'circulating and unattributed', suspected it might be Martiny's, and was right to refuse to table it until the source was in hand. AND THE CORRECTION IN THE DOSSIER WAS ITSELF AN OVERCORRECTION. juggler_oeis_neighbourhood.md says a first version read the number as 'the cycle length', and 'that was wrong'. It was not wrong. The two readings are compatible: 17026679261 = 6586818670 + 10439860591, the numerator plus denominator of a convergent of log 2 / log 3, AND the cycle-length bound -- Eliahou's method runs on the continued fraction of log_2 3, so a bound of exactly that shape is what the method produces. This is the second over-correction of the week, after the rejected Knight online date; see docs/negative_knowledge.md. SCOPE. What was read is the CNRS article page carrying the article's own summary, author, date, DOI and licence -- not the body, which sits behind the page's 'Lire l'article'. The attribution and the value of the bound are settled; the proof is not read, and the floor it rests on is not recorded here. The laboratory reproduces Eliahou's 1993 lattice exactly at floor 2^40 (301994a + 17087915b + 85137581c, least period 17087915), so whichever floor yields 17026679261 is checkable here once the body is read. T. Ian Martiny, 'New Lower Bound on Cycle Length for the 3n+1 Problem', remains unregistered and unverified; the suspicion that the number was his is now superseded, and the question of what Martiny's own bound is stays open.",
   "problem_area": "collatz-cycles",
+  "project_relationship": "known",
   "relevant_concepts": [
     "cycle length lower bound",
     "continued fraction of log_2 3",
     "exposition"
   ],
-  "project_relationship": "unassessed",
-  "status": "NOT CONSULTED",
-  "notes": "Images des Mathematiques, CNRS, 2011; the third part of an expository series by the author of eliahou-1993-collatz-cycle-lengths. NOT READ -- images.math.cnrs.fr, its page-freeze mirror, idm-old.math.cnrs.fr and lmpa.univ-littoral.fr are all refused by this environment's egress policy. Found 20 September 2026 as a link on OEIS A020857 (decimal expansion of log_2 3), which the laboratory reached while reading the comment fields of the sequences around Paper B's survivor recursion. WHY IT IS REGISTERED. The laboratory reproduces Eliahou's 1993 lattice exactly at floor 2^40 -- 301994a + 17087915b + 85137581c with b >= 1, least period 17087915 -- so a later statement of the same bound by the same author is directly comparable machinery, not background. AN UNATTRIBUTED NUMBER, RECORDED AS SUCH. A figure 17026679261 circulates as a lower bound on nontrivial 3n+1 cycle length and appears independently in several places (T. Ian Martiny, 'New Lower Bound on Cycle Length for the 3n+1 Problem', Univ. of Pittsburgh; M. Twarog's 2020 notes; Lagarias's Annotated Bibliography II), so the number is real rather than a search artefact. A search summary attributed it to THIS article; that attribution is NOT established, Martiny's title suggests the bound may be his, and nothing here was read at source. The number is therefore recorded as circulating and unattributed, and is NOT entered into any laboratory table. Settling it needs the article, or Martiny's paper, read directly. Do not cite for anything until read."
+  "status": "article page read, 2026-09-21; the bound is attributed in the article's own summary",
+  "title": "Le probleme 3n+1 : y a-t-il des cycles non triviaux ? (III)",
+  "url": {
+    "cnrs": "https://images.math.cnrs.fr/le-probleme-3n1-y-a-t-il-des-cycles-non-triviaux-iii/",
+    "doi": "https://doi.org/10.60868/dmt0-jf29"
+  },
+  "year": 2011
 }

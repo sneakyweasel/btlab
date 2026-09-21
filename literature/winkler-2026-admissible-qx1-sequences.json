@@ -1,10 +1,13 @@
 {
-  "authors": ["Mike Winkler"],
+  "authors": [
+    "Mike Winkler"
+  ],
   "id": "winkler-2026-admissible-qx1-sequences",
   "identifiers": {
+    "doi": "10.13140/RG.2.2.35856.78086",
     "oeis_comment": "A100982, 15 September 2026"
   },
-  "notes": "docs/theory/paper_b_prior_art_and_names.md, and the ledger row J-winkler-sandwich-holds-on-the-laboratory-counts. With alpha = log2 3 and m_n = floor(n alpha), the sandwich (1/n) C(m_n - 1, n - 1) <= a(n) <= (1/n) C(m_n, n - 1), equality below exactly when frac(n alpha) is a strict record minimum and above exactly when it is a strict record maximum -- the equality orders being the one-sided convergent and semiconvergent denominators of log2 3, and a(n) a rational Catalan number. His a(n) is A100982, which is the laboratory's minimal certificate count M_d = 2 N_(d-1) - N_d. Checked against our own counts: the head matches, lower equality at n = 2, 7, 12, 53, 359, 665 and upper at n = 3, 5, 17, 29, 41, 94, 147, 200, 253, 306, 971, 1636. THE RESULT IS HIS AND THE CHECK IS OURS. Do not conflate his records with the empty-window theorem: his are a statement about ORDERS r, ours an existence statement about LENGTHS d.",
+  "notes": "READ 21 September 2026, 14 pages, dated 14 September 2026, from literature/sources/winkler-2026-admissible-qx1-sequences-2026-09-14.pdf. doi 10.13140/RG.2.2.35856.78086. This entry previously held no URL and recorded only the sandwich, from an OEIS comment. SETTING. For odd q >= 3, a_q(r) counts words in {q/2, 1/2} with exactly r factors q/2, every proper prefix product above 1 and the total below 1. For q = 3, 5, 7 these are A100982, A174795, A174796. With alpha_q = log2 q and m_r(q) = floor(r alpha_q), the cycle lemma gives the two Beatty passage bounds this register already carried, and he proves the equality criteria directly: the lower and upper equality orders are the denominators of the strict one-sided best approximations to log2 q, together all convergent and semiconvergent denominators, equivalently the strict record minima and maxima of the binary mantissas q^r / 2^(m_r). At every nontrivial equality order the words biject with rational Dyck paths and a_q(r) is a rational Catalan number. SECTION 7 IS THE PART THAT MATTERS, AND IT WAS NOT VISIBLE FROM THE OEIS COMMENT. Corollary 11 (Growth constants): lim_r a_q(r)^(1/r) = B_q = alpha^alpha / (alpha-1)^(alpha-1) at alpha = alpha_q, strictly increasing in q, with B_3 = 2.8395137305 for A100982. Corollary 12 (EXACT NORMALIZED OSCILLATION): with R_q(r) = r a_q(r) / binom(m_r(q)-1, r-1), liminf R_q = 1 and limsup R_q = alpha_q/(alpha_q - 1), the liminf attained exactly on the lower equality orders, the limsup approached along the upper ones through R_q(r) = m_r/(m_r - r + 1), and R_q(r) < alpha_q/(alpha_q - 1) strictly for all r >= 1. For q = 3 the upper envelope is 2.7095112914. WHAT THAT DOES AND DOES NOT DO TO PAPER B. It is an EXACT, TWO-SIDED, ATTAINED OSCILLATION WITH AN AMPLITUDE, for A100982 = M_d, published 14 September 2026. The prior-art note asserted that 'no source read in this audit states an oscillating prefactor, an amplitude, or anything equivalent'; as a blanket sentence that is now FALSE and has been narrowed. It is NOT the same statement as J-paper-b-meander-prefactor-is-almost-periodic: different object (M_d, not N_d), different normalisation (against the Beatty binomial, not against rho^d d^(-3/2)), and different form (an envelope with equality classification, not an almost-periodic function with a jump measure and a Fourier identity). The laboratory's claim survives, NARROWER, and it now has a named neighbour working the same mechanism -- the fluctuation being governed by the one-sided approximation of log2 3, i.e. by records of frac(r alpha). Anything written up must cite this corollary and say what it adds. Section 8 identifies the q = 3 equality-order set with A206788 and prints the q = 5 and q = 7 companions. He notes the whole paper avoids 'the broader marked-rotation machinery of [14]', which is winkler-2026-marked-rotations.",
   "problem_area": "collatz",
   "project_relationship": "reproduced",
   "relevant_concepts": [
@@ -13,8 +16,10 @@
     "semiconvergents of log2 3",
     "A100982"
   ],
-  "status": "preprint, bounds reproduced on our counts",
+  "status": "read in full, 2026-09-21; bears directly on the Paper B prefactor claim",
   "title": "Admissible qx+1 Sequences, Semiconvergents, and Rational Catalan Numbers",
-  "url": {},
+  "url": {
+    "doi": "https://doi.org/10.13140/RG.2.2.35856.78086"
+  },
   "year": 2026
 }

@@ -1,0 +1,18 @@
+{
+  "authors": [
+    "Riho Terras"
+  ],
+  "id": "terras-1978-density-addendum",
+  "identifiers": {},
+  "notes": "Acta Arithmetica 35 (1978) 101-102, two pages. NOT READ. Registered 21 September 2026 from reference [7] of the August 2026 revision of winkler-2017-2026-deterministic-structures. A SECOND TERRAS PAPER THE REGISTER DID NOT KNOW EXISTED. terras-1976-stopping-time proves F(k) -> 0 (its Theorem 1.17) and derives the distribution function; an addendum titled 'On the existence of a density' is by its title about the very step the laboratory attributes to the 1976 paper. Until it is read, no claim about what Terras did or did not prove about density should treat the 1976 paper as the whole of Terras. Same publisher and same digitisation as the 1976 scan, so the matwbn anti-bot gate applies. Do not cite for anything until read.",
+  "problem_area": "collatz",
+  "project_relationship": "unassessed",
+  "relevant_concepts": [
+    "natural density",
+    "stopping time"
+  ],
+  "status": "NOT CONSULTED",
+  "title": "On the existence of a density (Addendum)",
+  "url": {},
+  "year": 1978
+}

@@ -184,10 +184,27 @@ A peer session checked them against the laboratory's own counts at every order
   57 pages, also read) drops the sentence and keeps the terminal distance as
   its Open Problem 1.
 - `hikawa-nakanishi-2026-parity-vector-analysis`
-  (doi 10.13140/RG.2.2.12065.06240). **Abstract only**, same gate. These are the
-  authors of the b-file. The abstract counts parity vectors by length and by
-  number of ones and lists hypotheses; it states no asymptotic. Whether the body
-  does was not determined.
+  (doi 10.13140/RG.2.2.12065.06240). **Read 21 September 2026** from the authors'
+  PDF, 29 pages, dated 25 January 2026; the title page records it as a revision of
+  "Collatz Conjecture: Propositions derived from Parity Vector Analysis". These are
+  the authors of the b-file, and this is the **earliest paper of the line**. The
+  body **contains no asymptotic**: no growth constant, no power of the length, no
+  oscillation. A full-text search returns one hit for asymptotic vocabulary and it
+  is the elementary drift identity `log(S_k) = log(S_0) + d(k) log 3 - k log 2`.
+  It never names the OEIS sequences either -- A076227, A100982 and A260591 have
+  zero occurrences -- so the identification of these counts with OEIS entries is
+  not January's. What it has is Lemmas 1-11 with Theorems 1, 2 and 4; the
+  J/A/U-converged classification by Terras's condition; counting by length and by
+  number of ones; **Algorithm 2**, which generates the weight-`d+1` unconverged and
+  just-converged vectors from the weight-`d` ones by appending a 1 then 0s, testing
+  with `k > d log 3 / log 2` -- our ceiling condition as a generation rule; the
+  Bird's eye view; and a closing list of empirical hypotheses. Its bibliography
+  named two sources this laboratory did not hold,
+  `winkler-2015-stopping-time-behavior` and
+  `kay-2021-characteristic-zero-one-strings`, and its abstract names Terras,
+  Roosendaal and Kay as the three foundations. *Scope: a full-text search for
+  asymptotic vocabulary and for the OEIS ids, not a line-by-line reading of all 29
+  pages.*
 - `nakanishi-2026-parity-vector-structure` (doi 10.51094/jxiv.3096). Read in
   full, 9 pages, Jxiv version 2. Structural: Theorem 6 says that for each finite
   `d` the constructed sequences contain no unconverged sub-vector of length
@@ -540,7 +557,18 @@ No theorem about the Juggler map, no density, no bound.
 And the frame has to be a refinement, not a discovery. The quantity is a known
 Collatz one, the exponential rate is Lagarias 1985 Theorem D, and the `-3/2` is
 Hikawa's Conjecture 7.1 of July 2026. Anything written up from this cluster must
-open with those two and add the prefactor to them. Two of the four sources are
-behind a ResearchGate gate and were read only at abstract level, so the
-statement that the oscillation is unrecorded is a statement about what was
-readable, not about what exists.
+open with those two and add the prefactor to them.
+
+**All four sources have now been read from their own texts (21 September 2026),
+so the statement that the oscillation is unrecorded is no longer bounded by what
+was readable.** It is bounded by the sources: none of the four states a
+polynomial correction with an oscillating prefactor. Two further bounds remain,
+and they are real. First, Terras 1976 -- read in full the same day -- already
+counts the admissible words by length and weight (his *modified binomial
+coefficient*) and gives them a gated Pascal recursion in Theorem 1.14, so the
+recursion's provenance is a **1976** question, not a 2017 one, and the comparison
+has not been made. Second, `winkler-2026-connection-thresholds` is unread and
+unretrievable: Winkler's own description places it at a first-passage problem at
+the same Beatty slope `lambda = log2 3`, on the opposite side of the boundary.
+That is the nearest unread neighbour of this cluster and the priority claim
+should say so.

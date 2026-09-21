@@ -1,25 +1,25 @@
 {
-  "id": "hikawa-nakanishi-2026-parity-vector-analysis",
-  "title": "Parity Vector Analysis in the Study of the Collatz Conjecture",
   "authors": [
     "Kazunobu Hikawa",
     "Kazuo Nakanishi"
   ],
-  "year": 2026,
+  "id": "hikawa-nakanishi-2026-parity-vector-analysis",
   "identifiers": {
     "doi": "10.13140/RG.2.2.12065.06240"
   },
-  "url": {
-    "landing": "https://doi.org/10.13140/RG.2.2.12065.06240"
-  },
+  "notes": "docs/problems/juggler_jump_spectrum.md, docs/theory/paper_b_prior_art_and_names.md. READ 21 September 2026 from the author's PDF (29 pages, LaTeX, dated 25 January 2026) at literature/sources/hikawa-nakanishi-2026-parity-vector-analysis-2026-01-25.pdf, supplied by Philippe; ResearchGate refuses this session at the proxy and the entry previously carried the abstract only. TITLE HISTORY, from the title page and new here: this is a 'Revision of title \"Collatz Conjecture: Propositions derived from Parity Vector Analysis\"'. THE PAPER B OPEN RISK IS CLOSED AND THE ANSWER IS NO. The body contains NO ASYMPTOTIC of any kind: no growth constant, no power of the length, no oscillation, no prefactor. A full-text search for asymptotic vocabulary over all 58000 characters returns one hit, and it is the elementary drift identity log(S_k) = log(S_0) + d(k) log 3 - k log 2. It never names the OEIS sequences either -- A076227, A100982 and A260591 have ZERO occurrences -- so even the identification of these counts with OEIS entries is not January's; that arrives with Winkler's Remark and with Hikawa's July and September texts. SCOPE OF THAT CLAIM: it is a full-text search for asymptotic vocabulary and for the OEIS ids against a body whose every numbered result sits in a generation-and-counting frame, not a line-by-line reading of all 29 pages. WHAT IT ACTUALLY CONTAINS. Lemmas 1-11 with Theorems 1, 2 and 4; classification of finite-length parity vectors into J-converged, A-converged and U-converged by Terras's convergence condition; counting by length and by number of 1s; ALGORITHM 2, which generates the weight-(d+1) unconverged and just-converged vectors from the weight-d ones by appending a 1 and then 0s, testing convergence with k > d log 3 / log 2 -- our ceiling condition written as a generation rule; the Bird's eye view visualisation; and a closing list of empirical hypotheses supporting the affirmative conjecture. PRIOR-ART CONSEQUENCE. The clock splits. The COUNTING OBJECTS do start here, January 2026, six months before the toolkit, as this register already said. The ASYMPTOTIC LAYER does not: it starts with July's Theorem 6.3 and Conjecture 7.1. The oscillation and the prefactor appear in none of the three papers of the line. CO-AUTHOR: Kazuo Nakanishi, who appears nowhere else in our records and must not be dropped from a citation. BIBLIOGRAPHY, and two of its entries were missing here: winkler-2015-stopping-time-behavior (reference [4]) and kay-2021-characteristic-zero-one-strings (reference [6]); the abstract names Terras, Roosendaal and Kay as the paper's three foundations. Reference [1] is the matwbn Terras URL; [2]-[3] are Roosendaal's pages, which is where 'glide' comes from. The toolkit is a declared supplement to this paper (Zenodo relatedIdentifiers, isSupplementTo). Paper B's reference 10 cites it since the 20 September evening edition, from the July paper's secondhand description; that citation can now be made from the text.",
   "problem_area": "collatz",
+  "project_relationship": "known",
   "relevant_concepts": [
     "parity vectors",
     "stopping time",
     "A076227 b-file",
     "Collatz conjecture"
   ],
-  "project_relationship": "known",
-  "status": "unread, ResearchGate 403; metadata verified via DataCite and OpenAlex",
-  "notes": "docs/problems/juggler_jump_spectrum.md. ABSTRACT ONLY -- ResearchGate serves the record but not the full text to this session. These are the authors of the A076227 b-file that this laboratory checked N_d against on all 3509 terms. The abstract describes classification of finite-length parity vectors by Terras's convergence condition, counting them by length and by number of 1s, a bird's-eye visualization, and a list of hypotheses supporting the affirmative conjecture. It states no asymptotic, no growth constant, no power of the length and no oscillation. Whether the body contains one was not determined here. METADATA, verified first-hand from DataCite and OpenAlex on 2026-09-20 and merged from main: UNREAD HERE: ResearchGate 403s this environment and there is no PDF anywhere OpenAlex or DataCite can see. Metadata verified first-hand from DataCite and OpenAlex on 2026-09-20, which corrected three things the laboratory had wrong. THIS IS THE EARLIEST PAPER OF THE LINE, January 2026 -- not July, as was assumed when only the toolkit's README was in hand -- so the prior-art clock for parity-vector analysis starts six months earlier than the toolkit. It is also the only one with a CO-AUTHOR, Kazuo Nakanishi, who appears nowhere else in our records and must not be dropped from a citation. The toolkit is a declared supplement to this paper (Zenodo relatedIdentifiers, isSupplementTo). SECONDHAND FROM THE JULY PAPER, read 2026-09-20: hikawa-2026-parity-vector-structures, page 4, describes this paper as introducing the classification by Hamming weight in addition to length, observing X(d+1) = W(d) through large-scale computation and reporting it as an empirical structural identity, and developing recursive algorithms for generating unconverged parity vectors; the September paper says the conjectural assumptions of the January manuscript were removed from the line. Paper B's reference 10 says so since the 20 September evening edition. Still abstract only here."
+  "status": "read 2026-09-21 from the author's PDF supplied by Philippe; earlier status was abstract only",
+  "title": "Parity Vector Analysis in the Study of the Collatz Conjecture",
+  "url": {
+    "landing": "https://doi.org/10.13140/RG.2.2.12065.06240"
+  },
+  "year": 2026
 }

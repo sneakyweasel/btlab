@@ -1,0 +1,25 @@
+{
+  "authors": [
+    "Mike Winkler"
+  ],
+  "id": "winkler-2026-coefficient-first-passage",
+  "identifiers": {
+    "doi": "10.13140/RG.2.2.31257.79200"
+  },
+  "notes": "READ 21 September 2026, 14 pages, September 2026, from literature/sources/winkler-2026-coefficient-first-passage-2026-09-08.pdf, fetched by Philippe after every automated route was exhausted (see the prior note, retained at the end). IT IS NOT winkler-2026-connection-thresholds. The candidate identity recorded earlier today is REFUTED: this is a different paper, it does not carry that title, and its bibliography does not cite it. 'Connection Thresholds in the Odd Collatz Tree' remains unlocated and is not cited even by Winkler's own September work. Keeping the two records separate was correct. WHAT IT IS. A coefficient first-passage word is a binary parity word whose coefficient 3^(o_j)/2^j exceeds 1 at every proper prefix and is below 1 at the full word; the words of order n have common length L_n = floor(1 + n log2 3) and are counted by A100982 -- THIS LABORATORY'S M_d. He refines that enumeration by the number of occurrences of the local cut pattern 011, introducing the cut polynomial B_n(y), with a run-composition recurrence for its full coefficient distribution. Structurally: a weight-preserving bijection between the first-passage words and the partitions inside a single BEATTY-FERRERS SHAPE, with the possible cut sets the independent sets of a nested (Schubert) matroid. THE POWER-OF-TWO LAW is the exact count 2^floor((n-1) log2(3/2)) for the words with no cut after the initial run of ones -- an exact formula for a sub-family, NOT a statement about a prefactor. A skeleton decomposition writes B_n(y) as a sum of Ferrers non-nesting rook polynomials and gives fiberwise ultra-log-concavity. Terras's finite parity correspondence then converts the word counts into exact residue-class counts modulo 3 * 2^(L_n) inside each class 3, 7 or 11 mod 12. NO ASYMPTOTICS. The paper is exact and structural throughout; the single asymptotic sentence is a citation, crediting Hikawa [3] with 'a distinct weight-based bijection and logarithmic asymptotics'. Winkler attributes the asymptotic side to Hikawa and contributes exact structure. So this does NOT collide with the Paper B prefactor claim -- but see winkler-2026-admissible-qx1-sequences, which does bear on it. BIBLIOGRAPHY, items this register lacks: Alexandersson and Jal, 'Rook matroids and log-concavity of P-Eulerian polynomials', arXiv:2410.00127v3 (2026); Fife and Oxley, 'Generalized laminar matroids', European J. Combin. 79 (2019) 111-122; and Winkler, 'Fibonacci Enumeration of Parity Blocks in Collatz Trajectories', arXiv:1412.0519v3 (2026) -- the SAME arXiv id as his 2014 'On the structure and the behaviour of Collatz 3n+1 sequences', retitled between v1 and v3, which is why OpenAlex lists both titles. Its [8] prints the Terras DOI 10.4064/aa-30-3-241-252, independently confirming what the August revision supplied. Deliberately NOT registered: the two combinatorics items are outside this laboratory's scope unless the Ferrers machinery is opened as a branch.",
+  "problem_area": "collatz",
+  "project_relationship": "unassessed",
+  "relevant_concepts": [
+    "Beatty sequence",
+    "first passage",
+    "Ferrers diagram",
+    "coefficient stopping time",
+    "power-of-two law"
+  ],
+  "status": "read in full, 2026-09-21, from the ResearchGate PDF",
+  "title": "Coefficient First-Passage Words for the 3x+1 Map: A Beatty-Ferrers Model and a Power-of-Two Law",
+  "url": {
+    "doi": "https://doi.org/10.13140/RG.2.2.31257.79200"
+  },
+  "year": 2026
+}

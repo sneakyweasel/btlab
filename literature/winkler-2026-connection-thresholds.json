@@ -1,0 +1,20 @@
+{
+  "authors": [
+    "Mike Winkler"
+  ],
+  "id": "winkler-2026-connection-thresholds",
+  "identifiers": {},
+  "notes": "Manuscript, 2026; no URL and no identifier. NOT READ AND NOT LOCATED. Registered 21 September 2026 from reference [10] of the August 2026 revision of winkler-2017-2026-deterministic-structures. THE CANDIDATE IS REFUTED, SAME DAY. winkler-2026-coefficient-first-passage (doi 10.13140/RG.2.2.31257.79200, 8 September 2026) was proposed here as possibly this manuscript retitled; it was fetched and read, and it is a DIFFERENT PAPER -- different title, different subject, and its bibliography does not cite this one. Keeping the two as separate records rather than merging them on a title resemblance was correct, and is the discipline the knight-2026-small-collatz-rule error taught. ALL THREE of Winkler's September 2026 preprints are now read (8, 13 and 14 September) and NONE of them is this. It is cited only by the August revision and by nothing else found. WHAT WINKLER SAYS IT IS: a first-passage problem at the same Beatty slope lambda = log2 3, 'but on the opposite side of the boundary', with the two constructions explicitly not the same. Beatty first passage at that slope is the Paper B meander, and 'an effective one-sided bound' is the shape of the Juggler cycle leftover. ROUTES EXHAUSTED 21 September 2026: not in OpenAlex, not in DataCite, not on arXiv, not linked from any OEIS entry in the A020914 / A076227 / A100982 / A177789 / A020915 / A022921 / A056576 cluster, and not in the bibliography of any of the three September preprints. It appears not to be public. ASK THE AUTHOR: mike.winkler@ruhr-uni-bochum.de, printed on all four of his papers held here. Do not cite for anything until read.",
+  "problem_area": "collatz",
+  "project_relationship": "unassessed",
+  "relevant_concepts": [
+    "Beatty sequence",
+    "first passage",
+    "odd Collatz tree",
+    "one-sided bound"
+  ],
+  "status": "NOT CONSULTED; still unlocated, and the 2026-09-21 candidate is refuted",
+  "title": "Connection Thresholds in the Odd Collatz Tree: Beatty First Passage and an Effective One-Sided Bound",
+  "url": {},
+  "year": 2026
+}

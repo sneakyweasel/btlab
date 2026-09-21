@@ -1,0 +1,23 @@
+{
+  "authors": [
+    "Mario Heinrich Thaler"
+  ],
+  "id": "thaler-2025-delta-recurrence",
+  "identifiers": {
+    "zenodo": "17278225"
+  },
+  "notes": "Zenodo record 17278225, published 2025-10-06, single author. NOT READ; the metadata and abstract were pulled first-hand from the Zenodo API on 21 September 2026, and Zenodo is wide open from this session, so the PDF is a one-call fetch. Registered from reference [8] of the August 2026 revision of winkler-2017-2026-deterministic-structures, whose short title omits the second half; the full title is the one recorded here. ABSTRACT, quoted from Zenodo: a general recurrence for the Step 2 transition in Winkler's parity-vector generation (his Corollary 9), holding for all n and all j >= 1, derived from the Diophantine term formula (his Theorem 3), closing the case Corollary 9 leaves open for n >= 9 with j >= 2; with a Python reference implementation. WHY IT MATTERS HERE. A third party has already found and repaired a gap in the Winkler generation machinery the Paper B prior-art table leans on, which means the table should cite the repair and not only the original. Do not cite for anything until read.",
+  "problem_area": "collatz",
+  "project_relationship": "unassessed",
+  "relevant_concepts": [
+    "coefficient stopping time",
+    "diophantine term formula",
+    "recurrence"
+  ],
+  "status": "NOT CONSULTED; Zenodo metadata verified first-hand 2026-09-21",
+  "title": "A delta-recurrence for Winkler's Corollary 9 and a robust implementation for n >= 9",
+  "url": {
+    "zenodo": "https://zenodo.org/records/17278225"
+  },
+  "year": 2025
+}

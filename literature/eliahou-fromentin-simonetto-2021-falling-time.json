@@ -1,26 +1,29 @@
 {
-  "id": "eliahou-fromentin-simonetto-2021-falling-time",
-  "title": "Is the Syracuse falling time bounded by 12?",
   "authors": [
     "Shalom Eliahou",
     "Jean Fromentin",
     "Renald Simonetto"
   ],
-  "year": 2021,
+  "id": "eliahou-fromentin-simonetto-2021-falling-time",
   "identifiers": {
+    "arxiv": "2107.11160",
+    "doi_published": "10.1007/978-3-031-10796-2_7",
     "hal": "hal-03294829"
   },
-  "url": {
-    "hal": "https://hal.science/hal-03294829"
-  },
+  "notes": "READ IN FULL 21 September 2026 from arXiv:2107.11160v4 (20 Oct 2021, 17 pages) at literature/sources/eliahou-fromentin-simonetto-2021-falling-time-arxiv-2107.11160v4.pdf. The earlier record said hal.science was refused by egress policy. IT IS NOT REFUSED: hal.science returns 200 with a body reading 'Making sure you are not a bot', which looks like a successful fetch and is not one. The HAL SEARCH API is open and gave both the arXiv id and the published DOI in one call. Published version doi 10.1007/978-3-031-10796-2_7, not read. DEFINITIONS. jp(n) = T^(l)(n) with l the number of binary digits of n -- OEIS A368877, as this register recorded -- and ft(n), the falling time, the least number of jumps taking n below itself, A368878. sft is the Syracuse falling time, odd terms only. Section 1 confirms 'glide' as the computational community's name for the analogue of the stopping time for the slow map C, maintained by Roosendaal; the laboratory's own mapping of glide to dropping time was right. RESULTS. Proposition 2.1: ft(n) <= 14 for all n in [1, 2^44 - 1] with n = 3 mod 4. Proposition 2.3: the smallest 24-persistent n with ft(n) > 14 is n_0 = 1008932249296231, with ft = 15, sigma = 886 and binary length 50; it is the glide record g30. Conjecture 2.4: there is B >= 16 with ft(n) <= B for all n >= 3, a strong form of Collatz. Proposition 3.6: sft(n) <= 9 on [3, 2^35 - 1] for n = 3 mod 4, and sft <= 10 on all 34 known glide records. Conjecture 3.7: there is C >= 10 with sft(n) <= C for all n = 3 mod 4. Proposition 4.1: ft(2^l - 1) <= 5 for all 2 <= l <= 500000 outside l in {5,6}; Conjecture 4.2: ft(2^l - 1) <= 4 for l >= 133. Proposition 4.3 and Conjecture 4.4: sft(2^l - 1) = 2 for all l >= 4625. CONJECTURE 5.1, the bold one: ft(n) <= 4 for all n >= 2500 -- at most four jumps to fall below n. Conjecture 5.2: sft(n) <= 2 for all odd n >= 25000. Computations on the CALCULCO platform, SCoSI/ULCO. THE TITLE'S 12, PRECISELY. It is not the ordinary falling time. Conjecture 3.7 is stated for the SYRACUSE falling time with C >= 10, and the text then takes 'C = 12 to be on a safer side. Whence the title of this paper.' A first reading in this session attached the 12 to ft; it belongs to sft. WHY IT MATTERS HERE. Falling time is this laboratory's dropping time. Paper B's apparatus counts the words whose dropping time exceeds the word length, and the Juggler analogue is A094778. A conjecture that the falling time is bounded by an absolute constant is the sharpest possible form of the question the survivor census measures -- and its status is CONJECTURE on computational evidence plus a heuristic, not a theorem, so it constrains nothing here and must not be cited as a bound. Same Eliahou as eliahou-1993-collatz-cycle-lengths, eliahou-2011-cycles-non-triviaux-iii and eliahou-verger-gaugry-2025.",
   "problem_area": "collatz-falling-time",
+  "project_relationship": "known",
   "relevant_concepts": [
     "falling time",
     "jump function",
     "dropping time",
     "Syracuse map"
   ],
-  "project_relationship": "unassessed",
-  "status": "NOT CONSULTED",
-  "notes": "NOT READ -- hal.science is refused by this environment's egress policy. Found 20 September 2026 in the link fields of OEIS A368877 and A368878, reached while tracing the provenance of a circulating cycle-length bound. WHY IT MATTERS HERE. FALLING TIME IS THIS LABORATORY'S DROPPING TIME. A368878 is defined as the least k with jp^k(n) < n, described on the entry as the paper's falling time function ft, and A368877 as its jump function jp, the Collatz map A014682 iterated as many times as n has binary digits. Paper B's whole apparatus counts the words whose dropping time exceeds the word length, and the Juggler analogue is A094778, registered the same day. A paper asking whether the falling time is bounded by 12 is asking, in the laboratory's vocabulary, whether the non-contracting prefix length is bounded -- the sharpest possible form of the question the survivor census measures. Whether the answer is known, conditional or open is not established here. The author is the same Eliahou as eliahou-1993-collatz-cycle-lengths and eliahou-verger-gaugry-2025, so the laboratory already cites him twice without carrying this. PROVENANCE: title, authors, year and HAL id read from the %H lines of A368877/A368878 in a local clone of github.com/oeis/oeisdata, export 2026-09-20 -- attested from the mirror, not observed at the publisher. Both entries carry b-files to n = 10000 by Paolo Xausa. Do not cite for anything until read."
+  "status": "read in full, 2026-09-21, from arXiv:2107.11160v4",
+  "title": "Is the Syracuse falling time bounded by 12?",
+  "url": {
+    "arxiv": "https://arxiv.org/abs/2107.11160",
+    "hal": "https://hal.science/hal-03294829"
+  },
+  "year": 2021
 }

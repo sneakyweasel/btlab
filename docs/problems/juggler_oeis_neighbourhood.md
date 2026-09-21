@@ -67,6 +67,18 @@ has a description of where all of its plateaus are — the next being
   here. OEIS content is CC BY-SA 4.0, copyright the OEIS Foundation;
   nothing from it is vendored, only A-numbers and the arithmetic they
   name.
+- Terras in the OEIS neighbourhood, checked in the clone on 21 September
+  2026: A076227, A100982, A020914 and A177789 never mention him; A260591
+  (terminal words by length) cites his Theorem 1.14 by number, A186008
+  states the dropping-time frequency `A186009(r)/2^A020914(r)` (2011),
+  A186109 reads his Table A, A126241 states his `tau` and Conjecture 2.9,
+  A365495 and A398792 the periodicity theorem. Philippe's edits: A076227
+  (Terras link, three comments, draft #182, in review) and A100982 (link,
+  two comments, drafted the same day). The A100982 comment reads \(M\) at
+  length \(A020914(n)\) as the single entry \(n(A020914(n)-n, A020914(n))\)
+  of Terras's table, because \((2^{k-1}, 2^k)\) holds at most one power of
+  3; brute-forced to \(n = 27\), against A260591 to \(k = 35\), and against
+  the actual dropping times of every integer below \(2^{20}\).
 - Laboratory: `neverNegCount_succ_sub_onBarrier`,
   `minimalCertCount_eq_zero_of_window_empty`, `density_flat_of_window_empty`
   and its three instances, all kernel-checked and unchanged.
@@ -267,30 +279,42 @@ appeared anywhere in the repository. It is recorded, not opened: an open
 problem about digits of \(2^n\) is not a cycle bound, and the laboratory's
 own base-three reading of the plateau law is the part that pays.
 
-**The Eliahou 2011 exposition, found but unread.** The article exists —
-*Le problème 3n+1 : y a-t-il des cycles non triviaux ? (III)*, Images des
-Mathématiques, CNRS, 2011 — and is registered as
-`eliahou-2011-cycles-non-triviaux-iii`. Every CNRS host, its page-freeze
-mirror and the author's institutional page are refused by this
-environment's egress policy, so it was not read.
+**The Eliahou 2011 exposition — read 21 September 2026, and the egress claim
+was false.** The article is *Le problème 3n+1 : y a-t-il des cycles non
+triviaux ? (III)*, Images des Mathématiques, CNRS, published 20 December 2011,
+DOI `10.60868/dmt0-jf29`, CC BY-NC-ND 4.0, registered as
+`eliahou-2011-cycles-non-triviaux-iii`. This section recorded every CNRS host as
+"refused by this environment's egress policy"; the article page answered 200 on
+the first try. *Scope: what was read is the article page carrying the author's
+own summary, date, DOI and licence — not the body, which sits behind "Lire
+l'article".*
 
-A figure \(17{,}026{,}679{,}261\) circulates as a lower bound on nontrivial
-cycle length and appears independently in several sources, so the number is
-real; but the attribution of it to *this* article is **not** established —
-one of those sources is T. Ian Martiny's *New Lower Bound on Cycle Length
-for the 3n+1 Problem*, whose title suggests the bound may be his. The
-number is recorded as circulating and unattributed and is **not** entered
-into any laboratory table. The laboratory reproduces Eliahou 1993 exactly
-at floor \(2^{40}\) (least period 17087915, on the lattice
+**The attribution is settled: the number is Eliahou's, and it is this article.**
+The summary states that the article shows the Collatz transformation admits, in
+the positive integers, no nontrivial cycle of *longueur* strictly less than
+\(17{,}026{,}679{,}261\) — excluding length 18 first, and ending by excluding
+18 billion. So the figure is a lower bound on cycle **length**, stated here, by
+this author. Recording it as "circulating and unattributed" was the right posture
+while the source was out of reach, and it is now superseded.
+
+T. Ian Martiny's *New Lower Bound on Cycle Length for the 3n+1 Problem* remains
+unregistered and unread; the suspicion that the number was his is superseded, but
+what Martiny's own bound is stays open. The laboratory reproduces Eliahou 1993
+exactly at floor \(2^{40}\) (least period 17087915, on the lattice
 \(301994a + 17087915b + 85137581c\)), so whichever floor yields
-\(17{,}026{,}679{,}261\) is checkable here once the source is in hand.
+\(17{,}026{,}679{,}261\) is checkable here once the **body** is read — the
+summary does not name it.
 
 
 ### The circulating bound, located — and it is in the other convention
 
-The figure \(17{,}026{,}679{,}261\) is not attributable from here, but it is
-**structurally identified**, and the identification carries a correction to
-the first version of this section.
+*Heading retained for the link; the attribution above is now settled, and the
+word "correction" below was too strong — see the amendment at the end of this
+subsection.*
+
+The figure \(17{,}026{,}679{,}261\) was not attributable when this was written,
+but it is **structurally identified**, and the identification refines the
+first version of this section.
 
 \[
 17{,}026{,}679{,}261 \;=\; 6{,}586{,}818{,}670 + 10{,}439{,}860{,}591,
@@ -311,9 +335,19 @@ degenerate head \(\{1,2,3\}\).
 
 So \(17{,}026{,}679{,}261\) is a \(p+q\) and is **not commensurable** with
 this laboratory's \(q\) periods without conversion. It is a genuine object
-of the convergent machinery and was never a search artefact; which paper
-first stated it, and in which convention it was meant, both remain
-unsettled.
+of the convergent machinery and was never a search artefact.
+
+**Amendment, 21 September 2026.** Which paper first stated it is now settled —
+Eliahou 2011, above. And the convention analysis is *confirmed* rather than
+contradicted: Eliahou says *longueur*, and \(p+q\) is the unaccelerated length,
+so the two readings agree. That means the sentence above — "the first version
+read that as 'the cycle length', and that was wrong" — **overstated its own
+correction.** The first version was right that the figure is a cycle length; what
+it lacked was the convention. The contribution of this subsection is the
+convention, not a refutation, and it should be read as "incomplete", not
+"wrong". Recorded because the laboratory did the same thing twice this week:
+see the over-correction entry in
+[negative knowledge](../negative_knowledge.md).
 
 `convergent_cycle_lengths` in `collatz_finance_mirror` now returns both
 readings side by side for each convergent, and a test asserts the two sets
