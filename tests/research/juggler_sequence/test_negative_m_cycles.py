@@ -106,12 +106,61 @@ def test_table_at_the_floor_excludes_the_recorded_range() -> None:
 
 
 def test_a_higher_floor_excludes_at_least_as_much() -> None:
+    """The ladder, as archived: 2^44 to 2^48 give 49, 2^49 gives 54, 2^50 56, 2^51 58, 2^56 63,
+    2^60 68, 2^68 82 (the rows at 2^49 to 2^51 were also sieved independently on 21 September
+    2026, with the same answers)."""
     data = json.loads(nm.JSON_PATH.read_text(encoding="utf-8"))
-    ms = [data["tables"][lbl]["excluded_through"] for lbl in ("2^40", "2^44", "2^48", "2^60", "2^68")]
+    labels = ("2^40", "2^44", "2^48", "2^49", "2^50", "2^51", "2^56", "2^60", "2^68")
+    ms = [data["tables"][lbl]["excluded_through"] for lbl in labels]
     assert ms == sorted(ms), ms
+    assert dict(zip(labels, ms)) == {"2^40": 44, "2^44": 49, "2^48": 49, "2^49": 54, "2^50": 56, "2^51": 58,
+                                     "2^56": 63, "2^60": 68, "2^68": 82}, ms
 
 
 def test_m_free_survivor_at_the_floor_is_the_recorded_period() -> None:
     data = json.loads(nm.JSON_PATH.read_text(encoding="utf-8"))
     first = data["m_free_survivors_at_floor"][0]
     assert (first["K"], first["o"]) == (16483927, 10400200)
+
+
+def test_the_four_lengths_at_m_50_die_at_the_recorded_floors() -> None:
+    """They are the output of the template's last step, not its input: Lemma 2's
+    x_min - 1 < m / Lambda removes them at floors 2^44.01, 2^44.57, 2^45.48 and 2^48.58."""
+    data = json.loads(nm.JSON_PATH.read_text(encoding="utf-8"))
+    r50 = next(r for r in data["tables"]["2^44"]["rows"] if r["m"] == 50)
+    with mp.workdps(40):
+        kills = [round(float(log(mpf(50) / mpf(s["Lambda"]) + 1, 2)), 2) for s in r50["survivors"]]
+    assert kills == [44.01, 44.57, 45.48, 48.58], kills
+
+
+def test_contracting_walk_agrees_with_a_direct_scan_and_differs_from_the_other_side() -> None:
+    """The walk mirrored to the 3n+1 side lists exactly the K with frac(Kx) < eps; the known-bad
+    input is the expanding-side list, which it must not reproduce."""
+    with mp.workdps(60):
+        x = log(2) / log(3)
+        eps = mpf(1) / 700
+        kmax = 60_000
+        contracting = [K for K in range(1, kmax + 1) if (K * x) - mp.floor(K * x) < eps]
+        expanding = [K for K in range(1, kmax + 1) if 1 - ((K * x) - mp.floor(K * x)) < eps]
+        assert nm.contracting_lengths(eps, kmax) == contracting
+        assert nm.contracting_lengths(eps, kmax) != expanding
+        assert nm.admissible_lengths(eps, kmax) == expanding
+
+
+def test_simons_de_weger_lemma_18_is_reproduced_on_their_side() -> None:
+    """Their Section 7 lattice lists the admissible (K, L) pairs and tests each against
+    Corollary 5 and Lemma 7; the same enumerate-and-test on the 3n+1 side at their floor
+    301 * 2^50 returns their Lemma 18: none for 64 <= m <= 68, and their five pairs at
+    69 <= m <= 72 with their killing floors to rounding (they round up). The run also lists the
+    double of their second pair at m = 72, which their table does not carry."""
+    data = json.loads(nm.JSON_PATH.read_text(encoding="utf-8"))
+    rep = data["sdw_lemma18_reproduction"]
+    assert rep["floor"] == 301 * 2 ** 50
+    assert rep["none_for_64_to_68"] and rep["their_pairs_all_found"]
+    for m, entries in rep["killing_floors"].items():
+        for pair, theirs, ours in entries:
+            assert theirs - 1 < ours <= theirs, (m, pair, theirs, ours)
+    assert rep["extra_pairs"] == {"72": [[2 * 11985484530117643, 2 * 7011059003092348]]}
+    fresh = nm.row_positive(69, 301 * 2 ** 50)
+    assert [(s["o"], s["L"]) for s in fresh["survivors"]] == [(5750934602875680, 3364081086781987)]
+    assert 576 < fresh["survivors"][0]["falls_when_X0_over_2_50"] <= 577

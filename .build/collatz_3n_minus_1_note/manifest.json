@@ -9,12 +9,12 @@
   },
   "pages": 7,
   "inputs": {
-    "docs/theory/collatz_3n_minus_1_m_cycles_note.md": "831797c87ce34c5b0a3071c75c1f3f386f7d2c85ecb63250559973bfb08bf7c8",
+    "docs/theory/collatz_3n_minus_1_m_cycles_note.md": "b1477758066130dcbf3f43c0e7f2df3090e632bf08deb397909a4a0f55dfeda0",
     "tools/collatz_note/article.tex": "fa21e0dd66c5259739347809808d9769b25ed6ad1fca1f1c8bfb408c5facd240",
     "tools/collatz_note/layout.lua": "e021e63c99b8dff8668accd7edc0064e6ced736780839bff05b4b49b8fef65aa",
     "tools/build_3n_minus_1_note.py": "641fedf940d0f0b3a05a20844dc623f70bd2d0f294ec6666a584677478b6a289"
   },
   "outputs": {
-    "juggler_review/collatz_3n_minus_1_m_cycles_note.pdf": "63fcf5de618b8cbd623aa5de519b61aa0b3f277d34f0521cca0169a438fc0c7d"
+    "juggler_review/collatz_3n_minus_1_m_cycles_note.pdf": "090235e551a444218de7300a51baa1d1b0f324966c501f271f2e8a205eae7163"
   }
 }

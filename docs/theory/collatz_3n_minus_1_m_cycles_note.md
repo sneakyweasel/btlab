@@ -35,9 +35,12 @@ steps starts at \(y\ge2^a+1\), the cycle equation bounds the linear form
 minima obey \(u_{i+1}<u_i^{\log_23}/2\). With Rhin's bound this gives: the \(3n-1\) map has
 no \(m\)-cycle with \(1\le m\le49\) other than the two known ones. For \(m\le43\) no
 admissible cycle length lies below Rhin's ceiling; for \(44\le m\le49\) the admissible lengths
-are excluded by the chaining, the closest by \(1.4\) bits. At \(m=50\) four lengths remain,
-the input for lattice reduction. The same tables give \(m\le44\) from \(2^{40}\), \(m\le68\)
-from \(2^{60}\) and \(m\le82\) from \(2^{68}\). No published verification floor and no
+are excluded by the chaining, the closest by \(1.4\) bits. At \(m=50\) four lengths remain; they are the
+output of the template's last step, not its input, and the floors that remove them are
+\(2^{44.01}\), \(2^{44.57}\), \(2^{45.48}\) and \(2^{48.58}\). The same tables give \(m\le44\) from
+\(2^{40}\), \(m\le54\) from \(2^{49}\), \(m\le58\) from \(2^{51}\), \(m\le68\) from \(2^{60}\) and
+\(m\le82\) from \(2^{68}\); on the \(3n+1\) side at the floor of Simons and de Weger the same
+enumeration and tests return their Lemma 18 to the unit. No published verification floor and no
 \(m\)-cycle theorem with \(m\ge3\) existed for this map.
 
 ## 1. The map, the cycles, and what is known
@@ -81,9 +84,13 @@ for a lower bound on the length (Lemma 10, Corollary 11) against Rhin's bound fo
 Weger's approximation lattice where a window remains (Lemma 18). At their floor the three
 stages give \(m\le57\), \(m\le63\) and \(m\le68\). Nobody has run any of it on \(3n-1\),
 because the first step was missing; [S08], which extends the template to \(3x+q\), \(px+q\)
-and Guy's permutation, skips the map. This note runs the first four steps with the constants
-of this side, replaces the partial-quotient stage by an exact enumeration of the admissible
-lengths, and leaves the lattice as its open list.
+and Guy's permutation, skips the map. This note runs all five steps with the constants of
+this side. The exact enumeration of the admissible lengths by the three-gap walk is the list
+their approximation lattice produces ([SdW] Section 7: a two-dimensional lattice whose points
+of small norm are the pairs \((K,L)\) in the window of Corollary 5 below the ceiling, found by
+a reduced basis and a search, each then "checked for fulfilling Corollary 5 and Lemma 7"); the
+two tests applied here to each length are those two. Run on the \(3n+1\) side at their floor,
+the machinery below returns their Lemma 18 (Section 5).
 
 ## 2. Notation
 
@@ -164,7 +171,9 @@ The chaining is tight on the \(17\)-cycle: \(u_1=16\), \(u_2=40\), and \(16^{\de
 It is [SdW] Lemma 6 in the variable \(u\): their \(x_{i+1}<b^{\delta}x_i^{\delta}\) with
 \(b=(1+X_0^{-1})/2^{1/\delta}\) becomes exact here, with no \(X_0\) in the constant, because
 \(u=y-1\) is the conjugated variable itself. The bound on \(o\) is their Lemma 7 read as a
-lower bound on the least element rather than as an upper bound on \(\Lambda\).
+lower bound on the least element rather than as an upper bound on \(\Lambda\); their constant
+\(c_m=2^{(m/\delta)(\delta-1)/(\delta^m-1)}\,b^{\delta/(\delta-1)-m/(\delta^m-1)}\) is, at \(b^{\delta}=1/2\), the
+\(2^{-(B-m)/((\delta-1)B)}\) of Lemma 3.
 
 **Lemma 4 (admissible lengths).** If an \(m\)-cycle has \(x_{\min}\ge X_0\), then
 \(0<\Lambda<m/(X_0-1)<\log3\), so \(o=\lceil Kx\rceil\) and
@@ -181,10 +190,10 @@ semiconvergents of \(x\), every further member is the previous one plus \(q_1\),
 of \(\{Kx\}\) and is the laboratory's `three_gap_walk`, checked against a direct scan at
 coarse thresholds. \(\square\)
 
-[SdW] reach the same set from above and below: Lemma 10 and Corollary 11 give the least
-convergent denominator the floor admits, and Lemma 16 caps the length through the largest
-partial quotient below that index. The exact enumeration replaces both, and, at their floor,
-lands exactly on their Lemma 17 (Section 5).
+[SdW] bound the same set from both ends before listing it: Lemma 10 and Corollary 11 give
+the least convergent denominator the floor admits, Lemma 16 caps the length through the
+largest partial quotient below that index, and Section 7 lists what lies between by an
+approximation lattice. The walk lists the set directly, and the two bounds are not needed.
 
 ## 4. Rhin's ceiling
 
@@ -262,8 +271,10 @@ constants, in Rhin's form or in the chaining, would move the theorem to \(m\le48
 539722056247,\quad757698850864,\quad975675645481,\quad1193652440098,
 \]
 with \(22.4\), \(15.0\), \(7.8\) and \(2.9\) bits of room; they are the near-convergent
-lengths of \(x\) on the expanding side, and they are the input for the fifth step of the
-template, lattice reduction on the \(m\) local minima, which this note does not perform.
+lengths of \(x\) on the expanding side, an arithmetic progression of step \(217976794617\).
+They are the output of the template's last step, not its input: what removes each is a
+higher floor, at \(2^{44.01}\), \(2^{44.57}\), \(2^{45.48}\) and \(2^{48.58}\) respectively
+(Lemma 2's \(x_{\min}-1<m/\Lambda\)).
 
 **Table 2.** What each floor buys, by the same tables.
 
@@ -272,20 +283,34 @@ template, lattice reduction on the \(m\) local minima, which this note does not 
 | \(2^{40}\) | 44 | 45 | 72448885240, 82888745831, 93328606422, 103768467013 |
 | \(2^{44}\) | 49 | 50 | 539722056247, 757698850864, 975675645481, 1193652440098 |
 | \(2^{48}\) | 49 | 50 | 1193652440098 |
+| \(2^{49}\) | 54 | 55 | 9767196315401 |
+| \(2^{50}\) | 56 | 57 | 28107936506105 |
+| \(2^{51}\) | 58 | 59 | 64789416887513, 83130157078217 |
+| \(2^{56}\) | 63 | 64 | 766512153894657 |
 | \(301\cdot2^{50}\) ([SdW]'s floor) | 63 | 64 | 766512153894657 |
 | \(2^{60}\) | 68 | 69 | 9881527843552324 |
 | \(2^{68}\) | 82 | 83 | 6094436882695943503, 6724555128221608268 |
 
-Two comparisons calibrate the method, on the other sign and so as plausibility checks rather
-than reproductions. At [SdW]'s own floor, \(301\cdot2^{50}\), their three stages give
-\(m\le57\) by the tables, \(m\le63\) after the continued-fraction reduction and \(m\le68\)
-after the lattice; the exact enumeration here gives \(63\) at that floor, which is their
-Lemma 17 exactly, so the lattice stage is worth five values of \(m\) there and would be worth
-a comparable amount at \(2^{44}\). Hercher's \(91\) at \(695\cdot2^{60}\) against the plain
-template's \(82\) at \(2^{68}\) prices his valley arrangement at about nine values of \(m\),
-which is therefore the second refinement to transpose. The floor enters only through the
-admissibility threshold, in steps: \(2^{48}\) buys nothing over \(2^{44}\) except one
-survivor fewer at \(m=50\).
+Two comparisons calibrate the method. First, on the \(3n+1\) side, with the window on the
+contracting side of \(x\), the same enumeration and the same two tests at the floor of [SdW],
+\(301\cdot2^{50}\), return their Lemma 18: no length for \(64\le m\le68\), and at
+\(69\le m\le72\) their five pairs \((K,L)\) at the nine places of their table, with the floors
+that remove them to rounding: their first pair \((5750934602875680,\,3364081086781987)\)
+falls at \(576.2\), \(584.6\), \(592.9\), \(601.3\) times \(2^{50}\) for \(m=69,\dots,72\)
+against their \(577\), \(585\), \(593\), \(602\), their second at \(623.6\), \(632.4\)
+against \(624\), \(633\), and their three at \(m=72\) at \(308.2\), \(666.8\), \(705.3\)
+against \(309\), \(667\), \(706\). The same run lists one point more at \(m=72\), the double
+of their second pair, with \(0.9\) bits of room and a removing floor of \(316.2\cdot2^{50}\);
+their table does not carry it, and the text does not say whether non-primitive pairs are
+discarded. On the \(3n-1\) side the same floor gives \(m\le63\): the length
+\(766512153894657\) sits inside the window at \(m=64\) on the expanding side, where the
+contracting side has nothing below the ceiling until \(m=69\). The five values between
+\(63\) and \(68\) are the sign of the map, not a missing stage. Second, Hercher's \(91\) at
+\(695\cdot2^{60}\) against the plain template's \(82\) at \(2^{68}\) prices his valley
+arrangement at about nine values of \(m\), the one refinement left to transpose. The floor
+enters only through the admissibility threshold, in steps: \(2^{48}\) buys nothing over
+\(2^{44}\) but one survivor fewer at \(m=50\); \(2^{49}\) buys \(m\le54\), \(2^{50}\) buys
+\(56\), \(2^{51}\) buys \(58\), and nothing more until \(2^{56}\).
 
 ## 6. The cycles that exist pass the same test
 
@@ -302,8 +327,7 @@ It excludes no Juggler cycle. The Juggler's cycle words are, letter for letter, 
 the negative Collatz cycles (Paper A, Section 5.9, and `CollatzBridge.lean`), but a word
 shape does not transport a realization, so a \(3n-1\) \(m\)-cycle theorem constrains Juggler
 cycle words and nothing more. It does not settle the \(3n-1\) cycle question, \(m\) being
-bounded, and it says nothing about divergence on either map. Its fifth step, lattice
-reduction at \(m=50\) and beyond, is not done; Hercher's refinement is not transposed; the
+bounded, and it says nothing about divergence on either map. Hercher's refinement is not transposed; the
 Eliahou-type lattice of admissible periods on this side is not written. Lemmas 1–3 are
 elementary and are not yet in Lean; the negative-side finance and word shape that surround
 them are (`neg_cycle_finance`, `neg_prefix_noncontracting`, `neg_cycle_expanding`).
@@ -315,8 +339,9 @@ seconds and writes `data/research/juggler/negative_m_cycles/summary.json`;
 `tests/research/juggler_sequence/test_negative_m_cycles.py` checks Lemma 1 on every odd
 \(y<4000\), the cycle equation on the three cycles, the tightness of Lemmas 1 and 3 at \(17\),
 that the known cycles pass, that \(K_3\) is a ceiling, that the three-gap walk agrees with a
-direct scan, and that the archived tables reproduce. The floor's certificate is with the
-branch `negative_floor_3x1`.
+direct scan, that the archived tables reproduce, and that the same machinery with the window
+on the contracting side returns [SdW] Lemma 18 at their floor. The floor's certificate is
+with the branch `negative_floor_3x1`.
 
 ## References
 

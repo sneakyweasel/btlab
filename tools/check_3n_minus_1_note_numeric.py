@@ -218,6 +218,8 @@ def parse_note(text: str) -> dict:
     out["m50_lengths"] = [int(s) for s in re.findall(r"\d+", block)]
     out["m50_bits"] = [float(v) for v in re.search(
         r"with \\\((\d+\.\d)\\\), \\\((\d+\.\d)\\\), \\\((\d+\.\d)\\\) and \\\((\d+\.\d)\\\) bits of room", text).groups()]
+    kill = re.findall(r"\\\(2\^\{(\d+\.\d\d)\}\\\), \\\(2\^\{(\d+\.\d\d)\}\\\), \\\(2\^\{(\d+\.\d\d)\}\\\) and \\\(2\^\{(\d+\.\d\d)\}\\\)", text)
+    out["m50_killing_floors"] = [[float(v) for v in group] for group in kill]
     out["tightness"] = re.search(r"16\^\{\\delta\}/2=(\d+\.\d)", text).group(1)
     out["cycle_steps"] = re.search(r"\\\(\(K,o\)=\(1,1\),\(3,2\),\(11,7\)\\\)", text) is not None
     out["floor_odd_starts"] = int(re.search(r"\\\((\d+)\\\) odd starts counted exactly", text).group(1))
@@ -258,7 +260,7 @@ def main() -> int:
                                                          "agree": a == b})
 
     # 3. the ceilings, independently
-    ceilings = {m: K3(m) for m in list(range(1, 51)) + [64, 69, 83]}
+    ceilings = {m: K3(m) for m in sorted(set(range(1, 51)) | {r["first_open"] for r in note["table2"]})}
     report["K3"] = {str(m): v for m, v in ceilings.items()}
     for floor_key, table in summary["tables"].items():
         for r in table["rows"]:
@@ -381,8 +383,13 @@ def main() -> int:
             report["floors"][key] = {"checked": "printed survivors only", "first_open": m,
                                      "survivor_bits": [mp.nstr(margin(K, m), 6) for K in r["survivors"]]}
     claims = {f"2^{e}": M for M, e in note["abstract_floor_claims"]}
-    if len(claims) != 3:
-        fail(f"abstract floor claims not parsed as three: {note['abstract_floor_claims']}")
+    if len(claims) < 3:
+        fail(f"abstract floor claims not parsed: {note['abstract_floor_claims']}")
+    kills = [float(mp.log(mp.mpf(M44 + 1) / lam(K)[1] + 1, 2)) for K in open44["survivors"]]
+    if len(note["m50_killing_floors"]) < 2 or any(
+            abs(a - b) > 0.006 for group in note["m50_killing_floors"] for a, b in zip(group, kills)):
+        fail(f"killing floors at m={M44 + 1}: note {note['m50_killing_floors']} vs recomputed {kills}")
+    report["m50_killing_floors_log2"] = [round(k, 3) for k in kills]
     for key, M in claims.items():
         entry = report["floors"].get(key, {})
         got = entry["excluded_through"] if "excluded_through" in entry \

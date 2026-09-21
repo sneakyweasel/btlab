@@ -1,5 +1,89 @@
 # Research journal
 
+## 2026-09-21 -- The fifth step was never open: the three-gap walk is Simons-de Weger's approximation lattice, shown by reproducing their Lemma 18 on their side
+
+- **Objective:** Philippe asked how long the lattice step at \(m=50\) would take. Their
+  Section 7 was re-read before answering.
+- **What their Section 7 is.** A two-dimensional approximation lattice with basis
+  \((1,0)\), \(([C\delta],C)\), \(C=[X_0\log2\,K_2(m)/(2m)]\), whose points of norm at most
+  \(K_2(m)\) are the pairs \((K,L)\) in Corollary 5's window below the ceiling; a reduced
+  basis, a search over those points, and each one "checked for fulfilling Corollary 5 and
+  Lemma 7". That is the three-gap walk followed by the finance test and the chaining test,
+  which the probe has run since 20 September. The four lengths at \(m=50\) are the output of
+  that step, not its input.
+- **Proof of the reading.** The walk mirrored to the contracting side (checked against a
+  direct scan at two coarse windows, and shown to differ from the expanding-side scan) with
+  the same two tests, at \(301\cdot2^{50}\): none for \(64\le m\le68\); at \(m=69\) the pair
+  \((5750934602875680,3364081086781987)\) falling at \(576.2\cdot2^{50}\) against their
+  \(577\); the same pair at \(584.6\), \(592.9\), \(601.3\) for \(m=70,71,72\) against
+  \(585\), \(593\), \(602\); their second pair at \(623.6\), \(632.4\) against \(624\),
+  \(633\); their three \(m=72\) pairs at \(308.2\), \(666.8\), \(705.3\) against \(309\),
+  \(667\), \(706\). They round up. One point more at \(m=72\): the double of their second
+  pair, \(0.9\) bits of room, \(316.2\cdot2^{50}\); their table does not carry it, and the
+  text does not say whether non-primitive pairs are discarded. Their Lemma 7 constant
+  \(c_m=2^{(m/\delta)(\delta-1)/(\delta^m-1)}b^{\delta/(\delta-1)-m/(\delta^m-1)}\) is, at
+  \(b^{\delta}=1/2\), the \(2^{-(B-m)/((\delta-1)B)}\) of Lemma 3. Now in the probe
+  (`row_positive`, `sdw_lemma18_reproduction`), its summary and its tests.
+- **What this corrects.** The entry of this morning, the note, the dossier, the theorem row
+  and the registry said the transposition at their floor "lands on their Lemma 17" and that
+  "the lattice is worth five values of \(m\)". Wrong. The transposition at their floor gives
+  \(63\) on the \(3n-1\) side because the length \(766512153894657\) sits inside the window
+  at \(m=64\) on the expanding side, where the contracting side has nothing below the ceiling
+  until \(m=69\); the five values are the sign of the map. The stage-by-stage mapping: their
+  tables (Rhin's ceiling against Crandall) \(57\), ours \(58\) at their floor with Rhin at
+  \(H=K\); their Lemma 16 reduction, subsumed by the exact list; their Lemma 18, \(68\) on
+  their side and \(63\) on this one. All five places corrected, the PDF rebuilt. The earlier
+  report to Philippe listed "the fifth step" as the first referee question; withdrawn.
+- **What the floor buys, by the same tables** (four floors added to the probe; \(2^{49}\) to
+  \(2^{51}\) also sieved independently, 104 admissible lengths below \(K_3(59)\), the same
+  three answers): \(2^{45}\) to \(2^{48}\) still \(49\); \(2^{49}\): \(54\); \(2^{50}\):
+  \(56\); \(2^{51}\): \(58\); \(2^{52}\) to \(2^{55}\): \(58\); \(2^{56}\): \(63\); \(2^{59}\):
+  \(64\); \(2^{60}\): \(68\). The four at \(m=50\) die at \(2^{44.01}\), \(2^{44.57}\),
+  \(2^{45.48}\), \(2^{48.58}\). Cost on the 3900X at the measured \(9.9\) core-hours for
+  \([2^{40},2^{44})\): \(2^{49}\) about fourteen hours wall, \(2^{50}\) about twenty-nine,
+  \(2^{51}\) two and a half days, \(2^{56}\) eleven weeks.
+- **Answer given.** No time for the lattice; the floor is the lever, and \(2^{50}\) or
+  \(2^{51}\) is the buy.
+
+## 2026-09-21 -- The Juggler drop equality: what loss accounting proves, and where it stops
+
+- **Objective:** Philippe asked for a proof that the Juggler dropping time equals
+  the first contracting length of its own parity word, the observation behind the
+  A094778 draft.
+- **What is proved.** Three things by hand, one probe, one test. (i) The exact loss
+  identity: with `rho_i = 3^{o_i}/2^i`, the deficit `d_i = rho_i ln m - ln x_i` obeys
+  `d_{i+1} = p_i d_i + eta_i` with `0 <= eta_i < ln(1 + 1/x_{i+1})`, because
+  `x_{i+1} <= x_i^{p_i} < x_{i+1} + 1`. (ii) The drop criterion: a drop at a
+  non-contracting prefix `k` forces `sum_{j<k} 1/(rho_j x_j) >= (1 - 1/rho_k) ln m`;
+  the `j = k` term of the unrolled identity is `ln(x_k+1) - ln x_k`, and
+  `x_k + 1 <= m`. (iii) The excursion bound: `x_j >= m` and a run-by-run sum give
+  `S < 2O/m`, and `rho_k >= 2^{f_O}` with `f_O >= delta(O) = min_{o<=O} ||o log2 3||`,
+  so an uncertified drop with `O` odd letters needs `2O/m > (1 - 2^{-delta(O)}) ln m`.
+  Against the convergents of `log2 3`: at least 665 odd letters for `m >= 10^6`,
+  16758 for `10^8`, 190537 for `10^10`; unbounded, by Rhin.
+- **What the numbers say.** Every odd start below `10^6` drops at `tau`, the five
+  past 400000 digits included (275485 reaches 1909409 digits and drops at step 213).
+  The identity never failed at any step of any excursion; the floors keep at least
+  73% of the ideal margin (`m = 9`) and 90% for `m >= 11`; the loss bound uses at
+  most 41% of the slack (`m = 5`) and under 2% for `m >= 11`. Combined with (iii):
+  every orbit whose excursion has fewer than 665 odd letters drops exactly at its
+  first contracting length.
+- **Where it stops, exactly.** The criterion's right-hand side is a near-miss
+  distance `||O log2 3|| ln m` at the dangerous denominators (12, 53, 665, 31867,
+  111202, ...), and its left-hand side grows with the excursion. A counterexample
+  needs an orbit above `m` for `O_min(m)` odd steps, ending at such a denominator,
+  with the near-drop losses aligned. Nothing bounds the excursion; the heuristic
+  probability is `0.9659^{1.58 O}`; and the mirror statement for Collatz, that the
+  `+1`s never delay the drop, is Terras's Conjecture 2.9, open since 1976. Loss
+  accounting cannot close this, and the dossier says so rather than pretending a
+  proof is one lemma away.
+- **Registered.** Branch `drop_first_contracting_length`: probe, test with a control
+  that fails on a weakened floor, dossier, ledger row, index rebuilt. The proved
+  direction was already kernel-checked as `power_bound_contracts` in Envelope.lean,
+  which the OEIS draft now names.
+- **Decision:** `PARK`. Best next question: an arithmetic reason a near-drop value
+  cannot sit within one floor of `m^{2^{f_o}}` at a dangerous `o`.
+
 ## 2026-09-21 -- The 3n-1 note read for publication: sound, not ready; its numbers independently checked, the ceilings off by one corrected, the PDF built
 
 - **Objective:** Philippe asked whether the \(3n-1\) \(m\)-cycle note is ready for
@@ -348,7 +432,7 @@
   in A020914. The one-sided bound is Paper B's Proposition 2.1 and is a
   theorem; the equality is an observation and is filed as one, with a control
   that fails on a weakened floor
-  (`test_juggler_drop_is_first_contracting_length.py`, 4 green). Caught before
+  (`test_drop_first_contracting_length.py`, 4 green). Caught before
   it went out: my draft said a contracting word "certifies descent in both
   problems". For Collatz that is Terras's open Conjecture 2.9, the `+1`
   delaying rather than hastening; `n = 1` is already an exception. The two

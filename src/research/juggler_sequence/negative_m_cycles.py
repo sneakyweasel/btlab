@@ -87,9 +87,21 @@ def rhin_form() -> str:
 #: floors to table, with the label each is reported under; 301 * 2^50 is the floor of
 #: Simons-de Weger 2005 (Roosendaal, November 2004), for a like-for-like comparison
 FLOORS: tuple[tuple[int, str], ...] = (
-    (2**40, "2^40"), (2**44, "2^44"), (2**48, "2^48"), (301 * 2**50, "301*2^50"),
-    (2**60, "2^60"), (2**68, "2^68"),
+    (2**40, "2^40"), (2**44, "2^44"), (2**48, "2^48"), (2**49, "2^49"), (2**50, "2^50"),
+    (2**51, "2^51"), (2**56, "2^56"), (301 * 2**50, "301*2^50"), (2**60, "2^60"), (2**68, "2^68"),
 )
+#: the floor of Simons-de Weger 2005, at which their Lemma 18 is reproduced on their own side
+SDW_FLOOR = 301 * 2**50
+#: their Lemma 18(b): the (odd count, even count) pairs left at 69 <= m <= 72 and the floor,
+#: in units of 2^50, at which each falls (they round up)
+SDW_LEMMA_18B = {
+    69: [((5750934602875680, 3364081086781987), 577)],
+    70: [((5750934602875680, 3364081086781987), 585)],
+    71: [((5750934602875680, 3364081086781987), 593), ((11985484530117643, 7011059003092348), 624)],
+    72: [((5750934602875680, 3364081086781987), 602), ((11985484530117643, 7011059003092348), 633),
+         ((17736419132993323, 10375140089874335), 309), ((18220034457359606, 10658036919402709), 667),
+         ((24454584384601569, 14305014835713070), 706)],
+}
 #: the largest m tabled; beyond the excluded range the window is reported, not enumerated
 M_MAX = 120
 #: more admissible lengths than this in a window and the window is reported, not walked
@@ -273,6 +285,77 @@ def admissible_lengths(eps_frac: mpf, kmax: int, cap: int = WALK_CAP) -> list[in
         return out
 
 
+def contracting_lengths(eps_frac: mpf, kmax: int, cap: int = WALK_CAP) -> list[int] | None:
+    """All ``K ≤ kmax`` with ``frac(K x) < eps_frac`` (the contracting side, the 3n+1 map), by
+    the same three-gap walk with the two returns exchanged."""
+    with mp.workdps(_DPS):
+        q_up, q_dn, d_up, d_dn = _returns(eps_frac)
+        up, dn, du, dd = q_up, q_dn, d_up, d_dn
+        K, g, out = up, du, []
+        while K <= kmax:
+            out.append(K)
+            if len(out) > cap:
+                return None
+            if g + du < eps_frac:
+                K += up
+                g += du
+            elif g >= dd:
+                K += dn
+                g -= dd
+            else:
+                K += up + dn
+                g += du - dd
+        return out
+
+
+def lambda_positive(K: int) -> tuple[int, mpf]:
+    """The 3n+1 side: ``o = floor(K x)`` and ``Lambda = K log 2 - o log 3 = log 3 * frac(K x)``."""
+    with mp.workdps(_DPS):
+        x = log(2) / log(3)
+        o = int(floor(K * x))
+        return o, K * log(2) - o * log(3)
+
+
+def row_positive(m: int, X0: int) -> dict[str, Any]:
+    """The same enumerate-and-test on the 3n+1 side: Simons-de Weger's Corollary 5 window,
+    their Lemma 18 list, each length tested against Corollary 5 and Lemma 7 (whose constant
+    ``c_m`` is algebraically the ``2^{-(B-m)/((delta-1)B)}`` of the chaining here). The
+    positive-side shifts (``x + 1 >= 2^k`` in place of ``y - 1 >= 2^a``, and their ``b``) are
+    below one part in ``X0`` and are not applied."""
+    with mp.workdps(_DPS):
+        eps_frac = lambda_bound(m, X0) / log(3)
+        ceiling = K3(m)
+        lengths = contracting_lengths(eps_frac, ceiling - 1)
+        survivors = []
+        for K in lengths or []:
+            o, lam = lambda_positive(K)
+            finance = mpf(m) / lam
+            tower = 2 ** log2_xmin_lower(K, m)
+            if tower < finance:
+                survivors.append({"K": K, "o": o, "L": K - o, "log2_slack": float(log(finance / tower) / log(2)),
+                                  "falls_when_X0_over_2_50": float((finance + 1) / 2 ** 50)})
+        return {"m": m, "floor": X0, "K3_rhin_ceiling": ceiling, "walked": lengths is not None,
+                "admissible_count": None if lengths is None else len(lengths), "survivors": survivors,
+                "excluded": lengths is not None and not survivors}
+
+
+def sdw_lemma18_reproduction() -> dict[str, Any]:
+    """Rows 64..72 on the 3n+1 side at Simons-de Weger's floor, against their Lemma 18."""
+    rows = {m: row_positive(m, SDW_FLOOR) for m in range(64, 73)}
+    found = {m: {(s["o"], s["L"]) for s in rows[m]["survivors"]} for m in rows}
+    theirs = {m: {pair for pair, _ in SDW_LEMMA_18B.get(m, [])} for m in rows}
+    return {
+        "floor": SDW_FLOOR,
+        "rows": {str(m): rows[m] for m in rows},
+        "none_for_64_to_68": all(rows[m]["excluded"] for m in range(64, 69)),
+        "their_pairs_all_found": all(theirs[m] <= found[m] for m in rows),
+        "extra_pairs": {str(m): sorted(found[m] - theirs[m]) for m in rows if found[m] - theirs[m]},
+        "killing_floors": {str(m): [(pair, kill, next(s["falls_when_X0_over_2_50"] for s in rows[m]["survivors"]
+                                                     if (s["o"], s["L"]) == pair))
+                                    for pair, kill in SDW_LEMMA_18B[m]] for m in SDW_LEMMA_18B},
+    }
+
+
 # ---------------------------------------------------------------------------------------------
 # One row of the table
 # ---------------------------------------------------------------------------------------------
@@ -423,6 +506,7 @@ def probe_payload() -> dict[str, Any]:
         "known_cycles_survive": known_cycles_survive(),
         "tables": tables,
         "m_free_survivors_at_floor": mfree[:12],
+        "sdw_lemma18_reproduction": sdw_lemma18_reproduction(),
         "classification": {
             "label": CLASS_EXCLUDED if M >= 1 else "NEGATIVE_M_CYCLES_TABLES_INCONCLUSIVE",
             "excluded_through_at_floor": M,
@@ -466,6 +550,16 @@ def render_markdown(data: dict[str, Any]) -> str:
         k0 = "—" if r["K0_least_admissible"] is None else str(r["K0_least_admissible"])
         surv = "none" if r["excluded"] else ("?" if not r["walked"] else str([s["K"] for s in r["survivors"]]))
         lines.append(f"| {r['m']} | {r['lambda_bound']:.3e} | {r['K3_rhin_ceiling']} | {adm} | {k0} | {surv} |")
+    sdw = data["sdw_lemma18_reproduction"]
+    lines += ["", "## Simons-de Weger Lemma 18 on their own side", "",
+              f"The same enumerate-and-test with the window on the contracting side, at their floor "
+              f"{sdw['floor']}: none for 64 <= m <= 68: {sdw['none_for_64_to_68']}; their pairs all found: "
+              f"{sdw['their_pairs_all_found']}; extra pairs: {sdw['extra_pairs']}.", "",
+              "| m | admissible | survivors (odd K, even L, log2 slack, falls when X0 >= n * 2^50) |", "|---|---|---|"]
+    for m, r in sdw["rows"].items():
+        desc = "; ".join(f"({s['o']}, {s['L']}, {s['log2_slack']:.1f}, {s['falls_when_X0_over_2_50']:.1f})"
+                         for s in r["survivors"]) or "none"
+        lines.append(f"| {m} | {r['admissible_count']} | {desc} |")
     lines += ["", "## The cycles that exist pass the same test", ""]
     for c in data["known_cycles_survive"]:
         lines.append(f"- least element {c['cycle_min']}: K = {c['K']}, o = {c['o']}, m = {c['m']}; "

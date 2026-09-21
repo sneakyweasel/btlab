@@ -86,6 +86,9 @@
   "48": 6160750059301,
   "49": 9921719447060,
   "50": 15974496522785,
+  "55": 172208666666214,
+  "57": 445072680198484,
+  "59": 1149356600587428,
   "64": 12277228651011070,
   "69": 130597089394124633,
   "83": 96194686215847874949
@@ -154,6 +157,35 @@
    ],
    "no_admissible_through": 44
   },
+  "2^49": {
+   "checked": "printed survivors only",
+   "first_open": 55,
+   "survivor_bits": [
+    "12.2108"
+   ]
+  },
+  "2^50": {
+   "checked": "printed survivors only",
+   "first_open": 57,
+   "survivor_bits": [
+    "7.42946"
+   ]
+  },
+  "2^51": {
+   "checked": "printed survivors only",
+   "first_open": 59,
+   "survivor_bits": [
+    "12.3598",
+    "4.97002"
+   ]
+  },
+  "2^56": {
+   "checked": "printed survivors only",
+   "first_open": 64,
+   "survivor_bits": [
+    "12.5724"
+   ]
+  },
   "301*2^50": {
    "checked": "printed survivors only",
    "first_open": 64,
@@ -177,6 +209,12 @@
    ]
   }
  },
+ "m50_killing_floors_log2": [
+  44.014,
+  44.569,
+  45.482,
+  48.578
+ ],
  "floor_certificate_numbers": {
   "note": {
    "odd_starts": 8246337208320,

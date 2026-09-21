@@ -41,9 +41,15 @@ the first open \(m\)?
   (Roosendaal, November 2004), by three stages, tables (Lemma 15: \(57\)), the
   continued-fraction reduction through the champion partial quotients (Lemma 17: \(63\)) and
   de Weger's approximation lattice (Lemma 18: \(68\)); the \(75\) is Simons 2008 at the later
-  floor. **extended**: at their own floor the transposition gives \(63\), their Lemma 17
-  exactly, so the exact enumeration is their \(K_2\) stage and the lattice is worth five
-  values of \(m\) there.
+  floor. **extended**: their Section 7 lattice is a two-dimensional approximation lattice
+  whose short points are the \((K,L)\) pairs in the Corollary 5 window below the ceiling,
+  each then tested against Corollary 5 and Lemma 7; the three-gap walk produces that list and
+  the probe applies those two tests, so the fifth step is not open. Run on their side at their
+  floor, the machinery reproduces their Lemma 18 to the unit (none for \(64\le m\le68\), their
+  five pairs at \(69\le m\le72\) with their killing floors to rounding). On the \(3n-1\) side
+  the same floor gives \(63\): the five values are the sign, not a stage. (A first reading on
+  21 September had called the transposition "their Lemma 17 exactly" and the lattice "worth
+  five values of \(m\)"; corrected the same day.)
 - `rhin-1987-pade-irrationality`, read at its Proposition on 21 September 2026:
   \(|u_0+u_1\log2+u_2\log3|\ge H^{-13.3}\) for \(H=\max(|u_1|,|u_2|)\ge2\), no further
   constant. The form \(e^{-13.3(0.46057+\log K)}\) carried since Paper A is [SdW] Lemma 12,
@@ -104,7 +110,8 @@ arithmetic at 80 digits).
 `data/research/juggler/negative_m_cycles/summary.json` and
 [juggler_negative_m_cycles.md](../research/juggler_negative_m_cycles.md): per floor and per
 \(m\), the bound on \(\Lambda\), Rhin's ceiling \(K_3(m)\), the admissible lengths below it,
-the least one \(K_0(m)\), the closest margin in bits and the survivors.
+the least one \(K_0(m)\), the closest margin in bits and the survivors; and, on the \(3n+1\)
+side at [SdW]'s floor, their Lemma 18 rows for \(64\le m\le72\).
 
 `python tools/check_3n_minus_1_note_numeric.py` recomputes the manuscript's numbers by a
 route independent of the probe: an integer sieve over \(K=iQ+j\) for the admissible lengths
@@ -145,13 +152,17 @@ elementary and are the natural next Lean; Rhin's bound would enter as a hypothes
   \(m\le43\) no admissible length lies below Rhin's ceiling at all; for \(44\le m\le49\) the
   admissible lengths are excluded by the chaining, the closest by \(1.4\) bits at \(m=49\),
   \(K=757698850864\).
-- **The floors (COMPUTATIONALLY VERIFIED).** \(2^{40}\): \(m\le44\); \(2^{44}\) and
-  \(2^{48}\): \(m\le49\); \(301\cdot2^{50}\), [SdW]'s floor: \(m\le63\), their Lemma 17
-  exactly, first open length \(766512153894657\) at \(m=64\); \(2^{60}\):
-  \(m\le68\); \(2^{68}\): \(m\le82\).
+- **The floors (COMPUTATIONALLY VERIFIED).** \(2^{40}\): \(m\le44\); \(2^{44}\) to
+  \(2^{48}\): \(m\le49\); \(2^{49}\): \(54\); \(2^{50}\): \(56\); \(2^{51}\) to \(2^{55}\): \(58\);
+  \(2^{56}\): \(63\); \(301\cdot2^{50}\), [SdW]'s floor: \(63\) on this side against their
+  \(68\) on theirs, first open length \(766512153894657\) at \(m=64\); \(2^{60}\): \(68\);
+  \(2^{68}\): \(82\). The rows at \(2^{49}\), \(2^{50}\) and \(2^{51}\) were also sieved
+  independently (104 admissible lengths below \(K_3(59)\); the same three answers).
 - **What the template leaves at \(m=50\), floor \(2^{44}\):** the lengths
   \(539722056247\), \(757698850864\), \(975675645481\), \(1193652440098\), with \(22.4\),
-  \(15.0\), \(7.8\), \(2.9\) bits of room; at \(2^{48}\) only the last.
+  \(15.0\), \(7.8\), \(2.9\) bits of room; at \(2^{48}\) only the last. They are the output of
+  the template's last step, not its input; the floors that remove them are \(2^{44.01}\),
+  \(2^{44.57}\), \(2^{45.48}\) and \(2^{48.58}\).
 - **Sanity.** With the floor at \(17\), \(m=2\) leaves \(K=11\); at \(5\), \(m=1\) leaves
   \(K=3\); the chaining is tight on the \(17\)-cycle (\(16\to40\) against \(40.5\)).
 - **Ceilings corrected (21 September 2026, by the manuscript check).** The probe's
@@ -159,10 +170,25 @@ elementary and are the natural next Lean; Rhin's bound would enter as a hypothes
   at \(\lfloor K\rfloor\) inside a real bisection and rounded up. It is exact now; Table 1
   of the note moved down by one in every row, and nothing else moved, the admissible counts,
   least lengths, margins and survivors being the same at every floor.
+- **The fifth step is not open (21 September 2026, second pass).** [SdW] Section 7, re-read:
+  the approximation lattice lists the admissible pairs and each is "checked for fulfilling
+  Corollary 5 and Lemma 7", which is what the probe has done since 20 September. Proof by
+  reproduction on their side: with the window on the contracting side at \(301\cdot2^{50}\),
+  none for \(64\le m\le68\); at \(m=69\) the pair \((5750934602875680,3364081086781987)\)
+  falling at \(576.2\cdot2^{50}\) against their \(577\); the same pair at \(584.6\), \(592.9\),
+  \(601.3\) for \(m=70,71,72\) against \(585\), \(593\), \(602\); their second pair at
+  \(623.6\), \(632.4\) against \(624\), \(633\); their three \(m=72\) pairs at \(308.2\),
+  \(666.8\), \(705.3\) against \(309\), \(667\), \(706\). One point more at \(m=72\), the
+  double of their second pair (\(0.9\) bits of room, \(316.2\cdot2^{50}\)), which their table
+  does not carry. Their Lemma 7 constant \(c_m\) is, algebraically, the
+  \(2^{-(B-m)/((\delta-1)B)}\) of the note's Lemma 3.
 
 ## Open questions
 
-- Lattice reduction (Simons–de Weger step 5) on the four lengths at \(m=50\), then upward.
+- The floor. On the 3900X at the measured \(9.9\) core-hours for \([2^{40},2^{44})\):
+  \(2^{49}\) (about fourteen hours wall) buys \(m\le54\), \(2^{50}\) (about twenty-nine) buys
+  \(56\), \(2^{51}\) (two and a half days) buys \(58\); nothing more until \(2^{56}\) (eleven
+  weeks). The verifier and the chunk driver are archived with `negative_floor_3x1`.
 - Hercher's valley arrangement transposed, worth about nine values of \(m\) at \(2^{68}\).
 - The Eliahou-type period lattice on this side at \(2^{44}\).
 - Their Lemma 7 constant \(c_m\to0.30576\) against the \((B-m)/(\delta-1)\) term here, a
@@ -172,9 +198,9 @@ elementary and are the natural next Lean; Rhin's bound would enter as a hypothes
 
 `PROMOTE`. The template carries with the sign flipped, the constants improve rather than
 worsen (the odd step subtracts), and the result is a theorem nobody has stated about a map
-the literature names but has not verified; at [SdW]'s floor the transposition reproduces
-their continued-fraction stage exactly. Best next question: what de Weger's approximation
-lattice ([SdW] Section 7) does to the four lengths at \(m=50\).
+the literature names but has not verified; on their side at their floor it reproduces their
+Lemma 18 to the unit. Best next question: the floor to \(2^{50}\) or \(2^{51}\), then Hercher's
+valley arrangement.
 
 ## Publication assessment
 
@@ -185,9 +211,11 @@ Theorem 6 read line by line; every number in the manuscript recomputed by
 with no layout warning. What a referee would ask for before acceptance, in the order it
 matters:
 
-1. **The fifth step.** [SdW] run the lattice reduction (their Section 7, Lemma 18) and it is
-   worth five values of \(m\) at their floor; a referee will ask why it was not run on the
-   four lengths at \(m=50\). It is the first thing to do.
+1. **The floor.** There is no lattice step left: [SdW]'s Section 7 is the list the three-gap
+   walk produces, tested the same way, and the note now says so and reproduces their Lemma 18
+   on their side. What a referee will ask instead is why the floor stops at \(2^{44}\) when
+   \(2^{49}\) costs a day of the machine and buys five values of \(m\), and \(2^{51}\) costs
+   three days and buys nine; the note should carry the higher floor or say what it costs.
 2. **The floor as a citable object.** One implementation, one run, archived in the
    repository. It needs a deposit with a DOI (verifier sources, chunk reports, coverage
    check) and, ideally, an independent re-run; Paper A's Remark 5.20 already rests on it, so
