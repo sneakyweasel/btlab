@@ -18,7 +18,8 @@ is now unproved in this branch, not refuted. Solver outputs are model values.
 
 FOLLOW-UP. ``PreimageGrid.lean`` proves actual signed tree-count recurrences
 on a strict 1/50 grid above root 4096, with a decreasing induction measure.
-A closed root domain and a checked growth certificate remain to be supplied.
+``PreimageDomain.lean`` closes the root domain for every positive target
+prime to 3. The growth induction and its checked certificate remain open.
 
 THE STRUCTURE.  Under ``T`` the preimages of ``a`` are ``2a`` always and ``(2a-1)/3`` when
 that is an odd integer, which happens exactly for ``a = 2 (mod 3)``; call those classes
@@ -125,6 +126,41 @@ def negative_cycle_members() -> set[int]:
             z = g_minus(z)
         members |= set(path[path.index(z):])
     return members
+
+
+def small_root_barrier_report() -> dict[str, Any]:
+    """Independent finite forward-invariant set supporting the Lean boundary.
+
+    This is an auxiliary boundary check below 4096, not a new termination floor.
+    Unknown cycles outside this finite set are not classified.
+    """
+    seeds = {0, *NEG_CYCLE_SEEDS}
+    states = negative_cycle_members() | {0}
+    longest = (0, 0)
+    highest = (0, 0)
+    for start in range(4096):
+        n, path = start, set()
+        while n not in seeds:
+            if n in path:
+                raise ValueError(f"unexpected cycle from {start} at {n}")
+            path.add(n)
+            if n > highest[1]:
+                highest = (start, n)
+            n = g_minus(n)
+        states.update(path)
+        longest = max(longest, (len(path), start))
+    return {
+        "root_threshold": 4096,
+        "strict_height_bound": 1 << 19,
+        "max_steps_to_seed": longest[0],
+        "longest_start": longest[1],
+        "max_height": highest[1],
+        "height_witness_start": highest[0],
+        "closed_union_size": len(states),
+        "forward_closed": all(g_minus(n) in states for n in states),
+        "contains_all_small_starts": set(range(4096)) <= states,
+        "all_states_below_barrier": max(states) < (1 << 19),
+    }
 
 
 # ----------------------------------------------------------- the two inequality systems
@@ -334,7 +370,7 @@ def cycle_members_break_the_identity(y: int = 4) -> int:
 # The complete license notice is in formal/Problems/Collatz/PreimageGrid.lean.
 # Its strict slack, not merely its homogeneous exponent, is checked for the
 # minus map in Problems/Collatz/PreimageGrid.lean. No density exponent follows
-# here until a closed root domain and a growth certificate are supplied.
+# here until the growth induction and its certificate are supplied.
 GRID_RUNGS = (
     10000, 10140, 10281, 10425, 10570, 10718, 10867, 11019, 11173, 11329,
     11487, 11647, 11810, 11975, 12142, 12311, 12483, 12658, 12834, 13013,
@@ -378,7 +414,7 @@ def height_comparison_report() -> dict[str, Any]:
 def classification() -> dict[str, Any]:
     return {
         "label": CLASS_RESIDUE_ONLY,
-        "statement": "Negation identifies the formal residue programs. Strict-grid count recurrences are now proved above root 4096, but a closed root domain and a checked growth certificate remain; matching model exponents do not establish a minus-map density bound.",
+        "statement": "Negation identifies the formal residue programs. Strict-grid count recurrences and a closed root domain for every positive target prime to 3 are now proved. The growth induction and its checked certificate remain; matching model exponents do not establish a minus-map density bound.",
         "published_plus_exponent": PUBLISHED["krasikov_lagarias_2003_k11"],
         "established_minus_exponent": None,
     }
@@ -398,6 +434,7 @@ def probe_payload(k_lp: int = 6, k_bijection: int = 10) -> dict[str, Any]:
     return {
         "classification": classification(),
         "height_comparison": height_comparison_report(),
+        "small_root_barrier": small_root_barrier_report(),
         "alpha_log2_3": ALPHA,
         "published_anchors": PUBLISHED,
         "exponents": exps,
@@ -435,8 +472,9 @@ def render_markdown(d: dict[str, Any]) -> str:
         "",
         "Follow-up: `PreimageGrid.lean` proves actual signed tree-count "
         "recurrences on a strict 1/50 grid above root 4096, together with "
-        "a decreasing induction measure. The remaining steps are a closed "
-        "root domain and a checked growth certificate. No minus-map density "
+        "a decreasing induction measure. `PreimageDomain.lean` closes the "
+        "root domain for every positive target prime to 3. The growth "
+        "induction and its checked certificate remain open. No minus-map density "
         "exponent is established by the model outputs below.",
         "",
         f"At target 19, child 13 and cutoff 103, the nominal child cutoff is "

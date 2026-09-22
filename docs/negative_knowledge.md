@@ -30,10 +30,13 @@ system, including its minimum/deletion steps, not accumulation of the
 offset in an already justified finite expanding family. A subsequent
 strict-grid route now proves actual counting recurrences and a decreasing
 root/scale measure in `PreimageGrid.lean`, for nonperiodic roots at least
-4096. This bypasses deletion inside minima. It still needs a closed root
-domain or boundary argument: 4096 has predecessor 2731, below the threshold.
-It also needs a checked growth certificate for the grid shifts. Neither
-component is supplied by the original floating-point residue model.
+4096. This bypasses deletion inside minima. The bare threshold is not
+closed: 4096 has predecessor 2731. `PreimageDomain.lean` now repairs that
+boundary using a finite orbit barrier and a nonperiodic fertile ancestor
+above it, for every positive target coprime to 3. Its selected ancestor
+domain stays above 4096 and transfers counts to the target after a fixed
+cutoff. The growth induction and a checked certificate for the exact grid
+shifts remain open; the original floating-point model supplies neither.
 
 ## Complete unbounded stopping families need not preserve multiplier moment
 

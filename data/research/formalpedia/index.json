@@ -6189,6 +6189,464 @@
     },
     {
       "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 15,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "cycleStates",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 17,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "cycleStates_closed",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 19,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "cycleStates_below",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 21,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "barrierCheck",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 27,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "barrierCheck_sound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 61,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "barrier_chunk_0",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 64,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "barrier_chunk_1",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 67,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "barrier_chunk_2",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 70,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "barrier_chunk_3",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 73,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "barrier_chunk_4",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 76,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "barrier_chunk_5",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 79,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "barrier_chunk_6",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 82,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "barrier_chunk_7",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 85,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "barrier_chunk_8",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 88,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "barrier_chunk_9",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 91,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "barrier_chunk_10",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 94,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "barrier_chunk_11",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 97,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "barrier_chunk_12",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 100,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "barrier_chunk_13",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 103,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "barrier_chunk_14",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 106,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "barrier_chunk_15",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 109,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "small_barrier_certificate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 134,
+      "module": "Problems.Collatz.PreimageBarrier",
+      "name": "small_orbits_bounded",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "kind": "def",
+      "ledger": [
+        "J-signed-preimage-closed-root-domain"
+      ],
+      "line": 21,
+      "module": "Problems.Collatz.PreimageDomain",
+      "name": "Reaches",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-preimage-closed-root-domain"
+      ],
+      "line": 23,
+      "module": "Problems.Collatz.PreimageDomain",
+      "name": "reaches_refl",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-preimage-closed-root-domain"
+      ],
+      "line": 25,
+      "module": "Problems.Collatz.PreimageDomain",
+      "name": "reaches_trans",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-preimage-closed-root-domain"
+      ],
+      "line": 31,
+      "module": "Problems.Collatz.PreimageDomain",
+      "name": "iterate_two_pow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Two distinct predecessors cannot both lie on cycles.",
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-preimage-closed-root-domain"
+      ],
+      "line": 38,
+      "module": "Problems.Collatz.PreimageDomain",
+      "name": "one_nonperiodic_predecessor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "At most three doublings reach a residue with two predecessors prime to 3.",
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-preimage-closed-root-domain"
+      ],
+      "line": 53,
+      "module": "Problems.Collatz.PreimageDomain",
+      "name": "productive_doubling",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-preimage-closed-root-domain"
+      ],
+      "line": 69,
+      "module": "Problems.Collatz.PreimageDomain",
+      "name": "nonperiodic_unit_ancestor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-preimage-closed-root-domain"
+      ],
+      "line": 87,
+      "module": "Problems.Collatz.PreimageDomain",
+      "name": "fertile_nonperiodic_ancestor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every positive target prime to 3 has a large fertile nonperiodic ancestor. No classification of all cycles is used.",
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-preimage-closed-root-domain"
+      ],
+      "line": 98,
+      "module": "Problems.Collatz.PreimageDomain",
+      "name": "large_root_for_target",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Fertile roots in the inverse tree of a fixed root.",
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "kind": "def",
+      "ledger": [
+        "J-signed-preimage-closed-root-domain"
+      ],
+      "line": 109,
+      "module": "Problems.Collatz.PreimageDomain",
+      "name": "Roots",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-preimage-closed-root-domain"
+      ],
+      "line": 111,
+      "module": "Problems.Collatz.PreimageDomain",
+      "name": "root_mem",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-preimage-closed-root-domain"
+      ],
+      "line": 114,
+      "module": "Problems.Collatz.PreimageDomain",
+      "name": "roots_nonperiodic",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-preimage-closed-root-domain"
+      ],
+      "line": 119,
+      "module": "Problems.Collatz.PreimageDomain",
+      "name": "roots_above_threshold",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-preimage-closed-root-domain"
+      ],
+      "line": 127,
+      "module": "Problems.Collatz.PreimageDomain",
+      "name": "roots_four",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-preimage-closed-root-domain"
+      ],
+      "line": 130,
+      "module": "Problems.Collatz.PreimageDomain",
+      "name": "roots_odd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-preimage-closed-root-domain"
+      ],
+      "line": 135,
+      "module": "Problems.Collatz.PreimageDomain",
+      "name": "roots_doubled_odd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A fixed finite connecting path imposes only a fixed cutoff threshold.",
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-preimage-closed-root-domain"
+      ],
+      "line": 140,
+      "module": "Problems.Collatz.PreimageDomain",
+      "name": "reaches_bounded",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-preimage-closed-root-domain"
+      ],
+      "line": 150,
+      "module": "Problems.Collatz.PreimageDomain",
+      "name": "count_transfer",
+      "trust": "kernel"
+    },
+    {
+      "doc": "All root hypotheses needed by the strict-grid recurrence hold uniformly.",
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-preimage-closed-root-domain"
+      ],
+      "line": 156,
+      "module": "Problems.Collatz.PreimageDomain",
+      "name": "closed_domain_for_target",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/Problems/Collatz/PreimageGrid.lean",
       "kind": "def",
       "ledger": [
@@ -96832,6 +97290,8 @@
         "Problems.Collatz.FixedInteger",
         "Problems.Collatz.Lift",
         "Problems.Collatz.NegativeMCycles",
+        "Problems.Collatz.PreimageBarrier",
+        "Problems.Collatz.PreimageDomain",
         "Problems.Collatz.PreimageGrid",
         "Problems.Collatz.PreimageScale",
         "Problems.Collatz.Shortcut",
@@ -97328,6 +97788,29 @@
         }
       ]
     },
+    "Problems.Collatz.PreimageBarrier": {
+      "declarations": 23,
+      "file": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "imports": [
+        "Problems.Collatz.NegativeMCycles"
+      ],
+      "ledger": []
+    },
+    "Problems.Collatz.PreimageDomain": {
+      "declarations": 19,
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "imports": [
+        "Problems.Collatz.PreimageBarrier",
+        "Problems.Collatz.PreimageGrid"
+      ],
+      "ledger": [
+        {
+          "id": "J-signed-preimage-closed-root-domain",
+          "statement": "For the natural minus-shortcut map g, define Reaches(n,a) by the existence of a finite forward iterate from n to a, and D_r={n: n=1 mod 3 and Reaches(n,r)}. Every positive target a not divisible by 3 admits a root r in D_r reaching a such that every n in D_r is at least 4096 and nonperiodic. The domain is closed under n->4*n, under n->(2*n+1)/3 when n=1 mod 9, and under n->2*(2*n+1)/3 when n=7 mod 9. There exists a fixed cutoff X_0 such that for every X>=X_0 the actual height-truncated positive inverse-tree counts satisfy N(r,X)<=N(a,X). A large fertile nonperiodic ancestor exists even for cycle targets: among two distinct predecessors at most one can be periodic. The boundary is discharged by a finite kernel-checked orbit barrier, not by a classification of all cycles. This supplies all root-domain hypotheses for the signed grid recurrences and decreasing measure. The growth induction and a checked numerical growth certificate remain open; no density exponent or termination result is asserted. Ledger label awaits advisory coverage review.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
+    },
     "Problems.Collatz.PreimageGrid": {
       "declarations": 39,
       "file": "formal/Problems/Collatz/PreimageGrid.lean",
@@ -97337,7 +97820,7 @@
       "ledger": [
         {
           "id": "J-signed-preimage-grid-counting",
-          "statement": "Let N(a,X) count positive integers whose minus-shortcut orbit reaches a while every intervening state stays at most X. Let C(t) be the explicit 50-rung integer cap defined in PreimageGrid.lean. For every nonperiodic a>=4096 with a=1 mod 3, b=(2*a+1)/3, and every natural t, N(a,C(t+100)*a)>=N(4*a,C(t)*4*a)+N(b,C(t+129)*b), and separately N(a,C(t+100)*a)>=N(4*a,C(t)*4*a)+N(2*b,C(t+79)*2*b). The single 4*a term is bounded without nonperiodicity or a lower root threshold. The cap inequalities retain the signed offset: 12288*b<=8193*a, 8193*C(t+29)<=12288*C(t), and 16386*C(t)<=12288*C(t+21). For M(t,a)=10*t+floor(log2(a^498)), the three calls satisfy M(t,4*a)+4<=M(t+100,a), M(t+79,2*b)+3<=M(t+100,a), and M(t+129,b)+1<=M(t+100,a). The fertile residue choices are the direct odd child at a=1 mod 9, doubled odd child at a=7 mod 9, and just 4*a at a=4 mod 9. All these statements are kernel-checked for actual capped integer trees. The root threshold alone is not backward closed, and a closed-domain growth induction and numerical certificate remain unproved here. No density exponent or termination theorem follows yet. This adapts M. Sharpe's strict-grid root-induction method to the signed correction. Ledger label awaits advisory coverage.",
+          "statement": "Let N(a,X) count positive integers whose minus-shortcut orbit reaches a while every intervening state stays at most X. Let C(t) be the explicit 50-rung integer cap defined in PreimageGrid.lean. For every nonperiodic a>=4096 with a=1 mod 3, b=(2*a+1)/3, and every natural t, N(a,C(t+100)*a)>=N(4*a,C(t)*4*a)+N(b,C(t+129)*b), and separately N(a,C(t+100)*a)>=N(4*a,C(t)*4*a)+N(2*b,C(t+79)*2*b). The single 4*a term is bounded without nonperiodicity or a lower root threshold. The cap inequalities retain the signed offset: 12288*b<=8193*a, 8193*C(t+29)<=12288*C(t), and 16386*C(t)<=12288*C(t+21). For M(t,a)=10*t+floor(log2(a^498)), the three calls satisfy M(t,4*a)+4<=M(t+100,a), M(t+79,2*b)+3<=M(t+100,a), and M(t+129,b)+1<=M(t+100,a). The fertile residue choices are the direct odd child at a=1 mod 9, doubled odd child at a=7 mod 9, and just 4*a at a=4 mod 9. All these statements are kernel-checked for actual capped integer trees. The root threshold alone is not backward closed. J-signed-preimage-closed-root-domain now supplies a suitable domain for every positive target prime to 3; the growth induction and numerical certificate remain unproved here. No density exponent or termination theorem follows yet. This adapts M. Sharpe's strict-grid root-induction method to the signed correction. Ledger label awaits advisory coverage.",
           "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
@@ -101473,13 +101956,13 @@
     }
   },
   "totals": {
-    "declarations": 7405,
-    "declarations_with_a_ledger_row": 5484,
-    "ledger_rows_naming_a_file": 477,
-    "modules": 324,
+    "declarations": 7447,
+    "declarations_with_a_ledger_row": 5503,
+    "ledger_rows_naming_a_file": 478,
+    "modules": 326,
     "trust": {
       "compiler": 56,
-      "kernel": 7349
+      "kernel": 7391
     }
   }
 }

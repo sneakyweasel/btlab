@@ -3961,7 +3961,8 @@
         "J-kl-preimage-density-transposes-to-3n-1",
         "J-kl-signed-preimage-height-gap",
         "J-signed-preimage-expanding-block-height",
-        "J-signed-preimage-grid-counting"
+        "J-signed-preimage-grid-counting",
+        "J-signed-preimage-closed-root-domain"
       ],
       "aliases": [],
       "nk_cluster": "Residue negation alone does not transfer the preimage-density bound"

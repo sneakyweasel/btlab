@@ -6,8 +6,9 @@ withdrawn as unproved. The eventual 3n-1 bound is not refuted. A follow-up
 now bounds height corrections through any finite family of expanding
 inverse blocks. A second follow-up proves actual signed tree-count
 inequalities on a strict grid for nonperiodic roots at least 4096, with a
-decreasing induction measure. Closing the root domain and supplying a
-growth certificate remain open.
+decreasing induction measure. The root domain is now closed for every
+positive target prime to 3. The growth induction and its checked
+certificate remain open.
 
 Branch of the [Collatz bridge](juggler_collatz_bridge.md). The exact
 predecessor comparison is now kernel-checked in
@@ -92,6 +93,11 @@ not the closed exact-shift transfer: a strict grid margin is retained.
 Promotion requires statements about genuine height-truncated integer
 trees. Stop before claiming a density exponent without a closed root
 domain and a checked growth certificate.
+
+Current follow-up scope: close the root domain without classifying all
+cycles. Kernel-check a finite orbit barrier, construct a large nonperiodic
+fertile ancestor for every positive unit target, and prove closure and
+eventual count transfer. Stop before the growth induction or a new exponent.
 
 ## Balanced-ternary formulation
 
@@ -186,6 +192,13 @@ three pointwise recurrences below. `measure_children` proves all three
 strict decreases, and `fertile_children` checks the residue selection.
 These are bounds on actual counts, not a floating-point residue model.
 
+`PreimageDomain.lean` constructs a closed root domain for every positive
+target prime to 3. A finite kernel check bounds every orbit starting below
+4096 strictly below 2^19. Every target has a nonperiodic fertile ancestor
+above that barrier; all its ancestors therefore stay above 4096. The
+domain is closed under the selected productions, and its capped counts
+transfer to the original target after a fixed cutoff threshold.
+
 Validation: full `lake build` passes (9028 jobs). The
 [22-declaration audit](../../formal/AxiomCheckCollatzPreimageScale.expected)
 uses only `propext`, `Classical.choice`, and `Quot.sound`. The focused
@@ -198,6 +211,14 @@ the [29-declaration grid audit](../../formal/AxiomCheckCollatzPreimageGrid.expec
 has only standard Lean dependencies. Exact independent checks cover all
 rounding phases, actual signed roots, and capped integer subtrees. Focused,
 integration, ledger, and registry tests give 162 passes and 14 skips.
+
+Closed-domain validation: full `lake build` passes (9031 jobs), and the
+[22-declaration domain audit](../../formal/AxiomCheckCollatzPreimageDomain.expected)
+uses only standard Lean dependencies. Focused, integration, ledger, and
+registry checks pass (163 passed, 14 skipped), including an independent finite
+forward-invariant orbit union and a counterexample to the smaller 2^18
+barrier. The local kernel proof is complete; advisory ledger coverage
+remains pending.
 
 ## Results
 
@@ -296,30 +317,62 @@ advanced term without the older elimination/deletion proof.
 The number 4096 is an auxiliary root threshold, not a new computational
 termination floor for either map.
 
+### A closed root domain for every positive unit target
+
+The finite barrier is the statement that every n<4096 and every k>=0
+satisfy g^k(n)<2^19. A finite kernel computation stops at a smaller
+state or at the explicit forward-invariant set consisting of 0 and the
+fifteen known cycle members; strong induction then bounds the whole orbit.
+The proof does not claim these are all cycles. Independently, the union of
+the small orbits contains 6418 states, is forward closed, and has maximum
+417718; 2^19=524288 is a convenient strict bound.
+
+For every positive target a coprime to 3, at most three doublings reach
+a value z in residue 1 or 7 modulo 9. The two predecessors 2z and
+(2z+1)/3 are distinct and both coprime to 3. They cannot both be periodic:
+a deterministic map is injective on its periodic points. Select a
+nonperiodic predecessor, double once if necessary to make it fertile,
+then multiply it by 2^20. The resulting root r is nonperiodic, satisfies
+r=1 mod 3 and r>2^19, and reaches a. This argument also works when a
+lies on a cycle, without identifying that cycle.
+
+Define D_r to consist of fertile positive ancestors of r. Every member
+is at least 4096, since a smaller start can never cross the barrier.
+Every member is nonperiodic, since it reaches a nonperiodic root.
+The set contains r and is closed under 4n, the odd child when n=1 mod 9,
+and the doubled odd child when n=7 mod 9. These are exactly the
+productions used by the grid inequalities. Thus their root hypotheses
+hold throughout the induction domain, including arbitrarily deep branches.
+
+Finally the fixed path from r to a has a finite maximum height X_0.
+For every X>=X_0, extending paths gives N(r,X)<=N(a,X). A future growth
+bound on this domain will therefore transfer to the original target.
+The current theorem supplies the domain and transfer, not that growth bound.
+
 The known-cycle census means the three known cycles and their fifteen
 members; it supplies no exhaustiveness theorem. Existing finite tree
 split checks remain computational and must retain their noncycle scope.
 
 ## Open questions
 
-The strict-grid route now supplies actual pointwise counting inequalities
-and a well-founded measure above 4096. The next question is to construct
-a root domain closed under the selected inverse productions, with every
-root above that threshold, or supply a justified boundary argument.
-Nonperiodicity is inherited by predecessors, but the numerical threshold
-is not. A growth certificate must then be checked for these grid shifts
-and combined with the induction; the old homogeneous model's output is
-not that certificate. The original deletion argument remains unsupported
-for the signed functions and is not used by this route.
+The strict-grid route now supplies actual pointwise counting inequalities,
+a well-founded measure, and a closed root domain for every positive target
+prime to 3. The next question is to assemble the growth induction and
+check a positive residue-weight certificate for these exact grid shifts.
+The old homogeneous model's output is not that certificate. The original
+deletion argument remains unsupported for the signed functions and is
+not used by this route.
 
 Even a repaired x^0.84 lower bound would not supply Juggler's required
 divergent harmonic-mass estimate or its growing-depth pressure bound.
 
 ## Decision
 
-**PARK** the density exponent pending the closed-domain growth induction
-and its numerical certificate. The expanding-block lemma and strict-grid
-counting recurrences are recorded as proved components. The residue
+**PARK** the density exponent pending the growth induction and its
+numerical certificate. **PROMOTE** the closed-domain component: its
+existence and closure now hold for every positive target prime to 3,
+including cycle targets. The expanding-block lemma and strict-grid
+counting recurrences remain proved components. The residue
 symmetry is retained; automatic analytic transfer remains closed. No new
 cycle exclusion, termination theorem, or computation floor follows, and
 neither Paper C nor Paper D requires modification.

@@ -1,5 +1,40 @@
 # Research journal
 
+## 2026-09-22 -- A closed signed root domain for every positive unit target
+
+- **Question:** Can every positive target prime to 3 support the strict-grid
+  induction without an unproved boundary or cycle-classification assumption?
+- **Result:** `PreimageBarrier.small_orbits_bounded` proves every orbit
+  starting below 4096 stays strictly below 2^19, for every iterate. The
+  kernel checks descent to a smaller state or one explicit cycle; strong
+  induction finishes the proof. Sixteen small blocks keep reduction memory
+  bounded. The independent finite orbit union has 6418 states, is forward
+  closed, and has maximum 417718; the longest path to a named seed is 114.
+- **Existence:** After at most three doublings a unit target has two distinct
+  unit predecessors. A deterministic map is injective on periodic points,
+  so at least one is nonperiodic. Further doublings give a fertile
+  nonperiodic ancestor above the barrier. This includes cycle targets and
+  does not assume the known cycles are exhaustive.
+- **Closure and transfer:** `PreimageDomain.closed_domain_for_target` gives
+  a nonempty domain of fertile ancestors, all nonperiodic and at least
+  4096. `roots_four`, `roots_odd`, and `roots_doubled_odd` prove closure
+  under exactly the selected productions. `count_transfer` proves that
+  the domain root's capped counts are bounded by the original target's
+  counts for every sufficiently large cutoff.
+- **Decision:** **PROMOTE** the closed-domain component. **PARK** the
+  density claim pending the well-founded growth induction and a checked
+  residue-weight certificate for the exact grid shifts. The original
+  floating-point model does not supply that certificate. No termination
+  theorem, infinite escape trajectory, or new computational floor follows.
+- **Validation:** Full `lake build` passes (9031 jobs), with no new
+  warnings. All 22 audited declarations use only standard Lean
+  dependencies. Focused, integration, ledger, and registry checks pass: 163 passed,
+  14 skipped. The index was regenerated from committed sources plus this
+  phase's Lean files, excluding unrelated working changes.
+- **Coverage:** The new ledger row keeps the human-proof label pending
+  advisory coverage; the local Lean proof and kernel audit supply its
+  formal evidence. No new statement was sent externally.
+
 ## 2026-09-22 -- Strict grid slack repairs the signed counting step above 4096
 
 - **Question:** Can the signed offset be retained in actual counting

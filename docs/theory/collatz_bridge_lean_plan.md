@@ -287,8 +287,11 @@ stays computational. Update Paper D Section 8 and
   blocks; `internal_prefix_height` also controls the whole path. The
   strict-grid follow-up `PreimageGrid.lean` proves actual pointwise count
   inequalities and a decreasing induction measure above root 4096,
-  avoiding the minimum/deletion operations. A closed root domain and a
-  checked growth certificate remain; this partial repair supplies no exponent.
+  avoiding the minimum/deletion operations. `PreimageDomain.lean` now
+  closes the domain for every positive target prime to 3, including cycle
+  targets, using a finite orbit barrier and a nonperiodic large ancestor.
+  A fixed connecting path transfers counts after a fixed cutoff. The
+  growth induction and its checked certificate remain; no exponent follows yet.
 
 ## 4. Not in Lean, by decision
 

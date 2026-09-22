@@ -204,6 +204,25 @@ def test_known_cycle_members_expose_the_noncycle_hypothesis() -> None:
     assert {1, 5, 7, 10, 17} <= cycles
 
 
+def test_small_root_orbits_form_a_finite_closed_barrier() -> None:
+    report = npd.small_root_barrier_report()
+    assert report["contains_all_small_starts"]
+    assert report["forward_closed"]
+    assert report["all_states_below_barrier"]
+    assert report["closed_union_size"] == 6418
+    assert report["max_steps_to_seed"] == 114
+    assert report["longest_start"] == 3975
+    assert report["max_height"] == 417718
+    # A superficially plausible smaller barrier is false.
+    assert (1 << 18) < report["max_height"] < (1 << 19)
+    n = report["height_witness_start"]
+    for _ in range(114):
+        if n == report["max_height"]:
+            break
+        n = npd.g_minus(n)
+    assert n == 417718
+
+
 def test_the_recorded_payload_matches_a_fresh_run() -> None:
     fresh = npd.probe_payload(k_lp=4, k_bijection=5)
     assert fresh["bijection_holds_every_k"]
@@ -212,6 +231,7 @@ def test_the_recorded_payload_matches_a_fresh_run() -> None:
     assert stored["classification"]["label"] == npd.CLASS_RESIDUE_ONLY
     assert stored["classification"]["established_minus_exponent"] is None
     assert fresh["height_comparison"] == stored["height_comparison"]
+    assert fresh["small_root_barrier"] == stored["small_root_barrier"]
     assert stored["bijection_holds_every_k"] is True
     assert stored["split_identity"]["failures"] == 0
     for k in ("2", "3", "4"):

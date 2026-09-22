@@ -1,7 +1,7 @@
 {
   "classification": {
     "label": "RESIDUE_SYMMETRY_WITH_UNPROVED_HEIGHT_TRANSFER",
-    "statement": "Negation identifies the formal residue programs. Strict-grid count recurrences are now proved above root 4096, but a closed root domain and a checked growth certificate remain; matching model exponents do not establish a minus-map density bound.",
+    "statement": "Negation identifies the formal residue programs. Strict-grid count recurrences and a closed root domain for every positive target prime to 3 are now proved. The growth induction and its checked certificate remain; matching model exponents do not establish a minus-map density bound.",
     "published_plus_exponent": 0.84,
     "established_minus_exponent": null
   },
@@ -21,6 +21,18 @@
     "actual_child_count": 12,
     "nominal_child_count": 13,
     "density_transfer_established": false
+  },
+  "small_root_barrier": {
+    "root_threshold": 4096,
+    "strict_height_bound": 524288,
+    "max_steps_to_seed": 114,
+    "longest_start": 3975,
+    "max_height": 417718,
+    "height_witness_start": 3393,
+    "closed_union_size": 6418,
+    "forward_closed": true,
+    "contains_all_small_starts": true,
+    "all_states_below_barrier": true
   },
   "alpha_log2_3": 1.584962500721156,
   "published_anchors": {
