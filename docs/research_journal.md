@@ -1,5 +1,35 @@
 # Research journal
 
+## 2026-09-22 -- The inverse-cell shortcut also needs a shrinking-target rate
+
+- **Question:** Does the cited Hardy-field equidistribution justify
+  the inverse-cell all-odd count, or does a quantitative premise remain?
+- **Correction:** An odd predecessor has exact count ceil(b_m)-ceil(a_m),
+  with a_m=(m^(2/3)-1)/2 and b_m=((m+1)^(2/3)-1)/2. The cell width
+  is about (1/3)m^(-1/3), so the proposed count on m~M needs error
+  o(M^(2/3)). Qualitative fixed-box equidistribution gives only o(M).
+  Its use in the 11 September peel was unjustified already for t<=2.
+- **Separator:** Clamping the first coordinate of any jointly
+  equidistributed pair into [delta_m,1-delta_m], delta_m tending to
+  zero, preserves equidistribution but removes every hit in boundary
+  strips of half that width. This disproves the general implication,
+  not the actual Juggler count or a Hardy-specific quantitative result.
+- **Sources:** Reilly's weighted Hardy criterion, Corollary 1.10 and
+  Example 1.12, controls fixed frequencies and fixed targets, not the
+  needed shrinking-cell discrepancy. The separate Paper B results
+  remain: OO has density 1/4 (Theorem 3.1); OOO has density 1/8
+  (projection of Corollary 4.6). The earlier note confused these counts.
+- **Decision:** **CLOSE** the claimed qualitative inverse-cell proof.
+  The growing-depth pressure remains open. Correct the dossier,
+  negative knowledge, and historical journal entry; no new Lean
+  wrapper, ledger row, paper change, or arithmetic estimate is claimed.
+- **Validation:** 50,000 exact cell counts agree with independent
+  enumeration of odd-source images; perfect-cube lower endpoints and
+  excluded upper endpoints pass separately. Pressure, integration,
+  ledger, and registry checks give 168 passes and 14 skips. Ledger
+  rendering, regenerated branch-index consistency, and scoped
+  whitespace checks pass. No Lean source changed.
+
 ## 2026-09-22 -- Orbit packing leaves the arithmetic pressure input unchanged
 
 - **Question:** Can the Collatz injective-orbit packing argument supply
@@ -6069,18 +6099,17 @@ fork. No paper, Lean, probe, or ledger row.
 
 ## 2026-09-11 — All-odd inverse-cell peel dies at the third odd letter
 
-Termination Phase-0 on the pressure leftover (C3). The unique
-odd preimage of `m` sits in a cell of length about `m^{-1/3}`, so
-equidistribution of `{m^{2/3}}` on the all-odd set `A_t` would
-multiply the all-odd density by `1/2` at each extra letter. For
-`t <= 2` the pair `(m^{2/3}, m^{3/2})` is a published Hardy joint
-law and recovers only the known `OO` count (density `1/8`). For
-`t >= 3` the set `A_t` uses `{floor(m^{3/2})^{3/2}}`, whose
-Theorem-9 leftover grows like `m^{3/4}`. That is the recorded
-floor-Hardy door, not a new C3 estimate. On `(10^6, 2*10^6]` the
-all-odd continuation stays near `1/2` through depth 12 and does
-not approach the C3 danger threshold `0.87`. **CLOSE** the peel;
-**PARK** the actual count. No paper, Lean, or registered probe.
+**Corrected 22 September 2026:** this phase originally claimed a
+rate-free inverse-cell proof for t<=2 and called its output an OO
+density of 1/8. Both claims are withdrawn. The inverse cell shrinks
+like m^(-1/3); qualitative joint equidistribution does not give its
+relative hit count. OO actually has density 1/4; OOO has density
+1/8, with separate rated Paper B proofs. The later t>=3 nested-floor
+obstruction of size m^(3/4) remains an additional limitation, not
+the first gap in this shortcut. The recorded finite continuation
+rates near 1/2 on (10^6,2*10^6] are observations only. **CLOSE**
+the peel; **PARK** the actual count (C3). See the correction above
+and the inverse-cell subsection in the pressure dossier.
 
 ## 2026-09-11 — UC6 is empty on actual odd triples
 

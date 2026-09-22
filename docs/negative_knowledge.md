@@ -2212,17 +2212,22 @@ inherits the current AI-assisted Paper B proof and its review limitations.
 See the new-theorem transfer subsection of
 [the pressure dossier](problems/juggler_pressure_external_average.md).
 
-**Inverse-cell Hardy peel (11 September 2026).** The unique-preimage
-coordinate `{m^{2/3}}` is Hardy in `m`, but it bounds the all-odd
-count (C3) only on the set `A_t` of depth-`t` all-odd states. That
-set is a Hardy cylinder solely for `t <= 2`, where the peel
-reproduces the known `OO` density `1/8`. From the third odd letter
-the membership condition is `{floor(m^{3/2})^{3/2}}`, a superlinear
-floor-Hardy leftover of size `m^{3/4}`. This is the recorded
-composition door, not a growing-depth estimate. Empirical
-continuation near `1/2` on a dyadic window of `10^6` is not a
-proof of (C3). CLOSE the peel; PARK the actual count. Same
-dossier.
+**Inverse-cell Hardy peel (11 September; corrected 22 September 2026).**
+The exact odd-predecessor count is ceil(b_m)-ceil(a_m), where
+a_m=(m^(2/3)-1)/2 and b_m=((m+1)^(2/3)-1)/2. The target width
+is about (1/3)m^(-1/3). Qualitative joint Hardy equidistribution
+does not supply the o(M^(2/3)) counting error needed on m~M;
+its fixed-box o(M) error is insufficient. A vanishing perturbation
+can preserve joint equidistribution while avoiding all such boundary
+strips, as the dossier proves. The former claim that the peel works
+for t<=2 is withdrawn. The separate rated Paper B results give
+OO density 1/4 and OOO density 1/8; the old text conflated them.
+At t>=3 the nested coordinate `{floor(m^(3/2))^(3/2)}` adds the
+recorded superlinear floor-Hardy obstruction. Weighted Hardy
+equidistribution with fixed Fourier frequencies supplies neither
+missing estimate. **CLOSE** this qualitative peel, **PARK** the
+actual arithmetic count (C3); no claim that either short density
+or growing-depth equidistribution is false. Same dossier.
 
 **Elementary pairing cannot feed Lemma B (11 September 2026).**
 The second boxed question of

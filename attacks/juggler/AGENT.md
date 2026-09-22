@@ -111,6 +111,10 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   its arithmetic bound is open.
   Kernel localize CLOSE. Do not open a
   third formulation. Not a halt theorem; no fate excluded.
+  The inverse-cell Hardy shortcut is also CLOSE: its shrinking
+  cells need a quantitative count, not qualitative equidistribution.
+  The earlier claimed rate-free peel through depth two is withdrawn;
+  Paper B's separate rated short counts are unchanged.
   The former unrestricted H/H_q statements are now **REFUTED** by
   [absorbed cylinders](../../docs/problems/juggler_absorbed_cylinder.md):
   one terminating cylinder has at least y/(216 log y) starts on infinitely

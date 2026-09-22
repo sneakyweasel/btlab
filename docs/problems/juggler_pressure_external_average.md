@@ -1536,27 +1536,95 @@ Can a one-sided arithmetic counting argument prove the necessary
 all-odd bound (C3) at growing depth? No bound for it, or for the
 remaining high-odd-count words, is established here.
 
-### Inverse-cell Hardy peel (11 September 2026)
+### Inverse-cell Hardy peel (11 September; corrected 22 September 2026)
 
-The unique odd preimage of an odd state `m` lies in the interval
-`[m^{2/3}, (m+1)^{2/3})`, of length about `(2/3) m^{-1/3}`. Write
-`A_t(z)` for the odd integers `m <= z` whose first `t` letters are
-odd. Then the depth-`(t+1)` all-odd starts in `(y, 2y]` are exactly
-the odd preimages of `A_t` at scale `y^{3/2}`. If `{m^{2/3}}` were
-equidistributed on each `A_t`, the expected cell hit would multiply
-the all-odd density by `1/2` at every extra letter.
+**Correction:** the original argument used qualitative joint
+equidistribution for a shrinking target. That implication is not
+justified, even before the nested floor enters at `t=3`. It also
+misidentified the known two-letter density: `OO` has density `1/4`,
+not `1/8`. The latter is the three-letter `OOO` density. The actual
+Paper B counts have separate rated proofs and are unchanged.
 
-For `t <= 2` this is published Hardy-field equidistribution, not a
-nested floor. The pair `(m^{2/3}, m^{3/2})` has distinct non-integer
-exponents, so Fejer / Boshernitzan give joint equidistribution on
-the torus. Membership in `A_1` is oddness of `m`. Membership in
-`A_2` is the half-interval for `{m^{3/2}/2}`. Restricting a jointly
-equidistributed pair to one half-interval leaves `{m^{2/3}}` uniform.
-Together with the one-step Fejer law for `{n^{3/2}}` on odd sources,
-this recovers the rate-free `OO` count of density `1/8` among all
-starts in `(y, 2y]`. That count is already the rated corollary
-`J-automatic-descent-density` at exponent `5/6`; the peel adds no
-new density and no growing-depth saving.
+```text
+Mathematical target     Does qualitative Hardy equidistribution justify the inverse-cell count?
+Novelty hypothesis      A quantitative weighted theorem might supply the shrinking-target estimate.
+Falsifier               The cited result controls fixed intervals without the needed error scale.
+Already killed by?      The nested-floor route is closed; this audits an earlier claimed proof step.
+Existing machinery      Exact odd inverse cells, Paper B's rated counts, and the cited Hardy results.
+Maximum Phase-0 scope   Cell identity, error requirement, and corrections to the affected records.
+Promotion criterion     A cited theorem supplying the actual shrinking-cell count.
+Stop criterion          CLOSE the implication if only qualitative equidistribution is supplied.
+```
+
+**Exact cell and parity.** An odd predecessor of an integer m>=1,
+if it exists, lies in `[m^(2/3),(m+1)^(2/3))`. This interval has
+length less than one, so the predecessor is unique. Put
+
+    a_m = (m^(2/3)-1)/2,
+    b_m = ((m+1)^(2/3)-1)/2,
+    ell_m = b_m-a_m.
+
+Writing the odd source as n=2j+1 gives the exact count
+
+    h(m) = #{odd n>=1 : floor(n^(3/2))=m}
+         = ceil(b_m)-ceil(a_m),
+    ell_m ~ (1/3)*m^(-1/3).                              (H1)
+
+The half-open endpoints in (H1) include a perfect-power lower
+endpoint and exclude an upper one. The modulo-two scaling is needed
+to impose oddness of the predecessor; the unscaled fractional part
+alone does not record it.
+
+Let A_t be the positive states whose first t letters are odd. The
+depth-(t+1) all-odd sources are the odd predecessors of A_t, with
+the original source-window restriction retained. The proposed peel
+therefore needs a count of h(m) on A_t, not just its density in
+fixed fractional-part intervals.
+
+**The quantitative gap.** On a target block M<m<=2M, the proposed
+main term `sum_{m in A_t} ell_m` has scale M^(2/3) when A_t has
+positive density. A relative asymptotic requires a total error
+o(M^(2/3)) in this shrinking-cell count. Qualitative equidistribution
+only supplies o(M) for fixed boxes. It gives no error small enough
+for this purpose. In a Fourier truncation argument the usual M/H
+error alone requires H/M^(1/3) to tend to infinity. Convergence for
+each fixed Fourier frequency supplies no such uniform estimate.
+
+This logical distinction is strict. Start with any jointly uniformly
+distributed sequence (u_m,v_m) in the unit square. For
+delta_m=min(1/4,m^(-1/3)), replace u_m by
+
+    u'_m = max(delta_m, min(1-delta_m, u_m)).              (H2)
+
+The perturbation is at most delta_m, tending to zero, so joint
+equidistribution is preserved: every fixed Fourier character changes
+by O(delta_m), whose Cesaro average tends to zero. Yet u'_m never
+enters the boundary strips of width delta_m/2. These strips have a
+diverging expected total count of order M^(2/3) on a dyadic block.
+Thus qualitative joint equidistribution by itself cannot justify
+the shrinking-target inference. This abstract construction is not
+a Juggler sequence or a counterexample to any Hardy-field theorem;
+additional arithmetic information could still prove the desired count.
+
+**What the cited theorems actually give.** On odd m, the smooth
+coordinates `(a_m,m^(3/2)/2)` are jointly equidistributed by the
+Hardy criterion and Weyl's criterion. This establishes fixed-box
+equidistribution for `t<=2`, but does not evaluate (H1) on A_t.
+Reilly's [weighted Hardy-field criterion](https://arxiv.org/html/2606.08040v1),
+Theorem A and Corollary 1.10, is formulated with fixed Fourier
+frequencies. Example 1.12 gives fixed-target interval asymptotics for
+n^(3/2) over source windows of length s(N) with s(N)/N^(1/4) tending
+to infinity. It does not give the shrinking-target error above or
+allow an arbitrary itinerary indicator as a weight.
+
+The valid short counts come from
+[Paper B](../theory/juggler_parity_discrepancy_note.md): Theorem 3.1
+gives `#OO(N)=N/4+O(N^(5/6))`, the actual statement of
+`J-automatic-descent-density`. Summing the two choices of the last
+formal sign in Corollary 4.6 gives
+`#OOO(N)=N/8+O(N^(23/24) log(2N)^3)`. Both retain their written
+analytic proof status. Neither count is supplied by the qualitative
+inverse-cell argument.
 
 For `t >= 3`, membership in `A_t` uses
 `{floor(m^{3/2})^{3/2}}`. Theorem 9 of
@@ -1578,10 +1646,13 @@ from uniform, matching the ambient odd sample. This is an
 observation, not a discrepancy theorem and not a growing-depth
 bound.
 
-**CLOSE** the inverse-cell Hardy peel as a C3 proof. **PARK**
-the actual count. Do not reopen as a deeper Hardy pair, a
-Theorem-9 unwind of `{floor(m^{3/2})^{3/2}}`, or a claim that
-continuation `1/2` on a finite window proves (C3).
+**CLOSE** the qualitative inverse-cell Hardy peel as a C3 proof:
+the shrinking-target gap is present before the later nested-floor
+obstruction. **PARK** the actual count. Do not reopen as a deeper
+Hardy pair, a Theorem-9 unwind of `{floor(m^{3/2})^{3/2}}`, or a
+claim that continuation `1/2` on a finite window proves (C3).
+No new arithmetic bound, Lean theorem, or paper revision follows
+from this correction.
 
 ## Decision
 
@@ -1627,9 +1698,11 @@ spacing at every depth. Neither growing-depth boundary hits nor the
 complementary pressure has been bounded.
 
 The completed-sum, Walsh, sparse-forward-image and inverse-production
-methods remain closed. The inverse-cell Hardy peel is closed: it is
-rate-free through depth two and re-enters the floor-Hardy door at
-the third odd letter. No third formulation, registered census,
+methods remain closed. The inverse-cell Hardy peel is closed:
+qualitative equidistribution does not count its shrinking targets,
+and the third odd letter adds the floor-Hardy obstruction. The
+claimed rate-free inverse-cell proof through depth two is withdrawn;
+the separately proved Paper B short counts remain valid. No third formulation, registered census,
 potential framework, floor increase or paper rewrite is introduced.
 The phase ends here. **Best next question:** what arithmetic estimate
 can bound the actual growing-depth all-odd count (C3) while retaining
