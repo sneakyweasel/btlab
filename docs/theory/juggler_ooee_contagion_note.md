@@ -7,7 +7,9 @@ Independent review of that analytic input is outstanding.
 The assembly is kernel-checked in
 [FateOOEEAssembly.lean](../../formal/Problems/Juggler/FateOOEEAssembly.lean),
 with its two precise odd-production inequalities retained as hypotheses.
-The analytic input itself has not been proved in Lean.
+The follow-up [FateOEWeighted.lean](../../formal/Problems/Juggler/FateOEWeighted.lean)
+now discharges OE, leaving only the OOEE production input in the strengthened
+formal implication. The new OOEE analytic theorem is still not proved in Lean.
 
 ## 1. Consequences
 
@@ -99,8 +101,10 @@ target w-mass is finite by (2). For every target subset B and cutoff Y,
  \tag{5}
 \]
 
-where C_1 is independent of B and Y. This elementary weighted conversion
-is written; the original OE poor-share theorem is already Lean verified.
+where C_1 is independent of B and Y. The original OE poor-share theorem
+is already Lean verified. Section 7 now supplies a fully formal weighted
+conversion with physical source cutoffs, using a uniform finite error
+instead of requiring an asymptotic weight estimate as an input.
 
 ### 3.2 OOEE mass
 
@@ -232,6 +236,69 @@ The conditional Lean theorem covers the assembly from precisely (4).
 No result is labelled an unconditional Lean proof at 5/8.
 
 No published manuscript, verification floor, or cycle bound is changed.
-The next substantive proof obligation is formalizing the actual
-odd-production bounds, especially the analytic OOEE poor-fibre theorem.
+The OE input is discharged in the follow-up below. The remaining
+production obligation is formalizing the actual OOEE poor-fibre theorem
+and its source-cutoff consequence.
 Growing-depth stopped pressure and the required Tao rate remain open.
+
+## 7. OE is now unconditional in the conserved weight
+
+The follow-up module `FateOEWeighted.lean` proves, for every predicate A
+and natural cutoff N,
+
+\[
+ \left|\mu_A(N)-2\sum_{1\le n\le N,\ n\in A}\frac1n\right|\le6.
+ \tag{12}
+\]
+
+This is an exact finite statement, uniform over all target or source sets.
+The paired weight satisfies 2/a(n)<=w(n)<=2/(a(n)-1). Using
+n<=a(n)<=n+1, and handling n=1 separately, gives
+
+\[
+ |w(n)-2/n|\le6\left(\frac1n-\frac1{n+1}\right)\qquad(n\ge1).
+\]
+
+The majorant telescopes to 6*(1-1/(N+1)); positivity lets any subset use
+the same bound. These are `weight_reciprocal_error`,
+`reciprocal_telescoping`, and `mass_reciprocal_error`.
+
+To use the existing OE tail theorem directly, fix eta=1/1000 and
+U=10^36. `base_parameters` checks its hypotheses by the rational
+certificate U^(1/3)>=10^12. This U is an analytic cutoff chosen to absorb
+a finite initial mass; it is not a computed verification floor and
+does not change N_0. Put
+
+\[
+ C_0=\sum_{1\le m\le U}\frac1m+
+              \frac{2100\,\operatorname{eps}(U)}{\eta^2}.
+\]
+
+Outside m<=U and the existing `Poor eta` set, every OE fibre has
+reciprocal source mass at least (33/100)/m. This follows from the proved
+`nonpoor_fiber_logMass_ge`: eps(m)<=1/1000 and
+(2/3)*(1/2-1/1000)-1/1000>33/100. The discarded reciprocal target mass
+is at most C_0, independently of A and the target cutoff.
+
+The accepted fibres are disjoint. For a backward-closed A they consist
+of members of A satisfying the actual OE guard. `oe_fibre_cutoff` proves
+that m<=floor(exp(3t/4-4)) puts every source below floor(exp(t)), using
+n^3<(m+1)^4. Thus `reciprocal_oe_production` gives the OE reciprocal
+inequality with additive loss C_0 for every real t. Applying (12) at
+the target and source cutoffs proves `oe_production`:
+
+\[
+ (33/100)F_A(3t/4-4)\le S_{OE}(A,t)+2C_0+8
+                           \qquad(t\in\mathbb R).
+ \tag{13}
+\]
+
+There is no extra analytic hypothesis in (13). The new
+`OOEEProductionBound A` is exactly the second inequality in (4), with
+its own nonnegative constant and eventual threshold. For backward-closed
+A, `oddProductionBounds_of_ooee` combines it with (13).
+`logMass_growth_of_ooee` and `conjecture_of_tao_rate_of_ooee` consequently
+retain only this OOEE production input (and, for the latter, the open
+Tao failure-rate estimate). The written OOEE short-interval argument
+and its exceptional-target bound remain the next analytic formalization
+obligation. No unconditional Lean result at exponent 5/8 is asserted.

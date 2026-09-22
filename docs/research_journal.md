@@ -1,5 +1,42 @@
 # Research journal
 
+## 2026-09-22 -- Discharge actual OE production in the conserved weight
+
+- **Target:** Remove the OE hypothesis from the new 5/8 contagion assembly.
+  The existing poor-fibre theorem should transfer through the conserved
+  weight with bounded loss; an unbounded conversion or cutoff error would
+  falsify it. This is not a reopening of a closed localization route.
+  The phase budget is weighted OE production and its existing assembly.
+- **Exact conversion:** `mass_reciprocal_error` proves an absolute error
+  at most 6 between conserved mass and twice reciprocal mass, for every
+  predicate and finite cutoff. A pointwise telescoping majorant gives
+  uniformity without any density assumption.
+- **Unconditional OE input:** Fix eta=1/1000 and the analytic cutoff U=10^36.
+  The existing poor-tail hypotheses hold by exact rational powering. The
+  finite initial mass and poor target mass form one fixed loss C_0.
+  Accepted actual fibres give reciprocal coefficient 33/100; their physical
+  source cutoffs follow from n^3<(m+1)^4. Weight conversion gives the required
+  OE bound with additive loss 2C_0+8 for every real t. U is an analytic
+  threshold, not a new computational verification floor.
+- **Formal result:** `FateOEWeighted.lean` proves this input without an
+  analytic assumption. `oddProductionBounds_of_ooee` combines it with the
+  single remaining `OOEEProductionBound`; the strengthened contagion and
+  Tao implications therefore no longer assume the OE inequality.
+- **Decision:** **PROMOTE**. The next question is the actual OOEE production
+  theorem in Lean, including the written short-interval estimate. That
+  analytic work is not opened by this phase. The unconditional Lean
+  contagion exponent remains 100/203; the new 5/8 result still depends on
+  OOEE. Neither a termination proof nor an escape construction follows.
+  [Exact conversion and proof mapping](theory/juggler_ooee_contagion_note.md).
+- **Validation:** Full Lean build: 9050 jobs. All 14 theorem dependency
+  audits use only propext, Classical.choice, and Quot.sound. The selected
+  regression run has 177 passes and 15 skips; two global inventory/index
+  checks fail on the concurrently developing, unregistered
+  `PaperEModularReturn.lean`, outside this phase. The new registered module
+  and its proof checks pass. No external advisory request was sent.
+  Paper E's local release was refreshed for the shared registry hash;
+  its manuscript and PDF remain byte-identical.
+
 ## 2026-09-22 -- Paper E closes its four smaller Lean coverage gaps
 
 - **Request:** proceed with the missing formal connections identified in

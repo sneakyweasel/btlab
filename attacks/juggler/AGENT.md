@@ -135,7 +135,10 @@ equidistribution proof, which remains a written result.
   gives written contagion at 5/8 and a sufficient Tao-rate threshold e>3/8.
   `FateOOEEAssembly.lean` checks that implication with the two actual
   odd-production inequalities explicit; it does not certify the analytic
-  input. The unconditional Lean exponent remains 100/203, and the actual
+  input. `FateOEWeighted.lean` now discharges the OE inequality, including
+  physical cutoffs and a uniform mass-conversion error at most 6. Only
+  `OOEEProductionBound` remains in its strengthened contagion implication.
+  The unconditional Lean exponent remains 100/203, and the actual
   failure-rate estimate remains open.
   Kernel localize CLOSE. Do not open a
   third formulation. Not a halt theorem; no fate excluded.

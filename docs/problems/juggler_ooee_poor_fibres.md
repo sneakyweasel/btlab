@@ -4,8 +4,9 @@ Status: **PROMOTE**, 22 September 2026. The follow-up now supplies an
 AI-assisted written poor-fibre tail and the averaged OOEE coefficient
 arbitrarily close to 1/9. The subsequent
 [E/OE/OOEE assembly](../theory/juggler_ooee_contagion_note.md) gives written
-contagion at 5/8 and a sufficient Tao-rate threshold e>3/8. Its Lean theorem
-retains the precise odd-production bounds as hypotheses. Independent review
+contagion at 5/8 and a sufficient Tao-rate threshold e>3/8. Its strengthened
+Lean theorem now retains only the precise OOEE production bound: the OE
+input has been discharged in `FateOEWeighted.lean`. Independent review
 and analytic Lean verification are outstanding; the published manuscripts
 and termination status are unchanged.
 [Analytic argument](../theory/juggler_ooee_poor_fibre_tail_note.md).
@@ -87,6 +88,15 @@ generic Lean recursion supply the machinery. Promotion requires a compiled
 implication whose analytic hypotheses match the written production theorem;
 any unmatched premise must remain explicit. This phase includes no further
 analytic estimate or manuscript revision.
+
+The fourth phase discharges OE in that assembly. Its target is the actual
+conserved-weight inequality with coefficient 33/100 and source cutoff
+floor(exp(t)), without any new analytic hypothesis. An unbounded weight
+conversion or cutoff error would falsify it. It uses the existing proved
+OE poor-fibre tail; no closed localization route is reopened. The budget
+is the exact weight comparison, weighted OE production, and connection
+to the existing assembly. Promotion requires that unconditional input
+to compile; the new OOEE estimate remains outside this phase.
 
 ## Balanced-ternary formulation
 
@@ -207,6 +217,12 @@ in `OddProductionBounds`; this module does not prove that analytic input.
 The [assembly note](../theory/juggler_ooee_contagion_note.md) supplies its
 written derivation, including the physical source-height cutoffs.
 
+[FateOEWeighted.lean](../../formal/Problems/Juggler/FateOEWeighted.lean)
+now proves a uniform mass-conversion error at most 6 and discharges the
+actual OE production for every backward-closed class. Its consequence
+`logMass_growth_of_ooee` retains only `OOEEProductionBound`. The new
+short-interval OOEE estimate itself is still not formalized.
+
 ## Results
 
 In the exhaustive dyadic blocks with exponents 8, 9, 10, 11, the mean
@@ -271,6 +287,13 @@ claim inherits the OOEE analytic review boundary; only the implication
 from `OddProductionBounds` is kernel-checked. The Tao failure-rate bound
 at any e>3/8 would then imply termination, but that rate remains open.
 
+**Fourth phase: the OE hypothesis is removed.** Lean proves that conserved
+mass differs from twice reciprocal mass by at most 6 for every predicate
+and finite cutoff. The established OE poor-fibre theorem, exact disjoint
+source fibres, and n^3<(m+1)^4 then give coefficient 33/100 with a fixed
+additive loss. This is unconditional in Lean. The improved contagion
+implication now assumes only the actual OOEE production bound.
+
 ## Open questions
 
 The first phase proposed a second-moment route. Let H_m be the number
@@ -292,19 +315,19 @@ prefix estimates and the already known two-predecessor Fourier transfer
 still do not supply a short-fibre second moment merely by reindexing.
 
 Independent review of the new local proof remains outstanding. The next
-proof obligation is to discharge `OddProductionBounds` in Lean for every
+proof obligation is to discharge `OOEEProductionBound` in Lean for every
 backward-closed class. Its main analytic ingredient is the actual OOEE
-poor-fibre theorem; exact weighted conversion and source cutoffs must
-also be retained. The assembly now fixes the precise required statement.
+poor-fibre theorem. The OE production and a uniform weight conversion
+are now formal; the OOEE source-cutoff consequence must also be retained.
 
 ## Decision
 
 **PROMOTE.** The written poor-fibre theorem now has a complete cutoff
 assembly yielding contagion at 5/8 and the sufficient Tao threshold 3/8.
-The assembly is kernel-checked with precisely stated odd-production inputs;
-the full analytic theorem still awaits independent review and Lean proof.
-Exactly one best next question: can the actual `OddProductionBounds`
-hypotheses be discharged in Lean? This phase stops at that boundary.
+The assembly and its OE input are kernel-checked; the new OOEE analytic
+theorem still awaits independent review and Lean proof. Exactly one best
+next question: can the actual `OOEEProductionBound` be discharged in Lean?
+This phase stops at that boundary.
 
 ## Publication assessment
 

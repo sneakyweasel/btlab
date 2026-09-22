@@ -13012,5 +13012,39 @@
    "tests/research/juggler_sequence/test_lean_paths_declares_name.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-oe-conserved-weight-production",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked with advisory coverage pending. For every natural predicate A and cutoff N, the absolute difference between CodeMassTransport.mass A N and twice logMass A N is at most 6, from the positive-integer bound |weight(n)-2/n|<=6*(1/n-1/(n+1)). For every backward-closed A and real t, (33/100)*fullMass A(3*t/4-4)<=sourceMass A oeGuard(cutoff t)+2*C0+8, with C0=logMass(True,10^36)+2100*eps(10^36)/(1/1000)^2. This actual OE bound has no additional analytic hypothesis: the existing poor-fibre theorem, disjoint fibres, and n^3<(m+1)^4 prove the reciprocal production and physical source cutoff. The analytic threshold 10^36 is not a computational verification floor. OOEEProductionBound A means the eventual actual OOEE inequality with coefficient 11/100 at target cutoff 9*t/16-4 and a bounded nonnegative additive loss. It now suffices by itself for OddProductionBounds A. For a backward-closed A with a positive member it consequently gives reciprocal growth at exponent 5/8; for the failure class it and an eventual dyadic odd-failure rate e>3/8 imply termination. The OOEE production estimate and actual failure-rate bound remain explicit hypotheses and are not proved here.",
+  "source": "docs/problems/juggler_ooee_poor_fibres.md",
+  "lean": "Problems/Juggler/FateOEWeighted.lean",
+  "decl": [
+   "baseCutoff",
+   "eta",
+   "accepted",
+   "exceptionalMass",
+   "OOEEProductionBound",
+   "weight_paired_bounds",
+   "weight_reciprocal_error",
+   "reciprocal_telescoping",
+   "mass_reciprocal_error",
+   "oe_fibre_cutoff",
+   "base_parameters",
+   "exceptionalMass_nonneg",
+   "accepted_mass_lower",
+   "accepted_fibre_lower",
+   "reciprocal_oe_production",
+   "oe_production",
+   "oddProductionBounds_of_ooee",
+   "logMass_growth_of_ooee",
+   "conjecture_of_tao_rate_of_ooee"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_lean_paths_declares_name.py"
+  ],
+  "related_conjectures": []
  }
 ]

@@ -1,0 +1,16 @@
+'Problems.Juggler.FateOEWeighted.weight_paired_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOEWeighted.weight_reciprocal_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOEWeighted.reciprocal_telescoping' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOEWeighted.mass_reciprocal_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOEWeighted.oe_fibre_cutoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOEWeighted.base_parameters' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOEWeighted.exceptionalMass_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOEWeighted.accepted_mass_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOEWeighted.accepted_fibre_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOEWeighted.reciprocal_oe_production' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOEWeighted.oe_production' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOEWeighted.oddProductionBounds_of_ooee' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOEWeighted.logMass_growth_of_ooee' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOEWeighted.conjecture_of_tao_rate_of_ooee' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

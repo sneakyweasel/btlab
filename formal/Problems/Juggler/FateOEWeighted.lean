@@ -174,7 +174,7 @@ theorem accepted_mass_lower (A : ℕ → Prop) (M : ℕ) :
     obtain ⟨hm, hU⟩ := mem_filter.mp hm
     exact mem_Icc.mpr ⟨(mem_Icc.mp hm).1, hU⟩
   have hp : ∑ m ∈ P, (1 : ℝ) / m ≤ 2100 * eps baseCutoff / eta ^ 2 := by
-    apply le_trans _ (poor_logMass_le base_parameters.1 (by norm_num [eta])
+    apply le_trans _ (poor_logMass_le (N := M) base_parameters.1 (by norm_num [eta])
       (by norm_num [eta]) base_parameters.2.2.1 base_parameters.2.2.2)
     apply sum_le_sum_of_subset_of_nonneg _ (by intros; positivity)
     intro m hm
@@ -189,7 +189,7 @@ theorem accepted_mass_lower (A : ℕ → Prop) (M : ℕ) :
     intro m _
     have hsmall : m ≤ baseCutoff ↔ ¬ baseCutoff < m := by omega
     by_cases ha : A m <;> by_cases hU : baseCutoff < m <;>
-      by_cases hp : Poor eta m <;> simp [ha, hU, hp, hsmall] <;> positivity
+      by_cases hp : Poor eta m <;> simp [ha, hU, hp, hsmall]
   unfold exceptionalMass
   linarith
 
@@ -237,8 +237,10 @@ theorem reciprocal_oe_production {A : ℕ → Prop} (hA : BackwardClosed A) (t :
     intro m hm
     simpa only [mul_one_div] using accepted_fibre_lower hm
   have hsource : ∑ n ∈ G.biUnion B, (1 : ℝ) / n ≤
-      logMass (fun n => A n ∧ oeGuard n) (cutoff t) :=
-    sum_le_sum_of_subset_of_nonneg hsub (by intros; positivity)
+      logMass (fun n => A n ∧ oeGuard n) (cutoff t) := by
+    unfold logMass
+    apply sum_le_sum_of_subset_of_nonneg _ (by intros; positivity)
+    simpa using hsub
   have htarget := accepted_mass_lower A M
   have hc := exceptionalMass_nonneg
   dsimp [G, M] at hfib htarget
@@ -254,7 +256,11 @@ theorem oe_production {A : ℕ → Prop} (hA : BackwardClosed A) (t : ℝ) :
     (mass_reciprocal_error (fun n => A n ∧ oeGuard n) (cutoff t))).1
   change _ ≤ sourceMass A oeGuard (cutoff t) + (2 * exceptionalMass + 8)
   have hid : mass (fun n => A n ∧ oeGuard n) (cutoff t) =
-      sourceMass A oeGuard (cutoff t) := rfl
+      sourceMass A oeGuard (cutoff t) := by
+    unfold mass sourceMass
+    apply sum_congr rfl
+    intro n _
+    by_cases hn : A n ∧ oeGuard n <;> simp [hn]
   rw [hid] at hs
   unfold fullMass
   linarith
@@ -273,7 +279,7 @@ theorem oddProductionBounds_of_ooee {A : ℕ → Prop} (hA : BackwardClosed A)
   constructor
   · have ho := oe_production hA t
     linarith [le_max_right C (2 * exceptionalMass + 8)]
-  · exact (h t ht).trans (add_le_add_left (le_max_left _ _) _)
+  · linarith [h t ht, le_max_left C (2 * exceptionalMass + 8)]
 
 theorem logMass_growth_of_ooee {A : ℕ → Prop} (hA : BackwardClosed A) {a : ℕ}
     (ha : 1 ≤ a) (hAa : A a) (hOOEE : OOEEProductionBound A) :

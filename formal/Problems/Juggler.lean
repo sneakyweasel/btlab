@@ -105,6 +105,7 @@ import Problems.Juggler.CollatzRational
 import Problems.Juggler.CollatzPadic
 import Problems.Juggler.CodeMassTransport
 import Problems.Juggler.FateOOEEAssembly
+import Problems.Juggler.FateOEWeighted
 import Problems.Juggler.CollatzMoments
 import Problems.Juggler.CollatzBridgeLab
 import Problems.Juggler.RunSurvivorLattice

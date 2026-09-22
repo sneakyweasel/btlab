@@ -1947,6 +1947,20 @@
         "kernel": 12
       }
     },
+    "Problems.Juggler.FateOEWeighted": {
+      "declarations": 19,
+      "depends_on": [
+        "Problems.Juggler.FateOOEEAssembly"
+      ],
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "ledger": [
+        "J-oe-conserved-weight-production"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 19
+      }
+    },
     "Problems.Juggler.FateOOEEAssembly": {
       "declarations": 26,
       "depends_on": [
@@ -2968,6 +2982,23 @@
         "kernel": 7
       }
     },
+    "Problems.Juggler.PaperECompletion": {
+      "declarations": 30,
+      "depends_on": [
+        "Problems.Collatz.PreimageBalance",
+        "Problems.Collatz.PreimageCertificate12",
+        "Problems.Juggler.CollatzMoments",
+        "Problems.Juggler.CollatzPadic"
+      ],
+      "file": "formal/Problems/Juggler/PaperECompletion.lean",
+      "ledger": [
+        "J-paper-e-formal-notation-bridges"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 30
+      }
+    },
     "Problems.Juggler.ParityComplexity": {
       "declarations": 11,
       "depends_on": [],
@@ -3719,9 +3750,9 @@
     }
   },
   "totals": {
-    "edges": 284,
-    "edges_before_reduction": 2250,
-    "ledger_rows_placed": 486,
-    "nodes": 230
+    "edges": 289,
+    "edges_before_reduction": 2328,
+    "ledger_rows_placed": 488,
+    "nodes": 232
   }
 }

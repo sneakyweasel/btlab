@@ -25,6 +25,10 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- unconditional actual OE production at conserved-weight coefficient 33/100,
+  using the proved poor-fibre tail and a uniform mass-conversion error at
+  most 6 for every predicate and cutoff. The 5/8 contagion and e>3/8 Tao
+  implications now retain only the OOEE production as an analytic input;
 - the actual E/OE/OOEE source partition, positive reciprocal comparison
   for the conserved weight, exact even cutoff, removal of shifted and
   additive losses, and the exponent 5/8 certificate. The resulting

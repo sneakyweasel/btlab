@@ -46390,6 +46390,234 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-oe-conserved-weight-production"
+      ],
+      "line": 17,
+      "module": "Problems.Juggler.FateOEWeighted",
+      "name": "weight_paired_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-oe-conserved-weight-production"
+      ],
+      "line": 38,
+      "module": "Problems.Juggler.FateOEWeighted",
+      "name": "weight_reciprocal_error",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-oe-conserved-weight-production"
+      ],
+      "line": 71,
+      "module": "Problems.Juggler.FateOEWeighted",
+      "name": "reciprocal_telescoping",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A uniform error for every source predicate, with no density assumption.",
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-oe-conserved-weight-production"
+      ],
+      "line": 82,
+      "module": "Problems.Juggler.FateOEWeighted",
+      "name": "mass_reciprocal_error",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-oe-conserved-weight-production"
+      ],
+      "line": 109,
+      "module": "Problems.Juggler.FateOEWeighted",
+      "name": "oe_fibre_cutoff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "kind": "def",
+      "ledger": [
+        "J-oe-conserved-weight-production"
+      ],
+      "line": 134,
+      "module": "Problems.Juggler.FateOEWeighted",
+      "name": "baseCutoff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "kind": "def",
+      "ledger": [
+        "J-oe-conserved-weight-production"
+      ],
+      "line": 135,
+      "module": "Problems.Juggler.FateOEWeighted",
+      "name": "eta",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-oe-conserved-weight-production"
+      ],
+      "line": 137,
+      "module": "Problems.Juggler.FateOEWeighted",
+      "name": "base_parameters",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "kind": "def",
+      "ledger": [
+        "J-oe-conserved-weight-production"
+      ],
+      "line": 155,
+      "module": "Problems.Juggler.FateOEWeighted",
+      "name": "accepted",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "kind": "def",
+      "ledger": [
+        "J-oe-conserved-weight-production"
+      ],
+      "line": 158,
+      "module": "Problems.Juggler.FateOEWeighted",
+      "name": "exceptionalMass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-oe-conserved-weight-production"
+      ],
+      "line": 161,
+      "module": "Problems.Juggler.FateOEWeighted",
+      "name": "exceptionalMass_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-oe-conserved-weight-production"
+      ],
+      "line": 166,
+      "module": "Problems.Juggler.FateOEWeighted",
+      "name": "accepted_mass_lower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-oe-conserved-weight-production"
+      ],
+      "line": 196,
+      "module": "Problems.Juggler.FateOEWeighted",
+      "name": "accepted_fibre_lower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-oe-conserved-weight-production"
+      ],
+      "line": 209,
+      "module": "Problems.Juggler.FateOEWeighted",
+      "name": "reciprocal_oe_production",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The exact OE input needed by the three-production assembly, unconditionally.",
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-oe-conserved-weight-production"
+      ],
+      "line": 250,
+      "module": "Problems.Juggler.FateOEWeighted",
+      "name": "oe_production",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Only the new two-consecutive-odd analytic production remains.",
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "kind": "def",
+      "ledger": [
+        "J-oe-conserved-weight-production"
+      ],
+      "line": 269,
+      "module": "Problems.Juggler.FateOEWeighted",
+      "name": "OOEEProductionBound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-oe-conserved-weight-production"
+      ],
+      "line": 274,
+      "module": "Problems.Juggler.FateOEWeighted",
+      "name": "oddProductionBounds_of_ooee",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-oe-conserved-weight-production"
+      ],
+      "line": 284,
+      "module": "Problems.Juggler.FateOEWeighted",
+      "name": "logMass_growth_of_ooee",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-oe-conserved-weight-production"
+      ],
+      "line": 290,
+      "module": "Problems.Juggler.FateOEWeighted",
+      "name": "conjecture_of_tao_rate_of_ooee",
+      "trust": "kernel"
+    },
+    {
       "doc": "A cylinder of depth `t` splits into its two children at depth `t + 1`.",
       "file": "formal/Problems/Juggler/FateOneSided.lean",
       "kind": "theorem",
@@ -108599,6 +108827,7 @@
         "Problems.Juggler.FateFirstLetter",
         "Problems.Juggler.FateLandingWindow",
         "Problems.Juggler.FateNumerics",
+        "Problems.Juggler.FateOEWeighted",
         "Problems.Juggler.FateOOEEAssembly",
         "Problems.Juggler.FateOneSided",
         "Problems.Juggler.FateOneSidedAtoms",
@@ -110038,6 +110267,20 @@
       "file": "formal/Problems/Juggler/FateNumerics.lean",
       "imports": [],
       "ledger": []
+    },
+    "Problems.Juggler.FateOEWeighted": {
+      "declarations": 19,
+      "file": "formal/Problems/Juggler/FateOEWeighted.lean",
+      "imports": [
+        "Problems.Juggler.FateOOEEAssembly"
+      ],
+      "ledger": [
+        {
+          "id": "J-oe-conserved-weight-production",
+          "statement": "Kernel-checked with advisory coverage pending. For every natural predicate A and cutoff N, the absolute difference between CodeMassTransport.mass A N and twice logMass A N is at most 6, from the positive-integer bound |weight(n)-2/n|<=6*(1/n-1/(n+1)). For every backward-closed A and real t, (33/100)*fullMass A(3*t/4-4)<=sourceMass A oeGuard(cutoff t)+2*C0+8, with C0=logMass(True,10^36)+2100*eps(10^36)/(1/1000)^2. This actual OE bound has no additional analytic hypothesis: the existing poor-fibre theorem, disjoint fibres, and n^3<(m+1)^4 prove the reciprocal production and physical source cutoff. The analytic threshold 10^36 is not a computational verification floor. OOEEProductionBound A means the eventual actual OOEE inequality with coefficient 11/100 at target cutoff 9*t/16-4 and a bounded nonnegative additive loss. It now suffices by itself for OddProductionBounds A. For a backward-closed A with a positive member it consequently gives reciprocal growth at exponent 5/8; for the failure class it and an eventual dyadic odd-failure rate e>3/8 imply termination. The OOEE production estimate and actual failure-rate bound remain explicit hypotheses and are not proved here.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
     },
     "Problems.Juggler.FateOOEEAssembly": {
       "declarations": 26,
@@ -112600,13 +112843,13 @@
     }
   },
   "totals": {
-    "declarations": 8445,
-    "declarations_with_a_ledger_row": 5722,
-    "ledger_rows_naming_a_file": 487,
-    "modules": 344,
+    "declarations": 8464,
+    "declarations_with_a_ledger_row": 5741,
+    "ledger_rows_naming_a_file": 488,
+    "modules": 345,
     "trust": {
       "compiler": 56,
-      "kernel": 8389
+      "kernel": 8408
     }
   }
 }

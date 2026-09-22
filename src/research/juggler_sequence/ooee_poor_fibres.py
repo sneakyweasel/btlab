@@ -3,6 +3,7 @@
 No asymptotic equidistribution or exceptional-set estimate is assumed.
 FateOOEEAssembly.lean checks the later contagion implication with the
 actual odd-production bounds explicit; this census supplies no analytic proof.
+FateOEWeighted.lean discharges OE, leaving only the OOEE production input.
 Run with ``python -m research.juggler_sequence.ooee_poor_fibres``.
 """
 
