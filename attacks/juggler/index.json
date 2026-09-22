@@ -355,7 +355,8 @@
       "dossier": "docs/problems/juggler_collatz_bridge.md",
       "data_dir": null,
       "lean": [
-        "formal/Problems/Juggler/CollatzBridge.lean"
+        "formal/Problems/Juggler/CollatzBridge.lean",
+        "formal/Problems/Juggler/CollatzMoments.lean"
       ],
       "conjecture": [],
       "decision": "PROMOTE",
@@ -375,11 +376,12 @@
         "J-paper-c-collatz-analogue-is-false-by-exhibit",
         "J-paper-c-contagion-dichotomy-is-log-mass",
         "J-paper-c-ceiling-is-the-collatz-walk-mgf",
+        "J-collatz-complete-stopping-loses-moment",
         "J-survivor-count-is-the-certificate-tail",
         "J-empty-window-is-two-theorems-not-one"
       ],
       "aliases": [],
-      "nk_cluster": "Backward-density contagion does not transfer to either Collatz sign"
+      "nk_cluster": "Complete unbounded stopping families need not preserve multiplier moment"
     },
     {
       "id": "collatz_finance_mirror",

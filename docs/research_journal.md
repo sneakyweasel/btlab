@@ -1,5 +1,37 @@
 # Research journal
 
+## 2026-09-22 -- Completeness does not justify the stopped moment identity
+
+- **Question:** Does Paper C's coefficient/MGF identity preserve both
+  fixed-depth roots for every complete prefix-free stopping family?
+- **Result:** No. `CollatzMoments.complete_family_moment_loss` proves
+  that all minimal descent certificates form a prefix-free family with
+  fair mass one and multiplier moment at most 3/4. The proof reuses the
+  certificate recursion and survivor decay; the E leaf supplies a loss
+  of 1/4. `coefficient_shift` and both fixed-depth identities are also
+  kernel-checked. This audits an existing bridge claim, not a new
+  hypothesis for termination.
+- **Correction:** Qualify the second identity in Paper C Section 5.7
+  by bounded stopping, or by a separate justified limit. Completeness
+  alone only gives the fair mass. The probe's formerly mislabeled
+  `kraft` field now measures fair mass and has a separate multiplier
+  moment field. Exact stopped/surviving fractions expose the missing
+  tail. The stale parity-shortfall explanation is also removed:
+  printed production coefficients are ideal, while overlap and
+  truncation affect the assembled bound.
+- **Decision:** **PROMOTE** the formal identities and counterexample;
+  **CLOSE** the unrestricted complete-family second-root claim.
+  Proposition 5.12, the certified floor, and all termination thresholds
+  are unchanged. The actual cumulative-pressure estimate remains open.
+- **Coverage:** The new declarations compile locally. Ledger labels
+  retain written-proof status pending advisory coverage review; no
+  new external submission is authorized by the earlier one-row approval.
+- **Validation:** Full `lake build`: 9027 jobs successful. All 18 audit
+  declarations use only `propext`, `Classical.choice`, and `Quot.sound`.
+  Bridge/layer tests: 37 passes; integration/ledger tests: 137 passes,
+  14 skips. Ledger, branch index, and synchronized Paper C build checks
+  pass. The corrected PDF pages 21-22 were rendered and visually reviewed.
+
 ## 2026-09-22 -- Both Collatz signs have a finite-mass backward ray
 
 - **Question:** Which part of Juggler's termination reduction survives

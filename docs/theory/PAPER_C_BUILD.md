@@ -8,6 +8,16 @@ The local 21 September 2026 revision adds Section 5.8, the two-production route 
 
 ## Build and provenance
 
+The local 22 September 2026 correction qualifies Section 5.7's second
+moment identity: completeness of a prefix-free family is insufficient
+at an unbounded stopping time. All minimal descent certificates have
+fair mass one but multiplier moment at most 3/4. The coefficient shift,
+Proposition 5.12, and all termination thresholds are unchanged.
+`Problems/Juggler/CollatzMoments.lean` checks the coefficient shift,
+fixed-depth identities, and the counterexample. This auxiliary bridge
+module has its own dependency audit; it is not added to the Paper C
+theorem barrel. The local correction does not update a deposited version.
+
 From the repository root, with Pandoc and XeLaTeX installed:
 
 ```text

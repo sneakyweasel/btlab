@@ -454,11 +454,13 @@ fate-contagion row.
 **The ceiling is shared exactly** -- `J-paper-c-ceiling-is-the-collatz-walk-mgf`.
 The ideal coefficient collapses to `c_w = 2^(-|w|)/rho_w = 3^(-b(w))`, the
 Collatz backward-step probability, so `F_J(lambda) = F_C(lambda - 1)` where
-`F_C` is the Collatz walk's moment generating function. `F_C`'s two classical
-roots -- Kraft equality and the martingale identity `E[rho] = 1` -- land on
-`lambda = 1` and `lambda = 2`, so Paper C's method ceiling is a Collatz identity
-read one exponential level up, and the whole shortfall to `lambda** = 0.4926` is
-the Juggler-side `eta_0 = 0`.
+`F_C` is the Collatz walk's moment generating function. At fixed depth,
+Kraft equality and the multiplier moment `E[rho] = 1` land on
+`lambda = 1` and `lambda = 2`. The same holds for bounded complete prefix
+trees; completeness alone is insufficient for an unbounded stopping family,
+as the counterexample below proves. Paper C's ideal-model ceiling is Kraft
+equality read one exponential level up. Its printed production coefficients
+already equal the ideal; overlap and truncation affect the assembled bound.
 
 **Contagion does not transfer, and the recorded reason was wrong** --
 `J-paper-c-collatz-analogue-is-false-by-exhibit`. `{3 * 2^k}` is backward-closed
@@ -925,3 +927,55 @@ checks use only standard Lean dependencies, and the combined bridge,
 layer, integration and theorem-ledger suite gives 173 passes and
 14 skips. The existing counterexample row names the new compiled
 declarations; its label awaits the advisory coverage review.
+
+## Unbounded stopping loses multiplier moment, 22 September 2026
+
+**PROMOTE** the precise word identities and the counterexample in
+[CollatzMoments.lean](../../formal/Problems/Juggler/CollatzMoments.lean).
+**CLOSE** the unrestricted second-root claim for complete prefix-free
+families. This corrects Section 5.7 of Paper C, not Proposition 5.12.
+
+For each word w, put p_w=2^(-|w|), rho_w=3^(oddCount w)/2^|w|,
+and c_w=3^(-oddCount w). The theorem `coefficient_shift` proves
+c_w rho_w^s = p_w rho_w^(s-1) for every real s. Both sums
+sum p_w and sum p_w rho_w equal one over all words of a fixed depth.
+The child identities also give this for every bounded complete prefix
+tree by finite leaf expansion.
+
+Let C contain every minimal descent certificate: its multiplier first
+falls below one at its last letter. `certificate_prefix_free` proves
+that no member properly prefixes another. `certificate_mass_partition`
+normalizes the existing count recursion:
+
+    sum_{d<D} M_(d+1)/2^(d+1) + N_D/2^D = 1.
+
+The existing survivor-decay theorem makes N_D/2^D tend to zero, so
+`certificate_hasSum` proves Kraft equality for C. Every terminal
+multiplier is below one. The member E has fair weight 1/2 and tilted
+weight 1/4; the remaining fair weight is 1/2. Domination and splitting
+off E give the convergent tilted sum at most 3/4.
+`complete_family_moment_loss` packages the prefix-free property,
+fair sum one, and this strict loss. Sums are grouped by positive word
+length; each group is the finite set `minimalCertWords`.
+
+At every finite cutoff, stopped leaves plus surviving leaves still have
+tilted mass one. The surviving fair mass vanishes but the surviving
+tilted mass does not: it is at least 1/4 at every positive cutoff.
+Thus exchanging the first-descent limit with expectation is exactly
+the invalid step. No independence statement for actual Juggler starts
+is supplied by this fair-word calculation, for either Collatz sign.
+
+The probe now distinguishes Kraft mass from multiplier moment and
+records both stopped and surviving masses as exact fractions. Its
+compressed recursion is checked against independent word enumeration.
+The manuscript and local PDF are synchronized. Proposition 5.12,
+the 100/203 contagion exponent, the 103/203 rate target, and the
+350,000,000 certified floor do not change. The actual arithmetic
+cumulative-pressure estimate remains the termination frontier.
+
+Validation: full `lake build` passes (9027 jobs), the 18-declaration
+[dependency audit](../../formal/AxiomCheckCollatzMoments.expected) uses
+only standard Lean dependencies, and the bridge/layer plus integration/ledger
+suites give 174 passes and 14 skips. Ledger/index and Paper C provenance
+checks pass; rendered PDF pages 21-22 were visually reviewed. The
+new ledger row retains its written-proof label pending advisory coverage.

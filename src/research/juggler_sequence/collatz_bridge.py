@@ -591,12 +591,17 @@ def contagion_mgf_shift(depth: int = 5,
         F_J(lambda) = sum_w c_w rho_w^lambda
                     = sum_w 2^(-|w|) rho_w^(lambda - 1) = F_C(lambda - 1),
 
-    an identity, not an approximation. `F_C(0) = 1` is Kraft equality and
-    `F_C(1) = 1` is the martingale identity `E[rho] = 1`, the two classical
-    Collatz facts; they sit at `lambda = 1` and `lambda = 2`. So the ceiling of
-    Paper C's method, `lambda = 1` (Proposition 5.12), is a Collatz identity
-    read one exponential level up, and the entire shortfall from `1` to
-    `lambda** = 0.4926` is the Juggler-side realized parity share, `eta_0 = 0`.
+    an identity, not an approximation. This probe uses every word at a fixed
+    depth. For that family `F_C(0) = 1` is Kraft equality and `F_C(1) = 1`
+    is the multiplier moment identity; under the shift they sit at
+    `lambda = 1` and `lambda = 2`. Completeness alone is insufficient for
+    the second identity at an unbounded stopping time: minimal descent
+    certificates have fair mass one but multiplier moment at most 3/4,
+    as proved in CollatzMoments.lean. The shift supplies no counting bound.
+
+    Paper C's printed production coefficients already equal the ideal.
+    Its shortfall from the ideal-model ceiling involves overlap and
+    truncation; it is not a shortfall in those individual coefficients.
     """
     words = _all_words(depth)
     rows = {}
@@ -612,8 +617,46 @@ def contagion_mgf_shift(depth: int = 5,
         "worst_gap": max(r["gap"] for r in rows.values()),
         "coefficient_sum": sum(float(ideal_coefficient(w)) for w in words),
         "four_thirds_power": (4.0 / 3.0) ** depth,
-        "kraft": sum(float(Fraction(1, 2) ** len(w) * _word_multiplier(w))
-                     for w in words),
+        "kraft": float(sum(Fraction(1, 2) ** len(w) for w in words)),
+        "multiplier_moment": float(sum(Fraction(1, 2) ** len(w) * _word_multiplier(w)
+                                      for w in words)),
+    }
+
+
+def stopped_certificate_moments(depth: int = 16) -> dict[str, Any]:
+    """Exact finite first-descent partition, with surviving leaves retained.
+
+    Counts are grouped by odd count; no binary tree is materialized. Both
+    completed-tree masses are one. Only the fair survivor mass tends to zero
+    by Paper B's survivor-decay theorem; the tilted survivor mass stays at
+    least 1/4. The all-depth statement is proved in CollatzMoments.lean.
+    """
+    if depth < 0:
+        raise ValueError("depth must be nonnegative")
+    survivors = {0: 1}
+    fair_stopped = Fraction(0)
+    tilted_stopped = Fraction(0)
+    for length in range(1, depth + 1):
+        children: dict[int, int] = {}
+        for odd, count in survivors.items():
+            for next_odd in (odd, odd + 1):
+                if 3 ** next_odd < 2 ** length:
+                    fair_stopped += Fraction(count, 2 ** length)
+                    tilted_stopped += Fraction(count * 3 ** next_odd, 4 ** length)
+                else:
+                    children[next_odd] = children.get(next_odd, 0) + count
+        survivors = children
+    fair_surviving = Fraction(sum(survivors.values()), 2 ** depth)
+    tilted_surviving = sum((Fraction(count * 3 ** odd, 4 ** depth)
+                           for odd, count in survivors.items()), Fraction(0))
+    return {
+        "depth": depth,
+        "fair_stopped": str(fair_stopped),
+        "tilted_stopped": str(tilted_stopped),
+        "fair_surviving": str(fair_surviving),
+        "tilted_surviving": str(tilted_surviving),
+        "fair_total": str(fair_stopped + fair_surviving),
+        "tilted_total": str(tilted_stopped + tilted_surviving),
     }
 
 
@@ -629,6 +672,7 @@ def paper_c_payload() -> dict[str, Any]:
             " elementary and free of equidistribution, and still Juggler only."
         ),
         "ceiling_is_shared": contagion_mgf_shift(),
+        "stopped_moments": stopped_certificate_moments(),
         "log_mass": log_mass_census(20_000),
         "counterexample": collatz_theorem_one_counterexample(),
         "no_import": (
@@ -760,6 +804,12 @@ def render_markdown(data: dict[str, Any]) -> str:
         f" `F_J(lambda) = F_C(lambda - 1)` exactly (worst gap"
         f" `{paper_c['ceiling_is_shared']['worst_gap']:.1e}`) and the"
         f" method ceiling `lambda = 1` is Kraft equality",
+        "- the multiplier moment is one at fixed depth, but need not be one"
+        " for a complete unbounded stopping family. Minimal descent certificates"
+        " have fair mass one and tilted mass at most `3/4` (Lean); at depth"
+        f" {paper_c['stopped_moments']['depth']} the stopped tilted mass is"
+        f" `{paper_c['stopped_moments']['tilted_stopped']}` and the surviving"
+        f" tilted mass is `{paper_c['stopped_moments']['tilted_surviving']}`",
         f"- backward log-mass: Juggler asymptotic to `1/m`, bounded below by `m/(m+1)^2`;"
         f" shortcut Collatz `{paper_c['log_mass']['collatz_mean']:.4f}/m` in"
         f" the mean but `{paper_c['log_mass']['collatz_min']:.1f}/m` on every"

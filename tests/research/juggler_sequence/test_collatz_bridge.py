@@ -15,6 +15,7 @@ from research.juggler_sequence.collatz_bridge import (
     collatz_preimages,
     collatz_theorem_one_counterexample,
     contagion_mgf_shift,
+    stopped_certificate_moments,
     even_block_log_mass,
     ideal_coefficient,
     log_mass_census,
@@ -352,13 +353,13 @@ def test_paper_c_ceiling_is_the_collatz_walk_mgf_shifted_by_one() -> None:
     """`F_J(lambda) = F_C(lambda - 1)`, exactly.
 
     `F_C(s) = sum_w 2^(-|w|) rho_w^s` is the Collatz walk's moment generating
-    function. Its two classical roots are `F_C(0) = 1` (Kraft) and `F_C(1) = 1`
+    function at fixed depth. Its roots are `F_C(0) = 1` (Kraft) and `F_C(1) = 1`
     (`E[rho] = 1`, the martingale identity). Under the shift they sit at
     `lambda = 1` and `lambda = 2`.
 
     So Paper C's ceiling `lambda = 1` (Proposition 5.12) is a Collatz identity
-    read one exponential level up, and the whole shortfall from `1` down to
-    `lambda** = 0.4926` is the Juggler-side realized parity share `eta_0 = 0`.
+    read one exponential level up. The printed production coefficients are
+    already ideal; overlap and truncation still affect the assembled bound.
     This is a reparameterization, not a bound: it moves no constant in either
     problem, and it is recorded because it says *which half* of Paper C the
     bridge reaches.
@@ -367,11 +368,43 @@ def test_paper_c_ceiling_is_the_collatz_walk_mgf_shifted_by_one() -> None:
         shift = contagion_mgf_shift(depth)
         assert shift["worst_gap"] < 1e-12, depth
         assert shift["kraft"] == pytest.approx(1.0, abs=1e-12), depth
+        assert shift["multiplier_moment"] == pytest.approx(1.0, abs=1e-12), depth
         assert shift["coefficient_sum"] == pytest.approx(
             shift["four_thirds_power"], rel=1e-12), depth
 
 
-def test_the_published_manuscript_is_correct_and_the_working_notes_were_not() -> None:
+def test_first_descent_loses_moment_unless_surviving_leaves_are_retained() -> None:
+    # Independently enumerate first-hit leaves at a small depth, then compare
+    # with the compressed count recursion. E and OE alone have mass 3/4 but
+    # multiplier moment only 7/16; stopping is not fixed-depth averaging.
+    from itertools import product
+
+    fair = Fraction(0)
+    tilted = Fraction(0)
+    for length in range(1, 9):
+        for letters in product("EO", repeat=length):
+            word = "".join(letters)
+            if (3 ** word.count("O") < 2 ** length and
+                    all(3 ** word[:j].count("O") >= 2 ** j
+                        for j in range(1, length))):
+                fair += Fraction(1, 2 ** length)
+                tilted += Fraction(3 ** word.count("O"), 4 ** length)
+    row = stopped_certificate_moments(8)
+    assert Fraction(row["fair_stopped"]) == fair == Fraction(237, 256)
+    assert Fraction(row["tilted_stopped"]) == tilted
+    two = stopped_certificate_moments(2)
+    assert Fraction(two["fair_stopped"]) == Fraction(3, 4)
+    assert Fraction(two["tilted_stopped"]) == Fraction(7, 16)
+    for depth in (0, 1, 2, 8, 32, 128):
+        row = stopped_certificate_moments(depth)
+        assert row["fair_total"] == row["tilted_total"] == "1"
+        assert Fraction(row["tilted_stopped"]) <= Fraction(3, 4)
+        assert Fraction(row["tilted_surviving"]) >= Fraction(1, 4)
+    with pytest.raises(ValueError, match="nonnegative"):
+        stopped_certificate_moments(-1)
+
+
+def test_collatz_preimage_lower_bound_is_not_a_thinness_argument() -> None:
     """The errata, guarded so it cannot silently come back.
 
     `x^0.84` is Krasikov--Lagarias's lower bound on preimage counts. The three

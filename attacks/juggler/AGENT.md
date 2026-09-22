@@ -135,6 +135,11 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   the finite-mass backward ray for both shortcut signs. General
   backward-density transfer is CLOSE; the ray is not a fate class.
   Juggler's even-block mass has lower bound m/(m+1)^2, not exact value 1/m.
+  `CollatzMoments.complete_family_moment_loss` closes the unqualified
+  stopping-time moment transfer: all minimal descent certificates have
+  fair mass one but tilted mass at most 3/4. The coefficient shift and
+  fixed-depth identities remain valid; Kraft equality alone does not
+  justify an unbounded stopped expectation.
 - **Anti-overclaim.** Finite checks, period floors, densities, and
   leftover censuses are not a halt theorem and not "no cycle of any
   length". State the theorem with quantifiers, Lean name, and ledger
