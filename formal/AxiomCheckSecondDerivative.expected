@@ -1,0 +1,21 @@
+'BTCalculus.SecondDerivative.phase_int' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SecondDerivative.phase_sub_int' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SecondDerivative.phase_sub_int_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SecondDerivative.card_le_span' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SecondDerivative.separated_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SecondDerivative.interval_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SecondDerivative.good_interval_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SecondDerivative.norm_phase_sum_le_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SecondDerivative.increment_band_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SecondDerivative.increment_gap_sum_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SecondDerivative.second_difference_sum_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SecondDerivative.secant_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SecondDerivative.increment_curvature' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SecondDerivative.second_derivative_sum_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SecondDerivative.phase_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SecondDerivative.signed_second_derivative_sum_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'BTCalculus.SecondDerivative.odd_lattice_second_derivative_sum_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

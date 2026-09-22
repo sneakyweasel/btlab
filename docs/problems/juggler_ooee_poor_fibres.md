@@ -9,8 +9,10 @@ Lean theorem now retains only the precise OOEE production bound: the OE
 input has been discharged in `FateOEWeighted.lean`. Independent review
 and analytic Lean verification are outstanding; the published manuscripts
 and termination status are unchanged.
-The classical finite differencing input is now proved in
-`BTCalculus.WeylDifferencing`; the actual correlation estimates remain written.
+Classical finite differencing and both derivative tests are now proved
+in Lean. The quantitative second-derivative estimate has explicit
+constants and covers the actual odd lattice; its application to the
+OOEE carry-cell phases and the complete correlation estimates remain written.
 [Analytic argument](../theory/juggler_ooee_poor_fibre_tail_note.md).
 
 ## Problem
@@ -107,6 +109,15 @@ Cauchy--Schwarz suffice, without any closed localization shortcut. The
 budget is the complete inequality with exact overlap correlations, stopping
 before derivative tests and discrepancy. Promotion requires compilation
 without an assumed analytic estimate; this criterion is met.
+
+The sixth phase, following the completed first-derivative formalization,
+proves the quantitative second-derivative test. A lost endpoint, hidden
+cancellation premise, or parameter-dependent constant would falsify it.
+The existing Kusmin--Landau bound and mean-value theorem suffice; no
+closed global-count localization is reopened. Scope is the finite bound,
+its continuous-derivative interface, and either sign on the odd lattice.
+Promotion requires compilation without an assumed analytic estimate.
+The phase stops before the actual carry-cell and discrepancy applications.
 
 ## Balanced-ternary formulation
 
@@ -240,6 +251,13 @@ Its odd-lattice specialization retains the actual phase difference.
 This is a classical analytic tool, not a bound on these correlations.
 [Proof mapping and exact statement](../theory/finite_weyl_differencing_note.md).
 
+[SecondDerivative.lean](../../formal/BTCalculus/SecondDerivative.lean) now
+proves the quantitative test from integer-band partitioning and the proved
+first-derivative estimate. The continuous version derives the actual
+increment bounds by two mean-value comparisons. It covers both fixed
+curvature signs and the lattice of spacing two, with explicit constants.
+[Exact hypotheses and proof](../theory/second_derivative_cancellation_note.md).
+
 ## Results
 
 In the exhaustive dyadic blocks with exponents 8, 9, 10, 11, the mean
@@ -316,7 +334,15 @@ sequence of length N with modulus at most one and 1<=H<=N, Lean proves
 |S|^2 <= 2*N^2/H + (4*N/H)*sum_(1<=d<H)|T_d|, with each T_d taken over
 exactly N-d terms. No cancellation hypothesis occurs in this theorem.
 The written OOEE application still needs its correlation bound
-O(P^(3/8)), as well as its derivative and discrepancy estimates.
+O(P^(3/8)) and its phase-specific analytic estimates.
+
+**Sixth phase: quantitative second derivatives are kernel-checked.**
+If lambda<=f''<=C*lambda throughout the closed support interval, or
+-C*lambda<=f''<=-lambda throughout it, the unit-lattice sum is at most
+4*C*N*sqrt(lambda)+8/sqrt(lambda). The spacing-two constants are 8 and 4.
+No correlation or cancellation estimate is assumed. Both derivative
+tests are now available; the actual OOEE curvature and carry-discrepancy
+applications remain to be formalized.
 
 ## Open questions
 
@@ -343,9 +369,10 @@ proof obligation is to discharge `OOEEProductionBound` in Lean for every
 backward-closed class. Its main analytic ingredient is the actual OOEE
 poor-fibre theorem. The OE production and a uniform weight conversion
 are now formal; the OOEE source-cutoff consequence must also be retained.
-Finite differencing is now formal too. The next analytic prerequisite is
-a first-derivative cancellation estimate with explicit hypotheses; it
-supports both the pure slow modes and the second-derivative test.
+Finite differencing and both derivative tests are now formal too. The
+next concrete step is the uniform curvature bound for the actual OOEE
+carry-cell phases, for every shift 1<=h<=P^(1/16). Carry Fourier errors
+and finite discrepancy must also be checked before the full poor-tail proof.
 
 ## Decision
 
@@ -353,8 +380,8 @@ supports both the pure slow modes and the second-derivative test.
 assembly yielding contagion at 5/8 and the sufficient Tao threshold 3/8.
 The assembly and its OE input are kernel-checked; the new OOEE analytic
 theorem still awaits independent review and Lean proof. Exactly one best
-next question: can the first-derivative cancellation estimate needed by
-the actual OOEE proof be discharged in Lean?
+next question: can the actual carry-cell phases be proved in Lean to
+satisfy the uniform curvature bounds giving the O(P^(3/8)) estimate?
 This phase stops at that boundary.
 
 ## Publication assessment

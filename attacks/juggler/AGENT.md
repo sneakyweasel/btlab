@@ -150,8 +150,11 @@ or the version 0.5.0 manuscript. The constants are not practical search limits.
   `OOEEProductionBound` remains in its strengthened contagion implication.
   The classical [finite differencing input](../../docs/theory/finite_weyl_differencing_note.md)
   is now kernel-checked in `BTCalculus.WeylDifferencing`, including exact
-  overlap correlations and the odd-lattice specialization. Their analytic
-  cancellation bounds remain outstanding in Lean.
+  overlap correlations and the odd-lattice specialization. The first-derivative
+  bound and the [quantitative second-derivative test](../../docs/theory/second_derivative_cancellation_note.md)
+  are also proved, with explicit constants and either curvature sign.
+  Actual carry-cell curvature, Fourier errors, and finite discrepancy
+  remain outstanding in Lean.
   The unconditional Lean exponent remains 100/203, and the actual
   failure-rate estimate remains open.
   Kernel localize CLOSE. Do not open a

@@ -13329,5 +13329,37 @@
    "tests/research/juggler_sequence/test_effective_modular_return.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "BTA-quantitative-second-derivative",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked formalization of a classical quantitative second-derivative estimate; advisory statement coverage pending. For every natural N, real a, lambda>0 and C>=1, suppose f has derivative g and g has derivative q at every point of the closed interval [a,a+N]. If lambda<=q<=C*lambda throughout that interval, or -C*lambda<=q<=-lambda throughout it, then the norm of sum_(n<N) exp(2*pi*i*f(a+n)) is at most 4*C*N*sqrt(lambda)+8/sqrt(lambda). The analogous hypotheses on [a,a+2*N] give the spacing-two bound 8*C*N*sqrt(lambda)+4/sqrt(lambda). N=0 and the endpoint one lattice step beyond the final summand are retained. The discrete proof assumes lambda*(j-i)<=d(j)-d(i)<=U*(j-i) for all 0<=i<=j<N, with d(n)=F(n+1)-F(n), U>=0; for every 0<delta<=1/2 it proves norm(sum_(n<N) exp(2*pi*i*F(n)))<=(U*N+2)*(2*delta/lambda+2+1/delta). Integer-band partitioning counts both resonant ends and applies the proved Kusmin-Landau estimate to the middle block. Mean-value comparisons prove the continuous-to-discrete hypotheses. No cancellation or correlation bound is assumed. No Juggler production or discrepancy theorem is asserted. The phase-specific OOEE carry-cell curvature and its complete analytic application remain outstanding in Lean.",
+  "source": "docs/problems/juggler_ooee_poor_fibres.md",
+  "lean": "BTCalculus/SecondDerivative.lean",
+  "decl": [
+   "phase_int",
+   "phase_sub_int",
+   "phase_sub_int_mul",
+   "card_le_span",
+   "separated_card",
+   "interval_sum",
+   "good_interval_sum",
+   "norm_phase_sum_le_card",
+   "increment_band_sum",
+   "increment_gap_sum_bound",
+   "second_difference_sum_bound",
+   "secant_bounds",
+   "increment_curvature",
+   "second_derivative_sum_bound",
+   "phase_neg",
+   "signed_second_derivative_sum_bound",
+   "odd_lattice_second_derivative_sum_bound"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": []
  }
 ]

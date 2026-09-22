@@ -1,5 +1,38 @@
 # Research journal
 
+## 2026-09-22 -- Quantitative second derivatives for the OOEE proof
+
+- **Target and budget:** Prove the classical finite second-derivative
+  estimate with explicit constants. Lost endpoints, an assumed
+  cancellation estimate, or hidden parameter dependence would falsify
+  this consolidation. Kusmin--Landau and mean-value comparisons supply
+  the machinery; no closed localization attack is reopened.
+- **Finite proof:** Partition actual increments by integer bands.
+  The two resonant ends each have at most delta/lambda+1 indices;
+  the remaining consecutive block has sum norm at most 1/delta.
+  At most U*N+2 bands occur. Optimizing delta, or using the trivial
+  estimate for large curvature, gives 4*C*N*sqrt(lambda)+8/sqrt(lambda).
+- **Continuous and odd-lattice forms:** Two mean-value comparisons prove
+  the discrete separation hypotheses from actual derivative bounds.
+  Conjugation treats negative curvature. Spacing two has constants 8
+  and 4. The next lattice endpoint and N=0 are retained.
+- **Scope:** This completes a classical quantitative prerequisite, not
+  the actual OOEE correlation bound. Uniform carry-cell curvature,
+  partial summation, carry Fourier error, and finite discrepancy remain
+  unformalized. The 5/8 contagion implication still explicitly assumes
+  OOEEProductionBound; the failure-rate estimate is also open.
+- **Decision:** **PROMOTE** this consolidation. The next question is the
+  actual carry-cell curvature estimate giving O(P^(3/8)) uniformly for
+  1<=h<=P^(1/16). No new cycle, termination, or escape claim follows.
+  [Exact statement and proof mapping](theory/second_derivative_cancellation_note.md).
+- **Validation:** Full Lean build: 9063 jobs. All 17 theorem audits use
+  only propext, Classical.choice, and Quot.sound. Advisory statement
+  coverage remains pending; no external advisory request was sent.
+  The selected regression run had 178 passes and 15 skips; its single
+  release-pin failure was cleared by retaining the historical finite-Weyl
+  note unchanged. All 30 affected release, ledger, and index checks then
+  passed, with 4 skips. Current OOEE records carry the new status.
+
 ## 2026-09-22 -- Effective OOE modular returns
 
 - **Target and budget:** one explicit counting error and first-witness bound

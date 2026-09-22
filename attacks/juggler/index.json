@@ -4610,7 +4610,8 @@
         "J-ooee-contagion-five-eighths",
         "J-ooee-contagion-assembly",
         "J-oe-conserved-weight-production",
-        "BTA-finite-weyl-differencing"
+        "BTA-finite-weyl-differencing",
+        "BTA-quantitative-second-derivative"
       ],
       "aliases": [],
       "nk_cluster": "Good average OOEE mass does not imply uniformly productive fibres"

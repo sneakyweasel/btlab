@@ -25,6 +25,11 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- quantitative second-derivative cancellation with explicit constants,
+  including negative curvature and the lattice of spacing two. The proof
+  counts resonant terms and applies the proved first-derivative estimate
+  on each remaining block; actual OOEE carry and discrepancy estimates
+  remain separate obligations;
 - half-open box frequencies from the Fourier criterion, including zero
   endpoints; frequencies for distinct noninteger powers; exact passage
   from parameter density to counts of starts (1+q*t)^d. Paper E

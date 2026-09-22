@@ -108,8 +108,13 @@ The finite differencing bullet is now kernel-checked, with constants
 [WeylDifferencing.lean](../../formal/BTCalculus/WeylDifferencing.lean).
 Its exponential-sum specialization works directly on the odd lattice.
 The [proof mapping](finite_weyl_differencing_note.md) distinguishes
-this completed classical input from the remaining derivative and
-discrepancy estimates.
+this classical input from its phase-specific application. The
+[first-derivative estimate](first_derivative_power_cancellation_note.md)
+and the [quantitative second-derivative test](second_derivative_cancellation_note.md)
+are now also kernel-checked. The latter has constants 4 and 8 on the
+unit lattice, and 8 and 4 on the odd lattice. Uniform curvature of the
+actual carry-cell phases, carry Fourier errors, and finite discrepancy
+remain separate Lean obligations.
 
 ## 3. The short mixed estimate
 
@@ -466,6 +471,11 @@ The general finite differencing step is now additionally proved in
 `BTCalculus/WeylDifferencing.lean`, including the explicit odd-lattice
 phase correlations. This supplies equation (16)'s classical inequality;
 the correlation estimates needed before that substitution remain written.
+`BTCalculus/SecondDerivative.lean` additionally proves the finite test
+used in (6), (14), and (15), for either fixed curvature sign and on the
+odd lattice. Its explicit constants have no dependence on interval
+position or phase parameters beyond the stated curvature bounds. Those
+phase-specific bounds and their complete application are still written.
 
 The census is a regression control, not a proof of (1). Independent
 review should particularly check (7), the bounded cell count (10), all

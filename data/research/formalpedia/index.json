@@ -106910,6 +106910,210 @@
     },
     {
       "doc": "",
+      "file": "formal/BTCalculus/SecondDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-quantitative-second-derivative"
+      ],
+      "line": 19,
+      "module": "BTCalculus.SecondDerivative",
+      "name": "phase_int",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/SecondDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-quantitative-second-derivative"
+      ],
+      "line": 26,
+      "module": "BTCalculus.SecondDerivative",
+      "name": "phase_sub_int",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/SecondDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-quantitative-second-derivative"
+      ],
+      "line": 30,
+      "module": "BTCalculus.SecondDerivative",
+      "name": "phase_sub_int_mul",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/SecondDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-quantitative-second-derivative"
+      ],
+      "line": 34,
+      "module": "BTCalculus.SecondDerivative",
+      "name": "card_le_span",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/SecondDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-quantitative-second-derivative"
+      ],
+      "line": 47,
+      "module": "BTCalculus.SecondDerivative",
+      "name": "separated_card",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/SecondDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-quantitative-second-derivative"
+      ],
+      "line": 67,
+      "module": "BTCalculus.SecondDerivative",
+      "name": "interval_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/SecondDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-quantitative-second-derivative"
+      ],
+      "line": 89,
+      "module": "BTCalculus.SecondDerivative",
+      "name": "good_interval_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/SecondDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-quantitative-second-derivative"
+      ],
+      "line": 117,
+      "module": "BTCalculus.SecondDerivative",
+      "name": "norm_phase_sum_le_card",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Each integer band has two short resonant ends and one consecutive good block.",
+      "file": "formal/BTCalculus/SecondDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-quantitative-second-derivative"
+      ],
+      "line": 123,
+      "module": "BTCalculus.SecondDerivative",
+      "name": "increment_band_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Integer-band decomposition with a freely chosen distance from resonance.",
+      "file": "formal/BTCalculus/SecondDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-quantitative-second-derivative"
+      ],
+      "line": 194,
+      "module": "BTCalculus.SecondDerivative",
+      "name": "increment_gap_sum_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A finite second-derivative estimate stated directly for separated increments.",
+      "file": "formal/BTCalculus/SecondDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-quantitative-second-derivative"
+      ],
+      "line": 241,
+      "module": "BTCalculus.SecondDerivative",
+      "name": "second_difference_sum_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Derivative bounds control every secant, including a degenerate interval.",
+      "file": "formal/BTCalculus/SecondDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-quantitative-second-derivative"
+      ],
+      "line": 271,
+      "module": "BTCalculus.SecondDerivative",
+      "name": "secant_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Positive continuous curvature separates the actual discrete phase increments.",
+      "file": "formal/BTCalculus/SecondDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-quantitative-second-derivative"
+      ],
+      "line": 287,
+      "module": "BTCalculus.SecondDerivative",
+      "name": "increment_curvature",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The quantitative second-derivative test on a translated lattice interval.",
+      "file": "formal/BTCalculus/SecondDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-quantitative-second-derivative"
+      ],
+      "line": 320,
+      "module": "BTCalculus.SecondDerivative",
+      "name": "second_derivative_sum_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/SecondDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-quantitative-second-derivative"
+      ],
+      "line": 330,
+      "module": "BTCalculus.SecondDerivative",
+      "name": "phase_neg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Either sign of curvature is allowed, with one sign throughout the interval.",
+      "file": "formal/BTCalculus/SecondDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-quantitative-second-derivative"
+      ],
+      "line": 334,
+      "module": "BTCalculus.SecondDerivative",
+      "name": "signed_second_derivative_sum_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The same quantitative test on the lattice of spacing two used by OOEE.",
+      "file": "formal/BTCalculus/SecondDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-quantitative-second-derivative"
+      ],
+      "line": 351,
+      "module": "BTCalculus.SecondDerivative",
+      "name": "odd_lattice_second_derivative_sum_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/BTCalculus/Select.lean",
       "kind": "def",
       "ledger": [
@@ -108977,6 +109181,7 @@
         "BTCalculus.Rewrite",
         "BTCalculus.RewriteAddBoundary",
         "BTCalculus.RewriteCore",
+        "BTCalculus.SecondDerivative",
         "BTCalculus.Select",
         "BTCalculus.Semantics",
         "BTCalculus.SublinearPowerCancellation",
@@ -109838,6 +110043,20 @@
         "BTCalculus.Rewrite"
       ],
       "ledger": []
+    },
+    "BTCalculus.SecondDerivative": {
+      "declarations": 17,
+      "file": "formal/BTCalculus/SecondDerivative.lean",
+      "imports": [
+        "BTCalculus.KusminLandau"
+      ],
+      "ledger": [
+        {
+          "id": "BTA-quantitative-second-derivative",
+          "statement": "Kernel-checked formalization of a classical quantitative second-derivative estimate; advisory statement coverage pending. For every natural N, real a, lambda>0 and C>=1, suppose f has derivative g and g has derivative q at every point of the closed interval [a,a+N]. If lambda<=q<=C*lambda throughout that interval, or -C*lambda<=q<=-lambda throughout it, then the norm of sum_(n<N) exp(2*pi*i*f(a+n)) is at most 4*C*N*sqrt(lambda)+8/sqrt(lambda). The analogous hypotheses on [a,a+2*N] give the spacing-two bound 8*C*N*sqrt(lambda)+4/sqrt(lambda). N=0 and the endpoint one lattice step beyond the final summand are retained. The discrete proof assumes lambda*(j-i)<=d(j)-d(i)<=U*(j-i) for all 0<=i<=j<N, with d(n)=F(n+1)-F(n), U>=0; for every 0<delta<=1/2 it proves norm(sum_(n<N) exp(2*pi*i*F(n)))<=(U*N+2)*(2*delta/lambda+2+1/delta). Integer-band partitioning counts both resonant ends and applies the proved Kusmin-Landau estimate to the middle block. Mean-value comparisons prove the continuous-to-discrete hypotheses. No cancellation or correlation bound is assumed. No Juggler production or discrepancy theorem is asserted. The phase-specific OOEE carry-cell curvature and its complete analytic application remain outstanding in Lean.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
     },
     "BTCalculus.Select": {
       "declarations": 12,
@@ -115068,13 +115287,13 @@
     }
   },
   "totals": {
-    "declarations": 8634,
-    "declarations_with_a_ledger_row": 5911,
-    "ledger_rows_naming_a_file": 500,
-    "modules": 357,
+    "declarations": 8651,
+    "declarations_with_a_ledger_row": 5928,
+    "ledger_rows_naming_a_file": 501,
+    "modules": 358,
     "trust": {
       "compiler": 56,
-      "kernel": 8578
+      "kernel": 8595
     }
   }
 }
