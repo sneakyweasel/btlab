@@ -1,4 +1,4 @@
-"""Krasikov-Lagarias preimage density, transposed from 3x+1 to the 3n-1 map.
+"""Krasikov-Lagarias residue-model symmetry and its missing height comparison.
 
 Krasikov and Lagarias (arXiv:math/0205002, Acta Arith. 109 (2003) 237-258) prove that for
 any fixed ``a`` not divisible by three and all large ``x``, at least ``x^0.84`` of the
@@ -7,11 +7,14 @@ integers below ``x`` have ``a`` in their forward orbit under the ``3x+1`` shortc
 inequalities on the residue classes mod ``3^k``, turned into a linear program whose largest
 feasible ``lambda`` certifies the exponent ``log2(lambda)``.
 
-**This module transposes that system to the 3n-1 shortcut map** ``g(y) = y/2`` (even),
-``(3y-1)/2`` (odd), the map Paper D studies, and shows the transposition is exact: the
-relabelling ``m -> -m (mod 3^k)`` carries one inequality system onto the other coefficient
-for coefficient, so the two linear programs are the same program and the exponent is
-unchanged.
+**Correction, 22 September 2026.** This module transposes the formal residue
+program to ``g(y) = y/2`` (even), ``(3y-1)/2`` (odd). Negation preserves its
+indices and its assigned homogeneous shifts, but that does not prove those
+shifts are valid for actual height-truncated minus-map trees. Their odd
+predecessor is above ``2a/3``, where the plus predecessor is below it. The
+missing scale factor is ``1 + 1/(2a)``. ``PreimageScale.lean`` proves this
+and a concrete excluded ancestor. The claimed minus-map density exponent
+is now unproved in this branch, not refuted. Solver outputs are model values.
 
 THE STRUCTURE.  Under ``T`` the preimages of ``a`` are ``2a`` always and ``(2a-1)/3`` when
 that is an odd integer, which happens exactly for ``a = 2 (mod 3)``; call those classes
@@ -24,7 +27,7 @@ map        class of ``a``     odd preimage ``c``                          rule
 =========  =================  =========================================  =====
 ``3x+1``   ``2 (mod 9)``      ``1 (mod 6)``, infertile, use ``2c``        D1
 ``3x+1``   ``5 (mod 9)``      ``0 (mod 3)``, dead, no term                D2
-``3x+1``   ``8 (mod 9)``      ``2 (mod 6)``, fertile, use ``c``           D3
+``3x+1``   ``8 (mod 9)``      ``5 (mod 6)``, fertile, use ``c``           D3
 ``3n-1``   ``7 (mod 9)``      ``5 (mod 6)``, infertile, use ``2c``        D1'
 ``3n-1``   ``4 (mod 9)``      ``3 (mod 6)``, dead, no term                D2'
 ``3n-1``   ``1 (mod 9)``      ``1 (mod 6)``, fertile, use ``c``           D3'
@@ -32,9 +35,9 @@ map        class of ``a``     odd preimage ``c``                          rule
 
 so ``2, 5, 8`` maps to ``7, 4, 1`` and the index maps ``(4m-2)/3`` and ``(2m-1)/3`` map to
 ``(4m+2)/3`` and ``(2m+1)/3``, which is negation throughout.  :func:`negation_is_an_isomorphism`
-checks this as exact integer arithmetic over every class, which is the proof; the linear
-programs are then solved for both maps and agree to the solver's tolerance, which is the
-independent confirmation rather than the argument.
+checks this as exact integer arithmetic over the sampled finite levels. The
+formal programs agree numerically. Neither check validates the omitted height
+comparison, and finite enumeration is not an all-level Lean proof.
 
 THE UNDERLYING IDENTITY, which is what makes the inequalities true, is that for ``a`` fertile
 and not in a cycle the backward tree splits exactly::
@@ -42,9 +45,10 @@ and not in a cycle the backward tree splits exactly::
     pi*_a(x) = 2 + pi*_{4a}(x) + pi*_c(x),        c = (2a+1)/3,
 
 because ``2a`` is then ``2 (mod 3)`` and so has ``4a`` as its only preimage.
-:func:`split_identity_report` checks it by brute force and checks that substituting the
-``3x+1`` preimage ``(2a-1)/3`` never satisfies it.  The cycle exclusion is not decoration:
-the 3n-1 map has three cycles where ``3x+1`` has one, and on a cycle member the backward
+:func:`split_identity_report` checks it by brute force and separately checks that
+the plus-sign odd predecessor expression is nonintegral in every fertile minus
+class. The previous "wrong identity" test was vacuous: its divisibility guard
+never held. The cycle exclusion is not decoration: on a cycle member the backward
 "tree" closes up and the identity fails.
 
 THE SOLVER is a Collatz-Wielandt iteration rather than a linear program, because the
@@ -57,6 +61,7 @@ from __future__ import annotations
 
 import json
 from collections import deque
+from fractions import Fraction
 from math import log2
 from typing import Any, Callable, Iterable
 
@@ -66,7 +71,7 @@ DATA_DIR = DATA_ROOT / "negative_preimage_density"
 JSON_PATH = DATA_DIR / "summary.json"
 DOC_PATH = DOCS_RESEARCH / "juggler_negative_preimage_density.md"
 
-CLASS_TRANSPOSED = "KL_EXPONENT_TRANSPOSES_UNCHANGED"
+CLASS_RESIDUE_ONLY = "RESIDUE_SYMMETRY_WITH_UNPROVED_HEIGHT_TRANSFER"
 
 #: log2(3), the alpha of Krasikov-Lagarias Proposition 2.1
 ALPHA = log2(3.0)
@@ -75,10 +80,9 @@ PUBLISHED = {"krasikov_1989_k2": 0.43, "krasikov_lagarias_2003_k11": 0.84}
 #: Exponents at the k this probe does not solve at run time: 3^10 = 59049 classes needs a
 #: vectorised solver and minutes, not the seconds a probe may take. Both maps gave the same
 #: value at every one of them, and k = 11 reproduces the 0.84 Krasikov-Lagarias publish from
-#: that same k, which is what certifies that the system solved here is theirs. Recompute with
-#: the vectorised script recorded in the dossier.
+#: that same k. This matches their formal program, not a minus-map density theorem.
 HIGH_K = {9: 0.8168, 10: 0.8295, 11: 0.8418}
-#: the three cycles of the 3n-1 shortcut map on the positive integers
+#: the three known cycles of the 3n-1 shortcut map on the positive integers
 NEG_CYCLE_SEEDS = (1, 5, 17)
 
 
@@ -108,7 +112,7 @@ def preimages_minus(z: int) -> list[int]:
 
 
 def negative_cycle_members() -> set[int]:
-    """The fifteen integers lying on a cycle of the 3n-1 shortcut map."""
+    """The fifteen members of the three known cycles; no exhaustiveness claim."""
     members: set[int] = set()
     for seed in NEG_CYCLE_SEEDS:
         z, path = seed, []
@@ -121,7 +125,7 @@ def negative_cycle_members() -> set[int]:
 
 # ----------------------------------------------------------- the two inequality systems
 class System:
-    """One map's fertile classes mod ``3^k`` and its three productions.
+    """The formal homogeneous program on one sign's fertile residue classes.
 
     ``sign`` is ``+1`` for 3x+1 and ``-1`` for 3n-1, matching the sign of the constant the
     odd branch adds; the fertile classes are ``2 (mod 3)`` and ``1 (mod 3)`` respectively.
@@ -167,9 +171,8 @@ PLUS, MINUS = System(+1), System(-1)
 def negation_is_an_isomorphism(k: int) -> dict[str, Any]:
     """Does ``m -> -m (mod 3^k)`` carry the 3x+1 system onto the 3n-1 system exactly?
 
-    This is the proof of the transposition, checked as integer arithmetic rather than
-    inferred from two solvers agreeing.  Every class, every production index, every
-    exponent.
+    This checks the finite residue relabelling and the assigned homogeneous
+    exponents. It does not check height truncation in the actual inverse trees.
     """
     p, q = 3 ** k, 3 ** (k - 1)
     classes = PLUS.classes(k)
@@ -265,6 +268,8 @@ def feasibility_is_an_interval(sys_: System, k: int, steps: int = 60) -> bool:
 # ------------------------------------------------------------- the underlying identity
 def truncated_tree(preimages: Callable[[int], Iterable[int]], a: int, x: int) -> int:
     """``pi*_a(x)``: nodes of the backward tree of ``a`` whose whole path stays at most ``x``."""
+    if not 1 <= a <= x:
+        return 0
     seen, dq, total = {a}, deque([a]), 0
     while dq:
         z = dq.popleft()
@@ -277,9 +282,9 @@ def truncated_tree(preimages: Callable[[int], Iterable[int]], a: int, x: int) ->
 
 
 def split_identity_report(a_max: int = 400, ys: tuple[int, ...] = (4, 6, 8)) -> dict[str, Any]:
-    """Check ``pi*_a(x) = 2 + pi*_{4a}(x) + pi*_c(x)`` for 3n-1, and reject the 3x+1 ``c``."""
+    """Check the minus-tree split, and the plus expression's nonintegrality."""
     cycles = negative_cycle_members()
-    checked = failures = wrong_c_hits = skipped = 0
+    checked = failures = wrong_c_nonintegral = skipped = 0
     examples: list[dict[str, int]] = []
     for a in range(2, a_max):
         if a % 3 != MINUS.fertile:
@@ -297,13 +302,11 @@ def split_identity_report(a_max: int = 400, ys: tuple[int, ...] = (4, 6, 8)) -> 
                 failures += 1
                 if len(examples) < 5:
                     examples.append({"a": a, "y": y, "lhs": lhs, "rhs": rhs})
-            if (2 * a - 1) % 3 == 0:
-                wrong = (2 * a - 1) // 3
-                if lhs == 2 + base + truncated_tree(preimages_minus, wrong, x):
-                    wrong_c_hits += 1
+            if (2 * a - 1) % 3 != 0:
+                wrong_c_nonintegral += 1
     return {"checked": checked, "failures": failures, "examples": examples,
             "cycle_members_skipped": skipped,
-            "known_bad_3x_plus_1_preimage_hits": wrong_c_hits,
+            "plus_preimage_expression_nonintegral": wrong_c_nonintegral,
             "cycle_members": sorted(cycles)}
 
 
@@ -324,6 +327,31 @@ def cycle_members_break_the_identity(y: int = 4) -> int:
 
 
 # ------------------------------------------------------------------------ artifacts
+def height_comparison_report() -> dict[str, Any]:
+    """An actual child ancestor admitted only by the invalid nominal budget."""
+    a, x = 19, 103
+    c = (2 * a + 1) // 3
+    nominal = Fraction(x, a) * Fraction(3, 2) * c
+    return {
+        "target": a, "odd_preimage": c, "cutoff": x,
+        "nominal_child_cutoff": str(nominal),
+        "correction_factor": str(Fraction(2 * a + 1, 2 * a)),
+        "excluded_ancestor": 104, "ancestor_path": [104, 52, 26, 13],
+        "actual_child_count": truncated_tree(preimages_minus, c, x),
+        "nominal_child_count": truncated_tree(preimages_minus, c, nominal.numerator // nominal.denominator),
+        "density_transfer_established": False,
+    }
+
+
+def classification() -> dict[str, Any]:
+    return {
+        "label": CLASS_RESIDUE_ONLY,
+        "statement": "Negation identifies the formal residue programs. The minus-map height comparison is unproved; matching solver exponents do not establish a density bound.",
+        "published_plus_exponent": PUBLISHED["krasikov_lagarias_2003_k11"],
+        "established_minus_exponent": None,
+    }
+
+
 def probe_payload(k_lp: int = 6, k_bijection: int = 10) -> dict[str, Any]:
     exps: dict[str, Any] = {}
     for k in range(2, k_lp + 1):
@@ -331,19 +359,13 @@ def probe_payload(k_lp: int = 6, k_bijection: int = 10) -> dict[str, Any]:
         exps[str(k)] = {
             "classes": 3 ** (k - 1),
             "lambda_3x_plus_1": lp, "gamma_3x_plus_1": log2(lp),
-            "lambda_3n_minus_1": lm, "gamma_3n_minus_1": log2(lm),
+            "lambda_minus_residue_model": lm, "gamma_minus_residue_model": log2(lm),
             "agree_to_1e_7": abs(lp - lm) < 1e-7,
         }
     bij = {str(k): negation_is_an_isomorphism(k) for k in range(2, k_bijection + 1)}
     return {
-        "classification": {
-            "label": CLASS_TRANSPOSED,
-            "statement": ("the Krasikov-Lagarias difference inequality system for 3x+1 and "
-                          "the corresponding system for 3n-1 are the same system under "
-                          "m -> -m mod 3^k, so the certified exponent transposes unchanged"),
-            "published_exponent": PUBLISHED["krasikov_lagarias_2003_k11"],
-            "transposed_exponent": PUBLISHED["krasikov_lagarias_2003_k11"],
-        },
+        "classification": classification(),
+        "height_comparison": height_comparison_report(),
         "alpha_log2_3": ALPHA,
         "published_anchors": PUBLISHED,
         "exponents": exps,
@@ -363,20 +385,26 @@ def probe_payload(k_lp: int = 6, k_bijection: int = 10) -> dict[str, Any]:
 
 
 def render_markdown(d: dict[str, Any]) -> str:
-    rows = ["| k | classes | 3x+1 exponent | 3n-1 exponent | agree |",
+    rows = ["| k | classes | plus model exponent | minus model exponent | agree |",
             "|---|---|---|---|---|"]
     for k, v in d["exponents"].items():
         rows.append(f"| {k} | {v['classes']} | {v['gamma_3x_plus_1']:.4f} | "
-                    f"{v['gamma_3n_minus_1']:.4f} | {'yes' if v['agree_to_1e_7'] else 'NO'} |")
+                    f"{v['gamma_minus_residue_model']:.4f} | {'yes' if v['agree_to_1e_7'] else 'NO'} |")
     si = d["split_identity"]
     return "\n".join([
-        "# Krasikov-Lagarias preimage density, transposed to the 3n-1 map",
+        "# Krasikov-Lagarias residue symmetry: the height transfer remains open",
         "",
         "Generated by `python -m research.juggler_sequence.negative_preimage_density`.",
         "",
-        "The relabelling `m -> -m mod 3^k` carries the Krasikov-Lagarias inequality system "
-        "for `3x+1` onto the system for `3n-1`, coefficient for coefficient, so the two "
-        "linear programs coincide and the published exponent transposes unchanged.",
+        "Negation carries the formal residue program to the opposite sign. The "
+        "assigned homogeneous shifts need a separate height argument for actual "
+        "minus-map trees. The former density-transfer claim is withdrawn as unproved; "
+        "its asymptotic conclusion is not refuted.",
+        "",
+        f"At target 19, child 13 and cutoff 103, the nominal child cutoff is "
+        f"`{d['height_comparison']['nominal_child_cutoff']}`. It admits the ancestor "
+        "`104 -> 52 -> 26 -> 13`, above the actual cutoff. The child tree counts "
+        "are 12 and 13. The exact scaling correction is `39/38` (Lean).",
         "",
         f"**Negation is an isomorphism at every k checked:** "
         f"{d['bijection_holds_every_k']} (k = 2 to {max(int(x) for x in d['negation_bijection'])}).",
@@ -396,8 +424,8 @@ def render_markdown(d: dict[str, Any]) -> str:
         "## The underlying tree identity",
         "",
         f"`pi*_a(x) = 2 + pi*_4a(x) + pi*_c(x)` with `c = (2a+1)/3`, checked on "
-        f"{si['checked']} cases with {si['failures']} failures. The `3x+1` preimage "
-        f"`(2a-1)/3` satisfies it in {si['known_bad_3x_plus_1_preimage_hits']} of them. "
+        f"{si['checked']} cases with {si['failures']} failures. The `3x+1` expression "
+        f"`(2a-1)/3` is nonintegral in all {si['plus_preimage_expression_nonintegral']} cases. "
         f"{si['cycle_members_skipped']} fertile values were skipped as cycle members, and "
         f"the identity fails on {d['identity_fails_on_cycle_members']} of those, which is "
         "why the exclusion is a hypothesis and not a convenience.",
@@ -415,14 +443,13 @@ def write_artifacts(payload: dict[str, Any] | None = None) -> dict[str, Any]:
 
 def main() -> None:
     data = write_artifacts()
-    print(f"{data['classification']['label']}: negation is an isomorphism at every k "
-          f"({data['bijection_holds_every_k']}); the exponent transposes as "
-          f"{data['classification']['transposed_exponent']}")
+    print(f"{data['classification']['label']}: finite residue checks "
+          f"{data['bijection_holds_every_k']}; no minus-map density exponent established")
     for k, v in data["exponents"].items():
-        print(f"  k={k}: 3x+1 {v['gamma_3x_plus_1']:.4f}   3n-1 {v['gamma_3n_minus_1']:.4f}")
+        print(f"  k={k}: plus model {v['gamma_3x_plus_1']:.4f}   minus model {v['gamma_minus_residue_model']:.4f}")
     si = data["split_identity"]
     print(f"  tree identity: {si['checked']} checked, {si['failures']} failures, "
-          f"known-bad hits {si['known_bad_3x_plus_1_preimage_hits']}")
+          f"nonintegral plus expressions {si['plus_preimage_expression_nonintegral']}")
     print(f"wrote {JSON_PATH} and {DOC_PATH}")
 
 

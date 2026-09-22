@@ -1,9 +1,26 @@
 {
   "classification": {
-    "label": "KL_EXPONENT_TRANSPOSES_UNCHANGED",
-    "statement": "the Krasikov-Lagarias difference inequality system for 3x+1 and the corresponding system for 3n-1 are the same system under m -> -m mod 3^k, so the certified exponent transposes unchanged",
-    "published_exponent": 0.84,
-    "transposed_exponent": 0.84
+    "label": "RESIDUE_SYMMETRY_WITH_UNPROVED_HEIGHT_TRANSFER",
+    "statement": "Negation identifies the formal residue programs. The minus-map height comparison is unproved; matching solver exponents do not establish a density bound.",
+    "published_plus_exponent": 0.84,
+    "established_minus_exponent": null
+  },
+  "height_comparison": {
+    "target": 19,
+    "odd_preimage": 13,
+    "cutoff": 103,
+    "nominal_child_cutoff": "4017/38",
+    "correction_factor": "39/38",
+    "excluded_ancestor": 104,
+    "ancestor_path": [
+      104,
+      52,
+      26,
+      13
+    ],
+    "actual_child_count": 12,
+    "nominal_child_count": 13,
+    "density_transfer_established": false
   },
   "alpha_log2_3": 1.584962500721156,
   "published_anchors": {
@@ -15,40 +32,40 @@
       "classes": 3,
       "lambda_3x_plus_1": 1.3534000935032964,
       "gamma_3x_plus_1": 0.4365883933325999,
-      "lambda_3n_minus_1": 1.3534000935032964,
-      "gamma_3n_minus_1": 0.4365883933325999,
+      "lambda_minus_residue_model": 1.3534000935032964,
+      "gamma_minus_residue_model": 0.4365883933325999,
       "agree_to_1e_7": true
     },
     "3": {
       "classes": 9,
       "lambda_3x_plus_1": 1.5275951018556952,
       "gamma_3x_plus_1": 0.6112621991632537,
-      "lambda_3n_minus_1": 1.5275951018556952,
-      "gamma_3n_minus_1": 0.6112621991632537,
+      "lambda_minus_residue_model": 1.5275951018556952,
+      "gamma_minus_residue_model": 0.6112621991632537,
       "agree_to_1e_7": true
     },
     "4": {
       "classes": 27,
       "lambda_3x_plus_1": 1.612287393771112,
       "gamma_3x_plus_1": 0.6891089303501029,
-      "lambda_3n_minus_1": 1.612287393771112,
-      "gamma_3n_minus_1": 0.6891089303501029,
+      "lambda_minus_residue_model": 1.612287393771112,
+      "gamma_minus_residue_model": 0.6891089303501029,
       "agree_to_1e_7": true
     },
     "5": {
       "classes": 81,
       "lambda_3x_plus_1": 1.662759897299111,
       "gamma_3x_plus_1": 0.733579858351936,
-      "lambda_3n_minus_1": 1.662759897299111,
-      "gamma_3n_minus_1": 0.733579858351936,
+      "lambda_minus_residue_model": 1.662759897299111,
+      "gamma_minus_residue_model": 0.733579858351936,
       "agree_to_1e_7": true
     },
     "6": {
       "classes": 243,
       "lambda_3x_plus_1": 1.694452048279345,
       "gamma_3x_plus_1": 0.7608188102132034,
-      "lambda_3n_minus_1": 1.694452048279345,
-      "gamma_3n_minus_1": 0.7608188102132034,
+      "lambda_minus_residue_model": 1.694452048279345,
+      "gamma_minus_residue_model": 0.7608188102132034,
       "agree_to_1e_7": true
     }
   },
@@ -124,7 +141,7 @@
     "failures": 0,
     "examples": [],
     "cycle_members_skipped": 10,
-    "known_bad_3x_plus_1_preimage_hits": 0,
+    "plus_preimage_expression_nonintegral": 366,
     "cycle_members": [
       1,
       5,

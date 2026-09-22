@@ -1,5 +1,44 @@
 # Research journal
 
+## 2026-09-22 -- Signed preimage-density transfer omitted the height inequality
+
+- **Question:** Does the signed residue symmetry supply any unused
+  arithmetic counting input for the termination program?
+- **Finding:** The claimed 3n-1 x^0.84 preimage bound was promoted from
+  the formal residue program without its height comparison. Negation
+  transposes the modular indices, but the odd predecessor changes from
+  (2a-1)/3<2a/3 to (2a+1)/3>2a/3. The exact minus child scale is the
+  nominal scale divided by 1+1/(2a). This reverses the monotonicity
+  step that the written transfer had omitted.
+- **Proof:** `PreimageScale.lean` proves the predecessor equations,
+  both height comparisons, the exact correction, and a concrete
+  excluded ancestor. At a=19 and x=103>=4a, child 13 receives nominal
+  cutoff 4017/38; 104 -> 52 -> 26 -> 13 is counted there but exceeds
+  103. A finite invariant set proves that 19 has no positive return
+  time. Independent forward enumeration gives child counts 12 and 13
+  at the two integer cutoffs.
+- **Scope:** This refutes the pointwise cutoff inclusion, not the
+  eventual exponent or all possible inequalities for residue infima.
+  The source's derived system uses minimization/deletion arguments;
+  those cannot simply be invoked for minus counting functions before
+  their hypotheses are justified. No substitute proof is asserted.
+- **Refactor:** Keep the finite residue checks and numerical model
+  values, but label them as such and export no established minus
+  exponent. Repair the vacuous wrong-sign regression and out-of-range
+  root behavior of the truncated-tree routine. The fifteen-cycle-member
+  helper is explicitly a census of the three known cycles.
+- **Decision:** **PARK** the density transfer pending a uniform height
+  argument. The existing theorem row is now `CONJECTURE`; a separate
+  row records the compiled scale obstruction. Juggler's actual pressure
+  estimate is still open. Neither Paper C nor Paper D changes.
+- **Coverage:** The compiled obstruction awaits advisory ledger review;
+  the previous one-row authorization was not reused for this statement.
+- **Validation:** Full `lake build` passes (9028 jobs); all nine new
+  dependency checks use only standard Lean dependencies. Focused probe,
+  integration, and ledger tests: 152 passes, 14 skips. Ledger and branch
+  index checks pass. The probe was regenerated; 366 finite tree splits
+  still agree, while all 366 wrong-sign expressions are nonintegral.
+
 ## 2026-09-22 -- Completeness does not justify the stopped moment identity
 
 - **Question:** Does Paper C's coefficient/MGF identity preserve both

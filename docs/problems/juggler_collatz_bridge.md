@@ -979,3 +979,16 @@ only standard Lean dependencies, and the bridge/layer plus integration/ledger
 suites give 174 passes and 14 skips. Ledger/index and Paper C provenance
 checks pass; rendered PDF pages 21-22 were visually reviewed. The
 new ledger row retains its written-proof label pending advisory coverage.
+
+## Preimage-density transfer needs a height argument, 22 September 2026
+
+The [negative preimage-density branch](juggler_negative_preimage_density.md)
+is now **PARK**. Its formal residue programs transpose, but that alone
+does not transfer the analytic bound. The minus odd predecessor is
+(2a+1)/3, so its normalized child scale is the nominal scale divided
+by 1+1/(2a). At a=19, child 13 and cutoff 103, the nominal child cutoff
+4017/38 admits the actual ancestor 104, exceeding the parent cutoff.
+The predecessor comparisons and nonperiodicity of 19 are kernel-checked
+in [PreimageScale.lean](../../formal/Problems/Collatz/PreimageScale.lean).
+The existing x^0.84 row is now `CONJECTURE`; this audit does not refute
+its eventual conclusion or supply a new Juggler pressure estimate.

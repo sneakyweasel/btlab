@@ -1,8 +1,9 @@
-"""Krasikov-Lagarias transposed to 3n-1: the bijection, the solver, the tree identity."""
+"""Residue-model symmetry, exact tree splits, and the missing height correction."""
 from __future__ import annotations
 
 import json
 from math import log2
+from fractions import Fraction
 
 import pytest
 
@@ -34,7 +35,7 @@ def test_the_odd_preimage_is_odd_and_lands_where_the_trichotomy_says() -> None:
 
 
 def test_negation_carries_one_inequality_system_onto_the_other() -> None:
-    """The proof, as exact integer arithmetic: m -> -m mod 3^k is a bijection of the fertile
+    """Finite exact check: m -> -m mod 3^k is a bijection of the fertile
     classes carrying every production index and every lambda exponent across. Checked over
     all 3^(k-1) classes for k up to 9, which is 6561 classes at the top."""
     for k in range(2, 10):
@@ -43,7 +44,7 @@ def test_negation_carries_one_inequality_system_onto_the_other() -> None:
         assert rep["classes"] == 3 ** (k - 1)
 
 
-def test_negation_is_the_only_relabelling_that_works() -> None:
+def test_identity_and_doubling_do_not_supply_the_negation_relabelling() -> None:
     """Known-bad input: the identity relabelling must NOT carry one system onto the other,
     or the test above would pass for a reason that has nothing to do with negation."""
     k = 4
@@ -61,7 +62,7 @@ def test_negation_is_the_only_relabelling_that_works() -> None:
         four_m, odd_m = npd.MINUS.production(mm, k)
         if four_m != (2 * four) % p or (odd is None) != (odd_m is None):
             broken += 1
-    assert broken > 0, "doubling must fail somewhere, else negation is not the only map"
+    assert broken > 0, "doubling must fail somewhere"
 
 
 def test_the_two_systems_solve_to_the_same_exponent() -> None:
@@ -80,8 +81,8 @@ def test_the_published_exponents_are_this_solver_truncated() -> None:
     """Krasikov 1989 obtained 0.43 from k = 2 and Krasikov-Lagarias 0.84 from k = 11.
     A published exponent is a valid lower bound, so it is the computed value truncated
     downward, not rounded: 0.4366 gives 0.43 and 0.8418 gives 0.84. Reproducing both is what
-    makes the solver trustworthy at the k values nobody has published, and it is the reason
-    to believe the system solved here is the one in the source."""
+    checks the model's numerical calibration. It neither certifies an untested
+    solver run nor establishes a minus-map counting theorem."""
     gamma2 = log2(npd.best_lambda(npd.PLUS, 2))
     assert int(gamma2 * 100) / 100 == npd.PUBLISHED["krasikov_1989_k2"], gamma2
     k11 = npd.HIGH_K[11]
@@ -102,13 +103,14 @@ def test_the_backward_tree_splits_exactly_for_3n_minus_1() -> None:
     rep = npd.split_identity_report()
     assert rep["checked"] >= 350
     assert rep["failures"] == 0, rep["examples"]
-    assert rep["known_bad_3x_plus_1_preimage_hits"] == 0
+    assert rep["plus_preimage_expression_nonintegral"] == rep["checked"]
 
 
-def test_the_identity_fails_on_every_cycle_member() -> None:
-    """The known-bad input for the identity. The 3n-1 map has three cycles where 3x+1 has
-    one, so this hypothesis carries more weight here than in the source, and it has to be
-    seen to bite rather than assumed."""
+def test_known_cycle_members_expose_the_noncycle_hypothesis() -> None:
+    """The known cycle census exposes failure of the unrestricted tree split.
+
+    The fifteen members are from three known cycles, not an exhaustive theorem.
+    """
     assert npd.cycle_members_break_the_identity() > 0
     cycles = npd.negative_cycle_members()
     assert len(cycles) == 15
@@ -118,9 +120,11 @@ def test_the_identity_fails_on_every_cycle_member() -> None:
 def test_the_recorded_payload_matches_a_fresh_run() -> None:
     fresh = npd.probe_payload(k_lp=4, k_bijection=5)
     assert fresh["bijection_holds_every_k"]
-    assert fresh["classification"]["label"] == npd.CLASS_TRANSPOSED
+    assert fresh["classification"]["label"] == npd.CLASS_RESIDUE_ONLY
     stored = json.loads(npd.JSON_PATH.read_text(encoding="utf-8"))
-    assert stored["classification"]["label"] == npd.CLASS_TRANSPOSED
+    assert stored["classification"]["label"] == npd.CLASS_RESIDUE_ONLY
+    assert stored["classification"]["established_minus_exponent"] is None
+    assert fresh["height_comparison"] == stored["height_comparison"]
     assert stored["bijection_holds_every_k"] is True
     assert stored["split_identity"]["failures"] == 0
     for k in ("2", "3", "4"):
@@ -137,3 +141,45 @@ def test_the_three_cycles_are_the_ones_paper_d_names(seed: int) -> None:
         z = npd.g_minus(z)
     cyc = path[path.index(z):]
     assert len(cyc) in (1, 3, 11), (seed, cyc)
+
+
+def test_signed_height_comparisons_have_opposite_directions() -> None:
+    for a in range(1, 301):
+        if a % 3 == 1:
+            c = (2 * a + 1) // 3
+            assert npd.g_minus(c) == a
+            assert Fraction(c) > Fraction(2 * a, 3)
+            for x in (4 * a, 11 * a + 7):
+                nominal_ratio = Fraction(x, a) * Fraction(3, 2)
+                assert Fraction(x, c) == nominal_ratio / (1 + Fraction(1, 2 * a))
+                assert nominal_ratio * c > x
+        elif a % 3 == 2:
+            c = (2 * a - 1) // 3
+            assert npd.t_plus(c) == a
+            assert Fraction(c) < Fraction(2 * a, 3)
+
+
+def test_nominal_budget_includes_an_actual_excluded_ancestor() -> None:
+    # Independent forward enumeration checks the backward BFS at both cutoffs.
+    def count_forward(a: int, cutoff: int) -> int:
+        total = 0
+        for n in range(1, cutoff + 1):
+            seen = set()
+            while 1 <= n <= cutoff and n not in seen:
+                if n == a:
+                    total += 1
+                    break
+                seen.add(n)
+                n = npd.g_minus(n)
+        return total
+
+    row = npd.height_comparison_report()
+    assert row["nominal_child_cutoff"] == "4017/38"
+    assert row["correction_factor"] == "39/38"
+    assert row["actual_child_count"] == count_forward(13, 103) == 12
+    assert row["nominal_child_count"] == count_forward(13, 105) == 13
+    path = row["ancestor_path"]
+    assert all(npd.g_minus(a) == b for a, b in zip(path, path[1:]))
+    assert row["cutoff"] < path[0] <= Fraction(row["nominal_child_cutoff"])
+    assert npd.truncated_tree(npd.preimages_minus, 13, 12) == 0
+    assert npd.truncated_tree(npd.preimages_minus, 0, 12) == 0

@@ -12495,10 +12495,35 @@
  },
  {
   "id": "J-kl-preimage-density-transposes-to-3n-1",
-  "tag": "EXACT \u2014 HUMAN PROOF",
-  "statement": "THEOREM, BY TRANSPOSITION, WITH ONE EXTERNAL INPUT. Given Krasikov-Lagarias 2003 (Acta Arith. 109, 237-258; arXiv math/0205002), for the 3n-1 shortcut map g(y) = y/2 (even), (3y-1)/2 (odd), every fixed target a not divisible by 3, and all x large enough depending on a, at least x^0.84 of the integers below x have a in their forward orbit under g. Their theorem is the same statement for the 3x+1 shortcut map. THE PROOF IS THAT NEGATION IS AN ISOMORPHISM of the two difference inequality systems. Their route is Krasikov's 1989 system I_k on the residue classes mod 3^k: the fertile classes are those whose odd preimage is an odd integer, 2 mod 3 for 3x+1 with preimage (2a-1)/3, and 1 mod 3 for 3n-1 with preimage (2a+1)/3; splitting mod 9 gives three productions, and the system becomes a linear program whose largest feasible lambda certifies the exponent log2(lambda). The relabelling m -> -m mod 3^k carries one system onto the other coefficient for coefficient: fertile 2 mod 3 goes to 1 mod 3, the mod 9 split 2, 5, 8 goes to 7, 4, 1, the index 4m is preserved, (4m-2)/3 goes to (4m+2)/3 and (2m-1)/3 goes to (2m+1)/3, the three lifts of m go to the three lifts of -m, and alpha = log2 3 is untouched. So the two linear programs are one program and the exponent transposes unchanged. Checked as exact integer arithmetic over all 3^(k-1) classes for k <= 10. INDEPENDENT CONFIRMATION by solving both: the exponents agree to the solver's tolerance at every k, reading 0.4366, 0.6113, 0.6891, 0.7336, 0.7608, 0.7826, 0.8032, 0.8168, 0.8295, 0.8418 for k = 2 to 11. THE SOLVER REPRODUCES BOTH PUBLISHED ANCHORS: Krasikov 1989 reports 0.43 from k = 2 and Krasikov-Lagarias 0.84 from k = 11, and a published exponent is the computed one truncated downward because it has to be a valid lower bound, so 0.4366 gives 0.43 and 0.8418 gives 0.84. Reproducing their headline at their own k is what says the system solved here is theirs. Two solvers were written independently, a scipy linear program from their L^NT_k(lambda) and a dependency-free Collatz-Wielandt iteration, agreeing at every k <= 8; only the second is committed, because the laboratory does not depend on scipy. THE UNDERLYING IDENTITY, brute-forced: for fertile a not on a cycle, pi*_a(x) = 2 + pi*_4a(x) + pi*_c(x) with c = (2a+1)/3, because 2a is then 2 mod 3 and has 4a as its only preimage; 366 cases, no failure. THE KNOWN-BAD INPUTS: substituting the 3x+1 preimage (2a-1)/3 into the 3n-1 identity satisfies it in 0 of 396 cases, and the identity fails on every fertile cycle member, which is why the not-in-a-cycle hypothesis is carried. That hypothesis is heavier here than in the source: the 3n-1 map has three cycles, 1 and (5, 7, 10) and the eleven-cycle at 17, fifteen members in all, where 3x+1 has one. WHAT THIS IS NOT: a divergent logarithmic lower bound. Paper C's Section 1.3 makes the point that a counting function of order x^0.84 is compatible with a convergent reciprocal sum, so this is not a substitute for fate contagion and does not feed the almost-all equivalence. WEIGHT: the statement appears to be new for 3n-1 and the method is entirely theirs; the honest description is a corollary obtained by observing that their argument never looks at the sign of the added constant. It belongs as a remark beside Paper D, not as a deposit.",
+  "tag": "CONJECTURE",
+  "statement": "Unproved transfer claim: for the positive 3n-1 shortcut map, every fixed positive target a not divisible by 3 has at least x^0.84 positive ancestors below x for all sufficiently large x. Correction of 22 September 2026: the previous proof by residue negation was incomplete. The finite residue programs and their assigned homogeneous exponents do transpose, but the actual odd predecessor (2a+1)/3 lies above 2a/3, reversing the height inequality used by the plus-map argument. The exact normalized child scale is ((x/a)*(3/2))/(1+1/(2a)); dropping the correction is unfavorable. J-kl-signed-preimage-height-gap proves this and an actual excluded ancestor at the nonperiodic target 19. The eventual density bound is not refuted; it requires a separate uniform height argument. Matching floating-point solver results are model evidence, not a transfer theorem. Krasikov-Lagarias 2003 remains the external positive 3x+1 result.",
   "source": "docs/problems/juggler_negative_preimage_density.md",
   "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_negative_preimage_density.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-kl-signed-preimage-height-gap",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For each fertile positive target a, the signed odd predecessors satisfy 3*c_minus=2*a+1 and 3*c_plus+1=2*a. Hence c_minus>2*a/3 while c_plus<2*a/3. For every real x, x/c_minus=((x/a)*(3/2))/(1+1/(2*a)); for positive x, the nominal child budget ((x/a)*(3/2))*c_minus exceeds x, while the plus budget is below x. At nonperiodic target a=19, c_minus=13 and cutoff x=103>=4*a, the nominal child budget is 4017/38 and contains the genuine ancestor 104 with path 104,52,26,13, although 104 exceeds 103. All these statements, including absence of every positive return time for 19, are kernel-checked. This refutes the pointwise cutoff inclusion underlying the recorded sign-transfer proof; it does not refute a compensated residue-infimum inequality or an eventual x^0.84 lower bound. Ledger label awaits advisory coverage review.",
+  "source": "docs/problems/juggler_negative_preimage_density.md",
+  "lean": "Problems/Collatz/PreimageScale.lean",
+  "decl": [
+   "minusOddPreimage",
+   "plusOddPreimage",
+   "minus_preimage_exact",
+   "plus_preimage_exact",
+   "minus_preimage_above",
+   "plus_preimage_below",
+   "minus_scale_correction",
+   "minus_nominal_budget_exceeds",
+   "plus_nominal_budget_below",
+   "excluded_ancestor",
+   "nineteen_not_periodic"
+  ],
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_negative_preimage_density.py"
   ],

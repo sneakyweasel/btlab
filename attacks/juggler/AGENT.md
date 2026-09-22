@@ -140,6 +140,11 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   fair mass one but tilted mass at most 3/4. The coefficient shift and
   fixed-depth identities remain valid; Kraft equality alone does not
   justify an unbounded stopped expectation.
+  The claimed Krasikov–Lagarias x^0.84 transfer to 3n-1 is now PARK:
+  residue negation preserves the formal program but reverses the odd
+  predecessor's height comparison. `PreimageScale.lean` proves the
+  missing correction and an excluded ancestor. The asymptotic claim
+  is unproved here, not refuted; matching solvers do not supply it.
 - **Anti-overclaim.** Finite checks, period floors, densities, and
   leftover censuses are not a halt theorem and not "no cycle of any
   length". State the theorem with quantifiers, Lean name, and ledger

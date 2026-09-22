@@ -1,0 +1,16 @@
+'Problems.Collatz.PreimageScale.minus_preimage_exact' depends on axioms: [propext, Quot.sound]
+'Problems.Collatz.PreimageScale.plus_preimage_exact' depends on axioms: [propext, Quot.sound]
+'Problems.Collatz.PreimageScale.minus_preimage_above' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageScale.plus_preimage_below' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageScale.minus_scale_correction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageScale.minus_nominal_budget_exceeds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageScale.plus_nominal_budget_below' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageScale.excluded_ancestor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageScale.nineteen_not_periodic' depends on axioms: [propext, Classical.choice, Quot.sound]
+Problems.Collatz.PreimageScale.minus_scale_correction {a : ℕ} (ha : a % 3 = 1) (x : ℝ) :
+  x / ↑(minusOddPreimage a) = x / ↑a * (3 / 2) / (1 + 1 / (2 * ↑a))
+Problems.Collatz.PreimageScale.excluded_ancestor :
+  minusOddPreimage 19 = 13 ∧
+    Problems.Collatz.negT^[3] 104 = 13 ∧
+      (∀ j ≤ 3, Problems.Collatz.negT^[j] 104 ≤ 104) ∧
+        103 < 104 ∧ 4 * 19 ≤ 103 ∧ 104 ≤ 103 / 19 * (3 / 2) * ↑(minusOddPreimage 19)

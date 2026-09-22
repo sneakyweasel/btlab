@@ -3956,12 +3956,13 @@
       "data_dir": "data/research/juggler/negative_preimage_density",
       "lean": [],
       "conjecture": [],
-      "decision": "PROMOTE",
+      "decision": "PARK",
       "ledger_ids": [
-        "J-kl-preimage-density-transposes-to-3n-1"
+        "J-kl-preimage-density-transposes-to-3n-1",
+        "J-kl-signed-preimage-height-gap"
       ],
       "aliases": [],
-      "nk_cluster": null
+      "nk_cluster": "Residue negation alone does not transfer the preimage-density bound"
     },
     {
       "id": "nil_horizontal_weyl",

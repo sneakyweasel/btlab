@@ -1,5 +1,25 @@
 # Negative knowledge
 
+## Residue negation alone does not transfer the preimage-density bound
+
+The [negative preimage density](problems/juggler_negative_preimage_density.md)
+claim formerly promoted x^0.84 from the equality of two formal residue
+programs. Its actual height comparison was missing. The minus odd
+predecessor c=(2a+1)/3 is above 2a/3, whereas the plus predecessor is
+below it. The normalized minus child scale must be divided by
+1+1/(2a). At nonperiodic target 19 and cutoff 103, the uncorrected
+child cutoff 4017/38 includes 104 -> 52 -> 26 -> 13, above 103.
+`Problems/Collatz/PreimageScale.lean` proves these facts.
+
+**CLOSE** automatic analytic transfer from residue relabelling;
+**PARK** the density claim, now `CONJECTURE` in
+`J-kl-preimage-density-transposes-to-3n-1`. The asymptotic exponent
+is not refuted, nor is every possible compensated residue-infimum
+inequality. A repair needs a uniform height argument and a justified
+use of the minimization/deletion steps. Matching numerical programs
+and a larger k supply neither. The previous wrong-sign identity test
+was vacuous; its guard never held on fertile minus classes.
+
 ## Complete unbounded stopping families need not preserve multiplier moment
 
 The former Section 5.7 sentence in Paper C extended both fixed-depth

@@ -278,7 +278,12 @@ stays computational. Update Paper D Section 8 and
 - **The K-L transposition** (`J-kl-preimage-density-transposes-to-3n-1`): the
   map \(m\mapsto-m\) on `ZMod (3^k)` carries one production system onto the
   other, by `decide` for \(k\le6\) and as a residue theorem in general. Low
-  priority: it checks a transposition, not the Krasikov–Lagarias theorem.
+  priority: it checks a formal residue transposition, not the
+  Krasikov–Lagarias theorem. **Correction of 22 September:** the density
+  row is now `CONJECTURE`. `Problems/Collatz/PreimageScale.lean` proves
+  that the actual minus odd predecessor reverses the height comparison,
+  with correction factor 1+1/(2a). A uniform height argument is still
+  required before the model exponent becomes an actual counting bound.
 
 ## 4. Not in Lean, by decision
 
