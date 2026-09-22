@@ -67,6 +67,7 @@
   commit. The ledger renderer passes.
 - **Decision:** **PROMOTE** the finite derivative tests. Next bounded step:
   specialize them to the OOE phases and retain all explicit constants.
+
 ## 2026-09-22 -- Winkler homepage sweep: one mirror, one unread preprint
 
 - **Target and falsifier:** Go through www.mikematics.de and decide, per live
@@ -88,9 +89,24 @@
   the equality classification is 2026.
 - **New objects:** Two register entries. *Fibonacci Enumeration of Parity Blocks*,
   arXiv:1412.0519v3, read in full. *Ferrers Gap Polynomials: Real Zeros and Column
-  Interlacing through Five Rows*, ResearchGate 414461095, **unread and the only
-  live risk found** -- real-rootedness with interlacing for the cut polynomial is
-  a limit theorem on our own minimal-certificate count.
+  Interlacing through Five Rows*, doi 10.13140/RG.2.2.32498.06086, registered
+  18 September. Flagged here as the only live prior-art risk, then **fetched by
+  Philippe and read the same day: the risk is discharged.** It is a combinatorics
+  paper on Ferrers gap polynomials whose Theorem 1 stops at five positive parts,
+  which on the Beatty family is n <= 10, and whose real-rootedness statement for
+  our range is Conjecture 36, checked only to n < 60. No asymptotics anywhere, so
+  Paper B's limit layer is untouched. The title read as a threat and the paper is
+  not one. Retained gain: his Corollary 35 Beatty column recurrence, and a
+  four-day-old conjecture this laboratory can test well past his range.
+- **Reproduced, and his range doubled.** Corollary 35 implemented from the paper
+  in [tmp/ferrers_beatty_check.py](../tmp/ferrers_beatty_check.py): B_n(1) gives
+  all 32 stored terms of A100982 at offset zero, with offsets +1, -1 and +2
+  failing, and the constant terms reproduce his power-of-two law.
+  [tmp/ferrers_conj36.py](../tmp/ferrers_conj36.py) then isolates roots exactly
+  and finds **Conjecture 36 true for every 4 <= n <= 120**, against the n < 60 he
+  records, no failures, with the reversed-orientation control rejected on 59 of 59
+  equal-degree pairs. Runtime 98 seconds, so the ceiling is patience. A
+  verification of his conjecture, not a proof, and his to use.
 - **Verified in passing:** The two equality families of Corollary 12 reconstruct
   A206788 exactly, lower orders 1, 2, 7, 12 and upper orders 1, 3, 5, 17, 29,
   union equal to the stored head with nothing left over, sides running LLHHLLHH.

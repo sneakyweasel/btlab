@@ -139,7 +139,8 @@ Two obligations replace it, and both are sharper than the risk they retire.
      with no comment touched; awaiting approval) and A100982 (link and two
      comments, drafted; `a(n)` is the single cell `n(A020914(n)-n, A020914(n))`
      of Terras's table, because `(2^(k-1), 2^k)` holds at most one power of 3,
-     brute-forced to `n = 27`).
+     brute-forced to `n = 27`). **Status, 22 September 2026, from Philippe: both
+   submissions are still under review.**
 
    **This lands on the deposited Paper B.** Its subsection *"This recursion is
    not new"* credits Zarubin's A076227 formula of 11 August 2019, Winkler's of
@@ -162,18 +163,23 @@ Two obligations replace it, and both are sharper than the risk they retire.
    author page, nor in Semantic Scholar, nor in ORCID. It is not merely unindexed; it
    is not published. The only route left is `mike.winkler@ruhr-uni-bochum.de`, and no
    further probe is worth spending.
-3. **A fifth preprint exists and is unread — `winkler-2026-ferrers-gap-polynomials`.**
-   *Ferrers Gap Polynomials: Real Zeros and Column Interlacing through Five Rows*,
-   found on his homepage 22 September 2026, ResearchGate publication 414461095 and
-   nowhere else. Its id exceeds all four September ids, so it postdates 14 September.
-   The object is the cut polynomial `B_n(y)` of `winkler-2026-coefficient-first-passage`,
-   which refines `M_d` by the local pattern `011` and was proved there only fiberwise
-   ultra-log-concave. **Real-rootedness with interlacing is the step that yields a
-   central limit theorem for that statistic — the limit layer, on our object.** The
-   hedge is that *through five rows* may be a finite verification rather than a theorem
-   for all `n`, but that reading is from the title alone. This replaces obligation 2 as
-   the nearest unread neighbour, and unlike obligation 2 it has a working URL that a
-   human can open in seconds.
+3. ~~**A fifth preprint exists and is unread.**~~ **Fetched and read, 22 September
+   2026; the risk is discharged.** *Ferrers Gap Polynomials: Real Zeros and Column
+   Interlacing through Five Rows*, [doi:10.13140/RG.2.2.32498.06086](https://doi.org/10.13140/RG.2.2.32498.06086),
+   registered 18 September 2026, 37 pages. It is a pure combinatorics paper about
+   Ferrers gap polynomials, **not** a Collatz paper, and it says twice that the
+   Collatz specialization is not used in any proof. Its Theorem 1 proves simple
+   negative zeros and strict full-column interlacing **only for at most five
+   positive parts**. On the Beatty family that means `q_n = floor(n rho) <= 5` with
+   `rho = log2 3 - 1`, hence `n <= 10`. Real-rootedness for our range is his
+   **Conjecture 36**, verified to `n < 60` by rational root isolation, and the
+   general case is his Conjecture 34. **There is no asymptotic statement in the
+   paper at all** — no growth constant, no central limit theorem, no oscillation —
+   so it neither proves nor approaches Paper B's limit layer. The hedge recorded
+   here from the title alone was correct. What it does give us is his Corollary 35,
+   an exact two-parameter Beatty column recurrence for the cut polynomial, and a
+   four-day-old conjecture we are equipped to test far past `n = 60`.
+   Reading: [the register entry](../../literature/winkler-2026-ferrers-gap-polynomials.json).
 
 **And every Winkler citation on this page is off by one.** The copy now held is
 the revision of 23 August 2026, 29 pages; arXiv stops at v8 (28 July, 28 pages).
