@@ -1,5 +1,41 @@
 # Research journal
 
+## 2026-09-22 -- Weighted OOEE carry cells and termination review
+
+- **Continuation audit:** The previous phase proved the actual curvature.
+  The present review confirms that the termination thresholds have not yet
+  changed: 100/203 is unconditional in Lean, while 5/8 still requires
+  OOEEProductionBound. The actual failure-rate estimate remains open.
+- **Target and scope:** Complete the weighted smooth carry contribution
+  on the actual short interval. Uncontrolled cell count, variation, or
+  endpoint loss would falsify it. This uses the retained OOEE scale and
+  proved curvature, not the closed longer-fibre localization route.
+  Concurrent Fejer/discrepancy drafts were left to their existing task;
+  the complementary cell assembly avoids duplicating that work.
+- **Proof:** The gap derivative gives at most 3L+2 carry levels. Each
+  sampled floor fibre is consecutive; removing its final term resolves
+  the closed-support issue with a loss of one. A generic partial-summation
+  theorem bounds each monotone weight by twice the prefix bound. Exact
+  finite partition yields 4*(3L+2)*(64L*sqrt(u)+16/sqrt(u)+1)*P^(3/8).
+  The exact carry decomposition retains the sawtooth difference explicitly.
+- **Validation:** Full Lean build passes (9066 jobs). All 13 theorems
+  pass the dependency audit with only propext, Classical.choice, and
+  Quot.sound. Integration, ledger, branch/layer registration, text integrity,
+  Paper E, and formalpedia checks pass: 193 passed, 15 skipped.
+  Formalpedia freshness was tested against a separate committed-source
+  snapshot plus the two new modules, excluding concurrent uncommitted
+  Fejer/Fourier drafts. This also removes draft-only metadata accidentally
+  indexed by the preceding phase; their source files remain untouched.
+  Paper E's registry pin and source archive are refreshed; manuscript,
+  PDF, TeX and proof report are byte-identical. Advisory statement
+  coverage remains pending; no external service was contacted.
+- **Decision:** **PROMOTE** the weighted smooth estimate. The next
+  bounded question remains the summed carry Fourier remainder on short
+  odd intervals. The nonzero modes, linearization error, full correlation,
+  joint discrepancy and actual production must still be assembled.
+  No new unconditional contagion exponent or termination proof follows.
+  [Exact statement and remaining term](theory/juggler_ooee_carry_cells_note.md).
+
 ## 2026-09-22 -- Actual OOEE carry-cell curvature and uniform cell sums
 
 - **Continuation audit:** The preceding review confirmed the existing

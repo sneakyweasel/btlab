@@ -2742,6 +2742,21 @@
         "kernel": 30
       }
     },
+    "Problems.Juggler.OOEECarryCells": {
+      "declarations": 15,
+      "depends_on": [
+        "Problems.Juggler.GapCells",
+        "Problems.Juggler.OOEECurvature"
+      ],
+      "file": "formal/Problems/Juggler/OOEECarryCells.lean",
+      "ledger": [
+        "J-ooee-weighted-smooth-carry"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 15
+      }
+    },
     "Problems.Juggler.OOEECurvature": {
       "declarations": 35,
       "depends_on": [
@@ -3948,9 +3963,9 @@
     }
   },
   "totals": {
-    "edges": 306,
-    "edges_before_reduction": 2421,
-    "ledger_rows_placed": 502,
-    "nodes": 246
+    "edges": 308,
+    "edges_before_reduction": 2427,
+    "ledger_rows_placed": 503,
+    "nodes": 247
   }
 }

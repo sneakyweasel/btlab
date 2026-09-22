@@ -219,6 +219,7 @@ import Problems.Juggler.PaperEModularReturn
 import Problems.Juggler.PaperERecurrence
 import Problems.Juggler.PaperECorollaries
 import Problems.Juggler.OOEECurvature
+import Problems.Juggler.OOEECarryCells
 
 /-!
 # Juggler laboratory barrel

@@ -4612,7 +4612,8 @@
         "J-oe-conserved-weight-production",
         "BTA-finite-weyl-differencing",
         "BTA-quantitative-second-derivative",
-        "J-ooee-carry-cell-curvature"
+        "J-ooee-carry-cell-curvature",
+        "J-ooee-weighted-smooth-carry"
       ],
       "aliases": [],
       "nk_cluster": "Good average OOEE mass does not imply uniformly productive fibres"
@@ -6896,7 +6897,8 @@
         "formal/Problems/Juggler/CodeMassTransport.lean",
         "formal/Problems/Juggler/FateOOEEAssembly.lean",
         "formal/Problems/Juggler/FateOEWeighted.lean",
-        "formal/Problems/Juggler/OOEECurvature.lean"
+        "formal/Problems/Juggler/OOEECurvature.lean",
+        "formal/Problems/Juggler/OOEECarryCells.lean"
       ],
       "conjecture": [],
       "decision": null,

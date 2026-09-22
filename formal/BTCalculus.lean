@@ -51,3 +51,4 @@ import BTCalculus.PowerBoxRecurrence
 import BTCalculus.FourierBoxCounting
 import BTCalculus.PowerBoxCounting
 import BTCalculus.SecondDerivative
+import BTCalculus.PartialSummation

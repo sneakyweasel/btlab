@@ -69086,6 +69086,186 @@
     },
     {
       "doc": "",
+      "file": "formal/Problems/Juggler/OOEECarryCells.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-weighted-smooth-carry"
+      ],
+      "line": 20,
+      "module": "Problems.Juggler.OOEECarryCells",
+      "name": "gap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECarryCells.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-weighted-smooth-carry"
+      ],
+      "line": 22,
+      "module": "Problems.Juggler.OOEECarryCells",
+      "name": "gap_derivative",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECarryCells.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-weighted-smooth-carry"
+      ],
+      "line": 28,
+      "module": "Problems.Juggler.OOEECarryCells",
+      "name": "gap_derivative_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Quantitative monotonicity controls both the occupied floors and the cell weights.",
+      "file": "formal/Problems/Juggler/OOEECarryCells.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-weighted-smooth-carry"
+      ],
+      "line": 49,
+      "module": "Problems.Juggler.OOEECarryCells",
+      "name": "gap_increment_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECarryCells.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-weighted-smooth-carry"
+      ],
+      "line": 57,
+      "module": "Problems.Juggler.OOEECarryCells",
+      "name": "gap_mono",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECarryCells.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-weighted-smooth-carry"
+      ],
+      "line": 61,
+      "module": "Problems.Juggler.OOEECarryCells",
+      "name": "cellBound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECarryCells.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-weighted-smooth-carry"
+      ],
+      "line": 64,
+      "module": "Problems.Juggler.OOEECarryCells",
+      "name": "cellBound_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Sampled floor conditions suffice: only the final term can cross the closed support.",
+      "file": "formal/Problems/Juggler/OOEECarryCells.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-weighted-smooth-carry"
+      ],
+      "line": 68,
+      "module": "Problems.Juggler.OOEECarryCells",
+      "name": "cell_sum_of_samples",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECarryCells.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-weighted-smooth-carry"
+      ],
+      "line": 101,
+      "module": "Problems.Juggler.OOEECarryCells",
+      "name": "smoothTerm",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The two monotone weights on one actual sampled cell cost a factor of at most four.",
+      "file": "formal/Problems/Juggler/OOEECarryCells.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-weighted-smooth-carry"
+      ],
+      "line": 106,
+      "module": "Problems.Juggler.OOEECarryCells",
+      "name": "weighted_cell_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "There are uniformly boundedly many possible integer carry levels on the short interval.",
+      "file": "formal/Problems/Juggler/OOEECarryCells.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-weighted-smooth-carry"
+      ],
+      "line": 148,
+      "module": "Problems.Juggler.OOEECarryCells",
+      "name": "carry_level_count",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every occupied floor fibre is a consecutive block of actual sample indices.",
+      "file": "formal/Problems/Juggler/OOEECarryCells.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-weighted-smooth-carry"
+      ],
+      "line": 173,
+      "module": "Problems.Juggler.OOEECarryCells",
+      "name": "weighted_floor_fibre_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The actual smooth part of the carry decomposition, summed over every cell.",
+      "file": "formal/Problems/Juggler/OOEECarryCells.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-weighted-smooth-carry"
+      ],
+      "line": 226,
+      "module": "Problems.Juggler.OOEECarryCells",
+      "name": "smooth_contribution_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A single explicit constant gives the written power bound for the weighted smooth part.",
+      "file": "formal/Problems/Juggler/OOEECarryCells.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-weighted-smooth-carry"
+      ],
+      "line": 256,
+      "module": "Problems.Juggler.OOEECarryCells",
+      "name": "smooth_contribution_power_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Exact equation (12): the omitted term is precisely the difference of the two sawtooths.",
+      "file": "formal/Problems/Juggler/OOEECarryCells.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-weighted-smooth-carry"
+      ],
+      "line": 272,
+      "module": "Problems.Juggler.OOEECarryCells",
+      "name": "carry_decomposition",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/Problems/Juggler/OOEECurvature.lean",
       "kind": "def",
       "ledger": [
@@ -98605,256 +98785,6 @@
       "trust": "kernel"
     },
     {
-      "doc": "",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "def",
-      "ledger": [],
-      "line": 25,
-      "module": "BTCalculus.FejerKernel",
-      "name": "dirichlet",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "def",
-      "ledger": [],
-      "line": 28,
-      "module": "BTCalculus.FejerKernel",
-      "name": "kernel",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 31,
-      "module": "BTCalculus.FejerKernel",
-      "name": "continuous_dirichlet",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 35,
-      "module": "BTCalculus.FejerKernel",
-      "name": "continuous_kernel",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 38,
-      "module": "BTCalculus.FejerKernel",
-      "name": "kernel_nonneg",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 42,
-      "module": "BTCalculus.FejerKernel",
-      "name": "integrable_kernel",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 45,
-      "module": "BTCalculus.FejerKernel",
-      "name": "norm_dirichlet_le",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 51,
-      "module": "BTCalculus.FejerKernel",
-      "name": "kernel_le",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 56,
-      "module": "BTCalculus.FejerKernel",
-      "name": "fourier_sub",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 60,
-      "module": "BTCalculus.FejerKernel",
-      "name": "kernel_expansion",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 72,
-      "module": "BTCalculus.FejerKernel",
-      "name": "integral_fourier",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 79,
-      "module": "BTCalculus.FejerKernel",
-      "name": "integrable_fourier",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 82,
-      "module": "BTCalculus.FejerKernel",
-      "name": "integral_kernel",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 103,
-      "module": "BTCalculus.FejerKernel",
-      "name": "fourier_nat",
-      "trust": "kernel"
-    },
-    {
-      "doc": "The geometric identity is valid even when its final factor vanishes.",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 111,
-      "module": "BTCalculus.FejerKernel",
-      "name": "dirichlet_mul_sub_one",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 115,
-      "module": "BTCalculus.FejerKernel",
-      "name": "norm_dirichlet_mul_sub_one_le",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 122,
-      "module": "BTCalculus.FejerKernel",
-      "name": "norm_fourier_one_sub_one",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 134,
-      "module": "BTCalculus.FejerKernel",
-      "name": "chord_lower",
-      "trust": "kernel"
-    },
-    {
-      "doc": "The inverse-square majorant uses the nearest real representative.",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 149,
-      "module": "BTCalculus.FejerKernel",
-      "name": "kernel_le_inv_sq",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 170,
-      "module": "BTCalculus.FejerKernel",
-      "name": "fourier_neg_input",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 175,
-      "module": "BTCalculus.FejerKernel",
-      "name": "kernel_neg",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 180,
-      "module": "BTCalculus.FejerKernel",
-      "name": "continuous_kernel_real",
-      "trust": "kernel"
-    },
-    {
-      "doc": "Each side of the tail has the explicit reciprocal-distance bound.",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 185,
-      "module": "BTCalculus.FejerKernel",
-      "name": "positive_tail_le",
-      "trust": "kernel"
-    },
-    {
-      "doc": "Both real tails together; the endpoint conventions do not alter these integrals.",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 219,
-      "module": "BTCalculus.FejerKernel",
-      "name": "two_sided_tail_le",
-      "trust": "kernel"
-    },
-    {
-      "doc": "The actual Haar mass outside the open circle neighbourhood, with its boundary retained.",
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 238,
-      "module": "BTCalculus.FejerKernel",
-      "name": "circle_tail_le",
-      "trust": "kernel"
-    },
-    {
       "doc": "The empirical distribution of the first N+1 samples.",
       "file": "formal/BTCalculus/FourierBoxCounting.lean",
       "kind": "def",
@@ -99212,106 +99142,6 @@
       "line": 241,
       "module": "BTCalculus.FourierBoxRecurrence",
       "name": "exists_ge_fract_box_of_phase",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 19,
-      "module": "BTCalculus.FourierDiscrepancy",
-      "name": "average_finsetSum",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 24,
-      "module": "BTCalculus.FourierDiscrepancy",
-      "name": "average_const_mul",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 28,
-      "module": "BTCalculus.FourierDiscrepancy",
-      "name": "average_const",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
-      "kind": "def",
-      "ledger": [],
-      "line": 33,
-      "module": "BTCalculus.FourierDiscrepancy",
-      "name": "polynomial",
-      "trust": "kernel"
-    },
-    {
-      "doc": "A finite Fourier-mode bound controls the mean of every polynomial on those modes.",
-      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 37,
-      "module": "BTCalculus.FourierDiscrepancy",
-      "name": "polynomial_average_bound",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
-      "kind": "def",
-      "ledger": [],
-      "line": 57,
-      "module": "BTCalculus.FourierDiscrepancy",
-      "name": "realAverage",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 59,
-      "module": "BTCalculus.FourierDiscrepancy",
-      "name": "realAverage_re",
-      "trust": "kernel"
-    },
-    {
-      "doc": "",
-      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 63,
-      "module": "BTCalculus.FourierDiscrepancy",
-      "name": "polynomial_real_average_bound",
-      "trust": "kernel"
-    },
-    {
-      "doc": "Pointwise lower and upper functions give a count bound, including sample boundary hits.",
-      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 75,
-      "module": "BTCalculus.FourierDiscrepancy",
-      "name": "count_sandwich",
-      "trust": "kernel"
-    },
-    {
-      "doc": "Quantitative transfer from an explicit Fourier-polynomial sandwich to a finite count.",
-      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
-      "kind": "theorem",
-      "ledger": [],
-      "line": 104,
-      "module": "BTCalculus.FourierDiscrepancy",
-      "name": "count_of_polynomial_sandwich",
       "trust": "kernel"
     },
     {
@@ -104423,6 +104253,16 @@
       "line": 328,
       "module": "BTCalculus.PadicLiftingState",
       "name": "outputAlong_linState_pow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/PartialSummation.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 16,
+      "module": "BTCalculus.PartialSummation",
+      "name": "monotone_weighted_sum_bound",
       "trust": "kernel"
     },
     {
@@ -109940,6 +109780,7 @@
         "BTCalculus.OpFragSemantic",
         "BTCalculus.PadicLifting",
         "BTCalculus.PadicLiftingState",
+        "BTCalculus.PartialSummation",
         "BTCalculus.Polynomial",
         "BTCalculus.PolynomialFunctionsMod",
         "BTCalculus.PowerBoxCounting",
@@ -110263,14 +110104,6 @@
         }
       ]
     },
-    "BTCalculus.FejerKernel": {
-      "declarations": 25,
-      "file": "formal/BTCalculus/FejerKernel.lean",
-      "imports": [
-        "BTCalculus.FourierBoxCounting"
-      ],
-      "ledger": []
-    },
     "BTCalculus.FourierBoxCounting": {
       "declarations": 15,
       "file": "formal/BTCalculus/FourierBoxCounting.lean",
@@ -110298,14 +110131,6 @@
           "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
-    },
-    "BTCalculus.FourierDiscrepancy": {
-      "declarations": 10,
-      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
-      "imports": [
-        "BTCalculus.FourierBoxCounting"
-      ],
-      "ledger": []
     },
     "BTCalculus.Integral": {
       "declarations": 14,
@@ -110608,6 +110433,14 @@
           "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
+    },
+    "BTCalculus.PartialSummation": {
+      "declarations": 1,
+      "file": "formal/BTCalculus/PartialSummation.lean",
+      "imports": [
+        "BTCalculus.KusminLandau"
+      ],
+      "ledger": []
     },
     "BTCalculus.Polynomial": {
       "declarations": 32,
@@ -112065,6 +111898,7 @@
         "Problems.Juggler.NormalizedDefect",
         "Problems.Juggler.NumericBridge",
         "Problems.Juggler.O7EEEEGap",
+        "Problems.Juggler.OOEECarryCells",
         "Problems.Juggler.OOEECurvature",
         "Problems.Juggler.OddCountMonotone",
         "Problems.Juggler.OddCubicPhase",
@@ -114399,6 +114233,22 @@
         }
       ]
     },
+    "Problems.Juggler.OOEECarryCells": {
+      "declarations": 15,
+      "file": "formal/Problems/Juggler/OOEECarryCells.lean",
+      "imports": [
+        "BTCalculus.PartialSummation",
+        "Problems.Juggler.GapCells",
+        "Problems.Juggler.OOEECurvature"
+      ],
+      "ledger": [
+        {
+          "id": "J-ooee-weighted-smooth-carry",
+          "statement": "Kernel-checked actual weighted smooth OOEE carry contribution; advisory statement coverage pending. Put delta(x)=(x+2h)^(3/2)-x^(3/2), G(x)=floor(delta(x)), z(x)=fract(delta(x)), and use the frozen phase F_(G,eps) of J-ooee-carry-cell-curvature. Define S_h(x)=(1-z(x))*e(F_(G(x),0)(x))+z(x)*e(F_(G(x),1)(x)). For natural N, real P>=1, [a,a+2N] contained in [P,2P], 1<=h<=P^(1/16), P^(15/16)>=1024, u>0, abs(v)+abs(w)<=u*P^(3/4)/1024, L>=0 and N<=L*P^(7/16), Lean proves norm(sum_(n<N) S_h(a+2n)) <= 4*(3L+2)*(64L*sqrt(u)+16/sqrt(u)+1)*P^(3/8). The actual number of carry levels is at most 3L+2. Occupied floor fibres are consecutive; sampled-cell sums retain a final-term loss of one; monotone weights are handled by proved finite partial summation. No cell-count, variation, or cancellation bound is assumed. The exact carry identity expresses the retained phase with g=floor(Y)-floor(X), X=x^(3/2), Y=(x+2h)^(3/2), as S_h(x)+(fract(X)-fract(Y))*(e(F_(G(x),1)(x))-e(F_(G(x),0)(x))). This identifies but does not bound the sawtooth contribution. No complete original correlation, Fourier remainder, joint discrepancy, OOEE production, improved unconditional contagion, or termination theorem is asserted.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
+    },
     "Problems.Juggler.OOEECurvature": {
       "declarations": 35,
       "file": "formal/Problems/Juggler/OOEECurvature.lean",
@@ -116088,13 +115938,13 @@
     }
   },
   "totals": {
-    "declarations": 8721,
-    "declarations_with_a_ledger_row": 5963,
-    "ledger_rows_naming_a_file": 502,
+    "declarations": 8702,
+    "declarations_with_a_ledger_row": 5978,
+    "ledger_rows_naming_a_file": 503,
     "modules": 361,
     "trust": {
       "compiler": 56,
-      "kernel": 8665
+      "kernel": 8646
     }
   }
 }

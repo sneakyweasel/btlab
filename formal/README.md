@@ -25,9 +25,13 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- actual weighted smooth OOEE carry contribution O(P^(3/8)), with at most
+  3L+2 carry levels, exact sampled-cell partition, endpoint losses, and
+  monotone partial summation. The exact carry identity isolates the
+  remaining sawtooth term; its Fourier estimate is still outstanding;
 - actual OOEE carry-cell curvature with explicit size and floor conditions,
   uniform in 1<=h<=P^(1/16), and the resulting unweighted cell bound
-  (64*L*sqrt(u)+16/sqrt(u))*P^(3/8). Carry Fourier errors, weighted sums,
+  (64*L*sqrt(u)+16/sqrt(u))*P^(3/8). Carry Fourier errors,
   finite discrepancy, and complete production remain separate obligations;
 - quantitative second-derivative cancellation with explicit constants,
   including negative curvature and the lattice of spacing two. The proof

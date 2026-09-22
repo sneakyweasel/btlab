@@ -13394,5 +13394,33 @@
    "tests/tools/test_formalpedia.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-ooee-weighted-smooth-carry",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked actual weighted smooth OOEE carry contribution; advisory statement coverage pending. Put delta(x)=(x+2h)^(3/2)-x^(3/2), G(x)=floor(delta(x)), z(x)=fract(delta(x)), and use the frozen phase F_(G,eps) of J-ooee-carry-cell-curvature. Define S_h(x)=(1-z(x))*e(F_(G(x),0)(x))+z(x)*e(F_(G(x),1)(x)). For natural N, real P>=1, [a,a+2N] contained in [P,2P], 1<=h<=P^(1/16), P^(15/16)>=1024, u>0, abs(v)+abs(w)<=u*P^(3/4)/1024, L>=0 and N<=L*P^(7/16), Lean proves norm(sum_(n<N) S_h(a+2n)) <= 4*(3L+2)*(64L*sqrt(u)+16/sqrt(u)+1)*P^(3/8). The actual number of carry levels is at most 3L+2. Occupied floor fibres are consecutive; sampled-cell sums retain a final-term loss of one; monotone weights are handled by proved finite partial summation. No cell-count, variation, or cancellation bound is assumed. The exact carry identity expresses the retained phase with g=floor(Y)-floor(X), X=x^(3/2), Y=(x+2h)^(3/2), as S_h(x)+(fract(X)-fract(Y))*(e(F_(G(x),1)(x))-e(F_(G(x),0)(x))). This identifies but does not bound the sawtooth contribution. No complete original correlation, Fourier remainder, joint discrepancy, OOEE production, improved unconditional contagion, or termination theorem is asserted.",
+  "source": "docs/problems/juggler_ooee_poor_fibres.md",
+  "lean": "Problems/Juggler/OOEECarryCells.lean",
+  "decl": [
+   "gap",
+   "cellBound",
+   "smoothTerm",
+   "gap_increment_bounds",
+   "gap_mono",
+   "cell_sum_of_samples",
+   "weighted_cell_sum",
+   "carry_level_count",
+   "weighted_floor_fibre_sum",
+   "smooth_contribution_bound",
+   "smooth_contribution_power_bound",
+   "carry_decomposition"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": []
  }
 ]

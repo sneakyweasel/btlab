@@ -156,8 +156,12 @@ or the version 0.5.0 manuscript. The constants are not practical search limits.
   [Actual carry-cell curvature](../../docs/theory/juggler_ooee_curvature_note.md)
   and its unweighted O(P^(3/8)) cell sum are now proved in `OOEECurvature`,
   uniformly for 1<=h<=P^(1/16), with explicit floor and size conditions.
-  Carry partition, weighted sums, Fourier errors, and finite discrepancy
-  remain outstanding in Lean.
+  [Weighted smooth carry sums](../../docs/theory/juggler_ooee_carry_cells_note.md)
+  are now proved in `OOEECarryCells`: at most 3L+2 carry levels, sampled
+  endpoint control, monotone partial summation, and a complete O(P^(3/8))
+  bound for the smooth contribution. The exact identity isolates the
+  sawtooth term. Its Fourier errors and finite discrepancy remain open
+  in Lean.
   The unconditional Lean exponent remains 100/203, and the actual
   failure-rate estimate remains open.
   Kernel localize CLOSE. Do not open a

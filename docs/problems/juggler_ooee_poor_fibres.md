@@ -13,7 +13,9 @@ Classical finite differencing and both derivative tests are now proved
 in Lean. The quantitative second-derivative estimate has explicit
 constants and covers the actual odd lattice. The actual carry-cell curvature
 and unweighted O(P^(3/8)) cell sums are now proved uniformly for
-1<=h<=P^(1/16). The complete correlation estimates remain written.
+1<=h<=P^(1/16). The actual carry partition and weighted smooth contribution
+are now formal too, including endpoint losses. The sawtooth term and
+complete correlation estimates remain written.
 [Analytic argument](../theory/juggler_ooee_poor_fibre_tail_note.md).
 
 ## Problem
@@ -129,6 +131,14 @@ conditions, and the resulting unweighted cell sum. Promotion requires
 deriving the analytic hypotheses rather than assuming them. The compiled
 bound retains the endpoint term and works for all 1<=h<=P^(1/16).
 Carry Fourier errors and complete discrepancy assembly are outside this phase.
+
+The eighth phase proves the actual weighted smooth carry contribution.
+An uncontrolled cell count, weight variation, or endpoint loss would
+falsify it. The proved gap monotonicity, partial summation, and curvature
+bound suffice. Scope is sampled-cell partition, weighted sums, and finite
+assembly, stopping before Fourier remainders and full discrepancy.
+Promotion requires a compiled bound without a cell-count or cancellation
+premise; this is met with at most 3L+2 levels and O(P^(3/8)) total norm.
 
 ## Balanced-ternary formulation
 
@@ -275,6 +285,13 @@ The first two shift terms in the anchor curvature vanish; the remaining
 error is dominated uniformly by the frozen carry term. All 26 theorems
 are selected by the module audit. [Exact bounds and support conditions](../theory/juggler_ooee_curvature_note.md).
 
+[OOEECarryCells.lean](../../formal/Problems/Juggler/OOEECarryCells.lean)
+and [PartialSummation.lean](../../formal/BTCalculus/PartialSummation.lean)
+now prove the actual sampled-cell partition, endpoint loss, and weighted
+smooth carry bound. All 13 theorems are selected by the dependency audit.
+The exact carry decomposition identifies the remaining sawtooth term.
+[Exact hypotheses and proof](../theory/juggler_ooee_carry_cells_note.md).
+
 ## Results
 
 In the exhaustive dyadic blocks with exponents 8, 9, 10, 11, the mean
@@ -372,6 +389,15 @@ validity for fixed coefficients are proved. The closed support includes
 the final increment; half-open cell splitting and its endpoint losses
 remain to be assembled with the carry Fourier argument.
 
+**Eighth phase: the weighted smooth contribution is kernel-checked.**
+Under the same size conditions and N<=L*P^(7/16), the whole smooth sum
+is bounded by 4*(3L+2)*(64L*sqrt(u)+16/sqrt(u)+1)*P^(3/8).
+The number of carry levels is at most 3L+2; each actual occupied fibre
+is consecutive, and removing one last sample supplies closed support.
+Both weights have variation at most one. The exact carry identity keeps
+the fractional-part difference explicit, so the full correlation bound
+is not inferred from its smooth part.
+
 ## Open questions
 
 The first phase proposed a second-moment route. Let H_m be the number
@@ -398,8 +424,8 @@ backward-closed class. Its main analytic ingredient is the actual OOEE
 poor-fibre theorem. The OE production and a uniform weight conversion
 are now formal; the OOEE source-cutoff consequence must also be retained.
 Finite differencing, both derivative tests, and the actual carry-cell
-curvature and unweighted sums are now formal too. Carry partition,
-partial summation, Fourier errors, and finite discrepancy must still
+curvature, carry partition, and weighted smooth sums are now formal too.
+Fourier errors, nonzero carry modes, and finite discrepancy must still
 be checked before the full poor-tail proof. A next bounded question is
 the pointwise carry Fourier remainder and its summed error on the actual
 short odd intervals; qualitative box recurrence does not supply that rate.
@@ -412,7 +438,7 @@ The assembly and its OE input are kernel-checked; the new OOEE analytic
 theorem still awaits independent review and Lean proof. Exactly one best
 next question: can the carry Fourier remainder be proved to have the
 required O(P^(5/16)*log(P)) total error on these short odd intervals?
-This phase stops after the actual unweighted cell bound, before that question.
+This phase stops after the actual weighted smooth carry bound, before that question.
 
 ## Publication assessment
 

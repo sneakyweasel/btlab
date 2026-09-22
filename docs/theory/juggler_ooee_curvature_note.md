@@ -122,8 +122,10 @@ with h fixed. The empty sum is included.
 
 The closed support contains one lattice step beyond the final summand.
 Applications to a half-open carry cell must retain this condition, or
-remove and bound a final summand. This module does not yet perform that
-partition. The actual epsilon values 0 and 1 are both covered.
+remove and bound a final summand. The subsequent
+[weighted carry-cell proof](juggler_ooee_carry_cells_note.md) now performs
+that partition and retains the final-term loss. The actual epsilon
+values 0 and 1 are both covered.
 
 ## What this closes and what remains
 
@@ -134,9 +136,9 @@ selects every one of the module's 26 theorems.
 Every selected theorem depends only on propext, Classical.choice, and
 Quot.sound. The full project build also passes.
 
-The bounded carry-cell partition, partial summation with the weights z
-and 1-z, nonzero carry Fourier modes, pointwise Fourier remainder,
-finite discrepancy, and their assembly into actual fibre production
+The subsequent weighted carry-cell proof closes the partition and partial
+summation with z and 1-z. Nonzero carry Fourier modes, pointwise Fourier
+remainder, finite discrepancy, and assembly into actual fibre production
 remain separate obligations. In particular, (6) alone is not a bound
 on the complete correlation in equation (12) of the written argument.
 
