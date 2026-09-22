@@ -1,5 +1,34 @@
 # Research journal
 
+## 2026-09-22 -- Recalibrating the pressure frontier after 5/8 contagion
+
+- **Continuation audit:** The preceding turn made concrete progress:
+  ac10a575 proved the actual OOEE production and unconditional 5/8
+  contagion. The remaining arithmetic pressure bound is still unproved.
+- **Question:** Does the stronger exponent rescue exceptional-scale
+  counting with the existing cap? A positive parameter-uniform gap
+  would close this proposed reopening. Scope was calibration only;
+  no new orbit census or fixed-depth substitution was allowed.
+- **Calculation:** At sufficient rate 3/8, the least optimized Chernoff
+  depths for q=0.5,0.55,0.6,0.62 are 16,34,168,1135, compared with
+  19,41,214,1496 at 103/203. The existing functions and independent
+  70-digit evaluation agree; adjacent exponents bracket each threshold.
+- **Obstruction:** The existing parameter-uniform cap argument gives
+  kappa-1-eta>(3/8)/(2*log(2)/log(3)-1)-1=0.4320656297399...>3/7
+  for every admissible fair tilt/depth. The exact integer certificate
+  2^160<3^101 proves the final rational inequality. At C=16 the actual
+  optimized cap exponent is about 3.87907 against a permitted cumulative
+  exponent below 1.013674. Sparsity of exceptional scales alone still
+  cannot control their weighted amplitudes.
+- **Validation:** All 27 pressure-regression and documentation-link checks
+  pass; branch-index consistency and diff hygiene pass. No new theorem
+  ledger row or Lean declaration is needed for this recalibration.
+- **Decision:** **CLOSE** the proposed reopening. The actual pressure
+  estimate remains PARK. This is an application of the recorded cap
+  obstruction to the new theorem, not a new arithmetic cancellation
+  result. The next attack must supply genuine growing-depth information
+  or bound exceptional amplitudes; changing the old constants is insufficient.
+
 ## 2026-09-22 -- Actual OOEE production and unconditional 5/8 contagion
 
 - **Continuation audit:** The preceding review completed the count-tail

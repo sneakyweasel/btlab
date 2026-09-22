@@ -2105,6 +2105,19 @@ average. Do not promote sparsity of scales without bounding their
 weighted amplitudes. Dossier: the external-average link above.
 
 **The OE poor-fibre technique does not transfer here (20 September 2026).**
+
+**Recheck after OOEE contagion, 22 September 2026.** The unconditional
+5/8 exponent lowers the sufficient rate to 3/8 and the least fair
+Chernoff depth from 19 to 16 (biased reference depths 41,214,1496
+become 34,168,1135). It does not repair cap-only exceptional-scale
+counting. For every fair-normalized tilt/depth with r-eta>3/8,
+kappa-1-eta>(3/8)/(2*log(2)/log(3)-1)-1>3/7; the exact inequality
+2^160<3^101 certifies the final bound. Thus arbitrarily sparse unbounded
+exceptional scales still permit scalar spikes exceeding the cumulative
+budget. This refutes the estimate-to-conclusion shortcut, not actual
+Juggler pressure. The quantitative argument and numerical brackets are
+in the external-average dossier, equation (C2-OOEE). The route stays CLOSE.
+
 `J-oe-poor-fiber-tail` proves an average by discarding an exceptional set of
 fibres of finite total \(1/m\)-mass, and the natural thought on arriving from
 that side is to discard exceptional *scales* the same way. It fails for the

@@ -729,6 +729,68 @@ amplitudes, not just how many scales are exceptional.
 
 ### Exceptional-amplitude follow-up: the finite-prefix cap still fails
 
+**Calibration after unconditional OOEE contagion (22 September 2026).**
+The completed production theorem changes the sufficient rate to
+b=1-5/8=3/8. This lowers the required depths, but does not reopen
+exceptional-scale counting with only the trivial pressure cap.
+
+The following numerical values use the existing `least_C_pressure`
+routine with required rate 3/8, independently reevaluated from the
+Bernoulli relative-entropy formula at 70 decimal digits. The old column
+uses 103/203. These are calibrations of the conditional estimate, not
+proved counts of actual Juggler words.
+
+| Reference odd share q | Old least C | New least C | r(C-1,q) | r(C,q) |
+|---|---:|---:|---:|---:|
+| 0.50 | 19 | 16 | 0.343632436609 | 0.388673401720 |
+| 0.55 | 41 | 34 | 0.371538520200 | 0.389843150749 |
+| 0.60 | 214 | 168 | 0.373054548474 | 0.375913038916 |
+| 0.62 | 1496 | 1135 | 0.374965458705 | 0.375331652143 |
+
+For p_C>q the exponent r(C,q)=C*D(p_C||q)/log(2) is strictly
+increasing: its derivative is
+(D(p_C||q)+(beta/C)*D'(p_C||q))/log(2)>0, where
+beta=log(2)/log(3). Before p_C>q the upper-tail rate is zero.
+Thus the adjacent values bracket the numerical integer thresholds.
+
+For the fair reference q=1/2, put a=(1+exp(theta))/2 and
+kappa=C*(theta-log(a))/log(2), so rho_k is trivially O(k^kappa).
+The parameter-uniform argument (C2) below holds for every positive b,
+not just the historical value printed there. With b=3/8 it gives
+
+\[
+ \kappa-1-\eta>
+ \frac{3/8}{2\log2/\log3-1}-1
+ =0.432065629739906\ldots>\frac37.
+\tag{C2-OOEE}
+\]
+
+This is an analytic statement for every C>1, theta>0 and eta>=0 with
+r-eta>3/8, not a parameter scan. Indeed, s=log(a)/theta satisfies
+1/2<s<1 and r/kappa=(p_C-s)/(1-s)<Delta=2*beta-1. Therefore
+kappa-1-eta>(r-eta)/Delta-1+eta*(1/Delta-1)>b/Delta-1.
+The exact integer inequality 2^160<3^101 gives Delta<21/80 and
+certifies the rational lower bound 3/7 independently of the decimal.
+
+At the least fair depth C=16, the optimizing tilt gives
+kappa=3.879070210474..., while eta<r-3/8=0.013673401720....
+Hence even an arbitrarily sparse unbounded exceptional set can carry
+cap-sized spikes that exceed the entire cumulative budget: along an
+exceptional K the cumulative sum could be at least K^kappa, while
+the allowed power is less than 1.013674. This is a scalar obstruction
+to the proposed estimates, not a realized Juggler counterexample.
+
+The sign of the parameter-uniform lower bound can change only beyond
+contagion exponent 2-2*beta=0.738140492857.... This comparison alone
+neither supplies an arithmetic estimate nor proposes a longer-fibre
+production campaign. Likewise the usual differencing model would now
+need c<1/16 in c*C<1, whereas its recorded c>=1 still fails.
+
+**Decision: CLOSE** reopening the cap-only exceptional-scale shortcut.
+The actual cumulative-pressure estimate remains **PARK**. There is no
+new pressure theorem, orbit census, runtime module or Lean declaration
+in this calibration; the existing unconditional 5/8 theorem is unchanged.
+
 This is a quantitative check of an already-limited method, not a new
 averaging theorem or a new named hypothesis.
 
