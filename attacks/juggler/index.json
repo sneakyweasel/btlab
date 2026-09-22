@@ -4614,7 +4614,8 @@
         "BTA-quantitative-second-derivative",
         "J-ooee-carry-cell-curvature",
         "J-ooee-weighted-smooth-carry",
-        "J-ooee-retained-carry-correlation"
+        "J-ooee-retained-carry-correlation",
+        "J-ooee-actual-mixed-mode-cancellation"
       ],
       "aliases": [],
       "nk_cluster": "Good average OOEE mass does not imply uniformly productive fibres"
@@ -6901,7 +6902,10 @@
         "formal/Problems/Juggler/OOEECurvature.lean",
         "formal/Problems/Juggler/OOEECarryCells.lean",
         "formal/Problems/Juggler/OOEEFourierModes.lean",
-        "formal/Problems/Juggler/OOEECarryFourier.lean"
+        "formal/Problems/Juggler/OOEECarryFourier.lean",
+        "formal/Problems/Juggler/OOEEPhaseComparison.lean",
+        "formal/Problems/Juggler/OOEESmoothModes.lean",
+        "formal/Problems/Juggler/OOEEMixedModes.lean"
       ],
       "conjecture": [],
       "decision": null,
