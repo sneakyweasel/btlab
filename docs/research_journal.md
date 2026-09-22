@@ -1,5 +1,41 @@
 # Research journal
 
+## 2026-09-22 -- Collatz merging fibres and the finite harmonic-weight obstruction
+
+- **Question:** Philippe requested a counterpart of Paper C's fibres in
+  Collatz, including actual values and patterns.
+- **Values:** 3,13,53,213,... merge at 5 after an odd step and all halvings;
+  9,37,149,597,... merge at 7. These are complete 4n+1 sibling rays;
+  minus has 4n-1 rays. A valuation identity proves exact coverage of every
+  residue modulo 3^r in the first 3^r siblings. Their geometric heights
+  prevent interpreting this as uniform reciprocal mass. Zarnowski's
+  primary paper confirms the merging mechanism is classical.
+- **Identification:** The exact homogeneous inverse-mass recurrence is
+  Tao's Lemma 1.12 in density normalization; his mod-9 table agrees
+  exactly. Removing sterile children gives coefficients 5/21 through
+  40/21, with mean one, for both signs up to reflection.
+- **Result:** At every finite ternary level and every fixed grouping
+  depth, no positive residue weight gives uniform harmonic reproduction.
+  Mean conservation and the overloaded residue -s prove this without a
+  grid. A quantified integer error transfers one-layer deficits to actual
+  large targets on a full arithmetic progression.
+- **Opening retained:** The backward ray is not a full fate class. For
+  plus, divergence of sum_d (L_+^d 1_units)(a) at a nonperiodic odd unit
+  implies divergent ancestor reciprocal mass by disjoint generations.
+  Every full fate class has such targets; the series estimate is open.
+- **Decision:** **PROMOTE** the exact comparison and finite-weight
+  obstruction in [the dossier](problems/collatz_fibre_mass.md), then stop.
+  No next branch is opened and no Juggler manuscript or bound changes.
+- **Evidence:** AI-assisted written proofs; independent review and Lean
+  verification outstanding. Exact regressions check both actual maps on
+  10000 odd sources each, mod-81 coverage, arbitrary positive table
+  examples, infinite mass-tail bounds, and disjoint first-hit generations.
+- **Validation:** All 20 focused fibre tests pass. Integration, existing
+  inverse-map, theorem-ledger and registry checks pass; generated ledger,
+  branch-index consistency and scoped whitespace checks pass. Git-based
+  integration checks use a process-local safe-directory setting for this
+  sandbox's distinct Windows identity. No Lean source changed.
+
 ## 2026-09-22 -- Rational cubic cancellation sharpens one-step odd parity
 
 - **Question:** Can the existing odd-source 5/6 discrepancy exponent

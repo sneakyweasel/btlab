@@ -1,5 +1,28 @@
 # Negative knowledge
 
+## Complete Collatz fibres defeat positive finite ternary mass weights
+
+The [fibre comparison](problems/collatz_fibre_mass.md) uses complete
+odd-return fibres, with sibling rule 4n+s for either sign. Every fibre
+covers all residues modulo 3^r, but its siblings grow geometrically.
+After removing sterile multiples of three, the six mod-9 coefficients
+still range from 5/21 to 40/21 with mean one.
+
+`C-syracuse-finite-residue-harmonic-obstruction` proves that no positive
+weight table modulo any 3^r, even with any fixed d generations grouped,
+gives homogeneous reciprocal reproduction at every unit target. The mean
+is conserved, while residue -s has a k=1 loop of weight (3/2)^d and forces
+a deficit elsewhere. The normalized integer error is bounded by
+max(h)/(m-1/2), so a one-layer deficit persists on a whole large odd
+arithmetic progression. Its ambient reciprocal mass is infinite; globally
+discarding a finite-mass poor set cannot establish this uniform inequality.
+
+This is independent of the fixed-grid ceiling. It does not show that a
+full fate class concentrates in the poor progression. Fate-specific
+averaging, nonperiodic weights, and variable stopping depths remain open.
+The dossier records a conditional generation-series route with an explicit
+open premise. Written proof, not Lean verified.
+
 ## Collatz orbit packing does not bypass Juggler parity counts
 
 The [orbit-packing audit](problems/juggler_collatz_bridge.md) separates

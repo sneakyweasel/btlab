@@ -436,6 +436,13 @@ for Paper B.
 
 ## Paper C under the bridge
 
+Follow-up of 22 September: [actual Collatz merging fibres](collatz_fibre_mass.md)
+are complete geometric sibling rays with exact ternary residue coverage.
+Their inverse-mass operator matches Tao's recurrence. A written obstruction
+excludes uniform harmonic reproduction from any positive finite ternary
+weight table, even after fixed-depth grouping. The fate-specific question
+remains open, with an explicit conditional generation-series criterion.
+
 Asked on 2026-09-19: does the bridge change Paper C, does contagion transfer to
 Collatz, and can Collatz strengthen it. Short answers: it reaches the ceiling
 and not the engine; no, and the analogue is false rather than merely

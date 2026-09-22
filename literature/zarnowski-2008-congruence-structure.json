@@ -1,0 +1,13 @@
+{
+ "authors": ["Roger E. Zarnowski"],
+ "id": "zarnowski-2008-congruence-structure",
+ "identifiers": {},
+ "notes": "The Fibonacci Quarterly 46/47(2), May 2008/2009, pp. 115-125. Primary PDF read 22 September 2026 for the Collatz fibre comparison. Theorem 3 gives congruence-class merging; Remark 1 explicitly records T^3(4m+1)=T(m) for odd m. The sibling identity and corresponding geometric Syracuse fibres are classical, not a novelty claim by this laboratory. docs/problems/collatz_fibre_mass.md derives the signed parametrization, ternary residue coverage, and a separate finite-weight obstruction.",
+ "problem_area": "collatz",
+ "project_relationship": "known",
+ "relevant_concepts": ["congruence classes", "merging orbits", "Syracuse fibres", "sufficient sets"],
+ "status": "theorem",
+ "title": "The Congruence Structure of the 3x+1 Map",
+ "url": {"pdf": "https://www.fq.math.ca/Papers1/46_47-2/Zarnowski_1-09.pdf"},
+ "year": 2008
+}
