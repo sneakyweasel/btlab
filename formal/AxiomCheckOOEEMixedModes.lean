@@ -1,0 +1,20 @@
+import Problems.Juggler.OOEEMixedModes
+
+#print axioms Problems.Juggler.OOEEPhaseComparison.three_halves_eq_mul_sqrt
+#print axioms Problems.Juggler.OOEEPhaseComparison.remainder_times_root_bound
+#print axioms Problems.Juggler.OOEEPhaseComparison.remainder_bounds
+#print axioms Problems.Juggler.OOEEPhaseComparison.three_quarters_increment
+#print axioms Problems.Juggler.OOEEPhaseComparison.original_difference_identity
+#print axioms Problems.Juggler.OOEEPhaseComparison.original_difference_error
+#print axioms Problems.Juggler.OOEEPhaseComparison.phase_sub_le
+#print axioms Problems.Juggler.OOEEPhaseComparison.correlation_comparison
+#print axioms Problems.Juggler.OOEESmoothModes.smooth_sum_positive
+#print axioms Problems.Juggler.OOEESmoothModes.smooth_sum_positive_eventually
+#print axioms Problems.Juggler.OOEEMixedModes.original_correlation_bound
+#print axioms Problems.Juggler.OOEEMixedModes.mixed_sum_positive
+#print axioms Problems.Juggler.OOEEMixedModes.mixed_sum_positive_eventually
+#print axioms Problems.Juggler.OOEEMixedModes.originalPhase_neg
+#print axioms Problems.Juggler.OOEEMixedModes.mixed_sum_nonzero_eventually
+#print axioms Problems.Juggler.OOEEMixedModes.fixed_mixed_mode
+#print axioms Problems.Juggler.OOEEMixedModes.finite_mixed_modes
+#print axioms Problems.Juggler.OOEEMixedModes.finite_mixed_modes_samples

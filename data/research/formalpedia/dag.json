@@ -2814,6 +2814,20 @@
         "kernel": 35
       }
     },
+    "Problems.Juggler.OOEEMixedModes": {
+      "declarations": 10,
+      "depends_on": [
+        "Problems.Juggler.OOEECarryFourier"
+      ],
+      "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
+      "ledger": [
+        "J-ooee-actual-mixed-mode-cancellation"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 10
+      }
+    },
     "Problems.Juggler.OddCubicPhase": {
       "declarations": 19,
       "depends_on": [],
@@ -4006,9 +4020,9 @@
     }
   },
   "totals": {
-    "edges": 312,
-    "edges_before_reduction": 2445,
-    "ledger_rows_placed": 506,
-    "nodes": 250
+    "edges": 313,
+    "edges_before_reduction": 2456,
+    "ledger_rows_placed": 507,
+    "nodes": 251
   }
 }

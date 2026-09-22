@@ -208,5 +208,33 @@ theorem finite_mixed_modes (s : Finset (ℤ × ℤ × ℤ)) {L : ℝ} (hL : 0 �
         exact False.elim (hq hrmix)
       · exact hp P hP a N ha hb hN r hr hrmix
 
-end Problems.Juggler.OOEEMixedModes
+/-- Only the actual sample points need lie in the dyadic interval. -/
+theorem finite_mixed_modes_samples (s : Finset (ℤ × ℤ × ℤ)) {L : ℝ} (hL : 0 ≤ L) :
+    ∃ B : ℝ, 0 < B ∧ ∃ P0 : ℝ, ∀ P : ℝ, P0 ≤ P → ∀ a : ℝ, ∀ N : ℕ,
+      (∀ n < N, P ≤ a+2*n ∧ a+2*n ≤ 2*P) → (N:ℝ) ≤ L*P^(7/16:ℝ) →
+      ∀ q ∈ s, q.1 ≠ 0 ∨ q.2.1 ≠ 0 →
+      ‖∑ n ∈ range N, phase (originalPhase ((q.2.1:ℝ)/2) q.1 q.2.2 (a+2*n))‖ ≤ B*P^(13/32:ℝ) := by
+  obtain ⟨B, hB, P0, hp⟩ := finite_mixed_modes s hL
+  refine ⟨B+1, by linarith, max 1 P0, ?_⟩
+  intro P hP a N hpoints hN q hq hmix
+  have hP1 : 1 ≤ P := (le_max_left _ _).trans hP
+  have hPP : P0 ≤ P := (le_max_right _ _).trans hP
+  have hpow : 1 ≤ P^(13/32:ℝ) := Real.one_le_rpow hP1 (by norm_num)
+  cases N with
+  | zero => simp only [sum_range_zero, norm_zero]; positivity
+  | succ N =>
+    have ha : P ≤ a := by simpa using (hpoints 0 (by omega)).1
+    have hb : a+2*N ≤ 2*P := (hpoints N (by omega)).2
+    have hN' : (N:ℝ) ≤ L*P^(7/16:ℝ) := by
+      simp only [Nat.cast_add, Nat.cast_one] at hN
+      linarith
+    have hs := hp P hPP a N ha hb hN' q hq hmix
+    rw [sum_range_succ]
+    calc
+      _ ≤ ‖∑ n ∈ range N, phase (originalPhase ((q.2.1:ℝ)/2) q.1 q.2.2 (a+2*n))‖+1 := by
+        simpa only [phase_norm] using norm_add_le
+          (∑ n ∈ range N, phase (originalPhase ((q.2.1:ℝ)/2) q.1 q.2.2 (a+2*n)))
+          (phase (originalPhase ((q.2.1:ℝ)/2) q.1 q.2.2 (a+2*N)))
+      _ ≤ (B+1)*P^(13/32:ℝ) := by nlinarith
+
 end Problems.Juggler.OOEEMixedModes

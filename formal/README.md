@@ -25,6 +25,13 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- original OOEE mixed-mode cancellation O(P^(13/32)) on source intervals
+  with N<=L*P^(7/16), for every fixed integer mode with (i,j) not both
+  zero and uniformly over fixed finite frequency families. The actual
+  nested-floor comparison costs at most 10*pi*abs(u)*L*P^(1/4);
+  exact-overlap differencing, negative coefficients and short sums are
+  included. Pure slow modes and joint discrepancy remain open. See the
+  [proof map](../docs/theory/juggler_ooee_mixed_modes_note.md);
 - explicit third- and fifth-derivative tests, with constants 12 and 7,
   proved from finite differencing and the second-derivative estimate.
   Derivative chains, both signs, actual overlap intervals, rounded
@@ -37,7 +44,8 @@ Compiled theorem groups:
   fractional-part contribution bounded by O(P^(5/16)*log(P)). Centered
   weighted Fejer smoothing at cutoff P^(1/4), actual perturbed curvatures,
   boundary hits, all cells, and logarithm absorption are proved. The
-  original nested-floor linearization comparison remains to be assembled;
+  original nested-floor linearization comparison and mixed-mode
+  differencing are supplied by OOEEPhaseComparison and OOEEMixedModes;
 - finite two-dimensional Fejer discrepancy for arbitrary samples and
   half-open circular boxes, with error 5/sqrt(H+1)+(3+2*log(H))^2*E.
   The actual kernel, tail, saturated arcs, pointwise sandwich, Fourier

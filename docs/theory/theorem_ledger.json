@@ -13490,5 +13490,29 @@
    "tests/tools/test_formalpedia.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-ooee-actual-mixed-mode-cancellation",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked original OOEE mixed-mode cancellation; advisory statement coverage pending. Define M(x)=floor(x^(3/2)), Y(x)=M(x)^(3/2), and f_(i,j,k)(x)=(i/2)*x^(3/2)+(j/2)*Y(x)+(k/2)*x^(9/8). For every fixed integer triple with i nonzero or j nonzero and every fixed real L>=0, there exist B>0 and P0 such that, for every real P>=P0, real a and natural N with P<=a, a+2N<=2P and N<=L*P^(7/16), norm(sum_(n<N) e(f_(i,j,k)(a+2n))) <= B*P^(13/32). One B,P0 works for any fixed finite set of such triples. A second theorem requires only the actual N sample points to lie in [P,2P]; it removes and restores the last sample and increases the constant by one. The actual first-floor remainder is between zero and x^(-3/4) for x>0; for u=j/2 the summed original-to-retained phase comparison costs at most 10*pi*abs(u)*L*P^(1/4). Exact-overlap finite differencing, both coefficient signs, empty and short sums, and the smooth j=0,i-nonzero case are proved. There is no assumed cancellation, correlation or equidistribution input. Pure slow modes, frequency cutoffs growing with P, joint discrepancy, poor-target inclusion and physical production cutoffs are outside this statement. OOEEProductionBound and the actual failure-rate estimate remain open.",
+  "source": "docs/problems/juggler_ooee_poor_fibres.md",
+  "lean": "Problems/Juggler/OOEEMixedModes.lean",
+  "decl": [
+   "correlationConstant",
+   "mixedConstant",
+   "original_correlation_bound",
+   "mixed_sum_positive",
+   "mixed_sum_nonzero_eventually",
+   "fixed_mixed_mode",
+   "finite_mixed_modes",
+   "finite_mixed_modes_samples"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": []
  }
 ]

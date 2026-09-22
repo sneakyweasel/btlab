@@ -163,8 +163,12 @@ or the version 0.5.0 manuscript. The constants are not practical search limits.
   sawtooth term. The [complete retained carry correlation](../../docs/theory/juggler_ooee_carry_fourier_note.md)
   is now O(P^(3/8)) in Lean: centered weighted Fejer smoothing and actual
   Fourier-perturbed phases bound the carry contribution by
-  O(P^(5/16)*log(P)). The original linearization-error comparison,
-  actual mixed-mode differencing and full joint discrepancy remain open.
+  O(P^(5/16)*log(P)). The [original mixed-mode estimate](../../docs/theory/juggler_ooee_mixed_modes_note.md)
+  is now O(P^(13/32)) in Lean: the actual linearization error is at most
+  10*pi*abs(u)*L*P^(1/4), and exact-overlap differencing covers both
+  signs and short sums. The smooth j=0, i nonzero modes and fixed finite
+  frequency families are included. Pure slow-mode resonance exclusions,
+  full joint discrepancy, poor-target inclusion and cutoffs remain open.
   The unconditional Lean exponent remains 100/203, and the actual
   failure-rate estimate remains open.
   Kernel localize CLOSE. Do not open a

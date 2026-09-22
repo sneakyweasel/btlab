@@ -1,5 +1,4 @@
 import Problems.Juggler.OOEECarryFourier
-import Problems.Juggler.PaperBAssembly
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
 
 /-! # Comparing the original OOEE phase with its retained carry phase
@@ -66,7 +65,11 @@ theorem remainder_bounds {x : ℝ} (hx : 0 < x) :
     rfl
   have hfrac := Int.fract_nonneg (x^(3/2:ℝ))
   have hfrac1 := (Int.fract_lt_one (x^(3/2:ℝ))).le
-  have hr0 : 0 ≤ remainder x := by rw [hr]; exact lemma43_nonneg a b ha hb.le
+  have hr0 : 0 ≤ remainder x := by
+    rw [hr]
+    have he : a^3-(3/2)*a^2*b+(1/2)*b^3 = (1/2)*(a-b)^2*(2*a+b) := by ring
+    rw [he]
+    positivity
   have hmul : remainder x*b ≤ 1 := by
     have h := remainder_times_root_bound ha hb.le
     rw [← hr, hdiff] at h

@@ -304,6 +304,9 @@ LAYERS: dict[str, Path] = {
     "OOEECarryCells": JUGGLER_DIR / "OOEECarryCells.lean",
     "OOEEFourierModes": JUGGLER_DIR / "OOEEFourierModes.lean",
     "OOEECarryFourier": JUGGLER_DIR / "OOEECarryFourier.lean",
+    "OOEEPhaseComparison": JUGGLER_DIR / "OOEEPhaseComparison.lean",
+    "OOEESmoothModes": JUGGLER_DIR / "OOEESmoothModes.lean",
+    "OOEEMixedModes": JUGGLER_DIR / "OOEEMixedModes.lean",
 }
 
 # Sources belonging to other targets or historical model interfaces. Keeping

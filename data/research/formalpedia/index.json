@@ -69976,7 +69976,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-ooee-actual-mixed-mode-cancellation"
+      ],
       "line": 17,
       "module": "Problems.Juggler.OOEEMixedModes",
       "name": "correlationConstant",
@@ -69986,7 +69988,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-ooee-actual-mixed-mode-cancellation"
+      ],
       "line": 20,
       "module": "Problems.Juggler.OOEEMixedModes",
       "name": "mixedConstant",
@@ -69996,7 +70000,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-ooee-actual-mixed-mode-cancellation"
+      ],
       "line": 23,
       "module": "Problems.Juggler.OOEEMixedModes",
       "name": "original_correlation_bound",
@@ -70006,7 +70012,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-ooee-actual-mixed-mode-cancellation"
+      ],
       "line": 44,
       "module": "Problems.Juggler.OOEEMixedModes",
       "name": "mixed_sum_positive",
@@ -70016,7 +70024,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-ooee-actual-mixed-mode-cancellation"
+      ],
       "line": 126,
       "module": "Problems.Juggler.OOEEMixedModes",
       "name": "mixed_sum_positive_eventually",
@@ -70026,7 +70036,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-ooee-actual-mixed-mode-cancellation"
+      ],
       "line": 137,
       "module": "Problems.Juggler.OOEEMixedModes",
       "name": "originalPhase_neg",
@@ -70036,7 +70048,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-ooee-actual-mixed-mode-cancellation"
+      ],
       "line": 142,
       "module": "Problems.Juggler.OOEEMixedModes",
       "name": "mixed_sum_nonzero_eventually",
@@ -70046,7 +70060,9 @@
       "doc": "Every fixed integer Fourier mode except the pure slow modes has a power saving.",
       "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-ooee-actual-mixed-mode-cancellation"
+      ],
       "line": 156,
       "module": "Problems.Juggler.OOEEMixedModes",
       "name": "fixed_mixed_mode",
@@ -70056,10 +70072,24 @@
       "doc": "One pair of constants works for any fixed finite family of mixed modes.",
       "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-ooee-actual-mixed-mode-cancellation"
+      ],
       "line": 181,
       "module": "Problems.Juggler.OOEEMixedModes",
       "name": "finite_mixed_modes",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Only the actual sample points need lie in the dyadic interval.",
+      "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-actual-mixed-mode-cancellation"
+      ],
+      "line": 212,
+      "module": "Problems.Juggler.OOEEMixedModes",
+      "name": "finite_mixed_modes_samples",
       "trust": "kernel"
     },
     {
@@ -70067,7 +70097,7 @@
       "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
       "kind": "def",
       "ledger": [],
-      "line": 18,
+      "line": 17,
       "module": "Problems.Juggler.OOEEPhaseComparison",
       "name": "firstFloor",
       "trust": "kernel"
@@ -70077,7 +70107,7 @@
       "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
       "kind": "def",
       "ledger": [],
-      "line": 20,
+      "line": 19,
       "module": "Problems.Juggler.OOEEPhaseComparison",
       "name": "nestedPower",
       "trust": "kernel"
@@ -70087,7 +70117,7 @@
       "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
       "kind": "def",
       "ledger": [],
-      "line": 22,
+      "line": 21,
       "module": "Problems.Juggler.OOEEPhaseComparison",
       "name": "originalPhase",
       "trust": "kernel"
@@ -70097,7 +70127,7 @@
       "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
       "kind": "def",
       "ledger": [],
-      "line": 25,
+      "line": 24,
       "module": "Problems.Juggler.OOEEPhaseComparison",
       "name": "remainder",
       "trust": "kernel"
@@ -70107,7 +70137,7 @@
       "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 28,
+      "line": 27,
       "module": "Problems.Juggler.OOEEPhaseComparison",
       "name": "three_halves_eq_mul_sqrt",
       "trust": "kernel"
@@ -70117,7 +70147,7 @@
       "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 36,
+      "line": 35,
       "module": "Problems.Juggler.OOEEPhaseComparison",
       "name": "remainder_times_root_bound",
       "trust": "kernel"
@@ -70127,7 +70157,7 @@
       "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 41,
+      "line": 40,
       "module": "Problems.Juggler.OOEEPhaseComparison",
       "name": "remainder_bounds",
       "trust": "kernel"
@@ -70137,7 +70167,7 @@
       "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 80,
+      "line": 83,
       "module": "Problems.Juggler.OOEEPhaseComparison",
       "name": "three_quarters_increment",
       "trust": "kernel"
@@ -70147,7 +70177,7 @@
       "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 100,
+      "line": 103,
       "module": "Problems.Juggler.OOEEPhaseComparison",
       "name": "original_difference_identity",
       "trust": "kernel"
@@ -70157,7 +70187,7 @@
       "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 112,
+      "line": 115,
       "module": "Problems.Juggler.OOEEPhaseComparison",
       "name": "original_difference_error",
       "trust": "kernel"
@@ -70167,7 +70197,7 @@
       "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 149,
+      "line": 152,
       "module": "Problems.Juggler.OOEEPhaseComparison",
       "name": "phase_sub_le",
       "trust": "kernel"
@@ -70177,7 +70207,7 @@
       "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
       "kind": "theorem",
       "ledger": [],
-      "line": 159,
+      "line": 162,
       "module": "Problems.Juggler.OOEEPhaseComparison",
       "name": "correlation_comparison",
       "trust": "kernel"
@@ -113946,6 +113976,9 @@
         "Problems.Juggler.OOEECarryFourier",
         "Problems.Juggler.OOEECurvature",
         "Problems.Juggler.OOEEFourierModes",
+        "Problems.Juggler.OOEEMixedModes",
+        "Problems.Juggler.OOEEPhaseComparison",
+        "Problems.Juggler.OOEESmoothModes",
         "Problems.Juggler.OddCountMonotone",
         "Problems.Juggler.OddCubicPhase",
         "Problems.Juggler.OddLandingSets",
@@ -116333,19 +116366,24 @@
       "ledger": []
     },
     "Problems.Juggler.OOEEMixedModes": {
-      "declarations": 9,
+      "declarations": 10,
       "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
       "imports": [
         "Problems.Juggler.OOEESmoothModes"
       ],
-      "ledger": []
+      "ledger": [
+        {
+          "id": "J-ooee-actual-mixed-mode-cancellation",
+          "statement": "Kernel-checked original OOEE mixed-mode cancellation; advisory statement coverage pending. Define M(x)=floor(x^(3/2)), Y(x)=M(x)^(3/2), and f_(i,j,k)(x)=(i/2)*x^(3/2)+(j/2)*Y(x)+(k/2)*x^(9/8). For every fixed integer triple with i nonzero or j nonzero and every fixed real L>=0, there exist B>0 and P0 such that, for every real P>=P0, real a and natural N with P<=a, a+2N<=2P and N<=L*P^(7/16), norm(sum_(n<N) e(f_(i,j,k)(a+2n))) <= B*P^(13/32). One B,P0 works for any fixed finite set of such triples. A second theorem requires only the actual N sample points to lie in [P,2P]; it removes and restores the last sample and increases the constant by one. The actual first-floor remainder is between zero and x^(-3/4) for x>0; for u=j/2 the summed original-to-retained phase comparison costs at most 10*pi*abs(u)*L*P^(1/4). Exact-overlap finite differencing, both coefficient signs, empty and short sums, and the smooth j=0,i-nonzero case are proved. There is no assumed cancellation, correlation or equidistribution input. Pure slow modes, frequency cutoffs growing with P, joint discrepancy, poor-target inclusion and physical production cutoffs are outside this statement. OOEEProductionBound and the actual failure-rate estimate remain open.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
     },
     "Problems.Juggler.OOEEPhaseComparison": {
       "declarations": 12,
       "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
       "imports": [
-        "Problems.Juggler.OOEECarryFourier",
-        "Problems.Juggler.PaperBAssembly"
+        "Problems.Juggler.OOEECarryFourier"
       ],
       "ledger": []
     },
@@ -118032,13 +118070,13 @@
     }
   },
   "totals": {
-    "declarations": 8886,
-    "declarations_with_a_ledger_row": 6046,
-    "ledger_rows_naming_a_file": 506,
+    "declarations": 8887,
+    "declarations_with_a_ledger_row": 6056,
+    "ledger_rows_naming_a_file": 507,
     "modules": 372,
     "trust": {
       "compiler": 56,
-      "kernel": 8830
+      "kernel": 8831
     }
   }
 }

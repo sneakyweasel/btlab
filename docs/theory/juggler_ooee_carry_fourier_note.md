@@ -106,16 +106,17 @@ The [dependency audit](../../formal/AxiomCheckOOEECarryFourier.lean)
 selects all 29 theorems across the three new modules.
 Each uses only propext, Classical.choice and Quot.sound. The full project
 build passes (9073 jobs).
-This completes the retained carry correlation. The original nested-floor
-correlation additionally needs the linearization-error comparison from
-equations (8)--(9) of the written proof. Finite differencing must then
-be applied to the actual mixed modes, followed by slow-mode handling,
-joint discrepancy, the poor-target inclusion and production cutoffs.
+This completes the retained carry correlation. The
+[subsequent mixed-mode proof](juggler_ooee_mixed_modes_note.md) now supplies
+the original nested-floor linearization comparison and actual differencing.
+Slow-mode handling, joint discrepancy, the poor-target inclusion and
+production cutoffs remain open.
 
-**Decision: PROMOTE.** The next bounded question is to transfer (3) to
+**Decision: PROMOTE.** This phase's next bounded question was to transfer (3) to
 the original nested-floor correlation with its O(P^(1/4)) linearization
 loss, and obtain the actual mixed-mode O(P^(13/32)) bound by differencing.
-This phase ends before that application.
+That application is now proved in the linked follow-up. This phase's
+own result remains the retained correlation.
 
 `OOEEProductionBound` remains explicit. The unconditional Lean contagion
 exponent remains 100/203, while 5/8 requires that production bound.

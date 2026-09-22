@@ -17,7 +17,9 @@ and unweighted O(P^(3/8)) cell sums are now proved uniformly for
 are now formal too, including endpoint losses. The fractional-part carry
 term is now O(P^(5/16)*log(P)) in Lean, and the complete retained carry
 correlation is O(P^(3/8)). The original linearization comparison and
-mixed-mode differencing remain to be assembled.
+mixed-mode differencing are now proved too, giving O(P^(13/32)) for
+every fixed mixed mode and uniformly over fixed finite frequency sets.
+Pure slow modes, joint discrepancy and the poor-target assembly remain.
 [Analytic argument](../theory/juggler_ooee_poor_fibre_tail_note.md).
 
 ## Problem
@@ -423,8 +425,18 @@ Fourier sums are O(P^(5/16)). Weighted centered Fejer smoothing gives
 the carry contribution O(P^(5/16)*log(P)), including integer samples.
 Exact carry-cell partition and logarithm absorption yield O(P^(3/8))
 for the complete retained phase. Added size conditions hold eventually
-for fixed u>0,v,w, uniformly in h<=P^(1/16). The original nested-floor
-correlation still needs its separately bounded linearization loss.
+for fixed u>0,v,w, uniformly in h<=P^(1/16). The following phase now
+bounds the original nested-floor linearization loss and applies differencing.
+
+**Tenth phase: the original mixed modes are kernel-checked.**
+The [actual mixed-mode proof](../theory/juggler_ooee_mixed_modes_note.md)
+proves 0<=E(x)<=x^(-3/4), bounds the summed original-to-retained error
+by 10*pi*abs(u)*L*P^(1/4), and obtains O(P^(13/32)) by finite differencing
+with exact overlaps N-d and H=floor(P^(1/16)). Negative coefficients,
+empty and short sums, and the smooth j=0,i-nonzero modes are included.
+For any fixed finite family with (i,j) not both zero, one constant and
+one threshold work for every eligible interval. No cancellation premise
+remains in this mixed-mode theorem; pure slow modes remain excluded.
 
 ## Open questions
 
@@ -454,8 +466,8 @@ are now formal; the OOEE source-cutoff consequence must also be retained.
 Finite differencing, both derivative tests, and the actual carry-cell
 curvature, carry partition, weighted smooth sums, nonzero Fourier modes,
 and the complete retained carry correlation are now formal too. The
-original linearization comparison, actual mixed-mode differencing,
-slow modes, joint discrepancy, poor-target inclusion and physical source
+original linearization comparison and actual mixed-mode differencing are
+also proved. Slow modes, joint discrepancy, poor-target inclusion and physical source
 cutoffs must still be assembled before the full poor-tail proof.
 
 ## Decision
@@ -464,10 +476,9 @@ cutoffs must still be assembled before the full poor-tail proof.
 assembly yielding contagion at 5/8 and the sufficient Tao threshold 3/8.
 The assembly and its OE input are kernel-checked; the new OOEE analytic
 theorem still awaits independent review and Lean proof. Exactly one best
-next question: can the retained carry estimate be transferred to the
-original nested-floor correlation with its O(P^(1/4)) linearization loss,
-then differenced to prove the actual mixed-mode O(P^(13/32)) bound?
-This phase stops after the complete retained carry correlation.
+next question: can the pure slow modes be bounded outside the explicit
+resonance set, retaining the comparison with the actual square-root phase?
+This phase stops after the complete original mixed-mode bound.
 
 ## Publication assessment
 

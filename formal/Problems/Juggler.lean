@@ -222,6 +222,9 @@ import Problems.Juggler.OOEECurvature
 import Problems.Juggler.OOEECarryCells
 import Problems.Juggler.OOEEFourierModes
 import Problems.Juggler.OOEECarryFourier
+import Problems.Juggler.OOEEPhaseComparison
+import Problems.Juggler.OOEESmoothModes
+import Problems.Juggler.OOEEMixedModes
 
 /-!
 # Juggler laboratory barrel

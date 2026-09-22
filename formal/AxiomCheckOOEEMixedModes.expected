@@ -1,0 +1,34 @@
+'Problems.Juggler.OOEEPhaseComparison.three_halves_eq_mul_sqrt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.OOEEPhaseComparison.remainder_times_root_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.OOEEPhaseComparison.remainder_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEPhaseComparison.three_quarters_increment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.OOEEPhaseComparison.original_difference_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.OOEEPhaseComparison.original_difference_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.OOEEPhaseComparison.phase_sub_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEPhaseComparison.correlation_comparison' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEESmoothModes.smooth_sum_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEESmoothModes.smooth_sum_positive_eventually' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.OOEEMixedModes.original_correlation_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEMixedModes.mixed_sum_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEMixedModes.mixed_sum_positive_eventually' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.OOEEMixedModes.originalPhase_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEMixedModes.mixed_sum_nonzero_eventually' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.OOEEMixedModes.fixed_mixed_mode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEMixedModes.finite_mixed_modes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEMixedModes.finite_mixed_modes_samples' depends on axioms: [propext, Classical.choice, Quot.sound]

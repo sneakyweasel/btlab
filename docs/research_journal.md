@@ -1,5 +1,40 @@
 # Research journal
 
+## 2026-09-22 -- Original OOEE mixed-mode cancellation
+
+- **Continuation audit:** The preceding review verified the status but
+  did not advance the theorem. This phase completes the next application:
+  original nested-floor phases, rather than only retained carry phases.
+- **Target and falsifier:** Prove O(P^(13/32)) for every fixed mixed
+  Fourier mode on the P^(7/16) source scale. An uncontrolled floor error,
+  overlap loss or a missing frequency case would falsify the result.
+  The closed longer-fibre localization and K3 routes are not reopened.
+- **Proof:** The exact first-floor remainder satisfies 0<=E(x)<=x^(-3/4).
+  Multiplication by the larger square root proves this without a positive
+  lower bound on the floor. The summed phase comparison is at most
+  10*pi*abs(u)*L*P^(1/4). The proved retained correlation then supplies
+  the actual O(P^(3/8)) correlation. Finite differencing with exact
+  overlaps N-d and H=floor(P^(1/16)) gives the required exponent 13/32.
+  Conjugation handles negative coefficients; ordinary curvature covers
+  j=0,i nonzero. Finite induction gives uniform constants over any fixed
+  finite frequency set. Removing and restoring the final sample is also
+  proved, so only actual sample points need lie in the dyadic interval.
+- **Validation:** Full Lean build passes (9077 jobs). All 18 new theorems
+  have only propext, Classical.choice and Quot.sound dependencies.
+  The first targeted run had 168 passes and exposed Git safe-directory
+  setup, stale registration artifacts and two registration mistakes.
+  The corrected rerun covering every failure and the release/index gates
+  passed 67 tests, with four skips. The separate scoped artifact check
+  verifies the commit's generated files without concurrent draft inputs.
+- **Trust and scope:** The ledger retains HUMAN PROOF with kernel trust
+  and advisory coverage pending; no new external check was sent.
+  Pure slow modes, the actual square-root phase comparison, joint
+  discrepancy, poor-target inclusion and physical production cutoffs
+  remain. OOEEProductionBound and the failure-rate estimate are open.
+- **Decision:** **PROMOTE.** The original mixed-mode phase is complete.
+  Next bounded question: pure slow-mode bounds outside the explicit
+  resonance set, including the actual square-root phase comparison.
+
 ## 2026-09-22 -- Explicit finite higher-derivative input for effective OOE
 
 - **Target and falsifier:** Formalize explicit third- and fifth-derivative

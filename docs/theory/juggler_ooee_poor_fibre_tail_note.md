@@ -3,9 +3,10 @@
 22 September 2026. **EXACT — HUMAN PROOF** in the laboratory's terminology:
 an AI-assisted written argument, pending independent mathematical review.
 The complete analytic argument below is not yet Lean-verified. Existing
-Lean identities cover the linearization remainder and carry algebra;
-the derivative tests and actual unweighted carry-cell estimate are now
-formal too. Their full assembly does not yet certify this theorem.
+Lean now proves the original mixed-mode estimate through its remainder,
+carry algebra, derivative tests, complete carry correlation and actual
+differencing. Pure slow modes and the poor-target assembly are still
+required to certify this theorem.
 
 Branch: [actual OOEE fibres](../problems/juggler_ooee_poor_fibres.md).
 This note resolves that branch's missing poor-target inclusion. It does not
@@ -118,9 +119,11 @@ unit lattice, and 8 and 4 on the odd lattice. Uniform curvature of the
 actual carry-cell phases and their unweighted O(P^(3/8)) sums are now
 kernel-checked in `OOEECurvature.lean`, including the growing shift range
 and explicit floor conditions. The [proof mapping](juggler_ooee_curvature_note.md)
-retains the extra endpoint required by the derivative test. Carry partition,
-weighted sums, Fourier errors, and finite discrepancy remain separate
-Lean obligations.
+retains the extra endpoint required by the derivative test. The
+[mixed-mode proof](juggler_ooee_mixed_modes_note.md) now supplies the carry
+partition, weighted sums, Fourier errors, original phase comparison and
+differencing. Pure slow modes and three-coordinate discrepancy remain
+separate Lean obligations.
 
 ## 3. The short mixed estimate
 
@@ -473,18 +476,20 @@ Existing kernel-checked components are
 They support the exact algebra and parity interpretation. Neither file
 contains the analytic short-interval estimate or Theorem 1.
 
-The general finite differencing step is now additionally proved in
-`BTCalculus/WeylDifferencing.lean`, including the explicit odd-lattice
-phase correlations. This supplies equation (16)'s classical inequality;
-the correlation estimates needed before that substitution remain written.
-`BTCalculus/SecondDerivative.lean` additionally proves the finite test
-used in (6), (14), and (15), for either fixed curvature sign and on the
-odd lattice. Its explicit constants have no dependence on interval
-position or phase parameters beyond the stated curvature bounds. Those
-phase-specific bounds and their complete application are still written.
+The finite differencing and derivative inputs are now proved in
+`BTCalculus/WeylDifferencing.lean` and `BTCalculus/SecondDerivative.lean`.
+Their application is now proved in `OOEEMixedModes.lean`: it retains
+the original nested floor, bounds its comparison error, uses exact
+overlap lengths, and covers both coefficient signs and the smooth
+j=0,i-nonzero case. `finite_mixed_modes` gives common constants for
+any fixed finite set of mixed frequencies. The subsequent
+`finite_mixed_modes_samples` removes and restores the last term in Lean,
+so only the actual sample points must lie in the dyadic interval.
 
 The census is a regression control, not a proof of (1). Independent
 review should particularly check (7), the bounded cell count (10), all
 endpoint terms in (14)--(16), and the fixed-parameter order in (21)--(22).
-Full analytic Lean formalization is deferred; no new assumptions are
-introduced into the existing Lean development.
+The mixed-mode formalization is complete on that support. Pure slow
+modes, the actual square-root phase comparison, joint discrepancy,
+resonance inclusion and tail assembly remain to be formalized. No new
+assumptions are introduced into the existing Lean development.
