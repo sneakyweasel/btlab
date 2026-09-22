@@ -11545,9 +11545,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "def",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 21,
+      "line": 23,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "residue",
       "trust": "kernel"
@@ -11557,9 +11558,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 24,
+      "line": 26,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "residue_lt",
       "trust": "kernel"
@@ -11569,9 +11571,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 27,
+      "line": 29,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "residue_word",
       "trust": "kernel"
@@ -11581,9 +11584,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 31,
+      "line": 33,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "residue_compatible",
       "trust": "kernel"
@@ -11593,9 +11597,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 36,
+      "line": 38,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "residue_increment",
       "trust": "kernel"
@@ -11605,9 +11610,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "def",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 45,
+      "line": 47,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "plusCode",
       "trust": "kernel"
@@ -11617,9 +11623,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "def",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 50,
+      "line": 52,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "code",
       "trust": "kernel"
@@ -11629,9 +11636,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 52,
+      "line": 54,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "plusCode_residue",
       "trust": "kernel"
@@ -11641,9 +11649,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 57,
+      "line": 59,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "residue_first_parity",
       "trust": "kernel"
@@ -11653,9 +11662,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 65,
+      "line": 67,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "residue_successor",
       "trust": "kernel"
@@ -11665,9 +11675,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 71,
+      "line": 73,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "plusCode_parity",
       "trust": "kernel"
@@ -11677,9 +11688,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 79,
+      "line": 81,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "plusCode_step",
       "trust": "kernel"
@@ -11689,9 +11701,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 95,
+      "line": 97,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "code_parity",
       "trust": "kernel"
@@ -11701,9 +11714,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 99,
+      "line": 101,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "code_step",
       "trust": "kernel"
@@ -11713,9 +11727,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 107,
+      "line": 109,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "code_residue_eq_iff",
       "trust": "kernel"
@@ -11725,9 +11740,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 114,
+      "line": 116,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "code_residue_word_iff",
       "trust": "kernel"
@@ -11737,9 +11753,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 121,
+      "line": 123,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "code_cylinder_eq",
       "trust": "kernel"
@@ -11749,9 +11766,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 127,
+      "line": 129,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "code_one",
       "trust": "kernel"
@@ -11761,9 +11779,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "def",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 133,
+      "line": 135,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "plusNumerator",
       "trust": "kernel"
@@ -11773,9 +11792,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 136,
+      "line": 138,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "two_dvd_plusNumerator",
       "trust": "kernel"
@@ -11785,9 +11805,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "def",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 159,
+      "line": 161,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "plusStep",
       "trust": "kernel"
@@ -11797,9 +11818,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 161,
+      "line": 163,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "two_mul_plusStep",
       "trust": "kernel"
@@ -11809,9 +11831,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "def",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 165,
+      "line": 167,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "minusStep",
       "trust": "kernel"
@@ -11821,9 +11844,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 167,
+      "line": 169,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "two_mul_minusStep",
       "trust": "kernel"
@@ -11833,9 +11857,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 175,
+      "line": 177,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "plusCode_semiconjugacy",
       "trust": "kernel"
@@ -11845,9 +11870,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 182,
+      "line": 184,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "code_semiconjugacy",
       "trust": "kernel"
@@ -11857,9 +11883,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 185,
+      "line": 187,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "code_plus_semiconjugacy",
       "trust": "kernel"
@@ -11869,9 +11896,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 188,
+      "line": 190,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "code_iterate",
       "trust": "kernel"
@@ -11881,9 +11909,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 196,
+      "line": 198,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "code_eq_iff",
       "trust": "kernel"
@@ -11893,9 +11922,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 202,
+      "line": 204,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "code_affine",
       "trust": "kernel"
@@ -11905,9 +11935,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 222,
+      "line": 224,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "code_eq_terminatingCode",
       "trust": "kernel"
@@ -11917,9 +11948,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 240,
+      "line": 242,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "code_three_cleared",
       "trust": "kernel"
@@ -11929,9 +11961,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 247,
+      "line": 249,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "code_three_not_integer",
       "trust": "kernel"
@@ -11941,9 +11974,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 254,
+      "line": 256,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "code_four",
       "trust": "kernel"
@@ -11953,9 +11987,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 261,
+      "line": 263,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "code_six",
       "trust": "kernel"
@@ -11965,9 +12000,10 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 268,
+      "line": 270,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "code_not_injective",
       "trust": "kernel"
@@ -11977,11 +12013,233 @@
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "kind": "theorem",
       "ledger": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code"
       ],
-      "line": 274,
+      "line": 276,
       "module": "Problems.Juggler.CollatzPadic",
       "name": "orbit_bridge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Equal codes select the same monotone branch at the first step.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-periodic-cycle-transfer",
+        "J-padic-orbit-code"
+      ],
+      "line": 289,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "step_le_of_code_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Starts with the same complete parity history stay ordered under every iterate.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-periodic-cycle-transfer",
+        "J-padic-orbit-code"
+      ],
+      "line": 300,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "iterate_le_of_code_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "On an actual finite Juggler orbit, a return of the code is a return of the state.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-periodic-cycle-transfer",
+        "J-padic-orbit-code"
+      ],
+      "line": 311,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "return_of_code_return",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every return time is preserved on a periodic Juggler orbit.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-periodic-cycle-transfer",
+        "J-padic-orbit-code"
+      ],
+      "line": 340,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "periodic_return_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The global code preserves the least period of every periodic Juggler start.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-periodic-cycle-transfer",
+        "J-padic-orbit-code"
+      ],
+      "line": 347,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "periodic_minimalPeriod",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The signed integer denominator in the rational code of a periodic word.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "def",
+      "ledger": [
+        "J-padic-periodic-cycle-transfer",
+        "J-padic-orbit-code"
+      ],
+      "line": 354,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "periodDenom",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-periodic-cycle-transfer",
+        "J-padic-orbit-code"
+      ],
+      "line": 356,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "periodDenom_ne_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Actual cycle closure gives a cleared equation in the 2-adic integer ring.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-periodic-cycle-transfer",
+        "J-padic-orbit-code"
+      ],
+      "line": 365,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "periodic_code_cleared",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every periodic Juggler start has the classical rational cycle code.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-periodic-cycle-transfer",
+        "J-padic-orbit-code"
+      ],
+      "line": 373,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "periodic_code_rational",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Ordinary integrality of a periodic code is exactly the missing word divisibility.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-periodic-cycle-transfer",
+        "J-padic-orbit-code"
+      ],
+      "line": 385,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "periodic_code_integer_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The 2-adic shortcut agrees with the ordinary signed integer shortcut.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-periodic-cycle-transfer",
+        "J-padic-orbit-code"
+      ],
+      "line": 404,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "plusStep_intCast",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-periodic-cycle-transfer",
+        "J-padic-orbit-code"
+      ],
+      "line": 415,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "minusStep_intCast",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Signed integer iterates embed into the global 2-adic minus map.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-periodic-cycle-transfer",
+        "J-padic-orbit-code"
+      ],
+      "line": 420,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "minusStep_iterate_intCast",
+      "trust": "kernel"
+    },
+    {
+      "doc": "If a periodic code is integral, its ordinary signed Collatz orbit has the same return times.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-periodic-cycle-transfer",
+        "J-padic-orbit-code"
+      ],
+      "line": 428,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "integer_cycle_return_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Negation preserves every return time between the two signed 2-adic maps.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-periodic-cycle-transfer",
+        "J-padic-orbit-code"
+      ],
+      "line": 440,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "plusStep_iterate_neg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-periodic-cycle-transfer",
+        "J-padic-orbit-code"
+      ],
+      "line": 449,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "periodic_plus_minimalPeriod",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Exact cycle transfer: period, rational value, and the condition for ordinary integrality.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-periodic-cycle-transfer",
+        "J-padic-orbit-code"
+      ],
+      "line": 459,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "periodic_bridge",
       "trust": "kernel"
     },
     {
@@ -96261,12 +96519,17 @@
       "ledger": []
     },
     "Problems.Juggler.CollatzPadic": {
-      "declarations": 37,
+      "declarations": 54,
       "file": "formal/Problems/Juggler/CollatzPadic.lean",
       "imports": [
         "Problems.Juggler.CollatzRational"
       ],
       "ledger": [
+        {
+          "id": "J-padic-periodic-cycle-transfer",
+          "statement": "For every natural n and L>0 with J^L(n)=n, put w=itinerary(n,L), A=wordConst(w), and D=3^oddCount(w)-2^L as a signed integer. Then D is nonzero and the global 2-adic code H(n) equals the rational A/D in the 2-adic field. The least periods of H(n) under the 3n-1 map and of -H(n) under the 3n+1 map both equal the least Juggler period of n. H(n) is an embedded ordinary integer if and only if D divides A. If H(n)=z for an integer z, then for every d the ordinary integer 3n+1 shortcut returns -z after d steps if and only if Juggler returns n after d steps. Period preservation follows from branch monotonicity on equal-code fibers; global injectivity is not assumed. This proves no word divisibility for actual Juggler cycles and excludes no new cycle. Local Lean compilation is complete; ledger retagging awaits advisory coverage review.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        },
         {
           "id": "J-padic-orbit-code",
           "statement": "There is a code H from all natural Juggler starts to the 2-adic integers, constructed from compatible finite Collatz residues with no termination hypothesis. Its residue modulo two has the parity of the start. It satisfies H(J(n))=minusStep(H(n)) and -H(J(n))=plusStep(-H(n)), where the steps are the 2-adic 3n-1 and 3n+1 shortcut maps, and H(J^d(n))=minusStep^d(H(n)) for every d. For all natural r,d, H(n)=-r modulo 2^d if and only if the actual length-d Juggler itinerary of n equals the length-d 3n+1 itinerary of r. Consequently these conditions select exactly the same subset of any finite source set; no equidistribution estimate is asserted. On each start with a ReachesOne witness, H agrees in the 2-adic field with the previously defined rational terminatingCode. This is classical parity coding, not ordinary-integer transport or universal termination. The local Lean proof is compiled; the ledger label awaits advisory coverage review.",
@@ -99864,13 +100127,13 @@
     }
   },
   "totals": {
-    "declarations": 7286,
-    "declarations_with_a_ledger_row": 5365,
-    "ledger_rows_naming_a_file": 470,
+    "declarations": 7303,
+    "declarations_with_a_ledger_row": 5382,
+    "ledger_rows_naming_a_file": 471,
     "modules": 320,
     "trust": {
       "compiler": 56,
-      "kernel": 7230
+      "kernel": 7247
     }
   }
 }

@@ -1,5 +1,25 @@
 [
  {
+  "id": "J-padic-periodic-cycle-transfer",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every natural n and L>0 with J^L(n)=n, put w=itinerary(n,L), A=wordConst(w), and D=3^oddCount(w)-2^L as a signed integer. Then D is nonzero and the global 2-adic code H(n) equals the rational A/D in the 2-adic field. The least periods of H(n) under the 3n-1 map and of -H(n) under the 3n+1 map both equal the least Juggler period of n. H(n) is an embedded ordinary integer if and only if D divides A. If H(n)=z for an integer z, then for every d the ordinary integer 3n+1 shortcut returns -z after d steps if and only if Juggler returns n after d steps. Period preservation follows from branch monotonicity on equal-code fibers; global injectivity is not assumed. This proves no word divisibility for actual Juggler cycles and excludes no new cycle. Local Lean compilation is complete; ledger retagging awaits advisory coverage review.",
+  "source": "docs/problems/juggler_collatz_bridge.md",
+  "lean": "Problems/Juggler/CollatzPadic.lean",
+  "decl": [
+   "periodic_bridge",
+   "periodDenom",
+   "periodDenom_ne_zero",
+   "return_of_code_return",
+   "plusStep_intCast",
+   "minusStep_intCast"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-padic-orbit-code",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "There is a code H from all natural Juggler starts to the 2-adic integers, constructed from compatible finite Collatz residues with no termination hypothesis. Its residue modulo two has the parity of the start. It satisfies H(J(n))=minusStep(H(n)) and -H(J(n))=plusStep(-H(n)), where the steps are the 2-adic 3n-1 and 3n+1 shortcut maps, and H(J^d(n))=minusStep^d(H(n)) for every d. For all natural r,d, H(n)=-r modulo 2^d if and only if the actual length-d Juggler itinerary of n equals the length-d 3n+1 itinerary of r. Consequently these conditions select exactly the same subset of any finite source set; no equidistribution estimate is asserted. On each start with a ReachesOne witness, H agrees in the 2-adic field with the previously defined rational terminatingCode. This is classical parity coding, not ordinary-integer transport or universal termination. The local Lean proof is compiled; the ledger label awaits advisory coverage review.",

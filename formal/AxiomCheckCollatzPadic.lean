@@ -31,5 +31,22 @@ open Problems.Juggler.CollatzPadic
 #print axioms code_six
 #print axioms code_not_injective
 #print axioms orbit_bridge
+#print axioms step_le_of_code_eq
+#print axioms iterate_le_of_code_eq
+#print axioms return_of_code_return
+#print axioms periodic_return_iff
+#print axioms periodic_minimalPeriod
+#print axioms periodDenom_ne_zero
+#print axioms periodic_code_cleared
+#print axioms periodic_code_rational
+#print axioms periodic_code_integer_iff
+#print axioms plusStep_intCast
+#print axioms minusStep_intCast
+#print axioms minusStep_iterate_intCast
+#print axioms integer_cycle_return_iff
+#print axioms plusStep_iterate_neg
+#print axioms periodic_plus_minimalPeriod
+#print axioms periodic_bridge
 
 #check orbit_bridge
+#check periodic_bridge

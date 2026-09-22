@@ -360,6 +360,7 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
+        "J-padic-periodic-cycle-transfer",
         "J-padic-orbit-code",
         "J-rational-terminating-orbit-bridge",
         "J-juggler-is-collatz-one-exponential-up",

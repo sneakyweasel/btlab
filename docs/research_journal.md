@@ -1,5 +1,46 @@
 # Research journal
 
+## 2026-09-22 -- Coded Juggler cycles preserve their exact periods
+
+- **Question:** Does the global code lose primitive period on a genuine
+  Juggler cycle, and what precisely is needed to realize the coded cycle
+  over ordinary integers?
+- **Result:** `CollatzPadic.periodic_bridge` proves that both signed
+  2-adic maps preserve the least period of every actual periodic Juggler
+  start. Its code is A/D, where A is the actual word constant and
+  D=3^o-2^L is a nonzero signed integer. The code is ordinary integral
+  if and only if D divides A. Under that condition, the corresponding
+  signed integer Collatz orbit has exactly the same return times.
+- **Proof:** Equal codes have identical parity histories. Branch
+  monotonicity makes every iterate nondecreasing on equal-code pairs.
+  If the code returns after d steps, J^d preserves its ordered fiber.
+  A periodic point of this nondecreasing map must be fixed, proving
+  `return_of_code_return`. The affine identity supplies A/D and the
+  divisibility equivalence. The integer-cast step lemmas verify that
+  the ordinary signed shortcut really is the embedded 2-adic map.
+- **Correction:** The earlier review left possible period collapse
+  unresolved. It is now excluded for an actual periodic Juggler start.
+  The global counterexample H(4)=H(6) remains valid: those starts are
+  preperiodic. A periodic code alone still does not establish that its
+  Juggler source is periodic. Rationality is not used to infer a
+  periodic history; the classical Periodicity Conjecture is not assumed.
+- **Validation:** The expanded module and full `lake build` pass (9025
+  jobs). The [dependency audit](../formal/AxiomCheckCollatzPadic.expected)
+  checks 45 declarations, including 16 added in this phase, using only
+  `propext`, `Classical.choice`, and `Quot.sound`.
+  Layer architecture, integration and theorem-ledger tests give 144
+  passes and 14 skips. The ledger ownership check caught three shared
+  definitions in the new row; those remain owned by the global-code
+  row, and the corrected suite passes. Generated ledger and branch
+  index checks pass.
+- **Decision:** **PROMOTE** the exact period and integrality transfer.
+  No divisibility is established for an actual nontrivial Juggler cycle,
+  no new cycle is excluded, and the cumulative-pressure bound remains
+  **PARK**. The closed modular-return argument is not reopened.
+- **Coverage:** Local checking is complete. The new ledger row keeps
+  its written-proof label pending the repository's advisory Jev review.
+  Only a cache refresh was run; no new statement was sent externally.
+
 ## 2026-09-22 -- Global 2-adic Juggler and signed Collatz orbit coding in Lean
 
 - **Objective:** Remove the terminating-basin restriction from the formal

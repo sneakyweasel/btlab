@@ -114,6 +114,17 @@ estimating it. `code_three_not_integer` and `code_not_injective` retain
 the two obstructions for the unconditional map itself. This supplies
 the 2-adic construction, not integer transport or a new termination input.
 
+The subsequent `periodic_bridge` theorem removes a possible period-loss
+ambiguity: on an actual periodic Juggler orbit the code preserves every
+return time and the least period, for both signs. Equal-code fibers
+are ordered under iteration, so a periodic return inside one fiber is
+fixed. The theorem also proves H=A/(3^o-2^L) and the exact equivalence
+between ordinary integrality and the word divisibility. If integrality
+is supplied, the corresponding ordinary signed Collatz cycle has the
+same return times. The divisibility remains unproved for Juggler cycles;
+neither global code injectivity nor periodicity of a start from periodicity
+of its code follows. No new cycle is excluded.
+
 ## Two over-corrections in one week: a right fact rejected for a good-looking reason
 
 Recorded 21 September 2026, after five sources were read at last and three

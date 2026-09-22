@@ -126,7 +126,11 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   with `CollatzRational.terminatingCode` on terminating inputs.
   `code_cylinder_eq` transfers counts exactly without estimating them.
   H(3) is nonintegral and H(4)=H(6)=4; no integer-orbit or termination
-  transfer follows. The ledger coverage review remains pending.
+  transfer follows automatically. `periodic_bridge` preserves exact
+  least periods on actual Juggler cycles and characterizes ordinary
+  integrality by the word divisibility; under that additional condition,
+  ordinary signed Collatz return times agree exactly. The divisibility
+  is not proved for Juggler cycles. Ledger coverage review remains pending.
 - **Anti-overclaim.** Finite checks, period floors, densities, and
   leftover censuses are not a halt theorem and not "no cycle of any
   length". State the theorem with quantifiers, Lean name, and ledger

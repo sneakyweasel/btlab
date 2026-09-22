@@ -613,8 +613,10 @@ affine identity. A nontrivial Juggler cycle would give \(3^o>2^K\), so its
 code would be a positive rational periodic point of \(C_-\).
 It would be an ordinary integer only if \(3^o-2^K\mid A(w)\).
 No result in this review establishes that divisibility for Juggler cycles.
-The periodic point can have period dividing \(K\); no preservation of
-primitive orbit period is assumed.
+For an arbitrary periodic word the coded period can divide \(K\).
+For an actual Juggler cycle, the later formal result below proves that
+the least orbit period is preserved exactly, using branch monotonicity.
+This strengthens the initial review, which did not establish that fact.
 
 This is the infinite-itinerary extension of the rational-cycle discussion
 already in [the finance dossier](juggler_collatz_finance_mirror.md), not a
@@ -813,3 +815,62 @@ reports only `propext`, `Classical.choice`, and `Quot.sound`.
 Architecture, integration and theorem-ledger checks give 144 passes
 and 14 skips. The ledger tag awaits advisory coverage review; this
 does not indicate a gap in the compiled local proof.
+
+## Actual cycle periods and integrality, 22 September 2026
+
+**PROMOTE** the exact cycle-transfer theorem. The missing arithmetic
+condition is now separated from period preservation in Lean.
+This phase extends the existing global-code module; it introduces no
+new cycle search or publication change.
+
+For every natural n with a positive return time L, let w be its actual
+length-L itinerary, A its word constant, and D the signed integer
+3^oddCount(w)-2^L. The theorem `CollatzPadic.periodic_bridge` proves:
+
+- D is nonzero (supporting lemma `periodDenom_ne_zero`), and H(n)=A/D
+  in the 2-adic field.
+- The least period of H(n) under 3n-1, and of -H(n) under 3n+1,
+  equals the least Juggler period of n. L itself need not be least.
+- H(n) is an embedded ordinary integer exactly when D divides A.
+- If H(n)=z is integral, then for every d the ordinary signed 3n+1
+  map returns -z after d steps exactly when Juggler returns n after
+  d steps. Thus integer realization also preserves the exact period.
+
+The rational formula follows from `code_affine` after closing the
+actual orbit. D is odd because L>0, so it is nonzero. Cancellation
+in the 2-adic field gives A/D; cancellation in the integer ring and
+its injective embedding gives the divisibility equivalence.
+`plusStep_intCast` and `minusStep_intCast` verify that the ordinary
+integer maps embed with the correct branch conditions.
+
+Period preservation uses a separate Juggler fact. If two starts have
+equal codes, all their parities agree. Each branch is nondecreasing,
+so their iterates remain ordered (`iterate_le_of_code_eq`). If the
+code returns after d steps, the map J^d preserves that code's fiber
+and is nondecreasing there. A periodic point of a nondecreasing map
+on a linearly ordered set is fixed. Therefore an actual periodic
+start already returns after d steps (`return_of_code_return`).
+The converse follows from the orbit identity. This proves equality
+of all return times and hence of least periods.
+
+This does not contradict H(4)=H(6): those two starts lie in the
+preperiodic part of the terminating basin. Global code injectivity
+is still false. The period theorem assumes the original Juggler
+start is periodic; a periodic code alone does not prove that.
+Likewise rationality of a general code is not being used to infer a
+periodic parity history. Bernstein--Lagarias explicitly distinguish
+the known direction from their Periodicity Conjecture.
+
+The arithmetic obstruction is unchanged: no result here proves
+D divides A for an actual nontrivial Juggler cycle. Conditional
+integer-cycle restrictions can now be transported without a loss
+of period, but that missing divisibility must first be supplied.
+The cumulative-pressure termination estimate remains open.
+
+Validation: the full `lake build` passes (9025 jobs); architecture,
+integration and theorem-ledger tests give 144 passes and 14 skips.
+The expanded [dependency audit](../../formal/AxiomCheckCollatzPadic.expected)
+checks 45 declarations, including all 16 new theorem declarations,
+and reports only `propext`, `Classical.choice`, and `Quot.sound`.
+The ledger label awaits advisory coverage review; local compilation
+and direct theorem-signature review are complete.
