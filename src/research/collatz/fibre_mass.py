@@ -1,8 +1,9 @@
 """Exact Syracuse merging fibres and their critical reciprocal-mass operator.
 
 See docs/problems/collatz_fibre_mass.md for proofs, scope, and prior art.
-Finite computations here check examples; the all-level obstruction is a
-written argument, not a consequence of the enumerated levels.
+Finite computations here check examples; the all-level coefficient
+obstruction is proved in Problems.Collatz.FibreMass. Actual-integer error
+estimates remain written proofs, not consequences of the enumerated levels.
 """
 
 from __future__ import annotations

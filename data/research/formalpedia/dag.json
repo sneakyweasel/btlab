@@ -1062,6 +1062,20 @@
         "kernel": 12
       }
     },
+    "Problems.Collatz.FibreMass": {
+      "declarations": 43,
+      "depends_on": [
+        "Problems.Collatz.PreimageBalance"
+      ],
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 43
+      }
+    },
     "Problems.Collatz.FixedInteger": {
       "declarations": 12,
       "depends_on": [
@@ -4184,9 +4198,9 @@
     }
   },
   "totals": {
-    "edges": 330,
-    "edges_before_reduction": 2861,
-    "ledger_rows_placed": 520,
-    "nodes": 262
+    "edges": 331,
+    "edges_before_reduction": 2862,
+    "ledger_rows_placed": 521,
+    "nodes": 263
   }
 }

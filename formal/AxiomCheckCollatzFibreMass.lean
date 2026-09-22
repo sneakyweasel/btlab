@@ -1,0 +1,33 @@
+import Problems.Collatz.FibreMass
+
+#print axioms Problems.Collatz.FibreMass.doubleEquiv_val
+#print axioms Problems.Collatz.FibreMass.double_iterate_val
+#print axioms Problems.Collatz.FibreMass.parent_iff
+#print axioms Problems.Collatz.FibreMass.offset_congr
+#print axioms Problems.Collatz.FibreMass.parent_signed_iff
+#print axioms Problems.Collatz.FibreMass.parent_injective
+#print axioms Problems.Collatz.FibreMass.coefficient_eq
+#print axioms Problems.Collatz.FibreMass.row_at_parent
+#print axioms Problems.Collatz.FibreMass.transfer_formula
+#print axioms Problems.Collatz.FibreMass.row_nonneg
+#print axioms Problems.Collatz.FibreMass.row_le
+#print axioms Problems.Collatz.FibreMass.row_summable
+#print axioms Problems.Collatz.FibreMass.transfer_nonneg
+#print axioms Problems.Collatz.FibreMass.row_sum
+#print axioms Problems.Collatz.FibreMass.transfer_sum
+#print axioms Problems.Collatz.FibreMass.offset_unit
+#print axioms Problems.Collatz.FibreMass.parent_unit
+#print axioms Problems.Collatz.FibreMass.transfer_zero
+#print axioms Problems.Collatz.FibreMass.level_large
+#print axioms Problems.Collatz.FibreMass.spike_val
+#print axioms Problems.Collatz.FibreMass.spike_unit
+#print axioms Problems.Collatz.FibreMass.parent_spike
+#print axioms Problems.Collatz.FibreMass.transfer_spike
+#print axioms Problems.Collatz.FibreMass.iterate_nonneg
+#print axioms Problems.Collatz.FibreMass.iterate_sum
+#print axioms Problems.Collatz.FibreMass.iterate_spike
+#print axioms Problems.Collatz.FibreMass.project_sum
+#print axioms Problems.Collatz.FibreMass.project_spike
+#print axioms Problems.Collatz.FibreMass.project_nonunit
+#print axioms Problems.Collatz.FibreMass.exists_deficit
+#print axioms Problems.Collatz.FibreMass.finite_weight_obstruction

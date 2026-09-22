@@ -25,6 +25,11 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- complete signed Collatz odd-return coefficient operators: the concrete
+  infinite halving-exponent sum, mean conservation, and a deficient unit
+  residue for every positive finite ternary weight table at every fixed
+  positive depth. The stronger form needs positivity only at residue -s.
+  See the [proof map](../docs/theory/collatz_fibre_mass_lean_note.md);
 - actual OOEE production with conserved-weight coefficient 11/100, a single
   bounded loss for every backward-closed class, and the physical source cutoff.
   This discharges the last odd-production input and proves unconditional

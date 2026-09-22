@@ -112,7 +112,10 @@ This is independent of the fixed-grid ceiling. It does not show that a
 full fate class concentrates in the poor progression. Fate-specific
 averaging, nonperiodic weights, and variable stopping depths remain open.
 The dossier records a conditional generation-series route with an explicit
-open premise. Written proof, not Lean verified.
+open premise. The homogeneous finite-weight obstruction is now kernel-checked
+for both signs and every finite level and fixed positive depth; the actual
+integer error, deficient progression and generation-series implication remain
+written proofs. See the [formal proof map](theory/collatz_fibre_mass_lean_note.md).
 
 ## Collatz orbit packing does not bypass Juggler parity counts
 

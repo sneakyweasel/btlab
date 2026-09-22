@@ -1,5 +1,40 @@
 # Research journal
 
+## 2026-09-22 -- Complete signed coefficient obstruction formalized
+
+- **Continuation audit:** The preceding review verified the new 5/8
+  contagion threshold but added no theorem. This phase consolidates the
+  existing finite-weight transfer obstruction instead of reopening its
+  rejected search. Actual growing-depth Juggler pressure stays open.
+- **Scope:** Both signs, every ternary level r>=1, every positive unit
+  table, and every fixed positive generation depth d. A failed concrete
+  mean identity or failed repeated-branch inequality was the falsifier.
+- **Proof:** `Problems.Collatz.FibreMass` defines the full infinite sum
+  over halving exponents. The signed congruence and child uniqueness are
+  proved from the doubling permutation. Geometric domination justifies
+  finite-sum interchange. The operator sum and the lifted base-weight
+  sum both equal 3^d times the original sum, while the k=1 path at -s
+  contributes at least (3/2)^d times its original weight. A deficient unit
+  row follows. The stronger result permits zero weights on other units,
+  provided h(-s)>0 and h is nonnegative and zero on nonunits.
+- **Coverage:** Split the coefficient theorem from the actual-integer
+  error/progression corollary in the ledger. The latter, sibling coverage
+  and the generation-series criterion remain written proofs. The kernel
+  result retains the HUMAN PROOF label pending advisory coverage; no
+  external statement was transmitted.
+- **Validation:** Full Lean build passes 9,090 jobs. All 31 theorem
+  dependency audits use only propext, Classical.choice and Quot.sound.
+  The shared-worktree regression run has 90 passes and 17 failures traced
+  to concurrent OOE/Paper E edits: three accidental orbit-notation links
+  in the peer ledger row, and a newly added Paper E input absent from its
+  release inventory. The fibre, ledger and formalpedia tests pass.
+  The scoped commit independently checks its changed-document links and
+  generated registry against its own source tree, preserving peer edits.
+- **Decision:** **PROMOTE** the formal consolidation. Uniform finite
+  ternary reweighting remains closed for both signs and any fixed grouping
+  depth. This proves no new Juggler pressure estimate, termination result,
+  escape trajectory or cycle exclusion. The broader goal stays active.
+
 ## 2026-09-22 -- Scoped effective OOE Jev coverage check
 
 - **Authorization and scope:** Sent only `J-effective-ooe-modular-return`

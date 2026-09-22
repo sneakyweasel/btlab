@@ -30,8 +30,8 @@ The two statements established here are:
    with L_s^d h(a)<h(a). For every fixed d this gives infinitely many
    genuine large odd targets with deficient actual weighted reciprocal mass.
 
-The second assertion covers all such weights and levels by a written proof,
-not by an extrapolation from the finite computations. It concerns a uniform
+The second assertion covers all such weights and levels by a kernel-checked
+coefficient proof and a written actual-integer error estimate. It concerns a uniform
 fibre inequality; it is not an obstruction to every argument using full fate
 closure, nonperiodic weights, variable stopping depths, or height windows.
 
@@ -139,11 +139,17 @@ This holds on the whole odd progression, not just for small examples.
 
 ## Formalization
 
-No new Lean module. The statements below have complete AI-assisted written
-proofs and exact-arithmetic regression checks; independent mathematical
-review and Lean verification of these statements are outstanding. Their
-ledger label is **EXACT — HUMAN PROOF**, the repository's written-proof
-category, not a claim that an independent human review occurred.
+The homogeneous coefficient obstruction in Section 3 is now kernel-checked
+in `Problems.Collatz.FibreMass`, including the concrete signed operator,
+its infinite-series convergence, its mean, and every finite level and
+fixed positive depth. The [proof map](../theory/collatz_fibre_mass_lean_note.md)
+separates this result from the remaining written statements. Its stronger
+form allows zero weights on other unit residues, provided the weight at
+-s is positive. The residue-coverage theorem, actual-integer affine error,
+deficient progression and generation-series implication remain AI-assisted
+written proofs with exact-arithmetic checks. Independent review remains
+open. Ledger labels stay **EXACT — HUMAN PROOF** pending advisory statement
+coverage; the coefficient theorem also records kernel trust.
 
 ## Results
 

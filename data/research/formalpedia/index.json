@@ -5636,6 +5636,522 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "abbrev",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 17,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "Level",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "def",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 19,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "doubleEquiv",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 24,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "doubleEquiv_val",
+      "trust": "kernel"
+    },
+    {
+      "doc": "`true` denotes `3n+1`; `false` denotes `3n-1`.",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "def",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 29,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "offset",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "def",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 31,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "embed",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The unique parent residue for child `b` and halving exponent `k+1`.",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "def",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 35,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "parent",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 38,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "double_iterate_val",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 48,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "parent_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "def",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 71,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "sign",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 73,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "offset_congr",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The branch relation is exactly `2^(k+1) a = 3 b + s` modulo the parent modulus, for the ordinary signs `s=1` and `s=-1`.",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 88,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "parent_signed_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 96,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "parent_injective",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "def",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 106,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "coefficient",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 108,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "coefficient_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "def",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 112,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "row",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 115,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "row_at_parent",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "def",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 119,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "transfer",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An explicit congruence formula includes every positive halving exponent; `parent_injective` ensures at most one child in each inner sum.",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 124,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "transfer_formula",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 130,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "row_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 138,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "row_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 146,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "row_summable",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 153,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "transfer_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 157,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "row_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 163,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "transfer_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 171,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "offset_unit",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 178,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "parent_unit",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 187,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "transfer_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "def",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 196,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "spike",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 199,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "level_large",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 202,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "spike_val",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 208,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "spike_unit",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 216,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "parent_spike",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 233,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "transfer_spike",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "def",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 250,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "iterate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 255,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "iterate_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 261,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "iterate_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 271,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "iterate_spike",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "def",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 284,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "project",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 287,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "project_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 299,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "project_spike",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 323,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "project_nonunit",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A nonnegative finite table supported on units cannot reproduce everywhere if its value at the repeated one-halving residue is positive.",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 330,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "exists_deficit",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Both signs, every ternary level, every strictly positive unit weight, and every fixed positive number of full odd-return generations.",
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-finite-residue-harmonic-obstruction"
+      ],
+      "line": 354,
+      "module": "Problems.Collatz.FibreMass",
+      "name": "finite_weight_obstruction",
+      "trust": "kernel"
+    },
+    {
       "doc": "Integer affine gap `G = n (2^K - 3^m) - C`.",
       "file": "formal/Problems/Collatz/FixedInteger.lean",
       "kind": "def",
@@ -115462,6 +115978,7 @@
         "Problems.Collatz.Cycles",
         "Problems.Collatz.Cylinder",
         "Problems.Collatz.Endpoint",
+        "Problems.Collatz.FibreMass",
         "Problems.Collatz.FixedInteger",
         "Problems.Collatz.Lift",
         "Problems.Collatz.NegativeMCycles",
@@ -115920,6 +116437,20 @@
           "id": "C-endpoint",
           "statement": "From the affine endpoint equation 3^m R + C = 2^K x: Kramer's 3-adic endpoint congruence 2^K x \u2261 C (mod 3^m), and for odd x the 2-adic endpoint congruence 3^m R + C \u2261 2^K (mod 2^(K+1)).",
           "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Collatz.FibreMass": {
+      "declarations": 43,
+      "file": "formal/Problems/Collatz/FibreMass.lean",
+      "imports": [
+        "Problems.Collatz.PreimageBalance"
+      ],
+      "ledger": [
+        {
+          "id": "C-syracuse-finite-residue-harmonic-obstruction",
+          "statement": "Kernel-checked; advisory statement coverage and independent review remain open. For either sign s in {1,-1}, define the complete homogeneous odd-return operator on h modulo 3^r by L_s h(a)=sum_{k>=1} (3/2^k)*sum_{b mod 3^r, 2^k*a=3*b+s mod 3^(r+1)} h(b). The concrete branch congruence, uniqueness of the child at each exponent, nonnegative-row summability, zero nonunit output and sum_a L_s h(a)=3*sum_b h(b) are proved. For every r>=1 and fixed d>=1, if h vanishes on multiples of three and is positive on units, some unit residue a modulo 3^(r+d) satisfies L_s^d h(a)<h(a mod 3^r). The stronger form only requires h>=0 and h(-s)>0. The repeated k=1 branch gives L_s^d h(-s)>=(3/2)^d*h(-s), while both table sums equal 3^d*sum h. Actual-integer affine errors, deficient progressions, fate-class divergence and termination are outside this formal statement; no priority claim.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
     },
@@ -120684,13 +121215,13 @@
     }
   },
   "totals": {
-    "declarations": 9088,
-    "declarations_with_a_ledger_row": 6245,
-    "ledger_rows_naming_a_file": 520,
-    "modules": 384,
+    "declarations": 9131,
+    "declarations_with_a_ledger_row": 6288,
+    "ledger_rows_naming_a_file": 521,
+    "modules": 385,
     "trust": {
       "compiler": 56,
-      "kernel": 9032
+      "kernel": 9075
     }
   }
 }
