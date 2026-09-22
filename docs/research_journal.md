@@ -1,5 +1,37 @@
 # Research journal
 
+## 2026-09-22 -- Paper E: qualitative van der Corput in Lean
+
+- **Target and budget:** Continue from the newly available finite inequality
+  by proving qualitative cancellation for bounded complex sequences. A lost
+  boundary term or an additional cancellation premise would falsify the
+  proof. This is classical analytic formalization, outside the closed
+  nested-floor attack branches. The phase stops before power-phase estimates.
+- **Completed:** `BTCalculus.WeylCancellation` proves that vanishing averages
+  of every positive fixed-shift correlation imply vanishing sequence
+  averages. The overlap conversion has error at most d for shift d under
+  a unit norm bound, including N<d. The proof fixes H before taking N to
+  infinity, then rescales to any positive uniform norm bound.
+- **Application interface:** The phase-difference theorem applies to every
+  real-valued sequence f, retaining cancellation of each actual difference
+  f(n+d)-f(n) as an explicit hypothesis. It does not assert that those
+  hypotheses hold for Paper E's rational-power vector.
+- **Audit:** A separate nine-theorem logical-dependency audit covers this
+  module. The Paper E 0.3.0 manuscript and its 32 selected declarations
+  remain unchanged. The generic lemma is proved; `BoxRecurrence` is not.
+  The advisory statement-coverage request could not connect to its service;
+  the ledger retains its pending-review label.
+- **Validation:** The BTCalculus library build and the new module build pass;
+  all nine audits match the expected standard dependencies. Repository
+  integration, ledger, Formalpedia, and Paper E release tests report 195
+  passed and 15 skipped. Ledger, branch-index, and publication-manifest
+  consistency checks also pass.
+- **Decision:** **PROMOTE** this formalization milestone, with no mathematical
+  novelty claim. The next question is a rigorous cancellation estimate for
+  the fixed power phases and their shifted differences, followed by the
+  joint Fourier-to-box argument. No termination conclusion follows.
+  [Exact statement and proof](theory/qualitative_weyl_cancellation_note.md).
+
 ## 2026-09-22 -- Finite differencing for the OOEE analytic proof
 
 - **Target and budget:** Formalize the classical finite van der Corput

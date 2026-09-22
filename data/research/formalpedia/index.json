@@ -106163,6 +106163,126 @@
       "trust": "kernel"
     },
     {
+      "doc": "The finite inequality divided by the square of the summation length.",
+      "file": "formal/BTCalculus/WeylCancellation.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-qualitative-weyl-cancellation"
+      ],
+      "line": 19,
+      "module": "BTCalculus.WeylCancellation",
+      "name": "normalized_van_der_corput",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Qualitative differencing with the exact overlap correlations.",
+      "file": "formal/BTCalculus/WeylCancellation.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-qualitative-weyl-cancellation"
+      ],
+      "line": 35,
+      "module": "BTCalculus.WeylCancellation",
+      "name": "tendsto_average_norm_zero_of_correlations",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Normalized complex partial sums; the length-zero value is zero.",
+      "file": "formal/BTCalculus/WeylCancellation.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-qualitative-weyl-cancellation"
+      ],
+      "line": 64,
+      "module": "BTCalculus.WeylCancellation",
+      "name": "average",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/WeylCancellation.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-qualitative-weyl-cancellation"
+      ],
+      "line": 66,
+      "module": "BTCalculus.WeylCancellation",
+      "name": "norm_average",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/WeylCancellation.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-qualitative-weyl-cancellation"
+      ],
+      "line": 70,
+      "module": "BTCalculus.WeylCancellation",
+      "name": "average_div_const",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The full shifted sum and its overlap differ by at most the shift.",
+      "file": "formal/BTCalculus/WeylCancellation.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-qualitative-weyl-cancellation"
+      ],
+      "line": 76,
+      "module": "BTCalculus.WeylCancellation",
+      "name": "correlation_boundary_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Removing the last `d` terms does not change a fixed-shift correlation limit.",
+      "file": "formal/BTCalculus/WeylCancellation.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-qualitative-weyl-cancellation"
+      ],
+      "line": 96,
+      "module": "BTCalculus.WeylCancellation",
+      "name": "tendsto_overlap_zero_of_shifted",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Qualitative van der Corput with the usual full shifted correlation averages.",
+      "file": "formal/BTCalculus/WeylCancellation.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-qualitative-weyl-cancellation"
+      ],
+      "line": 117,
+      "module": "BTCalculus.WeylCancellation",
+      "name": "tendsto_average_zero_of_shifted_correlations",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The usual bounded-sequence form, with any fixed positive norm bound.",
+      "file": "formal/BTCalculus/WeylCancellation.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-qualitative-weyl-cancellation"
+      ],
+      "line": 128,
+      "module": "BTCalculus.WeylCancellation",
+      "name": "tendsto_average_zero_of_bounded_correlations",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Cancellation of every positive fixed difference phase suffices for the phase.",
+      "file": "formal/BTCalculus/WeylCancellation.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-qualitative-weyl-cancellation"
+      ],
+      "line": 154,
+      "module": "BTCalculus.WeylCancellation",
+      "name": "tendsto_phase_average_zero_of_differences",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/BTCalculus/WeylDifferencing.lean",
       "kind": "def",
@@ -107548,6 +107668,7 @@
         "BTCalculus.Transducer",
         "BTCalculus.TransducerComposition",
         "BTCalculus.Trit",
+        "BTCalculus.WeylCancellation",
         "BTCalculus.WeylDifferencing",
         "BTCalculus.WordSimp",
         "BTCalculus.WordSimpNewman",
@@ -108374,6 +108495,20 @@
           "id": "BTC-trit-kleene",
           "statement": "Trit is a 3-element Kleene algebra and not a Boolean algebra",
           "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "BTCalculus.WeylCancellation": {
+      "declarations": 10,
+      "file": "formal/BTCalculus/WeylCancellation.lean",
+      "imports": [
+        "BTCalculus.WeylDifferencing"
+      ],
+      "ledger": [
+        {
+          "id": "BTA-qualitative-weyl-cancellation",
+          "statement": "Kernel-checked formalization of qualitative van der Corput; advisory statement coverage pending. For every complex sequence z and fixed real C>0 with norm(z(n))<=C for all natural n, if for every fixed positive natural d the complex averages (1/N)*sum_(n<N) z(n+d)*conj(z(n)) tend to zero as N tends to infinity, then (1/N)*sum_(n<N) z(n) tends to zero. For a unit-bounded sequence, the full shifted sum differs from its N-d-term overlap correlation by norm at most d for every N,d, including N<d. The normalized finite inequality has right side 2/H+(4/H)*sum_(1<=d<H) norm(correlation(z,N,d))/N for 1<=H<=N. The phase specialization proves cancellation for exp(2*pi*i*f(n)) from cancellation for every positive fixed difference f(n+d)-f(n). All difference-cancellation hypotheses remain explicit. This does not prove the power-phase estimates or BoxRecurrence needed for Paper E Theorem 4.1, and gives no quantitative or growing-depth uniformity.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
     },
@@ -113484,13 +113619,13 @@
     }
   },
   "totals": {
-    "declarations": 8515,
-    "declarations_with_a_ledger_row": 5792,
-    "ledger_rows_naming_a_file": 490,
-    "modules": 347,
+    "declarations": 8525,
+    "declarations_with_a_ledger_row": 5802,
+    "ledger_rows_naming_a_file": 491,
+    "modules": 348,
     "trust": {
       "compiler": 56,
-      "kernel": 8459
+      "kernel": 8469
     }
   }
 }

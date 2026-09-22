@@ -73,6 +73,16 @@ PaperEModularReturn proves Theorem 4.1's exact construction, denominator
 formula, and unboundedness. The infinitude assembly is conditional on
 BoxRecurrence, whose written equidistribution proof is not formalized.
 
+The subsequent analytic-foundation phase adds
+[WeylCancellation.lean](../../formal/BTCalculus/WeylCancellation.lean),
+built on the finite inequality from the concurrent OOEE formalization.
+It proves qualitative van der Corput for bounded complex sequences,
+including the full-sum/overlap boundary conversion and the phase-difference
+specialization. Its separate nine-theorem audit does not enlarge the
+version 0.3.0 paper audit. The
+[proof note](../theory/qualitative_weyl_cancellation_note.md) records the
+precise hypotheses and remaining analytic obligations.
+
 ## Results
 
 Version 0.3.0 has a canonical manuscript, full proof narrative, bibliography,
@@ -94,6 +104,12 @@ still needs a proof of BoxRecurrence; no applicable equidistribution
 theorem was found in the installed Mathlib. The conditional assembly
 is recorded separately from the original unconditional theorem.
 
+Qualitative cancellation now follows formally from vanishing averages of
+every positive fixed-shift correlation. This removes the generic
+differencing lemma from the remaining analytic work. Cancellation for
+the actual rational-power phases and the passage to simultaneous box
+visits are still unproved in Lean.
+
 ## Open questions
 
 Independent statement coverage, written-proof review, and literature priority.
@@ -106,6 +122,8 @@ Publication venue and deposit remain author decisions.
 The notation-completion phase is also **PROMOTE**; it closes the four
 smaller coverage categories. The exact-construction phase for Theorem 4.1
 is also **PROMOTE**, with its analytic recurrence input explicitly open.
+The qualitative-cancellation foundation is **PROMOTE** as formalization
+progress on a classical input, with no new number-theoretic claim.
 Best next question: can the required fixed-power simultaneous-box recurrence
 be proved in Lean? No new arithmetic attack is opened.
 

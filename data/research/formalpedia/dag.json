@@ -550,6 +550,20 @@
         "kernel": 20
       }
     },
+    "BTCalculus.WeylCancellation": {
+      "declarations": 10,
+      "depends_on": [
+        "BTCalculus.WeylDifferencing"
+      ],
+      "file": "formal/BTCalculus/WeylCancellation.lean",
+      "ledger": [
+        "BTA-qualitative-weyl-cancellation"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 10
+      }
+    },
     "BTCalculus.WeylDifferencing": {
       "declarations": 18,
       "depends_on": [],
@@ -3776,9 +3790,9 @@
     }
   },
   "totals": {
-    "edges": 290,
-    "edges_before_reduction": 2341,
-    "ledger_rows_placed": 490,
-    "nodes": 234
+    "edges": 291,
+    "edges_before_reduction": 2342,
+    "ledger_rows_placed": 491,
+    "nodes": 235
   }
 }

@@ -25,6 +25,11 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- qualitative van der Corput cancellation for any bounded complex sequence
+  whose positive fixed-shift correlation averages tend to zero. The proof
+  includes the full-sum/overlap boundary error, normalization, and the
+  exponential phase-difference specialization. Paper E's actual power-phase
+  cancellation and simultaneous-box recurrence remain to be formalized;
 - finite van der Corput differencing for bounded complex sequences, with
   exact overlap correlations and constants 2 and 4; the odd-lattice
   exponential-sum specialization includes its unit-modulus and phase
