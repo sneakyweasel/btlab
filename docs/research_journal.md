@@ -1,5 +1,24 @@
 # Research journal
 
+## 2026-09-22 -- Paper E local statement coverage completed
+
+- **Scope:** Audit the existing manuscript, without opening a new direction.
+  All sixteen numbered statements have been compared with their Lean
+  declarations, retaining their signs, hypotheses and quantifiers.
+- **Repair:** Section 7.1's sparse-set example requires 0<kappa<1 and
+  positive indices. `SublinearCountingMass` proves distinctness, infinitude,
+  the floor(X^kappa) lower count for every nonnegative real cutoff, and
+  finite reciprocal mass. These are classical facts, not a novelty claim.
+- **Coverage:** `PaperECompletion` now proves the full rational-value table
+  and wraps positivity and the actual ternary denominator for terminating
+  global codes. Proposition 7.2's prefix-free property was already covered.
+- **Validation:** The eleven added theorems pass their axiom audit with only
+  propext, Classical.choice and Quot.sound. Paper E's selected audit has
+  59 declarations and all 177147 certificate rows pass the exact verifier.
+  Version 0.7.1 preserves the numbered results and quantitative constants.
+- **Boundary:** Independent review remains. The effective OOE theorem's
+  ledger promotion awaits permission for its own Jev advisory check.
+
 ## 2026-09-22 -- Effective OOE count and bounded witness fully formalized
 
 - **Target and result:** Closed Q4 and Q5 of the existing effective modular-return

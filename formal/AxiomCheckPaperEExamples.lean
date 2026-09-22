@@ -1,0 +1,13 @@
+import Problems.Juggler.PaperECompletion
+
+#print axioms BTCalculus.SublinearCountingMass.sequence_pos
+#print axioms BTCalculus.SublinearCountingMass.sequence_strictMono
+#print axioms BTCalculus.SublinearCountingMass.sequence_le_cutoff
+#print axioms BTCalculus.SublinearCountingMass.counting_lower_bound
+#print axioms BTCalculus.SublinearCountingMass.reciprocal_sequence_bound
+#print axioms BTCalculus.SublinearCountingMass.summable_reciprocal_sequence
+#print axioms BTCalculus.SublinearCountingMass.support_infinite
+#print axioms BTCalculus.SublinearCountingMass.summable_reciprocal_support
+#print axioms BTCalculus.SublinearCountingMass.sublinear_counting_finite_mass
+#print axioms Problems.Juggler.PaperECompletion.example22_code_table
+#print axioms Problems.Juggler.PaperECompletion.terminating_code_positive_ternary_denominator

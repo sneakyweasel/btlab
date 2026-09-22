@@ -78014,7 +78014,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 21,
+      "line": 22,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "itinerary_append_last",
       "trust": "kernel"
@@ -78026,7 +78026,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 28,
+      "line": 29,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "codeRemainder",
       "trust": "kernel"
@@ -78038,7 +78038,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 32,
+      "line": 33,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "seriesTerm",
       "trust": "kernel"
@@ -78050,7 +78050,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 36,
+      "line": 37,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "seriesTerm_eq_remainder_sub",
       "trust": "kernel"
@@ -78062,7 +78062,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 58,
+      "line": 59,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "norm_three",
       "trust": "kernel"
@@ -78074,7 +78074,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 61,
+      "line": 62,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "norm_two",
       "trust": "kernel"
@@ -78086,7 +78086,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 64,
+      "line": 65,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "codeRemainder_norm",
       "trust": "kernel"
@@ -78098,7 +78098,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 72,
+      "line": 73,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "codeRemainder_tendsto",
       "trust": "kernel"
@@ -78110,7 +78110,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 78,
+      "line": 79,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "seriesTerm_norm",
       "trust": "kernel"
@@ -78122,7 +78122,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 84,
+      "line": 85,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "series_partial_sum",
       "trust": "kernel"
@@ -78134,7 +78134,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 93,
+      "line": 94,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "code_hasSum_series",
       "trust": "kernel"
@@ -78146,7 +78146,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 103,
+      "line": 104,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "oddCount_eq_earlier_odds",
       "trust": "kernel"
@@ -78158,7 +78158,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 114,
+      "line": 115,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "OddTime",
       "trust": "kernel"
@@ -78170,7 +78170,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 117,
+      "line": 118,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "code_hasSum_odd_times",
       "trust": "kernel"
@@ -78182,7 +78182,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 138,
+      "line": 139,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "wordFrequency",
       "trust": "kernel"
@@ -78194,7 +78194,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 141,
+      "line": 142,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "codeFrequency",
       "trust": "kernel"
@@ -78206,7 +78206,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 145,
+      "line": 146,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "frequency_eq",
       "trust": "kernel"
@@ -78218,7 +78218,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 150,
+      "line": 151,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "frequency_limit_iff",
       "trust": "kernel"
@@ -78230,7 +78230,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 156,
+      "line": 157,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "all_frequency_limits_iff",
       "trust": "kernel"
@@ -78242,7 +78242,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 168,
+      "line": 169,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "real_exponent_of_integer_powers",
       "trust": "kernel"
@@ -78254,7 +78254,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 181,
+      "line": 182,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "ancestor_density_real",
       "trust": "kernel"
@@ -78266,7 +78266,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 188,
+      "line": 189,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "log_exponent_of_power_ceiling",
       "trust": "kernel"
@@ -78278,7 +78278,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 200,
+      "line": 201,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "certificate_log_ceiling",
       "trust": "kernel"
@@ -78290,7 +78290,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 215,
+      "line": 216,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "FullPrefixTree.frontier",
       "trust": "kernel"
@@ -78302,7 +78302,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 220,
+      "line": 221,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "prefix_frontiers_disjoint",
       "trust": "kernel"
@@ -78314,7 +78314,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 230,
+      "line": 231,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "full_prefix_tree_masses",
       "trust": "kernel"
@@ -78326,7 +78326,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 259,
+      "line": 260,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "StoppingWord",
       "trust": "kernel"
@@ -78338,7 +78338,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 261,
+      "line": 262,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "stoppingEquiv",
       "trust": "kernel"
@@ -78350,7 +78350,7 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 281,
+      "line": 282,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "stopping_hasSum",
       "trust": "kernel"
@@ -78362,9 +78362,33 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "line": 302,
+      "line": 303,
       "module": "Problems.Juggler.PaperECompletion",
       "name": "stopping_word_masses",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every entry of the rational-value table in Example 2.2, together with its collision.",
+      "file": "formal/Problems/Juggler/PaperECompletion.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-formal-notation-bridges"
+      ],
+      "line": 317,
+      "module": "Problems.Juggler.PaperECompletion",
+      "name": "example22_code_table",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The final assertion of Example 2.2 retains positivity and the actual ternary denominator.",
+      "file": "formal/Problems/Juggler/PaperECompletion.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-formal-notation-bridges"
+      ],
+      "line": 338,
+      "module": "Problems.Juggler.PaperECompletion",
+      "name": "terminating_code_positive_ternary_denominator",
       "trust": "kernel"
     },
     {
@@ -111676,6 +111700,126 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/BTCalculus/SublinearCountingMass.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 18,
+      "module": "BTCalculus.SublinearCountingMass",
+      "name": "sequence",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/SublinearCountingMass.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 20,
+      "module": "BTCalculus.SublinearCountingMass",
+      "name": "support",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/SublinearCountingMass.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 22,
+      "module": "BTCalculus.SublinearCountingMass",
+      "name": "counting",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/SublinearCountingMass.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 24,
+      "module": "BTCalculus.SublinearCountingMass",
+      "name": "sequence_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/SublinearCountingMass.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 29,
+      "module": "BTCalculus.SublinearCountingMass",
+      "name": "sequence_strictMono",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/SublinearCountingMass.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 41,
+      "module": "BTCalculus.SublinearCountingMass",
+      "name": "sequence_le_cutoff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every real cutoff has at least the displayed sublinear number of distinct positive terms.",
+      "file": "formal/BTCalculus/SublinearCountingMass.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 51,
+      "module": "BTCalculus.SublinearCountingMass",
+      "name": "counting_lower_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/SublinearCountingMass.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 63,
+      "module": "BTCalculus.SublinearCountingMass",
+      "name": "reciprocal_sequence_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The reciprocal series converges, although the counting function has power growth.",
+      "file": "formal/BTCalculus/SublinearCountingMass.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 73,
+      "module": "BTCalculus.SublinearCountingMass",
+      "name": "summable_reciprocal_sequence",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/SublinearCountingMass.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 85,
+      "module": "BTCalculus.SublinearCountingMass",
+      "name": "support_infinite",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/SublinearCountingMass.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 88,
+      "module": "BTCalculus.SublinearCountingMass",
+      "name": "summable_reciprocal_support",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A positive infinite set can have any prescribed sublinear power lower count and finite mass.",
+      "file": "formal/BTCalculus/SublinearCountingMass.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 94,
+      "module": "BTCalculus.SublinearCountingMass",
+      "name": "sublinear_counting_finite_mass",
+      "trust": "kernel"
+    },
+    {
       "doc": "The derivative is positive and decreasing on the positive half-line.",
       "file": "formal/BTCalculus/SublinearPowerCancellation.lean",
       "kind": "theorem",
@@ -113591,6 +113735,7 @@
         "BTCalculus.SecondDerivative",
         "BTCalculus.Select",
         "BTCalculus.Semantics",
+        "BTCalculus.SublinearCountingMass",
         "BTCalculus.SublinearPowerCancellation",
         "BTCalculus.Transducer",
         "BTCalculus.TransducerComposition",
@@ -114569,6 +114714,12 @@
       "imports": [
         "BTCalculus.Integral"
       ],
+      "ledger": []
+    },
+    "BTCalculus.SublinearCountingMass": {
+      "declarations": 12,
+      "file": "formal/BTCalculus/SublinearCountingMass.lean",
+      "imports": [],
       "ledger": []
     },
     "BTCalculus.SublinearPowerCancellation": {
@@ -118789,9 +118940,10 @@
       ]
     },
     "Problems.Juggler.PaperECompletion": {
-      "declarations": 30,
+      "declarations": 32,
       "file": "formal/Problems/Juggler/PaperECompletion.lean",
       "imports": [
+        "BTCalculus.SublinearCountingMass",
         "Problems.Collatz.PreimageBalance",
         "Problems.Collatz.PreimageCertificate12",
         "Problems.Juggler.CollatzMoments",
@@ -119986,13 +120138,13 @@
     }
   },
   "totals": {
-    "declarations": 9034,
-    "declarations_with_a_ledger_row": 6203,
+    "declarations": 9048,
+    "declarations_with_a_ledger_row": 6205,
     "ledger_rows_naming_a_file": 516,
-    "modules": 380,
+    "modules": 381,
     "trust": {
       "compiler": 56,
-      "kernel": 8978
+      "kernel": 8992
     }
   }
 }

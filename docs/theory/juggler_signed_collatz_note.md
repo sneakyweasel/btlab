@@ -2,7 +2,7 @@
 title: "The Juggler Map and the 3n±1 Maps"
 subtitle: "Exact Coding and Arithmetic Obstructions"
 author: Philippe Cochin
-date: "22 September 2026 · Version 0.7.0"
+date: "22 September 2026 · Version 0.7.1"
 ---
 
 ## Abstract
@@ -115,7 +115,7 @@ floors nor the analytic estimates in [B].
 
 ### 1.2. Proof status
 
-This is the living preprint, version 0.7.0. It has not been
+This is the living preprint, version 0.7.1. It has not been
 deposited or independently refereed. Mathematical priority for the
 signed adaptation and the isolated obstruction results remains subject
 to specialist review.
@@ -756,9 +756,9 @@ Its reciprocal mass has the uniform lower bound
 \(m/(m+1)^2\) used in [C]. The code preserves neither these
 ordinary heights nor their reciprocal weights.
 
-A lower bound \(N(X)\gg X^\kappa\) with \(\kappa<1\) alone
+A lower bound \(N(X)\gg X^\kappa\) with \(0<\kappa<1\) alone
 cannot force divergent reciprocal mass. For example the
-distinct integers \(\lfloor j^{1/\kappa}\rfloor\) have
+distinct integers \(\lfloor j^{1/\kappa}\rfloor\), \(j\ge1\), have
 count at least \(\lfloor X^\kappa\rfloor\) and convergent
 reciprocal sum. Theorem 5.1 therefore supplies no missing
 harmonic estimate for a fate-class argument.
@@ -911,7 +911,8 @@ the existing proofs without changing their hypotheses.
 | Series (2.4) | `PaperECompletion.code_hasSum_odd_times` |
 | Codes and cylinders | `CollatzPadic.code_eq_iff`, `code_cylinder_eq` |
 | Corollary 2.3 | `PaperECompletion.all_frequency_limits_iff` |
-| Example 2.2 | `CollatzPadic.code_three_cleared`, `code_not_injective` |
+| Example 2.2, full table | `PaperECompletion.example22_code_table` |
+| Terminating rational codes | `PaperECompletion.terminating_code_positive_ternary_denominator` |
 | Lemma 3.1 | `CollatzPadic.iterate_le_of_code_eq` |
 | Theorem 3.2 | `CollatzPadic.periodic_bridge` |
 | Theorem 4.1, box to orbit | `PaperEModularReturn.modular_return_of_box` |
@@ -933,11 +934,12 @@ the existing proofs without changing their hypotheses.
 | Theorem 6.1 | `PreimageBalance.certificate_power_ceiling`, `rate_lt_of_rows`, `rate_lt_of_plus_rows` |
 | Logarithmic ceiling | `PaperECompletion.certificate_log_ceiling` |
 | Proposition 7.1 | `BackwardMass.backward_mass_counterexample` |
+| Section 7.1, sublinear count and finite mass | `SublinearCountingMass.sublinear_counting_finite_mass` |
 | Finite complete trees | `PaperECompletion.full_prefix_tree_masses` |
 | Proposition 7.2 | `CollatzMoments.complete_family_moment_loss`, `PaperECompletion.stopping_word_masses` |
 
 AxiomCheckJugglerCollatzPaper.lean prints the dependencies
-of the 56 selected declarations. The permitted logical
+of the 59 selected declarations. The permitted logical
 dependencies are propext, Classical.choice, and Quot.sound.
 No additional logical axiom or native-evaluation trust extension
 belongs to this paper's selected theorem audit. Theorem 4.1's
@@ -949,7 +951,7 @@ the prose is a separate responsibility.
 
 This appendix proves Theorem 4.4. Write \(e(x)=\exp(2\pi i x)\),
 \(s=1+2Mt\), \(u=\lfloor s^{9/2}\rfloor\), and
-\(v=\lfloor s^{9/4}\rfloor\). The selected 56-declaration audit includes
+\(v=\lfloor s^{9/4}\rfloor\). The selected 59-declaration audit includes
 its complete counting and witness conclusions. The written route below
 uses [AR24]; the formal route derives its own sufficient derivative tests.
 

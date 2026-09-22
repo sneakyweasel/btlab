@@ -85,6 +85,7 @@ BUILD_INPUTS = [
     "formal/AxiomCheckFejerBox.lean", "formal/AxiomCheckFejerBox.expected",
     "literature/arias-de-reyna-2024-explicit-derivative-estimate.json",
     "formal/AxiomCheckPaperECorollaries.lean", "formal/AxiomCheckPaperECorollaries.expected",
+    "formal/AxiomCheckPaperEExamples.lean", "formal/AxiomCheckPaperEExamples.expected",
     "LICENSE", "pyproject.toml", REPORT,
     "tests/unit/test_paper_e_release.py",
     "juggler_review/zenodo_paper_e/README.md",
@@ -95,7 +96,7 @@ KIT = "juggler_review/zenodo_paper_e"
 DEPOSIT_PDF = f"{KIT}/Juggler_and_signed_Collatz.pdf"
 SOURCE_ZIP = f"{KIT}/Sources_and_certificate.zip"
 PDF_EXPORTS = [DEPOSIT_PDF]
-VERSION = "0.7.0"
+VERSION = "0.7.1"
 #: Zenodo takes the bare identifier, not the URL, beside the creator's name.
 ORCID = "0009-0004-1939-3382"
 

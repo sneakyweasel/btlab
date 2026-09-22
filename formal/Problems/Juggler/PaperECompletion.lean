@@ -4,6 +4,7 @@ import Problems.Collatz.PreimageCertificate12
 import Problems.Collatz.PreimageBalance
 import Mathlib.Topology.Algebra.InfiniteSum.Real
 import Mathlib.Topology.Algebra.InfiniteSum.Nonarchimedean
+import BTCalculus.SublinearCountingMass
 
 /-!
 Exact manuscript-facing forms for Paper E: the series code, finite-source
@@ -311,5 +312,36 @@ theorem stopping_word_masses :
   refine ⟨hf, ht.summable, ?_⟩
   rw [ht.tsum_eq]
   exact stopped_moment_le
+
+/-- Every entry of the rational-value table in Example 2.2, together with its collision. -/
+theorem example22_code_table :
+    (code 3 : ℚ_[2]) = 83/27 ∧ (code 5 : ℚ_[2]) = 37/9 ∧
+    (code 11 : ℚ_[2]) = 17/3 ∧ (code 36 : ℚ_[2]) = 8 ∧
+    (code 6 : ℚ_[2]) = 4 ∧ (code 2 : ℚ_[2]) = 2 ∧
+    (code 1 : ℚ_[2]) = 1 ∧ code 4 = code 6 := by
+  have h (n d : ℕ) (hd : floorPower^[d] n = 1) :
+      (code n : ℚ_[2]) = (CollatzRational.codeAt n d : ℚ_[2]) := by
+    rw [code_eq_terminatingCode ⟨d, hd⟩,
+      CollatzRational.terminatingCode_eq_codeAt ⟨d, hd⟩ hd]
+  have h3 := h 3 6 (by decide +kernel)
+  have h5 := h 5 5 (by decide +kernel)
+  have h11 := h 11 4 (by decide +kernel)
+  have h36 := h 36 3 (by decide +kernel)
+  have h6 := h 6 2 (by decide +kernel)
+  have h2 := h 2 1 (by decide +kernel)
+  have h1 := h 1 0 (by decide +kernel)
+  norm_num [CollatzRational.codeAt, CollatzRational.pullbackWord,
+    CollatzRational.pullback, itinerary, floorPower, bit] at h3 h5 h11 h36 h6 h2 h1
+  exact ⟨h3, h5, h11, h36, h6, h2, h1, code_four.trans code_six.symm⟩
+
+/-- The final assertion of Example 2.2 retains positivity and the actual ternary denominator. -/
+theorem terminating_code_positive_ternary_denominator {n : ℕ} (hn : ReachesOne n) :
+    ∃ q : ℚ, (code n : ℚ_[2]) = (q : ℚ_[2]) ∧ 0 < q ∧
+      ∃ d : ℕ, floorPower^[d] n = 1 ∧ (q.den : ℤ) ∣ (3 : ℤ)^oddCount (itinerary n d) := by
+  let d := Nat.find hn
+  have hd : floorPower^[d] n = 1 := Nat.find_spec hn
+  obtain ⟨hall, hpos, _⟩ := CollatzRational.terminating_bridge hn
+  exact ⟨CollatzRational.terminatingCode n hn, code_eq_terminatingCode hn,
+    hpos, d, hd, (hall d hd).2⟩
 
 end Problems.Juggler.PaperECompletion

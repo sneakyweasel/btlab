@@ -1,0 +1,19 @@
+'BTCalculus.SublinearCountingMass.sequence_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SublinearCountingMass.sequence_strictMono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SublinearCountingMass.sequence_le_cutoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SublinearCountingMass.counting_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SublinearCountingMass.reciprocal_sequence_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SublinearCountingMass.summable_reciprocal_sequence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'BTCalculus.SublinearCountingMass.support_infinite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.SublinearCountingMass.summable_reciprocal_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'BTCalculus.SublinearCountingMass.sublinear_counting_finite_mass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.PaperECompletion.example22_code_table' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperECompletion.terminating_code_positive_ternary_denominator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

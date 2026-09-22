@@ -28,6 +28,9 @@ import Problems.JugglerCollatzPaper
 #print axioms Problems.Juggler.PaperECompletion.certificate_log_ceiling
 #print axioms Problems.Juggler.PaperECompletion.full_prefix_tree_masses
 #print axioms Problems.Juggler.PaperECompletion.stopping_word_masses
+#print axioms Problems.Juggler.PaperECompletion.example22_code_table
+#print axioms Problems.Juggler.PaperECompletion.terminating_code_positive_ternary_denominator
+#print axioms BTCalculus.SublinearCountingMass.sublinear_counting_finite_mass
 #print axioms Problems.Juggler.PaperEModularReturn.modular_return_of_box
 #print axioms Problems.Juggler.PaperEModularReturn.runCode_den
 #print axioms Problems.Juggler.PaperEModularReturn.runCode_den_gt

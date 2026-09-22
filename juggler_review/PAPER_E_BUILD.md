@@ -1,7 +1,7 @@
 # Paper E: living manuscript, checks, and publication package
 
 **The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions.**
-Version 0.7.0, 22 September 2026. Local preprint; no deposit or DOI assigned.
+Version 0.7.1, 22 September 2026. Local preprint; no deposit or DOI assigned.
 
 Canonical source: [juggler_signed_collatz_note.md](juggler_signed_collatz_note.md).
 Edit that source, never its generated reviewer copy or TeX.
@@ -76,7 +76,7 @@ The integration suite automatically discovers build_paper_e.py.
   prescribed even-run residues, including the finite expansion threshold.
 - Mass and stopping examples: separately mapped to their compiled statements.
 
-The combined audit selects 56 declarations and permits only propext,
+The combined audit selects 59 declarations and permits only propext,
 Classical.choice, and Quot.sound. It builds Problems.JugglerCollatzPaper,
 then executes AxiomCheckJugglerCollatzPaper.lean and checks all outputs.
 The finite checker independently recomputes every certificate row, all
@@ -116,10 +116,16 @@ consistent; it is not an acceptance decision.
 
 Theorem 4.4's effective OOE counting error and first-witness bound are
 now fully kernel-checked, uniformly in the modulus. The selected audit
-has 56 declarations, including the exact predicate, both counting errors,
+now has 59 declarations, including the exact predicate, both counting errors,
 the positive count and actual bounded witness, plus the two quantitative
 analytic inputs. The formal route derives sufficient finite derivative
 tests independently of the exact external formula used in Appendix C.
 The source archive includes every transitive local proof dependency and
 the complete 23-theorem OOEEffectiveReturn audit. Independent mathematical
 review remains open.
+
+Version 0.7.1 also covers the full rational-value table, the terminating
+code's positive rational denominator, and the existing sublinear-counting
+example. AxiomCheckPaperEExamples.lean audits the eleven added theorems;
+its expected output is included in the source archive. The last example
+requires a real exponent strictly between zero and one and positive indices.

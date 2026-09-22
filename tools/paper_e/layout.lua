@@ -18,6 +18,9 @@ end
 
 function Table(el)
   -- The proof map contains long declaration names; make them breakable at readable size.
+  if #el.colspecs == 2 then
+    el.colspecs = {{pandoc.AlignLeft, 0.36}, {pandoc.AlignLeft, 0.64}}
+  end
   return {pandoc.RawBlock('latex', '\\begingroup\\small'), el,
           pandoc.RawBlock('latex', '\\endgroup')}
 end

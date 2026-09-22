@@ -1,6 +1,6 @@
 # Paper E: reviewer packet and living review record
 
-Version 0.7.0, 22 September 2026. Canonical manuscript:
+Version 0.7.1, 22 September 2026. Canonical manuscript:
 [The Juggler Map and the 3n±1 Maps](juggler_signed_collatz_note.md).
 Build and updates: [PAPER_E_BUILD.md](PAPER_E_BUILD.md).
 
@@ -24,13 +24,16 @@ Build and updates: [PAPER_E_BUILD.md](PAPER_E_BUILD.md).
 | Paper item | Evidence | Review limitation |
 | --- | --- | --- |
 | 2.1, 2.3 | CollatzPadic; PaperECompletion series and frequency theorems | No new distribution estimate |
+| 2.2 | PaperECompletion.example22_code_table, terminating_code_positive_ternary_denominator | Rationality and positivity require actual termination |
 | 3.1, 3.2 | CollatzPadic order and return-time proofs | Original start must be periodic |
 | 4.1 | PaperERecurrence.theorem41, with proved BoxRecurrence and exact construction | Fixed parameters; no shrinking-target or growing-depth bound |
 | 4.2 | PaperECorollaries.return_starts_asymptotic, returnStarts_actual, return_in_multiplicative_interval | Counts the explicit family; fixed relative intervals only |
 | 4.3 | PaperECorollaries.signature_parameter_density, modular_return_of_signature, signature_returns_infinite | Fixed residues and modulus; parameter density |
-| 5.1-5.4 | PreimageGrid, Domain, Growth, Density, Certificate12 | Human prose-to-statement review pending |
+| 4.4 | OOEEffectiveReturn.count_error, error_power_bound, exists_bounded_modular_return | Uniform OOE bound only; independent review pending |
+| 5.1-5.4 | PreimageGrid, Domain, Growth, Density, Certificate12 | Local quantifier comparison complete; independent review pending |
 | 6.1 | PreimageBalance | Fixed shifts only; no actual-count upper bound |
 | 7.1 | BackwardMass | Backward closure is weaker than fate closure |
+| Section 7.1, sparse-set example | SublinearCountingMass.sublinear_counting_finite_mass | Positive exponent strictly below one; no fate closure asserted |
 | 7.2 | CollatzMoments; PaperECompletion direct word sums | Bounded identities do not justify unbounded equality |
 
 The machine-readable [validation record](paper_e_validation.json) pins
@@ -121,7 +124,7 @@ The analytic extension passes from continuous Fourier averages to
 weak convergence of empirical measures and half-open boxes with
 Haar-null boundaries, including zero endpoints. The cutoff conversion
 counts distinct starts, using the strict increase of (1+2*M*t)^d.
-The selected paper audit now covers 56 declarations, including Theorem 4.4. A separate audit
+The selected paper audit now covers 59 declarations, including Theorem 4.4. A separate audit
 covers all public theorems in the three new modules.
 
 These are fixed-parameter consequences of classical equidistribution.
@@ -163,7 +166,7 @@ re-running the typesetter.
 Theorem 4.4 and Appendix C reproduce the effective OOE proof and explicit
 constants. Review the derivative sign on both frequency axes, real dyadic
 endpoints, finite initial segment, saturated Fejer arcs and half-open
-box boundaries. The selected 56-declaration Lean audit now includes
+box boundaries. The selected 59-declaration Lean audit now includes
 both errors, the exact predicate, positive count, and actual bounded
 witness. OOEEffectiveReturn's separate audit checks all 23 theorems.
 The formal derivative route proves sufficient estimates independently
@@ -172,7 +175,39 @@ mathematical review remains pending. The OOE word
 has denominator one, so this does not quantify the large-denominator
 construction.
 
+## Local completion audit in 0.7.1
+
+All sixteen numbered statements have been compared with their covering
+declarations, including the examples and lemmas. The comparison retains
+the actual-periodicity hypothesis, both shortcut signs, every positive
+target prime to three, sufficiently large cutoffs, distinct ancestors,
+fixed-parameter versus uniform bounds, and the prefix-free stopping family.
+Appendix B records the declaration map. This is a local coverage judgment,
+not independent peer review.
+
+The full Example 2.2 table and its collision now have one covering theorem.
+A second wrapper connects the global orbit code to a positive rational
+with denominator dividing the actual power of three at a hitting time.
+Section 7.1's existing sparse-set example now has a proof for every real
+exponent strictly between zero and one and every nonnegative real cutoff.
+Its positive distinct terms have finite reciprocal mass. The prose now
+states the missing positive-exponent and positive-index hypotheses.
+A separate eleven-theorem audit covers these additions; the selected
+paper audit has 59 declarations. No numbered result or constant changed.
+
+Theorem 4.4 has a complete kernel-checked proof. Its ledger promotion
+awaits the scoped Jev advisory and local ruling; permission for that
+specific external submission remains pending. No other claim is sent
+under an earlier theorem's approval.
+
 ## Version history
+
+### 0.7.1 - 22 September 2026
+
+Clarified the sparse-set example's hypotheses and made its Lean coverage
+explicit. Added full rational-table and terminating-code wrappers, expanded
+the selected audit from 56 to 59 declarations, and completed the local
+comparison of all sixteen numbered statements with Appendix B.
 
 ### 0.7.0 - 22 September 2026
 

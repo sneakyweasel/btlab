@@ -25,6 +25,12 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- every positive real exponent below one admits an infinite set with
+  count at least floor(X^kappa) at every nonnegative real cutoff and
+  finite reciprocal mass (`BTCalculus.SublinearCountingMass`). Paper E's
+  full rational-value table and terminating positive rational code are
+  covered by `PaperECompletion`; all eleven added theorems are checked in
+  `AxiomCheckPaperEExamples.lean`;
 - exact OOEE target fibres, including both inverse ceilings, candidate-count
   error at most 3, and the nonresonant parity estimate with every source-window
   condition discharged. Its normalized target errors decay as m^(-1/18),

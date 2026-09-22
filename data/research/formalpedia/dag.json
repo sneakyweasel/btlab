@@ -3329,7 +3329,7 @@
       }
     },
     "Problems.Juggler.PaperECompletion": {
-      "declarations": 30,
+      "declarations": 32,
       "depends_on": [
         "Problems.Collatz.PreimageBalance",
         "Problems.Collatz.PreimageCertificate12",
@@ -3342,7 +3342,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 30
+        "kernel": 32
       }
     },
     "Problems.Juggler.PaperECorollaries": {
