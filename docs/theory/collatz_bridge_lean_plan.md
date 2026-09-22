@@ -382,6 +382,15 @@ stationary-point algebra and zero complete mean for odd harmonics.
 The analytic bound awaits independent review and is not a Lean theorem;
 there is no transfer to the growing-depth pressure from this estimate.
 
+`Problems/Juggler/PolynomialDual.lean` identifies the smooth stationary
+dual degree denominator with the signed Collatz cycle gap. An elementary
+kernel proof classifies integral degrees as 3 and 9, occurring only at
+(o,L)=(1,1),(2,3); ninth-degree odd harmonics have zero complete mean.
+This closes direct extension of polynomial periodicity to longer smooth
+word phases, without ruling out perturbative methods or proving an
+actual selected-sum estimate. See
+[the bounded decision](../problems/juggler_polynomial_dual.md).
+
 `Problems/Juggler/CubicInverseCell.lean` now checks the exact perturbed
 phase, derivative quotients and sign factors, and rational exponent
 budget for a first inverse-cell estimate. The mixed-frequency and

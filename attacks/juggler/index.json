@@ -6368,6 +6368,24 @@
       "nk_cluster": "Fixed positive Pell domains cannot preserve an actual OOE return"
     },
     {
+      "id": "polynomial_dual",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_polynomial_dual.md",
+      "data_dir": null,
+      "lean": [
+        "formal/Problems/Juggler/PolynomialDual.lean"
+      ],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "aliases": [],
+      "nk_cluster": "Polynomial stationary duals do not extend to arbitrary word length"
+    },
+    {
       "id": "power_family_reentry",
       "kind": "dossier_only",
       "probe": null,
@@ -6445,6 +6463,20 @@
       "ledger_ids": [],
       "aliases": [],
       "nk_cluster": "Hercher's two m-free refinements: both are walls, and Corollary 29's is that it improves the wrong constant"
+    },
+    {
+      "id": "signed_collatz_paper",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_signed_collatz_paper.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
     },
     {
       "id": "survivor_count_decay",
@@ -6792,6 +6824,7 @@
         "formal/Problems/Juggler/GapTransferWW.lean",
         "formal/Problems/Juggler/CollatzBridge.lean",
         "formal/Problems/Juggler/CollatzRational.lean",
+        "formal/Problems/Juggler/PolynomialDual.lean",
         "formal/Problems/Juggler/CollatzPadic.lean"
       ],
       "conjecture": [],

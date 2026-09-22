@@ -32,6 +32,9 @@ Compiled theorem groups:
 - rational cubic removal for an inverse-cell perturbation, normalized
   third/fourth derivative quotients, their sign factors, and an exact
   exponent budget. The mixed-sum and weighted estimates remain written;
+- the smooth word dual degree is integral exactly at the signed Collatz
+  unit gap: only degrees 3 and 9 occur. The ninth-degree odd harmonics
+  have zero complete mean; no actual itinerary-weight estimate follows;
 - bounded monotone natural sequences are eventually constant;
 - exact lift equations imply monotonicity;
 - eventual stabilization iff lift digits are eventually zero;

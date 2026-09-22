@@ -127,6 +127,12 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   `CubicInverseCell.lean` checks its algebra and exponent budget;
   the analytic proof awaits review. Deeper itinerary weights and
   growing-depth pressure are still open; the short count is not improved.
+  Direct extension to longer smooth polynomial duals is **CLOSE**:
+  [the exact classification](../../docs/problems/juggler_polynomial_dual.md)
+  identifies their degree denominator with the signed Collatz gap.
+  `PolynomialDual.lean` proves that only (o,L)=(1,1),(2,3) give
+  integral degree, namely 3 and 9. The ninth-degree complete cancellation
+  does not control OOE guards or deeper predecessor weights.
   The former unrestricted H/H_q statements are now **REFUTED** by
   [absorbed cylinders](../../docs/problems/juggler_absorbed_cylinder.md):
   one terminating cylinder has at least y/(216 log y) starts on infinitely

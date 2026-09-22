@@ -1,5 +1,38 @@
 # Research journal
 
+## 2026-09-22 -- Polynomial dual degrees are exactly the signed unit-gap exceptions
+
+- **Question:** Can the rational cubic mechanism repeat on the smooth
+  leading phases of deeper Juggler words?
+- **Result:** The stationary dual degree is 3^o/(3^o-2^L), with the
+  same denominator as the signed Collatz fixed-point equation. Its
+  integral cases are exactly (o,L)=(1,1),(2,3), giving degrees 3 and 9.
+  An elementary proof uses coprimality, modulo 8, and two powers of two
+  differing by two; it does not depend on Catalan's theorem.
+- **Exact cancellation:** The ninth phase is r/2-2^23*r^9/(3^18*h^8).
+  For odd h it changes sign after Q=3^18*h^8, so a complete sum over
+  2Q terms vanishes. This supplies no incomplete or selected-sum bound.
+- **Scope and novelty:** The monomial transform and unit-gap list are
+  known. Their identification gives an exact boundary for this proposed
+  extension. OO already has dual degree 9/5; repeating OOE gives 81/17.
+  Actual OOE guards and deeper predecessor weights remain uncontrolled.
+- **Lean:** `PolynomialDual.lean` contains the all-exponent classification,
+  the existing rational pullback fixed-point identity, and phase algebra
+  and cancellation. General real-power differentiation and analytic
+  estimates are not claimed. The ledger label awaits advisory coverage;
+  no external service was called.
+- **Decision:** **CLOSE** direct extension of polynomial periodicity to
+  arbitrary longer smooth word phases. This does not close perturbed
+  cubic phases or frequency averaging. Stop this phase. The next question
+  is quantitative frequency averaging for two actual predecessor cells.
+  [Complete record](problems/juggler_polynomial_dual.md).
+- **Validation:** Full `lake build` passed (9045 jobs). All 15 public
+  theorem audits use only propext, Classical.choice, and Quot.sound.
+  The broader selected run passed 211 tests and skipped 15; its missing
+  ledger test reference is fixed and the concurrently updated Paper E
+  manifest now passes its release check. The final affected ledger,
+  formalpedia, layer, and branch-index run passed all 46 tests.
+
 ## 2026-09-22 -- Exact fibre mass survives in the signed Collatz code
 
 - **Question:** Philippe asked where Juggler's inverse multiplicity goes when

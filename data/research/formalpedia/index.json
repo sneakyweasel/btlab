@@ -74201,6 +74201,234 @@
     },
     {
       "doc": "",
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "kind": "def",
+      "ledger": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "line": 15,
+      "module": "Problems.Juggler.PolynomialDual",
+      "name": "multiplier",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "kind": "def",
+      "ledger": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "line": 17,
+      "module": "Problems.Juggler.PolynomialDual",
+      "name": "dualDegree",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "line": 19,
+      "module": "Problems.Juggler.PolynomialDual",
+      "name": "dualDegree_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "line": 27,
+      "module": "Problems.Juggler.PolynomialDual",
+      "name": "rational_degree_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "line": 39,
+      "module": "Problems.Juggler.PolynomialDual",
+      "name": "pullback_fixed_gap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "line": 46,
+      "module": "Problems.Juggler.PolynomialDual",
+      "name": "gap_coprime",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "line": 51,
+      "module": "Problems.Juggler.PolynomialDual",
+      "name": "integral_degree_iff_gap_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "line": 63,
+      "module": "Problems.Juggler.PolynomialDual",
+      "name": "power_gap_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "line": 79,
+      "module": "Problems.Juggler.PolynomialDual",
+      "name": "unit_gap_classification",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "line": 133,
+      "module": "Problems.Juggler.PolynomialDual",
+      "name": "integral_degree_classification",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "line": 141,
+      "module": "Problems.Juggler.PolynomialDual",
+      "name": "no_integral_degree_after_three",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "line": 147,
+      "module": "Problems.Juggler.PolynomialDual",
+      "name": "rational_degree_classification",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "line": 152,
+      "module": "Problems.Juggler.PolynomialDual",
+      "name": "all_odd_second_degree",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "kind": "def",
+      "ledger": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "line": 155,
+      "module": "Problems.Juggler.PolynomialDual",
+      "name": "ninthPhase",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "line": 158,
+      "module": "Problems.Juggler.PolynomialDual",
+      "name": "ninth_stationary_algebra",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "line": 165,
+      "module": "Problems.Juggler.PolynomialDual",
+      "name": "ninth_stationary_index",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "line": 171,
+      "module": "Problems.Juggler.PolynomialDual",
+      "name": "half_monomial_antiperiodic",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "line": 190,
+      "module": "Problems.Juggler.PolynomialDual",
+      "name": "ninth_odd_antiperiodic",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "line": 196,
+      "module": "Problems.Juggler.PolynomialDual",
+      "name": "ninth_odd_complete_mean_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/Problems/Juggler/PrefixBunched.lean",
       "kind": "theorem",
       "ledger": [
@@ -107052,6 +107280,7 @@
         "Problems.Juggler.PaperBWeightGap",
         "Problems.Juggler.ParityComplexity",
         "Problems.Juggler.PeriodFamily",
+        "Problems.Juggler.PolynomialDual",
         "Problems.Juggler.PrefixBunched",
         "Problems.Juggler.PrefixBunchedEval",
         "Problems.Juggler.PrefixTwoEven",
@@ -109800,6 +110029,21 @@
         }
       ]
     },
+    "Problems.Juggler.PolynomialDual": {
+      "declarations": 19,
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "imports": [
+        "Problems.Juggler.CollatzRational",
+        "Problems.Juggler.OddCubicPhase"
+      ],
+      "ledger": [
+        {
+          "id": "J-polynomial-dual-unit-gap",
+          "statement": "For positive natural o,L with 2^L<3^o, define multiplier=3^o/2^L and dualDegree=3^o/(3^o-2^L) in the rationals. dualDegree=multiplier/(multiplier-1). A natural d equals dualDegree exactly when 3^o=d*(3^o-2^L). Such d exists exactly when 3^o=2^L+1, whose only positive solutions are (o,L)=(1,1),(2,3), giving d=3,9 respectively. Thus there is no natural dual degree for L>3. The rational minus-Collatz pullbackWord fixed-point equation has this same gap: (3^oddCount(w)-2^length(w))*q=wordConst(w). For nonzero real h and real r, h/2*(8*r/(9*h))^9-r*((8*r/(9*h))^8-1)/2 equals ninthPhase(h,r)=r/2-2^23*r^9/(3^18*h^8). For odd natural h, wave(ninthPhase(h,r)) changes sign under r -> r+3^18*h^8 on natural r and its complete sum of 2*3^18*h^8 terms is zero. All these arithmetic and algebra statements are kernel-checked; advisory statement coverage remains pending. This does not assert differentiation of general real powers, an incomplete or parity-selected exponential-sum estimate, or an obstruction to every iteration of the perturbed cubic method.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
+    },
     "Problems.Juggler.PrefixBunched": {
       "declarations": 40,
       "file": "formal/Problems/Juggler/PrefixBunched.lean",
@@ -110873,13 +111117,13 @@
     }
   },
   "totals": {
-    "declarations": 8309,
-    "declarations_with_a_ledger_row": 5586,
-    "ledger_rows_naming_a_file": 482,
-    "modules": 338,
+    "declarations": 8328,
+    "declarations_with_a_ledger_row": 5605,
+    "ledger_rows_naming_a_file": 483,
+    "modules": 339,
     "trust": {
       "compiler": 56,
-      "kernel": 8253
+      "kernel": 8272
     }
   }
 }

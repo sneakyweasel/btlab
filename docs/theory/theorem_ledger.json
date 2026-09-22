@@ -12793,5 +12793,38 @@
    "tests/research/juggler_sequence/test_cubic_inverse_cell.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-polynomial-dual-unit-gap",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For positive natural o,L with 2^L<3^o, define multiplier=3^o/2^L and dualDegree=3^o/(3^o-2^L) in the rationals. dualDegree=multiplier/(multiplier-1). A natural d equals dualDegree exactly when 3^o=d*(3^o-2^L). Such d exists exactly when 3^o=2^L+1, whose only positive solutions are (o,L)=(1,1),(2,3), giving d=3,9 respectively. Thus there is no natural dual degree for L>3. The rational minus-Collatz pullbackWord fixed-point equation has this same gap: (3^oddCount(w)-2^length(w))*q=wordConst(w). For nonzero real h and real r, h/2*(8*r/(9*h))^9-r*((8*r/(9*h))^8-1)/2 equals ninthPhase(h,r)=r/2-2^23*r^9/(3^18*h^8). For odd natural h, wave(ninthPhase(h,r)) changes sign under r -> r+3^18*h^8 on natural r and its complete sum of 2*3^18*h^8 terms is zero. All these arithmetic and algebra statements are kernel-checked; advisory statement coverage remains pending. This does not assert differentiation of general real powers, an incomplete or parity-selected exponential-sum estimate, or an obstruction to every iteration of the perturbed cubic method.",
+  "source": "docs/problems/juggler_polynomial_dual.md",
+  "lean": "Problems/Juggler/PolynomialDual.lean",
+  "decl": [
+   "multiplier",
+   "dualDegree",
+   "dualDegree_eq",
+   "rational_degree_iff",
+   "pullback_fixed_gap",
+   "gap_coprime",
+   "integral_degree_iff_gap_one",
+   "unit_gap_classification",
+   "integral_degree_classification",
+   "no_integral_degree_after_three",
+   "rational_degree_classification",
+   "all_odd_second_degree",
+   "ninthPhase",
+   "ninth_stationary_algebra",
+   "ninth_stationary_index",
+   "half_monomial_antiperiodic",
+   "ninth_odd_antiperiodic",
+   "ninth_odd_complete_mean_zero"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_lean_paths_declares_name.py"
+  ],
+  "related_conjectures": []
  }
 ]

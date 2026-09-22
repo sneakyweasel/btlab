@@ -2949,6 +2949,21 @@
         "kernel": 14
       }
     },
+    "Problems.Juggler.PolynomialDual": {
+      "declarations": 19,
+      "depends_on": [
+        "Problems.Juggler.CollatzRational",
+        "Problems.Juggler.OddCubicPhase"
+      ],
+      "file": "formal/Problems/Juggler/PolynomialDual.lean",
+      "ledger": [
+        "J-polynomial-dual-unit-gap"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 19
+      }
+    },
     "Problems.Juggler.PrefixBunched": {
       "declarations": 40,
       "depends_on": [
@@ -3660,9 +3675,9 @@
     }
   },
   "totals": {
-    "edges": 277,
-    "edges_before_reduction": 2171,
-    "ledger_rows_placed": 482,
-    "nodes": 226
+    "edges": 279,
+    "edges_before_reduction": 2186,
+    "ledger_rows_placed": 483,
+    "nodes": 227
   }
 }
