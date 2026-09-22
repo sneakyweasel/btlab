@@ -25,6 +25,11 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- the complete retained OOEE carry correlation O(P^(3/8)), with its
+  fractional-part contribution bounded by O(P^(5/16)*log(P)). Centered
+  weighted Fejer smoothing at cutoff P^(1/4), actual perturbed curvatures,
+  boundary hits, all cells, and logarithm absorption are proved. The
+  original nested-floor linearization comparison remains to be assembled;
 - finite two-dimensional Fejer discrepancy for arbitrary samples and
   half-open circular boxes, with error 5/sqrt(H+1)+(3+2*log(H))^2*E.
   The actual kernel, tail, saturated arcs, pointwise sandwich, Fourier
@@ -36,11 +41,11 @@ Compiled theorem groups:
 - actual weighted smooth OOEE carry contribution O(P^(3/8)), with at most
   3L+2 carry levels, exact sampled-cell partition, endpoint losses, and
   monotone partial summation. The exact carry identity isolates the
-  remaining sawtooth term; its Fourier estimate is still outstanding;
+  sawtooth term, whose estimate is now supplied by OOEECarryFourier;
 - actual OOEE carry-cell curvature with explicit size and floor conditions,
   uniform in 1<=h<=P^(1/16), and the resulting unweighted cell bound
-  (64*L*sqrt(u)+16/sqrt(u))*P^(3/8). Carry Fourier errors,
-  finite discrepancy, and complete production remain separate obligations;
+  (64*L*sqrt(u)+16/sqrt(u))*P^(3/8). Full joint discrepancy and complete
+  production remain separate obligations;
 - quantitative second-derivative cancellation with explicit constants,
   including negative curvature and the lattice of spacing two. The proof
   counts resonant terms and applies the proved first-derivative estimate

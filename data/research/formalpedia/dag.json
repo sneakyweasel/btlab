@@ -2771,6 +2771,21 @@
         "kernel": 15
       }
     },
+    "Problems.Juggler.OOEECarryFourier": {
+      "declarations": 14,
+      "depends_on": [
+        "BTCalculus.FejerBox",
+        "Problems.Juggler.OOEECarryCells"
+      ],
+      "file": "formal/Problems/Juggler/OOEECarryFourier.lean",
+      "ledger": [
+        "J-ooee-retained-carry-correlation"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 14
+      }
+    },
     "Problems.Juggler.OOEECurvature": {
       "declarations": 35,
       "depends_on": [
@@ -3977,9 +3992,9 @@
     }
   },
   "totals": {
-    "edges": 309,
-    "edges_before_reduction": 2431,
-    "ledger_rows_placed": 504,
-    "nodes": 248
+    "edges": 311,
+    "edges_before_reduction": 2441,
+    "ledger_rows_placed": 505,
+    "nodes": 249
   }
 }

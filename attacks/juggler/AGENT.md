@@ -160,8 +160,11 @@ or the version 0.5.0 manuscript. The constants are not practical search limits.
   are now proved in `OOEECarryCells`: at most 3L+2 carry levels, sampled
   endpoint control, monotone partial summation, and a complete O(P^(3/8))
   bound for the smooth contribution. The exact identity isolates the
-  sawtooth term. Its Fourier errors and finite discrepancy remain open
-  in Lean.
+  sawtooth term. The [complete retained carry correlation](../../docs/theory/juggler_ooee_carry_fourier_note.md)
+  is now O(P^(3/8)) in Lean: centered weighted Fejer smoothing and actual
+  Fourier-perturbed phases bound the carry contribution by
+  O(P^(5/16)*log(P)). The original linearization-error comparison,
+  actual mixed-mode differencing and full joint discrepancy remain open.
   The unconditional Lean exponent remains 100/203, and the actual
   failure-rate estimate remains open.
   Kernel localize CLOSE. Do not open a

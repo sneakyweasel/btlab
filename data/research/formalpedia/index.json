@@ -69266,6 +69266,174 @@
     },
     {
       "doc": "",
+      "file": "formal/Problems/Juggler/OOEECarryFourier.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-retained-carry-correlation"
+      ],
+      "line": 15,
+      "module": "Problems.Juggler.OOEECarryFourier",
+      "name": "modeBound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECarryFourier.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-retained-carry-correlation"
+      ],
+      "line": 17,
+      "module": "Problems.Juggler.OOEECarryFourier",
+      "name": "fourier_phase",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECarryFourier.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-retained-carry-correlation"
+      ],
+      "line": 26,
+      "module": "Problems.Juggler.OOEECarryFourier",
+      "name": "phase_add",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECarryFourier.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-retained-carry-correlation"
+      ],
+      "line": 33,
+      "module": "Problems.Juggler.OOEECarryFourier",
+      "name": "fractional_cell_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECarryFourier.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-retained-carry-correlation"
+      ],
+      "line": 68,
+      "module": "Problems.Juggler.OOEECarryFourier",
+      "name": "carryTerm",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECarryFourier.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-retained-carry-correlation"
+      ],
+      "line": 73,
+      "module": "Problems.Juggler.OOEECarryFourier",
+      "name": "carry_cell_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECarryFourier.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-retained-carry-correlation"
+      ],
+      "line": 113,
+      "module": "Problems.Juggler.OOEECarryFourier",
+      "name": "carry_floor_fibre_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECarryFourier.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-retained-carry-correlation"
+      ],
+      "line": 174,
+      "module": "Problems.Juggler.OOEECarryFourier",
+      "name": "carry_contribution_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECarryFourier.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-retained-carry-correlation"
+      ],
+      "line": 210,
+      "module": "Problems.Juggler.OOEECarryFourier",
+      "name": "carry_scale_log_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECarryFourier.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-retained-carry-correlation"
+      ],
+      "line": 246,
+      "module": "Problems.Juggler.OOEECarryFourier",
+      "name": "carry_scale_power_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The full fractional-part carry term has a smaller power than the smooth contribution.",
+      "file": "formal/Problems/Juggler/OOEECarryFourier.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-retained-carry-correlation"
+      ],
+      "line": 266,
+      "module": "Problems.Juggler.OOEECarryFourier",
+      "name": "carry_contribution_log_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECarryFourier.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-retained-carry-correlation"
+      ],
+      "line": 283,
+      "module": "Problems.Juggler.OOEECarryFourier",
+      "name": "retainedPhase",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The retained carry correlation is bounded after all its actual cells are assembled.",
+      "file": "formal/Problems/Juggler/OOEECarryFourier.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-retained-carry-correlation"
+      ],
+      "line": 287,
+      "module": "Problems.Juggler.OOEECarryFourier",
+      "name": "retained_correlation_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every extra cutoff and dominance requirement is eventually valid for fixed coefficients.",
+      "file": "formal/Problems/Juggler/OOEECarryFourier.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-retained-carry-correlation"
+      ],
+      "line": 314,
+      "module": "Problems.Juggler.OOEECarryFourier",
+      "name": "carry_size_conditions_eventually",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/Problems/Juggler/OOEECurvature.lean",
       "kind": "def",
       "ledger": [
@@ -69682,6 +69850,126 @@
       "line": 461,
       "module": "Problems.Juggler.OOEECurvature",
       "name": "size_conditions_eventually",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFourierModes.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 12,
+      "module": "Problems.Juggler.OOEEFourierModes",
+      "name": "perturbedPhase",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFourierModes.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 15,
+      "module": "Problems.Juggler.OOEEFourierModes",
+      "name": "perturbedD1",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFourierModes.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 18,
+      "module": "Problems.Juggler.OOEEFourierModes",
+      "name": "perturbedD2",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFourierModes.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 21,
+      "module": "Problems.Juggler.OOEEFourierModes",
+      "name": "deriv_perturbed",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFourierModes.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 30,
+      "module": "Problems.Juggler.OOEEFourierModes",
+      "name": "deriv_perturbedD1",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A deliberately coarse constant covers both the original and translated powers.",
+      "file": "formal/Problems/Juggler/OOEEFourierModes.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 40,
+      "module": "Problems.Juggler.OOEEFourierModes",
+      "name": "power_curvature_scale",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A nonzero Fourier mode dominates the negative carry curvature uniformly.",
+      "file": "formal/Problems/Juggler/OOEEFourierModes.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 54,
+      "module": "Problems.Juggler.OOEEFourierModes",
+      "name": "perturbed_curvature",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFourierModes.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 90,
+      "module": "Problems.Juggler.OOEEFourierModes",
+      "name": "perturbed_cell_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFourierModes.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 123,
+      "module": "Problems.Juggler.OOEEFourierModes",
+      "name": "curvature_bound_at_cutoff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFourierModes.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 161,
+      "module": "Problems.Juggler.OOEEFourierModes",
+      "name": "perturbed_cell_power_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The unweighted power modes used to count smoothing errors on these same samples.",
+      "file": "formal/Problems/Juggler/OOEEFourierModes.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 189,
+      "module": "Problems.Juggler.OOEEFourierModes",
+      "name": "power_mode_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Sampled cells require no extra equality at the unsampled right endpoint.",
+      "file": "formal/Problems/Juggler/OOEEFourierModes.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 240,
+      "module": "Problems.Juggler.OOEEFourierModes",
+      "name": "perturbed_samples_bound",
       "trust": "kernel"
     },
     {
@@ -99579,6 +99867,106 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerWeighted.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 20,
+      "module": "BTCalculus.FejerWeighted",
+      "name": "mass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerWeighted.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 22,
+      "module": "BTCalculus.FejerWeighted",
+      "name": "weighted_smooth_error",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerWeighted.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 63,
+      "module": "BTCalculus.FejerWeighted",
+      "name": "smooth_sum_error",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerWeighted.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 73,
+      "module": "BTCalculus.FejerWeighted",
+      "name": "smoothSet_mono",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The error is counted on the actual samples, with boundary hits included.",
+      "file": "formal/BTCalculus/FejerWeighted.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 80,
+      "module": "BTCalculus.FejerWeighted",
+      "name": "arc_smoothing_L1",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Arbitrary bounded complex weights are retained; the zero Fourier mode is separate.",
+      "file": "formal/BTCalculus/FejerWeighted.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 119,
+      "module": "BTCalculus.FejerWeighted",
+      "name": "weighted_arc_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Layer integration transfers a uniform weighted arc estimate to the actual fractional part.",
+      "file": "formal/BTCalculus/FejerWeighted.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 178,
+      "module": "BTCalculus.FejerWeighted",
+      "name": "weighted_fract_of_arcs",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerWeighted.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 214,
+      "module": "BTCalculus.FejerWeighted",
+      "name": "weighted_fract_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Centering separates the zero mode, which cancels in a carry difference.",
+      "file": "formal/BTCalculus/FejerWeighted.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 228,
+      "module": "BTCalculus.FejerWeighted",
+      "name": "weighted_arc_centered",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerWeighted.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 269,
+      "module": "BTCalculus.FejerWeighted",
+      "name": "weighted_centered_fract_bound",
+      "trust": "kernel"
+    },
+    {
       "doc": "The empirical distribution of the first N+1 samples.",
       "file": "formal/BTCalculus/FourierBoxCounting.lean",
       "kind": "def",
@@ -110679,6 +111067,7 @@
         "BTCalculus.FejerArc",
         "BTCalculus.FejerBox",
         "BTCalculus.FejerKernel",
+        "BTCalculus.FejerWeighted",
         "BTCalculus.FourierBoxCounting",
         "BTCalculus.FourierBoxRecurrence",
         "BTCalculus.FourierDiscrepancy",
@@ -111050,6 +111439,14 @@
       "file": "formal/BTCalculus/FejerKernel.lean",
       "imports": [
         "BTCalculus.FourierBoxCounting"
+      ],
+      "ledger": []
+    },
+    "BTCalculus.FejerWeighted": {
+      "declarations": 10,
+      "file": "formal/BTCalculus/FejerWeighted.lean",
+      "imports": [
+        "BTCalculus.FejerBox"
       ],
       "ledger": []
     },
@@ -112856,7 +113253,9 @@
         "Problems.Juggler.NumericBridge",
         "Problems.Juggler.O7EEEEGap",
         "Problems.Juggler.OOEECarryCells",
+        "Problems.Juggler.OOEECarryFourier",
         "Problems.Juggler.OOEECurvature",
+        "Problems.Juggler.OOEEFourierModes",
         "Problems.Juggler.OddCountMonotone",
         "Problems.Juggler.OddCubicPhase",
         "Problems.Juggler.OddLandingSets",
@@ -115206,6 +115605,21 @@
         }
       ]
     },
+    "Problems.Juggler.OOEECarryFourier": {
+      "declarations": 14,
+      "file": "formal/Problems/Juggler/OOEECarryFourier.lean",
+      "imports": [
+        "BTCalculus.FejerWeighted",
+        "Problems.Juggler.OOEEFourierModes"
+      ],
+      "ledger": [
+        {
+          "id": "J-ooee-retained-carry-correlation",
+          "statement": "Kernel-checked complete retained OOEE carry correlation; advisory statement coverage pending. Use delta, G, and F_(G,eps) from J-ooee-weighted-smooth-carry. Define C_h(x)=(fract(x^(3/2))-fract((x+2h)^(3/2)))*(e(F_(G(x),1)(x))-e(F_(G(x),0)(x))). For natural N, real P>=1, [a,a+2N] contained in [P,2P], 1<=h<=P^(1/16), P^(15/16)>=1024, u>0, abs(v)+abs(w)<=u*P^(3/4)/1024, 3<=P^(1/4), 32u<=P^(3/16), L>=0 and N<=L*P^(7/16), norm(sum_(n<N) C_h(a+2n)) <= (3L+2)*(12*(3+2log(P))*(64L+17)+20L)*P^(5/16). With g(x)=floor((x+2h)^(3/2))-floor(x^(3/2)), norm(sum_(n<N) e(F_(g(a+2n),0)(a+2n))) <= (3L+2)*(4*(64L*sqrt(u)+16/sqrt(u)+1)+420*(64L+17)+20L)*P^(3/8). Finite centered weighted Fejer smoothing, both signs of the actual Fourier-perturbed curvature, cutoff floor(P^(1/4)), sampled-cell endpoint losses, exact partition and logarithm absorption are proved. All size conditions hold eventually for fixed u>0,v,w, uniformly in h and cells. No carry cancellation, smoothing error or count premise is assumed. The retained phase is the one after the written linearization; the original nested-floor error comparison, actual mixed-mode differencing, joint discrepancy and production cutoffs remain separate obligations. OOEEProductionBound and the actual failure-rate estimate are not discharged.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
+    },
     "Problems.Juggler.OOEECurvature": {
       "declarations": 35,
       "file": "formal/Problems/Juggler/OOEECurvature.lean",
@@ -115219,6 +115633,14 @@
           "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
+    },
+    "Problems.Juggler.OOEEFourierModes": {
+      "declarations": 12,
+      "file": "formal/Problems/Juggler/OOEEFourierModes.lean",
+      "imports": [
+        "Problems.Juggler.OOEECarryCells"
+      ],
+      "ledger": []
     },
     "Problems.Juggler.OddCountMonotone": {
       "declarations": 7,
@@ -116895,13 +117317,13 @@
     }
   },
   "totals": {
-    "declarations": 8790,
-    "declarations_with_a_ledger_row": 5995,
-    "ledger_rows_naming_a_file": 504,
-    "modules": 365,
+    "declarations": 8826,
+    "declarations_with_a_ledger_row": 6009,
+    "ledger_rows_naming_a_file": 505,
+    "modules": 368,
     "trust": {
       "compiler": 56,
-      "kernel": 8734
+      "kernel": 8770
     }
   }
 }

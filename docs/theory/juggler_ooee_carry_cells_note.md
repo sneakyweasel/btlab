@@ -84,11 +84,12 @@ The theorem `carry_decomposition` proves exactly
 
 This is the retained carry phase after the written linearization step;
 it is not the complete original nested-floor correlation. Equation (1)
-bounds the first term of (2). Bounding the second still requires the
-pointwise truncated sawtooth approximation, its total short-interval
-remainder O(P^(5/16)*log(P)), and the nonzero Fourier modes.
-The linearization error, finite differencing, joint discrepancy, and
-actual fibre cutoffs must then be assembled.
+bounds the first term of (2). The subsequent
+[carry Fourier proof](juggler_ooee_carry_fourier_note.md) now bounds the
+second term by O(P^(5/16)*log(P)), using centered Fejer smoothing and
+the actual perturbed modes. The original linearization error, finite
+differencing, joint discrepancy, and actual fibre cutoffs remain to be
+assembled.
 
 The [dependency audit](../../formal/AxiomCheckOOEECarryCells.lean)
 selects all 13 theorems of the two modules. Each uses only

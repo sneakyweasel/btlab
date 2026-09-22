@@ -13438,5 +13438,33 @@
    "tests/tools/test_formalpedia.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-ooee-retained-carry-correlation",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked complete retained OOEE carry correlation; advisory statement coverage pending. Use delta, G, and F_(G,eps) from J-ooee-weighted-smooth-carry. Define C_h(x)=(fract(x^(3/2))-fract((x+2h)^(3/2)))*(e(F_(G(x),1)(x))-e(F_(G(x),0)(x))). For natural N, real P>=1, [a,a+2N] contained in [P,2P], 1<=h<=P^(1/16), P^(15/16)>=1024, u>0, abs(v)+abs(w)<=u*P^(3/4)/1024, 3<=P^(1/4), 32u<=P^(3/16), L>=0 and N<=L*P^(7/16), norm(sum_(n<N) C_h(a+2n)) <= (3L+2)*(12*(3+2log(P))*(64L+17)+20L)*P^(5/16). With g(x)=floor((x+2h)^(3/2))-floor(x^(3/2)), norm(sum_(n<N) e(F_(g(a+2n),0)(a+2n))) <= (3L+2)*(4*(64L*sqrt(u)+16/sqrt(u)+1)+420*(64L+17)+20L)*P^(3/8). Finite centered weighted Fejer smoothing, both signs of the actual Fourier-perturbed curvature, cutoff floor(P^(1/4)), sampled-cell endpoint losses, exact partition and logarithm absorption are proved. All size conditions hold eventually for fixed u>0,v,w, uniformly in h and cells. No carry cancellation, smoothing error or count premise is assumed. The retained phase is the one after the written linearization; the original nested-floor error comparison, actual mixed-mode differencing, joint discrepancy and production cutoffs remain separate obligations. OOEEProductionBound and the actual failure-rate estimate are not discharged.",
+  "source": "docs/problems/juggler_ooee_poor_fibres.md",
+  "lean": "Problems/Juggler/OOEECarryFourier.lean",
+  "decl": [
+   "modeBound",
+   "fractional_cell_bound",
+   "carryTerm",
+   "carry_cell_bound",
+   "carry_floor_fibre_sum",
+   "carry_contribution_bound",
+   "carry_scale_log_bound",
+   "carry_scale_power_bound",
+   "carry_contribution_log_bound",
+   "retainedPhase",
+   "retained_correlation_bound",
+   "carry_size_conditions_eventually"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": []
  }
 ]

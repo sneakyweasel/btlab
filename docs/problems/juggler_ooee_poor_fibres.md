@@ -14,8 +14,10 @@ in Lean. The quantitative second-derivative estimate has explicit
 constants and covers the actual odd lattice. The actual carry-cell curvature
 and unweighted O(P^(3/8)) cell sums are now proved uniformly for
 1<=h<=P^(1/16). The actual carry partition and weighted smooth contribution
-are now formal too, including endpoint losses. The sawtooth term and
-complete correlation estimates remain written.
+are now formal too, including endpoint losses. The fractional-part carry
+term is now O(P^(5/16)*log(P)) in Lean, and the complete retained carry
+correlation is O(P^(3/8)). The original linearization comparison and
+mixed-mode differencing remain to be assembled.
 [Analytic argument](../theory/juggler_ooee_poor_fibre_tail_note.md).
 
 ## Problem
@@ -139,6 +141,15 @@ bound suffice. Scope is sampled-cell partition, weighted sums, and finite
 assembly, stopping before Fourier remainders and full discrepancy.
 Promotion requires a compiled bound without a cell-count or cancellation
 premise; this is met with at most 3L+2 levels and O(P^(3/8)) total norm.
+
+The ninth phase closes the retained carry correlation. Boundary losses
+or Fourier perturbations consuming the exponent margin would falsify it.
+Finite Fejer smoothing at cutoff P^(1/4) replaces the ordinary truncated
+sawtooth series, retaining all actual boundary hits and complex weights.
+Its scope is the perturbed modes, centered smoothing, actual cells and
+retained correlation; it stops before original linearization and full
+fibre production. Promotion requires no assumed carry cancellation or
+smoothing estimate. The three compiled modules meet that criterion.
 
 ## Balanced-ternary formulation
 
@@ -292,6 +303,14 @@ smooth carry bound. All 13 theorems are selected by the dependency audit.
 The exact carry decomposition identifies the remaining sawtooth term.
 [Exact hypotheses and proof](../theory/juggler_ooee_carry_cells_note.md).
 
+[FejerWeighted.lean](../../formal/BTCalculus/FejerWeighted.lean),
+[OOEEFourierModes.lean](../../formal/Problems/Juggler/OOEEFourierModes.lean)
+and [OOEECarryFourier.lean](../../formal/Problems/Juggler/OOEECarryFourier.lean)
+now close the retained carry correlation. The exact finite statement and
+the alternative centered-smoothing proof are in the
+[carry Fourier note](../theory/juggler_ooee_carry_fourier_note.md).
+The dependency audit selects every one of their 29 theorems.
+
 ## Results
 
 In the exhaustive dyadic blocks with exponents 8, 9, 10, 11, the mean
@@ -398,6 +417,15 @@ Both weights have variation at most one. The exact carry identity keeps
 the fractional-part difference explicit, so the full correlation bound
 is not inferred from its smooth part.
 
+**Ninth phase: the complete retained carry correlation is kernel-checked.**
+For H=floor(P^(1/4)), the actual unweighted and phase-weighted nonzero
+Fourier sums are O(P^(5/16)). Weighted centered Fejer smoothing gives
+the carry contribution O(P^(5/16)*log(P)), including integer samples.
+Exact carry-cell partition and logarithm absorption yield O(P^(3/8))
+for the complete retained phase. Added size conditions hold eventually
+for fixed u>0,v,w, uniformly in h<=P^(1/16). The original nested-floor
+correlation still needs its separately bounded linearization loss.
+
 ## Open questions
 
 The first phase proposed a second-moment route. Let H_m be the number
@@ -424,11 +452,11 @@ backward-closed class. Its main analytic ingredient is the actual OOEE
 poor-fibre theorem. The OE production and a uniform weight conversion
 are now formal; the OOEE source-cutoff consequence must also be retained.
 Finite differencing, both derivative tests, and the actual carry-cell
-curvature, carry partition, and weighted smooth sums are now formal too.
-Fourier errors, nonzero carry modes, and finite discrepancy must still
-be checked before the full poor-tail proof. A next bounded question is
-the pointwise carry Fourier remainder and its summed error on the actual
-short odd intervals; qualitative box recurrence does not supply that rate.
+curvature, carry partition, weighted smooth sums, nonzero Fourier modes,
+and the complete retained carry correlation are now formal too. The
+original linearization comparison, actual mixed-mode differencing,
+slow modes, joint discrepancy, poor-target inclusion and physical source
+cutoffs must still be assembled before the full poor-tail proof.
 
 ## Decision
 
@@ -436,9 +464,10 @@ short odd intervals; qualitative box recurrence does not supply that rate.
 assembly yielding contagion at 5/8 and the sufficient Tao threshold 3/8.
 The assembly and its OE input are kernel-checked; the new OOEE analytic
 theorem still awaits independent review and Lean proof. Exactly one best
-next question: can the carry Fourier remainder be proved to have the
-required O(P^(5/16)*log(P)) total error on these short odd intervals?
-This phase stops after the actual weighted smooth carry bound, before that question.
+next question: can the retained carry estimate be transferred to the
+original nested-floor correlation with its O(P^(1/4)) linearization loss,
+then differenced to prove the actual mixed-mode O(P^(13/32)) bound?
+This phase stops after the complete retained carry correlation.
 
 ## Publication assessment
 

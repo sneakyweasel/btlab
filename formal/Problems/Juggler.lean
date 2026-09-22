@@ -220,6 +220,8 @@ import Problems.Juggler.PaperERecurrence
 import Problems.Juggler.PaperECorollaries
 import Problems.Juggler.OOEECurvature
 import Problems.Juggler.OOEECarryCells
+import Problems.Juggler.OOEEFourierModes
+import Problems.Juggler.OOEECarryFourier
 
 /-!
 # Juggler laboratory barrel

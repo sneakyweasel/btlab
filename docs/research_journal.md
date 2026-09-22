@@ -1,5 +1,42 @@
 # Research journal
 
+## 2026-09-22 -- Complete retained OOEE carry correlation
+
+- **Continuation audit:** The preceding turn made verified progress in
+  commit a53063c9. The finite Fejer infrastructure then landed as
+  f664bdf8. This phase uses that committed proof and closes the remaining
+  fractional-part carry contribution on actual short odd intervals.
+- **Target and falsifier:** Prove the retained carry correlation without
+  assumed smoothing or cancellation. Boundary loss or Fourier-mode
+  competition consuming the exponent margin would falsify it. The closed
+  longer-fibre localization and K3 routes are not involved.
+- **Mathematics:** Choose H=floor(P^(1/4)), with smoothing radius
+  1/sqrt(H+1). The actual modes have curvature of size abs(r)*P^(-1/2),
+  uniformly over 1<=abs(r)<=H and h<=P^(1/16). Their finite bound is
+  (64L+16)*P^(5/16), with one endpoint term on sampled carry cells.
+  Weighted arc smoothing retains all boundary hits. Integrating the
+  centered arc estimate gives the actual centered fractional part; its
+  zero modes cancel in the carry difference. Exact partition then gives
+  O(P^(5/16)*log(P)) for the entire carry term. Logarithm absorption and
+  the proved smooth bound yield O(P^(3/8)) for the retained correlation.
+- **Scope:** This is an alternative finite Fejer proof, not a claim to
+  have formalized the ordinary truncated sawtooth series. The three new
+  modules retain every actual cell, endpoint and explicit size condition.
+  Their dependency audit selects all 29 theorems. Advisory statement
+  coverage is pending; no external service was contacted.
+- **Validation:** Full Lean build passes (9073 jobs), and all 29 audited
+  theorems use only propext, Classical.choice and Quot.sound. Integration,
+  ledger, branch/layer registration, formalpedia freshness, text integrity
+  and Paper E checks pass: 193 passed, 15 skipped. Paper E's source archive
+  receives only the shared registry update; manuscript, PDF, TeX and proof
+  report are byte-identical. Concurrent literature edits remain untouched.
+- **Decision:** **PROMOTE** the complete retained carry estimate. Next
+  bounded question: compare it with the original nested-floor correlation
+  using the O(P^(1/4)) linearization loss, then apply finite differencing
+  to the actual mixed modes. This phase stops before that application.
+  OOEEProductionBound, the actual failure rate and termination remain open.
+  [Exact bounds and proof](theory/juggler_ooee_carry_fourier_note.md).
+
 ## 2026-09-22 -- Complete finite Fejer box discrepancy (Q3)
 
 - **Target:** Formalize the audited two-dimensional finite box estimate
