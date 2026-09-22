@@ -105,6 +105,13 @@ exclusion or a proof of FD. A new constraint from actual floor realizations
 would be needed. Derivation and exact checks:
 [Collatz bridge review](problems/juggler_collatz_bridge.md#review-of-22-september-2026-an-exact-orbit-map-into-the-2-adics).
 
+The terminating-basin part is now compiled in `CollatzRational.lean`:
+`terminating_bridge` verifies the rational signed-step identities and
+the actual numerator parity. `terminatingCode_three_not_integer` and
+`terminatingCode_not_injective` prove the two stated counterexamples.
+This formal consolidation does not remove the input termination
+hypothesis or supply an infinite 2-adic construction.
+
 ## Two over-corrections in one week: a right fact rejected for a good-looking reason
 
 Recorded 21 September 2026, after five sources were read at last and three

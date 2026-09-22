@@ -1,5 +1,26 @@
 [
  {
+  "id": "J-rational-terminating-orbit-bridge",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every natural n with a witness h that its actual Juggler orbit reaches 1, terminatingCode n h is a positive rational number independent of the chosen hitting time: whenever J^d(n)=1 it equals codeAt n d, the inverse 3n-1 branch composition along itinerary n d applied to endpoint 1. At every such depth d its reduced denominator divides 3^oddCount(itinerary n d). Its denominator is odd and its reduced numerator has the same parity as n. Writing H for this code on the terminating basin, H(J(n))=minusStep(H(n)) and -H(J(n))=plusStep(-H(n)), where minusStep and plusStep select their rational shortcut branch using reduced-numerator parity. This is a theorem on the terminating basin only; it does not define the full infinite 2-adic code or assert universal termination or ordinary-integer transport.",
+  "source": "docs/problems/juggler_collatz_bridge.md",
+  "lean": "Problems/Juggler/CollatzRational.lean",
+  "decl": [
+   "terminating_bridge",
+   "terminatingCode",
+   "codeAt",
+   "pullbackWord",
+   "pullback",
+   "minusStep",
+   "plusStep"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-pell-ooe-interlacing-obstruction",
   "tag": "EXACT — HUMAN PROOF",
   "source": "docs/problems/juggler_pell_invariant_domain.md",

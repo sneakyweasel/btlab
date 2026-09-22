@@ -1,5 +1,38 @@
 # Research journal
 
+## 2026-09-22 -- Rational Juggler and signed Collatz orbit coding in Lean
+
+- **Objective:** Follow the updated goal by consolidating the exact
+  Juggler / 3n-1 / 3n+1 orbit connection, retaining its arithmetic scope.
+- **Result:** `CollatzRational.terminating_bridge` proves the rational
+  semiconjugacy on the terminating basin. The code is independent of the
+  hitting-time witness, positive, of odd reduced denominator dividing
+  the appropriate power of three, and has the starting integer's parity.
+  It commutes with one rational 3n-1 step; negation gives 3n+1.
+- **Proof:** The existing word constant gives the finite affine identity.
+  The terminal odd tail fixes endpoint 1, proving witness independence.
+  A separate reduction lemma proves numerator parity is preserved when
+  an odd denominator is cancelled. Thus the rational branch is verified.
+- **Exact limits:** Lean also proves H(3)=83/27 is nonintegral and
+  H(4)=H(6)=4 with distinct inputs. The code is defined using an explicit
+  `ReachesOne` witness; neither the full infinite 2-adic construction nor
+  universal termination is asserted.
+- **Artifact:** [CollatzRational.lean](../formal/Problems/Juggler/CollatzRational.lean),
+  registered in the laboratory barrel and layer inventory, with 23
+  declaration checks in [AxiomCheckCollatzRational.expected](../formal/AxiomCheckCollatzRational.expected).
+  All checked dependencies are `propext`, `Classical.choice`, `Quot.sound`.
+- **Validation:** The direct module check, targeted build and final full
+  `lake build` pass (9024 jobs). Layer architecture, integration and
+  theorem-ledger tests give 144 passes and 14 skips. Generated ledger,
+  branch-index and scoped whitespace checks pass.
+- **Decision:** **PROMOTE** the local formal consolidation. The arithmetic
+  integer-transport shortcut stays **CLOSE**, and cumulative pressure
+  remains **PARK**. No analytic or cycle bound has changed.
+- **Coverage:** The new ledger row retains its written-proof tag pending
+  the single external Jev check requested from the user. Local compilation
+  and direct signature review are complete; the earlier single-check
+  permission was not reused.
+
 ## 2026-09-22 -- The recent bilinear estimate does not cross the density line
 
 - **Question:** Can Guo--Guo--Jing's Theorem 1.1 bypass the exported

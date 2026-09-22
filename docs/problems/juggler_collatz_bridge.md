@@ -689,3 +689,62 @@ It proves that arbitrary finite modular-return precision does not force
 code integrality, using genuine Juggler prefixes. The question for exact
 cycles inside the finance window remains open; the automatic modular
 cancellation route is CLOSE.
+
+## Lean consolidation of the rational bridge, 22 September 2026
+
+**PROMOTE** the formal consolidation of the terminating-basin statement.
+This phase does not reopen the closed integer-conjugacy attack. The full
+infinite 2-adic construction above is outside its scope.
+
+The module [CollatzRational.lean](../../formal/Problems/Juggler/CollatzRational.lean)
+uses the existing `itinerary`, `ReachesOne` and `CollatzBridge.wordConst`.
+For a finite word w, pullback of an endpoint q applies 2q at an even
+letter and (2q+1)/3 at an odd letter. Induction proves
+\[
+3^{o(w)}\operatorname{pullbackWord}(w,q)
+=2^{|w|}q+A(w).
+\]
+Define `codeAt n d` by endpoint 1 and the actual first d Juggler letters.
+When the orbit has reached 1, every extra letter is odd and fixes that
+endpoint under pullback. Consequently any two actual hitting times give
+the same code. `terminatingCode n h` uses a witness `h : ReachesOne n`;
+it assigns no code to starts whose termination has not been established.
+
+The bundled theorem `CollatzRational.terminating_bridge` states that,
+for every such n and h:
+
+- Every hitting-time witness gives the same rational code.
+- The code is positive. At any hitting depth d its reduced denominator
+  divides 3 raised to the number of odd letters through d.
+- Its reduced denominator is odd and its numerator has the parity of n.
+- One Juggler step corresponds exactly to `minusStep` of the code, and
+  negation corresponds exactly to `plusStep`.
+
+Here `minusStep` and `plusStep` use the parity of the reduced numerator.
+The supporting lemma `parity_of_odd_denominator` proves that cancellation
+of an odd denominator preserves this parity; thus the branch condition
+is proved, rather than imposed on a formal word action.
+
+`plusStep_intCast` identifies this rational extension with the existing
+integer `CollatzBridge.shortcutZ`; `minusStep_intCast` identifies the
+other sign with its negation conjugate on ordinary integers.
+
+Kernel-checked examples are `terminatingCode_three = 83/27`,
+`terminatingCode_four = 4` and `terminatingCode_six = 4`.
+`terminatingCode_three_not_integer` and `terminatingCode_not_injective`
+formalize the two transfer obstructions. The theorem is conditional on
+termination of its input, not on a conjecture about every input. It does
+not turn the known rational orbit into an ordinary-integer Collatz orbit,
+and it does not prove Juggler termination or an escaping trajectory.
+
+The publication barrels and deposited manuscripts are unchanged. This
+module extends the laboratory barrel and reuses the existing word
+constant without introducing a second recurrence for it.
+
+The local module, targeted build and full `lake build` pass (9024 jobs).
+The 23-declaration dependency check uses only `propext`, `Classical.choice`
+and `Quot.sound`. Architecture, integration and ledger checks give
+144 passes and 14 skips.
+The ledger's written-proof tag is temporarily retained pending the
+requested single Jev coverage check; it does not indicate a gap in the
+compiled local proof.

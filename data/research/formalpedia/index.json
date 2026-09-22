@@ -11541,6 +11541,414 @@
       "trust": "kernel"
     },
     {
+      "doc": "Inverse branches of the rational `3n-1` map.",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "def",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 21,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "pullback",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Pull an endpoint back through a prescribed finite word.",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "def",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 26,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "pullbackWord",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Code using the first `d` actual Juggler letters and endpoint `1`.",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "def",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 31,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "codeAt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 33,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "pullbackWord_affine",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 45,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "codeAt_formula",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 52,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "codeAt_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 54,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "codeAt_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 57,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "codeAt_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Appending the fixed terminal tail does not change a code.",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 63,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "codeAt_stable",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Any two genuine hitting-time witnesses give the same rational code.",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 76,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "codeAt_independent",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Rational code on the terminating basin; no value is assigned off that basin.",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "def",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 84,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "terminatingCode",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 87,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "terminatingCode_eq_codeAt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 91,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "reachesOne_step",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 99,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "terminatingCode_pullback",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Parity of a fraction is unchanged by reducing an odd denominator.",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 109,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "parity_of_odd_denominator",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 124,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "pullback_parity",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 154,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "pullbackWord_den_odd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The reduced denominator divides the power of three counting the odd letters.",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 161,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "codeAt_den_dvd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 169,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "terminatingCode_parity",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Rational `3n-1`; on odd-denominator fractions the numerator gives parity.",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "def",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 180,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "minusStep",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Rational `3n+1` with the same parity convention.",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "def",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 184,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "plusStep",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 187,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "plusStep_neg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The rational extension agrees with the existing integer shortcut map.",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 193,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "plusStep_intCast",
+      "trust": "kernel"
+    },
+    {
+      "doc": "On integers, `3n-1` is the existing signed `3n+1` map under negation.",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 206,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "minusStep_intCast",
+      "trust": "kernel"
+    },
+    {
+      "doc": "One actual Juggler step becomes one rational `3n-1` step.",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 212,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "terminatingCode_semiconjugacy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Negating the code gives the corresponding rational `3n+1` step.",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 222,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "terminatingCode_plus_semiconjugacy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 227,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "pullbackWord_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 233,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "terminatingCode_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The complete rational bridge, with an explicit termination hypothesis.",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 237,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "terminating_bridge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 255,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "terminatingCode_three",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 259,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "terminatingCode_four",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 263,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "terminatingCode_six",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A terminating ordinary integer can have a nonintegral rational code.",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 268,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "terminatingCode_three_not_integer",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Distinct terminating starts can have the same rational code.",
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "line": 277,
+      "module": "Problems.Juggler.CollatzRational",
+      "name": "terminatingCode_not_injective",
+      "trust": "kernel"
+    },
+    {
       "doc": "Integer two-sided cell `n^lower \u2264 x < n^upper`.",
       "file": "formal/Problems/Juggler/Corridor.lean",
       "kind": "def",
@@ -95089,6 +95497,7 @@
         "Problems.Juggler.Collapse",
         "Problems.Juggler.CollatzBridge",
         "Problems.Juggler.CollatzBridgeLab",
+        "Problems.Juggler.CollatzRational",
         "Problems.Juggler.Corridor",
         "Problems.Juggler.CriticalCostKernel",
         "Problems.Juggler.CubeCorridor",
@@ -95405,6 +95814,20 @@
         "Problems.Juggler.PaperBCertificateRecursion"
       ],
       "ledger": []
+    },
+    "Problems.Juggler.CollatzRational": {
+      "declarations": 34,
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "imports": [
+        "Problems.Juggler.CollatzBridge"
+      ],
+      "ledger": [
+        {
+          "id": "J-rational-terminating-orbit-bridge",
+          "statement": "For every natural n with a witness h that its actual Juggler orbit reaches 1, terminatingCode n h is a positive rational number independent of the chosen hitting time: whenever J^d(n)=1 it equals codeAt n d, the inverse 3n-1 branch composition along itinerary n d applied to endpoint 1. At every such depth d its reduced denominator divides 3^oddCount(itinerary n d). Its denominator is odd and its reduced numerator has the same parity as n. Writing H for this code on the terminating basin, H(J(n))=minusStep(H(n)) and -H(J(n))=plusStep(-H(n)), where minusStep and plusStep select their rational shortcut branch using reduced-numerator parity. This is a theorem on the terminating basin only; it does not define the full infinite 2-adic code or assert universal termination or ordinary-integer transport.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
     },
     "Problems.Juggler.Corridor": {
       "declarations": 19,
@@ -98982,13 +99405,13 @@
     }
   },
   "totals": {
-    "declarations": 7215,
-    "declarations_with_a_ledger_row": 5294,
-    "ledger_rows_naming_a_file": 468,
-    "modules": 318,
+    "declarations": 7249,
+    "declarations_with_a_ledger_row": 5328,
+    "ledger_rows_naming_a_file": 469,
+    "modules": 319,
     "trust": {
       "compiler": 56,
-      "kernel": 7159
+      "kernel": 7193
     }
   }
 }
