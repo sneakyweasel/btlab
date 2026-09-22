@@ -1,5 +1,30 @@
 # Research journal
 
+## 2026-09-22 -- Effective OOE count and bounded witness fully formalized
+
+- **Target and result:** Closed Q4 and Q5 of the existing effective modular-return
+  branch. `OOEEffectiveReturn` proves the exact floor-residue predicate, both
+  all-M/all-T count errors, the positive count at T=2^2176*M^160, and an actual
+  OOE witness with n<2^4354*M^322. Constants and exponents are unchanged.
+- **Proof:** Concrete Fourier characters feed the proved finite Fejer estimate.
+  Rounded cutoff inequalities, the eight-index threshold loss, a cubic Taylor
+  logarithm bound, and strict natural-number witness arithmetic discharge every
+  remaining quantitative premise. The generic derivative formula cited in the
+  alternative written proof is not claimed as formally reproduced.
+- **Validation:** Full Lean build passed (9085 jobs); all 23 new theorem audits
+  use only standard logical dependencies. Paper E's selected audit now has 56
+  declarations and its exact checker validates all 177147 certificate rows.
+  The targeted suite passed after correcting the ledger's kernel-trust field;
+  the 20 release and trust regression checks pass. All 18 PDF pages were
+  visually reviewed and the source/archive release gate passes.
+- **Publication:** Paper E 0.7.0 includes Theorem 4.4's complete formal proof,
+  updated proof map and full transitive source archive. No external deposit.
+  Independent review remains open. The effective-return ledger promotion awaits
+  separate authorization for its advisory coverage check; earlier permission
+  for the Fourier-mode theorem was not reused.
+- **Decision:** PROMOTE the completed Q1-Q5 chain. Do not open another word,
+  optimize the modulus exponent, or infer a cycle or termination result.
+
 ## 2026-09-22 -- Exact OOEE target fibres and normalized parity
 
 - **Scope:** Complete the retained joint-parity application on its exact

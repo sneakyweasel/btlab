@@ -70460,6 +70460,318 @@
       "trust": "kernel"
     },
     {
+      "doc": "Exact residue selection, including both half-open endpoints.",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 17,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "floor_mod_box_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The existing parameter predicate is exactly the integer-floor count in the theorem.",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 40,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "return_parameter_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The two actual power coordinates that encode the OOE residue guards.",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "def",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 55,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "sample",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 59,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "sample_mem_box",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 78,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "sample_mode",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The finite box estimate specialized to the actual OOE sample, before choosing H.",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 90,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "box_discrepancy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Imposing the orbit threshold removes at most eight parameter indices.",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 122,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "threshold_count_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The explicit Fourier cutoff used for every positive sample length.",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "def",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 150,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "cutoff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 152,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "cutoff_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 158,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "cutoff_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 163,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "cutoff_sqrt_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 178,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "cutoff_rate_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 189,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "cutoff_log_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Q4's normalized box bound, with no lower threshold on M or T beyond positivity.",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 200,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "box_discrepancy_power",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The first explicit error bound for the exact thresholded parameter count.",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 214,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "count_error",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A cubic exponential lower bound absorbs the logarithm with the constant 64.",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 237,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "log_square_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The displayed first error is bounded by the simpler power error.",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 257,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "error_power_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Q4: the all-modulus, all-length quantitative return count.",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 288,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "count_error_power",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The explicit finite search length, uniform in the modulus.",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "def",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 294,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "witnessCutoff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 296,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "witnessCutoff_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 300,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "witnessCutoff_root",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 309,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "error_at_witnessCutoff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "At the explicit cutoff the actual return count is at least T/(8M), hence positive.",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 325,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "count_at_witnessCutoff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A successful thresholded parameter exists strictly before the displayed cutoff.",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 341,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "exists_bounded_parameter",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The parameter cutoff gives the strict bound on the actual natural starting value.",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 351,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "start_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Q5: a quantitatively bounded actual OOE modular return for every positive modulus.",
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "line": 369,
+      "module": "Problems.Juggler.OOEEffectiveReturn",
+      "name": "exists_bounded_modular_return",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
       "kind": "def",
@@ -115471,6 +115783,7 @@
         "Problems.Juggler.OOEESlowModes",
         "Problems.Juggler.OOEESmoothModes",
         "Problems.Juggler.OOEEffectiveModes",
+        "Problems.Juggler.OOEEffectiveReturn",
         "Problems.Juggler.OddCountMonotone",
         "Problems.Juggler.OddCubicPhase",
         "Problems.Juggler.OddLandingSets",
@@ -117980,6 +118293,22 @@
         }
       ]
     },
+    "Problems.Juggler.OOEEffectiveReturn": {
+      "declarations": 26,
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "imports": [
+        "BTCalculus.FejerBox",
+        "Problems.Juggler.OOEEffectiveModes",
+        "Problems.Juggler.PaperECorollaries"
+      ],
+      "ledger": [
+        {
+          "id": "J-effective-ooe-modular-return",
+          "statement": "Kernel-checked effective OOE counting and witness theorem; independent mathematical review and advisory statement coverage remain pending. For all natural M,T>=1, let A_M(T) count 0<=t<T with s=1+2Mt>=16, floor(s^(9/2)) even, and floor(s^(9/4))=1 modulo 2M. Then abs(A_M(T)-T/(4M)) <= [5+128*M^(1/4)*(3+log(T)/16)^2]*T^(63/64)+8 <= 2^14*M^(1/4)*T^(127/128), with natural logarithm. At T=2^2176*M^160 the count is at least T/(8M)>0. Some t<T gives an actual OOE Juggler return with n=s^2<2^4354*M^322, all prefix states at least n, exit strictly greater than n, and both endpoints 1 modulo 2M. The predicate equivalence includes both half-open endpoints and M=1. The Lean proof includes the signed derivative estimates, all cutoff Fourier modes, finite Fejer box discrepancy, dyadic initial segment, cutoff rounding, threshold exclusions, logarithm absorption, and witness extraction; none is assumed as an analytic premise. It uses independently proved third/fifth derivative tests, not a formalization of the exact external Arias de Reyna formula used by the alternative written proof. This is one fixed word; the constants are impractical and the OOE word-code denominator is 1. No effective arbitrary-word, cycle, termination, or infinite-continuation claim is made. Included in Paper E version 0.7.0 and its selected Lean audit.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
+    },
     "Problems.Juggler.OddCountMonotone": {
       "declarations": 7,
       "file": "formal/Problems/Juggler/OddCountMonotone.lean",
@@ -119301,6 +119630,7 @@
         "Problems.Collatz.PreimageCertificate12",
         "Problems.Juggler.CollatzMoments",
         "Problems.Juggler.CollatzPadic",
+        "Problems.Juggler.OOEEffectiveReturn",
         "Problems.Juggler.PaperECompletion",
         "Problems.Juggler.PaperECorollaries",
         "Problems.Juggler.PaperEModularReturn",
@@ -119656,13 +119986,13 @@
     }
   },
   "totals": {
-    "declarations": 9008,
-    "declarations_with_a_ledger_row": 6177,
-    "ledger_rows_naming_a_file": 515,
-    "modules": 379,
+    "declarations": 9034,
+    "declarations_with_a_ledger_row": 6203,
+    "ledger_rows_naming_a_file": 516,
+    "modules": 380,
     "trust": {
       "compiler": 56,
-      "kernel": 8952
+      "kernel": 8978
     }
   }
 }

@@ -2932,6 +2932,22 @@
         "kernel": 45
       }
     },
+    "Problems.Juggler.OOEEffectiveReturn": {
+      "declarations": 26,
+      "depends_on": [
+        "BTCalculus.FejerBox",
+        "Problems.Juggler.OOEEffectiveModes",
+        "Problems.Juggler.PaperECorollaries"
+      ],
+      "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "ledger": [
+        "J-effective-ooe-modular-return"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 26
+      }
+    },
     "Problems.Juggler.OddCubicPhase": {
       "declarations": 19,
       "depends_on": [],
@@ -4124,9 +4140,9 @@
     }
   },
   "totals": {
-    "edges": 323,
-    "edges_before_reduction": 2655,
-    "ledger_rows_placed": 515,
-    "nodes": 258
+    "edges": 326,
+    "edges_before_reduction": 2684,
+    "ledger_rows_placed": 516,
+    "nodes": 259
   }
 }

@@ -2,7 +2,7 @@
 title: "The Juggler Map and the 3n±1 Maps"
 subtitle: "Exact Coding and Arithmetic Obstructions"
 author: Philippe Cochin
-date: "22 September 2026 · Version 0.6.0"
+date: "22 September 2026 · Version 0.7.0"
 ---
 
 ## Abstract
@@ -18,8 +18,7 @@ force that divisibility. We count this constructed family with an exact
 leading constant and prescribe its residues throughout the final even run.
 For the fixed word OOE, we also give an explicit counting error and a
 uniform polynomial first-witness bound in the modulus; this quantitative
-extension is a written proof pending independent review and full Lean
-verification. On the positive integers, we prove that every
+extension has a complete Lean proof, with independent review pending. On the positive integers, we prove that every
 \(3n-1\) target prime to three has at least \(X^{21/25}\) ancestors below
 \(X\), for all sufficiently large \(X\). This signed adaptation uses
 height-corrected inverse-tree inequalities, a closed root domain, and an
@@ -116,19 +115,21 @@ floors nor the analytic estimates in [B].
 
 ### 1.2. Proof status
 
-This is the living preprint, version 0.6.0. It has not been
+This is the living preprint, version 0.7.0. It has not been
 deposited or independently refereed. Mathematical priority for the
 signed adaptation and the isolated obstruction results remains subject
 to specialist review.
 
-Theorems 2.1, 3.2, 4.1, 5.1, and 6.1 and Corollaries 4.2-4.3 have compiled Lean
+Theorems 2.1, 3.2, 4.1, 4.4, 5.1, and 6.1 and Corollaries 4.2-4.3 have compiled Lean
 statements; Appendix B identifies their precise scope. Theorem 4.1 is
 unconditional in Lean: first-derivative estimates, mixed-power cancellation,
 and the Fourier criterion prove its simultaneous-box recurrence input.
-Theorem 4.4 and Appendix C are a separate quantitative extension with a
-written proof. They use the explicitly cited derivative estimate [AR24];
-their complete counting and witness conclusions are not in the selected
-Lean audit. The finite certificate is checked with exact integers
+Theorem 4.4 also has a complete quantitative Lean proof, including
+the finite derivative tests, every cutoff Fourier mode, the half-open
+box estimate, both counting errors, and the bounded witness. Appendix C
+gives an alternative written argument using [AR24]; the formal proof
+independently derives sufficient third- and fifth-derivative estimates
+and does not import the exact external formula. The finite certificate is checked with exact integers
 both in Lean and by an independent Python verifier. The numerical
 search that found its weights is outside the proof. Kernel checking,
 agreement between prose and formal statements, and independent
@@ -451,7 +452,7 @@ A_M(T)=\#\{0\le t<T:s_t\ge16,\quad
  \lfloor s_t^{9/4}\rfloor\equiv1\pmod{2M}\}.
 \]
 
-**Theorem 4.4 (effective OOE returns; written proof).** For every
+**Theorem 4.4 (effective OOE returns).** For every
 \(M,T\ge1\),
 \[
 \begin{split}
@@ -478,8 +479,8 @@ orbit conditions. \(\square\)
 The constants are theoretical bounds, not practical search budgets.
 This OOE word has periodic-word denominator one; Theorem 4.4 does
 not make the large-denominator family of Theorem 4.1 effective.
-Its written analytic proof has passed an internal audit, but independent
-review and complete quantitative Lean verification remain outstanding.
+Both the counting estimate and the actual bounded return are
+kernel-checked. Independent mathematical review remains outstanding.
 
 ## 5. A signed ancestor-count theorem
 
@@ -921,6 +922,9 @@ the existing proofs without changing their hypotheses.
 | Half-open box frequencies | `FourierBoxCounting.tendsto_fract_box_count`; `PowerBoxCounting.tendsto_power_fract_box_count` |
 | Corollary 4.2 | `PaperECorollaries.return_starts_asymptotic`, `returnStarts_actual`, `return_in_multiplicative_interval` |
 | Corollary 4.3 | `PaperECorollaries.signature_parameter_density`, `modular_return_of_signature`, `signature_returns_infinite` |
+| Theorem 4.4, exact predicate and errors | `OOEEffectiveReturn.return_parameter_iff`, `count_error`, `error_power_bound` |
+| Theorem 4.4, positive count and witness | `OOEEffectiveReturn.count_at_witnessCutoff`, `exists_bounded_modular_return` |
+| Quantitative analytic inputs | `OOEEffectiveModes.normalized_mode_bound`; `FejerBox.finite_box_discrepancy` |
 | Lemma 5.2 | `PreimageGrid.count_odd`, `count_doubled_odd`, `count_four` |
 | Lemma 5.3 | `PreimageDomain.closed_domain_for_target` |
 | Lemma 5.4 | `PreimageGrowth.growth_root` |
@@ -933,7 +937,7 @@ the existing proofs without changing their hypotheses.
 | Proposition 7.2 | `CollatzMoments.complete_family_moment_loss`, `PaperECompletion.stopping_word_masses` |
 
 AxiomCheckJugglerCollatzPaper.lean prints the dependencies
-of the 49 selected declarations. The permitted logical
+of the 56 selected declarations. The permitted logical
 dependencies are propext, Classical.choice, and Quot.sound.
 No additional logical axiom or native-evaluation trust extension
 belongs to this paper's selected theorem audit. Theorem 4.1's
@@ -945,10 +949,36 @@ the prose is a separate responsibility.
 
 This appendix proves Theorem 4.4. Write \(e(x)=\exp(2\pi i x)\),
 \(s=1+2Mt\), \(u=\lfloor s^{9/2}\rfloor\), and
-\(v=\lfloor s^{9/4}\rfloor\). Its analytic proof is written mathematics;
-the selected 49-declaration audit covers the earlier qualitative results.
-The finite Fejer estimate has a separate kernel-checked proof, but that
-does not certify the complete quantitative theorem.
+\(v=\lfloor s^{9/4}\rfloor\). The selected 56-declaration audit includes
+its complete counting and witness conclusions. The written route below
+uses [AR24]; the formal route derives its own sufficient derivative tests.
+
+### C.1 Formal proof route
+
+For a sum of N consecutive samples, the finite third-derivative test,
+with derivative magnitude between lambda and 4 lambda, gives
+\[
+12N\max\{\lambda^{1/6},(N/2)^{-1/2},(N\sqrt\lambda)^{-1/2}\}.
+\]
+The fifth-derivative test, with ratio 6, gives
+\[
+7N\max\{\lambda^{1/30},(N/6)^{-1/8},(N\sqrt\lambda)^{-1/8}\}.
+\]
+These are proved by finite differencing from a second-derivative
+estimate, for either constant derivative sign. On real dyadic intervals
+the support extends one lattice step beyond the last sample; the actual
+OOE derivative chains satisfy the bounds throughout that support.
+The module OOEEffectiveModes verifies both frequency axes and obtains
+the dyadic constant 32 and all-length constant 128 used below.
+
+FejerBox proves the pointwise finite half-open box estimate, including
+saturated arcs and boundary hits. OOEEffectiveReturn identifies that
+box with the exact floor residues, chooses the rounded cutoff, removes
+at most eight initial parameters, absorbs the logarithm, and extracts
+the strict witness bound. Its separate audit covers all 23 theorems.
+Thus no analytic cancellation premise remains in Theorem 4.4's Lean
+statement. This does not assert formalization of the precise external
+estimate (C.5).
 
 ### C.2 Explicit analytic input
 

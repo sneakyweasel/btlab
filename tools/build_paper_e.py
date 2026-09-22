@@ -76,6 +76,13 @@ BUILD_INPUTS = [
     "docs/theory/juggler_effective_modular_return_note.md",
     "docs/theory/juggler_effective_modular_return_audit.md",
     "docs/theory/finite_fejer_box_note.md",
+    "docs/theory/higher_derivative_finite_note.md",
+    "docs/theory/juggler_ooe_effective_modes_note.md",
+    "docs/theory/juggler_ooe_effective_return_lean_note.md",
+    "formal/AxiomCheckOOEEffectiveReturn.lean", "formal/AxiomCheckOOEEffectiveReturn.expected",
+    "formal/AxiomCheckOOEEffectiveModes.lean", "formal/AxiomCheckOOEEffectiveModes.expected",
+    "formal/AxiomCheckHigherDerivative.lean", "formal/AxiomCheckHigherDerivative.expected",
+    "formal/AxiomCheckFejerBox.lean", "formal/AxiomCheckFejerBox.expected",
     "literature/arias-de-reyna-2024-explicit-derivative-estimate.json",
     "formal/AxiomCheckPaperECorollaries.lean", "formal/AxiomCheckPaperECorollaries.expected",
     "LICENSE", "pyproject.toml", REPORT,
@@ -88,7 +95,7 @@ KIT = "juggler_review/zenodo_paper_e"
 DEPOSIT_PDF = f"{KIT}/Juggler_and_signed_Collatz.pdf"
 SOURCE_ZIP = f"{KIT}/Sources_and_certificate.zip"
 PDF_EXPORTS = [DEPOSIT_PDF]
-VERSION = "0.6.0"
+VERSION = "0.7.0"
 #: Zenodo takes the bare identifier, not the URL, beside the creator's name.
 ORCID = "0009-0004-1939-3382"
 

@@ -37,12 +37,12 @@
     {
       "path": "docs/theory/PAPER_E_BUILD.md",
       "mode": "text",
-      "sha256": "28ec647a96abea9f508a17b6dc698822a002c37560d9fe749200ee6162ccf656"
+      "sha256": "d546a001d6f641c5eef59a0ec4841fe3583079eedf56df18b5f984da256cb970"
     },
     {
       "path": "docs/theory/finite_fejer_box_note.md",
       "mode": "text",
-      "sha256": "f1d54b3c6b31b6f14fd46ec7c694bb86ece769f2c18244b5d690e9387141dd06"
+      "sha256": "00d3f5803951996c54cfdc557d896066cce80dca19f004aabb7bca65ac84b595"
     },
     {
       "path": "docs/theory/finite_weyl_differencing_note.md",
@@ -60,19 +60,34 @@
       "sha256": "20b0c28bd4360e9a2ed275ccd53db2fa31d0133ed6a6feb7b5cae32ed86584f4"
     },
     {
+      "path": "docs/theory/higher_derivative_finite_note.md",
+      "mode": "text",
+      "sha256": "13e4852b297f796b2cb988dad449cd4da82386be51adbd3016785c9b8c097541"
+    },
+    {
       "path": "docs/theory/juggler_effective_modular_return_audit.md",
       "mode": "text",
-      "sha256": "4509b1b2fd945e72f4cecb078cc459c228d7fe2e971a4cbdeaf3d52737a37126"
+      "sha256": "7731474ce2f03ae03a1a53db241d0f5025d4dd12a528ae89b7338601cec504dc"
     },
     {
       "path": "docs/theory/juggler_effective_modular_return_note.md",
       "mode": "text",
-      "sha256": "087c8a380d87d1bf9c4b540f2c1e0a786f387e1c072500f93a10bf4574587f17"
+      "sha256": "1ab9ce2fac57606173ea1bd94ced90dfe46082cb5e67e6a19ccaf41b3873c76b"
+    },
+    {
+      "path": "docs/theory/juggler_ooe_effective_modes_note.md",
+      "mode": "text",
+      "sha256": "a980c9dce35020bb617782a15eb0cb9da165aa38886056c08d553149ecd054ce"
+    },
+    {
+      "path": "docs/theory/juggler_ooe_effective_return_lean_note.md",
+      "mode": "text",
+      "sha256": "d0a26803477c8f26ef72361706151974f5566a43890d62828421d16534f790a1"
     },
     {
       "path": "docs/theory/juggler_signed_collatz_note.md",
       "mode": "text",
-      "sha256": "20b68c0df5d4a06c5174f84a733bcd8843ce88d375b2770d2ff9244bd0c4b518"
+      "sha256": "3b82703f3c20d8fff18105efc1386916a88ce0e3de3cd0a6c8aaf0331991c16a"
     },
     {
       "path": "docs/theory/mixed_power_cancellation_note.md",
@@ -87,12 +102,12 @@
     {
       "path": "docs/theory/paper_e_review.md",
       "mode": "text",
-      "sha256": "4590244080ac8691dbf08bdc1ac8c6968c800cc3d217655bf37fbad1aad53728"
+      "sha256": "92960789f2e9eb8df8a05de489ce9aaaea808b25949bcd636f47bdd01a6bd356"
     },
     {
       "path": "docs/theory/paper_e_validation.json",
       "mode": "text",
-      "sha256": "1fd84c1275dfe1ab097d483082f52834a76bf8c14440e14a95060213b81b82f8"
+      "sha256": "6e2ad8281ec8e8d96549965ed8ded901ed82c65327c92f00898e5b6a28f7f799"
     },
     {
       "path": "docs/theory/qualitative_weyl_cancellation_note.md",
@@ -100,9 +115,49 @@
       "sha256": "d4a79567707d296f201e9c5b9c81ba9606ad47818b6d5b6c1d0da656faabda90"
     },
     {
+      "path": "formal/AxiomCheckFejerBox.expected",
+      "mode": "text",
+      "sha256": "b288db3c015790a0c5bcd7332653b16cfab5912db8d54d047ab975294966905a"
+    },
+    {
+      "path": "formal/AxiomCheckFejerBox.lean",
+      "mode": "text",
+      "sha256": "f7f4683bb1262d98a19fc19fc909d4588d5941303fcda2956388add6e9ba493e"
+    },
+    {
+      "path": "formal/AxiomCheckHigherDerivative.expected",
+      "mode": "text",
+      "sha256": "c61518907cc18af681cdf4d1364ba30d563f08da347ee410e5db9feeb9fbdf20"
+    },
+    {
+      "path": "formal/AxiomCheckHigherDerivative.lean",
+      "mode": "text",
+      "sha256": "1c0b7806e7f246e883524afd7b890cbe4f3826364b7a6bc517516220f0dbc072"
+    },
+    {
       "path": "formal/AxiomCheckJugglerCollatzPaper.lean",
       "mode": "text",
-      "sha256": "acf79829b1ff441e3266f3f20ef1aec41a81cb84a25d43c7fbc4d95b3f9c7882"
+      "sha256": "4d957b37a7c39243179a0a254a70357bc49ecda5921ea057ce90a8fc4d80be76"
+    },
+    {
+      "path": "formal/AxiomCheckOOEEffectiveModes.expected",
+      "mode": "text",
+      "sha256": "a3b2c4460467c8329be43bd746595f4b1cd0ec35d59990f15d030a1cc7419a3c"
+    },
+    {
+      "path": "formal/AxiomCheckOOEEffectiveModes.lean",
+      "mode": "text",
+      "sha256": "cf1d5f348ff6d41cdfa8aee2e8f82777462d55c94121b807baadb425c132d54f"
+    },
+    {
+      "path": "formal/AxiomCheckOOEEffectiveReturn.expected",
+      "mode": "text",
+      "sha256": "af12831309059153f4faa602148f053c47e935853b1e7b59deeb855a00833aff"
+    },
+    {
+      "path": "formal/AxiomCheckOOEEffectiveReturn.lean",
+      "mode": "text",
+      "sha256": "2ef322b42e339cf4577f9e0279f8a622b6067b57a4b9b4c4e23eb79fcd5224a8"
     },
     {
       "path": "formal/AxiomCheckPaperECorollaries.expected",
@@ -115,6 +170,21 @@
       "sha256": "b473896862e4632f33010ffce03b6cf646e5e8728848cfa7934daf0d76a685f3"
     },
     {
+      "path": "formal/BTCalculus/FejerArc.lean",
+      "mode": "text",
+      "sha256": "a7937534f3bd6931ba473812cc4cede4b8230b0d17f0fd8f184cae6aa643f808"
+    },
+    {
+      "path": "formal/BTCalculus/FejerBox.lean",
+      "mode": "text",
+      "sha256": "4af51030ee09edbabd3d68861fd96b80aed9272523107f1174580547e2612193"
+    },
+    {
+      "path": "formal/BTCalculus/FejerKernel.lean",
+      "mode": "text",
+      "sha256": "473f94342f22d2329f7a8c1fea096cc9933bf5e09d736194f54df5ae2457a4b3"
+    },
+    {
       "path": "formal/BTCalculus/FourierBoxCounting.lean",
       "mode": "text",
       "sha256": "8ad811a3306c977732bf0db77f7f047aebdf98b27e51b92fa560ac2ea6ae0107"
@@ -123,6 +193,16 @@
       "path": "formal/BTCalculus/FourierBoxRecurrence.lean",
       "mode": "text",
       "sha256": "8f1c3d70eaf4d31ce49e07b054a20f7de1e0568ad75f87ffc19c79417d47abfb"
+    },
+    {
+      "path": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "mode": "text",
+      "sha256": "dce16a24c7b24222688adfd94397aaef2a8fcbb8da7d169ffe0a0ded9bc8f0dd"
+    },
+    {
+      "path": "formal/BTCalculus/HigherDerivative.lean",
+      "mode": "text",
+      "sha256": "7cde68da6e5bfaf1b0acc6d4ecd22e7a5bc3a1849d097d3fa52dc071624cee74"
     },
     {
       "path": "formal/BTCalculus/KusminLandau.lean",
@@ -143,6 +223,11 @@
       "path": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
       "mode": "text",
       "sha256": "747455b7753c30b6244a95dde7678513a3f5397639dda45f216c2bd1148d4521"
+    },
+    {
+      "path": "formal/BTCalculus/SecondDerivative.lean",
+      "mode": "text",
+      "sha256": "874e84c5cf7544502e24e65a2edea8ce9472c55563fa31e3b616383c9269c2b8"
     },
     {
       "path": "formal/BTCalculus/SublinearPowerCancellation.lean",
@@ -405,6 +490,16 @@
       "sha256": "a110acfb2c522d74ecd8f57ce1a9fc94cfbc9fc176948fa1522cec57a14d9826"
     },
     {
+      "path": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "mode": "text",
+      "sha256": "6cdc95a4b6ad94dd4cf99f501f7abd8fccb902bec37dd8efa888668656cede3d"
+    },
+    {
+      "path": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
+      "mode": "text",
+      "sha256": "acaefda059cefa19d40d2106808083e01f6f616424662e8f5c990a39b51fe090"
+    },
+    {
       "path": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
       "mode": "text",
       "sha256": "11eec08b298f79805ecf9bce8fbf8c8871c011b3193a67db61f7e0b198d35166"
@@ -512,7 +607,7 @@
     {
       "path": "formal/Problems/JugglerCollatzPaper.lean",
       "mode": "text",
-      "sha256": "4e122a5d897c9fda7e9ea2477708a00ac7dff42c6db2e4f10cdb714120f6ec91"
+      "sha256": "8469d9cbb4eba01af5fa1a76eef7da1fa085ee4e56f203b40c69e480f4351641"
     },
     {
       "path": "formal/lake-manifest.json",
@@ -582,7 +677,7 @@
     {
       "path": "src/research/juggler_sequence/lean_paths.py",
       "mode": "text",
-      "sha256": "36ca690d91ea8a6682150da74f9bcaf41784a3452c3cd80e637e5edc25eaf576"
+      "sha256": "0668b061dd4e016ee98d0f2136c337bab2b5aaca0c19aad2524a257ed8aa5135"
     },
     {
       "path": "src/research/juggler_sequence/negative_preimage_density.py",
@@ -592,17 +687,17 @@
     {
       "path": "tests/unit/test_paper_e_release.py",
       "mode": "text",
-      "sha256": "b5371811211acc6c78f56dcf1b6c9d6a51df799e039591c2d034468936dcf190"
+      "sha256": "b44ee00553de127827039eec594480cbff9418e9c0b04287d8f845dcc569af32"
     },
     {
       "path": "tools/build_paper_e.py",
       "mode": "text",
-      "sha256": "748cd873c5f2fb56c2463ccff776b82ea83a382272d5b9043cb81f0657ba2568"
+      "sha256": "1a02130a236f0d4696c9b60041b37dc6958e8c0d6dc1984e5c706c06adf84ae6"
     },
     {
       "path": "tools/check_paper_e.py",
       "mode": "text",
-      "sha256": "d5a8c1dc67cb75ae796830c9410cab1d101588278458094ebe9e9e8156b9db29"
+      "sha256": "980e8dcdb69fa85966f50c0cf4f81427e441c5f14f08a44ff0d7cfee2260071b"
     },
     {
       "path": "tools/generate_signed_grid_certificate.py",
@@ -629,17 +724,17 @@
     {
       "path": "juggler_review/juggler_signed_collatz_note.pdf",
       "mode": "binary",
-      "sha256": "02df9f031b9905bf4a139b5e85659b497e6aeda9154ed461fc3c7aa610f7de44"
+      "sha256": "5f972c2f8845408603e99f15d1e85c40ac208f293cd7878b25bff5920ca1a31a"
     },
     {
       "path": "docs/theory/cochin-juggler-signed-collatz.tex",
       "mode": "text",
-      "sha256": "d16cd4f88c84abc94a061fed436b611d230e13319782677bab570008d12e871b"
+      "sha256": "b67e7fc65aff3326c45887a8140986cfc9ec23a5f5b18ae7985f58d67c60ef34"
     },
     {
       "path": "docs/theory/paper_e_zenodo.json",
       "mode": "text",
-      "sha256": "22b3d28011be775131c76b5ab4ca95db33e828c3485d54009b92751c9517175d"
+      "sha256": "4117bc1993a400ee8b580b5e88fa241fe843f3d0222bac50fd35c312d42eaee0"
     }
   ]
 }

@@ -1,0 +1,27 @@
+'Problems.Juggler.OOEEffectiveReturn.floor_mod_box_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.return_parameter_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.sample_mem_box' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.sample_mode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.box_discrepancy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.threshold_count_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.cutoff_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.cutoff_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.cutoff_sqrt_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.cutoff_rate_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.cutoff_log_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.box_discrepancy_power' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.count_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.log_square_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.error_power_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.count_error_power' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.witnessCutoff_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.witnessCutoff_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.error_at_witnessCutoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.count_at_witnessCutoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.exists_bounded_parameter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.start_bound' depends on axioms: [propext, Quot.sound]
+'Problems.Juggler.OOEEffectiveReturn.exists_bounded_modular_return' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

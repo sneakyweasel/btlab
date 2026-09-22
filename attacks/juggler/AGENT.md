@@ -30,7 +30,7 @@ Method: [docs/methodology.md](../../docs/methodology.md).
 ## Paper E: living comparative manuscript
 
 [The Juggler Map and the 3n±1 Maps](../../docs/theory/juggler_signed_collatz_note.md)
-is Paper E, version 0.6.0 of 22 September 2026, prepared locally and not
+is Paper E, version 0.7.0 of 22 September 2026, prepared locally and not
 deposited. It consolidates the exact orbit code, preservation of actual
 cycle periods, the signed 21/25 ancestor theorem, the fixed-grid ceiling,
 and the recorded transfer obstructions. Edit the canonical source and
@@ -44,13 +44,15 @@ and denominator growth. PaperECorollaries adds exact sparse-start counts,
 fixed relative intervals, and prescribed even-run residues (4.2-4.3).
 PaperERecurrence proves BoxRecurrence and the
 unconditional Theorem 4.1, using the derivative and Fourier proofs in
-BTCalculus. The combined paper audit selects 49 declarations.
+BTCalculus. The combined paper audit selects 56 declarations.
 
 The [effective OOE follow-up](../../docs/problems/juggler_effective_modular_return.md)
-now gives a written uniform error 2^14*M^(1/4)*T^(127/128) and first-witness
-parameter bound 2^2176*M^160. It uses a cited explicit derivative estimate
-and a proved Fejer box bound. Its quantitative argument is included as Theorem 4.4 and Appendix C
-in version 0.6.0. Complete quantitative Lean verification remains open. The constants are not practical search limits.
+now gives a kernel-checked uniform error 2^14*M^(1/4)*T^(127/128) and
+first-witness parameter bound 2^2176*M^160. The complete derivative,
+Fourier, finite Fejer, count, and actual witness chain is included in
+Theorem 4.4's audit in version 0.7.0. Appendix C also gives an alternative
+written proof using the cited explicit derivative estimate. Independent
+review remains open. The constants are not practical search limits.
 
 ## State of the problem
 

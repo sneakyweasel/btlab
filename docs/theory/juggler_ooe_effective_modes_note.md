@@ -122,16 +122,17 @@ formula quoted in the original written proof. It recovers the required
 constants 32 and 128 and thus closes the same OOE analytic obligation.
 The written theorem and its exponents are unchanged.
 
-Q3, the finite half-open Fejer box inequality, is already kernel-checked.
-Q4 still requires connecting these actual Fourier modes to the exact
-return predicate, choosing the cutoff, counting threshold exclusions,
-and proving the two explicit counting errors. Q5 requires extracting a
-bounded witness and applying the existing orbit construction. Therefore
-the effective return theorem still has its **EXACT — HUMAN PROOF** label.
-This result does not change the Paper E manuscript or its selected audit.
+Q3, the finite half-open Fejer box inequality, is kernel-checked.
+The subsequent [OOE assembly](juggler_ooe_effective_return_lean_note.md)
+also closes Q4 and Q5: the exact predicate, rounded cutoff, eight-index
+threshold loss, both count errors, positive count, and actual bounded
+witness are proved. Paper E 0.7.0 includes the complete quantitative
+theorem in its selected audit. The effective-return ledger row awaits
+its separate advisory coverage check; the mode row's earlier ruling
+above is unchanged.
 
 ## Decision
 
-**PROMOTE** the uniform quantitative OOE mode bound. The next bounded
-step is Q4, the exact counting and error assembly. Modulus optimization,
-other words, and an infinite concatenation are outside this result.
+**PROMOTE** the uniform quantitative OOE mode bound and its completed
+counting application. Modulus optimization, other words, and an infinite
+concatenation are outside this result.

@@ -35,8 +35,10 @@ Compiled theorem groups:
   for M,H,T>=1 and H<=T^(1/4). Actual derivative chains, both signs and
   coordinate axes, real dyadic endpoints, discarded initial segments,
   and endpoint corrections are proved. This closes Q1's OOE application
-  and Q2; effective counting and bounded witnesses remain open. See the
-  [proof map](../docs/theory/juggler_ooe_effective_modes_note.md);
+  and Q2. OOEEffectiveReturn now closes Q4/Q5 with the exact floor-residue
+  count, both uniform errors, positive count and strict bounded actual
+  witness. See the [mode proof map](../docs/theory/juggler_ooe_effective_modes_note.md)
+  and [complete assembly](../docs/theory/juggler_ooe_effective_return_lean_note.md);
 - actual OOEE joint parity outside explicit slow resonance windows,
   including the last square-root comparison, three-coordinate finite
   Fejer discrepancy and the exact natural-map guard identity. The

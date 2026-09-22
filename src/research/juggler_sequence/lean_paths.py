@@ -323,6 +323,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "PaperERecurrence": "Paper E Theorem 4.1: proved simultaneous-box recurrence and unconditional modular-return theorem",
     "PaperECorollaries": "Paper E Corollaries 4.2-4.3: exact sparse-start counts, fixed relative intervals, and prescribed even-run residues",
     "OOEEffectiveModes": "Effective OOE supplement: actual signed third/fifth derivatives, dyadic mode bound 32, and uniform all-length normalized bound 128",
+    "OOEEffectiveReturn": "Paper E Theorem 4.4: exact floor-residue count, both uniform errors, positive count and bounded actual OOE modular witness",
     "PaperECompletion": "Paper E: series identification, frequency and exponent statements, direct stopping-word sums, and finite complete prefix trees",
     "CollatzMoments": "Paper B/C word-moment bridge: coefficient shift and complete first-descent stopping counterexample",
     "BranchFreeze": "Paper B review target",

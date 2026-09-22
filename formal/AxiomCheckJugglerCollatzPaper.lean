@@ -49,3 +49,10 @@ import Problems.JugglerCollatzPaper
 #print axioms Problems.Juggler.PaperECorollaries.signature_parameter_density
 #print axioms Problems.Juggler.PaperECorollaries.modular_return_of_signature
 #print axioms Problems.Juggler.PaperECorollaries.signature_returns_infinite
+#print axioms Problems.Juggler.OOEEffectiveModes.normalized_mode_bound
+#print axioms BTCalculus.FejerBox.finite_box_discrepancy
+#print axioms Problems.Juggler.OOEEffectiveReturn.return_parameter_iff
+#print axioms Problems.Juggler.OOEEffectiveReturn.count_error
+#print axioms Problems.Juggler.OOEEffectiveReturn.error_power_bound
+#print axioms Problems.Juggler.OOEEffectiveReturn.count_at_witnessCutoff
+#print axioms Problems.Juggler.OOEEffectiveReturn.exists_bounded_modular_return

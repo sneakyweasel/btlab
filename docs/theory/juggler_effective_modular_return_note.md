@@ -1,15 +1,18 @@
 # Effective OOE modular returns
 
-22 September 2026. **EXACT — HUMAN PROOF**: AI-assisted written derivation
-from an explicitly cited analytic theorem. Independent mathematical review
-and the complete quantitative Lean proof remain outstanding. The finite
+22 September 2026. The complete quantitative theorem is now kernel-checked;
+its ledger label remains **EXACT — HUMAN PROOF** pending the separately
+authorized advisory coverage check and direct ruling. Independent
+mathematical review remains open. The alternative written derivation
+below uses an explicitly cited analytic theorem. The finite
 Fejer box estimate (Q3) is now kernel-checked, with its constants and all
 half-open boundary cases; see its [proof map](finite_fejer_box_note.md).
 The actual OOE Fourier-mode bound (Q2) and its higher-derivative input
 are now also kernel-checked; the
 [mode proof map](juggler_ooe_effective_modes_note.md) records the alternative
 finite derivative tests, signs, real endpoints, and constants 32 and 128.
-Explicit counting assembly and bounded witness extraction remain open.
+The [complete assembly proof map](juggler_ooe_effective_return_lean_note.md)
+now closes both explicit counting errors and bounded witness extraction.
 The [fresh internal audit](juggler_effective_modular_return_audit.md)
 rederives the estimates and confirms the constants, with boundary and
 small-parameter details expanded below. It is not external peer review.
@@ -296,11 +299,13 @@ been proved independently in `BTCalculus.FejerBox.finite_box_discrepancy`.
 The displayed error is too large to be
 nontrivial in the small numerical samples; no experimental rate is claimed.
 
-**PROMOTE** the explicit written theorem as an effective specialization of
-classical machinery. It closes the rate-free gap for this one word and
-makes the modulus dependence explicit. It is suitable as a candidate
-supplement to Paper E after review. The existing 0.5.0 paper and its Lean
-coverage remain unchanged: (1) is not yet a kernel-checked theorem.
+**PROMOTE** the complete effective theorem and its formalization as a
+specialization of classical machinery. It closes the rate-free gap for
+this one word and makes the modulus dependence explicit. Paper E 0.7.0
+includes it as Theorem 4.4, with both errors and the actual bounded
+witness in the selected 56-declaration audit. Independent review remains
+open. The formal proof derives sufficient finite derivative tests rather
+than importing the exact external formula (5).
 No external novelty, new general discrepancy method, cycle, or escape
 claim is made. Optimizing constants or generalizing the word is a separate
 decision, not an automatic continuation.

@@ -1,6 +1,6 @@
 # Paper E: reviewer packet and living review record
 
-Version 0.6.0, 22 September 2026. Canonical manuscript:
+Version 0.7.0, 22 September 2026. Canonical manuscript:
 [The Juggler Map and the 3n±1 Maps](juggler_signed_collatz_note.md).
 Build and updates: [PAPER_E_BUILD.md](PAPER_E_BUILD.md).
 
@@ -121,12 +121,13 @@ The analytic extension passes from continuous Fourier averages to
 weak convergence of empirical measures and half-open boxes with
 Haar-null boundaries, including zero endpoints. The cutoff conversion
 counts distinct starts, using the strict increase of (1+2*M*t)^d.
-The selected paper audit covers 49 declarations. A separate audit
+The selected paper audit now covers 56 declarations, including Theorem 4.4. A separate audit
 covers all public theorems in the three new modules.
 
 These are fixed-parameter consequences of classical equidistribution.
-External novelty remains unclaimed. No first-witness bound, growing
-modulus estimate, or infinite concatenation theorem is supplied.
+External novelty remains unclaimed. These qualitative corollaries do not
+provide a first-witness bound; the separate Theorem 4.4 now supplies one
+for OOE uniformly in the modulus. No infinite concatenation is asserted.
 
 ## Prior-art boundaries
 
@@ -162,13 +163,24 @@ re-running the typesetter.
 Theorem 4.4 and Appendix C reproduce the effective OOE proof and explicit
 constants. Review the derivative sign on both frequency axes, real dyadic
 endpoints, finite initial segment, saturated Fejer arcs and half-open
-box boundaries. The current selected 49-declaration Lean audit does not
-include this theorem. Its internal audit is not independent review;
-complete quantitative formalization remains outstanding. The OOE word
+box boundaries. The selected 56-declaration Lean audit now includes
+both errors, the exact predicate, positive count, and actual bounded
+witness. OOEEffectiveReturn's separate audit checks all 23 theorems.
+The formal derivative route proves sufficient estimates independently
+of the precise external formula used in the written proof. Independent
+mathematical review remains pending. The OOE word
 has denominator one, so this does not quantify the large-denominator
 construction.
 
 ## Version history
+
+### 0.7.0 - 22 September 2026
+
+Completed the quantitative Lean proof of Theorem 4.4, from finite
+derivative tests to the exact OOE count and bounded actual witness.
+Expanded the selected audit from 49 to 56 declarations, added the
+23-theorem assembly audit, and archived the full analytic dependency
+chain. All constants and theorem numbers are unchanged.
 
 ### 0.6.0 - 22 September 2026
 

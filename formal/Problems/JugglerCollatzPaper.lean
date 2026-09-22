@@ -7,6 +7,7 @@ import Problems.Juggler.PaperECompletion
 import Problems.Juggler.PaperEModularReturn
 import Problems.Juggler.PaperERecurrence
 import Problems.Juggler.PaperECorollaries
+import Problems.Juggler.OOEEffectiveReturn
 
 /-!
 Paper E: the exact orbit code, actual periods, signed ancestor counts,
@@ -16,4 +17,6 @@ mixed-power cancellation, and simultaneous-box recurrence supply its
 analytic input before the exact floor construction is applied.
 Half-open box frequencies give the exact sparse-start asymptotic and
 allow prescribed residues at every source of the final even run and exit.
+The effective OOE count and bounded witness include all quantitative
+derivative, Fourier, finite-box, cutoff, and threshold arguments.
 -/

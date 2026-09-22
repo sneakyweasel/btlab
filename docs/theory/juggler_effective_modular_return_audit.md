@@ -28,7 +28,8 @@ The resulting witness bounds remain t<2^2176*M^160 and n<2^4354*M^322.
 This audit treats the cited classical analytic theorem as an external
 input. It checks its statement and the entire local deduction; it does not
 independently reprove that source. No claim of external novelty is made.
-The existing Paper E release and its selected Lean audit are unchanged.
+The initial written audit left the Paper E release unchanged. The later
+complete formalization is included in Paper E 0.7.0 and described below.
 
 ## 1. Analytic input and uniformity
 
@@ -223,8 +224,8 @@ Q1 to Q2; Q2 and Q3 to Q4; Q4 and the existing construction to Q5.
 | Q1 | Explicit derivative estimates at orders 3 and 5 sufficient for the OOE bound, with real endpoints and both signs | HigherDerivative plus OOEEffectiveModes | Closed for the OOE application: independent finite tests with constants 12 and 7 recover the dyadic constant 32, including actual derivative chains and extended support; the exact cited formula (5) is not claimed as formalized |
 | Q2 | For M,H,T>=1 and H<=T^(1/4), every nonzero cutoff mode has normalized norm at most 128*M^(1/4)*H^(1/30)*T^(-1/60) | OOEEffectiveModes | Closed: `normalized_mode_bound`, including both axes, signs, real dyadic endpoints, the discarded initial segment and the two endpoint terms |
 | Q3 | For integers H,T>=1, any T samples, and every half-open torus box, discrepancy is at most 5/sqrt(H+1)+(3+2*log(H))^2*E_H, where E_H bounds every nonzero cutoff mode | FejerKernel, FejerArc, FourierDiscrepancy, and FejerBox | Closed: `BTCalculus.FejerBox.finite_box_discrepancy`, including saturation and every pointwise boundary case |
-| Q4 | For the exact ReturnParameter(2,1,M,t) count, both displayed all-M, all-T errors | Existing count and ReturnParameter definitions, exact root/box guards | Cutoff, threshold count, and explicit error assembly unformalized |
-| Q5 | Positive count at T=2^2176*M^160 yields a witness with the strict t and n bounds and ModularReturn(2,1,M,n) | modular_return_of_box, with k=1,b=1 | Quantitative extraction unformalized; orbit implication already formalized |
+| Q4 | For the exact ReturnParameter(2,1,M,t) count, both displayed all-M, all-T errors | Existing count and ReturnParameter definitions, exact root/box guards | Closed: OOEEffectiveReturn.return_parameter_iff, count_error, and error_power_bound prove the exact predicate and both errors |
+| Q5 | Positive count at T=2^2176*M^160 yields a witness with the strict t and n bounds and ModularReturn(2,1,M,n) | modular_return_of_box, with k=1,b=1 | Closed: count_at_witnessCutoff and exists_bounded_modular_return prove positive count, both strict bounds, and the actual orbit |
 
 In particular, `tendsto_fract_box_count` proves a qualitative limit and
 does not supply Q3. Assuming Q1 or Q2 in a new Lean theorem would verify
@@ -240,8 +241,11 @@ The [OOE specialization](juggler_ooe_effective_modes_note.md) proves the
 actual derivative chains and signed bounds on that support, verifies the
 constant 32, and proves the uniform all-T constant 128 by finite dyadic
 induction. Thus Q1's application and Q2 are closed. This does not assert
-formalization of the exact external formula (5). Q4 and Q5 remain open;
-the universal effective return theorem is not yet Lean verified.
+formalization of the exact external formula (5). Q4 and Q5 are now
+closed by [OOEEffectiveReturn](juggler_ooe_effective_return_lean_note.md).
+Its complete 23-theorem audit has only standard logical dependencies.
+The effective theorem is kernel-checked without analytic premises;
+the separate ledger advisory coverage step remains pending.
 
 ## 6. Verification record and decision
 
@@ -259,7 +263,8 @@ was changed in that initial audit. The subsequent Q3 formalization is
 recorded separately in the proof maps linked above, as is the later
 alternative higher-derivative input.
 
-**PROMOTE** the clarified written result. No counterexample or incorrect
-constant was found in this internal audit. Independent external review
-and the quantitative Lean obligations above remain open. Optimizing the
+**PROMOTE** the clarified result and subsequent complete formalization.
+No counterexample or incorrect constant was found in this internal audit.
+All five quantitative Lean obligations are now closed. Independent external
+review remains open. Optimizing the
 modulus exponent and extending beyond OOE are separate research decisions.

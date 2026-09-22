@@ -219,6 +219,7 @@ import Problems.Juggler.PaperEModularReturn
 import Problems.Juggler.PaperERecurrence
 import Problems.Juggler.PaperECorollaries
 import Problems.Juggler.OOEEffectiveModes
+import Problems.Juggler.OOEEffectiveReturn
 import Problems.Juggler.OOEECurvature
 import Problems.Juggler.OOEECarryCells
 import Problems.Juggler.OOEEFourierModes

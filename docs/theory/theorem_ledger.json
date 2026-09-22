@@ -13343,13 +13343,22 @@
  {
   "id": "J-effective-ooe-modular-return",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "AI-assisted written proof; independent mathematical review and quantitative Lean formalization outstanding. For all integers M,T>=1 let A_M(T) count 0<=t<T with s=1+2Mt>=16, floor(s^(9/2)) even, and floor(s^(9/4))=1 modulo 2M. Then abs(A_M(T)-T/(4M)) <= [5+128*M^(1/4)*(3+log(T)/16)^2]*T^(63/64)+8 <= 2^14*M^(1/4)*T^(127/128), with natural logarithm. At T=2^2176*M^160 the count is at least T/(8M)>0, so some t<T gives an actual OOE Juggler return with n=s^2<2^4354*M^322, all prefix states at least n, exit strictly greater than n, and both endpoints 1 modulo 2M. The proof applies Arias de Reyna arXiv:2407.02094v1 Theorem 11 at orders 5 and 3, verifies every truncated Fourier mode uniformly, removes a bounded dyadic initial segment, and proves an explicit Fejer half-open box estimate. Rational checks validate coefficient and exponent bookkeeping; finite integer-root tests validate actual guards, not the universal analytic result. This is one fixed word with an explicit uniform modulus dependence. Constants are impractical, the OOE word-code denominator is 1, and no effective arbitrary-word, cycle, termination, or infinite-continuation claim is made. Not part of Paper E version 0.5.0 or its selected Lean audit.",
+  "statement": "Kernel-checked effective OOE counting and witness theorem; independent mathematical review and advisory statement coverage remain pending. For all natural M,T>=1, let A_M(T) count 0<=t<T with s=1+2Mt>=16, floor(s^(9/2)) even, and floor(s^(9/4))=1 modulo 2M. Then abs(A_M(T)-T/(4M)) <= [5+128*M^(1/4)*(3+log(T)/16)^2]*T^(63/64)+8 <= 2^14*M^(1/4)*T^(127/128), with natural logarithm. At T=2^2176*M^160 the count is at least T/(8M)>0. Some t<T gives an actual OOE Juggler return with n=s^2<2^4354*M^322, all prefix states at least n, exit strictly greater than n, and both endpoints 1 modulo 2M. The predicate equivalence includes both half-open endpoints and M=1. The Lean proof includes the signed derivative estimates, all cutoff Fourier modes, finite Fejer box discrepancy, dyadic initial segment, cutoff rounding, threshold exclusions, logarithm absorption, and witness extraction; none is assumed as an analytic premise. It uses independently proved third/fifth derivative tests, not a formalization of the exact external Arias de Reyna formula used by the alternative written proof. This is one fixed word; the constants are impractical and the OOE word-code denominator is 1. No effective arbitrary-word, cycle, termination, or infinite-continuation claim is made. Included in Paper E version 0.7.0 and its selected Lean audit.",
   "source": "docs/theory/juggler_effective_modular_return_note.md",
-  "lean": "",
+  "lean": "Problems/Juggler/OOEEffectiveReturn.lean",
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_effective_modular_return.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "return_parameter_iff",
+   "count_error",
+   "error_power_bound",
+   "witnessCutoff",
+   "count_at_witnessCutoff",
+   "exists_bounded_modular_return"
+  ]
  },
  {
   "id": "BTA-quantitative-second-derivative",

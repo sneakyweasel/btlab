@@ -58,7 +58,8 @@ advantage or balanced-ternary proof mechanism is asserted.
 
 ## Candidate operations / invariants
 
-**EXACT — HUMAN PROOF:** fifth derivatives control modes with a nonzero
+The complete derivative and counting chain is kernel-checked; the ledger
+advisory coverage ruling remains pending. Fifth derivatives control modes with a nonzero
 9/2-power coefficient; third derivatives control the remaining axis.
 Dyadic initial-segment removal is explicit. Finite Fejer smoothing handles
 half-open boxes, including the M=1 endpoint and residue-zero boundary.
@@ -92,8 +93,10 @@ with supporting modules FejerKernel, FejerArc, and FourierDiscrepancy.
 The [proof map](../theory/finite_fejer_box_note.md) records the constants,
 half-open boundaries, saturation, and dependency audit. The quantitative
 mode estimates are now also proved in `OOEEffectiveModes`; the explicit
-OOE counting and witness assembly remain written proofs.
-Finite Python checks do not discharge those Lean gaps.
+OOE counting and witness assembly are now also proved in
+`OOEEffectiveReturn`. Its [proof map](../theory/juggler_ooe_effective_return_lean_note.md)
+records the exact predicate, both errors, bounded witness, and 23-theorem
+dependency audit. Finite Python checks are supplementary.
 The [internal proof audit](../theory/juggler_effective_modular_return_audit.md)
 maps the five quantitative obligations and the exact declarations that
 can be reused. Q3 is closed by the subsequent formalization. The generic
@@ -104,7 +107,7 @@ fifth-derivative alternatives in `BTCalculus.HigherDerivative`; the
 The [OOE specialization](../theory/juggler_ooe_effective_modes_note.md)
 now proves the actual derivative chains, signs, and comparison with
 constant 32, then the all-length normalized constant 128. Q1's application
-and Q2 are closed. Q4 and Q5 remain open.
+and Q2 are closed. Q4 and Q5 are now closed as well.
 
 ## Results
 
@@ -123,13 +126,14 @@ not independent external review.
 
 Independent external review of the analytic specialization. The internal
 audit and its explicit prose-to-formal scope map are complete.
-Full Lean formalization of this quantitative result remains open. The coarse
+The quantitative Lean proof is complete; the separate ledger advisory
+coverage ruling remains pending. The coarse
 bound is not a useful computational limit, despite its polynomial dependence
 on M. Extension beyond OOE is outside this branch.
 
 ## Decision
 
-**PROMOTE** the written effective OOE theorem. It strengthens the existing
+**PROMOTE** the completely formalized effective OOE theorem. It strengthens the existing
 qualitative result with a uniform explicit error and a bounded search domain.
 Do not optimize constants or open other words automatically.
 
@@ -138,15 +142,16 @@ with its constants and all boundary cases. The authorized continuation
 also proves explicit order-3 and order-5 derivative tests with automatic
 cutoffs. The actual OOE phase specialization and quantitative dyadic
 assembly now compile, with the exact constants 32 and 128.
-**PROMOTE** these formalizations. The next dependency is Q4, the exact
-counting and explicit error assembly, followed by bounded witnesses.
+**PROMOTE** these formalizations and the completed Q4/Q5 assembly.
+Both all-parameter errors and the strict bounded actual witness are proved.
 External review remains open; modulus optimization is outside this scope.
 
 ## Publication assessment
 
-Status: **THEOREM**, as an AI-assisted written specialization of a classical
-estimate. Candidate supplement to Paper E after review; not incorporated
-into the version 0.5.0 manuscript or its 49-declaration Lean audit.
+Status: **THEOREM**, with a complete kernel-checked specialization of
+classical machinery. Incorporated into Paper E 0.7.0 as Theorem 4.4,
+including its counting and witness conclusions in the selected
+56-declaration Lean audit.
 External novelty and independent verification are not claimed. The OOE
 word code has denominator 1, so this specialization does not itself provide
 effective large-denominator counterfamilies.

@@ -38,7 +38,7 @@
     ],
     "exact_rate_and_ceiling_comparisons": "pass",
     "manuscript_references_and_table": "pass",
-    "audited_declarations": 49
+    "audited_declarations": 56
   },
   "lean": {
     "status": "passed",
@@ -289,16 +289,57 @@
         "Classical.choice",
         "Quot.sound",
         "propext"
+      ],
+      "Problems.Juggler.OOEEffectiveModes.normalized_mode_bound": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "BTCalculus.FejerBox.finite_box_discrepancy": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Juggler.OOEEffectiveReturn.return_parameter_iff": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Juggler.OOEEffectiveReturn.count_error": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Juggler.OOEEffectiveReturn.error_power_bound": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Juggler.OOEEffectiveReturn.count_at_witnessCutoff": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Juggler.OOEEffectiveReturn.exists_bounded_modular_return": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
       ]
     },
     "input_sha256": {
-      "formal/AxiomCheckJugglerCollatzPaper.lean": "acf79829b1ff441e3266f3f20ef1aec41a81cb84a25d43c7fbc4d95b3f9c7882",
+      "formal/AxiomCheckJugglerCollatzPaper.lean": "4d957b37a7c39243179a0a254a70357bc49ecda5921ea057ce90a8fc4d80be76",
+      "formal/BTCalculus/FejerArc.lean": "a7937534f3bd6931ba473812cc4cede4b8230b0d17f0fd8f184cae6aa643f808",
+      "formal/BTCalculus/FejerBox.lean": "4af51030ee09edbabd3d68861fd96b80aed9272523107f1174580547e2612193",
+      "formal/BTCalculus/FejerKernel.lean": "473f94342f22d2329f7a8c1fea096cc9933bf5e09d736194f54df5ae2457a4b3",
       "formal/BTCalculus/FourierBoxCounting.lean": "8ad811a3306c977732bf0db77f7f047aebdf98b27e51b92fa560ac2ea6ae0107",
       "formal/BTCalculus/FourierBoxRecurrence.lean": "8f1c3d70eaf4d31ce49e07b054a20f7de1e0568ad75f87ffc19c79417d47abfb",
+      "formal/BTCalculus/FourierDiscrepancy.lean": "dce16a24c7b24222688adfd94397aaef2a8fcbb8da7d169ffe0a0ded9bc8f0dd",
+      "formal/BTCalculus/HigherDerivative.lean": "7cde68da6e5bfaf1b0acc6d4ecd22e7a5bc3a1849d097d3fa52dc071624cee74",
       "formal/BTCalculus/KusminLandau.lean": "2ea2b2edb22b47a30804bf08138bbc7018d5c814f4a89a2c5e8469df99feed5a",
       "formal/BTCalculus/PowerBoxCounting.lean": "2286d0313b6d72a2e66da9ac60b152744099f23a9c629cb73bf50e761fa785d7",
       "formal/BTCalculus/PowerBoxRecurrence.lean": "5bc32c244af3e94db9d1bf7a28581d00dc26ee9b295a45e2eed91211a046dd0e",
       "formal/BTCalculus/PowerPhaseAsymptotics.lean": "747455b7753c30b6244a95dde7678513a3f5397639dda45f216c2bd1148d4521",
+      "formal/BTCalculus/SecondDerivative.lean": "874e84c5cf7544502e24e65a2edea8ce9472c55563fa31e3b616383c9269c2b8",
       "formal/BTCalculus/SublinearPowerCancellation.lean": "f0a6f30fdf5514c6613240c5a01d5455c001967272adc89f80e2b8e418ad088d",
       "formal/BTCalculus/WeylCancellation.lean": "459f768073384139503078a628c1ef179581ad00df6512edf6e29a73d03717a0",
       "formal/BTCalculus/WeylDifferencing.lean": "bf0b25df6ca26fc75066aba460f5e4fc4c0b3734539edb1e8e194a235fa83b4b",
@@ -351,6 +392,8 @@
       "formal/Problems/Juggler/LogCells.lean": "bbd09a10c8da6904f3012f7e80c79d31d9680ba9983d80fdb7669d16ba2dfed7",
       "formal/Problems/Juggler/Minimal.lean": "8c8a1a9d65291f179e1231ca88cb29b6fc103869a31b52e445957fee33517290",
       "formal/Problems/Juggler/MinimumRelative.lean": "a110acfb2c522d74ecd8f57ce1a9fc94cfbc9fc176948fa1522cec57a14d9826",
+      "formal/Problems/Juggler/OOEEffectiveModes.lean": "6cdc95a4b6ad94dd4cf99f501f7abd8fccb902bec37dd8efa888668656cede3d",
+      "formal/Problems/Juggler/OOEEffectiveReturn.lean": "acaefda059cefa19d40d2106808083e01f6f616424662e8f5c990a39b51fe090",
       "formal/Problems/Juggler/PaperBCertificateLengths.lean": "11eec08b298f79805ecf9bce8fbf8c8871c011b3193a67db61f7e0b198d35166",
       "formal/Problems/Juggler/PaperBCertificateRecursion.lean": "4e9b9a37c59ca9b4bba402efb3d98fd3f3e536b8896cd54244b17d7319d589c8",
       "formal/Problems/Juggler/PaperBCertificates.lean": "a78e69d66bfe33b834af08b3ac5329bf8947d33dabea9114148bb3ef6b358fcf",
@@ -372,7 +415,7 @@
       "formal/Problems/Juggler/Scale.lean": "9156455b03e7095970f69ca7b49762788608502ff9f560414ef9bded6965ccf9",
       "formal/Problems/Juggler/Termination.lean": "7b458453bb0fa6478550d875a1b3d5ac18eeea106b5d08797628dfbd2a9c8eb0",
       "formal/Problems/Juggler/TiltedShare.lean": "7dcafa45a2a0e9bca182a713b495d791cf812e4c70d6472c67bf85b0b736aef4",
-      "formal/Problems/JugglerCollatzPaper.lean": "4e122a5d897c9fda7e9ea2477708a00ac7dff42c6db2e4f10cdb714120f6ec91",
+      "formal/Problems/JugglerCollatzPaper.lean": "8469d9cbb4eba01af5fa1a76eef7da1fa085ee4e56f203b40c69e480f4351641",
       "formal/lake-manifest.json": "8a4dabaa6346246a71a2fac594a4385e248735a4feacd25082bcad2336d27385",
       "formal/lakefile.toml": "b707e6f9d388d4896695c37d12dc924458f60e50f0ff95f8e02f08d506144221",
       "formal/lean-toolchain": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71"

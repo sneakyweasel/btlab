@@ -88,10 +88,11 @@ remaining axis requires order three with ratio four. Their actual
 derivative chains, signed estimates on the extended support, comparison
 with the constant 32, and dyadic all-T bound (Q2) are now proved in the
 [OOE specialization](juggler_ooe_effective_modes_note.md). Error assembly
-(Q4) and bounded witness extraction (Q5) remain open. Q3 is proved in
+(Q4) and bounded witness extraction (Q5) are now proved in the
+[complete return module](juggler_ooe_effective_return_lean_note.md). Q3 is proved in
 [FejerBox.lean](../../formal/BTCalculus/FejerBox.lean).
-The universal effective modular-return theorem remains
-**EXACT — HUMAN PROOF**. Paper E's selected publication audit is unchanged.
+The effective theorem is included in Paper E 0.7.0's selected audit;
+its separate ledger advisory coverage ruling remains pending.
 
 ## Verification and decision
 

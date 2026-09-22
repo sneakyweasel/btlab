@@ -1,7 +1,7 @@
 # Paper E: living manuscript, checks, and publication package
 
 **The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions.**
-Version 0.6.0, 22 September 2026. Local preprint; no deposit or DOI assigned.
+Version 0.7.0, 22 September 2026. Local preprint; no deposit or DOI assigned.
 
 Canonical source: [juggler_signed_collatz_note.md](juggler_signed_collatz_note.md).
 Edit that source, never its generated reviewer copy or TeX.
@@ -76,7 +76,7 @@ The integration suite automatically discovers build_paper_e.py.
   prescribed even-run residues, including the finite expansion threshold.
 - Mass and stopping examples: separately mapped to their compiled statements.
 
-The combined audit selects 49 declarations and permits only propext,
+The combined audit selects 56 declarations and permits only propext,
 Classical.choice, and Quot.sound. It builds Problems.JugglerCollatzPaper,
 then executes AxiomCheckJugglerCollatzPaper.lean and checks all outputs.
 The finite checker independently recomputes every certificate row, all
@@ -112,12 +112,14 @@ from outstanding priority, statement-coverage, and external mathematical
 review. A green build means the package is reproducible and internally
 consistent; it is not an acceptance decision.
 
-## Quantitative extension in 0.6.0
+## Quantitative extension in 0.7.0
 
-Theorem 4.4 and Appendix C add the effective OOE counting error and
-first-witness bound, uniform in the modulus. These are written results
-using Arias de Reyna's explicit derivative estimate; independent review
-and the complete quantitative Lean proof remain open. The existing
-49-declaration audit continues to certify the earlier qualitative
-results only. Its inventory is not silently enlarged by the new prose.
-The source archive includes the quantitative proof and audit notes.
+Theorem 4.4's effective OOE counting error and first-witness bound are
+now fully kernel-checked, uniformly in the modulus. The selected audit
+has 56 declarations, including the exact predicate, both counting errors,
+the positive count and actual bounded witness, plus the two quantitative
+analytic inputs. The formal route derives sufficient finite derivative
+tests independently of the exact external formula used in Appendix C.
+The source archive includes every transitive local proof dependency and
+the complete 23-theorem OOEEffectiveReturn audit. Independent mathematical
+review remains open.
