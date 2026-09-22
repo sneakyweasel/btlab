@@ -1,6 +1,9 @@
 # Five-Step Descent Certificates for the Juggler Map
 
-Parity Statistics of Nested Floor Powers. Version 1.1.0, prepared and not deposited.
+Parity Statistics of Nested Floor Powers. The prepared version and deposit
+status are recorded in ZENODO_FIELDS.txt, generated from the canonical
+metadata. The local kit is ready for a preprint revision; publication is a
+separate action.
 
 This folder is generated from the canonical editorial inputs in
 `docs/theory/`. The deposit filename
@@ -26,16 +29,17 @@ the PDF; version DOI
 The author's ORCID is
 [0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382).
 
-The PDF is a 44-page preprint proving full five-step power-envelope
+The PDF is a preprint proving full five-step power-envelope
 certificate density 7/8, with count error O_epsilon(N^(127/128+epsilon)).
 The OOOEE proof is complete within Theorem 4.11 and Appendices A-C.
 The 10 September proof audit adds the bounded signed-residual Fourier
 extension and verifies its variation hypotheses; it covers every section
 except the abstract and Sections 1, 5, 6 and 8, whose later paragraphs
-postdate it. Against the deposited 1.0.0, pages 2 to 42 of this edition
-are pixel-identical and pages 1, 43 and 44 differ: the ORCID on the title
-page, the shortened acknowledgments, the new availability section and one
-reference DOI. No page of the mathematical text moved.
+postdate it. The current revision clarifies the conjectural phase-profile
+discussion and its attribution, and corrects three formula errors there.
+The numbered results and their proofs are unchanged. Page-by-page
+comparisons recorded for earlier editions do not describe this PDF;
+paper_b_release_check.json records the current layout and file checks.
 See the
 [fresh proof audit](../../docs/theory/paper_b_proof_review.md).
 All-depth hypotheses, arbitrary decorated estimates, and localization

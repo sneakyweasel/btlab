@@ -12,7 +12,10 @@ A local `python tools/build_paper_b.py` run does not update this record.
 Later revisions use the record's new-version operation. Do not edit
 generated PDF copies. Zenodo describes versioning in its
 [record guide](https://help.zenodo.org/docs/deposit/about-records/).
-The archives and checksums in this folder are those of the deposited
-edition; a later edition regenerates them and the record gains a version.
+The archives and checksums in this folder describe the currently prepared
+edition shown in ZENODO_FIELDS.txt. They do not establish that it has been
+deposited. After publishing a new version, record its returned version DOI,
+publication date and file checksums in the canonical deposit register and
+metadata; preserve the concept DOI.
 
 Canonical laboratory list: [docs/theory/paper_deposits.md](../../docs/theory/paper_deposits.md).

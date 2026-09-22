@@ -2,9 +2,9 @@
 
 Parity Statistics of Nested Floor Powers.
 
-Version: 1.1.1; source edition: 22 September 2026. Author: Philippe Cochin.
+Version: 1.1.2; source edition: 23 September 2026. Author: Philippe Cochin.
 
-The 44-page manuscript proves full five-step power-envelope certificate
+The manuscript proves full five-step power-envelope certificate
 density 7/8, with count error O_epsilon(N^(127/128+epsilon)).
 Theorem 4.11 and Appendices A-C contain the complete OOOEE proof;
 Theorem 5.4 gives the count. The four-step density 13/16 and OOEOE
@@ -85,7 +85,7 @@ are documented in paper_b_proof_review.md.
 ## Evidence and licensing
 
 The current title leads with the finite-step result. The analytic text,
-Sections 2-4 and 7 and Appendices A-C, is byte-identical to the 10 September
+Sections 2-4 and 7 and Appendices A-C, is unchanged from the 10 September
 proof-audit edition; the revisions of 19 and 20 September changed the
 abstract, Sections 1, 5, 6 and 8, the acknowledgments and the references
 only: the identification of the word counts with the Collatz sequences
@@ -127,3 +127,16 @@ The mathematical theorems, proofs and five-step density 7/8 are unchanged.
 The historical statement that pages 2--42 match the deposit pixel for pixel
 applies to local 1.1.0, not to this edition. The new source, PDF, validation
 record and both archives are rebuilt together. No deposit is performed.
+
+## Revision of 23 September 2026
+
+Version 1.1.2 marks the phase-profile expansion and its limiting Fourier
+relations in Section 6 as conjectural or conditional, removes a broad
+priority claim, and retains the existing public references. It corrects
+the logarithm of the tail growth factor and the Fourier coefficient of
+log(psi) in the coboundary equation, and restores log(r) in the ladder
+profile's Fourier denominator. The numbered results, their proofs,
+and the five-step density 7/8 are unchanged. No private correspondence
+or unpublished manuscript is cited, quoted, or included in the archives.
+The deposit instructions use the canonical metadata for the prepared
+version and distinguish the current package from the historical deposit.

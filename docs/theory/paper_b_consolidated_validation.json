@@ -1,8 +1,8 @@
 {
   "status": "PASS",
-  "source_edition": "2026-09-22-preprint",
+  "source_edition": "2026-09-23-preprint",
   "source_edition_definition": "The manuscript's own YAML front-matter date, rendered YYYY-MM-DD-preprint. This is the edition stamp, the value docs/theory/paper_b_release_check.json carries as \"source_edition\" and PAPER_B_BUILD.md prints. It is not the Zenodo record version in docs/theory/paper_b_zenodo.json, which tracks the deposit and moved from 1.0.0 to 1.0.1 on 2026-09-21 over a byte-identical manuscript. The field was a pinned literal until 2026-09-21 and had gone stale at 2026-09-19-preprint while source_sha256 beside it already described the 2026-09-20 manuscript.",
-  "source_sha256": "b7cfaf93a45f9e6e281e2a3dafac9c28821ee0720aa61518be72d4552dc74528",
+  "source_sha256": "a695439420a6d2ca01390ce30ed391b10135cc482fbdd0f096dbe39c99412e8a",
   "exact_control_modules": {
     "validate_paper_b": {
       "status": "PASS",

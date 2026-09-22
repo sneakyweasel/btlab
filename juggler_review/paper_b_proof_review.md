@@ -2,6 +2,19 @@
 
 10 September 2026. Version 2026-09-10-proof-audit.
 
+**Release note, 23 September 2026:** this historical analytic audit remains
+the evidence recorded below; it is not an independent review of version
+1.1.2. The current revision leaves every numbered result and its proof
+unchanged. Section 6 now consistently identifies its limiting-profile
+claims as conjectural or conditional, removes a broad priority assertion,
+and retains the cited public antecedents. Three formula errors in that
+discussion are corrected: the logarithm of the tail growth factor equals
+log(rho), the coboundary Fourier coefficient is that of log(psi), and
+direct integration of the stated ladder profile gives a Fourier
+denominator log(r)+2*pi*i*k, not just 2*pi*i*k.
+No private source is cited, quoted or packaged. Fresh finite-control,
+rebuild and layout results are recorded in paper_b_release_check.json.
+
 ## Outcome
 
 This review read the full consolidated manuscript, traced its dependency

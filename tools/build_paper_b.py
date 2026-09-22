@@ -18,7 +18,7 @@ import subprocess
 # without this a no-op rebuild changes the bytes and therefore the sha256 in the manifest.
 # The epoch is fixed to the version this guide records rather than taken from git, because a
 # git-derived date lags one build behind an edit and merely relocates the churn.
-_SOURCE_DATE_EPOCH = "1790035200"  # Local revision, 22 September 2026
+_SOURCE_DATE_EPOCH = "1790121600"  # Local revision, 23 September 2026
 
 
 def _pin_build_date() -> None:

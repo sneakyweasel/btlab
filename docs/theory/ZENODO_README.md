@@ -1,17 +1,18 @@
 # Five-Step Descent Certificates for the Juggler Map
 
 **Parity Statistics of Nested Floor Powers**  
-Philippe Cochin | Preprint | Version 1.1.0
+Philippe Cochin | Preprint | Prepared version in paper_b_zenodo.json
 
 ## Files for the Zenodo record
 
-The record carries one file:
+The existing version 1.0.0 record carries one file:
 
-- `Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf`: the 44-page manuscript.
+- `Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf`: the manuscript.
 
 This package also holds `paper_b_source_package.zip`: Markdown and LaTeX
 sources, build assets, exact-control scripts, symbolic review, metadata, and
-licensing information. It was not deposited.
+licensing information. It was not included in the original deposit and
+is ready to accompany the revised PDF as a reproducibility supplement.
 
 The outer `paper_b_zenodo_package.zip` is a delivery bundle. Extract it to
 obtain the record file and the accompanying preparation materials.
@@ -27,13 +28,14 @@ Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested 
 - Resource type: Publication / Preprint.
 - Creator: Cochin, Philippe. ORCID 0009-0004-1939-3382. No affiliation is
   supplied.
-- Version: 1.0.0, the deposited version. This package holds 1.1.0,
-  which is prepared and not deposited.
+- Version: use the prepared version in paper_b_zenodo.json and
+  paper_b_zenodo_fields.txt. Version 1.0.0 is the historical deposit.
 - Language: English.
 - Access: Open.
 - Manuscript and documentation license: Creative Commons Attribution 4.0
   International (CC BY 4.0).
-- Publication date: 21 September 2026, for version 1.0.0.
+- Publication date: use the actual first-publication date of the revision;
+  21 September 2026 belongs to the historical version 1.0.0.
 
 The source archive identifies the MIT license for original Python/Lua code.
 The description, keywords, and related software URL are supplied in the
@@ -65,7 +67,10 @@ archive includes its own checksum manifest. See `PAPER_B_BUILD.md` for
 rebuilding.
 
 Paper B was published on Zenodo on 21 September 2026 as version 1.0.0. The
-manuscript in this package is version 1.1.0, which is prepared and not
-deposited: it shortens the acknowledgments, adds the availability section and
-the reference DOIs, and changes nothing mathematical. It goes up through the
-new-version operation of the record, which keeps the concept DOI.
+manuscript in this package is a prepared revision. Its Section 6 distinguishes
+numerical phase-profile observations from unproved limiting statements and
+uses the existing public literature for attribution. No private material is
+included. The numbered results and their proofs are unchanged. Upload the
+revised PDF and, if accompanying it, the source archive through the existing
+record's new-version operation, which keeps the concept DOI. The delivery
+bundle itself is an upload-preparation convenience, not another paper.

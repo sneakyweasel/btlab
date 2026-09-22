@@ -2,7 +2,7 @@
 title: "Five-Step Descent Certificates for the Juggler Map"
 subtitle: "Parity Statistics of Nested Floor Powers"
 author: Philippe Cochin
-date: 22 September 2026
+date: 23 September 2026
 lang: en
 ---
 
@@ -1205,14 +1205,17 @@ every factor of  \(1-p\)  cancelling, so the bound of Theorem 6.1 reads
 \]
 with both constants explicit and no unspecified  \(t\).
 
-What remains between this and the truth is a polynomial together
-with an oscillation, and the oscillation is not a defect of the
-measurement. Writing  \(\beta=p\)  for the threshold, the exact count
-satisfies
+Numerical exploration suggests a polynomial correction together
+with an oscillation. Writing  \(\beta=p\)  for the threshold, the
+conjectural asymptotic form for the exact count is
 \[
 N_d/2^d=\psi\bigl(\{d\beta\}\bigr)\,\varrho^{d}d^{-3/2}\bigl(1+o(1)\bigr),
 \]
-with  \(\psi\)  a non-constant function on the circle: over twenty
+with a non-constant limiting profile \(\psi\) on the circle. Its
+existence is not proved. The profile and Fourier formulas discussed
+below are numerical observations or conditional deductions requiring
+the stated limiting objects and the convergence needed to pass to them;
+they are not additional theorems or premises of Theorem 6.1. Over twenty
 consecutive depths the ratio keeps a spread of  \(1.07\)  at
 \(d\approx1000,2000,4000\)  alike, and binning by  \(\{d\beta\}\)
 collapses it, the within-bin scatter being one tenth of the
@@ -1268,19 +1271,20 @@ inside a Beatty--Ferrers shape: exact finite structure, with no growth
 constant and no oscillation. That Beatty structure is a predecessor for
 any reading of the admissible lengths A020914 through their Beatty
 complement A054414. What
-this section offers is the oscillating prefactor  \(\psi\) : that the
-ratio depends on  \(d\)  only through  \(\{d\beta\}\), that it is
-non-constant, and the barrier-step mechanism below that explains why.
-Novelty is claimed for the function, its measurement and the mechanism,
-and not for the suspicion, which is in print: after its Table 3,
+this section reports is numerical evidence for an oscillating prefactor
+\(\psi\), together with exact barrier-step identities that help explain
+the observed phase dependence. No priority is claimed for posing the
+phase-dependence question, and no theorem establishing a phase-only
+limiting profile is claimed. Related motivation is already in print:
+after its Table 3,
 Section 7.3 of [9] says in one sentence that the remaining bounded
 fluctuation is "plausibly governed by the fractional part"
 \(\{\lambda d\}\), the terminal distance to the critical boundary, and
 offers no function, no measurement of the dependence and no mechanism;
 the September text [17] keeps only the terminal distance, as a thing a
-sharper analysis must account for, in its Open Problem 1. That the
-dependence is a function of the phase alone, that it does not converge,
-and why, are this section's, and they survive the nearest prior result.
+sharper analysis must account for, in its Open Problem 1. The numerical
+measurements and finite identities here should be read alongside those
+questions; establishing the proposed limit remains open.
 Winkler [13, Section 7] derives growth constants and exact normalized
 oscillations for A100982 and its siblings A174795 and A174796. A100982
 is the minimal-certificate count of this paper,  \(2N_{d-1}-N_d\)  ---
@@ -1301,17 +1305,19 @@ the entire oscillation of  \(\psi\)  spans a factor  \(1.06\) : too
 coarse by a factor near thirty to resolve the shape. Both corollaries
 were verified against the counts of this paper.
 
-Consequently  \(\bigl(N_d/2^d\bigr)\big/\bigl(p\varrho^{d}\bigr)\cdot
-d^{3/2}\)  does not converge. Its values  \(16.4\),  \(17.0\),
-\(16.6\)  at  \(d=640,1280,2560\)  are samples of  \(\psi/p\)  and not
-approaches to a limit; the mean of  \(\psi\)  is about  \(10.9\),
+The data suggest that \(\bigl(N_d/2^d\bigr)\big/\bigl(p\varrho^{d}\bigr)\cdot
+d^{3/2}\) does not converge. Its values \(16.4\), \(17.0\),
+\(16.6\) at \(d=640,1280,2560\) fit the proposed phase profile
+\(\psi/p\); these finite samples do not prove nonconvergence.
+The measured mean of the proposed \(\psi\) is about \(10.9\),
 which is the constant such measurements had previously been read as
 estimating. The convenient threshold admits no reading of this kind at
 all: its overshoot is  \(1.2\cdot10^{6}\)  at  \(d=320\)  and
 \(6.9\cdot10^{17}\)  at  \(d=1280\), growing without bound.
 
-The shape of  \(\psi\)  is known and its existence is not, and the
-structure behind it is exact down to one missing limit.
+The numerical shape is well resolved, while existence of the limiting
+profile remains open. The finite recursion below is exact; the subsequent
+limiting-profile discussion retains this distinction.
 
 *The count recursion.*  Write  \(N_d\)  for the surviving words of length
 \(d\),  \(M_d\)  for those of them with  \(o_d=\lceil d\beta\rceil\)
@@ -1360,12 +1366,12 @@ barrier letters costs exactly the mass on the barrier, the elementary
 fact under the discontinuities of  \(\psi\), is machine-checked in
 `PaperBJumpTransposition.lean`.
 
-*The right coordinate is  \(R\).*  Conditioned on survival, the law of
-\(m_d=o_d-\lceil d\beta\rceil\)  depends on the depth only through
-\(\{d\beta\}\), and far more cleanly than  \(\psi\)  does, because a
+*The right coordinate is  \(R\).* Conditioned on survival, the computed law of
+\(m_d=o_d-\lceil d\beta\rceil\) appears to approach a family indexed by
+\(\{d\beta\}\), more cleanly than the proposed \(\psi\), because a
 conditional law carries no  \(\varrho^{d}d^{-3/2}\)  to divide out.
-Advancing the phase by  \(\beta\)  shifts the barrier word one place and
-so applies one more update,
+If this limiting family exists with the required convergence, advancing
+the phase by \(\beta\) applies one more update,
 \[
 \Pi_{\varphi+\beta}=T_{b(\varphi)}\Pi_\varphi\big/\bigl(1-\tfrac12
 b(\varphi)\Pi_\varphi(0)\bigr),
@@ -1384,31 +1390,32 @@ restatement, since  \(\varrho\)  is known in closed form.
 shape under both updates, reproducing with factor
 \(\bigl[\tfrac12(1+1/r)\bigr]^{1-\beta}\bigl[\tfrac12(1+r)\bigr]^{\beta}\).
 That expression is stationary exactly at  \(r=(1-\beta)/\beta=
-e^{-\lambda^{*}}\), and there it equals  \(-\mathrm{KL}(\beta\|\tfrac12)
+e^{-\lambda^{*}}\), and there its logarithm equals \(-\mathrm{KL}(\beta\|\tfrac12)
 =\log\varrho\)  identically.  So the characteristic equation has a
 **double** root:  \(\varrho\)  is the *minimum* of that expression, a
 second variational formula in the tail variable dual to the Cramér one
-in the tilt variable.  A simple root would give a pure exponential; a
-double root is the critical case and forces the polynomial factor.
+in the tilt variable. This criticality motivates a polynomial correction;
+it does not by itself prove the conjectural \(d^{-3/2}\) factor.
 
-*Where  \(\psi\)  comes from.*  Combining the recursion with
-\(P_d=\psi(\{d\beta\})\varrho^{d}d^{-3/2}\)  makes  \(\log\psi\)  a
-coboundary over the rotation,
+*The proposed profile relations.* Assuming the conjectural asymptotic,
+a positive limiting profile, and convergence sufficient to pass through
+the recursion, \(\log\psi\) would be a coboundary over the rotation,
 \[
 \log\psi(\varphi+\beta)-\log\psi(\varphi)=f(\varphi),\qquad
 f=\log\bigl(1-\tfrac12 b R\bigr)-\log\varrho,
 \]
-whose mean vanishes by the identity above, so
-\(\hat\psi(n)=\hat f(n)/(e^{2\pi in\beta}-1)\)  — reproduced to a few
-percent across fifteen modes.  \(R\)  is a step function whose jumps sit
-on  \(\{k\beta\}\), so  \(f\)  jumps there and at  \(1-\beta\), and a
+For integrable \(\log\psi\), this forces zero mean of \(f\) and gives
+\(\widehat{\log\psi}(n)=\hat f(n)/(e^{2\pi in\beta}-1)\) for \(n\ne0\).
+The candidate \(R\) has jumps on \(\{k\beta\}\), so the proposed
+\(f\) jumps there and at \(1-\beta\), and a
 coboundary spreads those over the same orbit:  \(\psi\)'s jumps are not
 an accident of the barrier arithmetic but the shape of a coboundary.
-The Ostrowski structure in  \(\hat\psi\)  is inherited from  \(\hat f\),
+In this coboundary description, the structure in \(\widehat{\log\psi}\) comes from \(\hat f\),
 not manufactured by the divisor —  \(\hat f\)  is five times smaller at
 the resonances than away from them, which is what keeps  \(\psi\)
-bounded.  It is in fact of bounded variation, and its jumps are the survivor
-sequence itself. The jump of  \(\psi\)  at  \(\{n\beta\}\)  is
+bounded in the computation. The proposed bounded-variation profile has a
+candidate jump spectrum expressed by the survivor sequence. The proposed
+jump of \(\psi\) at \(\{n\beta\}\) is
 \[
 a_n=\frac{a_1\,N_n}{(2\varrho)^{\,n-1}}\qquad(n\ge1),
 \]
@@ -1422,32 +1429,37 @@ was the bias of the differencing. The one constant is closed form,
 \[
 a_1=\frac{1}{2\varrho\sqrt{2\pi\beta(1-\beta)}}=0.427956804.
 \]
-The reason is a Fourier identity. Let  \(A_n\)  be the probability that
+The proposed Fourier relation uses the following ladder profile. Let \(A_n\) be the probability that
 the walk of Remark 6.2 is nonnegative at step  \(n\), divided by
 \(\varrho^{n}\). Then  \(\sqrt n\,A_n=\Phi(\{n\beta\})\bigl(1+O(1/n)\bigr)\)  with
 the ladder profile
 \(\Phi(x)=r^{1-x}\big/\bigl((1-r)\sqrt{2\pi\beta(1-\beta)}\bigr)\),
 \(r=(1-\beta)/\beta\), whose mean  \(\kappa=1.541814521\)  is the
-non-lattice local-limit constant, and
-\(\hat\psi(k)=\hat\Phi(k)\,G\bigl(e^{-2\pi ik\beta}\bigr)\)  for every
-\(k\), where  \(G(w)=\sum_dN_dw^d/(2\varrho)^d\). So the jump of  \(\psi\)
+non-lattice local-limit constant. The proposed relation is
+\(\hat\psi(k)=\hat\Phi(k)\,G\bigl(e^{-2\pi ik\beta}\bigr)\), where
+\(G(w)=\sum_dN_dw^d/(2\varrho)^d\), subject to convergence and the
+limit interchange. In this description the proposed jump of \(\psi\)
 at the origin,  \(2\varrho a_1=1/\sqrt{2\pi\beta(1-\beta)}\), is the jump
 of  \(\Phi\)  there; mode by mode, with  \(\psi\)  measured at depth
 \(10^6\), the ratio
 \(\lvert\hat\psi(k)\rvert/\lvert\hat\Phi(k)G(e^{-2\pi ik\beta})\rvert\)  is
 \(1.0015\pm0.0020\)  over  \(k\le256\)  with no trend in  \(k\), and
-explicitly
-\(\hat\psi(k)=-\bigl(2\varrho a_1/2\pi ik\bigr)\,G(e^{-2\pi ik\beta})\)  for
-\(k\ne0\). Summing the jumps gives  \(2\varrho a_1\,(G(1)-1)\), and the
+direct integration gives
+\(\hat\Phi(k)=-2\varrho a_1/(\log r+2\pi ik)\). Thus the proposed formula is
+\(\hat\psi(k)=-\bigl(2\varrho a_1/(\log r+2\pi ik)\bigr)G(e^{-2\pi ik\beta})\).
+The term \(\log r\) cannot be omitted from this denominator.
+Summing the proposed jumps gives \(2\varrho a_1\,(G(1)-1)\), and the
 mean of  \(\psi\)  is  \(\kappa G(1)=10.8927\)  with  \(G(1)=7.0649\)  a
 convergent series, so the summability of the jump spectrum and the
 convergence of  \(G(1)\)  are one statement. These are verified
 computations, recorded with their tests in the repository; the existence
 of  \(\psi\)  as a limit is not among them.
 
-*What is open, and what is excluded.*  One link is unproved: that the
-iteration converges, \(R_d\to R(\{d\beta\})\).  Everything above is
-exact or elementary given it.  Three natural attacks are excluded, the
+*What is open, and what is excluded.* The convergence
+\(R_d\to R(\{d\beta\})\), its necessary rate and regularity, and the
+limit interchanges used in the profile and Fourier discussion remain
+unproved. Finite identities and numerical agreement do not discharge
+these obligations. Three natural attacks are examined below, the
 third by argument rather than by measurement.  Birkhoff contraction on
 the product of positive operators would give geometric memory loss, and
 the loss is polynomial.  A small-divisor obstruction would show as an
@@ -3350,10 +3362,11 @@ of the preprint. The models are not authors.
 
 ## Availability and version
 
-This is version 1.1.1 of Paper B, of 22 September 2026. This revision
-corrects the recursion's attribution to Terras (1976) and cites the
-arXiv version of reference [13]; its mathematical statements and proofs
-are unchanged. It is a preprint, it has
+This is version 1.1.2 of Paper B, of 23 September 2026. This revision
+clarifies Section 6's conjectural limiting-profile discussion, its public
+prior-art comparison, and three formula corrections in that discussion. It
+retains the corrected Terras attribution and arXiv reference [13].
+The numbered results and their proofs are unchanged. It is a preprint, it has
 not been refereed, and it is not deposited. The current Zenodo version is 1.0.0
 ([doi:10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934)),
 published 21 September 2026 from the edition of 20 September 2026. The concept DOI
