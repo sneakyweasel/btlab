@@ -23,7 +23,7 @@ import subprocess
 # without this a no-op rebuild changes the bytes and therefore the sha256 in the manifest.
 # The epoch is fixed to the version the build guide records rather than taken from git,
 # because a git-derived date lags one build behind an edit and merely relocates the churn.
-_SOURCE_DATE_EPOCH = "1788912000"  # Paper A version 1.0.0, 9 September 2026
+_SOURCE_DATE_EPOCH = "1790035200"  # Local revision, 22 September 2026
 
 
 def _pin_build_date() -> None:
@@ -41,7 +41,9 @@ METADATA = "docs/theory/paper_a_zenodo.json"
 OUTPUTS = [PDF, TEX, METADATA]
 EDITORIAL = [SOURCE, "docs/theory/juggler_finite_dynamics_formalization.md",
              "docs/theory/juggler_finite_dynamics_reviewer_packet.md"]
-BUILD_INPUTS = ["tools/build_paper_a.py", "tools/paper_a/article.tex",
+BUILD_INPUTS = ["formal/Problems/Juggler/GapTransferWW.lean",
+                "literature/wu-wang-2014-irrationality-measure-log3.json",
+                "tools/build_paper_a.py", "tools/paper_a/article.tex",
                 "tools/paper_a/layout.lua", "tools/check_paper_a_numeric.py",
                 "tools/trust_boundary.py",
                 "src/research/juggler_sequence/paper_a_audit.py",
