@@ -4,7 +4,10 @@ Status: **PARK** (22 September 2026). The former assertion that the
 Krasikov–Lagarias exponent transfers by residue relabelling alone is
 withdrawn as unproved. The eventual 3n-1 bound is not refuted. A follow-up
 now bounds height corrections through any finite family of expanding
-inverse blocks; validity of the actual counting system remains open.
+inverse blocks. A second follow-up proves actual signed tree-count
+inequalities on a strict grid for nonperiodic roots at least 4096, with a
+decreasing induction measure. Closing the root domain and supplying a
+growth certificate remain open.
 
 Branch of the [Collatz bridge](juggler_collatz_bridge.md). The exact
 predecessor comparison is now kernel-checked in
@@ -58,6 +61,18 @@ normalization (2.2) uses 2^y a, while (2.1) counts absolute heights.
 That broad statement alone does not reconstruct the signed height step
 needed here. We do not use it to certify the stronger 0.84 transfer.
 
+**A different proof route.** M. Sharpe's
+[KLGrid.lean](https://github.com/msharpe248/collatz/blob/main/lean/Collatz/KLGrid.lean)
+uses a 1/50 grid and induction on 10t+floor(log2(a^498)) for positive
+roots. The slight loss in the advanced shift makes this measure decrease;
+working with individual roots avoids deletion inside residue minima.
+We inspected that proof and its hypotheses, including the root's reaching
+8. We did not rebuild or independently audit the external repository's
+large density certificates. Its MIT cap table and method are attributed in
+our [PreimageGrid.lean](../../formal/Problems/Collatz/PreimageGrid.lean).
+The signed inequalities below are locally kernel-checked with their
+different cutoff comparison and explicit root threshold.
+
 ## Branch budget
 
 - **Target:** audit the scale inequalities behind the recorded transposition.
@@ -69,6 +84,14 @@ needed here. We do not use it to certify the stronger 0.84 transfer.
 - **Maximum Phase-0 scope:** exact scale comparison, Lean proof, and claim correction.
 - **Promotion criterion:** justified transfer or a precise verified missing premise.
 - **Stop criterion:** no density conclusion from matching residues or solvers.
+
+Follow-up scope: prove the three actual minus-tree recurrences and a
+decreasing natural-number induction measure above a fixed root threshold.
+The falsifier is a failed cutoff inclusion or measure decrease. This is
+not the closed exact-shift transfer: a strict grid margin is retained.
+Promotion requires statements about genuine height-truncated integer
+trees. Stop before claiming a density exponent without a closed root
+domain and a checked growth certificate.
 
 ## Balanced-ternary formulation
 
@@ -105,6 +128,12 @@ The old wrong-sign regression had never tested its alleged identity:
 for a=1 mod 3 its guard `(2*a-1) % 3 == 0` is always false. It now
 reports that nonintegrality explicitly. The BFS also returns zero when
 its root itself is outside the positive cutoff interval.
+
+The grid checks cover all 50 rounding phases, and independently test
+integer roots and capped inverse trees. Two boundary diagnostics are
+retained: the grid cutoff itself fails at a=19, while a=4096 has the
+smaller odd predecessor 2731. Thus a lower root threshold by itself is
+not an invariant domain for a growth induction.
 
 ## Conjectures
 
@@ -149,12 +178,26 @@ OE example is an actual predecessor at fertile integer targets.
 `no_elementary_shift` proves why the same method cannot apply to both
 single letters with their original multipliers.
 
+`PreimageGrid.lean` defines the actual positive-integer capped inverse
+tree and proves monotonicity, extension along bounded paths, uniqueness
+of hitting times at a nonperiodic root, and disjointness of the two
+subtrees. `count_four`, `count_odd`, and `count_doubled_odd` prove the
+three pointwise recurrences below. `measure_children` proves all three
+strict decreases, and `fertile_children` checks the residue selection.
+These are bounds on actual counts, not a floating-point residue model.
+
 Validation: full `lake build` passes (9028 jobs). The
 [22-declaration audit](../../formal/AxiomCheckCollatzPreimageScale.expected)
 uses only `propext`, `Classical.choice`, and `Quot.sound`. The focused
 probe tests plus integration and ledger gates give 153 passes and
 14 skips. The regenerated probe preserves 366 exact finite tree splits,
 and reports 366 nonintegral wrong-sign expressions explicitly.
+
+Grid follow-up validation: full `lake build` passes (9029 jobs), and
+the [29-declaration grid audit](../../formal/AxiomCheckCollatzPreimageGrid.expected)
+has only standard Lean dependencies. Exact independent checks cover all
+rounding phases, actual signed roots, and capped integer subtrees. Focused,
+integration, ledger, and registry tests give 162 passes and 14 skips.
 
 ## Results
 
@@ -208,34 +251,80 @@ for E and O individually would require K>=0 and K<=-1 simultaneously.
 In particular, the contracting O production in the original residue
 system is not covered by this block lemma.
 
+### Actual counting inequalities with a strict grid margin
+
+Let N(a,X) count positive n that reach a with every intervening state at
+most X. Put C(t)=2^floor(t/50) r(t mod 50), using the explicit integer
+table r in `PreimageGrid.lean`; its first value is 10000. For a>=4096
+with a=1 mod 3 and b=(2a+1)/3, the exact comparisons are
+
+\[
+12288b\le8193a,\quad
+8193C(t+29)\le12288C(t),\quad
+16386C(t)\le12288C(t+21).
+\]
+
+Consequently, for every nonperiodic such root and all t>=0,
+
+\[
+\begin{aligned}
+N(a,C(t+100)a)&\ge N(4a,C(t)4a),\\
+N(a,C(t+100)a)&\ge N(4a,C(t)4a)+N(b,C(t+129)b),\\
+N(a,C(t+100)a)&\ge N(4a,C(t)4a)+N(2b,C(t+79)2b).
+\end{aligned}
+\]
+
+The first inequality does not need nonperiodicity or the lower root
+threshold. To stay in fertile classes, use the second inequality when
+a=1 mod 9, the third when a=7 mod 9, and just the first when a=4 mod 9.
+The two odd-branch alternatives are not added together.
+
+For M(t,a)=10t+floor(log2(a^498)), the kernel checks
+
+\[
+\begin{aligned}
+M(t,4a)+4&\le M(t+100,a),\\
+M(t+79,2b)+3&\le M(t+100,a),\\
+M(t+129,b)+1&\le M(t+100,a).
+\end{aligned}
+\]
+
+The decisive integer inequality is
+2^291 * 8193^498 < 12288^498. It keeps a strict decrease after the
+signed offset is included. This gives a viable way to handle the
+advanced term without the older elimination/deletion proof.
+The number 4096 is an auxiliary root threshold, not a new computational
+termination floor for either map.
+
 The known-cycle census means the three known cycles and their fifteen
 members; it supplies no exhaustiveness theorem. Existing finite tree
 split checks remain computational and must retain their noncycle scope.
 
 ## Open questions
 
-Can a finite expanding-block system be justified for the actual signed
-counting functions, with sufficient growth? Its height correction is now
-controlled **once the system is justified**. The source's deletion step
-removes alternatives inside a minimum, which can increase that minimum;
-it is not merely dropping positive summands. Endpoint bounds do not
-justify this change, establish disjointness of counted inverse paths,
-or prove the required residue-infimum inequalities. Those are the
-remaining premises, not an invitation to run a larger linear program.
+The strict-grid route now supplies actual pointwise counting inequalities
+and a well-founded measure above 4096. The next question is to construct
+a root domain closed under the selected inverse productions, with every
+root above that threshold, or supply a justified boundary argument.
+Nonperiodicity is inherited by predecessors, but the numerical threshold
+is not. A growth certificate must then be checked for these grid shifts
+and combined with the induction; the old homogeneous model's output is
+not that certificate. The original deletion argument remains unsupported
+for the signed functions and is not used by this route.
 
 Even a repaired x^0.84 lower bound would not supply Juggler's required
 divergent harmonic-mass estimate or its growing-depth pressure bound.
 
 ## Decision
 
-**PARK** the density transfer pending a valid signed counting system.
-The finite expanding-block height lemma is recorded, with both its
-integer example and its single-letter obstruction. The residue symmetry
-is retained; automatic analytic transfer remains closed. No new cycle
-exclusion, termination theorem, or computation floor follows, and neither
-Paper C nor Paper D requires modification.
+**PARK** the density exponent pending the closed-domain growth induction
+and its numerical certificate. The expanding-block lemma and strict-grid
+counting recurrences are recorded as proved components. The residue
+symmetry is retained; automatic analytic transfer remains closed. No new
+cycle exclusion, termination theorem, or computation floor follows, and
+neither Paper C nor Paper D requires modification.
 
 ## Publication assessment
 
-Working correction only. Do not present the 3n-1 exponent as a corollary
-of residue negation until the height step is supplied and reviewed.
+Working correction and partial repair. Do not present the 3n-1 exponent
+as a corollary until the growth induction and certificate are supplied.

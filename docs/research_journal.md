@@ -1,5 +1,42 @@
 # Research journal
 
+## 2026-09-22 -- Strict grid slack repairs the signed counting step above 4096
+
+- **Question:** Can the signed offset be retained in actual counting
+  inequalities, without relying on the unsupported deletion argument?
+- **Source finding:** M. Sharpe's MIT-licensed `KLGrid.lean` uses a strict
+  1/50 grid and induction over actual positive roots, with measure
+  10t+floor(log2(a^498)). Its explicit hypotheses were inspected; its
+  external large certificates were not rebuilt here. The table and method
+  are attributed, and the license notice is retained in the local module.
+- **Result:** `PreimageGrid.lean` proves the actual minus-map analogues
+  at nonperiodic fertile roots a>=4096. The direct odd child receives
+  time t+129 when the parent receives t+100; the doubled odd child
+  receives t+79. The cap comparison includes the signed plus-one via
+  12288b<=8193a. The exact power inequality
+  2^291*8193^498<12288^498 makes the natural measure decrease by at
+  least 4, 3, 1 on the three selected branches. The finite trees count
+  positive integer starts whose entire path stays below the cutoff;
+  extension and disjointness are proved, not inferred from residues.
+- **Boundary:** Nonperiodicity is inherited by predecessors. The lower
+  root threshold is not: 2731 maps to 4096. A closed root domain or a
+  separate boundary argument is still required. The new grid's cutoff
+  also fails at small target 19, which tests the need for the hypothesis.
+- **Decision:** **PARK** the density exponent pending that domain,
+  the growth induction, and a checked certificate for the grid. The
+  pointwise counting step and well-founded measure are now formalized.
+  This is an adaptation of the cited method, not a new claim to its
+  priority. No new density exponent, cycle bound, floor campaign, or
+  Juggler termination theorem follows from this phase.
+- **Validation:** Full `lake build` passes (9029 jobs). All 29 audited
+  declarations use only standard Lean dependencies. Independent exact
+  checks cover every grid phase, sample genuine root cutoffs and measure
+  changes, and test capped subtrees by backward enumeration. The focused,
+  integration, ledger, and registry gates pass: 162 passed, 14 skipped.
+- **Coverage:** The new ledger row retains the human-proof label pending
+  advisory coverage. Local compilation and the kernel audit are recorded;
+  no new theorem data was sent externally.
+
 ## 2026-09-22 -- Expanding inverse blocks absorb signed height corrections
 
 - **Question:** Does the signed height correction necessarily compound

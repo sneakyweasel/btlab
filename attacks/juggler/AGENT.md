@@ -147,8 +147,11 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   is unproved here, not refuted; matching solvers do not supply it.
   `finite_expanding_shift` now controls height corrections through any
   finite expanding inverse-block family, including internal prefixes.
-  Validity of the signed counting system and its minimum/deletion steps
-  remains the missing premise.
+  `PreimageGrid.lean` now proves actual signed counting inequalities on
+  a strict 1/50 grid for nonperiodic roots at least 4096, and a decreasing
+  scale/root measure. The remaining premises are a closed root domain
+  (or boundary argument) and a checked growth certificate; no density
+  exponent follows yet. This route avoids the old minimum/deletion step.
 - **Anti-overclaim.** Finite checks, period floors, densities, and
   leftover censuses are not a halt theorem and not "no cycle of any
   length". State the theorem with quantifiers, Lean name, and ledger

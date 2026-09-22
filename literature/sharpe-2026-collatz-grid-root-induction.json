@@ -1,0 +1,16 @@
+{
+ "id": "sharpe-2026-collatz-grid-root-induction",
+ "title": "Collatz KLGrid: advanced-term growth by induction over actual roots",
+ "authors": ["M. Sharpe"],
+ "year": 2026,
+ "status": "theorem",
+ "problem_area": "collatz",
+ "project_relationship": "known",
+ "relevant_concepts": ["preimage density", "strict grid slack", "well-founded induction", "3n-1 map"],
+ "url": {
+  "repository": "https://github.com/msharpe248/collatz",
+  "source": "https://github.com/msharpe248/collatz/blob/main/lean/Collatz/KLGrid.lean",
+  "grid": "https://github.com/msharpe248/collatz/blob/main/lean/Collatz/Grid50.lean"
+ },
+ "notes": "Source inspected 22 September 2026. KLGrid.growth_root uses a 1/50 grid and the natural measure 10*t+floor(log2(a^498)) to retain the advanced term in the positive 3x+1 counting inequalities, avoiding elimination inside class infima. Its roots are at least 3, fertile, and reach 8; a positive bounded certificate is an explicit premise. The table and method are MIT licensed, copyright M. Sharpe 2026. We have not rebuilt the external repository or independently checked its advertised large density certificates. Local adaptation: Problems.Collatz.PreimageGrid independently compiles actual signed tree-count recurrences for nonperiodic fertile minus-map roots a>=4096. The strict inequalities 8193*C(t+29)<=12288*C(t), 16386*C(t)<=12288*C(t+21), and 2^291*8193^498<12288^498 absorb the plus-one in the inverse numerator, preserving measure drops 4, 3, 1. The signed growth induction still needs a closed root domain or boundary treatment and a checked certificate. No signed density exponent or Juggler termination theorem is claimed. This is an adaptation of the source's root-induction method, not an independent priority claim for that method. The complete MIT notice is retained in the local Lean module."
+}

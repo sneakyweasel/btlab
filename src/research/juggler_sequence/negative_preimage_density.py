@@ -16,6 +16,10 @@ missing scale factor is ``1 + 1/(2a)``. ``PreimageScale.lean`` proves this
 and a concrete excluded ancestor. The claimed minus-map density exponent
 is now unproved in this branch, not refuted. Solver outputs are model values.
 
+FOLLOW-UP. ``PreimageGrid.lean`` proves actual signed tree-count recurrences
+on a strict 1/50 grid above root 4096, with a decreasing induction measure.
+A closed root domain and a checked growth certificate remain to be supplied.
+
 THE STRUCTURE.  Under ``T`` the preimages of ``a`` are ``2a`` always and ``(2a-1)/3`` when
 that is an odd integer, which happens exactly for ``a = 2 (mod 3)``; call those classes
 *fertile*.  Under ``g`` they are ``2a`` and ``(2a+1)/3``, fertile exactly for
@@ -326,6 +330,34 @@ def cycle_members_break_the_identity(y: int = 4) -> int:
     return broken
 
 
+# The interleaved cap grid from M. Sharpe's MIT-licensed Grid50.lean.
+# The complete license notice is in formal/Problems/Collatz/PreimageGrid.lean.
+# Its strict slack, not merely its homogeneous exponent, is checked for the
+# minus map in Problems/Collatz/PreimageGrid.lean. No density exponent follows
+# here until a closed root domain and a growth certificate are supplied.
+GRID_RUNGS = (
+    10000, 10140, 10281, 10425, 10570, 10718, 10867, 11019, 11173, 11329,
+    11487, 11647, 11810, 11975, 12142, 12311, 12483, 12658, 12834, 13013,
+    13195, 13379, 13566, 13755, 13947, 14142, 14340, 14540, 14743, 14948,
+    15157, 15369, 15583, 15801, 16021, 16245, 16472, 16702, 16935, 17171,
+    17411, 17654, 17901, 18150, 18404, 18661, 18921, 19185, 19453, 19725,
+)
+
+
+def grid_cap(t: int) -> int:
+    """Exact integer cap on the 1/50 grid (nonnegative grid times only)."""
+    if t < 0:
+        raise ValueError("grid time must be nonnegative")
+    return (1 << (t // 50)) * GRID_RUNGS[t % 50]
+
+
+def grid_measure(t: int, a: int) -> int:
+    """Natural induction measure; compute the logarithm by exact bit length."""
+    if t < 0 or a < 1:
+        raise ValueError("nonnegative time and positive root required")
+    return 10 * t + (a ** 498).bit_length() - 1
+
+
 # ------------------------------------------------------------------------ artifacts
 def height_comparison_report() -> dict[str, Any]:
     """An actual child ancestor admitted only by the invalid nominal budget."""
@@ -346,7 +378,7 @@ def height_comparison_report() -> dict[str, Any]:
 def classification() -> dict[str, Any]:
     return {
         "label": CLASS_RESIDUE_ONLY,
-        "statement": "Negation identifies the formal residue programs. The minus-map height comparison is unproved; matching solver exponents do not establish a density bound.",
+        "statement": "Negation identifies the formal residue programs. Strict-grid count recurrences are now proved above root 4096, but a closed root domain and a checked growth certificate remain; matching model exponents do not establish a minus-map density bound.",
         "published_plus_exponent": PUBLISHED["krasikov_lagarias_2003_k11"],
         "established_minus_exponent": None,
     }
@@ -400,6 +432,12 @@ def render_markdown(d: dict[str, Any]) -> str:
         "assigned homogeneous shifts need a separate height argument for actual "
         "minus-map trees. The former density-transfer claim is withdrawn as unproved; "
         "its asymptotic conclusion is not refuted.",
+        "",
+        "Follow-up: `PreimageGrid.lean` proves actual signed tree-count "
+        "recurrences on a strict 1/50 grid above root 4096, together with "
+        "a decreasing induction measure. The remaining steps are a closed "
+        "root domain and a checked growth certificate. No minus-map density "
+        "exponent is established by the model outputs below.",
         "",
         f"At target 19, child 13 and cutoff 103, the nominal child cutoff is "
         f"`{d['height_comparison']['nominal_child_cutoff']}`. It admits the ancestor "

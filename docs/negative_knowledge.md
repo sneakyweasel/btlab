@@ -27,7 +27,13 @@ the derived residue counting system is valid. `no_elementary_shift`
 rules out absorbing both individual inverse letters with one translation
 and their unchanged multipliers. The open premise is the actual counting
 system, including its minimum/deletion steps, not accumulation of the
-offset in an already justified finite expanding family.
+offset in an already justified finite expanding family. A subsequent
+strict-grid route now proves actual counting recurrences and a decreasing
+root/scale measure in `PreimageGrid.lean`, for nonperiodic roots at least
+4096. This bypasses deletion inside minima. It still needs a closed root
+domain or boundary argument: 4096 has predecessor 2731, below the threshold.
+It also needs a checked growth certificate for the grid shifts. Neither
+component is supplied by the original floating-point residue model.
 
 ## Complete unbounded stopping families need not preserve multiplier moment
 

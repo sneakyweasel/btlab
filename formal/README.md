@@ -40,6 +40,9 @@ Compiled theorem groups:
 - signed inverse-word affine formulas, one uniform height shift for any
   finite expanding block family, internal-prefix bounds, and the
   obstruction to a common shift for both individual inverse letters;
+- actual capped minus-shortcut tree inequalities on a strict 1/50 grid,
+  with a decreasing scale/root measure above 4096; the closed root domain
+  and growth certificate are not yet supplied;
 - `M ≤ X` from the nonnegative `3^m` endpoint lift;
 - the fixed-integer affine gap `G = 2^K (n - x)`, its exact recurrence,
   the periodic-code identity `n(2^K - 3^p) = C`, and `2^K ≠ 3^m` for `m ≥ 1`;

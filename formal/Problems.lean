@@ -11,6 +11,7 @@ import Problems.Collatz.Lift
 import Problems.Collatz.NegativeMCycles
 import Problems.Collatz.BackwardMass
 import Problems.Collatz.PreimageScale
+import Problems.Collatz.PreimageGrid
 import Problems.Ostrowski.NP
 import Problems.Primes.Residual
 import Problems.BalancedTernary.FiniteStateDynamics

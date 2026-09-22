@@ -2,12 +2,71 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
+import re
 from math import log2
 from fractions import Fraction
 
 import pytest
 
 import research.juggler_sequence.negative_preimage_density as npd
+
+
+def test_signed_grid_uses_the_same_exact_table_as_the_kernel_proof() -> None:
+    path = Path(__file__).resolve().parents[3] / "formal/Problems/Collatz/PreimageGrid.lean"
+    text = path.read_text(encoding="utf-8")
+    table = text.split("def table : List ℕ :=", 1)[1].split("def rung", 1)[0]
+    assert tuple(map(int, re.findall(r"\d+", table))) == npd.GRID_RUNGS
+    assert 2 ** 291 * 8193 ** 498 < 12288 ** 498
+    for t in range(150):
+        assert npd.grid_cap(t + 100) == 4 * npd.grid_cap(t)
+        assert 8193 * npd.grid_cap(t + 29) <= 12288 * npd.grid_cap(t)
+        assert 16386 * npd.grid_cap(t) <= 12288 * npd.grid_cap(t + 21)
+
+
+def test_signed_grid_cutoffs_and_measure_on_fertile_integer_roots() -> None:
+    for a in (*range(4096, 4300, 3), 1_000_000, 10 ** 30):
+        assert a % 3 == 1
+        b = (2 * a + 1) // 3
+        for t in range(50):
+            assert npd.grid_cap(t + 129) * b <= npd.grid_cap(t + 100) * a
+            assert npd.grid_cap(t + 79) * (2 * b) <= npd.grid_cap(t + 100) * a
+            parent = npd.grid_measure(t + 100, a)
+            assert npd.grid_measure(t, 4 * a) + 4 <= parent
+            assert npd.grid_measure(t + 79, 2 * b) + 3 <= parent
+            assert npd.grid_measure(t + 129, b) + 1 <= parent
+
+
+def test_signed_grid_requires_a_boundary_argument() -> None:
+    # The pointwise cutoff fails at a small nonperiodic root; the new theorem
+    # does not silently replace the original false homogeneous comparison.
+    assert npd.grid_cap(129) * 13 > npd.grid_cap(100) * 19
+    # The threshold alone is not a backward-closed domain for induction.
+    assert npd.g_minus(2731) == 4096 and 2731 < 4096
+    with pytest.raises(ValueError):
+        npd.grid_cap(-1)
+    with pytest.raises(ValueError):
+        npd.grid_measure(0, 0)
+
+
+def test_actual_capped_subtrees_satisfy_both_signed_split_bounds() -> None:
+    # Small common cutoffs exercise genuine trees, independently of the grid
+    # algebra. These roots all reach the known cycles without returning.
+    for a in range(4096, 4114, 3):
+        seen = set()
+        n = a
+        while n not in seen:
+            seen.add(n)
+            n = npd.g_minus(n)
+        assert n != a
+        b = (2 * a + 1) // 3
+        for cutoff in (4 * a, 9 * a):
+            parent = npd.truncated_tree(npd.preimages_minus, a, cutoff)
+            even = npd.truncated_tree(npd.preimages_minus, 4 * a, cutoff)
+            odd = npd.truncated_tree(npd.preimages_minus, b, cutoff)
+            doubled = npd.truncated_tree(npd.preimages_minus, 2 * b, cutoff)
+            assert even + odd <= parent
+            assert even + doubled <= parent
 
 
 def test_the_fertile_classes_are_the_ones_with_an_odd_preimage() -> None:

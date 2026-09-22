@@ -1,7 +1,7 @@
 {
   "classification": {
     "label": "RESIDUE_SYMMETRY_WITH_UNPROVED_HEIGHT_TRANSFER",
-    "statement": "Negation identifies the formal residue programs. The minus-map height comparison is unproved; matching solver exponents do not establish a density bound.",
+    "statement": "Negation identifies the formal residue programs. Strict-grid count recurrences are now proved above root 4096, but a closed root domain and a checked growth certificate remain; matching model exponents do not establish a minus-map density bound.",
     "published_plus_exponent": 0.84,
     "established_minus_exponent": null
   },
