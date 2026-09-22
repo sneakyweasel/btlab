@@ -3,7 +3,7 @@
   "canonical_source": "docs/theory/juggler_signed_collatz_note.md",
   "status": "living preprint; independent review pending; no external deposit",
   "verification_scope": "File provenance only. The mathematical trust boundaries are in the manuscript and in PAPER_E_BUILD.md.",
-  "pages": 11,
+  "pages": 12,
   "tools": {
     "pandoc": "pandoc.EXE 3.6.3",
     "xelatex": "MiKTeX-XeTeX 4.18 (MiKTeX 26.5)"
@@ -37,27 +37,27 @@
     {
       "path": "docs/theory/PAPER_E_BUILD.md",
       "mode": "text",
-      "sha256": "0af54b72ec8b538b0b5f88d36d06306629324465abd2394e32fdf33d73f064e3"
+      "sha256": "da727b428fedbb95174ffb5500d5cc96a37af2e545e7860de0a5a28af8fdb80f"
     },
     {
       "path": "docs/theory/juggler_signed_collatz_note.md",
       "mode": "text",
-      "sha256": "fa1518bce4a6b078e6b91d7bec55e77713c8efc731be526d13c58d40d545983c"
+      "sha256": "1899acb2bf79e3f1e6aad0110310f842f7da0318fac4d329a53e826b3cafee80"
     },
     {
       "path": "docs/theory/paper_e_review.md",
       "mode": "text",
-      "sha256": "a665e3c108eb56bd0b77a28583e05981074f000cf86500a9bb09e9e34b3ed0ac"
+      "sha256": "142b5eb532e47550966077a29d29cc216cf0782d9837d22c0326b232cd0f5bf9"
     },
     {
       "path": "docs/theory/paper_e_validation.json",
       "mode": "text",
-      "sha256": "7dc75e6289fd3122e13088b70d399f5d492c8cd7743ef1eda3f0863de57736e2"
+      "sha256": "3f532b6d940fa45bc034fb038ac28cea2252613a98f8c76ed6a56c3c169c6ca8"
     },
     {
       "path": "formal/AxiomCheckJugglerCollatzPaper.lean",
       "mode": "text",
-      "sha256": "79f13d9230b548bce6b7c39be4e5a5f7210a8d69f31d5347213cbd4fb88bbe94"
+      "sha256": "c58a53271641e84732ef382d22fcb173966c13f931f1ea5889dd8d16fbcf27c2"
     },
     {
       "path": "formal/Problems/Collatz/BackwardMass.lean",
@@ -350,6 +350,11 @@
       "sha256": "8bf17ca45082e1b4ab7940729295898639a552098b295d493d376915657a1857"
     },
     {
+      "path": "formal/Problems/Juggler/PaperECompletion.lean",
+      "mode": "text",
+      "sha256": "73bcfa47e6138d8004be56c146a5a2d88bcc316e15a8591feca48437584c5ea6"
+    },
+    {
       "path": "formal/Problems/Juggler/Preimages.lean",
       "mode": "text",
       "sha256": "dabe4af2c54b55826cada04dd92b5f35d3face6f86e42e66829699ab4bc87e3f"
@@ -392,7 +397,7 @@
     {
       "path": "formal/Problems/JugglerCollatzPaper.lean",
       "mode": "text",
-      "sha256": "029d29c17f15aa6dbdad4a24c4da309aaa0db101ff410cc8068d890612d71ea5"
+      "sha256": "15d082e8f2579fe3ce2332581f8dee8040e6fc1742e1d484da06aec0d70e2677"
     },
     {
       "path": "formal/lake-manifest.json",
@@ -412,7 +417,7 @@
     {
       "path": "juggler_review/zenodo_paper_e/README.md",
       "mode": "text",
-      "sha256": "9c0830e9ba9db2d1ac6a85bcb7a9c9dce7e33e951eb750675c23efd2eabfe142"
+      "sha256": "56823d388e05e159284e8525e23a439e98a71d6d70832f42020f9bd90c658960"
     },
     {
       "path": "literature/bernstein-lagarias-1996-conjugacy-map.json",
@@ -457,7 +462,7 @@
     {
       "path": "src/research/juggler_sequence/lean_paths.py",
       "mode": "text",
-      "sha256": "3a8e1d2b6224930d910e05242b0ffe9415a43908fc998cbbccc4625676a1fdbf"
+      "sha256": "7b332dcda3bbc7686975bf6219434617bc5d47061dcfeee350ded4a2c3618213"
     },
     {
       "path": "src/research/juggler_sequence/negative_preimage_density.py",
@@ -467,17 +472,17 @@
     {
       "path": "tests/unit/test_paper_e_release.py",
       "mode": "text",
-      "sha256": "7f1a42d16c169897ecbd81d4496be50044352ddb421d105f25f5be0a3421658c"
+      "sha256": "b2e67e5d257645cc5a701719d07234cb3e75a04a82811ccde92efdb359d715e1"
     },
     {
       "path": "tools/build_paper_e.py",
       "mode": "text",
-      "sha256": "8311ca375fd62130ab7a61044f365c8436d93cedbef526686d3da258cda0b340"
+      "sha256": "87c6c32fedf28758ba0f80e2622742d77674fd3f25bb3cff986387ddb7df3971"
     },
     {
       "path": "tools/check_paper_e.py",
       "mode": "text",
-      "sha256": "3322928336179f19ed71074faea25653da87857437241d23fb4e52548ba62075"
+      "sha256": "d8ce4ccda5b5a7beeba0061a647c599580dfb70a0c59462757a5b6a42862e6e6"
     },
     {
       "path": "tools/generate_signed_grid_certificate.py",
@@ -492,7 +497,7 @@
     {
       "path": "tools/paper_e/layout.lua",
       "mode": "text",
-      "sha256": "5b40190ebcd152d668c440e076188ac3956958caedccfa11b2a41dde4c63e44c"
+      "sha256": "1103760a9562e7837d02bb724908f6de207d39c9631d8b1aa593fd8660535d9c"
     },
     {
       "path": "tools/paper_e_common.py",
@@ -504,17 +509,17 @@
     {
       "path": "juggler_review/juggler_signed_collatz_note.pdf",
       "mode": "binary",
-      "sha256": "50106bbb0befef02e846d1eefeb73df2ea79205bbb746697f4a8c517daf05afb"
+      "sha256": "d372bbd691dc81e32db6131c02fd1fceeac11fc40023772429c905c92eee1f64"
     },
     {
       "path": "docs/theory/cochin-juggler-signed-collatz.tex",
       "mode": "text",
-      "sha256": "b3df7edcf566a2c0147d1babfd2b929bb5cd595b8f99ec7423f3aea79c48c491"
+      "sha256": "db30c1c19e4678922529092ec13918556283cfc53fac21a3a36183e96174f325"
     },
     {
       "path": "docs/theory/paper_e_zenodo.json",
       "mode": "text",
-      "sha256": "36fe4896553d7a59936da73b7af2862c38874cf855f8b131d7b40f1e0e5633cb"
+      "sha256": "db6c3c66c06820535a69d967b0b26fc58bf580c1af7c9ef560d0ee650ec5d52c"
     }
   ]
 }

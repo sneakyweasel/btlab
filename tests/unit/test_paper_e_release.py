@@ -33,8 +33,12 @@ def test_current_release_and_archived_sources_agree(release):
     paper.check(release)
 
 
-def test_changed_transitive_proof_requires_new_audit(release):
-    proof = release / "formal/Problems/Collatz/PreimageGrid.lean"
+@pytest.mark.parametrize("module", [
+    "formal/Problems/Collatz/PreimageGrid.lean",
+    "formal/Problems/Juggler/PaperECompletion.lean",
+])
+def test_changed_transitive_proof_requires_new_audit(release, module):
+    proof = release / module
     proof.write_text(proof.read_text(encoding="utf-8") + "\n-- changed proof input\n", encoding="utf-8")
     with pytest.raises(ValueError, match="Lean proof inputs changed"):
         check_mathematics(release)

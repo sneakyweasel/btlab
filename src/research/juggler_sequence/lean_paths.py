@@ -305,6 +305,7 @@ LAYERS: dict[str, Path] = {
 # them explicit makes the disk inventory complete without implying that they
 # belong to Paper A's ordered publication layers.
 AUXILIARY_MODULES: dict[str, str] = {
+    "PaperECompletion": "Paper E: series identification, frequency and exponent statements, direct stopping-word sums, and finite complete prefix trees",
     "CollatzMoments": "Paper B/C word-moment bridge: coefficient shift and complete first-descent stopping counterexample",
     "BranchFreeze": "Paper B review target",
     "MasterIdentity": "Paper B review target",

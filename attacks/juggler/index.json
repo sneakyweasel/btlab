@@ -6516,7 +6516,9 @@
       "lean": [],
       "conjecture": [],
       "decision": "PROMOTE",
-      "ledger_ids": [],
+      "ledger_ids": [
+        "J-paper-e-formal-notation-bridges"
+      ],
       "aliases": [],
       "nk_cluster": null
     },

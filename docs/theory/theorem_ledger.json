@@ -1,5 +1,26 @@
 [
  {
+  "id": "J-paper-e-formal-notation-bridges",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper E's compatible-residue 2-adic code has the infinite sum over exactly its odd Juggler times, indexed by the number of earlier odd times; a telescoping remainder has norm at most 2^(-k), including finite or empty odd-time sets. Exact finite-source cylinder equality transfers all limiting-frequency statements. The eventual ordinary ancestor bound is proved with real exponent 21/25, and the fixed-grid hypotheses imply the logarithmic ceiling below 99/100. Every finite full binary prefix tree has fair mass and multiplier moment one. The minimal stopping words themselves have fair mass one and multiplier moment at most 3/4, with summability proved before regrouping by length. These close presentation gaps without adding a mathematical novelty claim. The six manuscript-facing declarations compile and their dependency audit uses only the standard kernel axioms. Theorem 4.1's equidistribution and actual modular-return family remain written, outside this module. Ledger retagging awaits advisory coverage review.",
+  "source": "docs/problems/juggler_signed_collatz_paper.md",
+  "lean": "Problems/Juggler/PaperECompletion.lean",
+  "decl": [
+   "code_hasSum_odd_times",
+   "all_frequency_limits_iff",
+   "ancestor_density_real",
+   "certificate_log_ceiling",
+   "full_prefix_tree_masses",
+   "stopping_word_masses"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_paper_e_release.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-code-mass-kernel-foundation",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "For positive n let e(n)=n+(n mod 2) and w(n)=log((e(n)+1)/(e(n)-1)). Lean proves w(n)>0 and sum_{n in E(m)}w(n)=w(m) for every positive m and the actual even Juggler fibre E(m), including exact conservation through every complete even inverse generation. It proves finite weighted reindexing with arbitrary real target amplitudes. For either actual signed 2-adic code H, any code predicate B, integer X>=1 and M=floor(sqrt X), codedMass_H(2B,X)=codedMass_H(B,M-1)+1_{B(H(M))}*partialMass(X,M), with 0<=partialMass(X,M)<=w(M). The infinite nonnegative coded mass is defined as the supremum of its source cutoffs; nu_H(2B)=nu_H(B), allowing infinity, follows from the cutoff bounds. A separate finite even-source identity retains any full fate predicate A(n) iff A(J(n)). Finally H_minus(16)=H_minus(18), no odd integer maps to 16, and J(7)=18. The conservation, cutoffs, and counterexample are kernel-checked; ledger label retained pending advisory statement coverage. No uniqueness, sharp reciprocal-error comparison, odd-production rate, or termination theorem is included in this row.",

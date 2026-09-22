@@ -213,6 +213,7 @@ import Problems.Juggler.FateThinFibers
 import Problems.Juggler.FateResonanceCount
 import Problems.Juggler.FatePoorTail
 import Problems.Juggler.FateContagionBound
+import Problems.Juggler.PaperECompletion
 
 /-!
 # Juggler laboratory barrel

@@ -1,5 +1,29 @@
 # Research journal
 
+## 2026-09-22 -- Paper E closes its four smaller Lean coverage gaps
+
+- **Request:** proceed with the missing formal connections identified in
+  the Paper E review.
+- **Series:** the global code equals the sum over precisely the odd times.
+  Its index counts earlier odds; the telescoping remainder has norm at most
+  2^(-k). No termination hypothesis enters the proof.
+- **Notation:** exact cylinder equality now transfers limiting frequencies;
+  the integer-power density and ceiling results now have their printed
+  real-power and logarithmic forms.
+- **Word sums:** a proved equivalence regroups minimal words by length after
+  summability is established. Both masses are one on every finite full
+  binary prefix tree.
+- **Lean:** PaperECompletion compiles; six additional declarations enter
+  the selected paper audit, for 28 in total.
+- **Remaining boundary:** Theorem 4.1 still needs the power-vector
+  equidistribution argument and its application to actual floor iterates.
+  No applicable theorem was found in the installed Mathlib. Finite witnesses
+  do not close this gap; no additional assumption is inserted.
+- **Decision:** **PROMOTE** the notation-completion phase and version 0.2.0.
+  The mathematical claims and theorem numbers stay fixed. Stop this phase
+  at the separate analytic formalization prerequisite.
+  [Coverage record](theory/paper_e_review.md).
+
 ## 2026-09-22 -- E/OE/OOEE contagion at 5/8, conditional assembly in Lean
 
 - **Target and budget:** Assemble the new written OOEE production with E

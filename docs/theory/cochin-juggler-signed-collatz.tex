@@ -31,7 +31,7 @@ Cochin},pdfsubject={Mathematics preprint}}
 and Arithmetic Obstructions}}
 \author{Philippe Cochin \\ \texttt{philippe@cochin.fr} \\
   \small ORCID \href{https://orcid.org/0009-0004-1939-3382}{0009-0004-1939-3382}}
-\date{22 September 2026 · Version 0.1.0}
+\date{22 September 2026 · Version 0.2.0}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -142,10 +142,10 @@ computational floors nor the analytic estimates in {[}B{]}.
 
 \subsection{1.2. Proof status}\label{proof-status}
 
-This is the first living preprint, version 0.1.0. It has not been
-deposited or independently refereed. Mathematical priority for the
-signed adaptation and the isolated obstruction results remains subject
-to specialist review.
+This is the living preprint, version 0.2.0. It has not been deposited or
+independently refereed. Mathematical priority for the signed adaptation
+and the isolated obstruction results remains subject to specialist
+review.
 
 Theorems 2.1, 3.2, 5.1, and 6.1 have corresponding compiled Lean
 statements; Appendix B identifies their precise scope. Theorem 4.1 uses
@@ -208,8 +208,12 @@ residues gives equality in \(\mathbb Z_2\). The finite-set assertion is
 equality of its membership conditions. \(\square\)
 
 The formal construction takes compatible finite residues and their
-2-adic limit. It assumes neither termination nor 2-adic continuity of
-Juggler on its original integer inputs.
+2-adic limit. Its equality with (2.4) is proved by a telescoping sum
+whose remainder after time \(k\) has 2-adic norm at most \(2^{-k}\). The
+formal odd-time index uses the number of earlier odd times as \(j\);
+finite and empty odd-time families are included. This assumes neither
+termination nor 2-adic continuity of Juggler on its original integer
+inputs.
 
 \textbf{Example 2.2 (rational values and collisions).} From \(H(1)=1\),
 following \(3,5,11,36,6,2,1\) backwards gives \[
@@ -229,7 +233,8 @@ fixed \(d\), are equivalent to \[
 \lim_{N\to\infty}\frac1N
 \#\{1\le n\le N:H(n)\equiv r\pmod{2^d}\}=2^{-d}
 \] for every \(d\) and code residue \(r\). This equivalence proves
-neither condition.
+neither condition. The formal statement transfers limits using exact
+equality of the finite-source counts.
 
 \section{3. Actual periods and ordinary
 integrality}\label{actual-periods-and-ordinary-integrality}
@@ -595,8 +600,10 @@ At fixed depth, fair words satisfy \[
 \sum_{|w|=d}2^{-d}\rho(w)
 =\left(\frac12\frac12+\frac12\frac32\right)^d=1.
 \tag{7.1}
-\] Both identities persist for bounded complete prefix trees.
-Completeness alone does not suffice at unbounded depth.
+\] Both identities persist for bounded complete prefix trees. The formal
+statement represents these as finite binary trees with both children at
+every internal node, and sums over their leaf words. Completeness alone
+does not suffice at unbounded depth.
 
 \textbf{Proposition 7.2 (moment loss at unbounded stopping).} Let
 \(\mathcal C\) consist of the minimal words whose multiplier first
@@ -614,9 +621,10 @@ alone has mass \(1/2\) and multiplier \(1/2\), losing \(1/4\) relative
 to fair mass. The other terms cannot restore it. \(\square\)
 
 The Lean proof instead uses the established survivor-count decay for
-completeness and sums certificate masses. The probabilistic proof
-explains the missing moment without invoking an optional-stopping
-equality.
+completeness. It then regroups the nonnegative sums by word length to
+prove (7.2) directly on the type of minimal certificate words. The
+probabilistic proof explains the missing moment without invoking an
+optional-stopping equality.
 
 \section{8. What remains open}\label{what-remains-open}
 
@@ -668,6 +676,8 @@ notice. The local deposit kit contains the PDF and a
 source-and-certificate archive, so finite proof data need not be
 recovered from a moving repository branch.
 
+\clearpage
+
 \section{Appendix A. Finite data and
 reproduction}\label{appendix-a.-finite-data-and-reproduction}
 
@@ -717,6 +727,8 @@ references and declaration inventory. These finite checks do not prove
 Theorem 4.1's infinite equidistribution assertion. The second command
 verifies the five generated Lean certificate modules against the data.
 
+\clearpage
+
 \section{Appendix B. Formalization and review
 boundary}\label{appendix-b.-formalization-and-review-boundary}
 
@@ -741,8 +753,12 @@ Module and declaration
 \bottomrule\noalign{}
 \endlastfoot
 Theorem 2.1 & \texttt{\nolinkurl{CollatzPadic.orbit_bridge}} \\
+Series (2.4) &
+\texttt{\nolinkurl{PaperECompletion.code_hasSum_odd_times}} \\
 Codes and cylinders & \texttt{\nolinkurl{CollatzPadic.code_eq_iff}},
 \texttt{\nolinkurl{code_cylinder_eq}} \\
+Corollary 2.3 &
+\texttt{\nolinkurl{PaperECompletion.all_frequency_limits_iff}} \\
 Example 2.2 & \texttt{\nolinkurl{CollatzPadic.code_three_cleared}},
 \texttt{\nolinkurl{code_not_injective}} \\
 Lemma 3.1 & \texttt{\nolinkurl{CollatzPadic.iterate_le_of_code_eq}} \\
@@ -756,19 +772,26 @@ Lemma 5.3 &
 Lemma 5.4 & \texttt{\nolinkurl{PreimageGrowth.growth_root}} \\
 Theorem 5.1 & \texttt{\nolinkurl{PreimageCertificate12.density_21_25}},
 \texttt{\nolinkurl{ancestor_density_21_25}} \\
+Real exponent \(21/25\) &
+\texttt{\nolinkurl{PaperECompletion.ancestor_density_real}} \\
 Theorem 6.1 &
 \texttt{\nolinkurl{PreimageBalance.certificate_power_ceiling}},
 \texttt{\nolinkurl{rate_lt_of_rows}},
 \texttt{\nolinkurl{rate_lt_of_plus_rows}} \\
+Logarithmic ceiling &
+\texttt{\nolinkurl{PaperECompletion.certificate_log_ceiling}} \\
 Proposition 7.1 &
 \texttt{\nolinkurl{BackwardMass.backward_mass_counterexample}} \\
+Finite complete trees &
+\texttt{\nolinkurl{PaperECompletion.full_prefix_tree_masses}} \\
 Proposition 7.2 &
-\texttt{\nolinkurl{CollatzMoments.complete_family_moment_loss}} \\*
+\texttt{\nolinkurl{CollatzMoments.complete_family_moment_loss}},
+\texttt{\nolinkurl{PaperECompletion.stopping_word_masses}} \\*
 \end{longtable}
 
 \endgroup
 
-AxiomCheckJugglerCollatzPaper.lean prints the dependencies of the
+AxiomCheckJugglerCollatzPaper.lean prints the dependencies of the 28
 selected declarations. The permitted logical dependencies are propext,
 Classical.choice, and Quot.sound. No additional assumption or
 native-evaluation trust extension belongs to this paper's selected
@@ -779,6 +802,8 @@ Theorem 4.1 imports a fixed-function equidistribution criterion, not a
 shrinking-target estimate or a bound uniform in growing \(a,b,M\). The
 source archive and release manifest identify this version's files; they
 establish neither novelty nor independent review.
+
+\clearpage
 
 \section{References}\label{references}
 

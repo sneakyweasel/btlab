@@ -65,15 +65,26 @@ counterexample, modular returns, the backward ray, and stopped moment loss.
 ## Formalization
 
 Problems.JugglerCollatzPaper imports the existing modules.
-AxiomCheckJugglerCollatzPaper audits 22 selected declarations.
+AxiomCheckJugglerCollatzPaper audits 28 selected declarations.
+PaperECompletion identifies the odd-time series with the residue-limit code,
+proves the limiting-frequency and real-exponent statements, and proves both
+finite full-tree identities and direct sums over minimal stopping words.
 Theorem 4.1's written equidistribution proof is not formalized.
 
 ## Results
 
-Version 0.1.0 has a canonical manuscript, full proof narrative, bibliography,
+Version 0.2.0 has a canonical manuscript, full proof narrative, bibliography,
 author metadata, AI disclosure, formalization map, reviewer packet, version
 policy, exact validation report, PDF/TeX build, and local deposit kit with
 source-and-certificate archive.
+
+The formal completion phase adds six audited statements with no new
+mathematical conjecture. The series proof includes finite or empty odd-time
+sets; the direct stopping-word sums are regrouped only after proving
+summability. Local comparison confirms the target and cutoff quantifiers of
+the signed ancestor theorem. Theorem 4.1 remains a separate analytic
+formalization project: no applicable equidistribution theorem was found in
+the installed Mathlib.
 
 ## Open questions
 
@@ -83,6 +94,8 @@ Publication venue and deposit remain author decisions.
 ## Decision
 
 **PROMOTE** the living paper and its reproducible publication package.
+The notation-completion phase is also **PROMOTE**; it closes the four
+smaller coverage categories and records the remaining analytic boundary.
 Best next question: does specialist review confirm the signed theorem's
 precise literature distinction? No new arithmetic branch is opened.
 

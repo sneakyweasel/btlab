@@ -2,7 +2,7 @@
 title: "The Juggler Map and the 3n±1 Maps"
 subtitle: "Exact Coding and Arithmetic Obstructions"
 author: Philippe Cochin
-date: "22 September 2026 · Version 0.1.0"
+date: "22 September 2026 · Version 0.2.0"
 ---
 
 ## Abstract
@@ -109,7 +109,7 @@ floors nor the analytic estimates in [B].
 
 ### 1.2. Proof status
 
-This is the first living preprint, version 0.1.0. It has not been
+This is the living preprint, version 0.2.0. It has not been
 deposited or independently refereed. Mathematical priority for the
 signed adaptation and the isolated obstruction results remains subject
 to specialist review.
@@ -183,8 +183,11 @@ in \(\mathbb Z_2\). The finite-set assertion is equality of its
 membership conditions. \(\square\)
 
 The formal construction takes compatible finite residues and their
-2-adic limit. It assumes neither termination nor 2-adic continuity of
-Juggler on its original integer inputs.
+2-adic limit. Its equality with (2.4) is proved by a telescoping sum
+whose remainder after time \(k\) has 2-adic norm at most \(2^{-k}\).
+The formal odd-time index uses the number of earlier odd times as \(j\);
+finite and empty odd-time families are included. This assumes neither
+termination nor 2-adic continuity of Juggler on its original integer inputs.
 
 **Example 2.2 (rational values and collisions).** From \(H(1)=1\),
 following \(3,5,11,36,6,2,1\) backwards gives
@@ -208,7 +211,8 @@ are equivalent to
 \#\{1\le n\le N:H(n)\equiv r\pmod{2^d}\}=2^{-d}
 \]
 for every \(d\) and code residue \(r\). This equivalence proves
-neither condition.
+neither condition. The formal statement transfers limits using exact
+equality of the finite-source counts.
 
 ## 3. Actual periods and ordinary integrality
 
@@ -615,6 +619,8 @@ At fixed depth, fair words satisfy
 \tag{7.1}
 \]
 Both identities persist for bounded complete prefix trees.
+The formal statement represents these as finite binary trees with
+both children at every internal node, and sums over their leaf words.
 Completeness alone does not suffice at unbounded depth.
 
 **Proposition 7.2 (moment loss at unbounded stopping).** Let
@@ -635,7 +641,8 @@ Every stopped multiplier is less than one; E alone has mass
 fair mass. The other terms cannot restore it. \(\square\)
 
 The Lean proof instead uses the established survivor-count
-decay for completeness and sums certificate masses. The
+decay for completeness. It then regroups the nonnegative sums by word
+length to prove (7.2) directly on the type of minimal certificate words. The
 probabilistic proof explains the missing moment without
 invoking an optional-stopping equality.
 
@@ -747,7 +754,9 @@ the existing proofs without changing their hypotheses.
 | Result | Module and declaration |
 | --- | --- |
 | Theorem 2.1 | `CollatzPadic.orbit_bridge` |
+| Series (2.4) | `PaperECompletion.code_hasSum_odd_times` |
 | Codes and cylinders | `CollatzPadic.code_eq_iff`, `code_cylinder_eq` |
+| Corollary 2.3 | `PaperECompletion.all_frequency_limits_iff` |
 | Example 2.2 | `CollatzPadic.code_three_cleared`, `code_not_injective` |
 | Lemma 3.1 | `CollatzPadic.iterate_le_of_code_eq` |
 | Theorem 3.2 | `CollatzPadic.periodic_bridge` |
@@ -756,12 +765,15 @@ the existing proofs without changing their hypotheses.
 | Lemma 5.3 | `PreimageDomain.closed_domain_for_target` |
 | Lemma 5.4 | `PreimageGrowth.growth_root` |
 | Theorem 5.1 | `PreimageCertificate12.density_21_25`, `ancestor_density_21_25` |
+| Real exponent \(21/25\) | `PaperECompletion.ancestor_density_real` |
 | Theorem 6.1 | `PreimageBalance.certificate_power_ceiling`, `rate_lt_of_rows`, `rate_lt_of_plus_rows` |
+| Logarithmic ceiling | `PaperECompletion.certificate_log_ceiling` |
 | Proposition 7.1 | `BackwardMass.backward_mass_counterexample` |
-| Proposition 7.2 | `CollatzMoments.complete_family_moment_loss` |
+| Finite complete trees | `PaperECompletion.full_prefix_tree_masses` |
+| Proposition 7.2 | `CollatzMoments.complete_family_moment_loss`, `PaperECompletion.stopping_word_masses` |
 
 AxiomCheckJugglerCollatzPaper.lean prints the dependencies
-of the selected declarations. The permitted logical
+of the 28 selected declarations. The permitted logical
 dependencies are propext, Classical.choice, and Quot.sound.
 No additional assumption or native-evaluation trust extension
 belongs to this paper's selected theorem audit.

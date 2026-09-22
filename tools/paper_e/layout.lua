@@ -1,6 +1,11 @@
 -- Keep the editorial Markdown readable; presentation belongs in this filter.
 function Header(el)
   el.level = math.max(1, el.level - 1)
+  -- Keep the finite table and the expanded proof map with their appendix headings.
+  local title = pandoc.utils.stringify(el.content)
+  if title:match('^Appendix ') then
+    return {pandoc.RawBlock('latex', '\\clearpage'), el}
+  end
   return el
 end
 
@@ -23,6 +28,7 @@ function Pandoc(doc)
   local in_references = false
   for _, block in ipairs(doc.blocks) do
     if block.t == 'Header' and pandoc.utils.stringify(block.content) == 'References' then
+      blocks:insert(pandoc.RawBlock('latex', '\\clearpage'))
       blocks:insert(block)
       blocks:insert(pandoc.RawBlock('latex', '\\begingroup\\small'))
       in_references = true

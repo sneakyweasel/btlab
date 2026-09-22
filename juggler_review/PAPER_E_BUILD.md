@@ -1,7 +1,7 @@
 # Paper E: living manuscript, checks, and publication package
 
 **The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions.**
-Version 0.1.0, 22 September 2026. Local preprint; no deposit or DOI assigned.
+Version 0.2.0, 22 September 2026. Local preprint; no deposit or DOI assigned.
 
 Canonical source: [juggler_signed_collatz_note.md](juggler_signed_collatz_note.md).
 Edit that source, never its generated reviewer copy or TeX.
@@ -56,6 +56,10 @@ The integration suite automatically discovers build_paper_e.py.
 
 - Orbit and cycle theorems: classical parity coding plus the existing
   local Lean proofs in CollatzPadic.
+- Manuscript notation: PaperECompletion identifies the odd-time series
+  with the residue-limit code, transfers limiting frequencies, converts
+  the exact exponent bounds, and proves the direct stopping-word sums
+  and finite complete prefix-tree identities.
 - Signed density: actual integer trees, signed cap comparisons, closed root
   domain, well-founded induction, exact 177147-row certificate, and cutoff
   interpolation. The result has no termination conjecture hypothesis.
@@ -65,7 +69,7 @@ The integration suite automatically discovers build_paper_e.py.
   equidistribution. Not Lean-verified and not an actual-cycle construction.
 - Mass and stopping examples: separately mapped to their compiled statements.
 
-The combined audit selects 22 declarations and permits only propext,
+The combined audit selects 28 declarations and permits only propext,
 Classical.choice, and Quot.sound. It builds Problems.JugglerCollatzPaper,
 then executes AxiomCheckJugglerCollatzPaper.lean and checks all outputs.
 The finite checker independently recomputes every certificate row, all

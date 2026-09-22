@@ -22,3 +22,9 @@ import Problems.JugglerCollatzPaper
 #print axioms Problems.Collatz.PreimageBalance.harmonic_rate_excluded
 #print axioms Problems.Collatz.BackwardMass.backward_mass_counterexample
 #print axioms Problems.Juggler.CollatzMoments.complete_family_moment_loss
+#print axioms Problems.Juggler.PaperECompletion.code_hasSum_odd_times
+#print axioms Problems.Juggler.PaperECompletion.all_frequency_limits_iff
+#print axioms Problems.Juggler.PaperECompletion.ancestor_density_real
+#print axioms Problems.Juggler.PaperECompletion.certificate_log_ceiling
+#print axioms Problems.Juggler.PaperECompletion.full_prefix_tree_masses
+#print axioms Problems.Juggler.PaperECompletion.stopping_word_masses

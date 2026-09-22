@@ -18,7 +18,7 @@ which is what the other habit costs.
 | B | Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers | 1.1.0, not deposited | [1.0.0](https://doi.org/10.5281/zenodo.22864934) | [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) |
 | C | Fate Contagion and Termination Criteria for the Juggler Map | 1.1.1, not deposited | [1.1.0](https://doi.org/10.5281/zenodo.22865705) | [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) |
 | D | No m-cycles of the 3n−1 map for m ≤ 61 | 1.1.0, not deposited | [1.0.0](https://doi.org/10.5281/zenodo.22876190) | [10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) |
-| E | The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions | 0.1.0, local preprint | None | Not assigned |
+| E | The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions | 0.2.0, local preprint | None | Not assigned |
 
 Every DOI in this file was resolved against doi.org on 21 September 2026, and each
 concept DOI was confirmed to return the version named beside it as the latest. All
@@ -120,6 +120,10 @@ floor raises the theorem's \(m\) and is a new version through the record's
 new-version operation, not a correction.
 
 ### Paper E, The Juggler Map and the 3n±1 Maps
+
+Version 0.2.0, 22 September 2026: six additional audited Lean statements
+close the manuscript's series, frequency, exponent, and word-sum notation
+gaps. Theorem 4.1 remains written. No deposit has been made.
 
 Version 0.1.0, 22 September 2026: first living manuscript, prepared locally.
 No external record, publication date, or DOI has been assigned.
