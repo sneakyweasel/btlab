@@ -1,5 +1,38 @@
 # Research journal
 
+## 2026-09-22 -- Fourth-phase extension returns to the recorded K3 obstruction
+
+- **Question:** Does repaired Paper B now extend to the fourth odd phase
+  identified by the predecessor-transfer audit?
+- **Correction:** That recommendation was too broad. This is the K3
+  frontier already closed to the scale-invariant copy, increment-first,
+  and X1-absorption routes. The new Appendix B-C hypotheses do not cover
+  the next nesting level.
+- **Written result:** For P>=256, 1<=h<=P/2 and odd P<n<n'<=2P on the
+  same actual first-gap branch, the second gap increases by more than
+  h*(n'-n)*P^(1/4)/2-2, hence by at least three. A double-integral
+  mixed-derivative bound and floor loss below two prove this uniformly.
+  This strengthens the old experimental branch obstruction without
+  claiming monotonicity across distinct first gaps.
+- **Phase audit:** The fourth odd phase retains a quadratic second-floor
+  coefficient of size P^(9/16), a linear coefficient P^(45/16), and the
+  last-floor coefficient P^(27/16); the remaining phase error is only
+  O(P^(-9/16)). A normal form supplies no cancellation estimate.
+- **Decision:** **CLOSE** the direct extension as an already killed route.
+  Retain the uniform obstruction as `J-fixed-first-gap-separation`, an
+  AI-assisted written proof with Lean and independent review outstanding.
+  The best next question is a fate-specific odd-production lower bound
+  for the exact conserved source weight, retaining its height cutoff.
+  Do not open that branch in this phase.
+- **Validation:** Three exact-integer regression cases pass, covering
+  every odd source at P=256,4096,65536 and five shifts per block.
+  Integration, ledger, theorem-index freshness, and branch-index checks:
+  155 passed, 15 skipped. Generated ledger/index checks and Paper E's
+  existing release check pass. No Lean source changed or new Lean
+  coverage was claimed.
+  No new external coverage call, floor computation campaign, or publication.
+  [Proof, expansion, and scope](problems/juggler_predecessor_weight_transfer.md).
+
 ## 2026-09-22 -- Two predecessor weights were already in Paper B's mixed modes
 
 - **Question:** Does frequency averaging extend the first-cell Fourier

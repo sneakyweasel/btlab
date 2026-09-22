@@ -6426,11 +6426,12 @@
       "conjecture": [],
       "decision": "CLOSE",
       "ledger_ids": [
+        "J-fixed-first-gap-separation",
         "J-two-predecessor-paper-b-transfer",
         "J-odd-predecessor-exact-transport"
       ],
       "aliases": [],
-      "nk_cluster": "Two-predecessor Fourier bounds already follow from Paper B"
+      "nk_cluster": "The fourth odd phase is the already closed K3 extension route"
     },
     {
       "id": "pressure_external_average",

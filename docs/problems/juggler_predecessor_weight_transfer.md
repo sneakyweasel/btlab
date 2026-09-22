@@ -112,8 +112,14 @@ floor(X) odd and floor(Y) odd, besides the original odd n.
 
 ## Experiments
 
-No orbit enumeration. The exact map, injectivity, all-depth finite
-reindexing, and depth-two scale inequalities are Lean proofs.
+The exact map, injectivity, all-depth finite reindexing, and depth-two
+scale inequalities are Lean proofs. The follow-up's
+[exact integer regression checks](../../tests/research/juggler_sequence/test_fixed_first_gap_separation.py)
+test (7) on every odd source in three dyadic blocks, P=256,4096,65536,
+for five half-shifts including h=P/2. They compare separated sources
+on each actual first-gap branch and use an exact fourth-power inequality,
+with no floating-point floor evaluation. They support the written uniform
+proof; no orbit-termination enumeration is involved.
 
 ## Conjectures
 
@@ -208,6 +214,99 @@ This is the already-recorded
 The present corollary neither removes that obstruction nor estimates
 growing-depth live pressure.
 
+### 4. Follow-up audit: the first unsupported phase is not a fresh route
+
+The fourth odd phase is also the old K3 frontier. The new location of
+the predecessor estimate does not authorize reopening the scale-invariant
+copy, increment-first, or X1-absorption routes closed in
+[Phases 12, 14, and 15](juggler_two_step_parity.md). Paper B's repaired
+Appendices B-C retain prescribed first-floor gap branches; they do not
+supply a theorem for the next nesting level. Two explicit checks make
+this distinction precise.
+
+**Fixed-first-gap separation (EXACT — HUMAN PROOF).** Let P>=256, let
+h be a positive integer with h<=P/2, and let n<n' be odd integers in
+(P,2P]. Write
+
+\[
+ \beta_h(n)=O(n+2h)-O(n),\qquad
+ G_h(n)=O^2(n+2h)-O^2(n).
+\]
+
+If beta_h(n)=beta_h(n'), then
+
+\[
+ G_h(n')-G_h(n)>
+ \frac{h(n'-n)}2 P^{1/4}-2\ \ge 2.
+ \tag{7}
+\]
+
+In particular the integer difference is at least three. This concerns
+points on the same *actual first-gap branch*, even if separated by other
+branches. It makes no monotonicity assertion across different beta values.
+
+Here is a proof that does not use a run-length experiment. Put
+f(t)=t^(3/2), m=O(n), a=O(n')-m, and beta=beta_h(n). The mean value
+theorem and a floor loss of less than one give
+
+\[
+ a\ge(n'-n)\sqrt P,\qquad \beta\ge2h\sqrt P,
+ \qquad m+a+\beta=O(n'+2h)\le(3P)^{3/2}.
+\]
+
+The first two inequalities follow from f'(t)=(3/2)sqrt(t),
+n'-n>=2, h>=1, and P>=1. On the entire rectangle of integration,
+f''(t)=3/(4sqrt(t))>=1/(4P^(3/4)), since 3^(3/4)<=3. Therefore
+
+\[
+ \begin{split}
+ &f(m+a+\beta)-f(m+a)-f(m+\beta)+f(m)\\
+ &\quad=\int_0^a\int_0^\beta f''(m+s+t)\,dt\,ds
+ \ge\frac{a\beta}{4P^{3/4}}
+ \ge\frac{h(n'-n)}2P^{1/4}.
+ \end{split}
+\]
+
+Replacing all four f-values by floors loses strictly less than two:
+there are two positive and two negative corners. This proves (7).
+Also floor(f(m+beta)-f(m)) strictly increases between these same points,
+because flooring the two smooth increments loses less than one.
+Neither the actual second gap nor the floored smooth gap can be held
+constant on a first-gap branch containing two such sources. Further
+partitioning by either level gives at most one source per cell on that
+branch. Summing absolute estimates on those cells cannot yield cancellation.
+
+This is a written proof of the branch obstruction previously supported
+by scans, not a proof that arbitrary methods cannot estimate K3.
+The calculus and its Juggler specialization have not been formalized in Lean.
+
+**The fourth phase keeps a quadratic second-floor term.** Put
+m=O(n), Y=m^(3/2), v=O(m), Z=v^(3/2), w=O(v),
+theta_2=Y-v, and theta_3=Z-w. Taylor's theorem gives, uniformly for n>=2,
+
+\[
+ \begin{split}
+ w^{3/2}={}&m^{27/8}-\frac94m^{15/8}\theta_2
+       +\frac{45}{32}m^{3/8}\theta_2^2
+       -\frac32m^{9/8}\theta_3+O(m^{-3/8}).
+ \end{split}
+ \tag{8}
+\]
+
+To check every error, first expand (Z-theta_3)^(3/2): its remainder
+is O(v^(-3/4)). Expand (Y-theta_2)^(9/4) to order two: its remainder
+is O(m^(-9/8)). Finally replace v^(3/4) in the theta_3 coefficient
+by m^(9/8), at cost O(m^(-3/8)). These three bounds prove (8).
+Multiplying by a harmonic k/2 costs O(|k|P^(7/16)) in a dyadic sum.
+The linear, quadratic, and last-floor coefficients in (8) have sizes
+P^(45/16), P^(9/16), and P^(27/16), respectively. Bounding theta_2 by
+one therefore does not give a small remainder for the quadratic term.
+
+Equation (8) is a normal form, not cancellation. The P^(45/16)
+coefficient and the failed freezing in (7) are the previously recorded
+obstructions; replacing them by a smooth leading monomial would repeat
+the closed route. No new frequency range or fourth-phase estimate follows.
+
 ## Open questions
 
 The first unsupported next-odd-phase predecessor estimate is at depth
@@ -215,15 +314,27 @@ three, with source-count scale M^(8/27). Ultimately one needs control
 through depths growing with log log M and the actual stopped weights,
 not just another fixed-depth parity count.
 
+Fixed-depth cancellation is not itself the termination target:
+a depth-independent construction of actual stopped
+mass is still missing. The [exact even-fibre weight](juggler_code_mass_transport.md)
+does give a conservation identity with the source cutoff retained. The
+remaining research question is whether it admits a fate-specific lower
+bound on odd production. A new proposal must produce such an inequality,
+not just a rewritten transfer operator. This audit does not open that branch.
+
 ## Decision
 
 **CLOSE** the proposed new depth-two frequency-averaging campaign as
 redundant. Retain (1)--(3) as explicit inherited corollaries and the exact
-Lean transport. The correct next question is a quantitative saving for
-the fourth odd phase after three actual predecessor restrictions.
-Stop this phase without opening that attack.
+Lean transport. The follow-up also closes the proposed direct extension
+of Paper B to the fourth odd phase: that is the already recorded K3 route,
+with the fixed-first-gap obstruction now proved in (7). The fourth-phase
+estimate itself remains open. The best next question is whether the exact
+source-weighted conservation law admits a fate-specific lower bound on
+odd production with its source cutoff retained. Stop without opening it.
 
 ## Publication assessment
 
 Status: **STRUCTURAL**. Consolidation of an existing written theorem,
-not a new analytic theorem, paper, cycle exclusion, or termination proof.
+with a written uniform proof of the existing branch obstruction. No new
+exponential-sum estimate, paper, cycle exclusion, or termination proof.

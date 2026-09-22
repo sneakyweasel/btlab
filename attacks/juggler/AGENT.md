@@ -145,7 +145,11 @@ with explicit scope and proof mapping; publication work opens no new attack.
   for 1<=|h|<=M^(1/60). `OddPredecessorTransport.lean` verifies the
   exact reindexing and scale bounds; the estimate inherits Paper B's
   outstanding analytic review. The next odd phase at three predecessors
-  and growing-depth stopped pressure remain open.
+  is the existing K3 frontier, not a fresh direct extension of Paper B.
+  The same dossier now proves uniform separation of the second gap on
+  each fixed first-gap branch for P>=256 (`J-fixed-first-gap-separation`,
+  written proof, not Lean). Direct freezing remains closed; fourth-phase
+  cancellation and growing-depth stopped pressure remain open.
   Direct extension to longer smooth polynomial duals is **CLOSE**:
   [the exact classification](../../docs/problems/juggler_polynomial_dual.md)
   identifies their degree denominator with the signed Collatz gap.

@@ -1,5 +1,16 @@
 [
  {
+  "id": "J-fixed-first-gap-separation",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Let O(n)=floor(n^(3/2)), P>=256, 1<=h<=P/2 an integer, and n<n' odd integers in (P,2P]. Set beta_h(n)=O(n+2h)-O(n) and G_h(n)=O(O(n+2h))-O(O(n)). If beta_h(n)=beta_h(n'), then G_h(n')-G_h(n)>h*(n'-n)*P^(1/4)/2-2>=2, hence this integer difference is at least 3. The corresponding floor of the real increment O(n+2h)^(3/2)-O(n)^(3/2) also strictly increases between these points. A positive mixed derivative and a floor loss strictly below two prove the statement uniformly. This rules out freezing the next gap on an actual first-gap branch containing two odd sources; it does not assert monotonicity across different first gaps or refute cancellation of K3. Elementary written strengthening of the existing method obstruction; independent review and Lean verification outstanding.",
+  "source": "docs/problems/juggler_predecessor_weight_transfer.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_fixed_first_gap_separation.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-even-fibre-exact-log-weight",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "For every positive integer n set e(n)=n+(n mod 2) and w(n)=log((e(n)+1)/(e(n)-1)). For every positive target m, the sum of w(n) over all even Juggler predecessors of m equals w(m) exactly. Also 1/n<=w(n)<=4/n and |w(n)-2/n|<=2/n^2; hence any source subset and cutoff have weighted mass differing from twice reciprocal mass by at most 4. For each real c this conservation law has a unique real-valued solution v with n*v(n)->c, namely v=(c/2)*w. The proof telescopes consecutive even-cell ratios, then iterates fibres to prove uniqueness at arbitrarily large source heights. AI-assisted written proof; independent review and Lean verification outstanding; no priority claim.",
