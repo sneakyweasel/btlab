@@ -93,7 +93,7 @@ def test_lean_and_anti_overclaim():
     assert anti["weyl_engine"] is False
 
 
-def test_records_park():
+def test_historical_census_and_current_analytic_decision():
     assert JSON_PATH.is_file()
     data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
     assert data["decision"]["classification"] == CLASS_GREEN
@@ -101,7 +101,8 @@ def test_records_park():
     assert data["anti_overclaim"]["parity_frequency_theorem"] is False
     text = DOSSIER_PATH.read_text(encoding="utf-8")
     assert "## Branch budget" in text
-    assert "PARK" in text.split("## Decision", 1)[1]
+    assert "PARK" in text.split("## Historical decision", 1)[1].split("## Publication", 1)[0]
+    assert "**PROMOTE**" in text.split("## Decision", 1)[1]
     assert "## Publication assessment" in text
     assert (DATA_DIR / "manifest.json").is_file()
     assert (DATA_DIR / "odd_image_discrepancy.csv").is_file()

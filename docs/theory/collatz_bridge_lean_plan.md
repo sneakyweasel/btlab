@@ -373,3 +373,11 @@ Both signs share the all-level necessary inequality
 mu^5000<2^99; the harmonic rate contradicts 2^79<3^50.
 This closes table-size growth alone in the current fixed grid, while
 actual fate-specific harmonic growth and Juggler pressure remain open.
+
+The arithmetic continuation on the Juggler side is now recorded in
+[odd-image discrepancy](../problems/juggler_odd_image_discrepancy.md): a
+written square-root-plus-epsilon one-step bound using the rational cubic
+dual phase. `Problems/Juggler/OddCubicPhase.lean` verifies the exact
+stationary-point algebra and zero complete mean for odd harmonics.
+The analytic bound awaits independent review and is not a Lean theorem;
+there is no transfer to the growing-depth pressure from this estimate.

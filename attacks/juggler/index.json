@@ -4144,12 +4144,16 @@
       "test": "tests/research/juggler_sequence/test_odd_image_discrepancy.py",
       "dossier": "docs/problems/juggler_odd_image_discrepancy.md",
       "data_dir": null,
-      "lean": [],
+      "lean": [
+        "formal/Problems/Juggler/OddCubicPhase.lean"
+      ],
       "conjecture": [],
-      "decision": "PARK",
+      "decision": "PROMOTE",
       "ledger_ids": [
         "J-ambient-odd-discrepancy",
-        "J-automatic-descent-density"
+        "J-automatic-descent-density",
+        "J-odd-source-square-root-discrepancy",
+        "J-odd-cubic-phase-cancellation"
       ],
       "aliases": [],
       "nk_cluster": null
@@ -6759,6 +6763,7 @@
         "formal/Problems/Juggler/FateOneSidedCorollary.lean",
         "formal/Problems/Juggler/FatePressureCorollary.lean",
         "formal/Problems/Juggler/FateScaleAverage.lean",
+        "formal/Problems/Juggler/OddCubicPhase.lean",
         "formal/Problems/Juggler/FateOneSidedAtoms.lean",
         "formal/Problems/Juggler/FateEnergyAtoms.lean",
         "formal/Problems/Juggler/FateCollapse.lean",

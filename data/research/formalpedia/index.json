@@ -67192,6 +67192,234 @@
     },
     {
       "doc": "",
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "kind": "def",
+      "ledger": [
+        "J-odd-cubic-phase-cancellation"
+      ],
+      "line": 18,
+      "module": "Problems.Juggler.OddCubicPhase",
+      "name": "wave",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-cubic-phase-cancellation"
+      ],
+      "line": 21,
+      "module": "Problems.Juggler.OddCubicPhase",
+      "name": "wave_add",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-cubic-phase-cancellation"
+      ],
+      "line": 24,
+      "module": "Problems.Juggler.OddCubicPhase",
+      "name": "wave_int",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-cubic-phase-cancellation"
+      ],
+      "line": 27,
+      "module": "Problems.Juggler.OddCubicPhase",
+      "name": "wave_half",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-cubic-phase-cancellation"
+      ],
+      "line": 35,
+      "module": "Problems.Juggler.OddCubicPhase",
+      "name": "wave_add_int",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-cubic-phase-cancellation"
+      ],
+      "line": 38,
+      "module": "Problems.Juggler.OddCubicPhase",
+      "name": "wave_half_int",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "kind": "def",
+      "ledger": [
+        "J-odd-cubic-phase-cancellation"
+      ],
+      "line": 43,
+      "module": "Problems.Juggler.OddCubicPhase",
+      "name": "dualPhase",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "kind": "def",
+      "ledger": [
+        "J-odd-cubic-phase-cancellation"
+      ],
+      "line": 46,
+      "module": "Problems.Juggler.OddCubicPhase",
+      "name": "stationaryPoint",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-cubic-phase-cancellation"
+      ],
+      "line": 49,
+      "module": "Problems.Juggler.OddCubicPhase",
+      "name": "stationary_sqrt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-cubic-phase-cancellation"
+      ],
+      "line": 56,
+      "module": "Problems.Juggler.OddCubicPhase",
+      "name": "stationary_derivative",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-cubic-phase-cancellation"
+      ],
+      "line": 61,
+      "module": "Problems.Juggler.OddCubicPhase",
+      "name": "stationary_phase",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-cubic-phase-cancellation"
+      ],
+      "line": 70,
+      "module": "Problems.Juggler.OddCubicPhase",
+      "name": "stationary_curvature",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "kind": "def",
+      "ledger": [
+        "J-odd-cubic-phase-cancellation"
+      ],
+      "line": 77,
+      "module": "Problems.Juggler.OddCubicPhase",
+      "name": "halfCubic",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-cubic-phase-cancellation"
+      ],
+      "line": 79,
+      "module": "Problems.Juggler.OddCubicPhase",
+      "name": "halfCubic_shift",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-cubic-phase-cancellation"
+      ],
+      "line": 86,
+      "module": "Problems.Juggler.OddCubicPhase",
+      "name": "halfCubic_antiperiodic",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-cubic-phase-cancellation"
+      ],
+      "line": 101,
+      "module": "Problems.Juggler.OddCubicPhase",
+      "name": "antiperiodic_sum_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-cubic-phase-cancellation"
+      ],
+      "line": 108,
+      "module": "Problems.Juggler.OddCubicPhase",
+      "name": "odd_complete_mean_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-cubic-phase-cancellation"
+      ],
+      "line": 114,
+      "module": "Problems.Juggler.OddCubicPhase",
+      "name": "dual_odd_antiperiodic",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-cubic-phase-cancellation"
+      ],
+      "line": 119,
+      "module": "Problems.Juggler.OddCubicPhase",
+      "name": "dual_odd_complete_mean_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/Problems/Juggler/OddLandingSets.lean",
       "kind": "abbrev",
       "ledger": [
@@ -106530,6 +106758,7 @@
         "Problems.Juggler.NumericBridge",
         "Problems.Juggler.O7EEEEGap",
         "Problems.Juggler.OddCountMonotone",
+        "Problems.Juggler.OddCubicPhase",
         "Problems.Juggler.OddLandingSets",
         "Problems.Juggler.OstrowskiNumeration",
         "Problems.Juggler.OstrowskiSandwich",
@@ -108802,6 +109031,18 @@
       "imports": [],
       "ledger": []
     },
+    "Problems.Juggler.OddCubicPhase": {
+      "declarations": 19,
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "imports": [],
+      "ledger": [
+        {
+          "id": "J-odd-cubic-phase-cancellation",
+          "statement": "For positive reals h,r put s=((2*r/(3*h))^2-1)/2. Then sqrt(2*s+1)=2*r/(3*h), (3*h/2)*sqrt(2*s+1)=r, (h/2)*(2*s+1)*sqrt(2*s+1)-r*s=r/2-2*r^3/(27*h^2), and (3*h/2)/sqrt(2*s+1)=9*h^2/(4*r). For every odd natural q and every natural r, e((r+q)/2-2*(r+q)^3/q)=-e(r/2-2*r^3/q), where e(x)=exp(2*pi*i*x). Consequently every odd natural h gives zero sum of e(r/2-2*r^3/(27*h^2)) over 0<=r<54*h^2. All these exact identities are kernel-checked; the ledger label awaits advisory statement coverage. They do not themselves prove the analytic transform, incomplete-sum bounds, or the discrepancy estimate.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
+    },
     "Problems.Juggler.OddLandingSets": {
       "declarations": 10,
       "file": "formal/Problems/Juggler/OddLandingSets.lean",
@@ -110353,13 +110594,13 @@
     }
   },
   "totals": {
-    "declarations": 8268,
-    "declarations_with_a_ledger_row": 5545,
-    "ledger_rows_naming_a_file": 480,
-    "modules": 336,
+    "declarations": 8287,
+    "declarations_with_a_ledger_row": 5564,
+    "ledger_rows_naming_a_file": 481,
+    "modules": 337,
     "trust": {
       "compiler": 56,
-      "kernel": 8212
+      "kernel": 8231
     }
   }
 }

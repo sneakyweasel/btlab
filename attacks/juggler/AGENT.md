@@ -115,6 +115,12 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   cells need a quantitative count, not qualitative equidistribution.
   The earlier claimed rate-free peel through depth two is withdrawn;
   Paper B's separate rated short counts are unchanged.
+  The [odd-image discrepancy](../../docs/problems/juggler_odd_image_discrepancy.md)
+  now has a written O_epsilon(N^(1/2+epsilon)) bound, improving 5/6:
+  the rational cubic dual has zero odd-harmonic mean, while even
+  resonances satisfy the required average. Exact phase identities
+  are Lean in `OddCubicPhase.lean`; the analytic proof awaits
+  independent review. This supplies no iterated-image or pressure bound.
   The former unrestricted H/H_q statements are now **REFUTED** by
   [absorbed cylinders](../../docs/problems/juggler_absorbed_cylinder.md):
   one terminating cylinder has at least y/(216 log y) starts on infinitely

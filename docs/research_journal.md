@@ -1,5 +1,40 @@
 # Research journal
 
+## 2026-09-22 -- Rational cubic cancellation sharpens one-step odd parity
+
+- **Question:** Can the existing odd-source 5/6 discrepancy exponent
+  be replaced by 1/2+epsilon using the arithmetic of the exact dual phase?
+- **Result:** For every epsilon>0 and every interval I in (P,2P],
+  the signed odd-source sum is O_epsilon(P^(1/2+epsilon)). Thus the
+  prefix OO count is N/4+O_epsilon(N^(1/2+epsilon)). This is an
+  AI-assisted written proof, pending independent mathematical review.
+- **Mechanism:** The C4 B-transform has phase r/2-2*r^3/(27*h^2).
+  Odd h gives an exact half-period sign change. Fourier completion
+  uses cubic Gauss-sum bounds. Even h can resonate and cannot be
+  treated like odd h; the complete means satisfy a square-root
+  average using the squarefree/powerful factorization of h. Vaaler's
+  paired majorants retain those even modes and all exact endpoints.
+- **Lean coverage:** `OddCubicPhase.lean` checks the stationary-point
+  values, curvature, antiperiodicity, and zero complete mean. The
+  analytic transform, Gauss bounds, completion, resonance average,
+  and final asymptotic are deliberately left as written proofs.
+  The algebra ledger tag awaits advisory coverage; no external
+  request was sent under the already consumed one-check approval.
+- **Decision:** **PROMOTE** this one-step improvement and end the
+  phase. No manuscript or verification-floor change. The additional
+  inverse-cell frequency destroys the exact cubic periodicity, so
+  dynamically selected-source pressure remains open. No escape or
+  termination result follows. See the full argument in
+  [the discrepancy dossier](problems/juggler_odd_image_discrepancy.md).
+- **Validation:** Full `lake build` passed (9042 jobs). All 15 exact
+  theorem declarations use only propext, Classical.choice, and Quot.sound.
+  The selected Python run had 218 passes and 14 skips, with one stale
+  formalpedia DAG failure; regenerating that graph also restores nodes
+  from earlier committed bridge work, and the 21-test focused rerun
+  passed. Ledger rendering, branch-index consistency, and scoped
+  whitespace checks passed. These checks validate the formal algebra
+  and repository integration, not the written analytic inequalities.
+
 ## 2026-09-22 -- The inverse-cell shortcut also needs a shrinking-target rate
 
 - **Question:** Does the cited Hardy-field equidistribution justify

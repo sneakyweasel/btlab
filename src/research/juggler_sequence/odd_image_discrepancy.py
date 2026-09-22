@@ -10,6 +10,11 @@ Convention, used everywhere:
     S_O(N) = sum_{odd n <= N} s(n)
 
 Then S_O(N) = -2 D_O(N) with the Phase-0 odd-start D_O.
+
+This probe retains the historical census and its PARK decision. The dossier's
+2026-09-22 analytic continuation proves a written square-root-plus-epsilon
+bound; OddCubicPhase.lean checks its exact phase identities. The historical
+majorant and census flags below are not a numerical certificate of that bound.
 """
 
 from __future__ import annotations

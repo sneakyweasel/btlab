@@ -823,6 +823,21 @@
         "kernel": 3
       }
     },
+    "Problems.Collatz.BackwardMass": {
+      "declarations": 14,
+      "depends_on": [
+        "Problems.Collatz.NegativeMCycles",
+        "Problems.Collatz.Shortcut"
+      ],
+      "file": "formal/Problems/Collatz/BackwardMass.lean",
+      "ledger": [
+        "J-paper-c-collatz-analogue-is-false-by-exhibit"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 14
+      }
+    },
     "Problems.Collatz.Center": {
       "declarations": 4,
       "depends_on": [
@@ -905,6 +920,75 @@
         "kernel": 24
       }
     },
+    "Problems.Collatz.PreimageBalance": {
+      "declarations": 36,
+      "depends_on": [],
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 36
+      }
+    },
+    "Problems.Collatz.PreimageCertificate12": {
+      "declarations": 6,
+      "depends_on": [
+        "Problems.Collatz.PreimageDomain"
+      ],
+      "file": "formal/Problems/Collatz/PreimageCertificate12.lean",
+      "ledger": [
+        "J-kl-preimage-density-transposes-to-3n-1"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 6
+      }
+    },
+    "Problems.Collatz.PreimageDomain": {
+      "declarations": 19,
+      "depends_on": [
+        "Problems.Collatz.PreimageGrid"
+      ],
+      "file": "formal/Problems/Collatz/PreimageDomain.lean",
+      "ledger": [
+        "J-signed-preimage-closed-root-domain"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 19
+      }
+    },
+    "Problems.Collatz.PreimageGrid": {
+      "declarations": 39,
+      "depends_on": [
+        "Problems.Collatz.PreimageScale"
+      ],
+      "file": "formal/Problems/Collatz/PreimageGrid.lean",
+      "ledger": [
+        "J-signed-preimage-grid-counting"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 39
+      }
+    },
+    "Problems.Collatz.PreimageScale": {
+      "declarations": 26,
+      "depends_on": [
+        "Problems.Collatz.BackwardMass"
+      ],
+      "file": "formal/Problems/Collatz/PreimageScale.lean",
+      "ledger": [
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 26
+      }
+    },
     "Problems.Collatz.Shortcut": {
       "declarations": 14,
       "depends_on": [],
@@ -957,6 +1041,52 @@
       ],
       "trust": {
         "kernel": 81
+      }
+    },
+    "Problems.Juggler.CollatzMoments": {
+      "declarations": 23,
+      "depends_on": [
+        "Problems.Juggler.FateOneSided",
+        "Problems.Juggler.PaperBCertificateRecursion",
+        "Problems.Juggler.PaperBSurvivorDecay"
+      ],
+      "file": "formal/Problems/Juggler/CollatzMoments.lean",
+      "ledger": [
+        "J-collatz-complete-stopping-loses-moment",
+        "J-paper-c-ceiling-is-the-collatz-walk-mgf"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 23
+      }
+    },
+    "Problems.Juggler.CollatzPadic": {
+      "declarations": 54,
+      "depends_on": [
+        "Problems.Juggler.CollatzRational"
+      ],
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "ledger": [
+        "J-padic-orbit-code",
+        "J-padic-periodic-cycle-transfer"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 54
+      }
+    },
+    "Problems.Juggler.CollatzRational": {
+      "declarations": 34,
+      "depends_on": [
+        "Problems.Juggler.CollatzBridge"
+      ],
+      "file": "formal/Problems/Juggler/CollatzRational.lean",
+      "ledger": [
+        "J-rational-terminating-orbit-bridge"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 34
       }
     },
     "Problems.Juggler.CriticalCostKernel": {
@@ -1954,6 +2084,21 @@
         "kernel": 1
       }
     },
+    "Problems.Juggler.FateScaleAverage": {
+      "declarations": 15,
+      "depends_on": [
+        "Problems.Juggler.FatePoorProduction",
+        "Problems.Juggler.FatePressureCorollary"
+      ],
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "ledger": [
+        "J-pressure-scale-average-suffices"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 15
+      }
+    },
     "Problems.Juggler.FateSeed": {
       "declarations": 18,
       "depends_on": [
@@ -2397,6 +2542,18 @@
       ],
       "trust": {
         "kernel": 30
+      }
+    },
+    "Problems.Juggler.OddCubicPhase": {
+      "declarations": 19,
+      "depends_on": [],
+      "file": "formal/Problems/Juggler/OddCubicPhase.lean",
+      "ledger": [
+        "J-odd-cubic-phase-cancellation"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 19
       }
     },
     "Problems.Juggler.OddLandingSets": {
@@ -3489,9 +3646,9 @@
     }
   },
   "totals": {
-    "edges": 263,
-    "edges_before_reduction": 2055,
-    "ledger_rows_placed": 467,
-    "nodes": 214
+    "edges": 276,
+    "edges_before_reduction": 2170,
+    "ledger_rows_placed": 481,
+    "nodes": 225
   }
 }

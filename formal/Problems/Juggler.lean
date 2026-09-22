@@ -194,6 +194,7 @@ import Problems.Juggler.FateOneSided
 import Problems.Juggler.FateOneSidedCorollary
 import Problems.Juggler.FatePressureCorollary
 import Problems.Juggler.FateScaleAverage
+import Problems.Juggler.OddCubicPhase
 import Problems.Juggler.FateOneSidedAtoms
 import Problems.Juggler.FateEnergyAtoms
 import Problems.Juggler.FateCollapse

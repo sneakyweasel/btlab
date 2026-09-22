@@ -25,6 +25,10 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- exact stationary-point phase and curvature for odd-source Juggler
+  Fourier sums; odd harmonics have zero complete cubic mean.
+  The resulting square-root-plus-epsilon discrepancy bound is a
+  written analytic proof, not a compiled theorem;
 - bounded monotone natural sequences are eventually constant;
 - exact lift equations imply monotonicity;
 - eventual stabilization iff lift digits are eventually zero;
