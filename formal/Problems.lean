@@ -9,6 +9,7 @@ import Problems.Collatz.Endpoint
 import Problems.Collatz.FixedInteger
 import Problems.Collatz.Lift
 import Problems.Collatz.NegativeMCycles
+import Problems.Collatz.BackwardMass
 import Problems.Ostrowski.NP
 import Problems.Primes.Residual
 import Problems.BalancedTernary.FiniteStateDynamics

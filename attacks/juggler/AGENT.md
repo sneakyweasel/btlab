@@ -131,6 +131,10 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   integrality by the word divisibility; under that additional condition,
   ordinary signed Collatz return times agree exactly. The divisibility
   is not proved for Juggler cycles. Ledger coverage review remains pending.
+  `Problems.Collatz.BackwardMass.backward_mass_counterexample` proves
+  the finite-mass backward ray for both shortcut signs. General
+  backward-density transfer is CLOSE; the ray is not a fate class.
+  Juggler's even-block mass has lower bound m/(m+1)^2, not exact value 1/m.
 - **Anti-overclaim.** Finite checks, period floors, densities, and
   leftover censuses are not a halt theorem and not "no cycle of any
   length". State the theorem with quantifiers, Lean name, and ledger

@@ -5120,6 +5120,174 @@
       "trust": "kernel"
     },
     {
+      "doc": "The positive dyadic ray based at three.",
+      "file": "formal/Problems/Collatz/BackwardMass.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-c-collatz-analogue-is-false-by-exhibit"
+      ],
+      "line": 18,
+      "module": "Problems.Collatz.BackwardMass",
+      "name": "ray",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/BackwardMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-collatz-analogue-is-false-by-exhibit"
+      ],
+      "line": 20,
+      "module": "Problems.Collatz.BackwardMass",
+      "name": "three_mem_ray",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/BackwardMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-collatz-analogue-is-false-by-exhibit"
+      ],
+      "line": 22,
+      "module": "Problems.Collatz.BackwardMass",
+      "name": "ray_dvd_three",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/BackwardMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-collatz-analogue-is-false-by-exhibit"
+      ],
+      "line": 26,
+      "module": "Problems.Collatz.BackwardMass",
+      "name": "shortcut_preimage_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/BackwardMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-collatz-analogue-is-false-by-exhibit"
+      ],
+      "line": 37,
+      "module": "Problems.Collatz.BackwardMass",
+      "name": "minus_preimage_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/BackwardMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-collatz-analogue-is-false-by-exhibit"
+      ],
+      "line": 48,
+      "module": "Problems.Collatz.BackwardMass",
+      "name": "ray_backward_closed_plus",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/BackwardMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-collatz-analogue-is-false-by-exhibit"
+      ],
+      "line": 53,
+      "module": "Problems.Collatz.BackwardMass",
+      "name": "ray_backward_closed_minus",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/BackwardMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-collatz-analogue-is-false-by-exhibit"
+      ],
+      "line": 58,
+      "module": "Problems.Collatz.BackwardMass",
+      "name": "ray_param_injective",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/BackwardMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-collatz-analogue-is-false-by-exhibit"
+      ],
+      "line": 64,
+      "module": "Problems.Collatz.BackwardMass",
+      "name": "ray_infinite",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/BackwardMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-collatz-analogue-is-false-by-exhibit"
+      ],
+      "line": 72,
+      "module": "Problems.Collatz.BackwardMass",
+      "name": "ray_reciprocal_hasSum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every finite subset of the ray has mass at most its convergent geometric sum.",
+      "file": "formal/Problems/Collatz/BackwardMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-collatz-analogue-is-false-by-exhibit"
+      ],
+      "line": 87,
+      "module": "Problems.Collatz.BackwardMass",
+      "name": "finite_ray_mass_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The ray is not a fate class: its base point leaves it under the plus map.",
+      "file": "formal/Problems/Collatz/BackwardMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-collatz-analogue-is-false-by-exhibit"
+      ],
+      "line": 107,
+      "module": "Problems.Collatz.BackwardMass",
+      "name": "ray_not_forward_closed_plus",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The same distinction between backward closure and a fate holds for the minus map.",
+      "file": "formal/Problems/Collatz/BackwardMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-collatz-analogue-is-false-by-exhibit"
+      ],
+      "line": 113,
+      "module": "Problems.Collatz.BackwardMass",
+      "name": "ray_not_forward_closed_minus",
+      "trust": "kernel"
+    },
+    {
+      "doc": "One explicit infinite backward-closed set defeats harmonic-mass divergence for both signs.",
+      "file": "formal/Problems/Collatz/BackwardMass.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-c-collatz-analogue-is-false-by-exhibit"
+      ],
+      "line": 119,
+      "module": "Problems.Collatz.BackwardMass",
+      "name": "backward_mass_counterexample",
+      "trust": "kernel"
+    },
+    {
       "doc": "The unreduced numerator of `R - C / (twoPow - threePow)` is exactly `twoPow * (R - X)` whenever the affine endpoint equation holds.",
       "file": "formal/Problems/Collatz/Center.lean",
       "kind": "theorem",
@@ -95551,6 +95719,7 @@
         "Problems.BalancedTernary.WeightDynamics",
         "Problems.Collatz.Accelerated",
         "Problems.Collatz.Arithmetic",
+        "Problems.Collatz.BackwardMass",
         "Problems.Collatz.Center",
         "Problems.Collatz.Cycles",
         "Problems.Collatz.Cylinder",
@@ -95932,6 +96101,21 @@
           "id": "C-R-direct",
           "statement": "Direct residue formula for R",
           "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Collatz.BackwardMass": {
+      "declarations": 14,
+      "file": "formal/Problems/Collatz/BackwardMass.lean",
+      "imports": [
+        "Problems.Collatz.NegativeMCycles",
+        "Problems.Collatz.Shortcut"
+      ],
+      "ledger": [
+        {
+          "id": "J-paper-c-collatz-analogue-is-false-by-exhibit",
+          "statement": "The analogue of Paper C Theorem 1 for every nonempty backward-closed set is false for both ordinary Collatz shortcut signs. For C_plus(n)=n/2 on evens and (3n+1)/2 on odds, and C_minus(n)=n/2 on evens and (3n-1)/2 on odds, every multiple m of three has exactly the one predecessor 2m. Consequently A={3*2^k : k>=0} is infinite and backward-closed for both maps. Its injective geometric enumeration has reciprocal sum exactly 2/3, and every finite subset S of A has sum_{n in S} 1/n <= 2/3. The ray is not forward-closed: C_plus(3)=5 and C_minus(3)=4 leave it. It therefore does not itself refute a fate-specific almost-all-to-all implication. This is the exact obstruction to transferring the general backward-density engine, not a termination or nontermination result. The shortcut convention is explicit; acceleratedT elsewhere in the repository is the distinct odd-only map. The local Lean proof is compiled; ledger retagging awaits advisory coverage review.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
     },
@@ -100127,13 +100311,13 @@
     }
   },
   "totals": {
-    "declarations": 7303,
-    "declarations_with_a_ledger_row": 5382,
-    "ledger_rows_naming_a_file": 471,
-    "modules": 320,
+    "declarations": 7317,
+    "declarations_with_a_ledger_row": 5396,
+    "ledger_rows_naming_a_file": 472,
+    "modules": 321,
     "trust": {
       "compiler": 56,
-      "kernel": 7247
+      "kernel": 7261
     }
   }
 }

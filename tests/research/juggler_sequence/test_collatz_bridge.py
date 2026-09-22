@@ -252,7 +252,7 @@ def test_the_collatz_analogue_of_theorem_one_is_false_by_exhibit() -> None:
     """`{3 * 2^k}`, and the reason the working notes gave was the wrong one.
 
     Paper C's Theorem 1 says every nonempty backward-closed set has divergent
-    logarithmic count. For accelerated Collatz that is false, and not by a
+    logarithmic count. For shortcut Collatz that is false, and not by a
     delicate estimate: multiples of three have no odd preimage, because
     `2(3 * 2^k) - 1` is `2 mod 3`. So `{3 * 2^k}` is backward-closed, infinite,
     counted by `log_2 x`, and has reciprocal sum exactly `2/3`.
@@ -279,10 +279,10 @@ def test_the_dichotomy_is_log_mass_not_fibre_thickness() -> None:
     The fibre *counts* differ hugely -- `|J^-1(m)|` grows like `m`, `|C^-1(m)|`
     is at most two -- but that is not what the contagion recursion consumes. It
     consumes harmonic mass, and there the two are much closer than the counts
-    suggest: both are critical in the mean, at exactly `1/m`.
+    suggest: their normalized mean or uniform asymptotic mass is one.
 
-    What separates them is the worst case. Juggler's even block gives exactly
-    `1/m` for *every* `m` with no exceptions; accelerated Collatz gives `1/(2m)`
+    What separates them is the worst case. Juggler's even-block mass is
+    asymptotic to `1/m` for all targets; shortcut Collatz gives `1/(2m)`
     on two residues in three, and Theorem 1 quantifies over every backward-closed
     set, so the worst case governs and the mean is irrelevant. The previous
     session's reason for the failure -- "Collatz has no fat fibres" -- was the
@@ -295,11 +295,18 @@ def test_the_dichotomy_is_log_mass_not_fibre_thickness() -> None:
     # the worst case is exactly a half, and it is attained on every multiple of 3
     for m in (3, 6, 9, 300, 3000):
         assert collatz_backward_log_mass(m) == Fraction(1, 2)
-    # Juggler's block is exactly 1/m in the limit and never below it
-    for m in (10, 100, 1000, 5000):
+    # Both target parities are needed: the odd-target mass can be below 1/m.
+    assert even_block_log_mass(3) == Fraction(107, 140)
+    assert even_block_log_mass(3) < 1
+    assert collatz_backward_log_mass(2) == Fraction(5, 2)
+    for m in (3, 10, 11, 100, 101, 1000, 1001, 5000, 5001):
         mass = even_block_log_mass(m)
-        assert mass >= 1
+        assert Fraction(m * m, (m + 1) ** 2) <= mass
+        assert mass <= Fraction(m + 1, m)
         assert float(mass) == pytest.approx(1.0, abs=4.0 / m)
+        assert collatz_backward_log_mass(m) == (
+            Fraction(1, 2) + (Fraction(3 * m, 2 * m - 1) if m % 3 == 2 else 0)
+        )
 
 
 def test_the_ideal_coefficient_is_three_to_the_minus_odd_count() -> None:
@@ -527,7 +534,7 @@ def test_the_audit_has_a_third_class_and_a_loud_miss() -> None:
     contagion itself are METRIC -- about how the map deforms scale, the
     reciprocal Jacobian of its action on the log line. Exact, elementary,
     Lean-checked, needing no equidistribution, and still Juggler-only, because
-    accelerated Collatz has no fat preimages.
+    shortcut Collatz has at most two preimages.
 
     The binary also overloaded `False`, which meant both "Juggler-specific" and
     "not recognised". A metric claim came back `False` for the second reason
@@ -541,7 +548,7 @@ def test_the_audit_has_a_third_class_and_a_loud_miss() -> None:
     assert audit_class("the Weyl differencing kernel bound") == CLASS_ANALYTIC
 
     # the class the binary had nowhere to put
-    for metric in ("the even block of m has harmonic mass exactly 1/m",
+    for metric in ("the even block of m has harmonic mass asymptotic to 1/m",
                    "every nonempty backward-closed set has divergent count",
                    "the OE fibre carries at least one third of each parity",
                    "fat preimages have no Collatz analogue"):

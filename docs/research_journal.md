@@ -1,5 +1,42 @@
 # Research journal
 
+## 2026-09-22 -- Both Collatz signs have a finite-mass backward ray
+
+- **Question:** Which part of Juggler's termination reduction survives
+  the signed orbit bridge: does backward-density contagion transfer?
+- **Result:** `Problems.Collatz.BackwardMass.backward_mass_counterexample`
+  proves that {3*2^k} is infinite and backward-closed under both ordinary
+  shortcut signs. Each multiple of three has exactly one predecessor,
+  its double. The reciprocal series has sum 2/3, and every finite subset
+  has mass at most 2/3. The module is imported by `Problems.lean`.
+- **Scope:** This is not a fate class. The two signed images of 3 are
+  5 and 4, both outside the ray; that lack of forward closure is also
+  formalized. The example refutes a lower bound for all nonempty
+  backward-closed sets, not a fate-specific almost-all-to-all implication.
+- **Error found and corrected:** The working comparison and probe called
+  Juggler's even-block mass exactly 1/m and never below it. At m=3 it is
+  107/420<1/3. The test had sampled only even targets. The correct lower
+  bound m/(m+1)^2 was already proved in `FateSeed.lean`; the current Paper C
+  manuscript already uses its consequence (1-2/m)/m. The regression now
+  includes both parities, that exact counterexample, and upper/lower bounds.
+  The Collatz odd predecessor contributes normalized mass 3m/(2m-1),
+  not exactly 3/2; the finite mean is not exactly one. The counting formula
+  also now includes its floor, endpoint, and zero-count range.
+- **Artifacts:** [BackwardMass.lean](../formal/Problems/Collatz/BackwardMass.lean),
+  the corrected bridge dossier, working contagion note, probe report,
+  and existing ledger rows. The published theorem and its threshold are
+  unchanged. The [13-declaration audit](../formal/AxiomCheckCollatzBackwardMass.expected)
+  reports only the standard Lean dependencies. The full `lake build`
+  passes (9026 jobs). The combined bridge, layer, integration and
+  theorem-ledger suite gives 173 passes and 14 skips; generated ledger
+  and branch-index checks pass.
+- **Decision:** **CLOSE** general backward-density transfer for both
+  signs. The formal obstruction is consolidated; this opens no new
+  termination attack. The cumulative-pressure estimate remains open.
+- **Coverage:** The existing row now names the compiled declarations,
+  retaining its written-proof tag pending advisory review. Only a cache
+  refresh was run, with no new statement sent externally.
+
 ## 2026-09-22 -- Coded Juggler cycles preserve their exact periods
 
 - **Question:** Does the global code lose primitive period on a genuine

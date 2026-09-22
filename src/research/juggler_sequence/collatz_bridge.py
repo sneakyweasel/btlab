@@ -102,7 +102,7 @@ def loglog_increments(seed: int, steps: int = 8,
 
 
 def collatz(x: int) -> int:
-    """The accelerated map, `x/2` on evens and `(3x+1)/2` on odds."""
+    """The shortcut map, `x/2` on evens and `(3x+1)/2` on odds."""
     return x // 2 if x % 2 == 0 else (3 * x + 1) // 2
 
 
@@ -179,7 +179,7 @@ def audit_class(statement: str) -> str:
     Lemma 2.2's OE fibre, Lemma 4.1's seed, contagion itself -- is about how
     the map deforms SCALE, the reciprocal Jacobian of its action on the log
     line. It is exact, elementary, Lean-checked and needs no equidistribution,
-    and it is still Juggler-only, because the accelerated Collatz map has no
+    and it is still Juggler-only, because the shortcut Collatz map has no
     fat preimages. It is neither word combinatorics nor orbit realisation, so
     the binary audit had nowhere to put it.
 
@@ -398,7 +398,7 @@ def winkler_sandwich(orders: int = 2213) -> dict[str, Any]:
 #
 # Paper C's engine is not the shared walk. It is the way the Juggler map
 # deforms scale: the even preimage of `m` is the whole interval
-# `[m^2, (m+1)^2)`, whose harmonic mass is exactly `1/m`. The question this
+# `[m^2, (m+1)^2)`, whose harmonic mass is asymptotic to `1/m`. The question this
 # section settles is what the bridge does to that, and the answer has three
 # exact parts and one measured one.
 # ---------------------------------------------------------------------------
@@ -411,8 +411,10 @@ def even_block_log_mass(m: int) -> Fraction:
 
     Lemma 2.1 of Paper C: `J(n) = floor(sqrt n) = m` for every `n` in
     `[m^2, (m+1)^2)`, so the even members of that interval all map to `m`.
-    The returned value tends to `1` from above and is the fibre's log-mass in
+    The returned value tends to `1` and is the fibre's log-mass in
     units of `1/m` -- the quantity the contagion recursion actually consumes.
+    Odd and even targets must both be retained: the value at `m=3` is
+    `107/140 < 1`, so convergence is not uniformly from above.
     """
     if m < 1:
         raise ValueError("m must be positive")
@@ -421,14 +423,14 @@ def even_block_log_mass(m: int) -> Fraction:
 
 
 def collatz_preimages(m: int) -> list[int]:
-    """The integer preimages of `m` under the accelerated Collatz map.
+    """The integer preimages of `m` under the shortcut Collatz map.
 
     Always `2m`; additionally `(2m-1)/3` when that is an odd integer, which
     needs `m = 2 mod 3`. So the fibre has one or two elements and never more.
 
     Note this is a statement about integers, not about `Z_2`: on the 2-adics
     `3` is a unit, `(2m-1)/3` always exists and is always odd, so the map is
-    exactly 2-to-1 there. The accelerated map is *not* a bijection on `Z_2`;
+    exactly 2-to-1 there. The shortcut map is *not* a bijection on `Z_2`;
     the bijection of Terras is the parity-vector map `Z/2^d -> {0,1}^d`, which
     `parity_map_is_bijective` checks.
     """
@@ -441,12 +443,13 @@ def collatz_preimages(m: int) -> list[int]:
 
 
 def collatz_backward_log_mass(m: int) -> Fraction:
-    """`m * sum 1/y` over the accelerated-Collatz preimages of `m`, exactly.
+    """`m * sum 1/y` over the shortcut-Collatz preimages of `m`, exactly.
 
     The counterpart of `even_block_log_mass`. `2m` alone contributes exactly
-    `1/2`; the odd preimage, when it exists, contributes `3/2`. So the value
-    is `1/2` on two residues out of three and `2` on the third, with mean
-    exactly `1`.
+    `1/2`; the odd preimage, when it exists, contributes `3m/(2m-1)`.
+    Thus the value is `1/2` on two residues out of three and approaches
+    `2` on the third. Its arithmetic mean tends to `1`; it is not an
+    exact finite mean.
     """
     if m < 1:
         raise ValueError("m must be positive")
@@ -456,8 +459,8 @@ def collatz_backward_log_mass(m: int) -> Fraction:
 def log_mass_census(limit: int = 200_000) -> dict[str, Any]:
     """Mean and worst case of the backward log-mass, for both maps.
 
-    The dichotomy Paper C actually runs on. Juggler is critical *uniformly*;
-    accelerated Collatz is critical *on average* and subcritical in the worst
+    The dichotomy Paper C actually runs on. Juggler is asymptotically critical
+    *uniformly*; shortcut Collatz is critical *on average* and subcritical in the worst
     case, and the worst case is not a rare event -- it is every multiple of
     three, forever. Theorem 1 quantifies over every nonempty backward-closed
     set, so the worst case is what governs and the mean is irrelevant.
@@ -470,10 +473,10 @@ def log_mass_census(limit: int = 200_000) -> dict[str, Any]:
         "collatz_argmin": worst + 2,
         "collatz_min_is_on_multiples_of_three": (worst + 2) % BARREN_RESIDUE == 0,
         "juggler_block_mass": {str(m): float(even_block_log_mass(m))
-                               for m in (10, 100, 1000)},
+                               for m in (3, 10, 11, 100, 101, 1000, 1001)},
         "verdict": (
-            "Juggler critical uniformly (exactly 1/m for every m, Lemma 2.1) and"
-            " supercritical once OE production is added; accelerated Collatz"
+            "Juggler even-block mass is asymptotic to 1/m, with the proved lower"
+            " bound m/(m+1)^2; OE supplies additional production; shortcut Collatz"
             " critical in the mean and exactly 1/2 in the worst case, attained on"
             " every multiple of three"
         ),
@@ -521,7 +524,7 @@ def collatz_theorem_one_counterexample(terms: int = 40) -> dict[str, Any]:
         "infinite": True,
         "reciprocal_sum": float(sum(Fraction(1, n) for n in members)),
         "reciprocal_sum_exact": "2/3",
-        "counting_function": "log_2 x - log_2 3",
+        "counting_function": "0 for x < 3; floor(log_2(x/3)) + 1 for x >= 3",
         "reason": (
             "multiples of three have no odd preimage, so the backward orbit is a"
             " bare doubling chain and loses exactly half its log-mass at every step"
@@ -757,8 +760,8 @@ def render_markdown(data: dict[str, Any]) -> str:
         f" `F_J(lambda) = F_C(lambda - 1)` exactly (worst gap"
         f" `{paper_c['ceiling_is_shared']['worst_gap']:.1e}`) and the"
         f" method ceiling `lambda = 1` is Kraft equality",
-        f"- backward log-mass: Juggler exactly `1/m` for every `m`;"
-        f" accelerated Collatz `{paper_c['log_mass']['collatz_mean']:.4f}/m` in"
+        f"- backward log-mass: Juggler asymptotic to `1/m`, bounded below by `m/(m+1)^2`;"
+        f" shortcut Collatz `{paper_c['log_mass']['collatz_mean']:.4f}/m` in"
         f" the mean but `{paper_c['log_mass']['collatz_min']:.1f}/m` on every"
         f" multiple of three",
         f"- so the Collatz analogue of Theorem 1 is false:"

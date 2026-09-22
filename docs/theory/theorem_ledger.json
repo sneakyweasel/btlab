@@ -12039,14 +12039,24 @@
  },
  {
   "id": "J-paper-c-collatz-analogue-is-false-by-exhibit",
-  "tag": "EXACT \u2014 HUMAN PROOF",
+  "tag": "EXACT — HUMAN PROOF",
   "source": "docs/problems/juggler_collatz_bridge.md",
-  "lean": "",
+  "lean": "Problems/Collatz/BackwardMass.lean",
   "tests": [
    "tests/research/juggler_sequence/test_collatz_bridge.py"
   ],
   "related_conjectures": [],
-  "statement": "The Collatz analogue of Paper C's Theorem 1 is false, by explicit counterexample. Theorem 1 says every nonempty backward-closed set A has sum_{n in A, n <= x} 1/n >> (log x)^lambda. For the accelerated Collatz map take A = {3 * 2^k}. A multiple of three has no odd preimage, because 2(3 * 2^k) - 1 = 2 mod 3, so the fibre of 3 * 2^k is the single point 3 * 2^(k+1) and A is backward-closed. A is infinite, its counting function is log_2 x - log_2 3, and its reciprocal sum is exactly 2/3. This replaces the reason three working artifacts previously gave, that the analogue fails because Collatz backward trees are thin, citing Krasikov-Lagarias x^{0.84}: that exponent is a LOWER bound on preimage counts and establishes no thinness, and conjecturally the tree is everything. The published manuscript juggler_fate_almost_all_note.md never made the error -- Sections 1.3 and 7.1 say only that an x^{0.84} lower bound is compatible with a bounded reciprocal sum, which is correct -- so the Zenodo deposit needs no revision; the corrections are to juggler_fate_contagion_note.md, juggler_tao_reduction_note.md and the row J-fate-contagion-equivalence. Not a bound and not an improvement to Paper C: it strengthens a statement Paper C already makes about a map Paper C does not treat. IN PAPER C SINCE THE REVISION OF 2026-09-21: Section 7.1, the paragraph 'The analogue of Theorem 1 fails for Collatz, by exhibit' (the deposit of 9 September is unchanged, as this row says it need not change)."
+  "statement": "The analogue of Paper C Theorem 1 for every nonempty backward-closed set is false for both ordinary Collatz shortcut signs. For C_plus(n)=n/2 on evens and (3n+1)/2 on odds, and C_minus(n)=n/2 on evens and (3n-1)/2 on odds, every multiple m of three has exactly the one predecessor 2m. Consequently A={3*2^k : k>=0} is infinite and backward-closed for both maps. Its injective geometric enumeration has reciprocal sum exactly 2/3, and every finite subset S of A has sum_{n in S} 1/n <= 2/3. The ray is not forward-closed: C_plus(3)=5 and C_minus(3)=4 leave it. It therefore does not itself refute a fate-specific almost-all-to-all implication. This is the exact obstruction to transferring the general backward-density engine, not a termination or nontermination result. The shortcut convention is explicit; acceleratedT elsewhere in the repository is the distinct odd-only map. The local Lean proof is compiled; ledger retagging awaits advisory coverage review.",
+  "decl": [
+   "backward_mass_counterexample",
+   "ray",
+   "ray_param_injective",
+   "shortcut_preimage_iff",
+   "minus_preimage_iff",
+   "ray_not_forward_closed_plus",
+   "ray_not_forward_closed_minus"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-paper-c-contagion-dichotomy-is-log-mass",
@@ -12057,7 +12067,7 @@
    "tests/research/juggler_sequence/test_collatz_bridge.py"
   ],
   "related_conjectures": [],
-  "statement": "What separates Paper C's two maps is worst-case backward log-mass, not fibre thickness. The fibre COUNTS differ enormously -- |J^-1(m)| is m or m+1, growing linearly, while |C^-1(m)| is at most two -- but the contagion recursion consumes harmonic mass, and in the mean the two agree: both are critical at exactly 1/m. Juggler: the even block [m^2, (m+1)^2) has mass exactly 1/m for EVERY m with no exceptional residues (Paper C Lemma 2.1), measured 1.00333, 1.000033, 1.00000033 at m = 10, 100, 1000 in units of 1/m, and OE production adds strictly on top, so the tree is supercritical. Accelerated Collatz: 2m contributes 1/2 and the odd preimage, present only when m = 2 mod 3, contributes 3/2, so the mass is 1/m in the mean (measured 1.000185 over 2 <= m <= 20000) but exactly 1/(2m) on every multiple of three. Theorem 1 quantifies over every nonempty backward-closed set, so the worst case governs and the mean is irrelevant; J-paper-c-collatz-analogue-is-false-by-exhibit is the worst case realized forever. This supersedes the reason first drafted in this session, that Collatz has no fat fibres, which named the wrong invariant: in Syracuse form the Collatz fibres are infinite and the mass is still critical. COMPUTATIONALLY VERIFIED and not EXACT: the mean is a census over a finite range, though the two endpoints, 1/m uniformly and 1/(2m) on multiples of three, are exact. IN PAPER C SINCE THE REVISION OF 2026-09-21: Section 7.1, the same paragraph."
+  "statement": "The useful comparison is worst-case backward harmonic mass. For Juggler, the mass M_J(m) of the even block [m^2,(m+1)^2) satisfies m/(m+1)^2 <= M_J(m) <= (m+1)/m^2 for every positive m, so m*M_J(m) tends to one. It is not exactly 1/m and need not exceed 1/m: M_J(3)=107/420<1/3. The lower bound is the existing kernel-checked evenBlock_logMass_ge in FateSeed.lean; the current Paper C manuscript already uses its valid consequence (1-2/m)/m. For the ordinary 3n+1 shortcut map, the normalized predecessor mass is exactly 1/2 on m not congruent to 2 modulo 3, and 1/2+3m/(2m-1) on the remaining residue. Its arithmetic mean tends to one, but no finite mean is asserted to equal one. The census through 20000 gives approximately 1.000185. Every multiple of three has exact mass 1/(2m), and the ray {3*2^k} realizes that loss forever for both signs, as formalized in J-paper-c-collatz-analogue-is-false-by-exhibit. Correction of 22 September 2026: the former exact-equality and never-below claims were false; the regression had sampled only even Juggler targets. Both target parities and exact rational counterexamples are now tested. The finite census remains computational; no termination bound changes."
  },
  {
   "id": "J-paper-c-ceiling-is-the-collatz-walk-mgf",

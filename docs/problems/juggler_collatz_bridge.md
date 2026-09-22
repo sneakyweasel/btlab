@@ -462,8 +462,9 @@ the Juggler-side `eta_0 = 0`.
 
 **Contagion does not transfer, and the recorded reason was wrong** --
 `J-paper-c-collatz-analogue-is-false-by-exhibit`. `{3 * 2^k}` is backward-closed
-under the accelerated map, infinite, counted by `log_2 x`, and has reciprocal
-sum `2/3`. So the analogue of Theorem 1 is false outright. Three working
+under the shortcut map, infinite, with count `floor(log_2(x/3))+1` for
+x>=3 (zero below 3), and has reciprocal sum `2/3`. So the analogue of
+Theorem 1 for every nonempty backward-closed set is false outright. Three working
 artifacts had said it fails because Collatz backward trees are thin, citing
 Krasikov--Lagarias `x^{0.84}` -- but that is a *lower* bound on preimage counts
 and establishes no thinness; conjecturally the tree is everything. The published
@@ -474,10 +475,12 @@ the row `J-fate-contagion-equivalence`.
 **The right invariant is worst-case log-mass** --
 `J-paper-c-contagion-dichotomy-is-log-mass`. The first answer drafted in this
 session, that Collatz has no fat fibres, named the wrong quantity: in Syracuse
-form the Collatz fibres are infinite, and in accelerated form the mean backward
-mass is critical at exactly `1/m`, the same as Juggler's even block. What
-separates them is the worst case. Juggler gives `1/m` for every `m` with no
-exceptional residues; Collatz gives `1/(2m)` on every multiple of three, and
+form the Collatz fibres are infinite. For the shortcut map, the normalized
+backward mass has arithmetic mean tending to one. Juggler's even-block mass
+is asymptotic to `1/m`, with the proved lower bound `m/(m+1)^2` for every
+positive m. It need not equal or exceed `1/m`: at m=3 it is `107/420`.
+What separates them is the worst case. Collatz gives exactly `1/(2m)`
+on every multiple of three, and
 Theorem 1 quantifies over *every* backward-closed set. `{3 * 2^k}` is that worst
 case realized forever.
 
@@ -503,7 +506,8 @@ on the other.
 Disposition: `CLOSE`. The headline -- contagion does not transfer -- is already
 published in the manuscript's Sections 1.3 and 7.1 and carried by two ledger
 rows. What was not recorded is the counterexample, the log-mass dichotomy, the
-coefficient identity, and the errata. No Lean, no branch.
+coefficient identity, and the errata. The later formal consolidation below
+checks the finite-mass counterexample for both shortcut signs.
 
 ## Publication assessment
 
@@ -874,3 +878,50 @@ checks 45 declarations, including all 16 new theorem declarations,
 and reports only `propext`, `Classical.choice`, and `Quot.sound`.
 The ledger label awaits advisory coverage review; local compilation
 and direct theorem-signature review are complete.
+
+## Backward mass for both signs, 22 September 2026
+
+**CLOSE** the transfer of Paper C's general backward-density theorem.
+The existing obstruction is now kernel-checked for both ordinary
+shortcut maps in
+[BackwardMass.lean](../../formal/Problems/Collatz/BackwardMass.lean).
+This is formal consolidation of the closed branch, not a new
+termination estimate.
+
+For C_+(n)=n/2 on even n and (3n+1)/2 on odd n, and C_-(n)=n/2
+on even n and (3n-1)/2 on odd n, the exact predecessor theorem is
+the same: if 3 divides m, then C_+(n)=m if and only if n=2m,
+and C_-(n)=m if and only if n=2m. In either odd branch the cleared
+equation contradicts divisibility by three.
+
+Consequently A={3*2^k : k>=0} is infinite and backward-closed for
+both signs. `backward_mass_counterexample` proves this, the exact
+geometric-series sum 2/3, and the bound
+sum_{n in S} 1/n <= 2/3 for every finite S contained in A.
+Hence no positive power of log x can be a universal lower bound
+for all nonempty backward-closed sets of either map.
+
+The ray is not a fate class: C_+(3)=5 and C_-(3)=4 leave it.
+The two `ray_not_forward_closed` theorems check that distinction.
+This counterexample alone does not refute a fate-specific
+almost-all-to-all implication, nor exclude other Collatz reductions.
+
+The audit also repairs the local mass comparison. The earlier
+statement that every Juggler even block has mass exactly 1/m,
+or never less than 1/m, was false. The existing Lean theorem
+`evenBlock_logMass_ge` gives m/(m+1)^2, and the manuscript already
+uses its valid consequence (1-2/m)/m. There are at most m+1 even
+integers in the block and each is at least m^2, giving the upper
+bound (m+1)/m^2. These two bounds prove the uniform asymptotic.
+For the shortcut plus map,
+the normalized mass is 1/2 when m is not 2 modulo 3, and
+1/2+3m/(2m-1) when it is. Thus the arithmetic mean tends to one;
+the finite mean is not exactly one. The regression now includes
+odd as well as even Juggler targets and exact rational witnesses.
+The current Paper C manuscript's lower-bound statement is unchanged.
+
+Validation: the full `lake build` passes (9026 jobs), all 13 dependency
+checks use only standard Lean dependencies, and the combined bridge,
+layer, integration and theorem-ledger suite gives 173 passes and
+14 skips. The existing counterexample row names the new compiled
+declarations; its label awaits the advisory coverage review.

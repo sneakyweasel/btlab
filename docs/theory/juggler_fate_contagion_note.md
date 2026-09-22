@@ -42,16 +42,20 @@ and on infinitely many dyadic blocks they have natural density
 equivalent to a Tao-type almost-all statement with a mild rate**: if
 the starts whose orbit never drops into the certified interval
 \([1,3.5\cdot 10^8]\) have logarithmic count \(o((\log x)^{0.40})\),
-then every start reaches \(1\). For the Collatz map the analogous
-implication is not merely unavailable, it is false: \(\{3\cdot 2^k\}\)
-is backward-closed under the accelerated map, because a multiple of
-three has no odd preimage, and its reciprocal sum is \(2/3\). The
+then every start reaches \(1\). For the Collatz shortcut map, the
+general lower-bound theorem for all nonempty backward-closed sets
+is false: \(\{3\cdot 2^k\}\) is backward-closed, because a multiple of
+three has no odd preimage, and its reciprocal sum is \(2/3\).
+The same counterexample works for the \(3n-1\) shortcut map.
+This set is not forward-closed, so this observation alone does not
+refute a fate-specific almost-all-to-all implication. The
 Krasikov--Lagarias exponent \(x^{0.84}\) is a *lower* bound on preimage
 counts and so establishes no thinness; what it gives is compatibility
 with a bounded reciprocal sum. For the Juggler map the even preimage
-interval carries harmonic mass exactly \(1/m\) for every \(m\), with no
-exceptional residues, and that uniformity is what makes fates
-contagious.
+interval carries harmonic mass at least \(m/(m+1)^2\), asymptotic to
+\(1/m\), for every positive \(m\), with no exceptional residues.
+That uniform lower bound is an input to fate contagion. Exact equality
+with \(1/m\) is false; at \(m=3\) the mass is \(107/420<1/3\).
 
 This note excludes no fate. It does not prove termination, it does
 not exclude cycles, and it does not exclude divergent orbits. Its
