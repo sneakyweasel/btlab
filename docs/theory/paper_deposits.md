@@ -14,7 +14,7 @@ which is what the other habit costs.
 
 | Paper | Title | Repository | Latest deposit | Concept DOI |
 | --- | --- | --- | --- | --- |
-| A | Lower Bounds for Cycle Lengths in the Juggler Map | 1.2.0, not deposited | [1.0.2](https://doi.org/10.5281/zenodo.22865237) | [10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) |
+| A | Lower Bounds for Cycle Lengths in the Juggler Map | 1.2.1, not deposited | [1.0.2](https://doi.org/10.5281/zenodo.22865237) | [10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) |
 | B | Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers | 1.1.1, not deposited | [1.0.0](https://doi.org/10.5281/zenodo.22864934) | [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) |
 | C | Fate Contagion and Termination Criteria for the Juggler Map | 1.2.0, not deposited | [1.1.0](https://doi.org/10.5281/zenodo.22865705) | [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) |
 | D | No m-cycles of the 3n−1 map for m ≤ 61 | 1.1.0, not deposited | [1.0.0](https://doi.org/10.5281/zenodo.22876190) | [10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) |
@@ -34,12 +34,17 @@ is prepared, checked and committed, and deposited only when the author decides t
 
 ### Paper A, Lower Bounds for Cycle Lengths in the Juggler Map
 
-Prepared 1.2.0, 22 September 2026. Adds the Wu-Wang asymptotic refinement, retaining Rhin's explicit bound and the provenance correction. Numerical cycle exclusions are unchanged. No new deposit has been made.
+Prepared 1.2.1, 23 September 2026. Completes the source and verification
+supplement, corrects the generated metadata description, and synchronizes
+publication instructions and provenance. Mathematical statements and proofs
+are unchanged from 1.2.0, including the Wu-Wang refinement and the numerical
+cycle exclusions. No new deposit has been made.
 
 Record [zenodo.org/records/22865237](https://zenodo.org/records/22865237).
 
 | Version | DOI | Date |
 | --- | --- | --- |
+| 1.2.1 | not deposited | 23 September 2026 |
 | 1.2.0 | not deposited | 22 September 2026 |
 | 1.1.0 | not deposited | 21 September 2026 |
 | 1.0.2 | [10.5281/zenodo.22865237](https://doi.org/10.5281/zenodo.22865237) | 20 September 2026 |
@@ -52,10 +57,11 @@ as the state that produced the finance tables. Two files the paper points the re
 to, `exceptions_parity.json` for the 141 exceptional lengths and `budget_opt.json` for
 the run-type table, were added after that commit and do not exist there, so the line
 was already wrong on 9 September 2026, the day 1.0.0 was deposited. It is not rot: it
-shipped that way. The prepared 1.2.0 now pins `07482692`, where all 126 files the release
-manifest records as inputs are byte-identical to the versions the paper reports, and
+shipped that way. The prepared 1.2.1 pins `ec0560ba`, where all 128 non-editorial
+files the release manifest records as inputs are byte-identical to the versions
+the paper reports, and
 `tools/paper_pin.py` holds every paper to that from inside the release gate. The
-correction is retained in the prepared 1.2.0, through the record's new-version
+correction is retained in the prepared 1.2.1, through the record's new-version
 operation. The deposited PDF is not otherwise affected, because Appendix B identifies
 the tables by content and both are byte-identical to the versions 1.0.0 reports.
 

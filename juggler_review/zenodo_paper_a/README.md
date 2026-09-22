@@ -6,7 +6,8 @@ This folder is generated from the canonical editorial inputs in
 as a byte-identical alias of the current Paper A PDF, not an older edition.
 
 Use `python tools/build_paper_a.py --check` from the repository root before
-preparing a deposit. Rebuild with `python tools/build_paper_a.py` after
+preparing a deposit, together with `python tools/build_paper_a_kit.py --check`.
+Rebuild with `python tools/build_paper_a.py` after
 editing the canonical manuscript, formalization map, or reviewer packet.
 See [build instructions](../../docs/theory/PAPER_A_BUILD.md).
 
@@ -15,8 +16,9 @@ version, and AI disclosure. Creator: Philippe Cochin, ORCID
 [0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382), with no
 affiliation. The existing CC BY 4.0 preprint license choice is retained.
 
-This folder holds version 1.1.0, which is prepared and not deposited. The
-record's current version is 1.0.2,
+The prepared version is recorded in the generated `ZENODO_FIELDS.txt`.
+It is a local revision, not a new deposit. The last repository-recorded
+deposit is version 1.0.2,
 [doi:10.5281/zenodo.22865237](https://doi.org/10.5281/zenodo.22865237) of
 20 September 2026, after 1.0.1
 [doi:10.5281/zenodo.22846460](https://doi.org/10.5281/zenodo.22846460) and 1.0.0
@@ -32,8 +34,17 @@ cycle exclusions with the evidence boundaries described in the paper;
 universal termination remains open. AI assistance throughout the work is
 explicitly disclosed in Section 7.
 
-For a later revision, use the existing record's new-version operation
-rather than starting a second deposit. Upload the current Paper A PDF
-and the accompanying source/verification archive when desired; the
-companion manuscripts are separate works. Review the record before
-publishing.
+For this revision, use the existing record's new-version operation.
+Upload the PDF above and `paper_a_source_and_verification.zip`, with
+the fields in `ZENODO_FIELDS.txt` and the actual publication date.
+The source supplement contains the release-pinned inputs, manuscript and
+LaTeX sources, numerical checker, Lean sources, and build instructions.
+Its root README explains the required external dependencies and the
+computational records that need a separate repository replay.
+
+`paper_a_zenodo_package.zip` is the delivery bundle, not another paper.
+`SHA256SUMS.txt` covers the kit, and each archive includes its own checksums.
+`paper_a_publication_check.json` records the current validation and layout
+review. Independent mathematical review and complete Lean verification
+remain outstanding; the package does not claim either. Review the record
+before publishing and record its returned version DOI after publication.

@@ -1,7 +1,7 @@
 ---
 title: "Lower Bounds for Cycle Lengths in the Juggler Map"
 author: Philippe Cochin
-date: 22 September 2026
+date: 23 September 2026
 keywords:
   - Juggler map
   - Juggler sequence
@@ -707,7 +707,7 @@ whole is formally verified.
 
 ```text
 Repository:  https://github.com/sneakyweasel/btlab
-Commit:      07482692b91ee8a6f5a0d2d6f4562a71f9dab8a9
+Commit:      ec0560baaee38b8a902eaf63cb8b3343900ea67b
 Lean:        leanprover/lean4:v4.33.1
 Mathlib:     v4.33.1 (lake-manifest rev 0df444a360eaa60ab8c11dca51a86af692955474)
 Build:       lake build Problems.JugglerPaper   (from formal/)
@@ -717,13 +717,13 @@ SHA-256:     Appendix B
 ```
 
 The commit is the repository state that produced the finance
-tables and the Lean layer. All 126 non-editorial files the release manifest
+tables and the Lean layer. All 128 non-editorial files the release manifest
 records as inputs — the finance probe with its three tables,
-the builder with its template and layout filter, the numeric
+the builder and archive packager with the template and layout filter, the numeric
 recheck, the trust-boundary audit, the paper's own audit, the
 curvature probe with its controls, the two floor verifiers
 with their chunk and run records, and the Lean sources
-this paper's build reaches with their toolchain, lake manifest
+this paper's build reaches with their toolchain, Lake configuration, lake manifest
 and axiom expectation — are byte-identical there to the
 versions this paper reports; the check is mechanical and is
 part of the release gate. Only this text and its two companion
@@ -7000,10 +7000,11 @@ preprint.
 
 ## 8. Availability and version
 
-This is version 1.2.0 of Paper A, of 22 September 2026. It adds the
-asymptotic refinement in Corollary 4.11a and retains the corrected
-provenance record of the prepared 1.1.0. The certified floors and
-numerical period exclusions are unchanged. It is a preprint, it has
+This is version 1.2.1 of Paper A, of 23 September 2026. It retains the
+asymptotic refinement in Corollary 4.11a and completes the source and
+verification supplement, publication metadata, and provenance record.
+The mathematical statements, proofs, certified floors, and numerical
+period exclusions are unchanged from version 1.2.0. It is a preprint, it has
 not been refereed, and it is not deposited. The deposited versions are:
 
 - 1.0.2 of 20 September 2026,

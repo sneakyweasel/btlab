@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "scope": "Local Zenodo preprint preparation, file reproducibility, numerical checks and rendered layout. This is not independent mathematical certification.",
+  "title": "Lower Bounds for Cycle Lengths in the Juggler Map",
+  "version": "1.2.1",
+  "source_edition": "2026-09-23-preprint",
+  "changes": "Correct metadata section extraction, synchronize publication documents, add deterministic source and verification supplement with checksums, and update the provenance pin. Mathematical statements and proofs are unchanged from 1.2.0.",
+  "pdf_sha256": "34be734dbc6750c1b5e2f38f14240459dd93b4e6b02d0f608edc52aed0ee5044",
+  "source_sha256": "d3ff3784b8c66526afce0fde3092f37c25e09014d07f39062a4fb4e1024c7b26",
+  "tex_sha256": "6b2a14bef5224db8be0b211f711d52bc15e23f25ccf0cecf06c54da0df7a1869",
+  "source_zip_sha256": "04974d3bf5ecf16f05e750475a138a4d667b34bb9574678551e84163582a5e17",
+  "digest_convention": "Text uses normalized LF; PDF and ZIP use raw bytes.",
+  "pdf_pages": 113,
+  "pdf_bytes": 609449,
+  "source_archive_members": 143,
+  "source_archive_scope": "Every release-pinned input and explicit public supplement files; excludes unrelated working files and private materials. Third-party dependencies and complete descent-floor replays are not bundled.",
+  "standalone_pdf_rebuild": "PASS: the extracted source archive rebuilt with its own builder, producing byte-identical PDF and normalized LaTeX.",
+  "standalone_numeric_recheck": "PASS: extracted numerical checker matches the root report at all four supplied descent floors. The floor searches themselves were not rerun.",
+  "period_cutoffs": [
+    25781,
+    176251,
+    478245,
+    780239
+  ],
+  "supplied_descent_floors": [
+    1000000,
+    26254995,
+    162849448,
+    350000000
+  ],
+  "lean_evidence": "Paper A build completed successfully (3496 jobs) in the 23 September readiness review; the live cited-declaration axiom audit passed again in the final publication test run. No Lean proof source changed during publication preparation. The sources and audit are included and digest-bound in the supplement.",
+  "provenance_commit": "ec0560baaee38b8a902eaf63cb8b3343900ea67b",
+  "pinned_non_editorial_inputs": 128,
+  "metadata_description": "PASS: abstract and AI disclosure only; version history is excluded.",
+  "visual_review": {
+    "method": "All 113 pages rendered with Poppler and inspected in contact sheets; changed provenance and version pages 11 and 111 inspected individually.",
+    "agent_layout_review": "PASS",
+    "human_review": "Outstanding for this local revision."
+  },
+  "compiler_checks": "PASS: three XeLaTeX passes; no overflow, missing glyphs, unresolved or duplicate references.",
+  "page_bounds": "PASS: every page is US Letter (612 by 792 points).",
+  "all_fonts_embedded": true,
+  "embedded_font_count": 26,
+  "independent_mathematical_review": false,
+  "complete_lean_verification": false,
+  "publication_status": "Prepared locally; not deposited. The last repository-recorded deposit is 1.0.2, DOI 10.5281/zenodo.22865237, dated 20 September 2026.",
+  "final_test_run": {
+    "paper_a_checks_passed": 79,
+    "total_tests": 147,
+    "passed": 141,
+    "skipped": 4,
+    "unrelated_failures": [
+      "tests.integration.test_docs_links::test_internal_markdown_links_resolve",
+      "tests.integration.test_paper_release_gates::test_the_paper_gate_exists_and_passes_on_the_live_repository[build_paper_e]"
+    ],
+    "scope": "All integration tests, theorem-ledger tests, Paper A release and archive tests, numerical audit tests and trust-boundary tests. The live axiom audit passed; unrelated working-tree failures are listed explicitly."
+  }
+}

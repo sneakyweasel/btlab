@@ -10,6 +10,7 @@ From the repository root, with Python 3.10+, Pandoc 3.6+, and XeLaTeX installed:
 ```text
 python tools/build_paper_a.py
 python tools/build_paper_a.py --check
+python tools/build_paper_a_kit.py --archive
 ```
 
 The build generates the canonical PDF, a self-contained `cochin-juggler.tex`,
@@ -48,7 +49,7 @@ four reported boundaries; the descent floors remain supplied inputs. In
 `AxiomCheckPaperA.expected`. When the manuscript cites a different set of
 declarations, update the audit list and regenerate its expected output.
 
-This repository holds version 1.2.0, which is prepared and not deposited.
+This repository holds version 1.2.1, which is prepared and not deposited.
 The record is at
 [zenodo.org/records/22865237](https://zenodo.org/records/22865237); its current
 version is 1.0.2,
@@ -75,3 +76,44 @@ measure remains an external theorem; its conditional Lean transfer is
 recorded in the formalization map, paper barrel and dependency audit. The certified floor and
 all numerical cycle exclusions remain unchanged. The earlier provenance
 correction is retained. No new external deposit is performed.
+
+## Publication kit of 23 September 2026
+
+Version 1.2.1 changes publication preparation only. The mathematical
+statements and proofs are unchanged from 1.2.0. The manuscript's provenance
+pin includes the corrected metadata builder, archive packager and Lake
+configuration. The Zenodo description contains only the abstract and AI
+disclosure; availability and version history remain in their proper fields.
+
+The kit in `juggler_review/zenodo_paper_a/` contains the upload PDF,
+`paper_a_source_and_verification.zip`, the generated field sheet, a
+publication-check record and `SHA256SUMS.txt`. The outer
+`paper_a_zenodo_package.zip` collects the upload and preparation materials.
+Upload the PDF and source supplement as the new preprint version; retain
+the outer delivery ZIP locally. Use the actual publication date when
+depositing, and preserve the existing concept DOI.
+
+The supplement retains repository paths and contains every release-pinned
+input plus generated outputs, supporting documents, the Lean Lake
+configuration, and licensing information. Its root README gives the build
+and verification commands. It includes no third-party toolchains, Mathlib
+cache, private correspondence, or unrelated working-tree files. Full
+descent-floor replays and the laboratory probes still require the repository
+and the computations described in Appendix B; the archived summaries alone
+do not certify those replays.
+
+The two-stage kit build avoids a circular checksum: build the source
+archive, complete `docs/theory/paper_a_publication_check.json` from actual
+validation results and that archive's SHA-256, then run:
+
+```text
+python tools/build_paper_a_kit.py
+python tools/build_paper_a_kit.py --check
+python tools/paper_pin.py a
+```
+
+The kit gate checks every archive member and both checksum manifests,
+including the QA record's binding to the PDF, manuscript and source ZIP.
+Text members use LF and archive timestamps are fixed to the edition date.
+Independent mathematical review and complete Lean verification remain
+outstanding and are disclosed in the manuscript and reviewer packet.

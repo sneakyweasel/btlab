@@ -2,7 +2,7 @@
 
 **Lower Bounds for Cycle Lengths in the Juggler Map**
 
-Philippe Cochin; no affiliation. Local preprint revision: 11 September 2026.
+Philippe Cochin; no affiliation. Local preprint version 1.2.1: 23 September 2026.
 
 This packet accompanies Paper A. Its purpose is to identify the claims,
 their evidence, and the questions requiring mathematical review. The
@@ -161,3 +161,13 @@ small heights into a positive constant. This is an asymptotic improvement;
 Rhin's explicit constant 915 and the computed floor exclusions remain.
 The supplementary formalization map separates the conditional transfer
 from the external transcendence estimate.
+
+## Publication preparation of 23 September 2026
+
+Version 1.2.1 retains all mathematical statements and proofs of 1.2.0.
+The source and verification supplement includes the complete release input
+inventory, generated LaTeX, the numerical checker, the local Lean import
+closure, and the dependency audit. Its README states the dependencies and
+the limits of the included computational records. The publication check
+records fresh build, archive, numerical, and layout evidence; it does not
+replace independent mathematical review or certify the paper in full.
