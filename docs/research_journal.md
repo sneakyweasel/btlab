@@ -1,5 +1,42 @@
 # Research journal
 
+## 2026-09-22 -- Internal audit of effective OOE modular returns
+
+- **Target and budget:** Audit the all-M, all-T counting error and its
+  explicit witness extraction. A missing derivative hypothesis, Fourier
+  mode, boundary case, or uniform constant would falsify the proof. The
+  closed continuation attacks concern different claims. No optimization
+  or extension beyond OOE is part of this audit.
+- **Source and estimates:** Rechecked the pinned Arias de Reyna theorem,
+  both derivative orders, the common sign even for opposite coefficients,
+  all six terms of the two maxima, and the modulus enlargements. Real
+  dyadic endpoints and the empty retained partition are covered explicitly.
+- **Boundary audit:** The Fejer argument is pointwise at sample boundaries.
+  Expanded arcs may fill the circle and contracted arcs may be empty;
+  delta need not be less than the residue-box width. Clarified the M=1
+  wording: the right endpoint 1 is excluded. Exact perfect-power inputs
+  can hit the excluded parity boundary, so avoiding boundary hits cannot
+  be assumed. The threshold exception count is min(T,1+floor(7/M)).
+- **Verdict:** No incorrect constant or exponent was found. The error
+  2^14*M^(1/4)*T^(127/128), parameter bound 2^2176*M^160, and start bound
+  2^4354*M^322 are retained. Added exact endpoint and dyadic regression
+  checks; these do not establish the universal analytic estimate.
+- **Validation:** integration, ledger, registry, branch-index, and targeted
+  theorem checks pass: 182 passed, 15 skipped. Generated records and the
+  existing Paper E source/manifest consistency check pass. No Lean source
+  was changed by the audit.
+- **Trust and publication:** This is a fresh internal derivation by the
+  same assistant, not independent external review. The audit treats the
+  classical theorem as an external input. Five quantitative Lean
+  obligations are mapped explicitly; the existing exact construction
+  is reusable, but qualitative box counting supplies no quantitative rate.
+  Paper E v0.5.0 and its selected Lean audit remain unchanged.
+- **Decision:** **PROMOTE** the clarified written result. Stop here.
+  A bounded next formalization question is the finite half-open Fejer
+  box estimate, with constants and saturated arcs included. External
+  review remains open.
+  [Audit and Lean obligation map](theory/juggler_effective_modular_return_audit.md).
+
 ## 2026-09-22 -- Quantitative second derivatives for the OOEE proof
 
 - **Target and budget:** Prove the classical finite second-derivative

@@ -3,6 +3,9 @@
 22 September 2026. **EXACT — HUMAN PROOF**: AI-assisted written derivation
 from an explicitly cited analytic theorem. Independent mathematical review
 and Lean formalization of the quantitative argument remain outstanding.
+The [fresh internal audit](juggler_effective_modular_return_audit.md)
+rederives the estimates and confirms the constants, with boundary and
+small-parameter details expanded below. It is not external peer review.
 
 ## 1. Statement
 
@@ -56,8 +59,9 @@ special case alone does not provide large nonintegral word codes.
 Write e(x)=exp(2*pi*i*x). We use J. Arias de Reyna,
 [*Explicit van der Corput's d-th derivative estimate*, v1](https://arxiv.org/html/2407.02094v1),
 Theorem 11 and Table 1, only at derivative orders k=3 and k=5.
-In notation adapted to this proof, if floor(Y)>k and the continuous
-k-th derivative of f on (X,X+Y] lies between positive lambda and Lambda,
+In notation adapted to this proof, if floor(Y)>k, f has continuous
+derivatives through order k on (X,X+Y], and its k-th derivative lies
+between positive lambda and Lambda,
 then, with D=2^k,
 \[
 \frac1Y\left|\sum_{X<m\le X+Y}e(f(m))\right|
@@ -71,6 +75,9 @@ of constant negative sign is handled by replacing f by -f, which
 conjugates the exponential sum. No monotonicity hypothesis is needed
 in this higher-derivative estimate. This cited result is a written
 proof input, not an imported Lean theorem or a new claim of this project.
+Our phases are smooth for x>0, and every retained interval has Y=N>=6,
+so floor(Y)>5>=k. The normalization is by the real interval length Y,
+not by the number of integer summands.
 
 ## 3. Uniform estimates for every truncated Fourier mode
 
@@ -127,6 +134,11 @@ The endpoint comparisons follow from
 45/(16*5^(3/4))>1/2 and 45/(16*2^(3/4))<2.
 Estimate (5), now with k=3, bounds the normalized sum by
 22*H^(1/6)*M^(5/24)*N^(-1/8).
+The three terms before enlargement are at most
+11*(4/N)^(1/4),
+11*(8*H*M^(5/4)*N^(-3/4))^(1/6), and
+11*((1/2)*M^(5/4)*N^(9/4))^(-1/4).
+Each is bounded by the displayed common expression using H,M,N>=1.
 Since H^2<=N,
 \[
 H^{1/6}N^{-1/8}
@@ -144,9 +156,12 @@ All signs and both coordinate-axis cases are covered.
 
 Suppose 1<=H<=T^(1/4). Split (0,T] into intervals (N,2N] with
 N=T/2, T/4, ... while N>=max(H^2,6). The remaining initial interval
-has length less than 2*max(H^2,6). Its integer count, together with
-the change from indices 1,...,T to 0,...,T-1, contributes at most
-2H^2+14<=16H^2. This also applies when there are no retained intervals.
+is (0,R], where R<2*max(H^2,6); take R=T if no interval is retained.
+The intervals are disjoint as half-open sets, even at noninteger endpoints.
+The remainder has floor(R) integer summands. The change from indices
+1,...,T to 0,...,T-1 is exactly e(f_h(0))-e(f_h(T)), of norm at most 2.
+Their total contribution is at most
+floor(R)+2<=2H^2+14<=16H^2, including when no interval is retained.
 Moreover,
 \[
 \sum_{j\ge0}(T/2^{j+1})^{59/60}
@@ -184,7 +199,15 @@ The product kernel K=F_H tensor F_H therefore has mass at most
 q=1/((H+1)*delta) outside the coordinate delta-neighbourhood of zero.
 Expand and contract each interval of B by delta on the circle, obtaining
 B^+ and B^-. A contracted interval can be empty and an expanded one full;
-both cases are retained. The following inequalities hold at every point,
+both cases are retained. More precisely, write a proper circular interval
+as the image of [a,a+ell), with 0<ell<1. Its expansion is the image of
+[a-delta,a+ell+delta) if ell+2*delta<1, and the whole circle otherwise.
+Its contraction is the image of [a+delta,a+ell-delta) if ell>2*delta,
+and empty otherwise. Empty and full original intervals are left unchanged.
+For shifts y with each circular distance ||y_i||<delta, these definitions
+give z in B implies z-y in B^+, and z-y in B^- implies z in B.
+The exceptional shifts have K-mass at most q. Since 0<=1_B*K<=1,
+the following inequalities hold at every point,
 including the original interval endpoints:
 \[
 \mathbf1_{B^-}*K-q\le\mathbf1_B\le\mathbf1_{B^+}*K+q.
@@ -208,9 +231,15 @@ Apply (12) to
 z_t=\left(\frac{s^{9/2}}2,\frac{s^{9/4}}{2M}\right)\pmod1,
 \qquad B=[0,1/2)\mathbin{\times}[1/(2M),1/M).
 \]
-Its area is 1/(4M). Box membership is exactly u even and
-v=1 modulo 2M. In particular M=1 and the right endpoint 1 are included
-without changing half-open membership. Choose H=floor(T^(1/32)), so
+Its area is 1/(4M). For any x>=0 and integers m>=1 and 0<=r<m, writing
+floor(x)=m*q+r' with 0<=r'<m gives fract(x/m)=(r'+fract(x))/m. Consequently
+floor(x)=r modulo m is equivalent to
+r/m<=fract(x/m)<(r+1)/m, including equality at the left endpoint.
+Box membership is therefore exactly u even and v=1 modulo 2M.
+For M=1 the second interval is [1/2,1): its right endpoint is excluded;
+an integer value of x/(2M) has fractional part zero and is rejected.
+The first interval likewise excludes its endpoint 1/2. No absence of
+boundary hits is assumed. Choose H=floor(T^(1/32)), so
 H>=1, H<=T^(1/4), and
 \[
 (H+1)^{-1/2}\le T^{-1/64},\qquad
@@ -218,7 +247,8 @@ H^{1/30}T^{-1/60}\le T^{-1/64},\qquad
 2\log H\le\frac{\log T}{16}.
 \]
 Equations (11) and (12) give the first bound in (1) before the final +8.
-At most eight parameters have 1+2Mt<16; deleting them adds at most eight.
+Exactly min(T,1+floor(7/M)) parameters have 1+2Mt<16. Deleting the box
+hits among these parameters changes the count by at most eight.
 
 For the second bound in (1), put x=log(T)>=0. The maximum of
 \[

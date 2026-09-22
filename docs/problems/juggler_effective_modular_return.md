@@ -89,6 +89,9 @@ No new Lean module. The existing PaperEModularReturn and PaperECorollaries
 prove the exact orbit construction and qualitative counts. The quantitative
 mode estimates, Fejer inequality, and explicit assembly in this branch are
 written proofs. Finite Python checks do not discharge these Lean gaps.
+The [internal proof audit](../theory/juggler_effective_modular_return_audit.md)
+maps the five remaining quantitative obligations and the exact declarations
+that can be reused. No quantitative Lean theorem was added by that audit.
 
 ## Results
 
@@ -97,10 +100,16 @@ are derived in the proof note. The nonzero-high-frequency and pure-low-
 frequency cases are both included. The proof tracks all short initial
 segments and all half-open boundary values. No asymptotic constant or
 unspecified threshold remains in the theorem statement.
+The fresh internal audit retained every constant and exponent. It expanded
+the source hypotheses, pure low-power terms, dyadic endpoint accounting,
+and the pointwise smoothing proof for empty or full circular intervals.
+The M=1 right endpoint is explicitly excluded. This second derivation is
+not independent external review.
 
 ## Open questions
 
-Independent review of the analytic specialization and prose-to-formal scope.
+Independent external review of the analytic specialization. The internal
+audit and its explicit prose-to-formal scope map are complete.
 Full Lean formalization of this quantitative result remains open. The coarse
 bound is not a useful computational limit, despite its polynomial dependence
 on M. Extension beyond OOE is outside this branch.
@@ -111,8 +120,10 @@ on M. Extension beyond OOE is outside this branch.
 qualitative result with a uniform explicit error and a bounded search domain.
 Do not optimize constants or open other words automatically.
 
-Best next question: does an independent proof audit confirm every uniform
-constant and boundary condition in the effective counting estimate?
+Best bounded formalization question: can the finite half-open Fejer box
+estimate (Q3 in the audit) be kernel-checked with its constants and all
+boundary cases? External review remains open; do not start optimizing
+the modulus exponent as part of this audit.
 
 ## Publication assessment
 
