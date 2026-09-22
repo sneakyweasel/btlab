@@ -363,6 +363,14 @@ def test_orphan_inventory_is_live_and_generated_lists_are_not_references(tmp_pat
     assert [d["qualified_name"] for d in report["orphans"]] == ["Problems.Juggler.fresh"]
 
 
+@pytest.mark.parametrize("folder", [".build", "tmp", ".venv-seed", "venv", ".tox"])
+def test_temporary_and_dependency_copies_are_not_lean_consumers(tmp_path, monkeypatch, folder) -> None:
+    report = _orphan_fixture(tmp_path, monkeypatch,
+        {"Fresh.lean": "namespace Problems.Juggler\ntheorem fresh : True := by trivial\nend Problems.Juggler\n"},
+        {f"{folder}/copy.md": "Problems.Juggler.fresh"})
+    assert [d["qualified_name"] for d in report["orphans"]] == ["Problems.Juggler.fresh"]
+
+
 def test_orphan_tokens_resolve_namespaces_without_prefix_or_self_credit(tmp_path, monkeypatch) -> None:
     source = """namespace Problems.Juggler
 namespace A

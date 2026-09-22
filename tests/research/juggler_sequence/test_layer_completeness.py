@@ -14,7 +14,7 @@ import io
 import re
 from pathlib import Path
 
-from research.juggler_sequence.lean_paths import LAYERS
+from research.juggler_sequence.lean_paths import AUXILIARY_MODULES, LAYERS
 
 ROOT = Path(__file__).resolve().parents[3]
 JUGGLER = ROOT / "formal" / "Problems" / "Juggler"
@@ -91,7 +91,10 @@ def test_unregistered_modules_are_visible() -> None:
     # FateProductionWords as outside when it no longer is, and 36 omits PaperBLevelWindow
     # entirely. Measured on the merged tree: 207 modules on disk, 170 in LAYERS, 37
     # outside. The budget is the measurement, not either side's arithmetic.
-    assert len(outside) <= 37, outside
+    # Exact role registration supersedes the historical count budget: adding an
+    # anonymous module fails even when another module is removed at the same time.
+    assert set(outside) == set(AUXILIARY_MODULES), outside
+    assert all(AUXILIARY_MODULES.values()), "every auxiliary module needs an explicit role"
 
 
 def foreign_public_declarations(source: str, prefix: str) -> list[tuple[str, int]]:

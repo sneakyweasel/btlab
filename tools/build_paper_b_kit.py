@@ -34,7 +34,7 @@ SOURCE_ARCHIVE = f'{KIT}/paper_b_source_package.zip'
 BUNDLE = f'{KIT}/paper_b_zenodo_package.zip'
 
 # Deterministic member stamps, mirroring _SOURCE_DATE_EPOCH in build_paper_b.py:
-# 2026-09-20, the version this kit records.
+# 2026-09-22, the version this kit records.
 STAMP = (2026, 9, 22, 0, 0, 0)
 
 BINARY_SUFFIXES = {'.pdf', '.png', '.jpg', '.zip', '.bin'}

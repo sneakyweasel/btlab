@@ -52,7 +52,7 @@ as the state that produced the finance tables. Two files the paper points the re
 to, `exceptions_parity.json` for the 141 exceptional lengths and `budget_opt.json` for
 the run-type table, were added after that commit and do not exist there, so the line
 was already wrong on 9 September 2026, the day 1.0.0 was deposited. It is not rot: it
-shipped that way. The prepared 1.2.0 now pins `5a728d1d`, where all 126 files the release
+shipped that way. The prepared 1.2.0 now pins `07482692`, where all 126 files the release
 manifest records as inputs are byte-identical to the versions the paper reports, and
 `tools/paper_pin.py` holds every paper to that from inside the release gate. The
 correction is retained in the prepared 1.2.0, through the record's new-version

@@ -48692,9 +48692,10 @@
       "file": "formal/Problems/Juggler/FateScaleAverage.lean",
       "kind": "theorem",
       "ledger": [
+        "J-pressure-scale-average-contagion-transfer",
         "J-pressure-scale-average-suffices"
       ],
-      "line": 21,
+      "line": 24,
       "module": "Problems.Juggler.FateScaleAverage",
       "name": "weighted_prefix_le",
       "trust": "kernel"
@@ -48704,9 +48705,10 @@
       "file": "formal/Problems/Juggler/FateScaleAverage.lean",
       "kind": "theorem",
       "ledger": [
+        "J-pressure-scale-average-contagion-transfer",
         "J-pressure-scale-average-suffices"
       ],
-      "line": 36,
+      "line": 39,
       "module": "Problems.Juggler.FateScaleAverage",
       "name": "rpow_step_le",
       "trust": "kernel"
@@ -48716,9 +48718,10 @@
       "file": "formal/Problems/Juggler/FateScaleAverage.lean",
       "kind": "theorem",
       "ledger": [
+        "J-pressure-scale-average-contagion-transfer",
         "J-pressure-scale-average-suffices"
       ],
-      "line": 55,
+      "line": 58,
       "module": "Problems.Juggler.FateScaleAverage",
       "name": "rpow_le_sum",
       "trust": "kernel"
@@ -48728,9 +48731,10 @@
       "file": "formal/Problems/Juggler/FateScaleAverage.lean",
       "kind": "theorem",
       "ledger": [
+        "J-pressure-scale-average-contagion-transfer",
         "J-pressure-scale-average-suffices"
       ],
-      "line": 66,
+      "line": 69,
       "module": "Problems.Juggler.FateScaleAverage",
       "name": "weighted_rpow_sum_le",
       "trust": "kernel"
@@ -48740,9 +48744,10 @@
       "file": "formal/Problems/Juggler/FateScaleAverage.lean",
       "kind": "def",
       "ledger": [
+        "J-pressure-scale-average-contagion-transfer",
         "J-pressure-scale-average-suffices"
       ],
-      "line": 96,
+      "line": 99,
       "module": "Problems.Juggler.FateScaleAverage",
       "name": "liveOdds",
       "trust": "kernel"
@@ -48752,9 +48757,10 @@
       "file": "formal/Problems/Juggler/FateScaleAverage.lean",
       "kind": "def",
       "ledger": [
+        "J-pressure-scale-average-contagion-transfer",
         "J-pressure-scale-average-suffices"
       ],
-      "line": 100,
+      "line": 103,
       "module": "Problems.Juggler.FateScaleAverage",
       "name": "oddPressure",
       "trust": "kernel"
@@ -48764,9 +48770,10 @@
       "file": "formal/Problems/Juggler/FateScaleAverage.lean",
       "kind": "def",
       "ledger": [
+        "J-pressure-scale-average-contagion-transfer",
         "J-pressure-scale-average-suffices"
       ],
-      "line": 104,
+      "line": 107,
       "module": "Problems.Juggler.FateScaleAverage",
       "name": "rho",
       "trust": "kernel"
@@ -48776,9 +48783,10 @@
       "file": "formal/Problems/Juggler/FateScaleAverage.lean",
       "kind": "def",
       "ledger": [
+        "J-pressure-scale-average-contagion-transfer",
         "J-pressure-scale-average-suffices"
       ],
-      "line": 110,
+      "line": 113,
       "module": "Problems.Juggler.FateScaleAverage",
       "name": "Bound",
       "trust": "kernel"
@@ -48788,9 +48796,10 @@
       "file": "formal/Problems/Juggler/FateScaleAverage.lean",
       "kind": "theorem",
       "ledger": [
+        "J-pressure-scale-average-contagion-transfer",
         "J-pressure-scale-average-suffices"
       ],
-      "line": 114,
+      "line": 117,
       "module": "Problems.Juggler.FateScaleAverage",
       "name": "rho_nonneg",
       "trust": "kernel"
@@ -48800,9 +48809,10 @@
       "file": "formal/Problems/Juggler/FateScaleAverage.lean",
       "kind": "theorem",
       "ledger": [
+        "J-pressure-scale-average-contagion-transfer",
         "J-pressure-scale-average-suffices"
       ],
-      "line": 120,
+      "line": 123,
       "module": "Problems.Juggler.FateScaleAverage",
       "name": "odd_block_le",
       "trust": "kernel"
@@ -48812,9 +48822,10 @@
       "file": "formal/Problems/Juggler/FateScaleAverage.lean",
       "kind": "theorem",
       "ledger": [
+        "J-pressure-scale-average-contagion-transfer",
         "J-pressure-scale-average-suffices"
       ],
-      "line": 160,
+      "line": 163,
       "module": "Problems.Juggler.FateScaleAverage",
       "name": "block_le_rho",
       "trust": "kernel"
@@ -48824,33 +48835,75 @@
       "file": "formal/Problems/Juggler/FateScaleAverage.lean",
       "kind": "theorem",
       "ledger": [
+        "J-pressure-scale-average-contagion-transfer",
         "J-pressure-scale-average-suffices"
       ],
-      "line": 217,
+      "line": 220,
       "module": "Problems.Juggler.FateScaleAverage",
       "name": "odd_mass_le",
       "trust": "kernel"
     },
     {
-      "doc": "Any subcritical odd harmonic-mass bound contradicts the verified contagion theorem. The harmless even-tree logarithm is absorbed using the strict exponent gap.",
+      "doc": "The exact lower bound needed by the pressure reduction, for any positive failure.",
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "kind": "def",
+      "ledger": [
+        "J-pressure-scale-average-contagion-transfer",
+        "J-pressure-scale-average-suffices"
+      ],
+      "line": 264,
+      "module": "Problems.Juggler.FateScaleAverage",
+      "name": "FailureMassLowerBound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Any subcritical odd harmonic-mass bound contradicts a supplied contagion bound. The even-tree logarithm is absorbed using the strict exponent gap.",
       "file": "formal/Problems/Juggler/FateScaleAverage.lean",
       "kind": "theorem",
       "ledger": [
+        "J-pressure-scale-average-contagion-transfer",
         "J-pressure-scale-average-suffices"
       ],
-      "line": 262,
+      "line": 271,
+      "module": "Problems.Juggler.FateScaleAverage",
+      "name": "conjecture_of_odd_mass_of_contagion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Preserve the unconditional odd-mass interface at its established exponent.",
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-pressure-scale-average-contagion-transfer",
+        "J-pressure-scale-average-suffices"
+      ],
+      "line": 344,
       "module": "Problems.Juggler.FateScaleAverage",
       "name": "conjecture_of_odd_mass",
       "trust": "kernel"
     },
     {
-      "doc": "The scale-averaged implication at the unconditional contagion exponent. The only arithmetic distribution hypothesis is `Bound` on the actual pressures.",
+      "doc": "Scale-averaged pressure suffices above the complement of any supplied contagion exponent. Both arithmetic inputs remain explicit.",
       "file": "formal/Problems/Juggler/FateScaleAverage.lean",
       "kind": "theorem",
       "ledger": [
+        "J-pressure-scale-average-contagion-transfer",
         "J-pressure-scale-average-suffices"
       ],
-      "line": 337,
+      "line": 354,
+      "module": "Problems.Juggler.FateScaleAverage",
+      "name": "conjecture_of_bound_of_contagion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The original pressure interface uses unconditional contagion at 100/203.",
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-pressure-scale-average-contagion-transfer",
+        "J-pressure-scale-average-suffices"
+      ],
+      "line": 387,
       "module": "Problems.Juggler.FateScaleAverage",
       "name": "conjecture_of_bound",
       "trust": "kernel"
@@ -48860,11 +48913,25 @@
       "file": "formal/Problems/Juggler/FateScaleAverage.lean",
       "kind": "theorem",
       "ledger": [
+        "J-pressure-scale-average-contagion-transfer",
         "J-pressure-scale-average-suffices"
       ],
-      "line": 370,
+      "line": 399,
       "module": "Problems.Juggler.FateScaleAverage",
       "name": "pressure_average_conjecture",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Combining the two existing inputs lowers the sufficient rate to 3/8. Neither the cumulative pressure bound nor the OOEE production bound is discharged.",
+      "file": "formal/Problems/Juggler/FateScaleAverage.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-pressure-scale-average-contagion-transfer",
+        "J-pressure-scale-average-suffices"
+      ],
+      "line": 411,
+      "module": "Problems.Juggler.FateScaleAverage",
+      "name": "pressure_average_conjecture_of_ooee",
       "trust": "kernel"
     },
     {
@@ -116555,13 +116622,19 @@
       "ledger": []
     },
     "Problems.Juggler.FateScaleAverage": {
-      "declarations": 15,
+      "declarations": 19,
       "file": "formal/Problems/Juggler/FateScaleAverage.lean",
       "imports": [
+        "Problems.Juggler.FateOEWeighted",
         "Problems.Juggler.FatePoorProduction",
         "Problems.Juggler.FatePressureCorollary"
       ],
       "ledger": [
+        {
+          "id": "J-pressure-scale-average-contagion-transfer",
+          "statement": "Parametric scale-average reduction and conditional OOEE corollary. For 0<lambda<=1 assume FailureMassLowerBound lambda: every positive nonterminating start supplies constants c>0 and x0 with c*(log x)^lambda <= logMass of failures for every natural x>=x0. Under the same actual stopped odd-pressure Bound and verified-floor hypotheses as J-pressure-scale-average-suffices, r-eta>1-lambda implies every positive integer reaches 1. conjecture_of_bound_of_contagion proves this for general positive normalization a and nonnegative theta. The existing unconditional interface specializes lambda=100/203. pressure_average_conjecture_of_ooee specializes lambda=5/8 and a=1-q+q*exp(theta), with C>1, theta>0, 0<q<1, eta>=0 and r-eta>3/8, assuming both the actual OOEEProductionBound on failures and the cumulative pressure Bound. Neither arithmetic hypothesis is discharged. This composes existing results; it is not a new pressure estimate or unconditional termination theorem. The listed Lean declarations compile with only standard logical dependencies; ledger promotion awaits the external advisory statement-coverage review.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        },
         {
           "id": "J-pressure-scale-average-suffices",
           "statement": "Conditional scale-averaged pressure theorem at the unconditional contagion threshold. Fix integers N0>=2 and k0>=0 with N0<2^(k0+1), and assume every integer from 1 through N0 reaches 1. Let C>1, theta>0, 0<q<1, eta>=0, a=1-q+q*exp(theta), pC=(1-1/C)/log_2(3), and r=C*(theta*pC-log(a))/log(2). For y=2^k set d=ceil(C*log_2(log(2*y)/log(N0))). Let Z_k be the sum of exp(theta*o_d(n)) over odd integer starts y<n<=2*y whose Juggler iterates at every time 0 through d exceed N0; o_d(n) counts odd states at times 0 through d-1. Set rho_k=Z_k/((2^k/2)*a^d). Suppose that for every epsilon>0 there exists a real D>=0 such that, for every integer K>=0, sum(rho_(k0+j),0<=j<K)<=D*K^(1+eta+epsilon). If r-eta>103/203, every positive integer reaches 1. ScaleAverage.pressure_average_conjecture proves precisely this conditional implication. Its Bound definition spells out the cumulative hypothesis, and liveOdds, oddPressure and rho define the actual stopped Juggler moments. The actual cumulative pressure estimate remains unproved; the formal result introduces no additional distribution assumption and does not prove unconditional termination. Scalar spike examples, numerical tilt evaluations and sparse-source estimates elsewhere in the dossier are outside this row.",
@@ -118871,6 +118944,7 @@
         "Problems.Juggler.FanLaw",
         "Problems.Juggler.FinanceTransfer",
         "Problems.Juggler.GapTransfer",
+        "Problems.Juggler.GapTransferWW",
         "Problems.Juggler.GlobalDefect",
         "Problems.Juggler.GuardResidueFamily",
         "Problems.Juggler.HugChargeEnvelope",
@@ -119131,13 +119205,13 @@
     }
   },
   "totals": {
-    "declarations": 8969,
-    "declarations_with_a_ledger_row": 6138,
-    "ledger_rows_naming_a_file": 512,
+    "declarations": 8973,
+    "declarations_with_a_ledger_row": 6142,
+    "ledger_rows_naming_a_file": 513,
     "modules": 377,
     "trust": {
       "compiler": 56,
-      "kernel": 8913
+      "kernel": 8917
     }
   }
 }

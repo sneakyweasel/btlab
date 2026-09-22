@@ -296,25 +296,13 @@ def test_no_document_still_quotes_the_old_window_as_the_window() -> None:
 
 
 def test_contagion_exponent_quoted_by_paper_a_is_the_current_one() -> None:
-    """Paper A quotes Paper C's exponent; it must be lambda**, not the superseded sweep root.
-
-    ``block_average_plus_sweep`` (0.4051) was lambda** before the OE-fiber constant was
-    sharpened from 1/7 to 1/3; pairing (0.4480) replaced it; the elementary OEOEE
-    production then moved lambda** to 0.4801; the V_3 truncation moved it
-    to 0.4891; the V_4 truncation moved it to 0.4916; the V_5
-    truncation moved it to 0.4924; the V_6 truncation moved it to
-    0.4926 and the Tao rate from 0.5076 to 0.5074."""
-
-    from research.juggler_sequence.fate_contagion import RECURSIONS, lambda_root
-
-    lam = lambda_root(RECURSIONS["block_third_plus_oeoee_v6"])
-    assert abs(lam - 0.4926) < 1e-3
-    assert abs((1.0 - lam) - 0.5074) < 1e-3
+    """The companion reference distinguishes the written bound from its Lean baseline."""
     text = read(PAPER)
-    assert "0.4926" in text
-    # the superseded sweep pair must not appear as Paper C's exponent or as the rate threshold
+    assert r"0<\lambda\le5/8" in text
+    assert r"\lambda\le100/203" in text
+    assert "22 September written revision" in text
+    assert "unconditional Lean baseline" in text
     assert "0.4050" not in text
-    assert re.search(r"\(\\log x\)\^\{0\.405\}", text) is None
     assert re.search(r"e>0\.595", text.replace(" ", "")) is None
 
 

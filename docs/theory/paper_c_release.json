@@ -26,7 +26,7 @@
     {
       "path": "docs/theory/PAPER_C_BUILD.md",
       "mode": "text",
-      "sha256": "149c43ab182280b02a3fae670c63ba9a1ff31a6c7b7710685d06feecad4ca6a2"
+      "sha256": "6754e27a744ae591addba54dea60dc5827a5c05efc44d9804fd080cd24892c5e"
     },
     {
       "path": "docs/theory/figures/paper_c_decomposition.png",
@@ -51,7 +51,7 @@
     {
       "path": "docs/theory/juggler_fate_almost_all_note.md",
       "mode": "text",
-      "sha256": "f421f7f0a4abdfb32c43df74a82090afc14c8809b4f59bb345b219a0aea31a7b"
+      "sha256": "dbdac9ce7e2e908320ce2557737ab0c4d6fd4b977cc068a89516e519c6a8dd76"
     },
     {
       "path": "docs/theory/juggler_ooee_contagion_note.md",
@@ -91,12 +91,12 @@
     {
       "path": "formal/AxiomCheckScaleAverage.expected",
       "mode": "text",
-      "sha256": "20d87c2f4a8754c1385ab0ff8defa9e1c895f7bf265b93c77abb903576c18b33"
+      "sha256": "a9b0261241f3bb9db3f459b993063fd4dd408fba5d68f83b147ecc1d79792d65"
     },
     {
       "path": "formal/AxiomCheckScaleAverage.lean",
       "mode": "text",
-      "sha256": "772dbfb1b4049461d9ffed222d16422f27055213577cc7bf0a2dfbd10bf20d66"
+      "sha256": "194e746cda9c1548ecd4f6855fd5ef23fa9b780f988e0815ecaa6283724d75eb"
     },
     {
       "path": "formal/BTCalculus/FejerArc.lean",
@@ -396,7 +396,7 @@
     {
       "path": "formal/Problems/Juggler/FateScaleAverage.lean",
       "mode": "text",
-      "sha256": "d370128dbb046d97a6826984d970ca964a3a5bf241d21d18517481a12ea6fa33"
+      "sha256": "7f345abb68285facefadb7e353fda40fa33555462d1cf667792c86f2341c50c5"
     },
     {
       "path": "formal/Problems/Juggler/FateSeed.lean",
@@ -633,12 +633,12 @@
     {
       "path": "juggler_review/juggler_fate_almost_all_note.pdf",
       "mode": "binary",
-      "sha256": "e8354fa2b69a27bed891dc5dbeaebb0ff74d5ad27dc1e72558ec5737b9a8c9d0"
+      "sha256": "60a5df23a8a90afd38aca16daa5093a8c679580456a7be26ea16a43f2b6e415e"
     },
     {
       "path": "docs/theory/cochin-juggler-fates.tex",
       "mode": "text",
-      "sha256": "ccc5c2cb967b3b5726d10cfaf0aad03f6671765d4de71e3f66b0626dd2d74b8d"
+      "sha256": "b827056951d686d8db8ced6ebe1adbb8676992651fe4252436a46e5c398eb802"
     },
     {
       "path": "docs/theory/paper_c_zenodo.json",

@@ -48,7 +48,7 @@ four reported boundaries; the descent floors remain supplied inputs. In
 `AxiomCheckPaperA.expected`. When the manuscript cites a different set of
 declarations, update the audit list and regenerate its expected output.
 
-This repository holds version 1.1.0, which is prepared and not deposited.
+This repository holds version 1.2.0, which is prepared and not deposited.
 The record is at
 [zenodo.org/records/22865237](https://zenodo.org/records/22865237); its current
 version is 1.0.2,
@@ -66,3 +66,12 @@ operation. See [paper_deposits.md](paper_deposits.md). The author's ORCID is
 affiliation, and AI assistance throughout the work is disclosed. The
 preprint does not claim peer review, universal termination, or exclusion
 of every nontrivial cycle.
+
+## Revision of 22 September 2026
+
+Version 1.2.0 adds Corollary 4.11a, the Wu-Wang asymptotic exponent
+5.1163051 plus epsilon, alongside Rhin's explicit bound. The logarithmic
+measure remains an external theorem; its conditional Lean transfer is
+recorded in the formalization map, paper barrel and dependency audit. The certified floor and
+all numerical cycle exclusions remain unchanged. The earlier provenance
+correction is retained. No new external deposit is performed.

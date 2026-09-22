@@ -576,7 +576,7 @@ not need to formalize the sharper no-log-log bound in (A5).
 
 [AxiomCheckScaleAverage.lean](../../formal/AxiomCheckScaleAverage.lean)
 checks the new theorems and their transitive proof dependencies. This
-check passes for all eleven theorems, with only `propext`,
+check passes for all fourteen theorems, with only `propext`,
 `Classical.choice`, and `Quot.sound`; its output is retained in
 [AxiomCheckScaleAverage.expected](../../formal/AxiomCheckScaleAverage.expected).
 The English ledger statement was checked against the definitions and
@@ -584,14 +584,41 @@ compiled signature. The authorized Jev advisory review returned
 `covered` (coverage score 0.52); this is a statement-coverage opinion,
 not the mathematical proof.
 
-The module is registered in the laboratory barrel; the published Paper C
-barrel and manuscript are unchanged. The sparse-source estimates,
+The module is registered in the laboratory barrel; the historical Paper C
+barrel is unchanged. The local Paper C 1.2.0 records the supplemental proof
+separately in Theorem 9.4. The sparse-source estimates,
 numerical tilt evaluations, scalar spike separation, and other written
 corollaries in this dossier are not retagged as Lean verified.
 
 The bound on the actual cumulative pressure remains unproved. The
 completion identity and comparison with Proposition 11.1 remain
 elementary identities, not estimates.
+
+### Consolidation: a reusable contagion input
+
+The reduction no longer hard-codes the exponent. `FailureMassLowerBound`
+states the precise eventual lower bound on the reciprocal mass of failures.
+`conjecture_of_odd_mass_of_contagion` and
+`conjecture_of_bound_of_contagion` accept this input at any exponent
+`0 < lambda <= 1`; the required gap is `r - eta > 1 - lambda`.
+The original `conjecture_of_odd_mass`, `conjecture_of_bound`, and
+`pressure_average_conjecture` retain their signatures and unconditional
+contagion specialization at `100/203`.
+
+The corollary `pressure_average_conjecture_of_ooee` combines the same proof
+with `FateOEWeighted.logMass_growth_of_ooee`, giving `r - eta > 3/8`.
+Its two open inputs are explicit: the actual OOEE production inequality
+on failures and the cumulative pressure estimate. This is a checked
+composition of existing results, not a new arithmetic estimate.
+The additional three dependency reports use only the standard logical
+principles. The earlier Jev coverage opinion applies to the original row;
+the new row was checked directly against the compiled signature. The new
+row retains `EXACT — HUMAN PROOF` while the advisory coverage step awaits
+authorization to send the unpublished statement and declarations externally;
+its Lean proof and kernel dependency check have passed locally.
+
+**Decision: PROMOTE** the refactor and conditional corollary. The arithmetic
+estimate remains **PARK**. Stop here; no new analytic branch is opened.
 
 ## Results
 

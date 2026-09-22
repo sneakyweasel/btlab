@@ -58,7 +58,9 @@ The earlier two-production exponent 100/203 remains the fully kernel-checked
 baseline. The new analytic proof is AI-assisted and awaits independent
 review and complete Lean verification. Theorem 9.4 adds the scale-average
 pressure implication, separately Lean at r - eta > 103/203 and written
-at r - eta > 3/8 using the new contagion theorem.
+at r - eta > 3/8 using the new contagion theorem. The refactored Lean
+reduction now also proves the latter implication conditional on
+OOEEProductionBound; its supplementary audit selects fourteen declarations.
 
 The historical 37-module barrel and its 473 reports are unchanged. The
 supplementary OOEE assembly, weighted OE, mixed-mode and scale-average

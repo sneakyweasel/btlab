@@ -474,7 +474,9 @@ two length-five contractors, giving the certified-descent densities
 contraction criterion of Theorem 2.2. Paper C [17] proves that every
 nonempty backward-closed set — in particular the basin of any
 nontrivial cycle, and the set of divergent starts — has logarithmic
-count \(\gg(\log x)^{\lambda}\) for \(\lambda<\lambda^{**}=0.4926\), and reduces the
+count \(\gg(\log x)^{\lambda}\) for \(0<\lambda\le5/8\) in its
+22 September written revision (with unconditional Lean baseline
+\(\lambda\le100/203\)), and reduces the
 Juggler conjecture to a Tao-type almost-all statement whose bounded
 target is the certified floor of Section 5 and whose descent step is
 the power envelope of Theorem 2.2 (`power_bound_word`). Section 6.1
@@ -705,7 +707,7 @@ whole is formally verified.
 
 ```text
 Repository:  https://github.com/sneakyweasel/btlab
-Commit:      5a728d1d80029ee3040063d060699e9460871184
+Commit:      07482692b91ee8a6f5a0d2d6f4562a71f9dab8a9
 Lean:        leanprover/lean4:v4.33.1
 Mathlib:     v4.33.1 (lake-manifest rev 0df444a360eaa60ab8c11dca51a86af692955474)
 Build:       lake build Problems.JugglerPaper   (from formal/)
@@ -715,12 +717,12 @@ SHA-256:     Appendix B
 ```
 
 The commit is the repository state that produced the finance
-tables and the Lean layer. All 124 files the release manifest
+tables and the Lean layer. All 126 non-editorial files the release manifest
 records as inputs — the finance probe with its three tables,
 the builder with its template and layout filter, the numeric
 recheck, the trust-boundary audit, the paper's own audit, the
 curvature probe with its controls, the two floor verifiers
-with their chunk and run records, and the 105 Lean modules
+with their chunk and run records, and the Lean sources
 this paper's build reaches with their toolchain, lake manifest
 and axiom expectation — are byte-identical there to the
 versions this paper reports; the check is mechanical and is
@@ -3129,8 +3131,8 @@ order \(L^{5.1163051+\varepsilon}\) up to logarithms and constants.
 The transfer is formalized conditionally on the classical logarithmic
 estimate in `cycleMin_length_of_wuWang` and
 `cycleMin_period_ge_wuWang`; Wu and Wang's estimate itself is not
-proved in Lean. The supplementary proof map is recorded separately
-from this paper's selected declaration audit.
+proved in Lean. Both transfer declarations are included in this paper's
+barrel and selected declaration audit, with the external estimate explicit.
 
 **Remark (what the reduction does and does not do).**
 Corollary 4.11 is a reduction of the no-cycle problem, not a
@@ -4604,7 +4606,8 @@ exclusions or a proof of an almost-all hypothesis.
 *A cycle's basin has a separate lower bound.* Paper C's stated contagion
 theorem gives
 \(\sum_{m\in B(C),\,m\le x}1/m\gg(\log x)^\lambda\)
-for every \(\lambda<\lambda^{**}=0.4926\ldots\), if the basin
+for every \(0<\lambda\le5/8\) in its 22 September written revision,
+with unconditional Lean baseline \(\lambda\le100/203\), if the basin
 \(B(C)\) of a nontrivial cycle exists. This is a result of the companion
 manuscript, not a new theorem here. For a primitive cycle \(C\) with
 minimum \(n\) and period \(L\), the present paper instead gives

@@ -1,5 +1,36 @@
 # Research journal
 
+## 2026-09-22 -- Lean and publication consolidation
+
+- **Scope:** Consolidate the recent Lean results and Papers A–E without
+  opening another arithmetic attack or raising the verified floor.
+- **Proof:** Parameterized the scale-average reduction by its precise
+  contagion lower bound, preserving the existing interfaces. Its new OOEE
+  corollary has the threshold `r - eta > 3/8`, with both the actual OOEE
+  production bound and cumulative pressure estimate explicit. The three
+  additional dependency reports use only standard logical principles.
+- **Maintenance:** Added the Wu–Wang transfer to Paper A's actual import
+  barrel and audit; made its metadata writes atomic; synchronized the
+  publication mirrors, certificates, inventories, and theorem indexes.
+  The module check now verifies exact auxiliary roles, and hygiene ignores
+  copied build/dependency trees when identifying declaration consumers.
+- **Validation:** Full Lean build passes, 9,082 jobs. The 33 recent audit
+  scripts produced 790 dependency reports without failures; the extended
+  Paper A and scale-average audits and Paper C's 473-report audit also pass.
+  All five release gates pass and all five PDFs were visually reviewed.
+  The combined broad and corrective Python runs cover all 6,949 collected
+  tests: 6,612 pass and 337 skip, with no unresolved failures or collection
+  errors. The corrective run restored the configured importlib mode and
+  reran publication checks after the final rebuild.
+- **Review boundary:** The new corollary's compiled signature was compared
+  with its English claim locally. Its ledger promotion awaits the external
+  advisory coverage step; sending that unpublished payload requires the
+  user's authorization. Its present ledger tag is EXACT — HUMAN PROOF.
+- **Decision:** **PROMOTE** the formal consolidation; **PARK** the open
+  arithmetic estimates. The next concrete theorem assemblies are OOEE
+  target-fibre production and Paper E's effective count/witness Q4–Q5.
+  [Consolidation report](research/lean_consolidation_20260922.md).
+
 ## 2026-09-22 -- Actual OOEE joint parity and slow resonances
 
 - **Continuation audit:** The preceding review was **no progress** toward

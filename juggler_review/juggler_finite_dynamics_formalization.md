@@ -1393,6 +1393,6 @@ measure in reference [31]. Its transfer declarations are
 `cycleMin_length_of_wuWang` and `cycleMin_period_ge_wuWang` in
 [GapTransferWW.lean](../../formal/Problems/Juggler/GapTransferWW.lean).
 They retain the logarithmic lower bound as an explicit hypothesis;
-they do not prove Wu and Wang's theorem. These supplementary declarations
-are outside the historical selected Paper A audit. The stronger exponent
+they do not prove Wu and Wang's theorem. Both declarations are included
+in the expanded Paper A barrel and selected dependency audit. The stronger exponent
 changes no computed period floor.

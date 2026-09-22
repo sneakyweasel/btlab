@@ -2938,10 +2938,12 @@ by 100/203. \(\square\)
 
 The baseline implication, with the actual stopped Juggler weights,
 is `ScaleAverage.pressure_average_conjecture` in
-`FateScaleAverage.lean`; its eleven-theorem audit is separate from
-the historical Paper C audit. The 3/8 consequence uses the written
-OOEE theorem. No pointwise pressure bound or estimate for the
-actual cumulative pressure is asserted.
+`FateScaleAverage.lean`; its fourteen-theorem audit is separate from
+the historical Paper C audit. The formal corollary
+`ScaleAverage.pressure_average_conjecture_of_ooee` also proves the 3/8
+implication with `OOEEProductionBound` explicit. Its reusable proof accepts
+any supplied contagion exponent; the written OOEE proof supplies that premise
+here. No estimate of the actual cumulative pressure is asserted.
 
 ## 10. The free term and limits of the reductions
 
@@ -3530,7 +3532,7 @@ use the roots of the displayed defining equations.
 
 - `docs/theory/figures/render_paper_c_figures.py`
 
-  SHA-256: `f2590a6ec45bd859e1a5ca1eadd403187b0229285a2114f77101cfd187f43d38`
+  SHA-256: `8d7c6d0eddafc6d64acde77583be1943ba400cff1189d23b2e3c15b62f1a2723`
 
 The archived records retain the parameter names and values of their
 original runs (including the older pairing-only threshold). Current

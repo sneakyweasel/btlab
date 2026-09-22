@@ -9,8 +9,23 @@
 'Problems.Juggler.ScaleAverage.conjecture_of_odd_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.ScaleAverage.conjecture_of_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.ScaleAverage.pressure_average_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ScaleAverage.conjecture_of_odd_mass_of_contagion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.ScaleAverage.conjecture_of_bound_of_contagion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.ScaleAverage.pressure_average_conjecture_of_ooee' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
 Problems.Juggler.ScaleAverage.pressure_average_conjecture {N₀ k₀ : ℕ} (hN : 2 ≤ N₀)
   (hfloor : ∀ (m : ℕ), 1 ≤ m → m ≤ N₀ → Problems.Juggler.ReachesOne m) (hk₀ : N₀ < 2 ^ (k₀ + 1)) {C θ q η : ℝ}
   (hC : 1 < C) (hθ : 0 < θ) (hq0 : 0 < q) (hq1 : q < 1) (hη : 0 ≤ η)
   (hgap : 103 / 203 < C * (θ * Problems.Juggler.pC C - Real.log (1 - q + q * Real.exp θ)) / Real.log 2 - η)
+  (havg : Bound N₀ k₀ C θ (1 - q + q * Real.exp θ) η) (n : ℕ) : 1 ≤ n → Problems.Juggler.ReachesOne n
+Problems.Juggler.ScaleAverage.pressure_average_conjecture_of_ooee {N₀ k₀ : ℕ} (hN : 2 ≤ N₀)
+  (hfloor : ∀ (m : ℕ), 1 ≤ m → m ≤ N₀ → Problems.Juggler.ReachesOne m) (hk₀ : N₀ < 2 ^ (k₀ + 1)) {C θ q η : ℝ}
+  (hC : 1 < C) (hθ : 0 < θ) (hq0 : 0 < q) (hq1 : q < 1) (hη : 0 ≤ η)
+  (hOOEE : Problems.Juggler.FateOEWeighted.OOEEProductionBound fun n => ¬Problems.Juggler.ReachesOne n)
+  (hgap : 3 / 8 < C * (θ * Problems.Juggler.pC C - Real.log (1 - q + q * Real.exp θ)) / Real.log 2 - η)
   (havg : Bound N₀ k₀ C θ (1 - q + q * Real.exp θ) η) (n : ℕ) : 1 ≤ n → Problems.Juggler.ReachesOne n

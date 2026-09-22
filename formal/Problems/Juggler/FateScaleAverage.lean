@@ -1,6 +1,7 @@
 import Mathlib.Algebra.BigOperators.Module
 import Problems.Juggler.FatePressureCorollary
 import Problems.Juggler.FatePoorProduction
+import Problems.Juggler.FateOEWeighted
 
 namespace Problems.Juggler
 
@@ -14,7 +15,9 @@ namespace ScaleAverage
 
 This checks the conditional implication in `juggler_pressure_external_average.md`.
 The arithmetic bound on cumulative pressure remains an explicit hypothesis.
-The contagion input is the unconditional exponent `100/203`.
+The reusable implication takes its contagion exponent as an explicit input.
+The unconditional specialization uses `100/203`; the `5/8` specialization
+retains the open actual OOEE production bound.
 -/
 
 /-- Prefix-sum domination is preserved by nonnegative decreasing weights. -/
@@ -257,20 +260,25 @@ theorem odd_mass_le {k₀ : ℕ} {ρ : ℕ → ℝ} {c D s r e : ℝ}
     _ ≤ (B₀ + c * D * s / (1 - e)) * ((J : ℝ) + 1) ^ (1 - e) := by
           nlinarith [mul_le_mul_of_nonneg_left hpow hcoef]
 
-/-- Any subcritical odd harmonic-mass bound contradicts the verified contagion
-theorem. The harmless even-tree logarithm is absorbed using the strict exponent gap. -/
-theorem conjecture_of_odd_mass {k₀ : ℕ} {B β : ℝ} (hB : 0 ≤ B)
-    (hβ0 : 0 < β) (hβ : β < 100 / 203)
+/-- The exact lower bound needed by the pressure reduction, for any positive failure. -/
+def FailureMassLowerBound (lam : ℝ) : Prop :=
+  ∀ n : ℕ, 1 ≤ n → ¬ReachesOne n →
+    ∃ c : ℝ, 0 < c ∧ ∃ x₀ : ℕ, ∀ x : ℕ, x₀ ≤ x →
+      c * Real.log x ^ lam ≤ logMass (fun n => ¬ReachesOne n) x
+
+/-- Any subcritical odd harmonic-mass bound contradicts a supplied contagion
+bound. The even-tree logarithm is absorbed using the strict exponent gap. -/
+theorem conjecture_of_odd_mass_of_contagion {lam : ℝ}
+    (hcontagion : FailureMassLowerBound lam) {k₀ : ℕ} {B β : ℝ} (hB : 0 ≤ B)
+    (hβ0 : 0 < β) (hβ : β < lam)
     (hodd : ∀ K : ℕ, k₀ ≤ K → oddLogMass (fun n => ¬ReachesOne n) (2 ^ K) ≤
       B * ((K : ℝ) + 1) ^ β) :
     ∀ n, 1 ≤ n → ReachesOne n := by
   intro n hn
   by_contra hfail
-  obtain ⟨c, hc, x₀, hlow⟩ := Production.failures_logMass_averaged hn hfail
-    (lam := (100 : ℝ) / 203) (by norm_num) le_rfl
-  let lam : ℝ := 100 / 203
+  obtain ⟨c, hc, x₀, hlow⟩ := hcontagion n hn hfail
   let δ := (lam - β) / 2
-  have hδ : 0 < δ := by dsimp [δ, lam]; linarith
+  have hδ : 0 < δ := by dsimp [δ]; linarith
   have hsplit : lam = (δ + β) + δ := by dsimp [δ]; ring
   have hlog2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
   have hlog2half : (1 : ℝ) / 2 < Real.log 2 := by linarith [Real.log_two_gt_d9]
@@ -318,7 +326,7 @@ theorem conjecture_of_odd_mass {k₀ : ℕ} {B β : ℝ} (hB : 0 ≤ B)
     have hx : x₀ ≤ 2 ^ K := hKx.trans (show K ≤ 2 ^ K from Nat.lt_two_pow_self.le)
     have h := hlow (2 ^ K) hx
     rw [Nat.cast_pow, Nat.cast_ofNat, Real.log_pow, Real.mul_rpow hKR.le hlog2.le] at h
-    dsimp [c', lam]
+    dsimp [c']
     nlinarith
   have hgt : D < c' * (K : ℝ) ^ δ := by
     have h := hu (K : ℝ) hKu
@@ -332,12 +340,22 @@ theorem conjecture_of_odd_mass {k₀ : ℕ} {B β : ℝ} (hB : 0 ≤ B)
     exact le_of_mul_le_mul_right hprod hpos
   linarith
 
-/-- The scale-averaged implication at the unconditional contagion exponent.
-The only arithmetic distribution hypothesis is `Bound` on the actual pressures. -/
-theorem conjecture_of_bound {N₀ k₀ : ℕ} (hN : 2 ≤ N₀)
+/-- Preserve the unconditional odd-mass interface at its established exponent. -/
+theorem conjecture_of_odd_mass {k₀ : ℕ} {B β : ℝ} (hB : 0 ≤ B)
+    (hβ0 : 0 < β) (hβ : β < 100 / 203)
+    (hodd : ∀ K : ℕ, k₀ ≤ K → oddLogMass (fun n => ¬ReachesOne n) (2 ^ K) ≤
+      B * ((K : ℝ) + 1) ^ β) : ∀ n, 1 ≤ n → ReachesOne n := by
+  apply conjecture_of_odd_mass_of_contagion (lam := 100 / 203) _ hB hβ0 hβ hodd
+  intro n hn hfail
+  exact Production.failures_logMass_averaged hn hfail (by norm_num) le_rfl
+
+/-- Scale-averaged pressure suffices above the complement of any supplied
+contagion exponent. Both arithmetic inputs remain explicit. -/
+theorem conjecture_of_bound_of_contagion {lam : ℝ} (hlam0 : 0 < lam) (hlam1 : lam ≤ 1)
+    (hcontagion : FailureMassLowerBound lam) {N₀ k₀ : ℕ} (hN : 2 ≤ N₀)
     (hfloor : ∀ m, 1 ≤ m → m ≤ N₀ → ReachesOne m) (hk₀ : N₀ < 2 ^ (k₀ + 1))
     {C θ a η : ℝ} (hC : 0 < C) (hθ : 0 ≤ θ) (ha : 0 < a) (hη : 0 ≤ η)
-    (hgap : 103 / 203 < C * (θ * pC C - Real.log a) / Real.log 2 - η)
+    (hgap : 1 - lam < C * (θ * pC C - Real.log a) / Real.log 2 - η)
     (havg : Bound N₀ k₀ C θ a η) : ∀ n, 1 ≤ n → ReachesOne n := by
   let r := C * (θ * pC C - Real.log a) / Real.log 2
   have hr : 0 < r := by dsimp [r]; linarith
@@ -347,7 +365,7 @@ theorem conjecture_of_bound {N₀ k₀ : ℕ} (hN : 2 ≤ N₀)
       dsimp [r]; exact div_mul_cancel₀ _ hlog2.ne'
     nlinarith [mul_pos hr hlog2]
   obtain ⟨e, helo, hehi⟩ := exists_between
-    (lt_min hgap (by norm_num : (103 : ℝ) / 203 < 1))
+    (lt_min hgap (by linarith : 1 - lam < 1))
   have he1 : e < 1 := lt_of_lt_of_le hehi (min_le_right _ _)
   have her : e < r - η := lt_of_lt_of_le hehi (min_le_left _ _)
   have he0 : 0 < e := by linarith
@@ -363,7 +381,18 @@ theorem conjecture_of_bound {N₀ k₀ : ℕ} (hN : 2 ≤ N₀)
       c * (rho N₀ C θ a (k₀ + k) * ((k : ℝ) + 1) ^ (-r)) :=
     fun k => block_le_rho hN hfloor hk₀ hC hθ ha hD k
   obtain ⟨B, hB, hodd⟩ := odd_mass_le hc hDn hs hr.le he0 he1 hre hpre hblock
-  exact conjecture_of_odd_mass hB (by linarith) (by linarith) hodd
+  exact conjecture_of_odd_mass_of_contagion hcontagion hB (by linarith) (by linarith) hodd
+
+/-- The original pressure interface uses unconditional contagion at 100/203. -/
+theorem conjecture_of_bound {N₀ k₀ : ℕ} (hN : 2 ≤ N₀)
+    (hfloor : ∀ m, 1 ≤ m → m ≤ N₀ → ReachesOne m) (hk₀ : N₀ < 2 ^ (k₀ + 1))
+    {C θ a η : ℝ} (hC : 0 < C) (hθ : 0 ≤ θ) (ha : 0 < a) (hη : 0 ≤ η)
+    (hgap : 103 / 203 < C * (θ * pC C - Real.log a) / Real.log 2 - η)
+    (havg : Bound N₀ k₀ C θ a η) : ∀ n, 1 ≤ n → ReachesOne n := by
+  apply conjecture_of_bound_of_contagion (lam := 100 / 203) (by norm_num)
+    (by norm_num) _ hN hfloor hk₀ hC hθ ha hη (by norm_num; exact hgap) havg
+  intro n hn hfail
+  exact Production.failures_logMass_averaged hn hfail (by norm_num) le_rfl
 
 /-- Manuscript parameters: `a = 1-q+q*exp θ`, positive tilt, and `C > 1`.
 This is a conditional termination theorem; no estimate of `Bound` is proved here. -/
@@ -376,6 +405,22 @@ theorem pressure_average_conjecture {N₀ k₀ : ℕ} (hN : 2 ≤ N₀)
     ∀ n, 1 ≤ n → ReachesOne n := by
   apply conjecture_of_bound hN hfloor hk₀ (by linarith) hθ.le _ hη hgap havg
   exact add_pos (by linarith) (mul_pos hq0 (Real.exp_pos θ))
+
+/-- Combining the two existing inputs lowers the sufficient rate to 3/8.
+Neither the cumulative pressure bound nor the OOEE production bound is discharged. -/
+theorem pressure_average_conjecture_of_ooee {N₀ k₀ : ℕ} (hN : 2 ≤ N₀)
+    (hfloor : ∀ m, 1 ≤ m → m ≤ N₀ → ReachesOne m) (hk₀ : N₀ < 2 ^ (k₀ + 1))
+    {C θ q η : ℝ} (hC : 1 < C) (hθ : 0 < θ) (hq0 : 0 < q) (hq1 : q < 1)
+    (hη : 0 ≤ η)
+    (hOOEE : FateOEWeighted.OOEEProductionBound (fun n => ¬ReachesOne n))
+    (hgap : 3 / 8 < C * (θ * pC C - Real.log (1 - q + q * Real.exp θ)) / Real.log 2 - η)
+    (havg : Bound N₀ k₀ C θ (1 - q + q * Real.exp θ) η) :
+    ∀ n, 1 ≤ n → ReachesOne n := by
+  apply conjecture_of_bound_of_contagion (lam := 5 / 8) (by norm_num) (by norm_num)
+    _ hN hfloor hk₀ (by linarith) hθ.le _ hη (by norm_num; exact hgap) havg
+  · intro n hn hfail
+    exact FateOEWeighted.logMass_growth_of_ooee not_reachesOne_backwardClosed hn hfail hOOEE
+  · exact add_pos (by linarith) (mul_pos hq0 (Real.exp_pos θ))
 
 end ScaleAverage
 end Problems.Juggler

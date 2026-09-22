@@ -52,13 +52,13 @@
   "appendix_a_names": 513,
   "surface": {
     "modules": 69,
-    "declarations": 1910,
+    "declarations": 1922,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
   },
   "table": {
-    "rows": 47,
+    "rows": 49,
     "lean": [
       "Fate classes closed; trichotomy; exclusion (Lemma 2.1)",
       "Even block is an interval (Lemma 3.1)",
@@ -110,6 +110,8 @@
     ],
     "other": [
       "Localized triple discrepancy (Appendix C)",
+      "Theorem 5.19, Theorem 1 at 5/8, and Theorems 3 and 7.2--7.3 at e > 3/8",
+      "OOEE mixed modes on the actual short source interval",
       "Numerical experiments (Section 11)"
     ]
   },
@@ -119,5 +121,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "7b5308c18582f9f4818cc5911c9a143b922026c3"
+  "git_commit": "unknown"
 }

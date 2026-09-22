@@ -2325,18 +2325,19 @@
       }
     },
     "Problems.Juggler.FateScaleAverage": {
-      "declarations": 15,
+      "declarations": 19,
       "depends_on": [
-        "Problems.Juggler.FatePoorProduction",
+        "Problems.Juggler.FateOEWeighted",
         "Problems.Juggler.FatePressureCorollary"
       ],
       "file": "formal/Problems/Juggler/FateScaleAverage.lean",
       "ledger": [
+        "J-pressure-scale-average-contagion-transfer",
         "J-pressure-scale-average-suffices"
       ],
       "papers": [],
       "trust": {
-        "kernel": 15
+        "kernel": 19
       }
     },
     "Problems.Juggler.FateSeed": {
@@ -2490,7 +2491,9 @@
         "J-cyclemin-gap-power-transfer",
         "J-cyclemin-period-lower-bound"
       ],
-      "papers": [],
+      "papers": [
+        "Paper A"
+      ],
       "trust": {
         "kernel": 8
       }
@@ -4093,8 +4096,8 @@
   },
   "totals": {
     "edges": 320,
-    "edges_before_reduction": 2542,
-    "ledger_rows_placed": 512,
+    "edges_before_reduction": 2548,
+    "ledger_rows_placed": 513,
     "nodes": 256
   }
 }

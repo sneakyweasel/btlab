@@ -17,5 +17,9 @@ open Problems.Juggler.ScaleAverage
 #print axioms conjecture_of_odd_mass
 #print axioms conjecture_of_bound
 #print axioms pressure_average_conjecture
+#print axioms conjecture_of_odd_mass_of_contagion
+#print axioms conjecture_of_bound_of_contagion
+#print axioms pressure_average_conjecture_of_ooee
 
 #check pressure_average_conjecture
+#check pressure_average_conjecture_of_ooee

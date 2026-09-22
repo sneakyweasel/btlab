@@ -1,5 +1,26 @@
 [
  {
+  "id": "J-pressure-scale-average-contagion-transfer",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Parametric scale-average reduction and conditional OOEE corollary. For 0<lambda<=1 assume FailureMassLowerBound lambda: every positive nonterminating start supplies constants c>0 and x0 with c*(log x)^lambda <= logMass of failures for every natural x>=x0. Under the same actual stopped odd-pressure Bound and verified-floor hypotheses as J-pressure-scale-average-suffices, r-eta>1-lambda implies every positive integer reaches 1. conjecture_of_bound_of_contagion proves this for general positive normalization a and nonnegative theta. The existing unconditional interface specializes lambda=100/203. pressure_average_conjecture_of_ooee specializes lambda=5/8 and a=1-q+q*exp(theta), with C>1, theta>0, 0<q<1, eta>=0 and r-eta>3/8, assuming both the actual OOEEProductionBound on failures and the cumulative pressure Bound. Neither arithmetic hypothesis is discharged. This composes existing results; it is not a new pressure estimate or unconditional termination theorem. The listed Lean declarations compile with only standard logical dependencies; ledger promotion awaits the external advisory statement-coverage review.",
+  "source": "docs/problems/juggler_pressure_external_average.md",
+  "lean": "Problems/Juggler/FateScaleAverage.lean",
+  "decl": [
+   "FailureMassLowerBound",
+   "conjecture_of_odd_mass_of_contagion",
+   "conjecture_of_bound_of_contagion",
+   "pressure_average_conjecture_of_ooee"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_pressure_external_average.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ },
+ {
   "id": "J-paper-e-modular-return-exact-construction",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "For a=k+1, M>0 and 2^(a+b)<3^a, every visit of s=1+2Mt to the specified simultaneous fractional-part box with s>=2^(2^(b+1)) yields a genuine odd-start Juggler O^a E^b prefix: every state is at least its start, the endpoint is strictly larger, and start and endpoint are 1 modulo 2M. The rational periodic-word code has reduced denominator (3^a-2^(a+b))/gcd(3^a-2^a,2^b-1). For b>0 and every Q, every a>=2*(2^b+(Q+1)*(2^b-1)) is expanding and has denominator greater than Q. The infinitude of distinct starts above every bound is proved CONDITIONAL on BoxRecurrence, the explicitly quantified assertion of arbitrarily large simultaneous-box visits. This exact-construction module leaves BoxRecurrence as an explicit premise; the separate PaperERecurrence module now proves it and the unconditional Theorem 4.1. All listed results compile with standard logical dependencies; advisory statement-coverage review is pending.",

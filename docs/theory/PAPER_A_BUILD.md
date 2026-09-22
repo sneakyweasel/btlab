@@ -72,6 +72,6 @@ of every nontrivial cycle.
 Version 1.2.0 adds Corollary 4.11a, the Wu-Wang asymptotic exponent
 5.1163051 plus epsilon, alongside Rhin's explicit bound. The logarithmic
 measure remains an external theorem; its conditional Lean transfer is
-recorded in the supplementary formalization map. The certified floor and
+recorded in the formalization map, paper barrel and dependency audit. The certified floor and
 all numerical cycle exclusions remain unchanged. The earlier provenance
 correction is retained. No new external deposit is performed.
