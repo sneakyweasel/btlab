@@ -160,6 +160,11 @@ estimate itself retains no assumed variation or exponential-sum bound.
 
 ## Open questions
 
+The subsequent [effective OOE branch](juggler_effective_modular_return.md)
+derives a written error 2^14*M^(1/4)*T^(127/128) and an explicit first-witness
+bound. Its quantitative analytic proof is a candidate supplement after review;
+it is not part of the 0.5.0 manuscript or its Lean coverage claim.
+
 Independent statement coverage, written-proof review, and literature priority.
 No remaining Lean proof gap is identified in the numbered statements
 mapped in the current paper's Appendix B; independent statement coverage

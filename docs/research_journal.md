@@ -1,5 +1,46 @@
 # Research journal
 
+## 2026-09-22 -- Effective OOE modular returns
+
+- **Target and budget:** one explicit counting error and first-witness bound
+  for the OOE construction, with modulus dependence retained. An uncovered
+  mode or hidden M-dependent constant would falsify the result. The closed
+  continuation attacks do not exclude this one finite block. No new word,
+  optimized discrepancy method, or full Lean campaign was authorized here.
+- **Written theorem:** for every M,T>=1, the thresholded parameter count
+  differs from T/(4M) by at most 2^14*M^(1/4)*T^(127/128). A sharper bound
+  has exponent 63/64 with the explicit logarithmic factor. At
+  T=2^2176*M^160 the count is at least T/(8M), giving an actual OOE return
+  with t<T and n<2^4354*M^322. Every prefix state remains at least n,
+  the exit exceeds n, and both endpoints are 1 modulo 2M.
+- **Proof:** Arias de Reyna's explicit derivative theorem at orders 5 and
+  3 covers, respectively, the nonzero leading mode and the remaining axis.
+  The derivative sign is fixed by a proved dominance ratio. The dyadic
+  tail, finite initial segment, and every constant are explicit. A direct
+  Fejer convolution argument gives a half-open box estimate with boundary
+  error 5/sqrt(H+1) and Fourier coefficient sum (3+2*log(H))^2. Choosing
+  H=floor(T^(1/32)) gives the claimed rate after removing at most eight
+  threshold exceptions. No qualitative limit is used to infer a rate.
+- **Evidence:** 22 rational arithmetic checks and 32768 independently
+  iterated prefixes validate the constants' bookkeeping and exact guards.
+  They do not prove the external analytic theorem or the universal bound.
+  The error estimate is vacuous on the finite test range.
+- **Validation:** integration, ledger, registry, branch-index, and targeted
+  theorem checks pass: 170 passed, 15 skipped. The saved exact report is
+  reproducible, and the existing Paper E release consistency check passes.
+- **Value and status:** **PROMOTE**, a project-specific effective
+  specialization with classical analytic ingredients. The uniform polynomial
+  dependence on M is a theoretical strengthening, but the large constant
+  makes it unsuitable as a practical search budget. The OOE denominator
+  is 1; this is not an effective large-denominator family. No cycle,
+  termination, or infinite-continuation claim follows.
+- **Publication:** complete written proof and primary-source record added.
+  Independent review and quantitative Lean formalization remain open.
+  Candidate supplement to Paper E; version 0.5.0 and its selected theorem
+  audit remain unchanged. Stop at this theorem and assess its proof before
+  optimization or generalization.
+  [Proof and scope](theory/juggler_effective_modular_return_note.md).
+
 ## 2026-09-22 -- Paper E: counting and prescribed-residue corollaries
 
 - **Target:** Count the explicit modular-return family and prescribe every

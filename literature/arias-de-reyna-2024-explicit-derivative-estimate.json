@@ -1,0 +1,13 @@
+{
+  "id": "arias-de-reyna-2024-explicit-derivative-estimate",
+  "title": "Explicit van der Corput's d-th derivative estimate",
+  "authors": ["Juan Arias de Reyna"],
+  "year": 2024,
+  "identifiers": {"arxiv": "2407.02094v1"},
+  "url": {"arxiv": "https://arxiv.org/abs/2407.02094v1", "full_text": "https://arxiv.org/html/2407.02094v1"},
+  "problem_area": "exponential-sums",
+  "relevant_concepts": ["explicit higher derivative estimate", "van der Corput", "uniform Fourier-mode bounds"],
+  "project_relationship": "known",
+  "status": "primary-source-read",
+  "notes": "Read 22 September 2026. Theorem 11 and Table 1, at derivative orders 3 and 5 only, supply constants below 11 for the three-term maximum bound used in the effective OOE modular-return note. Assumptions: floor(Y)>d, continuous derivatives through order d, and a positive lower and upper bound for the d-th derivative on (X,X+Y]. Constant negative derivative sign is handled by conjugating the sum. No monotonicity or small-lambda hypothesis is added. The note proves its own Fejer box estimate and specializes the derivatives, dyadic cutoffs, mode ranges, and modulus dependence. This external analytic theorem is not formalized by the local Lean modules; no novelty is claimed for the derivative method. The version identifier is pinned because the exact constants matter."
+}

@@ -46,6 +46,12 @@ PaperERecurrence proves BoxRecurrence and the
 unconditional Theorem 4.1, using the derivative and Fourier proofs in
 BTCalculus. The combined paper audit selects 49 declarations.
 
+The [effective OOE follow-up](../../docs/problems/juggler_effective_modular_return.md)
+now gives a written uniform error 2^14*M^(1/4)*T^(127/128) and first-witness
+parameter bound 2^2176*M^160. It uses a cited explicit derivative estimate
+and a proved Fejer box bound. Its quantitative argument is not yet in Lean
+or the version 0.5.0 manuscript. The constants are not practical search limits.
+
 ## State of the problem
 
 - **Cycles.** No nontrivial cycle of period \(<780239\) at the certified

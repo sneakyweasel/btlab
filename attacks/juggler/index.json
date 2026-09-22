@@ -2489,6 +2489,22 @@
       "nk_cluster": "Finance leftover-killers are identities, not movers"
     },
     {
+      "id": "effective_modular_return",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/effective_modular_return.py",
+      "test": "tests/research/juggler_sequence/test_effective_modular_return.py",
+      "dossier": "docs/problems/juggler_effective_modular_return.md",
+      "data_dir": "data/research/juggler/effective_modular_return",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-effective-ooe-modular-return"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "effective_tower_height",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/effective_tower_height.py",

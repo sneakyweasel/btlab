@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "claim": "J-effective-ooe-modular-return",
+  "scope": "Exact scalar bookkeeping and finite actual-orbit checks; not an analytic proof",
+  "arithmetic_checks": {
+    "high_fifth_derivative": true,
+    "low_fifth_derivative": true,
+    "low_third_derivative": true,
+    "relative_fifth_coefficient": true,
+    "high_lower_endpoint": true,
+    "high_upper_endpoint": true,
+    "low_lower_endpoint": true,
+    "low_upper_endpoint": true,
+    "high_fourier_constants": true,
+    "low_fourier_constants": true,
+    "low_to_common_exponents": true,
+    "modulus_enlargement": true,
+    "dyadic_ratio": true,
+    "initial_segment_constant": true,
+    "smoothing_balance": true,
+    "logarithm_critical_point": true,
+    "logarithm_maximum": true,
+    "counting_constant": true,
+    "counting_exponent": true,
+    "witness_parameter_exponents": true,
+    "witness_main_term_margin": true,
+    "witness_start_exponents": true
+  },
+  "samples": [
+    {
+      "M": 1,
+      "T": 4096,
+      "count": 1018,
+      "main_term": "1024",
+      "first_t": 9,
+      "first_orbit": [
+        361,
+        6859,
+        568056,
+        753
+      ]
+    },
+    {
+      "M": 2,
+      "T": 4096,
+      "count": 511,
+      "main_term": "512",
+      "first_t": 10,
+      "first_orbit": [
+        1681,
+        68921,
+        18093698,
+        4253
+      ]
+    },
+    {
+      "M": 3,
+      "T": 4096,
+      "count": 328,
+      "main_term": "1024/3",
+      "first_t": 14,
+      "first_orbit": [
+        7225,
+        614125,
+        481265982,
+        21937
+      ]
+    },
+    {
+      "M": 4,
+      "T": 4096,
+      "count": 235,
+      "main_term": "256",
+      "first_t": 39,
+      "first_orbit": [
+        97969,
+        30664297,
+        169804626536,
+        412073
+      ]
+    },
+    {
+      "M": 8,
+      "T": 4096,
+      "count": 119,
+      "main_term": "128",
+      "first_t": 29,
+      "first_orbit": [
+        216225,
+        100544625,
+        1008180488038,
+        1004081
+      ]
+    },
+    {
+      "M": 16,
+      "T": 4096,
+      "count": 56,
+      "main_term": "64",
+      "first_t": 41,
+      "first_orbit": [
+        1723969,
+        2263571297,
+        107693940351538,
+        10377569
+      ]
+    },
+    {
+      "M": 31,
+      "T": 4096,
+      "count": 26,
+      "main_term": "1024/31",
+      "first_t": 46,
+      "first_orbit": [
+        8139609,
+        23222304477,
+        3538815920824422,
+        59487947
+      ]
+    },
+    {
+      "M": 64,
+      "T": 4096,
+      "count": 13,
+      "main_term": "16",
+      "first_t": 225,
+      "first_orbit": [
+        829497601,
+        23890360406401,
+        116770745329537699386,
+        10806051329
+      ]
+    }
+  ],
+  "error_bound": "2^14 * M^(1/4) * T^(127/128)",
+  "strict_first_parameter_bound": "2^2176 * M^160",
+  "strict_first_start_bound": "2^4354 * M^322",
+  "analytic_status": "Written proof using Arias de Reyna Theorem 11; not Lean formalized",
+  "finite_error_comparison": "Bound is vacuous at these sample sizes; no experimental rate claim"
+}
