@@ -5,6 +5,11 @@ mechanism. The exact arithmetic classification and phase identities below
 are kernel-checked. They give no new exponential-sum estimate or termination
 theorem. The ledger retains its human-proof label pending advisory coverage.
 
+**Subsequent transfer audit:** the suggested two-predecessor target below
+is already a consequence of Paper B's full mixed-mode theorem; see
+[the exact inherited bound](juggler_predecessor_weight_transfer.md).
+The first unsupported next-odd-phase weight is at three predecessors.
+
 ## Problem
 
 Does the rational cubic cancellation behind the first inverse-cell estimate

@@ -1536,6 +1536,22 @@ Can a one-sided arithmetic counting argument prove the necessary
 all-odd bound (C3) at growing depth? No bound for it, or for the
 remaining high-odd-count words, is established here.
 
+### Quantitative predecessor transfer (22 September 2026)
+
+The full Paper B 4.11 estimate, with the two earlier parity masks retained,
+already supplies the two-odd-predecessor Fourier bound
+O_epsilon(M^(127/288+epsilon)+|h|^24). The explicit
+[transfer proof](juggler_predecessor_weight_transfer.md) handles arbitrary
+source endpoints by prefix subtraction and retains the |h|^24 dyadic tail.
+It also yields a stronger first-cell bound than the specialized cubic
+argument. The exact all-depth finite reindexing and depth-two scale bounds
+are now Lean in `OddPredecessorTransport.lean`; the analytic estimates
+inherit Paper B's written proof and pending independent review.
+This corrects the proposed next question after the cubic continuation:
+depth-two frequency averaging would re-prove an available consequence.
+The next odd phase at three predecessors is the already identified
+fourth-odd-phase obstruction, and growing-depth stopped pressure remains open.
+
 ### Inverse-cell Hardy peel (11 September; corrected 22 September 2026)
 
 **Correction:** the original argument used qualitative joint

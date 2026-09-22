@@ -137,8 +137,15 @@ with explicit scope and proof mapping; publication work opens no new attack.
   now controls the mixed nonzero frequency through j<=M^(1/3+1/50000)
   with error M^(2/3-1/25000), hence one actual predecessor weight.
   `CubicInverseCell.lean` checks its algebra and exponent budget;
-  the analytic proof awaits review. Deeper itinerary weights and
-  growing-depth pressure are still open; the short count is not improved.
+  the analytic proof awaits review. Its mixed sum is the retained object;
+  Paper B already implies stronger weighted corollaries. The
+  [exact predecessor transfer](../../docs/problems/juggler_predecessor_weight_transfer.md)
+  now gives a two-odd-predecessor Fourier bound
+  O_epsilon(M^(127/288+epsilon)+|h|^24), hence a saving from M^(4/9)
+  for 1<=|h|<=M^(1/60). `OddPredecessorTransport.lean` verifies the
+  exact reindexing and scale bounds; the estimate inherits Paper B's
+  outstanding analytic review. The next odd phase at three predecessors
+  and growing-depth stopped pressure remain open.
   Direct extension to longer smooth polynomial duals is **CLOSE**:
   [the exact classification](../../docs/problems/juggler_polynomial_dual.md)
   identifies their degree denominator with the signed Collatz gap.

@@ -6,6 +6,12 @@ budget are kernel-checked; the analytic inequalities are not Lean theorems.
 This is a specialized estimate at one inverse-cell level. It does not
 establish the growing-depth pressure required for termination.
 
+**Subsequent scope correction:** [exact predecessor transport](../problems/juggler_predecessor_weight_transfer.md)
+shows that Paper B's full mixed-mode theorem already supplies stronger
+first-cell and quantitative second-cell weighted bounds. Those inherit
+Paper B's review status. The new object retained here is the unweighted
+mixed-frequency estimate (1), together with its separate proof mechanism.
+
 ## Scope and budget
 
 ```text

@@ -12826,5 +12826,56 @@
    "tests/research/juggler_sequence/test_lean_paths_declares_name.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-two-predecessor-paper-b-transfer",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Inherited corollary of the written Paper B Theorem 4.11, with its independent analytic review outstanding. Let O(n)=floor(n^(3/2)) and b_d(m) count natural n such that O^d(n)=m and all d+1 states are odd. For every epsilon>0, uniformly for real M>=2, intervals I contained in (M,2M], and nonzero integer h, the sum W_2,h(I)=sum_{m in I} b_2(m)*exp(2*pi*i*h*m^(3/2)/2) is O_epsilon(M^(127/288+epsilon)+abs(h)^24). In particular abs(h)<=M^(1/60) gives error O_epsilon(M^(4/9-1/288+epsilon)). Similarly W_1,h(I) is O_epsilon(M^(127/192+epsilon)+abs(h)^24), with the tail absorbed for abs(h)<=M^(1/40). The proof pulls back to the exact guarded original-source interval, uses Paper B modes (i,j,h,0) or (i,h,0,0), and keeps the frequency-dependent dyadic tail when passing to prefixes. It does not smooth either odd predecessor, assume a short-interval theorem, or prove the fourth odd phase or growing-depth pressure. This is a consolidation of an existing theorem, not a new independent exponential-sum proof.",
+  "source": "docs/problems/juggler_predecessor_weight_transfer.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_manuscript_consistency.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-odd-predecessor-exact-transport",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Define oddMap(n)=Nat.sqrt(n^3), oddChain(d,n) by requiring all d+1 formal odd iterates to be odd, ancestors(d,m) as the natural n<=m with oddChain(d,n) and iterate(oddMap,d,n)=m, and weight(d,m) as their finite cardinality. The map is strictly increasing and at least n. oddChain(d,n) is equivalent to follows(n,replicate(d+1,odd)), and on it iterate(floorPower,d,n)=iterate(oddMap,d,n). Each weight is at most one and is zero at even m. For any naturals d,B, finite I with every m in I at most B, and g:Nat -> Complex, sum_{m in I} weight(d,m)*g(m) equals sum g(iterate(oddMap,d,n)) over n<=B with oddChain(d,n) and iterate(oddMap,d,n) in I. For positive n, putting m=oddMap(oddMap(n)) gives m^4<=n^9<64*(m+1)^4; the unrestricted inverse image of an integer interval is order-convex. The rational exponent budgets in OddPredecessorTransport.lean hold. These exact statements are kernel-checked; the ledger label awaits advisory coverage. No analytic estimate or all-depth pressure bound is claimed as a Lean result.",
+  "source": "docs/problems/juggler_predecessor_weight_transfer.md",
+  "lean": "Problems/Juggler/OddPredecessorTransport.lean",
+  "decl": [
+   "oddMap",
+   "oddChain",
+   "ancestors",
+   "weight",
+   "sources",
+   "oddMap_eq_step",
+   "oddMap_cell",
+   "oddMap_injective",
+   "oddMap_monotone",
+   "oddMap_strictMono",
+   "le_oddMap",
+   "le_iterate",
+   "chain_actual",
+   "chain_iff_follows",
+   "chain_endpoint",
+   "mem_ancestors",
+   "weight_le_one",
+   "weight_even_zero",
+   "source_fibre",
+   "weighted_reindex",
+   "two_chain",
+   "two_step_scale",
+   "source_interval",
+   "exponent_budget",
+   "one_cell_budget"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_lean_paths_declares_name.py"
+  ],
+  "related_conjectures": []
  }
 ]

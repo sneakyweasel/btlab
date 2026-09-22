@@ -35,6 +35,9 @@ Compiled theorem groups:
 - the smooth word dual degree is integral exactly at the signed Collatz
   unit gap: only degrees 3 and 9 occur. The ninth-degree odd harmonics
   have zero complete mean; no actual itinerary-weight estimate follows;
+- exact all-depth odd-predecessor weight transport to the original
+  guarded source sum, including injectivity and depth-two scale bounds.
+  Its quantitative two-cell application is inherited from written Paper B;
 - bounded monotone natural sequences are eventually constant;
 - exact lift equations imply monotonicity;
 - eventual stabilization iff lift digits are eventually zero;

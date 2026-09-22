@@ -446,6 +446,12 @@ trajectory, or proves termination.
 
 ## First inverse-cell continuation (22 September 2026)
 
+**Later transfer audit:** Paper B's full mixed-mode theorem already gives
+stronger first-cell and quantitative two-cell weighted corollaries, as
+[the exact reindexing proves](juggler_predecessor_weight_transfer.md).
+The specialized mixed-frequency estimate below remains a distinct result;
+the first unsupported next-odd-phase predecessor bound is at depth three.
+
 The [complete mixed-frequency proof](../theory/juggler_cubic_inverse_cell_note.md)
 gives, on every interval I in (M,2M],
 

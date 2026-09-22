@@ -295,6 +295,7 @@ LAYERS: dict[str, Path] = {
     "CollatzBridge": JUGGLER_DIR / "CollatzBridge.lean",
     "CollatzRational": JUGGLER_DIR / "CollatzRational.lean",
     "PolynomialDual": JUGGLER_DIR / "PolynomialDual.lean",
+    "OddPredecessorTransport": JUGGLER_DIR / "OddPredecessorTransport.lean",
     "CollatzPadic": JUGGLER_DIR / "CollatzPadic.lean",
 }
 

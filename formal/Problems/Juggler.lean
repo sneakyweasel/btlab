@@ -197,6 +197,7 @@ import Problems.Juggler.FateScaleAverage
 import Problems.Juggler.OddCubicPhase
 import Problems.Juggler.CubicInverseCell
 import Problems.Juggler.PolynomialDual
+import Problems.Juggler.OddPredecessorTransport
 import Problems.Juggler.FateOneSidedAtoms
 import Problems.Juggler.FateEnergyAtoms
 import Problems.Juggler.FateCollapse

@@ -6416,6 +6416,23 @@
       "nk_cluster": null
     },
     {
+      "id": "predecessor_weight_transfer",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_predecessor_weight_transfer.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-two-predecessor-paper-b-transfer",
+        "J-odd-predecessor-exact-transport"
+      ],
+      "aliases": [],
+      "nk_cluster": "Two-predecessor Fourier bounds already follow from Paper B"
+    },
+    {
       "id": "pressure_external_average",
       "kind": "dossier_only",
       "probe": null,
@@ -6825,6 +6842,7 @@
         "formal/Problems/Juggler/CollatzBridge.lean",
         "formal/Problems/Juggler/CollatzRational.lean",
         "formal/Problems/Juggler/PolynomialDual.lean",
+        "formal/Problems/Juggler/OddPredecessorTransport.lean",
         "formal/Problems/Juggler/CollatzPadic.lean"
       ],
       "conjecture": [],

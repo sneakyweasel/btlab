@@ -67814,6 +67814,306 @@
     },
     {
       "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "def",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 15,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "oddMap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 17,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "oddMap_eq_step",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 20,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "oddMap_cell",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 24,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "oddMap_injective",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 29,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "oddMap_monotone",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 33,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "oddMap_strictMono",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 36,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "le_oddMap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 42,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "le_iterate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Includes the parity of the endpoint: depth two means three odd states.",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "def",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 50,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "oddChain",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 59,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "chain_actual",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 68,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "chain_iff_follows",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 80,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "chain_endpoint",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "def",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 88,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "ancestors",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "def",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 91,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "weight",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 93,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "mem_ancestors",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 102,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "weight_le_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 108,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "weight_even_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "def",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 117,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "sources",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 120,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "source_fibre",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 132,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "weighted_reindex",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 151,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "two_chain",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 154,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "two_step_scale",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 179,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "source_interval",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 186,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "exponent_budget",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "line": 192,
+      "module": "Problems.Juggler.OddPredecessorTransport",
+      "name": "one_cell_budget",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
       "kind": "theorem",
       "ledger": [],
@@ -107253,6 +107553,7 @@
         "Problems.Juggler.OddCountMonotone",
         "Problems.Juggler.OddCubicPhase",
         "Problems.Juggler.OddLandingSets",
+        "Problems.Juggler.OddPredecessorTransport",
         "Problems.Juggler.OstrowskiNumeration",
         "Problems.Juggler.OstrowskiSandwich",
         "Problems.Juggler.PaperBAmplitudeCocycle",
@@ -109570,6 +109871,20 @@
         }
       ]
     },
+    "Problems.Juggler.OddPredecessorTransport": {
+      "declarations": 25,
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "imports": [
+        "Problems.Juggler.Preimages"
+      ],
+      "ledger": [
+        {
+          "id": "J-odd-predecessor-exact-transport",
+          "statement": "Define oddMap(n)=Nat.sqrt(n^3), oddChain(d,n) by requiring all d+1 formal odd iterates to be odd, ancestors(d,m) as the natural n<=m with oddChain(d,n) and iterate(oddMap,d,n)=m, and weight(d,m) as their finite cardinality. The map is strictly increasing and at least n. oddChain(d,n) is equivalent to follows(n,replicate(d+1,odd)), and on it iterate(floorPower,d,n)=iterate(oddMap,d,n). Each weight is at most one and is zero at even m. For any naturals d,B, finite I with every m in I at most B, and g:Nat -> Complex, sum_{m in I} weight(d,m)*g(m) equals sum g(iterate(oddMap,d,n)) over n<=B with oddChain(d,n) and iterate(oddMap,d,n) in I. For positive n, putting m=oddMap(oddMap(n)) gives m^4<=n^9<64*(m+1)^4; the unrestricted inverse image of an integer interval is order-convex. The rational exponent budgets in OddPredecessorTransport.lean hold. These exact statements are kernel-checked; the ledger label awaits advisory coverage. No analytic estimate or all-depth pressure bound is claimed as a Lean result.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
+    },
     "Problems.Juggler.OstrowskiBlocks": {
       "declarations": 20,
       "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
@@ -110770,6 +111085,18 @@
         }
       ]
     },
+    "Problems.JugglerCollatzPaper": {
+      "declarations": 0,
+      "file": "formal/Problems/JugglerCollatzPaper.lean",
+      "imports": [
+        "Problems.Collatz.BackwardMass",
+        "Problems.Collatz.PreimageBalance",
+        "Problems.Collatz.PreimageCertificate12",
+        "Problems.Juggler.CollatzMoments",
+        "Problems.Juggler.CollatzPadic"
+      ],
+      "ledger": []
+    },
     "Problems.JugglerFatePaper": {
       "declarations": 0,
       "file": "formal/Problems/JugglerFatePaper.lean",
@@ -111117,13 +111444,13 @@
     }
   },
   "totals": {
-    "declarations": 8328,
-    "declarations_with_a_ledger_row": 5605,
-    "ledger_rows_naming_a_file": 483,
-    "modules": 339,
+    "declarations": 8353,
+    "declarations_with_a_ledger_row": 5630,
+    "ledger_rows_naming_a_file": 484,
+    "modules": 341,
     "trust": {
       "compiler": 56,
-      "kernel": 8272
+      "kernel": 8297
     }
   }
 }

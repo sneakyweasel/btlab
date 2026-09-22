@@ -2585,6 +2585,20 @@
         "kernel": 10
       }
     },
+    "Problems.Juggler.OddPredecessorTransport": {
+      "declarations": 25,
+      "depends_on": [
+        "Problems.Juggler.Preimages"
+      ],
+      "file": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "ledger": [
+        "J-odd-predecessor-exact-transport"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 25
+      }
+    },
     "Problems.Juggler.OstrowskiNumeration": {
       "declarations": 18,
       "depends_on": [
@@ -3675,9 +3689,9 @@
     }
   },
   "totals": {
-    "edges": 279,
-    "edges_before_reduction": 2186,
-    "ledger_rows_placed": 483,
-    "nodes": 227
+    "edges": 280,
+    "edges_before_reduction": 2192,
+    "ledger_rows_placed": 484,
+    "nodes": 228
   }
 }

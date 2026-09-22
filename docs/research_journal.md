@@ -1,5 +1,44 @@
 # Research journal
 
+## 2026-09-22 -- Two predecessor weights were already in Paper B's mixed modes
+
+- **Question:** Does frequency averaging extend the first-cell Fourier
+  estimate to two actual odd predecessors?
+- **Correction:** The proposed new campaign overlooks the full statement
+  of Paper B 4.11. It already controls the third odd phase together with
+  both earlier parity masks, not just the four-letter count.
+- **Inherited estimate:** Uniformly for I in (M,2M] and nonzero integer h,
+  the two-cell twisted sum is O_epsilon(M^(127/288+epsilon)+|h|^24).
+  For h<=M^(1/60) this saves 1/288, before epsilon, from M^(4/9).
+  The one-cell corollary is O_epsilon(M^(127/192+epsilon)+|h|^24),
+  stronger than the specialized cubic weighted bound in its old range.
+  The cubic mixed unweighted estimate remains a separate result.
+- **Endpoint and frequency audit:** The formal odd map is strictly
+  increasing, so a target interval pulls back to a genuine source interval
+  before its parity masks are imposed. Exact bounds give m^4<=n^9<64(m+1)^4.
+  Dyadic prefix summation stops at P comparable to |h|^24; its trivial tail
+  is retained. No short-interval version of Paper B is assumed.
+- **Lean:** `OddPredecessorTransport.lean` checks exact finite transport
+  at every depth, the equivalence with actual all-odd words, the zero-or-one
+  multiplicity, source order and scale, and rational exponent budgets.
+  The analytic corollaries inherit Paper B's AI-assisted written proof
+  and outstanding independent review; they are not analytic Lean results.
+- **Decision:** **CLOSE** the new depth-two frequency-averaging campaign
+  as redundant. Retain the explicit corollary and exact formal transport.
+  The first missing next-odd phase is the fourth one, after three actual
+  predecessors; Paper B's final square-root coordinate cannot replace it.
+  Stop this phase with growing-depth pressure still open.
+  [Transfer proof and scope](problems/juggler_predecessor_weight_transfer.md).
+- **Validation:** Full `lake build` passed (9046 jobs); the 20 public
+  theorem audits use only the standard kernel foundations. The initial
+  selected suite passed 163 and skipped 15, finding two registration
+  issues. The generated ledger's bracketed iteration notation is fixed;
+  docs/ledger/formalpedia rerun: 21 passed. The new Lean path staled the
+  freshly introduced Paper E input pin; its local package was rebuilt,
+  with manuscript and PDF byte-identical, and all seven affected release
+  checks passed (one unrelated provenance test skipped). No publication
+  or external statement-coverage request was made.
+
 ## 2026-09-22 -- Polynomial dual degrees are exactly the signed unit-gap exceptions
 
 - **Question:** Can the rational cubic mechanism repeat on the smooth
