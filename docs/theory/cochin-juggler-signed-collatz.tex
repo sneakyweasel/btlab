@@ -31,7 +31,7 @@ Cochin},pdfsubject={Mathematics preprint}}
 and Arithmetic Obstructions}}
 \author{Philippe Cochin \\ \texttt{philippe@cochin.fr} \\
   \small ORCID \href{https://orcid.org/0009-0004-1939-3382}{0009-0004-1939-3382}}
-\date{22 September 2026 · Version 0.2.0}
+\date{22 September 2026 · Version 0.3.0}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -142,19 +142,21 @@ computational floors nor the analytic estimates in {[}B{]}.
 
 \subsection{1.2. Proof status}\label{proof-status}
 
-This is the living preprint, version 0.2.0. It has not been deposited or
+This is the living preprint, version 0.3.0. It has not been deposited or
 independently refereed. Mathematical priority for the signed adaptation
 and the isolated obstruction results remains subject to specialist
 review.
 
 Theorems 2.1, 3.2, 5.1, and 6.1 have corresponding compiled Lean
-statements; Appendix B identifies their precise scope. Theorem 4.1 uses
-a written equidistribution argument and is not covered by that
-formalization. The finite certificate is checked with exact integers
-both in Lean and by an independent Python verifier. The numerical search
-that found its weights is outside the proof. Kernel checking, agreement
-between prose and formal statements, and independent mathematical review
-are distinct checks.
+statements; Appendix B identifies their precise scope. Theorem 4.1's
+floor construction and denominator arithmetic are formalized; its
+infinitude assembly requires an explicit simultaneous-box recurrence
+premise, whose equidistribution proof remains written. Thus the full
+unconditional theorem is not yet Lean-verified. The finite certificate
+is checked with exact integers both in Lean and by an independent Python
+verifier. The numerical search that found its weights is outside the
+proof. Kernel checking, agreement between prose and formal statements,
+and independent mathematical review are distinct checks.
 
 \section{2. Words and the exact orbit
 code}\label{words-and-the-exact-orbit-code}
@@ -340,6 +342,17 @@ For \(O^aE^b\), (2.1) gives \(A=3^a-2^a\) and \(D=3^a-2^{a+b}\). The
 oddness of \(A\) gives \(\gcd(A,D)=\gcd(A,2^b-1)\), proving (4.2). The
 quotient is at least \((3^a-2^{a+b})/(2^b-1)\), which tends to infinity
 with \(a\) at fixed \(b\). \(\square\)
+
+The formal construction proves the exact root-floor identities, all
+branch guards, and every conclusion of (4.1) for each successful
+parameter with \(s\ge2^{2^{b+1}}\). It also proves (4.2) and, for every
+\(Q\), the explicit sufficient bound \[
+a\ge2\bigl(2^b+(Q+1)(2^b-1)\bigr)\quad\Longrightarrow\quad q_{a,b}>Q.
+\] The remaining formal input, named BoxRecurrence, is that for every
+\(T\) there is a parameter \(t\ge T\) in the simultaneous box above.
+Lean proves the infinitude conclusion from this input. BoxRecurrence
+itself is not proved in Lean; the preceding equidistribution argument
+remains its written justification.
 
 The theorem concerns growing prefixes and their associated
 \emph{periodic-word} codes. It does not identify that code with
@@ -763,7 +776,14 @@ Example 2.2 & \texttt{\nolinkurl{CollatzPadic.code_three_cleared}},
 \texttt{\nolinkurl{code_not_injective}} \\
 Lemma 3.1 & \texttt{\nolinkurl{CollatzPadic.iterate_le_of_code_eq}} \\
 Theorem 3.2 & \texttt{\nolinkurl{CollatzPadic.periodic_bridge}} \\
-Theorem 4.1 & Written proof; no Lean coverage claimed \\
+Theorem 4.1, box to orbit &
+\texttt{\nolinkurl{PaperEModularReturn.modular_return_of_box}} \\
+Denominator and growth &
+\texttt{\nolinkurl{PaperEModularReturn.runCode_den}},
+\texttt{\nolinkurl{runCode_den_gt}} \\
+Infinitude from BoxRecurrence &
+\texttt{\nolinkurl{PaperEModularReturn.theorem41_of_box_recurrence}};
+recurrence premise unproved \\
 Lemma 5.2 & \texttt{\nolinkurl{PreimageGrid.count_odd}},
 \texttt{\nolinkurl{count_doubled_odd}},
 \texttt{\nolinkurl{count_four}} \\
@@ -791,12 +811,14 @@ Proposition 7.2 &
 
 \endgroup
 
-AxiomCheckJugglerCollatzPaper.lean prints the dependencies of the 28
+AxiomCheckJugglerCollatzPaper.lean prints the dependencies of the 32
 selected declarations. The permitted logical dependencies are propext,
-Classical.choice, and Quot.sound. No additional assumption or
+Classical.choice, and Quot.sound. No additional logical axiom or
 native-evaluation trust extension belongs to this paper's selected
-theorem audit. Review of the correspondence between those statements and
-the prose is a separate responsibility.
+theorem audit. The conditional Theorem 4.1 assembly retains
+BoxRecurrence as an explicit premise; the dependency audit does not
+prove that premise. Review of the correspondence between those
+statements and the prose is a separate responsibility.
 
 Theorem 4.1 imports a fixed-function equidistribution criterion, not a
 shrinking-target estimate or a bound uniform in growing \(a,b,M\). The

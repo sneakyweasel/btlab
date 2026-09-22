@@ -1,5 +1,26 @@
 # Research journal
 
+## 2026-09-22 -- Paper E Theorem 4.1: exact construction in Lean
+
+- **Request:** formalize Theorem 4.1.
+- **Completed:** exact odd perfect-power branches, arbitrary root-depth
+  cells and their real-power floors, fractional-box parity and congruence
+  guards, and expanding actual O^a E^b prefixes with no state below the start.
+- **Explicit threshold:** s >= 2^(2^(b+1)) suffices for endpoint growth.
+  The reduced rational denominator is (4.2); for fixed b>0, every
+  a >= 2*(2^b+(Q+1)*(2^b-1)) gives denominator greater than Q.
+- **Assembly:** theorem41_of_box_recurrence proves infinitude of distinct
+  starts above every bound, conditional on the explicit BoxRecurrence
+  premise. That premise has no proof in the development.
+- **Remaining:** the simultaneous fractional-part box must be visited
+  arbitrarily far out. Installed Mathlib contains no applicable analytic
+  criterion; the external search supplied no verified reusable code.
+  Separate coordinate density and finite witnesses are insufficient.
+- **Decision:** **PROMOTE** the exact-construction phase and record Paper E
+  version 0.3.0. The full unconditional theorem remains unformalized.
+  Best next question: prove BoxRecurrence for the fixed power vector.
+  [Coverage record](theory/paper_e_review.md).
+
 ## 2026-09-22 -- Discharge actual OE production in the conserved weight
 
 - **Target:** Remove the OE hypothesis from the new 5/8 contagion assembly.

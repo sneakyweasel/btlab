@@ -166,11 +166,14 @@ toy word. It is still not a cycle or a finance-feasible cycle witness.
 
 ## Formalization
 
-Written proof with classical equidistribution as a named external input;
-no new Lean module. The infinite statement is not inferred from tests.
-Independent human review and Lean verification of this application remain
-outstanding. Existing exact-root and power-depth results explain the
-construction but are not claimed to formalize the theorem below.
+PaperEModularReturn now formalizes the exact root-floor construction,
+branch guards, modular return, growth of every prefix state, reduced
+denominator formula, and its unboundedness. Its infinitude assembly has
+an explicit BoxRecurrence premise: arbitrarily large parameters visit
+the simultaneous fractional-part box. This premise is not proved in Lean.
+The full unconditional theorem remains a written result using classical
+equidistribution; finite witnesses do not establish the missing input.
+See the [Paper E coverage record](../theory/paper_e_review.md).
 
 ## Results
 

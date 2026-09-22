@@ -36,6 +36,7 @@ def test_current_release_and_archived_sources_agree(release):
 @pytest.mark.parametrize("module", [
     "formal/Problems/Collatz/PreimageGrid.lean",
     "formal/Problems/Juggler/PaperECompletion.lean",
+    "formal/Problems/Juggler/PaperEModularReturn.lean",
 ])
 def test_changed_transitive_proof_requires_new_audit(release, module):
     proof = release / module

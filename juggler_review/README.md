@@ -3,7 +3,7 @@
 # Juggler reviewer bundle
 
 **Paper E, 22 September 2026:** [The Juggler Map and the 3n±1 Maps](juggler_signed_collatz_note.pdf)
-is a living preprint, version 0.2.0, prepared locally and not deposited.
+is a living preprint, version 0.3.0, prepared locally and not deposited.
 Its [build guide](PAPER_E_BUILD.md) and [review record](paper_e_review.md)
 cover exact coding, signed ancestor counts, formal proof scope, and updates.
 The local publication kit is in zenodo_paper_e/. The historical review

@@ -215,6 +215,7 @@ import Problems.Juggler.FateResonanceCount
 import Problems.Juggler.FatePoorTail
 import Problems.Juggler.FateContagionBound
 import Problems.Juggler.PaperECompletion
+import Problems.Juggler.PaperEModularReturn
 
 /-!
 # Juggler laboratory barrel

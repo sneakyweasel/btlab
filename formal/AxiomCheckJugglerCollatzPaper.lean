@@ -28,3 +28,7 @@ import Problems.JugglerCollatzPaper
 #print axioms Problems.Juggler.PaperECompletion.certificate_log_ceiling
 #print axioms Problems.Juggler.PaperECompletion.full_prefix_tree_masses
 #print axioms Problems.Juggler.PaperECompletion.stopping_word_masses
+#print axioms Problems.Juggler.PaperEModularReturn.modular_return_of_box
+#print axioms Problems.Juggler.PaperEModularReturn.runCode_den
+#print axioms Problems.Juggler.PaperEModularReturn.runCode_den_gt
+#print axioms Problems.Juggler.PaperEModularReturn.theorem41_of_box_recurrence

@@ -1,7 +1,7 @@
 # Paper E: living manuscript, checks, and publication package
 
 **The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions.**
-Version 0.2.0, 22 September 2026. Local preprint; no deposit or DOI assigned.
+Version 0.3.0, 22 September 2026. Local preprint; no deposit or DOI assigned.
 
 Canonical source: [juggler_signed_collatz_note.md](juggler_signed_collatz_note.md).
 Edit that source, never its generated reviewer copy or TeX.
@@ -65,16 +65,19 @@ The integration suite automatically discovers build_paper_e.py.
   interpolation. The result has no termination conjecture hypothesis.
 - Fixed-grid ceiling: both signs and every finite residue level, for precisely
   the stated rows; no upper bound on actual ancestor growth.
-- Modular-return theorem: written proof importing classical fixed-function
-  equidistribution. Not Lean-verified and not an actual-cycle construction.
+- Modular-return theorem: PaperEModularReturn verifies the exact construction,
+  denominator formula, and unboundedness. Infinitude is assembled conditional
+  on BoxRecurrence. Its fixed-function joint equidistribution proof remains
+  written, so the full theorem is not yet Lean-verified.
 - Mass and stopping examples: separately mapped to their compiled statements.
 
-The combined audit selects 28 declarations and permits only propext,
+The combined audit selects 32 declarations and permits only propext,
 Classical.choice, and Quot.sound. It builds Problems.JugglerCollatzPaper,
 then executes AxiomCheckJugglerCollatzPaper.lean and checks all outputs.
 The finite checker independently recomputes every certificate row, all
 fifty grid phases, the small-orbit closure, examples, and exact rate
-comparisons. Neither check establishes publication priority or peer review.
+comparisons. The dependency audit does not discharge BoxRecurrence or any
+other explicit theorem premise. Neither check establishes publication priority or peer review.
 
 ## Version policy
 

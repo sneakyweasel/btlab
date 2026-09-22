@@ -47,7 +47,7 @@ The live publication task is the Juggler programme.
    which reads m <= 58; version 1.1.0 adds the valley-count lemma and is built but not yet
    deposited) — the Collatz side, not the Juggler map
 5. [Paper E — The Juggler Map and the 3n±1 Maps](theory/juggler_signed_collatz_note.md)
-   — living preprint, version 0.2.0; exact coding, signed ancestor counts,
+   — living preprint, version 0.3.0; exact coding, signed ancestor counts,
    and arithmetic obstructions. [Build and update guide](theory/PAPER_E_BUILD.md);
    [review record](theory/paper_e_review.md). Prepared locally, not deposited.
 6. [Branch ledger](juggler_branch_ledger.md)

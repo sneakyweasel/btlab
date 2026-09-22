@@ -13,7 +13,7 @@ RESOURCE TYPE
 Publication / Preprint
 
 VERSION
-0.2.0
+0.3.0
 
 LICENSE
 cc-by-4.0

@@ -38,7 +38,7 @@
     ],
     "exact_rate_and_ceiling_comparisons": "pass",
     "manuscript_references_and_table": "pass",
-    "audited_declarations": 28
+    "audited_declarations": 32
   },
   "lean": {
     "status": "passed",
@@ -184,10 +184,30 @@
         "Classical.choice",
         "Quot.sound",
         "propext"
+      ],
+      "Problems.Juggler.PaperEModularReturn.modular_return_of_box": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Juggler.PaperEModularReturn.runCode_den": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Juggler.PaperEModularReturn.runCode_den_gt": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Juggler.PaperEModularReturn.theorem41_of_box_recurrence": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
       ]
     },
     "input_sha256": {
-      "formal/AxiomCheckJugglerCollatzPaper.lean": "c58a53271641e84732ef382d22fcb173966c13f931f1ea5889dd8d16fbcf27c2",
+      "formal/AxiomCheckJugglerCollatzPaper.lean": "91dfbb33999ba020f7300c016035ca83661effcf700a94b5bc057f77196bbe5c",
       "formal/Problems/Collatz/BackwardMass.lean": "21bb66733f7f283a038b4c10ba103fd25133f5595735d8e74300895065b51018",
       "formal/Problems/Collatz/NegativeMCycles.lean": "c3346c81b9d2ef614d45e9159d482899577ab8b1c364dfc631f10af3b297d2af",
       "formal/Problems/Collatz/PreimageBalance.lean": "564a161ab2c6163fe1ff686e87d74d59b9b499db9fd8adca371e19fe528e845a",
@@ -247,6 +267,7 @@
       "formal/Problems/Juggler/PaperBSurvivorDecay.lean": "f9e01d5de4209effb4e8e9d0e9219024e0893d51c1e7bb2f3db4443d6733ae22",
       "formal/Problems/Juggler/PaperBThreshold.lean": "8bf17ca45082e1b4ab7940729295898639a552098b295d493d376915657a1857",
       "formal/Problems/Juggler/PaperECompletion.lean": "73bcfa47e6138d8004be56c146a5a2d88bcc316e15a8591feca48437584c5ea6",
+      "formal/Problems/Juggler/PaperEModularReturn.lean": "3f7a6b7306bb6f0d6163418ff03a7f80e7b1826c06b12014ce601fbb8b8c1bd0",
       "formal/Problems/Juggler/Preimages.lean": "dabe4af2c54b55826cada04dd92b5f35d3face6f86e42e66829699ab4bc87e3f",
       "formal/Problems/Juggler/Progress.lean": "e1b5375e8fde7c0f54ac610b84469887a25392e338e44f2ac4cad3f5c8d545eb",
       "formal/Problems/Juggler/RateFreeDensity.lean": "9a711586243582e4d2ecd6ef9dde3fd342c6db8e8c297a0fd19fd760d25520ce",
@@ -255,7 +276,7 @@
       "formal/Problems/Juggler/Scale.lean": "9156455b03e7095970f69ca7b49762788608502ff9f560414ef9bded6965ccf9",
       "formal/Problems/Juggler/Termination.lean": "7b458453bb0fa6478550d875a1b3d5ac18eeea106b5d08797628dfbd2a9c8eb0",
       "formal/Problems/Juggler/TiltedShare.lean": "7dcafa45a2a0e9bca182a713b495d791cf812e4c70d6472c67bf85b0b736aef4",
-      "formal/Problems/JugglerCollatzPaper.lean": "15d082e8f2579fe3ce2332581f8dee8040e6fc1742e1d484da06aec0d70e2677",
+      "formal/Problems/JugglerCollatzPaper.lean": "ca53863484b88268a6faf103e904713bd876faa1219492be5693582b7c51f5c2",
       "formal/lake-manifest.json": "8a4dabaa6346246a71a2fac594a4385e248735a4feacd25082bcad2336d27385",
       "formal/lakefile.toml": "b707e6f9d388d4896695c37d12dc924458f60e50f0ff95f8e02f08d506144221",
       "formal/lean-toolchain": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71"

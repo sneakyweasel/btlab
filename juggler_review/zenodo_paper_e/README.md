@@ -1,6 +1,6 @@
 # Paper E - local publication kit
 
-Prepared version 0.2.0. No external record has been created.
+Prepared version 0.3.0. No external record has been created.
 
 The builder supplies the PDF, Sources_and_certificate.zip,
 ZENODO_FIELDS.txt, and SHA256SUMS.txt here. The PDF is identical

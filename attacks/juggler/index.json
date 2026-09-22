@@ -6519,6 +6519,7 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
+        "J-paper-e-modular-return-exact-construction",
         "J-paper-e-formal-notation-bridges"
       ],
       "aliases": [],

@@ -2,7 +2,7 @@
 title: "The Juggler Map and the 3n±1 Maps"
 subtitle: "Exact Coding and Arithmetic Obstructions"
 author: Philippe Cochin
-date: "22 September 2026 · Version 0.2.0"
+date: "22 September 2026 · Version 0.3.0"
 ---
 
 ## Abstract
@@ -109,15 +109,17 @@ floors nor the analytic estimates in [B].
 
 ### 1.2. Proof status
 
-This is the living preprint, version 0.2.0. It has not been
+This is the living preprint, version 0.3.0. It has not been
 deposited or independently refereed. Mathematical priority for the
 signed adaptation and the isolated obstruction results remains subject
 to specialist review.
 
 Theorems 2.1, 3.2, 5.1, and 6.1 have corresponding compiled Lean
-statements; Appendix B identifies their precise scope. Theorem 4.1
-uses a written equidistribution argument and is not covered by that
-formalization. The finite certificate is checked with exact integers
+statements; Appendix B identifies their precise scope. Theorem 4.1's
+floor construction and denominator arithmetic are formalized; its
+infinitude assembly requires an explicit simultaneous-box recurrence
+premise, whose equidistribution proof remains written. Thus the full
+unconditional theorem is not yet Lean-verified. The finite certificate is checked with exact integers
 both in Lean and by an independent Python verifier. The numerical
 search that found its weights is outside the proof. Kernel checking,
 agreement between prose and formal statements, and independent
@@ -320,6 +322,19 @@ For \(O^aE^b\), (2.1) gives \(A=3^a-2^a\) and
 \(\gcd(A,D)=\gcd(A,2^b-1)\), proving (4.2).
 The quotient is at least \((3^a-2^{a+b})/(2^b-1)\), which
 tends to infinity with \(a\) at fixed \(b\). \(\square\)
+
+The formal construction proves the exact root-floor identities, all
+branch guards, and every conclusion of (4.1) for each successful parameter
+with \(s\ge2^{2^{b+1}}\). It also proves (4.2) and, for every \(Q\),
+the explicit sufficient bound
+\[
+a\ge2\bigl(2^b+(Q+1)(2^b-1)\bigr)\quad\Longrightarrow\quad q_{a,b}>Q.
+\]
+The remaining formal input, named BoxRecurrence, is that for every
+\(T\) there is a parameter \(t\ge T\) in the simultaneous box above.
+Lean proves the infinitude conclusion from this input. BoxRecurrence
+itself is not proved in Lean; the preceding equidistribution argument
+remains its written justification.
 
 The theorem concerns growing prefixes and their associated
 *periodic-word* codes. It does not identify that code with \(H(n)\),
@@ -760,7 +775,9 @@ the existing proofs without changing their hypotheses.
 | Example 2.2 | `CollatzPadic.code_three_cleared`, `code_not_injective` |
 | Lemma 3.1 | `CollatzPadic.iterate_le_of_code_eq` |
 | Theorem 3.2 | `CollatzPadic.periodic_bridge` |
-| Theorem 4.1 | Written proof; no Lean coverage claimed |
+| Theorem 4.1, box to orbit | `PaperEModularReturn.modular_return_of_box` |
+| Denominator and growth | `PaperEModularReturn.runCode_den`, `runCode_den_gt` |
+| Infinitude from BoxRecurrence | `PaperEModularReturn.theorem41_of_box_recurrence`; recurrence premise unproved |
 | Lemma 5.2 | `PreimageGrid.count_odd`, `count_doubled_odd`, `count_four` |
 | Lemma 5.3 | `PreimageDomain.closed_domain_for_target` |
 | Lemma 5.4 | `PreimageGrowth.growth_root` |
@@ -773,10 +790,12 @@ the existing proofs without changing their hypotheses.
 | Proposition 7.2 | `CollatzMoments.complete_family_moment_loss`, `PaperECompletion.stopping_word_masses` |
 
 AxiomCheckJugglerCollatzPaper.lean prints the dependencies
-of the 28 selected declarations. The permitted logical
+of the 32 selected declarations. The permitted logical
 dependencies are propext, Classical.choice, and Quot.sound.
-No additional assumption or native-evaluation trust extension
-belongs to this paper's selected theorem audit.
+No additional logical axiom or native-evaluation trust extension
+belongs to this paper's selected theorem audit. The conditional
+Theorem 4.1 assembly retains BoxRecurrence as an explicit premise;
+the dependency audit does not prove that premise.
 Review of the correspondence between those statements and
 the prose is a separate responsibility.
 

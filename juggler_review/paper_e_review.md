@@ -1,6 +1,6 @@
 # Paper E: reviewer packet and living review record
 
-Version 0.2.0, 22 September 2026. Canonical manuscript:
+Version 0.3.0, 22 September 2026. Canonical manuscript:
 [The Juggler Map and the 3n±1 Maps](juggler_signed_collatz_note.md).
 Build and updates: [PAPER_E_BUILD.md](PAPER_E_BUILD.md).
 
@@ -25,7 +25,7 @@ Build and updates: [PAPER_E_BUILD.md](PAPER_E_BUILD.md).
 | --- | --- | --- |
 | 2.1, 2.3 | CollatzPadic; PaperECompletion series and frequency theorems | No new distribution estimate |
 | 3.1, 3.2 | CollatzPadic order and return-time proofs | Original start must be periodic |
-| 4.1 | Written proof in manuscript and denominator dossier | External equidistribution; no Lean coverage |
+| 4.1 | PaperEModularReturn exact construction, denominator, conditional assembly | BoxRecurrence remains unproved in Lean |
 | 5.1-5.4 | PreimageGrid, Domain, Growth, Density, Certificate12 | Human prose-to-statement review pending |
 | 6.1 | PreimageBalance | Fixed shifts only; no actual-count upper bound |
 | 7.1 | BackwardMass | Backward closure is weaker than fate closure |
@@ -51,27 +51,47 @@ The new PaperECompletion module proves six manuscript-facing statements:
   equivalence regroups this type by length; summability is established
   before regrouping.
 
-The combined audit now selects 28 declarations. The local statement check
+The 0.2.0 audit selected 28 declarations. The local statement check
 also confirms that Theorem 5.1 covers every positive target prime to three,
 all sufficiently large natural cutoffs, distinct starts rather than paths,
 and both capped and ordinary ancestor counts. Independent review remains
 separate from this local check.
 
-## Remaining Lean project: Theorem 4.1
+## Theorem 4.1: exact construction completed in 0.3.0
 
-Theorem 4.1 is still a written proof. A source search of the installed
-Mathlib found no applicable Weyl, van der Corput, or Boshernitzan
-equidistribution theorem. Closing it requires the fixed-parameter joint
-equidistribution of the displayed power vector, positive-box visits, and
-their translation into actual nested-floor branches and modular returns.
-The word-denominator calculation and its unboundedness must also be
-connected to those prefixes. The finite witnesses do not establish this.
+PaperEModularReturn proves the initial odd perfect-power run, arbitrary
+depth integer-root cells, equality with the real-power floors, and the
+fractional-part box implications for every branch parity and endpoint
+residue. Each box visit with s at least 2^(2^(b+1)) gives a genuine
+expanding O^a E^b prefix, with every intermediate state at least its start.
 
-The present completion phase stops at that analytic prerequisite. No
-placeholder, extra assumption, or conditional theorem is substituted for
-the claimed unconditional result. Formalizing the needed power-function
-equidistribution is a separate substantial project; no assertion that all
-of Paper E is Lean-verified is made.
+The reduced rational denominator is exactly (4.2). Its unboundedness
+is unconditional and has the explicit sufficient threshold
+a >= 2*(2^b+(Q+1)*(2^b-1)) for q_(a,b) > Q.
+
+The Lean declaration theorem41_of_box_recurrence assembles the full
+conclusion with an explicit BoxRecurrence premise: for every T, some
+parameter t >= T belongs to the simultaneous box. It proves infinitude
+of distinct starts above every B, not just existence of one parameter.
+
+The selected audit has 32 declarations, including this conditional
+assembly and three other new results. Standard logical dependencies
+do not remove explicit theorem hypotheses. The assembly is not an
+unconditional formalization of Theorem 4.1.
+
+## Remaining Lean project: prove BoxRecurrence
+
+BoxRecurrence is defined as a proposition and has no proof in this
+development. The missing result concerns simultaneous visits of the
+fixed power vector along s=1+2Mt; separate coordinate density is insufficient.
+The written analytic route uses Boshernitzan's criterion and Weyl's
+criterion. A source search of the installed Mathlib found no applicable
+formal versions. An external search did not yield a verified reusable
+implementation. No external code was imported.
+
+The exact-construction phase stops with this prerequisite explicit.
+The manuscript's unconditional theorem retains its written proof status;
+the conditional assembly is recorded separately, not substituted for it.
 
 ## Prior-art boundaries
 
@@ -103,6 +123,14 @@ using the build guide. These review items cannot be discharged by
 re-running the typesetter.
 
 ## Version history
+
+### 0.3.0 - 22 September 2026
+
+Formalized Theorem 4.1's exact construction and reduced-denominator
+arithmetic, including explicit growth thresholds. Added an infinitude
+assembly conditional on BoxRecurrence. The missing analytic proof is
+isolated and remains open in Lean. Expanded the selected audit to 32
+declarations; the original theorem's quantifiers are unchanged.
 
 ### 0.2.0 - 22 September 2026
 
