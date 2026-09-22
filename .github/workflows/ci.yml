@@ -19,9 +19,11 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install
-        run: python -m pip install -e ".[dev]"
+        run: python -m pip install -e ".[dev]" -r tools/requirements-formalpedia.txt
       - name: Ledger is generated
         run: python tools/render_theorem_ledger.py --check
+      - name: Public Lean naming and documentation
+        run: python tools/lean_style.py
       - name: Ruff (runtime, unused, repeated keys)
         run: python -m ruff check .
       - name: Pyright (bt core)

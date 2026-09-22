@@ -22,9 +22,9 @@ which is what the ledger's list-valued `decl` exists to record.  `REFUTED` rows 
 asked: their declaration is the refutation.
 
 Jev (jev-1.13.0, last asked 2026-09-22) has answered
-253 of the 304 resolved rows: 134 covered,
-67 doubtful, 52 not covered; 119 are
-listed below.
+253 of the 304 resolved rows: 122 covered,
+57 doubtful, 40 not covered; 97 are
+listed below, and 34 answered an earlier version of their row and need a rerun.
 
 ## 1. `J-paper-b-screen-is-a-walk-condition` &mdash; covers 0.03
 
@@ -150,157 +150,7 @@ theorem square_guard_iff {N y : ℕ} (hy : y % 2 = 1)
     N.sqrt % 2 = 0 ↔ (N.sqrt - y ^ 2) % 2 = 1
 ```
 
-## 4. `J-fate-recursion-lemma` &mdash; covers 0.07
-
-*Reads as: the claim asserts more than the declarations state (0.94).*
-
-*Claim broader 0.94; declaration narrower 0.53; different result 0.06.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** Paper C Lemma 5.1 (recursion lemma). Let e_i ∈ [e_min, e_max] with 0 < e_min and e_max < 1, c_i real, λ > 0 with ζ := Σ_i c_i e_i^λ - 1 > 0, t_1 > 0, c_0 > 0. Let g : ℝ → ℝ satisfy g(t) ≥ Σ_i (c_i - η_i(t)) g(e_i t) - η_0(t) for all t ≥ t_1, where 0 ≤ η_i(t) ≤ c_i, Σ_i η_i(t) e_i^λ ≤ ζ/3 and η_0(t) ≤ (2ζ/3) c_0 for t ≥ t_1, and g ≥ c_0 on [e_min t_1, t_1]. Then g(t) ≥ c_0 t_1^{-λ} t^λ for all t ≥ e_min t_1 (recursion_lemma). The proof is the paper's induction on N over [e_min t_1, t_1 e_max^{-N}], with exists_pow_lt_of_lt_one supplying N. Weaker hypotheses than the paper's: e_min, e_max are bounds rather than the extrema, λ < 1 and g ≥ 0 are not needed. Kernel-checked, axioms propext, Classical.choice, Quot.sound only. This is the abstract analytic step of Theorem 5.3; the three-source ine  *(truncated; read the ledger row)*
-
-**Declaration.** `recursion_lemma` &mdash; kernel-checked, `Problems/Juggler/FateRecursion.lean:37`
-
-> Paper C Lemma 5.1 (recursion lemma), with the range of the contraction factors given by two bounds `emin ≤ e i ≤ emax` rather than by a finite minimum and maximum. `K = c₀ * t₁ ^ (-λ)`.
-
-```lean
-theorem recursion_lemma {r : ℕ} (e c : Fin r → ℝ) (η : Fin r → ℝ → ℝ)
-    (η₀ : ℝ → ℝ) (g : ℝ → ℝ) (lam t₁ c₀ emin emax : ℝ)
-    (hlam : 0 < lam) (ht₁ : 0 < t₁) (hc₀ : 0 < c₀)
-    (hemin : 0 < emin) (hemax : emax < 1)
-    (he_lo : ∀ i, emin ≤ e i) (he_hi : ∀ i, e i ≤ emax)
-    (hζ : 0 < ∑ i, c i * e i ^ lam - 1)
-    (hη_lo : ∀ t, t₁ ≤ t → ∀ i, 0 ≤ η i t)
-    (hη_hi : ∀ t, t₁ ≤ t → ∀ i, η i t ≤ c i)
-    (hη₀ : ∀ t, t₁ ≤ t → η₀ t ≤ 2 * (∑ i, c i * e i ^ lam - 1) / 3 * c₀)
-    (hηsum : ∀ t, t₁ ≤ t → ∑ i, η i t * e i ^ lam ≤ (∑ i, c i * e i ^ lam - 1) / 3)
-    (hseed : ∀ t, emin * t₁ ≤ t → t ≤ t₁ → c₀ ≤ g t)
-    (hrec : ∀ t, t₁ ≤ t → ∑ i, (c i - η i t) * g (e i * t) - η₀ t ≤ g t) :
-```
-
-## 5. `J-fate-energy-atoms` &mdash; covers 0.08
-
-*Reads as: the claim asserts more than the declarations state (0.84).*
-
-*Claim broader 0.84; declaration narrower 0.61; different result 0.39.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** Paper C Section 10(d): the bias energy of the L-bad words supplies the exceptional atoms. energyOn y t S = sum over w in S of bias(w)^2 with bias(w) = #[wO] - #[w]/2 over the odd starts of (y, 2y]; biasEnergy y t is the sum over all words of length t, equal to the paper's C_{t+1}/2 - C_t/4 with C_t = sum of #[w]^2 (biasEnergy_eq, on CylinderEnergy.sum_bias_sq; wordCount_cylinder identifies the word count over the odd starts with the cylinder); badEnergy y L t is the sum over the L-bad words, at most the unrestricted one (badEnergy_le_biasEnergy). For a share q > 1/2, a bad atom violating #[wO] <= q #[w] has bias(w) > (q - 1/2) #[w], so the squared masses of the bad violators sum to at most badEnergy / (q - 1/2)^2, and Cauchy-Schwarz over the at most 2^t atoms of depth t (card_allWords) giv  *(truncated; read the ledger row)*
-
-**Declarations.** `energy_implies_conjecture` &mdash; kernel-checked, `Problems/Juggler/FateEnergyAtoms.lean:234`
-
-> **The conjecture from the energy bound, with nothing else assumed.** If at all large scales above a certified floor the bias energy of the `L(y)`-bad words at every depth `1 ≤ t < ⌈C L(y)⌉` is at most `(q - 1/2)² y² (log y)^{-2B} / 2^t`, with `C ≥ 5`, `1/2 < q < p_C`, `B > C log₂ x + 1 + e` and `27/40 < e < e_{C,q}`, then every positive integer reaches `1`.
-
-```lean
-theorem energy_implies_conjecture {N₀ : ℕ} (hN : 2 ≤ N₀)
-    (hfloor : ∀ m, 1 ≤ m → m ≤ N₀ → ReachesOne m) (C q B e : ℝ) (hC : 5 ≤ C)
-    (hq : 1 / 2 < q) (hqp : q < pC C)
-    (hB : C * Real.logb 2 (OneSided.tilt (pC C) q) + 1 + e < B)
-    (he : e < OneSided.oneSidedExponent C q) (he7 : 27 / 40 < e)
-    (hH : ∃ y₁ : ℕ, ∀ y, y₁ ≤ y → EnergyBound N₀ C q B y) :
-    ∀ n, 1 ≤ n → ReachesOne n
-```
-
-**And.** `OneSidedShareExc.mono_err` &mdash; kernel-checked, `Problems/Juggler/FateEnergyAtoms.lean:49`
-
-> A share bound with exceptional atoms and a smaller error is one with a larger error.
-
-```lean
-theorem OneSidedShareExc.mono_err {y : ℕ} {L q err err' exc : ℝ} {d : ℕ}
-    (h : OneSidedShareExc y L q err exc d) (hle : err ≤ err') :
-    OneSidedShareExc y L q err' exc d
-```
-
-**And.** `badEnergy_le_biasEnergy` &mdash; kernel-checked, `Problems/Juggler/FateEnergyAtoms.lean:80`
-
-```lean
-theorem badEnergy_le_biasEnergy (y : ℕ) (L : ℝ) (t : ℕ) :
-    badEnergy y L t ≤ biasEnergy y t
-```
-
-**And.** `card_allWords` &mdash; kernel-checked, `Problems/Juggler/FateEnergyAtoms.lean:85`
-
-> There are `2^t` words of length `t`.
-
-```lean
-theorem card_allWords : ∀ t, ((allWords t).card : ℝ) = 2 ^ t
-  | 0 => by simp [allWords]
-  | t + 1 => by
-```
-
-**And.** `mass_violators_le` &mdash; kernel-checked, `Problems/Juggler/FateEnergyAtoms.lean:95`
-
-> **Cauchy–Schwarz on the bad violators.** For a share `q > 1/2`, `(Σ_{w bad, violating} #[w])² ≤ 2^t · badEnergy / (q - 1/2)²`.
-
-```lean
-theorem mass_violators_le (y : ℕ) (L : ℝ) (t : ℕ) {q : ℝ} (hq : 1 / 2 < q) :
-    (∑ w ∈ violators y L t q, ((cylinder y t w).card : ℝ)) ^ 2
-      ≤ 2 ^ t * (badEnergy y L t / (q - 1 / 2) ^ 2)
-```
-
-**And.** `oneSidedShareExc_of_energy` &mdash; kernel-checked, `Problems/Juggler/FateEnergyAtoms.lean:142`
-
-> **Energy implies exceptional atoms.** If the bad energy at every depth `1 ≤ t < d` is at most `(q - 1/2)² exc² / 2^t`, the bad violators of the share bound `#[wO] ≤ q #[w]` have total mass at most `exc` at each depth, so the one-sided hypothesis holds with exceptional atoms of mass `exc` and no error term.
-
-```lean
-theorem oneSidedShareExc_of_energy {y d : ℕ} {L q exc : ℝ} (hq : 1 / 2 < q) (hexc : 0 ≤ exc)
-    (h : ∀ t, 1 ≤ t → t < d → badEnergy y L t ≤ (q - 1 / 2) ^ 2 * exc ^ 2 / 2 ^ t) :
-    OneSided.OneSidedShareExc y L q 0 exc d
-```
-
-**And.** `wordCount_cylinder` &mdash; kernel-checked, `Problems/Juggler/FateEnergyAtoms.lean:176`
-
-> The word count of `CylinderEnergy` over the odd starts of `(y, 2y]` is the cylinder.
-
-```lean
-theorem wordCount_cylinder (y t : ℕ) {w : List Branch} (hw : w.length = t) :
-    CylinderEnergy.wordCount (cylinder y 0 []) w = (cylinder y t w).card
-```
-
-**And.** `biasEnergy_eq` &mdash; kernel-checked, `Problems/Juggler/FateEnergyAtoms.lean:187`
-
-> The unrestricted bias energy is the paper's `C_{t+1}/2 - C_t/4`, with `C_t = Σ_{|w|=t} #[w]²` (`CylinderEnergy.sum_bias_sq`).
-
-```lean
-theorem biasEnergy_eq (y t : ℕ) :
-    biasEnergy y t = CylinderEnergy.energy (cylinder y 0 []) (t + 1) / 2
-      - CylinderEnergy.energy (cylinder y 0 []) t / 4
-```
-
-**And.** `EnergyBound` &mdash; kernel-checked, `Problems/Juggler/FateEnergyAtoms.lean:200`
-
-> The energy hypothesis at the scale `y`: at every depth `1 ≤ t < d(y) = ⌈C L(y)⌉`, the bias energy of the `L(y)`-bad words is at most `(q - 1/2)² (y (log y)^{-B})² / 2^t`.
-
-```lean
-def EnergyBound (N₀ : ℕ) (C q B : ℝ) (y : ℕ) : Prop
-```
-
-**And.** `oneSidedBoundExc_of_energy` &mdash; kernel-checked, `Problems/Juggler/FateEnergyAtoms.lean:206`
-
-> The energy hypothesis gives `H_q(C, A)` with exceptional atoms of mass `y (log y)^{-B}`, for every `A`.
-
-```lean
-theorem oneSidedBoundExc_of_energy {N₀ : ℕ} {C q B : ℝ} {y : ℕ} (hq : 1 / 2 < q)
-    (h : EnergyBound N₀ C q B y) (A : ℝ) : OneSided.OneSidedBoundExc N₀ C q A B y
-```
-
-**And.** `energy_conj_of_contagion` &mdash; kernel-checked, `Problems/Juggler/FateEnergyAtoms.lean:212`
-
-> **The conjecture from the energy bound, with the contagion bound as a hypothesis.**
-
-```lean
-theorem energy_conj_of_contagion {N₀ : ℕ} (hN : 2 ≤ N₀)
-    (hfloor : ∀ m, 1 ≤ m → m ≤ N₀ → ReachesOne m) (C q B e : ℝ) (hC : 5 ≤ C)
-    (hq : 1 / 2 < q) (hqp : q < pC C)
-    (hB : C * Real.logb 2 (OneSided.tilt (pC C) q) + 1 + e < B)
-    (he : e < OneSided.oneSidedExponent C q)
-    (hH : ∃ y₁ : ℕ, ∀ y, y₁ ≤ y → EnergyBound N₀ C q B y)
-    {lam : ℝ} (hlam0 : 0 < lam) (hlam1 : lam < 1) (hlam : 1 - lam < e)
-    (hlow : (∃ n, 1 ≤ n ∧ ¬ReachesOne n) →
-      ∃ K : ℝ, 0 < K ∧ ∃ x₀ : ℕ, ∀ x : ℕ, x₀ ≤ x →
-        K * Real.log x ^ lam ≤ logMass (fun n => ¬ReachesOne n) x) :
-    ∀ n, 1 ≤ n → ReachesOne n
-```
-
-## 6. `J-ooo-residual-cube` &mdash; covers 0.08
+## 4. `J-ooo-residual-cube` &mdash; covers 0.08
 
 *Reads as: the claim asserts more than the declarations state (0.95).*
 
@@ -319,7 +169,7 @@ theorem cycleMin_ooo_residual_ge_cube {n a : ℕ} {v : List Branch}
     (n + 1) ^ 3 ≤ image n (List.replicate 3 Branch.odd)
 ```
 
-## 7. `J-residual-floor-two-hundred-fifty-seven` &mdash; covers 0.08
+## 5. `J-residual-floor-two-hundred-fifty-seven` &mdash; covers 0.08
 
 *Reads as: the claim asserts more than the declarations state (0.95).*
 
@@ -957,7 +807,7 @@ theorem non_reachesOne_ge_two_hundred_fifty_seven {n : ℕ}
     (hn : 1 ≤ n) (hfail : ¬ReachesOne n) : 257 ≤ n
 ```
 
-## 8. `J-cubic-equal-gap-oo-triple` &mdash; covers 0.09
+## 6. `J-cubic-equal-gap-oo-triple` &mdash; covers 0.09
 
 *Reads as: the claim asserts more than the declarations state (0.85).*
 
@@ -974,7 +824,7 @@ theorem oo_equal_gap_triple {t : ℕ} (ht : 9 ≤ t) (hodd : t % 2 = 1) :
     let xm
 ```
 
-## 9. `J-cycle-periodic-return-height-strip` &mdash; covers 0.09
+## 7. `J-cycle-periodic-return-height-strip` &mdash; covers 0.09
 
 *Reads as: the claim asserts more than the declarations state (0.92).*
 
@@ -1043,7 +893,7 @@ theorem threshold_cycle_wrong_parity {b m M k : ℕ} (hb : 3 ≤ b) (hm : 7 ≤ 
       (thresholdMap b)^[j] m < b ^ 2)
 ```
 
-## 10. `J-cycle-threshold-common-period` &mdash; covers 0.09
+## 8. `J-cycle-threshold-common-period` &mdash; covers 0.09
 
 *Reads as: the claim asserts more than the declarations state (0.91).*
 
@@ -1142,7 +992,7 @@ theorem rankResidue_upper_card {L e g r : ℕ} (he : e ≤ L) (hg : 0 < g)
       e / g
 ```
 
-## 11. `OST-np-adjoint-window-det` &mdash; covers 0.09
+## 9. `OST-np-adjoint-window-det` &mdash; covers 0.09
 
 *Reads as: the claim asserts more than the declarations state (0.91).*
 
@@ -1181,332 +1031,7 @@ theorem energy_eq_dot (i : ℕ) (s1 s2 s3 : ℤ) :
       (adjointU i).1 * s1 + (adjointU i).2.1 * s2 + (adjointU i).2.2 * s3
 ```
 
-## 12. `J-cycle-absolute-cell-grid-charge` &mdash; covers 0.11
-
-*Reads as: the claim asserts more than the declarations state (0.91).*
-
-*Claim broader 0.91; declaration narrower 0.61; different result 0.21.  Tag EXACT — HUMAN PROOF, trust kernel.*
-
-**Row.** For a primitive exact threshold cycle S_b, or an actual Juggler cycle with minimum m>1 and maximum M<m^3, let L,o be its period and lower/odd count, T=log 3, Lambda=o log 3-L log 2>0, and A=(log m) exp(-(1-1/L)Lambda)>0. Then Lambda < exp(-A)/A times the finite sum over 0<=i<L of exp(-i T(A+1)/L), and exp(A) A(A+1)Lambda < A+1+L/T. The exact upper unit cells bound each logarithmic defect by 1/(y log y); the sorted grid bounds the total by a geometric sum. Along sequences with log m tending to infinity, log m=o(L), and Lambda log m tending to zero, this yields m(log m)^2 Lambda <= (1+o(1))L/log 3. In the explicitly conditional regime Lambda~c/L and polynomially growing m, this narrows the necessary scale to m(log m)^2<=(1+o(1))L^2/(c log 3). No uniform lower bound of order 1/L for Lambda is  *(truncated; read the ledger row)*
-
-**Declarations.** `power_cells_grid_charge` &mdash; kernel-checked, `Problems/Juggler/CubicUpperCells.lean:250`
-
-> The exact finite and closed upper-cell charges from primitive power-cell data.
-
-```lean
-theorem power_cells_grid_charge [NeZero L]
-    (c : Fin L → ℝ) (σ : Equiv.Perm (Fin L)) (o e : ℕ)
-    (hc : ∀ i, 1 < c i) (hlen : L = o + e)
-    (hrank : ∀ i, (σ i).val = (i.val + e) % L)
-    (hcycle : σ.IsCycleOn (↑(Finset.univ : Finset (Fin L))))
-    (hlower : ∀ i, c (σ i) ^ 2 ≤ c i ^ (if i.val < o then 3 else 1))
-    (hupper : ∀ i, c i ^ (if i.val < o then 3 else 1) < (c (σ i) + 1) ^ 2) :
-    let A
-```
-
-**And.** `power_cells_scaled_charge` &mdash; kernel-checked, `Problems/Juggler/CubicUpperCells.lean:271`
-
-> A denominator-free exact corollary of the closed charge.
-
-```lean
-theorem power_cells_scaled_charge [NeZero L]
-    (c : Fin L → ℝ) (σ : Equiv.Perm (Fin L)) (o e : ℕ)
-    (hc : ∀ i, 1 < c i) (hlen : L = o + e)
-    (hrank : ∀ i, (σ i).val = (i.val + e) % L)
-    (hcycle : σ.IsCycleOn (↑(Finset.univ : Finset (Fin L))))
-    (hlower : ∀ i, c (σ i) ^ 2 ≤ c i ^ (if i.val < o then 3 else 1))
-    (hupper : ∀ i, c i ^ (if i.val < o then 3 else 1) < (c (σ i) + 1) ^ 2) :
-    let A
-```
-
-**And.** `logCellDefect_lt_logEta` &mdash; kernel-checked, `Problems/Juggler/CubicUpperCells.lean:11`
-
-> The strict upper square cell bounds the logarithmic defect by its target capacity.
-
-```lean
-theorem logCellDefect_lt_logEta
-    (c : Fin L → ℝ) (σ : Equiv.Perm (Fin L)) (o : ℕ)
-    (hc : ∀ i, 1 < c i)
-    (hupper : ∀ i, c i ^ (if i.val < o then 3 else 1) < (c (σ i) + 1) ^ 2)
-    (i : Fin L) : logCellDefect c σ o i < LogCells.logEta (c (σ i))
-```
-
-**And.** `inv_log_sum_le_grid` &mdash; kernel-checked, `Problems/Juggler/CubicUpperCells.lean:183`
-
-> The grid supplies a finite, unlinearized upper-cell charge majorant.
-
-```lean
-theorem inv_log_sum_le_grid [NeZero L]
-    (c : Fin L → ℝ) (o : ℕ) (hc : ∀ i, 1 < c i)
-    (hgrid : ∀ i, |logGridError c (c 0) i| ≤
-      (1 - 1 / (L : ℝ)) * logGridSurplus L o) :
-    (∑ i, 1 / (c i * Real.log (c i))) ≤
-      ∑ i : Fin L,
-        Real.exp (-(logGridScale (L
-```
-
-**And.** `grid_charge_le_geometric` &mdash; kernel-checked, `Problems/Juggler/CubicUpperCells.lean:198`
-
-> The finite unlinearized charge is bounded by the finite geometric charge.
-
-```lean
-theorem grid_charge_le_geometric [NeZero L] {A : ℝ} (hA : 0 < A) :
-    (∑ i : Fin L,
-      Real.exp (-(A * Real.exp ((i.val : ℝ) * Real.log 3 / (L : ℝ))) -
-        (i.val : ℝ) * Real.log 3 / (L : ℝ)) / A) ≤
-      Real.exp (-A) / A *
-        ∑ i : Fin L, Real.exp (-(A + 1) * ((i.val : ℝ) * Real.log 3 / (L : ℝ)))
-```
-
-**And.** `geometric_grid_charge_lt` &mdash; kernel-checked, `Problems/Juggler/CubicUpperCells.lean:208`
-
-> Strict finite-to-closed geometric charge comparison.
-
-```lean
-theorem geometric_grid_charge_lt [NeZero L] {A : ℝ} (hA : 0 < A) :
-    Real.exp (-A) / A *
-        (∑ i : Fin L, Real.exp (-(A + 1) * ((i.val : ℝ) * Real.log 3 / (L : ℝ)))) <
-      Real.exp (-A) / A * (1 + (L : ℝ) / (Real.log 3 * (A + 1)))
-```
-
-**And.** `threshold_cycle_upper_charge` &mdash; kernel-checked, `Problems/Juggler/CubicUpperCells.lean:382`
-
-> Compatibility projection to the original threshold charge conclusion.
-
-```lean
-theorem threshold_cycle_upper_charge [NeZero L]
-    {b : ℕ} (hb : 1 < b) (c : Fin L → ℕ) (hc : StrictMono c)
-    (σ : Equiv.Perm (Fin L)) (hband : ∀ i, InCubicBand b (c i))
-    (hstep : ∀ i, c (σ i) = thresholdMap b (c i))
-    (hconnected : ∀ i j, ∃ k : ℕ, (thresholdMap b)^[k] (c i) = c j) :
-    ∃ o ≤ L, (Finset.univ.filter (fun i => c i < b ^ 2)).card = o ∧
-      RealizedGridBounds (fun i => (c i : ℝ)) o ∧
-      UpperCellChargeBounds (L
-```
-
-**And.** `cubicBand_cycle_upper_charge` &mdash; kernel-checked, `Problems/Juggler/CubicUpperCells.lean:433`
-
-> Compatibility projection to the original actual-cycle charge conclusion.
-
-```lean
-theorem cubicBand_cycle_upper_charge [NeZero L]
-    {m : ℕ} (hm : 1 < m) (c : Fin L → ℕ) (hc : StrictMono c)
-    (σ : Equiv.Perm (Fin L)) (hband : ∀ i, InCubicBand m (c i))
-    (hstep : ∀ i, c (σ i) = floorPower (c i))
-    (hconnected : ∀ i j, ∃ k : ℕ, floorPower^[k] (c i) = c j) :
-    ∃ o ≤ L, (Finset.univ.filter (fun i => c i % 2 = 1)).card = o ∧
-      RealizedGridBounds (fun i => (c i : ℝ)) o ∧
-      UpperCellChargeBounds (L
-```
-
-## 13. `J-cycle-quartic-formal-budget` &mdash; covers 0.11
-
-*Reads as: the claim asserts more than the declarations state (0.85).*
-
-*Claim broader 0.85; declaration narrower 0.55; different result 0.5.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** A finite injective actual-block substitution with nonnegative actual defects and one omitted positive defect gives a strict defect budget. Given the explicit component count/total calibration and displacement bounds, the budget gives a normalized gap witness above tau. With A=log(3/2), actual loglog source gaps, integer OE cells and the small-product condition, the witness has an unselected B valley. The strict budget is derived from the certificate, not assumed. Constructing all certificate fields and original-cycle count identities for arbitrary primitive quartic cycles remains unformalized; this is not an unconditional cycle exclusion. Additional pointwise and finite-sum support inequalities hold for supplied real pair records: k<=u, 0<=v, D<=u+v and coefficient bounds give located min/  *(truncated; read the ledger row)*
-
-**Declarations.** `BlockSubstitution.strict_budget` &mdash; kernel-checked, `Problems/Juggler/QuarticLossBudget.lean:43`
-
-> A positive omitted actual block makes the substitution budget strict.
-
-```lean
-theorem BlockSubstitution.strict_budget {α β : Type*} [DecidableEq α]
-    {actual : Finset α} {periodic : Finset β}
-    {D : α → ℝ} {d s : β → ℝ}
-    (B : BlockSubstitution actual periodic D d s) :
-    (∑ i ∈ periodic, d i) + (∑ i ∈ periodic, s i) < ∑ a ∈ actual, D a
-```
-
-**And.** `BlockSubstitution.component_budget` &mdash; kernel-checked, `Problems/Juggler/QuarticLossBudget.lean:94`
-
-> The component inequality is derived from the finite actual-block partition.
-
-```lean
-theorem BlockSubstitution.component_budget {α β : Type*} [DecidableEq α]
-    {actual : Finset α} {periodic : Finset β}
-    {D : α → ℝ} {d s : β → ℝ}
-    (B : BlockSubstitution actual periodic D d s)
-    {e n Λ lam Δ A Γ : ℝ} (he : 0 < e)
-    (htotal : ∑ a ∈ actual, D a = Λ)
-    (hformal : ∑ i ∈ periodic, d i = lam)
-    (hshift : -Γ ≤ ∑ i ∈ periodic, s i)
-    (hcal : e * lam = n * Λ + Δ * A) :
-    Δ * A < (e - n) * Λ + e * Γ
-```
-
-**And.** `BlockSubstitution.unselected_valley_witness` &mdash; kernel-checked, `Problems/Juggler/QuarticLossBudget.lean:287`
-
-> A projection fixed on selected valleys turns the unequal-cell witness into a hole.
-
-```lean
-theorem BlockSubstitution.unselected_valley_witness {α β : Type*} [DecidableEq α]
-    {actual : Finset α} {periodic : Finset β}
-    {D : α → ℝ} {d s : β → ℝ}
-    (B : BlockSubstitution actual periodic D d s)
-    (negative : Finset β) (displacement : β → ℝ) (source predecessor : β → ℕ)
-    (selected : Set ℕ) {m : ℕ} {e n Λ lam Δ : ℝ}
-    (hm : 1 < m) (he : 2 ≤ e) (hΛ : 0 < Λ) (hn : 1 ≤ n) (hΔ : 1 ≤ Δ)
-    (hsmall : (e - 1) * Λ + e * QuarticCells.logEta (m : ℝ) ≤ Real.log (3 / 2 : ℝ))
-    (htotal : ∑ a ∈ actual, D a = Λ)
-    (hformal : ∑ i ∈ periodic, d i = lam)
-    (hshift : -(∑ i ∈ negative, loglogGap (source i) (predecessor i)) ≤
-      ∑ i ∈ periodic, s i)
-```
-
-**And.** `located_pair_lower` &mdash; kernel-checked, `Problems/Juggler/QuarticLossBudget.lean:315`
-
-> A located lower charge and a pair demand give a signed support bound.
-
-```lean
-theorem located_pair_lower {a b α u v k D : ℝ}
-    (ha : α ≤ a) (hb : α ≤ b) (hu : k ≤ u)
-    (hv : 0 ≤ v) (hsum : D ≤ u + v) :
-    a * k + min a b * (D - k) + α * (u + v - D) ≤ a * u + b * v
-```
-
-**And.** `located_pair_upper` &mdash; kernel-checked, `Problems/Juggler/QuarticLossBudget.lean:328`
-
-> The same located charge gives the corresponding upper support bound.
-
-```lean
-theorem located_pair_upper {a b β u v k D : ℝ}
-    (ha : a ≤ β) (hb : b ≤ β) (hu : k ≤ u)
-    (hv : 0 ≤ v) (hsum : D ≤ u + v) :
-    a * u + b * v ≤ a * k + max a b * (D - k) + β * (u + v - D)
-```
-
-**And.** `located_pairs_lower` &mdash; kernel-checked, `Problems/Juggler/QuarticLossBudget.lean:341`
-
-> Summing disjoint pair records retains the exact total residual term.
-
-```lean
-theorem located_pairs_lower {ι : Type*} (S : Finset ι)
-    (a b u v k D : ι → ℝ) (α : ℝ)
-    (ha : ∀ i ∈ S, α ≤ a i) (hb : ∀ i ∈ S, α ≤ b i)
-    (hu : ∀ i ∈ S, k i ≤ u i) (hv : ∀ i ∈ S, 0 ≤ v i)
-    (hsum : ∀ i ∈ S, D i ≤ u i + v i) :
-    (∑ i ∈ S, (a i * k i + min (a i) (b i) * (D i - k i))) +
-        α * ((∑ i ∈ S, (u i + v i)) - ∑ i ∈ S, D i) ≤
-      ∑ i ∈ S, (a i * u i + b i * v i)
-```
-
-**And.** `located_pairs_upper` &mdash; kernel-checked, `Problems/Juggler/QuarticLossBudget.lean:355`
-
-> The finite upper bound uses the same located and flexible charges.
-
-```lean
-theorem located_pairs_upper {ι : Type*} (S : Finset ι)
-    (a b u v k D : ι → ℝ) (β : ℝ)
-    (ha : ∀ i ∈ S, a i ≤ β) (hb : ∀ i ∈ S, b i ≤ β)
-    (hu : ∀ i ∈ S, k i ≤ u i) (hv : ∀ i ∈ S, 0 ≤ v i)
-    (hsum : ∀ i ∈ S, D i ≤ u i + v i) :
-    (∑ i ∈ S, (a i * u i + b i * v i)) ≤
-      (∑ i ∈ S, (a i * k i + max (a i) (b i) * (D i - k i))) +
-        β * ((∑ i ∈ S, (u i + v i)) - ∑ i ∈ S, D i)
-```
-
-**And.** `calibrated_component_budget` &mdash; kernel-checked, `Problems/Juggler/QuarticLossBudget.lean:86`
-
-> Calibrating the strict component budget produces the signed loss inequality.
-
-```lean
-theorem calibrated_component_budget {e n Λ lam Δ A Γ : ℝ}
-    (he : 0 < e) (hbudget : lam - Γ < Λ)
-    (hcal : e * lam = n * Λ + Δ * A) :
-    Δ * A < (e - n) * Λ + e * Γ
-```
-
-**And.** `weighted_gap_witness` &mdash; kernel-checked, `Problems/Juggler/QuarticLossBudget.lean:109`
-
-> Positive displacements turn a strict total gap into a normalized witness.
-
-```lean
-theorem weighted_gap_witness {ι : Type*} (S : Finset ι)
-    (displacement gap : ι → ℝ) {Δ τ : ℝ}
-    (hτ : 0 ≤ τ) (hd : ∀ i ∈ S, 0 < displacement i)
-    (hsum : ∑ i ∈ S, displacement i ≤ Δ)
-    (hgap : Δ * τ < ∑ i ∈ S, gap i) :
-    ∃ i ∈ S, τ < gap i / displacement i
-```
-
-**And.** `weighted_uncovered_witness` &mdash; kernel-checked, `Problems/Juggler/QuarticLossBudget.lean:129`
-
-> A unit lower bound and the covered-cell cap identify an uncovered witness.
-
-```lean
-theorem weighted_uncovered_witness {ι : Type*} (S : Finset ι)
-    (displacement gap : ι → ℝ) (covered : ι → Prop) {Δ τ η : ℝ}
-    (hη : 0 ≤ η) (hητ : η ≤ τ)
-    (hd : ∀ i ∈ S, 1 ≤ displacement i)
-    (hsum : ∑ i ∈ S, displacement i ≤ Δ)
-    (hgap : Δ * τ < ∑ i ∈ S, gap i)
-    (hcovered : ∀ i ∈ S, covered i → gap i < η) :
-    ∃ i ∈ S, ¬ covered i ∧ τ < gap i / displacement i
-```
-
-**And.** `gapThreshold_ge` &mdash; kernel-checked, `Problems/Juggler/QuarticLossBudget.lean:158`
-
-> The small-product hypothesis gives the positive covered-cell threshold.
-
-```lean
-theorem gapThreshold_ge {e n Λ Δ A η : ℝ}
-    (he : 2 ≤ e) (hΛ : 0 < Λ) (hn : 1 ≤ n) (hΔ : 1 ≤ Δ)
-    (hsmall : (e - 1) * Λ + e * η ≤ A) :
-    η ≤ gapThreshold e n Λ Δ A
-```
-
-**And.** `gapThreshold_sum_lt` &mdash; kernel-checked, `Problems/Juggler/QuarticLossBudget.lean:177`
-
-> A calibrated strict budget is the weighted sum threshold used above.
-
-```lean
-theorem gapThreshold_sum_lt {ι : Type*} (S : Finset ι) (gap : ι → ℝ)
-    {e n Λ Δ A : ℝ} (he : 0 < e) (hΔ : 0 < Δ)
-    (hbudget : Δ * A < (e - n) * Λ + e * ∑ i ∈ S, gap i) :
-    Δ * gapThreshold e n Λ Δ A < ∑ i ∈ S, gap i
-```
-
-**And.** `BlockSubstitution.uncovered_component_witness` &mdash; kernel-checked, `Problems/Juggler/QuarticLossBudget.lean:188`
-
-> A finite actual-block certificate yields the normalized uncovered witness.
-
-```lean
-theorem BlockSubstitution.uncovered_component_witness {α β : Type*} [DecidableEq α]
-    {actual : Finset α} {periodic : Finset β}
-    {D : α → ℝ} {d s : β → ℝ}
-    (B : BlockSubstitution actual periodic D d s)
-    (negative : Finset β) (displacement gap : β → ℝ) (covered : β → Prop)
-    {e n Λ lam Δ A η : ℝ}
-    (he : 2 ≤ e) (hΛ : 0 < Λ) (hn : 1 ≤ n) (hΔ : 1 ≤ Δ)
-    (hη : 0 ≤ η) (hsmall : (e - 1) * Λ + e * η ≤ A)
-    (htotal : ∑ a ∈ actual, D a = Λ)
-    (hformal : ∑ i ∈ periodic, d i = lam)
-    (hshift : -(∑ i ∈ negative, gap i) ≤ ∑ i ∈ periodic, s i)
-    (hcal : e * lam = n * Λ + Δ * A)
-```
-
-**And.** `BlockSubstitution.unequal_cell_witness` &mdash; kernel-checked, `Problems/Juggler/QuarticLossBudget.lean:255`
-
-> Exact integer B cells discharge the covered-gap premise of the finite budget.
-
-```lean
-theorem BlockSubstitution.unequal_cell_witness {α β : Type*} [DecidableEq α]
-    {actual : Finset α} {periodic : Finset β}
-    {D : α → ℝ} {d s : β → ℝ}
-    (B : BlockSubstitution actual periodic D d s)
-    (negative : Finset β) (displacement : β → ℝ) (source predecessor : β → ℕ)
-    {m : ℕ} {e n Λ lam Δ : ℝ}
-    (hm : 1 < m) (he : 2 ≤ e) (hΛ : 0 < Λ) (hn : 1 ≤ n) (hΔ : 1 ≤ Δ)
-    (hsmall : (e - 1) * Λ + e * QuarticCells.logEta (m : ℝ) ≤ Real.log (3 / 2 : ℝ))
-    (htotal : ∑ a ∈ actual, D a = Λ)
-    (hformal : ∑ i ∈ periodic, d i = lam)
-    (hshift : -(∑ i ∈ negative, loglogGap (source i) (predecessor i)) ≤
-      ∑ i ∈ periodic, s i)
-```
-
-## 14. `J-cycle-direction-change-batches` &mdash; covers 0.12
+## 10. `J-cycle-direction-change-batches` &mdash; covers 0.12
 
 *Reads as: the claim asserts more than the declarations state (0.91).*
 
@@ -1555,181 +1080,7 @@ theorem force_two_right (ha : 0 < a) (hab : a < b) (hm : m ≤ y 0)
       RankedReturn a (b - 2 * a) y ((U ++ V) ++ V) V
 ```
 
-## 15. `J-cyclemin-walk-ostrowski-arithmetic` &mdash; covers 0.12
-
-*Reads as: the claim asserts more than the declarations state (0.89).*
-
-*Claim broader 0.89; declaration narrower 0.45; different result 0.3.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** Certified quotient arithmetic behind the Denjoy–Koksma block envelope (Paper A Theorem 5.7) and the window digit caps (Theorem 5.8). Lean proves: the big-integer sandwich 3^10781274 < 2^17087915 and 2^16785921 < 3^10590737 (theta_sandwich_upper/lower, norm_num, kernel-checked); the real bounds 6195184/16785921 < log(3/2)/log 3 < 6306641/17087915 (lower_lt_walkTheta, walkTheta_lt_upper, via Real.log monotonicity); both rational endpoints open with the continued-fraction quotients [2,1,2,2,3,1,5,2,23,2,2,1] and continue past them (cf_lower_prefix, cf_upper_prefix, cf_lower_continues, cf_upper_continues); and the standard convergent recurrence on those quotients yields the block-denominator list 1,2,3,8,19,65,84,485,1054,24727,50508,125743,176251 (theta_convergent_denominators); and the greed  *(truncated; read the ledger row)*
-
-**Declarations.** `theta_sandwich_upper` &mdash; kernel-checked, `Problems/Juggler/OstrowskiSandwich.lean:64`
-
-> Upper side of the sandwich: `3^10781274 < 2^17087915`, hence `log 2 / log 3 > 10781274 / 17087915`. Proved by `norm_num`, so the comparison is checked by the kernel rather than by the compiled runtime: these two inequalities carry the whole Ostrowski certification, and `Nat` literal arithmetic is GMP-backed in the kernel, so the five-million-digit comparison costs well under a second. Only the exponent threshold is raised, and only for this declaration: it gates whether the power is evaluated at all, whereas `maxRecDepth` is not consulted on this route.
-
-```lean
-theorem theta_sandwich_upper : (3 : ℕ) ^ 10781274 < 2 ^ 17087915
-```
-
-**And.** `lower_lt_walkTheta` &mdash; kernel-checked, `Problems/Juggler/OstrowskiSandwich.lean:78`
-
-> Real form of the lower sandwich: `6195184/16785921 < θ`.
-
-```lean
-theorem lower_lt_walkTheta : (6195184 : ℝ) / 16785921 < walkTheta
-```
-
-**And.** `walkTheta_lt_upper` &mdash; kernel-checked, `Problems/Juggler/OstrowskiSandwich.lean:90`
-
-> Real form of the upper sandwich: `θ < 6306641/17087915`.
-
-```lean
-theorem walkTheta_lt_upper : walkTheta < (6306641 : ℝ) / 17087915
-```
-
-**And.** `cf_lower_prefix` &mdash; kernel-checked, `Problems/Juggler/OstrowskiSandwich.lean:114`
-
-> The lower endpoint opens with the certified quotients.
-
-```lean
-theorem cf_lower_prefix :
-    (cfQuotients 64 16785921 6195184).take 12 = thetaQuotients
-```
-
-**And.** `cf_upper_prefix` &mdash; kernel-checked, `Problems/Juggler/OstrowskiSandwich.lean:119`
-
-> The upper endpoint opens with the certified quotients.
-
-```lean
-theorem cf_upper_prefix :
-    (cfQuotients 64 17087915 6306641).take 12 = thetaQuotients
-```
-
-**And.** `cf_lower_continues` &mdash; kernel-checked, `Problems/Juggler/OstrowskiSandwich.lean:124`
-
-> The lower endpoint's expansion continues past the shared prefix.
-
-```lean
-theorem cf_lower_continues :
-    12 < (cfQuotients 64 16785921 6195184).length
-```
-
-**And.** `cf_upper_continues` &mdash; kernel-checked, `Problems/Juggler/OstrowskiSandwich.lean:129`
-
-> The upper endpoint's expansion continues past the shared prefix.
-
-```lean
-theorem cf_upper_continues :
-    12 < (cfQuotients 64 17087915 6306641).length
-```
-
-**And.** `theta_convergent_denominators` &mdash; kernel-checked, `Problems/Juggler/OstrowskiSandwich.lean:146`
-
-> The certified quotients produce exactly the block-denominator list used by Paper A Theorem 5.7 and the window digit caps of Theorem 5.8.
-
-```lean
-theorem theta_convergent_denominators :
-    convergentDenoms thetaQuotients =
-      [1, 2, 3, 8, 19, 65, 84, 485, 1054, 24727, 50508, 125743, 176251]
-```
-
-**And.** `window_digit_max` &mdash; kernel-checked, `Problems/Juggler/OstrowskiSandwich.lean:202`
-
-> The sharp constant `37` is attained, at `L = 275632`, kernel-checked at its witness. It is no longer certified as an upper bound over the window: the scan that did so, `window_digit_scan`, was the Juggler layer's last `native_decide` and was retired on 14 September 2026. The pointwise bound is now `window_digit_cap` in `OstrowskiNumeration`, at the structural cap `47`. Kernel reduction of the scan as it stood was priced again before retiring it and is still out of range: `decide +kernel` takes 6.0 s for a thousand lengths and 33.2 s for four thousand, net of imports, so the full 251486 extrapolates to over half an hour and superlinearly.
-
-```lean
-theorem window_digit_max : greedyDigitSum 275632 = 37
-```
-
-**And.** `theta_convergent_numerators` &mdash; kernel-checked, `Problems/Juggler/OstrowskiSandwich.lean:227`
-
-> The certified quotients produce the numerator list matching `theta_convergent_denominators`.
-
-```lean
-theorem theta_convergent_numerators :
-    convergentNums thetaQuotients =
-      [0, 1, 1, 3, 7, 24, 31, 179, 389, 9126, 18641, 46408, 65049]
-```
-
-**And.** `thetaConvergents_eq_zip` &mdash; kernel-checked, `Problems/Juggler/OstrowskiSandwich.lean:240`
-
-> The pair list is exactly the zipped numerator/denominator recurrences.
-
-```lean
-theorem thetaConvergents_eq_zip :
-    thetaConvergents =
-      (convergentNums thetaQuotients).zip
-        (convergentDenoms thetaQuotients)
-```
-
-**And.** `theta_convergents_unimodular` &mdash; kernel-checked, `Problems/Juggler/OstrowskiSandwich.lean:248`
-
-> Unimodularity of consecutive certified pairs: `p_{j+1} q_j − p_j q_{j+1} = (−1)^j`.
-
-```lean
-theorem theta_convergents_unimodular :
-    ∀ i < 12,
-      ((thetaConvergents[i + 1]!).1 * (thetaConvergents[i]!).2 : ℤ) -
-        (thetaConvergents[i]!).1 * (thetaConvergents[i + 1]!).2 =
-          (-1) ^ i
-```
-
-**And.** `theta_convergents_coprime` &mdash; kernel-checked, `Problems/Juggler/OstrowskiSandwich.lean:256`
-
-> Every certified pair is coprime.
-
-```lean
-theorem theta_convergents_coprime :
-    ∀ pq ∈ thetaConvergents, Nat.Coprime pq.1 pq.2
-```
-
-**And.** `theta_convergent_quality` &mdash; kernel-checked, `Problems/Juggler/OstrowskiSandwich.lean:263`
-
-> **Convergent quality** (the Denjoy–Koksma hypothesis for the certified blocks): every certified convergent approximates `θ` to within `1/q²`, certified against the sandwich bounds.
-
-```lean
-theorem theta_convergent_quality :
-    ∀ pq ∈ thetaConvergents,
-      |walkTheta - (pq.1 : ℝ) / pq.2| < 1 / (pq.2 : ℝ) ^ 2
-```
-
-**And.** `residue_mul_bijective` &mdash; kernel-checked, `Problems/Juggler/OstrowskiSandwich.lean:313`
-
-> Multiplication by a coprime residue permutes `ZMod q` — the block-permutation fact behind Denjoy–Koksma: the `q` rotation steps of one certified block visit the `q` grid cells bijectively.
-
-```lean
-theorem residue_mul_bijective (q p : ℕ) (h : Nat.Coprime p q) :
-    Function.Bijective (fun i : ZMod q => (p : ZMod q) * i)
-```
-
-**And.** `theta_block_permutations` &mdash; kernel-checked, `Problems/Juggler/OstrowskiSandwich.lean:318`
-
-> Instance for every certified block.
-
-```lean
-theorem theta_block_permutations :
-    ∀ pq ∈ thetaConvergents,
-      Function.Bijective
-        (fun i : ZMod pq.2 => ((pq.1 : ℕ) : ZMod pq.2) * i)
-```
-
-**And.** `theta_sandwich_lower` &mdash; kernel-checked, `Problems/Juggler/OstrowskiSandwich.lean:70`
-
-> Lower side of the sandwich: `2^16785921 < 3^10590737`, hence `log 2 / log 3 < 10590737 / 16785921`. Kernel-checked, as above.
-
-```lean
-theorem theta_sandwich_lower : (2 : ℕ) ^ 16785921 < 3 ^ 10590737
-```
-
-**And.** `greedy_reconstruct_all` &mdash; kernel-checked, `Problems/Juggler/OstrowskiSandwich.lean:190`
-
-> **Reconstruction is structural, and universal.** The fold peels `L / q` and keeps `L % q` at each of the thirteen levels, so `Σ bⱼ qⱼ` telescopes back to `L` by the division algorithm — for every `L`, with no window hypothesis. This half of the old scan never needed one.
-
-```lean
-theorem greedy_reconstruct_all (L : ℕ) : greedyReconstruct L = L
-```
-
-## 16. `J-cycle-later-return-height` &mdash; covers 0.13
+## 11. `J-cycle-later-return-height` &mdash; covers 0.13
 
 *Reads as: the claim asserts more than the declarations state (0.9).*
 
@@ -1775,7 +1126,7 @@ theorem periodicOrbit_lr_height {m M k : ℕ} (hk : 0<k)
       m^127 < (2*(m^3-M))^64
 ```
 
-## 17. `J-fate-one-sided-conjecture` &mdash; covers 0.13
+## 12. `J-fate-one-sided-conjecture` &mdash; covers 0.13
 
 *Reads as: the claim asserts more than the declarations state (0.68).*
 
@@ -1884,7 +1235,7 @@ theorem exact_share_implies_conjecture {N₀ : ℕ} (hN : 2 ≤ N₀)
     ∀ n, 1 ≤ n → ReachesOne n
 ```
 
-## 18. `BTC-op-fragment-nd-nf` &mdash; covers 0.14
+## 13. `BTC-op-fragment-nd-nf` &mdash; covers 0.14
 
 *Reads as: the claim asserts more than the declarations state (0.94).*
 
@@ -1911,7 +1262,7 @@ theorem locally_confluent {a b c : OpFrag} (hb : Step a b) (hc : Step a c) :
     Join (ReflTransGen Step) b c
 ```
 
-## 19. `J-cycle-finance-inequality` &mdash; covers 0.14
+## 14. `J-cycle-finance-inequality` &mdash; covers 0.14
 
 *Reads as: the claim asserts more than the declarations state (0.91).*
 
@@ -1954,7 +1305,7 @@ theorem cycleMin_log_envelope {n : ℕ} {w : List Branch}
           (k : ℝ) * (3 : ℝ) ^ oddCount (w.take k) / n
 ```
 
-## 20. `J-cycle-subtractive-return-step` &mdash; covers 0.14
+## 15. `J-cycle-subtractive-return-step` &mdash; covers 0.14
 
 *Reads as: the claim asserts more than the declarations state (0.89).*
 
@@ -2025,159 +1376,7 @@ theorem right_word_statistics {a b : ℕ} (hab : a ≤ b) (A B : List Branch) :
         a * evenCount A + b * evenCount B
 ```
 
-## 21. `J-cycle-terminal-mixed-gap` &mdash; covers 0.14
-
-*Reads as: the claim asserts more than the declarations state (0.87).*
-
-*Claim broader 0.87; declaration narrower 0.49; different result 0.53.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** Every actual positive periodic orbit with minimum m>=3, attained maximum M<m^3 and all states in [m,M] supplies a primitive terminal two-base section {m,v}. The supplied period need not be least. The original adjacent pair follows induced words U,V with U(m)=v and V(v)=m, and guarded factors UV=P OE Q, VU=P EO Q. Their common prefix reaches the globally adjacent largest odd/smallest even pair (h,s), with O(h)=M and E(s)=m. The common suffix returns (floor(sqrt M),O(m)) to (m,v), and 0<O(m)-floor(sqrt M)<s-h. The periodic-set interface explicitly requires connectedness; the ordinary-orbit interface derives it. Primitive termination, original-set adjacency, exact cut identification and every guard are kernel checked. No contraction of the complete prefix/mixed/suffix passage or no-cycle conc  *(truncated; read the ledger row)*
-
-**Declarations.** `mixed_gap` &mdash; kernel-checked, `Problems/Juggler/ReturnTerminal.lean:167`
-
-```lean
-theorem mixed_gap {m h s : ℕ}
-    (hh1 : 1 ≤ h) (hh : h < m^2) (hs : m^2 < s) :
-    ((m^3).sqrt : ℤ) - ReturnCells.oe h < (s : ℤ) - h
-```
-
-**And.** `periodicExtrema_terminal_cut` &mdash; kernel-checked, `Problems/Juggler/ReturnTerminal.lean:310`
-
-> Connected actual cubic periodic sets supply the entire primitive terminal construction and its global odd/even cut identification.
-
-```lean
-theorem periodicExtrema_terminal_cut {C : Set ℕ} {m M : ℕ}
-    (D : CubicReturn.PeriodicExtrema C m M) (hm : 3 ≤ m) (hM : M < m ^ 3)
-    (hconnected : ∀ x ∈ C, ∀ z ∈ C, ∃ k, floorPower^[k] x = z) :
-    Nonempty (TerminalCut C m M)
-```
-
-**And.** `periodicOrbit_terminal_cut` &mdash; kernel-checked, `Problems/Juggler/ReturnTerminal.lean:370`
-
-> An ordinary positive actual period suffices; the given period need not be least, since the complete orbit set is reduced to its primitive permutation.
-
-```lean
-theorem periodicOrbit_terminal_cut {m M k : ℕ} (hk : 0 < k)
-    (hp : floorPower^[k] m = m)
-    (hbound : ∀ j < k, m ≤ floorPower^[j] m ∧ floorPower^[j] m ≤ M)
-    (hmax : ∃ j < k, floorPower^[j] m = M) (hm : 3 ≤ m) (hM : M < m ^ 3) :
-    Nonempty (TerminalCut (Set.range (fun j : ℕ => floorPower^[j] m)) m M)
-```
-
-**And.** `TerminalOrbitCut` &mdash; kernel-checked, `Problems/Juggler/ReturnTerminal.lean:323`
-
-> A terminal cut tied to the same complete sorted orbit witness. Its word totals count distinct primitive states, not the supplied period.
-
-```lean
-structure TerminalOrbitCut {m M k : ℕ} (S : ReturnSeams.PeriodicOrbitModel m M k)
-    extends TerminalCut (Set.range (fun j : ℕ => floorPower^[j] m)) m M where
-  length_total : lowerWord.length + upperWord.length = S.length
-  odd_total : oddCount lowerWord + oddCount upperWord =
-    (Finset.univ.filter (fun i => S.state i % 2 = 1)).card
-  even_total : evenCount lowerWord + evenCount upperWord =
-    (Finset.univ.filter (fun i => S.state i % 2 = 0)).card
-  least_period : S.length = Function.minimalPeriod floorPower m
-
-end Problems.Juggler.ReturnTerminal
-
-namespace Problems.Juggler.ReturnSeams.PeriodicOrbitModel
-```
-
-**And.** `terminal_cut_from_section` &mdash; kernel-checked, `Problems/Juggler/ReturnTerminal.lean:224`
-
-> A primitive guarded section produces the complete cut while retaining all three expanded word totals.
-
-```lean
-theorem terminal_cut_from_section {C : Set ℕ} {m M a b : ℕ} {y : ℕ → ℕ}
-    (D : CubicReturn.PeriodicExtrema C m M) (hm : 3 ≤ m) (hM : M < m ^ 3)
-    (ha : 0 < a) (hb : 0 < b) (h0 : y 0 = m)
-    (hr : ReturnSeams.RankedReturn a b y [.odd, .odd, .even] [.odd, .even])
-    (hsection : ReturnSeams.PrefixSection C (a + b) y) (hcop : Nat.Coprime a b) :
-    ∃ T : TerminalCut C m M,
-      T.lowerWord.length + T.upperWord.length = 3 * a + 2 * b ∧
-      oddCount T.lowerWord + oddCount T.upperWord = 2 * a + b ∧
-      evenCount T.lowerWord + evenCount T.upperWord = a + b
-```
-
-**And.** `periodicOrbit_terminal_totals` &mdash; kernel-checked, `Problems/Juggler/ReturnTerminal.lean:360`
-
-> Ordinary period data constructs a shared model and its primitive terminal cut.
-
-```lean
-theorem periodicOrbit_terminal_totals {m M k : ℕ} (hk : 0 < k)
-    (hp : floorPower^[k] m = m)
-    (hbound : ∀ j < k, m ≤ floorPower^[j] m ∧ floorPower^[j] m ≤ M)
-    (hmax : ∃ j < k, floorPower^[j] m = M) (hm : 3 ≤ m) (hM : M < m ^ 3) :
-    ∃ S : ReturnSeams.PeriodicOrbitModel m M k, Nonempty (TerminalOrbitCut S)
-```
-
-**And.** `cycleMin_terminal_totals` &mdash; kernel-checked, `Problems/Juggler/ReturnTerminal.lean:379`
-
-> Closed minimum itineraries retain primitive totals even when the word repeats.
-
-```lean
-theorem cycleMin_terminal_totals {m M : ℕ} {w : List Branch} (h : CycleMin m w)
-    (hupper : ∀ j < w.length, floorPower^[j] m ≤ M)
-    (hmax : ∃ j < w.length, floorPower^[j] m = M) (hm : 3 ≤ m) (hM : M < m ^ 3) :
-    ∃ S : ReturnSeams.PeriodicOrbitModel m M w.length, Nonempty (TerminalOrbitCut S)
-```
-
-**And.** `TerminalCut` &mdash; kernel-checked, `Problems/Juggler/ReturnTerminal.lean:174`
-
-> The complete terminal geometry, with every path interpreted on the original actual periodic set. This record contains no contraction premise for the prefix.
-
-```lean
-structure TerminalCut (C : Set ℕ) (m M : ℕ) where
-  next : ℕ
-  lowerWord : List Branch
-  upperWord : List Branch
-  commonPrefix : List Branch
-  suffix : List Branch
-  highOdd : ℕ
-  lowEven : ℕ
-  source_adjacent : AdjacentIn C m next
-  induced : ReturnWordFactorization.InducedPair lowerWord upperWord
-  factorization : ReturnWordFactorization.Factorization lowerWord upperWord commonPrefix suffix
-  lower_guard : follows m lowerWord
-```
-
-**And.** `AdjacentIn.image` &mdash; kernel-checked, `Problems/Juggler/ReturnTerminal.lean:60`
-
-> Every actual common prefix preserves the original adjacency.
-
-```lean
-theorem AdjacentIn.image {C : Set ℕ} {m M : ℕ}
-    (D : CubicReturn.PeriodicExtrema C m M) (hm : 3 ≤ m) (hM : M < m ^ 3)
-    {x y : ℕ} {P : List Branch} (h : AdjacentIn C x y)
-    (hx : follows x P) (hy : follows y P) :
-    AdjacentIn C (image x P) (image y P)
-```
-
-**And.** `AdjacentIn.cut_extrema` &mdash; kernel-checked, `Problems/Juggler/ReturnTerminal.lean:73`
-
-> A globally adjacent odd/even pair is the absolute cut and maps to the extrema.
-
-```lean
-theorem AdjacentIn.cut_extrema {C : Set ℕ} {m M h s : ℕ}
-    (D : CubicReturn.PeriodicExtrema C m M) (hm : 3 ≤ m) (hM : M < m ^ 3)
-    (hadj : AdjacentIn C h s) (hho : h % 2 = 1) (hse : s % 2 = 0) :
-    h < m ^ 2 ∧ m ^ 2 < s ∧
-      (∀ x ∈ C, x % 2 = 1 → x ≤ h) ∧
-      (∀ x ∈ C, x % 2 = 0 → s ≤ x) ∧
-      floorPower h = M ∧ floorPower s = m
-```
-
-**And.** `terminal_cut` &mdash; kernel-checked, `Problems/Juggler/ReturnTerminal.lean:337`
-
-> The fixed sorted orbit witness supplies terminal geometry and primitive totals.
-
-```lean
-theorem terminal_cut {m M k : ℕ} (S : PeriodicOrbitModel m M k)
-    (hm : 3 ≤ m) (hM : M < m ^ 3) :
-    Nonempty (ReturnTerminal.TerminalOrbitCut S)
-```
-
-## 22. `J-cycle-unit-perturbation` &mdash; covers 0.14
+## 16. `J-cycle-unit-perturbation` &mdash; covers 0.14
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -2276,7 +1475,7 @@ theorem cubicRounding_iterate_mem {b x : ℕ} (hb : 3 ≤ b) (ho : b % 2 = 1)
     cubicParityDomain b ((cubicRounding b)^[k] x)
 ```
 
-## 23. `J-cycle-ooe-exact-remainder-repair` &mdash; covers 0.15
+## 17. `J-cycle-ooe-exact-remainder-repair` &mdash; covers 0.15
 
 *Reads as: the claim asserts more than the declarations state (0.82).*
 
@@ -2402,7 +1601,7 @@ theorem recoverPeak_eq {x u z R : ℕ}
     recoverPeak x z R = (u ^ 3).sqrt
 ```
 
-## 24. `J-fate-contagion-elementary` &mdash; covers 0.15
+## 18. `J-fate-contagion-elementary` &mdash; covers 0.15
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -2533,7 +1732,7 @@ theorem conjecture_of_cylinder_bound {N₀ : ℕ} (hN : 2 ≤ N₀)
     ∀ n, 1 ≤ n → ReachesOne n
 ```
 
-## 25. `J-cubic-critical-localization-kernels` &mdash; covers 0.16
+## 19. `J-cubic-critical-localization-kernels` &mdash; covers 0.16
 
 *Reads as: the claim asserts more than the declarations state (0.77).*
 
@@ -2736,7 +1935,7 @@ theorem r_arc_deviation_count {α : Type*} [DecidableEq α]
     14380 ≤ D.card
 ```
 
-## 26. `J-cycle-later-return-certificate` &mdash; covers 0.16
+## 20. `J-cycle-later-return-certificate` &mdash; covers 0.16
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -2776,7 +1975,7 @@ theorem loss_exact (w : List Branch) (x : ℕ) :
     (x : ℝ) ^ exponent w - (eval w x : ℝ) = transportedLoss x w
 ```
 
-## 27. `J-cycle-quartic-formal-cells` &mdash; covers 0.16
+## 21. `J-cycle-quartic-formal-cells` &mdash; covers 0.16
 
 *Reads as: the claim asserts more than the declarations state (0.87).*
 
@@ -2894,7 +2093,7 @@ theorem logEta_lt_inv {v : ℝ} (hv : 1 < v) :
     logEta v < 1 / (v * Real.log v)
 ```
 
-## 28. `J-cycle-threshold-relaxation` &mdash; covers 0.16
+## 22. `J-cycle-threshold-relaxation` &mdash; covers 0.16
 
 *Reads as: the claim asserts more than the declarations state (0.89).*
 
@@ -2982,7 +2181,7 @@ theorem threshold_iterates_eq_of_compatible {b x : ℕ} (hb : 3 ≤ b)
     ∀ k, (thresholdMap b)^[k] x = floorPower^[k] x
 ```
 
-## 29. `J-fate-one-sided-moments` &mdash; covers 0.16
+## 23. `J-fate-one-sided-moments` &mdash; covers 0.16
 
 *Reads as: the claim asserts more than the declarations state (0.84).*
 
@@ -3092,7 +2291,7 @@ theorem one_sided_bound_kl {N₀ : ℕ} (hN : 2 ≤ N₀)
           / tilt (pC C) q ^ (pC C * d)
 ```
 
-## 30. `J-cycle-itinerary-length-ge-fourteen` &mdash; covers 0.17
+## 24. `J-cycle-itinerary-length-ge-fourteen` &mdash; covers 0.17
 
 *Reads as: the claim asserts more than the declarations state (0.92).*
 
@@ -3109,171 +2308,7 @@ theorem cycle_itinerary_length_ge_fourteen {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleItinerary n w) : 14 ≤ w.length
 ```
 
-## 31. `J-fate-collapse-bias` &mdash; covers 0.17
-
-*Reads as: the claim asserts more than the declarations state (0.86).*
-
-*Claim broader 0.86; declaration narrower 0.43; different result 0.19.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** The collapsed component is nearly fair, exact layer (Paper C Section 10(d), after the cylinder-energy measurement). For a finite set S of starts and a depth t, fiber S t v = #{n in S : J^t(n) = v}, window S t a b = the starts whose t-th iterate lies in [a, b], and windowBias S t a b = #{odd iterate} - #{even iterate} in the window, the bias of the next letter. windowBias = - sum over v in [a, b] of (-1)^v fiber(v) (windowBias_eq_sum, on card_filter_window), hence |windowBias| <= sum over v in [a, b) of |fiber(v+1) - fiber(v)| + fiber(b) (abs_windowBias_le), by summation by parts on alternating sums with the partial sums of (-1)^i bounded by 1 (abs_alt_sum_le). One step of the map: fiber(t+1, v) = sum of fiber(t, u) over the preimages u of v, all below (v+1)^2 (fiber_succ, lt_sq_succ_of_flo  *(truncated; read the ledger row)*
-
-**Declarations.** `collapse_bias_le` &mdash; kernel-checked, `Problems/Juggler/FateCollapse.lean:395`
-
-> **The collapsed component is nearly fair.** If the depth-`t` fiber profile lies between `m v` and `M v` on the double block `[v², (v+2)²)` for every `v` in `[a, b)`, the next-letter bias of the starts whose `(t+1)`-st iterate lies in `[a, b]` is at most `Σ_{v ∈ [a,b)} ((v+1)(M v - m v) + 2 M v)`, plus twice the mass arriving through odd preimages, plus one fiber.
-
-```lean
-theorem collapse_bias_le (S : Finset ℕ) (t a b : ℕ) (hab : a ≤ b)
-    (m M : ℕ → ℕ)
-    (hlo : ∀ v ∈ Ico a b, ∀ u ∈ Ico (v * v) ((v + 1 + 1) * (v + 1 + 1)),
-      m v ≤ fiber S t u)
-    (hhi : ∀ v ∈ Ico a b, ∀ u ∈ Ico (v * v) ((v + 1 + 1) * (v + 1 + 1)),
-      fiber S t u ≤ M v) :
-    |windowBias S (t + 1) a b|
-      ≤ ∑ v ∈ Ico a b, ((v + 1) * ((M v : ℝ) - m v) + 2 * M v)
-        + 2 * ∑ v ∈ Icc a b, oddPart S t v + fiber S (t + 1) b
-```
-
-**And.** `card_filter_window` &mdash; kernel-checked, `Problems/Juggler/FateCollapse.lean:65`
-
-> The starts of the window whose iterate satisfies `p` are counted by the fibers over the values of `[a, b]` satisfying `p`.
-
-```lean
-theorem card_filter_window (S : Finset ℕ) (t a b : ℕ) (p : ℕ → Prop) [DecidablePred p] :
-    ((window S t a b).filter fun n => p (floorPower^[t] n)).card
-      = ∑ v ∈ (Icc a b).filter p, fiber S t v
-```
-
-**And.** `windowBias_eq_sum` &mdash; kernel-checked, `Problems/Juggler/FateCollapse.lean:92`
-
-> The bias is the alternating sum of the fibers.
-
-```lean
-theorem windowBias_eq_sum (S : Finset ℕ) (t a b : ℕ) :
-    windowBias S t a b = -∑ v ∈ Icc a b, (-1 : ℝ) ^ v * fiber S t v
-```
-
-**And.** `abs_alt_sum_le` &mdash; kernel-checked, `Problems/Juggler/FateCollapse.lean:125`
-
-> Summation by parts: `|Σ_{i<n} (-1)^i h_i| ≤ Σ_{i<n-1} |h_{i+1} - h_i| + h_{n-1}` for nonnegative `h`.
-
-```lean
-theorem abs_alt_sum_le (h : ℕ → ℝ) (n : ℕ) (hn : 1 ≤ n) (hh : ∀ i < n, 0 ≤ h i) :
-    |∑ i ∈ range n, (-1 : ℝ) ^ i * h i|
-      ≤ ∑ i ∈ range (n - 1), |h (i + 1) - h i| + h (n - 1)
-```
-
-**And.** `abs_windowBias_le` &mdash; kernel-checked, `Problems/Juggler/FateCollapse.lean:161`
-
-> **The bias is bounded by the variation of the fiber profile.**
-
-```lean
-theorem abs_windowBias_le (S : Finset ℕ) (t a b : ℕ) (hab : a ≤ b) :
-    |windowBias S t a b|
-      ≤ ∑ v ∈ Ico a b, |(fiber S t (v + 1) : ℝ) - fiber S t v| + fiber S t b
-```
-
-**And.** `lt_sq_succ_of_floorPower_eq` &mdash; kernel-checked, `Problems/Juggler/FateCollapse.lean:187`
-
-> A preimage of `v` under the map lies below `(v+1)²`.
-
-```lean
-theorem lt_sq_succ_of_floorPower_eq {u v : ℕ} (h : floorPower u = v) :
-    u < (v + 1) * (v + 1)
-```
-
-**And.** `fiber_succ` &mdash; kernel-checked, `Problems/Juggler/FateCollapse.lean:204`
-
-> The fiber at depth `t+1` is the sum of the depth-`t` fibers over the preimages.
-
-```lean
-theorem fiber_succ (S : Finset ℕ) (t v : ℕ) :
-    fiber S (t + 1) v = ∑ u ∈ pre v, fiber S t u
-```
-
-**And.** `pre_filter_even` &mdash; kernel-checked, `Problems/Juggler/FateCollapse.lean:225`
-
-> The even preimages of `v` are the even numbers of `[v², (v+1)²)` (Lemma 3.1's even block, in fiber form).
-
-```lean
-theorem pre_filter_even (v : ℕ) :
-    (pre v).filter (fun u => u % 2 = 0)
-      = (Ico (v * v) ((v + 1) * (v + 1))).filter (fun u => u % 2 = 0)
-```
-
-**And.** `fiber_succ_eq` &mdash; kernel-checked, `Problems/Juggler/FateCollapse.lean:251`
-
-> `fiber(t+1, v) = blockSum + oddPart`.
-
-```lean
-theorem fiber_succ_eq (S : Finset ℕ) (t v : ℕ) :
-    (fiber S (t + 1) v : ℝ) = blockSum S t v + oddPart S t v
-```
-
-**And.** `evenCount_le` &mdash; kernel-checked, `Problems/Juggler/FateCollapse.lean:270`
-
-```lean
-theorem evenCount_le (v : ℕ) : evenCount v ≤ v + 1
-```
-
-**And.** `le_evenCount` &mdash; kernel-checked, `Problems/Juggler/FateCollapse.lean:288`
-
-```lean
-theorem le_evenCount (v : ℕ) : v ≤ evenCount v
-```
-
-**And.** `blockSum_sub_le` &mdash; kernel-checked, `Problems/Juggler/FateCollapse.lean:307`
-
-> **The even branch smooths.** If the depth-`t` profile lies between `m` and `M` on the double block `[v², (v+2)²)`, consecutive block sums differ by at most `(v+1)(M-m) + 2M`.
-
-```lean
-theorem blockSum_sub_le (S : Finset ℕ) (t v : ℕ) {m M : ℕ}
-    (hlo : ∀ u ∈ Ico (v * v) ((v + 1 + 1) * (v + 1 + 1)), m ≤ fiber S t u)
-    (hhi : ∀ u ∈ Ico (v * v) ((v + 1 + 1) * (v + 1 + 1)), fiber S t u ≤ M) :
-    |blockSum S t (v + 1) - blockSum S t v| ≤ (v + 1) * ((M : ℝ) - m) + 2 * M
-```
-
-**And.** `sum_abs_oddPart_sub_le` &mdash; kernel-checked, `Problems/Juggler/FateCollapse.lean:361`
-
-> The variation of the odd branch over a window is at most twice its mass.
-
-```lean
-theorem sum_abs_oddPart_sub_le (S : Finset ℕ) (t a b : ℕ) :
-    ∑ v ∈ Ico a b, |oddPart S t (v + 1) - oddPart S t v|
-      ≤ 2 * ∑ v ∈ Icc a b, oddPart S t v
-```
-
-**And.** `fiber_succ_sandwich` &mdash; kernel-checked, `Problems/Juggler/FateCollapse.lean:434`
-
-> **A sandwich propagates through an even step.** If the depth-`t` profile lies between `m` and `M` on the block `[v², (v+1)²)` and the odd branch at `v` carries at most `P`, then `v m ≤ fiber(t+1, v) ≤ (v+1) M + P`.
-
-```lean
-theorem fiber_succ_sandwich (S : Finset ℕ) (t v : ℕ) {m M P : ℕ}
-    (hlo : ∀ u ∈ Ico (v * v) ((v + 1) * (v + 1)), m ≤ fiber S t u)
-    (hhi : ∀ u ∈ Ico (v * v) ((v + 1) * (v + 1)), fiber S t u ≤ M)
-    (hP : oddPart S t v ≤ P) :
-    v * m ≤ fiber S (t + 1) v ∧ fiber S (t + 1) v ≤ (v + 1) * M + P
-```
-
-**And.** `collapse_bias_two_step` &mdash; kernel-checked, `Problems/Juggler/FateCollapse.lean:481`
-
-> **Two even steps.** If the depth-`t` profile lies between `m w` and `M w` on the block `[w⁴, (w+2)⁴)` and the odd branch at depth `t` is at most `P w` on `[w², (w+2)²)`, for every `w` in `[a, b)`, the next-letter bias of the starts whose `(t+2)`-nd iterate lies in `[a, b]` is bounded by the propagated sandwich `w² m w ≤ fiber(t+1, ·) ≤ (w+2)² M w + P w`: the relative oscillation of the profile is not amplified by an even step, and the loss is a relative `O(1/w)`.
-
-```lean
-theorem collapse_bias_two_step (S : Finset ℕ) (t a b : ℕ) (hab : a ≤ b) (m M P : ℕ → ℕ)
-    (hlo : ∀ w ∈ Ico a b, ∀ u ∈ Ico (w * w * (w * w)) ((w + 1 + 1) * (w + 1 + 1)
-      * ((w + 1 + 1) * (w + 1 + 1))), m w ≤ fiber S t u)
-    (hhi : ∀ w ∈ Ico a b, ∀ u ∈ Ico (w * w * (w * w)) ((w + 1 + 1) * (w + 1 + 1)
-      * ((w + 1 + 1) * (w + 1 + 1))), fiber S t u ≤ M w)
-    (hP : ∀ w ∈ Ico a b, ∀ v ∈ Ico (w * w) ((w + 1 + 1) * (w + 1 + 1)),
-      oddPart S t v ≤ P w) :
-    |windowBias S (t + 1 + 1) a b|
-      ≤ ∑ w ∈ Ico a b, ((w + 1) * ((((w + 1 + 1) * (w + 1 + 1) * M w + P w : ℕ) : ℝ)
-            - ((w * w * m w : ℕ) : ℝ))
-          + 2 * (((w + 1 + 1) * (w + 1 + 1) * M w + P w : ℕ) : ℝ))
-        + 2 * ∑ w ∈ Icc a b, oddPart S (t + 1) w + fiber S (t + 1 + 1) b
-```
-
-## 32. `J-small-cycle-census-eighteen` &mdash; covers 0.17
+## 25. `J-small-cycle-census-eighteen` &mdash; covers 0.17
 
 *Reads as: the claim asserts more than the declarations state (0.86).*
 
@@ -3321,7 +2356,7 @@ theorem cycle_finance_min_thirteen {n : ℕ} {w : List Branch}
       (w.length : ℝ) * (3 : ℝ) ^ oddCount w
 ```
 
-## 33. `J-small-cycle-census-eleven` &mdash; covers 0.17
+## 26. `J-small-cycle-census-eleven` &mdash; covers 0.17
 
 *Reads as: the claim asserts more than the declarations state (0.92).*
 
@@ -3357,7 +2392,7 @@ theorem cycleItinerary_iterate_not_lt_fifty_three {n : ℕ} {w : List Branch} {i
     53 ≤ floorPower^[i] n
 ```
 
-## 34. `J-cycle-short-return-cells` &mdash; covers 0.18
+## 27. `J-cycle-short-return-cells` &mdash; covers 0.18
 
 *Reads as: the claim asserts more than the declarations state (0.85).*
 
@@ -3462,7 +2497,7 @@ theorem oe_perfect_power_hidden_odd {s : ℕ} (hs : s % 2 = 1) :
       oe (s ^ 4) % 2 = 1
 ```
 
-## 35. `C-no-uniform-L-descent` &mdash; covers 0.19
+## 28. `C-no-uniform-L-descent` &mdash; covers 0.19
 
 *Reads as: the claim asserts more than the declarations state (0.93).*
 
@@ -3486,7 +2521,7 @@ theorem shortcutC_all_odd_iter {L k : ℕ} (hk : k ≤ L) :
     shortcutCIter k (2 ^ L - 1) = 3 ^ k * 2 ^ (L - k) - 1
 ```
 
-## 36. `J-above-anchor-hug-domination` &mdash; covers 0.19
+## 29. `J-above-anchor-hug-domination` &mdash; covers 0.19
 
 *Reads as: the claim asserts more than the declarations state (0.89).*
 
@@ -3514,7 +2549,7 @@ theorem aboveAnchor_odds_ge_hug {n : ℕ} {w : List Branch}
     hugOdds w.length ≤ oddCount w
 ```
 
-## 37. `J-cycle-itinerary-length-eleven-or-ge-fourteen` &mdash; covers 0.19
+## 30. `J-cycle-itinerary-length-eleven-or-ge-fourteen` &mdash; covers 0.19
 
 *Reads as: the claim asserts more than the declarations state (0.87).*
 
@@ -3559,7 +2594,7 @@ theorem no_cycle_itinerary_length_sixteen {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (hlen : w.length = 16) : ¬CycleItinerary n w
 ```
 
-## 38. `J-cycle-itinerary-length-thirty-eight-or-ge-thirty-nine` &mdash; covers 0.19
+## 31. `J-cycle-itinerary-length-thirty-eight-or-ge-thirty-nine` &mdash; covers 0.19
 
 *Reads as: the claim asserts more than the declarations state (0.81).*
 
@@ -3608,7 +2643,7 @@ theorem no_cycle_itinerary_length_lt_thirty_ne_nineteen {n : ℕ} {w : List Bran
     ¬CycleItinerary n w
 ```
 
-## 39. `J-cycle-ooe-family-chain-bound` &mdash; covers 0.19
+## 32. `J-cycle-ooe-family-chain-bound` &mdash; covers 0.19
 
 *Reads as: the claim asserts more than the declarations state (0.83).*
 
@@ -3665,96 +2700,7 @@ theorem ooeFamily_no_infinite_juggler_chain (r : ℕ → ℕ)
       ooeFamilySource (r (i+1))
 ```
 
-## 40. `J-cycle-upper-charge-monotonicity` &mdash; covers 0.19
-
-*Reads as: the claim asserts more than the declarations state (0.82).*
-
-*Claim broader 0.82; declaration narrower 0.54; different result 0.2.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** For fixed positive primitive length L and odd count o, all three nonlinear, finite geometric and closed geometric upper-cell charge bounds decrease strictly with the minimum m>1. If the selected bound at a real cutoff m0>1 is at most logGridSurplus L o, any FullUpperCellChargeBounds certificate at the same counts has m<m0. OrbitUpperChargeCertificate adapters use its own true least period and odd count. The nonlinear bound is at most the finite geometric bound, which is strictly below the closed geometric bound at positive scale. This formalizes symbolic cutoff propagation only; the 520-million numerical interval comparison and UC3 asymptotics remain outside Lean. No descent floor or period bound is changed.
-
-**Declarations.** `nonlinearChargeBound_strictAntiOn_minimum` &mdash; kernel-checked, `Problems/Juggler/CubicChargeMonotonicity.lean:123`
-
-> The nonlinear bound decreases with the minimum when both counts are held fixed.
-
-```lean
-theorem nonlinearChargeBound_strictAntiOn_minimum (L : ℕ) [NeZero L] (o : ℕ) :
-    StrictAntiOn (fun m => nonlinearChargeBound L (logGridScale (L
-```
-
-**And.** `finiteGeometricChargeBound_strictAntiOn_minimum` &mdash; kernel-checked, `Problems/Juggler/CubicChargeMonotonicity.lean:130`
-
-```lean
-theorem finiteGeometricChargeBound_strictAntiOn_minimum (L : ℕ) [NeZero L] (o : ℕ) :
-    StrictAntiOn (fun m => finiteGeometricChargeBound L (logGridScale (L
-```
-
-**And.** `closedGeometricChargeBound_strictAntiOn_minimum` &mdash; kernel-checked, `Problems/Juggler/CubicChargeMonotonicity.lean:137`
-
-```lean
-theorem closedGeometricChargeBound_strictAntiOn_minimum (L : ℕ) [NeZero L] (o : ℕ) :
-    StrictAntiOn (fun m => closedGeometricChargeBound L (logGridScale (L
-```
-
-**And.** `nonlinearChargeBound_le_finiteGeometric` &mdash; kernel-checked, `Problems/Juggler/CubicChargeMonotonicity.lean:99`
-
-> The named finite majorants retain the original nonlinear-to-geometric comparison.
-
-```lean
-theorem nonlinearChargeBound_le_finiteGeometric (L : ℕ) [NeZero L]
-    {A : ℝ} (hA : 0 < A) :
-    nonlinearChargeBound L A ≤ finiteGeometricChargeBound L A
-```
-
-**And.** `finiteGeometricChargeBound_lt_closed` &mdash; kernel-checked, `Problems/Juggler/CubicChargeMonotonicity.lean:105`
-
-> The finite majorant is strictly sharper than the closed geometric bound.
-
-```lean
-theorem finiteGeometricChargeBound_lt_closed (L : ℕ) [NeZero L]
-    {A : ℝ} (hA : 0 < A) :
-    finiteGeometricChargeBound L A < closedGeometricChargeBound L A
-```
-
-**And.** `nonlinear_cutoff_excludes` &mdash; kernel-checked, `Problems/Juggler/CubicChargeMonotonicity.lean:179`
-
-```lean
-theorem nonlinear_cutoff_excludes (h : FullUpperCellChargeBounds (L
-```
-
-**And.** `closedGeometric_cutoff_excludes` &mdash; kernel-checked, `Problems/Juggler/CubicChargeMonotonicity.lean:185`
-
-```lean
-theorem closedGeometric_cutoff_excludes (h : FullUpperCellChargeBounds (L
-```
-
-**And.** `minimum_lt_of_nonlinear_cutoff` &mdash; kernel-checked, `Problems/Juggler/CubicChargeMonotonicity.lean:196`
-
-> A symbolic nonlinear cutoff uses the counts of this same ordinary-orbit certificate.
-
-```lean
-theorem minimum_lt_of_nonlinear_cutoff {m M k : ℕ}
-    (Q : OrbitUpperChargeCertificate m M k) {m0 : ℝ} (hm0 : 1 < m0)
-    (hcut : let : NeZero Q.length
-```
-
-**And.** `minimum_lt_of_finiteGeometric_cutoff` &mdash; kernel-checked, `Problems/Juggler/CubicChargeMonotonicity.lean:204`
-
-```lean
-theorem minimum_lt_of_finiteGeometric_cutoff {m M k : ℕ}
-    (Q : OrbitUpperChargeCertificate m M k) {m0 : ℝ} (hm0 : 1 < m0)
-    (hcut : let : NeZero Q.length
-```
-
-**And.** `minimum_lt_of_closedGeometric_cutoff` &mdash; kernel-checked, `Problems/Juggler/CubicChargeMonotonicity.lean:212`
-
-```lean
-theorem minimum_lt_of_closedGeometric_cutoff {m M k : ℕ}
-    (Q : OrbitUpperChargeCertificate m M k) {m0 : ℝ} (hm0 : 1 < m0)
-    (hcut : let : NeZero Q.length
-```
-
-## 41. `J-fate-pressure-conjecture` &mdash; covers 0.19
+## 33. `J-fate-pressure-conjecture` &mdash; covers 0.19
 
 *Reads as: the claim asserts more than the declarations state (0.77).*
 
@@ -3884,7 +2830,7 @@ theorem noMomentum_implies_conjecture {N₀ : ℕ} (hN : 2 ≤ N₀)
     ∀ n, 1 ≤ n → ReachesOne n
 ```
 
-## 42. `BTN-sdsh-truncated-mod` &mdash; covers 0.2
+## 34. `BTN-sdsh-truncated-mod` &mdash; covers 0.2
 
 *Reads as: the claim asserts more than the declarations state (0.87).*
 
@@ -3918,75 +2864,7 @@ theorem short_horizon_equiv {gain s t : ℤ} {L : ℕ} {w : List ℤ}
     signedTrace gain s w = signedTrace gain t w
 ```
 
-## 43. `J-gapped-cycle-itinerary-eoe` &mdash; covers 0.21
-
-*Reads as: the claim asserts more than the declarations state (0.87).*
-
-*Claim broader 0.87; declaration narrower 0.36; different result 0.2.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** For every n ≥ 2, a ≥ 2, and b ≥ 3, the gapped three-even leftover O^a E O^b EOE is not a Juggler cycle itinerary. The same rotation classes apply: first-E CycleMin at k=0; bootstrap O^b EOE O^a E at k=a+1 (last-gap ≥ 2, with n=3 and b=3 failing after OOOE at 6); start OE at k=a+b+2; every other rotation ends odd. Lean theorem no_cycle_itinerary_gapped_three_even_eoe. This upgrades the CycleMin theorem to CycleItinerary; it is not first-E transport at a non-minimum start, not a bunched-tail theorem, not a length-8 or length-9 census, and not a halt theorem.
-
-**Declarations.** `no_cycle_itinerary_gapped_three_even_eoe` &mdash; kernel-checked, `Problems/Juggler/LeftoverFamilies.lean:2950`
-
-> The gapped three-even leftover `gappedThreeEvenEOE a b` is not a Juggler cycle itinerary at any `n >= 2`, for `a >= 2` and `b >= 3`.
-
-```lean
-theorem no_cycle_itinerary_gapped_three_even_eoe {n a b : ℕ}
-    (hn : 2 ≤ n) (ha : 2 ≤ a) (hb : 3 ≤ b) :
-    ¬CycleItinerary n (gappedThreeEvenEOE a b)
-```
-
-**And.** `gapped_eoe_rotate_succ_a` &mdash; kernel-checked, `Problems/Juggler/LeftoverFamilies.lean:2802`
-
-```lean
-theorem gapped_eoe_rotate_succ_a {a b : ℕ} :
-    rotateItinerary (gappedThreeEvenEOE a b) (a + 1) = gappedEOEBootstrap a b
-```
-
-**And.** `no_cycleMin_gapped_eoe_bootstrap` &mdash; kernel-checked, `Problems/Juggler/LeftoverFamilies.lean:2897`
-
-```lean
-theorem no_cycleMin_gapped_eoe_bootstrap {n a b : ℕ}
-    (hn : 2 ≤ n) (ha : 2 ≤ a) (hb : 3 ≤ b)
-    (h : CycleMin n (gappedEOEBootstrap a b)) : False
-```
-
-**And.** `no_follows_three_eoe_bootstrap` &mdash; kernel-checked, `Problems/Juggler/LeftoverFamilies.lean:2845`
-
-```lean
-theorem no_follows_three_eoe_bootstrap {b : ℕ} (hb : 3 ≤ b) :
-    ¬follows 3 (gappedEOEBootstrap 2 b)
-```
-
-**And.** `cycleMin_rotate_start_OE` &mdash; kernel-checked, `Problems/Juggler/LeftoverFamilies.lean:2540`
-
-```lean
-theorem cycleMin_rotate_start_OE {n : ℕ} {w : List Branch} {k : ℕ}
-    (hn : 2 ≤ n) (hk : k + 1 < w.length)
-    (ho : w[k] = Branch.odd) (he : w[k + 1] = Branch.even)
-    (h : CycleMin n (rotateItinerary w k)) : False
-```
-
-**And.** `cycleMin_of_rotate_ends_odd` &mdash; kernel-checked, `Problems/Juggler/LeftoverFamilies.lean:2525`
-
-```lean
-theorem cycleMin_of_rotate_ends_odd {n : ℕ} {w : List Branch} {k : ℕ}
-    (hn : 2 ≤ n) (hk0 : 0 < k) (hk : k ≤ w.length)
-    (hodd : w[k - 1]'(Nat.lt_of_lt_of_le (Nat.sub_one_lt_of_lt hk0) hk) =
-      Branch.odd)
-    (h : CycleMin n (rotateItinerary w k)) : False
-```
-
-**And.** `gappedThreeEvenEOE_pred_odd` &mdash; kernel-checked, `Problems/Juggler/LeftoverFamilies.lean:2750`
-
-```lean
-theorem gappedThreeEvenEOE_pred_odd {a b k : ℕ}
-    (hk0 : 0 < k) (hk : k < a + b + 4) (hne1 : k ≠ a + 1)
-    (hne2 : k ≠ a + b + 2) :
-    (gappedThreeEvenEOE a b)[k - 1]'(by
-```
-
-## 44. `J-mixed-oe-eighth` &mdash; covers 0.21
+## 35. `J-mixed-oe-eighth` &mdash; covers 0.21
 
 *Reads as: the claim asserts more than the declarations state (0.85).*
 
@@ -4014,7 +2892,7 @@ theorem cube_lift_even_reset_fourth {x n : ℕ}
     floorPower (floorPower x) ^ 4 < n ^ 9
 ```
 
-## 45. `J-fate-contagion-conditional` &mdash; covers 0.22
+## 36. `J-fate-contagion-conditional` &mdash; covers 0.22
 
 *Reads as: the claim asserts more than the declarations state (0.81).*
 
@@ -4125,7 +3003,7 @@ theorem conjecture_of_cylinder_bound_of_production {N₀ : ℕ} (hN : 2 ≤ N₀
     ∀ n, 1 ≤ n → ReachesOne n
 ```
 
-## 46. `J-fate-one-sided-atoms` &mdash; covers 0.22
+## 37. `J-fate-one-sided-atoms` &mdash; covers 0.22
 
 *Reads as: the claim asserts more than the declarations state (0.67).*
 
@@ -4281,223 +3159,7 @@ theorem exc_conj_of_contagion {N₀ : ℕ} (hN : 2 ≤ N₀)
     ∀ n, 1 ≤ n → ReachesOne n
 ```
 
-## 47. `J-cycle-branch-offset-obstruction` &mdash; covers 0.23
-
-*Reads as: the claim asserts more than the declarations state (0.76).*
-
-*Claim broader 0.76; declaration narrower 0.5; different result 0.2.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** Let G(1)=1, G(x)=J(x)-1 for odd x>=3, and G(x)=J(x) for even x. Exact integer square-cell inequalities certify the primitive cycle 13,45,300,17,69,572,23,109,1136,33,188,13, with (L,o,e)=(11,7,4) and maximum 1136<13^3. It is also an R_11 cycle. For any two odd sources >=3, or two positive even sources, G(x')-G(x)=J(x')-J(x). All same-branch higher finite differences on sources >1 therefore agree as well. Even strict nearest-even smooth-gap tests hold for same-parity successor pairs. Hence correct source parity, global rank order and exact within-branch image differences restricted to sources >1 alone cannot exclude cycles: an additive branch constant is lost. Differences involving 1 are excluded because they could anchor the odd-branch constant. This is a cycle of a different map, not a Ju  *(truncated; read the ledger row)*
-
-**Declarations.** `branchOffset_same_branch_difference` &mdash; kernel-checked, `Problems/Juggler/CubicRounding.lean:326`
-
-> All same-branch differences above one coincide, as integer differences.
-
-```lean
-theorem branchOffset_same_branch_difference {x y : ℕ}
-    (hx : 1 < x) (hy : 1 < y) (hp : x % 2 = y % 2) :
-    (branchOffset y : ℤ) - branchOffset x = (floorPower y : ℤ) - floorPower x
-```
-
-**And.** `branchOffset_same_branch_smooth_gap` &mdash; kernel-checked, `Problems/Juggler/CubicRounding.lean:368`
-
-> The strict smooth gap test survives the constant shift on a whole branch.
-
-```lean
-theorem branchOffset_same_branch_smooth_gap {x y : ℕ}
-    (hx : 1 < x) (hy : 1 < y) (hp : x % 2 = y % 2) :
-    |((branchOffset y : ℝ) - branchOffset x) -
-      (cubicBranchValue y - cubicBranchValue x)| < 1
-```
-
-**And.** `branchOffset_nearest_even_gap` &mdash; kernel-checked, `Problems/Juggler/CubicRounding.lean:393`
-
-> Whenever the shifted successors have equal parity, their gap passes the unique-even test.
-
-```lean
-theorem branchOffset_nearest_even_gap {x y : ℕ}
-    (hx : 1 < x) (hy : 1 < y) (hp : x % 2 = y % 2)
-    (hs : branchOffset x % 2 = branchOffset y % 2) :
-    ∀ k : ℤ, k % 2 = 0 →
-      |(k : ℝ) - (cubicBranchValue y - cubicBranchValue x)| < 1 →
-      k = (branchOffset y : ℤ) - branchOffset x
-```
-
-**And.** `branchOffsetCycle_primitive` &mdash; kernel-checked, `Problems/Juggler/CubicRounding.lean:439`
-
-```lean
-theorem branchOffsetCycle_primitive :
-    ∀ i j : Fin 11, branchOffset^[i.val] 13 = branchOffset^[j.val] 13 → i = j
-```
-
-**And.** `branchOffsetCycle_cells` &mdash; kernel-checked, `Problems/Juggler/CubicRounding.lean:414`
-
-```lean
-theorem branchOffsetCycle_cells :
-    branchOffsetCycle.map floorPower = [46,301,17,70,573,23,110,1137,33,189,13]
-```
-
-**And.** `branchOffset` &mdash; kernel-checked, `Problems/Juggler/CubicRounding.lean:322`
-
-> The shifted odd branch preserves the fixed point at one.
-
-```lean
-def branchOffset (x : ℕ) : ℕ
-```
-
-**And.** `branchOffsetCycle` &mdash; kernel-checked, `Problems/Juggler/CubicRounding.lean:406`
-
-> The literal shifted cycle, listed before its return.
-
-```lean
-def branchOffsetCycle : List ℕ
-```
-
-**And.** `branchOffsetCycle_edges` &mdash; kernel-checked, `Problems/Juggler/CubicRounding.lean:408`
-
-```lean
-theorem branchOffsetCycle_edges :
-    branchOffsetCycle.map branchOffset = branchOffsetCycle.tail ++ [13]
-```
-
-**And.** `branchOffsetCycle_distinct` &mdash; kernel-checked, `Problems/Juggler/CubicRounding.lean:412`
-
-```lean
-theorem branchOffsetCycle_distinct : branchOffsetCycle.Nodup
-```
-
-**And.** `branchOffsetCycle_counts` &mdash; kernel-checked, `Problems/Juggler/CubicRounding.lean:427`
-
-```lean
-theorem branchOffsetCycle_counts :
-    branchOffsetCycle.length = 11 ∧
-    (branchOffsetCycle.filter (fun x => x % 2 = 1)).length = 7 ∧
-    (branchOffsetCycle.filter (fun x => x % 2 = 0)).length = 4 ∧ 1136 < 13 ^ 3
-```
-
-**And.** `branchOffsetCycle_bounds` &mdash; kernel-checked, `Problems/Juggler/CubicRounding.lean:422`
-
-```lean
-theorem branchOffsetCycle_bounds :
-    ∀ x ∈ branchOffsetCycle, 13 ≤ x ∧ x ≤ 1136 ∧ cubicParityDomain 11 x
-```
-
-**And.** `branchOffsetCycle_rounding` &mdash; kernel-checked, `Problems/Juggler/CubicRounding.lean:418`
-
-```lean
-theorem branchOffsetCycle_rounding :
-    branchOffsetCycle.map (cubicRounding 11) = branchOffsetCycle.tail ++ [13]
-```
-
-**And.** `branchOffsetCycle_iterate` &mdash; kernel-checked, `Problems/Juggler/CubicRounding.lean:433`
-
-```lean
-theorem branchOffsetCycle_iterate : branchOffset^[11] 13 = 13
-```
-
-**And.** `branchOffsetCycle_iterates` &mdash; kernel-checked, `Problems/Juggler/CubicRounding.lean:435`
-
-```lean
-theorem branchOffsetCycle_iterates :
-    (List.range 11).map (fun k => branchOffset^[k] 13) = branchOffsetCycle
-```
-
-**And.** `branchOffsetCycle_rank_rotation` &mdash; kernel-checked, `Problems/Juggler/CubicRounding.lean:443`
-
-```lean
-theorem branchOffsetCycle_rank_rotation :
-    [13,17,23,33,45,69,109,188,300,572,1136].map branchOffset =
-    [45,69,109,188,300,572,1136,13,17,23,33]
-```
-
-## 48. `J-cycle-upper-charge-least-period` &mdash; covers 0.23
-
-*Reads as: the claim asserts more than the declarations state (0.81).*
-
-*Claim broader 0.81; declaration narrower 0.47; different result 0.16.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** An actual positive closed orbit with minimum m>1, attained maximum M<m^3 and all states in [m,M] supplies an OrbitUpperChargeCertificate extending one complete PeriodicOrbitModel. The same sorted states and successor permutation retain full coverage, extrema, the exact odd count, parity and threshold cuts, rank rotation, coprimality, true least period, RealizedGridBounds and FullUpperCellChargeBounds. The latter retains the stronger finite nonlinear charge before its finite geometric and closed scalar relaxations. An existing model can be strengthened with equality of the projected base, so terminal and charge data share one witness. The CycleMin adapter handles repeated itineraries; older existential interfaces are unchanged projections. No numerical cutoff, asymptotic estimate or cycle e  *(truncated; read the ledger row)*
-
-**Declarations.** `periodicOrbit_upper_charge` &mdash; kernel-checked, `Problems/Juggler/CubicOrbitCharge.lean:109`
-
-> An ordinary finite actual orbit yields the complete grid and charge at its true least period.
-
-```lean
-theorem periodicOrbit_upper_charge {m M k : ℕ} (hk : 0 < k)
-    (hp : floorPower^[k] m = m) (hm : 1 < m) (hM : M < m ^ 3)
-    (hbound : ∀ j < k, m ≤ floorPower^[j] m ∧ floorPower^[j] m ≤ M)
-    (hmax : ∃ j < k, floorPower^[j] m = M) :
-    ∃ (L : ℕ) (hL : 0 < L) (c : Fin L → ℕ),
-      let : NeZero L
-```
-
-**And.** `cycleMin_upper_charge` &mdash; kernel-checked, `Problems/Juggler/CubicOrbitCharge.lean:139`
-
-> A minimum-based closed itinerary is normalized to its least period before applying the charge.
-
-```lean
-theorem cycleMin_upper_charge {m M : ℕ} {w : List Branch}
-    (hcycle : CycleMin m w) (hm : 1 < m) (hM : M < m ^ 3)
-    (hbound : ∀ j < w.length, floorPower^[j] m ≤ M)
-    (hmax : ∃ j < w.length, floorPower^[j] m = M) :
-    ∃ (L : ℕ) (hL : 0 < L) (c : Fin L → ℕ),
-      let : NeZero L
-```
-
-**And.** `OrbitUpperChargeCertificate` &mdash; kernel-checked, `Problems/Juggler/CubicOrbitCharge.lean:8`
-
-> The same complete ordinary-orbit model, retaining its rotation and all charge bounds.
-
-```lean
-structure OrbitUpperChargeCertificate (m M k : ℕ)
-    extends ReturnSeams.PeriodicOrbitModel m M k where
-  oddCount : ℕ
-  oddCount_le : oddCount ≤ length
-  oddCount_card : (Finset.univ.filter (fun i => state i % 2 = 1)).card = oddCount
-  odd_cut : ∀ i, state i % 2 = 1 ↔ i.val < oddCount
-  threshold_cut : ∀ i, state i < m ^ 2 ↔ i.val < oddCount
-  rotation : ∀ i, (next i).val = (i.val + (length - oddCount)) % length
-  coprime : Nat.Coprime length oddCount
-  period_eq : length = Function.minimalPeriod floorPower m
-  band : ∀ i, InCubicBand m (state i)
-  grid :
-```
-
-**And.** `orbitModel_upper_charge` &mdash; kernel-checked, `Problems/Juggler/CubicOrbitCharge.lean:38`
-
-> Strengthen an existing model without choosing a second sorted state set or permutation.
-
-```lean
-theorem orbitModel_upper_charge {m M k : ℕ}
-    (S : ReturnSeams.PeriodicOrbitModel m M k) (hm : 1 < m) (hM : M < m ^ 3) :
-    ∃ Q : OrbitUpperChargeCertificate m M k, Q.toPeriodicOrbitModel = S
-```
-
-**And.** `periodicOrbit_upper_charge_certificate` &mdash; kernel-checked, `Problems/Juggler/CubicOrbitCharge.lean:99`
-
-> One ordinary periodic orbit produces one complete rotation-and-charge certificate.
-
-```lean
-theorem periodicOrbit_upper_charge_certificate {m M k : ℕ} (hk : 0 < k)
-    (hp : floorPower^[k] m = m) (hm : 1 < m) (hM : M < m ^ 3)
-    (hbound : ∀ j < k, m ≤ floorPower^[j] m ∧ floorPower^[j] m ≤ M)
-    (hmax : ∃ j < k, floorPower^[j] m = M) :
-    Nonempty (OrbitUpperChargeCertificate m M k)
-```
-
-**And.** `cycleMin_upper_charge_certificate` &mdash; kernel-checked, `Problems/Juggler/CubicOrbitCharge.lean:128`
-
-> A minimum-based itinerary retains the same full certificate at its true least period.
-
-```lean
-theorem cycleMin_upper_charge_certificate {m M : ℕ} {w : List Branch}
-    (hcycle : CycleMin m w) (hm : 1 < m) (hM : M < m ^ 3)
-    (hbound : ∀ j < w.length, floorPower^[j] m ≤ M)
-    (hmax : ∃ j < w.length, floorPower^[j] m = M) :
-    Nonempty (OrbitUpperChargeCertificate m M w.length)
-```
-
-## 49. `J-fate-certified-thirty` &mdash; covers 0.24
+## 38. `J-fate-certified-thirty` &mdash; covers 0.24
 
 *Reads as: the claim asserts more than the declarations state (0.86).*
 
@@ -4746,7 +3408,7 @@ theorem one_sided_thirty {N₀ : ℕ} (hN : 2 ≤ N₀)
     ∀ n, 1 ≤ n → ReachesOne n
 ```
 
-## 50. `J-fate-classes-density-averaged` &mdash; covers 0.24
+## 39. `J-fate-classes-density-averaged` &mdash; covers 0.24
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -4830,66 +3492,7 @@ theorem escapes_natDensity_averaged {a : ℕ} (ha : 1 ≤ a) (hesc : EscapesToIn
       c * y * Real.log y ^ (lam - 1) ≤ (blockCount EscapesToInfinity y : ℝ)
 ```
 
-## 51. `J-paper-b-E-is-the-exponent-walk` &mdash; covers 0.24
-
-*Reads as: the claim asserts more than the declarations state (0.85).*
-
-*Claim broader 0.85; declaration narrower 0.35; different result 0.1.  Tag EXACT — HUMAN PROOF, trust kernel.*
-
-**Row.** Paper B section 7's composed map is the exponent walk of the Paper C collision work, and its linearisation criterion is a unit climb of that walk. With the notation of J-paper-b-defect-coefficient-chain, e_t = 3^(o_t) / 2^t exactly, where o_t is the number of odd letters up to t (`iter_eq_pow`). Taking log base 2 gives e_t = 2^(u_t) with u_t = o_t log2(3) - t, which is the walk J-live-set-ladder-factorisation splits at, J-damping-at-running-minimum is about, and J-dominant-defect-at-walk-minimum measures the climb of. Hence E = e_{t-1}/e_s = 2^(u_{t-1} - u_s), and E < 2 says exactly that the walk climbs by less than one unit between the defect at letter s and the wave at letter t. Two consequences. (i) The criterion is an exact integer inequality in the counts: with a odd and b even letter  *(truncated; read the ledger row)*
-
-**Declarations.** `iter_eq_pow` &mdash; kernel-checked, `Problems/Juggler/PaperBChainRule.lean:167`
-
-> **The exponent walk, exactly.** `e_t = 3^(o_t) / 2^t`. Taking `log₂` gives `u_t = o_t log₂ 3 - t`, the walk the Paper C work is built on; this is that statement before any logarithm, so it is exact.
-
-```lean
-theorem iter_eq_pow (w : List Letter) :
-    iter w = 3 ^ (oddCount w) / 2 ^ w.length
-```
-
-**And.** `lt_two_iff_counts` &mdash; kernel-checked, `Problems/Juggler/PaperBChainRule.lean:187`
-
-> **The criterion in the counts.** `E < 2` is the exact integer inequality `3^a < 2^(a+b+1)`, with `a` the odd letters of the block and `a + b` its length. No real logarithm and no floating point anywhere.
-
-```lean
-theorem lt_two_iff_counts (w : List Letter) :
-    iter w < 2 ↔ (3 : ℚ) ^ (oddCount w) < 2 ^ (w.length + 1)
-```
-
-**And.** `iter_eq_of_counts` &mdash; kernel-checked, `Problems/Juggler/PaperBChainRule.lean:195`
-
-> **Order independence.** The criterion does not see the order of the block, only how many of each letter it holds. Immediate from `iter_eq_pow`, and not obvious from the product form.
-
-```lean
-theorem iter_eq_of_counts (v w : List Letter)
-    (ho : oddCount v = oddCount w) (hl : v.length = w.length) :
-    iter v = iter w
-```
-
-**And.** `lt_two_congr` &mdash; kernel-checked, `Problems/Juggler/PaperBChainRule.lean:201`
-
-> The same statement for the criterion itself.
-
-```lean
-theorem lt_two_congr (v w : List Letter)
-    (ho : oddCount v = oddCount w) (hl : v.length = w.length) :
-    iter v < 2 ↔ iter w < 2
-```
-
-**And.** `oddCount` &mdash; kernel-checked, `Problems/Juggler/PaperBChainRule.lean:151`
-
-> The number of odd letters in a word: `o_t`.
-
-```lean
-def oddCount : List Letter → ℕ
-  | [] => 0
-  | Letter.O :: w => oddCount w + 1
-  | Letter.E :: w => oddCount w
-
-@[simp] theorem oddCount_nil : oddCount [] = 0
-```
-
-## 52. `J-tao-rate-implies-conjecture` &mdash; covers 0.24
+## 40. `J-tao-rate-implies-conjecture` &mdash; covers 0.24
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -4969,7 +3572,7 @@ theorem tao_rate_implies_empty {A : ℕ → Prop} (hF : ForwardClosed A) (h1 : �
 
 **Doubtful from here: coverage between 0.25 and 0.5.**
 
-## 53. `J-cubic-remainder-assembly` &mdash; covers 0.25
+## 41. `J-cubic-remainder-assembly` &mdash; covers 0.25
 
 *Reads as: the claim asserts more than the declarations state (0.74).*
 
@@ -5092,7 +3695,7 @@ theorem leftover_run_deviation_of_blocks {C S : ℕ}
     (hC : 14569 ≤ C) (hcover : C ≤ 1 + 2 * S) : 7284 ≤ S
 ```
 
-## 54. `J-cycle-cubic-band-order` &mdash; covers 0.25
+## 42. `J-cycle-cubic-band-order` &mdash; covers 0.25
 
 *Reads as: the claim asserts more than the declarations state (0.9).*
 
@@ -5118,7 +3721,7 @@ theorem cubicBand_mechanical_itinerary {m L : ℕ} (hL : 0 < L)
           (k * o + L - 1) / L
 ```
 
-## 55. `BTL-zero-output` &mdash; covers 0.26
+## 43. `BTL-zero-output` &mdash; covers 0.26
 
 *Reads as: the claim asserts more than the declarations state (0.81).*
 
@@ -5136,7 +3739,7 @@ theorem lift_iff_outputs_zero (w : List ℤ) (f : ℤ[X]) :
       outputAlong w f = List.replicate w.length (0 : ℤ)
 ```
 
-## 56. `J-cycle-itinerary-eliahou-leftover` &mdash; covers 0.26
+## 44. `J-cycle-itinerary-eliahou-leftover` &mdash; covers 0.26
 
 *Reads as: the claim asserts more than the declarations state (0.67).*
 
@@ -5179,7 +3782,7 @@ def EliahouLeftover (L : ℕ) (exceptions : List ℕ) : Prop
 def eliahouTableCutoff : ℕ
 ```
 
-## 57. `J-cycle-itinerary-length-eighty-four-or-ge-eighty-five` &mdash; covers 0.26
+## 45. `J-cycle-itinerary-length-eighty-four-or-ge-eighty-five` &mdash; covers 0.26
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -5236,7 +3839,7 @@ theorem no_cycle_itinerary_length_lt_eighty_four {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (hLt : w.length < 84) : ¬CycleItinerary n w
 ```
 
-## 58. `J-cyclemin-walk-transport-envelope` &mdash; covers 0.26
+## 46. `J-cyclemin-walk-transport-envelope` &mdash; covers 0.26
 
 *Reads as: the claim asserts more than the declarations state (0.81).*
 
@@ -5293,118 +3896,7 @@ theorem one_le_walkWeight {n : ℕ} {w : List Branch} (hn : 2 ≤ n)
     1 ≤ walkWeight w k
 ```
 
-## 59. `J-fate-share-law-layer` &mdash; covers 0.26
-
-*Reads as: the claim asserts more than the declarations state (0.82).*
-
-*Claim broader 0.82; declaration narrower 0.48; different result 0.1.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** The exact layer of Paper C Section 4.3, the share law (Lemma 4.5) and Corollary 4.6. The expansion: along a fiber n_j = n_1 + 2(j-1) the phase x_j = n_j^{3/2}/2 (xval) equals x_1 + (3/2) sqrt(n_1) (j-1) + (3/4) (j-1)^2 / sqrt(n_1) + E_j with |E_j| <= (1/4)(j-1)^3 n_1^{-3/2} (xval_expansion); the Taylor step is, after v = sqrt(1+u), the polynomial inequality 0 <= 1 + (3/2)(v^2-1) + (3/8)(v^2-1)^2 - v^3 <= (v^2-1)^3/16 (taylor_three_halves), no derivative taken; on a fiber Phi(m) the remainder is at most (2/27)(m+1)/m^2 (xval_expansion_fiber), the paper's O(1/m) with a constant. The range: phi_beta(s) = beta s + s^2/3 has on [0,1] the range beta + 1/3 for beta >= 0, -beta - 1/3 for beta <= -2/3, and max(0, beta + 1/3) + (3/4) beta^2 between (phiRange; never exceeded, phi_sub_le; attained, ex  *(truncated; read the ledger row)*
-
-**Declarations.** `xval_expansion` &mdash; kernel-checked, `Problems/Juggler/FateShareLaw.lean:60`
-
-> **The fiber phase expanded about its first term.** With `x_j = xval n_j = n_j^{3/2}/2` and `n_j = n₁ + 2d`: `x_j = x₁ + (3/2)√n₁ d + (3/4) d²/√n₁ + E` where `|E| ≤ (1/4) d³/n₁^{3/2}`.
-
-```lean
-theorem xval_expansion {n₁ : ℕ} (hn : 1 ≤ n₁) (d : ℕ) :
-    |xval (n₁ + 2 * d) - (xval n₁ + 3 / 2 * Real.sqrt n₁ * d + 3 / 4 * (d : ℝ) ^ 2 / Real.sqrt n₁)|
-      ≤ 1 / 4 * (d : ℝ) ^ 3 / Real.sqrt n₁ ^ 3
-```
-
-**And.** `taylor_three_halves` &mdash; kernel-checked, `Problems/Juggler/FateShareLaw.lean:49`
-
-> Second-order Taylor of `(1+u)^{3/2}` in `u = v² - 1`, with the cubic remainder, as polynomial algebra: `0 ≤ 1 + (3/2)u + (3/8)u² - v³ ≤ u³/16` for `v ≥ 1`. In `w = v - 1` the middle expression is `w³/2 + 3w⁴/8` and the right side is that plus `3w⁴/8 + 3w⁵/8 + w⁶/16`.
-
-```lean
-theorem taylor_three_halves {v : ℝ} (hv : 1 ≤ v) :
-    0 ≤ 1 + 3 / 2 * (v ^ 2 - 1) + 3 / 8 * (v ^ 2 - 1) ^ 2 - v ^ 3 ∧
-      1 + 3 / 2 * (v ^ 2 - 1) + 3 / 8 * (v ^ 2 - 1) ^ 2 - v ^ 3 ≤ (v ^ 2 - 1) ^ 3 / 16
-```
-
-**And.** `xval_expansion_fiber` &mdash; kernel-checked, `Problems/Juggler/FateShareLaw.lean:103`
-
-> On a fiber `Φ(m)`, `m ≥ 1`, the remainder is at most `(2/27)(m+1)/m²`: `d ≤ (2/3)(m+1)^{1/3}` since both ends lie in the fiber, and `√n₁³ = n₁^{3/2} ≥ m²`. The paper's `|E_j| ≪ m^{-1}`.
-
-```lean
-theorem xval_expansion_fiber {m n₁ d : ℕ} (hm : 1 ≤ m) (h₁ : n₁ ∈ oeFiber m)
-    (h₂ : n₁ + 2 * d ∈ oeFiber m) :
-    |xval (n₁ + 2 * d) - (xval n₁ + 3 / 2 * Real.sqrt n₁ * d + 3 / 4 * (d : ℝ) ^ 2 / Real.sqrt n₁)|
-      ≤ 2 / 27 * ((m : ℝ) + 1) / (m : ℝ) ^ 2
-```
-
-**And.** `phi_sub_le` &mdash; kernel-checked, `Problems/Juggler/FateShareLaw.lean:157`
-
-> Two values of `φ_β` on `[0, 1]` differ by at most the range.
-
-```lean
-theorem phi_sub_le (β : ℝ) {s t : ℝ} (hs : s ∈ Set.Icc (0 : ℝ) 1) (ht : t ∈ Set.Icc (0 : ℝ) 1) :
-    phi β s - phi β t ≤ phiRange β
-```
-
-**And.** `exists_phi_sub_eq` &mdash; kernel-checked, `Problems/Juggler/FateShareLaw.lean:183`
-
-> The range is attained: two points of `[0, 1]` realize it.
-
-```lean
-theorem exists_phi_sub_eq (β : ℝ) :
-    ∃ s ∈ Set.Icc (0 : ℝ) 1, ∃ t ∈ Set.Icc (0 : ℝ) 1, phi β s - phi β t = phiRange β
-```
-
-**And.** `phiRange_le_half_iff` &mdash; kernel-checked, `Problems/Juggler/FateShareLaw.lean:199`
-
-> **Corollary 4.6(2), the arithmetic.** The range is at most `1/2` exactly for `β ∈ [-5/6, 1/6]`; in the middle case it never exceeds `1/3`.
-
-```lean
-theorem phiRange_le_half_iff (β : ℝ) : phiRange β ≤ 1 / 2 ↔ -(5 / 6) ≤ β ∧ β ≤ 1 / 6
-```
-
-**And.** `extremeMeasure_eq_zero` &mdash; kernel-checked, `Problems/Juggler/FateShareLaw.lean:221`
-
-> Outside `[-5/6, 1/6]` no fiber is extreme.
-
-```lean
-theorem extremeMeasure_eq_zero {β : ℝ} (h : β < -(5 / 6) ∨ 1 / 6 < β) :
-    extremeMeasure β = 0
-```
-
-**And.** `extremeMeasure_piece1` &mdash; kernel-checked, `Problems/Juggler/FateShareLaw.lean:230`
-
-```lean
-theorem extremeMeasure_piece1 {β : ℝ} (hβ : β ∈ Set.Icc (0 : ℝ) (1 / 6)) :
-    extremeMeasure β = 1 / 6 - β
-```
-
-**And.** `extremeMeasure_piece2` &mdash; kernel-checked, `Problems/Juggler/FateShareLaw.lean:236`
-
-```lean
-theorem extremeMeasure_piece2 {β : ℝ} (hβ : β ∈ Set.Icc (-(1 / 3) : ℝ) 0) :
-    extremeMeasure β = 1 / 6 - β - 3 / 4 * β ^ 2
-```
-
-**And.** `extremeMeasure_piece3` &mdash; kernel-checked, `Problems/Juggler/FateShareLaw.lean:246`
-
-```lean
-theorem extremeMeasure_piece3 {β : ℝ} (hβ : β ∈ Set.Icc (-(2 / 3) : ℝ) (-(1 / 3))) :
-    extremeMeasure β = 1 / 2 - 3 / 4 * β ^ 2
-```
-
-**And.** `extremeMeasure_piece4` &mdash; kernel-checked, `Problems/Juggler/FateShareLaw.lean:256`
-
-```lean
-theorem extremeMeasure_piece4 {β : ℝ} (hβ : β ∈ Set.Icc (-(5 / 6) : ℝ) (-(2 / 3))) :
-    extremeMeasure β = 5 / 6 + β
-```
-
-**And.** `integral_extremeMeasure` &mdash; kernel-checked, `Problems/Juggler/FateShareLaw.lean:265`
-
-> **Corollary 4.6(3), the arithmetic.** `∫ max(0, 1/2 - range) dβ = 25/108`, as `1/72 + 11/108 + 11/108 + 1/72` over the four pieces `[-5/6, -2/3]`, `[-2/3, -1/3]`, `[-1/3, 0]`, `[0, 1/6]`.
-
-```lean
-theorem integral_extremeMeasure :
-    ∫ β in (-(5 / 6) : ℝ)..(1 / 6), extremeMeasure β = 25 / 108
-```
-
-## 60. `J-small-cycle-census-seven` &mdash; covers 0.26
+## 47. `J-small-cycle-census-seven` &mdash; covers 0.26
 
 *Reads as: the claim asserts more than the declarations state (0.91).*
 
@@ -5421,7 +3913,7 @@ theorem no_cycle_itinerary_length_le_seven {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (hlen : w.length ≤ 7) : ¬CycleItinerary n w
 ```
 
-## 61. `BTA-x3-Q-def` &mdash; covers 0.27
+## 48. `BTA-x3-Q-def` &mdash; covers 0.27
 
 *Reads as: the claim asserts more than the declarations state (0.65).*
 
@@ -5436,235 +3928,7 @@ theorem qCubic_def (t : Nat) (u : Int) :
     qCubic t u = iterDZ t (u ^ 3)
 ```
 
-## 62. `J-cycle-quartic-formal-projection` &mdash; covers 0.27
-
-*Reads as: a declaration is a different result (0.83).*
-
-*Claim broader 0.71; declaration narrower 0.47; different result 0.83.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** For a supplied finite modular rank component with injective ambient ranks, collapse<=rank and the stated lifted return, the total collapse displacement Delta satisfies e*p+Delta=s*n and gcd(e,s) divides Delta. Under coprime e,s, nonempty component and an omitted ambient rank, Delta is positive. The module proves predecessor geometry, selected displacement and distinct-partner bounds, and an adjacent-gap consequence from a normalized interval gap. It does not construct the full anchor/rank model from an arbitrary primitive cycle or prove common component periods.
-
-**Declarations.** `ofModular` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:71`
-
-> A modular two-block return determines its exact zero-or-one wrap lift.
-
-```lean
-def ofModular {r : ℕ} (he : e = r + s)
-    (rank : ι → ℕ) (hrank : ∀ i, rank i < e)
-    (hinj : Function.Injective rank) (σ : Equiv.Perm ι) (f : ℕ → ℕ)
-    (hle : ∀ i, f (rank i) ≤ rank i)
-    (hupper : ∀ i, r ≤ rank i → f (rank i) = rank i)
-    (hstep : ∀ i, rank (σ i) = (f (rank i) + s) % e) :
-    RankComponent ι e s where
-  rank
-```
-
-**And.** `displacement_balance` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:113`
-
-> The periodic permutation cancels rank coordinates in the summed lift.
-
-```lean
-theorem displacement_balance (C : RankComponent ι e s) :
-    C.totalDisplacement + e * C.upper.card = s * Fintype.card ι
-```
-
-**And.** `totalDisplacement_pos_of_omitted` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:201`
-
-```lean
-theorem totalDisplacement_pos_of_omitted (C : RankComponent ι e s)
-    [Nonempty ι] (hcop : Nat.Coprime e s) {j : ℕ}
-    (hj : j < e) (homit : ∀ i, C.rank i ≠ j) :
-    0 < C.totalDisplacement
-```
-
-**And.** `adjacent_gap_of_ratio` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:340`
-
-```lean
-theorem adjacent_gap_of_ratio (z : ℕ → ℝ) {a g i : ℕ} {τ : ℝ}
-    (hag : a ≤ g) (hgi : g < i) (hτ : 0 ≤ τ)
-    (hgap : τ < (z i - z g) / (i - a : ℕ)) :
-    ∃ j, g ≤ j ∧ j < i ∧ τ < z (j + 1) - z j
-```
-
-**And.** `RankComponent` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:55`
-
-> An embedded finite periodic component together with its exact rank lift.
-
-```lean
-structure RankComponent (ι : Type*) [Fintype ι] [DecidableEq ι] (e s : ℕ) where
-  rank : ι → ℕ
-  rank_lt : ∀ i, rank i < e
-  rank_injective : Function.Injective rank
-  next : Equiv.Perm ι
-  collapse : ℕ → ℕ
-  collapse_le : ∀ i, collapse (rank i) ≤ rank i
-  upper : Finset ι
-  lift_eq : ∀ i,
-    rank (next i) + e * (if i ∈ upper then 1 else 0) = collapse (rank i) + s
-
-namespace RankComponent
-```
-
-**And.** `gcd_dvd_totalDisplacement` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:144`
-
-```lean
-theorem gcd_dvd_totalDisplacement (C : RankComponent ι e s) :
-    Nat.gcd e s ∣ C.totalDisplacement
-```
-
-**And.** `predecessor_le` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:11`
-
-```lean
-theorem predecessor_le (anchors : Finset ℕ) (i : ℕ) :
-    predecessor anchors i ≤ i
-```
-
-**And.** `predecessor_monotone` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:17`
-
-```lean
-theorem predecessor_monotone (anchors : Finset ℕ) : Monotone (predecessor anchors)
-```
-
-**And.** `predecessor_eq_self` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:25`
-
-```lean
-theorem predecessor_eq_self (anchors : Finset ℕ) {i : ℕ} (hi : i ∈ anchors) :
-    predecessor anchors i = i
-```
-
-**And.** `predecessor_mem` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:31`
-
-```lean
-theorem predecessor_mem (anchors : Finset ℕ) (hzero : 0 ∈ anchors) (i : ℕ) :
-    predecessor anchors i ∈ anchors
-```
-
-**And.** `predecessor_eq_on_cell` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:43`
-
-> The predecessor is constant until the next selected anchor.
-
-```lean
-theorem predecessor_eq_on_cell (anchors : Finset ℕ) {a i : ℕ}
-    (ha : a ∈ anchors) (hai : a ≤ i)
-    (hgap : ∀ b ∈ anchors, b ≤ i → b ≤ a) :
-    predecessor anchors i = a
-```
-
-**And.** `selected_displacement_le` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:211`
-
-```lean
-theorem selected_displacement_le (C : RankComponent ι e s) (S : Finset ι) :
-    ∑ i ∈ S, C.displacement i ≤ C.totalDisplacement
-```
-
-**And.** `selected_displacement_cast_le` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:242`
-
-```lean
-theorem selected_displacement_cast_le (C : RankComponent ι e s) (S : Finset ι) :
-    ∑ i ∈ S, (C.displacement i : ℝ) ≤ (C.totalDisplacement : ℝ)
-```
-
-**And.** `negative_card_le` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:216`
-
-> Every selected negative substitution spends at least one rank unit.
-
-```lean
-theorem negative_card_le (C : RankComponent ι e s) (S : Finset ι)
-    (hneg : ∀ i ∈ S, C.collapse (C.rank i) < C.rank i) :
-    S.card ≤ C.totalDisplacement
-```
-
-**And.** `partner_interval_sum_le` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:229`
-
-> A partner after the block start cannot increase the charged interval length.
-
-```lean
-theorem partner_interval_sum_le (C : RankComponent ι e s) (S : Finset ι)
-    (partnerRank : ι → ℕ)
-    (hstart : ∀ i ∈ S, C.collapse (C.rank i) ≤ partnerRank i) :
-    ∑ i ∈ S, (C.rank i - partnerRank i) ≤ C.totalDisplacement
-```
-
-**And.** `partner_injOn` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:249`
-
-> Equal projected targets make a chosen partner map injective on a periodic set.
-
-```lean
-theorem partner_injOn {α β γ : Type*} {P : Set α}
-    {T : α → γ} {R : β → γ} {partner : α → β}
-    (hT : Set.InjOn T P)
-    (hpartner : ∀ x ∈ P, R (partner x) = T x) :
-    Set.InjOn partner P
-```
-
-**And.** `partner_not_mem` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:259`
-
-> A different point with the same projected successor cannot also be periodic.
-
-```lean
-theorem partner_not_mem {α β : Type*} {P : Set α} {T : α → β}
-    (hT : Set.InjOn T P) {x y : α} (hx : x ∈ P)
-    (hxy : x ≠ y) (ht : T x = T y) : y ∉ P
-```
-
-**And.** `block_injOn` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:266`
-
-> Constancy on blocks and periodic injectivity allow at most one point per block.
-
-```lean
-theorem block_injOn {α β γ : Type*} {P : Set α} {T : α → β} {block : α → γ}
-    (hT : Set.InjOn T P)
-    (hblock : ∀ x y, block x = block y → T x = T y) :
-    Set.InjOn block P
-```
-
-**And.** `component_target_injective` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:274`
-
-> An embedded component obtains projected injectivity from its actual permutation.
-
-```lean
-theorem component_target_injective {ι α : Type*}
-    (embed : ι → α) (σ : Equiv.Perm ι) (T : α → α)
-    (hembed : Function.Injective embed)
-    (hstep : ∀ i, T (embed i) = embed (σ i)) :
-    Function.Injective (fun i => T (embed i))
-```
-
-**And.** `component_partner_injective` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:284`
-
-```lean
-theorem component_partner_injective {ι α β : Type*}
-    (embed : ι → α) (σ : Equiv.Perm ι) (T : α → α)
-    (R : β → α) (partner : ι → β)
-    (hembed : Function.Injective embed)
-    (hstep : ∀ i, T (embed i) = embed (σ i))
-    (hpartner : ∀ i, R (partner i) = T (embed i)) :
-    Function.Injective partner
-```
-
-**And.** `component_partner_not_in_range` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:296`
-
-```lean
-theorem component_partner_not_in_range {ι α : Type*}
-    (embed : ι → α) (σ : Equiv.Perm ι) (T : α → α)
-    (hembed : Function.Injective embed)
-    (hstep : ∀ i, T (embed i) = embed (σ i))
-    {i : ι} {y : α} (hneq : y ≠ embed i)
-    (hsame : T y = T (embed i)) : y ∉ Set.range embed
-```
-
-**And.** `component_block_injective` &mdash; kernel-checked, `Problems/Juggler/QuarticProjection.lean:306`
-
-```lean
-theorem component_block_injective {ι α β : Type*}
-    (embed : ι → α) (σ : Equiv.Perm ι) (T : α → α) (block : α → β)
-    (hembed : Function.Injective embed)
-    (hstep : ∀ i, T (embed i) = embed (σ i))
-    (hblock : ∀ x y, block x = block y → T x = T y) :
-    Function.Injective (fun i => block (embed i))
-```
-
-## 63. `OST-np-particular-s3` &mdash; covers 0.27
+## 49. `OST-np-particular-s3` &mdash; covers 0.27
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -5681,319 +3945,7 @@ theorem particular_s3 (ws : List ℤ) :
     (particularSum ws).2.2 = -consumedSum ws.length ws
 ```
 
-## 64. `J-cycle-cubic-sorted-grid` &mdash; covers 0.28
-
-*Reads as: the claim asserts more than the declarations state (0.63).*
-
-*Claim broader 0.63; declaration narrower 0.58; different result 0.43.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** For a primitive S_b cycle, or an actual Juggler cycle with minimum m>1 and maximum M<m^3, sort its states c_i and set T=log 3, Lambda=o log 3-L log 2>0, v_i=log(log c_i/log m), v_(i+L)=v_i+T and w_i=v_i-iT/L. Then osc(w)<= (1-1/L)Lambda and |w_i|<= (1-1/L)Lambda. The lifted adjacent gaps h_i=v_(i+1)-v_i satisfy range(h)<=Lambda and |h_i-T/L|<=(1-1/L)Lambda. The proof uses nonnegative logarithmic rounding defects summing to Lambda and the coprime rank rotation, with no factor L loss. The bounds do not resolve integer parity or exclude cycles. Consolidated in Paper A Section 3.10 and formalized in the seven Cubic modules. The cited declarations and supporting modules are compiled kernel proofs. The illustrative asymptotic comparison and universal wrong-parity question are not promoted; no ne  *(truncated; read the ledger row)*
-
-**Declarations.** `threshold_cycle_grid` &mdash; kernel-checked, `Problems/Juggler/CubicLogGrid.lean:443`
-
-> Standard connectedness of the exact threshold orbit supplies transitivity automatically.
-
-```lean
-theorem threshold_cycle_grid [NeZero L]
-    {b : ℕ} (hb : 3 ≤ b) (c : Fin L → ℕ) (hc : StrictMono c)
-    (σ : Equiv.Perm (Fin L)) (hband : ∀ i, InCubicBand b (c i))
-    (hstep : ∀ i, c (σ i) = thresholdMap b (c i))
-    (hconnected : ∀ i j, ∃ k : ℕ, (thresholdMap b)^[k] (c i) = c j) :
-    ∃ o ≤ L, (Finset.univ.filter (fun i => c i < b ^ 2)).card = o ∧
-      RealizedGridBounds (fun i => (c i : ℝ)) o
-```
-
-**And.** `cubicBand_cycle_grid` &mdash; kernel-checked, `Problems/Juggler/CubicLogGrid.lean:454`
-
-> Full quantitative bounds for an actual connected Juggler cycle in a cubic band.
-
-```lean
-theorem cubicBand_cycle_grid [NeZero L]
-    {m : ℕ} (hm : 3 ≤ m) (c : Fin L → ℕ) (hc : StrictMono c)
-    (σ : Equiv.Perm (Fin L)) (hband : ∀ i, InCubicBand m (c i))
-    (hstep : ∀ i, c (σ i) = floorPower (c i))
-    (hconnected : ∀ i j, ∃ k : ℕ, floorPower^[k] (c i) = c j) :
-    ∃ o ≤ L, (Finset.univ.filter (fun i => c i % 2 = 1)).card = o ∧
-      RealizedGridBounds (fun i => (c i : ℝ)) o
-```
-
-**And.** `logCellDefect_nonneg` &mdash; kernel-checked, `Problems/Juggler/CubicLogGrid.lean:61`
-
-> The lower square-cell inequality is enough for the one-step logarithmic loss sign.
-
-```lean
-theorem logCellDefect_nonneg
-    (c : Fin L → ℝ) (σ : Equiv.Perm (Fin L)) (o : ℕ)
-    (hc : ∀ i, 1 < c i)
-    (hcell : ∀ i, c (σ i) ^ 2 ≤ c i ^ (if i.val < o then 3 else 1))
-    (i : Fin L) : 0 ≤ logCellDefect c σ o i
-```
-
-**And.** `logCellDefect_sum` &mdash; kernel-checked, `Problems/Juggler/CubicLogGrid.lean:126`
-
-> The total loss is obtained by permutation summation of the exact coordinates.
-
-```lean
-theorem logCellDefect_sum [NeZero L]
-    (c : Fin L → ℝ) (σ : Equiv.Perm (Fin L)) (o e : ℕ)
-    (hc : ∀ i, 1 < c i) (hlen : L = o + e)
-    (hrank : ∀ i, (σ i).val = (i.val + e) % L) :
-    ∑ i, logCellDefect c σ o i = logGridSurplus L o
-```
-
-**And.** `rank_rotation_real` &mdash; kernel-checked, `Problems/Juggler/CubicLogGrid.lean:79`
-
-> The modular rank equation has the expected single-wrap form in real coordinates.
-
-```lean
-theorem rank_rotation_real
-    (σ : Equiv.Perm (Fin L)) (o e : ℕ) (hlen : L = o + e)
-    (hrank : ∀ i, (σ i).val = (i.val + e) % L) (i : Fin L) :
-    ((σ i).val : ℝ) - (i.val : ℝ) =
-      (e : ℝ) - if i.val < o then 0 else (L : ℝ)
-```
-
-**And.** `log_grid_of_power_cells` &mdash; kernel-checked, `Problems/Juggler/CubicLogGrid.lean:135`
-
-> A realized power-cell cycle satisfies the claimed sharp log-log grid at every rank.
-
-```lean
-theorem log_grid_of_power_cells [NeZero L]
-    (c : Fin L → ℝ) (σ : Equiv.Perm (Fin L)) (o e : ℕ)
-    (hc : ∀ i, 1 < c i) (hlen : L = o + e)
-    (hrank : ∀ i, (σ i).val = (i.val + e) % L)
-    (hcycle : σ.IsCycleOn (↑(Finset.univ : Finset (Fin L))))
-    (hcell : ∀ i, c (σ i) ^ 2 ≤ c i ^ (if i.val < o then 3 else 1))
-    (i : Fin L) :
-    |Real.log (Real.log (c i) / Real.log (c 0)) -
-      (i.val : ℝ) * Real.log 3 / (L : ℝ)| ≤
-        (1 - 1 / (L : ℝ)) * logGridSurplus L o
-```
-
-**And.** `logGridSurplus_pos_of_power_cells` &mdash; kernel-checked, `Problems/Juggler/CubicLogGrid.lean:171`
-
-> A realized cycle has strictly positive logarithmic surplus.
-
-```lean
-theorem logGridSurplus_pos_of_power_cells [NeZero L]
-    (c : Fin L → ℝ) (σ : Equiv.Perm (Fin L)) (o e : ℕ)
-    (hc : ∀ i, 1 < c i) (hlen : L = o + e)
-    (hrank : ∀ i, (σ i).val = (i.val + e) % L)
-    (hcell : ∀ i, c (σ i) ^ 2 ≤ c i ^ (if i.val < o then 3 else 1)) :
-    0 < logGridSurplus L o
-```
-
-**And.** `log_gap_bounds_of_power_cells` &mdash; kernel-checked, `Problems/Juggler/CubicLogGrid.lean:250`
-
-> Both claimed adjacent-gap estimates hold for realized power-cell cycles.
-
-```lean
-theorem log_gap_bounds_of_power_cells [NeZero L]
-    (c : Fin L → ℝ) (σ : Equiv.Perm (Fin L)) (o e : ℕ)
-    (hc : ∀ i, 1 < c i) (hlen : L = o + e)
-    (hrank : ∀ i, (σ i).val = (i.val + e) % L)
-    (hcycle : σ.IsCycleOn (↑(Finset.univ : Finset (Fin L))))
-    (hcell : ∀ i, c (σ i) ^ 2 ≤ c i ^ (if i.val < o then 3 else 1))
-    (i j : Fin L) :
-    |liftedLogGap c j - liftedLogGap c i| ≤ logGridSurplus L o ∧
-      |liftedLogGap c i - Real.log 3 / (L : ℝ)| ≤
-        (1 - 1 / (L : ℝ)) * logGridSurplus L o
-```
-
-**And.** `threshold_log_grid` &mdash; kernel-checked, `Problems/Juggler/CubicLogGrid.lean:288`
-
-> The universal grid bound specialized to an exact threshold cycle.
-
-```lean
-theorem threshold_log_grid [NeZero L]
-    {b o : ℕ} (hb : 3 ≤ b) (ho : o ≤ L)
-    (c : Fin L → ℕ) (hc : StrictMono c) (σ : Equiv.Perm (Fin L))
-    (hband : ∀ i, InCubicBand b (c i))
-    (hcut : ∀ i, c i < b ^ 2 ↔ i.val < o)
-    (hstep : ∀ i, c (σ i) = thresholdMap b (c i))
-    (hcycle : σ.IsCycleOn (↑(Finset.univ : Finset (Fin L))))
-    (i : Fin L) :
-    |Real.log (Real.log (c i) / Real.log (c 0)) -
-      (i.val : ℝ) * Real.log 3 / (L : ℝ)| ≤
-        (1 - 1 / (L : ℝ)) * logGridSurplus L o
-```
-
-**And.** `cubicBand_log_grid` &mdash; kernel-checked, `Problems/Juggler/CubicLogGrid.lean:309`
-
-> The same bound holds for the actual map under cubic-band closure.
-
-```lean
-theorem cubicBand_log_grid [NeZero L]
-    {m o : ℕ} (hm : 3 ≤ m) (ho : o ≤ L)
-    (c : Fin L → ℕ) (hc : StrictMono c) (σ : Equiv.Perm (Fin L))
-    (hband : ∀ i, InCubicBand m (c i))
-    (hcut : ∀ i, c i < m ^ 2 ↔ i.val < o)
-    (hstep : ∀ i, c (σ i) = floorPower (c i))
-    (hcycle : σ.IsCycleOn (↑(Finset.univ : Finset (Fin L))))
-    (i : Fin L) :
-    |Real.log (Real.log (c i) / Real.log (c 0)) -
-      (i.val : ℝ) * Real.log 3 / (L : ℝ)| ≤
-        (1 - 1 / (L : ℝ)) * logGridSurplus L o
-```
-
-**And.** `threshold_invariant_grid` &mdash; kernel-checked, `Problems/Juggler/CubicLogGrid.lean:417`
-
-> The cutoff and all quantitative bounds follow for an exact threshold invariant cycle.
-
-```lean
-theorem threshold_invariant_grid [NeZero L]
-    {b : ℕ} (hb : 3 ≤ b) (c : Fin L → ℕ) (hc : StrictMono c)
-    (σ : Equiv.Perm (Fin L)) (hband : ∀ i, InCubicBand b (c i))
-    (hstep : ∀ i, c (σ i) = thresholdMap b (c i))
-    (hcycle : σ.IsCycleOn (↑(Finset.univ : Finset (Fin L)))) :
-    ∃ o ≤ L, (Finset.univ.filter (fun i => c i < b ^ 2)).card = o ∧
-      RealizedGridBounds (fun i => (c i : ℝ)) o
-```
-
-**And.** `realized_grid_bounds_of_power_cells` &mdash; kernel-checked, `Problems/Juggler/CubicLogGrid.lean:400`
-
-> Full realization of both grid and gap bounds from power cells and sorted rank rotation.
-
-```lean
-theorem realized_grid_bounds_of_power_cells [NeZero L]
-    (c : Fin L → ℝ) (σ : Equiv.Perm (Fin L)) (o e : ℕ)
-    (hc : ∀ i, 1 < c i) (hsorted : StrictMono c)
-    (hheight : ∀ i, c i < c 0 ^ 3) (hlen : L = o + e)
-    (hrank : ∀ i, (σ i).val = (i.val + e) % L)
-    (hcycle : σ.IsCycleOn (↑(Finset.univ : Finset (Fin L))))
-    (hcell : ∀ i, c (σ i) ^ 2 ≤ c i ^ (if i.val < o then 3 else 1)) :
-    RealizedGridBounds c o
-```
-
-**And.** `RealizedGridBounds` &mdash; kernel-checked, `Problems/Juggler/CubicLogGrid.lean:328`
-
-> The complete quantitative conclusion, including positivity and the lifted seam.
-
-```lean
-def RealizedGridBounds [NeZero L] (c : Fin L → ℝ) (o : ℕ) : Prop
-```
-
-**And.** `surplus_pos` &mdash; kernel-checked, `Problems/Juggler/CubicLogGrid.lean:372`
-
-```lean
-theorem surplus_pos : 0 < logGridSurplus L o
-```
-
-**And.** `grid_bound` &mdash; kernel-checked, `Problems/Juggler/CubicLogGrid.lean:374`
-
-```lean
-theorem grid_bound (i : Fin L) :
-    |logGridError c (c 0) i| ≤ (1 - 1 / (L : ℝ)) * logGridSurplus L o
-```
-
-**And.** `error_oscillation` &mdash; kernel-checked, `Problems/Juggler/CubicLogGrid.lean:377`
-
-```lean
-theorem error_oscillation (i j : Fin L) :
-    |logGridError c (c 0) j - logGridError c (c 0) i| ≤
-      (1 - 1 / (L : ℝ)) * logGridSurplus L o
-```
-
-**And.** `gap_range` &mdash; kernel-checked, `Problems/Juggler/CubicLogGrid.lean:383`
-
-```lean
-theorem gap_range (i j : Fin L) :
-    |liftedLogGap c j - liftedLogGap c i| ≤ logGridSurplus L o
-```
-
-**And.** `gap_mean_bound` &mdash; kernel-checked, `Problems/Juggler/CubicLogGrid.lean:387`
-
-```lean
-theorem gap_mean_bound (i : Fin L) :
-    |liftedLogGap c i - Real.log 3 / (L : ℝ)| ≤
-      (1 - 1 / (L : ℝ)) * logGridSurplus L o
-```
-
-## 65. `J-envelope-lt-pow` &mdash; covers 0.28
-
-*Reads as: the claim asserts more than the declarations state (0.85).*
-
-*Claim broader 0.85; declaration narrower 0.67; different result 0.24.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** If n ≥ 2, A > 0, x^A ≤ n^B, and B < k·A, then x < n^k. EnvelopeState n x packages the free inequality x^A ≤ n^B, with even (A,B)→(2A,B) and odd (A,B)→(2A,3B). PowerBound is the special case A=2^|w|, B=3^{oddCount w}. A realized itinerary with 3^{oddCount w} < k·2^{|w|} therefore has T_w(n) < n^k. power_bound_contracts is the k=1 case. Escape square and cube cells are k=2 and k=3 instances. The leftover itinerary OOEOOEOOEOEOO has the cube gap 3^9 < 3·2^13 and not the square gap 3^9 < 2·2^13. This is not a halt theorem and not a cycle-exclusion theorem.
-
-**Declarations.** `power_bound_lt_pow` &mdash; kernel-checked, `Problems/Juggler/Envelope.lean:312`
-
-> Word-stat form: `3^{oddCount w} < k · 2^{|w|}` yields `T_w(n) < n^k`. Implemented by `EnvelopeState.of_follows`. `power_bound_contracts` is the `k = 1` case.
-
-```lean
-theorem power_bound_lt_pow {n : ℕ} {w : List Branch} {k : ℕ}
-    (hn : 2 ≤ n) (hw : follows n w)
-    (hgap : 3 ^ oddCount w < k * 2 ^ w.length) :
-    image n w < n ^ k
-```
-
-**And.** `envelope_lt_pow` &mdash; kernel-checked, `Problems/Juggler/Envelope.lean:292`
-
-> Cell comparison: `x^A ≤ n^B` and `B < k·A` force `x < n^k`.
-
-```lean
-theorem envelope_lt_pow {x n A B k : ℕ}
-    (hn : 2 ≤ n) (_hA : 0 < A) (h : x ^ A ≤ n ^ B) (hgap : B < k * A) :
-    x < n ^ k
-```
-
-**And.** `PowerBound` &mdash; kernel-checked, `Problems/Juggler/Envelope.lean:108`
-
-> Weak one-sided bound `m^{2^k} ≤ n^{3^o}`. Equality is allowed.
-
-```lean
-def PowerBound (m n k o : ℕ) : Prop
-```
-
-**And.** `EnvelopeState` &mdash; kernel-checked, `Problems/Juggler/Envelope.lean:171`
-
-> Free-exponent envelope `x^A ≤ n^B`. `PowerBound` is the special case `A = 2^k`, `B = 3^o`. Word algebra only.
-
-```lean
-structure EnvelopeState (n x : ℕ) where
-  A : ℕ
-  B : ℕ
-  le : x ^ A ≤ n ^ B
-
-/-- Even letter: `(A, B) → (2A, B)` from `T(x)^2 ≤ x`. -/
-def EnvelopeState.even {n x : ℕ} (h : EnvelopeState n x) (heven : x % 2 = 0) :
-    EnvelopeState n (floorPower x) where
-  A
-```
-
-**And.** `EnvelopeState.even` &mdash; kernel-checked, `Problems/Juggler/Envelope.lean:177`
-
-> Even letter: `(A, B) → (2A, B)` from `T(x)^2 ≤ x`.
-
-```lean
-def EnvelopeState.even {n x : ℕ} (h : EnvelopeState n x) (heven : x % 2 = 0) :
-    EnvelopeState n (floorPower x) where
-  A
-```
-
-**And.** `EnvelopeState.odd` &mdash; kernel-checked, `Problems/Juggler/Envelope.lean:189`
-
-> Odd letter: `(A, B) → (2A, 3B)` from `T(x)^2 ≤ x^3`.
-
-```lean
-def EnvelopeState.odd {n x : ℕ} (h : EnvelopeState n x) (hodd : x % 2 = 1) :
-    EnvelopeState n (floorPower x) where
-  A
-```
-
-**And.** `power_bound_contracts` &mdash; kernel-checked, `Problems/Juggler/Envelope.lean:327`
-
-> Strict block contraction from the exponent gap. Domain `n ≥ 2`. The `k = 1` case of `power_bound_lt_pow`. Not a claim that every trajectory meets a negative-drift word.
-
-```lean
-theorem power_bound_contracts {n : ℕ} {w : List Branch}
-    (hn : 2 ≤ n) (hw : follows n w)
-    (hgap : 3 ^ oddCount w < 2 ^ w.length) :
-    floorPower^[w.length] n < n
-```
-
-## 66. `J-fate-tao-union-bound` &mdash; covers 0.28
+## 50. `J-fate-tao-union-bound` &mdash; covers 0.28
 
 *Reads as: the claim asserts more than the declarations state (0.61).*
 
@@ -6082,7 +4034,7 @@ theorem cylinder_even_root_empty (y d : ℕ) (w : List Branch) (hd : 1 ≤ d)
     (hw : w.head? = some .even) : cylinder y d w = ∅
 ```
 
-## 67. `BTC-op-fragment-nd-semantic` &mdash; covers 0.29
+## 51. `BTC-op-fragment-nd-semantic` &mdash; covers 0.29
 
 *Reads as: the claim asserts more than the declarations state (0.77).*
 
@@ -6111,7 +4063,7 @@ theorem irreducible_eval_injective {t u : OpFrag}
     (h : ∀ n : ℤ, eval t n = eval u n) : t = u
 ```
 
-## 68. `J-cycle-quartic-formal-return` &mdash; covers 0.29
+## 52. `J-cycle-quartic-formal-return` &mdash; covers 0.29
 
 *Reads as: the claim asserts more than the declarations state (0.78).*
 
@@ -6182,7 +4134,7 @@ theorem guarded_return_cases (D : PeriodicExtrema C m M) (hm : 5 ≤ m)
     (follows x [.odd, .even] ∧ returnMap m x = ReturnCells.oe x)
 ```
 
-## 69. `J-log-two-hundred-fifty-seven-gt-sixty-one-elevenths` &mdash; covers 0.29
+## 53. `J-log-two-hundred-fifty-seven-gt-sixty-one-elevenths` &mdash; covers 0.29
 
 *Reads as: the claim asserts more than the declarations state (0.83).*
 
@@ -6218,65 +4170,7 @@ theorem finance_excludes_length_thirtyeight {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (hlen : w.length = 38) : ¬CycleItinerary n w
 ```
 
-## 70. `BTN-confluence` &mdash; covers 0.3
-
-*Reads as: the claim asserts more than the declarations state (0.81).*
-
-*Claim broader 0.81; declaration narrower 0.56; different result 0.28.  Tag EXACT — LEAN VERIFIED, trust mixed.*
-
-**Row.** stripped coefficient rewrite is locally and globally confluent; unique NF is encodeZ(value); [-5,2] joins after stripHigh
-
-**Declarations.** `stripped_trits_eq_encodeZ` &mdash; kernel-checked, `BTCalculus/Confluence.lean:243`
-
-```lean
-theorem stripped_trits_eq_encodeZ :
-    ∀ cs : List ℤ, allTrits cs → stripHigh cs = cs → cs = encodeZ (coeffValue cs)
-  | [], _ht, hs => by
-```
-
-**And.** `reaches_encodeZ` &mdash; kernel-checked, `BTCalculus/Confluence.lean:432`
-
-```lean
-theorem reaches_encodeZ (cs : List ℤ) :
-    ReflTransGen Step (stripHigh cs) (encodeZ (coeffValue cs))
-```
-
-**And.** `confluence` &mdash; kernel-checked, `BTCalculus/Confluence.lean:514`
-
-```lean
-theorem confluence {a b c : List ℤ}
-    (hb : ReflTransGen Step (stripHigh a) b)
-    (hc : ReflTransGen Step (stripHigh a) c) :
-    Join (ReflTransGen Step) b c
-```
-
-**And.** `locally_confluent` &mdash; kernel-checked, `BTCalculus/Confluence.lean:530`
-
-```lean
-theorem locally_confluent {a b c : List ℤ} (ha : stripHigh a = a)
-    (hb : Step a b) (hc : Step a c) :
-    Join (ReflTransGen Step) b c
-```
-
-**And.** `overlap_minus5_two_raw` &mdash; compiler-checked, `BTCalculus/Confluence.lean:550`
-
-> Raw Lean lists of the overlapping pair are not equal; stripping joins them.
-
-```lean
-theorem overlap_minus5_two_raw :
-    step [-5, 2] 0 = [1, 0] ∧
-      step (step (step [-5, 2] 1) 0) 1 = [1, 0, 0]
-```
-
-**And.** `overlap_minus5_two_stripped` &mdash; compiler-checked, `BTCalculus/Confluence.lean:555`
-
-```lean
-theorem overlap_minus5_two_stripped :
-    rewriteAt [-5, 2] 0 = [1] ∧
-      rewriteAt (rewriteAt (rewriteAt [-5, 2] 1) 0) 1 = [1]
-```
-
-## 71. `J-cycle-quartic-formal-gap-separation` &mdash; covers 0.3
+## 54. `J-cycle-quartic-formal-gap-separation` &mdash; covers 0.3
 
 *Reads as: the claim asserts more than the declarations state (0.57).*
 
@@ -6344,7 +4238,7 @@ theorem section_B_injective_of_cocycle {L m : ℕ} [NeZero L]
     Function.Injective (fun i => B (c i))
 ```
 
-## 72. `J-cycle-itinerary-length-nineteen-or-ge-thirty` &mdash; covers 0.31
+## 55. `J-cycle-itinerary-length-nineteen-or-ge-thirty` &mdash; covers 0.31
 
 *Reads as: the claim asserts more than the declarations state (0.87).*
 
@@ -6372,7 +4266,7 @@ theorem cycle_itinerary_length_nineteen_or_ge_twenty {n : ℕ} {w : List Branch}
     w.length = 19 ∨ 20 ≤ w.length
 ```
 
-## 73. `J-cyclemin-prefix-bunched-eoee` &mdash; covers 0.31
+## 56. `J-cyclemin-prefix-bunched-eoee` &mdash; covers 0.31
 
 *Reads as: the claim asserts more than the declarations state (0.71).*
 
@@ -6390,7 +4284,7 @@ theorem no_cycleMin_prefix_eoee {n a : ℕ} {u : List Branch}
     ¬CycleMin n (u ++ threeEvenEOEE a)
 ```
 
-## 74. `J-fate-first-letter-split` &mdash; covers 0.31
+## 57. `J-fate-first-letter-split` &mdash; covers 0.31
 
 *Reads as: the claim asserts more than the declarations state (0.67).*
 
@@ -6453,7 +4347,7 @@ theorem sum_image_ooPiece {A : ℕ → Prop} (y x : ℕ) (f : ℕ → ℝ) :
     ∑ m ∈ (ooPiece A y x).image floorPower, f m = ∑ n ∈ ooPiece A y x, f (floorPower n)
 ```
 
-## 75. `J-residual-floor-fifty-three` &mdash; covers 0.31
+## 58. `J-residual-floor-fifty-three` &mdash; covers 0.31
 
 *Reads as: the claim asserts more than the declarations state (0.87).*
 
@@ -6608,7 +4502,7 @@ theorem fortynine_reachesOne : ReachesOne 49
 theorem fiftyone_reachesOne : ReachesOne 51
 ```
 
-## 76. `J-residual-floor-two-hundred-sixty-one` &mdash; covers 0.31
+## 59. `J-residual-floor-two-hundred-sixty-one` &mdash; covers 0.31
 
 *Reads as: the claim asserts more than the declarations state (0.82).*
 
@@ -6637,7 +4531,7 @@ theorem reachesOne_n257 : ReachesOne 257
 theorem reachesOne_n259 : ReachesOne 259
 ```
 
-## 77. `BTC-add-requires-carry-state` &mdash; covers 0.32
+## 60. `BTC-add-requires-carry-state` &mdash; covers 0.32
 
 *Reads as: a declaration is narrower than the claim (0.73).*
 
@@ -6660,7 +4554,7 @@ theorem add_requires_carry_state :
       (∀ u, ¬ PushInStep (.D (.add (.S .X) (.S .Y))) u)
 ```
 
-## 78. `BTN-dadd-closure` &mdash; covers 0.32
+## 61. `BTN-dadd-closure` &mdash; covers 0.32
 
 *Reads as: the claim asserts more than the declarations state (0.76).*
 
@@ -6704,7 +4598,7 @@ theorem dAdd_fiber_three :
       DZ (-1) = 0
 ```
 
-## 79. `BTN-sdrg-lambda2-evens` &mdash; covers 0.32
+## 62. `BTN-sdrg-lambda2-evens` &mdash; covers 0.32
 
 *Reads as: the claim asserts more than the declarations state (0.7).*
 
@@ -6731,7 +4625,7 @@ theorem lambda2_even_reachable (m n : ℕ) (h : n ≤ m.pred) :
       foldSigned 2 word 0 = 2 * (n : ℤ)
 ```
 
-## 80. `J-flight-height-law` &mdash; covers 0.32
+## 63. `J-flight-height-law` &mdash; covers 0.32
 
 *Reads as: the claim asserts more than the declarations state (0.87).*
 
@@ -6772,7 +4666,7 @@ theorem aboveAnchor_transport {n : ℕ} {w : List Branch}
       Real.log (floorPower^[k] n)
 ```
 
-## 81. `BTN-doubled-minimality` &mdash; covers 0.33
+## 64. `BTN-doubled-minimality` &mdash; covers 0.33
 
 *Reads as: the claim asserts more than the declarations state (0.89).*
 
@@ -6789,7 +4683,7 @@ theorem doubledTrit_outputSignatures_distinct :
     outSig 0 ≠ outSig 1 ∧ outSig 0 ≠ outSig (-1) ∧ outSig 1 ≠ outSig (-1)
 ```
 
-## 82. `J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight` &mdash; covers 0.33
+## 65. `J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight` &mdash; covers 0.33
 
 *Reads as: the claim asserts more than the declarations state (0.78).*
 
@@ -6808,7 +4702,7 @@ theorem cycle_itinerary_length_fifty_seven_or_ge_fifty_eight
     w.length = 57 ∨ 58 ≤ w.length
 ```
 
-## 83. `J-cyclemin-prefix-two-even-eoe` &mdash; covers 0.33
+## 66. `J-cyclemin-prefix-two-even-eoe` &mdash; covers 0.33
 
 *Reads as: the claim asserts more than the declarations state (0.82).*
 
@@ -6826,184 +4720,7 @@ theorem no_cycleMin_prefix_two_even_eoe {n k : ℕ} {u : List Branch}
     ¬CycleMin n (u ++ twoEvenEOE k)
 ```
 
-## 84. `J-cycle-fixed-residue-witness` &mdash; covers 0.34
-
-*Reads as: the claim asserts more than the declarations state (0.64).*
-
-*Claim broader 0.64; declaration narrower 0.56; different result 0.23.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** Paper A Appendix E.6, explicit formal witness. For every requested modulus q>0, c=512q-1 and b=c^3 yield two prescribed OOE first-return blocks in the same full cubic threshold band and the same section. The source, first image and endpoint are odd, all six threshold edges and first-return memberships are proved, and the final E-source parities differ. The records agree in source/first-image/endpoint/natural-aggregate residues modulo q, exact first remainder zero, and exact aggregate 2-adic valuation three. No classifier of this record can give both hidden parities correctly, even when supplied the exact common threshold and section boundary. The general positive free-b Taylor construction remains written. These blocks are not asserted periodic points; no impossibility for full absolute-va  *(truncated; read the ledger row)*
-
-**Declarations.** `guardResidueFamily_no_record_classifier` &mdash; kernel-checked, `Problems/Juggler/GuardResidueFamily.lean:691`
-
-> The record cannot determine hidden parity even with the exact common band and section.
-
-```lean
-theorem guardResidueFamily_no_record_classifier (q : ℕ) (hq : 0 < q) :
-    ¬ ∃ f : ℕ → ℕ → (ℕ × ℕ × ℕ × ℕ × ℕ × ℕ) → ℕ,
-      ∀ c : ℤ, 511 ≤ c → c%4=3 →
-        f ((guardResidueTMinus c).toNat^2) ((guardResidueZPlus c).toNat+1)
-          (guardResidueRecord q (guardResidueTPlus c).toNat
-          (guardResidueZPlus c).toNat) = (guardResidueVPlus c).toNat%2 ∧
-        f ((guardResidueTMinus c).toNat^2) ((guardResidueZPlus c).toNat+1)
-          (guardResidueRecord q (guardResidueTMinus c).toNat
-          (guardResidueZMinus c).toNat) = (guardResidueVMinus c).toNat%2
-```
-
-**And.** `guardResidueParameter` &mdash; kernel-checked, `Problems/Juggler/GuardResidueFamily.lean:514`
-
-```lean
-def guardResidueParameter (q : ℕ) : ℤ
-```
-
-**And.** `guardResidueParameter_valid` &mdash; kernel-checked, `Problems/Juggler/GuardResidueFamily.lean:516`
-
-```lean
-theorem guardResidueParameter_valid {q : ℕ} (hq : 0 < q) :
-    511 ≤ guardResidueParameter q ∧ guardResidueParameter q % 4 = 3 ∧
-    (q:ℤ) ∣ guardResidueParameter q + 1
-```
-
-**And.** `guardResidueFamily_every_modulus` &mdash; kernel-checked, `Problems/Juggler/GuardResidueFamily.lean:523`
-
-```lean
-theorem guardResidueFamily_every_modulus (q : ℕ) (hq : 0 < q) :
-    ∃ c : ℤ, 511 ≤ c ∧ c%4=3 ∧
-      ((guardResidueTPlus c).toNat^2)%q=((guardResidueTMinus c).toNat^2)%q ∧
-      ((guardResidueTPlus c).toNat^3)%q=((guardResidueTMinus c).toNat^3)%q ∧
-      (guardResidueZPlus c).toNat%q=(guardResidueZMinus c).toNat%q ∧
-      Int.ModEq (q:ℤ) ((guardResidueTPlus c^2)^9-guardResidueZPlus c^8)
-        ((guardResidueTMinus c^2)^9-guardResidueZMinus c^8) ∧
-      (guardResidueVPlus c).toNat%2=1 ∧
-      (guardResidueVMinus c).toNat%2=0 ∧
-      floorPower ((guardResidueTMinus c).toNat^2)=(guardResidueTMinus c).toNat^3 ∧
-      floorPower ((guardResidueTMinus c).toNat^3)=(guardResidueVMinus c).toNat ∧
-      floorPower (guardResidueVMinus c).toNat=(guardResidueZMinus c).toNat ∧
-```
-
-**And.** `guardResidueFamily_record_collision` &mdash; kernel-checked, `Problems/Juggler/GuardResidueFamily.lean:674`
-
-> Every positive fixed modulus gives equal records with opposite final guards.
-
-```lean
-theorem guardResidueFamily_record_collision (q : ℕ) (hq : 0 < q) :
-    let c
-```
-
-**And.** `guardResidueRecord` &mdash; kernel-checked, `Problems/Juggler/GuardResidueFamily.lean:669`
-
-> The proposed finite residue record, with exact first remainder and aggregate valuation.
-
-```lean
-def guardResidueRecord (q a z : ℕ) : ℕ × ℕ × ℕ × ℕ × ℕ × ℕ
-```
-
-**And.** `guardResidue_ooe_traces` &mdash; kernel-checked, `Problems/Juggler/GuardResidueFamily.lean:406`
-
-```lean
-theorem guardResidue_ooe_traces {c : ℤ} (hc : 511 ≤ c) (hm : c % 4 = 3) :
-    Nat.sqrt (((guardResidueTPlus c).toNat ^ 2)^3) =
-      (guardResidueTPlus c).toNat ^ 3 ∧
-    Nat.sqrt (((guardResidueTPlus c).toNat ^ 3)^3) =
-      (guardResidueVPlus c).toNat ∧
-    Nat.sqrt (guardResidueVPlus c).toNat = (guardResidueZPlus c).toNat ∧
-    Nat.sqrt (((guardResidueTMinus c).toNat ^ 2)^3) =
-      (guardResidueTMinus c).toNat ^ 3 ∧
-    Nat.sqrt (((guardResidueTMinus c).toNat ^ 3)^3) =
-      (guardResidueVMinus c).toNat ∧
-    Nat.sqrt (guardResidueVMinus c).toNat = (guardResidueZMinus c).toNat
-```
-
-**And.** `guardResidue_good_juggler_block` &mdash; kernel-checked, `Problems/Juggler/GuardResidueFamily.lean:453`
-
-```lean
-theorem guardResidue_good_juggler_block {c : ℤ}
-    (hc : 511 ≤ c) (hm : c % 4 = 3) :
-    floorPower ((guardResidueTMinus c).toNat^2) =
-      (guardResidueTMinus c).toNat^3 ∧
-    floorPower ((guardResidueTMinus c).toNat^3) =
-      (guardResidueVMinus c).toNat ∧
-    floorPower (guardResidueVMinus c).toNat =
-      (guardResidueZMinus c).toNat
-```
-
-**And.** `guardResidue_threshold_blocks` &mdash; kernel-checked, `Problems/Juggler/GuardResidueFamily.lean:864`
-
-> Both blocks execute their three prescribed edges under one full threshold map, even though their actual final source parities differ.
-
-```lean
-theorem guardResidue_threshold_blocks {c : ℤ}
-    (hc : 511 ≤ c) (hm : c % 4 = 3) :
-    let s
-```
-
-**And.** `guardResidue_common_band_and_section` &mdash; kernel-checked, `Problems/Juggler/GuardResidueFamily.lean:783`
-
-> The two residue-indistinguishable blocks share the same full threshold band and the same first-return section: all four endpoints are inside the section, and all four intermediate states are outside it.
-
-```lean
-theorem guardResidue_common_band_and_section {c : ℤ}
-    (hc : 511 ≤ c) (hm : c % 4 = 3) :
-    let s
-```
-
-**And.** `guardResidue_nat_parities` &mdash; kernel-checked, `Problems/Juggler/GuardResidueFamily.lean:433`
-
-```lean
-theorem guardResidue_nat_parities {c : ℤ} (hc : 511 ≤ c) (hm : c % 4 = 3) :
-    (guardResidueTPlus c).toNat % 2 = 1 ∧
-    (guardResidueTMinus c).toNat % 2 = 1 ∧
-    (guardResidueVPlus c).toNat % 2 = 1 ∧
-    (guardResidueVMinus c).toNat % 2 = 0 ∧
-    (guardResidueZPlus c).toNat % 2 = 1 ∧
-    (guardResidueZMinus c).toNat % 2 = 1
-```
-
-**And.** `guardResidue_nat_record` &mdash; kernel-checked, `Problems/Juggler/GuardResidueFamily.lean:486`
-
-```lean
-theorem guardResidue_nat_record {q : ℕ} {c : ℤ}
-    (hc : 511 ≤ c) (hm : c % 4 = 3) (hq : (q:ℤ) ∣ c+1) :
-    ((guardResidueTPlus c).toNat^2)%q=((guardResidueTMinus c).toNat^2)%q ∧
-    ((guardResidueTPlus c).toNat^3)%q=((guardResidueTMinus c).toNat^3)%q ∧
-    (guardResidueZPlus c).toNat%q=(guardResidueZMinus c).toNat%q ∧
-    Int.ModEq (q:ℤ) ((guardResidueTPlus c^2)^9-guardResidueZPlus c^8)
-      ((guardResidueTMinus c^2)^9-guardResidueZMinus c^8)
-```
-
-**And.** `guardResidue_nat_aggregate_record` &mdash; kernel-checked, `Problems/Juggler/GuardResidueFamily.lean:644`
-
-```lean
-theorem guardResidue_nat_aggregate_record {q : ℕ} {c : ℤ}
-    (hc : 511 ≤ c) (hm : c % 4 = 3) (hq : (q : ℤ) ∣ c + 1) :
-    (((guardResidueTPlus c).toNat ^ 2) ^ 9 -
-        (guardResidueZPlus c).toNat ^ 8) % q =
-      (((guardResidueTMinus c).toNat ^ 2) ^ 9 -
-        (guardResidueZMinus c).toNat ^ 8) % q
-```
-
-**And.** `guardResidue_first_remainders_zero` &mdash; kernel-checked, `Problems/Juggler/GuardResidueFamily.lean:472`
-
-```lean
-theorem guardResidue_first_remainders_zero (c : ℤ) :
-    ((guardResidueTPlus c).toNat^2)^3 -
-      ((guardResidueTPlus c).toNat^3)^2 = 0 ∧
-    ((guardResidueTMinus c).toNat^2)^3 -
-      ((guardResidueTMinus c).toNat^3)^2 = 0
-```
-
-**And.** `guardResidue_aggregate_valuation` &mdash; kernel-checked, `Problems/Juggler/GuardResidueFamily.lean:634`
-
-```lean
-theorem guardResidue_aggregate_valuation {c : ℤ}
-    (hc : 511 ≤ c) (hm : c % 4 = 3) :
-    padicValNat 2 (((guardResidueTPlus c).toNat ^ 2) ^ 9 -
-        (guardResidueZPlus c).toNat ^ 8) = 3 ∧
-      padicValNat 2 (((guardResidueTMinus c).toNat ^ 2) ^ 9 -
-        (guardResidueZMinus c).toNat ^ 8) = 3
-```
-
-## 85. `J-cyclemin-fudge` &mdash; covers 0.34
+## 67. `J-cyclemin-fudge` &mdash; covers 0.34
 
 *Reads as: the claim asserts more than the declarations state (0.72).*
 
@@ -7222,7 +4939,7 @@ theorem no_cycle_itinerary_ooooeoeoeoe {n : ℕ} (hn : 2 ≤ n) :
     ¬CycleItinerary n (fourEvenWord 4 1 1 1)
 ```
 
-## 86. `J-fate-cylinder-corollary` &mdash; covers 0.34
+## 68. `J-fate-cylinder-corollary` &mdash; covers 0.34
 
 *Reads as: the claim asserts more than the declarations state (0.66).*
 
@@ -7274,106 +4991,7 @@ theorem oddFailures_eventually_le {N₀ : ℕ} (hN : 2 ≤ N₀)
     ∃ y₀ : ℕ, ∀ y, y₀ ≤ y → ((oddFailures y).card : ℝ) ≤ y * Real.log y ^ (-e)
 ```
 
-## 87. `J-paper-b-defect-coefficient-chain` &mdash; covers 0.34
-
-*Reads as: the claim asserts more than the declarations state (0.81).*
-
-*Claim broader 0.81; declaration narrower 0.36; different result 0.13.  Tag EXACT — HUMAN PROOF, trust kernel.*
-
-**Row.** Paper B section 7's per-letter coefficient rule, as an identity rather than a table. For a word w over {O,E} write p_q = 3/2 if letter q is O and 1/2 if it is E, and e_t = prod_{q<=t} p_q, so J^t(n) sits at scale n^{e_t}. For letters s < t the coefficient of the phase variable theta_s inside letter t's phase is (k/2) E at exponent e_{t-1} - e_s, where E = prod_{q=s+1}^{t-1} p_q. Proof: letter t's wave is e(k J^{t-1}/2), and J^{t-1} depends on theta_s only through the chain of power maps between them; composing power maps composes to a single power, so the chain contributes exactly the product of its step exponents. The identity that makes this a rule and not a table is E = e_{t-1}/e_s, checked on every word of length 3..10 and every pair s < t -- 75768 instances, no exception. It reproduce  *(truncated; read the ledger row)*
-
-**Declarations.** `chain_rule` &mdash; kernel-checked, `Problems/Juggler/PaperBChainRule.lean:96`
-
-> **The chain rule.** `E = e_{t-1} / e_s`: the product of the step exponents strictly between letters `s` and `t` is the ratio of the iterate exponents at `t-1` and at `s`. `pre` is the prefix of length `s`, so `iter pre = e_s`; `mid` is the block of letters `s+1 … t-1`, so `iter mid = E` and `iter (pre ++ mid) = e_{t-1}`.
-
-```lean
-theorem chain_rule (pre mid : List Letter) :
-    iter mid = iter (pre ++ mid) / iter pre
-```
-
-**And.** `step` &mdash; kernel-checked, `Problems/Juggler/PaperBChainRule.lean:53`
-
-> The per-letter power map `p_q`: `3/2` after an odd letter, `1/2` after an even one. These are the only two values a Juggler step contributes.
-
-```lean
-def step : Letter → ℚ
-  | Letter.O => 3 / 2
-  | Letter.E => 1 / 2
-
-/-- `iter w = ∏ p_q` over the letters of `w`.  For a prefix of length `t` this is
-the iterate exponent `e_t`, so that `J^t(n)` sits at scale `n^(e_t)`. -/
-def iter (w : List Letter) : ℚ
-```
-
-**And.** `iter` &mdash; kernel-checked, `Problems/Juggler/PaperBChainRule.lean:59`
-
-> `iter w = ∏ p_q` over the letters of `w`. For a prefix of length `t` this is the iterate exponent `e_t`, so that `J^t(n)` sits at scale `n^(e_t)`.
-
-```lean
-def iter (w : List Letter) : ℚ
-```
-
-**And.** `iter_pos` &mdash; kernel-checked, `Problems/Juggler/PaperBChainRule.lean:72`
-
-> Every iterate exponent is positive. This is the only fact about the values `3/2` and `1/2` that the criterion below uses.
-
-```lean
-theorem iter_pos (w : List Letter) : 0 < iter w
-```
-
-**And.** `iter_split` &mdash; kernel-checked, `Problems/Juggler/PaperBChainRule.lean:83`
-
-> **Splitting.** `e` over a concatenation is the product of the two pieces. This is the composition of power maps, and everything below is a consequence.
-
-```lean
-theorem iter_split (pre mid : List Letter) :
-    iter (pre ++ mid) = iter pre * iter mid
-```
-
-**And.** `coeff` &mdash; kernel-checked, `Problems/Juggler/PaperBChainRule.lean:102`
-
-> The coefficient of `θ_s` in letter `t`'s phase, in units of `k`: it is `E / 2`, with `E` the composed map of `chain_rule`.
-
-```lean
-def coeff (mid : List Letter) : ℚ
-```
-
-**And.** `coeffExponent` &mdash; kernel-checked, `Problems/Juggler/PaperBChainRule.lean:105`
-
-> The exponent that coefficient sits at: `e_{t-1} - e_s`.
-
-```lean
-def coeffExponent (pre mid : List Letter) : ℚ
-```
-
-**And.** `printed_thm53` &mdash; kernel-checked, `Problems/Juggler/PaperBChainRule.lean:285`
-
-> Theorem 5.3's kernel monomial `(3k/4) n^(9/8)`: coefficient `3/4` in units of `k`, at exponent `9/8`.
-
-```lean
-theorem printed_thm53 :
-    coeff [O] = 3 / 4 ∧ coeffExponent [O, O] [O] = 9 / 8
-```
-
-**And.** `printed_thm63_C` &mdash; kernel-checked, `Problems/Juggler/PaperBChainRule.lean:290`
-
-> Theorem 6.3's `C = (9k/16) n^(3/16)`.
-
-```lean
-theorem printed_thm63_C :
-    coeff [O, O, E] = 9 / 16 ∧ coeffExponent [O] [O, O, E] = 3 / 16
-```
-
-**And.** `printed_thm63_B` &mdash; kernel-checked, `Problems/Juggler/PaperBChainRule.lean:295`
-
-> Theorem 6.3's `B = (3k/4) v^(1/4)`.
-
-```lean
-theorem printed_thm63_B :
-    coeff [O] = 3 / 4 ∧ coeffExponent [E] [O] = 1 / 4
-```
-
-## 88. `J-cycle-ooe-polynomial-block` &mdash; covers 0.35
+## 69. `J-cycle-ooe-polynomial-block` &mdash; covers 0.35
 
 *Reads as: the claim asserts more than the declarations state (0.71).*
 
@@ -7441,7 +5059,7 @@ theorem ooeFamily_iterate_three {r : ℕ} (hr : 3 ≤ r) (ho : r % 2 = 1) :
     (floorPower^[3]) (ooeFamilySource r) = ooeFamilyExit r
 ```
 
-## 89. `J-fate-minimal-failure-oo` &mdash; covers 0.35
+## 70. `J-fate-minimal-failure-oo` &mdash; covers 0.35
 
 *Reads as: the claim asserts more than the declarations state (0.61).*
 
@@ -7508,7 +5126,7 @@ theorem first_letter_pieces_disjoint (n : ℕ) :
       ¬ (n % 2 = 1 ∧ floorPower n % 2 = 0 ∧ floorPower n % 2 = 1)
 ```
 
-## 90. `OST-np-origin-particular` &mdash; covers 0.35
+## 71. `OST-np-origin-particular` &mdash; covers 0.35
 
 *Reads as: the claim asserts more than the declarations state (0.87).*
 
@@ -7525,7 +5143,7 @@ theorem origin_particular (ws : List ℤ) :
     foldSteps ws origin = particularSum ws
 ```
 
-## 91. `C-shortcut-welldefined` &mdash; covers 0.36
+## 72. `C-shortcut-welldefined` &mdash; covers 0.36
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -7564,7 +5182,7 @@ theorem shortcutC_terminal_cycle :
     shortcutC 1 = 2 ∧ shortcutC 2 = 1
 ```
 
-## 92. `J-even-count-le-three` &mdash; covers 0.36
+## 73. `J-even-count-le-three` &mdash; covers 0.36
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -7649,7 +5267,7 @@ theorem cycle_itinerary_length_ge_eleven {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleItinerary n w) : 11 ≤ w.length
 ```
 
-## 93. `J-fate-cylinder-energy` &mdash; covers 0.37
+## 74. `J-fate-cylinder-energy` &mdash; covers 0.37
 
 *No failure mode above the line; coverage itself is doubtful.*
 
@@ -7684,7 +5302,7 @@ theorem itinerary_succ_append (n d : ℕ) :
     itinerary n (d + 1) = itinerary n d ++ [bit (floorPower^[d] n)]
 ```
 
-## 94. `J-global-defect-identity` &mdash; covers 0.37
+## 75. `J-global-defect-identity` &mdash; covers 0.37
 
 *Reads as: the claim asserts more than the declarations state (0.57).*
 
@@ -7749,27 +5367,7 @@ theorem global_defect_append {n : ℕ} {u v : List Branch}
         (globalDefect (image n u) v) (2 ^ u.length)
 ```
 
-## 95. `BTL-reconstruct` &mdash; covers 0.39
-
-*Reads as: a declaration is narrower than the claim (0.68).*
-
-*Claim broader 0.64; declaration narrower 0.68; different result 0.15.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** iterated reconstruction: f(n_w + 3^k x) = sum_{i<k} rho_i 3^i + 3^k (D_w f)(x) for every word w of length k
-
-**Declaration.** `iterated_reconstruction` &mdash; kernel-checked, `BTCalculus/PadicLifting.lean:43`
-
-> `f(n_w + 3^k x) = Σ ρ_i 3^i + 3^k (𝔇_w f)(x)`, in packed form.
-
-```lean
-theorem iterated_reconstruction (f : ℤ[X]) :
-    ∀ (w : List ℤ) (x : ℤ),
-      eval (packTrits w x) f =
-        packTrits (outputAlong w f) (eval x (residualAlong w f))
-  | [], x => by
-```
-
-## 96. `J-cyclemin-prefix-bunched-eeoe` &mdash; covers 0.39
+## 76. `J-cyclemin-prefix-bunched-eeoe` &mdash; covers 0.39
 
 *Reads as: the claim asserts more than the declarations state (0.74).*
 
@@ -7787,7 +5385,7 @@ theorem no_cycleMin_prefix_eeoe {n a : ℕ} {u : List Branch}
     ¬CycleMin n (u ++ threeEvenEEOE a)
 ```
 
-## 97. `OST-np-impulse-place` &mdash; covers 0.39
+## 77. `OST-np-impulse-place` &mdash; covers 0.39
 
 *Reads as: the claim asserts more than the declarations state (0.56).*
 
@@ -7803,7 +5401,7 @@ theorem no_cycleMin_prefix_eeoe {n a : ℕ} {u : List Branch}
 theorem iterateA_e3 (r : ℕ) : iterateA r e3 = impulsePlace r
 ```
 
-## 98. `J-cubic-critical-run-kernels` &mdash; covers 0.4
+## 78. `J-cubic-critical-run-kernels` &mdash; covers 0.4
 
 *Reads as: a declaration is narrower than the claim (0.56).*
 
@@ -7989,7 +5587,7 @@ theorem fixed_nonzero_lower {C T : ℕ} (hC : 14569 ≤ C)
     (hfilter : C + 2 ≤ T) : 14571 ≤ T
 ```
 
-## 99. `J-cyclemin-closure-threshold` &mdash; covers 0.4
+## 79. `J-cyclemin-closure-threshold` &mdash; covers 0.4
 
 *Reads as: a declaration is narrower than the claim (0.74).*
 
@@ -8013,7 +5611,7 @@ theorem no_cycleMin_of_gap_and_minimum {C p : ℝ}
     w.length = 0
 ```
 
-## 100. `J-cyclemin-period-lower-bound` &mdash; covers 0.4
+## 80. `J-cyclemin-period-lower-bound` &mdash; covers 0.4
 
 *Reads as: a declaration is narrower than the claim (0.72).*
 
@@ -8047,169 +5645,7 @@ theorem cycleMin_period_ge_wuWang {n : ℕ} {w : List Branch} {C : ℝ}
     (C / 2 * ((n : ℝ) * Real.log n)) ^ (1 / (5.1163051 : ℝ)) ≤ (w.length : ℝ)
 ```
 
-## 101. `J-fate-block-average-layer` &mdash; covers 0.4
-
-*Reads as: the claim asserts more than the declarations state (0.74).*
-
-*Claim broader 0.74; declaration narrower 0.45; different result 0.1.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** The exact layer of Paper C Proposition 4.4, the slow sum, the block count, and equation (4.1) given the paper's two remaining exponential-sum bounds as hypotheses. The block: the odd n of I(m') = [m'^{8/3}, (m'+1)^{8/3}) are exactly the odd n with m'^2 <= floor(n^{3/4}) < (m'+1)^2 (mem_oddBlock, through the landing window of Appendix D.1). The decomposition: U(m') is the disjoint union of the even-image parts of the fibers Phi(m) over the even m of the block, so |U(m')| is the sum of Lemma 4.2's evenImageCount over E(m') (U_card_eq); the whole block is the disjoint union of the fibers (oddBlock_card_eq). The expansion: 4|U(m')| = M + S1 + S2 + S12 exactly (four_card_U). The slow sum S1 = sum psi(floor(n^{3/4})) is the alternating sum of fiber sizes over the block (slowSum_eq_fibers); the f  *(truncated; read the ledger row)*
-
-**Declarations.** `block_average_two_bounds` &mdash; kernel-checked, `Problems/Juggler/FateBlockAverage.lean:436`
-
-> **Proposition 4.4, equation (4.1), given the two exponential-sum bounds.** The slow sum is proved (`slowSum_abs_le`); the fast sum and the product sum remain hypotheses.
-
-```lean
-theorem block_average_two_bounds {m' : ℕ} (hm : 1 ≤ m') {B : ℝ}
-    (h₂ : |(fastSum m' : ℝ)| ≤ B) (h₁₂ : |(productSum m' : ℝ)| ≤ B) :
-    |((U m').card : ℝ) - ((oddBlock m').card : ℝ) / 4| ≤ B / 2 + (m' + 1)
-```
-
-**And.** `oddBlock` &mdash; kernel-checked, `Problems/Juggler/FateBlockAverage.lean:69`
-
-> The odd integers of the paper's `I(m') = [m'^{8/3}, (m'+1)^{8/3})`, written exactly with the landing window of Appendix D.1.
-
-```lean
-def oddBlock (m' : ℕ) : Finset ℕ
-```
-
-**And.** `mem_oddBlock` &mdash; kernel-checked, `Problems/Juggler/FateBlockAverage.lean:73`
-
-> Membership in the block is the exact condition `m'² ≤ ⌊n^{3/4}⌋ < (m'+1)²`.
-
-```lean
-theorem mem_oddBlock {m' n : ℕ} :
-    n ∈ oddBlock m' ↔ n % 2 = 1 ∧ m' ^ 2 ≤ cell34 n ∧ cell34 n < (m' + 1) ^ 2
-```
-
-**And.** `blockE` &mdash; kernel-checked, `Problems/Juggler/FateBlockAverage.lean:65`
-
-> The paper's `E(m')`: the even `m` with `m'² ≤ m < (m'+1)²`.
-
-```lean
-def blockE (m' : ℕ) : Finset ℕ
-```
-
-**And.** `U` &mdash; kernel-checked, `Problems/Juggler/FateBlockAverage.lean:88`
-
-> `U(m')`: the odd `n` of the block whose two floors are both even.
-
-```lean
-def U (m' : ℕ) : Finset ℕ
-```
-
-**And.** `U_card_eq` &mdash; kernel-checked, `Problems/Juggler/FateBlockAverage.lean:116`
-
-> **The proposition's first sentence, exactly.** `U(m')` is the disjoint union of the even-image parts of the fibers `Φ(m)` over the even `m` of the block, so its size is the sum of the even-image counts of Lemma 4.2.
-
-```lean
-theorem U_card_eq (m' : ℕ) :
-    (U m').card = ∑ m ∈ blockE m', FiberParity.evenImageCount m
-```
-
-**And.** `oddBlock_card_eq` &mdash; kernel-checked, `Problems/Juggler/FateBlockAverage.lean:93`
-
-```lean
-theorem oddBlock_card_eq (m' : ℕ) :
-    (oddBlock m').card
-      = ∑ m ∈ Finset.Ico (m' ^ 2) ((m' + 1) ^ 2), (FiberParity.oeFiber m).card
-```
-
-**And.** `four_card_U` &mdash; kernel-checked, `Problems/Juggler/FateBlockAverage.lean:156`
-
-> **Expanding the two indicators**, exactly: `4|U(m')| = M + S₁ + S₂ + S₁₂`, where `M` is the number of odd integers of the block. This is the identity the paper's proof starts from; the three sums are what its exponential-sum estimates bound.
-
-```lean
-theorem four_card_U (m' : ℕ) :
-    4 * ((U m').card : ℤ) = ((oddBlock m').card : ℤ) + slowSum m' + fastSum m' + productSum m'
-```
-
-**And.** `slowSum` &mdash; kernel-checked, `Problems/Juggler/FateBlockAverage.lean:145`
-
-> `Σ ψ(n^{3/4})`, the slow sum.
-
-```lean
-def slowSum (m' : ℕ) : ℤ
-```
-
-**And.** `slowSum_eq_fibers` &mdash; kernel-checked, `Problems/Juggler/FateBlockAverage.lean:242`
-
-> **The slow sum, fiber by fiber.** `S₁ = Σ_{m'² ≤ m < (m'+1)²} ψ(m) |Φ(m)|`: the parity of `⌊n^{3/4}⌋` is constant on a fiber, so the slow sum is an alternating sum of fiber sizes.
-
-```lean
-theorem slowSum_eq_fibers (m' : ℕ) :
-    slowSum m' = ∑ m ∈ Finset.Ico (m' ^ 2) ((m' + 1) ^ 2),
-      psi m * ((FiberParity.oeFiber m).card : ℤ)
-```
-
-**And.** `oeFiber_card_succ_diff` &mdash; kernel-checked, `Problems/Juggler/FateBlockAverage.lean:259`
-
-> Consecutive fibers differ by at most two members (`m ≥ 1`): the fiber bounds `(2/3)m^{1/3} - 1 ≤ |Φ(m)| ≤ (2/3)(m+1)^{1/3} + 1` overlap, and `(m+2)^{1/3} - m^{1/3} ≤ (2/3) m^{-2/3} ≤ 2/3` by Bernoulli.
-
-```lean
-theorem oeFiber_card_succ_diff {m : ℕ} (hm : 1 ≤ m) :
-    |((FiberParity.oeFiber m).card : ℤ) - ((FiberParity.oeFiber (m + 1)).card : ℤ)| ≤ 2
-```
-
-**And.** `slowSum_abs_le` &mdash; kernel-checked, `Problems/Juggler/FateBlockAverage.lean:312`
-
-> **The slow sum is `O(m')`.** `|S₁| ≤ 2m' + (2/3)(m'+1)^{2/3} + 1`: the block is `m'` pairs of consecutive fibers, each contributing at most `2`, plus one fiber left over. This is the paper's "pair consecutive fibers, whose odd-point counts differ by at most 3, and bound the remaining end fiber", with `2` in place of `3`.
-
-```lean
-theorem slowSum_abs_le {m' : ℕ} (hm : 1 ≤ m') :
-    |(slowSum m' : ℝ)| ≤ 2 * m' + (2 / 3 * ((m' : ℝ) + 1) ^ ((2 : ℝ) / 3) + 1)
-```
-
-**And.** `oddBlock_card_ge` &mdash; kernel-checked, `Problems/Juggler/FateBlockAverage.lean:380`
-
-> `(2m'+1)((2/3)m'^{2/3} - 1) ≤ M`: every fiber of the block has at least `(2/3)(m'²)^{1/3} - 1` members.
-
-```lean
-theorem oddBlock_card_ge {m' : ℕ} (hm : 1 ≤ m') :
-    (2 * m' + 1) * (2 / 3 * (m' : ℝ) ^ ((2 : ℝ) / 3) - 1) ≤ ((oddBlock m').card : ℝ)
-```
-
-**And.** `oddBlock_card_le` &mdash; kernel-checked, `Problems/Juggler/FateBlockAverage.lean:355`
-
-> `M ≤ (2m'+1)((2/3)(m'+1)^{2/3} + 1)`: every fiber of the block has at most `(2/3)((m'+1)²)^{1/3} + 1` members.
-
-```lean
-theorem oddBlock_card_le (m' : ℕ) :
-    ((oddBlock m').card : ℝ) ≤ (2 * m' + 1) * (2 / 3 * ((m' : ℝ) + 1) ^ ((2 : ℝ) / 3) + 1)
-```
-
-**And.** `oddBlock_quarter_close` &mdash; kernel-checked, `Problems/Juggler/FateBlockAverage.lean:403`
-
-> A quarter of the block is `m'^{5/3}/3` up to `m' + 1`: the "in particular" of the proposition, before the parity sums enter.
-
-```lean
-theorem oddBlock_quarter_close {m' : ℕ} (hm : 1 ≤ m') :
-    |((oddBlock m').card : ℝ) / 4 - (m' : ℝ) ^ ((5 : ℝ) / 3) / 3| ≤ m' + 1
-```
-
-**And.** `block_average_asymptotic` &mdash; kernel-checked, `Problems/Juggler/FateBlockAverage.lean:463`
-
-> **The asymptotic form of Proposition 4.4 with an explicit error**, given the two bounds: `|U(m')|` is within `B/2 + 2(m'+1)` of `m'^{5/3}/3`. With `B = C m'^{11/9} log(m'+1)` this is the paper's `|U(m')| = m'^{5/3}/3 (1 + O(m'^{-4/9} log(m'+1)))`.
-
-```lean
-theorem block_average_asymptotic {m' : ℕ} (hm : 1 ≤ m') {B : ℝ}
-    (h₂ : |(fastSum m' : ℝ)| ≤ B) (h₁₂ : |(productSum m' : ℝ)| ≤ B) :
-    |((U m').card : ℝ) - (m' : ℝ) ^ ((5 : ℝ) / 3) / 3| ≤ B / 2 + 2 * (m' + 1)
-```
-
-**And.** `block_average_bound_two` &mdash; kernel-checked, `Problems/Juggler/FateBlockAverage.lean:479`
-
-> Proposition 4.4 in the paper's shape with only the two exponential-sum hypotheses: for `m' ≥ 2` and both remaining sums at most `C m'^{11/9} log(m'+1)`, equation (4.1) holds with `C_B = C/2 + 2`.
-
-```lean
-theorem block_average_bound_two {m' : ℕ} (hm : 2 ≤ m') {C : ℝ}
-    (h₂ : |(fastSum m' : ℝ)| ≤ C * (m' : ℝ) ^ ((11 : ℝ) / 9) * Real.log (m' + 1))
-    (h₁₂ : |(productSum m' : ℝ)| ≤ C * (m' : ℝ) ^ ((11 : ℝ) / 9) * Real.log (m' + 1)) :
-    |((U m').card : ℝ) - ((oddBlock m').card : ℝ) / 4|
-      ≤ (C / 2 + 2) * (m' : ℝ) ^ ((11 : ℝ) / 9) * Real.log (m' + 1)
-```
-
-## 102. `J-cycle-direction-change-contraction` &mdash; covers 0.42
+## 81. `J-cycle-direction-change-contraction` &mdash; covers 0.42
 
 *Reads as: the claim asserts more than the declarations state (0.77).*
 
@@ -8266,7 +5702,7 @@ theorem c_pair_from_floor {m : ℝ} (hm : (2 : ℝ) ^ 24 ≤ m) {x y : ℕ}
       ((243 : ℝ) / 256) * m ^ ((-13 : ℝ) / 256) * ((y : ℝ) - x) + 9 / 8
 ```
 
-## 103. `J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five` &mdash; covers 0.42
+## 82. `J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five` &mdash; covers 0.42
 
 *Reads as: the claim asserts more than the declarations state (0.62).*
 
@@ -8348,7 +5784,7 @@ theorem floorPower_four_thousand_two_hundred_seventeen :
     floorPower 4217 = 273845
 ```
 
-## 104. `BTN-expanding-right-inverse` &mdash; covers 0.43
+## 83. `BTN-expanding-right-inverse` &mdash; covers 0.43
 
 *Reads as: the claim asserts more than the declarations state (0.64).*
 
@@ -8373,7 +5809,7 @@ theorem expandingD_eq_IZ_shape (n : ℤ) :
 theorem DZ_expandingD (n : ℤ) : DZ (expandingD n) = n
 ```
 
-## 105. `J-cycle-quartic-formal-defect` &mdash; covers 0.43
+## 84. `J-cycle-quartic-formal-defect` &mdash; covers 0.43
 
 *Reads as: the claim asserts more than the declarations state (0.6).*
 
@@ -8445,7 +5881,7 @@ theorem actual_sorted_positive_surplus {C : Set ℕ} {m M : ℕ}
         ((upperIndices m c).card : ℝ) * Real.log ((3 : ℝ) / 2)
 ```
 
-## 106. `J-effective-ooe-fourier-modes` &mdash; covers 0.44
+## 85. `J-effective-ooe-fourier-modes` &mdash; covers 0.44
 
 *Reads as: the claim asserts more than the declarations state (0.62).*
 
@@ -8487,7 +5923,7 @@ theorem normalized_mode_bound {M H : ℝ} (u v : ℤ) (hM : 1 ≤ M) (hH : 1 ≤
       128*M^(1/4:ℝ)*H^(1/30:ℝ)*(T:ℝ)^(-1/60:ℝ)
 ```
 
-## 107. `BTA-fn-congr` &mdash; covers 0.45
+## 86. `BTA-fn-congr` &mdash; covers 0.45
 
 *Reads as: the claim asserts more than the declarations state (0.56).*
 
@@ -8504,7 +5940,7 @@ theorem equivK_iff_functionCongr (k : ℕ) (f g : ℤ[X]) :
     equivK k f g ↔ functionCongr k f g
 ```
 
-## 108. `BTA-x3-Q-visible` &mdash; covers 0.45
+## 87. `BTA-x3-Q-visible` &mdash; covers 0.45
 
 *Reads as: the claim asserts more than the declarations state (0.66).*
 
@@ -8523,7 +5959,7 @@ theorem q_visible_mod {t K s : Nat}
     (3 : Int) ^ K ∣ qCubic t u - qCubic t v
 ```
 
-## 109. `J-cyclemin-prefix-bunched-eooee` &mdash; covers 0.45
+## 88. `J-cyclemin-prefix-bunched-eooee` &mdash; covers 0.45
 
 *Reads as: the claim asserts more than the declarations state (0.55).*
 
@@ -8541,7 +5977,7 @@ theorem no_cycleMin_prefix_eooee {n a : ℕ} {u : List Branch}
     ¬CycleMin n (u ++ threeEvenEOOEE a)
 ```
 
-## 110. `J-fate-seed` &mdash; covers 0.45
+## 89. `J-fate-seed` &mdash; covers 0.45
 
 *Reads as: the claim asserts more than the declarations state (0.74).*
 
@@ -8624,7 +6060,7 @@ theorem blockTree_logMass_ge {m : ℕ} (hm : 3 ≤ m) (k : ℕ) :
     3 / 8 / ((m : ℝ) + 1) ≤ ∑ n ∈ blockTree m (k + 1), (1 : ℝ) / n
 ```
 
-## 111. `J-four-block-persistent-expanding` &mdash; covers 0.45
+## 90. `J-four-block-persistent-expanding` &mdash; covers 0.45
 
 *No failure mode above the line; coverage itself is doubtful.*
 
@@ -8657,7 +6093,7 @@ theorem four_block_pe_1999 :
       PersistentExpandingResidual 193753 887471
 ```
 
-## 112. `J-period-family-arithmetic-in-lean` &mdash; covers 0.45
+## 91. `J-period-family-arithmetic-in-lean` &mdash; covers 0.45
 
 *Reads as: the claim asserts more than the declarations state (0.6).*
 
@@ -8774,7 +6210,7 @@ theorem lastMember : fanMember 55 = betaDenoms.getD 15 0
 theorem member_strictMono : StrictMono fanMember
 ```
 
-## 113. `OST-np-reset-prefix` &mdash; covers 0.45
+## 92. `OST-np-reset-prefix` &mdash; covers 0.45
 
 *Reads as: the claim asserts more than the declarations state (0.65).*
 
@@ -8791,7 +6227,7 @@ theorem reset_prefix (r u : List ℤ) (hr : particularSum r = origin) :
     particularSum (r ++ u) = particularSum u
 ```
 
-## 114. `BTA-x3-x` &mdash; covers 0.46
+## 93. `BTA-x3-x` &mdash; covers 0.46
 
 *Reads as: the claim asserts more than the declarations state (0.64).*
 
@@ -8817,7 +6253,7 @@ theorem not_three_dvd_coeff_X_pow_three_sub_X :
     ¬ (3 : ℤ) ∣ coeff ((X : ℤ[X]) ^ 3 - X) 3
 ```
 
-## 115. `BTN-expanding-lambda` &mdash; covers 0.46
+## 94. `BTN-expanding-lambda` &mdash; covers 0.46
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -8843,7 +6279,7 @@ theorem lsdZ_expandingDGain_three (n : ℤ) :
     lsdZ (expandingDGain 3 n) = 0
 ```
 
-## 116. `J-paper-b-linearisation-E-lt-2` &mdash; covers 0.46
+## 95. `J-paper-b-linearisation-E-lt-2` &mdash; covers 0.46
 
 *Reads as: the claim asserts more than the declarations state (0.84).*
 
@@ -8894,7 +6330,7 @@ theorem two_odd_not_safe : ¬ (iter [O, O] < 2)
 theorem odd_even_safe : iter [O, E] < 2
 ```
 
-## 117. `BTN-carry-gain-3` &mdash; covers 0.47
+## 96. `BTN-carry-gain-3` &mdash; covers 0.47
 
 *Reads as: the claim asserts more than the declarations state (0.85).*
 
@@ -8919,7 +6355,7 @@ theorem carryGain3_unbounded (B : ℕ) :
     ∃ n : ℕ, B < (carryGain3 n).natAbs
 ```
 
-## 118. `J-cycle-induced-count-determinant` &mdash; covers 0.48
+## 97. `J-cycle-induced-count-determinant` &mdash; covers 0.48
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -8955,100 +6391,5 @@ theorem InducedPair.expanded_count_gcd {U V : List Branch} (h : InducedPair U V)
     (a b : ℕ) :
     Nat.gcd (a * oddCount U + b * oddCount V)
       (a * evenCount U + b * evenCount V) = Nat.gcd a b
-```
-
-## 119. `J-fate-monotone-pairing-repair` &mdash; covers 0.49
-
-*Reads as: the claim asserts more than the declarations state (0.69).*
-
-*Claim broader 0.69; declaration narrower 0.43; different result 0.22.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** Paper C Lemma 4.1' (monotone pairing), with a corrected proof and the same constant. Hypotheses of Lemma 4.1 (steps in [a, b], 0 < a ≤ b ≤ 1/2, b ≤ 21a/20, (H−1) a ≥ 12) plus monotone steps: each half-cell colour receives at least H/3 − 2 terms, in both cell conventions. The proof printed until 2026-09-08 claimed every pair of consecutive cells (ρ, ρ') has min ≥ (ρ+ρ')/3, deduced from a step scale that 'drops by at most X/21 spread over the cells'; monotonicity does not give gradual change, and a = 10/41, b = 21/82 with points −2a, −a, 0, a, 2a, 2a+b, 2a+2b, … (nondecreasing steps) has the interior pair (3, 1), ratio 1/4. It also paired the two partial end cells as if interior. Corrected proof: (a) for interior i < j, ρ_j ≤ ρ_i + 1, because the ρ_i + 1 steps across cell i span more than 1/  *(truncated; read the ledger row)*
-
-**Declarations.** `sweep_monotone_fract_lt_half` &mdash; kernel-checked, `Problems/Juggler/FateSweepMonotone.lean:2357`
-
-> Paper C Lemma 4.1′: at least `H/3 - 2` of the terms have `{x_j} < 1/2`.
-
-```lean
-theorem sweep_monotone_fract_lt_half (x : ℕ → ℝ) (H : ℕ) (a b : ℝ)
-    (ha : 0 < a) (hab : a ≤ b) (hb : b ≤ 1 / 2) (hba : b ≤ 21 / 20 * a)
-    (h12 : 12 ≤ ((H : ℝ) - 1) * a)
-    (hs : ∀ j, j + 1 < H → a ≤ x (j + 1) - x j ∧ x (j + 1) - x j ≤ b)
-    (hmono : MonoSteps x H ∨ AntiSteps x H) :
-    (H : ℝ) / 3 - 2 ≤ #{j ∈ Finset.range H | Int.fract (x j) < 1 / 2}
-```
-
-**And.** `sweep_monotone_cell` &mdash; kernel-checked, `Problems/Juggler/FateSweepMonotone.lean:2294`
-
-> Paper C Lemma 4.1′ (monotone pairing), closed half-cells: each colour of `⌊2 x_j⌋` has at least `H/3 - 2` terms.
-
-```lean
-theorem sweep_monotone_cell (ha : 0 < a) (hab : a ≤ b)
-    (hb : b ≤ 1 / 2) (hba : b ≤ 21 / 20 * a) (h12 : 12 ≤ ((H : ℝ) - 1) * a)
-    (hs : Steps x H a b) (hmono : MonoSteps x H ∨ AntiSteps x H) (v : ℤ) :
-    (H : ℝ) / 3 - 2 ≤ #{j ∈ range H | cell (x j) ≡ v [ZMOD 2]}
-```
-
-**And.** `sweep_monotone_fract_ge_half` &mdash; kernel-checked, `Problems/Juggler/FateSweepMonotone.lean:2373`
-
-> Paper C Lemma 4.1′: at least `H/3 - 2` of the terms have `{x_j} ≥ 1/2`.
-
-```lean
-theorem sweep_monotone_fract_ge_half (x : ℕ → ℝ) (H : ℕ) (a b : ℝ)
-    (ha : 0 < a) (hab : a ≤ b) (hb : b ≤ 1 / 2) (hba : b ≤ 21 / 20 * a)
-    (h12 : 12 ≤ ((H : ℝ) - 1) * a)
-    (hs : ∀ j, j + 1 < H → a ≤ x (j + 1) - x j ∧ x (j + 1) - x j ≤ b)
-    (hmono : MonoSteps x H ∨ AntiSteps x H) :
-    (H : ℝ) / 3 - 2 ≤ #{j ∈ Finset.range H | 1 / 2 ≤ Int.fract (x j)}
-```
-
-**And.** `sweep_monotone_ceil` &mdash; kernel-checked, `Problems/Juggler/FateSweepMonotone.lean:2389`
-
-> Paper C Lemma 4.1′, left-open cells, by reflection `j ↦ -x_{H-1-j}`.
-
-```lean
-theorem sweep_monotone_ceil (x : ℕ → ℝ) (H : ℕ) (a b : ℝ)
-    (ha : 0 < a) (hab : a ≤ b) (hb : b ≤ 1 / 2) (hba : b ≤ 21 / 20 * a)
-    (h12 : 12 ≤ ((H : ℝ) - 1) * a)
-    (hs : ∀ j, j + 1 < H → a ≤ x (j + 1) - x j ∧ x (j + 1) - x j ≤ b)
-    (hmono : MonoSteps x H ∨ AntiSteps x H) (v : ℤ) :
-    (H : ℝ) / 3 - 2 ≤ #{j ∈ Finset.range H | ⌈2 * x j⌉ ≡ v [ZMOD 2]}
-```
-
-**And.** `sweep_monotone_rep_le_half` &mdash; kernel-checked, `Problems/Juggler/FateSweepMonotone.lean:2423`
-
-> Paper C Lemma 4.1′, left-open cells: representative at most `1/2`.
-
-```lean
-theorem sweep_monotone_rep_le_half (x : ℕ → ℝ) (H : ℕ) (a b : ℝ)
-    (ha : 0 < a) (hab : a ≤ b) (hb : b ≤ 1 / 2) (hba : b ≤ 21 / 20 * a)
-    (h12 : 12 ≤ ((H : ℝ) - 1) * a)
-    (hs : ∀ j, j + 1 < H → a ≤ x (j + 1) - x j ∧ x (j + 1) - x j ≤ b)
-    (hmono : MonoSteps x H ∨ AntiSteps x H) :
-    (H : ℝ) / 3 - 2 ≤ #{j ∈ Finset.range H | x j - ⌈x j⌉ + 1 ≤ 1 / 2}
-```
-
-**And.** `sweep_monotone_rep_gt_half` &mdash; kernel-checked, `Problems/Juggler/FateSweepMonotone.lean:2438`
-
-> Paper C Lemma 4.1′, left-open cells: representative above `1/2`.
-
-```lean
-theorem sweep_monotone_rep_gt_half (x : ℕ → ℝ) (H : ℕ) (a b : ℝ)
-    (ha : 0 < a) (hab : a ≤ b) (hb : b ≤ 1 / 2) (hba : b ≤ 21 / 20 * a)
-    (h12 : 12 ≤ ((H : ℝ) - 1) * a)
-    (hs : ∀ j, j + 1 < H → a ≤ x (j + 1) - x j ∧ x (j + 1) - x j ≤ b)
-    (hmono : MonoSteps x H ∨ AntiSteps x H) :
-    (H : ℝ) / 3 - 2 ≤ #{j ∈ Finset.range H | 1 / 2 < x j - ⌈x j⌉ + 1}
-```
-
-**And.** `fiber_card_le_succ` &mdash; kernel-checked, `Problems/Juggler/FateSweepMonotone.lean:113`
-
-> **Fact (a).** With nondecreasing steps in `[a, b]`, `b ≤ 1/2`, a cell `j` after an interior cell `i` holds at most one point more than `i`.
-
-```lean
-theorem fiber_card_le_succ (hs : Steps x H a b) (hmono : MonoSteps x H) (ha : 0 < a)
-    (_hb : b ≤ 1 / 2) (hH : 1 ≤ H) {i j : ℤ}
-    (hi₀ : cell (x 0) < i) (hiH : i < cell (x (H - 1))) (hij : i < j) :
-    #{r ∈ range H | cell (x r) = j} ≤ #{r ∈ range H | cell (x r) = i} + 1
 ```
 

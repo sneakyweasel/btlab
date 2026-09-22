@@ -207,7 +207,9 @@
       "ledger": [
         "BTA-finite-fejer-box-discrepancy"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 17
       }
@@ -235,7 +237,9 @@
       "ledger": [
         "BTA-fourier-half-open-box-frequency"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 15
       }
@@ -249,7 +253,9 @@
       "ledger": [
         "BTA-fourier-open-box-recurrence"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 15
       }
@@ -263,7 +269,9 @@
       "ledger": [
         "BTA-explicit-third-fifth-derivative-tests"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 37
       }
@@ -306,7 +314,9 @@
       "ledger": [
         "BTA-kusmin-landau-first-derivative"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 20
       }
@@ -420,7 +430,7 @@
       }
     },
     "BTCalculus.OpFragNewman": {
-      "declarations": 44,
+      "declarations": 46,
       "depends_on": [],
       "file": "formal/BTCalculus/OpFragNewman.lean",
       "ledger": [
@@ -428,11 +438,11 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 44
+        "kernel": 46
       }
     },
     "BTCalculus.OpFragSemantic": {
-      "declarations": 60,
+      "declarations": 61,
       "depends_on": [
         "BTCalculus.OpFragNewman",
         "BTCalculus.Rewrite"
@@ -443,7 +453,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 60
+        "kernel": 61
       }
     },
     "BTCalculus.PadicLifting": {
@@ -524,7 +534,9 @@
       "ledger": [
         "BTA-power-box-counting"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 12
       }
@@ -539,7 +551,9 @@
       "ledger": [
         "BTA-noninteger-power-box-recurrence"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 1
       }
@@ -553,7 +567,9 @@
       "ledger": [
         "BTA-noninteger-mixed-power-cancellation"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 21
       }
@@ -620,7 +636,7 @@
       }
     },
     "BTCalculus.RewriteAddBoundary": {
-      "declarations": 34,
+      "declarations": 37,
       "depends_on": [
         "BTCalculus.Rewrite"
       ],
@@ -633,7 +649,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 34
+        "kernel": 37
       }
     },
     "BTCalculus.SecondDerivative": {
@@ -645,7 +661,9 @@
       "ledger": [
         "BTA-quantitative-second-derivative"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 17
       }
@@ -673,7 +691,9 @@
       "ledger": [
         "BTA-sublinear-power-cancellation"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 7
       }
@@ -715,7 +735,9 @@
       "ledger": [
         "BTA-qualitative-weyl-cancellation"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 10
       }
@@ -727,7 +749,9 @@
       "ledger": [
         "BTA-finite-weyl-differencing"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 18
       }
@@ -1015,7 +1039,9 @@
       "ledger": [
         "J-paper-c-collatz-analogue-is-false-by-exhibit"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 14
       }
@@ -1140,7 +1166,10 @@
         "J-negative-m-cycles-excluded-through-58",
         "J-negative-m-cycles-excluded-through-61"
       ],
-      "papers": [],
+      "papers": [
+        "Paper D",
+        "Paper E"
+      ],
       "trust": {
         "kernel": 24
       }
@@ -1152,7 +1181,9 @@
       "ledger": [
         "J-signed-grid-mean-ceiling"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 36
       }
@@ -1166,7 +1197,9 @@
       "ledger": [
         "J-kl-preimage-density-transposes-to-3n-1"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 6
       }
@@ -1180,7 +1213,9 @@
       "ledger": [
         "J-signed-preimage-closed-root-domain"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 19
       }
@@ -1194,7 +1229,9 @@
       "ledger": [
         "J-signed-preimage-grid-counting"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 39
       }
@@ -1209,7 +1246,9 @@
         "J-kl-signed-preimage-height-gap",
         "J-signed-preimage-expanding-block-height"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 26
       }
@@ -1223,7 +1262,9 @@
         "C-shortcut-one-step-lyapunov",
         "C-shortcut-welldefined"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "compiler": 2,
         "kernel": 12
@@ -1277,7 +1318,8 @@
         "J-survivor-count-is-a-collatz-residue-count"
       ],
       "papers": [
-        "Paper A"
+        "Paper A",
+        "Paper E"
       ],
       "trust": {
         "kernel": 81
@@ -1295,7 +1337,9 @@
         "J-collatz-complete-stopping-loses-moment",
         "J-paper-c-ceiling-is-the-collatz-walk-mgf"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 23
       }
@@ -1310,7 +1354,9 @@
         "J-padic-orbit-code",
         "J-padic-periodic-cycle-transfer"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 54
       }
@@ -1324,7 +1370,9 @@
       "ledger": [
         "J-rational-terminating-orbit-bridge"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 34
       }
@@ -1355,7 +1403,8 @@
       ],
       "papers": [
         "Paper A",
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
         "kernel": 15
@@ -1605,7 +1654,8 @@
       ],
       "papers": [
         "Paper A",
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
         "kernel": 72
@@ -1761,7 +1811,8 @@
       ],
       "papers": [
         "Paper A",
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
         "kernel": 69
@@ -1791,7 +1842,8 @@
       ],
       "papers": [
         "Paper A",
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
         "kernel": 48
@@ -1808,7 +1860,8 @@
       ],
       "papers": [
         "Paper A",
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
         "kernel": 64
@@ -1832,7 +1885,8 @@
         "J-trajectory-cycle-or-escape"
       ],
       "papers": [
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
         "kernel": 70
@@ -1875,7 +1929,7 @@
       }
     },
     "Problems.Juggler.ExpansionBlocks": {
-      "declarations": 11,
+      "declarations": 12,
       "depends_on": [
         "Problems.Juggler.NormalizedDefect"
       ],
@@ -1885,7 +1939,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 11
+        "kernel": 12
       }
     },
     "Problems.Juggler.ExpansionSlack": {
@@ -1998,7 +2052,8 @@
         "J-fate-tao-union-bound"
       ],
       "papers": [
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
         "kernel": 30
@@ -2033,7 +2088,8 @@
         "J-fate-oe-fiber-cell"
       ],
       "papers": [
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
         "kernel": 36
@@ -2085,7 +2141,8 @@
         "J-fate-cylinder-energy"
       ],
       "papers": [
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
         "kernel": 7
@@ -2229,7 +2286,8 @@
         "J-fate-one-sided-moments"
       ],
       "papers": [
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
         "kernel": 20
@@ -2504,7 +2562,8 @@
       ],
       "papers": [
         "Paper A",
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
         "kernel": 26
@@ -2568,7 +2627,8 @@
       ],
       "papers": [
         "Paper A",
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
         "kernel": 38
@@ -2592,7 +2652,7 @@
       }
     },
     "Problems.Juggler.Itinerary": {
-      "declarations": 35,
+      "declarations": 36,
       "depends_on": [
         "Problems.Juggler.Termination"
       ],
@@ -2603,10 +2663,11 @@
       ],
       "papers": [
         "Paper A",
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
-        "kernel": 35
+        "kernel": 36
       }
     },
     "Problems.Juggler.ItineraryStats": {
@@ -2620,7 +2681,8 @@
       ],
       "papers": [
         "Paper A",
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
         "kernel": 45
@@ -2789,7 +2851,8 @@
       ],
       "papers": [
         "Paper A",
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
         "kernel": 14
@@ -3014,7 +3077,9 @@
       "ledger": [
         "J-effective-ooe-fourier-modes"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 45
       }
@@ -3030,7 +3095,9 @@
       "ledger": [
         "J-effective-ooe-modular-return"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 26
       }
@@ -3158,7 +3225,9 @@
       "ledger": [
         "J-paper-b-certificate-length-window"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 26
       }
@@ -3176,7 +3245,9 @@
         "J-plateau-lengths-are-a-beatty-complement",
         "J-survivor-count-is-the-certificate-tail"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 28
       }
@@ -3190,13 +3261,15 @@
       "ledger": [
         "J-paper-b-lemma-5-1-minimal-certificates"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 23
       }
     },
     "Problems.Juggler.PaperBChainRule": {
-      "declarations": 32,
+      "declarations": 33,
       "depends_on": [],
       "file": "formal/Problems/Juggler/PaperBChainRule.lean",
       "ledger": [
@@ -3208,7 +3281,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 32
+        "kernel": 33
       }
     },
     "Problems.Juggler.PaperBChernoff": {
@@ -3219,7 +3292,8 @@
         "J-paper-b-formal-layer-has-an-estimate"
       ],
       "papers": [
-        "Paper B"
+        "Paper B",
+        "Paper E"
       ],
       "trust": {
         "kernel": 9
@@ -3233,7 +3307,8 @@
         "J-fd-step-is-formal-and-theorem-six-one-stays-conditional"
       ],
       "papers": [
-        "Paper B"
+        "Paper B",
+        "Paper E"
       ],
       "trust": {
         "kernel": 3
@@ -3250,7 +3325,9 @@
         "J-paper-b-certificates-extend-to-length-seven",
         "J-paper-b-five-step-count-assembly"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 38
       }
@@ -3295,7 +3372,8 @@
         "J-paper-b-chernoff-chain-is-formal"
       ],
       "papers": [
-        "Paper B"
+        "Paper B",
+        "Paper E"
       ],
       "trust": {
         "kernel": 4
@@ -3355,7 +3433,9 @@
       "ledger": [
         "J-survivor-count-decay"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 23
       }
@@ -3380,7 +3460,8 @@
         "J-theorem-six-one-threshold-is-slack"
       ],
       "papers": [
-        "Paper B"
+        "Paper B",
+        "Paper E"
       ],
       "trust": {
         "kernel": 16
@@ -3416,7 +3497,7 @@
       }
     },
     "Problems.Juggler.PaperECompletion": {
-      "declarations": 32,
+      "declarations": 33,
       "depends_on": [
         "Problems.Collatz.PreimageBalance",
         "Problems.Collatz.PreimageCertificate12",
@@ -3427,9 +3508,11 @@
       "ledger": [
         "J-paper-e-formal-notation-bridges"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
-        "kernel": 32
+        "kernel": 33
       }
     },
     "Problems.Juggler.PaperECorollaries": {
@@ -3442,7 +3525,9 @@
       "ledger": [
         "J-paper-e-counting-corollaries"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 14
       }
@@ -3456,7 +3541,9 @@
       "ledger": [
         "J-paper-e-modular-return-exact-construction"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 33
       }
@@ -3471,7 +3558,9 @@
       "ledger": [
         "J-paper-e-theorem41-unconditional"
       ],
-      "papers": [],
+      "papers": [
+        "Paper E"
+      ],
       "trust": {
         "kernel": 4
       }
@@ -3577,7 +3666,8 @@
       ],
       "papers": [
         "Paper A",
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
         "kernel": 124
@@ -3595,7 +3685,8 @@
       ],
       "papers": [
         "Paper A",
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
         "kernel": 20
@@ -3704,7 +3795,8 @@
       ],
       "papers": [
         "Paper A",
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
         "kernel": 41
@@ -3728,7 +3820,7 @@
       }
     },
     "Problems.Juggler.Residuals": {
-      "declarations": 70,
+      "declarations": 71,
       "depends_on": [
         "Problems.Juggler.DefectLowerBound",
         "Problems.Juggler.MinimumRelative"
@@ -3739,10 +3831,11 @@
       ],
       "papers": [
         "Paper A",
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
-        "kernel": 70
+        "kernel": 71
       }
     },
     "Problems.Juggler.ReturnCells": {
@@ -3873,7 +3966,7 @@
       }
     },
     "Problems.Juggler.ReturnWordFactorization": {
-      "declarations": 11,
+      "declarations": 12,
       "depends_on": [
         "Problems.Juggler.ItineraryStats"
       ],
@@ -3885,7 +3978,7 @@
         "Paper A"
       ],
       "trust": {
-        "kernel": 11
+        "kernel": 12
       }
     },
     "Problems.Juggler.ReturnWordLoss": {
@@ -3980,7 +4073,8 @@
       ],
       "papers": [
         "Paper A",
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
         "kernel": 40
@@ -4016,7 +4110,8 @@
         "J-tilted-share-telescoping"
       ],
       "papers": [
-        "Paper C"
+        "Paper C",
+        "Paper E"
       ],
       "trust": {
         "kernel": 28
@@ -4213,7 +4308,7 @@
       }
     },
     "Representation.Words": {
-      "declarations": 33,
+      "declarations": 34,
       "depends_on": [],
       "file": "formal/Representation/Words.lean",
       "ledger": [
@@ -4222,7 +4317,7 @@
       ],
       "papers": [],
       "trust": {
-        "kernel": 33
+        "kernel": 34
       }
     }
   },

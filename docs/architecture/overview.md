@@ -11,6 +11,10 @@ Core modules must never import research modules.
 This page is the architectural contract. It does not change any
 mathematical definition.
 
+Lean public interfaces and theorem search follow the
+[naming and discovery policy](lean_discovery.md), enforced by the source style
+gate and exposed through the local formalpedia MCP.
+
 ## Layers
 
 ```text

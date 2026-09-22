@@ -21,7 +21,7 @@ its `n : ℕ` is the tell, and a sibling proves the rest.  That is why the state
 printed below every candidate, docstring or not.
 
 Jev (jev-1.13.0, last asked 2026-09-21) answered 129 of
-the unresolved rows: 56 picks and 43 "none of these".
+the unresolved rows: 55 picks and 43 "none of these".
 19 of the picks are the scorer's own first candidate, and
 30 are at or above 0.7 confidence.  A confident pick lists
 a row here whatever the scorer thought, and every entry shows Jev's answer beside
@@ -193,7 +193,6 @@ theorem equivK_iff_outputs :
       equivK k f g ↔
         ∀ w : List ℤ, w.length = k → isTritList w →
           outputAlong w f = outputAlong w g
-  | 0, _f, _g => by
 ```
 
 *The scorer rated this row low; it is listed on Jev's confidence.*
@@ -215,7 +214,6 @@ theorem residualAlong_family (m : ℕ) (p : ℤ) :
         quad ((3 : ℤ) ^ (m + w.length))
           (2 * (p + (3 : ℤ) ^ m * packWord w))
           (iterDZ (m + w.length) ((p + (3 : ℤ) ^ m * packWord w) ^ 2))
-  | [], _ => by
 ```
 
 **Jev.** picks `residualAlong_Xsq` at 0.99, not the scorer's candidate.
@@ -436,8 +434,6 @@ theorem residualAlong_linState_pow :
     ∀ (w : List ℤ) (i : ℕ) (d : ℤ),
       residualAlong w (linState (3 ^ w.length * d) (3 ^ (w.length + i)))
         = linState (d + 3 ^ i * packWord w) (3 ^ (w.length + i))
-  | [], i, d => by simp [residualAlong, packWord_nil]
-  | a :: w, i, d => by
 ```
 
 **Jev.** picks `residualAlong_linState_pow` as well, at 0.81.
@@ -524,6 +520,8 @@ theorem exactTriple_characterization (U V W : AffineCtor) :
       (U = S ∧ V = Ip ∧ W = Ip) ∨
       (U = Im ∧ V = S ∧ W = Im) ∨
       (U = S ∧ V = Im ∧ W = Im) ∨
+      (U = Ip ∧ V = Im ∧ W = S) ∨
+      (U = Im ∧ V = Ip ∧ W = S)
 ```
 
 **Jev.** picks `apply_add_eq_iff` at 0.79, not the scorer's candidate.
@@ -582,6 +580,8 @@ theorem large_lambda_successor_q_bound {y : ℕ}
         floorPower (floorPower (floorPower y)) ^ 8 <
       slackDen y ooeWord *
         (floorPower y + 1) ^ 6 *
+        (floorPower (floorPower y) + 1) ^ 4 *
+        (floorPower (floorPower (floorPower y)) + 1) ^ 8
 ```
 
 **Jev.** picks `ooe_one_plus_slack_lt_succ_ratio` at 0.37, not the scorer's candidate.
@@ -599,6 +599,8 @@ theorem ooe_one_plus_slack_lt_succ_ratio {n : ℕ}
         floorPower (floorPower (floorPower n)) ^ 8 <
       slackDen n ooeWord *
         (floorPower n + 1) ^ 6 *
+        (floorPower (floorPower n) + 1) ^ 4 *
+        (floorPower (floorPower (floorPower n)) + 1) ^ 8
 ```
 
 *Runners-up: `ooe_one_plus_slack_lt_succ_ratio` (0.15), `even_remainder_bound` (0.118)*
@@ -1164,8 +1166,6 @@ theorem block_count (x : ℕ → ℝ) (H q j₀ : ℕ) (a η ρ : ℝ) (p : ℤ)
     (hq : 1 ≤ q) (hη : 0 ≤ η) (hρ : 0 ≤ ρ) (hcop : Nat.Coprime p.natAbs q)
     (hstep : ∀ j, j + 1 < H → a ≤ x (j + 1) - x j ∧ x (j + 1) - x j ≤ a + η)
     (hpa : |(q : ℝ) * a - (p : ℝ)| ≤ ρ) (hj₀ : j₀ + q ≤ H) :
-    |(#{i ∈ Finset.range q | Int.fract (x (j₀ + i)) < 1 / 2} : ℝ) - (q : ℝ) / 2|
-      ≤ 4 * (ρ + (q : ℝ) * η) * (q : ℝ) + 5 / 2
 ```
 
 **Jev.** picks `block_lock` at 0.96, not the scorer's candidate.
@@ -1179,8 +1179,6 @@ theorem block_lock (x : ℕ → ℝ) (H q : ℕ) (a η ρ : ℝ) (p : ℤ)
     (hq : 1 ≤ q) (hη : 0 ≤ η) (hρ : 0 ≤ ρ) (hcop : Nat.Coprime p.natAbs q)
     (hstep : ∀ j, j + 1 < H → a ≤ x (j + 1) - x j ∧ x (j + 1) - x j ≤ a + η)
     (hpa : |(q : ℝ) * a - (p : ℝ)| ≤ ρ) :
-    |(#{j ∈ Finset.range H | Int.fract (x j) < 1 / 2} : ℝ) - (H : ℝ) / 2|
-      ≤ 4 * (ρ + (q : ℝ) * η) * (H : ℝ) + 5 * (H : ℝ) / (2 * (q : ℝ)) + (q : ℝ)
 ```
 
 *The scorer rated this row low; it is listed on Jev's confidence.*
@@ -1206,18 +1204,7 @@ theorem poor_count_le' {u : ℕ} (hu : 10 ^ 6 ≤ u) {η₀ : ℝ} (hη0 : 0 < �
     (#{m ∈ Finset.Ioc u (2 * u) | Poor η₀ m} : ℝ) ≤ 430 * (u : ℝ) ^ ((2 : ℝ) / 3) / η₀ ^ 2
 ```
 
-**Jev.** picks `poor_logMass_le` at 0.6, not the scorer's candidate.
-
-**Jev's candidate.** `poor_logMass_le` &mdash; kernel-checked, `formal/Problems/Juggler/FatePoorTail.lean:312`
-
-> **(4.2) of the note.** For `U ≥ 10^6` satisfying the block hypotheses, and every `N`, the `η₀`-poor `m ∈ (U, N]` carry `1/m`-weighted mass at most `2100 U^{-1/3}/η₀²`. This is the summability that makes the poor set logarithmically finite, which is the whole content of the branch: there is nothing for an adversary to concentrate on. The argument is `bad_logMass_le`'s with a different summand.
-
-```lean
-theorem poor_logMass_le {U N : ℕ} (hU : 10 ^ 6 ≤ U) {η₀ : ℝ} (hη0 : 0 < η₀) (hη1 : η₀ ≤ 1 / 2)
-    (hB : 1280 / η₀ ^ 2 ≤ 2 / 3 * (U : ℝ) ^ ((1 : ℝ) / 3) - 1)
-    (hδ2 : 32 / (η₀ * (2 / 3 * (U : ℝ) ^ ((1 : ℝ) / 3) - 1)) < 1 / 2) :
-    (∑ m ∈ {m ∈ Finset.Ioc U N | Poor η₀ m}, (1 : ℝ) / m) ≤ 2100 * eps U / η₀ ^ 2
-```
+**Jev.** answered an earlier version of this row or of its file; rerun `jev-propose`.
 
 *Statement names: `poor_count_le'`, `poor_logMass_le`*
 

@@ -10,9 +10,9 @@
     ],
     "none": 43,
     "not_a_candidate": 0,
-    "picks": 56,
+    "picks": 55,
     "routed": 22,
-    "stale": 30
+    "stale": 31
   },
   "note": "Proposals for human review. Calibration: 86% precision (42 of 49 fires) against all resolved rows. Nothing here has been written into the ledger.",
   "rows": [
@@ -7308,7 +7308,7 @@
         "asked": "2026-09-21",
         "choice": "poor_logMass_le",
         "confidence": 0.6,
-        "decl": "poor_logMass_le",
+        "decl": null,
         "model": "jev-1.13.0",
         "probabilities": {
           "B_ge": 0.0,
@@ -7318,7 +7318,7 @@
           "poor_sum_dyadic_le": 0.04
         },
         "routed": false,
-        "verdict": "pick"
+        "verdict": "stale"
       },
       "lean": "formal/Problems/Juggler/FatePoorTail.lean",
       "names_own": [

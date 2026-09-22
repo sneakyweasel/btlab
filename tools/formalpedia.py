@@ -1,19 +1,8 @@
-"""A theorem index over the Lean sources: what exists, what it rests on, who checks it.
+"""Local Lean source catalogue, exact ledger references and module import impact.
 
-The laboratory already has two halves of an index and no join between them.  The theorem
-ledger carries 597 curated rows -- a natural-language statement, a tag, a test -- but its
-``lean`` field names a *file*, never a declaration, so no row points at a theorem.  The Lean
-sources carry ~3,900 declarations with no readable statement and no tag.
-
-This builds the join, plus the edge the ledger has never had: the module graph, so a change
-can be asked what it breaks before it is made.  That question -- "who depends on this?" -- is
-the one two agents editing the same corpus keep getting wrong.
-
-Trust is recorded per declaration rather than assumed:
-
-  ``kernel``    checked by Lean's kernel
-  ``compiler``  rests on ``native_decide``; the compiler is trusted, not the kernel
-  ``open``      carries a ``sorry``
+Discovery reads the live working tree. Public identities include their namespaces;
+ambiguous names are never resolved by file order. Source trust labels detect direct
+markers only: they are not evidence of compilation or transitive axiom dependencies.
 
 Usage::
 
@@ -41,6 +30,8 @@ from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any, Callable
+
+import lean_source
 
 ROOT = Path(__file__).resolve().parents[1]
 FORMAL = ROOT / "formal"
@@ -213,23 +204,8 @@ def declarations(path: Path) -> list[dict[str, Any]]:
     from the original at the same offsets -- so prose cannot be read as a declaration, while
     the prose *belonging* to a declaration is still read.
     """
-    text = io.open(path, encoding="utf-8").read()
-    hits = list(DECL.finditer(blank_comments(text)))
-    out: list[dict[str, Any]] = []
-    for i, m in enumerate(hits):
-        end = hits[i + 1].start() if i + 1 < len(hits) else len(text)
-        out.append(
-            {
-                "name": m.group("name"),
-                "kind": m.group("kind"),
-                "module": module_of(path),
-                "file": str(path.relative_to(ROOT)).replace("\\", "/"),
-                "line": text[: m.start()].count("\n") + 1,
-                "doc": _docstring(text, m.start()),
-                "trust": _trust(text[m.start(): end]),
-            }
-        )
-    return out
+    return lean_source.scan(path.read_text(encoding="utf-8"), module_of(path),
+                            path.relative_to(ROOT).as_posix())
 
 
 def imports(path: Path, known: set[str]) -> list[str]:
@@ -289,9 +265,14 @@ def build() -> dict[str, Any]:
             "ledger": by_file.get(rel, []),
         }
     trust: dict[str, int] = defaultdict(int)
+    identities = collections.Counter(d['qualified_name'] for d in decls if d['qualified_name'])
     for d in decls:
         trust[d["trust"]] += 1
-    return {
+        if d['qualified_name'] and identities[d['qualified_name']] > 1:
+            d['id'] = f"{d['module']}::{d['qualified_name']}"
+    result = {
+        "schema": 2,
+        "identity_basis": "scoped source; generated/private compiler names require Lean export",
         "modules": modules,
         "declarations": decls,
         "totals": {
@@ -302,6 +283,33 @@ def build() -> dict[str, Any]:
             "ledger_rows_naming_a_file": sum(len(v) for v in by_file.values()),
         },
     }
+    ledger = json.loads(LEDGER.read_text(encoding="utf-8")) if LEDGER.is_file() else []
+    for d in decls:
+        d["ledger_exact"] = []
+    for row in ledger:
+        for name in row_decls(row):
+            matches = resolve_declarations(result, name, file=lean_key(row.get("lean")))
+            if len(matches) == 1:
+                matches[0]["ledger_exact"].append(row["id"])
+    for d in decls:
+        d["ledger_exact"] = sorted(set(d["ledger_exact"]))
+    return result
+
+
+def resolve_declarations(index: dict[str, Any], name: str, *, module: str | None = None,
+                         file: str | None = None, include_private: bool = False) -> list[dict]:
+    """Resolve exact identities, then namespace suffixes, preserving every ambiguity."""
+    name = name.removeprefix('_root_.')
+    candidates = [d for d in index['declarations']
+                  if (include_private or d.get('visibility') != 'private')
+                  and (module is None or d['module'] == module)
+                  and (file is None or d['file'] == file)]
+    exact = [d for d in candidates if name in (d.get('qualified_name'), d.get('id'))]
+    if exact:
+        return exact
+    return [d for d in candidates
+            if d.get('source_name', d['name']) == name
+            or d.get('source_name', d['name']).endswith('.' + name)]
 
 
 def dependents(index: dict[str, Any]) -> dict[str, list[str]]:
@@ -350,6 +358,8 @@ PAPER_ROOTS = {
     "Paper A": "Problems.JugglerPaper",
     "Paper B": "Problems.JugglerParityPaper",
     "Paper C": "Problems.JugglerFatePaper",
+    "Paper D": "Problems.Collatz.NegativeMCycles",
+    "Paper E": "Problems.JugglerCollatzPaper",
 }
 """The module each manuscript's formalization claims to track.
 
@@ -394,7 +404,7 @@ def trust_closure(index: dict[str, Any]) -> set[str]:
         # do it, which closes a nested comment early and hands the tail back as if it were a
         # proof. Comments must go either way: a docstring naming a compiled lemma is prose,
         # not a dependency.
-        text = blank_comments(Path(path).read_text(encoding="utf-8"))
+        text = blank_comments((ROOT / path).read_text(encoding="utf-8"))
         heads = list(_HEAD.finditer(text))
         for i, m in enumerate(heads):
             end = heads[i + 1].start() if i + 1 < len(heads) else len(text)
@@ -1141,15 +1151,19 @@ def _resolved(
     out: its declaration is the refutation, and whether that covers the refuted claim is a
     different question from the retag rule.
     """
-    byname = {(d["file"], d["name"]): d for d in index["declarations"]}
     out: list[tuple[dict[str, Any], list[dict[str, Any]], list[str]]] = []
     for row in ledger:
         names = row_decls(row)
         if not names or row["tag"] == "REFUTED":
             continue
         key = lean_key(row.get("lean"))
-        found = [byname[(key, n)] for n in names if (key, n) in byname]
-        missing = [n for n in names if (key, n) not in byname]
+        found, missing = [], []
+        for name in names:
+            matches = resolve_declarations(index, name, file=key)
+            if len(matches) == 1:
+                found.append(matches[0])
+            else:
+                missing.append(name)
         out.append((row, found, missing))
     return out
 
@@ -1161,8 +1175,9 @@ def coverage_state(row: dict[str, Any], decls: list[dict[str, Any]]) -> dict[str
         "lean_file": row.get("lean") or "",
         "ledger_id": row["id"],
         "declarations": [
-            {"name": d["name"], "docstring": _clip(d.get("doc", ""), 600),
-             "statement": _clip(signature(d, limit=12), 900)}
+            {"name": d["name"], "qualified_name": d.get("qualified_name"),
+             "module": d.get("module"), "docstring": _clip(d.get("doc", ""), 600),
+             "statement": signature(d, limit=12)}
             for d in decls
         ],
     }
@@ -1381,6 +1396,8 @@ def signature(decl: dict[str, Any], limit: int = 8) -> str:
     only a name is not answerable: deciding "is this row that theorem?" needs the theorem.
     The signature is what the docstring would have paraphrased.
     """
+    if "signature" in decl:
+        return decl["signature"]
     try:
         lines = io.open(ROOT / decl["file"], encoding="utf-8").read().splitlines()
     except OSError:
@@ -1592,12 +1609,26 @@ def _write_jev_artifacts(index: dict[str, Any], ledger: list[dict[str, Any]],
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="A theorem index over the Lean sources.")
     sub = ap.add_subparsers(dest="cmd", required=True)
-    sub.add_parser("build", help="rebuild the index")
-    p = sub.add_parser("search", help="declarations whose name or docstring matches")
+    p = sub.add_parser("build", help="rebuild the index")
+    p.add_argument("--check", action="store_true", help="check freshness without writing")
+    sub.add_parser("status", help="live catalogue health and saved-index freshness")
+    p = sub.add_parser("claim", help="an exact ledger claim and its declaration statements")
+    p.add_argument("id")
+    p = sub.add_parser("search", help="ranked search across names, statements, docs and exact claims")
     p.add_argument("text")
     p.add_argument("--limit", type=int, default=20)
-    p = sub.add_parser("show", help="one declaration by exact name")
+    p.add_argument("--offset", type=int, default=0)
+    p.add_argument("--namespace")
+    p.add_argument("--module")
+    p.add_argument("--kind")
+    p.add_argument("--ledger-id")
+    p.add_argument("--include-private", action="store_true")
+    p.add_argument("--include-deprecated", action="store_true")
+    p.add_argument("--json", action="store_true")
+    p = sub.add_parser("show", help="one declaration; ambiguous short names return alternatives")
     p.add_argument("name")
+    p.add_argument("--module")
+    p.add_argument("--include-private", action="store_true")
     p = sub.add_parser("impact", help="modules rebuilt by a change to this module or file")
     p.add_argument("target")
     sub.add_parser("dag", help="rebuild the claim graph over ledger-carrying modules")
@@ -1629,6 +1660,38 @@ def main(argv: list[str] | None = None) -> int:
                    help="comma-separated ledger ids to ask about, e.g. the row being retagged")
     p.add_argument("--workers", type=int, default=4)
     args = ap.parse_args(argv)
+
+    if args.cmd in {"search", "show", "status", "claim", "impact"}:
+        from formalpedia_catalog import Catalogue
+        catalogue = Catalogue()
+        try:
+            if args.cmd == "search":
+                result = catalogue.search(args.text, namespace=args.namespace, module=args.module,
+                    kind=args.kind, ledger_id=args.ledger_id, include_private=args.include_private,
+                    include_deprecated=args.include_deprecated, limit=args.limit, offset=args.offset)
+                if args.json:
+                    print(render(result), end="")
+                else:
+                    for row in result["results"]:
+                        print(f"{row['id']}  [{row['kind']}; source {row['trust']}]  {row['file']}:{row['line']}")
+                        if row["doc"]:
+                            print(f"    {row['doc']}")
+                    print(f"-- {result['total']} matching; next offset: {result['next_offset']}")
+                return 0
+            if args.cmd == "show":
+                result = catalogue.show(args.name, module=args.module,
+                                        include_private=args.include_private)
+            elif args.cmd == "claim":
+                result = catalogue.claim(args.id)
+            elif args.cmd == "impact":
+                result = catalogue.impact(args.target)
+            else:
+                result = catalogue.status()
+            print(render(result), end="")
+            return 2 if result.get("status") == "ambiguous" else 1 if result.get("status") == "not_found" else 0
+        except (ValueError, RuntimeError) as exc:
+            print(str(exc), file=sys.stderr)
+            return 2
 
     if args.cmd == "jev-coverage":
         index = load()
@@ -1695,6 +1758,12 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.cmd == "build":
         index = build()
+        if args.check:
+            if not INDEX.exists() or INDEX.read_text(encoding="utf-8") != render(index):
+                print("Saved index is stale; run python tools/formalpedia.py build", file=sys.stderr)
+                return 1
+            print("Saved index matches the current Lean sources and ledger.")
+            return 0
         INDEX.parent.mkdir(parents=True, exist_ok=True)
         INDEX.write_text(render(index), encoding="utf-8")
         t = index["totals"]
@@ -1746,39 +1815,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"  {g['edges_before_reduction']} edges -> {g['edges']} after transitive reduction")
         return 0
 
-    index = load()
-
-    if args.cmd == "search":
-        needle = args.text.lower()
-        hits = [d for d in index["declarations"]
-                if needle in d["name"].lower() or needle in d["doc"].lower()]
-        for d in hits[: args.limit]:
-            print(f"{d['name']}  [{d['trust']}]  {d['file']}:{d['line']}")
-            if d["doc"]:
-                print(f"    {d['doc'][:110]}")
-        print(f"-- {len(hits)} matching")
-        return 0
-
-    if args.cmd == "show":
-        for d in index["declarations"]:
-            if d["name"] == args.name:
-                print(json.dumps(d, indent=2))
-                return 0
-        print(f"no declaration named {args.name}", file=sys.stderr)
-        return 1
-
-    module = _resolve(index, args.target)
-    if module is None:
-        print(f"no module or file matching {args.target}", file=sys.stderr)
-        return 1
-    rev = dependents(index)
-    direct, all_ = rev.get(module, []), transitive(rev, module)
-    print(f"{module} ({index['modules'][module]['declarations']} declarations)")
-    print(f"  imported directly by {len(direct)}, transitively by {len(all_)}")
-    for name in all_:
-        mark = "*" if name in direct else " "
-        print(f"   {mark} {name}")
-    return 0
+    raise AssertionError(f"Unhandled command: {args.cmd}")
 
 
 if __name__ == "__main__":

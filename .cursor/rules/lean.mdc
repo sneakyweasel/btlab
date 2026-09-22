@@ -17,3 +17,8 @@ The project contains no `sorry` or `admit`. If a proof is not short, leave the l
 - If that covering statement is a halt or no-nontrivial-cycle theorem, name it. Do not keep the anti-overclaim disclaimer on a matching theorem.
 - Build from `formal/` with `lake build` (add `$env:USERPROFILE\.elan\bin` on Windows if needed).
 - Before adding a declaration, read `.cursor/skills/add-lean-theorem/SKILL.md` and run `python tools/formalpedia.py search`.
+- Follow `docs/architecture/lean_discovery.md`: mathematical namespaces, Mathlib naming,
+  and docstrings for new public declarations. Run `python tools/lean_style.py`; do not
+  expand the reviewed legacy baseline just to silence a new violation.
+- Use fully qualified names in new catalogue references. Inspect complete hypotheses
+  with `python tools/formalpedia.py show`; ambiguous short names are candidates, not resolved references.

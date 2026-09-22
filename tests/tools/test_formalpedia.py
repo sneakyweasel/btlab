@@ -738,10 +738,12 @@ def test_jev_coverage_asks_every_resolved_row_with_all_the_declarations_it_names
     record = fp.jev_coverage(index, ledger, _fake_nouls(seen=seen), cached=offers, workers=1)
     resolved = {r["id"]: fp.row_decls(r) for r in ledger
                 if fp.row_decls(r) and r["tag"] != "REFUTED"}
+    source_names = {r['id']: [d['name'] for d in decls]
+                    for r, decls, missing in fp._resolved(index, ledger) if not missing}
     assert any(fp.row_decls(r) and r["tag"] == "REFUTED" for r in ledger)  # the exclusion bites
     assert {s["ledger_id"] for s, _ in seen} == set(resolved) == set(record["coverage"]["rows"])
     for state, questions in seen:
-        assert [d["name"] for d in state["declarations"]] == resolved[state["ledger_id"]]
+        assert [d["name"] for d in state["declarations"]] == source_names[state["ledger_id"]]
         assert all(d["statement"] for d in state["declarations"])
         assert list(questions) == list(fp.JEV_COVERAGE_QUESTIONS)
     for verdict in record["coverage"]["rows"].values():
