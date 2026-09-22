@@ -83,6 +83,17 @@ version 0.3.0 paper audit. The
 [proof note](../theory/qualitative_weyl_cancellation_note.md) records the
 precise hypotheses and remaining analytic obligations.
 
+The first-derivative phase adds
+[KusminLandau.lean](../../formal/BTCalculus/KusminLandau.lean) and
+[SublinearPowerCancellation.lean](../../formal/BTCalculus/SublinearPowerCancellation.lean).
+They prove the finite 1/delta estimate from monotone increments, its
+continuous derivative form, and unconditional cancellation of averages
+of exp(2*pi*i*c*n^theta) for every real c!=0 and 0<theta<1. All 25 theorems
+have a separate dependency audit. The
+[proof note](../theory/first_derivative_power_cancellation_note.md) maps
+the argument and distinguishes this base case from the full mixed-power
+family needed by Theorem 4.1.
+
 ## Results
 
 Version 0.3.0 has a canonical manuscript, full proof narrative, bibliography,
@@ -107,8 +118,11 @@ is recorded separately from the original unconditional theorem.
 Qualitative cancellation now follows formally from vanishing averages of
 every positive fixed-shift correlation. This removes the generic
 differencing lemma from the remaining analytic work. Cancellation for
-the actual rational-power phases and the passage to simultaneous box
-visits are still unproved in Lean.
+the full mixed-power family required by Theorem 4.1 and the passage to
+simultaneous box visits are still unproved in Lean. The sublinear
+single-power base case is now unconditional, including negative
+coefficients and removal of a finite initial segment. The first-derivative
+estimate itself retains no assumed variation or exponential-sum bound.
 
 ## Open questions
 
@@ -124,6 +138,9 @@ smaller coverage categories. The exact-construction phase for Theorem 4.1
 is also **PROMOTE**, with its analytic recurrence input explicitly open.
 The qualitative-cancellation foundation is **PROMOTE** as formalization
 progress on a classical input, with no new number-theoretic claim.
+The first-derivative and sublinear-power phase is also **PROMOTE** as a
+completed analytic formalization milestone. Higher powers, mixed phases,
+and simultaneous recurrence remain the next proof obligations.
 Best next question: can the required fixed-power simultaneous-box recurrence
 be proved in Lean? No new arithmetic attack is opened.
 

@@ -98235,6 +98235,246 @@
       "trust": "kernel"
     },
     {
+      "doc": "The imaginary part of the reciprocal of `phase t - 1`.",
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "line": 20,
+      "module": "BTCalculus.KusminLandau",
+      "name": "cotWeight",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The reciprocal chord coefficient, written with a constant real part.",
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "line": 23,
+      "module": "BTCalculus.KusminLandau",
+      "name": "chordWeight",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "line": 25,
+      "module": "BTCalculus.KusminLandau",
+      "name": "phase_re",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "line": 28,
+      "module": "BTCalculus.KusminLandau",
+      "name": "phase_im",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "line": 31,
+      "module": "BTCalculus.KusminLandau",
+      "name": "sin_pi_mul_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "line": 37,
+      "module": "BTCalculus.KusminLandau",
+      "name": "cotWeight_mono",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "line": 50,
+      "module": "BTCalculus.KusminLandau",
+      "name": "chordWeight_mul",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "line": 64,
+      "module": "BTCalculus.KusminLandau",
+      "name": "sin_pi_mul_lower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "line": 78,
+      "module": "BTCalculus.KusminLandau",
+      "name": "phase_chord_lower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "line": 88,
+      "module": "BTCalculus.KusminLandau",
+      "name": "chordWeight_norm_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Discrete summation by parts with both endpoints retained.",
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "line": 98,
+      "module": "BTCalculus.KusminLandau",
+      "name": "weighted_difference_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A monotone real sequence has no variation beyond its endpoint difference.",
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "line": 109,
+      "module": "BTCalculus.KusminLandau",
+      "name": "variation_le_endpoints",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "line": 133,
+      "module": "BTCalculus.KusminLandau",
+      "name": "chordWeight_sub_norm",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "line": 140,
+      "module": "BTCalculus.KusminLandau",
+      "name": "cotWeight_abs_le_norm",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "line": 143,
+      "module": "BTCalculus.KusminLandau",
+      "name": "phase_step",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A finite first-derivative estimate for monotone increments in `[\u03b4,1-\u03b4]`.",
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "line": 157,
+      "module": "BTCalculus.KusminLandau",
+      "name": "kusmin_landau_sum_range_succ",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The length-zero case is included; increments are checked on the actual support.",
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "line": 218,
+      "module": "BTCalculus.KusminLandau",
+      "name": "kusmin_landau_sum_range",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A varying gap still gives cancellation when length times gap tends to infinity.",
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "line": 234,
+      "module": "BTCalculus.KusminLandau",
+      "name": "tendsto_phase_average_zero_of_gap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The mean value point for one lattice increment stays in the whole open interval.",
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "line": 254,
+      "module": "BTCalculus.KusminLandau",
+      "name": "exists_increment_deriv",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The continuous first-derivative form on a translated lattice interval.",
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "line": 274,
+      "module": "BTCalculus.KusminLandau",
+      "name": "first_derivative_sum_bound",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/BTCalculus/MismatchedCubicInvariant.lean",
       "kind": "theorem",
@@ -105849,6 +106089,90 @@
       "trust": "kernel"
     },
     {
+      "doc": "The derivative is positive and decreasing on the positive half-line.",
+      "file": "formal/BTCalculus/SublinearPowerCancellation.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-sublinear-power-cancellation"
+      ],
+      "line": 20,
+      "module": "BTCalculus.SublinearPowerCancellation",
+      "name": "power_derivative_antitone",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An explicit bound on every prefix after the derivative has fallen below one half.",
+      "file": "formal/BTCalculus/SublinearPowerCancellation.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-sublinear-power-cancellation"
+      ],
+      "line": 27,
+      "module": "BTCalculus.SublinearPowerCancellation",
+      "name": "sublinear_power_sum_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Sublinear power cancellation after any admissible fixed initial shift.",
+      "file": "formal/BTCalculus/SublinearPowerCancellation.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-sublinear-power-cancellation"
+      ],
+      "line": 54,
+      "module": "BTCalculus.SublinearPowerCancellation",
+      "name": "tendsto_sublinear_power_average_shift",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Discarding a fixed initial segment preserves convergence of averages to zero.",
+      "file": "formal/BTCalculus/SublinearPowerCancellation.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-sublinear-power-cancellation"
+      ],
+      "line": 88,
+      "module": "BTCalculus.SublinearPowerCancellation",
+      "name": "tendsto_average_zero_of_shift",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Unconditional cancellation for every positive multiple of a sublinear power.",
+      "file": "formal/BTCalculus/SublinearPowerCancellation.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-sublinear-power-cancellation"
+      ],
+      "line": 112,
+      "module": "BTCalculus.SublinearPowerCancellation",
+      "name": "tendsto_sublinear_power_average_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/SublinearPowerCancellation.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-sublinear-power-cancellation"
+      ],
+      "line": 130,
+      "module": "BTCalculus.SublinearPowerCancellation",
+      "name": "phase_neg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The sign of the nonzero coefficient is unrestricted.",
+      "file": "formal/BTCalculus/SublinearPowerCancellation.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-sublinear-power-cancellation"
+      ],
+      "line": 139,
+      "module": "BTCalculus.SublinearPowerCancellation",
+      "name": "tendsto_sublinear_power_average",
+      "trust": "kernel"
+    },
+    {
       "doc": "Algebraic word facts only. No Mealy-machine theory is formalized here.",
       "file": "formal/BTCalculus/Transducer.lean",
       "kind": "theorem",
@@ -107642,6 +107966,7 @@
         "BTCalculus.Derivative",
         "BTCalculus.Integral",
         "BTCalculus.Jet",
+        "BTCalculus.KusminLandau",
         "BTCalculus.MismatchedCubicInvariant",
         "BTCalculus.MismatchedCubicQuotient",
         "BTCalculus.MonnaEndpointCube",
@@ -107665,6 +107990,7 @@
         "BTCalculus.RewriteCore",
         "BTCalculus.Select",
         "BTCalculus.Semantics",
+        "BTCalculus.SublinearPowerCancellation",
         "BTCalculus.Transducer",
         "BTCalculus.TransducerComposition",
         "BTCalculus.Trit",
@@ -108004,6 +108330,20 @@
           "id": "BTJ-jet",
           "statement": "finite-depth function-jet reconstruction along integer digits",
           "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "BTCalculus.KusminLandau": {
+      "declarations": 20,
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "imports": [
+        "BTCalculus.WeylCancellation"
+      ],
+      "ledger": [
+        {
+          "id": "BTA-kusmin-landau-first-derivative",
+          "statement": "Kernel-checked classical first-derivative estimate; advisory statement coverage pending. For a real sequence f, natural N and delta>0, if all N increments f(n+1)-f(n), 0<=n<N, lie in [delta,1-delta] and are monotone in either direction, then the norm of sum_(n<N) exp(2*pi*i*f(n)) is at most 1/delta. The last increment uses f(N), and N=0 is included. The reciprocal chord identity, its constant real part and monotone imaginary part, Jordan sine lower bound, summation by parts and endpoint variation estimate are proved. If f is continuous on [a,a+N], has derivative g on the interior, and g is monotone with delta<=g<=1-delta, the same bound holds on the translated lattice a+n. A mean value point in each actual unit cell proves this transfer. For globally monotone increments, a positive prefix gap delta(N) gives averages tending to zero if N*delta(N) tends to infinity. No exponential-sum or variation estimate is assumed. Only the derivative band between zero and one is formalized; this is not Paper E's mixed-power cancellation, BoxRecurrence, or a termination theorem.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
     },
@@ -108459,6 +108799,20 @@
         "BTCalculus.Integral"
       ],
       "ledger": []
+    },
+    "BTCalculus.SublinearPowerCancellation": {
+      "declarations": 7,
+      "file": "formal/BTCalculus/SublinearPowerCancellation.lean",
+      "imports": [
+        "BTCalculus.KusminLandau"
+      ],
+      "ledger": [
+        {
+          "id": "BTA-sublinear-power-cancellation",
+          "statement": "Kernel-checked classical sublinear-power cancellation; advisory statement coverage pending. For every real c!=0 and 0<theta<1, the complex averages (1/N)*sum_(n<N) exp(2*pi*i*c*n^theta) tend to zero. For c>0, A>0, and c*theta*A^(theta-1)<=1/2, every shifted prefix has norm at most 1/(c*theta*(A+N)^(theta-1)). The proof derives the positive decreasing derivative and applies the proved first-derivative bound, proves existence of a suitable natural shift using derivative decay, removes a finite initial segment, and treats negative coefficients by complex conjugation. The finite-prefix removal lemma applies to any complex sequence whose shifted averages tend to zero. No power-phase cancellation premise is used. This is a single sublinear-power base case, not a theorem about higher or mixed powers, their shifted differences, or simultaneous-box recurrence.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
     },
     "BTCalculus.Transducer": {
       "declarations": 5,
@@ -113619,13 +113973,13 @@
     }
   },
   "totals": {
-    "declarations": 8525,
-    "declarations_with_a_ledger_row": 5802,
-    "ledger_rows_naming_a_file": 491,
-    "modules": 348,
+    "declarations": 8552,
+    "declarations_with_a_ledger_row": 5829,
+    "ledger_rows_naming_a_file": 493,
+    "modules": 350,
     "trust": {
       "compiler": 56,
-      "kernel": 8469
+      "kernel": 8496
     }
   }
 }

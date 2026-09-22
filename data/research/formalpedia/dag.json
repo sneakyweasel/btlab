@@ -227,6 +227,20 @@
         "kernel": 7
       }
     },
+    "BTCalculus.KusminLandau": {
+      "declarations": 20,
+      "depends_on": [
+        "BTCalculus.WeylCancellation"
+      ],
+      "file": "formal/BTCalculus/KusminLandau.lean",
+      "ledger": [
+        "BTA-kusmin-landau-first-derivative"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 20
+      }
+    },
     "BTCalculus.MismatchedCubicInvariant": {
       "declarations": 10,
       "depends_on": [
@@ -520,6 +534,20 @@
       "papers": [],
       "trust": {
         "kernel": 12
+      }
+    },
+    "BTCalculus.SublinearPowerCancellation": {
+      "declarations": 7,
+      "depends_on": [
+        "BTCalculus.KusminLandau"
+      ],
+      "file": "formal/BTCalculus/SublinearPowerCancellation.lean",
+      "ledger": [
+        "BTA-sublinear-power-cancellation"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 7
       }
     },
     "BTCalculus.TransducerComposition": {
@@ -3790,9 +3818,9 @@
     }
   },
   "totals": {
-    "edges": 291,
-    "edges_before_reduction": 2342,
-    "ledger_rows_placed": 491,
-    "nodes": 235
+    "edges": 293,
+    "edges_before_reduction": 2347,
+    "ledger_rows_placed": 493,
+    "nodes": 237
   }
 }

@@ -1,5 +1,44 @@
 # Research journal
 
+## 2026-09-22 -- Paper E: first derivatives and sublinear power cancellation
+
+- **Target and budget:** Prove the classical first-derivative estimate
+  underlying the power-phase base case. A missing endpoint or assumed
+  variation bound would falsify the proof. The finite differencing and
+  qualitative tools already compile; no closed Juggler attack is reopened.
+  Scope is the finite estimate and its cancellation consequence, applied
+  to single sublinear powers before any higher-order induction.
+- **Finite estimate:** `BTCalculus.KusminLandau` proves a 1/delta bound
+  for monotone phase increments in [delta,1-delta]. The reciprocal chord
+  has constant real part and monotone imaginary part, so its variation
+  telescopes. Both endpoints, the last increment, and N=0 are explicit.
+  The mean value theorem transfers monotone continuous derivative bounds
+  to the actual increments. A varying gap suffices when N*delta(N) tends
+  to infinity.
+- **Actual cancellation:** `BTCalculus.SublinearPowerCancellation` proves
+  that the averages of exp(2*pi*i*c*n^theta) tend to zero for every real
+  c!=0 and 0<theta<1. A positive shifted prefix has sum bound
+  1/(c*theta*(A+N)^(theta-1)); the proof finds a suitable shift, removes
+  the finite initial segment, and handles negative c by conjugation.
+- **Trust boundary:** These are classical inputs, not new number theory.
+  All 25 theorems have a separate logical-dependency audit. Advisory
+  prose-to-declaration coverage remains pending. Paper E 0.3.0 and its
+  32 selected declarations retain their previous release scope.
+- **Validation:** The BTCalculus build passes with both new modules. All
+  25 public theorems have exactly the standard logical dependencies.
+  Integration, ledger, generated-index, and Paper E release tests report
+  147 passed and 15 skipped; ledger, branch-index, and publication-manifest
+  checks pass. No placeholder or compiler-trust proof is introduced.
+- **Remaining:** The mixed higher-power phases and their actual shifted
+  differences, then the Fourier-to-box recurrence step. The existing
+  `BoxRecurrence` premise is not discharged, and Theorem 4.1 is not yet
+  completely formalized.
+- **Decision:** **PROMOTE** this analytic formalization milestone.
+  Best next question: how to formalize derivative asymptotics for actual
+  shifted differences so the higher-power induction can consume the
+  proved first-derivative base case?
+  [Proof and scope](theory/first_derivative_power_cancellation_note.md).
+
 ## 2026-09-22 -- Paper E: qualitative van der Corput in Lean
 
 - **Target and budget:** Continue from the newly available finite inequality

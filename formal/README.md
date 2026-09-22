@@ -25,6 +25,11 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- the Kusmin--Landau first-derivative estimate with explicit endpoint
+  terms: monotone increments in [delta,1-delta] give a 1/delta bound.
+  The continuous derivative form and varying-gap consequence are proved.
+  For every real c!=0 and 0<theta<1, the averages of exp(2*pi*i*c*n^theta)
+  tend to zero, including negative coefficients and finite-prefix removal;
 - qualitative van der Corput cancellation for any bounded complex sequence
   whose positive fixed-shift correlation averages tend to zero. The proof
   includes the full-sum/overlap boundary error, normalization, and the

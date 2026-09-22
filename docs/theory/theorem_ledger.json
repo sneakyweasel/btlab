@@ -13123,5 +13123,54 @@
    "tests/tools/test_formalpedia.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "BTA-kusmin-landau-first-derivative",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/theory/first_derivative_power_cancellation_note.md",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": [],
+  "statement": "Kernel-checked classical first-derivative estimate; advisory statement coverage pending. For a real sequence f, natural N and delta>0, if all N increments f(n+1)-f(n), 0<=n<N, lie in [delta,1-delta] and are monotone in either direction, then the norm of sum_(n<N) exp(2*pi*i*f(n)) is at most 1/delta. The last increment uses f(N), and N=0 is included. The reciprocal chord identity, its constant real part and monotone imaginary part, Jordan sine lower bound, summation by parts and endpoint variation estimate are proved. If f is continuous on [a,a+N], has derivative g on the interior, and g is monotone with delta<=g<=1-delta, the same bound holds on the translated lattice a+n. A mean value point in each actual unit cell proves this transfer. For globally monotone increments, a positive prefix gap delta(N) gives averages tending to zero if N*delta(N) tends to infinity. No exponential-sum or variation estimate is assumed. Only the derivative band between zero and one is formalized; this is not Paper E's mixed-power cancellation, BoxRecurrence, or a termination theorem.",
+  "lean": "BTCalculus/KusminLandau.lean",
+  "decl": [
+   "cotWeight",
+   "chordWeight",
+   "cotWeight_mono",
+   "chordWeight_mul",
+   "phase_chord_lower",
+   "chordWeight_norm_le",
+   "weighted_difference_sum",
+   "variation_le_endpoints",
+   "kusmin_landau_sum_range",
+   "tendsto_phase_average_zero_of_gap",
+   "exists_increment_deriv",
+   "first_derivative_sum_bound"
+  ]
+ },
+ {
+  "id": "BTA-sublinear-power-cancellation",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/theory/first_derivative_power_cancellation_note.md",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": [],
+  "statement": "Kernel-checked classical sublinear-power cancellation; advisory statement coverage pending. For every real c!=0 and 0<theta<1, the complex averages (1/N)*sum_(n<N) exp(2*pi*i*c*n^theta) tend to zero. For c>0, A>0, and c*theta*A^(theta-1)<=1/2, every shifted prefix has norm at most 1/(c*theta*(A+N)^(theta-1)). The proof derives the positive decreasing derivative and applies the proved first-derivative bound, proves existence of a suitable natural shift using derivative decay, removes a finite initial segment, and treats negative coefficients by complex conjugation. The finite-prefix removal lemma applies to any complex sequence whose shifted averages tend to zero. No power-phase cancellation premise is used. This is a single sublinear-power base case, not a theorem about higher or mixed powers, their shifted differences, or simultaneous-box recurrence.",
+  "lean": "BTCalculus/SublinearPowerCancellation.lean",
+  "decl": [
+   "power_derivative_antitone",
+   "sublinear_power_sum_bound",
+   "tendsto_sublinear_power_average_shift",
+   "tendsto_average_zero_of_shift",
+   "tendsto_sublinear_power_average_pos",
+   "phase_neg",
+   "tendsto_sublinear_power_average"
+  ]
  }
 ]
