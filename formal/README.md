@@ -29,6 +29,9 @@ Compiled theorem groups:
   Fourier sums; odd harmonics have zero complete cubic mean.
   The resulting square-root-plus-epsilon discrepancy bound is a
   written analytic proof, not a compiled theorem;
+- rational cubic removal for an inverse-cell perturbation, normalized
+  third/fourth derivative quotients, their sign factors, and an exact
+  exponent budget. The mixed-sum and weighted estimates remain written;
 - bounded monotone natural sequences are eventually constant;
 - exact lift equations imply monotonicity;
 - eventual stabilization iff lift digits are eventually zero;

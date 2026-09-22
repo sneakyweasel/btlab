@@ -121,6 +121,12 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   resonances satisfy the required average. Exact phase identities
   are Lean in `OddCubicPhase.lean`; the analytic proof awaits
   independent review. This supplies no iterated-image or pressure bound.
+  Its [inverse-cell continuation](../../docs/theory/juggler_cubic_inverse_cell_note.md)
+  now controls the mixed nonzero frequency through j<=M^(1/3+1/50000)
+  with error M^(2/3-1/25000), hence one actual predecessor weight.
+  `CubicInverseCell.lean` checks its algebra and exponent budget;
+  the analytic proof awaits review. Deeper itinerary weights and
+  growing-depth pressure are still open; the short count is not improved.
   The former unrestricted H/H_q statements are now **REFUTED** by
   [absorbed cylinders](../../docs/problems/juggler_absorbed_cylinder.md):
   one terminating cylinder has at least y/(216 log y) starts on infinitely

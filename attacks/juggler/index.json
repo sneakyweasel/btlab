@@ -4145,7 +4145,8 @@
       "dossier": "docs/problems/juggler_odd_image_discrepancy.md",
       "data_dir": null,
       "lean": [
-        "formal/Problems/Juggler/OddCubicPhase.lean"
+        "formal/Problems/Juggler/OddCubicPhase.lean",
+        "formal/Problems/Juggler/CubicInverseCell.lean"
       ],
       "conjecture": [],
       "decision": "PROMOTE",
@@ -4153,7 +4154,9 @@
         "J-ambient-odd-discrepancy",
         "J-automatic-descent-density",
         "J-odd-source-square-root-discrepancy",
-        "J-odd-cubic-phase-cancellation"
+        "J-odd-cubic-phase-cancellation",
+        "J-first-inverse-cell-mixed-bound",
+        "J-cubic-inverse-cell-algebra"
       ],
       "aliases": [],
       "nk_cluster": null
@@ -6764,6 +6767,7 @@
         "formal/Problems/Juggler/FatePressureCorollary.lean",
         "formal/Problems/Juggler/FateScaleAverage.lean",
         "formal/Problems/Juggler/OddCubicPhase.lean",
+        "formal/Problems/Juggler/CubicInverseCell.lean",
         "formal/Problems/Juggler/FateOneSidedAtoms.lean",
         "formal/Problems/Juggler/FateEnergyAtoms.lean",
         "formal/Problems/Juggler/FateCollapse.lean",

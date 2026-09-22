@@ -34,8 +34,9 @@ T_j(M)=\sum_{m\le M}e\bigl(f(m)\bigr).
 
 An exponent pair \((p,q)\) is *applicable* to \(f\) when the standard
 derivative hypotheses of the pair hold on the relevant dyadic blocks
-(Graham–Kolesnik / van der Corput: the first derivative of \(f\) is
-monotonic of size \(\asymp M^{5/4}\)). Any such pair yields the block
+(including the pair's full model-phase assumptions and any exceptional
+exponents; a monotone first derivative of size \(\asymp M^{5/4}\)
+alone is insufficient). Any such pair yields the block
 bound \(T_j\ll M^{(5/4)p+q}\).
 
 \[
@@ -443,7 +444,7 @@ not. For the tame axis the quadratic remainder of
 
 The PS inversion of that sequence is the monomial sum
 \(\sum e(m^{3/2})\) against the same indicator \(r(m)\in\{0,1\}\).
-An exponent pair then yields the block bound \(M^{p/2+q}\), and
+An applicable exponent pair would yield the block bound \(M^{p/2+q}\), and
 sub-density still needs \(p/2+q<2/3\).
 
 **Theorem 10 (tame functional on the hull).** On the certified
@@ -455,6 +456,19 @@ sub-density still needs \(p/2+q<2/3\).
 all sit above \(275/388\). The first superlinear composition is the
 same door as the boxed axis, only closer: the gap is \(49/1164\)
 rather than \(61/336\).
+
+**Specialized continuation, 22 September 2026.** The new
+[rational-cubic inverse-cell estimate](juggler_cubic_inverse_cell_note.md)
+crosses 2/3 for the specific phase h*m^(3/2)/2+j*m^(2/3)/2, with
+integer 1<=|h|<=M^(1/50000) and **nonzero**
+1<=|j|<=M^(1/3+1/50000): its written bound is M^(2/3-1/25000).
+It removes the rational cubic after the B-transform and uses Robert's
+monotone-third-derivative theorem. This changes no hull minimum and
+does not estimate the boxed 9/4 phase or arbitrary real coefficients.
+The zero-j mode is separate: even half-frequencies can have an
+M^(3/4) main term, so the full applicability conditions of any proposed
+pair are essential. The accompanying first inverse-cell count is
+weaker than Paper B's existing count; deeper weights remain open.
 
 Write \(\psi(p,q)=p/2+q\). The process images are
 

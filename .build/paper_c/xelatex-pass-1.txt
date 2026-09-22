@@ -83,15 +83,19 @@ x.def) (cochin-juggler-fates.aux)
 [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17]
 [18] [19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32]
 [33] [34] [35] [36] [37] [38] [39] [40] [41] [42] [43] [44] [45] [46] [47]
-[48] [49] [50] [51] [52] [53]
-Underfull \hbox (badness 3138) in paragraph at lines 4342--4353
+[48] [49] [50] [51] [52] [53] [54]
+Underfull \hbox (badness 3138) in paragraph at lines 4349--4360
 \TU/lmr/m/n/10.95 code is run by \TU/lmtt/m/n/10.95 python -m research.juggler_
 sequence.fate_contagion \TU/lmr/m/n/10.95 and \TU/lmtt/m/n/10.95 python
-[54] [55] [56] [57] [58] [59]
-Underfull \hbox (badness 1147) in paragraph at lines 4784--4811
+[55] [56] [57] [58] [59] [60]
+Underfull \hbox (badness 1147) in paragraph at lines 4791--4818
 \TU/lmr/m/n/10.95 ence DOIs of version 1.1.0 and changes nothing mathematical. 
 The current Zenodo
-[60] [61] (cochin-juggler-fates.aux) )
+[61] [62] (cochin-juggler-fates.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
 (see the transcript file for additional information)
-Output written on cochin-juggler-fates.pdf (61 pages).
+Output written on cochin-juggler-fates.pdf (62 pages).
 Transcript written on cochin-juggler-fates.log.

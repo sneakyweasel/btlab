@@ -381,3 +381,10 @@ dual phase. `Problems/Juggler/OddCubicPhase.lean` verifies the exact
 stationary-point algebra and zero complete mean for odd harmonics.
 The analytic bound awaits independent review and is not a Lean theorem;
 there is no transfer to the growing-depth pressure from this estimate.
+
+`Problems/Juggler/CubicInverseCell.lean` now checks the exact perturbed
+phase, derivative quotients and sign factors, and rational exponent
+budget for a first inverse-cell estimate. The mixed-frequency and
+weighted bounds are written analytic proofs, not Lean theorems. This
+is one quantitative weighted level; further itinerary restrictions
+and the growing-depth pressure remain open.

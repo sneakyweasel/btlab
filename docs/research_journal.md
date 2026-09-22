@@ -1,5 +1,36 @@
 # Research journal
 
+## 2026-09-22 -- Cubic removal crosses the first inverse-cell frequency threshold
+
+- **Question:** Does the rational cubic method retain a quantitative
+  saving when the inverse-cell frequency reaches and exceeds M^(1/3)?
+- **Result:** Uniformly on every I in (M,2M], for integer
+  1<=|h|<=M^(1/50000) and 1<=|j|<=M^(1/3+1/50000), the odd-m sum
+  of e(h*m^(3/2)/2+j*m^(2/3)/2) is O(M^(2/3-1/25000)). This gives
+  an actual odd-predecessor weighted Fourier bound O(M^(2/3-1/50000)).
+  These are AI-assisted written analytic proofs, awaiting independent review.
+- **Mechanism:** Remove the rational cubic of period 54*h^2. The
+  remainder has explicit third and fourth derivatives with controlled
+  signs for |u|<=1/100. Robert's 2005 monotone-third-derivative theorem
+  supplies a saving near the critical j scale. Extending the phase
+  as a C3 function retains its required minimum length, adding an
+  explicit lambda^(-1) cost. The ordinary third-derivative test handles
+  smaller j. Both shifted cell endpoints and perfect powers are retained.
+- **Scope:** The resulting short OOO count is weaker than Paper B's
+  existing count. The retained advance is the mixed-frequency estimate,
+  not a new density or an improved published exponent. The zero-j
+  resonant mode remains separate. The generic exponent-pair note now
+  makes its full applicability conditions explicit.
+- **Lean:** `CubicInverseCell.lean` checks the phase decomposition,
+  period, rational derivative quotients, their sign factors, and exact
+  exponent margins. It does not formalize the analytic transform,
+  inverse differentiation, Robert's theorem, or the final asymptotics.
+  Those are deferred as written proofs; no external advisory was sent.
+- **Decision:** **PROMOTE** this bounded arithmetic lemma and stop
+  the phase. An additional actual itinerary restriction has not been
+  controlled, and the growing-depth termination premise remains open.
+  Full proof: [cubic inverse-cell note](theory/juggler_cubic_inverse_cell_note.md).
+
 ## 2026-09-22 -- Collatz merging fibres and the finite harmonic-weight obstruction
 
 - **Question:** Philippe requested a counterpart of Paper C's fibres in

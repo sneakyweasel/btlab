@@ -122,7 +122,9 @@ conjecture.
 
 The historical census added none; the cell uniqueness lemma already
 existed. The cubic continuation now verifies exact phase identities in
-`OddCubicPhase.lean`. Its analytic number theory remains a written proof.
+`OddCubicPhase.lean`. The further `CubicInverseCell.lean` module checks
+the perturbed phase algebra, sign factors, and exponent margins.
+The analytic number theory remains a written proof.
 
 ## Results
 
@@ -435,17 +437,51 @@ written bound. The gain uses the particular rational cubic dual phase,
 including its half-period sign; it is not a generic exponent-pair bound
 for every phase with the same derivative sizes.
 
-An additional inverse-cell phase j*m^(2/3) destroys that exact cubic
-periodicity after transformation. Counts on dynamically selected
-sources and the stopped pressure at depth comparable to log log y
-remain open. Neither the Collatz coding nor this one-step estimate
-supplies that transfer. The result does not prove infinite escape,
-exclude an escape trajectory, or prove termination.
+An additional inverse-cell phase j*m^(2/3) destroys periodicity of the
+full transformed wave. The continuation below recovers cancellation
+at this first weighted level. Further dynamically selected sources
+and the stopped pressure at depth comparable to log log y remain
+open. Neither result proves infinite escape, excludes an escape
+trajectory, or proves termination.
+
+## First inverse-cell continuation (22 September 2026)
+
+The [complete mixed-frequency proof](../theory/juggler_cubic_inverse_cell_note.md)
+gives, on every interval I in (M,2M],
+
+\[
+ \sum_{m\in I,\ m\text{ odd}}
+ e(hm^{3/2}/2+jm^{2/3}/2)\ll M^{2/3-1/25000}
+\]
+
+uniformly for integer 1<=|h|<=M^(1/50000) and
+1<=|j|<=M^(1/3+1/50000). Removing the rational cubic exposes a
+remainder whose third derivative is nonzero and monotone. Robert's
+2005 theorem supplies the small gain at the critical frequency;
+its sum-length condition is retained by a C3 extension argument.
+
+For the **actual** odd-predecessor weight
+w(m)=ceil(((m+1)^(2/3)-1)/2)-ceil((m^(2/3)-1)/2), this implies
+sum over odd m in I of w(m)*e(h*m^(3/2)/2)
+=O(M^(2/3-1/50000)) over the same h range. Shifted cell endpoints
+and perfect powers are included. This is a rated first inverse-cell
+estimate, not an invocation of qualitative shrinking-target convergence.
+
+**EXACT — HUMAN PROOF**, AI-assisted, pending independent review.
+The associated OOO count is weaker than the existing Paper B count;
+no published exponent is improved here. The new retained statement
+is the mixed-frequency estimate with a nonzero inverse-cell frequency.
+`CubicInverseCell.lean` checks the exact phase decomposition, period,
+normalized derivative quotients and sign factors, and rational exponent
+budget. It does not formalize the analytic transform or derivative tests.
 
 ## Decision
 
 **PROMOTE** the written one-step bound (C1)-(C2), with independent
 analytic review outstanding, and the kernel-checked exact phase
-identities. End this phase here. The next substantive question is
-whether useful cancellation persists with the inverse-cell frequency;
-it is not answered by the theorem above.
+identities. The subsequent bounded phase also **PROMOTE**s the
+mixed-frequency and first inverse-cell estimates, with the same
+analytic review limitation. The next substantive question is whether
+an actual additional itinerary restriction preserves a useful
+derivative structure at its smaller count scale. That deeper estimate
+remains open; end this phase without asserting an iteration.

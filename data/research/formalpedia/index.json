@@ -24635,6 +24635,270 @@
     },
     {
       "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 15,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "dualIndex",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 18,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "remainder",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 22,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "phase_decomposition",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 29,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "halfCubic_periodic",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 41,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "dual_periodic",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 48,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "second",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 51,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "third",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 54,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "fourth",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 57,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "thirdRemainder",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 60,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "fourthRemainder",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 63,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "normalized_source_forms",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 74,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "third_quotient",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 82,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "fourth_quotient",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 90,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "small_parameter_factors",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 99,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "third_opposite_sign",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 111,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "fourth_same_sign",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 123,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "theta",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 124,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "splitLoss",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 125,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "frequencyGain",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "def",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 126,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "mixedGain",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 128,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "exponent_budget",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-cubic-inverse-cell-algebra"
+      ],
+      "line": 137,
+      "module": "Problems.Juggler.CubicInverseCell",
+      "name": "endpoint_budget",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/Problems/Juggler/CubicLogGrid.lean",
       "kind": "def",
       "ledger": [
@@ -106645,6 +106909,7 @@
         "Problems.Juggler.CubicCriticalLocation",
         "Problems.Juggler.CubicGrid",
         "Problems.Juggler.CubicInterlacing",
+        "Problems.Juggler.CubicInverseCell",
         "Problems.Juggler.CubicLogGrid",
         "Problems.Juggler.CubicOrbitCharge",
         "Problems.Juggler.CubicRemainderAssembly",
@@ -107153,6 +107418,20 @@
           "id": "J-cycle-threshold-common-period",
           "statement": "For a fixed integer b>=3, all primitive cycles of the size-switched threshold map S_b have the same period L, branch counts (o,e), and minimum-based ceiling mechanical word. If there are t cycles, they interlace: each occupies one rank residue class modulo t in the sorted union of all periodic points. Proof: on that finite invariant union, branch image separation and injectivity give rank addition by E, the total upper-branch count; t=gcd(N,E), L=N/t, e=E/t. No uniqueness, uniform wrong-parity intersection or actual Juggler cycle exclusion follows. Consolidated in Paper A Section 3.10 and formalized in the seven Cubic modules. The cited declarations and supporting modules are compiled kernel proofs. The illustrative asymptotic comparison and universal wrong-parity question are not promoted; no new cycle exclusion, floor or period bound follows.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "Problems.Juggler.CubicInverseCell": {
+      "declarations": 22,
+      "file": "formal/Problems/Juggler/CubicInverseCell.lean",
+      "imports": [
+        "Problems.Juggler.OddCubicPhase"
+      ],
+      "ledger": [
+        {
+          "id": "J-cubic-inverse-cell-algebra",
+          "statement": "With dualIndex(h,j,t)=3*h*t^3/2+2*j/(3*t^2), for nonzero real h,t the rational dual phase dualIndex/2-h*t^9/4+j*t^4/6 equals dualPhase(h,dualIndex)+remainder(h,j,t), where remainder=j*t^4/2+4*j^2/(27*h*t)+16*j^3/(729*h^2*t^6). Every nonzero natural h gives period 54*h^2 for wave(dualPhase(h,r)) on natural r. The normalized source forms second, third, fourth obey the explicit rational identities in CubicInverseCell.lean; their dual quotients third/second^3+4/(9*h^2) and (fourth*second-3*third^2)/second^5 equal thirdRemainder and fourthRemainder when h,t,1-u are nonzero. For abs(u)<=1/100 the factors 1-u, 1-9*u+3*u^2, and 1-16*u are positive. For h>0,u nonzero, u*thirdRemainder<0, and for t>0 also u*fourthRemainder>0. The four rational exponent bounds with theta=1/6+1/1354, splitLoss=1/2708, frequencyGain=1/50000 and mixedGain=1/25000 are strictly below 2/3-mixedGain; the endpoint budget also holds. All of this algebra is kernel-checked. It does not assert a formal differentiation theorem for the inverse phase, any exponential-sum estimate, or an asymptotic count. The ledger label awaits advisory statement coverage.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
     },
@@ -110594,13 +110873,13 @@
     }
   },
   "totals": {
-    "declarations": 8287,
-    "declarations_with_a_ledger_row": 5564,
-    "ledger_rows_naming_a_file": 481,
-    "modules": 337,
+    "declarations": 8309,
+    "declarations_with_a_ledger_row": 5586,
+    "ledger_rows_naming_a_file": 482,
+    "modules": 338,
     "trust": {
       "compiler": 56,
-      "kernel": 8231
+      "kernel": 8253
     }
   }
 }

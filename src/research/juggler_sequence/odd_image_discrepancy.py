@@ -15,6 +15,8 @@ This probe retains the historical census and its PARK decision. The dossier's
 2026-09-22 analytic continuation proves a written square-root-plus-epsilon
 bound; OddCubicPhase.lean checks its exact phase identities. The historical
 majorant and census flags below are not a numerical certificate of that bound.
+The further mixed-frequency proof and first inverse-cell consequence are
+recorded separately; CubicInverseCell.lean checks their rational algebra.
 """
 
 from __future__ import annotations

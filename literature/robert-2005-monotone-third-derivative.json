@@ -1,0 +1,16 @@
+{
+ "id": "robert-2005-monotone-third-derivative",
+ "title": "Sommes d'exponentielles avec dérivée troisième monotone",
+ "authors": ["Olivier Robert"],
+ "year": 2005,
+ "identifiers": {"doi": "10.4064/aa119-1-1"},
+ "url": {
+  "author_pdf": "https://perso.univ-st-etienne.fr/rool6510/derivmonotone.pdf",
+  "survey": "https://perso.univ-st-etienne.fr/rool6510/robert-2015-indag.pdf"
+ },
+ "problem_area": "exponential-sums",
+ "relevant_concepts": ["monotone third derivative", "van der Corput transform", "theta=1/6+1/1354"],
+ "project_relationship": "known",
+ "status": "classical-source",
+ "notes": "Acta Arithmetica 119 (2005), 1-11, Theorem 1. For C3 phases with |f'''| comparable to lambda, monotone f''', and length at least lambda^(-1), the sum is O(M*lambda^(1/6+1/1354)). Also stated as Theorem 8 in the author's 2016 survey. The inverse-cell application checks monotonicity after exact rational cubic removal and retains the length cost by C3 extension; the source theorem is not itself a Juggler statement."
+}

@@ -1654,6 +1654,18 @@ claim that continuation `1/2` on a finite window proves (C3).
 No new arithmetic bound, Lean theorem, or paper revision follows
 from this correction.
 
+**Subsequent quantitative result (22 September).** The separate
+[cubic inverse-cell argument](../theory/juggler_cubic_inverse_cell_note.md)
+now supplies a rated estimate for the first actual predecessor weight.
+It controls nonzero inverse-cell frequencies slightly past M^(1/3)
+by removing a rational cubic and checking the remainder's monotone
+third derivative. It is a written analytic proof awaiting independent
+review, with exact algebra in `CubicInverseCell.lean`. This does not
+validate the withdrawn qualitative implication: it supplies the
+missing quantitative information at one level by a different argument.
+Its short OOO count is weaker than Paper B's known count. No growing-depth
+all-odd estimate or scale-averaged live-pressure bound follows.
+
 ## Decision
 
 **PARK** the arithmetic-estimate follow-up. The conditional
