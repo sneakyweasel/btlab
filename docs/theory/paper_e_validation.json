@@ -1,0 +1,238 @@
+{
+  "schema": 1,
+  "finite": {
+    "certificate": {
+      "k": 12,
+      "p": 5059,
+      "q": 5000,
+      "inequalities_checked": 177147,
+      "failed_residues": [],
+      "minimum_weight": 7307142888,
+      "maximum_weight": 1000000000000,
+      "rate_strictly_above_21_over_25": true,
+      "all_integer_inequalities_hold": true
+    },
+    "grid_phases_checked": 50,
+    "barrier_positive_states": 6417,
+    "barrier_maximum": 417718,
+    "rational_examples_checked": 3,
+    "modular_witnesses": [
+      {
+        "a": 3,
+        "b": 1,
+        "precision": 1,
+        "t": 9
+      },
+      {
+        "a": 3,
+        "b": 1,
+        "precision": 2,
+        "t": 318
+      },
+      {
+        "a": 3,
+        "b": 1,
+        "precision": 3,
+        "t": 12589
+      }
+    ],
+    "exact_rate_and_ceiling_comparisons": "pass",
+    "manuscript_references_and_table": "pass",
+    "audited_declarations": 22
+  },
+  "lean": {
+    "status": "passed",
+    "scope": "Local paper-target build and selected theorem dependency audit",
+    "toolchain": "leanprover/lean4:v4.33.1",
+    "declarations": {
+      "Problems.Juggler.CollatzPadic.orbit_bridge": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Juggler.CollatzPadic.code_eq_iff": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Juggler.CollatzPadic.code_cylinder_eq": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Juggler.CollatzPadic.code_three_cleared": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Juggler.CollatzPadic.code_three_not_integer": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Juggler.CollatzPadic.code_not_injective": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Juggler.CollatzPadic.iterate_le_of_code_eq": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Juggler.CollatzPadic.periodic_bridge": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Collatz.PreimageGrid.count_four": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Collatz.PreimageGrid.count_odd": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Collatz.PreimageGrid.count_doubled_odd": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Collatz.PreimageGrid.measure_children": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Collatz.PreimageDomain.closed_domain_for_target": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Collatz.PreimageGrowth.growth_root": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Collatz.PreimageCertificate12.density_21_25": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Collatz.PreimageCertificate12.ancestor_density_21_25": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Collatz.PreimageBalance.certificate_power_ceiling": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Collatz.PreimageBalance.rate_lt_of_rows": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Collatz.PreimageBalance.rate_lt_of_plus_rows": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Collatz.PreimageBalance.harmonic_rate_excluded": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Collatz.BackwardMass.backward_mass_counterexample": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Juggler.CollatzMoments.complete_family_moment_loss": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ]
+    },
+    "input_sha256": {
+      "formal/AxiomCheckJugglerCollatzPaper.lean": "79f13d9230b548bce6b7c39be4e5a5f7210a8d69f31d5347213cbd4fb88bbe94",
+      "formal/Problems/Collatz/BackwardMass.lean": "21bb66733f7f283a038b4c10ba103fd25133f5595735d8e74300895065b51018",
+      "formal/Problems/Collatz/NegativeMCycles.lean": "c3346c81b9d2ef614d45e9159d482899577ab8b1c364dfc631f10af3b297d2af",
+      "formal/Problems/Collatz/PreimageBalance.lean": "564a161ab2c6163fe1ff686e87d74d59b9b499db9fd8adca371e19fe528e845a",
+      "formal/Problems/Collatz/PreimageBarrier.lean": "198cb87a0837001052018d069ecdafed42b875d5731f2adea013e323212e7ec0",
+      "formal/Problems/Collatz/PreimageCertificate.lean": "4574cd0363b485b5f9e8a705813c1f2fe3c3b51112401cfa487296be73510dd7",
+      "formal/Problems/Collatz/PreimageCertificate12.lean": "f83573dba65489311a172b7983a8db394f2c9ec2143d20d88f85ff15dde40168",
+      "formal/Problems/Collatz/PreimageCheck12Part0.lean": "8f23a75b2492059c6d9377b802cf48484ed6ad31f6af39b736a3ea298219fcec",
+      "formal/Problems/Collatz/PreimageCheck12Part1.lean": "d7a5db8400f8485cd7c83b5580fc2e07ecb710d967a73a3742eb65f85d1de0fb",
+      "formal/Problems/Collatz/PreimageCheck12Part2.lean": "f02d82ec911591a929c2bf07eef6e9d82a01d43b54f44eac78f3edec0d626340",
+      "formal/Problems/Collatz/PreimageCheck12Part3.lean": "9cb30dbf844f0dd69bcbcbcd1798b45ada7d986b66c341a15be07bfdf516a81c",
+      "formal/Problems/Collatz/PreimageDensity.lean": "27601ff15af1cb718f496f55cd6b861008db957d3f72e426e86a81c3e46904f5",
+      "formal/Problems/Collatz/PreimageDomain.lean": "f25f5f20167fed7c73e92c930e721f7846420e345f6bc7a63791d17e4e20032a",
+      "formal/Problems/Collatz/PreimageGrid.lean": "0446e89db9850bf836750a17cfb1da42b19a51c22dd12218fb352fb90c2b82e5",
+      "formal/Problems/Collatz/PreimageGrowth.lean": "c4f6cfa467b1686ae1dca140e7e91620818d7a3f6ffa86fd081356967ec1aa27",
+      "formal/Problems/Collatz/PreimageScale.lean": "370d3afd772a9e209132e29368998224dcf664b2f9cefbaa6f7b4832172e2a35",
+      "formal/Problems/Collatz/PreimageWeights12.lean": "98bffe924d495bba10c8c5a4cab9f89925f4302648462556a955664e65dea49d",
+      "formal/Problems/Collatz/Shortcut.lean": "74c2366318762326e7ee4b9982afd208afe6ab5b6b3d852cf640d195f30a9fc3",
+      "formal/Problems/Juggler/Certificates.lean": "fb6cc2041532d15259a49641e24ca038988aaae3cf3f38fedb95b29fdacfa274",
+      "formal/Problems/Juggler/Collapse.lean": "239f16482d73238ce90222cfe6e4b760baf1dbab1a84c05319704afe0f715ee4",
+      "formal/Problems/Juggler/CollatzBridge.lean": "5d188faa63ab5fd616ff99b9eac1e72281255361edf028c367167faf1dc65435",
+      "formal/Problems/Juggler/CollatzMoments.lean": "fafe06c822d50317ceba9a5a16d4e622b9c7234ccfa77558d74a311e3f42f7b5",
+      "formal/Problems/Juggler/CollatzPadic.lean": "c3e75ec3e50533e13fb06aca561034d2407d2287e6da6824f7be9f7aa5fd6dc1",
+      "formal/Problems/Juggler/CollatzRational.lean": "7b0366a9f103c59f6ed5fad7088a08687693e3ca4a8e6676d6d334d81e0fab5a",
+      "formal/Problems/Juggler/Corridor.lean": "2a10549e587a3f9bfdfb659742f485595532e14e7f10c047e35aa738f8b94708",
+      "formal/Problems/Juggler/CubeCorridor.lean": "3e0f16e8595a978f057e4ecdda30a6d011f715bf4734e85130c01729c12284cc",
+      "formal/Problems/Juggler/CycleCore.lean": "2c3dd777a8935b9fe21ae48c439476c47247f45ef3afe55c22c2e109e291c1fa",
+      "formal/Problems/Juggler/CycleObstructions.lean": "429e268a04e0adbd96ff34b2a49da08f197fcf09780b8e832f11dabb116ef2ed",
+      "formal/Problems/Juggler/Defect.lean": "9857d628fba797ef2bb62c25d5ff5c2a30cad24a8bb50c791e2dc3402d9bae45",
+      "formal/Problems/Juggler/DefectLowerBound.lean": "2a4b3b3b36f90b680c66e3751c058120601a810132f6c0f9f9102424e21df321",
+      "formal/Problems/Juggler/Drift.lean": "4e372e621dc134c5da7c43019734d96182e0f264f6b765d78cabaf47be35ce20",
+      "formal/Problems/Juggler/Dynamics.lean": "481d38a263bd8be32f5af84c4bcc87e0b100717bcce3610aa46750de233b19d9",
+      "formal/Problems/Juggler/Envelope.lean": "ac652d2c23161af4b6eceff1b8638bbff501910c3bc8e31e52b567566cd36379",
+      "formal/Problems/Juggler/Equality.lean": "1a1fe635938f639b56600e80467f94b66c801a5b33392615129acb059fd454eb",
+      "formal/Problems/Juggler/Escape.lean": "bb4d4a348692a6720ad05c22b33c7d92501666e5235273f4465b621cb6de95c7",
+      "formal/Problems/Juggler/FateChernoff.lean": "3b808649443805fa3dd41b89333afe886f3cbc7e36f1bdae23f6c93fe95a7032",
+      "formal/Problems/Juggler/FateContagion.lean": "834198a6b0e8cc13c9fb91d9ad938f62ce5e783a3cc9009fb38334c913d5b7e2",
+      "formal/Problems/Juggler/FateCylinderEnergy.lean": "274cd6b960bdd1de8c1b637bd2dee86c8cbe67e883e25937812dadcbe98d6a0b",
+      "formal/Problems/Juggler/FateNumerics.lean": "8340b3a8a4ff2ce35bd77b7697ca95b9d36e5d61ea4173782287d0839b381737",
+      "formal/Problems/Juggler/FateOneSided.lean": "7ae0aa4cab061a24ef51eff381a0f4bbd4e4569ae2578f04e4c3677b5999bddc",
+      "formal/Problems/Juggler/FirstInternalOO.lean": "a33b9a7fba9654206baa4a6c51cf656953a71ad14782980cf934659c5b7eb7cd",
+      "formal/Problems/Juggler/FirstPassage.lean": "f7b15a4bb2f7a540d017a82dfb37aeb5ae3d8486fc659aa4d92299e46e99bb3e",
+      "formal/Problems/Juggler/FunctionalGraph.lean": "d66607c59e52069d7a0238452fa13180cb0b5d509cc58f97842e2d8c5ad23a12",
+      "formal/Problems/Juggler/GlobalDefect.lean": "34345e3f6ded57f03bc657f6abaf6ec7fcff24d4ed2e6a1c601ae6a2ab0411ea",
+      "formal/Problems/Juggler/Iteration.lean": "96ddcef273b4dfd9d913948f9c55f7daee2c1bfd6025fb5b6dc02f62a5beb135",
+      "formal/Problems/Juggler/Itinerary.lean": "36a8578d34d77556db1c6bd28388ff994f01289ffef51458ca9dad6a88d865d0",
+      "formal/Problems/Juggler/ItineraryStats.lean": "46667facf49ce603b70fdadac8b1ddc19639666cd894069f9ac60fa9fa8f4a27",
+      "formal/Problems/Juggler/LogCells.lean": "bbd09a10c8da6904f3012f7e80c79d31d9680ba9983d80fdb7669d16ba2dfed7",
+      "formal/Problems/Juggler/Minimal.lean": "8c8a1a9d65291f179e1231ca88cb29b6fc103869a31b52e445957fee33517290",
+      "formal/Problems/Juggler/MinimumRelative.lean": "a110acfb2c522d74ecd8f57ce1a9fc94cfbc9fc176948fa1522cec57a14d9826",
+      "formal/Problems/Juggler/PaperBCertificateLengths.lean": "11eec08b298f79805ecf9bce8fbf8c8871c011b3193a67db61f7e0b198d35166",
+      "formal/Problems/Juggler/PaperBCertificateRecursion.lean": "4e9b9a37c59ca9b4bba402efb3d98fd3f3e536b8896cd54244b17d7319d589c8",
+      "formal/Problems/Juggler/PaperBCertificates.lean": "a78e69d66bfe33b834af08b3ac5329bf8947d33dabea9114148bb3ef6b358fcf",
+      "formal/Problems/Juggler/PaperBChernoff.lean": "79877a7701e8dfb8564504f8997fcd1bc74f50b7866bc0c7960797b129ab89f9",
+      "formal/Problems/Juggler/PaperBDensity.lean": "cc6297ff4366266fe1b88ee63bae792a1ab45d379867ba7ead1f8b3be5d02528",
+      "formal/Problems/Juggler/PaperBFiveStepDensity.lean": "7d78b48269efdcba060064bfd82440cdb2ea87a395b7e52f9e216257475d08eb",
+      "formal/Problems/Juggler/PaperBMarkov.lean": "b94ac90c13fe8b47ae5bdabdecbb1c3558047a2a7fe1d85dac58995bc4851874",
+      "formal/Problems/Juggler/PaperBSurvivorDecay.lean": "f9e01d5de4209effb4e8e9d0e9219024e0893d51c1e7bb2f3db4443d6733ae22",
+      "formal/Problems/Juggler/PaperBThreshold.lean": "8bf17ca45082e1b4ab7940729295898639a552098b295d493d376915657a1857",
+      "formal/Problems/Juggler/Preimages.lean": "dabe4af2c54b55826cada04dd92b5f35d3face6f86e42e66829699ab4bc87e3f",
+      "formal/Problems/Juggler/Progress.lean": "e1b5375e8fde7c0f54ac610b84469887a25392e338e44f2ac4cad3f5c8d545eb",
+      "formal/Problems/Juggler/RateFreeDensity.lean": "9a711586243582e4d2ecd6ef9dde3fd342c6db8e8c297a0fd19fd760d25520ce",
+      "formal/Problems/Juggler/Residuals.lean": "9d067f8496ae3782e30841f61181a2f38ddbca9244d665e4b2ac14118baed154",
+      "formal/Problems/Juggler/RootCells.lean": "1257b97922e9f313411b86565259196ad0cfe1c63e2d60b49c14629c735f88ff",
+      "formal/Problems/Juggler/Scale.lean": "9156455b03e7095970f69ca7b49762788608502ff9f560414ef9bded6965ccf9",
+      "formal/Problems/Juggler/Termination.lean": "7b458453bb0fa6478550d875a1b3d5ac18eeea106b5d08797628dfbd2a9c8eb0",
+      "formal/Problems/Juggler/TiltedShare.lean": "7dcafa45a2a0e9bca182a713b495d791cf812e4c70d6472c67bf85b0b736aef4",
+      "formal/Problems/JugglerCollatzPaper.lean": "029d29c17f15aa6dbdad4a24c4da309aaa0db101ff410cc8068d890612d71ea5",
+      "formal/lake-manifest.json": "8a4dabaa6346246a71a2fac594a4385e248735a4feacd25082bcad2336d27385",
+      "formal/lakefile.toml": "b707e6f9d388d4896695c37d12dc924458f60e50f0ff95f8e02f08d506144221",
+      "formal/lean-toolchain": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71"
+    }
+  },
+  "independent_review": "pending",
+  "priority_review": "pending",
+  "written_only": [
+    "Theorem 4.1: classical fixed-function equidistribution"
+  ]
+}

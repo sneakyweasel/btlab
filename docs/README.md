@@ -46,12 +46,16 @@ The live publication task is the Juggler programme.
    ([doi:10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190) is version 1.0.0,
    which reads m <= 58; version 1.1.0 adds the valley-count lemma and is built but not yet
    deposited) — the Collatz side, not the Juggler map
-5. [Branch ledger](juggler_branch_ledger.md)
-6. [Negative knowledge](negative_knowledge.md) — every recorded
+5. [Paper E — The Juggler Map and the 3n±1 Maps](theory/juggler_signed_collatz_note.md)
+   — living preprint, version 0.1.0; exact coding, signed ancestor counts,
+   and arithmetic obstructions. [Build and update guide](theory/PAPER_E_BUILD.md);
+   [review record](theory/paper_e_review.md). Prepared locally, not deposited.
+6. [Branch ledger](juggler_branch_ledger.md)
+7. [Negative knowledge](negative_knowledge.md) — every recorded
    `REFUTED` / CLOSE / method wall, clustered by killing invariant
-7. Reviewer snapshot: [juggler_review/](../juggler_review/)
+8. Reviewer snapshot: [juggler_review/](../juggler_review/)
    (export only; edit the `docs/theory/` sources, then rebuild)
-8. Published DOIs: [theory/paper_deposits.md](theory/paper_deposits.md)
+9. Published DOIs: [theory/paper_deposits.md](theory/paper_deposits.md)
 
 The rewrite-calculus note remains ready to send
 ([draft](theory/rewrite_calculus_note.md),

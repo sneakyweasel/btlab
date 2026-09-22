@@ -64,6 +64,26 @@
   the original height distribution within each coded fibre.
   Dossier: [code mass transport](problems/juggler_code_mass_transport.md).
 
+## 2026-09-22 -- Paper E: living Juggler and signed Collatz manuscript
+
+- **Request:** start the comparative paper and give it the same publication
+  build, proof boundaries, and release discipline as the other papers.
+- **Scope:** exact code and actual periods; modular-return counterfamily;
+  signed 21/25 ancestor theorem; all-level fixed-grid ceiling; backward-mass
+  and stopped-moment distinctions. No new research attack or floor campaign.
+- **Artifact:** [Paper E](theory/juggler_signed_collatz_note.md), version 0.1.0,
+  with proofs, attribution, formalization map, references, AI disclosure,
+  [build guide](theory/PAPER_E_BUILD.md), and [review record](theory/paper_e_review.md).
+- **Reproducibility:** dedicated Lean paper barrel and selected-declaration
+  audit; exact finite checker; transitive proof hashes; reproducible PDF,
+  metadata, and source-and-certificate archive. No external deposit.
+- **Correction:** independent barrier reconstruction has 6417 positive
+  states, or 6418 with zero. The maximum remains 417718.
+- **Decision:** PROMOTE the publication package. Independent statement,
+  written-proof, and priority review remain explicit tasks. Best next
+  question: does specialist review confirm the signed theorem's precise
+  literature distinction? No next arithmetic branch opened.
+
 ## 2026-09-22 -- Cubic removal crosses the first inverse-cell frequency threshold
 
 - **Question:** Does the rational cubic method retain a quantitative

@@ -87,6 +87,10 @@ MANUSCRIPTS = (
     Manuscript("A", PAPER, MIRROR, ("5",), (PACKET, README, FORMALIZATION)),
     Manuscript("B", PAPER_B, None, ("3", "4", "5", "6", "7"), (LEDGER_B,)),
     Manuscript("C", PAPER_C, MIRROR_C, tuple(str(k) for k in range(2, 11))),
+    Manuscript("E", ROOT / "docs/theory/juggler_signed_collatz_note.md",
+               ROOT / "juggler_review/juggler_signed_collatz_note.md",
+               tuple(str(k) for k in range(2, 8)),
+               (ROOT / "docs/theory/paper_e_review.md",)),
 )
 IDS = [m.name for m in MANUSCRIPTS]
 

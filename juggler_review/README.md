@@ -1,6 +1,14 @@
 > **Paper B, Five-Step Descent Certificates for the Juggler Map (18 September 2026):** the 39-page manuscript includes the bounded signed-residual Fourier extension and explicit variation checks. Fresh symbolic derivation confirms the critical curvature coefficients. The five-step certificate density remains 7/8 with error O_epsilon(N^(127/128+epsilon)). [Fresh proof audit](paper_b_proof_review.md). Independent expert review remains outstanding; no upload has occurred.
 
-# Juggler reviewer bundle (three manuscripts)
+# Juggler reviewer bundle
+
+**Paper E, 22 September 2026:** [The Juggler Map and the 3n±1 Maps](juggler_signed_collatz_note.pdf)
+is a new living preprint, version 0.1.0, prepared locally and not deposited.
+Its [build guide](PAPER_E_BUILD.md) and [review record](paper_e_review.md)
+cover exact coding, signed ancestor counts, formal proof scope, and updates.
+The local publication kit is in zenodo_paper_e/. The historical review
+snapshot below concerns Papers A-C; the current deposit register is
+[paper_deposits.md](../docs/theory/paper_deposits.md).
 
 Author: Philippe Cochin. Review-repair snapshot: 9 September 2026.
 

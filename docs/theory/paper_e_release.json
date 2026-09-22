@@ -1,0 +1,520 @@
+{
+  "schema": 1,
+  "canonical_source": "docs/theory/juggler_signed_collatz_note.md",
+  "status": "living preprint; independent review pending; no external deposit",
+  "verification_scope": "File provenance only. The mathematical trust boundaries are in the manuscript and in PAPER_E_BUILD.md.",
+  "pages": 11,
+  "tools": {
+    "pandoc": "pandoc.EXE 3.6.3",
+    "xelatex": "MiKTeX-XeTeX 4.18 (MiKTeX 26.5)"
+  },
+  "inputs": [
+    {
+      "path": "LICENSE",
+      "mode": "text",
+      "sha256": "2dec6dd1b0f4313cb9933b48d3d0d7a0c88f6fa694a42456823fbe4b327c0357"
+    },
+    {
+      "path": "data/research/juggler/negative_preimage_density/README.md",
+      "mode": "text",
+      "sha256": "329e12809257c4410f05b96675ec339736702571d25a9e544261516df2b585e3"
+    },
+    {
+      "path": "data/research/juggler/negative_preimage_density/grid_k12_certificate.json",
+      "mode": "text",
+      "sha256": "89edc515d0020edb68a13b3d3c1df2198b21c66ebe45242118ad5fdd7c81acf3"
+    },
+    {
+      "path": "docs/problems/juggler_cycle_denominator_coupling.md",
+      "mode": "text",
+      "sha256": "2034bdc4ddbc9bea92589ac9e9efa36fcccd57f4e6d7384687ccaed701265d5d"
+    },
+    {
+      "path": "docs/problems/juggler_negative_preimage_density.md",
+      "mode": "text",
+      "sha256": "bd686636217df766a2786b41152343ea2bf081767959604c10ec9398050fc701"
+    },
+    {
+      "path": "docs/theory/PAPER_E_BUILD.md",
+      "mode": "text",
+      "sha256": "0af54b72ec8b538b0b5f88d36d06306629324465abd2394e32fdf33d73f064e3"
+    },
+    {
+      "path": "docs/theory/juggler_signed_collatz_note.md",
+      "mode": "text",
+      "sha256": "fa1518bce4a6b078e6b91d7bec55e77713c8efc731be526d13c58d40d545983c"
+    },
+    {
+      "path": "docs/theory/paper_e_review.md",
+      "mode": "text",
+      "sha256": "a665e3c108eb56bd0b77a28583e05981074f000cf86500a9bb09e9e34b3ed0ac"
+    },
+    {
+      "path": "docs/theory/paper_e_validation.json",
+      "mode": "text",
+      "sha256": "7dc75e6289fd3122e13088b70d399f5d492c8cd7743ef1eda3f0863de57736e2"
+    },
+    {
+      "path": "formal/AxiomCheckJugglerCollatzPaper.lean",
+      "mode": "text",
+      "sha256": "79f13d9230b548bce6b7c39be4e5a5f7210a8d69f31d5347213cbd4fb88bbe94"
+    },
+    {
+      "path": "formal/Problems/Collatz/BackwardMass.lean",
+      "mode": "text",
+      "sha256": "21bb66733f7f283a038b4c10ba103fd25133f5595735d8e74300895065b51018"
+    },
+    {
+      "path": "formal/Problems/Collatz/NegativeMCycles.lean",
+      "mode": "text",
+      "sha256": "c3346c81b9d2ef614d45e9159d482899577ab8b1c364dfc631f10af3b297d2af"
+    },
+    {
+      "path": "formal/Problems/Collatz/PreimageBalance.lean",
+      "mode": "text",
+      "sha256": "564a161ab2c6163fe1ff686e87d74d59b9b499db9fd8adca371e19fe528e845a"
+    },
+    {
+      "path": "formal/Problems/Collatz/PreimageBarrier.lean",
+      "mode": "text",
+      "sha256": "198cb87a0837001052018d069ecdafed42b875d5731f2adea013e323212e7ec0"
+    },
+    {
+      "path": "formal/Problems/Collatz/PreimageCertificate.lean",
+      "mode": "text",
+      "sha256": "4574cd0363b485b5f9e8a705813c1f2fe3c3b51112401cfa487296be73510dd7"
+    },
+    {
+      "path": "formal/Problems/Collatz/PreimageCertificate12.lean",
+      "mode": "text",
+      "sha256": "f83573dba65489311a172b7983a8db394f2c9ec2143d20d88f85ff15dde40168"
+    },
+    {
+      "path": "formal/Problems/Collatz/PreimageCheck12Part0.lean",
+      "mode": "text",
+      "sha256": "8f23a75b2492059c6d9377b802cf48484ed6ad31f6af39b736a3ea298219fcec"
+    },
+    {
+      "path": "formal/Problems/Collatz/PreimageCheck12Part1.lean",
+      "mode": "text",
+      "sha256": "d7a5db8400f8485cd7c83b5580fc2e07ecb710d967a73a3742eb65f85d1de0fb"
+    },
+    {
+      "path": "formal/Problems/Collatz/PreimageCheck12Part2.lean",
+      "mode": "text",
+      "sha256": "f02d82ec911591a929c2bf07eef6e9d82a01d43b54f44eac78f3edec0d626340"
+    },
+    {
+      "path": "formal/Problems/Collatz/PreimageCheck12Part3.lean",
+      "mode": "text",
+      "sha256": "9cb30dbf844f0dd69bcbcbcd1798b45ada7d986b66c341a15be07bfdf516a81c"
+    },
+    {
+      "path": "formal/Problems/Collatz/PreimageDensity.lean",
+      "mode": "text",
+      "sha256": "27601ff15af1cb718f496f55cd6b861008db957d3f72e426e86a81c3e46904f5"
+    },
+    {
+      "path": "formal/Problems/Collatz/PreimageDomain.lean",
+      "mode": "text",
+      "sha256": "f25f5f20167fed7c73e92c930e721f7846420e345f6bc7a63791d17e4e20032a"
+    },
+    {
+      "path": "formal/Problems/Collatz/PreimageGrid.lean",
+      "mode": "text",
+      "sha256": "0446e89db9850bf836750a17cfb1da42b19a51c22dd12218fb352fb90c2b82e5"
+    },
+    {
+      "path": "formal/Problems/Collatz/PreimageGrowth.lean",
+      "mode": "text",
+      "sha256": "c4f6cfa467b1686ae1dca140e7e91620818d7a3f6ffa86fd081356967ec1aa27"
+    },
+    {
+      "path": "formal/Problems/Collatz/PreimageScale.lean",
+      "mode": "text",
+      "sha256": "370d3afd772a9e209132e29368998224dcf664b2f9cefbaa6f7b4832172e2a35"
+    },
+    {
+      "path": "formal/Problems/Collatz/PreimageWeights12.lean",
+      "mode": "text",
+      "sha256": "98bffe924d495bba10c8c5a4cab9f89925f4302648462556a955664e65dea49d"
+    },
+    {
+      "path": "formal/Problems/Collatz/Shortcut.lean",
+      "mode": "text",
+      "sha256": "74c2366318762326e7ee4b9982afd208afe6ab5b6b3d852cf640d195f30a9fc3"
+    },
+    {
+      "path": "formal/Problems/Juggler/Certificates.lean",
+      "mode": "text",
+      "sha256": "fb6cc2041532d15259a49641e24ca038988aaae3cf3f38fedb95b29fdacfa274"
+    },
+    {
+      "path": "formal/Problems/Juggler/Collapse.lean",
+      "mode": "text",
+      "sha256": "239f16482d73238ce90222cfe6e4b760baf1dbab1a84c05319704afe0f715ee4"
+    },
+    {
+      "path": "formal/Problems/Juggler/CollatzBridge.lean",
+      "mode": "text",
+      "sha256": "5d188faa63ab5fd616ff99b9eac1e72281255361edf028c367167faf1dc65435"
+    },
+    {
+      "path": "formal/Problems/Juggler/CollatzMoments.lean",
+      "mode": "text",
+      "sha256": "fafe06c822d50317ceba9a5a16d4e622b9c7234ccfa77558d74a311e3f42f7b5"
+    },
+    {
+      "path": "formal/Problems/Juggler/CollatzPadic.lean",
+      "mode": "text",
+      "sha256": "c3e75ec3e50533e13fb06aca561034d2407d2287e6da6824f7be9f7aa5fd6dc1"
+    },
+    {
+      "path": "formal/Problems/Juggler/CollatzRational.lean",
+      "mode": "text",
+      "sha256": "7b0366a9f103c59f6ed5fad7088a08687693e3ca4a8e6676d6d334d81e0fab5a"
+    },
+    {
+      "path": "formal/Problems/Juggler/Corridor.lean",
+      "mode": "text",
+      "sha256": "2a10549e587a3f9bfdfb659742f485595532e14e7f10c047e35aa738f8b94708"
+    },
+    {
+      "path": "formal/Problems/Juggler/CubeCorridor.lean",
+      "mode": "text",
+      "sha256": "3e0f16e8595a978f057e4ecdda30a6d011f715bf4734e85130c01729c12284cc"
+    },
+    {
+      "path": "formal/Problems/Juggler/CycleCore.lean",
+      "mode": "text",
+      "sha256": "2c3dd777a8935b9fe21ae48c439476c47247f45ef3afe55c22c2e109e291c1fa"
+    },
+    {
+      "path": "formal/Problems/Juggler/CycleObstructions.lean",
+      "mode": "text",
+      "sha256": "429e268a04e0adbd96ff34b2a49da08f197fcf09780b8e832f11dabb116ef2ed"
+    },
+    {
+      "path": "formal/Problems/Juggler/Defect.lean",
+      "mode": "text",
+      "sha256": "9857d628fba797ef2bb62c25d5ff5c2a30cad24a8bb50c791e2dc3402d9bae45"
+    },
+    {
+      "path": "formal/Problems/Juggler/DefectLowerBound.lean",
+      "mode": "text",
+      "sha256": "2a4b3b3b36f90b680c66e3751c058120601a810132f6c0f9f9102424e21df321"
+    },
+    {
+      "path": "formal/Problems/Juggler/Drift.lean",
+      "mode": "text",
+      "sha256": "4e372e621dc134c5da7c43019734d96182e0f264f6b765d78cabaf47be35ce20"
+    },
+    {
+      "path": "formal/Problems/Juggler/Dynamics.lean",
+      "mode": "text",
+      "sha256": "481d38a263bd8be32f5af84c4bcc87e0b100717bcce3610aa46750de233b19d9"
+    },
+    {
+      "path": "formal/Problems/Juggler/Envelope.lean",
+      "mode": "text",
+      "sha256": "ac652d2c23161af4b6eceff1b8638bbff501910c3bc8e31e52b567566cd36379"
+    },
+    {
+      "path": "formal/Problems/Juggler/Equality.lean",
+      "mode": "text",
+      "sha256": "1a1fe635938f639b56600e80467f94b66c801a5b33392615129acb059fd454eb"
+    },
+    {
+      "path": "formal/Problems/Juggler/Escape.lean",
+      "mode": "text",
+      "sha256": "bb4d4a348692a6720ad05c22b33c7d92501666e5235273f4465b621cb6de95c7"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateChernoff.lean",
+      "mode": "text",
+      "sha256": "3b808649443805fa3dd41b89333afe886f3cbc7e36f1bdae23f6c93fe95a7032"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateContagion.lean",
+      "mode": "text",
+      "sha256": "834198a6b0e8cc13c9fb91d9ad938f62ce5e783a3cc9009fb38334c913d5b7e2"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateCylinderEnergy.lean",
+      "mode": "text",
+      "sha256": "274cd6b960bdd1de8c1b637bd2dee86c8cbe67e883e25937812dadcbe98d6a0b"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateNumerics.lean",
+      "mode": "text",
+      "sha256": "8340b3a8a4ff2ce35bd77b7697ca95b9d36e5d61ea4173782287d0839b381737"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateOneSided.lean",
+      "mode": "text",
+      "sha256": "7ae0aa4cab061a24ef51eff381a0f4bbd4e4569ae2578f04e4c3677b5999bddc"
+    },
+    {
+      "path": "formal/Problems/Juggler/FirstInternalOO.lean",
+      "mode": "text",
+      "sha256": "a33b9a7fba9654206baa4a6c51cf656953a71ad14782980cf934659c5b7eb7cd"
+    },
+    {
+      "path": "formal/Problems/Juggler/FirstPassage.lean",
+      "mode": "text",
+      "sha256": "f7b15a4bb2f7a540d017a82dfb37aeb5ae3d8486fc659aa4d92299e46e99bb3e"
+    },
+    {
+      "path": "formal/Problems/Juggler/FunctionalGraph.lean",
+      "mode": "text",
+      "sha256": "d66607c59e52069d7a0238452fa13180cb0b5d509cc58f97842e2d8c5ad23a12"
+    },
+    {
+      "path": "formal/Problems/Juggler/GlobalDefect.lean",
+      "mode": "text",
+      "sha256": "34345e3f6ded57f03bc657f6abaf6ec7fcff24d4ed2e6a1c601ae6a2ab0411ea"
+    },
+    {
+      "path": "formal/Problems/Juggler/Iteration.lean",
+      "mode": "text",
+      "sha256": "96ddcef273b4dfd9d913948f9c55f7daee2c1bfd6025fb5b6dc02f62a5beb135"
+    },
+    {
+      "path": "formal/Problems/Juggler/Itinerary.lean",
+      "mode": "text",
+      "sha256": "36a8578d34d77556db1c6bd28388ff994f01289ffef51458ca9dad6a88d865d0"
+    },
+    {
+      "path": "formal/Problems/Juggler/ItineraryStats.lean",
+      "mode": "text",
+      "sha256": "46667facf49ce603b70fdadac8b1ddc19639666cd894069f9ac60fa9fa8f4a27"
+    },
+    {
+      "path": "formal/Problems/Juggler/LogCells.lean",
+      "mode": "text",
+      "sha256": "bbd09a10c8da6904f3012f7e80c79d31d9680ba9983d80fdb7669d16ba2dfed7"
+    },
+    {
+      "path": "formal/Problems/Juggler/Minimal.lean",
+      "mode": "text",
+      "sha256": "8c8a1a9d65291f179e1231ca88cb29b6fc103869a31b52e445957fee33517290"
+    },
+    {
+      "path": "formal/Problems/Juggler/MinimumRelative.lean",
+      "mode": "text",
+      "sha256": "a110acfb2c522d74ecd8f57ce1a9fc94cfbc9fc176948fa1522cec57a14d9826"
+    },
+    {
+      "path": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "mode": "text",
+      "sha256": "11eec08b298f79805ecf9bce8fbf8c8871c011b3193a67db61f7e0b198d35166"
+    },
+    {
+      "path": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
+      "mode": "text",
+      "sha256": "4e9b9a37c59ca9b4bba402efb3d98fd3f3e536b8896cd54244b17d7319d589c8"
+    },
+    {
+      "path": "formal/Problems/Juggler/PaperBCertificates.lean",
+      "mode": "text",
+      "sha256": "a78e69d66bfe33b834af08b3ac5329bf8947d33dabea9114148bb3ef6b358fcf"
+    },
+    {
+      "path": "formal/Problems/Juggler/PaperBChernoff.lean",
+      "mode": "text",
+      "sha256": "79877a7701e8dfb8564504f8997fcd1bc74f50b7866bc0c7960797b129ab89f9"
+    },
+    {
+      "path": "formal/Problems/Juggler/PaperBDensity.lean",
+      "mode": "text",
+      "sha256": "cc6297ff4366266fe1b88ee63bae792a1ab45d379867ba7ead1f8b3be5d02528"
+    },
+    {
+      "path": "formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "mode": "text",
+      "sha256": "7d78b48269efdcba060064bfd82440cdb2ea87a395b7e52f9e216257475d08eb"
+    },
+    {
+      "path": "formal/Problems/Juggler/PaperBMarkov.lean",
+      "mode": "text",
+      "sha256": "b94ac90c13fe8b47ae5bdabdecbb1c3558047a2a7fe1d85dac58995bc4851874"
+    },
+    {
+      "path": "formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "mode": "text",
+      "sha256": "f9e01d5de4209effb4e8e9d0e9219024e0893d51c1e7bb2f3db4443d6733ae22"
+    },
+    {
+      "path": "formal/Problems/Juggler/PaperBThreshold.lean",
+      "mode": "text",
+      "sha256": "8bf17ca45082e1b4ab7940729295898639a552098b295d493d376915657a1857"
+    },
+    {
+      "path": "formal/Problems/Juggler/Preimages.lean",
+      "mode": "text",
+      "sha256": "dabe4af2c54b55826cada04dd92b5f35d3face6f86e42e66829699ab4bc87e3f"
+    },
+    {
+      "path": "formal/Problems/Juggler/Progress.lean",
+      "mode": "text",
+      "sha256": "e1b5375e8fde7c0f54ac610b84469887a25392e338e44f2ac4cad3f5c8d545eb"
+    },
+    {
+      "path": "formal/Problems/Juggler/RateFreeDensity.lean",
+      "mode": "text",
+      "sha256": "9a711586243582e4d2ecd6ef9dde3fd342c6db8e8c297a0fd19fd760d25520ce"
+    },
+    {
+      "path": "formal/Problems/Juggler/Residuals.lean",
+      "mode": "text",
+      "sha256": "9d067f8496ae3782e30841f61181a2f38ddbca9244d665e4b2ac14118baed154"
+    },
+    {
+      "path": "formal/Problems/Juggler/RootCells.lean",
+      "mode": "text",
+      "sha256": "1257b97922e9f313411b86565259196ad0cfe1c63e2d60b49c14629c735f88ff"
+    },
+    {
+      "path": "formal/Problems/Juggler/Scale.lean",
+      "mode": "text",
+      "sha256": "9156455b03e7095970f69ca7b49762788608502ff9f560414ef9bded6965ccf9"
+    },
+    {
+      "path": "formal/Problems/Juggler/Termination.lean",
+      "mode": "text",
+      "sha256": "7b458453bb0fa6478550d875a1b3d5ac18eeea106b5d08797628dfbd2a9c8eb0"
+    },
+    {
+      "path": "formal/Problems/Juggler/TiltedShare.lean",
+      "mode": "text",
+      "sha256": "7dcafa45a2a0e9bca182a713b495d791cf812e4c70d6472c67bf85b0b736aef4"
+    },
+    {
+      "path": "formal/Problems/JugglerCollatzPaper.lean",
+      "mode": "text",
+      "sha256": "029d29c17f15aa6dbdad4a24c4da309aaa0db101ff410cc8068d890612d71ea5"
+    },
+    {
+      "path": "formal/lake-manifest.json",
+      "mode": "text",
+      "sha256": "8a4dabaa6346246a71a2fac594a4385e248735a4feacd25082bcad2336d27385"
+    },
+    {
+      "path": "formal/lakefile.toml",
+      "mode": "text",
+      "sha256": "b707e6f9d388d4896695c37d12dc924458f60e50f0ff95f8e02f08d506144221"
+    },
+    {
+      "path": "formal/lean-toolchain",
+      "mode": "text",
+      "sha256": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71"
+    },
+    {
+      "path": "juggler_review/zenodo_paper_e/README.md",
+      "mode": "text",
+      "sha256": "9c0830e9ba9db2d1ac6a85bcb7a9c9dce7e33e951eb750675c23efd2eabfe142"
+    },
+    {
+      "path": "literature/bernstein-lagarias-1996-conjugacy-map.json",
+      "mode": "text",
+      "sha256": "877c934d2b50e9b8b22eabbd7eef3897d4d1133fe7111663bd224446d1204577"
+    },
+    {
+      "path": "literature/boshernitzan-1994-hardy-fields.json",
+      "mode": "text",
+      "sha256": "80840438f22c35182568e405e675338ffb81049d0e7e2eccdaf22bc793ccfcb9"
+    },
+    {
+      "path": "literature/krasikov-lagarias-2003-difference-inequalities.json",
+      "mode": "text",
+      "sha256": "42371df3566d108bb6319515af988e5843c6805e8d969005c97b9b7eb56a4163"
+    },
+    {
+      "path": "literature/prasad-prasad-2025-juggler-like.json",
+      "mode": "text",
+      "sha256": "df6876e27f020c74e15801ce030585b5edd355af6574c76814951dca39d905bd"
+    },
+    {
+      "path": "literature/terras-1976-stopping-time.json",
+      "mode": "text",
+      "sha256": "58feb89f7540c1de68bead3bf60da9de093ca98dc647b8a9532db99c382ddfad"
+    },
+    {
+      "path": "pyproject.toml",
+      "mode": "text",
+      "sha256": "2a17f68ff25c5ecf83455ab324de5a2d7b255029ef3f5c402723920469ecc176"
+    },
+    {
+      "path": "src/research/__init__.py",
+      "mode": "text",
+      "sha256": "2f57f06dcf8334c7d93eb76d768947fa8c70ac35d681dd7cdcb3f988a1d7b565"
+    },
+    {
+      "path": "src/research/juggler_sequence/__init__.py",
+      "mode": "text",
+      "sha256": "aa88a5a3d4c50945996efdda77c4a653059d58e15bf88bfbb63bcdfd8507e574"
+    },
+    {
+      "path": "src/research/juggler_sequence/lean_paths.py",
+      "mode": "text",
+      "sha256": "2a57b81a8e5dfb0fd99dcb7c862988439f13a856c0ed46fefff084c5346a5774"
+    },
+    {
+      "path": "src/research/juggler_sequence/negative_preimage_density.py",
+      "mode": "text",
+      "sha256": "2c36b8d99c1336d7803ff94ea5239d30d636d375d4d2bfae0ee977e3e3b4cac3"
+    },
+    {
+      "path": "tests/unit/test_paper_e_release.py",
+      "mode": "text",
+      "sha256": "7f1a42d16c169897ecbd81d4496be50044352ddb421d105f25f5be0a3421658c"
+    },
+    {
+      "path": "tools/build_paper_e.py",
+      "mode": "text",
+      "sha256": "8311ca375fd62130ab7a61044f365c8436d93cedbef526686d3da258cda0b340"
+    },
+    {
+      "path": "tools/check_paper_e.py",
+      "mode": "text",
+      "sha256": "3322928336179f19ed71074faea25653da87857437241d23fb4e52548ba62075"
+    },
+    {
+      "path": "tools/generate_signed_grid_certificate.py",
+      "mode": "text",
+      "sha256": "8ca9b322242268503d44c7b6cba369f248e8e94c4c822c51d63693c4bc990e7c"
+    },
+    {
+      "path": "tools/paper_e/article.tex",
+      "mode": "text",
+      "sha256": "f5372487afef21afc6c83b8ef312816f8a5d575ac373701df0a30b0f74aba054"
+    },
+    {
+      "path": "tools/paper_e/layout.lua",
+      "mode": "text",
+      "sha256": "5b40190ebcd152d668c440e076188ac3956958caedccfa11b2a41dde4c63e44c"
+    },
+    {
+      "path": "tools/paper_e_common.py",
+      "mode": "text",
+      "sha256": "69e6554b4739cffe6c371a24262cf664231f301b2d371a22f68770bfa1a1b91f"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "juggler_review/juggler_signed_collatz_note.pdf",
+      "mode": "binary",
+      "sha256": "50106bbb0befef02e846d1eefeb73df2ea79205bbb746697f4a8c517daf05afb"
+    },
+    {
+      "path": "docs/theory/cochin-juggler-signed-collatz.tex",
+      "mode": "text",
+      "sha256": "b3df7edcf566a2c0147d1babfd2b929bb5cd595b8f99ec7423f3aea79c48c491"
+    },
+    {
+      "path": "docs/theory/paper_e_zenodo.json",
+      "mode": "text",
+      "sha256": "36fe4896553d7a59936da73b7af2862c38874cf855f8b131d7b40f1e0e5633cb"
+    }
+  ]
+}

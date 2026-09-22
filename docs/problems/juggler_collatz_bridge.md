@@ -520,6 +520,14 @@ checks the finite-mass counterexample for both shortcut signs.
 
 ## Publication assessment
 
+**Publication update, 22 September 2026:** the assessment below concerns
+the original shared-word stage. The subsequent exact period theorem,
+completed signed ancestor proof, and transfer obstructions now form
+[Paper E](../theory/juggler_signed_collatz_note.md), a living preprint.
+Its [review record](../theory/paper_e_review.md) retains the attribution
+and independent-review requirements. This supersedes the old publication
+recommendation, without reopening the closed coding attack.
+
 Status: `EXPLORATORY`, and probably not publishable at all. It moves no bound in
 either problem, proves nothing new about Collatz beyond restating Terras, and
 proves nothing about Juggler. Juggler is **not** an easier Collatz: it is
