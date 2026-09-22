@@ -1,5 +1,30 @@
 # Research journal
 
+## 2026-09-22 -- OOEE poor fibres: exact slow-parity failures, averaged bound open
+
+- **Question:** Does the set of actual OOEE targets with source-weight ratio
+  below 1/9-eta have finite reciprocal mass, as in the successful OE argument?
+- **Exact setup:** Two integer inverse boundaries retain the nested floors
+  and all four guards. The total fibre mass is less than 5/m, so finite
+  reciprocal exceptional mass would be sufficient for discarding it.
+- **Bounded census:** 4,670 scheduled targets plus 70 targeted resonance
+  evaluations. Source membership and mass-threshold brackets use exact
+  arithmetic. Larger-block midpoints are samples, not density estimates.
+- **Failure mechanism:** At m=1625364, all 60199 odd candidates fail the
+  final even-root guard; 30122 and 30270 pass the individual earlier guards.
+  Empty fibres align with integer slow slopes (9/8)m^(2/9). A written
+  elementary count shows fixed small-denominator resonance windows have
+  reciprocal tail O(U^(-7/9)), but does not contain every poor fibre.
+- **Decision:** **PARK**. The missing arithmetic question is a power-saving
+  second moment of the actual joint-guard counts, or a sufficient one-sided
+  version. Global Paper B counts and source-mass identities do not establish
+  it. No contagion exponent, termination claim, manuscript, or floor changes.
+  [Scope, witness, and precise missing estimate](problems/juggler_ooee_poor_fibres.md).
+- **Validation:** Integration, ledger, exact-fibre and branch-index checks:
+  164 passed, 15 skipped. Large counterexample interval endpoints were also
+  checked directly through the unguarded forward map. Index and ledger
+  rendering checks pass. Existing Lean code is unchanged.
+
 ## 2026-09-22 -- Exact even-fibre mass and signed cutoff transport in Lean
 
 - **Question:** Secure the exact source-weighted bridge before using it

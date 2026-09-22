@@ -4576,6 +4576,20 @@
       "nk_cluster": "OOE escape: full arithmetic families and shifted-state valuations"
     },
     {
+      "id": "ooee_poor_fibres",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/ooee_poor_fibres.py",
+      "test": "tests/research/juggler_sequence/test_ooee_poor_fibres.py",
+      "dossier": "docs/problems/juggler_ooee_poor_fibres.md",
+      "data_dir": "data/research/juggler/ooee_poor_fibres",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": "Good average OOEE mass does not imply uniformly productive fibres"
+    },
+    {
       "id": "ooeooeoo_eighth",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/ooeooeoo_eighth.py",

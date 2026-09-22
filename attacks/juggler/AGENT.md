@@ -121,6 +121,11 @@ with explicit scope and proof mapping; publication work opens no new attack.
   `J-pressure-scale-average-suffices`, now Lean in `FateScaleAverage.lean`
   (`ScaleAverage.pressure_average_conjecture`) at `r-eta>103/203`;
   its arithmetic bound is open.
+  The [actual OOEE poor-fibre probe](../../docs/problems/juggler_ooee_poor_fibres.md)
+  is **PARK**: exact empty fibres persist to the checked target 1625364,
+  explained there by a locked final parity. Fixed small-denominator
+  slow-slope resonance sets are summable, but the required bound on all
+  joint-guard deficiencies remains open. No production coefficient changes.
   Kernel localize CLOSE. Do not open a
   third formulation. Not a halt theorem; no fate excluded.
   The inverse-cell Hardy shortcut is also CLOSE: its shrinking
