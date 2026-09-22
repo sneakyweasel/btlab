@@ -1,12 +1,21 @@
 # Paper E - local publication kit
 
-Prepared version 0.3.0. No external record has been created.
+The prepared version is recorded in the
+[canonical metadata](../../docs/theory/paper_e_zenodo.json), also included
+in the source archive. The local ZENODO_FIELDS.txt sheet renders these
+values and the deposit status for the upload form.
 
 The builder supplies the PDF, Sources_and_certificate.zip,
 ZENODO_FIELDS.txt, and SHA256SUMS.txt here. The PDF is identical
 to the canonical reviewer PDF. The ZIP is a deterministic snapshot
 of the manuscript, proof sources, full integer certificate, tools,
 license, and review/build guides.
+
+For the preprint deposit, upload Juggler_and_signed_Collatz.pdf and
+Sources_and_certificate.zip, with SHA256SUMS.txt as the integrity record.
+Copy the title, creator, version, license, abstract, and related works from
+ZENODO_FIELDS.txt into the upload form. Keep the preprint designation and
+the stated independent-review status.
 
 Edit docs/theory/juggler_signed_collatz_note.md and rebuild with
 python tools/build_paper_e.py. Verify with --check before sharing.
