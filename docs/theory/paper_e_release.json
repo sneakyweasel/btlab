@@ -15,6 +15,11 @@
       "sha256": "2dec6dd1b0f4313cb9933b48d3d0d7a0c88f6fa694a42456823fbe4b327c0357"
     },
     {
+      "path": "data/research/formalpedia/ooe_coverage_reviews.json",
+      "mode": "text",
+      "sha256": "d960e70d49973394c93385f523dd5326e2c250784feedf19413212cd4324944c"
+    },
+    {
       "path": "data/research/juggler/negative_preimage_density/README.md",
       "mode": "text",
       "sha256": "329e12809257c4410f05b96675ec339736702571d25a9e544261516df2b585e3"
@@ -72,7 +77,7 @@
     {
       "path": "docs/theory/juggler_effective_modular_return_note.md",
       "mode": "text",
-      "sha256": "9ce0d101db89835d8419409095736e6c3ca9b0bb4add3c6e666bb8952d96abcd"
+      "sha256": "d852f45a4c107d32aaaa8b4256847f8f2aeecbb0b45fc16b7887e73e49cce0d3"
     },
     {
       "path": "docs/theory/juggler_ooe_effective_modes_note.md",
@@ -82,7 +87,7 @@
     {
       "path": "docs/theory/juggler_ooe_effective_return_lean_note.md",
       "mode": "text",
-      "sha256": "a92ff628adc67437c2a79b66d7bbfbd2695f0b323982d88b5389826a1f8e8122"
+      "sha256": "5ca2d05fab5d6b8e818be2051e8cfcb57a4704e00998194a0d3ebbbb5471bf61"
     },
     {
       "path": "docs/theory/juggler_signed_collatz_note.md",
@@ -102,12 +107,12 @@
     {
       "path": "docs/theory/paper_e_review.md",
       "mode": "text",
-      "sha256": "17f002f24bcb04a88a432dea0818e1c67e41a08906e5a41c78d77e665c9ff335"
+      "sha256": "2caa5e26660b3b1aae8b3c0c46f3191be1037e33daf6c66b534b9c621049fa20"
     },
     {
       "path": "docs/theory/paper_e_validation.json",
       "mode": "text",
-      "sha256": "6a13b076cc915043f0193a5b414ffa442e67ca4effc6972b96e111786d1aeea2"
+      "sha256": "5a628359ab2c6086f815801aa089c1161a75d5b828ffbfe519b3dbef3199bdae"
     },
     {
       "path": "docs/theory/qualitative_weyl_cancellation_note.md",
@@ -157,7 +162,7 @@
     {
       "path": "formal/AxiomCheckOOEEffectiveReturn.lean",
       "mode": "text",
-      "sha256": "2ef322b42e339cf4577f9e0279f8a622b6067b57a4b9b4c4e23eb79fcd5224a8"
+      "sha256": "ff9897d01ad3ffd930a7d83e707d649d2aeece14698c446794223e705e39fcbf"
     },
     {
       "path": "formal/AxiomCheckPaperECorollaries.expected",
@@ -512,7 +517,7 @@
     {
       "path": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
       "mode": "text",
-      "sha256": "acaefda059cefa19d40d2106808083e01f6f616424662e8f5c990a39b51fe090"
+      "sha256": "fdf8992c720627367d21c1dac436595ab5a9626a69d3914c838deaa49214f2f0"
     },
     {
       "path": "formal/Problems/Juggler/PaperBCertificateLengths.lean",
@@ -707,7 +712,7 @@
     {
       "path": "tools/build_paper_e.py",
       "mode": "text",
-      "sha256": "a18532193448396c88b731b37577200e6927f2192c184b2503b6d697c1f32948"
+      "sha256": "de6b4a3ef217f49711676b8e1bc3f70e7fdd22d4343a475886921f60845f15e4"
     },
     {
       "path": "tools/check_paper_e.py",

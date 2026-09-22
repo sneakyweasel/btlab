@@ -88,7 +88,8 @@ def render(entries: list[dict]) -> str:
     for row in entries:
         tests = _short_tests(list(row.get("tests") or []), str(row.get("evidence") or ""))
         lean = _short_lean(str(row.get("lean") or ""))
-        statement = str(row.get("statement") or "").replace("|", "\\|")
+        # Statements are plain text; iterate notation such as J^[j](n) is not a link.
+        statement = str(row.get("statement") or "").replace("|", "\\|").replace("](", "]&#40;")
         source = str(row.get("source") or "")
         lines.append(
             f"| {row['id']} | {row['tag']} | {statement} | {source} | {lean} | {tests} |\n"

@@ -4,9 +4,10 @@
 [OOEEffectiveReturn.lean](../../formal/Problems/Juggler/OOEEffectiveReturn.lean).
 Together with the previously proved mode estimate and finite Fejer box
 inequality, this closes the entire effective OOE theorem. Independent
-mathematical review remains open. The authorized Jev check is complete;
-the ledger retains its human-proof label while the advisory packet's
-coverage discrepancy remains open, as recorded below.
+mathematical review remains open. The single corrected Jev check and direct
+local statement review are complete. The focused ledger entry now carries
+`EXACT — LEAN VERIFIED` with kernel trust; both advisory results are
+preserved below.
 
 ## Statement and exact coverage
 
@@ -110,8 +111,10 @@ One fresh request to `jev-1.13.0` used 1792 input tokens and returned:
 These are separate advisory scores, not a probability that a Lean proof
 is correct. Under the repository thresholds the packet is **not covered**.
 Jev returned no explanatory prose, so its reason cannot be inferred from
-these scores alone. The original verdict is retained in the coverage cache
-and review queue; no repeated requests were made to obtain a higher score.
+these scores alone. The original packet and verdict are preserved in the
+[machine-readable review history](../../data/research/formalpedia/ooe_coverage_reviews.json).
+The one corrected request recorded below followed a substantive repair
+to the coverage packet; the original request was not repeated unchanged.
 
 Local inspection found the following limitations in the submitted packet.
 The standard exporter ends a declaration at `:=`, so `witnessCutoff`
@@ -133,13 +136,54 @@ also follows from `PaperEModularReturn.runCode_den` at a=2,b=1:
 the numerator is 9-8=1 and the gcd is gcd(5,1)=1. That theorem was not
 among the six declarations sent to Jev.
 
-**Ruling:** retain `EXACT — HUMAN PROOF` with `lean_trust: kernel`.
+**Initial ruling, before correction:** retain `EXACT — HUMAN PROOF` with `lean_trust: kernel`.
 The main quantitative theorem remains kernel-checked; this review found
 an incomplete advisory presentation, not a failed Lean proof. Promotion
 of the whole ledger entry requires resolving that presentation discrepancy,
 for example by separating its mathematical conclusion from proof metadata
 and giving the relevant definitions in the coverage packet. No Lean source,
 mathematical constant, manuscript theorem, or external-review status changed.
+
+### Corrected packet and final local ruling
+
+The corrected ledger entry states precisely the two quantitative errors,
+the positive count at the explicit cutoff, and the bounded actual OOE
+witness with all intermediate-state and endpoint conditions. Proof-method
+descriptions and the separately supported denominator-one observation
+remain in this proof note; they are not part of that ledger claim.
+
+The same six declarations were used. Their documentation now supplies
+the filtered-range counting definition, the exact value of `witnessCutoff`,
+the expansion of `ModularReturn 2 1 M n`, and the actual Juggler map.
+Four definition-equality checks in AxiomCheckOOEEffectiveReturn.lean confirm
+these expansions in Lean. Each header and docstring fits in the standard
+exporter's limits without truncation. The theorem types and proof bodies
+are unchanged; no general exporter modification was needed.
+
+On 22 September 2026 the single corrected request to `jev-1.13.0` used
+2018 input tokens and returned:
+
+| Advisory question | Corrected score |
+| --- | --- |
+| Declarations cover the claim | 0.57 |
+| Claim is broader than the declarations | 0.40 |
+| Declarations are narrower than the claim | 0.30 |
+| A declaration is a different result | 0.13 |
+
+This is a modest positive advisory, classified as **covered** by the
+repository's 0.50 threshold. It does not measure proof correctness or
+constitute independent review. The [review history](../../data/research/formalpedia/ooe_coverage_reviews.json)
+retains both complete packets and both verdicts; the current cache records
+the corrected entry.
+
+**Final local ruling:** `EXACT — LEAN VERIFIED`, with `lean_trust: kernel`.
+The ruling rests on the direct match of hypotheses and conclusions,
+the four checked definition expansions, the unchanged 23-theorem dependency
+audit, and the refreshed 59-declaration paper audit. The complete
+177147-row certificate also passes its independent exact verifier.
+No mathematical conclusion or numerical constant changed. Independent
+specialist review remains pending. This bounded presentation repair is
+complete; no further advisory rerun is part of this pass.
 
 ## Decision
 

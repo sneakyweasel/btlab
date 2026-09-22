@@ -210,7 +210,11 @@ theorem box_discrepancy_power {M T : ℕ} (hM : 0 < M) (hT : 1 ≤ T) :
     (by positivity : 0 ≤ 128*(M : ℝ)^(1/4 : ℝ))
   nlinarith
 
-/-- The first explicit error bound for the exact thresholded parameter count. -/
+/-- The first error bound for the exact thresholded parameter count.
+Here `count P T = ((Finset.range T).filter P).card`, counting natural indices
+`0 <= t < T`. The preceding `return_parameter_iff` expands the predicate
+`ReturnParameter 2 1 M t` into the three explicit floor and threshold guards.
+All displayed fractional powers are real powers and `Real.log` is the natural logarithm. -/
 theorem count_error {M T : ℕ} (hM : 0 < M) (hT : 1 ≤ T) :
     |(count (ReturnParameter 2 1 M) T : ℝ) - T/(4*M)| ≤
       (5+128*(M : ℝ)^(1/4 : ℝ)*(3+Real.log T/16)^2)*(T : ℝ)^(63/64 : ℝ)+8 := by
@@ -290,7 +294,8 @@ theorem count_error_power {M T : ℕ} (hM : 0 < M) (hT : 1 ≤ T) :
       2^14*(M : ℝ)^(1/4 : ℝ)*(T : ℝ)^(127/128 : ℝ) :=
   (count_error hM hT).trans (error_power_bound hM hT)
 
-/-- The explicit finite search length, uniform in the modulus. -/
+/-- The explicit finite search length is `witnessCutoff M = 2^2176*M^160`.
+This is the definition's value, uniform in the positive natural modulus M. -/
 def witnessCutoff (M : ℕ) : ℕ := 2^2176*M^160
 
 theorem witnessCutoff_pos {M : ℕ} (hM : 0 < M) : 0 < witnessCutoff M := by
@@ -365,7 +370,13 @@ theorem start_bound {M t : ℕ} (hM : 0 < M) (ht : t < 2^2176*M^160) :
       _ = _ := by rw [mul_pow, ← pow_mul, ← pow_mul]
   rwa [he] at hp
 
-/-- Q5: a quantitatively bounded actual OOE modular return for every positive modulus. -/
+/-- Here `ModularReturn 2 1 M n` means
+`n % 2 = 1` and `itinerary n 3 = [Branch.odd, Branch.odd, Branch.even]`,
+`(forall j <= 3, n <= floorPower^[j] n)`, `n < floorPower^[3] n`,
+and `n % (2*M) = 1` and `floorPower^[3] n % (2*M) = 1`.
+The Juggler map is `floorPower n = if n % 2 = 0 then Nat.sqrt n else Nat.sqrt (n^3)`.
+`itinerary n 3` lists the source parities of n and its first two iterates;
+`floorPower^[j]` denotes j-fold iteration. Thus this is an actual OOE orbit. -/
 theorem exists_bounded_modular_return {M : ℕ} (hM : 0 < M) :
     ∃ t < 2^2176*M^160, ReturnParameter 2 1 M t ∧
       (1+2*M*t)^2 < 2^4354*M^322 ∧ ModularReturn 2 1 M ((1+2*M*t)^2) := by

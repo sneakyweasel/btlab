@@ -79,6 +79,7 @@ BUILD_INPUTS = [
     "docs/theory/higher_derivative_finite_note.md",
     "docs/theory/juggler_ooe_effective_modes_note.md",
     "docs/theory/juggler_ooe_effective_return_lean_note.md",
+    "data/research/formalpedia/ooe_coverage_reviews.json",
     "formal/AxiomCheckOOEEffectiveReturn.lean", "formal/AxiomCheckOOEEffectiveReturn.expected",
     "formal/AxiomCheckOOEEffectiveModes.lean", "formal/AxiomCheckOOEEffectiveModes.expected",
     "formal/AxiomCheckHigherDerivative.lean", "formal/AxiomCheckHigherDerivative.expected",

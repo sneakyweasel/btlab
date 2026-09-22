@@ -71313,13 +71313,13 @@
       "trust": "kernel"
     },
     {
-      "doc": "The first explicit error bound for the exact thresholded parameter count.",
+      "doc": "The first error bound for the exact thresholded parameter count. Here `count P T = ((Finset.range T).filter P).card`, counting natural indices `0 <= t < T`. The preceding `return_parameter_iff` expands the predicate `ReturnParameter 2 1 M t` into the three explicit floor and threshold guards. All displayed fractional powers are real powers and `Real.log` is the natural logarithm.",
       "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
       "kind": "theorem",
       "ledger": [
         "J-effective-ooe-modular-return"
       ],
-      "line": 214,
+      "line": 218,
       "module": "Problems.Juggler.OOEEffectiveReturn",
       "name": "count_error",
       "trust": "kernel"
@@ -71331,7 +71331,7 @@
       "ledger": [
         "J-effective-ooe-modular-return"
       ],
-      "line": 237,
+      "line": 241,
       "module": "Problems.Juggler.OOEEffectiveReturn",
       "name": "log_square_bound",
       "trust": "kernel"
@@ -71343,7 +71343,7 @@
       "ledger": [
         "J-effective-ooe-modular-return"
       ],
-      "line": 257,
+      "line": 261,
       "module": "Problems.Juggler.OOEEffectiveReturn",
       "name": "error_power_bound",
       "trust": "kernel"
@@ -71355,19 +71355,19 @@
       "ledger": [
         "J-effective-ooe-modular-return"
       ],
-      "line": 288,
+      "line": 292,
       "module": "Problems.Juggler.OOEEffectiveReturn",
       "name": "count_error_power",
       "trust": "kernel"
     },
     {
-      "doc": "The explicit finite search length, uniform in the modulus.",
+      "doc": "The explicit finite search length is `witnessCutoff M = 2^2176*M^160`. This is the definition's value, uniform in the positive natural modulus M.",
       "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
       "kind": "def",
       "ledger": [
         "J-effective-ooe-modular-return"
       ],
-      "line": 294,
+      "line": 299,
       "module": "Problems.Juggler.OOEEffectiveReturn",
       "name": "witnessCutoff",
       "trust": "kernel"
@@ -71379,7 +71379,7 @@
       "ledger": [
         "J-effective-ooe-modular-return"
       ],
-      "line": 296,
+      "line": 301,
       "module": "Problems.Juggler.OOEEffectiveReturn",
       "name": "witnessCutoff_pos",
       "trust": "kernel"
@@ -71391,7 +71391,7 @@
       "ledger": [
         "J-effective-ooe-modular-return"
       ],
-      "line": 300,
+      "line": 305,
       "module": "Problems.Juggler.OOEEffectiveReturn",
       "name": "witnessCutoff_root",
       "trust": "kernel"
@@ -71403,7 +71403,7 @@
       "ledger": [
         "J-effective-ooe-modular-return"
       ],
-      "line": 309,
+      "line": 314,
       "module": "Problems.Juggler.OOEEffectiveReturn",
       "name": "error_at_witnessCutoff",
       "trust": "kernel"
@@ -71415,7 +71415,7 @@
       "ledger": [
         "J-effective-ooe-modular-return"
       ],
-      "line": 325,
+      "line": 330,
       "module": "Problems.Juggler.OOEEffectiveReturn",
       "name": "count_at_witnessCutoff",
       "trust": "kernel"
@@ -71427,7 +71427,7 @@
       "ledger": [
         "J-effective-ooe-modular-return"
       ],
-      "line": 341,
+      "line": 346,
       "module": "Problems.Juggler.OOEEffectiveReturn",
       "name": "exists_bounded_parameter",
       "trust": "kernel"
@@ -71439,19 +71439,19 @@
       "ledger": [
         "J-effective-ooe-modular-return"
       ],
-      "line": 351,
+      "line": 356,
       "module": "Problems.Juggler.OOEEffectiveReturn",
       "name": "start_bound",
       "trust": "kernel"
     },
     {
-      "doc": "Q5: a quantitatively bounded actual OOE modular return for every positive modulus.",
+      "doc": "Here `ModularReturn 2 1 M n` means `n % 2 = 1` and `itinerary n 3 = [Branch.odd, Branch.odd, Branch.even]`, `(forall j <= 3, n <= floorPower^[j] n)`, `n < floorPower^[3] n`, and `n % (2*M) = 1` and `floorPower^[3] n % (2*M) = 1`. The Juggler map is `floorPower n = if n % 2 = 0 then Nat.sqrt n else Nat.sqrt (n^3)`. `itinerary n 3` lists the source parities of n and its first two iterates; `floorPower^[j]` denotes j-fold iteration. Thus this is an actual OOE orbit.",
       "file": "formal/Problems/Juggler/OOEEffectiveReturn.lean",
       "kind": "theorem",
       "ledger": [
         "J-effective-ooe-modular-return"
       ],
-      "line": 369,
+      "line": 380,
       "module": "Problems.Juggler.OOEEffectiveReturn",
       "name": "exists_bounded_modular_return",
       "trust": "kernel"
@@ -119532,8 +119532,8 @@
       "ledger": [
         {
           "id": "J-effective-ooe-modular-return",
-          "statement": "Kernel-checked effective OOE counting and witness theorem; independent mathematical review remains pending. For all natural M,T>=1, let A_M(T) count 0<=t<T with s=1+2Mt>=16, floor(s^(9/2)) even, and floor(s^(9/4))=1 modulo 2M. Then abs(A_M(T)-T/(4M)) <= [5+128*M^(1/4)*(3+log(T)/16)^2]*T^(63/64)+8 <= 2^14*M^(1/4)*T^(127/128), with natural logarithm. At T=2^2176*M^160 the count is at least T/(8M)>0. Some t<T gives an actual OOE Juggler return with n=s^2<2^4354*M^322, all prefix states at least n, exit strictly greater than n, and both endpoints 1 modulo 2M. The predicate equivalence includes both half-open endpoints and M=1. The Lean proof includes the signed derivative estimates, all cutoff Fourier modes, finite Fejer box discrepancy, dyadic initial segment, cutoff rounding, threshold exclusions, logarithm absorption, and witness extraction; none is assumed as an analytic premise. It uses independently proved third/fifth derivative tests, not a formalization of the exact external Arias de Reyna formula used by the alternative written proof. This is one fixed word; the constants are impractical and the OOE word-code denominator is 1. No effective arbitrary-word, cycle, termination, or infinite-continuation claim is made. Included in Paper E version 0.7.1 and its selected Lean audit.",
-          "tag": "EXACT \u2014 HUMAN PROOF"
+          "statement": "For every natural M>=1, define A_M(T) to be the number of natural t<T such that s=1+2*M*t>=16, floor(s^(9/2)) is even, and floor(s^(9/4)) modulo (2*M) is 1. For every natural T>=1, abs(A_M(T)-T/(4*M)) <= [5+128*M^(1/4)*(3+log(T)/16)^2]*T^(63/64)+8 <= 2^14*M^(1/4)*T^(127/128). Powers with fractional exponents are real powers, floors are natural floors, and log is the natural logarithm. For T0=2^2176*M^160, A_M(T0)>=T0/(8*M)>0. There exists a natural t<T0 with s=1+2*M*t>=16 and n=s^2<2^4354*M^322 whose actual Juggler source parities at times 0,1,2 are odd,odd,even; n<=J^[j](n) for every natural j<=3; n<J^[3](n); and n modulo (2*M) and J^[3](n) modulo (2*M) both equal 1. Here J(n)=Nat.sqrt(n) for even n and Nat.sqrt(n^3) for odd n, Nat.sqrt is the integer square root, and J^[j] denotes j-fold iteration.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
         }
       ]
     },

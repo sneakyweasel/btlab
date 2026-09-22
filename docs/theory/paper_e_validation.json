@@ -409,7 +409,7 @@
       "formal/Problems/Juggler/Minimal.lean": "8c8a1a9d65291f179e1231ca88cb29b6fc103869a31b52e445957fee33517290",
       "formal/Problems/Juggler/MinimumRelative.lean": "a110acfb2c522d74ecd8f57ce1a9fc94cfbc9fc176948fa1522cec57a14d9826",
       "formal/Problems/Juggler/OOEEffectiveModes.lean": "6cdc95a4b6ad94dd4cf99f501f7abd8fccb902bec37dd8efa888668656cede3d",
-      "formal/Problems/Juggler/OOEEffectiveReturn.lean": "acaefda059cefa19d40d2106808083e01f6f616424662e8f5c990a39b51fe090",
+      "formal/Problems/Juggler/OOEEffectiveReturn.lean": "fdf8992c720627367d21c1dac436595ab5a9626a69d3914c838deaa49214f2f0",
       "formal/Problems/Juggler/PaperBCertificateLengths.lean": "11eec08b298f79805ecf9bce8fbf8c8871c011b3193a67db61f7e0b198d35166",
       "formal/Problems/Juggler/PaperBCertificateRecursion.lean": "4e9b9a37c59ca9b4bba402efb3d98fd3f3e536b8896cd54244b17d7319d589c8",
       "formal/Problems/Juggler/PaperBCertificates.lean": "a78e69d66bfe33b834af08b3ac5329bf8947d33dabea9114148bb3ef6b358fcf",

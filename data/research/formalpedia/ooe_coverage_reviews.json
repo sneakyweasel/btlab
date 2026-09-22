@@ -1,0 +1,130 @@
+{
+  "ledger_id": "J-effective-ooe-modular-return",
+  "scope": "Only this theorem and the same six Lean declarations; one corrected check.",
+  "reviews": [
+    {
+      "stage": "original",
+      "payload": {
+        "claim": "Kernel-checked effective OOE counting and witness theorem; independent mathematical review remains pending. For all natural M,T>=1, let A_M(T) count 0<=t<T with s=1+2Mt>=16, floor(s^(9/2)) even, and floor(s^(9/4))=1 modulo 2M. Then abs(A_M(T)-T/(4M)) <= [5+128*M^(1/4)*(3+log(T)/16)^2]*T^(63/64)+8 <= 2^14*M^(1/4)*T^(127/128), with natural logarithm. At T=2^2176*M^160 the count is at least T/(8M)>0. Some t<T gives an actual OOE Juggler return with n=s^2<2^4354*M^322, all prefix states at least n, exit strictly greater than n, and both endpoints 1 modulo 2M. The predicate equivalence includes both half-open endpoints and M=1. The Lean proof includes the signed derivative estimates, all cutoff Fourier modes, finite Fejer box discrepancy, dyadic initial segment, cutoff rounding, threshold exclusions, logarithm absorption, and witness extraction; none is assumed as an analytic premise. It uses independently proved third/fifth derivative tests, not a formalization of the exact external Arias de Reyna formula used by the alternative written proof. This is one fixed word; the constants are impractical and the OOE word-code denominator is 1. No effective arbitrary-word, cycle, termination, or infinite-continuation claim is made. Included in Paper E version 0.7.1 and its selected Lean audit.",
+        "lean_file": "Problems/Juggler/OOEEffectiveReturn.lean",
+        "ledger_id": "J-effective-ooe-modular-return",
+        "declarations": [
+          {
+            "name": "return_parameter_iff",
+            "docstring": "The existing parameter predicate is exactly the integer-floor count in the theorem.",
+            "statement": "theorem return_parameter_iff {M : ℕ} (hM : 0 < M) (t : ℕ) : ReturnParameter 2 1 M t ↔ 16 ≤ 1+2*M*t ∧ ⌊((1+2*M*t : ℕ) : ℝ)^(9/2 : ℝ)⌋₊ % 2 = 0 ∧ ⌊((1+2*M*t : ℕ) : ℝ)^(9/4 : ℝ)⌋₊ % (2*M) = 1"
+          },
+          {
+            "name": "count_error",
+            "docstring": "The first explicit error bound for the exact thresholded parameter count.",
+            "statement": "theorem count_error {M T : ℕ} (hM : 0 < M) (hT : 1 ≤ T) : |(count (ReturnParameter 2 1 M) T : ℝ) - T/(4*M)| ≤ (5+128*(M : ℝ)^(1/4 : ℝ)*(3+Real.log T/16)^2)*(T : ℝ)^(63/64 : ℝ)+8"
+          },
+          {
+            "name": "error_power_bound",
+            "docstring": "The displayed first error is bounded by the simpler power error.",
+            "statement": "theorem error_power_bound {M T : ℕ} (hM : 0 < M) (hT : 1 ≤ T) : (5+128*(M : ℝ)^(1/4 : ℝ)*(3+Real.log T/16)^2)*(T : ℝ)^(63/64 : ℝ)+8 ≤ 2^14*(M : ℝ)^(1/4 : ℝ)*(T : ℝ)^(127/128 : ℝ)"
+          },
+          {
+            "name": "witnessCutoff",
+            "docstring": "The explicit finite search length, uniform in the modulus.",
+            "statement": "def witnessCutoff (M : ℕ) : ℕ"
+          },
+          {
+            "name": "count_at_witnessCutoff",
+            "docstring": "At the explicit cutoff the actual return count is at least T/(8M), hence positive.",
+            "statement": "theorem count_at_witnessCutoff {M : ℕ} (hM : 0 < M) : (witnessCutoff M : ℝ)/(8*M) ≤ count (ReturnParameter 2 1 M) (witnessCutoff M) ∧ 0 < count (ReturnParameter 2 1 M) (witnessCutoff M)"
+          },
+          {
+            "name": "exists_bounded_modular_return",
+            "docstring": "Q5: a quantitatively bounded actual OOE modular return for every positive modulus.",
+            "statement": "theorem exists_bounded_modular_return {M : ℕ} (hM : 0 < M) : ∃ t < 2^2176*M^160, ReturnParameter 2 1 M t ∧ (1+2*M*t)^2 < 2^4354*M^322 ∧ ModularReturn 2 1 M ((1+2*M*t)^2)"
+          }
+        ]
+      },
+      "verdict": {
+        "asked": "2026-09-22",
+        "claim_broader": 0.89,
+        "covers": 0.22,
+        "decl_narrower": 0.32,
+        "decls": [
+          "return_parameter_iff",
+          "count_error",
+          "error_power_bound",
+          "witnessCutoff",
+          "count_at_witnessCutoff",
+          "exists_bounded_modular_return"
+        ],
+        "different_result": 0.13,
+        "key": "d4ac223d2f80878e",
+        "model": "jev-1.13.0"
+      },
+      "input_tokens": 1792,
+      "ruling": "Retain human-proof label: incomplete definition context in exported headers."
+    },
+    {
+      "stage": "corrected",
+      "payload": {
+        "claim": "For every natural M>=1, define A_M(T) to be the number of natural t<T such that s=1+2*M*t>=16, floor(s^(9/2)) is even, and floor(s^(9/4)) modulo (2*M) is 1. For every natural T>=1, abs(A_M(T)-T/(4*M)) <= [5+128*M^(1/4)*(3+log(T)/16)^2]*T^(63/64)+8 <= 2^14*M^(1/4)*T^(127/128). Powers with fractional exponents are real powers, floors are natural floors, and log is the natural logarithm. For T0=2^2176*M^160, A_M(T0)>=T0/(8*M)>0. There exists a natural t<T0 with s=1+2*M*t>=16 and n=s^2<2^4354*M^322 whose actual Juggler source parities at times 0,1,2 are odd,odd,even; n<=J^[j](n) for every natural j<=3; n<J^[3](n); and n modulo (2*M) and J^[3](n) modulo (2*M) both equal 1. Here J(n)=Nat.sqrt(n) for even n and Nat.sqrt(n^3) for odd n, Nat.sqrt is the integer square root, and J^[j] denotes j-fold iteration.",
+        "lean_file": "Problems/Juggler/OOEEffectiveReturn.lean",
+        "ledger_id": "J-effective-ooe-modular-return",
+        "declarations": [
+          {
+            "name": "return_parameter_iff",
+            "docstring": "The existing parameter predicate is exactly the integer-floor count in the theorem.",
+            "statement": "theorem return_parameter_iff {M : ℕ} (hM : 0 < M) (t : ℕ) : ReturnParameter 2 1 M t ↔ 16 ≤ 1+2*M*t ∧ ⌊((1+2*M*t : ℕ) : ℝ)^(9/2 : ℝ)⌋₊ % 2 = 0 ∧ ⌊((1+2*M*t : ℕ) : ℝ)^(9/4 : ℝ)⌋₊ % (2*M) = 1"
+          },
+          {
+            "name": "count_error",
+            "docstring": "The first error bound for the exact thresholded parameter count. Here `count P T = ((Finset.range T).filter P).card`, counting natural indices `0 <= t < T`. The preceding `return_parameter_iff` expands the predicate `ReturnParameter 2 1 M t` into the three explicit floor and threshold guards. All displayed fractional powers are real powers and `Real.log` is the natural logarithm.",
+            "statement": "theorem count_error {M T : ℕ} (hM : 0 < M) (hT : 1 ≤ T) : |(count (ReturnParameter 2 1 M) T : ℝ) - T/(4*M)| ≤ (5+128*(M : ℝ)^(1/4 : ℝ)*(3+Real.log T/16)^2)*(T : ℝ)^(63/64 : ℝ)+8"
+          },
+          {
+            "name": "error_power_bound",
+            "docstring": "The displayed first error is bounded by the simpler power error.",
+            "statement": "theorem error_power_bound {M T : ℕ} (hM : 0 < M) (hT : 1 ≤ T) : (5+128*(M : ℝ)^(1/4 : ℝ)*(3+Real.log T/16)^2)*(T : ℝ)^(63/64 : ℝ)+8 ≤ 2^14*(M : ℝ)^(1/4 : ℝ)*(T : ℝ)^(127/128 : ℝ)"
+          },
+          {
+            "name": "witnessCutoff",
+            "docstring": "The explicit finite search length is `witnessCutoff M = 2^2176*M^160`. This is the definition's value, uniform in the positive natural modulus M.",
+            "statement": "def witnessCutoff (M : ℕ) : ℕ"
+          },
+          {
+            "name": "count_at_witnessCutoff",
+            "docstring": "At the explicit cutoff the actual return count is at least T/(8M), hence positive.",
+            "statement": "theorem count_at_witnessCutoff {M : ℕ} (hM : 0 < M) : (witnessCutoff M : ℝ)/(8*M) ≤ count (ReturnParameter 2 1 M) (witnessCutoff M) ∧ 0 < count (ReturnParameter 2 1 M) (witnessCutoff M)"
+          },
+          {
+            "name": "exists_bounded_modular_return",
+            "docstring": "Here `ModularReturn 2 1 M n` means `n % 2 = 1` and `itinerary n 3 = [Branch.odd, Branch.odd, Branch.even]`, `(forall j <= 3, n <= floorPower^[j] n)`, `n < floorPower^[3] n`, and `n % (2*M) = 1` and `floorPower^[3] n % (2*M) = 1`. The Juggler map is `floorPower n = if n % 2 = 0 then Nat.sqrt n else Nat.sqrt (n^3)`. `itinerary n 3` lists the source parities of n and its first two iterates; `floorPower^[j]` denotes j-fold iteration. Thus this is an actual OOE orbit.",
+            "statement": "theorem exists_bounded_modular_return {M : ℕ} (hM : 0 < M) : ∃ t < 2^2176*M^160, ReturnParameter 2 1 M t ∧ (1+2*M*t)^2 < 2^4354*M^322 ∧ ModularReturn 2 1 M ((1+2*M*t)^2)"
+          }
+        ]
+      },
+      "verdict": {
+        "key": "560e6858d9c055ec",
+        "model": "jev-1.13.0",
+        "asked": "2026-09-22",
+        "decls": [
+          "return_parameter_iff",
+          "count_error",
+          "error_power_bound",
+          "witnessCutoff",
+          "count_at_witnessCutoff",
+          "exists_bounded_modular_return"
+        ],
+        "covers": 0.57,
+        "claim_broader": 0.4,
+        "decl_narrower": 0.3,
+        "different_result": 0.13
+      },
+      "input_tokens": 2018,
+      "ruling": "EXACT — LEAN VERIFIED, kernel trust: direct statement comparison and checked definition expansions; independent review pending.",
+      "validation": {
+        "definition_equalities": 4,
+        "selected_paper_declarations": 59,
+        "effective_return_theorems": 23,
+        "exact_certificate_rows": 177147
+      }
+    }
+  ]
+}

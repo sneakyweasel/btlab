@@ -1,5 +1,26 @@
 # Research journal
 
+## 2026-09-22 -- Self-contained effective OOE coverage packet
+
+- **Scope:** One bounded correction to the same theorem and same six
+  declarations. The main counting errors, cutoff, witness and orbit
+  conclusions are unchanged. Auxiliary proof-method and denominator
+  observations remain in the proof notes rather than the focused ledger row.
+- **Repair:** Supplied the filtered-range count, explicit cutoff, Juggler
+  map and full actual-orbit predicate in the declaration documentation.
+  Four Lean definition-equality checks confirm that context. Every exported
+  header and docstring fits without truncation; theorem types and proofs
+  were preserved.
+- **Advisory:** One corrected `jev-1.13.0` request returned coverage 0.57,
+  claim-broader 0.40, declaration-narrower 0.30 and different-result 0.13.
+  The original 0.22/0.89 warning and both complete packets are preserved in
+  the [review history](../data/research/formalpedia/ooe_coverage_reviews.json).
+- **Ruling:** `EXACT — LEAN VERIFIED`, kernel trust, after direct coverage
+  comparison, the definition checks, and the refreshed 59-declaration
+  paper audit. The separate 23-theorem audit and exact 177147-row check pass.
+  Independent review remains pending. This bounded repair is complete;
+  no further Jev request or new research direction is opened.
+
 ## 2026-09-22 -- Complete signed coefficient obstruction formalized
 
 - **Continuation audit:** The preceding review verified the new 5/8

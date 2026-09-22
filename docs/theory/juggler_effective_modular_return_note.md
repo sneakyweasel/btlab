@@ -1,10 +1,11 @@
 # Effective OOE modular returns
 
 22 September 2026. The complete quantitative theorem is now kernel-checked;
-its ledger label remains **EXACT — HUMAN PROOF** after the authorized
-Jev check flagged insufficient coverage in the exported declaration packet.
+its focused counting-and-witness ledger entry is **EXACT — LEAN VERIFIED**
+after the corrected coverage packet and direct local statement review.
 The [coverage review](juggler_ooe_effective_return_lean_note.md#jev-coverage-review)
-records the scores and the missing definition context. Independent
+preserves the original warning, the added definition context, and the
+single corrected Jev result. Independent
 mathematical review remains open. The alternative written derivation
 below uses an explicitly cited analytic theorem. The finite
 Fejer box estimate (Q3) is now kernel-checked, with its constants and all

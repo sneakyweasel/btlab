@@ -2420,9 +2420,9 @@
       },
       "J-effective-ooe-modular-return": {
         "asked": "2026-09-22",
-        "claim_broader": 0.89,
-        "covers": 0.22,
-        "decl_narrower": 0.32,
+        "claim_broader": 0.4,
+        "covers": 0.57,
+        "decl_narrower": 0.3,
         "decls": [
           "return_parameter_iff",
           "count_error",
@@ -2432,7 +2432,7 @@
           "exists_bounded_modular_return"
         ],
         "different_result": 0.13,
-        "key": "d4ac223d2f80878e",
+        "key": "560e6858d9c055ec",
         "model": "jev-1.13.0"
       },
       "J-envelope-lt-pow": {
@@ -4062,7 +4062,7 @@
     "totals": {
       "answered": 253,
       "asked_now": 1,
-      "input_tokens": 1792,
+      "input_tokens": 2018,
       "reused": 252,
       "unfound": 0
     }
