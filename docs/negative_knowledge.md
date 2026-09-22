@@ -105,12 +105,14 @@ exclusion or a proof of FD. A new constraint from actual floor realizations
 would be needed. Derivation and exact checks:
 [Collatz bridge review](problems/juggler_collatz_bridge.md#review-of-22-september-2026-an-exact-orbit-map-into-the-2-adics).
 
-The terminating-basin part is now compiled in `CollatzRational.lean`:
-`terminating_bridge` verifies the rational signed-step identities and
-the actual numerator parity. `terminatingCode_three_not_integer` and
-`terminatingCode_not_injective` prove the two stated counterexamples.
-This formal consolidation does not remove the input termination
-hypothesis or supply an infinite 2-adic construction.
+The full code is now formalized in `CollatzPadic.lean`, without a
+termination hypothesis: `orbit_bridge` gives both signed step identities,
+actual parity, finite residue/itinerary equivalence, and agreement with
+`CollatzRational.terminatingCode` on terminating starts. The exact finite
+set identity `code_cylinder_eq` transfers the counting problem without
+estimating it. `code_three_not_integer` and `code_not_injective` retain
+the two obstructions for the unconditional map itself. This supplies
+the 2-adic construction, not integer transport or a new termination input.
 
 ## Two over-corrections in one week: a right fact rejected for a good-looking reason
 

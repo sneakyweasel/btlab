@@ -292,6 +292,7 @@ LAYERS: dict[str, Path] = {
     "GapTransferWW": JUGGLER_DIR / "GapTransferWW.lean",
     "CollatzBridge": JUGGLER_DIR / "CollatzBridge.lean",
     "CollatzRational": JUGGLER_DIR / "CollatzRational.lean",
+    "CollatzPadic": JUGGLER_DIR / "CollatzPadic.lean",
 }
 
 # Sources belonging to other targets or historical model interfaces. Keeping

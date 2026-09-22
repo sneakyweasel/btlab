@@ -11541,6 +11541,450 @@
       "trust": "kernel"
     },
     {
+      "doc": "The ordinary Collatz residue realizing the first `d` Juggler parities.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "def",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 21,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "residue",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 24,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "residue_lt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 27,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "residue_word",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Longer actual itineraries select the same residue at every earlier precision.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 31,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "residue_compatible",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 36,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "residue_increment",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The `3n+1` code, defined for every start by compatible finite residues.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "def",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 45,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "plusCode",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The `3n-1` code is the negative of the `3n+1` code.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "def",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 50,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "code",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 52,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "plusCode_residue",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 57,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "residue_first_parity",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The finite coded Collatz successor has exactly the remaining Juggler word.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 65,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "residue_successor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 71,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "plusCode_parity",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Exact one-step identity, cleared of the nonunit divisor two.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 79,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "plusCode_step",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 95,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "code_parity",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 99,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "code_step",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Equality of coded residues is exactly equality of the actual finite itineraries.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 107,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "code_residue_eq_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every coded residue class is exactly its corresponding actual parity cylinder.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 114,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "code_residue_word_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The equivalence preserves finite source sets exactly; it is not a distribution estimate.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 121,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "code_cylinder_eq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 127,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "code_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Numerator of the `3n+1` step, selected by the actual residue modulo two.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "def",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 133,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "plusNumerator",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 136,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "two_dvd_plusNumerator",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The `3n+1` map on 2-adic integers, using its exactly divisible numerator.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "def",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 159,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "plusStep",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 161,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "two_mul_plusStep",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The `3n-1` map on 2-adic integers, obtained by negation.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "def",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 165,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "minusStep",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 167,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "two_mul_minusStep",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 175,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "plusCode_semiconjugacy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every actual Juggler orbit maps into an actual 2-adic `3n-1` orbit.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 182,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "code_semiconjugacy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 185,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "code_plus_semiconjugacy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 188,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "code_iterate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A code remembers the whole parity itinerary, rather than the original integer.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 196,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "code_eq_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The finite affine formula for the global code along actual Juggler iterates.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 202,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "code_affine",
+      "trust": "kernel"
+    },
+    {
+      "doc": "On terminating starts the global code agrees with the previously verified rational code.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 222,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "code_eq_terminatingCode",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 240,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "code_three_cleared",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 247,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "code_three_not_integer",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 254,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "code_four",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 261,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "code_six",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 268,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "code_not_injective",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The global signed orbit bridge and its exact finite information content.",
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-padic-orbit-code"
+      ],
+      "line": 274,
+      "module": "Problems.Juggler.CollatzPadic",
+      "name": "orbit_bridge",
+      "trust": "kernel"
+    },
+    {
       "doc": "Inverse branches of the rational `3n-1` map.",
       "file": "formal/Problems/Juggler/CollatzRational.lean",
       "kind": "def",
@@ -95497,6 +95941,7 @@
         "Problems.Juggler.Collapse",
         "Problems.Juggler.CollatzBridge",
         "Problems.Juggler.CollatzBridgeLab",
+        "Problems.Juggler.CollatzPadic",
         "Problems.Juggler.CollatzRational",
         "Problems.Juggler.Corridor",
         "Problems.Juggler.CriticalCostKernel",
@@ -95814,6 +96259,20 @@
         "Problems.Juggler.PaperBCertificateRecursion"
       ],
       "ledger": []
+    },
+    "Problems.Juggler.CollatzPadic": {
+      "declarations": 37,
+      "file": "formal/Problems/Juggler/CollatzPadic.lean",
+      "imports": [
+        "Problems.Juggler.CollatzRational"
+      ],
+      "ledger": [
+        {
+          "id": "J-padic-orbit-code",
+          "statement": "There is a code H from all natural Juggler starts to the 2-adic integers, constructed from compatible finite Collatz residues with no termination hypothesis. Its residue modulo two has the parity of the start. It satisfies H(J(n))=minusStep(H(n)) and -H(J(n))=plusStep(-H(n)), where the steps are the 2-adic 3n-1 and 3n+1 shortcut maps, and H(J^d(n))=minusStep^d(H(n)) for every d. For all natural r,d, H(n)=-r modulo 2^d if and only if the actual length-d Juggler itinerary of n equals the length-d 3n+1 itinerary of r. Consequently these conditions select exactly the same subset of any finite source set; no equidistribution estimate is asserted. On each start with a ReachesOne witness, H agrees in the 2-adic field with the previously defined rational terminatingCode. This is classical parity coding, not ordinary-integer transport or universal termination. The local Lean proof is compiled; the ledger label awaits advisory coverage review.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
     },
     "Problems.Juggler.CollatzRational": {
       "declarations": 34,
@@ -99405,13 +99864,13 @@
     }
   },
   "totals": {
-    "declarations": 7249,
-    "declarations_with_a_ledger_row": 5328,
-    "ledger_rows_naming_a_file": 469,
-    "modules": 319,
+    "declarations": 7286,
+    "declarations_with_a_ledger_row": 5365,
+    "ledger_rows_naming_a_file": 470,
+    "modules": 320,
     "trust": {
       "compiler": 56,
-      "kernel": 7193
+      "kernel": 7230
     }
   }
 }

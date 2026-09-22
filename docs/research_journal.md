@@ -1,5 +1,44 @@
 # Research journal
 
+## 2026-09-22 -- Global 2-adic Juggler and signed Collatz orbit coding in Lean
+
+- **Objective:** Remove the terminating-basin restriction from the formal
+  orbit code, while preserving the distinction between coding and an
+  arithmetic termination estimate.
+- **Result:** `CollatzPadic.orbit_bridge` constructs H in `PadicInt 2` for
+  every natural start. It preserves actual parity, intertwines Juggler
+  with 3n-1 at every iterate, intertwines the negative code with 3n+1,
+  and identifies every finite coded residue with its actual parity word.
+  No `ReachesOne` hypothesis is needed to define H or prove these laws.
+- **Proof:** The existing finite Terras bijection supplies compatible
+  residues. Mathlib's inverse limit constructs the code. The signed
+  maps use their actual residue modulo two; the selected numerator is
+  proved divisible by two before its half is defined. The finite affine
+  identity then proves agreement with `CollatzRational.terminatingCode`
+  on every terminating input.
+- **Exact limits:** `code_cylinder_eq` equates the corresponding subsets
+  of any finite source set. Thus coding leaves the parity counting
+  problem intact. `code_eq_iff` identifies complete code equality with
+  equality of all finite itineraries. The unconditional code also has
+  H(3)=83/27, which is nonintegral, and H(4)=H(6)=4, so it is not
+  injective. No escaping integer orbit or universal termination follows.
+- **Artifact:** [CollatzPadic.lean](../formal/Problems/Juggler/CollatzPadic.lean),
+  registered in the laboratory barrel and layer inventory. The
+  [29-declaration dependency audit](../formal/AxiomCheckCollatzPadic.expected)
+  reports only `propext`, `Classical.choice`, and `Quot.sound`.
+- **Validation:** Direct and targeted Lean checks pass; the final full
+  `lake build` passes (9025 jobs). Layer architecture, integration and
+  theorem-ledger tests give 144 passes and 14 skips.
+- **Decision:** **PROMOTE** this classical coding formalization. Coding
+  as an independent termination attack stays **CLOSE**; the actual
+  cumulative pressure estimate remains **PARK**. No cycle or analytic
+  bound has changed.
+- **Coverage:** Local compilation and signature review are complete.
+  The ledger retains its written-proof tag pending the advisory Jev
+  check required before retagging. The previous rational-row permission
+  question remains pending and was not repurposed for this row. The
+  cache-only coverage refresh sent no new statements externally.
+
 ## 2026-09-22 -- Rational Juggler and signed Collatz orbit coding in Lean
 
 - **Objective:** Follow the updated goal by consolidating the exact

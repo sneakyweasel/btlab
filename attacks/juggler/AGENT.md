@@ -120,6 +120,13 @@ Method: [docs/methodology.md](../../docs/methodology.md).
 - **Local attacks are closed.** Fibres are parity + interval only.
   Seam / ancestry / collision-pair / word-order drops reduce to
   Collision Factorization or \(T^L(t)=c\ge n\). Do not reopen.
+- **Signed Collatz orbit code.** `CollatzPadic.orbit_bridge` constructs
+  the 2-adic code for every actual Juggler start, with both signed step
+  identities, exact finite residue/cylinder equivalence, and agreement
+  with `CollatzRational.terminatingCode` on terminating inputs.
+  `code_cylinder_eq` transfers counts exactly without estimating them.
+  H(3) is nonintegral and H(4)=H(6)=4; no integer-orbit or termination
+  transfer follows. The ledger coverage review remains pending.
 - **Anti-overclaim.** Finite checks, period floors, densities, and
   leftover censuses are not a halt theorem and not "no cycle of any
   length". State the theorem with quantifiers, Lean name, and ledger

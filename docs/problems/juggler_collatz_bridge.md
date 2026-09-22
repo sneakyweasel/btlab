@@ -748,3 +748,68 @@ and `Quot.sound`. Architecture, integration and ledger checks give
 The ledger's written-proof tag is temporarily retained pending the
 requested single Jev coverage check; it does not indicate a gap in the
 compiled local proof.
+
+## Global 2-adic orbit code in Lean, 22 September 2026
+
+**PROMOTE** the formal consolidation. The code now exists for every
+natural starting value, including one whose termination is unknown.
+The arithmetic coding route remains **CLOSE** as an independent
+termination attack: no distribution or integer-realization estimate is
+introduced.
+
+[CollatzPadic.lean](../../formal/Problems/Juggler/CollatzPadic.lean)
+constructs H in the actual Mathlib type `PadicInt 2`. For each depth d,
+the already-verified Terras bijection supplies the unique ordinary
+3n+1 residue R_d(n) below 2^d whose word is `itinerary n d`.
+Taking a prefix proves compatibility modulo every earlier power of two.
+Mathlib's `ofIntSeq` then gives their 2-adic limit; H is its negative.
+This construction uses no `ReachesOne` witness and does not require
+Juggler to be continuous in the 2-adic topology of its input integers.
+
+The 3n+1 step is defined by the unique half of its parity-selected
+numerator in `PadicInt 2`; divisibility by two is proved first. The
+3n-1 step is its negation conjugate. These are maps of the whole
+2-adic integer ring, not unguarded formal branch actions. The theorem
+`CollatzPadic.orbit_bridge` verifies:
+
+- H has the actual starting parity.
+- H(J(n)) equals the 3n-1 step of H(n), and -H(J(n)) equals the
+  3n+1 step of -H(n). This holds at every iterate.
+- For every ordinary residue representative r and depth d,
+  H(n)=-r modulo 2^d exactly when the actual Juggler itinerary of n
+  equals the length-d Collatz itinerary of r.
+- On every terminating start, H agrees in `Padic 2` with the rational
+  `terminatingCode` from the preceding phase.
+
+The supporting `code_cylinder_eq` equates the two subsets of any
+finite source set, without an error term. Thus rewriting FD in terms
+of coded residues leaves precisely the same counting problem. It
+does not prove FD, even at one new depth.
+`code_eq_iff` says that equality of complete codes is exactly equality
+of all finite parity itineraries; it is not equality of the starts.
+
+The finite affine identity is also retained:
+\[
+3^{o_d(n)}H(n)=2^dH(J^d(n))+A(\operatorname{itinerary}(n,d)).
+\]
+At a hitting time the endpoint code is 1, recovering the previous
+rational formula. This proves compatibility of the two constructions,
+rather than just agreement on a sample of inputs.
+
+The global counterexamples are proved again for this unconditional
+map: 27 H(3)=83 and H(3) is not an embedded ordinary integer;
+H(4)=H(6)=4, so H is not injective. These are consequences of the
+verified finite affine identity and actual finite Juggler iterates.
+No infinite escaping orbit, new cycle restriction, or termination
+theorem follows from the construction.
+
+This is classical parity coding consolidated in the laboratory,
+following Bernstein--Lagarias as cited above. The formal construction
+uses compatible residues rather than an explicit infinite-series
+definition. Direct and targeted Lean checks and the full `lake build`
+pass (9025 jobs). The
+[29-declaration dependency audit](../../formal/AxiomCheckCollatzPadic.expected)
+reports only `propext`, `Classical.choice`, and `Quot.sound`.
+Architecture, integration and theorem-ledger checks give 144 passes
+and 14 skips. The ledger tag awaits advisory coverage review; this
+does not indicate a gap in the compiled local proof.

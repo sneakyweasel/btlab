@@ -360,6 +360,7 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
+        "J-padic-orbit-code",
         "J-rational-terminating-orbit-bridge",
         "J-juggler-is-collatz-one-exponential-up",
         "J-word-density-results-are-not-juggler-specific",
@@ -6756,7 +6757,8 @@
         "formal/Problems/Juggler/FateCertified.lean",
         "formal/Problems/Juggler/GapTransferWW.lean",
         "formal/Problems/Juggler/CollatzBridge.lean",
-        "formal/Problems/Juggler/CollatzRational.lean"
+        "formal/Problems/Juggler/CollatzRational.lean",
+        "formal/Problems/Juggler/CollatzPadic.lean"
       ],
       "conjecture": [],
       "decision": null,

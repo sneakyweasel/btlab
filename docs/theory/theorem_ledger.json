@@ -1,5 +1,29 @@
 [
  {
+  "id": "J-padic-orbit-code",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "There is a code H from all natural Juggler starts to the 2-adic integers, constructed from compatible finite Collatz residues with no termination hypothesis. Its residue modulo two has the parity of the start. It satisfies H(J(n))=minusStep(H(n)) and -H(J(n))=plusStep(-H(n)), where the steps are the 2-adic 3n-1 and 3n+1 shortcut maps, and H(J^d(n))=minusStep^d(H(n)) for every d. For all natural r,d, H(n)=-r modulo 2^d if and only if the actual length-d Juggler itinerary of n equals the length-d 3n+1 itinerary of r. Consequently these conditions select exactly the same subset of any finite source set; no equidistribution estimate is asserted. On each start with a ReachesOne witness, H agrees in the 2-adic field with the previously defined rational terminatingCode. This is classical parity coding, not ordinary-integer transport or universal termination. The local Lean proof is compiled; the ledger label awaits advisory coverage review.",
+  "source": "docs/problems/juggler_collatz_bridge.md",
+  "lean": "Problems/Juggler/CollatzPadic.lean",
+  "decl": [
+   "orbit_bridge",
+   "code_cylinder_eq",
+   "code",
+   "plusCode",
+   "residue",
+   "plusNumerator",
+   "plusStep",
+   "minusStep",
+   "two_mul_plusStep",
+   "two_mul_minusStep"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-rational-terminating-orbit-bridge",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "For every natural n with a witness h that its actual Juggler orbit reaches 1, terminatingCode n h is a positive rational number independent of the chosen hitting time: whenever J^d(n)=1 it equals codeAt n d, the inverse 3n-1 branch composition along itinerary n d applied to endpoint 1. At every such depth d its reduced denominator divides 3^oddCount(itinerary n d). Its denominator is odd and its reduced numerator has the same parity as n. Writing H for this code on the terminating basin, H(J(n))=minusStep(H(n)) and -H(J(n))=plusStep(-H(n)), where minusStep and plusStep select their rational shortcut branch using reduced-numerator parity. This is a theorem on the terminating basin only; it does not define the full infinite 2-adic code or assert universal termination or ordinary-integer transport.",
