@@ -198,6 +198,20 @@
         "kernel": 15
       }
     },
+    "BTCalculus.FourierBoxCounting": {
+      "declarations": 15,
+      "depends_on": [
+        "BTCalculus.FourierBoxRecurrence"
+      ],
+      "file": "formal/BTCalculus/FourierBoxCounting.lean",
+      "ledger": [
+        "BTA-fourier-half-open-box-frequency"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 15
+      }
+    },
     "BTCalculus.FourierBoxRecurrence": {
       "declarations": 15,
       "depends_on": [
@@ -456,6 +470,21 @@
       "papers": [],
       "trust": {
         "kernel": 40
+      }
+    },
+    "BTCalculus.PowerBoxCounting": {
+      "declarations": 12,
+      "depends_on": [
+        "BTCalculus.FourierBoxCounting",
+        "BTCalculus.PowerPhaseAsymptotics"
+      ],
+      "file": "formal/BTCalculus/PowerBoxCounting.lean",
+      "ledger": [
+        "BTA-power-box-counting"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 12
       }
     },
     "BTCalculus.PowerBoxRecurrence": {
@@ -3096,6 +3125,21 @@
         "kernel": 30
       }
     },
+    "Problems.Juggler.PaperECorollaries": {
+      "declarations": 14,
+      "depends_on": [
+        "BTCalculus.PowerBoxCounting",
+        "Problems.Juggler.PaperERecurrence"
+      ],
+      "file": "formal/Problems/Juggler/PaperECorollaries.lean",
+      "ledger": [
+        "J-paper-e-counting-corollaries"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 14
+      }
+    },
     "Problems.Juggler.PaperEModularReturn": {
       "declarations": 33,
       "depends_on": [
@@ -3876,9 +3920,9 @@
     }
   },
   "totals": {
-    "edges": 299,
-    "edges_before_reduction": 2380,
-    "ledger_rows_placed": 497,
-    "nodes": 241
+    "edges": 304,
+    "edges_before_reduction": 2414,
+    "ledger_rows_placed": 500,
+    "nodes": 244
   }
 }

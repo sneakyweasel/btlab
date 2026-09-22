@@ -1,6 +1,6 @@
 # Paper E: reviewer packet and living review record
 
-Version 0.4.0, 22 September 2026. Canonical manuscript:
+Version 0.5.0, 22 September 2026. Canonical manuscript:
 [The Juggler Map and the 3n±1 Maps](juggler_signed_collatz_note.md).
 Build and updates: [PAPER_E_BUILD.md](PAPER_E_BUILD.md).
 
@@ -26,6 +26,8 @@ Build and updates: [PAPER_E_BUILD.md](PAPER_E_BUILD.md).
 | 2.1, 2.3 | CollatzPadic; PaperECompletion series and frequency theorems | No new distribution estimate |
 | 3.1, 3.2 | CollatzPadic order and return-time proofs | Original start must be periodic |
 | 4.1 | PaperERecurrence.theorem41, with proved BoxRecurrence and exact construction | Fixed parameters; no shrinking-target or growing-depth bound |
+| 4.2 | PaperECorollaries.return_starts_asymptotic, returnStarts_actual, return_in_multiplicative_interval | Counts the explicit family; fixed relative intervals only |
+| 4.3 | PaperECorollaries.signature_parameter_density, modular_return_of_signature, signature_returns_infinite | Fixed residues and modulus; parameter density |
 | 5.1-5.4 | PreimageGrid, Domain, Growth, Density, Certificate12 | Human prose-to-statement review pending |
 | 6.1 | PreimageBalance | Fixed shifts only; no actual-count upper bound |
 | 7.1 | BackwardMass | Backward closure is weaker than fate closure |
@@ -98,13 +100,33 @@ written justification of the same fixed-function input.
 
 PaperERecurrence.theorem41 applies that recurrence proof to the exact
 construction, with only a,b,M>0 and the expanding-word inequality as
-hypotheses. The selected audit now covers 37 declarations, including
+hypotheses. The 0.4.0 selected audit covers 37 declarations, including
 the unconditional assembly and its main analytic interfaces.
 
 The local completion check compares each numbered mathematical statement
 with the declarations in Appendix B, retaining the original target,
 cutoff, and infinitude quantifiers. Independent statement coverage and
 specialist review remain separate from this kernel-checked completion.
+
+## Counting and residue corollaries in 0.5.0
+
+Corollary 4.2 counts the explicitly constructed starts, with constant
+1/(2^(b+2)*M^2) and exponent 1/2^(a-1). It also supplies a witness
+in every sufficiently large fixed relative interval. Corollary 4.3
+prescribes every even source residue and the exit residue, with exact
+parameter density (2*M)^(-(b+1)). The expansion threshold removes
+only finitely many parameters. All orbit guards remain proved.
+
+The analytic extension passes from continuous Fourier averages to
+weak convergence of empirical measures and half-open boxes with
+Haar-null boundaries, including zero endpoints. The cutoff conversion
+counts distinct starts, using the strict increase of (1+2*M*t)^d.
+The selected paper audit covers 49 declarations. A separate audit
+covers all public theorems in the three new modules.
+
+These are fixed-parameter consequences of classical equidistribution.
+External novelty remains unclaimed. No first-witness bound, growing
+modulus estimate, or infinite concatenation theorem is supplied.
 
 ## Prior-art boundaries
 
@@ -136,6 +158,13 @@ using the build guide. These review items cannot be discharged by
 re-running the typesetter.
 
 ## Version history
+
+### 0.5.0 - 22 September 2026
+
+Added Corollaries 4.2 and 4.3 with complete written and Lean proofs:
+exact counting of the constructed family, witnesses in fixed relative
+intervals, and prescribed residues throughout the even run. Expanded
+the selected audit to 49 declarations and rebuilt the publication kit.
 
 ### 0.4.0 - 22 September 2026
 

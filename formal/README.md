@@ -25,6 +25,13 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- half-open box frequencies from the Fourier criterion, including zero
+  endpoints; frequencies for distinct noninteger powers; exact passage
+  from parameter density to counts of starts (1+q*t)^d. Paper E
+  Corollaries 4.2-4.3 give the constant 1/(2^(b+2)*M^2), witnesses in
+  every sufficiently large fixed relative interval, and every admissible
+  residue vector throughout the even run;
+
 - cancellation for every nonzero finite combination of distinct positive
   noninteger real powers on any progression A*n+B with A>0. The proof
   controls actual shifted differences through derivative asymptotics,

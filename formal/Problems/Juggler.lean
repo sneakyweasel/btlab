@@ -217,6 +217,7 @@ import Problems.Juggler.FateContagionBound
 import Problems.Juggler.PaperECompletion
 import Problems.Juggler.PaperEModularReturn
 import Problems.Juggler.PaperERecurrence
+import Problems.Juggler.PaperECorollaries
 
 /-!
 # Juggler laboratory barrel

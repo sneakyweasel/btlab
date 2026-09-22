@@ -1,7 +1,7 @@
 # Paper E: living manuscript, checks, and publication package
 
 **The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions.**
-Version 0.4.0, 22 September 2026. Local preprint; no deposit or DOI assigned.
+Version 0.5.0, 22 September 2026. Local preprint; no deposit or DOI assigned.
 
 Canonical source: [juggler_signed_collatz_note.md](juggler_signed_collatz_note.md).
 Edit that source, never its generated reviewer copy or TeX.
@@ -70,9 +70,13 @@ The integration suite automatically discovers build_paper_e.py.
   BoxRecurrence premise and the unconditional Theorem 4.1. Its analytic
   chain proves first-derivative estimates, cancellation of mixed noninteger
   powers on progressions, and the Fourier-to-box recurrence criterion.
+- Counting corollaries: FourierBoxCounting proves half-open box frequencies;
+  PowerBoxCounting converts parameter density into distinct power-start counts.
+  PaperECorollaries proves the exact constant, fixed relative intervals, and
+  prescribed even-run residues, including the finite expansion threshold.
 - Mass and stopping examples: separately mapped to their compiled statements.
 
-The combined audit selects 37 declarations and permits only propext,
+The combined audit selects 49 declarations and permits only propext,
 Classical.choice, and Quot.sound. It builds Problems.JugglerCollatzPaper,
 then executes AxiomCheckJugglerCollatzPaper.lean and checks all outputs.
 The finite checker independently recomputes every certificate row, all

@@ -7,7 +7,9 @@ proof data and explicit review boundaries.
 
 ## Exact statement
 
-No new mathematical statement is introduced by this packaging branch.
+The original packaging phase introduces no new statement. The 0.5.0
+extension adds two proved fixed-parameter corollaries of Theorem 4.1:
+exact counts for its constructed family and prescribed even-run residues.
 The [manuscript](../theory/juggler_signed_collatz_note.md) states the global
 orbit code, preservation of actual periods, modular-return counterfamily,
 signed ancestor exponent 21/25, and the fixed-grid ceiling below 99/100.
@@ -65,7 +67,7 @@ counterexample, modular returns, the backward ray, and stopped moment loss.
 ## Formalization
 
 Problems.JugglerCollatzPaper imports the existing modules.
-AxiomCheckJugglerCollatzPaper audits 37 selected declarations.
+AxiomCheckJugglerCollatzPaper audits 49 selected declarations.
 PaperECompletion identifies the odd-time series with the residue-limit code,
 proves the limiting-frequency and real-exponent statements, and proves both
 finite full-tree identities and direct sums over minimal stopping words.
@@ -117,9 +119,16 @@ covers all 19 new public theorems. The unconditional theorem retains only
 the paper's arithmetic parameter hypotheses.
 See the [proof note](../theory/fourier_box_recurrence_note.md).
 
+The counting extension adds FourierBoxCounting, PowerBoxCounting, and
+PaperECorollaries. It proves half-open box frequencies with null
+boundaries, exact parameter-to-start cutoff asymptotics, and both
+manuscript corollaries, including every actual residue and the
+expansion threshold. See the
+[proof note](../theory/paper_e_counting_corollaries_note.md).
+
 ## Results
 
-Version 0.4.0 has a canonical manuscript, full proof narrative, bibliography,
+Version 0.5.0 has a canonical manuscript, full proof narrative, bibliography,
 author metadata, AI disclosure, formalization map, reviewer packet, version
 policy, exact validation report, PDF/TeX build, and local deposit kit with
 source-and-certificate archive.
@@ -171,7 +180,9 @@ is also **PROMOTE**: its cancellation theorem covers positive affine
 progressions, with no remaining exponential-sum hypothesis.
 The recurrence phase is **PROMOTE**: simultaneous recurrence and the
 concrete specialization are proved. Theorem 4.1 is now unconditional.
-The full paper proof mapping and publication package are updated in 0.4.0.
+The counting/residue phase is **PROMOTE**: Corollaries 4.2-4.3 are
+proved with fixed parameters, without an additional analytic assumption.
+The full paper proof mapping and publication package are updated in 0.5.0.
 Best next question: does independent review confirm the prose-to-Lean
 coverage and prior-art boundaries? No new arithmetic attack is opened.
 

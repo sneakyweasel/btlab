@@ -22,7 +22,7 @@ which is what the ledger's list-valued `decl` exists to record.  `REFUTED` rows 
 asked: their declaration is the refutation.
 
 Jev (jev-1.13.0, last asked 2026-09-22) has answered
-249 of the 278 resolved rows: 131 covered,
+249 of the 281 resolved rows: 131 covered,
 66 doubtful, 52 not covered; 118 are
 listed below.
 

@@ -170,9 +170,12 @@ PaperEModularReturn now formalizes the exact root-floor construction,
 branch guards, modular return, growth of every prefix state, reduced
 denominator formula, and its unboundedness. Its infinitude assembly has
 an explicit BoxRecurrence premise: arbitrarily large parameters visit
-the simultaneous fractional-part box. This premise is not proved in Lean.
-The full unconditional theorem remains a written result using classical
-equidistribution; finite witnesses do not establish the missing input.
+the simultaneous fractional-part box. PaperERecurrence now proves that
+premise using derivative estimates, mixed-power cancellation, and the
+Fourier criterion, completing the unconditional theorem in Lean.
+PaperECorollaries additionally proves exact counts for the constructed
+family, fixed relative-interval witnesses, and prescribed residues
+throughout the final even run. All parameters remain fixed in the limits.
 See the [Paper E coverage record](../theory/paper_e_review.md).
 
 ## Results

@@ -38,6 +38,9 @@ def test_current_release_and_archived_sources_agree(release):
     "formal/Problems/Juggler/PaperECompletion.lean",
     "formal/Problems/Juggler/PaperEModularReturn.lean",
     "formal/Problems/Juggler/PaperERecurrence.lean",
+    "formal/Problems/Juggler/PaperECorollaries.lean",
+    "formal/BTCalculus/FourierBoxCounting.lean",
+    "formal/BTCalculus/PowerBoxCounting.lean",
     "formal/BTCalculus/FourierBoxRecurrence.lean",
     "formal/BTCalculus/PowerPhaseAsymptotics.lean",
 ])

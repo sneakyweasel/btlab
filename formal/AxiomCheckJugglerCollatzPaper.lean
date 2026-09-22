@@ -37,3 +37,15 @@ import Problems.JugglerCollatzPaper
 #print axioms BTCalculus.FourierBoxRecurrence.tendsto_continuous_average
 #print axioms BTCalculus.FourierBoxRecurrence.exists_ge_fract_box_of_phase
 #print axioms BTCalculus.PowerPhaseAsymptotics.tendsto_distinct_noninteger_power_average
+#print axioms BTCalculus.FourierBoxCounting.tendsto_fract_box_count
+#print axioms BTCalculus.PowerBoxCounting.tendsto_power_fract_box_count
+#print axioms BTCalculus.PowerBoxCounting.tendsto_powerStarts_card
+#print axioms Problems.Juggler.PaperECorollaries.return_density
+#print axioms Problems.Juggler.PaperECorollaries.return_parameter_density
+#print axioms Problems.Juggler.PaperECorollaries.returnStarts_actual
+#print axioms Problems.Juggler.PaperECorollaries.return_starts_asymptotic
+#print axioms Problems.Juggler.PaperECorollaries.return_in_multiplicative_interval
+#print axioms Problems.Juggler.PaperECorollaries.signature_density
+#print axioms Problems.Juggler.PaperECorollaries.signature_parameter_density
+#print axioms Problems.Juggler.PaperECorollaries.modular_return_of_signature
+#print axioms Problems.Juggler.PaperECorollaries.signature_returns_infinite

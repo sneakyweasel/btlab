@@ -30,7 +30,7 @@ Method: [docs/methodology.md](../../docs/methodology.md).
 ## Paper E: living comparative manuscript
 
 [The Juggler Map and the 3n±1 Maps](../../docs/theory/juggler_signed_collatz_note.md)
-is Paper E, version 0.4.0 of 22 September 2026, prepared locally and not
+is Paper E, version 0.5.0 of 22 September 2026, prepared locally and not
 deposited. It consolidates the exact orbit code, preservation of actual
 cycle periods, the signed 21/25 ancestor theorem, the fixed-grid ceiling,
 and the recorded transfer obstructions. Edit the canonical source and
@@ -40,9 +40,11 @@ tracks independent review and priority questions. New results enter only
 with explicit scope and proof mapping; publication work opens no new attack.
 PaperECompletion closes the series, frequency, exponent, and word-sum
 notation gaps. PaperEModularReturn verifies Theorem 4.1's exact construction
-and denominator growth. PaperERecurrence proves BoxRecurrence and the
+and denominator growth. PaperECorollaries adds exact sparse-start counts,
+fixed relative intervals, and prescribed even-run residues (4.2-4.3).
+PaperERecurrence proves BoxRecurrence and the
 unconditional Theorem 4.1, using the derivative and Fourier proofs in
-BTCalculus. The combined paper audit selects 37 declarations.
+BTCalculus. The combined paper audit selects 49 declarations.
 
 ## State of the problem
 

@@ -1,5 +1,49 @@
 # Research journal
 
+## 2026-09-22 -- Paper E: counting and prescribed-residue corollaries
+
+- **Target:** Count the explicit modular-return family and prescribe every
+  residue in its final even run. **Novelty hypothesis:** useful consequences
+  for Paper E; external novelty unclaimed. **Falsifier:** an incorrect
+  counting constant or a residue condition that fails an actual orbit guard.
+- **Already killed by?:** The shrinking-target and concatenation obstructions
+  do not apply to fixed words, moduli, and boxes. The denominator-coupling
+  attack remains closed. **Existing machinery:** mixed-power cancellation,
+  the Fourier criterion, exact nested-root identities, and orbit guards.
+- **Maximum Phase-0 scope:** derive both statements and verify their
+  hypotheses and constants. **Promotion criterion:** written proofs,
+  Lean verification, and a checked publication update. **Stop criterion:**
+  a new analytic assumption or growing-parameter estimate is required.
+- **Corollary 4.2:** parameter density 1/(2^(b+1)*M), followed by the exact
+  cutoff and injectivity of t to (1+2Mt)^d, gives the start-count asymptotic
+  X^(1/d)/(2^(b+2)*M^2), d=2^(a-1). A positive difference of scaled counts
+  gives a witness in every sufficiently large fixed relative interval.
+  The count covers the constructed family, not all actual modular returns.
+- **Corollary 4.3:** every admissible residue vector, even at the b even
+  sources and 1 at the exit, has constructing-parameter density
+  (2M)^(-(b+1)). Exact floors supply actual residues and branch guards.
+  The finite expansion threshold preserves density, giving infinitely many
+  distinct starts above each bound with all the original orbit properties.
+- **Analytic extension:** empirical measures converge weakly by the proved
+  continuous Fourier criterion. Half-open arcs have their length as volume
+  and finite endpoint boundaries. Product-box boundaries are Haar-null;
+  Portmanteau therefore proves the exact frequency, including residue zero.
+- **Publication:** version 0.5.0 adds both corollaries and their complete
+  proof map. The selected audit contains 49 declarations; a separate
+  audit covers all 32 public theorems in the three new modules.
+- **Validation:** full default Lean build passes (9062 jobs). The 49
+  selected declarations and all 32 new public theorems use only the
+  permitted standard logical dependencies. Integration, ledger, generated
+  index, release, and Juggler architecture tests pass: 160 passed,
+  15 skipped. The 177147-row certificate, release manifest, source archive,
+  ledger rendering, and branch index checks pass. All pages of the final
+  13-page PDF were visually checked; a repeated scope paragraph was removed
+  to prevent an otherwise empty page after the proof map.
+- **Decision:** **PROMOTE** these two fixed-parameter corollaries. No
+  effective first-witness bound, growing modulus, infinite concatenation,
+  cycle theorem, or new conjecture is opened.
+  [Proof and scope](theory/paper_e_counting_corollaries_note.md).
+
 ## 2026-09-22 -- Paper E: Theorem 4.1 completed in Lean
 
 - **Target and scope:** Turn the proved mixed-power Fourier cancellation

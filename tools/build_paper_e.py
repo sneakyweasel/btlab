@@ -72,6 +72,8 @@ BUILD_INPUTS = [
     "docs/theory/first_derivative_power_cancellation_note.md",
     "docs/theory/mixed_power_cancellation_note.md",
     "docs/theory/fourier_box_recurrence_note.md",
+    "docs/theory/paper_e_counting_corollaries_note.md",
+    "formal/AxiomCheckPaperECorollaries.lean", "formal/AxiomCheckPaperECorollaries.expected",
     "LICENSE", "pyproject.toml", REPORT,
     "tests/unit/test_paper_e_release.py",
     "juggler_review/zenodo_paper_e/README.md",
@@ -82,7 +84,7 @@ KIT = "juggler_review/zenodo_paper_e"
 DEPOSIT_PDF = f"{KIT}/Juggler_and_signed_Collatz.pdf"
 SOURCE_ZIP = f"{KIT}/Sources_and_certificate.zip"
 PDF_EXPORTS = [DEPOSIT_PDF]
-VERSION = "0.4.0"
+VERSION = "0.5.0"
 #: Zenodo takes the bare identifier, not the URL, beside the creator's name.
 ORCID = "0009-0004-1939-3382"
 

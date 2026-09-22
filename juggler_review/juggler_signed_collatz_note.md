@@ -2,7 +2,7 @@
 title: "The Juggler Map and the 3n±1 Maps"
 subtitle: "Exact Coding and Arithmetic Obstructions"
 author: Philippe Cochin
-date: "22 September 2026 · Version 0.4.0"
+date: "22 September 2026 · Version 0.5.0"
 ---
 
 ## Abstract
@@ -14,7 +14,9 @@ Juggler orbit into the 2-adic \(3n-1\) system. On actual periodic Juggler
 orbits it preserves every return time, and its value is an ordinary integer
 exactly when an explicit word divisibility holds. A family of genuine
 Juggler prefixes shows that arbitrarily precise modular return does not
-force that divisibility. On the positive integers, we prove that every
+force that divisibility. We count this constructed family with an exact
+leading constant and prescribe its residues throughout the final even run.
+On the positive integers, we prove that every
 \(3n-1\) target prime to three has at least \(X^{21/25}\) ancestors below
 \(X\), for all sufficiently large \(X\). This signed adaptation uses
 height-corrected inverse-tree inequalities, a closed root domain, and an
@@ -84,7 +86,9 @@ return time on an actual periodic orbit. Its proof combines classical
 coding with monotonicity within each branch. The integrality criterion
 is the classical affine cycle equation stated alongside this refinement.
 Section 4 gives a quantified obstruction involving actual floor
-iterates, rather than unrestricted symbolic words.
+iterates. Its counting and residue corollaries extract further consequences
+of classical power equidistribution; no new general distribution criterion
+or quantitative discrepancy estimate is claimed.
 
 Krasikov and Lagarias [KL03, Theorem 6.1] prove an ancestor exponent
 \(0.84\) for every positive target prime to three under \(C_{+1}\).
@@ -109,12 +113,12 @@ floors nor the analytic estimates in [B].
 
 ### 1.2. Proof status
 
-This is the living preprint, version 0.4.0. It has not been
+This is the living preprint, version 0.5.0. It has not been
 deposited or independently refereed. Mathematical priority for the
 signed adaptation and the isolated obstruction results remains subject
 to specialist review.
 
-Theorems 2.1, 3.2, 4.1, 5.1, and 6.1 have corresponding compiled Lean
+Theorems 2.1, 3.2, 4.1, 5.1, and 6.1 and Corollaries 4.2-4.3 have compiled Lean
 statements; Appendix B identifies their precise scope. Theorem 4.1 is
 unconditional in Lean: first-derivative estimates, mixed-power cancellation,
 and the Fourier criterion prove its simultaneous-box recurrence input.
@@ -349,6 +353,86 @@ which depends on the entire subsequent itinerary. It gives no
 common start at all precisions, no actual nontrivial cycle, and
 no denominator bound for true Juggler cycles. Finite modular return
 is not exact orbit closure.
+
+**Corollary 4.2 (counting the constructed returns).** Fix \(a,b,M\)
+as in Theorem 4.1 and put \(d=2^{a-1}\). Let \(\mathcal T\) be the
+set of nonnegative parameters \(t\) for which (4.3) lies in the
+half-open box used above and \(s=1+2Mt\ge2^{2^{b+1}}\). Define
+\[
+R_{a,b,M}(X)=\#\{t\in\mathcal T:(1+2Mt)^d\le X\}.
+\]
+Then, as \(X\to\infty\),
+\[
+R_{a,b,M}(X)\sim\frac{X^{1/d}}{2^{b+2}M^2}.
+\tag{4.4}
+\]
+For every fixed \(\varepsilon>0\), every sufficiently large interval
+\((X,(1+\varepsilon)X]\) contains a start from this family and hence
+an actual modular return satisfying (4.1).
+
+*Proof.* Uniform distribution and the box volume give
+\[
+\frac{\#(\mathcal T\cap\{0,\ldots,N-1\})}{N}
+\longrightarrow\delta:=\frac1{2^{b+1}M}.
+\]
+The threshold excludes only finitely many parameters. For \(X\ge1\),
+the number of possible parameter positions is exactly
+\[
+N(X)=\left\lfloor\frac{X^{1/d}-1}{2M}\right\rfloor+1
+\sim\frac{X^{1/d}}{2M}.
+\]
+Distinct parameters give distinct starts. Substituting \(N(X)\) into
+the density limit yields (4.4). The difference
+\(R_{a,b,M}((1+\varepsilon)X)-R_{a,b,M}(X)\), divided by \(X^{1/d}\),
+tends to
+\(\bigl((1+\varepsilon)^{1/d}-1\bigr)/(2^{b+2}M^2)>0\).
+It is therefore positive for every sufficiently large \(X\). \(\square\)
+
+This counts the explicit perfect-power family, not all starts satisfying
+(4.1). In particular, it is not a positive-density assertion among all
+positive integers.
+
+**Corollary 4.3 (prescribed residues in the even run).** Fix the same
+\(a,b,M\), and choose residues \(0\le r_j<2M\), \(0\le j\le b\),
+with \(r_j\) even for \(j<b\) and \(r_b=1\). Infinitely many starts
+\(n=(1+2Mt)^{2^{a-1}}\) satisfy (4.1) and
+\[
+J^{a+j}(n)\equiv r_j\pmod{2M}\qquad(0\le j\le b).
+\tag{4.5}
+\]
+More precisely, the constructing parameters beyond the same threshold,
+defined by
+\[
+\left\{\frac{s^{3^a/2^{j+1}}}{2M}\right\}
+\in\left[\frac{r_j}{2M},\frac{r_j+1}{2M}\right)
+\quad(0\le j\le b),
+\tag{4.6}
+\]
+have natural density \((2M)^{-(b+1)}\) in the parameter \(t\).
+
+*Proof.* The distinct positive noninteger exponents are unchanged;
+scaling every coordinate by \(1/(2M)\) preserves the nonzero-mode
+argument. Joint uniform distribution gives the product of the
+\(b+1\) interval lengths, hence the asserted density. For every
+nonnegative real \(x\), the fractional-part condition
+\(\{x/(2M)\}\in[r/(2M),(r+1)/(2M))\) is equivalent to
+\(\lfloor x\rfloor\equiv r\pmod{2M}\). Thus (4.6) prescribes
+the exact root values \(y_j\). The even residues supply every branch
+guard; the final residue gives the exit congruence. The threshold
+ensures expansion and all the inequalities in (4.1). Removing its
+finite initial segment preserves density, and the strictly increasing
+parameter-to-start map gives infinitude above every bound. \(\square\)
+
+The half-open endpoints, including residue zero, are included in the
+formal frequency proofs. Fourier convergence yields weak convergence
+of the empirical measures to Haar measure. The boundaries of these
+boxes lie in finitely many coordinate endpoint sets of Haar measure
+zero, so their frequencies equal their volumes. This strengthens the
+open-box recurrence argument without assuming a new analytic estimate.
+Both corollaries fix \(a,b,M\), the residues, and any
+\(\varepsilon>0\) before taking limits. They provide neither a bound
+on the first witness nor estimates uniform in growing parameters,
+and do not concatenate the finite prefixes into an infinite orbit.
 
 ## 5. A signed ancestor-count theorem
 
@@ -787,6 +871,9 @@ the existing proofs without changing their hypotheses.
 | Theorem 4.1, unconditional | `PaperERecurrence.theorem41`, `box_recurrence` |
 | Mixed-power cancellation | `PowerPhaseAsymptotics.tendsto_distinct_noninteger_power_average` |
 | Fourier-to-box recurrence | `FourierBoxRecurrence.exists_ge_fract_box_of_phase`; `PowerBoxRecurrence.exists_ge_power_fract_box` |
+| Half-open box frequencies | `FourierBoxCounting.tendsto_fract_box_count`; `PowerBoxCounting.tendsto_power_fract_box_count` |
+| Corollary 4.2 | `PaperECorollaries.return_starts_asymptotic`, `returnStarts_actual`, `return_in_multiplicative_interval` |
+| Corollary 4.3 | `PaperECorollaries.signature_parameter_density`, `modular_return_of_signature`, `signature_returns_infinite` |
 | Lemma 5.2 | `PreimageGrid.count_odd`, `count_doubled_odd`, `count_four` |
 | Lemma 5.3 | `PreimageDomain.closed_domain_for_target` |
 | Lemma 5.4 | `PreimageGrowth.growth_root` |
@@ -799,19 +886,13 @@ the existing proofs without changing their hypotheses.
 | Proposition 7.2 | `CollatzMoments.complete_family_moment_loss`, `PaperECompletion.stopping_word_masses` |
 
 AxiomCheckJugglerCollatzPaper.lean prints the dependencies
-of the 37 selected declarations. The permitted logical
+of the 49 selected declarations. The permitted logical
 dependencies are propext, Classical.choice, and Quot.sound.
 No additional logical axiom or native-evaluation trust extension
 belongs to this paper's selected theorem audit. Theorem 4.1's
 simultaneous-box premise is discharged by the included analytic proofs.
 Review of the correspondence between those statements and
 the prose is a separate responsibility.
-
-Theorem 4.1 uses a proved fixed-function recurrence criterion, not a
-shrinking-target estimate or a bound uniform in growing \(a,b,M\).
-The source archive and release
-manifest identify this version's files; they establish
-neither novelty nor independent review.
 
 ## References
 

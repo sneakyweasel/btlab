@@ -48,3 +48,5 @@ import BTCalculus.SublinearPowerCancellation
 import BTCalculus.PowerPhaseAsymptotics
 import BTCalculus.FourierBoxRecurrence
 import BTCalculus.PowerBoxRecurrence
+import BTCalculus.FourierBoxCounting
+import BTCalculus.PowerBoxCounting
