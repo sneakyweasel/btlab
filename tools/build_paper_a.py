@@ -40,9 +40,8 @@ MANIFEST = "docs/theory/paper_a_release.json"
 METADATA = "docs/theory/paper_a_zenodo.json"
 OUTPUTS = [PDF, TEX, METADATA]
 EDITORIAL = [SOURCE, "docs/theory/juggler_finite_dynamics_formalization.md",
-             "docs/theory/juggler_finite_dynamics_reviewer_packet.md"]
-BUILD_INPUTS = ["formal/Problems/Juggler/GapTransferWW.lean",
-                "literature/wu-wang-2014-irrationality-measure-log3.json",
+             "docs/theory/juggler_finite_dynamics_reviewer_packet.md", "docs/theory/PAPER_A_BUILD.md"]
+BUILD_INPUTS = ["literature/wu-wang-2014-irrationality-measure-log3.json",
                 "tools/build_paper_a.py", "tools/paper_a/article.tex",
                 "tools/paper_a/layout.lua", "tools/check_paper_a_numeric.py",
                 "tools/trust_boundary.py",

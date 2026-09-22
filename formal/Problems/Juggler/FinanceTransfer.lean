@@ -793,7 +793,7 @@ theorem oddCount_append_singleton (u : List Branch) (b : Branch) :
     oddCount (u ++ [b]) = oddCount u + oddCount [b] := by
   induction u with
   | nil => simp
-  | cons c t ih => cases c <;> (simp [ih]; omega)
+  | cons c t ih => (cases c <;> simp [ih]); omega
 
 /-- **The odd letters are the odd states.**  On a realized word the letter count equals the
 number of indices carrying an odd state. -/

@@ -408,3 +408,5 @@
 'Problems.Juggler.walkTheta_lt_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.window_digit_cap' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.window_digit_max' depends on axioms: [propext]
+'Problems.Juggler.cycleMin_length_of_wuWang' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.cycleMin_period_ge_wuWang' depends on axioms: [propext, Classical.choice, Quot.sound]

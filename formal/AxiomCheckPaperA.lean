@@ -382,3 +382,5 @@ import Problems.JugglerPaper
 #print axioms Problems.Juggler.walkTheta_lt_upper
 #print axioms Problems.Juggler.window_digit_cap
 #print axioms Problems.Juggler.window_digit_max
+#print axioms Problems.Juggler.cycleMin_length_of_wuWang
+#print axioms Problems.Juggler.cycleMin_period_ge_wuWang

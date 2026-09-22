@@ -28,6 +28,7 @@ import Problems.Juggler.NearTightScale
 import Problems.Juggler.CycleFinance
 import Problems.Juggler.CycleFinanceLeftovers
 import Problems.Juggler.GapTransfer
+import Problems.Juggler.GapTransferWW
 import Problems.Juggler.RunSurvivorLattice
 import Problems.Juggler.WalkChargeItineraries
 import Problems.Juggler.OstrowskiSandwich
