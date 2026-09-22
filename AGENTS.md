@@ -93,6 +93,14 @@ Before sweeping it, read
 [juggler_oeis_neighbourhood](docs/problems/juggler_oeis_neighbourhood.md): the
 Juggler corner is already swept, and a second session repeated the whole of it.
 
+Use the local `btlab-oeis` MCP for indexed full-text and exact term searches,
+published comments, cross-references and laboratory links. Its
+[operating guide](docs/architecture/oeis_discovery.md) covers offsets,
+subsequence matching and provenance. `python tools/oeis_index.py` rebuilds the
+ignored index from the local mirror's committed snapshot; MCP queries are
+read-only and never fetch files or submit edits. Use `oeis_status` for coverage
+and export freshness, and `oeis_bfile` to distinguish content from LFS pointers.
+
 ## Adding a Lean module or a probe (checklist)
 
 Juggler Lean modules and probes: follow the registration sections in

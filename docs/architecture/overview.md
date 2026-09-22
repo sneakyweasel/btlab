@@ -14,6 +14,8 @@ mathematical definition.
 Lean public interfaces and theorem search follow the
 [naming and discovery policy](lean_discovery.md), enforced by the source style
 gate and exposed through the local formalpedia MCP.
+The [local OEIS MCP](oeis_discovery.md) provides indexed prior-art search and
+exact stored-term matching, with links back to that Lean catalogue.
 
 ## Layers
 

@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "oeis-local": {
+      "type": "stdio",
+      "command": "/absolute/path/to/python",
+      "args": ["/absolute/path/to/balanced_ternary/tools/oeis_mcp.py"],
+      "env": {
+        "PYTHONUTF8": "1",
+        "OEIS_MIRROR": "/absolute/path/to/oeisdata",
+        "OEIS_DATABASE": "/absolute/path/to/balanced_ternary/data/external/oeis/catalog.sqlite3"
+      }
+    }
+  }
+}
