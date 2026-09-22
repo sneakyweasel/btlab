@@ -2418,6 +2418,23 @@
         "key": "163f51ca348c2673",
         "model": "jev-1.13.0"
       },
+      "J-effective-ooe-modular-return": {
+        "asked": "2026-09-22",
+        "claim_broader": 0.89,
+        "covers": 0.22,
+        "decl_narrower": 0.32,
+        "decls": [
+          "return_parameter_iff",
+          "count_error",
+          "error_power_bound",
+          "witnessCutoff",
+          "count_at_witnessCutoff",
+          "exists_bounded_modular_return"
+        ],
+        "different_result": 0.13,
+        "key": "d4ac223d2f80878e",
+        "model": "jev-1.13.0"
+      },
       "J-envelope-lt-pow": {
         "asked": "2026-09-21",
         "claim_broader": 0.85,
@@ -4043,9 +4060,9 @@
       }
     },
     "totals": {
-      "answered": 252,
-      "asked_now": 0,
-      "input_tokens": 0,
+      "answered": 253,
+      "asked_now": 1,
+      "input_tokens": 1792,
       "reused": 252,
       "unfound": 0
     }

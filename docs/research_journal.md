@@ -1,5 +1,23 @@
 # Research journal
 
+## 2026-09-22 -- Scoped effective OOE Jev coverage check
+
+- **Authorization and scope:** Sent only `J-effective-ooe-modular-return`
+  and its six covering declarations, following explicit user authorization.
+  One fresh Jev request was made; no other theorem was transmitted.
+- **Advisory:** `jev-1.13.0` returned coverage 0.22, claim-broader 0.89,
+  declaration-narrower 0.32, and different-result 0.13 (1792 input tokens).
+  These scores flag the packet; they do not measure proof correctness.
+- **Local review:** The exported headers hide the explicit cutoff value,
+  the counting definition and the actual-orbit predicate. The core count
+  and witness statements match after unfolding those definitions; the
+  ledger also describes proof inputs and a separately covered denominator
+  observation. Details and the unchanged advisory are in the
+  [coverage review](theory/juggler_ooe_effective_return_lean_note.md#jev-coverage-review).
+- **Ruling:** Retain `EXACT — HUMAN PROOF` with kernel trust until the
+  advisory presentation discrepancy is resolved. No mathematical statement,
+  Lean proof, constant or PDF changed. Independent review remains open.
+
 ## 2026-09-22 -- Recalibrating the pressure frontier after 5/8 contagion
 
 - **Continuation audit:** The preceding turn made concrete progress:

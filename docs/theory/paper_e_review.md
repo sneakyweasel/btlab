@@ -195,10 +195,15 @@ states the missing positive-exponent and positive-index hypotheses.
 A separate eleven-theorem audit covers these additions; the selected
 paper audit has 59 declarations. No numbered result or constant changed.
 
-Theorem 4.4 has a complete kernel-checked proof. Its ledger promotion
-awaits the scoped Jev advisory and local ruling; permission for that
-specific external submission remains pending. No other claim is sent
-under an earlier theorem's approval.
+Theorem 4.4 has a complete kernel-checked proof. The separately authorized
+Jev check is now complete: on 22 September 2026, `jev-1.13.0` returned
+coverage 0.22 and claim-broader 0.89 for the theorem and its six declarations.
+The exported headers omit the explicit cutoff value and the definitions
+encoding the count and orbit conditions. The [local coverage review](juggler_ooe_effective_return_lean_note.md#jev-coverage-review)
+records the other scores, direct comparison, and decision to retain the
+human-proof ledger label with kernel trust pending resolution of that
+packet discrepancy. This is not a failure of the compiled proof or an
+independent referee judgment. No other theorem was sent.
 
 ## Version history
 

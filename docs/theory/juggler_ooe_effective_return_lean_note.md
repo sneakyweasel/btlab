@@ -4,8 +4,9 @@
 [OOEEffectiveReturn.lean](../../formal/Problems/Juggler/OOEEffectiveReturn.lean).
 Together with the previously proved mode estimate and finite Fejer box
 inequality, this closes the entire effective OOE theorem. Independent
-mathematical review remains open. The ledger retains its human-proof label
-until the separately authorized advisory coverage check and direct ruling.
+mathematical review remains open. The authorized Jev check is complete;
+the ledger retains its human-proof label while the advisory packet's
+coverage discrepancy remains open, as recorded below.
 
 ## Statement and exact coverage
 
@@ -92,6 +93,53 @@ includes the full transitive local analytic chain in its source archive.
 The constants remain impractical. The OOE word-code denominator is one;
 this does not quantify the paper's large-denominator family. There is no
 new arbitrary-word, cycle, termination, or infinite-concatenation result.
+
+## Jev coverage review
+
+On 22 September 2026 the user explicitly authorized sending only
+`J-effective-ooe-modular-return` and its six covering declarations to Jev.
+One fresh request to `jev-1.13.0` used 1792 input tokens and returned:
+
+| Advisory question | Score |
+| --- | --- |
+| Declarations cover the claim | 0.22 |
+| Claim is broader than the declarations | 0.89 |
+| Declarations are narrower than the claim | 0.32 |
+| A declaration is a different result | 0.13 |
+
+These are separate advisory scores, not a probability that a Lean proof
+is correct. Under the repository thresholds the packet is **not covered**.
+Jev returned no explanatory prose, so its reason cannot be inferred from
+these scores alone. The original verdict is retained in the coverage cache
+and review queue; no repeated requests were made to obtain a higher score.
+
+Local inspection found the following limitations in the submitted packet.
+The standard exporter ends a declaration at `:=`, so `witnessCutoff`
+appeared only as `def witnessCutoff (M : Nat) : Nat`, omitting its value
+`2^2176*M^160`. The packet also omitted the definitions of `count` and
+`ModularReturn`. The former is the cardinality of the filtered range
+`0 <= t < T`. The latter asserts the actual OOE itinerary, the lower bound
+on every prefix state, the strictly larger exit, and both endpoint residues.
+The row additionally describes the proof's analytic dependency chain and
+the word-code denominator; these are not separately displayed in the six
+exported headers.
+
+The direct local comparison confirms that `count_error` followed by
+`error_power_bound` gives both errors for all positive natural M,T.
+Unfolding `witnessCutoff` gives the stated positive count at the explicit
+cutoff, and unfolding `ModularReturn` gives the actual orbit conclusions
+of `exists_bounded_modular_return`. The OOE denominator-one observation
+also follows from `PaperEModularReturn.runCode_den` at a=2,b=1:
+the numerator is 9-8=1 and the gcd is gcd(5,1)=1. That theorem was not
+among the six declarations sent to Jev.
+
+**Ruling:** retain `EXACT — HUMAN PROOF` with `lean_trust: kernel`.
+The main quantitative theorem remains kernel-checked; this review found
+an incomplete advisory presentation, not a failed Lean proof. Promotion
+of the whole ledger entry requires resolving that presentation discrepancy,
+for example by separating its mathematical conclusion from proof metadata
+and giving the relevant definitions in the coverage packet. No Lean source,
+mathematical constant, manuscript theorem, or external-review status changed.
 
 ## Decision
 

@@ -72,7 +72,7 @@
     {
       "path": "docs/theory/juggler_effective_modular_return_note.md",
       "mode": "text",
-      "sha256": "1ab9ce2fac57606173ea1bd94ced90dfe46082cb5e67e6a19ccaf41b3873c76b"
+      "sha256": "9ce0d101db89835d8419409095736e6c3ca9b0bb4add3c6e666bb8952d96abcd"
     },
     {
       "path": "docs/theory/juggler_ooe_effective_modes_note.md",
@@ -82,7 +82,7 @@
     {
       "path": "docs/theory/juggler_ooe_effective_return_lean_note.md",
       "mode": "text",
-      "sha256": "d0a26803477c8f26ef72361706151974f5566a43890d62828421d16534f790a1"
+      "sha256": "a92ff628adc67437c2a79b66d7bbfbd2695f0b323982d88b5389826a1f8e8122"
     },
     {
       "path": "docs/theory/juggler_signed_collatz_note.md",
@@ -102,7 +102,7 @@
     {
       "path": "docs/theory/paper_e_review.md",
       "mode": "text",
-      "sha256": "c379fcbce6ed7334a4da8da7d0d0c292176ab5aeb989c26907b5fb52c71df81a"
+      "sha256": "17f002f24bcb04a88a432dea0818e1c67e41a08906e5a41c78d77e665c9ff335"
     },
     {
       "path": "docs/theory/paper_e_validation.json",
