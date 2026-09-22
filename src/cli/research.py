@@ -34,7 +34,7 @@ def add_research_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_an = c.add_parser("analyze", help="run the cheap-attack planner")
     p_an.add_argument(
         "problem",
-        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, signed_digit_residual_minimality, signed_digit_constrained_controls, signed_digit_short_horizon, multiplicative_residual, collatz, primes, operator_dynamics, balanced_ternary_digit_sum_dynamics, balanced_ternary_weight_dynamics, balanced_ternary_weight_drift, syracuse, or benchmark A-E",
+        help="collatz, syracuse, or shared benchmark A-E; historical projects use --include-archive",
     )
     p_an.add_argument("--remaining", type=int, default=4)
     p_at = c.add_parser("attack", help="run one named cheap attack")
@@ -51,6 +51,11 @@ def add_research_subparser(subparsers: argparse._SubParsersAction) -> None:
 
 def run_research(args: argparse.Namespace) -> int:
     try:
+        from research.scope import include_archive
+        key = _normalize_problem(args.problem)
+        if not include_archive() and key not in {'juggler_sequence', 'collatz_finite_descent', 'syracuse',
+                                                'A', 'B', 'C', 'D', 'E'}:
+            raise ValueError(f'{args.problem} is outside the active lab; use btlab --include-archive research ...')
         cmd = args.research_cmd
         if cmd == "analyze":
             return _analyze(args.problem, args.remaining)
@@ -1645,5 +1650,3 @@ def _syracuse_reproduce_failures(report, targets) -> tuple[str, ...]:
     if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
         failures.append("syracuse: exported a LIVE target")
     return tuple(failures)
-
-

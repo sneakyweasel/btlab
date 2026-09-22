@@ -5,7 +5,19 @@ from research.open_problems.definition import ProblemDefinition, STATUSES
 __all__ = ["ProblemDefinition", "STATUSES", "get_problem", "list_problems"]
 
 
-def list_problems() -> tuple[ProblemDefinition, ...]:
+def list_problems(*, include_archive: bool | None = None) -> tuple[ProblemDefinition, ...]:
+    from research.scope import include_archive as archive_enabled
+    historical = include_archive if include_archive is not None else archive_enabled()
+    if historical:
+        return _all_problems()
+    from research.juggler_sequence.problem import PROBLEM as JUGGLER
+    from research.collatz.problem import PROBLEM as COLLATZ
+    from research.collatz_finite_descent.problem import PROBLEM as FINITE_DESCENT
+    from research.syracuse.problem import PROBLEM as SYRACUSE
+    return JUGGLER, COLLATZ, FINITE_DESCENT, SYRACUSE
+
+
+def _all_problems() -> tuple[ProblemDefinition, ...]:
     from research.additive_combinatorics.problem import PROBLEM as ADDITIVE
     from research.balanced_digit_sum_polynomials.problem import (
         PROBLEM as BALANCED_DIGIT_SUM_POLYNOMIALS,
@@ -152,7 +164,8 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
 
 
 def get_problem(problem_id: str) -> ProblemDefinition:
-    for problem in list_problems():
+    # An exact lookup is deliberate and remains available for historical citations.
+    for problem in list_problems(include_archive=True):
         if problem.id == problem_id:
             return problem
     raise KeyError(problem_id)

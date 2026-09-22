@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import json
-from typing import Any
+from typing import Any, Literal
 
 from mcp.server.fastmcp import FastMCP
 from mcp.types import ToolAnnotations
@@ -26,16 +26,19 @@ READ_ONLY = ToolAnnotations(readOnlyHint=True, destructiveHint=False,
 def formalpedia_search(query: str, namespace: str | None = None, module: str | None = None,
                       kind: str | None = None, ledger_id: str | None = None,
                       include_private: bool = False, include_deprecated: bool = False,
-                      limit: int = 20, offset: int = 0) -> dict[str, Any]:
+                      limit: int = 20, offset: int = 0,
+                      scope: Literal['active', 'archive', 'all'] = 'active') -> dict[str, Any]:
     """Find reusable results by name, mathematical words, type symbols or exact ledger claim.
 
     Results carry qualified identities and compact statements. Use formalpedia_show for
     full hypotheses. Namespace is a prefix; module is an exact import name. Pagination
     is deterministic within a snapshot; restart at offset 0 if the snapshot changes.
+    Default scope is Juggler, Collatz and their imported shared mathematics. Use archive
+    for historical projects or all for an exhaustive library search. Exact show remains global.
     """
     return catalogue.search(query, namespace=namespace, module=module, kind=kind,
         ledger_id=ledger_id, include_private=include_private,
-        include_deprecated=include_deprecated, limit=limit, offset=offset)
+        include_deprecated=include_deprecated, limit=limit, offset=offset, scope=scope)
 
 
 @mcp.tool(annotations=READ_ONLY)

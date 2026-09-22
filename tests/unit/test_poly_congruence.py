@@ -153,7 +153,7 @@ def test_poly_congruence_cli():
     def _run(*args: str) -> str:
         buf = io.StringIO()
         with redirect_stdout(buf):
-            code = main(["calculus", *args])
+            code = main(["--include-archive", "calculus", *args])
         assert code == 0
         return buf.getvalue()
 

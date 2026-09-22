@@ -8,6 +8,7 @@ import re
 import threading
 
 import formalpedia as fp
+from lab_scope import active_lean_modules, validate_scope
 
 TRUST_NOTICE = ('Source markers are navigation evidence, not an executed Lean check or a '
                 'transitive axiom audit. Read the complete hypotheses before using a result.')
@@ -81,16 +82,20 @@ class Catalogue:
     def search(self, query: str, *, namespace: str | None = None, module: str | None = None,
                kind: str | None = None, ledger_id: str | None = None,
                include_private: bool = False, include_deprecated: bool = False,
-               limit: int = 20, offset: int = 0) -> dict:
+               limit: int = 20, offset: int = 0, scope: str = 'active') -> dict:
         page_bounds(limit, offset)
+        validate_scope(scope)
         if len(query) > 2000:
             raise ValueError('query must not exceed 2000 characters; search with a few key terms')
         with self._lock:
             index, _, snapshot = self.snapshot()
             documents = self._documents
         terms, needle = tokens(query), query.strip().casefold()
+        active = active_lean_modules(index)
         hits = []
         for d in index['declarations']:
+            if scope != 'all' and (d['module'] in active) != (scope == 'active'):
+                continue
             if not include_private and d['visibility'] == 'private':
                 continue
             if not include_deprecated and d['deprecated']:
@@ -121,9 +126,10 @@ class Catalogue:
             hits.append((score, d))
         hits.sort(key=lambda item: (-item[0], item[1]['id'], item[1]['file'], item[1]['line']))
         selected = hits[offset:offset + limit]
-        return {'snapshot': snapshot, 'query': query, 'total': len(hits), 'offset': offset,
+        return {'snapshot': snapshot, 'query': query, 'scope': scope, 'total': len(hits), 'offset': offset,
                 'next_offset': offset + limit if offset + limit < len(hits) else None,
-                'results': [dict(compact(d), score=score) for score, d in selected],
+                'results': [dict(compact(d), score=score, scope='active' if d['module'] in active else 'archive')
+                            for score, d in selected],
                 'trust_notice': TRUST_NOTICE}
 
     def show(self, name: str, *, module: str | None = None, include_private: bool = False) -> dict:
@@ -135,10 +141,11 @@ class Catalogue:
                     'total_candidates': len(found),
                     'hint': 'Use a fully qualified name or the module filter; no candidate was selected.'}
         d = found[0]
+        scope = 'active' if d['module'] in active_lean_modules(index) else 'archive'
         reach = fp.reachable(index)
         papers = [paper for paper, root in fp.PAPER_ROOTS.items()
                   if d['module'] in reach.get(root, set()) | {root}]
-        return {'status': 'found', 'snapshot': snapshot, 'declaration': d,
+        return {'status': 'found', 'snapshot': snapshot, 'scope': scope, 'declaration': d,
                 'exact_claims': [row for row in ledger if row['id'] in d['ledger_exact']],
                 'file_claim_ids': d['ledger'], 'reachable_from_paper_roots': papers,
                 'trust_notice': TRUST_NOTICE}
@@ -186,6 +193,7 @@ class Catalogue:
 
     def status(self) -> dict:
         index, _, snapshot = self.snapshot()
+        active = active_lean_modules(index)
         public = [d for d in index['declarations'] if d['visibility'] == 'public']
         names = Counter(d['name'] for d in public)
         duplicates = Counter(d['qualified_name'] for d in public)
@@ -196,6 +204,7 @@ class Catalogue:
         return {'schema': index['schema'], 'snapshot': snapshot,
                 'source': 'live working tree', 'saved_index_current': disk == index,
                 'totals': index['totals'], 'public_declarations': len(public),
+                'scope_modules': {'active': len(active), 'archive': len(index['modules']) - len(active)},
                 'documented_public_declarations': sum(bool(d['doc']) for d in public),
                 'ambiguous_short_spellings': sum(n > 1 for n in names.values()),
                 'duplicate_public_identities': [n for n, count in duplicates.items() if count > 1],

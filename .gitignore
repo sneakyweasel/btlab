@@ -17,6 +17,9 @@ build/
 .hypothesis/
 .mypy_cache/
 .ruff_cache/
+/tmp/
+/.pytest_tmp*/
+/grep.exe.stackdump
 formal/.lake/
 .coverage
 htmlcov/

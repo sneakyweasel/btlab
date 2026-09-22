@@ -5,13 +5,16 @@ alwaysApply: true
 
 # Laboratory contract
 
-Balanced ternary is the **core**. Research problems are **applications**.
+The active mission is **Juggler and Collatz**. Balanced ternary and generic
+experimental dynamics are supporting libraries. Independent projects are frozen
+under the policy in `data/lab_scope.json`; see `archive/README.md`.
 
 - `bt.*` imports only `bt.*` (and the stdlib). Never `research`, `collatz`, or `visualization`.
 - After a split, do **not** add shims in `bt.calculus` that re-export residual research. Callers import `research.residuals`.
 - Do not add compatibility packages (`balanced_ternary`, `collatz`, `automata`). Canonical imports are `bt.*` and `research.*`.
 - Lake package name is `balanced-ternary-formal`.
-- Parked exploratory modules stay; do not delete them or treat them as a second frontier.
+- Archived sources retain stable paths for paper and ledger reproducibility.
+  Keep them outside default discovery and tests; do not reopen them as a second frontier.
 
 ## Claims
 
@@ -41,4 +44,7 @@ Do not auto-open a numbered milestone. Journal entries may be consolidations. Ev
 
 Edit `docs/theory/theorem_ledger.json`, then `python tools/render_theorem_ledger.py`. Never hand-edit `theorem_ledger.md`.
 
-Verification: `pytest` (fast suite) and `cd formal && lake build` (Lake is `$env:USERPROFILE\.elan\bin\lake` if it is not on PATH). Full Python suite: `pytest --runslow`. No `sorry` or `admit`.
+Verification: `pytest` (active fast suite) and `python tools/lab.py build`.
+Use `--include-archive` for historical tests/builds and `pytest --runslow` for
+long active checks. Direct `cd formal; lake build` retains the full historical
+targets because the Lake file is a publication input. No `sorry` or `admit`.

@@ -94,7 +94,7 @@ def test_normalize_cli():
     def _run(*args: str) -> str:
         buf = io.StringIO()
         with redirect_stdout(buf):
-            code = main(["normalize", *args])
+            code = main(["--include-archive", "normalize", *args])
         assert code == 0
         return buf.getvalue()
 

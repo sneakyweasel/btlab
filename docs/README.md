@@ -1,239 +1,51 @@
-# Documentation map
+# Juggler–Collatz research map
 
-The documentation records exact mathematics, bounded computations, open
-questions, and literature comparisons separately. Claim labels have the same
-meaning throughout:
+The lab is dedicated to Juggler and the signed Collatz maps, with shared exact
+mathematics and a frozen archive of independent projects.
 
-- **EXACT — HUMAN PROOF**: supported by an argument in the mathematical record;
-- **EXACT — LEAN VERIFIED**: the same statement has a compiled Lean proof;
-- **COMPUTATIONALLY VERIFIED**: checked on a stated finite domain;
-- **CONJECTURE**: open and paired with counterexample search;
-- **OBSERVATION**: empirical, without necessity or universality;
-- **REFUTED**: a counterexample is recorded;
-- **REPARAMETERIZATION**: a classical construction under a local name.
+## Papers and live research
 
-These seven are the only tags allowed in
-[theory/theorem_ledger.json](theory/theorem_ledger.json) and in research
-notes. Do not write **PROVED** or **VERIFIED COMPUTATIONALLY**.
-
-A halt theorem, a “no cycle of any length” theorem, or a Collatz/Juggler
-solution slogan is overclaim unless the English is covered by
-**EXACT — LEAN VERIFIED** (compiled, no `sorry`, Lean matches English)
-or **EXACT — HUMAN PROOF**. Weaker compiled lemmas — period floors,
-densities, leftover censuses, finite certificates — do not unlock those
-phrases. If the covering statement exists, name the theorem with its
-quantifiers and Lean name; do not hide it under “this is not a halt
-theorem,” and do not replace it with “we solved Juggler / Collatz.”
-
-Novelty is a separate axis, used in dossiers and theory pages and never
-as a ledger tag: **KNOWN** (in the literature, cite a `literature/` id),
-**PROJECT-SPECIFIC** (what this project measures or refines), and
-**OPEN** (no proof and no refutation yet). **REPARAMETERIZATION** sits on
-both axes. See [methodology.md](methodology.md).
-
-## Start here
-
-The live publication task is the Juggler programme.
-
-1. [Paper A — cycle-length lower bounds](theory/juggler_finite_dynamics_note.md)
-   ([doi:10.5281/zenodo.22676453](https://doi.org/10.5281/zenodo.22676453))
-2. [Paper B — Five-Step Descent Certificates for the Juggler Map](theory/juggler_parity_discrepancy_note.md)
-   ([doi:10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934);
-   [10 September proof audit](theory/paper_b_proof_review.md))
+1. [Paper A — Juggler cycle-length bounds](theory/juggler_finite_dynamics_note.md)
+2. [Paper B — descent certificates and parity](theory/juggler_parity_discrepancy_note.md)
 3. [Paper C — fate contagion](theory/juggler_fate_almost_all_note.md)
-   — local version 1.2.0: written exponent 5/8 and rate threshold 3/8;
-   fully machine-checked baseline 100/203; the new analytic proof awaits review
-   ([doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165))
-4. [Paper D — no m-cycles of the 3n-1 map for m <= 61](theory/collatz_3n_minus_1_m_cycles_note.md)
-   ([doi:10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190) is version 1.0.0,
-   which reads m <= 58; version 1.1.0 adds the valley-count lemma and is built but not yet
-   deposited) — the Collatz side, not the Juggler map
-5. [Paper E — The Juggler Map and the 3n±1 Maps](theory/juggler_signed_collatz_note.md)
-   — living preprint, version 0.6.0; exact coding, signed ancestor counts,
-   arithmetic obstructions, and explicit OOE return bounds. [Build and update guide](theory/PAPER_E_BUILD.md);
-   [review record](theory/paper_e_review.md). Prepared locally, not deposited.
-6. [Branch ledger](juggler_branch_ledger.md)
-7. [Negative knowledge](negative_knowledge.md) — every recorded
-   `REFUTED` / CLOSE / method wall, clustered by killing invariant
-8. Reviewer snapshot: [juggler_review/](../juggler_review/)
-   (export only; edit the `docs/theory/` sources, then rebuild)
-9. Published DOIs: [theory/paper_deposits.md](theory/paper_deposits.md)
+4. [Paper D — negative Collatz m-cycles](theory/collatz_3n_minus_1_m_cycles_note.md)
+5. [Paper E — Juggler and the signed Collatz maps](theory/juggler_signed_collatz_note.md)
 
-The rewrite-calculus note remains ready to send
-([draft](theory/rewrite_calculus_note.md),
-[reviewer packet](theory/rewrite_calculus_reviewer_packet.md)).
+Use the [publication record](theory/paper_deposits.md) for deposited versions,
+the paper sources for their current statements, and the
+[Juggler agent guide](../attacks/juggler/AGENT.md) for current frontiers. This map
+does not duplicate numerical thresholds that can become stale.
 
-Last promoted BT-core theory (STRUCTURAL; parked; no new monomial strata):
+The [Collatz mathematics map](collatz_mathematics.md),
+[branch ledger](juggler_branch_ledger.md), [theorem ledger](theory/theorem_ledger.md)
+and [negative knowledge](negative_knowledge.md) provide the supporting record.
+Reviewer exports live in [juggler_review](../juggler_review/); edit their
+canonical paper sources and rebuild, rather than editing those copies.
 
-1. [Balanced-ternary calculus](theory/balanced_ternary_calculus.md)
-2. [Cubic Newton stratum](theory/cubic_newton_stratum.md)
-3. [Residual versus classical sources](theory/residual_vs_classical.md)
-4. [Theorem ledger](theory/theorem_ledger.md)
+## Evidence labels
 
-Foundation, then operators: [mathematics.md](mathematics.md),
-[balanced_ternary_operators.md](balanced_ternary_operators.md).
-Collatz is a parked application: [collatz_mathematics.md](collatz_mathematics.md).
-Method: [methodology.md](methodology.md).
+- **EXACT — HUMAN PROOF**: a recorded proof with its hypotheses.
+- **EXACT — LEAN VERIFIED**: a compiled Lean statement covering the claim.
+- **COMPUTATIONALLY VERIFIED**: a finite check on a stated domain.
+- **CONJECTURE**: an open statement paired with counterexample search.
+- **OBSERVATION**: empirical evidence without a necessity claim.
+- **REFUTED**: a recorded counterexample.
+- **REPARAMETERIZATION**: a classical construction in local coordinates.
 
-## Foundations
+These seven are the ledger's complete vocabulary. Novelty is a separate axis:
+KNOWN, PROJECT-SPECIFIC or OPEN. A finite check does not become a theorem, and a
+weaker theorem does not establish a global solution. State the exact result and
+its quantifiers. See the [research method](methodology.md).
 
-- [Balanced-ternary mathematics](mathematics.md): canonical representation,
-  arithmetic, metrics, and residue invariants.
-- [Operators](balanced_ternary_operators.md): shift, negation, digit
-  derivative, reversal, and the integer/word interface.
-- [Operator algebra](operator_algebra.md): compositions and commutators.
-- [Finite-state maps](balanced_ternary_automata.md): which arithmetic maps
-  are sequential transductions.
-- [Additive combinatorics](balanced_ternary_additive_combinatorics.md):
-  digit-restricted sumsets and carry defect.
-- [Polynomials](balanced_ternary_polynomials.md): \(P_n(x)\) with
-  \(P_n(3)=n\).
+## Build and discovery
 
-## Calculus and rewrite
+- [Architecture and active scope](architecture/overview.md)
+- [Lean naming and discovery](architecture/lean_discovery.md)
+- [OEIS discovery](architecture/oeis_discovery.md)
+- [Active and archived modules](architecture/research_modules.md)
+- [Archive and restoration](../archive/README.md)
+- [Historical documentation map](archive/legacy_documentation.md)
 
-- [Balanced-ternary calculus](theory/balanced_ternary_calculus.md)
-- [Trit algebra](theory/trit_algebra.md)
-- [Digit derivative](theory/digit_derivative.md)
-- [Rewrite calculus](theory/rewrite_calculus.md)
-- [Rewrite-calculus paper note](theory/rewrite_calculus_note.md)
-- [Rewrite-calculus reviewer packet](theory/rewrite_calculus_reviewer_packet.md)
-- [Rewrite-calculus formalization gate](theory/rewrite_calculus_formalization.md)
-- [Trit control](theory/trit_control.md)
-- [Setun connection](theory/setun_connection.md)
-- [Normalization](theory/balanced_ternary_normalization.md),
-  [rewrite system](theory/normalization_rewrite_system.md),
-  [complexity](theory/normalization_complexity.md),
-  [Setun normalization](theory/setun_normalization.md)
-- [Jets](theory/balanced_ternary_jets.md),
-  [polynomial jet calculus](theory/polynomial_jet_calculus.md),
-  [jet transducers](theory/jet_transducers.md)
-- [Residual-state complexity](theory/residual_state_complexity.md)
-- [Quadratic residual complexity](theory/quadratic_residual_complexity.md)
-- [Polynomial function congruence](theory/polynomial_function_congruence.md)
-- [3-adic lifting trees](theory/padic_lifting_trees.md)
-- [Minimal lifting state](theory/lifting_state_complexity.md)
-- [Local vs global root-count bounds](theory/local_vs_global_stabilization.md)
-- [Residual explorer](tools/residual_explorer.md)
-
-## Newton stratum
-
-Canonical cubic record: [cubic_newton_stratum.md](theory/cubic_newton_stratum.md).
-Short extract: [newton_stratum_note.md](theory/newton_stratum_note.md).
-Classical comparison: [residual_vs_classical.md](theory/residual_vs_classical.md).
-
-Historical layer notes (stubs that point at the monograph):
-[image](theory/cubic_residual_image.md),
-[fibres](theory/cubic_residual_fibres.md),
-[deepest layer](theory/cubic_deepest_layer.md),
-[intermediate layer](theory/cubic_intermediate_layer.md),
-[depth-deficit 2](theory/cubic_deficit_two.md),
-[N1 valuation](theory/cubic_n1_valuation.md),
-[N0 reduction](theory/cubic_n0_reduction.md),
-[mismatched quotient](theory/mismatched_cubic_quotient.md).
-
-## Juggler application
-
-The active research application. No halt theorem is in the present
-record. That is a status line, not a ban on stating a later matching
-`EXACT` theorem.
-
-- [Paper A](theory/juggler_finite_dynamics_note.md): itinerary
-  obstructions, finance, walk-charge envelope, certified floors
-  ([doi:10.5281/zenodo.22676453](https://doi.org/10.5281/zenodo.22676453))
-- [Paper B](theory/juggler_parity_discrepancy_note.md): parity
-  statistics of nested floor powers; unconditional five-step certificate density \(7/8\), with the complete OOOEE proof in Appendices A-C; independent mathematical review remains outstanding
-  ([doi:10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934))
-- [Paper C](theory/juggler_fate_almost_all_note.md): fate contagion
-  and the almost-all reduction
-  ([doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165))
-- [Flight extract](theory/juggler_flight_note.md) (descriptively terminal)
-- [Cycle finance note](theory/juggler_cycle_finance_note.md)
-- [Walk-charge note](theory/juggler_walk_charge_note.md)
-- [Near-convergents of log 2 / log 3](theory/juggler_near_convergent_diophantine_note.md) (family leftover, not a review object; earlier records call it Paper D, a name the published 3n-1 note now carries)
-- [Itinerary-structure note](theory/juggler_cycle_itinerary_structure_note.md)
-- [Branch ledger](juggler_branch_ledger.md)
-- [Negative knowledge](negative_knowledge.md)
-- Problem dossier: [juggler_sequence.md](problems/juggler_sequence.md)
-- Lean spine: [architecture/juggler_lean_spine.md](architecture/juggler_lean_spine.md)
-
-## Collatz application
-
-- [Collatz mathematics](collatz_mathematics.md): consolidated exact record
-  for the accelerated odd-only map.
-- [Research questions](collatz_research_questions.md): answered questions,
-  open targets, conjectures, and preserved counterexamples.
-- [Itinerary compatibility](collatz_itinerary_compatibility.md)
-- [Zero-lift dynamics](collatz_zero_lift.md)
-- [Dual coding](collatz_dual_coding.md)
-- [Affine-center geometry](collatz_affine_center.md)
-- [Fixed-integer asymptotics](collatz_fixed_integer_asymptotics.md)
-- [Cycle languages](collatz_cycle_languages.md)
-- [BT word maps](collatz_bt_warp.md)
-- [Literature comparison](literature_comparison.md)
-- [Balanced ternary versus Collatz literature](balanced_ternary_vs_collatz_literature.md)
-- [Cycle literature comparison](cycle_literature_comparison.md)
-- [Cycle literature replication](cycle_literature_replication.md)
-
-## Problem dossiers
-
-Each dossier follows [problems/TEMPLATE.md](problems/TEMPLATE.md).
-
-- [Juggler sequence](problems/juggler_sequence.md)
-- [Rewrite calculus](problems/rewrite_calculus.md)
-- [D/Add residual completion](problems/d_add_residual.md)
-- [Signed-digit residual phase transitions](problems/signed_digit_residual.md)
-- [Signed-digit residual geometry](problems/signed_digit_residual_geometry.md)
-- [Signed-digit residual minimality](problems/signed_digit_residual_minimality.md)
-- [Signed-digit constrained controls](problems/signed_digit_constrained_controls.md)
-- [Signed-digit short-horizon controls](problems/signed_digit_short_horizon.md)
-- [Multiplicative residual universality](problems/multiplicative_residual.md)
-- [Balanced-ternary finite-state dynamics](problems/balanced_ternary_finite_state_dynamics.md)
-- [Residuals](problems/residuals.md)
-- [Collatz](problems/collatz.md)
-- [Shortcut Collatz finite descent](problems/collatz_finite_descent.md)
-- [Ostrowski order-m adder](problems/ostrowski_order_m_adder.md)
-- [Regular-output preimages](problems/regular_output_preimages.md)
-- [Unrestricted residual complexity](problems/residual_complexity.md)
-- [Monna endpoint spectra](problems/monna_endpoint_spectra.md)
-- [Lifting trees](problems/lifting.md)
-- [Additive combinatorics](problems/additive_combinatorics.md)
-- [Perfect powers](problems/perfect_powers.md)
-- [Primes](problems/primes.md)
-- [Prime residual complexity](problems/prime_residual_complexity.md)
-- [Sparse polynomials](problems/sparse_polynomials.md)
-- [Operator dynamics](problems/operator_dynamics.md)
-- [Operator-dynamics v2 benchmark](problems/operator_dynamics_benchmark.md)
-- [Balanced-ternary digit-sum dynamics](problems/balanced_ternary_digit_sum_dynamics.md)
-- [Balanced-ternary weight dynamics](problems/balanced_ternary_weight_dynamics.md)
-- [Balanced-ternary weight-drift dynamics](problems/balanced_ternary_weight_drift.md)
-- [Balanced digit sums of nonlinear polynomial values](problems/balanced_digit_sum_polynomials.md)
-- [Erdős distinct subset sums](problems/erdos_distinct_subset_sums.md)
-- [k-abelian complexity](problems/kabelian_complexity.md)
-- [3-adic polynomial dynamics](problems/padic_dynamics.md)
-- [Local vs global root-count bounds](problems/stabilization.md)
-- [Černý residual-quotient gate](problems/cerny_bt.md)
-- [Misere-quotient finite-context gate](problems/misere_quotients.md)
-
-Journal: [research_journal.md](research_journal.md).
-Ledger: [theory/theorem_ledger.md](theory/theorem_ledger.md).
-Negative knowledge: [negative_knowledge.md](negative_knowledge.md).
-Monna spectra theory: [theory/monna_endpoint_spectra.md](theory/monna_endpoint_spectra.md).
-Regular-output preimages: [theory/regular_output_preimages.md](theory/regular_output_preimages.md).
-
-## Architecture
-
-Laboratory layout under [docs/architecture/](architecture/overview.md):
-
-- [Overview](architecture/overview.md)
-- [Core](architecture/core.md)
-- [Research modules](architecture/research_modules.md)
-- [Experiments](architecture/experiments.md)
-- [Conjectures](architecture/conjectures.md)
-- [Formalization](architecture/formalization.md)
-- [Literature](architecture/literature.md)
-
-## Formal verification
-
-See [the Lean project](../formal/README.md) for theorem names, build
-instructions, and the boundary between abstract formal statements and Python
-implementations.
+Default commands are `pytest` and `python tools/lab.py build`. The full historical
+library remains available through explicit archive options. Shared dependencies
+stay in the active scope even when they have an older balanced-ternary name.

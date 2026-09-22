@@ -1,89 +1,59 @@
 # Architecture overview
 
-This repository is the **Balanced Ternary Mathematical Laboratory**: a
-problem-independent balanced-ternary core (`bt`) plus independent research
-applications (`research.*`).
+The Juggler–Collatz Mathematical Laboratory has two research applications and
+shared mathematical infrastructure. The active programme is Papers A–E and
+their supporting results. Independent earlier projects are frozen historical
+work; see the [archive](../../archive/README.md).
 
-Balanced ternary mathematics is **core**. Research problems are
-**applications**. The live application is `research.juggler_sequence`.
-Core modules must never import research modules.
-
-This page is the architectural contract. It does not change any
-mathematical definition.
-
-Lean public interfaces and theorem search follow the
-[naming and discovery policy](lean_discovery.md), enforced by the source style
-gate and exposed through the local formalpedia MCP.
-The [local OEIS MCP](oeis_discovery.md) provides indexed prior-art search and
-exact stored-term matching, with links back to that Lean catalogue.
-
-## Layers
+## Dependency boundaries
 
 ```text
-cli, visualization          application edges
-research.*                  problem-specific mathematics
-research_engine             problem-independent experimental dynamics
-bt.*                        problem-independent BT mathematics
+cli, visualization          application interfaces
+research.juggler_sequence   Juggler mathematics
+research.collatz           Collatz mathematics, with related Syracuse/descent modules
+research_engine            shared experimental dynamics
+bt                         supporting exact arithmetic and representations
 ```
 
-- `bt.*` may import only `bt.*` (and the Python standard library). It must not import `research_engine`.
-- `research_engine` may import only the Python standard library. It must not import `bt.*` or `research.*`.
-- Optional engine layers (not required on `ProblemSpec`): observation, raw-contribution factorization, invariant envelope vs exact reachability, pair-state separation, Mealy quotient, complexity profiles, evidence `CertificateKind`, session prior-art status, the diagnosis loop (`RegimeFingerprint`, family saturation, `ResearchDecision`), the piecewise-affine census (`AffineBranch`, `LatentControl`), parameter-domain certificates (`AffineFamily`, `DomainCertificate`), control-word composition (`ControlWord`, `ComposedAffineRelation`), control-word obstruction (`ControlObstructionCertificate`), vector-affine census (`VectorAffineCensus`), matrix-word recursive invariants (`MatrixWordInvariant`), optional v2.2 research memory (`ResearchMemory`, failure taxonomy, grey loot, target board; post-run only; not an attack), and optional v2.4 research control (`research_engine.control`: immutable v2.3 baseline, CLOSE taxonomy, non-executable Top-3 attack proposals, v2.2 replay; not an attack). The cheap-attack order is frozen after `matrix_word_invariant`. These wrap existing attacks. They are not a second theorem ledger.
-- `research.*` may import `bt.*`, `research_engine`, and explicitly shared utilities
-  (`research.experiments`, conjecture/literature registries).
-- `cli` and `visualization` may import both layers.
+`bt` imports only itself and the standard library. `research_engine` does not
+import problem applications. Applications may use these libraries and shared
+experiment, conjecture and literature utilities. Generic reusable Lean results
+retain their existing modules; a theorem's mathematical role is more useful than
+renaming it to match the current project branding.
 
-## Package names
+Package/import names remain `balanced-ternary`, `btlab`, `bt`, `research` and
+`balanced-ternary-formal`. Paper-pinned package files, namespaces and proof source
+paths are preserved. This avoids invalidating publication provenance merely to
+change the working scope.
 
-| Role | Import | Notes |
-|------|--------|-------|
-| Distribution | `balanced-ternary` | `pip install -e ".[dev,ui]"` |
-| Command | `btlab` | CLI entry |
-| Core | `bt` | problem-independent BT mathematics |
-| Experimental dynamics | `research_engine` | integer affine/block/trajectory, R/K/L, algebra, attacks (including spectral companion classification, piecewise-affine census, parameter-domain certificates, control-word composition, control-word obstruction, vector-affine census, matrix-word recursive invariants, optional observation/factorization/separation/quotient), planner, synthetic benchmarks, theorem targets (not proofs), engine-only `CertificateKind`, optional v2.2 `research_engine.memory`, and optional v2.4 `research_engine.control`; `btlab research` is the CLI wrapper; symbolic deferred; **attack architecture frozen** |
-| Research | `research` | problem-specific applications |
-| CLI | `cli` | `btlab` implementation |
-| Formal | `balanced-ternary-formal` | Lake package under `formal/` |
-| UI | `visualization` | optional extra; not part of the math core |
+## Active scope
 
-## Canonical imports
+[data/lab_scope.json](../../data/lab_scope.json) records active applications,
+retained support packages and historical projects. Python tests exclude the
+archived applications by default; `pytest --include-archive` restores the full
+historical suite. Specific archived test files remain explicitly runnable.
 
-| Import | Role |
-|--------|------|
-| `bt.representation` | encode / decode / words |
-| `bt.metrics` | weight, length, digit sums |
-| `bt.arithmetic` | word arithmetic |
-| `bt.operators` | `S`, `N`, `D`, `W`, … |
-| `bt.sequences` | canonical sequences |
-| `bt.polynomials` | core `P_n` |
-| `bt.support` | support-set operations |
-| `bt.calculus` | trit calculus |
-| `bt.automata` | residue automata, DFA minimization |
-| `bt.transducers` | generic sequential transducers |
-| `research.collatz` | Collatz application |
-| `research.residuals` | cubic fibres / Newton stratum API |
-| `research.experiments` | shared experiment schema and table I/O |
-| `cli.main` | `btlab` |
+`python tools/lab.py build` follows the live Lean import graph from every
+Juggler and Collatz module, not just the paper barrels. It therefore retains
+Fourier analysis, derivative estimates, counting and other shared results
+actually imported by the applications. `--include-archive` invokes the original
+full Lake targets. Direct `cd formal; lake build` retains its historical meaning
+because that Lake file is a pinned publication input.
 
-Do not add top-level compatibility packages (`balanced_ternary`, `collatz`, `automata`).
+Formalpedia search defaults to this same active Lean graph. `scope=archive` or
+`scope=all` makes the historical library available; exact lookups and claim
+inspection remain global. The OEIS database is always searched in full. Only its
+laboratory-link tool applies the local scope, with an explicit archive option.
+Claim tags and source attribution are independent of scope.
 
 ## Verification
 
-After a structural change:
+After structural changes run the active Python suite and `python tools/lab.py
+build`, plus relevant paper release gates. Archive classification must not change
+mathematical definitions, erase prior negative knowledge, or omit a dependency
+of an active result. New active imports are included automatically in the Lean
+build and discovery closure.
 
-1. `pytest` (fast suite; `pytest --runslow` before a release)
-2. `cd formal && lake build`
-
-Do not continue past a red gate. Mathematical behaviour must not change.
-
-## Related pages
-
-- [Juggler Lean interfaces](juggler_lean.md)
-- [Research Engine diagnosis loop](research_engine_loop.md)
-- [Core](core.md)
-- [Research modules](research_modules.md)
-- [Experiments](experiments.md)
-- [Conjectures](conjectures.md)
-- [Formalization](formalization.md)
-- [Juggler Lean spine](juggler_lean_spine.md)
-- [Literature](literature.md)
+Use the [Lean interface policy](lean_discovery.md),
+[OEIS guide](oeis_discovery.md), [module map](research_modules.md) and
+[research method](../methodology.md).

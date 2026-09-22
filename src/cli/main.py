@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 from pathlib import Path
 
@@ -26,30 +27,46 @@ from research.collatz.cli import add_collatz_subparser, run_collatz
 
 
 def main(argv: list[str] | None = None) -> int:
+    from research.scope import include_archive
+    argv = sys.argv[1:] if argv is None else argv
+    historical = include_archive() or '--include-archive' in argv
     parser = argparse.ArgumentParser(
         prog="btlab",
         description=(
-            "Balanced Ternary Mathematical Laboratory: core BT arithmetic, "
-            "operator algebra, and independent research modules. "
+            "Juggler–Collatz Mathematical Laboratory: exact dynamics, "
+            "formal proofs and reproducible papers. "
             "This tool does not claim a solution of Collatz or any other "
             "open problem."
         ),
     )
+    parser.add_argument('--include-archive', action='store_true',
+                        help='show historical balanced-ternary and other research commands')
     sub = parser.add_subparsers(dest="cmd", required=True)
 
     _add_bt_leaf_commands(sub)
-    add_operators_subparser(sub)
-    add_calculus_subparser(sub)
-    add_congruence_subparser(sub)
-    add_normalize_subparser(sub)
+    if historical:
+        add_operators_subparser(sub)
+        add_calculus_subparser(sub)
+        add_congruence_subparser(sub)
+        add_normalize_subparser(sub)
     add_research_subparser(sub)
     add_collatz_subparser(sub)
     _add_bt_namespace(sub)
-    _add_research_namespaces(sub)
+    if historical:
+        _add_research_namespaces(sub)
     _add_lab_namespaces(sub)
 
     args = parser.parse_args(argv)
-    return _dispatch(parser, args)
+    previous = os.environ.get('BTLAB_INCLUDE_ARCHIVE')
+    try:
+        if historical:
+            os.environ['BTLAB_INCLUDE_ARCHIVE'] = '1'
+        return _dispatch(parser, args)
+    finally:
+        if previous is None:
+            os.environ.pop('BTLAB_INCLUDE_ARCHIVE', None)
+        else:
+            os.environ['BTLAB_INCLUDE_ARCHIVE'] = previous
 
 
 def _add_bt_leaf_commands(sub: argparse._SubParsersAction) -> None:
@@ -325,7 +342,7 @@ def _run_formal() -> int:
     print("Lake package: balanced-ternary-formal")
     if toolchain.exists():
         print(f"toolchain: {toolchain.read_text(encoding='utf-8').strip()}")
-    print("Build: cd formal && lake build")
+    print("Build: python tools/lab.py build")
     print("The project contains no sorry or admit.")
     return 0
 
@@ -340,7 +357,7 @@ def _run_status() -> int:
         pass
     print(f"core version: {version}")
     print("tests: run `pytest` (not executed by status)")
-    print("Lean: run `cd formal && lake build`")
+    print("Lean: run `python tools/lab.py build`")
     try:
         from research.open_problems import list_problems
 

@@ -1,8 +1,10 @@
 # Agent guide
 
-This is the **Balanced Ternary Mathematical Laboratory**: a
-problem-independent core (`bt`) plus independent research applications
-(`research.*`). The active application is the **Juggler map**
+This is the **Juggler–Collatz Mathematical Laboratory**. Active research is
+Juggler and the signed Collatz maps, supported by exact arithmetic (`bt`) and
+shared experimental machinery. Independent earlier projects are frozen in the
+[archive](archive/README.md), outside the default research scope.
+The **Juggler map** is
 \(T(n)=\lfloor\sqrt n\rfloor\) (\(n\) even), \(\lfloor n\sqrt n\rfloor\)
 (\(n\) odd).
 
@@ -43,9 +45,9 @@ localize; harvest counting; slogan halt theorems. Search
 
 Claim labels: [docs/README.md](docs/README.md).
 Research method: [docs/methodology.md](docs/methodology.md).
-BT-core theory (STRUCTURAL, parked): `docs/theory/balanced_ternary_calculus.md`,
-`cubic_newton_stratum.md`; the rewrite-calculus note remains ready to send
-for external review.
+Earlier BT-core, cubic-stratum and rewrite research is archived. Retain its
+sources and negative knowledge for citations; do not develop it as a parallel
+frontier without an explicit user request.
 
 ## How a direction runs
 
@@ -53,13 +55,15 @@ for external review.
 `.cursor/rules/methodology.mdc` (including `Already killed by?`). Do not
 reprint it here. Then stop; do not auto-open the next branch.
 
-## Where non-Juggler math goes
+## Shared mathematics and Collatz
 
 Trit / `D` / jets / `≡_k` → `src/bt/calculus/`; cubic strata →
 `src/research/residuals/`; Collatz → `src/research/collatz/`; generic Lean
 → `formal/BTCalculus/`. No `bt.calculus` shims, no compatibility packages.
-New research area: [docs/problems/TEMPLATE.md](docs/problems/TEMPLATE.md)
-plus `src/research/<id>/`.
+New applications outside Juggler/Collatz require an explicit scope change.
+Within scope, use [docs/problems/TEMPLATE.md](docs/problems/TEMPLATE.md).
+The [scope policy](data/lab_scope.json) preserves imported dependencies even
+when their historical names refer to balanced ternary.
 
 ## Commands
 
@@ -77,8 +81,14 @@ python tools/render_theorem_ledger.py --check
 python tools/branch_drift.py                        # results stranded on branches
 zgrep -m1 "^A094683 " data/external/oeis/names.gz    # local OEIS, no network
 $env:PATH = "$env:USERPROFILE\.elan\bin;$env:PATH"
-cd formal; lake build                               # no sorry / admit
+python tools/lab.py build                          # active Lean graph; no sorry / admit
 ```
+
+`pytest --include-archive` and `python tools/lab.py build --include-archive`
+check the historical library. Formalpedia search and OEIS laboratory links
+default to active scope; request `scope=archive` or `scope=all` for old projects.
+Exact theorem/claim lookups and the global OEIS database remain unrestricted.
+Package names and the paper-pinned Lake file retain their historical names.
 
 ## OEIS, locally
 

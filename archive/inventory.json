@@ -1,0 +1,3833 @@
+{
+  "archive_revision": "464d2d14b1e8d93263540c9f6d8175dd463276ae",
+  "active_research": [
+    "juggler_sequence",
+    "collatz",
+    "collatz_finite_descent",
+    "syracuse"
+  ],
+  "support_research": [
+    "conjectures",
+    "experiments",
+    "literature",
+    "open_problems",
+    "engine_campaign",
+    "balanced_ternary_digit_sum_dynamics",
+    "balanced_ternary_weight_dynamics",
+    "balanced_ternary_weight_drift",
+    "operator_dynamics"
+  ],
+  "archived_research": [
+    "additive_combinatorics",
+    "aliquot_dynamics",
+    "balanced_digit_sum_polynomials",
+    "balanced_ternary",
+    "bb5_map",
+    "cerny_bt",
+    "companion_shift_order6_zero_class",
+    "cyclic_tag_bit",
+    "engine_memory",
+    "erdos_distinct_subset_sums",
+    "euclidean_quotient",
+    "home_prime_49",
+    "kabelian_complexity",
+    "lifting",
+    "linear_constraint_loops",
+    "lychrel_dynamics",
+    "matrix_word_invariant",
+    "matthews_prize_mod3_avoider",
+    "misere_quotients",
+    "monna_endpoint_spectra",
+    "multiplicative_residual",
+    "mx_plus_r",
+    "mx_plus_r_7x1_class_obstruction",
+    "ostrowski",
+    "padic_dynamics",
+    "perfect_powers",
+    "positivity_lrs",
+    "prime_residual_complexity",
+    "primes",
+    "regular_output_preimages",
+    "research_control",
+    "research_strategy",
+    "residual_complexity",
+    "residuals",
+    "reverse_and_add_base3",
+    "rewrite_calculus",
+    "signed_digit_constrained_controls",
+    "signed_digit_residual",
+    "signed_digit_residual_geometry",
+    "signed_digit_residual_minimality",
+    "signed_digit_short_horizon",
+    "skolem_lrs",
+    "skolem_order2_known_zero",
+    "skolem_order5_unconditional",
+    "sparse_polynomials",
+    "stabilization",
+    "switching_affine_z2_origin",
+    "target_board",
+    "template",
+    "vector_affine",
+    "weak_collatz_floor_5x4_rplus"
+  ],
+  "lean": {
+    "active": [
+      "BTCalculus.FejerArc",
+      "BTCalculus.FejerBox",
+      "BTCalculus.FejerBox3",
+      "BTCalculus.FejerKernel",
+      "BTCalculus.FejerWeighted",
+      "BTCalculus.FourierBoxCounting",
+      "BTCalculus.FourierBoxRecurrence",
+      "BTCalculus.FourierDiscrepancy",
+      "BTCalculus.HigherDerivative",
+      "BTCalculus.KusminLandau",
+      "BTCalculus.PartialSummation",
+      "BTCalculus.PowerBoxCounting",
+      "BTCalculus.PowerBoxRecurrence",
+      "BTCalculus.PowerPhaseAsymptotics",
+      "BTCalculus.PreimageGenerations",
+      "BTCalculus.SecondDerivative",
+      "BTCalculus.SublinearCountingMass",
+      "BTCalculus.SublinearPowerCancellation",
+      "BTCalculus.WeylCancellation",
+      "BTCalculus.WeylDifferencing",
+      "Core.Basic",
+      "Problems.Collatz.Accelerated",
+      "Problems.Collatz.Arithmetic",
+      "Problems.Collatz.BackwardMass",
+      "Problems.Collatz.Center",
+      "Problems.Collatz.Cycles",
+      "Problems.Collatz.Cylinder",
+      "Problems.Collatz.Endpoint",
+      "Problems.Collatz.FibreActual",
+      "Problems.Collatz.FibreDeficit",
+      "Problems.Collatz.FibreGeneration",
+      "Problems.Collatz.FibreMass",
+      "Problems.Collatz.FibreMassError",
+      "Problems.Collatz.FixedInteger",
+      "Problems.Collatz.Lift",
+      "Problems.Collatz.NegativeMCycles",
+      "Problems.Collatz.PreimageBalance",
+      "Problems.Collatz.PreimageBarrier",
+      "Problems.Collatz.PreimageCertificate",
+      "Problems.Collatz.PreimageCertificate12",
+      "Problems.Collatz.PreimageCheck12Part0",
+      "Problems.Collatz.PreimageCheck12Part1",
+      "Problems.Collatz.PreimageCheck12Part2",
+      "Problems.Collatz.PreimageCheck12Part3",
+      "Problems.Collatz.PreimageDensity",
+      "Problems.Collatz.PreimageDomain",
+      "Problems.Collatz.PreimageGrid",
+      "Problems.Collatz.PreimageGrowth",
+      "Problems.Collatz.PreimageScale",
+      "Problems.Collatz.PreimageWeights12",
+      "Problems.Collatz.Shortcut",
+      "Problems.Collatz.Syracuse",
+      "Problems.Engine.ControlObstruction",
+      "Problems.Engine.ControlWord",
+      "Problems.Engine.ParameterDomain",
+      "Problems.Juggler",
+      "Problems.Juggler.AboveAnchorWalk",
+      "Problems.Juggler.BranchFreeze",
+      "Problems.Juggler.BunchedTight",
+      "Problems.Juggler.Certificates",
+      "Problems.Juggler.CodeMassTransport",
+      "Problems.Juggler.Collapse",
+      "Problems.Juggler.CollatzBridge",
+      "Problems.Juggler.CollatzBridgeLab",
+      "Problems.Juggler.CollatzMoments",
+      "Problems.Juggler.CollatzPadic",
+      "Problems.Juggler.CollatzRational",
+      "Problems.Juggler.Corridor",
+      "Problems.Juggler.CriticalCostKernel",
+      "Problems.Juggler.CubeCorridor",
+      "Problems.Juggler.CubeFiber",
+      "Problems.Juggler.CubicBand",
+      "Problems.Juggler.CubicChargeMonotonicity",
+      "Problems.Juggler.CubicConsequences",
+      "Problems.Juggler.CubicConstraintFusion",
+      "Problems.Juggler.CubicCriticalLocation",
+      "Problems.Juggler.CubicGrid",
+      "Problems.Juggler.CubicInterlacing",
+      "Problems.Juggler.CubicInverseCell",
+      "Problems.Juggler.CubicLogGrid",
+      "Problems.Juggler.CubicOrbitCharge",
+      "Problems.Juggler.CubicRemainderAssembly",
+      "Problems.Juggler.CubicRemainderVariation",
+      "Problems.Juggler.CubicReturn",
+      "Problems.Juggler.CubicReturnHeight",
+      "Problems.Juggler.CubicReturnStrip",
+      "Problems.Juggler.CubicRotation",
+      "Problems.Juggler.CubicRounding",
+      "Problems.Juggler.CubicUpperCells",
+      "Problems.Juggler.CycleCore",
+      "Problems.Juggler.CycleDiophantine",
+      "Problems.Juggler.CycleExtrema",
+      "Problems.Juggler.CycleFinance",
+      "Problems.Juggler.CycleFinanceLeftovers",
+      "Problems.Juggler.CycleHeightFinance",
+      "Problems.Juggler.CycleMinFudge",
+      "Problems.Juggler.CycleMinObstruction",
+      "Problems.Juggler.CycleObstructions",
+      "Problems.Juggler.CyclePosition",
+      "Problems.Juggler.CycleRunAlphabet",
+      "Problems.Juggler.CycleRunForm",
+      "Problems.Juggler.Cycles",
+      "Problems.Juggler.Defect",
+      "Problems.Juggler.DefectFinance",
+      "Problems.Juggler.DefectLowerBound",
+      "Problems.Juggler.DenjoyKoksma",
+      "Problems.Juggler.DenjoyKoksmaOrbit",
+      "Problems.Juggler.DepthFourFive",
+      "Problems.Juggler.DepthOneMainTerm",
+      "Problems.Juggler.DividedBounds",
+      "Problems.Juggler.Drift",
+      "Problems.Juggler.Dynamics",
+      "Problems.Juggler.Envelope",
+      "Problems.Juggler.Equality",
+      "Problems.Juggler.Escape",
+      "Problems.Juggler.EvenCountEight",
+      "Problems.Juggler.EvenCountThree",
+      "Problems.Juggler.ExpandingGrammar",
+      "Problems.Juggler.ExpansionBlocks",
+      "Problems.Juggler.ExpansionSlack",
+      "Problems.Juggler.FamilyChains",
+      "Problems.Juggler.FanLaw",
+      "Problems.Juggler.FateBlockAverage",
+      "Problems.Juggler.FateBlockLock",
+      "Problems.Juggler.FateCertified",
+      "Problems.Juggler.FateChernoff",
+      "Problems.Juggler.FateCollapse",
+      "Problems.Juggler.FateContagion",
+      "Problems.Juggler.FateContagionBound",
+      "Problems.Juggler.FateCylinderCorollary",
+      "Problems.Juggler.FateCylinderEnergy",
+      "Problems.Juggler.FateDyadicDensity",
+      "Problems.Juggler.FateEnergyAtoms",
+      "Problems.Juggler.FateFiberLock",
+      "Problems.Juggler.FateFiberParity",
+      "Problems.Juggler.FateFirstLetter",
+      "Problems.Juggler.FateLandingWindow",
+      "Problems.Juggler.FateNumerics",
+      "Problems.Juggler.FateOEWeighted",
+      "Problems.Juggler.FateOOEEAssembly",
+      "Problems.Juggler.FateOOEEWeighted",
+      "Problems.Juggler.FateOneSided",
+      "Problems.Juggler.FateOneSidedAtoms",
+      "Problems.Juggler.FateOneSidedCorollary",
+      "Problems.Juggler.FatePoorProduction",
+      "Problems.Juggler.FatePoorTail",
+      "Problems.Juggler.FatePressure",
+      "Problems.Juggler.FatePressureCorollary",
+      "Problems.Juggler.FateProduction",
+      "Problems.Juggler.FateProductionWords",
+      "Problems.Juggler.FateRecursion",
+      "Problems.Juggler.FateResonanceCount",
+      "Problems.Juggler.FateScaleAverage",
+      "Problems.Juggler.FateSeed",
+      "Problems.Juggler.FateShareLaw",
+      "Problems.Juggler.FateSweep",
+      "Problems.Juggler.FateSweepMonotone",
+      "Problems.Juggler.FateTaoReduction",
+      "Problems.Juggler.FateThinFibers",
+      "Problems.Juggler.FateWindowCount",
+      "Problems.Juggler.FinanceTransfer",
+      "Problems.Juggler.FirstETransportEval",
+      "Problems.Juggler.FirstInternalOO",
+      "Problems.Juggler.FirstPassage",
+      "Problems.Juggler.FunctionalGraph",
+      "Problems.Juggler.GapCells",
+      "Problems.Juggler.GapTransfer",
+      "Problems.Juggler.GapTransferWW",
+      "Problems.Juggler.GlobalDefect",
+      "Problems.Juggler.GuardResidueFamily",
+      "Problems.Juggler.HugChargeEnvelope",
+      "Problems.Juggler.HugRotation",
+      "Problems.Juggler.IdealCycleMin",
+      "Problems.Juggler.IdealLollipop",
+      "Problems.Juggler.InverseBranches",
+      "Problems.Juggler.Iteration",
+      "Problems.Juggler.Itinerary",
+      "Problems.Juggler.ItineraryLanguage",
+      "Problems.Juggler.ItineraryStats",
+      "Problems.Juggler.JumpVariation",
+      "Problems.Juggler.LandingParity",
+      "Problems.Juggler.LandingValuation",
+      "Problems.Juggler.LeftoverEval",
+      "Problems.Juggler.LeftoverFamilies",
+      "Problems.Juggler.LeftoverPreimage",
+      "Problems.Juggler.LeftoverShort",
+      "Problems.Juggler.LengthEightCensus",
+      "Problems.Juggler.LiveCountWeight",
+      "Problems.Juggler.LocalizedKernel",
+      "Problems.Juggler.LogCells",
+      "Problems.Juggler.LogLogClock",
+      "Problems.Juggler.MasterIdentity",
+      "Problems.Juggler.MeanValues",
+      "Problems.Juggler.Minimal",
+      "Problems.Juggler.MinimalClosure",
+      "Problems.Juggler.MinimumRelative",
+      "Problems.Juggler.MonomialSplitting",
+      "Problems.Juggler.NearTightScale",
+      "Problems.Juggler.NormalizedDefect",
+      "Problems.Juggler.NumericBridge",
+      "Problems.Juggler.O7EEEEGap",
+      "Problems.Juggler.OOEECarryCells",
+      "Problems.Juggler.OOEECarryFourier",
+      "Problems.Juggler.OOEECurvature",
+      "Problems.Juggler.OOEEFibreGeometry",
+      "Problems.Juggler.OOEEFibreParity",
+      "Problems.Juggler.OOEEFibreResonance",
+      "Problems.Juggler.OOEEFourierModes",
+      "Problems.Juggler.OOEEMixedModes",
+      "Problems.Juggler.OOEEParity",
+      "Problems.Juggler.OOEEPhaseComparison",
+      "Problems.Juggler.OOEEResonanceTail",
+      "Problems.Juggler.OOEERootPhase",
+      "Problems.Juggler.OOEESlowModes",
+      "Problems.Juggler.OOEESmoothModes",
+      "Problems.Juggler.OOEEffectiveModes",
+      "Problems.Juggler.OOEEffectiveReturn",
+      "Problems.Juggler.OddCountMonotone",
+      "Problems.Juggler.OddCubicPhase",
+      "Problems.Juggler.OddLandingSets",
+      "Problems.Juggler.OddPredecessorTransport",
+      "Problems.Juggler.OstrowskiBlocks",
+      "Problems.Juggler.OstrowskiNumeration",
+      "Problems.Juggler.OstrowskiSandwich",
+      "Problems.Juggler.PaperBAmplitudeCocycle",
+      "Problems.Juggler.PaperBAssembly",
+      "Problems.Juggler.PaperBBackwardWord",
+      "Problems.Juggler.PaperBBarrierStep",
+      "Problems.Juggler.PaperBCertificateLengths",
+      "Problems.Juggler.PaperBCertificateRecursion",
+      "Problems.Juggler.PaperBCertificates",
+      "Problems.Juggler.PaperBChainRule",
+      "Problems.Juggler.PaperBChernoff",
+      "Problems.Juggler.PaperBDensity",
+      "Problems.Juggler.PaperBFiveStepDensity",
+      "Problems.Juggler.PaperBJumpTransposition",
+      "Problems.Juggler.PaperBLevelWindow",
+      "Problems.Juggler.PaperBMarkov",
+      "Problems.Juggler.PaperBPaperCBridge",
+      "Problems.Juggler.PaperBSlopeRate",
+      "Problems.Juggler.PaperBSturmianBarrier",
+      "Problems.Juggler.PaperBSurvivorAsymptotic",
+      "Problems.Juggler.PaperBSurvivorDecay",
+      "Problems.Juggler.PaperBTailSpectrum",
+      "Problems.Juggler.PaperBThreshold",
+      "Problems.Juggler.PaperBTilt",
+      "Problems.Juggler.PaperBWeightGap",
+      "Problems.Juggler.PaperECompletion",
+      "Problems.Juggler.PaperECorollaries",
+      "Problems.Juggler.PaperEModularReturn",
+      "Problems.Juggler.PaperERecurrence",
+      "Problems.Juggler.ParityComplexity",
+      "Problems.Juggler.PeriodFamily",
+      "Problems.Juggler.PolynomialDual",
+      "Problems.Juggler.PrefixBunched",
+      "Problems.Juggler.PrefixBunchedEval",
+      "Problems.Juggler.PrefixTwoEven",
+      "Problems.Juggler.PrefixTwoEvenEval",
+      "Problems.Juggler.PreimageCylinders",
+      "Problems.Juggler.Preimages",
+      "Problems.Juggler.Progress",
+      "Problems.Juggler.QuarticBand",
+      "Problems.Juggler.QuarticCells",
+      "Problems.Juggler.QuarticDefect",
+      "Problems.Juggler.QuarticGapSeparation",
+      "Problems.Juggler.QuarticLossBudget",
+      "Problems.Juggler.QuarticProjection",
+      "Problems.Juggler.RateFreeDensity",
+      "Problems.Juggler.RemainderCarry",
+      "Problems.Juggler.Residuals",
+      "Problems.Juggler.ReturnCells",
+      "Problems.Juggler.ReturnCycleTransfers",
+      "Problems.Juggler.ReturnGapHeight",
+      "Problems.Juggler.ReturnInduction",
+      "Problems.Juggler.ReturnOrbitStrips",
+      "Problems.Juggler.ReturnQuotients",
+      "Problems.Juggler.ReturnRankedCycle",
+      "Problems.Juggler.ReturnSeams",
+      "Problems.Juggler.ReturnTerminal",
+      "Problems.Juggler.ReturnTransferHeight",
+      "Problems.Juggler.ReturnWordBounds",
+      "Problems.Juggler.ReturnWordData",
+      "Problems.Juggler.ReturnWordFactorization",
+      "Problems.Juggler.ReturnWordLoss",
+      "Problems.Juggler.RootCells",
+      "Problems.Juggler.RotationAverage",
+      "Problems.Juggler.RunSurvivorLattice",
+      "Problems.Juggler.RunTypePacking",
+      "Problems.Juggler.Scale",
+      "Problems.Juggler.Seam",
+      "Problems.Juggler.SequentialMordell",
+      "Problems.Juggler.SmallCycleCensus",
+      "Problems.Juggler.Termination",
+      "Problems.Juggler.TerminationFloor257",
+      "Problems.Juggler.ThresholdCertificate",
+      "Problems.Juggler.TiltedShare",
+      "Problems.Juggler.TowerAbsorption",
+      "Problems.Juggler.UpperSquareGap",
+      "Problems.Juggler.WalkChargeItineraries",
+      "Problems.Juggler.WalkChargeMax",
+      "Problems.Juggler.WalkTransport",
+      "Problems.JugglerCollatzPaper",
+      "Problems.JugglerFatePaper",
+      "Problems.JugglerPaper",
+      "Problems.JugglerParityPaper"
+    ],
+    "archive": [
+      "BTCalculus",
+      "BTCalculus.Algebra",
+      "BTCalculus.Comparison",
+      "BTCalculus.Composition",
+      "BTCalculus.Confluence",
+      "BTCalculus.CubicDeepestLayer",
+      "BTCalculus.CubicDeficitTwo",
+      "BTCalculus.CubicFibres",
+      "BTCalculus.CubicIntermediateLayer",
+      "BTCalculus.CubicN0Reduction",
+      "BTCalculus.CubicN1Valuation",
+      "BTCalculus.CubicResidual",
+      "BTCalculus.Derivative",
+      "BTCalculus.Integral",
+      "BTCalculus.Jet",
+      "BTCalculus.MismatchedCubicInvariant",
+      "BTCalculus.MismatchedCubicQuotient",
+      "BTCalculus.MonnaEndpointCube",
+      "BTCalculus.MyhillNerode",
+      "BTCalculus.NewtonKernel",
+      "BTCalculus.NewtonStratum",
+      "BTCalculus.Normalization",
+      "BTCalculus.NormalizedDerivative",
+      "BTCalculus.OpFrag",
+      "BTCalculus.OpFragNewman",
+      "BTCalculus.OpFragSemantic",
+      "BTCalculus.PadicLifting",
+      "BTCalculus.PadicLiftingState",
+      "BTCalculus.Polynomial",
+      "BTCalculus.PolynomialFunctionsMod",
+      "BTCalculus.Quadratic",
+      "BTCalculus.Residual",
+      "BTCalculus.ResidualShift",
+      "BTCalculus.Rewrite",
+      "BTCalculus.RewriteAddBoundary",
+      "BTCalculus.RewriteCore",
+      "BTCalculus.Select",
+      "BTCalculus.Semantics",
+      "BTCalculus.Transducer",
+      "BTCalculus.TransducerComposition",
+      "BTCalculus.Trit",
+      "BTCalculus.WordSimp",
+      "BTCalculus.WordSimpNewman",
+      "BTCalculus.XCubeStateComplexity",
+      "Operators.Algebra",
+      "Operators.DigitDerivative",
+      "Operators.Polynomial",
+      "Operators.Shift",
+      "Problems",
+      "Problems.BalancedTernary.DAddResidual",
+      "Problems.BalancedTernary.DigitSumDynamics",
+      "Problems.BalancedTernary.ExpandingD",
+      "Problems.BalancedTernary.FiniteStateDynamics",
+      "Problems.BalancedTernary.MultiplicativeResidual",
+      "Problems.BalancedTernary.SignedDigitConstrainedControls",
+      "Problems.BalancedTernary.SignedDigitResidual",
+      "Problems.BalancedTernary.SignedDigitResidualGeometry",
+      "Problems.BalancedTernary.SignedDigitResidualMinimality",
+      "Problems.BalancedTernary.SignedDigitShortHorizon",
+      "Problems.BalancedTernary.SignedP0",
+      "Problems.BalancedTernary.WeightDrift",
+      "Problems.BalancedTernary.WeightDynamics",
+      "Problems.Engine.AliquotDynamics",
+      "Problems.Engine.BB5Map",
+      "Problems.Engine.CompanionObservation",
+      "Problems.Engine.CompanionShift",
+      "Problems.Engine.CyclicTag",
+      "Problems.Engine.FactorConcat",
+      "Problems.Engine.InformationField",
+      "Problems.Engine.LinearConstraintLoops",
+      "Problems.Engine.MatrixWord",
+      "Problems.Engine.MatthewsMod3",
+      "Problems.Engine.MxPlusR",
+      "Problems.Engine.PiecewiseCensus",
+      "Problems.Engine.ReverseAdd",
+      "Problems.Engine.TwoPathZ2",
+      "Problems.Engine.VectorAffine",
+      "Problems.Ostrowski.NP",
+      "Problems.Ostrowski.NP.Energy",
+      "Problems.Ostrowski.NP.KernelFamily",
+      "Problems.Ostrowski.NP.Reachability",
+      "Problems.Ostrowski.NP.Recurrence",
+      "Problems.Ostrowski.NP.Residual",
+      "Problems.Primes.Residual",
+      "Representation.Words"
+    ]
+  },
+  "declarations": {
+    "active": 7578,
+    "archive": 1682
+  },
+  "source": "Live scope inventory; historical source restoration uses archive_revision.",
+  "removed_from_tracking": [
+    {
+      "path": "tmp/build_fejer.ps1",
+      "sha256": "4ac1e399bc281b279ef403d30e03b3d1f89b740da1869d9c8de1d2c753dc62ba"
+    },
+    {
+      "path": "tmp/build_preimage_domain.py",
+      "sha256": "b3a83aae91dd15b59ae26756369a2037dc90ee6672b8a410bcda4d9241ae6fcd"
+    },
+    {
+      "path": "tmp/check_cubic_perturbation.py",
+      "sha256": "b3f87bf10094f87ff32e00478adf21a4ce03e37483f411ba57ef3c5ea050dbf6"
+    },
+    {
+      "path": "tmp/check_fejer_index.py",
+      "sha256": "9b3c0cd9798b17fd57644929f076dadc3e24944fbc83fb2de02935433550f31d"
+    },
+    {
+      "path": "tmp/code_mass_commit_head.txt",
+      "sha256": "9494f5a2dddff5df7ca17bada78b1c32ead24d75180ca4172ab0206e938cd797"
+    },
+    {
+      "path": "tmp/code_mass_expected_commit.json",
+      "sha256": "416f6d9378b35ac2b28d4fa3b6b756173658528ded295b15352389546a44b6ea"
+    },
+    {
+      "path": "tmp/code_mass_scoped.patch",
+      "sha256": "92ffc54d685e50cb89f0289dd9d9d572a37778753d412da8b296205feb70a4de"
+    },
+    {
+      "path": "tmp/collatz_fibre_exact_recon.py",
+      "sha256": "976455b4c0ddb2868ed8ed9ea6c814eac7377ec50d96c539f84a24c73df98daf"
+    },
+    {
+      "path": "tmp/collatz_fibre_recon.py",
+      "sha256": "78661864adc0970df83fb174653298d2ec89d8475efc16458feb329e3dc18283"
+    },
+    {
+      "path": "tmp/commit_code_mass.py",
+      "sha256": "31efb662cf9175a65a31501d4aff50c59d9ef9a0b8039b0d417895fc1207b089"
+    },
+    {
+      "path": "tmp/commit_fejer.py",
+      "sha256": "af65d4a6da3d6a8b0cc5e74e24d472117af9f89146087697859e62a5babf645d"
+    },
+    {
+      "path": "tmp/commit_paper_e.py",
+      "sha256": "f2a10ba56058ff76eed32331a425f9efa23f1c1f16c14d815e27c30959e80367"
+    },
+    {
+      "path": "tmp/commit_paper_e_v020.py",
+      "sha256": "c2ddfaf35307392cf9c3b4f32d839e1039c9824da1a4fcbe3552860543e5a85d"
+    },
+    {
+      "path": "tmp/commit_paper_e_v030.py",
+      "sha256": "69580a803f12cf43d799a9e5a0044b83b96285729ee251514cc8f97df577a92a"
+    },
+    {
+      "path": "tmp/correct_preimage_density.py",
+      "sha256": "22a46bcc3b989f90f016a9daa8781f5c4535cda2cccd17a16df5aec2f069addf"
+    },
+    {
+      "path": "tmp/create_fejer_audit.py",
+      "sha256": "00396d7fbe3ff18e7e32b59eb41eb9acf47f2d34584744f888d2ca196229b314"
+    },
+    {
+      "path": "tmp/fejer_commit_state.json",
+      "sha256": "0d299a8c7bd63712bbdf6b019f333fabfa4f4407dab24d66a627901a86392b93"
+    },
+    {
+      "path": "tmp/fejer_scoped_base.zip",
+      "sha256": "a51b3937cb9984807aff712dc536f905c9a6bbb16f7bc5f19756d320f81b702d"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/docs/theory/theorem_ledger.json",
+      "sha256": "341d5aac6fc38f53c67c3fd8603f8bfc33691135cf9912734b5c291e691b524b"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Arithmetic/README.md",
+      "sha256": "04439db1658988e7e0b7d3ed89687ac5bd114910079503ce43f5d46cb4928cf2"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Automata/README.md",
+      "sha256": "976d3808be50036ae34508e24eb356339a6e8ff97a37b88f90e1eba0b719bfb5"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckCollatzBackwardMass.expected",
+      "sha256": "ecd63307e255b473077c063a008f0dea1c41034057b07c1879c963693f961ac9"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckCollatzBackwardMass.lean",
+      "sha256": "431458edf869e50dc85cb97084383312594b5944928a7451108f7403a12bb4e0"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckCollatzMoments.expected",
+      "sha256": "545675a1fae00422e1f1a838eda0bdfe0ee2254372746063f924a28bf662d6bd"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckCollatzMoments.lean",
+      "sha256": "188357d47a84315c5df6800373811206a96aef412d11d455d9be2b000c17946b"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckCollatzPadic.expected",
+      "sha256": "23d3027e8da35b84d88c029b9cbeabbc43d571261067aa9e8e68bc2cdd7e3fd6"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckCollatzPadic.lean",
+      "sha256": "5beff49b8390eba7d1cc06461b1bed9387a6890050322a8259a14e013b81db6c"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckCollatzPreimageBalance.expected",
+      "sha256": "263d7bc8e20fa04719d45e4582d3cdbf40f10bde9e087909c111a399426e4827"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckCollatzPreimageBalance.lean",
+      "sha256": "fa85914bb5c1d5e58bdfcf1665a005e655e1d647612088dd8ed3a58fba1c1dc1"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckCollatzPreimageDensity.expected",
+      "sha256": "41e16f047439a0703355bff6788bdd62ad782aac2cb649fe258882d5471396b3"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckCollatzPreimageDensity.lean",
+      "sha256": "7f9fe64260876624f77150ea9418ac333cefec7338008ae6aa812612b1f893ee"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckCollatzPreimageDomain.expected",
+      "sha256": "19fe4c5db8f3721f9253ecd43c83a8a05b9fee9c88d1899cc7cd8da460368cde"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckCollatzPreimageDomain.lean",
+      "sha256": "13b2afbe5e6f8a6baaf35932fc3212fee80fbbc276985e546b95d1866b62ce12"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckCollatzPreimageGrid.expected",
+      "sha256": "35cea172803f8766cd9d6601f13edbfedd71959c258043e2717223f6de24e40b"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckCollatzPreimageGrid.lean",
+      "sha256": "2c4fa83413cd502366d818414e595337609131e5e3bd96003ab1bff0976b3ce8"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckCollatzPreimageScale.expected",
+      "sha256": "e42a8352750ec8b5de3e5f31df7e4213ad0d35921673a3f0d0b6f722d5511365"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckCollatzPreimageScale.lean",
+      "sha256": "c2d73b4c84fcf449b12840cdd60d680a8cdda268a42136a1307b96b9cec25c3a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckCollatzRational.expected",
+      "sha256": "13a873424e88d015cfa0fd91a22e4a8798a0ba05f82ee789b819ff2acdfca85d"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckCollatzRational.lean",
+      "sha256": "3f4061b99ecf4f27b45c5d9a36d7dfe4129d229eb29142e76fbb2658f3b0ab8a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckFirstDerivative.expected",
+      "sha256": "10988a47e7f60c36911971315b8c5a5fd823e76974c31d113a11848ca29dbba7"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckFirstDerivative.lean",
+      "sha256": "5394fd6ee75f83c317fd25f24aba773d4ec30a6b0bae86aca39f532cd82875be"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckFourierRecurrence.expected",
+      "sha256": "98639ca3929deeafb85c77d4a8e08d8bd5fc533c6f00888c0260757ca66ed4e0"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckFourierRecurrence.lean",
+      "sha256": "71cecabb162abf93f8557cedcd3e5c28b7ebafb438df777597bb5ba0b204e102"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckJugglerCodeMassTransport.expected",
+      "sha256": "c9907beb1d8c901e329d7e238d4a291908bb982c6355c41bdcd567ec7bd21a08"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckJugglerCodeMassTransport.lean",
+      "sha256": "5880c0f10869eb6543364654e040ef02c4b8944e8c7fd7effb6380775acaeb7f"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckJugglerCollatzPaper.lean",
+      "sha256": "acf79829b1ff441e3266f3f20ef1aec41a81cb84a25d43c7fbc4d95b3f9c7882"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckJugglerCubicInverseCell.expected",
+      "sha256": "f8a6d533ac6f2888e80cb7a3bce8ff9c9705744d7c6b0576ac47d3cebe8fb01d"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckJugglerCubicInverseCell.lean",
+      "sha256": "d6580a974890320dd8244f6fca66885590d1012cbf33e1c9862a6c74f194d78d"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckJugglerOEWeighted.expected",
+      "sha256": "fc4fe63551074bc5fbff49c500c629ec5a7a1c23a61ea67c86617ed8c5cde669"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckJugglerOEWeighted.lean",
+      "sha256": "67324ba3fa27b124da5dbfdd7ec20adb0b86467f313fd9179e39d884a7d29619"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckJugglerOOEEAssembly.expected",
+      "sha256": "b9dc8fde3784761168a66e2061f7de5a4c8268425e98e66560569f38bb5e792c"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckJugglerOOEEAssembly.lean",
+      "sha256": "51ae28eb6369c2d681089ac4db2eecc77bc7d3eb7016a0f113a61901a5774761"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckJugglerOddCubicPhase.expected",
+      "sha256": "23c4039a4a1fc2fbbb8b9b316b5ee84e1a6afa4c1ea5f0be71af0da81b9832d2"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckJugglerOddCubicPhase.lean",
+      "sha256": "be318555d76e4e251697dcc6de240f6024e45e928e40b7d5e1a59b4e786d37c3"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckJugglerOddPredecessorTransport.expected",
+      "sha256": "bb780937b19f7e476eddf1c951e96304863ddb11d2e35b34a8dd0cf973913f0a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckJugglerOddPredecessorTransport.lean",
+      "sha256": "71d5cd406a31d729f8bd8b174d86ae61a289d1552294ad95faa83b44133b66a1"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckJugglerPolynomialDual.expected",
+      "sha256": "d8225a3f4b007ae1cc262f61ff76173d9abecc8498839c5c829223c812f9483c"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckJugglerPolynomialDual.lean",
+      "sha256": "2c86bdb812a89779938d52d3d62525b9306c7099d3194b0f66d08bc780db057a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckOOEECarryCells.expected",
+      "sha256": "73385cf78ea3eef50f9b7013dcaeca52f81e4ca93b56781b6bdbfa5f2dccd78e"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckOOEECarryCells.lean",
+      "sha256": "855443fed664f2f06ab8be81af2524c376ad68154eb3a25079f0a544f7cd9b43"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckOOEECurvature.expected",
+      "sha256": "6bc8b8846c0181c6d4763264eaa82cba48aaa68a3978d3f227d221eb4016d86b"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckOOEECurvature.lean",
+      "sha256": "87e368c1b9fdaec87b56649dace04fc8ea80168e26653ff026f2bd4802b6d7ba"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckPaperA.expected",
+      "sha256": "038d717677b1ad6fbe986c8afae663590cc589e731b2c07e802c3ff5a4ed8fc5"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckPaperA.lean",
+      "sha256": "0f241daa8e9e0c38142de3684062934f4d4ffc7dc0be22d65ae7790d51392b23"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckPaperB.expected",
+      "sha256": "d1ad66f8889e971419b3a85812dd9867549fab9830466af83e6c4cc96b78c197"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckPaperB.lean",
+      "sha256": "3937149f1451e0198784b85f882ba52a89390d4b6e2d72f6309363640361508d"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckPaperBPublished.expected",
+      "sha256": "81e06e3645a08c97290ab86728c7af8f7a3e13d8de59c80230d53bacae8efed6"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckPaperBPublished.lean",
+      "sha256": "1fa11d7310df19dc3f42aee9d32bdc49e553f12cd75a04bf4583886931b2d81c"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckPaperC.expected",
+      "sha256": "b8569df4c76a94d8665940b04dba86739d773a796d8683e7801ede5c654ddc24"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckPaperC.lean",
+      "sha256": "b0ba8d80d9ef285cfb201da8e5e9a09bb4a614580a77013fe45d172c35efb452"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckPaperECorollaries.expected",
+      "sha256": "fbef208261cd3fc15e65ac1a2b665b2e26f2af25d9aebb53824a86b2771406c1"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckPaperECorollaries.lean",
+      "sha256": "b473896862e4632f33010ffce03b6cf646e5e8728848cfa7934daf0d76a685f3"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckPowerPhase.expected",
+      "sha256": "7f5f20f4a447d71232ed5c3867841ae6d9bd0e4b4bfd9d709d1dfecb7826a2f7"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckPowerPhase.lean",
+      "sha256": "99f8dc5145fbb386cf5626c700b4f879b949450792ced64fdb2e31842004f5d4"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckScaleAverage.expected",
+      "sha256": "20d87c2f4a8754c1385ab0ff8defa9e1c895f7bf265b93c77abb903576c18b33"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckScaleAverage.lean",
+      "sha256": "772dbfb1b4049461d9ffed222d16422f27055213577cc7bf0a2dfbd10bf20d66"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckSecondDerivative.expected",
+      "sha256": "f6e7645ccdae131672578954e6e626abe103023b0d2cbbd6a506c257372b794e"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckSecondDerivative.lean",
+      "sha256": "a079130bf54aea53ae8916b7d751a99694c74ce7ee6a0830831f84ad47f7f941"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckWeylCancellation.expected",
+      "sha256": "763a0f9413310d82eed60b0c384b1ebad35615a079706a938fb1825521b6af37"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckWeylCancellation.lean",
+      "sha256": "2679fd712c4be83ad4ab7f1d9b46abfe18485dfea87658251b7c40f185793b66"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckWeylDifferencing.expected",
+      "sha256": "20b74bd6bf1140b3b117edde011ab4a8bc091bbc81f2a6d6862024d8571f7297"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/AxiomCheckWeylDifferencing.lean",
+      "sha256": "7df88a571d0e14ce0645cb809daa071c0818907cadcb097fa447f1ebb997a29c"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus.lean",
+      "sha256": "f45b23e1740953e62925e69edfb041eb78da602fbc7c045a119eebcc10ac4d5d"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/Algebra.lean",
+      "sha256": "3ca998ce7bd9c708957a0fcceb64d5b279e797012af0934823bd0ee859ba5c67"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/Comparison.lean",
+      "sha256": "bebf21ec81a6f37e156d6c5e9ecc083d88425eacc839f589e4172a390b7be7d9"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/Composition.lean",
+      "sha256": "1bff19c8fa722cfb8830f567dcd5a723c2c468a22be07347cd7696d9525b1551"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/Confluence.lean",
+      "sha256": "fe5652a2616db2f95a471ef9f96d44b17e3b3a9beaf23f0f426d2763c98d8b05"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/CubicDeepestLayer.lean",
+      "sha256": "24378ba2ca8c871a301049f627829d68ae4f6216752fe1d58c97dfd2789124d0"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/CubicDeficitTwo.lean",
+      "sha256": "4262a40b399cc2451d36f57da82d1aedc9c55817c864979268347218c3c07da8"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/CubicFibres.lean",
+      "sha256": "d4e973e03f4728c78a3724e49475a4083861cd72fcbeacd591279811823a5fd0"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/CubicIntermediateLayer.lean",
+      "sha256": "1b41afecd1db3a2661a382a075918cea86c2e2ebec15ce6de7200eccae066faa"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/CubicN0Reduction.lean",
+      "sha256": "2d83b668e8d4bcd42731b53ad7272b23cbeb3a2f3abdff2b97f71d3d9cb5ebc9"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/CubicN1Valuation.lean",
+      "sha256": "10515d47df5696c3b926a55a6f39c2d28ba7388dd1976080a484a981942fa4f4"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/CubicResidual.lean",
+      "sha256": "9d9328e08995f8a0526e0803d28433ac7e4ad2f8922b693dabeaeafefbb41f4a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/Derivative.lean",
+      "sha256": "8e9a8e9590a52b3497a4b8472b08285074883ed9c64420b8c53f1e033824347a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/FejerArc.lean",
+      "sha256": "a7937534f3bd6931ba473812cc4cede4b8230b0d17f0fd8f184cae6aa643f808"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/FejerBox.lean",
+      "sha256": "4af51030ee09edbabd3d68861fd96b80aed9272523107f1174580547e2612193"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/FejerKernel.lean",
+      "sha256": "473f94342f22d2329f7a8c1fea096cc9933bf5e09d736194f54df5ae2457a4b3"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/FourierBoxCounting.lean",
+      "sha256": "8ad811a3306c977732bf0db77f7f047aebdf98b27e51b92fa560ac2ea6ae0107"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/FourierBoxRecurrence.lean",
+      "sha256": "8f1c3d70eaf4d31ce49e07b054a20f7de1e0568ad75f87ffc19c79417d47abfb"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/FourierDiscrepancy.lean",
+      "sha256": "dce16a24c7b24222688adfd94397aaef2a8fcbb8da7d169ffe0a0ded9bc8f0dd"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/Integral.lean",
+      "sha256": "36d44f915b3211ef4bbb82666e763f89ccfdd81ffda53489b222feeda578de1e"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/Jet.lean",
+      "sha256": "574492da224a54cf79fd1bcd8447902ea0a2897b39f03694fc6ff3492dc5bd13"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/KusminLandau.lean",
+      "sha256": "2ea2b2edb22b47a30804bf08138bbc7018d5c814f4a89a2c5e8469df99feed5a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/MismatchedCubicInvariant.lean",
+      "sha256": "8db55b406b2ece4f9342bd087b9beafb8e4fa9cde71329635b69561543e3d406"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/MismatchedCubicQuotient.lean",
+      "sha256": "d7b8ad76a54951d0bc4515823165b78eacfa72582f8a08fa83aa38b2b0a67112"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/MonnaEndpointCube.lean",
+      "sha256": "988dc3393341cc7e8da6aba93e7413557c137925bb79d885c4bb4f2ddd411748"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/MyhillNerode.lean",
+      "sha256": "3378650e52599386c8fd122f6fc577dc592b67923a51aedf1a979136a6494f38"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/NewtonKernel.lean",
+      "sha256": "14b630f1dcf84ad8aecffa7554ede2b53cf1717a51fe95a5cd280e24bfd27f96"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/NewtonStratum.lean",
+      "sha256": "b89ec43b255a1795042ae67d250231fe0882890e0c6c6c3abf98f4ee8ec9f057"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/Normalization.lean",
+      "sha256": "40ca5601041d39edfc89986e14b0dcdc217f25fddb988b74ee4a212220700164"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/NormalizedDerivative.lean",
+      "sha256": "11344df0a6e1f3bc1110930ccb69d0959e4bf83b9a846cfc25cf04ce7480f915"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/OpFrag.lean",
+      "sha256": "ab874c1af24ac6d96a28e9568c47abc9449390f3af171e5713f758bf83a988a2"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/OpFragNewman.lean",
+      "sha256": "155572ad598e3647f3939728968f5b7df348f761680e831192affc78139649d4"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/OpFragSemantic.lean",
+      "sha256": "ca7edbf2dfe3be0c1be11b499ccc88f4febb92920cd7031d8589a5cf2555bb55"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/PadicLifting.lean",
+      "sha256": "79e0a5b4df47da986cb45d0a7d35b49fd09063374bdf08b6defcc0291a535db1"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/PadicLiftingState.lean",
+      "sha256": "33978d0f0911aa411f332076f1e2e78dd747249d02f93fec35ec8d1fa5d423ce"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/PartialSummation.lean",
+      "sha256": "20c369870b47e3b56cee42207cba8d1eefc0cf1aebabaf3682d64762e4fbebd0"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/Polynomial.lean",
+      "sha256": "04d7cef245c15642d560f339a1797677426cfc9121568337a98164189117c77a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/PolynomialFunctionsMod.lean",
+      "sha256": "1e31e12e13f0a9edb34f55ab7a05424468f9578401c8336641ff80cab8211ac2"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/PowerBoxCounting.lean",
+      "sha256": "2286d0313b6d72a2e66da9ac60b152744099f23a9c629cb73bf50e761fa785d7"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/PowerBoxRecurrence.lean",
+      "sha256": "5bc32c244af3e94db9d1bf7a28581d00dc26ee9b295a45e2eed91211a046dd0e"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "sha256": "747455b7753c30b6244a95dde7678513a3f5397639dda45f216c2bd1148d4521"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/Quadratic.lean",
+      "sha256": "a567119f0aba00a5495fc898b6c1ff0ae6881d73637357de9e96ad159a1652e3"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/Residual.lean",
+      "sha256": "9c22c7a9398bf03ffa685c07d60771dd9ddb9a50d505d7bf9aa4e37e873e6ac2"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/ResidualShift.lean",
+      "sha256": "e0b47a0758f8234065f2103aff2cf5877649002611c54073d29c688115c4d8a6"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/Rewrite.lean",
+      "sha256": "66fa055acc48d65308dd058ff2c18f9d73c93005f0ce1dcb67c5578a7e425499"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/RewriteAddBoundary.lean",
+      "sha256": "b523608044a205313857ddda08a403263a759d303ac419ab5a42bba9c12f6e2c"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/RewriteCore.lean",
+      "sha256": "efc4d9a132df4a55ce8ce870d678671c0ac4f6e4db82ca8ddd3d9376f43240a8"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/SecondDerivative.lean",
+      "sha256": "874e84c5cf7544502e24e65a2edea8ce9472c55563fa31e3b616383c9269c2b8"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/Select.lean",
+      "sha256": "3ef0c0cd6838800fa1d980631fb91ceef06dde65d34118293aa8c13f1396e18a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/Semantics.lean",
+      "sha256": "0995c3646dc5871318e68f4b55fd1888ae4ea777a1ed99ce273ce1e86c46c0e8"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/SublinearPowerCancellation.lean",
+      "sha256": "f0a6f30fdf5514c6613240c5a01d5455c001967272adc89f80e2b8e418ad088d"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/Transducer.lean",
+      "sha256": "fe91a7abe9b4cb7679cfe59bb63ebda48c7e05dcf232533baa7a2398ec6c252c"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/TransducerComposition.lean",
+      "sha256": "cdaa23357b271366645a2d42162a497b191e9c673580bf35695598fe79f6d6aa"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/Trit.lean",
+      "sha256": "9602c5f20c801c37b73136fd31a2cdafe020854cd63e3841664f86b24b2bf7cf"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/WeylCancellation.lean",
+      "sha256": "459f768073384139503078a628c1ef179581ad00df6512edf6e29a73d03717a0"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/WeylDifferencing.lean",
+      "sha256": "bf0b25df6ca26fc75066aba460f5e4fc4c0b3734539edb1e8e194a235fa83b4b"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/WordSimp.lean",
+      "sha256": "36ccc64ddb77a007735b27f4ea60787cbc06b992adc662acceddfa51272d2f2d"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/WordSimpNewman.lean",
+      "sha256": "de5e3869b7a5c7ea229a1022f6f736a08a4b2df82563ba3eff9c5be51b58bfd7"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/BTCalculus/XCubeStateComplexity.lean",
+      "sha256": "d75d2f52adb9a2326ee2352c4db7b8153bd10ae83627947aa3d9b340cd3e5e9a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Core/Basic.lean",
+      "sha256": "7439942e9ada4d1911f4c6d5ef1795024d9e76a9afd59703ec1c352c6917ca8a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/InterfaceCheckJuggler.lean",
+      "sha256": "fef05a7dfcb68207069cfc5ebd459a5b5fad6e037f633822ed50f451488563a9"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Operators/Algebra.lean",
+      "sha256": "352482b435abd238a25580e62d66f0a70259aea8ca1c5407e4437f1bcc4820dd"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Operators/DigitDerivative.lean",
+      "sha256": "a034d3dbb72c8ce2ed02778f27f5438fb88bd8eea38108aa74eeb358d25670eb"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Operators/Polynomial.lean",
+      "sha256": "426b1d4e72281a4d22e4f0d58d1a496ff9bcd9461686839d654f73414a175000"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Operators/Shift.lean",
+      "sha256": "11487d26be86791edd9c9d2f3f883f2ba2aba37bf495de14fbb15165cf69f73a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems.lean",
+      "sha256": "fda354d42f696923235c2ad6930820b3c3c6a8c70d4e568b6c63418acdad39af"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/BalancedTernary/DAddResidual.lean",
+      "sha256": "43d3db543267918c0bf0ac121f8240749312141455f44b19998e5fadb6323552"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/BalancedTernary/DigitSumDynamics.lean",
+      "sha256": "3f78b786adb71c40fcbe1f312575934d097ccafe3ea1184032619f6c58e73a43"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/BalancedTernary/ExpandingD.lean",
+      "sha256": "328db6b5e28fe5517778b407aa0d46aced58217e5256d90830bcb5f95ee96954"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
+      "sha256": "e1d4ac1c4bfaf9ae1810c2f9ab00599e4fd0b52c79eff62365548cb2ea620599"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/BalancedTernary/MultiplicativeResidual.lean",
+      "sha256": "a855675d9b1151bec2f32f7c3d6bd92ea6ed75b3e711cccb4bd3f10704a0f350"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/BalancedTernary/SignedDigitConstrainedControls.lean",
+      "sha256": "aae943b291aa7735f62e5f1e0355fa833cea5cca8d9b53c2a458b3b1eadcf789"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/BalancedTernary/SignedDigitResidual.lean",
+      "sha256": "1b61fa45d3228601c9e8675355ba85101b26bc6a66d4afb54852cd5149dff4a4"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/BalancedTernary/SignedDigitResidualGeometry.lean",
+      "sha256": "4b08b50cacb8d8ab4f00420f794ae96e08ca858e9c0e6ccdd55d2f26d94cbfbc"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/BalancedTernary/SignedDigitResidualMinimality.lean",
+      "sha256": "fac59077e1d1f79271ee072afb5a0be3d291662bb51efae295c8c62c05d16715"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/BalancedTernary/SignedDigitShortHorizon.lean",
+      "sha256": "d53976825a9c5cfbc9a4838bb9024011ed97ac282f3fddab8ebe9f4de62e1ff3"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/BalancedTernary/SignedP0.lean",
+      "sha256": "7405061119b1071b22d8781d5427dbb26cbcb2342a69796909ba132142187c5b"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/BalancedTernary/WeightDrift.lean",
+      "sha256": "0682b7e7e4343fa81e5443fcce1be6b4c6f985a23ddd60c38af0745f887f6891"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/BalancedTernary/WeightDynamics.lean",
+      "sha256": "ea31021a26d6b55e50fab1b9a23710e1fb7fbfaec141d932060e89196c18039f"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/Accelerated.lean",
+      "sha256": "285ac0a1918a1f6c0d0c72a35ec110423760d905ad180f01ca4862bba5432be9"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/Arithmetic.lean",
+      "sha256": "7d10a59fdf241a144782ab43474bee786985c7875d013061f1e43b85911911fd"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/BackwardMass.lean",
+      "sha256": "21bb66733f7f283a038b4c10ba103fd25133f5595735d8e74300895065b51018"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/Center.lean",
+      "sha256": "563e4d752e3501a33060a4cbafa1e7b5726d5a3e1df436d21e11417cfe152509"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/Cycles.lean",
+      "sha256": "7a2c7e28e01ce669d35875e7a2555074287c273b56036a6be059051489a88329"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/Cylinder.lean",
+      "sha256": "a407837e7d99064c2ff0e74e64c227b2bb6fcb8188dc3220880c9392893a1597"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/Endpoint.lean",
+      "sha256": "75c29891859317d9c00a723413d78d5d7a54211b8b6fa6bc02cd1ffa0296af65"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/FixedInteger.lean",
+      "sha256": "dbbc300b33c3b656985471ba5ab4cebf9315049f69f75748e691fe0b809e36db"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/Lift.lean",
+      "sha256": "7f566f06e520b94fe06a456c8c7ac08d8e5b1ffaa1f8d2951ecf4117e6632476"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/NegativeMCycles.lean",
+      "sha256": "c3346c81b9d2ef614d45e9159d482899577ab8b1c364dfc631f10af3b297d2af"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/PreimageBalance.lean",
+      "sha256": "564a161ab2c6163fe1ff686e87d74d59b9b499db9fd8adca371e19fe528e845a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/PreimageBarrier.lean",
+      "sha256": "198cb87a0837001052018d069ecdafed42b875d5731f2adea013e323212e7ec0"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/PreimageCertificate.lean",
+      "sha256": "4574cd0363b485b5f9e8a705813c1f2fe3c3b51112401cfa487296be73510dd7"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/PreimageCertificate12.lean",
+      "sha256": "f83573dba65489311a172b7983a8db394f2c9ec2143d20d88f85ff15dde40168"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/PreimageCheck12Part0.lean",
+      "sha256": "8f23a75b2492059c6d9377b802cf48484ed6ad31f6af39b736a3ea298219fcec"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/PreimageCheck12Part1.lean",
+      "sha256": "d7a5db8400f8485cd7c83b5580fc2e07ecb710d967a73a3742eb65f85d1de0fb"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/PreimageCheck12Part2.lean",
+      "sha256": "f02d82ec911591a929c2bf07eef6e9d82a01d43b54f44eac78f3edec0d626340"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/PreimageCheck12Part3.lean",
+      "sha256": "9cb30dbf844f0dd69bcbcbcd1798b45ada7d986b66c341a15be07bfdf516a81c"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/PreimageDensity.lean",
+      "sha256": "27601ff15af1cb718f496f55cd6b861008db957d3f72e426e86a81c3e46904f5"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/PreimageDomain.lean",
+      "sha256": "f25f5f20167fed7c73e92c930e721f7846420e345f6bc7a63791d17e4e20032a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/PreimageGrid.lean",
+      "sha256": "0446e89db9850bf836750a17cfb1da42b19a51c22dd12218fb352fb90c2b82e5"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/PreimageGrowth.lean",
+      "sha256": "c4f6cfa467b1686ae1dca140e7e91620818d7a3f6ffa86fd081356967ec1aa27"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/PreimageScale.lean",
+      "sha256": "370d3afd772a9e209132e29368998224dcf664b2f9cefbaa6f7b4832172e2a35"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/PreimageWeights12.lean",
+      "sha256": "98bffe924d495bba10c8c5a4cab9f89925f4302648462556a955664e65dea49d"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/README.md",
+      "sha256": "eae011753b3814ab30da780f4aa9becf6b6b95a3b5ba27d7097204415759eeeb"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/Shortcut.lean",
+      "sha256": "74c2366318762326e7ee4b9982afd208afe6ab5b6b3d852cf640d195f30a9fc3"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Collatz/Syracuse.lean",
+      "sha256": "49f0102012e2eb361d354eaecf5708513775b8b7f91e087b5d1bd93d220c98b6"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Engine/AliquotDynamics.lean",
+      "sha256": "5953edcf2229b8b1b2995ff3a4ab7ddb3c614717fdcd0972d8068f69c31edb01"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Engine/BB5Map.lean",
+      "sha256": "b2a4c4550473aa2baffc3570a0eceda5796d4c659189b9137cb51017e1d899bf"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Engine/CompanionObservation.lean",
+      "sha256": "14d639766e67d52e33480e45744b85206f825fa15b1323f8e2167b8a1c0e1d89"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Engine/CompanionShift.lean",
+      "sha256": "6acbb1be7e15e275b12caff1316b521fa5ce1ecb7f57d4f0a631931712d2e7f2"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Engine/ControlObstruction.lean",
+      "sha256": "770acba5b9c542fcde520d6b080f10c1d077645aa3ccc96a23e3c15fda6922b9"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Engine/ControlWord.lean",
+      "sha256": "693d11c39ebc6ff56e4288e028b7719c665d8f092711041a6a650bcb08c2e5ee"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Engine/CyclicTag.lean",
+      "sha256": "d61ccdaffc38e4e97bede6ab94b4e0acc6fb3b5715f1b221323f5ad2e2b3682b"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Engine/FactorConcat.lean",
+      "sha256": "ba50a866464e4a4d5bb902e232f4aedeb2674e537505f4e4dd8f6d851f3d91e9"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Engine/InformationField.lean",
+      "sha256": "151b05f79aa4b43fb361c79ea0585bd0f70b4b9a48476bd0a9126e444d2ab88e"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Engine/LinearConstraintLoops.lean",
+      "sha256": "da61417726a2d6e6f9ff3d00fd0d9abba075be3e60a38186a6e8ee37f9e3cfa2"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Engine/MatrixWord.lean",
+      "sha256": "c9412029b8a512b9e09ce437f1eb5c5fb761f4424338bda6b0ea81f31343b089"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Engine/MatthewsMod3.lean",
+      "sha256": "67eda8c32f3b51ee50dd71d3cf80392f4487198cf6d903e05fa9ac6c881ea870"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Engine/MxPlusR.lean",
+      "sha256": "b3f25713d5d5856610a78cdb8c3935413a682ee6b281a1c78d891c33c921c468"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Engine/ParameterDomain.lean",
+      "sha256": "1ff27f139cf7a12883f5a6f2ee19e81b5c8d25fe8918e8f10e353cdc07f3ff8c"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Engine/PiecewiseCensus.lean",
+      "sha256": "8f6bea257d23088bfabca688afa26aec977a29c44a23d7591d14ac6c3b31c347"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Engine/ReverseAdd.lean",
+      "sha256": "2b5e9ad06e89d274ea1593a4c50e12423d7fa5c27830264aa5e3ede42cad6f93"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Engine/TwoPathZ2.lean",
+      "sha256": "57e149525cdd93695f0f256b855389395e699131773bb94d3b12c1dd35ce9112"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Engine/VectorAffine.lean",
+      "sha256": "04990e09092ce7c06046d74bb7752524d4aa728a7b64fb341219fdedf5387c95"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler.lean",
+      "sha256": "2df12c0719744bbbdf873fc341dcf126cf29fba0bdd74026b5e384b3b2575d27"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/AboveAnchorWalk.lean",
+      "sha256": "4fa41db9c1efc490abf0981a7b52f6f3b7b733030eec539e1aba7623f4af9029"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/BranchFreeze.lean",
+      "sha256": "5c84e81dea8444dfbc5ca43ce1d9904774ae24e908abfd8ee319ce99cf3426a8"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/BunchedTight.lean",
+      "sha256": "3f0bbe8e8387e8f3ae10bd0d59edaa89aa4fe0da4013c8db42691ebc00cbfceb"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/Certificates.lean",
+      "sha256": "fb6cc2041532d15259a49641e24ca038988aaae3cf3f38fedb95b29fdacfa274"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CodeMassTransport.lean",
+      "sha256": "f75b714754bf54772f106dc6e7606480a2d257b8e93e176373bc43a1343d92c6"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/Collapse.lean",
+      "sha256": "239f16482d73238ce90222cfe6e4b760baf1dbab1a84c05319704afe0f715ee4"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CollatzBridge.lean",
+      "sha256": "5d188faa63ab5fd616ff99b9eac1e72281255361edf028c367167faf1dc65435"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CollatzBridgeLab.lean",
+      "sha256": "6b18b293a8639fa47c32da77c09d2e5dca49a9e14fb3521d74de614540662584"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CollatzMoments.lean",
+      "sha256": "fafe06c822d50317ceba9a5a16d4e622b9c7234ccfa77558d74a311e3f42f7b5"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CollatzPadic.lean",
+      "sha256": "c3e75ec3e50533e13fb06aca561034d2407d2287e6da6824f7be9f7aa5fd6dc1"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CollatzRational.lean",
+      "sha256": "7b0366a9f103c59f6ed5fad7088a08687693e3ca4a8e6676d6d334d81e0fab5a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/Corridor.lean",
+      "sha256": "2a10549e587a3f9bfdfb659742f485595532e14e7f10c047e35aa738f8b94708"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CriticalCostKernel.lean",
+      "sha256": "8ece87bddb013e5ca9ec2a599693329f0416465f8c77777fd2b55c3d7fac8e83"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CubeCorridor.lean",
+      "sha256": "3e0f16e8595a978f057e4ecdda30a6d011f715bf4734e85130c01729c12284cc"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CubeFiber.lean",
+      "sha256": "2b0add4108651218c43fb741a207d3d6860525a2ad13ad1341ece9fc5c37f8e9"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CubicBand.lean",
+      "sha256": "62b538e846bb1b8de93efa0ad6da680e7f24b5bbcc70abe00252066342607546"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CubicChargeMonotonicity.lean",
+      "sha256": "ecef1432431a98fd6c22274e4b4e8b42ba5bb6521e16d94aeb1aea996374a866"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CubicConsequences.lean",
+      "sha256": "75a31fe354d91a31437ab73104213627d6ed39b6344167b5fd801af7a6026760"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CubicConstraintFusion.lean",
+      "sha256": "367f7ef6093f4d6fb4ab34a60c45bf7e61860b9c528d88d3455a7034d07f989e"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CubicCriticalLocation.lean",
+      "sha256": "7a7812b69047a0ac1a25c6b56d03d0304e8d9ad264703973ee936dc94822c1c0"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CubicGrid.lean",
+      "sha256": "c0901f982cfe9524a5228a2e97e9c1693d3de9953e5d40b30670baed0ea3a588"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CubicInterlacing.lean",
+      "sha256": "072bf462b6a3709d4e4299b2e097b150673eb066425e23766bdf4dea89db8dd6"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CubicInverseCell.lean",
+      "sha256": "83cea80517f83d8a1d512f7a46ba2f3e7b27f0b31f5f06cac05108295cc1caf3"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CubicLogGrid.lean",
+      "sha256": "4dc2e5ba061a0d5c2bbeead61a8d5ff24097c50e4b0ba0acbef41af4da088076"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CubicOrbitCharge.lean",
+      "sha256": "8e06a88eaf737b54135a0accdd1825f40c8e6101e01dcde6c1896ddf474e316d"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CubicRemainderAssembly.lean",
+      "sha256": "fae37c1f771ebb5ca22d229b26bb788bbbce87bf215ba749f167a8fc9b81ef74"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CubicRemainderVariation.lean",
+      "sha256": "b26132c9772d8ea52fb1ac2518a3f9503b3d927777b63bbe42ca8dffeac532b5"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CubicReturn.lean",
+      "sha256": "47b59b4bf22d68be32ddf4b89e030867f8b6bcfe9958899a8a5b46bea51ebf0e"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CubicReturnHeight.lean",
+      "sha256": "48354a7da185e3f137bab54a384633aa851df28376a3080b6c088d320150c746"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CubicReturnStrip.lean",
+      "sha256": "695870a196031e2e8b8640cc55b3691627e69b790e2d02126ffcd727d78e0f11"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CubicRotation.lean",
+      "sha256": "1d962cbc9a015584d91156641bced54b4eeb2a0f5187a7ae99a5bd6227e40a60"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CubicRounding.lean",
+      "sha256": "076dae31db344a9b2975c53af11c51d9dd59271f3f1f3c8967343f113c4e11ae"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CubicUpperCells.lean",
+      "sha256": "19a17cc45cd150f3b0c661b004a22c9faa07c3ca3fe420d0bac6ba63a857999b"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CycleCore.lean",
+      "sha256": "2c3dd777a8935b9fe21ae48c439476c47247f45ef3afe55c22c2e109e291c1fa"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CycleDiophantine.lean",
+      "sha256": "d85f93d36153d82da65a08f32153a9f9121c3e41a1eeccd1d62d7cff4e7b4c03"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CycleExtrema.lean",
+      "sha256": "2227dc344f4ed1157d2637551664670880905c709c2616a294fa5670c4063601"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CycleFinance.lean",
+      "sha256": "3a573658c8f40a3d3e6574d75646393860dcfc7dc93b93f3d86148086b659e7b"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CycleFinanceLeftovers.lean",
+      "sha256": "86aca29a9e4efb014221280c1ffb076904ca71c84a2b0d41f1c0aa89a586c8bd"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CycleHeightFinance.lean",
+      "sha256": "f8d55a6cceb3abccc346f4d06dd66e9654e2816114689120f89e9011ad8c3363"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CycleMinFudge.lean",
+      "sha256": "f16894b7db7f2596ffd2bec9a12fa8ddd3d32342820d0fb26ba264b83ec92df2"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CycleMinObstruction.lean",
+      "sha256": "f7074554637f1b210dac99266c9c22d74d9c4e0e07163aa6f4974ffd91052814"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CycleObstructions.lean",
+      "sha256": "429e268a04e0adbd96ff34b2a49da08f197fcf09780b8e832f11dabb116ef2ed"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CyclePosition.lean",
+      "sha256": "8b1fbda0ae7997d52f6964ddfa7a94f1e19231195f3e5d402a273b62a551a13b"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CycleRunAlphabet.lean",
+      "sha256": "2241f4e4c779c53adb94426fc16a8f6f0b26a2ef8ef3cfc589940e66778724cf"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/CycleRunForm.lean",
+      "sha256": "e0418576e3c0d356d66748ec1a6f0cfeac185388b6eafb10568101971638d7b3"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/Cycles.lean",
+      "sha256": "f5e47e5f24c40fa059e5941cf6ef04b6b4b293a728eb0497dc7776c5032631cc"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/Defect.lean",
+      "sha256": "9857d628fba797ef2bb62c25d5ff5c2a30cad24a8bb50c791e2dc3402d9bae45"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/DefectFinance.lean",
+      "sha256": "bf101899011ca211a4541d4adbd19dd5dfaa7480a3bdf4776624d61f47d5c129"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/DefectLowerBound.lean",
+      "sha256": "2a4b3b3b36f90b680c66e3751c058120601a810132f6c0f9f9102424e21df321"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/DenjoyKoksma.lean",
+      "sha256": "923b80593d7539e100ed3292a8b0fd831aacc9de7b36b4325cf772dfff378d19"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/DenjoyKoksmaOrbit.lean",
+      "sha256": "bab4183b28279ad202cf4b262f3c8570ff877b3457278f237b448c4ffb70e782"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/DepthFourFive.lean",
+      "sha256": "7632ce1194903f774f8edcdba63e027f8c9b2ca847a0d332a34dbfa8c2369115"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/DepthOneMainTerm.lean",
+      "sha256": "7ed115bbd2fdae2227a0ed6437f02d1019730417d9d610beff43891feccab1e6"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/DividedBounds.lean",
+      "sha256": "f073ef45ad6d516948ac5cce3b19da40090c315dbc93b52acbb13b1a49fa57ba"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/Drift.lean",
+      "sha256": "4e372e621dc134c5da7c43019734d96182e0f264f6b765d78cabaf47be35ce20"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/Dynamics.lean",
+      "sha256": "481d38a263bd8be32f5af84c4bcc87e0b100717bcce3610aa46750de233b19d9"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/Envelope.lean",
+      "sha256": "ac652d2c23161af4b6eceff1b8638bbff501910c3bc8e31e52b567566cd36379"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/Equality.lean",
+      "sha256": "1a1fe635938f639b56600e80467f94b66c801a5b33392615129acb059fd454eb"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/Escape.lean",
+      "sha256": "bb4d4a348692a6720ad05c22b33c7d92501666e5235273f4465b621cb6de95c7"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/EvenCountEight.lean",
+      "sha256": "934e391d24436f65abbd26c43d261cd7564ffaedd174d05ca6a0c3156a81e73a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/EvenCountThree.lean",
+      "sha256": "44bd22cfa71d0a813714661d25224f64ffe96bc6f5856d096a428564af35d7be"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ExpandingGrammar.lean",
+      "sha256": "56c3bc60f0435717beb689b08b6c25020906eb142786ae847eb8b96a929c4972"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ExpansionBlocks.lean",
+      "sha256": "10e8a477915c06eac674f79b2def9ac0b33abf423d05531e998fc952ae392510"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ExpansionSlack.lean",
+      "sha256": "44627f8b7ae7398263da8a25a9c2f2bdc5c9d8624725663cf66ae91eb640abb0"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FamilyChains.lean",
+      "sha256": "cf4033817c412a963c1a0cd8983d7b4461e7d730d4434dba2664c0aae6a970a4"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FanLaw.lean",
+      "sha256": "b5cce77857f3b43f76da83e808dfab5f45a5cefde76d6f434f8237c1ebf26485"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateBlockAverage.lean",
+      "sha256": "5cef5c273577376b72799732865415a91c6b91f8bdb06e79bd398d9c478d0b07"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateBlockLock.lean",
+      "sha256": "b4fdc02e5b41b8759156f5aa1b3f208854d2e6c994a3963e24aa164df498bed7"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateCertified.lean",
+      "sha256": "ff47a23462fb591264125859b9d511bb2cec046da7a71fbad5d17b35a5581c90"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateChernoff.lean",
+      "sha256": "3b808649443805fa3dd41b89333afe886f3cbc7e36f1bdae23f6c93fe95a7032"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateCollapse.lean",
+      "sha256": "56ba2f731fdd02ea1d19a6e6ef909534947c8c30b48828c72f8009901ed06e06"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateContagion.lean",
+      "sha256": "834198a6b0e8cc13c9fb91d9ad938f62ce5e783a3cc9009fb38334c913d5b7e2"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateContagionBound.lean",
+      "sha256": "d8991fd05c076875a0e8fd75692a10bb31930c289a3812de07212b620645acca"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateCylinderCorollary.lean",
+      "sha256": "e2ffc98f56268a31826b86f54115e0fed949e62651d05936d545cd829761b4d2"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateCylinderEnergy.lean",
+      "sha256": "274cd6b960bdd1de8c1b637bd2dee86c8cbe67e883e25937812dadcbe98d6a0b"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateDyadicDensity.lean",
+      "sha256": "f5065c952302de36981e147f5ae95804eaa16d34a38459025a65e10b5a24e4fe"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateEnergyAtoms.lean",
+      "sha256": "e98ccccbb25140d41ede236466f7e0f522c433a4c80fcaa330abfb1388653b1a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateFiberLock.lean",
+      "sha256": "f82aceb5a06642f7f55ea1b1bbee317ea487c46e97cbf52aecbd920dc9d10007"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateFiberParity.lean",
+      "sha256": "bf2b1c6058c3d00f0f9cf24f11bb7bee7a17a75375c2ddc7223e065621e64131"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateFirstLetter.lean",
+      "sha256": "a383c715010cb1e7323359a414aeaa99242550f59f7213049cc528232e37875a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateLandingWindow.lean",
+      "sha256": "ef28985363d3b855e0a9ec4b8fba687855d34ab8cf1ff9b355a50e9377e29545"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateNumerics.lean",
+      "sha256": "8340b3a8a4ff2ce35bd77b7697ca95b9d36e5d61ea4173782287d0839b381737"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateOEWeighted.lean",
+      "sha256": "6562e7ebe94136fbed48861697c9164d223a35db30c86e95a26ec5b34b9b6a4a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "sha256": "876ea8ce09f1ada03c9beacd87f326a062ffdd23b6a993ccbbc41267ca0ba5c3"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateOneSided.lean",
+      "sha256": "7ae0aa4cab061a24ef51eff381a0f4bbd4e4569ae2578f04e4c3677b5999bddc"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateOneSidedAtoms.lean",
+      "sha256": "db2601560b54b95a5ac5b2f5f16c0d83e3b4cf4182f1d20795c47db26c0a9ce3"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateOneSidedCorollary.lean",
+      "sha256": "481b4cecbebd7291d551b814f733b9cfd78dec50a936a31fd9ab6544408c714e"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FatePoorProduction.lean",
+      "sha256": "0fc332ef6b54bebbe4de215b03ac582a2d0cc38d82a391d23856624599940283"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FatePoorTail.lean",
+      "sha256": "773c579e2ba303dc49f1488020ea142b0b35ea26573707ebfd6afca7c4dd284b"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FatePressure.lean",
+      "sha256": "f69ad74fcaed87b692451113cf72eeadc1182efc0ac8121e255e6b079bf2bbf2"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FatePressureCorollary.lean",
+      "sha256": "cdd1ca9cbb59c4bb0a5fb24702f12bb8e27c21365f9b28e515819f874e9b437e"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateProduction.lean",
+      "sha256": "7cc24ff9f95692ead6b594aa703677910daf4936f24becce7b13da2c4105df2e"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateProductionWords.lean",
+      "sha256": "a712db485e4c48029ce9a9afcad1cfea1240f4bb4dda1cb7537661ae1f3fdb3e"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateRecursion.lean",
+      "sha256": "e6d050acc924867abcf5c03b4a3e59b62363f40bbba452e2ced83afe474dd435"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateResonanceCount.lean",
+      "sha256": "f39eca082166b63d15989946e8ae54279bb9a4b779d5440d0c970212883f4aa1"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateScaleAverage.lean",
+      "sha256": "d370128dbb046d97a6826984d970ca964a3a5bf241d21d18517481a12ea6fa33"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateSeed.lean",
+      "sha256": "62b804568a8eba85538417928bdf2a08f0d704983c375bd43917cc2ee7fa8f15"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateShareLaw.lean",
+      "sha256": "a229f4fa4cf48cb5b003c746672947eec10bf93d7287ad7eecaa3f84d5236e7c"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateSweep.lean",
+      "sha256": "a5ede4a6d25cec71d6b6c7fb99e577df3335366175dd22f361581456669a72cc"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateSweepMonotone.lean",
+      "sha256": "bba31179e77f1fb8d3a0835963994383bf3ce203b3e4d81a6fd2d87ff8666553"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateTaoReduction.lean",
+      "sha256": "a25a13fb15686d8b9932e9e21d5489cda248fdec8ec04f2186c356469a6381fd"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateThinFibers.lean",
+      "sha256": "3fbcd3e9f7adf13967e7494691aa8f62779630e0446fe81e813486947478cb74"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FateWindowCount.lean",
+      "sha256": "9d790163433899c73993a24b434ff20ae45aba3dbe47b717507dba840307b6a3"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FinanceTransfer.lean",
+      "sha256": "045139424a693d87c2467db8de37389bd2fc125560a8bc79df8442d00ac4d05f"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FirstETransportEval.lean",
+      "sha256": "4080fb8cd8cafe4ea2e530f5db5f5e551d2f807fc8fdcea14815ef16341656a5"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FirstInternalOO.lean",
+      "sha256": "a33b9a7fba9654206baa4a6c51cf656953a71ad14782980cf934659c5b7eb7cd"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FirstPassage.lean",
+      "sha256": "f7b15a4bb2f7a540d017a82dfb37aeb5ae3d8486fc659aa4d92299e46e99bb3e"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/FunctionalGraph.lean",
+      "sha256": "d66607c59e52069d7a0238452fa13180cb0b5d509cc58f97842e2d8c5ad23a12"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/GapCells.lean",
+      "sha256": "9d918dcddca960bf49e78956b0a83746ecc35df4c5bd6bc442061df6d487626d"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/GapTransfer.lean",
+      "sha256": "8f1300680b6883d7b7877098f95cb1c75caca2ee4c9bb32e36bdae8cb096ce4b"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/GapTransferWW.lean",
+      "sha256": "556ffefa0ef73e6c2522c6fa0e91d6a25f2c3133487893c0d2e28ccb69306608"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/GlobalDefect.lean",
+      "sha256": "34345e3f6ded57f03bc657f6abaf6ec7fcff24d4ed2e6a1c601ae6a2ab0411ea"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/GuardResidueFamily.lean",
+      "sha256": "0958f8955e06def8e52541b94e3de609fdba9acd347343995d1e88230e65f5ff"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/HugChargeEnvelope.lean",
+      "sha256": "3fbd961cd341b1d636cd5992689dc54cd65b19d43523f0a5b31c0f8f40675aa0"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/HugRotation.lean",
+      "sha256": "fb654ff22a83c8326597970852eba272a283b75621e0a147a717e42c72703aeb"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/IdealCycleMin.lean",
+      "sha256": "e24558d912c685cfcf1bbb9c51b827f2c1c2ddaaefba1bf491d83eec7c6f2ce7"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/IdealLollipop.lean",
+      "sha256": "172652a7857440946b340c161f8b479927b56fe8772b9ecd525527093088303b"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/InverseBranches.lean",
+      "sha256": "6629432246656285607761e4482816748b529f63cf06406644b3a2a018eaa0a7"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/Iteration.lean",
+      "sha256": "96ddcef273b4dfd9d913948f9c55f7daee2c1bfd6025fb5b6dc02f62a5beb135"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/Itinerary.lean",
+      "sha256": "36a8578d34d77556db1c6bd28388ff994f01289ffef51458ca9dad6a88d865d0"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ItineraryLanguage.lean",
+      "sha256": "c51c9762491b9e20f20e2d6697d603d93122b2235da6b4d51011480c55d51c67"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ItineraryStats.lean",
+      "sha256": "46667facf49ce603b70fdadac8b1ddc19639666cd894069f9ac60fa9fa8f4a27"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/JumpVariation.lean",
+      "sha256": "3f8442d988e299f68fa2c0f474962f0b09d80bd6b404f4fc729519dbd095b8b0"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/LandingParity.lean",
+      "sha256": "d51f4fe1696acc74aabe8acda536f41b68e93a2a90d44030c37c65da19ae839f"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/LandingValuation.lean",
+      "sha256": "0a177b42b9568ef819e6b69e5cb37feafcbd863f1a2b1fbf6389337c16ce887b"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/LeftoverEval.lean",
+      "sha256": "2758492078f8617eed0d0ce3b3417ffcd2f20c0a0723392bf17980857a97c73c"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/LeftoverFamilies.lean",
+      "sha256": "cf77c5aa5dc6710517e681d0a8691e6e7bda7aedd6242f70783847e472bf1d28"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/LeftoverPreimage.lean",
+      "sha256": "1862047107300490c60d87ac5f59521c2d0316e2e4e45d936cfdba027738acfc"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/LeftoverShort.lean",
+      "sha256": "93e4662fe959f1c26225b8393e3bc7dc5b6352e032c28c6f30673e8b27b95731"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/LengthEightCensus.lean",
+      "sha256": "cdf772fe76e84d819af2b29d4d66b6d9109b56b2dcfd404351b13082d65670c8"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/LiveCountWeight.lean",
+      "sha256": "456aba09af342097f5a41a217a9863df967323463d8866f2d8d1671cf6b949b3"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/LocalizedKernel.lean",
+      "sha256": "e38d8a94d0cb6458bc75d9730625b8d2bd7200eebcaa3d6f1f343dfa684a1892"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/LogCells.lean",
+      "sha256": "bbd09a10c8da6904f3012f7e80c79d31d9680ba9983d80fdb7669d16ba2dfed7"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/LogLogClock.lean",
+      "sha256": "00019721b4c8c0978f8d28e0f5d938eb6bc6aa997a658bb8e3897c2bbeb74061"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/MasterIdentity.lean",
+      "sha256": "1f6e244a401c588fc9a2d313505fc7815554fc8ae3443851f053a25a92339392"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/MeanValues.lean",
+      "sha256": "e49cb1581841e0a1131935b929c97bf0f363e894f903cede61483fcbd63253d5"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/Minimal.lean",
+      "sha256": "8c8a1a9d65291f179e1231ca88cb29b6fc103869a31b52e445957fee33517290"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/MinimalClosure.lean",
+      "sha256": "20a4640d94da79fba0be22c92e0c527aac0da36f5eaa3123cbd9cf0340c57413"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/MinimumRelative.lean",
+      "sha256": "a110acfb2c522d74ecd8f57ce1a9fc94cfbc9fc176948fa1522cec57a14d9826"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/MonomialSplitting.lean",
+      "sha256": "daf810c1248588d949f1e24afa043cced241b34279906e696237507ae121ee2e"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/NearTightScale.lean",
+      "sha256": "e972c09a607342c177689832486bfa3ad180049d66c0232a4c377586623ca841"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/NormalizedDefect.lean",
+      "sha256": "e612a7e8f9393d266f96ca4def7ab82ac0e0334589355ffa1f48981887b35dc0"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/NumericBridge.lean",
+      "sha256": "87e52cd8a838cbbfd0129330cda7a22fcbe4921bc9f1f638ed4be03479ec7ab6"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/O7EEEEGap.lean",
+      "sha256": "3914316e93378ae34847622ad65aee67d365b021c8d0b6097847a04dfbf95e61"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/OOEECarryCells.lean",
+      "sha256": "f0e2e49ec7f59a34b3fcbdf0206d780ed8dae26e2110bf2448f35f184815ee0c"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/OOEECurvature.lean",
+      "sha256": "bfee1d8dc6077d4ae5be645a13fa028ae61558cb5bd5257cb6e6bdd7c385e8ba"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/OddCountMonotone.lean",
+      "sha256": "b4dc255e8e4e9fececefa032ad7d25627329ab7cabe81cb46bf9d5b045ef31cc"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/OddCubicPhase.lean",
+      "sha256": "35e104c12d95191cbd4d320883dde69e1949823fd11ceac85840f468a96ebd6c"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/OddLandingSets.lean",
+      "sha256": "5b2b7f150568a8d105dc545298d885361f8611484cad71355e4da9180c040a44"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "sha256": "3f6fd5345b076b3aa6074b55a6c2515cf2070e6e931808496813e7aa3135735d"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/OstrowskiBlocks.lean",
+      "sha256": "21d91d7ec40863989c9985ab54b74af55de0dbda3c741285f6b77296889ee48e"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/OstrowskiNumeration.lean",
+      "sha256": "10b43aaf22d788a07b7ff962d9d7ab1a20679b0138c02c1989a428866cf133a9"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/OstrowskiSandwich.lean",
+      "sha256": "190c6b2d2862e7d75a311f4beaa8beaf2fc397e9feccd71871c0b597790ffb08"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBAmplitudeCocycle.lean",
+      "sha256": "c38c1c98a77a9c1bda8a1dac846e2e226d1dc307f62db1b8aeaf93032787afe5"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBAssembly.lean",
+      "sha256": "2634856811ef0d3f89877001821b5c24454629ecf7db4fc701a1edf5f77d5eff"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBBackwardWord.lean",
+      "sha256": "fc86b003e85b02e9cb4f3b744e37feb2e3fd11f7897efa1160f9de2636a90449"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBBarrierStep.lean",
+      "sha256": "b65f6feb4a82a8aa381c29ccb4cdb70b5032a1fbdf1e2170160e06240f517ab9"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBCertificateLengths.lean",
+      "sha256": "11eec08b298f79805ecf9bce8fbf8c8871c011b3193a67db61f7e0b198d35166"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBCertificateRecursion.lean",
+      "sha256": "4e9b9a37c59ca9b4bba402efb3d98fd3f3e536b8896cd54244b17d7319d589c8"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBCertificates.lean",
+      "sha256": "a78e69d66bfe33b834af08b3ac5329bf8947d33dabea9114148bb3ef6b358fcf"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBChainRule.lean",
+      "sha256": "6377a9da2639fb63119aa6a5605079ce44bd65adfea96a3f86fda5f3977e8fbd"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBChernoff.lean",
+      "sha256": "79877a7701e8dfb8564504f8997fcd1bc74f50b7866bc0c7960797b129ab89f9"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBDensity.lean",
+      "sha256": "cc6297ff4366266fe1b88ee63bae792a1ab45d379867ba7ead1f8b3be5d02528"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBFiveStepDensity.lean",
+      "sha256": "7d78b48269efdcba060064bfd82440cdb2ea87a395b7e52f9e216257475d08eb"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBJumpTransposition.lean",
+      "sha256": "15189befdb3526c1c2ae175aea184b4b37cf9b619b49bc38285cd2ff2b563ce1"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBLevelWindow.lean",
+      "sha256": "e4e24909d796af00c0430dfafd068eec3e0af865faa91790e6157e7c12bd53b3"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBMarkov.lean",
+      "sha256": "b94ac90c13fe8b47ae5bdabdecbb1c3558047a2a7fe1d85dac58995bc4851874"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBPaperCBridge.lean",
+      "sha256": "a6de9da4afbb178d3602cdfe81e458e4ac2f18763b17034bd078f3d89e7422c7"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBSlopeRate.lean",
+      "sha256": "9a08b10cf5bfb972a9ede71916a11e957c40ba296c33ee2594c90921ba0f0290"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBSturmianBarrier.lean",
+      "sha256": "e135b4e386508eac22c3bdc0405fe5aec087898f6e69c943f544700b8c3c28ae"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBSurvivorAsymptotic.lean",
+      "sha256": "512af7c4be4b70a9df9a14a782de2d7fa4c515bbb78471b78b5031256616111a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBSurvivorDecay.lean",
+      "sha256": "f9e01d5de4209effb4e8e9d0e9219024e0893d51c1e7bb2f3db4443d6733ae22"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBTailSpectrum.lean",
+      "sha256": "7c599e62620c0024a6c08d013aac4e07d12a76a6818bd43753ad13656c6d3794"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBThreshold.lean",
+      "sha256": "8bf17ca45082e1b4ab7940729295898639a552098b295d493d376915657a1857"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBTilt.lean",
+      "sha256": "3ffb495be9a7c9265137228401f84085076d2662e7d6679a0360bc3feb4a57a6"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperBWeightGap.lean",
+      "sha256": "df6d9fb1c671b05e65d8339d88fb60f28a976f0b0f3481539c0a8d4f9c62ff61"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperECompletion.lean",
+      "sha256": "73bcfa47e6138d8004be56c146a5a2d88bcc316e15a8591feca48437584c5ea6"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperECorollaries.lean",
+      "sha256": "5c9d478e9cfdd94882287ac9802551417abdc08c641643ee0c817011a6a6a288"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperEModularReturn.lean",
+      "sha256": "3b9a370ae796a3a36799ed0f101c8e62d57c2729f4916d33face95f1315bdb95"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PaperERecurrence.lean",
+      "sha256": "031da8da265e68ae98ad92bc93edf939aada2c40f3a00f0cf1ef0685cb1ad822"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ParityComplexity.lean",
+      "sha256": "259a3b92a5313f30bcb1a2a5e5919958d2a6892e25afb40484ff4f7794df62a3"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PeriodFamily.lean",
+      "sha256": "b11815f34e7b513d016411124f82a3715d9fe45ce4de7d2b377a978d3e668579"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PolynomialDual.lean",
+      "sha256": "6edea856471da3cc8b6f6323194d7b5348f3662652091931a428b0193a1a61d3"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PrefixBunched.lean",
+      "sha256": "5f043e5bd4b008b3b2713ef7d8dcd434f1c0129e8543fc9835f9f45f57e24cc1"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PrefixBunchedEval.lean",
+      "sha256": "7d85e377709292dca3c9c50336f7c60d26083f8dfbbfdbd61ff2700796cea279"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PrefixTwoEven.lean",
+      "sha256": "7c4260e8d08a8f2bbc8ed1e26e674fc2846b13fd2795113af49585949a6a1565"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PrefixTwoEvenEval.lean",
+      "sha256": "e13da9f0d7282c483cb51115b86dd1fe67986d9323ec65525af9d6fd1cae63b1"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/PreimageCylinders.lean",
+      "sha256": "78314fb85e2ffcf567ff2590ea16612f7923612a2420a3657b86d516a8ef3761"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/Preimages.lean",
+      "sha256": "dabe4af2c54b55826cada04dd92b5f35d3face6f86e42e66829699ab4bc87e3f"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/Progress.lean",
+      "sha256": "e1b5375e8fde7c0f54ac610b84469887a25392e338e44f2ac4cad3f5c8d545eb"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/QuarticBand.lean",
+      "sha256": "185a0a6ee10af3f436192894090718f72164e73f579b8a84dc458e095cbb9aca"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/QuarticCells.lean",
+      "sha256": "f9acf65f89d1ff772375407d0b0c7d40eb4e1118c52110d1db346421fd1cce39"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/QuarticDefect.lean",
+      "sha256": "8bbb0815c62d618adc53f1719047c27d6fc7ab97aef868f071d02498bb93d28c"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/QuarticGapSeparation.lean",
+      "sha256": "4216bfc6a0f76a697ea579e197123321ade74750ca3b814c609dbefd1b199796"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/QuarticLossBudget.lean",
+      "sha256": "75f40a2d6ffaec85b28409f907947b6596fee8e880aaa1516b65f36c426a5876"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/QuarticProjection.lean",
+      "sha256": "30eed56a64bf1855dc0bcae1e95941ce4b3036fa88bd65656b3a304dfebde73c"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/RateFreeDensity.lean",
+      "sha256": "9a711586243582e4d2ecd6ef9dde3fd342c6db8e8c297a0fd19fd760d25520ce"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/RemainderCarry.lean",
+      "sha256": "bba132a6ebaf82308f1b821fb85a2b95a1b486e159328e1f902fd4f90ef7a80a"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/Residuals.lean",
+      "sha256": "9d067f8496ae3782e30841f61181a2f38ddbca9244d665e4b2ac14118baed154"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ReturnCells.lean",
+      "sha256": "a18f3f34f9085779786575cc1477eb9cf9305b87b318276abdc281332a24d047"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ReturnCycleTransfers.lean",
+      "sha256": "8d026fde41ec3c31d2a95cc8838ae908615a889a7bb36385691bfe21d78272d4"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ReturnGapHeight.lean",
+      "sha256": "c611bf9375bf5b55ae2a17de9fd19b3ab1da1fda8ac9858d3fe4756453954f81"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ReturnInduction.lean",
+      "sha256": "ebb55c9863c977a3fe633ef4762b75116714156b57bec996f3e091f7c0882380"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ReturnOrbitStrips.lean",
+      "sha256": "1d0785ed9695964dca84c41d18981cd58cd3f215772f3bff184416495ad56bd0"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ReturnQuotients.lean",
+      "sha256": "dc7b92bf164427e6ab0248ae482c8061d453783dd7778a3fdf498ce6dcc7f754"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ReturnRankedCycle.lean",
+      "sha256": "221efe64175768badb6b85a286ef717c4cb0468f7630ebb8b04e1e836dd90789"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ReturnSeams.lean",
+      "sha256": "fb9b98c11ff2ce2fc6305334943143e164884e73fed2bf7120b95ce67640b0bd"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ReturnTerminal.lean",
+      "sha256": "21ff073499d9166c56468c60a8ffbc6b01bf3653ffd2ba685b19f8503d22b2d5"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ReturnTransferHeight.lean",
+      "sha256": "8981c4c77cf840d6f8f586d80c9a14617e6ea910e7f6cce44b83ea32e4b182b5"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ReturnWordBounds.lean",
+      "sha256": "c5b059ea8c413eeb27f0e0e67d03c1b97125ac70f3c34d39539fd9f7fb4d91a0"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ReturnWordData.lean",
+      "sha256": "8a557eb5cf250ff5da0ae1cad0150b1f5b63bacdb757f186f10dae12aa6820af"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ReturnWordFactorization.lean",
+      "sha256": "2d4d9e502b6495fa3217139a1d6368f2af92e245e9e439c4d9eef23895e3b2df"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ReturnWordLoss.lean",
+      "sha256": "4a22e905670a042cbdc88c129d6e5673e1e4170fd4bb2ca590dfcf565f600ccf"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/RootCells.lean",
+      "sha256": "1257b97922e9f313411b86565259196ad0cfe1c63e2d60b49c14629c735f88ff"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/RotationAverage.lean",
+      "sha256": "a4a8bc0647f9e91a20aa523063cf51cafc58b9267ce676fe9c28e8c0611b4f1e"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/RunSurvivorLattice.lean",
+      "sha256": "dc0030bf146333f606cfae8ab2b2691643e0f7602ef545d6ca5a5dee11d9bcaf"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/RunTypePacking.lean",
+      "sha256": "410be0de230c6774cc93a87c12acaf46272b8d7bf7076a8d7809455785bf4ce0"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/Scale.lean",
+      "sha256": "9156455b03e7095970f69ca7b49762788608502ff9f560414ef9bded6965ccf9"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/Seam.lean",
+      "sha256": "392b4fb46759003fe7e674b0a2d45e1a97c44871904aa600adf5467b096609b3"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/SequentialMordell.lean",
+      "sha256": "2f87249bb0eb379daadfd49639f9eac93a723ada52a166b02b3044c3cbff32cf"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/SmallCycleCensus.lean",
+      "sha256": "20d08b4603b4b0d7a2ac75eaf4d5eaaaa27590fbc92237d3f927de4fe3dc99ae"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/Termination.lean",
+      "sha256": "7b458453bb0fa6478550d875a1b3d5ac18eeea106b5d08797628dfbd2a9c8eb0"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/TerminationFloor257.lean",
+      "sha256": "3ff00ef9bd58ad556a0b657b2241b3d7428ff34d93e0b3ab7b05c7770eceac01"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/ThresholdCertificate.lean",
+      "sha256": "87e60d0a6a5bfa18d46c231b5ac3d288dd24a33e9c03939f384707e6655e1e01"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/TiltedShare.lean",
+      "sha256": "7dcafa45a2a0e9bca182a713b495d791cf812e4c70d6472c67bf85b0b736aef4"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/TowerAbsorption.lean",
+      "sha256": "ce45919ec36c42cd84514f82b5b06d88f8ee8dae3c5d4ca076f1bf418442ba29"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/UpperSquareGap.lean",
+      "sha256": "c654a388e791ae160ed66b46507482399a832e2b9828bc6574ca36105c95b40b"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/WalkChargeItineraries.lean",
+      "sha256": "b3e31392bfc23fd77c104948785d93f7f0fb52e8092b423544daa5aff62c6f55"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/WalkChargeMax.lean",
+      "sha256": "1ac311d05ff0c3a7fd60a6d0d2d7ad83c83d281dc38bd586b0cbe9a233c0e264"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Juggler/WalkTransport.lean",
+      "sha256": "9750546f88ec556fd41cf70aca403845456727dd704b277539ec28177252affe"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/JugglerCollatzPaper.lean",
+      "sha256": "4e122a5d897c9fda7e9ea2477708a00ac7dff42c6db2e4f10cdb714120f6ec91"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/JugglerFatePaper.lean",
+      "sha256": "ce57dde1ab5f47f98277f4b870641f864727a4136b617627773e531e2b6753c2"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/JugglerPaper.lean",
+      "sha256": "f3f0e8c9c12d842a7f8fdd9b234539c4985710d02b5b9ca205f539ba54eb72a7"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/JugglerParityPaper.lean",
+      "sha256": "60bfb0e623cc5fa05d9a0fcfa7fc111e0c308fb2b623811e658b29debe2389ae"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Ostrowski/NP.lean",
+      "sha256": "b8916da99296d3a39b7763bb5fbb008b66d6446e2371003e7de465c1895df32b"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Ostrowski/NP/Energy.lean",
+      "sha256": "8e11f0f11e88a1c6e56b89a0cce268b381847cb52c6a4630f264f633f5ec0f61"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Ostrowski/NP/KernelFamily.lean",
+      "sha256": "b96a56fe03de16387a8ea7071b0af265d36aa3f3f53bd3024df0dcf6b62412f7"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Ostrowski/NP/Reachability.lean",
+      "sha256": "4a045e074f10df059ab438088bac6b4af662c6770a2db22352f374f9ea26eea8"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Ostrowski/NP/Recurrence.lean",
+      "sha256": "f83cb8011a3736b53229133438e22a2b7dccf608aa10b0af0a2c10957df08187"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Ostrowski/NP/Residual.lean",
+      "sha256": "b9ccb3f0a4144ed2e04cc2b758a3d11848331f915b0dae7d988ac63a4644e7d9"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Problems/Primes/Residual.lean",
+      "sha256": "ebd25600666ecf7775aabf195ffee173f46922a0cafcb585706f9db22be034a4"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/README.md",
+      "sha256": "4b14f50d12a4c3ecb639cfb015d9809330550ce3c1b7f3fb145f002e17d1ecf3"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/Representation/Words.lean",
+      "sha256": "45b845675189bc708416a881b1f35075598fd8b5948b7287383bf2b6b0947509"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/lake-manifest.json",
+      "sha256": "8a4dabaa6346246a71a2fac594a4385e248735a4feacd25082bcad2336d27385"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/lakefile.toml",
+      "sha256": "b707e6f9d388d4896695c37d12dc924458f60e50f0ff95f8e02f08d506144221"
+    },
+    {
+      "path": "tmp/fejer_scoped_view/formal/lean-toolchain",
+      "sha256": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71"
+    },
+    {
+      "path": "tmp/ferrers_beatty_check.py",
+      "sha256": "76895ce59cf7c49fe51a390c5cc01c009ed327ce2f36f4cf4b195451f5848c2a"
+    },
+    {
+      "path": "tmp/ferrers_conj36.py",
+      "sha256": "2070e6ea1391c840cccdcc19c5389b574e6cc9a95fd31e4414ff06269c7cf251"
+    },
+    {
+      "path": "tmp/finalize_preimage_grid.py",
+      "sha256": "7ba4d37786121f8dfbb757300210bf8224db605f7a3b56e89e1f6c5f054b67e7"
+    },
+    {
+      "path": "tmp/generate_signed_grid_checks.py",
+      "sha256": "2f8324f04263686b57c545119e5b0d5937695496917b020ea6dcb6098ce1c2c4"
+    },
+    {
+      "path": "tmp/generate_signed_grid_weights.py",
+      "sha256": "f88ab884e06220a3245232649be99886276fbcdf582e396435b3e0fee25dde7b"
+    },
+    {
+      "path": "tmp/index-lock-stale-20260922T041914Z",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tmp/index-lock-stale-20260922T044551Z",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tmp/index-lock-stale-20260922T052153Z",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tmp/index_cubic_inverse_cell.py",
+      "sha256": "7079eb50743abe14ca65480104802d9b2de01b5a33aad2468c9d60a9ece3e224"
+    },
+    {
+      "path": "tmp/index_odd_cubic_phase.py",
+      "sha256": "4ec3e2080aad8976e67628863d16716436602476bdb52c9f5b871f3bd4c8c4af"
+    },
+    {
+      "path": "tmp/index_preimage_balance.py",
+      "sha256": "6a6152e9229a5d2ddec810d2c3970a249d5a09f29f28dfbfc37a84998d29b8b2"
+    },
+    {
+      "path": "tmp/index_preimage_domain.py",
+      "sha256": "c6543904814b14c325717d0217b86a658dbdded0295b69fb5d523413dc55f7e2"
+    },
+    {
+      "path": "tmp/index_signed_density.py",
+      "sha256": "d23b6781ede4d1c4b304b631fef7cb3b535ce84ec1d1a9698a73b275f26fb9cc"
+    },
+    {
+      "path": "tmp/lean_paper_e.ps1",
+      "sha256": "f278c9fddb889198d3231f45f573022949da12699fcaba8a4324bc011aa94385"
+    },
+    {
+      "path": "tmp/link_cubic_inverse_tests.py",
+      "sha256": "e1b1160292a78ba61bc924e7adfc896676e8ef184c90425f016834b1b9004069"
+    },
+    {
+      "path": "tmp/minimize_fejer_ledger.py",
+      "sha256": "aa2971830cfec82fecce267d9fcd1b8ac96b623176ea0b309acb20876bc7e27b"
+    },
+    {
+      "path": "tmp/package_grid_generator.py",
+      "sha256": "55458ada0a81ea42a6bc66cfa3935dcbf605e7762c23a0771389d5215a75f6cb"
+    },
+    {
+      "path": "tmp/paper_e_archive_qa.py",
+      "sha256": "5f2e7344eeb2af607db2cf5789ac998c21398c921348a3014b0f0a4af0b215b5"
+    },
+    {
+      "path": "tmp/paper_e_expected_commit.json",
+      "sha256": "d3fff3e3d15e1cc77d80ac61cf687554cf68e1d43d69b9337824c7ade8cf3519"
+    },
+    {
+      "path": "tmp/paper_e_qa.py",
+      "sha256": "5dca9773d312ee353370914fabf1607153abe89e36c3d1e78c9a468ca3660cbf"
+    },
+    {
+      "path": "tmp/paper_e_scoped.patch",
+      "sha256": "8965372e1dc8c0000ca8f3676e3893db71a37c1512243942e7ebb388a6130ccb"
+    },
+    {
+      "path": "tmp/paper_e_setup.py",
+      "sha256": "bcb2afc3a42db6b6f79b69e85025a4f20ebfad6a4f03d24b7227b1ae06a83364"
+    },
+    {
+      "path": "tmp/paper_e_typography.py",
+      "sha256": "b7c41ac006b3d27c56599b736d22357e309f857ef5851f5252a6b7b798c9360a"
+    },
+    {
+      "path": "tmp/paper_e_v020_expected_commit.json",
+      "sha256": "28007e93419515a35873963981f86c7d57e8cbf4e1c238ef5c4b28bebf8c50ee"
+    },
+    {
+      "path": "tmp/paper_e_v020_scoped.patch",
+      "sha256": "a456aaf93b37e692fecaf33a51b9647351b415def9da63d5d4f689649888ef81"
+    },
+    {
+      "path": "tmp/paper_e_v030_expected_commit.json",
+      "sha256": "b03bb7bc76c289e5da5fe5b50fe354953c30c8ac238d753ad3e6501214ce69be"
+    },
+    {
+      "path": "tmp/paper_e_v030_scoped.patch",
+      "sha256": "db36a7df6678139248af7bc85590321d5545a5a9414d92ee11b64b841907c732"
+    },
+    {
+      "path": "tmp/paper_editorial_finish.py",
+      "sha256": "1f2f2dc6f74a797c4793a7642684a600a1e98c9a4c5c55077c7edce82047f774"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/inventory.json",
+      "sha256": "b8d9a533a2a61d00b6a34f91ac659cca543cfb59e5cbdefff69b5e61e695a1c0"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-001.png",
+      "sha256": "86a3940b413c8d7d0d0951e368269b76e71bd5d6f544779ba919bdab9b686503"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-002.png",
+      "sha256": "a0b8e21e632ae609103413bf08016fa8d1e1abd79c343d4ad30999b57299a13f"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-003.png",
+      "sha256": "eb7ea345649473a67084715e0d35ef2a4be62a092c10578cdc1af4aae7aeaa2a"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-004.png",
+      "sha256": "0c35545ca27082f67d18f42581d2bce8ee767decc37b3b61942fff895d65f7b1"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-005.png",
+      "sha256": "9bda06b00d3885a493289f5c327226eb63fafeb1bb4a1f963b91791bab3df24c"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-006.png",
+      "sha256": "8cfde5bb4caaaba14987f4bb9ce8fd64b4d66cba66cc44959eebe869f369e9d3"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-007.png",
+      "sha256": "65a8b3c8ed763966261038e3a1a51ee39da24bd27008c35cbe2afd83dd183bdd"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-008.png",
+      "sha256": "3f54d2b67de7c46461aec6d7434930a7366b6ed4f9af8588072222b73e4b9f43"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-009.png",
+      "sha256": "a6a3ec4cf122c09e12c9f6fb619b596188e4c7f33df50b37f5de63bd47c3de97"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-010.png",
+      "sha256": "0b6e49cbcc1a79704fe09aa229d0cd7c57301aa9c66bacccfd1da55b47768c72"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-011.png",
+      "sha256": "07e20a2527fa44e3f151d1976ac7847b177ede030dfc2d80b4c6fcc6700d0eee"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-012.png",
+      "sha256": "0db6d10f2f2b1d36efbca26575a62a12a913499a66871ba44678a07bb460bb66"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-013.png",
+      "sha256": "394a64f7f58f8b58b99ed1b1e09bfe0f822f9109fe09cc531ddbc1bc74e07fa3"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-014.png",
+      "sha256": "1e2ca417f3cd8a2a3d3bb73f169973828c6a5b7560808ef4d8b12d4a28fd898e"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-015.png",
+      "sha256": "2dd65c282c3100ce325254547ad259c704648b19d473b10d9b14c495d0a490be"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-016.png",
+      "sha256": "51f7d0a718ea08c51d634dd4836e9badc7a3797fa40b6e1985f0c3e4437aaaef"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-017.png",
+      "sha256": "022cbbb30fc45fd0e254161339514f309be2d774619608127e6c402fa1276ae3"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-018.png",
+      "sha256": "5d19baba7ac9c50cd9c8ba096adc0cb68d907a3d4bbb9d0ce4a9acd0c449f144"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-019.png",
+      "sha256": "e5d8540025c8d1a1d399da97788f275f208fe83834780dc6bcce4981ff05f26d"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-020.png",
+      "sha256": "1c992bfea87d09e387cb926affd1539957e7726669d38b889a2c281399d7799e"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-021.png",
+      "sha256": "8d1de5fb122df19d9a4a047b9c18ae3c166eb9ed8e9d539adee71ece14497363"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-022.png",
+      "sha256": "8a48d948b627f842a469fa73213f45c5adaf4e60e8c562bb5970f97399eb2416"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-023.png",
+      "sha256": "9d7d3db8ff55b96ff40abfa8b492852e717ec16bcb9bd3ccb7c3e1632efa0ea3"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-024.png",
+      "sha256": "b556830f11a555fc7bb6aff0381d92d9c7d715bf8c8e9666d87b01a2315aa253"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-025.png",
+      "sha256": "0c54421a7fc22859e6bde7b13c9562f8405ec477488036be8ef744e856045ac8"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-026.png",
+      "sha256": "a3f6b90006adcf6714e3bd1fb7ecb92898f2e5d1a7b753a89435efd5705af32a"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-027.png",
+      "sha256": "83688fed5ebb23a20a13995d746d6306c0d572d1bd1a3453def266df43bf79e9"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-028.png",
+      "sha256": "d5041ba71ddf5f611da0ec607a3d6edf74952dc7d3def0fceec279f3689866ec"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-029.png",
+      "sha256": "0439a05883b0b68d0e7432517f91e844d405b4f1eac5c3aaa91a8172abbd9c5e"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-030.png",
+      "sha256": "e5d13f645bff477714a5a03365940394cc04a52b32aa85c696e63ef73991f6fe"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-031.png",
+      "sha256": "47a30889d37add0d66a1bac2c5132e7ee74392d84407214ccf1502259f9c0855"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-032.png",
+      "sha256": "eebd58bcac186d1b13fa729ad94a5e38acd69d4b23df3c1846733e5988cb7520"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-033.png",
+      "sha256": "58adccc7d1eaf6e2344056b6132a51b43b82d2789e338fc02a5441449ad57636"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-034.png",
+      "sha256": "44d35ec72e6b25349dbfbe2674b742af29e5868a848a18210ca995b87c5a2404"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-035.png",
+      "sha256": "4406da236773c2f702a7f4d1fa93a25b2e7fbacf61b2d31ff72bfb08e75369f4"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-036.png",
+      "sha256": "cbad1ccc5e20b31b0b8c834e213994f333b787a7621a21167afba46e3d0655df"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-037.png",
+      "sha256": "f5eba0d547abfab290e87c094ad09263da2da0cdd2c039c6c6533f52ae7ea170"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-038.png",
+      "sha256": "9e3785ab79f2b5e6a2913e48a25a7569649588ae4cbb8af8a96e2ff9b49f2d95"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-039.png",
+      "sha256": "14d167334ec5c916aaea495f9927b096d55ba3828cba36f74ca625aa492c0046"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-040.png",
+      "sha256": "39eb75442d778ff688e2d9a4520ff1b78b7e0ceb48ad101a7bceaf03a39ff512"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-041.png",
+      "sha256": "e62b76f2f49cf59f7c41bdbef3cb62a01de6bc147604f979fa8622a7d86dab46"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-042.png",
+      "sha256": "de2b1e3c767e2759e177efe54cbd103092b87b74b21ade452348cc38337fa661"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-043.png",
+      "sha256": "652877685e9486d5c515a0d5218344bb9b9bfbf783f6d2a06c2fc2f292e59448"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-044.png",
+      "sha256": "ada7530b5f63094bba701a7c42e4351ce232bcbdb2aa86ed86021b12b339b402"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-045.png",
+      "sha256": "1ce442636dfb94a379bac5e7a1f1cf6682e1fa43ba44c10635c56fc36cd407dc"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-046.png",
+      "sha256": "199ebf1a4cc8392b8dc1c4cf22e8a9766a3d82c91de9cbdc2e210b5514efdc73"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-047.png",
+      "sha256": "1180d57135f4cb7b0632bb1193ebe77a13d77ae20a711ff6070dc35299a892ea"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-048.png",
+      "sha256": "be0c873628bce0489816159f6cb2c463bbcb8701dd52407b10da8d6a3d80632f"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-049.png",
+      "sha256": "4f6e84e16b9350c1ec8dc88ff2c9cb3f79c2d3a777f2f6a5c7aaeb2b0218d06e"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-050.png",
+      "sha256": "44fffc25613ee8ee8568eb5e60d80de16bf0fb4071ad8e64fa3a3ef53168f87a"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-051.png",
+      "sha256": "49ff5b8d225a9c946b36c7b0cb8e6d7d744864bf61a18217af812a899d27e129"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-052.png",
+      "sha256": "72cacef408296c617342f1bcbc9947ef86dda542d0228cc66e51c90acd773f24"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-053.png",
+      "sha256": "07b1d45ae196c17111b5fbeba5d3abaada9c617aaabc89019a8b0b7d8c5c10c2"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-054.png",
+      "sha256": "534ebaba54a8f65f43fb6a182b7a48f1e4cf0dd8d907b76e2f9fe61afd035cd0"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-055.png",
+      "sha256": "7ccefe4c5b57c36b959e1dc87afb6db2fa978e633352d7703d633d2cc3e04cd6"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-056.png",
+      "sha256": "1d6d66a01467aeb145510c2c3a868fab6d7f1f2755ef7f5e0a899e50b863d224"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-057.png",
+      "sha256": "513a388f18a762df0c7b643351df493e02f840a538c870d4d3208cb6eb32b7dd"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-058.png",
+      "sha256": "b4756ecb6d0f0354456b5183c55266f387c1ddbd75f34b7752360a3a24bb4632"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-059.png",
+      "sha256": "87a8c4bfb231dad74de8a334d5271bd07d1c1b9d6649e52b4f0086db874beb6b"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-060.png",
+      "sha256": "fc582c17d355fd07abb1e2eae07bff0a76ac8d79198ff5d664d2882fd7087193"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-061.png",
+      "sha256": "751b95734433f5506ae8844ac4e7191d54805ca338b75be4840a7d9aee7021c1"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-062.png",
+      "sha256": "a99c6c4d42dc03d7e06f32096312599a88d727e7d606f89d0fea23dd22ce44fd"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-063.png",
+      "sha256": "d64cfc249fee4a8903f1e680ed414d0b6ef247f0040333ce29cb500354183a4a"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-064.png",
+      "sha256": "61b0ee9ad8e85db998ec7c251237b457d70b24f1d29ffdec8d3b55fd28132e67"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-065.png",
+      "sha256": "3325fe170121734cdb79765b66a46be09523427770de1fd4a008c8f743949093"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-066.png",
+      "sha256": "ab2428769f3f353fa2baccb4757edafae2d321fc7ddd0d15b357b74362b3b39f"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-067.png",
+      "sha256": "1c794879c4d6b3cad9970aeb327c251df0138b62ab48a53ffe6e9651bc7840dc"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-068.png",
+      "sha256": "95cc91a68ebc16d2814e4dc090e2246861a5d12a5ea6904c9a71d3ca508f89ae"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-069.png",
+      "sha256": "d7f55fdbd025b80a7a979a13e4f947426fc4ae9749411a6db29ce841b0f281e0"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-070.png",
+      "sha256": "dbd8805258cb690190968807385c196416c97dec05eed09dfc97b30121a4d324"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-071.png",
+      "sha256": "1138365132765418065b92525aadc131c367627acb237c33491caeef7e5df52c"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-072.png",
+      "sha256": "2602dc444a779efe259671c7dc650d877d63430594576ee83bb4632b14d298ca"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-073.png",
+      "sha256": "404416121300a6e66e6e866a8e33ae8c11ca1b1c317f6d92c5f691f318c2cf93"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-074.png",
+      "sha256": "cd09c91b21ac9cfcf3955673af75afd9ff2f05fdfc655395e9084ab89097a2f6"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-075.png",
+      "sha256": "403651eed74c8e63eaa1397fe07c8a8ec6b666910d0af7e9365a89dcb995b30c"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-076.png",
+      "sha256": "ba11b5bc3d79e5267030d178163efcc8795f2e9814ef7d3914f4a7e2340049f4"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-077.png",
+      "sha256": "6bc2f0839072e86bb773a6c39b6576ca97f9f0520ab859d1c93e46d0f3b2fdd3"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-078.png",
+      "sha256": "0420383bb4d38f36070adfa71f081c67a5a9a81dbb030afa22f6aa8b68797b86"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-079.png",
+      "sha256": "f0059609ff985746975ecd812687e03a9456c7036625e7dfa4bf498259805da0"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-080.png",
+      "sha256": "f5c2cb4c2732e26b002e7bf92c994f1db2a9f633075aed655244829cfc337307"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-081.png",
+      "sha256": "8fc5b4ca768918d4b6089ebb5c803501332e18b557b3762357f30dda3457edb4"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-082.png",
+      "sha256": "4e1e3dd29af29da8fe3f30fd6ae2488b557988257ba2c6372e1773416c5a5141"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-083.png",
+      "sha256": "9e97dd9d6f9dd374f7190c32588769d242cc98e743359b552b1e508bea7c9a44"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-084.png",
+      "sha256": "01fc5f48010c2276e2eec33bf25d56de25409c48a4f73c2feba2e5211b42da87"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-085.png",
+      "sha256": "32271b22facd12b06ebf72a3ab70fe4425ca52e02772a36aa206406ed4553910"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-086.png",
+      "sha256": "9997fee2e09e3aba2ffd16825fa260a914ed9227f7bd9ef9ec2354390d904625"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-087.png",
+      "sha256": "83b5e124da47e6e540da5f62c2d086e520d499bc86bf143b5f507ca6649d5e06"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-088.png",
+      "sha256": "48411b51a4fb0e19bc0dafbb4530b14018279935139921af48aa0bcad78722b2"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-089.png",
+      "sha256": "0666fb37967402ad090dab15cb4433188b6b1ba62764705d069a06a2849e3217"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-090.png",
+      "sha256": "c7ece6c7d7cc75b5268e96e20b70ae8aca08adf7e09fba779e16b23f4bdf7317"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-091.png",
+      "sha256": "ede222c05e795ac5dcb8f0961c8037dbc4341b7ddec1cd2fca58dfd47fad1361"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-092.png",
+      "sha256": "8594ec8dccf14896582cb55bb30e28cd85c471fe713224f2b0d77f0151dff9d0"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-093.png",
+      "sha256": "7c3e67ab2d6a6037e91cb9788e628858b4646dabf3f4c437c8363719c0eb1efd"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-094.png",
+      "sha256": "dbb733fc098a6f03ae5b0e825a6dbdc844bf7fe9e4427b9e31db26240c6c1818"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-095.png",
+      "sha256": "04c880a0b0abdab1882b44aa48a17f3b6add15cfcfd2c427d0b630683e4728f3"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-096.png",
+      "sha256": "9a4b81d5f47281a30be427ef305a2c702118214833ccc792e8fc7c5a4d4e15be"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-097.png",
+      "sha256": "86fdb1b85154583a99ebbc054b6a166fea0987badbd5101b2ff55a5b8620419b"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-098.png",
+      "sha256": "351cb6a837f9485abe6fd17e4bb085b0d0bfd59b3064a9829b8d4d1a77347bbe"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-099.png",
+      "sha256": "894e4190cca78706722b9bcf883b5a6aa1b8d8c1386c9fe4d286745dc7fb5006"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-100.png",
+      "sha256": "084ebbeaaf4e6178aae3795895ce5617550eba68565bd14d860f34e4de58c1ae"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-101.png",
+      "sha256": "fa6ce35efa426603158fa93688c56cf5e72e01f9795132612c0bbc5101ae2949"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-102.png",
+      "sha256": "31040a464c1881c435d3817983fc225715e6621bcae7b87fb5e498430f843bde"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-103.png",
+      "sha256": "3594408f515c6a0e216979fd629f31522cf7dc228ae8836eb6bf52e21245ba40"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-104.png",
+      "sha256": "c2078a7ffb12557b9d6bef4acb0a4e3c19e13d103fbc700dd58bf314abcddc0e"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-105.png",
+      "sha256": "3d35bfb5a66578b48a5a4b76ce1ca96d687a597b13f638dde3251b943fde4755"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-106.png",
+      "sha256": "69a7f134e22bb076f1255813bbb5e9d94a9f1435a6fe38886cb60dc7531bc3d8"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-107.png",
+      "sha256": "49b84e8ca928818babff0f631eba5130ea9e87f2c80debf3c4932abfb31d9f48"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-108.png",
+      "sha256": "cb35b236a6d466948aaae3bbda37ef7c7060faa8efab28247df0475711256f18"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-109.png",
+      "sha256": "855bb115a92e9f663b28ed85a96b19e84a8959aa9de2509aa7e63017bf49baa9"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-110.png",
+      "sha256": "ca5d9a8d43fcaabfb2ba434eed8846fc54f92905bacdb7a04620f8e241fbd291"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-111.png",
+      "sha256": "c3a828fbc48da83454b918b92137e675fb3785e4007fa6fe2cbc0a6953be046a"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-112.png",
+      "sha256": "79e8529b4e8054fa3b74408ffaf8085605b241d23a1c75f09ac20395ba028d45"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/page-113.png",
+      "sha256": "3d2915fa1b77077e0f2678e52b411edc90c6b1d4b87908d7087390689f50b47c"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/sheet-01.jpg",
+      "sha256": "a8808127e4e7f734da9793de96f5c8c76b52a4f5c5488165585e4fa064e62349"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/sheet-02.jpg",
+      "sha256": "c2d0ee840e4412f1280f2a0cb247f599e72a569510948840508ca5acebd2a806"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/sheet-03.jpg",
+      "sha256": "949700b028e6c09832148023d3a17c4ec8b6674aa3d81e591c0d95680008632c"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/sheet-04.jpg",
+      "sha256": "e42b1ef5354c63fe54f7af2b0909e3975af5bd1d9ee4241ffc2c87076b569f0c"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/sheet-05.jpg",
+      "sha256": "54c3cc4649baf0ec4f56a6270cecc0358759dd87717b763cb631253c46d8e904"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/sheet-06.jpg",
+      "sha256": "ce501b7fd5c7399e7f9bdae327a55457cd3d6fb51ced18272c434e05336c58fc"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/sheet-07.jpg",
+      "sha256": "46dda87849dd9a351ddb1f62db77d5f45fa7bb3c15ca20c9a72a867bb26b8535"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/sheet-08.jpg",
+      "sha256": "6bbc2dc72eb283cfe91274a6eecc77f4f56bf2f28ac9a992e6a0295a35555bc5"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/sheet-09.jpg",
+      "sha256": "6a273b34a123f06fb245355e60aa3ef11821121252bdd8da170a0d4a9d12f294"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/sheet-10.jpg",
+      "sha256": "087d48d7eac266e1f3565884e841dee01f82fa431c5d3b01617e35518aa46820"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/sheet-11.jpg",
+      "sha256": "1d2d23f30199a631f376a9d8347cdf52194397a4a4e798c0f7fda2051e307c73"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/sheet-12.jpg",
+      "sha256": "29e05cddabeec6fa7c754963490763220b20494cf2ab8dfa3792180b8474ab06"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/a/sheet-13.jpg",
+      "sha256": "e77d3de59958c5da97e0d9cd7120203494254151dda6e2c2938472900eadb4a0"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/inventory.json",
+      "sha256": "6075101d0468037a88346b327f1d0a427543c8b308e94bf4dbca2dbc68fdb302"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-01.png",
+      "sha256": "c9228980bb54b7d1011a36dbe03bc38f8e6a8d0e38e2d90dfabffe0de7e13548"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-02.png",
+      "sha256": "421d99f3d0f22f70ade491db1a2dd6158f26731953c487028be6b9c02fe08ee2"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-03.png",
+      "sha256": "5ee425002b5f97680761183e9ae9ec82fbfdfb1e064b7d5fe473b7d4beff867e"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-04.png",
+      "sha256": "0037a4c24b22602dceb86933a38827077674da586a97e0e474842470809bf11e"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-05.png",
+      "sha256": "e153a212f9fb0978c97e4b7278abd0748201a2630598eae24fb6019d7f107c4a"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-06.png",
+      "sha256": "2d27e7a5ed07d41415fc60e90ebdb487d7650ae52101af6868befd9cc01b4802"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-07.png",
+      "sha256": "a2dd2dafcd49e2968e5d285d521f3f648fdc2b76c2ac8222760916c496169a69"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-08.png",
+      "sha256": "214830f0d8c7063888e79cfc6a6a5a4685db547e6a1bf0b0a2cd3adaf136656a"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-09.png",
+      "sha256": "139d88aa7c586687c693b30f331afb17240056596c5009d7e6eb07240adf8dd5"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-10.png",
+      "sha256": "eccff704ca1ee2d2d92fe42f99d99e208d6463c2906c080c83c4781af9e3295c"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-11.png",
+      "sha256": "b3d30d610957b42e885c668377f831c8b0f95c9fa2d844d3e6d68eec8c015e5e"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-12.png",
+      "sha256": "4a8070eabf462395979dfbe10fe6db8f7c18f2c7be19a1bd29a17876baf826de"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-13.png",
+      "sha256": "1fd3e2d90a97acd2a8039b7cd15a7acf3dd89655aaf3687c96088c276719d461"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-14.png",
+      "sha256": "835709b9435bcb8fc2663c672c12199395e6b762bdb64457ac3f90b295189259"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-15.png",
+      "sha256": "7c85d7aa8a3059841b3415b3e41811841b3346f8b77f2e75d3491cd8950a8cba"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-16.png",
+      "sha256": "3c4fe3a57923f2cb4372606c0222dd7dd410c73c05a7646bef44fc15c147374c"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-17.png",
+      "sha256": "b5d075566b32d6edd2c4b521313b87b4e1c79c20c19857c1d14837187f029c22"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-18.png",
+      "sha256": "5a51502165bb80bbd92f18dafcdd23d73beafdbc9f4811b15231dd2bbbc75c9c"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-19.png",
+      "sha256": "2e3af2649b18ebb99bf06bdbdad20189ace81d9c74d95f4e6b382557cf84a1d9"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-20.png",
+      "sha256": "f8f6c7e74a148261824c5e1ff3bf6fc3de35c9d3172c75c5295a19bc677b2cac"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-21.png",
+      "sha256": "3e35bff8d317591df26fd905085ba35e7d28fad5bf7983c422ac5dc561c5e8fd"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-22.png",
+      "sha256": "9e40f2eb8797bc1c3e8e58c459724f81c8759b05310a7051b586c57252335911"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-23.png",
+      "sha256": "fc3f5087d595212b50d0854b26c66a40a7272c93afe5a6084e7be12323fcead0"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-24.png",
+      "sha256": "1a7abac9c7684cc3009b12641e45bd52841fef9c05076086006624c58c193da5"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-25.png",
+      "sha256": "c84334b4f529bdbf4ea15fab5ecfa04549dc1b35347f0572bd9bbe1c8ba071b1"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-26.png",
+      "sha256": "b1e8c37c3f1aeab953e254b245c813703e5eca52820be9dddb6f9d9d6a0fe30f"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-27.png",
+      "sha256": "017627247869dba43054bb8dbd26d3669e4473c8226d67f1d9276f5bbc69e03a"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-28.png",
+      "sha256": "372aab874c82f59485bed8cbb257722c2850f6edead4633fced44ccbb69c4dbd"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-29.png",
+      "sha256": "bcc84d57ec82f593813194747a1b2c0d697d37cfc989079ca2aeeed1bfdb5746"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-30.png",
+      "sha256": "d46d16552766d3d78c862a598fe9ba4fafbb09bfad5bac7216aead5cbb15d8c2"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-31.png",
+      "sha256": "419c1a43a9cf55c5f9b51da24e21776e0d950d87bb738102b650e201713dacc4"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-32.png",
+      "sha256": "7a40089f08e3c4fb2b6cedb10e41a809ce9a9fbebb8014d620bafe2f75ed7e48"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-33.png",
+      "sha256": "0ecd38b0d322e08f2f1f568da13ec386043cab1602c21d904208d5668306fc28"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-34.png",
+      "sha256": "e87c5b1f36d8d62bcf0281ec7d3e7f20772924a698440049e9dab02a88560e41"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-35.png",
+      "sha256": "66145bc4d1028e78afcf1d8143691c4cedddf5f1aa1c8a8a69436275332bfbc3"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-36.png",
+      "sha256": "7c6ae11eda8f7ab6f9893396098cdd63dd69d6a660927a0cd48652f05cb62353"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-37.png",
+      "sha256": "4b00a9f9db660db82856b05c13bacf52e8f832f0b0c5ff2613975cdfd4bcea22"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-38.png",
+      "sha256": "821bc140889616bec3f73aa593d74127d83347361afe358ceef1a807f0278be5"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-39.png",
+      "sha256": "2ef640511b362cf6120cb71927e890b62f4efd20af41da0437cc7dfe0242a95a"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-40.png",
+      "sha256": "3b1590bc2bea2265fd8144f1a3d671f0f77a9cb4c3e632c74072a1bea848d25b"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-41.png",
+      "sha256": "f8f2698bf03e82ae385f05deacf47cf96946205d8a6c2561fd1a7aaf89a4c2f5"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-42.png",
+      "sha256": "3bcba1ae411518453f4f35813bb266c252e0e1d03d75e83789454cad6bd40160"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-43.png",
+      "sha256": "6c1803c2294163aaaddfddd42dc91472412844c043b4bb1241dbc2b1d3a21a53"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/page-44.png",
+      "sha256": "8eb6c4ce6dbbfe1a9559aa6953fd4a3749f5b31d1a27e21d7347b4344f00f1fa"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/sheet-01.jpg",
+      "sha256": "067b9a819b93c4a053e313ae9ade743b3706c8e406e03286f329229618680dd3"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/sheet-02.jpg",
+      "sha256": "606e422de99ffd78d47b579b36cf401e2865be0242b073b5f62965706950755e"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/sheet-03.jpg",
+      "sha256": "a9a14346d553fc1eca6ed5c5b027e21a6c1153fb6a98ec509c06bee15c0ebe85"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/sheet-04.jpg",
+      "sha256": "1c7cc889b0b8d437910b8e44d60c6593d62ed75bae6481eba93135e64f14c23f"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/b/sheet-05.jpg",
+      "sha256": "463588cf4672a3df47ec30b0f5738e45465d59c87b301d06f576a1077318ee08"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/inventory.json",
+      "sha256": "b8eb3b1aa70a1c5eed0427929abc6e5ab9d749a77c68ea05fef4be7370277597"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-01.png",
+      "sha256": "3f5848064db222c5fbe365e004771a81e938e6586180d50cdebb9f54f4eecbb0"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-02.png",
+      "sha256": "0b6f62bad22c40e7d77a7d053ad9c594c8deb30197cf53888779b3022b75ff57"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-03.png",
+      "sha256": "d5676b5abc7e5e693440365a64bf6643c04ef503a9835b60d51277461eb9bc17"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-04.png",
+      "sha256": "7c1a6e76efda187dbca2c53587936278094ecc0805bbd127d030926c3177a111"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-05.png",
+      "sha256": "2199b8719ea851b41508d956f374442ceadec6cbe65a193e3b38d2ba8dc3b5d0"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-06.png",
+      "sha256": "29a395833363a9fca34e9c7fccdd875f44ba25edfda36a4c1631c5cea5aceaa2"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-07.png",
+      "sha256": "e6074213259077af0b92f6fdfe5670d3b29711b9cacb5e382a84e80a546bd8e0"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-08.png",
+      "sha256": "0ed5498f31a547af07d68bde524315b05e87afa7c64edb64c35e3abcd7c2ca1a"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-09.png",
+      "sha256": "fec08dd3dae5c7fb0aac0f7b3dcf69633b26410fcc40fe006d30bee1e1999f40"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-10.png",
+      "sha256": "f9431a87b10201f94dfe280b1898d3a6532c7ed61255ec8e2c740f7f893c8e69"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-11.png",
+      "sha256": "520687192aae88b1f9a60b3341844895d317048346e905851ed981f95989cfde"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-12.png",
+      "sha256": "b9c5e488534f4a13734e06d1cf9673f21c5ef3066e6a154d5eb2af020635c5ad"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-13.png",
+      "sha256": "5d678a03c662a37822afaba82238b4019c735d9d1e555fcdb6ba0304268a522c"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-14.png",
+      "sha256": "bbe5f97a311238ddb49315e55897dc34ab15f7e5b97f3786b75dea589e6d5d8d"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-15.png",
+      "sha256": "2f1ca783493dd8189db53b772c58bc534f594d2e27c8ce1cf11cbec2d485fb04"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-16.png",
+      "sha256": "3f801fc42046169fc96627096189af29389ec6d987ba2a59501ad4c831d4c922"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-17.png",
+      "sha256": "2e779404ae13e3530f56b4a0d227c16aa5e1d858d96d1262d470966d894e0782"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-18.png",
+      "sha256": "6999988e66f05d134dff99c117032693f45cc54e584f547161cc39fde5cff043"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-19.png",
+      "sha256": "92baecac8ee9196d8235cebf484124201aeeb8a4a752881dbab0aa906d2ddfca"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-20.png",
+      "sha256": "bc827e7ac8a5c1e0c929033b4413cede951ae295adebbb30f7277ab12e11335f"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-21.png",
+      "sha256": "1a06876940290a42f50de9c5f3055eb6650df4e45313cb37aa72b297262b744f"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-22.png",
+      "sha256": "4acc2ef84aca4620a1ab06b7d9690d5334a53c65f07907155ac9be0e6470724a"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-23.png",
+      "sha256": "f3979a862972b5fcc3c27691a034e5be948862437e60ad90f2b13bfb9b3528f5"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-24.png",
+      "sha256": "2477a1d774f44da716bb5507e703cd15e0676993783944433962b6cdfd2038ef"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-25.png",
+      "sha256": "2ae9318328c733b3499fea537541fb360b3df159c86888efd6df0eca1ef5a37b"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-26.png",
+      "sha256": "534b33522d54b24e1d5e6fc8ba6bad70121ceb684a5092bcf27c40311b7f20d8"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-27.png",
+      "sha256": "3cc3f2d725ff5eba2245c899fc53418d32e0e76033518e96fdb58881a3e43e67"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-28.png",
+      "sha256": "67a7127c733cdae608173d590b2a483d9368856a23a161002ef16874bb44bfb4"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-29.png",
+      "sha256": "c37e7ef82ca024d5b4bff4ebe217b0119a06140800a3b304779bdf0c69f0a5a8"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-30.png",
+      "sha256": "af325699c21d1f26297ee7e2cb712bad8bf24c77a85d20d74d67394e53d94299"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-31.png",
+      "sha256": "486c4eb37de4157ff87104e816aa954bf48fc1d0bad94f5b2f9d94fef96d4fbc"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-32.png",
+      "sha256": "2c1977eedd984aee3f222ff55662106292e201e599ceddccb94c2497457d0852"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-33.png",
+      "sha256": "7cab828128b6d46ff0e62488233a91253cead6fd5b44ba30632476d17de1077e"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-34.png",
+      "sha256": "329ca103047bd2ba3a2050a71ba0d6c8b0cb5a9d2a05605b0b77e88455812b8d"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-35.png",
+      "sha256": "f5b0c8898a80b279f4da823f7730daec33bf7fe948d0b8f8649c6a255c5a30b9"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-36.png",
+      "sha256": "4dc4ac70c86b2900e729b274bda18c369335a4232e80a0058fa977747b329dd9"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-37.png",
+      "sha256": "a5380279d3b19f9575804433eff329b78fee7202bb404a43bcee6f3906f5667b"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-38.png",
+      "sha256": "57cc32090811b530bb265681369fe4ec546dd1aa8532a92a7b6623e85bd2efbe"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-39.png",
+      "sha256": "f7a28bbb4bee51d9a9ad4d19b0f182f6989ada7ce1b9a12563d76f3645227700"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-40.png",
+      "sha256": "01994d1a88522bbad1bdf61172043126b45c48f9cc2c2fe9b8731cb677c5c1a3"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-41.png",
+      "sha256": "696eb26484982fa32ea8b554b8290d7e7175b21847f73faa4929575f01574c0d"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-42.png",
+      "sha256": "015ccef4d7dc6c496da940ff222cfb6420d5beed7a0bccf37ce3f91103a3a11d"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-43.png",
+      "sha256": "5883e234a958fee46e394242a97c7f4c547b994afb5d0eeb9e7c260fb6d91d7b"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-44.png",
+      "sha256": "67808bd6e625bd4bab47b13c08e1c14aae39b63a3f544de81a6b9e98384103ab"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-45.png",
+      "sha256": "49b2e9e16603ceff45e821b0cd7131804ab5aff42281fa1075d7418496a58192"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-46.png",
+      "sha256": "d6e9ac7dea3cd11f7ab05326fb0414f732f3c559dc22fc994f9efe4771ed086d"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-47.png",
+      "sha256": "9bfd6420f7028f568a1aea92d7351066ec648fd02504c4fdca755c954033867b"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-48.png",
+      "sha256": "5beae11e7707a00c84bee7978ba96ac3fe8de6889b9846d6ef811fde36ec4000"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-49.png",
+      "sha256": "29b83981cd373110b29c0b156e41bf0d341c414f808f1da985296502253d9e48"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-50.png",
+      "sha256": "306479a4ad0de56323a608ba9d7af79e16db984265be2381d5e491dd0062e82a"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-51.png",
+      "sha256": "8a925a4ef4dddd15bd5bb0fe908dba9b546b60ef547d1ce0f91aaf7b03a33267"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-52.png",
+      "sha256": "d03a867bd7119bdec0a4a2aef37fb5574e3d80a676373df02c11c16f177979d2"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-53.png",
+      "sha256": "e57657ab1132875337b7a640b89d75ad2ef158a85365e297a415a34f4c6fd06a"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-54.png",
+      "sha256": "7c0583f70c89deb33f5497e8b2a3b08827cf41189bf28790024552b04b000561"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-55.png",
+      "sha256": "2061f6d9efd9185495e951e5dbf0fcf1352e12b2e549587eac6483d71e4369b3"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-56.png",
+      "sha256": "39cd5b0ffe94ae1854e1991eb0076646f656f139195fd60123a8b3c5f822ea8a"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-57.png",
+      "sha256": "76f4d4ab4154d65f571904c92dfaf975ae9136bd77426ad4205a681806e7c559"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-58.png",
+      "sha256": "933ddd70666dcb457e11b7b3dfea78982be4c322fd2976f35efec420e563de52"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-59.png",
+      "sha256": "e70dff187b7a15950cdfb73952e0eecc3f856793d78c4869b05f038fd7d63036"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-60.png",
+      "sha256": "17cb560b8bd19b2cbe15844e0cae9a466018e20f44d3cb8a6edd9bdc0419bdcc"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-61.png",
+      "sha256": "709d8ffd3f475006ad59572ef3a3e9ad899bb2b060f42d6a57a2c58cdf5c2fbe"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-62.png",
+      "sha256": "8a3cfcedd5d679d3105a0801f5a32a790f9eaea5c58fa087a7d189cae1fb6fa1"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-63.png",
+      "sha256": "954fa043e1df9d0d73ef2f3057f3377313145b575f4815c34ba280670f02ecea"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-64.png",
+      "sha256": "d7896740b3db26fe1292fc24ffc2ad0ff0931c2cd2028b13c1a3ffdd867d89aa"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-65.png",
+      "sha256": "0716974307473b4d266dcc8ff6c8b58c5ceced11c1494c086adf9651cff20cc5"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-66.png",
+      "sha256": "9fed8537882deab78d87a0efc2d7ae3d26ccc6743631b4a4531e8170c65d85a9"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-67.png",
+      "sha256": "cb48f0c15e6ceaf94b54d45380fc6d0a7cb195f9c341571acfec3f5160e77cd8"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/page-68.png",
+      "sha256": "766b07d2e8c2732b15586a5d216e72c07b62ee93d3c5a97e1ec7c6f38f931085"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/sheet-01.jpg",
+      "sha256": "588651dd07a44f8fcc786e6fa34912a5ba692e17748e266825647f0317120d7d"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/sheet-02.jpg",
+      "sha256": "c0618cd69b5733041154fbd36cc61d26e6d2721e84a9e0611b3e951dadfbb38e"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/sheet-03.jpg",
+      "sha256": "9a026ce9b6191c6fbb48662d34bec89630a298aaa6953c758b31c8ed2d0a75e5"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/sheet-04.jpg",
+      "sha256": "be5f99b7a0076dfe800edb6551195c350b2375db9640c0e7dc575a97b6ae1032"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/sheet-05.jpg",
+      "sha256": "a0e60ee69b37c817a8798e00d2a784253e8caa5213509cff10d4f8ba4a2ac42b"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/sheet-06.jpg",
+      "sha256": "791d762f54f3f2ae1aca137475a5d6696268791ff67768c329023364dad8d240"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/sheet-07.jpg",
+      "sha256": "873606ce90491b4ee97c1b8eb456621aaa556e36c010e16f6c5c3935540547eb"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/c/sheet-08.jpg",
+      "sha256": "ea9fe487d2c3dfcf263da7d7559870d0e1cfcac003404237234e48ec1aecdc5f"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/d/inventory.json",
+      "sha256": "725fd82f303e4fc10eed17eebfd7545a210d5e2ab7e32e7a404c83e15670ad0c"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/d/page-01.png",
+      "sha256": "98e95c9f8e14b24b4934257147cb69e276d953c94dc05f4121e543d34ecf2d26"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/d/page-02.png",
+      "sha256": "4858a5af2c9e3a81a54ba9135f05f75f6852466e4574fda20ee9ad612d92a84f"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/d/page-03.png",
+      "sha256": "c5af0259f42bb22d9543e9248089101a37040d90ed8b568338badaeeff73e0c3"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/d/page-04.png",
+      "sha256": "a359ce291190e5682611bac06c83a08377fb74ed2bcfc6537ab8f9f64aabaabd"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/d/page-05.png",
+      "sha256": "c177e9d6b78edd90660d60d9815fcb80d10c4d4d76bcd65a652ec27845dc8f2d"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/d/page-06.png",
+      "sha256": "dc6f2d6a412e35a3327737782e4392fffbda185bf65199ae649abed4c632b988"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/d/page-07.png",
+      "sha256": "3d93d8466d022886fd6f11b2de855366768ed151850f3c7f9898d1db9d49b718"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/d/page-08.png",
+      "sha256": "1274faff8d8fa105a504f5571a88accd707a6917f4ff9e2af572feb1f7a87051"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/d/page-09.png",
+      "sha256": "0e29c25cd6f7ed9a1dd4a71d4f217f732bf3d6ae15760f75ccf71d4c62d65187"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/d/page-10.png",
+      "sha256": "cb63d272b53edccd434b911dc7ddcbde3e42bb61b5693b2522f76a2dae8e2fe3"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/d/sheet-01.jpg",
+      "sha256": "fdde145b46ef81fe76e21c37a5ff087b7ca4cdbdff72d24c550231a271092e74"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/d/sheet-02.jpg",
+      "sha256": "fab5170df40c99aa3c08b5b087f9945d105d417522bd95d36c41cca5a61e9525"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/inventory.json",
+      "sha256": "3a48ba0aadc895e64d1ccec4e9a277dfdff6a644024541e917a11f46f9a9fc68"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/page-01.png",
+      "sha256": "232e23bc08034653c680e4d70dc2017605c19c6603a7576c250c74ed461e9a82"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/page-02.png",
+      "sha256": "8c3853b84029da8d13a81227ee5c4fde9f72a13dc81600b3a7a5e4b692fe78b4"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/page-03.png",
+      "sha256": "70fbbc29eb0e9f64dc6dd1bc2323ef5217ea0dd776fc31fff5210c91a8141029"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/page-04.png",
+      "sha256": "9264dfe1a3ead7d29249a0228bb5dd84ddac2ebb3628d970ae41f238070cae08"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/page-05.png",
+      "sha256": "39a3c85f833a81c8d679ecd992726ab0cdebd8e2347e4262d3b6417b2e608f9e"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/page-06.png",
+      "sha256": "e1bf9ca041fcf69694164000620097988fe94f5fbb5a0bd66309fc68f530bcd6"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/page-07.png",
+      "sha256": "6e2b035e175d74c6f62b9b746724fda5181a9a1f2754c2f3d372b8eda2746c65"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/page-08.png",
+      "sha256": "993c7bdcc1fb8bcb38f83db12fa8bba0d521eb6aa2eebf30fc0367595cb4e281"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/page-09.png",
+      "sha256": "f345c19746c858f9bc8167cdf25c86088eddd3c1653d90bc0c747afc60822689"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/page-10.png",
+      "sha256": "18084b651e73ccebfd75726ae5a2a6479b5d9b1a5df3d1f5b8d16e5cf9c1083c"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/page-11.png",
+      "sha256": "3a8d20ff48a3cb82fbade5cf5419bff0c278c960acd1b9d2f60444074d0e016d"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/page-12.png",
+      "sha256": "048be8e162cbbb0acab009eb5e5f312b051d046be3d103f8c29bed4f6edd7d5d"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/page-13.png",
+      "sha256": "f8d6e4c24b0e58c33ec29b390dd35aae5c83931389aecab725ddd5752e6cf3c9"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/page-14.png",
+      "sha256": "30a599e59e6ff830565baaa99da918be99eef236ac40080e0047cd605d25dfc0"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/page-15.png",
+      "sha256": "03040122bb77b8e30b3c3ddfd750b237d9b1f027a01590e41b47362d11e438c4"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/page-16.png",
+      "sha256": "b10d0661d4821f00099f6a2be9ba19fe3318ded25cfafd4b1609b664aa513f39"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/page-17.png",
+      "sha256": "fc371f4bbd86e241fdce0bba530cde340ea479bf968e647f264d5aaeef936d25"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/page-18.png",
+      "sha256": "12c678f25f20113dbe0f7e86ee0e9a20ce34694aa27ebf37ae34c02fdf8f665a"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/sheet-01.jpg",
+      "sha256": "d003bf4918a6bc8bd7cae3209311dc56fe40d7478a7c544392ec1b7ab20eac51"
+    },
+    {
+      "path": "tmp/papers_visual_20260922/e/sheet-02.jpg",
+      "sha256": "9dae21160900f329c669663998b0ea8b4441ca6dbd55732e44dd64a9fcaaf34a"
+    },
+    {
+      "path": "tmp/pdfs/paper_c_moments_21.png",
+      "sha256": "19c6165bbefe9edee4c0e6be692fa018209cb4d17e8c72e88dbb4a66bccdb921"
+    },
+    {
+      "path": "tmp/pdfs/paper_c_moments_22.png",
+      "sha256": "187924a73a57937d84c961be087cdd1c53f45459111283c4bf0698cb00d0dda2"
+    },
+    {
+      "path": "tmp/prepare_code_mass_patch.py",
+      "sha256": "57e2985f2d8b5d5636fdcb9cd0a7986af29cd234d47c46e81ba30f122138d69f"
+    },
+    {
+      "path": "tmp/prepare_fejer_commit.py",
+      "sha256": "cb8f980c38cca18e4d836da6ff21b4ad70414c486f363b5fc42d5fd1631df390"
+    },
+    {
+      "path": "tmp/prepare_paper_e_v030_commit.py",
+      "sha256": "181493dd0a772f1f05ff4ff3eb421ab642a9bd4ada1d56def4ee71f0a40e9d47"
+    },
+    {
+      "path": "tmp/prepare_publication_appendices.py",
+      "sha256": "f859592751dbfd81fca7b95d80e9d1e90d6feca696877b53227c60b79cc4d8f5"
+    },
+    {
+      "path": "tmp/probe_preimage_boundary.py",
+      "sha256": "e184d078b01ce6edcab4c82c89b02a2c5574fa4815257816db13d86f1d67c753"
+    },
+    {
+      "path": "tmp/probe_signed_grid_certificate.py",
+      "sha256": "5125d7a50ecece86cbe31da1ad01c436307237ed4ad9ae9b9fb509769ab9461c"
+    },
+    {
+      "path": "tmp/record_cubic_inverse_cell.py",
+      "sha256": "7c93e8b13e2edb013a070498566b46eca536d55bde65dbd86f3538091c32c7ac"
+    },
+    {
+      "path": "tmp/record_odd_cubic_phase.py",
+      "sha256": "e6ede4cdf4af67c5185545ded5f293dc86cd92761638bc4bd74cc38455a757f3"
+    },
+    {
+      "path": "tmp/record_preimage_balance.py",
+      "sha256": "68ee0f02f1458a4b6a14f841781194b777c784cd2e55fa9ffd4fee99891d3877"
+    },
+    {
+      "path": "tmp/record_preimage_blocks.py",
+      "sha256": "53458cb614dae910b23a74db71a5f3a0a79be54765b96d6bb4eec70877a651bc"
+    },
+    {
+      "path": "tmp/record_preimage_grid.py",
+      "sha256": "94487c83041666aaacf921eaf9058585356525b79430c9434499eb3362a47902"
+    },
+    {
+      "path": "tmp/record_signed_density.py",
+      "sha256": "e87933b4135f47c7c2b87cc2e1ead8167073c544253f2408efd2bc96a7b44729"
+    },
+    {
+      "path": "tmp/register_fejer.py",
+      "sha256": "d87cdacb3f0f2dadd262ccd467ac4be98253820ed55f350c85a334c323d8d180"
+    },
+    {
+      "path": "tmp/register_paper_e_completion.py",
+      "sha256": "fdace61ff95496b7419d512f9c7bdabb32070b39228da905fa5f05e5bf82d21b"
+    },
+    {
+      "path": "tmp/register_paper_e_v030.py",
+      "sha256": "a39429fa833e0723d52a8df9aedf1c806cf397a714a72cc5cca004262f249253"
+    },
+    {
+      "path": "tmp/register_preimage_domain.py",
+      "sha256": "1c3571b481b3d2a1545019c771cf31edf56b09dd6f76babdd78c51be47c2dad6"
+    },
+    {
+      "path": "tmp/retag_fejer.py",
+      "sha256": "6b9aca0c9f62c8f295d5c61654683f971a63899b615952087c65f3053ec30963"
+    },
+    {
+      "path": "tmp/review_paper_pdfs.py",
+      "sha256": "b3a2fd5e60de1020f9e85d728d97a7e72d7da31ccc4e40ddf57b1f8df29e2b2b"
+    },
+    {
+      "path": "tmp/signed_grid_k12_certificate.json",
+      "sha256": "17bd7954a2a0071c5e7ffbc73d087dbe374ea4769cf5610142cf702837024d31"
+    },
+    {
+      "path": "tmp/synchronize_paper_summaries.py",
+      "sha256": "3462c6c22051c55d48b421a4e3aaed826c0652ddd76ff2c4b16231874dcff4fe"
+    },
+    {
+      "path": "tmp/test_fejer_scoped_gates.py",
+      "sha256": "f3101a3f96b805961ea1b5520930c90eb8608e071ae90d4f6253f9ca435a5d57"
+    },
+    {
+      "path": "tmp/update_moment_ledger.py",
+      "sha256": "ea2186dac0ffcb7b9176f9935f6b120e1017531fda50734c8e005a66ecb99b39"
+    },
+    {
+      "path": "tmp/update_paper_c_20260922.py",
+      "sha256": "4a07906b1f823d0ac0f0abb1355655488f1e9c628e531a48e3cc04b6333e072f"
+    },
+    {
+      "path": "tmp/update_paper_records_20260922.py",
+      "sha256": "08e61c276a91cc0616e66e40de902c49569759a0b685cd086e4375437a1712d1"
+    },
+    {
+      "path": "tmp/update_papers_20260922.py",
+      "sha256": "639a37861bc6a2e9b65796b25bd935224f6d57c918b35bf578e252d149937b1b"
+    },
+    {
+      "path": "tmp/update_preimage_literature.py",
+      "sha256": "1a5ef758150f02a8479a4e9fc603ded8a23ee67a27580594cbdb823ee7bf564d"
+    },
+    {
+      "path": "tmp/verify_fejer_scoped_artifacts.py",
+      "sha256": "1ec9b4b5529caf5ac207cd6ae0f51fa142f389ba2825dd8e38f0717517ee1af0"
+    }
+  ],
+  "retained_build_artifacts": [
+    ".build/paper_a/cochin-juggler.aux",
+    ".build/paper_a/cochin-juggler.log",
+    ".build/paper_a/cochin-juggler.out",
+    ".build/paper_a/cochin-juggler.tex",
+    ".build/paper_a/xelatex-pass-1.txt",
+    ".build/paper_a/xelatex-pass-2.txt",
+    ".build/paper_a/xelatex-pass-3.txt",
+    ".build/paper_b/juggler_parity_discrepancy_note.aux",
+    ".build/paper_b/juggler_parity_discrepancy_note.log",
+    ".build/paper_b/juggler_parity_discrepancy_note.out",
+    ".build/paper_b/juggler_parity_discrepancy_note.tex",
+    ".build/paper_b/xelatex-pass-1.txt",
+    ".build/paper_b/xelatex-pass-2.txt",
+    ".build/paper_c/cochin-juggler-fates.aux",
+    ".build/paper_c/cochin-juggler-fates.log",
+    ".build/paper_c/cochin-juggler-fates.out",
+    ".build/paper_c/cochin-juggler-fates.tex",
+    ".build/paper_c/figures/paper_c_decomposition.png",
+    ".build/paper_c/figures/paper_c_dependencies.png",
+    ".build/paper_c/figures/paper_c_productions.png",
+    ".build/paper_c/xelatex-pass-1.txt",
+    ".build/paper_c/xelatex-pass-2.txt",
+    ".build/paper_c/xelatex-pass-3.txt",
+    ".build/paper_d/cochin-3n-minus-1-m-cycles.aux",
+    ".build/paper_d/cochin-3n-minus-1-m-cycles.log",
+    ".build/paper_d/cochin-3n-minus-1-m-cycles.out",
+    ".build/paper_d/cochin-3n-minus-1-m-cycles.tex",
+    ".build/paper_d/xelatex-pass-1.txt",
+    ".build/paper_d/xelatex-pass-2.txt",
+    ".build/paper_d/xelatex-pass-3.txt",
+    ".build/paper_e/cochin-juggler-signed-collatz.aux",
+    ".build/paper_e/cochin-juggler-signed-collatz.log",
+    ".build/paper_e/cochin-juggler-signed-collatz.out",
+    ".build/paper_e/cochin-juggler-signed-collatz.tex",
+    ".build/paper_e/final-v040/cochin-juggler-signed-collatz.aux",
+    ".build/paper_e/final-v040/cochin-juggler-signed-collatz.log",
+    ".build/paper_e/final-v040/cochin-juggler-signed-collatz.out",
+    ".build/paper_e/final-v040/cochin-juggler-signed-collatz.tex",
+    ".build/paper_e/final-v040/xelatex-pass-1.txt",
+    ".build/paper_e/final-v040/xelatex-pass-2.txt",
+    ".build/paper_e/final-v040/xelatex-pass-3.txt",
+    ".build/paper_e/final-v050/cochin-juggler-signed-collatz.aux",
+    ".build/paper_e/final-v050/cochin-juggler-signed-collatz.log",
+    ".build/paper_e/final-v050/cochin-juggler-signed-collatz.out",
+    ".build/paper_e/final-v050/cochin-juggler-signed-collatz.tex",
+    ".build/paper_e/final-v050/xelatex-pass-1.txt",
+    ".build/paper_e/final-v050/xelatex-pass-2.txt",
+    ".build/paper_e/final-v050/xelatex-pass-3.txt",
+    ".build/paper_e/lean-axioms.txt",
+    ".build/paper_e/lean-build.txt",
+    ".build/paper_e/pre-rebuild-sha256.json",
+    ".build/paper_e/qa-final-v050/page-01.png",
+    ".build/paper_e/qa-final-v050/page-02.png",
+    ".build/paper_e/qa-final-v050/page-03.png",
+    ".build/paper_e/qa-final-v050/page-04.png",
+    ".build/paper_e/qa-final-v050/page-05.png",
+    ".build/paper_e/qa-final-v050/page-06.png",
+    ".build/paper_e/qa-final-v050/page-07.png",
+    ".build/paper_e/qa-final-v050/page-08.png",
+    ".build/paper_e/qa-final-v050/page-09.png",
+    ".build/paper_e/qa-final-v050/page-10.png",
+    ".build/paper_e/qa-final-v050/page-11.png",
+    ".build/paper_e/qa-final-v050/page-12.png",
+    ".build/paper_e/qa-final-v050/page-13.png",
+    ".build/paper_e/qa-v040/final-01.png",
+    ".build/paper_e/qa-v040/final-02.png",
+    ".build/paper_e/qa-v040/final-03.png",
+    ".build/paper_e/qa-v040/final-04.png",
+    ".build/paper_e/qa-v040/final-05.png",
+    ".build/paper_e/qa-v040/final-06.png",
+    ".build/paper_e/qa-v040/final-07.png",
+    ".build/paper_e/qa-v040/final-08.png",
+    ".build/paper_e/qa-v040/final-09.png",
+    ".build/paper_e/qa-v040/final-10.png",
+    ".build/paper_e/qa-v040/final-11.png",
+    ".build/paper_e/qa-v040/final-12.png",
+    ".build/paper_e/qa-v040/final-13.png",
+    ".build/paper_e/qa-v040/page-01.png",
+    ".build/paper_e/qa-v040/page-02.png",
+    ".build/paper_e/qa-v040/page-03.png",
+    ".build/paper_e/qa-v040/page-04.png",
+    ".build/paper_e/qa-v040/page-05.png",
+    ".build/paper_e/qa-v040/page-06.png",
+    ".build/paper_e/qa-v040/page-07.png",
+    ".build/paper_e/qa-v040/page-08.png",
+    ".build/paper_e/qa-v040/page-09.png",
+    ".build/paper_e/qa-v040/page-10.png",
+    ".build/paper_e/qa-v040/page-11.png",
+    ".build/paper_e/qa-v040/page-12.png",
+    ".build/paper_e/qa-v040/page-13.png",
+    ".build/paper_e/qa-v050/page-01.png",
+    ".build/paper_e/qa-v050/page-02.png",
+    ".build/paper_e/qa-v050/page-03.png",
+    ".build/paper_e/qa-v050/page-04.png",
+    ".build/paper_e/qa-v050/page-05.png",
+    ".build/paper_e/qa-v050/page-06.png",
+    ".build/paper_e/qa-v050/page-07.png",
+    ".build/paper_e/qa-v050/page-08.png",
+    ".build/paper_e/qa-v050/page-09.png",
+    ".build/paper_e/qa-v050/page-10.png",
+    ".build/paper_e/qa-v050/page-11.png",
+    ".build/paper_e/qa-v050/page-12.png",
+    ".build/paper_e/qa-v050/page-13.png",
+    ".build/paper_e/qa-v050/page-14.png",
+    ".build/paper_e/qa/page-01.png",
+    ".build/paper_e/qa/page-02.png",
+    ".build/paper_e/qa/page-03.png",
+    ".build/paper_e/qa/page-04.png",
+    ".build/paper_e/qa/page-05.png",
+    ".build/paper_e/qa/page-06.png",
+    ".build/paper_e/qa/page-07.png",
+    ".build/paper_e/qa/page-08.png",
+    ".build/paper_e/qa/page-09.png",
+    ".build/paper_e/qa/page-10.png",
+    ".build/paper_e/qa/page-11.png",
+    ".build/paper_e/qa/page-12.png",
+    ".build/paper_e/qa/spread-1.png",
+    ".build/paper_e/qa/spread-2.png",
+    ".build/paper_e/qa/spread-3.png",
+    ".build/paper_e/qa/spread-4.png",
+    ".build/paper_e/qa/spread-5.png",
+    ".build/paper_e/qa/spread-6.png",
+    ".build/paper_e/test-results-v020-final.xml",
+    ".build/paper_e/test-results-v020.xml",
+    ".build/paper_e/test-results-v030.xml",
+    ".build/paper_e/test-results.xml",
+    ".build/paper_e/xelatex-pass-1.txt",
+    ".build/paper_e/xelatex-pass-2.txt",
+    ".build/paper_e/xelatex-pass-3.txt",
+    ".build/papers_update_20260922/AxiomCheckPaperC.actual",
+    ".build/papers_update_20260922/a/cochin-juggler.aux",
+    ".build/papers_update_20260922/a/cochin-juggler.log",
+    ".build/papers_update_20260922/a/cochin-juggler.out",
+    ".build/papers_update_20260922/a/cochin-juggler.tex",
+    ".build/papers_update_20260922/a/xelatex-pass-1.txt",
+    ".build/papers_update_20260922/a/xelatex-pass-2.txt",
+    ".build/papers_update_20260922/a/xelatex-pass-3.txt",
+    ".build/papers_update_20260922/c/cochin-juggler-fates.aux",
+    ".build/papers_update_20260922/c/cochin-juggler-fates.log",
+    ".build/papers_update_20260922/c/cochin-juggler-fates.out",
+    ".build/papers_update_20260922/c/cochin-juggler-fates.tex",
+    ".build/papers_update_20260922/c/figures/paper_c_decomposition.png",
+    ".build/papers_update_20260922/c/figures/paper_c_dependencies.png",
+    ".build/papers_update_20260922/c/figures/paper_c_productions.png",
+    ".build/papers_update_20260922/c/xelatex-pass-1.txt",
+    ".build/papers_update_20260922/c/xelatex-pass-2.txt",
+    ".build/papers_update_20260922/c/xelatex-pass-3.txt",
+    ".build/papers_update_20260922/e-final/cochin-juggler-signed-collatz.aux",
+    ".build/papers_update_20260922/e-final/cochin-juggler-signed-collatz.log",
+    ".build/papers_update_20260922/e-final/cochin-juggler-signed-collatz.out",
+    ".build/papers_update_20260922/e-final/cochin-juggler-signed-collatz.tex",
+    ".build/papers_update_20260922/e-final/xelatex-pass-1.txt",
+    ".build/papers_update_20260922/e-final/xelatex-pass-2.txt",
+    ".build/papers_update_20260922/e-final/xelatex-pass-3.txt",
+    ".build/papers_update_20260922/e/cochin-juggler-signed-collatz.aux",
+    ".build/papers_update_20260922/e/cochin-juggler-signed-collatz.log",
+    ".build/papers_update_20260922/e/cochin-juggler-signed-collatz.out",
+    ".build/papers_update_20260922/e/cochin-juggler-signed-collatz.tex",
+    ".build/papers_update_20260922/e/xelatex-pass-1.txt",
+    ".build/papers_update_20260922/e/xelatex-pass-2.txt",
+    ".build/papers_update_20260922/e/xelatex-pass-3.txt",
+    ".build/papers_update_20260922/paper_a_numeric_check.json"
+  ],
+  "cleanup_policy": "Local scratch copies are preserved; no recursive deletion. Publication inputs and .build audit records retained."
+}

@@ -142,6 +142,11 @@ snapshot from OEIS. Declaration links come from their own docstrings or source
 headers and include a namespace and module for `formalpedia_show`. An arbitrary
 mention elsewhere in the same Lean file is not attributed to a theorem.
 Ledger references preserve the recorded claim tag without upgrading it.
+Laboratory links default to the active Juggler/Collatz scope. `scope="archive"`
+retrieves historical projects and `scope="all"` includes both; `scope_counts`
+reports hidden archive mentions. This filter also applies to related ledger
+and Lean summaries. OEIS text and integer searches always retain the full OEIS
+corpus regardless of the laboratory's research focus.
 LaTeX manuscripts and bibliographies are included. Papers appear first; use
 `kinds=["paper"]` to restrict mentions to manuscripts or
 `kinds=["dossier", "negative_knowledge"]` to inspect previous decisions.

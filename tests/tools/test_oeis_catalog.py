@@ -296,3 +296,39 @@ def test_lab_links_include_and_prioritize_manuscripts_and_filter_before_paging(t
     assert second['mentions'][0]['kind'] == 'negative_knowledge' and second['next_offset'] is None
     with pytest.raises(ValueError, match='Mention kinds'):
         lab_links('A000002', root=tmp_path, kinds=['typo'])
+
+
+def test_lab_links_archive_scope_is_explicit_and_counted(tmp_path, monkeypatch):
+    monkeypatch.setattr('oeis_lab_links.shutil.which', lambda _: None)
+    (tmp_path / 'data').mkdir()
+    (tmp_path / 'data/lab_scope.json').write_text(json.dumps({'archived_research': ['primes']}))
+    (tmp_path / 'docs/problems').mkdir(parents=True)
+    (tmp_path / 'docs/problems/juggler_example.md').write_text('A000002 active\n')
+    (tmp_path / 'docs/problems/prime_example.md').write_text('A000002 archived\n')
+    current = lab_links('A000002', root=tmp_path)
+    assert current['total_mentions'] == 1 and current['all_scope_mentions'] == 2
+    assert current['scope_counts'] == {'active': 1, 'archive': 1}
+    old = lab_links('A000002', root=tmp_path, scope='archive')
+    assert old['mentions'][0]['file'].endswith('prime_example.md')
+    assert lab_links('A000002', root=tmp_path, scope='all')['total_mentions'] == 2
+
+
+@pytest.mark.parametrize('fallback', [False, True])
+def test_archive_reference_search_respects_gitignored_private_files(tmp_path, monkeypatch, fallback):
+    import shutil
+    import subprocess
+    from oeis_lab_links import find_mentions
+    if not shutil.which('rg') or not shutil.which('git'):
+        pytest.skip('ripgrep and git are required for the ignore integration check')
+    subprocess.run(['git', 'init', '--quiet', str(tmp_path)], check=True, capture_output=True)
+    if fallback:
+        which = shutil.which
+        monkeypatch.setattr('oeis_lab_links.shutil.which', lambda name: None if name == 'rg' else which(name))
+    (tmp_path / '.ignore').write_text('/src/research/primes/\n')
+    (tmp_path / '.gitignore').write_text('*.private.json\n')
+    (tmp_path / 'src/research/primes').mkdir(parents=True)
+    (tmp_path / 'literature').mkdir()
+    (tmp_path / 'src/research/primes/old.py').write_text('# A000002 historical citation\n')
+    (tmp_path / 'literature/letter.private.json').write_text('{"sequence": "A000002"}\n')
+    found = list(find_mentions('A000002', tmp_path))
+    assert [file for file, _, _ in found] == ['src/research/primes/old.py']

@@ -1624,6 +1624,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--ledger-id")
     p.add_argument("--include-private", action="store_true")
     p.add_argument("--include-deprecated", action="store_true")
+    p.add_argument("--scope", choices=['active', 'archive', 'all'], default='active')
     p.add_argument("--json", action="store_true")
     p = sub.add_parser("show", help="one declaration; ambiguous short names return alternatives")
     p.add_argument("name")
@@ -1668,7 +1669,8 @@ def main(argv: list[str] | None = None) -> int:
             if args.cmd == "search":
                 result = catalogue.search(args.text, namespace=args.namespace, module=args.module,
                     kind=args.kind, ledger_id=args.ledger_id, include_private=args.include_private,
-                    include_deprecated=args.include_deprecated, limit=args.limit, offset=args.offset)
+                    include_deprecated=args.include_deprecated, limit=args.limit, offset=args.offset,
+                    scope=args.scope)
                 if args.json:
                     print(render(result), end="")
                 else:

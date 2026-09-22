@@ -43,6 +43,7 @@ jobs:
       - uses: leanprover/lean-action@v1
         with:
           lake-package-directory: formal
+          build: "false"
       # lean-action appends $HOME/.elan/bin to GITHUB_PATH, so lake is on PATH
       # for the steps below. The gates here call lake and therefore skip on the
       # python job, which has no toolchain; without this step nothing in CI
@@ -52,6 +53,8 @@ jobs:
           python-version: "3.11"
       - name: Install
         run: python -m pip install -e ".[dev]"
+      - name: Build active Juggler and Collatz graph
+        run: python tools/lab.py build
       - name: Lean-dependent gates
         run: >
           pytest --runslow -q

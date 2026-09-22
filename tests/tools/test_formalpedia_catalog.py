@@ -34,6 +34,20 @@ def write(folder, name, text):
     return path
 
 
+def test_scoped_search_hides_legacy_results_but_exact_lookup_stays_global(library):
+    folder, _ = library
+    (folder / 'Juggler').mkdir()
+    write(folder / 'Juggler', 'Scope', 'namespace J\n/-- Active result. -/\ntheorem active : True := trivial\nend J\n')
+    write(folder, 'Historical', 'namespace Old\n/-- Historical result. -/\ntheorem legacy : True := trivial\nend Old\n')
+    catalogue = Catalogue()
+    assert {r['id'] for r in catalogue.search('')['results']} == {'J.active'}
+    assert {r['id'] for r in catalogue.search('', scope='archive')['results']} == {'Old.legacy'}
+    assert catalogue.search('', scope='all')['total'] == 2
+    assert catalogue.show('Old.legacy')['scope'] == 'archive'
+    with pytest.raises(ValueError, match='scope'):
+        catalogue.search('', scope='typo')
+
+
 def test_namespace_identity_is_not_inferred_from_filename(library):
     folder, _ = library
     write(folder, 'DifferentFile', 'namespace Math\nnamespace First\n'
