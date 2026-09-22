@@ -104216,6 +104216,258 @@
       "trust": "kernel"
     },
     {
+      "doc": "A bounded positive shift does not change the leading real-power scale.",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 22,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "tendsto_intermediate_rpow_ratio",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The leading asymptotic of a fixed difference follows from the actual derivative.",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 41,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "tendsto_difference_div_rpow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A reciprocal first-derivative bound of sublinear power size is o(N).",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 73,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "tendsto_normalized_reciprocal_power",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Eventual derivative bounds and monotonicity give sublinear cancellation.",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 98,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "tendsto_average_zero_of_derivative_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The positive first-derivative asymptotic and negative second derivative suffice.",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 140,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "tendsto_average_zero_of_two_derivatives",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A smooth derivative tower with the leading asymptotics of c*x^p. Each derivative is only required eventually; no common tail over all orders is assumed.",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 173,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "HasPowerAsymptotics",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Fixed positive differences lower the exponent by one, including every derivative.",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 180,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "HasPowerAsymptotics.difference",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Negation changes the leading coefficient without changing the exponent.",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 206,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "HasPowerAsymptotics.neg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 218,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "HasPowerAsymptotics.cancellation_sublinear_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Complex conjugation preserves the zero limit of phase averages.",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 237,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "tendsto_phase_average_zero_of_neg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Qualitative cancellation at every noninteger derivative order.",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 248,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "HasPowerAsymptotics.cancellation",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Coefficients of the successive derivatives of x^p.",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 270,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "powerCoeff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every real power has the stated derivative asymptotics, including negative orders.",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 275,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "hasPowerAsymptotics_power",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Lower powers have zero coefficient when measured at a larger power scale.",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 295,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "HasPowerAsymptotics.lower_order",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Sums at a common scale add their leading coefficients.",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 315,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "HasPowerAsymptotics.add",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A finite sum at a common scale has the sum of the leading coefficients.",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 332,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "hasPowerAsymptotics_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Finite mixed powers have the derivative asymptotics of their unique top exponent.",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 344,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "hasPowerAsymptotics_mixed",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Affine arguments have their expected leading power scale.",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 359,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "tendsto_affine_rpow_ratio",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Positive affine changes of variable preserve the full derivative tower.",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 375,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "HasPowerAsymptotics.affine",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Unconditional mixed-power cancellation on every positive affine progression. The top exponent is positive and noninteger, and its coefficient is nonzero.",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 410,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "tendsto_mixed_power_average_affine",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every nonzero combination of distinct positive noninteger powers cancels. Zero coefficients are removed before selecting the largest exponent.",
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "line": 421,
+      "module": "BTCalculus.PowerPhaseAsymptotics",
+      "name": "tendsto_distinct_noninteger_power_average",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/BTCalculus/Quadratic.lean",
       "kind": "def",
@@ -107982,6 +108234,7 @@
         "BTCalculus.PadicLiftingState",
         "BTCalculus.Polynomial",
         "BTCalculus.PolynomialFunctionsMod",
+        "BTCalculus.PowerPhaseAsymptotics",
         "BTCalculus.Quadratic",
         "BTCalculus.Residual",
         "BTCalculus.ResidualShift",
@@ -108661,6 +108914,20 @@
           "id": "BTA-coeffwise-nec",
           "statement": "3^k must divide every monomial coefficient for a polynomial to vanish as a function modulo 3^k",
           "tag": "REFUTED"
+        }
+      ]
+    },
+    "BTCalculus.PowerPhaseAsymptotics": {
+      "declarations": 21,
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "imports": [
+        "BTCalculus.SublinearPowerCancellation"
+      ],
+      "ledger": [
+        {
+          "id": "BTA-noninteger-mixed-power-cancellation",
+          "statement": "Kernel-checked classical mixed-power cancellation; advisory statement coverage pending. Let S be a finite index set, p_i distinct positive noninteger real exponents, and c_i real coefficients with at least one nonzero. For every real A>0 and B, the averages (1/N)*sum_(n<N) exp(2*pi*i*sum_(i in S) c_i*(A*n+B)^p_i) tend to zero. The main proof removes zero coefficients and chooses the largest remaining exponent. More generally, it suffices that a unique largest exponent lies strictly between some natural m and m+1 and has nonzero coefficient; lower exponents may be arbitrary real numbers. A derivative tower with D_0=f, a_0=c, a_(k+1)=a_k*(p-k), eventual derivative D_k'=D_(k+1), and D_k(x)/x^(p-k) tending to a_k gives cancellation when c!=0 and m<p<m+1. Actual positive fixed differences preserve this tower with exponent p-1 and leading coefficient h*c*p, proved using moving mean-value points. The base case follows from the proved first-derivative estimate, finite-prefix removal, and conjugation; higher orders follow by qualitative van der Corput. Real powers, finite addition, lower-order terms and positive affine progression changes are proved to satisfy the tower conditions. No cancellation, equidistribution, or analytic estimate is assumed in the concrete mixed-power theorem. This does not yet prove Fourier-to-box recurrence, the concrete Paper E exponent/box specialization, shrinking-target bounds, or termination.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
     },
@@ -113973,13 +114240,13 @@
     }
   },
   "totals": {
-    "declarations": 8552,
-    "declarations_with_a_ledger_row": 5829,
-    "ledger_rows_naming_a_file": 493,
-    "modules": 350,
+    "declarations": 8573,
+    "declarations_with_a_ledger_row": 5850,
+    "ledger_rows_naming_a_file": 494,
+    "modules": 351,
     "trust": {
       "compiler": 56,
-      "kernel": 8496
+      "kernel": 8517
     }
   }
 }

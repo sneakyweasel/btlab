@@ -1,0 +1,23 @@
+import BTCalculus.PowerPhaseAsymptotics
+
+open BTCalculus.PowerPhaseAsymptotics
+
+#print axioms tendsto_intermediate_rpow_ratio
+#print axioms tendsto_difference_div_rpow
+#print axioms tendsto_normalized_reciprocal_power
+#print axioms tendsto_average_zero_of_derivative_bounds
+#print axioms tendsto_average_zero_of_two_derivatives
+#print axioms HasPowerAsymptotics.difference
+#print axioms HasPowerAsymptotics.neg
+#print axioms HasPowerAsymptotics.cancellation_sublinear_pos
+#print axioms tendsto_phase_average_zero_of_neg
+#print axioms HasPowerAsymptotics.cancellation
+#print axioms hasPowerAsymptotics_power
+#print axioms HasPowerAsymptotics.lower_order
+#print axioms HasPowerAsymptotics.add
+#print axioms hasPowerAsymptotics_sum
+#print axioms hasPowerAsymptotics_mixed
+#print axioms tendsto_affine_rpow_ratio
+#print axioms HasPowerAsymptotics.affine
+#print axioms tendsto_mixed_power_average_affine
+#print axioms tendsto_distinct_noninteger_power_average

@@ -94,6 +94,10 @@ at zero. Complex conjugation handles negative c.
 
 ## Audit and remaining Paper E obligations
 
+Subsequent progress: the [mixed-power proof](mixed_power_cancellation_note.md)
+now closes the higher-power and mixed-phase cancellation obligations below.
+This section records the scope of the original first-derivative milestone.
+
 [AxiomCheckFirstDerivative.lean](../../formal/AxiomCheckFirstDerivative.lean)
 audits all 25 theorems in the two modules. Their proofs use only the
 standard logical dependencies propext, Classical.choice, and Quot.sound.

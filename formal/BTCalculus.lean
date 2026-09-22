@@ -45,3 +45,4 @@ import BTCalculus.WeylDifferencing
 import BTCalculus.WeylCancellation
 import BTCalculus.KusminLandau
 import BTCalculus.SublinearPowerCancellation
+import BTCalculus.PowerPhaseAsymptotics

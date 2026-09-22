@@ -1,5 +1,46 @@
 # Research journal
 
+## 2026-09-22 -- Paper E: unconditional noninteger mixed-power cancellation
+
+- **Target and scope:** Close the classical higher/mixed-power analytic
+  input to Theorem 4.1. The critical falsifier was an invalid replacement
+  of actual shifted differences by pure powers. Negative knowledge about
+  shrinking targets does not apply to this fixed-depth, fixed-box input.
+  Existing finite differencing and first-derivative estimates supply the
+  base machinery; no new arithmetic attack or novelty claim is opened.
+- **Proved:** `BTCalculus.PowerPhaseAsymptotics` gives cancellation of
+  every nonzero finite combination of distinct positive noninteger real
+  powers along A*n+B for every A>0 and real B. Zero coefficients are
+  removed before choosing the dominant exponent. A stronger version only
+  constrains the unique highest exponent to be positive and noninteger.
+- **Difference proof:** A moving mean-value point between x and x+h
+  proves the derivative asymptotic for the exact difference. A tower of
+  eventual derivatives and their normalized limits is preserved, with
+  exponent lowered by one and leading coefficient multiplied by h*p.
+  The sublinear case uses eventual derivative sign and the proved
+  first-derivative estimate; induction uses qualitative van der Corput.
+  Negative coefficients, lower-order terms, finite sums, and positive
+  affine changes of variable are all covered by proofs.
+- **Trust and publication:** All 19 public theorems have a separate
+  dependency audit. Advisory statement-coverage review remains pending.
+  The full paper goal stays active. The 0.3.0 publication package is
+  unchanged until the remaining formal obligations are discharged.
+- **Validation:** The BTCalculus library build passes (8758 jobs), and
+  all 19 theorem audits use exactly the standard logical dependencies.
+  Integration, ledger, generated-index, and Paper E release tests pass:
+  147 passed, 15 skipped. Markdown control-character checks also pass
+  with the new proof note staged. The test subprocesses use the same
+  process-local Git safe-directory setting as the build. Ledger,
+  branch-index, and Paper E manifest checks pass.
+- **Remaining:** Derive simultaneous box visits from nonzero Fourier
+  cancellation, specialize to Paper E's exponent vector and target box,
+  and remove `BoxRecurrence` from the Theorem 4.1 assembly. No shrinking
+  target estimate, quantitative discrepancy, or termination claim follows.
+- **Decision:** **PROMOTE** the mixed-power formalization milestone.
+  Best next question: can the Fourier-to-positive-box recurrence step
+  now be discharged in Lean?
+  [Proof and scope](theory/mixed_power_cancellation_note.md).
+
 ## 2026-09-22 -- Paper E: first derivatives and sublinear power cancellation
 
 - **Target and budget:** Prove the classical first-derivative estimate

@@ -444,6 +444,20 @@
         "kernel": 40
       }
     },
+    "BTCalculus.PowerPhaseAsymptotics": {
+      "declarations": 21,
+      "depends_on": [
+        "BTCalculus.SublinearPowerCancellation"
+      ],
+      "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "ledger": [
+        "BTA-noninteger-mixed-power-cancellation"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 21
+      }
+    },
     "BTCalculus.Quadratic": {
       "declarations": 49,
       "depends_on": [
@@ -3818,9 +3832,9 @@
     }
   },
   "totals": {
-    "edges": 293,
-    "edges_before_reduction": 2347,
-    "ledger_rows_placed": 493,
-    "nodes": 237
+    "edges": 294,
+    "edges_before_reduction": 2351,
+    "ledger_rows_placed": 494,
+    "nodes": 238
   }
 }

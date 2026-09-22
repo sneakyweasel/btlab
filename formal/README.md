@@ -25,6 +25,12 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- cancellation for every nonzero finite combination of distinct positive
+  noninteger real powers on any progression A*n+B with A>0. The proof
+  controls actual shifted differences through derivative asymptotics,
+  applies qualitative differencing by induction, and removes zero
+  coefficients before selecting the top exponent. The simultaneous-box
+  recurrence step for Paper E remains to be formalized;
 - the Kusmin--Landau first-derivative estimate with explicit endpoint
   terms: monotone increments in [delta,1-delta] give a 1/delta bound.
   The continuous derivative form and varying-gap consequence are proved.
@@ -33,8 +39,7 @@ Compiled theorem groups:
 - qualitative van der Corput cancellation for any bounded complex sequence
   whose positive fixed-shift correlation averages tend to zero. The proof
   includes the full-sum/overlap boundary error, normalization, and the
-  exponential phase-difference specialization. Paper E's actual power-phase
-  cancellation and simultaneous-box recurrence remain to be formalized;
+  exponential phase-difference specialization;
 - finite van der Corput differencing for bounded complex sequences, with
   exact overlap correlations and constants 2 and 4; the odd-lattice
   exponential-sum specialization includes its unit-modulus and phase

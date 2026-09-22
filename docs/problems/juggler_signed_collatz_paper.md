@@ -94,6 +94,17 @@ have a separate dependency audit. The
 the argument and distinguishes this base case from the full mixed-power
 family needed by Theorem 4.1.
 
+The higher-power phase adds
+[PowerPhaseAsymptotics.lean](../../formal/BTCalculus/PowerPhaseAsymptotics.lean).
+It proves derivative-asymptotic cancellation by induction, controlling
+the actual shifted differences with the mean value theorem. The final
+result is unconditional cancellation for every nonzero finite combination
+of distinct positive noninteger powers on A*n+B with A>0. All 19 public
+theorems have a separate dependency audit; the
+[proof note](../theory/mixed_power_cancellation_note.md) records the exact
+scope. Fourier-to-box recurrence and its concrete Paper E specialization
+remain to be formalized.
+
 ## Results
 
 Version 0.3.0 has a canonical manuscript, full proof narrative, bibliography,
@@ -118,8 +129,9 @@ is recorded separately from the original unconditional theorem.
 Qualitative cancellation now follows formally from vanishing averages of
 every positive fixed-shift correlation. This removes the generic
 differencing lemma from the remaining analytic work. Cancellation for
-the full mixed-power family required by Theorem 4.1 and the passage to
-simultaneous box visits are still unproved in Lean. The sublinear
+the full mixed-power family required by Theorem 4.1 is now proved by
+the subsequent derivative-asymptotic induction. The passage to
+simultaneous box visits is still unproved in Lean. The sublinear
 single-power base case is now unconditional, including negative
 coefficients and removal of a finite initial segment. The first-derivative
 estimate itself retains no assumed variation or exponential-sum bound.
@@ -139,8 +151,10 @@ is also **PROMOTE**, with its analytic recurrence input explicitly open.
 The qualitative-cancellation foundation is **PROMOTE** as formalization
 progress on a classical input, with no new number-theoretic claim.
 The first-derivative and sublinear-power phase is also **PROMOTE** as a
-completed analytic formalization milestone. Higher powers, mixed phases,
-and simultaneous recurrence remain the next proof obligations.
+completed analytic formalization milestone. The higher/mixed-power phase
+is also **PROMOTE**: its cancellation theorem covers positive affine
+progressions, with no remaining exponential-sum hypothesis.
+Simultaneous recurrence and its concrete specialization remain open.
 Best next question: can the required fixed-power simultaneous-box recurrence
 be proved in Lean? No new arithmetic attack is opened.
 
