@@ -46942,6 +46942,318 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 21,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "oeGuard",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 23,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "ooeeGuard",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 28,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "sourceMass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 31,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "cutoff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 33,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "fullMass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The actual source cutoffs are part of the analytic input.",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 36,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "OddProductionBounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 43,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "weight_reciprocal_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 75,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "mass_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 86,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "mass_monotone",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 92,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "cutoff_monotone",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 96,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "fullMass_monotone",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 99,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "source_partition",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 116,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "even_cutoff_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 140,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "even_source_lower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 162,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "production_recurrence",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 175,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "rate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 176,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "coeff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 178,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "rate_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 181,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "coeff_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 184,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "certificate_five_eighths",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 194,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "mass_exists_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 208,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "fullMass_eventually_ge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Translate the argument and subtract a constant to remove both losses.",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 221,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "shifted_recurrence",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 238,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "fullMass_growth",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Conditional only on the two displayed actual odd-production bounds.",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 276,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "logMass_growth",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-assembly"
+      ],
+      "line": 297,
+      "module": "Problems.Juggler.FateOOEEAssembly",
+      "name": "conjecture_of_tao_rate",
+      "trust": "kernel"
+    },
+    {
       "doc": "**Family 3 at the averaged coefficient.** For `U = \u230a\u221ay''\u230b \u2265 10^6` satisfying Lemma 2's block hypotheses, and any shell `(s, y]` containing every fiber `\u03a6(m)` with `U < m \u2264 y'' - 1`, the even-image parts of the non-poor fibers of the members of `A` in `(U, y'' - 1]` are disjoint odd members of `A` in the shell, of total log-mass at least `(c - \u03b5_U)(\u03a3_{m \u2208 A \u2229 (U, y''-1]} 1/m - 2100 \u03b5_U/\u03b7\u2080\u00b2)` with `c = (2/3)(1/2 - \u03b7\u2080)`.",
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
@@ -107927,6 +108239,7 @@
         "Problems.Juggler.FateFirstLetter",
         "Problems.Juggler.FateLandingWindow",
         "Problems.Juggler.FateNumerics",
+        "Problems.Juggler.FateOOEEAssembly",
         "Problems.Juggler.FateOneSided",
         "Problems.Juggler.FateOneSidedAtoms",
         "Problems.Juggler.FateOneSidedCorollary",
@@ -109364,6 +109677,21 @@
       "file": "formal/Problems/Juggler/FateNumerics.lean",
       "imports": [],
       "ledger": []
+    },
+    "Problems.Juggler.FateOOEEAssembly": {
+      "declarations": 26,
+      "file": "formal/Problems/Juggler/FateOOEEAssembly.lean",
+      "imports": [
+        "Problems.Juggler.CodeMassTransport",
+        "Problems.Juggler.FatePoorProduction"
+      ],
+      "ledger": [
+        {
+          "id": "J-ooee-contagion-assembly",
+          "statement": "Kernel-checked conditional assembly; advisory statement coverage pending. Let w and mass be CodeMassTransport.weight and mass, cutoff(t)=floor(exp(t)), and F_A(t)=mass A cutoff(t). sourceMass A B X sums w(n) over 1<=n<=X with A(n) and B(n). oeGuard and ooeeGuard require the actual initial parity words OE and OOEE. OddProductionBounds A means there exist C>=0,T such that for every t>=T, (33/100)*F_A(3t/4-4)<=sourceMass A oeGuard cutoff(t)+C and (11/100)*F_A(9t/16-4)<=sourceMass A ooeeGuard cutoff(t)+C. The module proves 1/n<=w(n)<=4/n for n>=1, mass comparison and monotonicity, disjointness of the three source families, the exact even cutoff, and the shifted production recurrence for backward-closed A satisfying OddProductionBounds A. The exact weighted power sum at exponent 5/8 is greater than one. With a positive member, such A has reciprocal mass at least K*(log X)^(5/8) eventually. For the failure set, OddProductionBounds plus an eventual oddFailures dyadic bound y*(log y)^(-e) with e>3/8 implies every positive start reaches one. The two odd-production bounds and the failure-rate estimate are explicit hypotheses; the new analytic OOEE theorem is not proved by this module.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
     },
     "Problems.Juggler.FateOneSided": {
       "declarations": 20,
@@ -111893,13 +112221,13 @@
     }
   },
   "totals": {
-    "declarations": 8389,
-    "declarations_with_a_ledger_row": 5666,
-    "ledger_rows_naming_a_file": 485,
-    "modules": 342,
+    "declarations": 8415,
+    "declarations_with_a_ledger_row": 5692,
+    "ledger_rows_naming_a_file": 486,
+    "modules": 343,
     "trust": {
       "compiler": 56,
-      "kernel": 8333
+      "kernel": 8359
     }
   }
 }

@@ -298,6 +298,7 @@ LAYERS: dict[str, Path] = {
     "OddPredecessorTransport": JUGGLER_DIR / "OddPredecessorTransport.lean",
     "CollatzPadic": JUGGLER_DIR / "CollatzPadic.lean",
     "CodeMassTransport": JUGGLER_DIR / "CodeMassTransport.lean",
+    "FateOOEEAssembly": JUGGLER_DIR / "FateOOEEAssembly.lean",
 }
 
 # Sources belonging to other targets or historical model interfaces. Keeping

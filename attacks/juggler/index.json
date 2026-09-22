@@ -4582,12 +4582,16 @@
       "test": "tests/research/juggler_sequence/test_ooee_poor_fibres.py",
       "dossier": "docs/problems/juggler_ooee_poor_fibres.md",
       "data_dir": "data/research/juggler/ooee_poor_fibres",
-      "lean": [],
+      "lean": [
+        "formal/Problems/Juggler/FateOOEEAssembly.lean"
+      ],
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-ooee-short-mixed-modes",
-        "J-ooee-poor-fibre-tail"
+        "J-ooee-poor-fibre-tail",
+        "J-ooee-contagion-five-eighths",
+        "J-ooee-contagion-assembly"
       ],
       "aliases": [],
       "nk_cluster": "Good average OOEE mass does not imply uniformly productive fibres"
@@ -6865,7 +6869,8 @@
         "formal/Problems/Juggler/PolynomialDual.lean",
         "formal/Problems/Juggler/OddPredecessorTransport.lean",
         "formal/Problems/Juggler/CollatzPadic.lean",
-        "formal/Problems/Juggler/CodeMassTransport.lean"
+        "formal/Problems/Juggler/CodeMassTransport.lean",
+        "formal/Problems/Juggler/FateOOEEAssembly.lean"
       ],
       "conjecture": [],
       "decision": null,

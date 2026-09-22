@@ -111,7 +111,7 @@ with explicit scope and proof mapping; publication work opens no new attack.
   `Production.logMass_contagion_averaged`): the poor-fibre tail takes
   Proposition 4.4's exponential sums off the critical path. Rest-average
   is no longer PARK --- it is proved, Lean, and PROMOTE. Log-log clock
-  PARK. Contagion method ceiling \(\lambda=0.4927\), now approached to
+  PARK. The E/OE-only ceiling \(\lambda=0.4927\) is approached to
   within \(5\times10^{-5}\). Tao-type bound with \(e>0.5074\) implies
   the conjecture (`J-tao-rate-implies-conjecture`), and now with no
   contagion hypothesis at all
@@ -127,8 +127,13 @@ with explicit scope and proof mapping; publication work opens no new attack.
   pure slow modes need resonance exclusions. Every fixed mass deficit has
   reciprocal tail O_eta(U^(-7/9)), giving an actual averaged OOEE coefficient
   arbitrarily close to 1/9. Independent review and analytic Lean verification
-  remain outstanding. E/OE/OOEE recursion assembly is next; the established
-  contagion exponent and Tao threshold have not yet changed.
+  remain outstanding. The subsequent
+  [E/OE/OOEE assembly](../../docs/theory/juggler_ooee_contagion_note.md)
+  gives written contagion at 5/8 and a sufficient Tao-rate threshold e>3/8.
+  `FateOOEEAssembly.lean` checks that implication with the two actual
+  odd-production inequalities explicit; it does not certify the analytic
+  input. The unconditional Lean exponent remains 100/203, and the actual
+  failure-rate estimate remains open.
   Kernel localize CLOSE. Do not open a
   third formulation. Not a halt theorem; no fate excluded.
   The inverse-cell Hardy shortcut is also CLOSE: its shrinking

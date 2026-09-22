@@ -25,6 +25,11 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- the actual E/OE/OOEE source partition, positive reciprocal comparison
+  for the conserved weight, exact even cutoff, removal of shifted and
+  additive losses, and the exponent 5/8 certificate. The resulting
+  contagion and Tao implication at e>3/8 keep the two actual odd-source
+  production inequalities explicit; their analytic discharge is written;
 - exact positive logarithmic mass on every even Juggler fibre and every
   complete even generation; finite source-cutoff transport and infinite
   nonnegative mass conservation for both signed Collatz codes. The 16/18

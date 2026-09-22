@@ -430,8 +430,11 @@ This is an actual two-consecutive-odd production at any coefficient below
 1/9, with a bounded additive loss. A source cutoff still requires the
 exact endpoint restriction A_(m+1)<=source_cutoff+1. Combining (24) with
 the existing E/OE shell recursion, checking its boundary losses, and
-formalizing that assembly are subsequent work. No revised numerical
-contagion exponent or Tao-rate threshold is asserted by this note.
+formalizing that assembly were subsequent work for this analytic phase.
+The [follow-up assembly](juggler_ooee_contagion_note.md) now gives written
+contagion at 5/8 and a sufficient Tao-rate threshold e>3/8. Its Lean
+implication retains both actual odd-production inequalities explicitly;
+the analytic input of the present note remains a written proof.
 
 ## 7. Audit and formalization boundary
 

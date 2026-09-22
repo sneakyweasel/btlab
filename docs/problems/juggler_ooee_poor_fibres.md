@@ -2,9 +2,13 @@
 
 Status: **PROMOTE**, 22 September 2026. The follow-up now supplies an
 AI-assisted written poor-fibre tail and the averaged OOEE coefficient
-arbitrarily close to 1/9. Independent review and analytic Lean verification
-are outstanding; the published contagion exponent and termination status
-are unchanged. [Complete argument](../theory/juggler_ooee_poor_fibre_tail_note.md).
+arbitrarily close to 1/9. The subsequent
+[E/OE/OOEE assembly](../theory/juggler_ooee_contagion_note.md) gives written
+contagion at 5/8 and a sufficient Tao-rate threshold e>3/8. Its Lean theorem
+retains the precise odd-production bounds as hypotheses. Independent review
+and analytic Lean verification are outstanding; the published manuscripts
+and termination status are unchanged.
+[Analytic argument](../theory/juggler_ooee_poor_fibre_tail_note.md).
 
 ## Problem
 
@@ -72,6 +76,17 @@ inclusion, stopping at the first unsupported error estimate. Its promotion
 criterion is the complete written bound retaining actual floors and all
 guards. It does not include a new census, contagion recursion, or manuscript
 revision. That criterion is met in the linked analytic note.
+
+The third phase, explicitly resumed, is limited to assembling the disjoint
+E/OE/OOEE sources with exact cutoffs and bounded additive losses. Its target
+is contagion at 5/8 and the sufficient Tao threshold 3/8. Overlapping source
+sets or cutoff losses erasing the exponent margin would falsify it. This
+assembly was not previously killed: the missing actual OOEE production now
+has a written proof. Existing conserved weight, backward closure, and the
+generic Lean recursion supply the machinery. Promotion requires a compiled
+implication whose analytic hypotheses match the written production theorem;
+any unmatched premise must remain explicit. This phase includes no further
+analytic estimate or manuscript revision.
 
 ## Balanced-ternary formulation
 
@@ -173,7 +188,7 @@ bound with an unspecified threshold, or the summable-exception question.
 
 ## Formalization
 
-No new Lean module. The exact even-fibre weight and both signed transports
+The exact even-fibre weight and both signed transports
 are already kernel-checked in
 [CodeMassTransport.lean](../../formal/Problems/Juggler/CodeMassTransport.lean).
 The integer census is independently checked against forward Juggler
@@ -182,6 +197,15 @@ The new analytic note identifies the existing kernel-checked linearization
 and carry identities in `PaperBAssembly.lean` and `GapCells.lean`.
 The short-interval estimates and poor-tail theorem remain written;
 those earlier Lean identities do not cover the new analytic claim.
+
+The third phase adds
+[FateOOEEAssembly.lean](../../formal/Problems/Juggler/FateOOEEAssembly.lean).
+It checks the actual source partition, even cutoff, reciprocal weight
+comparison, removal of bounded losses, positive seed, exact 5/8 certificate,
+and Tao implication. Both actual odd-source inequalities remain explicit
+in `OddProductionBounds`; this module does not prove that analytic input.
+The [assembly note](../theory/juggler_ooee_contagion_note.md) supplies its
+written derivation, including the physical source-height cutoffs.
 
 ## Results
 
@@ -236,6 +260,17 @@ box discrepancy to the actual floor phases then proves joint production,
 without assuming that the marginal parity conditions are independent.
 The resulting poor reciprocal tail is O_eta(U^(-7/9)).
 
+**Third phase: written contagion at 5/8.** The disjoint E, OE, and OOEE
+families give coefficients 1, 33/100, and 11/100 at logarithmic scales
+1/2, 3/4, and 9/16. A translation by 16 and subtraction of 5C remove
+the common cutoff shift and total additive loss 2C. At exponent 5/8 the
+weighted power sum is at least 50011/50000>1, by exact rational comparisons
+in Lean. Every nonempty backward-closed positive class therefore has
+reciprocal mass at least K*(log X)^(5/8) eventually. The complete written
+claim inherits the OOEE analytic review boundary; only the implication
+from `OddProductionBounds` is kernel-checked. The Tao failure-rate bound
+at any e>3/8 would then imply termination, but that rate remains open.
+
 ## Open questions
 
 The first phase proposed a second-moment route. Let H_m be the number
@@ -257,21 +292,23 @@ prefix estimates and the already known two-predecessor Fourier transfer
 still do not supply a short-fibre second moment merely by reindexing.
 
 Independent review of the new local proof remains outstanding. The next
-application is to combine the disjoint OOEE production with E and OE,
-retaining exact source cutoffs and shell boundary losses, and then
-formalize that recursion before changing any contagion or Tao exponent.
+proof obligation is to discharge `OddProductionBounds` in Lean for every
+backward-closed class. Its main analytic ingredient is the actual OOEE
+poor-fibre theorem; exact weighted conversion and source cutoffs must
+also be retained. The assembly now fixes the precise required statement.
 
 ## Decision
 
-**PROMOTE.** The follow-up supplies the missing fixed-mode cancellation
-and proves that all sufficiently large deficient fibres lie in a summable
-resonance family. This is a written analytic theorem, pending independent
-review and full Lean verification. Exactly one best next question: what
-improved contagion exponent follows when this actual OOEE production is
-assembled with the existing E/OE recursion and all cutoff losses retained?
-That assembly is not opened by this phase.
+**PROMOTE.** The written poor-fibre theorem now has a complete cutoff
+assembly yielding contagion at 5/8 and the sufficient Tao threshold 3/8.
+The assembly is kernel-checked with precisely stated odd-production inputs;
+the full analytic theorem still awaits independent review and Lean proof.
+Exactly one best next question: can the actual `OddProductionBounds`
+hypotheses be discharged in Lean? This phase stops at that boundary.
 
 ## Publication assessment
 
-Status: **THEOREM**. Written analytic result with independent review outstanding.
-No paper, verification floor, stated contagion exponent, or termination claim changes.
+Status: **THEOREM**. Written analytic result and conditional Lean assembly,
+with independent analytic review outstanding. The research note improves
+the written contagion exponent to 5/8; no paper, verification floor, or
+unconditional termination claim changes.

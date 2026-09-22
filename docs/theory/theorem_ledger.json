@@ -12939,5 +12939,57 @@
    "tests/research/juggler_sequence/test_ooee_poor_fibres.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-ooee-contagion-five-eighths",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "AI-assisted written proof, inheriting the OOEE poor-fibre theorem's outstanding independent analytic review and Lean verification. Every backward-closed subset A of the positive Juggler integers with a positive member has sum_(n<=X,n in A) 1/n >= K*(log X)^(5/8) for some K>0 and all sufficiently large X. Actual E, OE, and OOEE source families are disjoint and give conserved-weight coefficients 1,33/100,11/100 at logarithmic target cutoffs t/2-4,3t/4-4,9t/16-4, with bounded additive loss. Translating by 16 and subtracting 5C removes that loss; the weighted power sum at 5/8 is at least 50011/50000>1. Consequently an eventual odd-failure dyadic bound #(odd failures in (y,2y])<=y*(log y)^(-e), for any e>3/8, implies termination of every positive start. The required failure-rate bound remains open. The full written proof is in juggler_ooee_contagion_note.md; its unconditional claim is not covered by the separate conditional Lean assembly.",
+  "source": "docs/problems/juggler_ooee_poor_fibres.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_ooee_poor_fibres.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-ooee-contagion-assembly",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked conditional assembly; advisory statement coverage pending. Let w and mass be CodeMassTransport.weight and mass, cutoff(t)=floor(exp(t)), and F_A(t)=mass A cutoff(t). sourceMass A B X sums w(n) over 1<=n<=X with A(n) and B(n). oeGuard and ooeeGuard require the actual initial parity words OE and OOEE. OddProductionBounds A means there exist C>=0,T such that for every t>=T, (33/100)*F_A(3t/4-4)<=sourceMass A oeGuard cutoff(t)+C and (11/100)*F_A(9t/16-4)<=sourceMass A ooeeGuard cutoff(t)+C. The module proves 1/n<=w(n)<=4/n for n>=1, mass comparison and monotonicity, disjointness of the three source families, the exact even cutoff, and the shifted production recurrence for backward-closed A satisfying OddProductionBounds A. The exact weighted power sum at exponent 5/8 is greater than one. With a positive member, such A has reciprocal mass at least K*(log X)^(5/8) eventually. For the failure set, OddProductionBounds plus an eventual oddFailures dyadic bound y*(log y)^(-e) with e>3/8 implies every positive start reaches one. The two odd-production bounds and the failure-rate estimate are explicit hypotheses; the new analytic OOEE theorem is not proved by this module.",
+  "source": "docs/problems/juggler_ooee_poor_fibres.md",
+  "lean": "Problems/Juggler/FateOOEEAssembly.lean",
+  "decl": [
+   "oeGuard",
+   "ooeeGuard",
+   "sourceMass",
+   "cutoff",
+   "fullMass",
+   "OddProductionBounds",
+   "rate",
+   "coeff",
+   "weight_reciprocal_bounds",
+   "mass_bounds",
+   "mass_monotone",
+   "cutoff_monotone",
+   "fullMass_monotone",
+   "source_partition",
+   "even_cutoff_bound",
+   "even_source_lower",
+   "production_recurrence",
+   "rate_bounds",
+   "coeff_nonneg",
+   "certificate_five_eighths",
+   "mass_exists_ge",
+   "fullMass_eventually_ge",
+   "shifted_recurrence",
+   "fullMass_growth",
+   "logMass_growth",
+   "conjecture_of_tao_rate"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_lean_paths_declares_name.py"
+  ],
+  "related_conjectures": []
  }
 ]

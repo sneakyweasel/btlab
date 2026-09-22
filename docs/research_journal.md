@@ -1,5 +1,43 @@
 # Research journal
 
+## 2026-09-22 -- E/OE/OOEE contagion at 5/8, conditional assembly in Lean
+
+- **Target and budget:** Assemble the new written OOEE production with E
+  and OE at exponent 5/8, retaining physical source cutoffs. Overlapping
+  families or losses erasing the exponent margin would falsify this phase.
+  The question is not killed by earlier localization failures: its missing
+  actual OOEE estimate now has a separate written proof. No additional
+  analytic estimate or manuscript revision is in scope.
+- **Written result:** Every nonempty backward-closed positive class has
+  reciprocal mass at least K*(log X)^(5/8) eventually. The sufficient
+  odd-failure Tao-rate threshold is consequently e>3/8. Both statements
+  inherit the independent-review boundary of the OOEE poor-fibre theorem;
+  the required failure-rate bound itself remains open.
+- **Exact assembly:** The three actual source sets are disjoint. Their
+  coefficients are 1, 33/100, and 11/100 at target log cutoffs t/2-4,
+  3t/4-4, and 9t/16-4. Translate by 16 and subtract 5C to remove
+  the additive loss 2C; the exact weighted power sum at 5/8 is at least
+  50011/50000. The old unconditional contagion supplies the positive seed.
+- **Formal boundary:** `FateOOEEAssembly.lean` proves weight comparison,
+  disjointness, the even cutoff, seed, recursion, rational certificate,
+  and Tao implication. `OddProductionBounds` retains both actual odd-source
+  inequalities explicitly. The written weighted OE conversion, analytic
+  OOEE input, and source-height argument match those hypotheses; they
+  are not inserted as new constants in Lean. Separate ledger rows prevent
+  the conditional module from certifying the unconditional written claim.
+- **Decision:** **PROMOTE**. The next proof obligation is discharging the
+  actual odd-production bounds in Lean. This phase stops at that boundary;
+  there is no termination or integer escape proof.
+  [Proof and exact hypothesis mapping](theory/juggler_ooee_contagion_note.md).
+- **Validation:** The full Lean build passes (9048 jobs), and all 18 new
+  theorem audits use only propext, Classical.choice, and Quot.sound.
+  Advisory coverage remains pending; no new external request was sent.
+  The selected regression run has 177 passes and 15 skips. Two initial
+  Paper E release/mirror failures cleared after the separate paper task
+  rebuilt its release: the focused recheck has 24 passes and 4 skips,
+  including branch-index freshness. The new registry entry is covered by
+  that refreshed release.
+
 ## 2026-09-22 -- Actual OOEE poor-fibre tail by short mixed-mode cancellation
 
 - **Question:** Resolve the previous phase's missing implication from a
