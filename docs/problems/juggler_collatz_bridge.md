@@ -1012,3 +1012,118 @@ satisfies mu^5000<2^99, independently of the residue level. This limits
 the finite certificate method; it does not bound actual ancestor density
 or settle the harmonic mass of a whole fate class. The two signs share
 this mean obstruction despite their different pointwise height corrections.
+
+## Orbit-packing transfer audit, 22 September 2026
+
+**CLOSE** automatic transfer of Collatz orbit packing as a way around
+Juggler's missing growing-depth arithmetic estimate. This is a written
+deduction from existing results, not a newly kernel-checked theorem or
+an exclusion of an unbounded orbit.
+
+```text
+Mathematical target     Can Collatz orbit packing bypass the open Juggler pressure estimate?
+Novelty hypothesis      Equal-time injectivity may turn finite descent certificates into a useful orbit-count bound.
+Falsifier               The remaining count still needs parity estimates at growing depth.
+Already killed by?      Valley-composition packing is closed; this audit checks the distinct binomial-count input.
+Existing machinery      Paper B's five certificates, power_bound_word, and CollatzPadic.code_cylinder_eq.
+Maximum Phase-0 scope   Derive the finite packing bound and identify the missing input; no new framework.
+Promotion criterion     An unconditional arithmetic estimate beyond the existing finite-depth density.
+Stop criterion          CLOSE automatic transfer if the missing estimate is unchanged.
+```
+
+### What the Collatz argument uses
+
+M. Sharpe's [OrbitPacking.lean](https://github.com/msharpe248/collatz/blob/main/lean/Collatz/OrbitPacking.lean)
+proves that a finite subset S of [0,32^m), on which the 5m-th shortcut
+iterate is injective, satisfies 8^m |S| <= 2*216^m+243^m. Low-odd-count
+starts have small endpoints, so injectivity bounds their number. The
+other starts are bounded by Terras's exact binomial parity law on a
+complete residue interval. In
+[OrbitSummability.lean](https://github.com/msharpe248/collatz/blob/main/lean/Collatz/OrbitSummability.lean),
+the resulting geometric shell bounds imply convergent reciprocals on
+every unbounded positive orbit. The source does not construct such an
+orbit or exclude it. These source proofs were read for the audit; they
+were not imported or compiled in this repository.
+
+### The part that transfers to Juggler
+
+Let O be the set of values of an unbounded positive Juggler orbit, and
+let A(X)=|O intersect [1,X]| for an integer X>=1. Every fixed iterate
+T^d is injective on O: a collision between two different orbit times
+would make a tail periodic, and hence the whole orbit bounded.
+
+For d>=1 and 0<q<1, define the actual source count
+
+    B_d(X,q) = #{1<=n<=X : 3^(o_d(n)) > q*2^d},
+
+where o_d(n) counts odd sources in the first d Juggler steps. The
+existing power envelope gives the elementary bound
+
+    A(X) <= floor(X^q) + B_d(X,q).                         (P1)
+
+Indeed, each source outside B_d has its d-th image in
+[1,floor(X^q)]; those images are distinct on O. This argument does not
+estimate B_d, and it does not replace the stopped-pressure question
+with an unrestricted all-word hypothesis.
+
+One can use all five proved minimal certificates more efficiently.
+Write C_5 for Paper B's power-envelope certificate class and
+R_5(X)=X-|C_5 intersect [1,X]|. Partition O intersect C_5 according to
+its first certificate. The words E, OE, OOEE, OOOEE, OOEOE have endpoint
+exponents 1/2, 3/4, 9/16, 27/32, 27/32. Apply injectivity separately at
+their respective lengths. This gives
+
+    A(X) <= R_5(X) + floor(X^(1/2)) + floor(X^(3/4))
+              + floor(X^(9/16)) + 2*floor(X^(27/32)).      (P2)
+
+Endpoints from different certificate classes need not be distinct;
+(P2) sums five separate bounds and assumes no such disjointness.
+Using [Paper B, Theorem 5.4](../theory/juggler_parity_discrepancy_note.md),
+for any fixed 0<epsilon<1/128 this implies
+
+    A(X) <= X/8 + O_epsilon(X^(127/128+epsilon)),
+    limsup A(X)/X <= 1/8.                                 (P3)
+
+The analytic input to (P3) retains Paper B's written-proof status and
+outstanding independent review; it is not fully Lean-verified.
+The finite certificate classification and the power envelope are
+already kernel-checked. This is a corollary of those existing inputs,
+not a new distribution estimate. An infinite sparse orbit is compatible
+with (P3), which by itself does not even imply summable reciprocals.
+
+### The step that does not transfer
+
+The signed 2-adic code sends each Juggler itinerary to the matching
+Collatz residue cylinder. It does not make the integer sources
+uniformly distributed among those cylinders. The binomial coefficient
+counts residue classes, whereas B_d counts their Juggler preimages
+with their actual multiplicities. `code_cylinder_eq` identifies these
+sets exactly without bounding their sizes; H(4)=H(6)=4 already prevents
+reading H as a residue bijection on starts.
+
+For an exact finite check, at depth five the numbers of Juggler starts
+n=1,...,32 with 0,...,5 odd steps are (0,0,17,13,1,1), while the
+Collatz binomial counts are (1,5,10,10,5,1). This refutes exact transfer
+of that finite counting law, not asymptotic equidistribution. All values
+were computed with integer square roots. The five certificate classes
+contain 31 of these 32 starts; that finite observation is not a density
+estimate.
+
+Keeping d fixed leaves an uncontrolled survivor fraction in (P1) or
+(P2). Taking d to grow requires an arithmetic estimate on the actual
+Juggler parity cells. For the termination route these are the live cells
+above the certified floor; the absorbed-cylinder counterexample still
+forbids silently using an unrestricted fair-word estimate. Equal-time
+injectivity supplies no bound on their multiplicities. No result about
+ordinary signed Collatz orbit sizes can be transported through H without
+an additional relation between integer heights.
+
+**Decision:** **CLOSE** this proposed bypass, not orbit counting in
+general. The existing
+[scale-average pressure implication](juggler_pressure_external_average.md)
+remains the termination target: its arithmetic bound at
+r-eta>103/203 is open, while the implication is kernel-checked in
+`FateScaleAverage.lean`. More residue-table levels, finite-depth density
+corollaries, or another formal wrapper do not discharge it. No new Lean
+module, ledger row, paper revision, floor campaign, or next branch is
+opened by this audit.

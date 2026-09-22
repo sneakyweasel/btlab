@@ -1,5 +1,35 @@
 # Research journal
 
+## 2026-09-22 -- Orbit packing leaves the arithmetic pressure input unchanged
+
+- **Question:** Can the Collatz injective-orbit packing argument supply
+  a Juggler estimate beyond the existing finite-depth results?
+- **Audit:** Read M. Sharpe's `OrbitPacking.lean` and
+  `OrbitSummability.lean`. The power saving uses both equal-time
+  injectivity and an exact binomial count on complete residue intervals.
+  The first transfers to any unbounded Juggler orbit; the signed 2-adic
+  code supplies no analogue of the second source-count estimate.
+- **Deduction:** Partitioning such an orbit by Paper B's five minimal
+  certificates bounds its count A(X) by the ambient uncertified count
+  plus floor(X^(1/2))+floor(X^(3/4))+floor(X^(9/16))
+  +2*floor(X^(27/32)). Paper B's written five-step theorem consequently
+  gives upper natural density at most 1/8, with its existing independent
+  review limitation. This neither excludes the orbit nor proves its
+  reciprocal sum finite. It is a corollary, not a new arithmetic estimate.
+- **Exact diagnostic:** On starts 1,...,32 at depth five, Juggler's
+  odd-count distribution is (0,0,17,13,1,1), against the Collatz binomial
+  distribution (1,5,10,10,5,1). Integer square roots avoid floating-point
+  parity errors. This refutes only the exact finite counting transfer.
+- **Decision:** **CLOSE** automatic orbit-packing transfer as a bypass.
+  The actual growing-depth live pressure remains the best termination
+  target; its conditional implication is already Lean-checked. No new
+  Lean wrapper, ledger row, floor increase, or paper edit. The detailed
+  derivation and bounded triage are in the existing bridge dossier.
+- **Validation:** Integration, theorem-ledger, and registry checks:
+  142 passed, 14 skipped. Ledger rendering, branch-index regeneration
+  and consistency, and scoped whitespace checks pass. No Lean source
+  changed, so the previously successful full build was not repeated.
+
 ## 2026-09-22 -- A common mean obstruction for every signed grid level
 
 - **Question:** Can increasing the successful density certificate's residue

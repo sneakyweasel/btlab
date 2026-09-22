@@ -166,6 +166,12 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   Increasing the table size alone toward harmonic growth is **CLOSE**.
   This is not an upper bound on actual ancestor counts or a resolution
   of the fate-specific harmonic-mass question.
+  Automatic transfer of Collatz orbit packing is also **CLOSE**:
+  equal-time injectivity transfers, but the exact binomial source count
+  does not. Paper B's five certificates give upper density at most 1/8
+  for a hypothetical unbounded orbit (inheriting the written analytic
+  proof's review status); this does not exclude a sparse orbit. The code
+  provides no new growing-depth live-pressure or height estimate.
 - **Anti-overclaim.** Finite checks, period floors, densities, and
   leftover censuses are not a halt theorem and not "no cycle of any
   length". State the theorem with quantifiers, Lean name, and ledger
