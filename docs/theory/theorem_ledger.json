@@ -12634,5 +12634,28 @@
    "tests/research/juggler_sequence/test_negative_preimage_density.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-signed-grid-mean-ceiling",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "At every finite residue level ell>=2, a strictly positive weight table satisfying either the normalized 3n-1 rows or the normalized 3n+1 rows of the fixed 1/50 grid must satisfy 1<=mu^(-100)+(mu^29+mu^(-21))/3 for every positive real grid rate mu used in those rows. The fourfold map and both child index maps are affine permutations; the three-lift minima sum to at most one third of the total weight. Equivalently, 3*mu^100<=3+mu^129+mu^79. In the explicitly stated at-most-linear rate range mu^50<=2, every such table has mu<5069/5000 and mu^5000<2^99, hence exponent 50*log_2(mu)<99/100. The harmonic rate mu^50=2 is impossible, since it would imply 2^79>=3^50, contradicting the strict integer inequality. These are all-level restrictions on this finite certificate scheme, not upper bounds on actual ancestor counts, not restrictions for every grid, and not a resolution of harmonic divergence for fate classes. Larger residue tables alone cannot remove this fixed-grid obstruction. The local Lean proof is complete; the ledger label awaits advisory statement-coverage review.",
+  "source": "docs/problems/juggler_negative_preimage_density.md",
+  "lean": "Problems/Collatz/PreimageBalance.lean",
+  "decl": [
+   "signed_index_formulas",
+   "balanced_mean_bound",
+   "strict_grid_mean",
+   "strict_grid_plus_mean",
+   "cleared_mean_bound",
+   "rate_lt_of_rows",
+   "rate_lt_of_plus_rows",
+   "certificate_power_ceiling",
+   "harmonic_rate_excluded"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_negative_preimage_density.py"
+  ],
+  "related_conjectures": []
  }
 ]

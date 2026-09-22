@@ -160,6 +160,12 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   checked. This route avoids the old minimum/deletion step. The ledger
   retains the human-proof tag pending advisory coverage. No Juggler
   pressure bound or termination theorem follows from this density result.
+  `PreimageBalance.lean` now checks a common mean obstruction at every
+  finite level for both signs. With the unchanged grid, the harmonic
+  rate mu^50=2 is impossible; rates with mu^50<=2 satisfy mu^5000<2^99.
+  Increasing the table size alone toward harmonic growth is **CLOSE**.
+  This is not an upper bound on actual ancestor counts or a resolution
+  of the fate-specific harmonic-mass question.
 - **Anti-overclaim.** Finite checks, period floors, densities, and
   leftover censuses are not a halt theorem and not "no cycle of any
   length". State the theorem with quantifiers, Lean name, and ledger

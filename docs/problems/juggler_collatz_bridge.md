@@ -1002,3 +1002,13 @@ for every sufficiently large natural X. Every certificate row and the
 cutoff interpolation are kernel-checked. The ledger keeps its human-proof
 label pending advisory coverage. This counting theorem supplies no new
 Juggler stopped-pressure estimate or divergent harmonic-mass bound.
+
+The all-level follow-up in `PreimageBalance.lean` shows why increasing
+the residue-table size alone cannot finish that transfer. For either
+sign, the fixed grid requires
+1<=mu^(-100)+(mu^29+mu^(-21))/3. At mu^50=2 this contradicts 2^79<3^50.
+More quantitatively, in the at-most-linear range mu^50<=2 its rate
+satisfies mu^5000<2^99, independently of the residue level. This limits
+the finite certificate method; it does not bound actual ancestor density
+or settle the harmonic mass of a whole fate class. The two signs share
+this mean obstruction despite their different pointwise height corrections.

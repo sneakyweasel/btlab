@@ -254,6 +254,47 @@ def test_strict_grid_verifier_rejects_corrupted_positive_weights() -> None:
         npd.verify_grid_certificate(certificate)
 
 
+@pytest.mark.parametrize("k", [2, 3, 4, 12])
+def test_signed_grid_productions_balance_the_whole_weight_table(k: int) -> None:
+    """Use actual predecessor residues, independently of Lean's index formulas."""
+    modulus, size = 3**k, 3 ** (k - 1)
+    if k == 12:
+        certificate = json.loads(npd.GRID_CERTIFICATE_PATH.read_text(encoding="utf-8"))
+        weights = certificate["weights"]
+    else:
+        weights = [(i * i + 17 * i + 13) % 97 + 1 for i in range(size)]
+    third = size // 3
+    lift_sum = sum(min(weights[j + r * third] for r in range(3)) for j in range(third))
+    assert 3 * lift_sum <= sum(weights)
+    for sign, fertile, odd_class, doubled_class in [(1, 2, 8, 2), (-1, 1, 1, 7)]:
+        four_sum = odd_sum = doubled_sum = 0
+        for m in range(fertile, modulus, 3):
+            four_sum += weights[((4 * m) % modulus - fertile) // 3]
+            if m % 9 not in (odd_class, doubled_class):
+                continue
+            numerator = 2 * m - sign if m % 9 == odd_class else 4 * m - 2 * sign
+            assert numerator % 3 == 0
+            child = (numerator // 3) % size
+            minimum = min(weights[(child + r * size - fertile) // 3] for r in range(3))
+            if m % 9 == odd_class:
+                odd_sum += minimum
+            else:
+                doubled_sum += minimum
+        assert four_sum == sum(weights)
+        assert odd_sum == doubled_sum == lift_sum
+    if k == 12:
+        p, q, total = certificate["p"], certificate["q"], sum(weights)
+        assert total * p**100 * q**29 <= total * q**129 + (p**129 + p**79 * q**50) * lift_sum
+
+
+def test_strict_grid_mean_ceiling_uses_exact_integer_bounds() -> None:
+    for p, q in [(5069, 5000), (507, 500)]:
+        assert 3 * q**129 + p**129 + p**79 * q**50 < 3 * p**100 * q**29
+    assert 5069**50 < 2 * 5000**50
+    assert 2 * 500**50 < 507**50
+    assert 5069**5000 < 2**99 * 5000**5000
+
+
 def test_the_recorded_payload_matches_a_fresh_run() -> None:
     fresh = npd.probe_payload(k_lp=4, k_bijection=5)
     assert fresh["bijection_holds_every_k"]

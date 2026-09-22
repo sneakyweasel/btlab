@@ -47,6 +47,9 @@ Compiled theorem groups:
 - the signed grid growth induction, a 177147-row integer weight certificate,
   and cutoff interpolation: every positive 3n-1 target prime to 3 has at
   least X^(21/25) positive ancestors up to every sufficiently large natural X;
+- an all-level mean constraint for either sign's strict-grid certificate:
+  the harmonic rate is impossible, and rates with mu^50<=2 satisfy
+  mu^5000<2^99, independently of the residue-table size;
 - `M ≤ X` from the nonnegative `3^m` endpoint lift;
 - the fixed-integer affine gap `G = 2^K (n - x)`, its exact recurrence,
   the periodic-code identity `n(2^K - 3^p) = C`, and `2^K ≠ 3^m` for `m ≥ 1`;

@@ -3962,10 +3962,11 @@
         "J-kl-signed-preimage-height-gap",
         "J-signed-preimage-expanding-block-height",
         "J-signed-preimage-grid-counting",
-        "J-signed-preimage-closed-root-domain"
+        "J-signed-preimage-closed-root-domain",
+        "J-signed-grid-mean-ceiling"
       ],
       "aliases": [],
-      "nk_cluster": "Residue negation alone does not transfer the preimage-density bound"
+      "nk_cluster": "Larger residue tables do not remove the strict-grid mean deficit"
     },
     {
       "id": "nil_horizontal_weyl",

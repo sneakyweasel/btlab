@@ -6189,6 +6189,438 @@
     },
     {
       "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "def",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 17,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "affine",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 20,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "affine_bijective",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "def",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 29,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "parent",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "def",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 32,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "lift",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 35,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "parent_val",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 38,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "lift_val",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "def",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 41,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "childWeight",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 44,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "sum_parent",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 48,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "sum_lift",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 54,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "three_sum_child_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The normalized signed rows, in fertile-residue index `i=(m-1)/3`. Parent `3j+r` has class `m=3r+1 mod 9`. Its fourfold index is `4i+1`; the odd child indices are `2j` and `4j+3`, modulo `M`. The minimum takes all three lifts back to the full table.",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "def",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 71,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "Rows",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Averaging only needs the three production maps to permute their tables.",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 80,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "balanced_mean_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A necessary mean bound for every finite minus-map residue certificate.",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 115,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "mean_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The plus-map indices use `m=3i+2`: the two odd productions exchange parent classes, and their offsets change, but they are still permutations.",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "def",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 125,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "RowsPlus",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 133,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "plus_mean_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "One shared necessary inequality for all levels `k+2` of the grid.",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 144,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "power_three_mean_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 154,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "power_three_plus_mean_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "def",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 164,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "meanFactor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 167,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "strict_grid_mean",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 175,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "strict_grid_plus_mean",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 183,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "cleared_mean_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 192,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "grid_rounding_gap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "At the harmonic rate, the mean condition would reverse precisely the strict `79/50 < log\u2082 3` slack used by this cap grid.",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 196,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "harmonic_mean_lt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 213,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "meanFactor_convex",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 221,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "endpoint_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 224,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "meanFactor_lt_of_mem_rate_interval",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A table of any size fails throughout this interval of rational-grid rates.",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 231,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "no_rows_in_rate_interval",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 244,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "rate_upper_pow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 246,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "rate_lower_pow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 249,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "rate_power_ceiling",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 251,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "rate_lt_of_mean",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Among rates compatible with at-most-linear counts, every finite level has rate strictly below `5069/5000`, whose diagnostic exponent is 0.988653... .",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 262,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "rate_lt_of_rows",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 274,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "rate_lt_of_plus_rows",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Neither sign can reach the harmonic exponent with this fixed cap grid.",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 282,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "harmonic_rate_excluded",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An exact rational-exponent version of the common sublinear ceiling.",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 296,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "certificate_power_ceiling",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Exact numerator/index calculations for both signs, before reduction modulo the table size. They identify the affine permutations used above.",
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-signed-grid-mean-ceiling"
+      ],
+      "line": 312,
+      "module": "Problems.Collatz.PreimageBalance",
+      "name": "signed_index_formulas",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/Problems/Collatz/PreimageBarrier.lean",
       "kind": "def",
       "ledger": [],
@@ -105152,6 +105584,7 @@
         "Problems.Collatz.FixedInteger",
         "Problems.Collatz.Lift",
         "Problems.Collatz.NegativeMCycles",
+        "Problems.Collatz.PreimageBalance",
         "Problems.Collatz.PreimageBarrier",
         "Problems.Collatz.PreimageCertificate",
         "Problems.Collatz.PreimageCertificate12",
@@ -105655,6 +106088,18 @@
         {
           "id": "J-negative-m-cycles-excluded-through-61",
           "statement": "THEOREM, WITH ONE EXTERNAL INPUT. Given Rhin's effective measure |u_0 + u_1 log 2 + u_2 log 3| >= H^(-13.3) for H = max(|u_1|, |u_2|) >= 2 (Rhin 1987, Proposition p. 160 (7)), the 3n-1 map g(y) = y/2 (even), (3y-1)/2 (odd) has no m-cycle with 1 <= m <= 61 whose least element is at least 2^51; with the floor (every 1 <= y < 2^51 reaches 1, 5 or 17: the CPU certificate to 2^44 and the GPU sweep of 21 September 2026 to 2^51, 1117103813820416 odd starts, no failure, spot-checked against the CPU walker on three 2^37 windows), none with m <= 61 other than (5, 7, 10) and the cycle at 17. Paper D version 1.1.0, docs/theory/collatz_3n_minus_1_m_cycles_note.md. THE ROUTE is that of the m <= 58 row (J-negative-m-cycles-excluded-through-58, now superseded) with a sixth lemma: negative Lemma 8 y >= 2^a + 1, the run identity, the cycle equation Lambda < m/(x_min - 1), the chaining u' < u^delta / 2, the exact enumeration of the admissible lengths by the three-gap walk below Rhin's ceiling K_3(m), the contracting-prefix sieve, and now the valley count; each admissible length is tested against two displays and excluded if either holds. THE NEW LEMMA (Lemma 6 of the manuscript) is the transposition of the arrangement behind Hercher's Main Theorem 21. The earlier lemmas relax the same system twice, once by putting every local minimum at the floor and once by dropping the objective, and both relaxations are loose at the same time because a cycle cannot have all its valleys at the floor and carry o odd steps. Writing b_i = log2 u_i over the local minima, the constraints are b_i >= L0 = log2(X0 - 1), b_{i+1} < delta b_i - 1 (Lemma 3) and sum b_i >= o (Lemma 1 summed), with Lambda < sum 2^(-b_i) (Lemma 2) the objective. The lemma keeps them together through a threshold rather than a vertex enumeration: for every T >= L0, at most R(T) of the minima lie at or below T, where R(T) is the largest r <= m with r T + sum_{t <= m-r} (delta^t T - (delta^t - 1)/(delta - 1)) >= o, the largest total the chaining allows once the gaps between the low minima are merged into one; then Lambda < R(T) 2^(-L0) + (m - R(T)) 2^(-T). The minimum over T is exact rather than a grid: the bound is piecewise in T with breakpoints T_r = (o + A_{m-r}) / (r + B_{m-r}) and falls with T on each piece. At T = L0 it is Lemma 2, so the refinement is never weaker than what it refines. AT 2^51: no admissible length below the ceiling for m <= 52; for 53 <= m <= 61 the admissible lengths are excluded, the closest with 0.1 bits to spare at m = 61, K = 83130157078217; at m = 62 that same length survives with 0.3 bits. The theorem is delicate at its top end, which the two figures say plainly. THE LADDER by the same tables: 2^40 gives 49, 2^44 gives 51, 2^48 and 2^49 give 58, 2^50 gives 59, 2^51 gives 61, 2^56 gives 68, 301*2^50 gives 69, 2^60 gives 74, 2^68 gives 89, against 44, 49, 49, 54, 56, 58, 63, 63, 68 and 82 for the same floors without Lemma 6. The m-free period bound at 2^51 is unchanged at 85137581 with 53715833 odd steps. THE CALIBRATION, which is the evidence the transposition is faithful: run on the 3n+1 side at Hercher's own floor 695 * 2^60 the same six lemmas exclude m <= 90, one short of his published m <= 91 (Main Theorem 23) reached by the same idea. The comparison against Simons-de Weger's 68 is not the right one: their 2005 work predates the valley argument entirely, and at their floor 301*2^50 these lemmas give 69. INDEPENDENT CHECK: tools/check_3n_minus_1_note_numeric.py re-sieves the admissible lengths and recomputes the ceilings, margins and killing floors from scratch, with its own implementation of the valley cap written from the manuscript rather than imported from the probe, and agrees with the note's tables at this floor. THE KNOWN-BAD INPUTS: with the floor at their own least element the cycles (5, 7, 10) and 17 both clear the cap, so the refinement does not exclude the cycles that exist; the cap is separately checked never to exceed Lemma 2's m/(X0 - 1). PRIORITY: Simons 2007 proves m = 2 floor-free; Simons-de Weger 2005 and Hercher 2023 do 3n+1; nothing in print does 3n-1 at any m >= 3. LEAN, UNCHANGED BY THIS VERSION: Lemmas 1 and 3 are Problems.Collatz.NegativeMCycles, twenty declarations, no sorry and no native_decide; they are exactly the two the valley count consumes, so the formalized part of the route did not move. Lemma 2 remains real-analytic and unformalized, and Lemma 6 is arithmetic on top of 1, 2 and 3. MEASURED AND REJECTED on the way: Hercher's Corollary 29 (residue tracking) buys 1.30 bits where 4.18 are needed, and his Theorem 27 (m-free) is 0.23 bits tighter and leaves the period bound unchanged; both are method walls on this side, not oversights. WHAT IS OWED: the deposit. Version 1.1.0 goes up through the existing record's new-version operation, which keeps the concept DOI; version 1.0.0 is 10.5281/zenodo.22876190.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
+    },
+    "Problems.Collatz.PreimageBalance": {
+      "declarations": 36,
+      "file": "formal/Problems/Collatz/PreimageBalance.lean",
+      "imports": [],
+      "ledger": [
+        {
+          "id": "J-signed-grid-mean-ceiling",
+          "statement": "At every finite residue level ell>=2, a strictly positive weight table satisfying either the normalized 3n-1 rows or the normalized 3n+1 rows of the fixed 1/50 grid must satisfy 1<=mu^(-100)+(mu^29+mu^(-21))/3 for every positive real grid rate mu used in those rows. The fourfold map and both child index maps are affine permutations; the three-lift minima sum to at most one third of the total weight. Equivalently, 3*mu^100<=3+mu^129+mu^79. In the explicitly stated at-most-linear rate range mu^50<=2, every such table has mu<5069/5000 and mu^5000<2^99, hence exponent 50*log_2(mu)<99/100. The harmonic rate mu^50=2 is impossible, since it would imply 2^79>=3^50, contradicting the strict integer inequality. These are all-level restrictions on this finite certificate scheme, not upper bounds on actual ancestor counts, not restrictions for every grid, and not a resolution of harmonic divergence for fate classes. Larger residue tables alone cannot remove this fixed-grid obstruction. The local Lean proof is complete; the ledger label awaits advisory statement-coverage review.",
           "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
@@ -109908,13 +110353,13 @@
     }
   },
   "totals": {
-    "declarations": 8232,
-    "declarations_with_a_ledger_row": 5509,
-    "ledger_rows_naming_a_file": 479,
-    "modules": 335,
+    "declarations": 8268,
+    "declarations_with_a_ledger_row": 5545,
+    "ledger_rows_naming_a_file": 480,
+    "modules": 336,
     "trust": {
       "compiler": 56,
-      "kernel": 8176
+      "kernel": 8212
     }
   }
 }

@@ -7,6 +7,11 @@ the well-founded growth induction, an independent 177147-row integer
 certificate, and interpolation to every sufficiently large natural cutoff.
 The original assertion of automatic transfer by residue relabelling remains
 withdrawn; the strict-grid argument supplies the missing height control.
+The same day's mean-constraint follow-up proves a limit of this fixed
+grid: at every finite residue level, either sign's positive certificate
+with rate mu^50<=2 has mu<5069/5000, and hence exponent below 0.99.
+The harmonic rate mu^50=2 is impossible. This is a certificate-method
+limitation, not an upper bound on actual ancestor counts.
 
 Branch of the [Collatz bridge](juggler_collatz_bridge.md). The exact
 predecessor comparison is now kernel-checked in
@@ -103,10 +108,16 @@ Promotion requires statements about genuine height-truncated integer
 trees. Stop before claiming a density exponent without a closed root
 domain and a checked growth certificate.
 
-Current follow-up scope: close the root domain without classifying all
+Closed-domain phase (completed): close the root domain without classifying all
 cycles. Kernel-check a finite orbit barrier, construct a large nonperiodic
 fertile ancestor for every positive unit target, and prove closure and
-eventual count transfer. Stop before the growth induction or a new exponent.
+eventual count transfer. The subsequent density phase supplied the growth
+induction and the level-12 certificate recorded below.
+
+Current follow-up scope: sum the exact finite residue rows, prove a
+table-size-independent necessary inequality, and check its rate obstruction
+in Lean. Stop after deciding whether increasing the table size alone can
+reach the harmonic exponent. No new numerical weight search or grid change.
 
 ## Balanced-ternary formulation
 
@@ -128,9 +139,10 @@ to both signs; the missing premise is their application to actual counts.
 ## Experiments
 
 `python -m research.juggler_sequence.negative_preimage_density` now
-labels the minus outputs as **residue-model exponents**, and records
-no established minus-map density exponent. The archived high-k model
-values remain historical numerical results, not newly certified bounds.
+records the completed strict-grid exponent 21/25 and its checked integer
+certificate. Its older homogeneous solver outputs remain explicitly labelled
+residue-model comparisons. The archived high-k model values are historical
+numerical results, not newly certified bounds.
 
 The independent forward enumeration agrees with the backward BFS:
 
@@ -415,6 +427,75 @@ has only standard Lean dependencies. Focused probe, integration, ledger,
 and registry checks pass: 165 passed, 14 skipped. The generated certificate,
 ledger rendering, and branch index pass their consistency checks.
 
+### The fixed grid has a common mean ceiling for both signs
+
+The new [PreimageBalance.lean](../../formal/Problems/Collatz/PreimageBalance.lean)
+checks an obstruction at **every** finite level, rather than testing larger
+tables. At residue level ell>=2, let M=3^(ell-2), and index the 3M positive
+weights by i. A minus fertile residue is m=3i+1; a plus fertile residue is
+m=3i+2. Put S=sum_i c_i and
+
+\[
+L=\sum_{j=0}^{M-1}\min(c_j,c_{j+M},c_{j+2M}),\qquad 3L\le S.
+\]
+
+For minus, the fourfold production permutes indices by i->4i+1 modulo
+3M, and the two odd productions permute child indices by j->2j and
+j->4j+3 modulo M. For plus these maps are i->4i+2, j->2j+1 and j->4j;
+the odd parent classes exchange places. All are permutations because
+2 and 4 are coprime to powers of 3. The exact numerator identities,
+permutations, and both enumerations of the full weight sum are proved
+in Lean. Thus either sign's normalized rows imply
+
+\[
+S\le\mu^{-100}S+(\mu^{29}+\mu^{-21})L,
+\qquad
+1\le F(\mu):=\mu^{-100}+\frac{\mu^{29}+\mu^{-21}}3.
+\]
+
+The cleared inequality is 3 mu^100 <= 3+mu^129+mu^79. At the harmonic
+rate mu^50=2, this would give mu^79>=3 and hence 2^79>=3^50. The
+opposite strict integer inequality holds. This identifies the obstruction
+as the grid's rounding slack, 79/50<log_2(3), not the sign of the map.
+
+There is also a quantitative gap. F is convex on the positive reals,
+and exact rational arithmetic checks
+
+\[
+F(5069/5000)<1,\qquad F(507/500)<1,
+\qquad (5069/5000)^{50}<2<(507/500)^{50}.
+\]
+
+Consequently every such certificate in the at-most-linear rate range
+0<mu, mu^50<=2 must have mu<5069/5000. The kernel additionally checks
+(5069/5000)^5000<2^99, so its exponent gamma=50 log_2(mu) is strictly
+below 99/100. The tighter displayed bound 50 log_2(5069/5000)
+is approximately 0.98865345; that decimal is diagnostic, not the proof.
+This is a convenient certified ceiling, not a claim of optimality.
+
+`certificate_power_ceiling` covers both signs and every finite level;
+`harmonic_rate_excluded` excludes the harmonic rate directly from the
+integer rounding inequality. The common summation proof is factored as
+`balanced_mean_bound`. Independent tests use actual predecessor residues
+at levels 2, 3, 4 and 12, including the committed certificate, rather than
+Lean's rewritten index formulas. They verify both affine permutations
+and that each child-minimum sum is exactly L.
+
+Validation: full `lake build` passes (9041 jobs). The
+[29-declaration audit](../../formal/AxiomCheckCollatzPreimageBalance.expected)
+uses only standard Lean dependencies. Focused probe, integration, ledger,
+and registry checks give 170 passes and 14 skips. The original generated
+certificate, ledger rendering, and branch index remain consistent.
+
+**CLOSE** increasing the residue-table size alone as a route to the
+harmonic exponent in this fixed 1/50 grid. The checked 21/25 density
+bound remains valid. This does not disprove harmonic divergence of a
+fate class: a lower bound weaker than linear counting could still prove
+it, and a different grid or a direct harmonic argument has different
+requirements. No fate-specific harmonic lower bound or Juggler pressure
+estimate has been supplied. The earlier finite-mass ray is still only a
+backward-closed counterexample; it does not settle the fate-class question.
+
 ## Open questions
 
 The signed x^0.84 statement is no longer open here. Its proof does not
@@ -433,6 +514,10 @@ and cutoff argument are now separate checked components. Automatic
 analytic transfer from residue relabelling remains closed. No new
 cycle exclusion, termination theorem, or computation floor follows, and
 neither Paper C nor Paper D requires modification.
+
+**CLOSE** the fixed-grid table-size upgrade to harmonic growth, by the
+all-level mean obstruction above. The actual fate-specific harmonic
+question and the Juggler growing-depth pressure estimate remain **PARK**.
 
 ## Publication assessment
 

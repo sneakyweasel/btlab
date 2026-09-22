@@ -1,5 +1,36 @@
 # Research journal
 
+## 2026-09-22 -- A common mean obstruction for every signed grid level
+
+- **Question:** Can increasing the successful density certificate's residue
+  level bridge the remaining gap to harmonic growth?
+- **Result:** For either sign, summing every row gives
+  1<=mu^(-100)+(mu^29+mu^(-21))/3. The full-table fourfold map and the
+  two child maps are affine permutations; the three-lift minima have
+  total at most one third of the total weight. The Lean proof is generic
+  in the level and factors the common argument as `balanced_mean_bound`.
+- **Arithmetic obstruction:** At mu^50=2 this implies 2^79>=3^50,
+  contradicting the exact grid-rounding slack. Convexity and exact
+  rational endpoint checks further show mu<5069/5000 whenever mu^50<=2.
+  The kernel checks mu^5000<2^99, a ceiling below exponent 99/100.
+  The diagnostic tighter bound is approximately 0.98865345.
+- **Decision:** **CLOSE** table-size growth alone as a route to the
+  harmonic exponent with this fixed grid. This does not bound the actual
+  counting exponent or settle harmonic divergence of fate classes.
+  The latter could follow from weaker-than-linear counting or another
+  argument. The earlier finite-mass ray remains only backward closed.
+  The actual Juggler pressure estimate remains **PARK**; no new pressure
+  bound, termination theorem, or infinite escape trajectory was obtained.
+- **Validation:** Full `lake build` passes (9041 jobs), with no new
+  warnings; all 29 audited declarations use only standard Lean dependencies.
+  Exact regressions check
+  both signs' actual predecessor indexing at levels 2, 3, 4 and 12,
+  including the committed table, and all rational numerical comparisons.
+  Focused, integration, ledger, and registry checks give 170 passes and
+  14 skips. The original certificate, ledger, and branch-index checks pass.
+- **Coverage:** The new row retains the human-proof label pending
+  advisory English-statement coverage; no statement was sent externally.
+
 ## 2026-09-22 -- The signed ancestor-density exponent 21/25 is kernel-checked
 
 - **Question:** Do the exact signed grid recurrences admit a growth

@@ -366,3 +366,10 @@ ledger.
   Together with \(-17\) these are the known-bad inputs for any Juggler
   no-cycle argument that does not use the direction of rounding, and they are
   what the `cycle_of_upward` instance of 2.2 would formalize.
+
+The finite-grid mean audit is now compiled in `Problems/Collatz/PreimageBalance.lean`.
+Both signs share the all-level necessary inequality
+1<=mu^(-100)+(mu^29+mu^(-21))/3. In the at-most-linear rate range,
+mu^5000<2^99; the harmonic rate contradicts 2^79<3^50.
+This closes table-size growth alone in the current fixed grid, while
+actual fate-specific harmonic growth and Juggler pressure remain open.
