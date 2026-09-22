@@ -96,3 +96,12 @@ def test_failed_atomic_publication_preserves_the_previous_record(tmp_path, monke
         B.write_text_atomic(path, "new release\n")
     assert path.read_text(encoding="utf-8") == "previous release\n"
     assert list(tmp_path.iterdir()) == [path]
+
+
+def test_zenodo_description_stops_before_version_history():
+    source = (ROOT / B.SOURCE).read_text(encoding='utf-8')
+    prose = B.metadata_prose(source)
+    assert 'cycle-financing inequality' in prose
+    assert 'Large language models assisted' in prose
+    assert 'Availability and version' not in prose
+    assert 'The deposited versions are' not in prose

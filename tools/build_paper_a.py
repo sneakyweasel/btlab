@@ -24,7 +24,7 @@ import subprocess
 # without this a no-op rebuild changes the bytes and therefore the sha256 in the manifest.
 # The epoch is fixed to the version the build guide records rather than taken from git,
 # because a git-derived date lags one build behind an edit and merely relocates the churn.
-_SOURCE_DATE_EPOCH = "1790035200"  # Local revision, 22 September 2026
+_SOURCE_DATE_EPOCH = "1790121600"  # Local revision, 23 September 2026
 
 
 def _pin_build_date() -> None:
@@ -43,6 +43,7 @@ OUTPUTS = [PDF, TEX, METADATA]
 EDITORIAL = [SOURCE, "docs/theory/juggler_finite_dynamics_formalization.md",
              "docs/theory/juggler_finite_dynamics_reviewer_packet.md", "docs/theory/PAPER_A_BUILD.md"]
 BUILD_INPUTS = ["literature/wu-wang-2014-irrationality-measure-log3.json",
+                "tools/build_paper_a_kit.py", "formal/lakefile.toml",
                 "tools/build_paper_a.py", "tools/paper_a/article.tex",
                 "tools/paper_a/layout.lua", "tools/check_paper_a_numeric.py",
                 "tools/trust_boundary.py",
@@ -226,15 +227,21 @@ def carry_forward(root: Path, meta: dict) -> dict:
         meta["creators"][0]["orcid"] = recorded
     return meta
 
+def metadata_prose(source: str) -> str:
+    """Export the abstract and AI disclosure, stopping at the next section."""
+    abstract = source.split('## Abstract\n', 1)[1].split('**2020 Mathematics', 1)[0]
+    acknowledgment = source.split('## 7. Acknowledgments and use of AI\n', 1)[1]
+    acknowledgment = re.split(r'^## ', acknowledgment, maxsplit=1, flags=re.M)[0]
+    return abstract + '\n' + acknowledgment
+
+
 def write_metadata(root: Path, pandoc: str) -> None:
     source = (root / SOURCE).read_text(encoding="utf-8")
     title = re.search(r'^title: "(.*)"$', source, re.M).group(1)
     author = re.search(r'^author: (.*)$', source, re.M).group(1)
     date = re.search(r'^date: (.*)$', source, re.M).group(1)
-    abstract = source.split('## Abstract\n', 1)[1].split('**2020 Mathematics', 1)[0]
-    acknowledgment = source.split('## 7. Acknowledgments and use of AI\n', 1)[1].split('## References', 1)[0]
     plain = subprocess.check_output([pandoc, '--from=markdown+tex_math_single_backslash',
-        '--to=plain', '--wrap=none'], input=abstract + '\n' + acknowledgment, encoding='utf-8')
+        '--to=plain', '--wrap=none'], input=metadata_prose(source), encoding='utf-8')
     description = '\n'.join('<p>' + escape(p.replace('\n', ' ')) + '</p>' for p in plain.strip().split('\n\n'))
     # A reusable field sheet, not an API call or a claim of a published DOI.
     meta = {"title": title,
