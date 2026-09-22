@@ -1,5 +1,47 @@
 # Research journal
 
+## 2026-09-22 -- Actual signed fibre mass and persistent deficient targets
+
+- **Continuation audit:** The preceding review confirmed the 5/8 contagion
+  and 3/8 pressure thresholds without adding a theorem. This phase finishes
+  the pending actual-integer bridge; it does not reopen finite-weight searches.
+- **Scope and falsifiers:** Both signs, every finite ternary table, the full
+  positive odd predecessor fibre, and its one-generation affine error. A
+  missing predecessor, duplicate counting, incorrect signed denominator or
+  unsummable error would invalidate the transfer. Higher-depth actual errors
+  and generation-series divergence are outside this phase.
+- **Proof:** `FibreActual` proves the bijection between admissible exponents
+  and actual positive odd predecessors, and identifies every coefficient
+  branch with its integer child. `FibreMassError` proves convergence both
+  on exponents and directly on actual predecessors, then sums the geometric
+  affine errors to H/(m-1/2). `FibreDeficit` turns the existing deficient
+  residue into an explicit odd progression with divergent reciprocal mass.
+  For every globally finite reciprocal-mass deletion, an actual deficient
+  positive odd unit remains. The final theorem exposes the actual predecessor
+  sum rather than requiring a reader to infer its meaning from a helper name.
+- **Research consequence:** A positive periodic weight cannot copy Juggler's
+  uniform production step by deleting a globally finite-mass poor set. This
+  concerns ambient targets, not their intersection with a prescribed fate
+  class. The growing-depth Juggler pressure estimate remains open at 3/8.
+- **Coverage:** The ledger separates the formal one-generation error and
+  actual deletion obstruction from the higher-depth written result. Kernel
+  trust is recorded; HUMAN PROOF labels remain pending advisory coverage.
+  No external statement was transmitted. Every new public declaration has
+  a mathematical docstring and the source style gate passes.
+- **Validation:** Full Lean build: 9,093 jobs. The complete 54-theorem audit
+  uses only propext, Classical.choice and Quot.sound. Ledger rendering and
+  branch-index consistency pass. The transient Paper E pyproject mismatch
+  cleared when the concurrent edit was removed; its release check now passes.
+  The targeted run has 88 passes and one stale-catalogue failure after
+  concurrent tooling changes. Refreshing the records resolves that test;
+  it and the declaration-resolution and documentation-link checks pass
+  on rerun. The scoped commit's five generated artifacts match its own
+  generator, and unrelated ledger edits are excluded. Details are in the
+  [proof map](theory/collatz_actual_fibre_mass_lean_note.md).
+- **Decision:** **PROMOTE** the actual-mass formalization and stop this
+  bounded phase. No termination, infinite escape or new cycle exclusion is
+  claimed. The full research goal remains active.
+
 ## 2026-09-22 -- Self-contained effective OOE coverage packet
 
 - **Scope:** One bounded correction to the same theorem and same six

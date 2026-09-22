@@ -1062,6 +1062,20 @@
         "kernel": 12
       }
     },
+    "Problems.Collatz.FibreDeficit": {
+      "declarations": 16,
+      "depends_on": [
+        "Problems.Collatz.FibreMassError"
+      ],
+      "file": "formal/Problems/Collatz/FibreDeficit.lean",
+      "ledger": [
+        "C-syracuse-actual-finite-weight-obstruction"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 16
+      }
+    },
     "Problems.Collatz.FibreMass": {
       "declarations": 43,
       "depends_on": [
@@ -1074,6 +1088,21 @@
       "papers": [],
       "trust": {
         "kernel": 43
+      }
+    },
+    "Problems.Collatz.FibreMassError": {
+      "declarations": 15,
+      "depends_on": [
+        "Problems.Collatz.Accelerated",
+        "Problems.Collatz.FibreMass"
+      ],
+      "file": "formal/Problems/Collatz/FibreMassError.lean",
+      "ledger": [
+        "C-syracuse-integer-fibre-mass-error"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 15
       }
     },
     "Problems.Collatz.FixedInteger": {
@@ -4198,9 +4227,9 @@
     }
   },
   "totals": {
-    "edges": 331,
-    "edges_before_reduction": 2862,
-    "ledger_rows_placed": 521,
-    "nodes": 263
+    "edges": 334,
+    "edges_before_reduction": 2869,
+    "ledger_rows_placed": 523,
+    "nodes": 265
   }
 }

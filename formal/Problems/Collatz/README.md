@@ -30,5 +30,13 @@ operator obstruction for both signs. It defines every positive halving
 exponent through the exact signed congruence, proves summability and mean
 conservation, and obtains a deficient unit residue for every finite ternary
 weight table and every fixed positive grouping depth. The repeated
-one-halving branch at residue -s supplies strict excess. Actual-integer
-affine errors and fate-specific harmonic divergence are separate questions.
+one-halving branch at residue -s supplies strict excess.
+
+[FibreActual.lean](FibreActual.lean), [FibreMassError.lean](FibreMassError.lean)
+and [FibreDeficit.lean](FibreDeficit.lean) identify every actual predecessor
+without duplicate counting, bound the one-generation affine mass error,
+and prove a persistent deficient odd progression with divergent reciprocal
+mass. Deleting a globally finite reciprocal-mass set cannot repair uniform
+reproduction. Higher-depth actual errors and fate-specific harmonic
+divergence remain separate questions; see the
+[proof map](../../../docs/theory/collatz_actual_fibre_mass_lean_note.md).

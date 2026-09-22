@@ -145,11 +145,15 @@ its infinite-series convergence, its mean, and every finite level and
 fixed positive depth. The [proof map](../theory/collatz_fibre_mass_lean_note.md)
 separates this result from the remaining written statements. Its stronger
 form allows zero weights on other unit residues, provided the weight at
--s is positive. The residue-coverage theorem, actual-integer affine error,
-deficient progression and generation-series implication remain AI-assisted
-written proofs with exact-arithmetic checks. Independent review remains
-open. Ledger labels stay **EXACT — HUMAN PROOF** pending advisory statement
-coverage; the coefficient theorem also records kernel trust.
+-s is positive. The actual predecessor bijection, one-generation affine
+error, deficient progression and divergent reciprocal mass are now
+kernel-checked in `FibreActual`, `FibreMassError` and `FibreDeficit`.
+The [actual-mass proof map](../theory/collatz_actual_fibre_mass_lean_note.md)
+records the exact scope. Full sibling residue coverage, the fixed-depth
+actual error for d>1 and the generation-series implication remain written
+proofs with exact-arithmetic checks. Independent review remains open.
+Ledger labels stay **EXACT — HUMAN PROOF** pending advisory statement
+coverage; the compiled results also record kernel trust.
 
 ## Results
 

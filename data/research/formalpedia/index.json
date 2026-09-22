@@ -5636,6 +5636,548 @@
       "trust": "kernel"
     },
     {
+      "doc": "The positive signed Collatz numerator; `true` selects plus and `false` minus.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 18,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "numerator",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Remove every factor of two from the signed numerator of a natural input.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 21,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "oddReturn",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The plus specialization is the existing accelerated Collatz map.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 25,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "oddReturn_plus",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Both signed numerators are positive at every positive input.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 28,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "numerator_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Natural subtraction agrees with the signed integer formula at positive inputs.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 32,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "numerator_cast",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A positive odd input has an even numerator for either sign.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 39,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "numerator_even",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The inverse numerator for halving exponent `k+1`, before division by three.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 46,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "raw",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The candidate predecessor obtained by dividing the inverse numerator by three.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 50,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "child",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The inverse numerator is divisible by three, so the candidate is integral.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 53,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "Admissible",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The canonical residue of a natural number at ternary level `r`.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 56,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "residue",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A positive halving exponent gives a power of two at least two.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 59,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "pow_two_lower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every inverse numerator at a positive target is strictly positive.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 63,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "raw_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The inverse numerator is exactly the signed integer affine expression.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 69,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "raw_cast",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every inverse numerator at a positive target is odd.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 76,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "raw_odd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Admissibility makes division by three exact.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 83,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "child_mul",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An admissible candidate at a positive target is positive.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 87,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "child_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An admissible candidate at a positive target is odd.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 94,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "child_odd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The forward signed numerator of an admissible child is the prescribed power times its target.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 102,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "child_equation",
+      "trust": "kernel"
+    },
+    {
+      "doc": "For a positive odd target, the prescribed exponent removes all powers of two.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 113,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "valuation_of_odd_target",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every admissible candidate returns to its positive odd target under the actual map.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 120,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "child_returns",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Multiplying the odd return by the removed power of two recovers the numerator.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 126,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "oddReturn_mul",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An actual positive solution of the affine equation is exactly its admissible candidate.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 132,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "child_of_equation",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Admissible positive halving exponents enumerate all actual positive odd predecessors.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 145,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "predecessor_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Distinct admissible halving exponents give distinct predecessors of a positive odd target.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 161,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "child_injective",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The canonical natural residue satisfies the corresponding signed integer congruence.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 170,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "residue_congr",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The coefficient parent relation is the inverse-numerator congruence at a positive target.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 176,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "parent_raw_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A coefficient branch exists exactly for an admissible actual child with the specified residue.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 196,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "parent_child_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The periodic child weight on an admissible branch, and zero otherwise.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 220,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "branchWeight",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The homogeneous row equals its coefficient times the actual child weight.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 224,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "row_eq_branchWeight",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The reciprocal-weighted candidate at one admissible exponent, and zero otherwise.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 232,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "actualTerm",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Sum over all positive halving exponents; at positive odd targets this is actual predecessor mass.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 236,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "actualMass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A bijection between admissible exponents and all actual positive odd predecessors.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 240,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "predecessorEquiv",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The exponent-indexed mass equals the literal sum over actual predecessors, without multiplicity.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 253,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "actualMass_predecessors",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The exact affine denominator of each weighted reciprocal predecessor term.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 266,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "actualTerm_formula",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Projecting an integer residue to a lower ternary level recovers its residue there.",
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 282,
+      "module": "Problems.Collatz.FibreActual",
+      "name": "project_residue",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Weights positive on units and zero on nonunits are nonnegative everywhere.",
+      "file": "formal/Problems/Collatz/FibreDeficit.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-actual-finite-weight-obstruction"
+      ],
+      "line": 13,
+      "module": "Problems.Collatz.FibreDeficit",
+      "name": "weight_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A homogeneous deficient residue remains uniformly deficient at every sufficiently large integer in it.",
+      "file": "formal/Problems/Collatz/FibreDeficit.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-actual-finite-weight-obstruction"
+      ],
+      "line": 22,
+      "module": "Problems.Collatz.FibreDeficit",
+      "name": "deficient_progression",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An explicit progression of positive odd representatives of a prescribed ternary residue above a cutoff.",
+      "file": "formal/Problems/Collatz/FibreDeficit.lean",
+      "kind": "def",
+      "ledger": [
+        "C-syracuse-actual-finite-weight-obstruction"
+      ],
+      "line": 56,
+      "module": "Problems.Collatz.FibreDeficit",
+      "name": "progression",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every member of the chosen progression is positive.",
+      "file": "formal/Problems/Collatz/FibreDeficit.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-actual-finite-weight-obstruction"
+      ],
+      "line": 60,
+      "module": "Problems.Collatz.FibreDeficit",
+      "name": "progression_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every member of the chosen progression lies above the prescribed cutoff.",
+      "file": "formal/Problems/Collatz/FibreDeficit.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-actual-finite-weight-obstruction"
+      ],
+      "line": 69,
+      "module": "Problems.Collatz.FibreDeficit",
+      "name": "progression_large",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every member of the chosen progression is odd.",
+      "file": "formal/Problems/Collatz/FibreDeficit.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-actual-finite-weight-obstruction"
+      ],
+      "line": 78,
+      "module": "Problems.Collatz.FibreDeficit",
+      "name": "progression_odd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The progression stays in the prescribed ternary residue class.",
+      "file": "formal/Problems/Collatz/FibreDeficit.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-actual-finite-weight-obstruction"
+      ],
+      "line": 89,
+      "module": "Problems.Collatz.FibreDeficit",
+      "name": "progression_residue",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The progression enumerates distinct integers.",
+      "file": "formal/Problems/Collatz/FibreDeficit.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-actual-finite-weight-obstruction"
+      ],
+      "line": 95,
+      "module": "Problems.Collatz.FibreDeficit",
+      "name": "progression_injective",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The progression has positive common difference twice the ternary modulus.",
+      "file": "formal/Problems/Collatz/FibreDeficit.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-actual-finite-weight-obstruction"
+      ],
+      "line": 104,
+      "module": "Problems.Collatz.FibreDeficit",
+      "name": "progression_affine",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Reciprocals along any positive arithmetic progression have divergent sum.",
+      "file": "formal/Problems/Collatz/FibreDeficit.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-actual-finite-weight-obstruction"
+      ],
+      "line": 110,
+      "module": "Problems.Collatz.FibreDeficit",
+      "name": "arithmetic_mass_not_summable",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The chosen odd residue progression has divergent reciprocal mass.",
+      "file": "formal/Problems/Collatz/FibreDeficit.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-actual-finite-weight-obstruction"
+      ],
+      "line": 128,
+      "module": "Problems.Collatz.FibreDeficit",
+      "name": "progression_mass_not_summable",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An integer in a unit ternary residue class is itself coprime to three.",
+      "file": "formal/Problems/Collatz/FibreDeficit.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-actual-finite-weight-obstruction"
+      ],
+      "line": 139,
+      "module": "Problems.Collatz.FibreDeficit",
+      "name": "residue_unit",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A positive odd unit whose actual predecessor mass fails to reproduce its periodic target weight.",
+      "file": "formal/Problems/Collatz/FibreDeficit.lean",
+      "kind": "def",
+      "ledger": [
+        "C-syracuse-actual-finite-weight-obstruction"
+      ],
+      "line": 147,
+      "module": "Problems.Collatz.FibreDeficit",
+      "name": "Deficient",
+      "trust": "kernel"
+    },
+    {
+      "doc": "For either sign and any positive unit table, actual deficient targets have divergent reciprocal mass.",
+      "file": "formal/Problems/Collatz/FibreDeficit.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-actual-finite-weight-obstruction"
+      ],
+      "line": 151,
+      "module": "Problems.Collatz.FibreDeficit",
+      "name": "deficient_mass_not_summable",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A globally finite reciprocal-mass exceptional set leaves an actual deficient positive odd unit target outside it, for either signed odd-return map.",
+      "file": "formal/Problems/Collatz/FibreDeficit.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-actual-finite-weight-obstruction"
+      ],
+      "line": 171,
+      "module": "Problems.Collatz.FibreDeficit",
+      "name": "outside_finite_mass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every finite reciprocal-mass deletion leaves a positive odd unit whose full actual predecessor mass is strictly below its periodic target weight.",
+      "file": "formal/Problems/Collatz/FibreDeficit.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-actual-finite-weight-obstruction"
+      ],
+      "line": 187,
+      "module": "Problems.Collatz.FibreDeficit",
+      "name": "exists_predecessor_mass_lt",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/Problems/Collatz/FibreMass.lean",
       "kind": "abbrev",
@@ -6149,6 +6691,186 @@
       "line": 354,
       "module": "Problems.Collatz.FibreMass",
       "name": "finite_weight_obstruction",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Uniform positivity and lower bound for both signed affine denominators.",
+      "file": "formal/Problems/Collatz/FibreMassError.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-integer-fibre-mass-error"
+      ],
+      "line": 14,
+      "module": "Problems.Collatz.FibreMassError",
+      "name": "scalar_denominator",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A bounded nonnegative child weight gives a geometric majorant for its reciprocal term.",
+      "file": "formal/Problems/Collatz/FibreMassError.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-integer-fibre-mass-error"
+      ],
+      "line": 21,
+      "module": "Problems.Collatz.FibreMassError",
+      "name": "scalar_upper",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The signed affine correction of one normalized term is bounded by a squared-power denominator.",
+      "file": "formal/Problems/Collatz/FibreMassError.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-integer-fibre-mass-error"
+      ],
+      "line": 30,
+      "module": "Problems.Collatz.FibreMassError",
+      "name": "scalar_error",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Rewrite the squared-power majorant as a geometric series of ratio one quarter.",
+      "file": "formal/Problems/Collatz/FibreMassError.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-integer-fibre-mass-error"
+      ],
+      "line": 52,
+      "module": "Problems.Collatz.FibreMassError",
+      "name": "quarter_coefficient",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Both signed maps have a unit absolute affine correction.",
+      "file": "formal/Problems/Collatz/FibreMassError.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-integer-fibre-mass-error"
+      ],
+      "line": 61,
+      "module": "Problems.Collatz.FibreMassError",
+      "name": "sign_abs",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An admissible branch weight inherits the nonnegative table bounds.",
+      "file": "formal/Problems/Collatz/FibreMassError.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-integer-fibre-mass-error"
+      ],
+      "line": 65,
+      "module": "Problems.Collatz.FibreMassError",
+      "name": "branchWeight_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Nonnegative table weights give nonnegative reciprocal terms.",
+      "file": "formal/Problems/Collatz/FibreMassError.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-integer-fibre-mass-error"
+      ],
+      "line": 73,
+      "module": "Problems.Collatz.FibreMassError",
+      "name": "actualTerm_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Each actual reciprocal term is bounded by the homogeneous geometric coefficient.",
+      "file": "formal/Problems/Collatz/FibreMassError.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-integer-fibre-mass-error"
+      ],
+      "line": 81,
+      "module": "Problems.Collatz.FibreMassError",
+      "name": "actualTerm_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The complete exponent-indexed predecessor mass converges for bounded nonnegative weights.",
+      "file": "formal/Problems/Collatz/FibreMassError.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-integer-fibre-mass-error"
+      ],
+      "line": 91,
+      "module": "Problems.Collatz.FibreMassError",
+      "name": "actual_summable",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Each normalized actual term differs from its homogeneous row by a summable geometric error.",
+      "file": "formal/Problems/Collatz/FibreMassError.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-integer-fibre-mass-error"
+      ],
+      "line": 99,
+      "module": "Problems.Collatz.FibreMassError",
+      "name": "row_error",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The geometric majorant for the affine errors is summable.",
+      "file": "formal/Problems/Collatz/FibreMassError.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-integer-fibre-mass-error"
+      ],
+      "line": 117,
+      "module": "Problems.Collatz.FibreMassError",
+      "name": "error_summable",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The full geometric error majorant sums exactly to the claimed uniform bound.",
+      "file": "formal/Problems/Collatz/FibreMassError.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-integer-fibre-mass-error"
+      ],
+      "line": 122,
+      "module": "Problems.Collatz.FibreMassError",
+      "name": "error_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The uniform one-generation error for every nonnegative finite residue table. The mass enumerates exactly the actual predecessors of a positive odd target.",
+      "file": "formal/Problems/Collatz/FibreMassError.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-integer-fibre-mass-error"
+      ],
+      "line": 130,
+      "module": "Problems.Collatz.FibreMassError",
+      "name": "actual_mass_error",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The literal reciprocal-weighted series over actual predecessors converges, using the bijection with admissible exponents, not a default value of `tsum`.",
+      "file": "formal/Problems/Collatz/FibreMassError.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-integer-fibre-mass-error"
+      ],
+      "line": 148,
+      "module": "Problems.Collatz.FibreMassError",
+      "name": "predecessor_summable",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The same estimate stated directly as a sum over actual integer predecessors.",
+      "file": "formal/Problems/Collatz/FibreMassError.lean",
+      "kind": "theorem",
+      "ledger": [
+        "C-syracuse-integer-fibre-mass-error"
+      ],
+      "line": 164,
+      "module": "Problems.Collatz.FibreMassError",
+      "name": "predecessor_mass_error",
       "trust": "kernel"
     },
     {
@@ -115978,7 +116700,10 @@
         "Problems.Collatz.Cycles",
         "Problems.Collatz.Cylinder",
         "Problems.Collatz.Endpoint",
+        "Problems.Collatz.FibreActual",
+        "Problems.Collatz.FibreDeficit",
         "Problems.Collatz.FibreMass",
+        "Problems.Collatz.FibreMassError",
         "Problems.Collatz.FixedInteger",
         "Problems.Collatz.Lift",
         "Problems.Collatz.NegativeMCycles",
@@ -116440,6 +117165,29 @@
         }
       ]
     },
+    "Problems.Collatz.FibreActual": {
+      "declarations": 35,
+      "file": "formal/Problems/Collatz/FibreActual.lean",
+      "imports": [
+        "Problems.Collatz.Accelerated",
+        "Problems.Collatz.FibreMass"
+      ],
+      "ledger": []
+    },
+    "Problems.Collatz.FibreDeficit": {
+      "declarations": 16,
+      "file": "formal/Problems/Collatz/FibreDeficit.lean",
+      "imports": [
+        "Problems.Collatz.FibreMassError"
+      ],
+      "ledger": [
+        {
+          "id": "C-syracuse-actual-finite-weight-obstruction",
+          "statement": "Kernel-checked; advisory statement coverage and independent review remain open. For either signed odd-return map S_s, every r>=1 and real table h modulo 3^r that is zero on multiples of three and positive on all unit residues has a unit class a modulo 3^(r+1), delta>0 and B>=1 such that every odd m>=B in class a satisfies m*W_h(m)<=h(m mod 3^r)-delta. Here W_h(m) is the full sum of h(n mod 3^r)/n over actual positive odd predecessors S_s(n)=m, without multiplicity. The positive odd unit targets with m*W_h(m)<h(m mod 3^r) have divergent reciprocal mass. For every E with finite sum_{m in E} 1/m, some such deficient target lies outside E. The final theorem states the actual predecessor sum explicitly. This is an ambient one-generation obstruction to uniform reproduction; it does not bound any fate class intersection or prove termination.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
+    },
     "Problems.Collatz.FibreMass": {
       "declarations": 43,
       "file": "formal/Problems/Collatz/FibreMass.lean",
@@ -116450,6 +117198,20 @@
         {
           "id": "C-syracuse-finite-residue-harmonic-obstruction",
           "statement": "Kernel-checked; advisory statement coverage and independent review remain open. For either sign s in {1,-1}, define the complete homogeneous odd-return operator on h modulo 3^r by L_s h(a)=sum_{k>=1} (3/2^k)*sum_{b mod 3^r, 2^k*a=3*b+s mod 3^(r+1)} h(b). The concrete branch congruence, uniqueness of the child at each exponent, nonnegative-row summability, zero nonunit output and sum_a L_s h(a)=3*sum_b h(b) are proved. For every r>=1 and fixed d>=1, if h vanishes on multiples of three and is positive on units, some unit residue a modulo 3^(r+d) satisfies L_s^d h(a)<h(a mod 3^r). The stronger form only requires h>=0 and h(-s)>0. The repeated k=1 branch gives L_s^d h(-s)>=(3/2)^d*h(-s), while both table sums equal 3^d*sum h. Actual-integer affine errors, deficient progressions, fate-class divergence and termination are outside this formal statement; no priority claim.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
+    },
+    "Problems.Collatz.FibreMassError": {
+      "declarations": 15,
+      "file": "formal/Problems/Collatz/FibreMassError.lean",
+      "imports": [
+        "Problems.Collatz.FibreActual"
+      ],
+      "ledger": [
+        {
+          "id": "C-syracuse-integer-fibre-mass-error",
+          "statement": "Kernel-checked; advisory statement coverage and independent review remain open. For either sign s in {1,-1}, let S_s(n)=(3n+s)/2^v2(3n+s) on positive odd integers. For every r>=0, real table 0<=h<=H modulo 3^r, and positive odd target m, the actual series W_h(m)=sum_{n>=1 odd, S_s(n)=m} h(n mod 3^r)/n converges and satisfies |m*W_h(m)-L_s h(m mod 3^(r+1))|<=H/(m-1/2), where L_s is the complete homogeneous odd-return operator. Every actual predecessor corresponds to exactly one admissible positive halving exponent. No vanishing on multiples of three or fate-distribution assumption is needed for this one-generation estimate. Actual errors at higher fixed depths are a separate written result.",
           "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
@@ -121215,13 +121977,13 @@
     }
   },
   "totals": {
-    "declarations": 9131,
-    "declarations_with_a_ledger_row": 6288,
-    "ledger_rows_naming_a_file": 521,
-    "modules": 385,
+    "declarations": 9197,
+    "declarations_with_a_ledger_row": 6319,
+    "ledger_rows_naming_a_file": 523,
+    "modules": 388,
     "trust": {
       "compiler": 56,
-      "kernel": 9075
+      "kernel": 9141
     }
   }
 }

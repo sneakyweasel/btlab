@@ -113,9 +113,13 @@ full fate class concentrates in the poor progression. Fate-specific
 averaging, nonperiodic weights, and variable stopping depths remain open.
 The dossier records a conditional generation-series route with an explicit
 open premise. The homogeneous finite-weight obstruction is now kernel-checked
-for both signs and every finite level and fixed positive depth; the actual
-integer error, deficient progression and generation-series implication remain
-written proofs. See the [formal proof map](theory/collatz_fibre_mass_lean_note.md).
+for both signs and every finite level and fixed positive depth. The actual
+one-generation error, predecessor bijection, deficient progression and
+divergent reciprocal mass are also kernel-checked; see the
+[actual-mass proof map](theory/collatz_actual_fibre_mass_lean_note.md).
+The actual error at higher fixed depths and the generation-series implication
+remain written proofs. The [coefficient proof map](theory/collatz_fibre_mass_lean_note.md)
+records the original homogeneous scope.
 
 ## Collatz orbit packing does not bypass Juggler parity counts
 

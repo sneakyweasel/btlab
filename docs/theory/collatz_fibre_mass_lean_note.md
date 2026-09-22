@@ -68,11 +68,13 @@ it to strictly positive unit weights.
 
 ## Boundaries
 
-This formalizes the homogeneous coefficient theorem. The following remain
-written proofs in the dossier: the actual-integer error bound, the resulting
-deficient arithmetic progression and its divergent reciprocal mass, full
-ternary coverage of sibling rays, and the conditional generation-series
-criterion. They are not included in this theorem's Lean coverage.
+This formalizes the homogeneous coefficient theorem. The
+[actual-mass continuation](collatz_actual_fibre_mass_lean_note.md) separately
+formalizes the actual one-generation error, deficient arithmetic progression
+and divergent reciprocal mass. The actual error at higher fixed depths, full
+ternary coverage of sibling rays, and conditional generation-series criterion
+remain written proofs in the dossier. They are not included in this theorem's
+Lean coverage.
 
 The result prevents a uniform finite-periodic-weight replacement for
 Juggler's harmonic production, for either sign and any fixed grouping depth.

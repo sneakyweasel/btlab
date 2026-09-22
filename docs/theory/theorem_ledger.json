@@ -160,13 +160,55 @@
  {
   "id": "C-syracuse-integer-fibre-mass-error",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "For either sign s in {1,-1}, a nonnegative real weight h periodic modulo M=3^r with r>=1 and zero on multiples of three, and a positive odd unit m, put W_h(m)=sum_{S_s(n)=m,3 does not divide n} h(n)/n and H=max(h). Then |m*W_h(m)-L_s h(m)|<=H/(m-1/2), where L_s is the complete homogeneous odd-return coefficient operator. In fixed depth d, put D_d=(3/2)^d-1. For m>D_d the corresponding generation mass satisfies |m*W_(h,d)(m)-L_s^d h(m)|<=D_d/(m-D_d)*L_s^d h(m) <=3^d*H*D_d/(m-D_d). Thus a strictly positive unit table's homogeneous deficient row persists on all sufficiently large odd targets in that arithmetic progression, whose reciprocal mass diverges. Globally discarding only a finite-reciprocal-mass set cannot repair uniform reproduction. No lower bound on a fate class's intersection with that progression follows. These actual-integer error and progression claims remain AI-assisted written proofs, with exact-arithmetic checks; Lean verification and independent review remain outstanding.",
-  "source": "docs/problems/collatz_fibre_mass.md",
-  "lean": "",
+  "source": "docs/theory/collatz_actual_fibre_mass_lean_note.md",
   "tests": [
    "tests/research/collatz/test_fibre_mass.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "statement": "Kernel-checked; advisory statement coverage and independent review remain open. For either sign s in {1,-1}, let S_s(n)=(3n+s)/2^v2(3n+s) on positive odd integers. For every r>=0, real table 0<=h<=H modulo 3^r, and positive odd target m, the actual series W_h(m)=sum_{n>=1 odd, S_s(n)=m} h(n mod 3^r)/n converges and satisfies |m*W_h(m)-L_s h(m mod 3^(r+1))|<=H/(m-1/2), where L_s is the complete homogeneous odd-return operator. Every actual predecessor corresponds to exactly one admissible positive halving exponent. No vanishing on multiples of three or fate-distribution assumption is needed for this one-generation estimate. Actual errors at higher fixed depths are a separate written result.",
+  "lean": "Problems/Collatz/FibreMassError.lean",
+  "decl": [
+   "actual_summable",
+   "actual_mass_error",
+   "predecessor_summable",
+   "predecessor_mass_error"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "C-syracuse-actual-finite-weight-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/theory/collatz_actual_fibre_mass_lean_note.md",
+  "tests": [
+   "tests/research/collatz/test_fibre_mass.py"
+  ],
+  "related_conjectures": [],
+  "statement": "Kernel-checked; advisory statement coverage and independent review remain open. For either signed odd-return map S_s, every r>=1 and real table h modulo 3^r that is zero on multiples of three and positive on all unit residues has a unit class a modulo 3^(r+1), delta>0 and B>=1 such that every odd m>=B in class a satisfies m*W_h(m)<=h(m mod 3^r)-delta. Here W_h(m) is the full sum of h(n mod 3^r)/n over actual positive odd predecessors S_s(n)=m, without multiplicity. The positive odd unit targets with m*W_h(m)<h(m mod 3^r) have divergent reciprocal mass. For every E with finite sum_{m in E} 1/m, some such deficient target lies outside E. The final theorem states the actual predecessor sum explicitly. This is an ambient one-generation obstruction to uniform reproduction; it does not bound any fate class intersection or prove termination.",
+  "lean": "Problems/Collatz/FibreDeficit.lean",
+  "decl": [
+   "deficient_progression",
+   "progression_pos",
+   "progression_large",
+   "progression_odd",
+   "progression_residue",
+   "progression_injective",
+   "progression_mass_not_summable",
+   "deficient_mass_not_summable",
+   "outside_finite_mass",
+   "exists_predecessor_mass_lt"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "C-syracuse-fixed-depth-integer-fibre-mass-error",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/collatz_fibre_mass.md",
+  "tests": [
+   "tests/research/collatz/test_fibre_mass.py"
+  ],
+  "related_conjectures": [],
+  "statement": "AI-assisted written proof; Lean verification and independent review remain outstanding. For either sign s, a nonnegative periodic unit-supported weight h modulo 3^r bounded by H, a fixed generation depth d>=1 and positive odd unit target m, put D_d=(3/2)^d-1. For m>D_d the actual unit-generation mass satisfies |m*W_(h,d)(m)-L_s^d h(m)|<=D_d/(m-D_d)*L_s^d h(m)<=3^d*H*D_d/(m-D_d). Determinism makes the path to any endpoint unique at that depth. For a strictly positive unit table the homogeneous deficient row therefore persists on an entire sufficiently large odd arithmetic progression with divergent reciprocal mass. The one-generation error and deletion obstruction are separately formalized; this row preserves the higher-depth written scope. No lower bound on the intersection with a prescribed fate class follows.",
+  "lean": ""
  },
  {
   "id": "C-syracuse-generation-harmonic-criterion",

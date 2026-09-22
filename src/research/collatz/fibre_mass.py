@@ -2,8 +2,10 @@
 
 See docs/problems/collatz_fibre_mass.md for proofs, scope, and prior art.
 Finite computations here check examples; the all-level coefficient
-obstruction is proved in Problems.Collatz.FibreMass. Actual-integer error
-estimates remain written proofs, not consequences of the enumerated levels.
+obstruction is proved in Problems.Collatz.FibreMass. FibreActual,
+FibreMassError and FibreDeficit prove the actual one-generation mass bridge
+and persistent deficits. Higher fixed-depth actual errors remain written
+proofs, not consequences of the enumerated levels.
 """
 
 from __future__ import annotations

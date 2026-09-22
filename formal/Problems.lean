@@ -25,6 +25,9 @@ import Problems.Collatz.PreimageCheck12Part3
 import Problems.Collatz.PreimageCertificate12
 import Problems.Collatz.PreimageBalance
 import Problems.Collatz.FibreMass
+import Problems.Collatz.FibreActual
+import Problems.Collatz.FibreMassError
+import Problems.Collatz.FibreDeficit
 import Problems.Ostrowski.NP
 import Problems.Primes.Residual
 import Problems.BalancedTernary.FiniteStateDynamics

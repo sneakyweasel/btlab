@@ -25,6 +25,11 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- actual signed Collatz predecessor masses: the complete predecessor bijection,
+  one-generation affine error H/(m-1/2), and deficient odd progressions with
+  divergent reciprocal mass. A finite reciprocal-mass deletion cannot repair
+  uniform reproduction by a positive finite ternary table. See the
+  [proof map](../docs/theory/collatz_actual_fibre_mass_lean_note.md);
 - complete signed Collatz odd-return coefficient operators: the concrete
   infinite halving-exponent sum, mean conservation, and a deficient unit
   residue for every positive finite ternary weight table at every fixed
