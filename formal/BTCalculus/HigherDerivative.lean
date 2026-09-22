@@ -6,8 +6,9 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Real
 /-! # Quantitative higher-derivative differencing
 
 Derivative chains and genuine shifted differences give finite estimates on
-their actual overlap intervals. The numerical bound retains freely chosen
-integer differencing windows, so their optimization is a separate step.
+their actual overlap intervals. Rounded optimized windows give explicit
+third- and fifth-derivative bounds, including constant negative sign and
+real endpoints. No cancellation estimate is assumed by the final tests.
 -/
 
 noncomputable section

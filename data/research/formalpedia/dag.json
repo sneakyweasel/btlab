@@ -240,6 +240,20 @@
         "kernel": 15
       }
     },
+    "BTCalculus.HigherDerivative": {
+      "declarations": 37,
+      "depends_on": [
+        "BTCalculus.SecondDerivative"
+      ],
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 37
+      }
+    },
     "BTCalculus.Integral": {
       "declarations": 14,
       "depends_on": [
@@ -3992,9 +4006,9 @@
     }
   },
   "totals": {
-    "edges": 311,
-    "edges_before_reduction": 2441,
-    "ledger_rows_placed": 505,
-    "nodes": 249
+    "edges": 312,
+    "edges_before_reduction": 2445,
+    "ledger_rows_placed": 506,
+    "nodes": 250
   }
 }

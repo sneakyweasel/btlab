@@ -69974,6 +69974,236 @@
     },
     {
       "doc": "",
+      "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 17,
+      "module": "Problems.Juggler.OOEEMixedModes",
+      "name": "correlationConstant",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 20,
+      "module": "Problems.Juggler.OOEEMixedModes",
+      "name": "mixedConstant",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 23,
+      "module": "Problems.Juggler.OOEEMixedModes",
+      "name": "original_correlation_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 44,
+      "module": "Problems.Juggler.OOEEMixedModes",
+      "name": "mixed_sum_positive",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 126,
+      "module": "Problems.Juggler.OOEEMixedModes",
+      "name": "mixed_sum_positive_eventually",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 137,
+      "module": "Problems.Juggler.OOEEMixedModes",
+      "name": "originalPhase_neg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 142,
+      "module": "Problems.Juggler.OOEEMixedModes",
+      "name": "mixed_sum_nonzero_eventually",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every fixed integer Fourier mode except the pure slow modes has a power saving.",
+      "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 156,
+      "module": "Problems.Juggler.OOEEMixedModes",
+      "name": "fixed_mixed_mode",
+      "trust": "kernel"
+    },
+    {
+      "doc": "One pair of constants works for any fixed finite family of mixed modes.",
+      "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 181,
+      "module": "Problems.Juggler.OOEEMixedModes",
+      "name": "finite_mixed_modes",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 18,
+      "module": "Problems.Juggler.OOEEPhaseComparison",
+      "name": "firstFloor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 20,
+      "module": "Problems.Juggler.OOEEPhaseComparison",
+      "name": "nestedPower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 22,
+      "module": "Problems.Juggler.OOEEPhaseComparison",
+      "name": "originalPhase",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 25,
+      "module": "Problems.Juggler.OOEEPhaseComparison",
+      "name": "remainder",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 28,
+      "module": "Problems.Juggler.OOEEPhaseComparison",
+      "name": "three_halves_eq_mul_sqrt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A bound using the larger square root avoids any lower bound on the floor.",
+      "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 36,
+      "module": "Problems.Juggler.OOEEPhaseComparison",
+      "name": "remainder_times_root_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 41,
+      "module": "Problems.Juggler.OOEEPhaseComparison",
+      "name": "remainder_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 80,
+      "module": "Problems.Juggler.OOEEPhaseComparison",
+      "name": "three_quarters_increment",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 100,
+      "module": "Problems.Juggler.OOEEPhaseComparison",
+      "name": "original_difference_identity",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 112,
+      "module": "Problems.Juggler.OOEEPhaseComparison",
+      "name": "original_difference_error",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 149,
+      "module": "Problems.Juggler.OOEEPhaseComparison",
+      "name": "phase_sub_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 159,
+      "module": "Problems.Juggler.OOEEPhaseComparison",
+      "name": "correlation_comparison",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEESmoothModes.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 16,
+      "module": "Problems.Juggler.OOEESmoothModes",
+      "name": "smooth_sum_positive",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEESmoothModes.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 77,
+      "module": "Problems.Juggler.OOEESmoothModes",
+      "name": "smooth_sum_positive_eventually",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
       "kind": "theorem",
       "ledger": [],
@@ -100448,6 +100678,450 @@
     },
     {
       "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 21,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "Chain",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 24,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "difference",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 26,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "chain_difference",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Secants of the preceding derivative retain the sign and the full shift factor.",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 39,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "difference_top_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A common ambient length allows differencing on successively shorter overlaps.",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 52,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "uniform_differencing",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 78,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "nestedBound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 82,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "nestedBound_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every derivative estimate used in the differencing tree is proved from the chain. The ambient lower and upper scales are independent of the chosen actual shifts.",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 90,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "higher_derivative_sum_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Conjugation handles a derivative of constant negative sign throughout the interval.",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 173,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "signed_higher_derivative_sum_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 197,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "rounded_window_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 202,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "sqrt_le_div_of_mul_sq_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A fully explicit third-derivative test with a real cutoff, rounded inside the proof.",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 210,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "third_derivative_test",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A fifth-derivative test with three actual windows and numerical constant seven.",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 255,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "fifth_derivative_test",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 336,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "inverse_root_cap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 346,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "fourthRoot",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 348,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "fourthRoot_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 351,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "fourthRoot_pow_four",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 357,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "pow_four_le_of_le_fourthRoot",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 362,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "thirdCutoff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 365,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "fifthCutoff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 369,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "thirdCutoff_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 374,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "fifthCutoff_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 380,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "small_cutoff_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "All positive curvature scales and all positive lengths are covered; the cutoff is explicit.",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 391,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "third_derivative_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Three differencing steps and the second-derivative test give an unconditional finite fifth-derivative bound, with no assumed cancellation or window-existence premise.",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 407,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "fifth_derivative_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 431,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "integerCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 432,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "integerStart",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The finite sum over real endpoints has exactly the floor-difference length.",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 435,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "integer_sum_eq_range",
+      "trust": "kernel"
+    },
+    {
+      "doc": "One unit of right support supplies the final increment required by the derivative test.",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 458,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "integer_support",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Third-derivative cancellation for the actual integers in a real half-open interval.",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 472,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "third_derivative_real_interval",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Fifth-derivative cancellation for the actual integers in a real half-open interval.",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 486,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "fifth_derivative_real_interval",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 499,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "inv_sqrt_min",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 507,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "inv_sqrt_rpow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 513,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "inv_sqrt_eq_rpow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 517,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "inv_sqrt_fourthRoot",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The third-derivative estimate in explicit power-rate form.",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 524,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "third_derivative_rate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The fifth-derivative estimate in explicit power-rate form.",
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-explicit-third-fifth-derivative-tests"
+      ],
+      "line": 541,
+      "module": "BTCalculus.HigherDerivative",
+      "name": "fifth_derivative_rate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/BTCalculus/Integral.lean",
       "kind": "def",
       "ledger": [
@@ -111071,6 +111745,7 @@
         "BTCalculus.FourierBoxCounting",
         "BTCalculus.FourierBoxRecurrence",
         "BTCalculus.FourierDiscrepancy",
+        "BTCalculus.HigherDerivative",
         "BTCalculus.Integral",
         "BTCalculus.Jet",
         "BTCalculus.KusminLandau",
@@ -111485,6 +112160,21 @@
         "BTCalculus.FourierBoxCounting"
       ],
       "ledger": []
+    },
+    "BTCalculus.HigherDerivative": {
+      "declarations": 37,
+      "file": "formal/BTCalculus/HigherDerivative.lean",
+      "imports": [
+        "BTCalculus.SecondDerivative",
+        "BTCalculus.WeylCancellation"
+      ],
+      "ledger": [
+        {
+          "id": "BTA-explicit-third-fifth-derivative-tests",
+          "statement": "Let N>=1 be an integer, lambda>0, a real, and f_0,...,f_r real functions with f_j derivative f_(j+1) at every point of [a,a+N] for j<r. Write S=sum_(0<=n<N) exp(2*pi*i*f_0(a+n)). If r=3 and f_3 is throughout in [lambda,4lambda] or throughout in [-4lambda,-lambda], then norm(S)<=12N*max(lambda^(1/6),(N/2)^(-1/2),(N*sqrt(lambda))^(-1/2)). If r=5 and f_5 is throughout in [lambda,6lambda] or throughout in [-6lambda,-lambda], then norm(S)<=7N*max(lambda^(1/30),(N/6)^(-1/8),(N*sqrt(lambda))^(-1/8)). For real A<=B with L=floor(B)-floor(A)>0, derivative chains and the same signed top bounds on [A,B+1] give norm(sum_(A<n<=B) exp(2*pi*i*f_0(n)))<=12L/sqrt(q_3) or <=7L/sqrt(q_5), where q_3=min(lambda^(-1/3),L/2,L*sqrt(lambda)) and q_5=min(lambda^(-1/15),(L/6)^(1/4),(L*sqrt(lambda))^(1/4)). These are finite derivative tests, not the specific OOE mode bound or the effective return theorem.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
     },
     "BTCalculus.Integral": {
       "declarations": 14,
@@ -115642,6 +116332,31 @@
       ],
       "ledger": []
     },
+    "Problems.Juggler.OOEEMixedModes": {
+      "declarations": 9,
+      "file": "formal/Problems/Juggler/OOEEMixedModes.lean",
+      "imports": [
+        "Problems.Juggler.OOEESmoothModes"
+      ],
+      "ledger": []
+    },
+    "Problems.Juggler.OOEEPhaseComparison": {
+      "declarations": 12,
+      "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
+      "imports": [
+        "Problems.Juggler.OOEECarryFourier",
+        "Problems.Juggler.PaperBAssembly"
+      ],
+      "ledger": []
+    },
+    "Problems.Juggler.OOEESmoothModes": {
+      "declarations": 2,
+      "file": "formal/Problems/Juggler/OOEESmoothModes.lean",
+      "imports": [
+        "Problems.Juggler.OOEEPhaseComparison"
+      ],
+      "ledger": []
+    },
     "Problems.Juggler.OddCountMonotone": {
       "declarations": 7,
       "file": "formal/Problems/Juggler/OddCountMonotone.lean",
@@ -117317,13 +118032,13 @@
     }
   },
   "totals": {
-    "declarations": 8826,
-    "declarations_with_a_ledger_row": 6009,
-    "ledger_rows_naming_a_file": 505,
-    "modules": 368,
+    "declarations": 8886,
+    "declarations_with_a_ledger_row": 6046,
+    "ledger_rows_naming_a_file": 506,
+    "modules": 372,
     "trust": {
       "compiler": 56,
-      "kernel": 8770
+      "kernel": 8830
     }
   }
 }

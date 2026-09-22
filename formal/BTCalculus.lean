@@ -56,4 +56,5 @@ import BTCalculus.FourierDiscrepancy
 import BTCalculus.FejerBox
 import BTCalculus.FejerWeighted
 import BTCalculus.SecondDerivative
+import BTCalculus.HigherDerivative
 import BTCalculus.PartialSummation

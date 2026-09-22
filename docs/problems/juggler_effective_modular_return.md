@@ -95,8 +95,13 @@ mode estimates and explicit OOE assembly remain written proofs.
 Finite Python checks do not discharge those Lean gaps.
 The [internal proof audit](../theory/juggler_effective_modular_return_audit.md)
 maps the five quantitative obligations and the exact declarations that
-can be reused. Q3 is closed by the subsequent formalization; Q1, Q2,
-Q4, and Q5 remain open.
+can be reused. Q3 is closed by the subsequent formalization. The generic
+analytic part of Q1 now has explicit kernel-checked third- and
+fifth-derivative alternatives in `BTCalculus.HigherDerivative`; the
+[proof map](../theory/higher_derivative_finite_note.md) records constants
+12 and 7, both signs, cutoffs, and real endpoints with extended support.
+The OOE derivative specialization and comparison with the written
+constants remain, followed by Q2, Q4, and Q5.
 
 ## Results
 
@@ -126,10 +131,12 @@ qualitative result with a uniform explicit error and a bounded search domain.
 Do not optimize constants or open other words automatically.
 
 The finite half-open Fejer box estimate (Q3 in the audit) is kernel-checked
-with its constants and all boundary cases. **PROMOTE** this reusable
-formalization and stop the direction. The next dependency is Q1, the
-explicit order-3 and order-5 derivative estimate. External review remains
-open; do not automatically begin Q1 or optimize the modulus exponent.
+with its constants and all boundary cases. The authorized continuation
+also proves explicit order-3 and order-5 derivative tests with automatic
+cutoffs. **PROMOTE** these reusable formalizations. The next dependency
+is their application to the actual OOE phases and comparison with the
+required constants, then quantitative dyadic assembly. External review
+remains open; optimizing the modulus exponent is outside this scope.
 
 ## Publication assessment
 

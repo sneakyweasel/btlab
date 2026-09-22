@@ -25,6 +25,14 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- explicit third- and fifth-derivative tests, with constants 12 and 7,
+  proved from finite differencing and the second-derivative estimate.
+  Derivative chains, both signs, actual overlap intervals, rounded
+  automatic cutoffs, and floor-difference real-endpoint sums are proved.
+  The OOE phase specialization and comparison with its required uniform
+  constants remain open. See the
+  [proof map](../docs/theory/higher_derivative_finite_note.md) and
+  [dependency audit](AxiomCheckHigherDerivative.lean);
 - the complete retained OOEE carry correlation O(P^(3/8)), with its
   fractional-part contribution bounded by O(P^(5/16)*log(P)). Centered
   weighted Fejer smoothing at cutoff P^(1/4), actual perturbed curvatures,

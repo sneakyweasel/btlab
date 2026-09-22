@@ -1,5 +1,37 @@
 # Research journal
 
+## 2026-09-22 -- Explicit finite higher-derivative input for effective OOE
+
+- **Target and falsifier:** Formalize explicit third- and fifth-derivative
+  cancellation. An assumed correlation estimate or untracked overlap
+  would falsify the claimed closure. This is classical analytic machinery;
+  no closed Juggler attack is reopened and no new method is claimed.
+- **Proof:** The new generic `HigherDerivative` module inducts over actual
+  shifted derivative chains and applies the proved second-derivative test
+  at the leaves. Upward-rounded windows q for order three and q,q^2,q^4
+  for order five give constants 12 and 7. Automatic positive cutoffs give
+  finite power-rate bounds for all positive lengths and curvature scales,
+  including a common negative derivative sign and the trivial small-cutoff
+  regime. Real endpoints use the exact floor-difference count and explicitly
+  require one unit of extra right support.
+- **Scope:** This is an alternative input to Q1, not the precise estimate
+  cited in the written paper. The actual OOE derivative chains, bounds on
+  extended support, and comparison with the required constants remain at
+  the Q1/Q2 interface. Dyadic mode assembly, counting error, and bounded
+  witness extraction remain open. Q3 is already kernel-checked. The
+  effective OOE theorem keeps its human-proof label.
+- **Validation:** The full Lean build passes (9077 jobs); every one of the
+  module's 29 theorems has only propext, Classical.choice, and Quot.sound
+  dependencies. Jev, explicitly authorized for this theorem only, returned
+  covered (0.63); direct statement inspection supports the ledger ruling.
+  Targeted checks: 231 passed, 15 skipped, and two failures in concurrent OOEE work:
+  a changing Paper E registry pin and a new ledger row naming `firstFloor`
+  in the wrong file. The Paper E gate subsequently passes. Exact theorem
+  index freshness and declaration coverage pass on committed sources plus
+  this result; concurrent registry and OOEE edits are excluded from this
+  commit. The ledger renderer passes.
+- **Decision:** **PROMOTE** the finite derivative tests. Next bounded step:
+  specialize them to the OOE phases and retain all explicit constants.
 ## 2026-09-22 -- Winkler homepage sweep: one mirror, one unread preprint
 
 - **Target and falsifier:** Go through www.mikematics.de and decide, per live

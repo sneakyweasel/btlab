@@ -160,6 +160,26 @@
         "key": "78ecacfc0d918094",
         "model": "jev-1.13.0"
       },
+      "BTA-explicit-third-fifth-derivative-tests": {
+        "asked": "2026-09-22",
+        "claim_broader": 0.26,
+        "covers": 0.63,
+        "decl_narrower": 0.42,
+        "decls": [
+          "Chain",
+          "thirdCutoff",
+          "fifthCutoff",
+          "fourthRoot",
+          "integerCount",
+          "third_derivative_rate",
+          "fifth_derivative_rate",
+          "third_derivative_real_interval",
+          "fifth_derivative_real_interval"
+        ],
+        "different_result": 0.48,
+        "key": "5a6eaef0166e614a",
+        "model": "jev-1.13.0"
+      },
       "BTA-finite-fejer-box-discrepancy": {
         "asked": "2026-09-22",
         "claim_broader": 0.23,
@@ -4008,10 +4028,10 @@
       }
     },
     "totals": {
-      "answered": 250,
+      "answered": 251,
       "asked_now": 0,
       "input_tokens": 0,
-      "reused": 250,
+      "reused": 251,
       "unfound": 0
     }
   },
