@@ -12917,5 +12917,27 @@
    "tests/research/juggler_sequence/test_lean_paths_declares_name.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-ooee-short-mixed-modes",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "AI-assisted written analytic proof, pending independent mathematical review and analytic Lean verification. Fix K,L0>=1. Put X(n)=n^(3/2), Y(n)=floor(n^(3/2))^(3/2), Z(n)=n^(9/8). Uniformly for intervals I in [P,2P] of length at most L0*P^(7/16) and integer triples (i,j,k) with maximum absolute value at most K and (i,j)!=(0,0), the sum over odd n in I of exp(2*pi*i_complex*(i*X(n)+j*Y(n)+k*Z(n))/2) is O_(K,L0)(P^(13/32)). The same estimate holds with Z(n) replaced by sqrt(floor(Y(n))). The proof recounts O(1) carry cells for shifts up to P^(1/16), bounds the short-interval carry remainder by O(P^(5/16)*log P), retains O(P^(3/8)) correlation endpoints, and applies differencing. Pure slow modes (0,0,k), growing mode ranges, additional odd nesting, and growing-depth pressure are not covered.",
+  "source": "docs/problems/juggler_ooee_poor_fibres.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_ooee_poor_fibres.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-ooee-poor-fibre-tail",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "AI-assisted written analytic proof, pending independent mathematical review and analytic Lean verification. Let O(n)=floor(n^(3/2)), Q(n)=floor(sqrt(n)), e(n)=n+(n mod 2), and w(n)=log((e(n)+1)/(e(n)-1)). Let F_m consist of positive n with n and O(n) odd, O^2(n) and Q(O^2(n)) even, and Q^2(O^2(n))=m. Set W_m=sum_(n in F_m) w(n) and R_m=W_m/w(m). For every fixed 0<eta<1/9, sum_(m>=U, R_m<1/9-eta) 1/m is O_eta(U^(-7/9)) for all U>=1. For sufficiently large m, every fixed absolute deviation of R_m from 1/9 lies in a fixed finite union of resonance sets ||q*(9/8)*m^(2/9)||<=C_eta*m^(-7/9). Consequently, uniformly for arbitrary positive-integer target sets A and finite cutoffs X, sum_(m in A, m<=X) W_m >= (1/9-eta)*sum_(m in A, m<=X) w(m)-C'_eta. All four actual parity guards are retained. The proof is in juggler_ooee_poor_fibre_tail_note.md; the finite tests check inversion and guards only. No uniform per-target positivity, revised contagion exponent, or termination theorem is asserted.",
+  "source": "docs/problems/juggler_ooee_poor_fibres.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_ooee_poor_fibres.py"
+  ],
+  "related_conjectures": []
  }
 ]

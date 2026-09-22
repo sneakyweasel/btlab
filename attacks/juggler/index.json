@@ -4584,8 +4584,11 @@
       "data_dir": "data/research/juggler/ooee_poor_fibres",
       "lean": [],
       "conjecture": [],
-      "decision": "PARK",
-      "ledger_ids": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-ooee-short-mixed-modes",
+        "J-ooee-poor-fibre-tail"
+      ],
       "aliases": [],
       "nk_cluster": "Good average OOEE mass does not imply uniformly productive fibres"
     },

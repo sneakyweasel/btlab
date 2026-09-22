@@ -1,7 +1,10 @@
 # Actual OOEE fibres and sparse slow-parity resonances
 
-Status: **PARK**, 22 September 2026. Exact finite census and elementary
-written bounds; no new contagion coefficient or termination theorem.
+Status: **PROMOTE**, 22 September 2026. The follow-up now supplies an
+AI-assisted written poor-fibre tail and the averaged OOEE coefficient
+arbitrarily close to 1/9. Independent review and analytic Lean verification
+are outstanding; the published contagion exponent and termination status
+are unchanged. [Complete argument](../theory/juggler_ooee_poor_fibre_tail_note.md).
 
 ## Problem
 
@@ -21,17 +24,19 @@ w(n)=log((e(n)+1)/(e(n)-1)), where e(n)=n+(n mod 2). Define
  R_m=\frac{\sum_{n\in F_m}w(n)}{w(m)}.
 \]
 
-The question is whether, for every fixed 0<eta<1/9,
+The written theorem now proves that, for every fixed 0<eta<1/9,
 
 \[
- \sum_{m\ge1:\ R_m<1/9-\eta}\frac1m<\infty.
+ \sum_{m\ge U:\ R_m<1/9-\eta}\frac1m\ll_\eta U^{-7/9}\qquad(U\ge1).
  \tag{1}
 \]
 
-The ideal coefficient 1/9 is **unproved** for these actual fibres. It is
-the formal value 2^(-4)/(9/16), not a consequence of the census or of the
-global Paper B parity count. All four guards are retained. The unguarded
-map is the nested Q^2 O^2, not floor(n^(9/16)).
+The limiting averaged coefficient 1/9 equals the formal value 2^(-4)/(9/16),
+but its justification is the new analytic proof, not the census or the
+global Paper B parity count. For every coefficient below 1/9 there is
+a bounded additive production loss, uniformly over arbitrary target sets.
+All four guards are retained. The unguarded map is the nested Q^2 O^2,
+not floor(n^(9/16)). Uniform positivity at every large target is not asserted.
 
 ## Current literature
 
@@ -58,6 +63,15 @@ claim or priority claim is made.
 - **Maximum Phase-0 scope:** Exact fibre construction and a bounded deficiency/resonance census: all targets 2..4095, 64 fixed midpoints per dyadic block for exponents 12..20, then five targets around each slow-slope integer 4..16 and 27.
 - **Promotion criterion:** A proved summable exceptional-set estimate.
 - **Stop criterion:** PARK with a precise missing lemma if the census alone supports the idea.
+
+The first phase ended **PARK**. The explicitly resumed follow-up has
+the same mathematical target and tests a specific new calculation:
+recount the carry cells for shifts at most P^(1/16) on intervals of
+length P^(7/16). Its budget is the local mixed-mode proof and poor-target
+inclusion, stopping at the first unsupported error estimate. Its promotion
+criterion is the complete written bound retaining actual floors and all
+guards. It does not include a new census, contagion recursion, or manuscript
+revision. That criterion is met in the linked analytic note.
 
 ## Balanced-ternary formulation
 
@@ -135,7 +149,8 @@ searches for outliers and must not be combined into a density estimate.
 
 ## Conjectures
 
-No new conjecture is registered. Equation (1) is an open research target.
+No new conjecture is registered. Equation (1) now has an AI-assisted
+written proof, with independent review outstanding.
 
 ## Counterexamples
 
@@ -161,8 +176,12 @@ bound with an unspecified threshold, or the summable-exception question.
 No new Lean module. The exact even-fibre weight and both signed transports
 are already kernel-checked in
 [CodeMassTransport.lean](../../formal/Problems/Juggler/CodeMassTransport.lean).
-The new integer census is independently checked against forward Juggler
+The integer census is independently checked against forward Juggler
 orbits and exact rational products. No analytic bound is inferred from it.
+The new analytic note identifies the existing kernel-checked linearization
+and carry identities in `PaperBAssembly.lean` and `GapCells.lean`.
+The short-interval estimates and poor-tail theorem remain written;
+those earlier Lean identities do not cover the new analytic claim.
 
 ## Results
 
@@ -205,15 +224,23 @@ O(q M^(2/9)+C+1) integer levels; each interval contains at most its
 length plus one integers. Sum over the finitely many q and then over
 dyadic M. This proves sparsity of the proposed resonance family only.
 
-**Missing implication:** poor actual OOEE fibres have not been shown to
-belong to such a family, even after adding another summable exceptional
-set. The first two parity guards may correlate with the slow guard.
-Separate marginal balances do not establish joint production.
+**Follow-up: the missing implication is now proved in writing.** For each
+fixed eta>0, sufficiently large targets with |R_m-1/9|>eta belong to
+one such fixed resonance family. The
+[analytic note](../theory/juggler_ooee_poor_fibre_tail_note.md) proves the
+short-interval bound O(P^(13/32)) for every fixed mixed Fourier mode
+with at least one nonzero earlier coordinate. The source length is
+P^(7/16)=P^(14/32), giving a genuine saving. The pure slow modes are
+handled by their distance from resonance. Applying three-dimensional
+box discrepancy to the actual floor phases then proves joint production,
+without assuming that the marginal parity conditions are independent.
+The resulting poor reciprocal tail is O_eta(U^(-7/9)).
 
 ## Open questions
 
-Let H_m be the number of odd candidates in (2), and C_m=|F_m|. A concrete
-arithmetic estimate sufficient for this phase's target is, for some delta>0,
+The first phase proposed a second-moment route. Let H_m be the number
+of odd candidates in (2), and C_m=|F_m|. A sufficient alternative estimate
+would be, for some delta>0,
 
 \[
  \sum_{M\le m<2M}(C_m-H_m/8)^2
@@ -224,21 +251,27 @@ arithmetic estimate sufficient for this phase's target is, for some delta>0,
 Here H_m=(8/9)m^(7/9)+O(1), and (4) relates the count to the mass.
 For fixed eta, a deficient mass ratio eventually forces a count error
 of order eta*m^(7/9). Thus (5) would bound the poor-target count by
-O_eta(M^(1-delta)), making (1) summable. No proof of (5), or of its
-needed one-sided variant, is supplied. Global Paper B prefix estimates
-and the already known two-predecessor Fourier transfer do not supply
-this short-fibre second moment merely by reindexing.
+O_eta(M^(1-delta)). No proof of (5) is supplied or needed for the new
+result: the resonance inclusion proves (1) directly. Global Paper B
+prefix estimates and the already known two-predecessor Fourier transfer
+still do not supply a short-fibre second moment merely by reindexing.
+
+Independent review of the new local proof remains outstanding. The next
+application is to combine the disjoint OOEE production with E and OE,
+retaining exact source cutoffs and shell boundary losses, and then
+formalize that recursion before changing any contagion or Tao exponent.
 
 ## Decision
 
-**PARK.** The bounded phase identifies an exact slow-parity failure mechanism
-and a summable candidate resonance family, but does not control all deficient
-fibres. The most promising next question within this direction is whether
-the actual joint-guard count admits a power-saving second moment such as
-(5). That requires an arithmetic proof, not a larger midpoint census or
-another formal transport identity. This phase opens no follow-up campaign.
+**PROMOTE.** The follow-up supplies the missing fixed-mode cancellation
+and proves that all sufficiently large deficient fibres lie in a summable
+resonance family. This is a written analytic theorem, pending independent
+review and full Lean verification. Exactly one best next question: what
+improved contagion exponent follows when this actual OOEE production is
+assembled with the existing E/OE recursion and all cutoff losses retained?
+That assembly is not opened by this phase.
 
 ## Publication assessment
 
-Status: **EXPLORATORY**. Diagnostic evidence and elementary supporting bounds.
-No paper, verification floor, contagion exponent, or termination claim changes.
+Status: **THEOREM**. Written analytic result with independent review outstanding.
+No paper, verification floor, stated contagion exponent, or termination claim changes.

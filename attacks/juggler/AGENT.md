@@ -122,10 +122,13 @@ with explicit scope and proof mapping; publication work opens no new attack.
   (`ScaleAverage.pressure_average_conjecture`) at `r-eta>103/203`;
   its arithmetic bound is open.
   The [actual OOEE poor-fibre probe](../../docs/problems/juggler_ooee_poor_fibres.md)
-  is **PARK**: exact empty fibres persist to the checked target 1625364,
-  explained there by a locked final parity. Fixed small-denominator
-  slow-slope resonance sets are summable, but the required bound on all
-  joint-guard deficiencies remains open. No production coefficient changes.
+  now has a **PROMOTE** [written poor-fibre tail](../../docs/theory/juggler_ooee_poor_fibre_tail_note.md):
+  fixed mixed modes save 1/32 on the P^(7/16) source interval, and only
+  pure slow modes need resonance exclusions. Every fixed mass deficit has
+  reciprocal tail O_eta(U^(-7/9)), giving an actual averaged OOEE coefficient
+  arbitrarily close to 1/9. Independent review and analytic Lean verification
+  remain outstanding. E/OE/OOEE recursion assembly is next; the established
+  contagion exponent and Tao threshold have not yet changed.
   Kernel localize CLOSE. Do not open a
   third formulation. Not a halt theorem; no fate excluded.
   The inverse-cell Hardy shortcut is also CLOSE: its shrinking

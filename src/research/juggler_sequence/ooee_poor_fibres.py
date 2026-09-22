@@ -144,7 +144,8 @@ def census() -> dict:
                      "worst_exact_bracket": [str(worst["lower"]), str(worst["upper"])],
                      "thresholds": thresholds})
     return {"scope": "all targets 2..4095; 64 fixed midpoint targets in each [2^k,2^(k+1)), k=12..20",
-            "ideal_coefficient_unproved": "1/9", "rows": rows}
+            "reference_coefficient": "1/9", "census_proves_asymptotic_coefficient": False,
+            "rows": rows}
 
 
 if __name__ == "__main__":

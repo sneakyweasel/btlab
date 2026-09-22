@@ -1,6 +1,7 @@
 {
   "scope": "all targets 2..4095; 64 fixed midpoint targets in each [2^k,2^(k+1)), k=12..20",
-  "ideal_coefficient_unproved": "1/9",
+  "reference_coefficient": "1/9",
+  "census_proves_asymptotic_coefficient": false,
   "rows": [
     {
       "dyadic_exponent": 1,

@@ -1,5 +1,41 @@
 # Research journal
 
+## 2026-09-22 -- Actual OOEE poor-fibre tail by short mixed-mode cancellation
+
+- **Question:** Resolve the previous phase's missing implication from a
+  deficient actual fibre to a summable resonance set.
+- **New calculation:** At source length P^(7/16), shifts h<=P^(1/16)
+  cross O(1) first-gap cells. Re-estimating the carry Fourier remainder
+  at that length costs O(P^(5/16) log P), and the retained correlation
+  endpoint cost is O(P^(3/8)). Differencing gives O(P^(13/32)) for every
+  fixed mixed mode with an earlier parity coordinate nonzero.
+- **Actual guards:** Replace the final root only inside exponential sums,
+  at cost O_K(P^(1/16)); no equality of floor parities is assumed. Pure
+  slow modes are bounded outside fixed small-denominator resonance windows.
+  Three-dimensional box discrepancy, with cutoff fixed before m grows,
+  controls all joint guards and proves the resonance inclusion.
+- **Result:** For every 0<eta<1/9, targets with R_m<1/9-eta have
+  reciprocal tail O_eta(U^(-7/9)). Arbitrary target sets therefore receive
+  actual OOEE source mass at coefficient 1/9-eta with bounded additive loss.
+  No second-moment hypothesis is needed. This is an AI-assisted written
+  proof, pending independent review and complete analytic Lean verification.
+- **Formal boundary:** Existing `PaperBAssembly.lean` and `GapCells.lean`
+  check the factorization, carry, and parity identities. Their English
+  scope does not cover the new short-interval estimate. Full formalization
+  of the analytic argument remains outstanding; no analytic premise is
+  inserted as a new Lean assumption.
+- **Decision:** **PROMOTE**, superseding the preceding PARK. The next
+  question is the E/OE/OOEE contagion recursion with exact source cutoffs.
+  That assembly is not opened here, and no numerical contagion exponent,
+  Tao threshold, paper, floor, or termination statement changes.
+  [Complete written proof and audit checklist](theory/juggler_ooee_poor_fibre_tail_note.md).
+- **Validation:** Integration, ledger, exact-fibre, branch-index, and
+  formalpedia freshness checks: 165 passed, 15 skipped. A fresh Lean
+  dependency audit of the seven cited foundation theorems reports only
+  propext, Classical.choice, and Quot.sound. No external advisory request
+  was sent. These checks do not constitute analytic verification of the
+  new theorem.
+
 ## 2026-09-22 -- OOEE poor fibres: exact slow-parity failures, averaged bound open
 
 - **Question:** Does the set of actual OOEE targets with source-weight ratio

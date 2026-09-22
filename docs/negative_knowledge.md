@@ -11,9 +11,13 @@ mass ratio at least 1/10; this targeted outlier lies in the same range.
 Neither good sampled averages nor separate marginal balances establish
 the actual joint-guard lower bound. The example does not refute eventual
 positivity with an unspecified threshold or summable exceptional mass.
-Fixed small-denominator slow-slope resonance sets are summable, but no
-containment of all deficient fibres is proved. Decision **PARK** the
-averaged production question; do not reopen it with a larger midpoint scan.
+The subsequent [analytic proof](theory/juggler_ooee_poor_fibre_tail_note.md)
+now controls the missing joint modes: all sufficiently large fixed-deficit
+fibres lie in a fixed small-denominator resonance family. The poor reciprocal
+tail is O_eta(U^(-7/9)), in an AI-assisted written proof pending independent
+review and analytic Lean verification. The branch is now **PROMOTE**;
+uniform positivity remains unasserted. A larger midpoint scan still supplies
+none of this arithmetic proof, and the higher-depth localization remains closed.
 
 ## The fourth odd phase is the already closed K3 extension route
 
