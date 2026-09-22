@@ -1,5 +1,37 @@
 # Research journal
 
+## 2026-09-22 -- Complete finite Fejer box discrepancy (Q3)
+
+- **Target:** Formalize the audited two-dimensional finite box estimate
+  with constant five, the logarithmic coefficient, arbitrary samples,
+  and every half-open, wrapped, empty/full boundary case. An assumed
+  smoothing or coefficient estimate would fail the target. No closed
+  Juggler attack is reopened; this is a generic analytic dependency.
+- **Proof:** Four generic modules construct the actual Dirichlet-square
+  kernel, prove its integrated tails, integrate genuine half-open arcs,
+  construct saturated upper/lower convolutions, and derive their finite
+  Fourier expansions and harmonic coefficient masses. The final
+  `BTCalculus.FejerBox.finite_box_discrepancy` assumes only the bounded
+  nonzero Fourier modes and proves the stated finite count error.
+  Repeated frequency labels replace a separate triangular-multiplier
+  calculation. H=1,2 are handled by the trivial count bound.
+- **Validation:** The complete default Lean build passes (9070 jobs).
+  All 72 theorems, including the covering theorem, are included in the
+  dependency audit. The single-row Jev advisory reports covered
+  (0.75); the English statement and all Lean hypotheses were also
+  compared directly. No additional analytic premise is hidden in the
+  theorem. The targeted suite has 231 passes, 15 skips and two failures
+  caused by a concurrently created, unregistered OOEE draft. Both exact
+  failing checks pass on committed sources plus Q3. Generated artifacts
+  were verified against that clean snapshot, excluding concurrent
+  drafts. The ledger and branch-index checks pass.
+- **Decision:** **PROMOTE** Q3 and stop this direction. Q1, Q2, Q4, Q5
+  remain open, and the effective OOE theorem retains its human-proof
+  label. The next dependency is the explicit order-3/order-5 derivative
+  estimate, without automatically starting that branch. Paper E 0.5.0
+  and its publication audit are unchanged.
+  [Proof map](theory/finite_fejer_box_note.md).
+
 ## 2026-09-22 -- Weighted OOEE carry cells and termination review
 
 - **Continuation audit:** The previous phase proved the actual curvature.

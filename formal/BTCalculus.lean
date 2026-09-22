@@ -50,5 +50,9 @@ import BTCalculus.FourierBoxRecurrence
 import BTCalculus.PowerBoxRecurrence
 import BTCalculus.FourierBoxCounting
 import BTCalculus.PowerBoxCounting
+import BTCalculus.FejerKernel
+import BTCalculus.FejerArc
+import BTCalculus.FourierDiscrepancy
+import BTCalculus.FejerBox
 import BTCalculus.SecondDerivative
 import BTCalculus.PartialSummation

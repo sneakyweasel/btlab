@@ -198,6 +198,20 @@
         "kernel": 15
       }
     },
+    "BTCalculus.FejerBox": {
+      "declarations": 17,
+      "depends_on": [
+        "BTCalculus.FourierBoxCounting"
+      ],
+      "file": "formal/BTCalculus/FejerBox.lean",
+      "ledger": [
+        "BTA-finite-fejer-box-discrepancy"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 17
+      }
+    },
     "BTCalculus.FourierBoxCounting": {
       "declarations": 15,
       "depends_on": [
@@ -3963,9 +3977,9 @@
     }
   },
   "totals": {
-    "edges": 308,
-    "edges_before_reduction": 2427,
-    "ledger_rows_placed": 503,
-    "nodes": 247
+    "edges": 309,
+    "edges_before_reduction": 2431,
+    "ledger_rows_placed": 504,
+    "nodes": 248
   }
 }

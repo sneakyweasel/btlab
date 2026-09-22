@@ -2,7 +2,9 @@
 
 22 September 2026. **EXACT — HUMAN PROOF**: AI-assisted written derivation
 from an explicitly cited analytic theorem. Independent mathematical review
-and Lean formalization of the quantitative argument remain outstanding.
+and the complete quantitative Lean proof remain outstanding. The finite
+Fejer box estimate (Q3) is now kernel-checked, with its constants and all
+half-open boundary cases; see its [proof map](finite_fejer_box_note.md).
 The [fresh internal audit](juggler_effective_modular_return_audit.md)
 rederives the estimates and confirms the constants, with boundary and
 small-parameter details expanded below. It is not external peer review.
@@ -284,7 +286,9 @@ It checks derivative coefficients, scalar comparisons, exponent accounting,
 and the extraction of (2)-(3) using rational arithmetic. Its finite orbit
 checks use integer square roots and an independent iteration oracle.
 These checks do not prove the analytic estimate (5), the smoothing argument,
-or the universal counting theorem. The displayed error is too large to be
+or the universal counting theorem. The smoothing estimate (12) has since
+been proved independently in `BTCalculus.FejerBox.finite_box_discrepancy`.
+The displayed error is too large to be
 nontrivial in the small numerical samples; no experimental rate is claimed.
 
 **PROMOTE** the explicit written theorem as an effective specialization of

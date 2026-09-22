@@ -25,6 +25,14 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- finite two-dimensional Fejer discrepancy for arbitrary samples and
+  half-open circular boxes, with error 5/sqrt(H+1)+(3+2*log(H))^2*E.
+  The actual kernel, tail, saturated arcs, pointwise sandwich, Fourier
+  coefficients and finite count are proved, including empty/full and
+  wrapped arcs. This closes Q3 of the effective OOE audit; the specific
+  OOE mode rate and final assembly remain open. See
+  [the proof map](../docs/theory/finite_fejer_box_note.md) and
+  [the 72-theorem dependency audit](AxiomCheckFejerBox.lean);
 - actual weighted smooth OOEE carry contribution O(P^(3/8)), with at most
   3L+2 carry levels, exact sampled-cell partition, endpoint losses, and
   monotone partial summation. The exact carry identity isolates the

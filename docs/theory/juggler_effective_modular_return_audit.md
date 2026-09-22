@@ -212,7 +212,7 @@ so floor(s^(9/4))>=2*s^2>s^2. The odd images are also above the start.
 Both endpoints are 1 modulo 2M. These are the hypotheses and conclusions
 of the existing `modular_return_of_box` at k=1,b=1, with 8<9.
 
-## 5. Precise remaining Lean obligations
+## 5. Precise Lean obligations and current status
 
 This table separates the missing quantitative proof from existing exact
 construction and qualitative convergence. The dependency order is
@@ -222,7 +222,7 @@ Q1 to Q2; Q2 and Q3 to Q4; Q4 and the existing construction to Q5.
 | --- | --- | --- | --- |
 | Q1 | Explicit derivative estimate at orders 3 and 5, with constants sufficient for (5), real endpoints, and signed form | Finite differencing infrastructure; the pinned written source | Quantitative higher-derivative estimate unformalized |
 | Q2 | For M,H,T>=1 and H<=T^(1/4), every nonzero cutoff mode has normalized norm at most 128*M^(1/4)*H^(1/30)*T^(-1/60) | Phase definitions and real-power calculus | Derivative bounds and quantitative dyadic assembly unformalized |
-| Q3 | For integers H,T>=1, any T samples, and every half-open torus box, discrepancy is at most 5/sqrt(H+1)+(3+2*log(H))^2*E_H, where E_H bounds every nonzero cutoff mode | Circle arcs and Fourier integrals in FourierBoxCounting and FourierBoxRecurrence | Finite Fejer estimate, saturation, and pointwise boundaries unformalized |
+| Q3 | For integers H,T>=1, any T samples, and every half-open torus box, discrepancy is at most 5/sqrt(H+1)+(3+2*log(H))^2*E_H, where E_H bounds every nonzero cutoff mode | FejerKernel, FejerArc, FourierDiscrepancy, and FejerBox | Closed: `BTCalculus.FejerBox.finite_box_discrepancy`, including saturation and every pointwise boundary case |
 | Q4 | For the exact ReturnParameter(2,1,M,t) count, both displayed all-M, all-T errors | Existing count and ReturnParameter definitions, exact root/box guards | Cutoff, threshold count, and explicit error assembly unformalized |
 | Q5 | Positive count at T=2^2176*M^160 yields a witness with the strict t and n bounds and ModularReturn(2,1,M,n) | modular_return_of_box, with k=1,b=1 | Quantitative extraction unformalized; orbit implication already formalized |
 
@@ -230,8 +230,11 @@ In particular, `tendsto_fract_box_count` proves a qualitative limit and
 does not supply Q3. Assuming Q1 or Q2 in a new Lean theorem would verify
 only a conditional implication. The universal effective theorem cannot
 receive a Lean-verified label until the whole dependency chain is closed.
-Formalizing Q3 is a bounded reusable next task; it does not by itself
-close the quantitative gap.
+Q3 is now kernel-checked; its [proof map and exact scope](finite_fejer_box_note.md)
+record all hypotheses and the 72-theorem dependency audit. The covering
+theorem constructs the smoothing bounds rather than assuming them.
+Q1, Q2, Q4, and Q5 remain open. Closing Q3 does not by itself close the
+quantitative OOE gap.
 
 ## 6. Verification record and decision
 
@@ -245,7 +248,8 @@ Integration, ledger, registry, branch-index, and targeted theorem checks
 pass: **182 passed, 15 skipped**. The saved exact report matches a fresh
 recomputation, the generated ledger and branch index are current, and the
 existing Paper E source/manifest consistency check passes. No Lean source
-was changed for this audit; no new Lean build or kernel coverage is claimed.
+was changed in that initial audit. The subsequent Q3 formalization is
+recorded separately in the proof map linked above.
 
 **PROMOTE** the clarified written result. No counterexample or incorrect
 constant was found in this internal audit. Independent external review

@@ -85,13 +85,18 @@ witness is t=9, with orbit 361,6859,568056,753.
 
 ## Formalization
 
-No new Lean module. The existing PaperEModularReturn and PaperECorollaries
-prove the exact orbit construction and qualitative counts. The quantitative
-mode estimates, Fejer inequality, and explicit assembly in this branch are
-written proofs. Finite Python checks do not discharge these Lean gaps.
+The existing PaperEModularReturn and PaperECorollaries prove the exact
+orbit construction and qualitative counts. The complete finite Fejer
+inequality is now proved by `BTCalculus.FejerBox.finite_box_discrepancy`,
+with supporting modules FejerKernel, FejerArc, and FourierDiscrepancy.
+The [proof map](../theory/finite_fejer_box_note.md) records the constants,
+half-open boundaries, saturation, and dependency audit. The quantitative
+mode estimates and explicit OOE assembly remain written proofs.
+Finite Python checks do not discharge those Lean gaps.
 The [internal proof audit](../theory/juggler_effective_modular_return_audit.md)
-maps the five remaining quantitative obligations and the exact declarations
-that can be reused. No quantitative Lean theorem was added by that audit.
+maps the five quantitative obligations and the exact declarations that
+can be reused. Q3 is closed by the subsequent formalization; Q1, Q2,
+Q4, and Q5 remain open.
 
 ## Results
 
@@ -120,10 +125,11 @@ on M. Extension beyond OOE is outside this branch.
 qualitative result with a uniform explicit error and a bounded search domain.
 Do not optimize constants or open other words automatically.
 
-Best bounded formalization question: can the finite half-open Fejer box
-estimate (Q3 in the audit) be kernel-checked with its constants and all
-boundary cases? External review remains open; do not start optimizing
-the modulus exponent as part of this audit.
+The finite half-open Fejer box estimate (Q3 in the audit) is kernel-checked
+with its constants and all boundary cases. **PROMOTE** this reusable
+formalization and stop the direction. The next dependency is Q1, the
+explicit order-3 and order-5 derivative estimate. External review remains
+open; do not automatically begin Q1 or optimize the modulus exponent.
 
 ## Publication assessment
 

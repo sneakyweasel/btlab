@@ -2,8 +2,8 @@
 
 Rows where one candidate leads its file clearly.  Each entry is the ledger row's own
 statement beside the candidate's docstring; the question is only whether they say the
-same thing.  Measured against all 116 single-declaration rows the scorer gets
-41 of the 48 it fires on right, 85% precise, so roughly one in
+same thing.  Measured against all 117 single-declaration rows the scorer gets
+42 of the 49 it fires on right, 86% precise, so roughly one in
 7 below is wrong.
 46 rows below, of 131 unresolved.
 

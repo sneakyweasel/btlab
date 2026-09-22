@@ -98785,6 +98785,800 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 26,
+      "module": "BTCalculus.FejerArc",
+      "name": "arc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 28,
+      "module": "BTCalculus.FejerArc",
+      "name": "arc_eq_circleArc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 41,
+      "module": "BTCalculus.FejerArc",
+      "name": "arc_empty",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 44,
+      "module": "BTCalculus.FejerArc",
+      "name": "measurableSet_arc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A representative in the same fundamental interval has exact half-open membership.",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 52,
+      "module": "BTCalculus.FejerArc",
+      "name": "coe_mem_arc_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Integrating over the image arc is exactly integrating over its real interval.",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 63,
+      "module": "BTCalculus.FejerArc",
+      "name": "integral_arc",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 96,
+      "module": "BTCalculus.FejerArc",
+      "name": "integral_arc_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 101,
+      "module": "BTCalculus.FejerArc",
+      "name": "arcCoeff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 103,
+      "module": "BTCalculus.FejerArc",
+      "name": "arcCoeff_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Nonzero arc coefficients retain the reciprocal-frequency bound for wrapped arcs too.",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 109,
+      "module": "BTCalculus.FejerArc",
+      "name": "norm_arcCoeff_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An arc of length at least one is the entire circle.",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 144,
+      "module": "BTCalculus.FejerArc",
+      "name": "arc_full",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A small circle element has a genuinely small real representative.",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 154,
+      "module": "BTCalculus.FejerArc",
+      "name": "small_representative",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 164,
+      "module": "BTCalculus.FejerArc",
+      "name": "expanded",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 167,
+      "module": "BTCalculus.FejerArc",
+      "name": "contracted",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The upper smoothing retains both sides of every original boundary point.",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 171,
+      "module": "BTCalculus.FejerArc",
+      "name": "sub_mem_expanded",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An interior smoothing cannot cross a half-open boundary under a small shift.",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 184,
+      "module": "BTCalculus.FejerArc",
+      "name": "mem_of_sub_mem_contracted",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Fej\u00e9r convolution with an arbitrary measurable circle set.",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 200,
+      "module": "BTCalculus.FejerArc",
+      "name": "smoothSet",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 203,
+      "module": "BTCalculus.FejerArc",
+      "name": "smoothSet_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 206,
+      "module": "BTCalculus.FejerArc",
+      "name": "smoothSet_le_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 212,
+      "module": "BTCalculus.FejerArc",
+      "name": "smoothSet_eq_integral",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An upper set containing every small translate gives a pointwise upper bound.",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 228,
+      "module": "BTCalculus.FejerArc",
+      "name": "indicator_le_smoothSet",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An interior set gives a pointwise lower bound, even at sample boundary hits.",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 260,
+      "module": "BTCalculus.FejerArc",
+      "name": "smoothSet_le_indicator",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 283,
+      "module": "BTCalculus.FejerArc",
+      "name": "arc_smoothing_sandwich",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 297,
+      "module": "BTCalculus.FejerArc",
+      "name": "fourier_sub_input",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The smoothing is an actual finite polynomial, with its integrated arc coefficients.",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 303,
+      "module": "BTCalculus.FejerArc",
+      "name": "smoothSet_arc_expansion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 322,
+      "module": "BTCalculus.FejerArc",
+      "name": "frequencyWeight",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 324,
+      "module": "BTCalculus.FejerArc",
+      "name": "norm_arcCoeff_le_weight",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The symmetric reciprocal-frequency sum has its exact harmonic value.",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 335,
+      "module": "BTCalculus.FejerArc",
+      "name": "sum_frequencyWeight",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A row of the Dirichlet-square expansion has uniformly bounded coefficient mass.",
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 358,
+      "module": "BTCalculus.FejerArc",
+      "name": "sum_norm_arcCoeff_row",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerBox.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-finite-fejer-box-discrepancy"
+      ],
+      "line": 15,
+      "module": "BTCalculus.FejerBox",
+      "name": "indices",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerBox.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-finite-fejer-box-discrepancy"
+      ],
+      "line": 16,
+      "module": "BTCalculus.FejerBox",
+      "name": "frequency",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerBox.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-finite-fejer-box-discrepancy"
+      ],
+      "line": 17,
+      "module": "BTCalculus.FejerBox",
+      "name": "coefficient",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerBox.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-fejer-box-discrepancy"
+      ],
+      "line": 20,
+      "module": "BTCalculus.FejerBox",
+      "name": "frequency_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerBox.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-fejer-box-discrepancy"
+      ],
+      "line": 29,
+      "module": "BTCalculus.FejerBox",
+      "name": "smooth_expansion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerBox.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-fejer-box-discrepancy"
+      ],
+      "line": 40,
+      "module": "BTCalculus.FejerBox",
+      "name": "coefficient_mass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerBox.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-fejer-box-discrepancy"
+      ],
+      "line": 52,
+      "module": "BTCalculus.FejerBox",
+      "name": "coefficient_zero_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerBox.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-finite-fejer-box-discrepancy"
+      ],
+      "line": 69,
+      "module": "BTCalculus.FejerBox",
+      "name": "mode",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerBox.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-finite-fejer-box-discrepancy"
+      ],
+      "line": 72,
+      "module": "BTCalculus.FejerBox",
+      "name": "boxSmooth",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerBox.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-fejer-box-discrepancy"
+      ],
+      "line": 75,
+      "module": "BTCalculus.FejerBox",
+      "name": "boxSmooth_expansion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Fourier cancellation controls the mean of the concrete smoothed box.",
+      "file": "formal/BTCalculus/FejerBox.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-fejer-box-discrepancy"
+      ],
+      "line": 90,
+      "module": "BTCalculus.FejerBox",
+      "name": "boxSmooth_average_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerBox.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-fejer-box-discrepancy"
+      ],
+      "line": 138,
+      "module": "BTCalculus.FejerBox",
+      "name": "product_indicator_sandwich",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerBox.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-fejer-box-discrepancy"
+      ],
+      "line": 153,
+      "module": "BTCalculus.FejerBox",
+      "name": "box_smoothing_sandwich",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Saturation changes each length by at most twice the smoothing radius.",
+      "file": "formal/BTCalculus/FejerBox.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-fejer-box-discrepancy"
+      ],
+      "line": 172,
+      "module": "BTCalculus.FejerBox",
+      "name": "saturated_lengths",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerBox.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-fejer-box-discrepancy"
+      ],
+      "line": 188,
+      "module": "BTCalculus.FejerBox",
+      "name": "product_volume_error",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerBox.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-fejer-box-discrepancy"
+      ],
+      "line": 201,
+      "module": "BTCalculus.FejerBox",
+      "name": "count_density_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The finite two-dimensional Fej\u00e9r discrepancy estimate, including all boundary hits, empty/full coordinate arcs, and wrapped arcs. No smoothing hypotheses are assumed.",
+      "file": "formal/BTCalculus/FejerBox.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-fejer-box-discrepancy"
+      ],
+      "line": 212,
+      "module": "BTCalculus.FejerBox",
+      "name": "finite_box_discrepancy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 25,
+      "module": "BTCalculus.FejerKernel",
+      "name": "dirichlet",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 28,
+      "module": "BTCalculus.FejerKernel",
+      "name": "kernel",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 31,
+      "module": "BTCalculus.FejerKernel",
+      "name": "continuous_dirichlet",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 35,
+      "module": "BTCalculus.FejerKernel",
+      "name": "continuous_kernel",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 38,
+      "module": "BTCalculus.FejerKernel",
+      "name": "kernel_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 42,
+      "module": "BTCalculus.FejerKernel",
+      "name": "integrable_kernel",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 45,
+      "module": "BTCalculus.FejerKernel",
+      "name": "norm_dirichlet_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 51,
+      "module": "BTCalculus.FejerKernel",
+      "name": "kernel_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 56,
+      "module": "BTCalculus.FejerKernel",
+      "name": "fourier_sub",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 60,
+      "module": "BTCalculus.FejerKernel",
+      "name": "kernel_expansion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 72,
+      "module": "BTCalculus.FejerKernel",
+      "name": "integral_fourier",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 79,
+      "module": "BTCalculus.FejerKernel",
+      "name": "integrable_fourier",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 82,
+      "module": "BTCalculus.FejerKernel",
+      "name": "integral_kernel",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 103,
+      "module": "BTCalculus.FejerKernel",
+      "name": "fourier_nat",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The geometric identity is valid even when its final factor vanishes.",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 111,
+      "module": "BTCalculus.FejerKernel",
+      "name": "dirichlet_mul_sub_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 115,
+      "module": "BTCalculus.FejerKernel",
+      "name": "norm_dirichlet_mul_sub_one_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 122,
+      "module": "BTCalculus.FejerKernel",
+      "name": "norm_fourier_one_sub_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 134,
+      "module": "BTCalculus.FejerKernel",
+      "name": "chord_lower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The inverse-square majorant uses the nearest real representative.",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 149,
+      "module": "BTCalculus.FejerKernel",
+      "name": "kernel_le_inv_sq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 170,
+      "module": "BTCalculus.FejerKernel",
+      "name": "fourier_neg_input",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 175,
+      "module": "BTCalculus.FejerKernel",
+      "name": "kernel_neg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 180,
+      "module": "BTCalculus.FejerKernel",
+      "name": "continuous_kernel_real",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Each side of the tail has the explicit reciprocal-distance bound.",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 185,
+      "module": "BTCalculus.FejerKernel",
+      "name": "positive_tail_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Both real tails together; the endpoint conventions do not alter these integrals.",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 218,
+      "module": "BTCalculus.FejerKernel",
+      "name": "two_sided_tail_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The actual Haar mass outside the open circle neighbourhood, with its boundary retained.",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 236,
+      "module": "BTCalculus.FejerKernel",
+      "name": "circle_tail_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 300,
+      "module": "BTCalculus.FejerKernel",
+      "name": "productKernel",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 303,
+      "module": "BTCalculus.FejerKernel",
+      "name": "productKernel_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 306,
+      "module": "BTCalculus.FejerKernel",
+      "name": "integrable_productKernel",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 309,
+      "module": "BTCalculus.FejerKernel",
+      "name": "integral_productKernel",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The product tail is a union bound, with no assumption on the sample points.",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 315,
+      "module": "BTCalculus.FejerKernel",
+      "name": "product_tail_le",
+      "trust": "kernel"
+    },
+    {
       "doc": "The empirical distribution of the first N+1 samples.",
       "file": "formal/BTCalculus/FourierBoxCounting.lean",
       "kind": "def",
@@ -99142,6 +99936,126 @@
       "line": 241,
       "module": "BTCalculus.FourierBoxRecurrence",
       "name": "exists_ge_fract_box_of_phase",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 19,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "average_finsetSum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 24,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "average_const_mul",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 28,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "average_const",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Repeated frequency labels are allowed: no injectivity of the indexing is assumed.",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 34,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "indexed_average_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 49,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "polynomial",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A finite Fourier-mode bound controls the mean of every polynomial on those modes.",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 53,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "polynomial_average_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 73,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "realAverage",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 75,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "realAverage_re",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 79,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "polynomial_real_average_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Pointwise lower and upper functions give a count bound, including sample boundary hits.",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 91,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "count_sandwich",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Quantitative transfer from an explicit Fourier-polynomial sandwich to a finite count.",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 120,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "count_of_polynomial_sandwich",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The audited smoothing choice is valid and gives the constant five exactly.",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 140,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "smoothing_scale",
       "trust": "kernel"
     },
     {
@@ -109762,8 +110676,12 @@
         "BTCalculus.CubicN1Valuation",
         "BTCalculus.CubicResidual",
         "BTCalculus.Derivative",
+        "BTCalculus.FejerArc",
+        "BTCalculus.FejerBox",
+        "BTCalculus.FejerKernel",
         "BTCalculus.FourierBoxCounting",
         "BTCalculus.FourierBoxRecurrence",
+        "BTCalculus.FourierDiscrepancy",
         "BTCalculus.Integral",
         "BTCalculus.Jet",
         "BTCalculus.KusminLandau",
@@ -110104,6 +111022,37 @@
         }
       ]
     },
+    "BTCalculus.FejerArc": {
+      "declarations": 29,
+      "file": "formal/BTCalculus/FejerArc.lean",
+      "imports": [
+        "BTCalculus.FejerKernel"
+      ],
+      "ledger": []
+    },
+    "BTCalculus.FejerBox": {
+      "declarations": 17,
+      "file": "formal/BTCalculus/FejerBox.lean",
+      "imports": [
+        "BTCalculus.FejerArc",
+        "BTCalculus.FourierDiscrepancy"
+      ],
+      "ledger": [
+        {
+          "id": "BTA-finite-fejer-box-discrepancy",
+          "statement": "For integers H,N>=1, E>=0, and arbitrary points z_0,...,z_(N-1) on the product of two unit circles, suppose every nonzero integer pair (k,l) with abs(k),abs(l)<=H has normalized Fourier sum norm at most E. For real endpoints a<=b<=a+1 and c<=d<=c+1, the product B of the images of [a,b) and [c,d) then satisfies abs(count(z_n in B)/N-(b-a)*(d-c)) <= 5/sqrt(H+1)+(3+2*log(H))^2*E. Empty, full, wrapped arcs and sample boundary hits are included. The actual Fejer kernel, tails, saturated smoothing, coefficient mass and finite count transfer are proved; no smoothing estimate is assumed. This is the complete finite discrepancy obligation Q3, not the specific OOE Fourier rate or effective modular-return assembly.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "BTCalculus.FejerKernel": {
+      "declarations": 30,
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "imports": [
+        "BTCalculus.FourierBoxCounting"
+      ],
+      "ledger": []
+    },
     "BTCalculus.FourierBoxCounting": {
       "declarations": 15,
       "file": "formal/BTCalculus/FourierBoxCounting.lean",
@@ -110131,6 +111080,14 @@
           "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
+    },
+    "BTCalculus.FourierDiscrepancy": {
+      "declarations": 12,
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "imports": [
+        "BTCalculus.FourierBoxCounting"
+      ],
+      "ledger": []
     },
     "BTCalculus.Integral": {
       "declarations": 14,
@@ -115938,13 +116895,13 @@
     }
   },
   "totals": {
-    "declarations": 8702,
-    "declarations_with_a_ledger_row": 5978,
-    "ledger_rows_naming_a_file": 503,
-    "modules": 361,
+    "declarations": 8790,
+    "declarations_with_a_ledger_row": 5995,
+    "ledger_rows_naming_a_file": 504,
+    "modules": 365,
     "trust": {
       "compiler": 56,
-      "kernel": 8646
+      "kernel": 8734
     }
   }
 }
