@@ -1,0 +1,26 @@
+'Problems.Juggler.CollatzMoments.multiplier_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzMoments.coefficient_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzMoments.fair_children' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzMoments.tilted_children' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzMoments.fixed_depth_fair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzMoments.fixed_depth_moment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzMoments.certificate_prefix_free' depends on axioms: [propext]
+'Problems.Juggler.CollatzMoments.certMass_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzMoments.certMass_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzMoments.tiltedCertMass_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzMoments.tiltedCertMass_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzMoments.certMass_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzMoments.tiltedCertMass_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzMoments.certificate_mass_partition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzMoments.certificate_hasSum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzMoments.tilted_summable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzMoments.stopped_moment_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzMoments.complete_family_moment_loss' depends on axioms: [propext, Classical.choice, Quot.sound]
+Problems.Juggler.CollatzMoments.coefficient_shift (w : List Problems.Juggler.Branch) (s : ℝ) :
+  idealCoeff w * multiplier w ^ s = fairWeight w * multiplier w ^ (s - 1)
+Problems.Juggler.CollatzMoments.complete_family_moment_loss :
+  (∀ (u v : List Problems.Juggler.Branch),
+      Problems.Juggler.PaperBCertificates.IsMinimalCertificate u →
+        Problems.Juggler.PaperBCertificates.IsMinimalCertificate v → u <+: v → u = v) ∧
+    HasSum certMass 1 ∧
+      Summable tiltedCertMass ∧ ∑' (d : ℕ), tiltedCertMass d ≤ 3 / 4 ∧ ∑' (d : ℕ), tiltedCertMass d ≠ 1

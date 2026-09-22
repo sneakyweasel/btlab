@@ -1,0 +1,64 @@
+'Problems.Juggler.CollatzPadic.residue_compatible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.residue_increment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.plusCode_residue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.residue_first_parity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.residue_successor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.plusCode_parity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.plusCode_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.code_parity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.code_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.code_residue_eq_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.code_residue_word_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.code_cylinder_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.code_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.two_dvd_plusNumerator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.two_mul_plusStep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.two_mul_minusStep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.plusCode_semiconjugacy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.code_semiconjugacy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.code_plus_semiconjugacy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.code_iterate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.code_eq_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.code_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.code_eq_terminatingCode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.code_three_cleared' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.code_three_not_integer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.code_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.code_six' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.code_not_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.orbit_bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.step_le_of_code_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.iterate_le_of_code_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.return_of_code_return' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.periodic_return_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.periodic_minimalPeriod' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.periodDenom_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.periodic_code_cleared' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.periodic_code_rational' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.periodic_code_integer_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.plusStep_intCast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.minusStep_intCast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.minusStep_iterate_intCast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.integer_cycle_return_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.plusStep_iterate_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.periodic_plus_minimalPeriod' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.CollatzPadic.periodic_bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+Problems.Juggler.CollatzPadic.orbit_bridge (n : ℕ) :
+  ((PadicInt.toZModPow 1) (code n) = 0 ↔ n % 2 = 0) ∧
+    code (Problems.Juggler.floorPower n) = minusStep (code n) ∧
+      -code (Problems.Juggler.floorPower n) = plusStep (-code n) ∧
+        (∀ (d : ℕ), code (Problems.Juggler.floorPower^[d] n) = minusStep^[d] (code n)) ∧
+          (∀ (r d : ℕ),
+              (PadicInt.toZModPow d) (code n) = -↑r ↔
+                Problems.Juggler.itinerary n d = Problems.Juggler.CollatzBridge.parityWord r d) ∧
+            ∀ (h : Problems.Juggler.ReachesOne n), ↑(code n) = ↑(Problems.Juggler.CollatzRational.terminatingCode n h)
+Problems.Juggler.CollatzPadic.periodic_bridge {n L : ℕ} (hL : 0 < L) (hcycle : Problems.Juggler.floorPower^[L] n = n) :
+  Function.minimalPeriod minusStep (code n) = Function.minimalPeriod Problems.Juggler.floorPower n ∧
+    Function.minimalPeriod plusStep (-code n) = Function.minimalPeriod Problems.Juggler.floorPower n ∧
+      ↑(code n) = ↑↑(Problems.Juggler.CollatzBridge.wordConst (Problems.Juggler.itinerary n L)) / ↑↑(periodDenom n L) ∧
+        ((∃ z, code n = ↑z) ↔
+            periodDenom n L ∣ ↑(Problems.Juggler.CollatzBridge.wordConst (Problems.Juggler.itinerary n L))) ∧
+          ∀ (z : ℤ),
+            code n = ↑z →
+              ∀ (d : ℕ),
+                Problems.Juggler.CollatzBridge.shortcutZIter d (-z) = -z ↔ Problems.Juggler.floorPower^[d] n = n

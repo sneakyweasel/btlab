@@ -1862,6 +1862,26 @@ working draft (family leftover, not a review object):
 [juggler_near_convergent_diophantine_note.md](theory/juggler_near_convergent_diophantine_note.md).
 Do not reopen as a kill campaign.
 
+**Winkler does not reach the CF-quotient question (checked 22 September 2026).**
+Mike Winkler's 2026 preprints work the same irrational. A206788, the
+semiconvergent denominators of \(\log_2 3\), is his central object, and
+*Admissible qx+1*, *Marked Rotations* and the two first-passage papers all turn
+on the record minima and maxima of \(\{r\log_2 3\}\). The vocabulary is identical
+to the dangerous-fan leftover, so it reads like a route and is not one. Every
+Winkler PDF held here was scanned, seven files and roughly 245000 characters of
+extracted text: *partial quotient*, *irrationality measure*, *linear form*,
+*Baker*, *Roth* and *Liouville* occur zero times, and the only *unbounded* is
+about Collatz trajectories. His theorems classify structure **given** the
+continued fraction and bound none of it, which is why they cannot touch D8 of the
+near-convergents note. `J-cyclemin-closure-threshold`, the period bounds and every
+floor are unchanged. The nearest thing to a transfer is that his one-sided split
+labels each semiconvergent order by the sign of the linear form, which this
+laboratory already gets by computing \(\varepsilon_k\) directly. Do not re-run
+this sweep; the register carries the reading at
+[winkler-2026-admissible-qx1-sequences.json](../literature/winkler-2026-admissible-qx1-sequences.json).
+Termination is equally untouched: the remaining problem there is the external
+two-monomial exponent pair, and nothing of his concerns exponential sums.
+
 **Cycle height-to-alphabet inference withdrawn (CLOSE; corrected 9 September 2026).**
 The Lean odd-run inequality is upper growth \(y^{2^r}\le v^{3^r}\),
 not the lower growth needed for \((3/2)^r\le R\). Exact \(9\to27\to140\)

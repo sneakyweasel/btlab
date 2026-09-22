@@ -1,0 +1,507 @@
+/-
+# Paper B, tier 2: the assembly, with the analysis as hypotheses
+
+Everything here follows the same contract: the analytic inputs of
+`docs/theory/juggler_parity_discrepancy_note.md` are **hypotheses**, and what is
+proved is the assembly on top of them — the algebra, the constants, and the
+bookkeeping.  That is deliberate.  Every error found in the audit of this paper
+lived in the assembly, not in the analysis.
+
+Four sections.
+
+1. **Lemma 4.3(i)**, the exact linearization.  The manuscript proves it by a
+   second-order Taylor expansion with an unspecified mean value `ξ`.  It has a
+   *closed form*: writing `a = √m` and `b = √X = n^(3/4)`, the remainder is
+   exactly `½(a-b)²(2a+b)`.  Both printed bounds then follow by `nlinarith`,
+   with no analysis at all — strictly stronger than what the paper prints.
+2. **Lemma 4.3(ii)**, the carry identity `g = ⌊δ⌋ + κ`, `κ ∈ {0,1}` — a pure
+   floor identity, and the source of `|G - δ| ≤ 1` in Lemma 5.2b.
+3. **Lemma 5.2b**, the interpolant-error assembly: the route from the
+   middle-band cap to `106 P^(-25/24)`, with the power identities as
+   hypotheses.  This is the constant that binds `P₀`.
+4. **Lemma 3.9**, the two sublevel-length bounds: the `r = 3` case from the mean
+   value theorem (which *is* proved here, not assumed), and the `r = 4` case
+   from strong convexity.
+
+Still out of scope, as before: Lemma 5.2, Theorem 5.3, van der Corput, Vaaler,
+Erdős–Turán, the `A`-process.
+-/
+
+import Mathlib.Analysis.Calculus.Deriv.MeanValue
+import Mathlib.Analysis.Convex.Function
+import Mathlib.Analysis.Real.Sqrt
+import Mathlib.Tactic
+
+namespace Problems.Juggler
+
+/-! ## 1. Lemma 4.3(i): the linearization remainder in closed form -/
+
+section Linearization
+
+/-- **The closed form.**  With `a = √m` and `b = √X = n^(3/4)`, the remainder
+`E = m^(3/2) - (3/2)mX^(1/2) + (1/2)X^(3/2)` of Lemma 4.3(i) equals
+`½(a-b)²(2a+b)` identically.  The manuscript obtains only
+`E = (3/8)(X-ξ)^(-1/2)θ²` for an unspecified mean value `ξ`. -/
+theorem lemma43_closed_form (a b : ℝ) :
+    a ^ 3 - (3 / 2) * a ^ 2 * b + (1 / 2) * b ^ 3
+      = (1 / 2) * (a - b) ^ 2 * (2 * a + b) := by ring
+
+/-- **`0 ≤ E`**, the lower bound of Lemma 4.3(i): the remainder is one-signed.
+This is what lets the manuscript treat `E` as a nonnegative error throughout. -/
+theorem lemma43_nonneg (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) :
+    0 ≤ a ^ 3 - (3 / 2) * a ^ 2 * b + (1 / 2) * b ^ 3 := by
+  rw [lemma43_closed_form]
+  have h : 0 ≤ 2 * a + b := by linarith
+  positivity
+
+/-- **`E · a ≤ (3/8)θ²`** with `θ = b² - a² = X - m = {n^(3/2)}`, i.e.
+`E ≤ (3/8)θ²/√m`.  Reduces to `(5a + 3b)(a - b) ≤ 0`.  At `θ ≤ 1` this is the
+printed `E ≤ (3/8)(n^(3/2) - 1)^(-1/2)`. -/
+theorem lemma43_upper (a b : ℝ) (ha : 0 ≤ a) (hab : a ≤ b) :
+    (a ^ 3 - (3 / 2) * a ^ 2 * b + (1 / 2) * b ^ 3) * a
+      ≤ (3 / 8) * (b ^ 2 - a ^ 2) ^ 2 := by
+  rw [lemma43_closed_form]
+  nlinarith [sq_nonneg (a - b), sq_nonneg (a + b),
+    mul_nonneg (sq_nonneg (a - b)) (by linarith : (0:ℝ) ≤ 5 * a + 3 * b),
+    mul_nonneg ha (sq_nonneg (a - b))]
+
+/-- The bridge to the manuscript's variables: `m = a²`, `X = b²`, `a = √m`,
+`b = √X`.  Then `m^(3/2) = m·a` and `X^(3/2) = X·b`. -/
+theorem lemma43_remainder_sqrt (m X a b : ℝ) (hm : a ^ 2 = m) (hX : b ^ 2 = X) :
+    m * a - (3 / 2) * m * b + (1 / 2) * X * b
+      = (1 / 2) * (a - b) ^ 2 * (2 * a + b) := by
+  subst hm; subst hX; ring
+
+/-- Instantiated at the actual square roots. -/
+theorem lemma43_remainder_of_sqrt (m X : ℝ) (hm : 0 ≤ m) (hX : 0 ≤ X) :
+    m * Real.sqrt m - (3 / 2) * m * Real.sqrt X + (1 / 2) * X * Real.sqrt X
+      = (1 / 2) * (Real.sqrt m - Real.sqrt X) ^ 2
+          * (2 * Real.sqrt m + Real.sqrt X) :=
+  lemma43_remainder_sqrt m X _ _ (Real.sq_sqrt hm) (Real.sq_sqrt hX)
+
+end Linearization
+
+/-! ## 2. Lemma 4.3(ii): the carry identity -/
+
+section Carry
+
+/-- **Lemma 4.3(ii).**  For the level-1 wave `x = n^(3/2)` and the smooth gap
+`δ`, the integer gap `⌊x + δ⌋ - ⌊x⌋` is `⌊δ⌋` plus a carry which is `1` exactly
+when `{x} + {δ} ≥ 1`.  This is the identity behind `G = ⌊δ⌋ + κ`, `κ ∈ {0,1}`,
+and hence behind `|G - δ| ≤ 1` in Lemma 5.2b step (i). -/
+theorem carry_identity (x δ : ℝ) :
+    ⌊x + δ⌋ - ⌊x⌋ - ⌊δ⌋
+      = (if 1 ≤ Int.fract x + Int.fract δ then 1 else 0) := by
+  have hsplit : x + δ = (Int.fract x + Int.fract δ) + ((⌊x⌋ + ⌊δ⌋ : ℤ) : ℝ) := by
+    have hx := Int.floor_add_fract x
+    have hδ := Int.floor_add_fract δ
+    push_cast
+    linarith
+  have key : ⌊x + δ⌋ = ⌊Int.fract x + Int.fract δ⌋ + (⌊x⌋ + ⌊δ⌋) := by
+    rw [hsplit, Int.floor_add_intCast]
+  have hlo : 0 ≤ Int.fract x + Int.fract δ :=
+    add_nonneg (Int.fract_nonneg x) (Int.fract_nonneg δ)
+  have hhi : Int.fract x + Int.fract δ < 2 := by
+    have h1 := Int.fract_lt_one x
+    have h2 := Int.fract_lt_one δ
+    linarith
+  rw [key]
+  by_cases h : 1 ≤ Int.fract x + Int.fract δ
+  · rw [if_pos h]
+    have : ⌊Int.fract x + Int.fract δ⌋ = 1 := by
+      rw [Int.floor_eq_iff]
+      constructor
+      · exact_mod_cast h
+      · push_cast; linarith
+    omega
+  · rw [if_neg h]
+    push Not at h
+    have : ⌊Int.fract x + Int.fract δ⌋ = 0 := by
+      rw [Int.floor_eq_iff]
+      constructor
+      · exact_mod_cast hlo
+      · push_cast; linarith
+    omega
+
+/-- The carry is `0` or `1` — the form used in Lemma 5.2b. -/
+theorem carry_mem_zero_one (x δ : ℝ) :
+    ⌊x + δ⌋ - ⌊x⌋ - ⌊δ⌋ = 0 ∨ ⌊x + δ⌋ - ⌊x⌋ - ⌊δ⌋ = 1 := by
+  rw [carry_identity x δ]
+  by_cases h : 1 ≤ Int.fract x + Int.fract δ
+  · right; rw [if_pos h]
+  · left; rw [if_neg h]
+
+end Carry
+
+/-! ## 3. Lemma 5.2b: the interpolant-error assembly -/
+
+section Interpolant
+
+/-- **Step (i) of Lemma 5.2b.**  The wave replacement, under the middle-band cap
+`u ≤ 300 k h₂ P^(1/8)` — which *is* the band condition `μ ≤ 60 λ₀`, since
+`60·4.2/0.84 = 300`.  Powers enter only through `p18 = P^(1/8)`,
+`p54 = P^(-5/4)`, `p98 = P^(-9/8)` and the relation `p18 · p54 = p98`.
+
+The conclusion carries the shape `k(h₁+h₂)`, which is what lets it combine with
+step (ii) *before* conversion — the step the earlier draft skipped, bounding and
+converting the two terms separately and printing `202.5 + 16 = 219`.
+
+The constant is `(9/32)·300 = 84.375`, printed as `84.38`.  The cap is `300`
+and not `186` because of the erratum at Lemma 5.2b: the anchor curvature is
+`27/128`, not `135/1024`, and `λ₀`'s ceiling `2.6` opens to `4.2`.  The
+superseded chain is kept below under `_precorrection`, as `step5b_c7_printed`
+keeps the manuscript's weaker `1/288`. -/
+theorem interpolant_step_i
+    (u u' k h₁ h₂ p18 p54 p98 : ℝ)
+    (hk : 0 ≤ k) (hh₁ : 0 ≤ h₁) (hh₂ : 0 ≤ h₂)
+    (hp54 : 0 ≤ p54) (hrel : p18 * p54 = p98)
+    (hp98 : 0 ≤ p98)
+    (hu : u ≤ 300 * k * h₂ * p18) (hu' : u' ≤ 300 * k * h₁ * p18) :
+    (9 / 32) * (u + u') * p54 ≤ 84.38 * (k * (h₁ + h₂)) * p98 := by
+  have hsum : u + u' ≤ 300 * (k * (h₁ + h₂)) * p18 := by nlinarith
+  have hstep : (9 / 32) * (u + u') * p54
+      ≤ (9 / 32) * (300 * (k * (h₁ + h₂)) * p18) * p54 := by nlinarith
+  have hcollapse : (9 / 32) * (300 * (k * (h₁ + h₂)) * p18) * p54
+      = 84.375 * (k * (h₁ + h₂)) * p98 := by
+    rw [← hrel]; ring
+  have hkh : 0 ≤ k * (h₁ + h₂) := by positivity
+  have hfinal : 84.375 * (k * (h₁ + h₂)) * p98 ≤ 84.38 * (k * (h₁ + h₂)) * p98 := by
+    nlinarith [mul_nonneg hkh hp98]
+  linarith [hstep, hcollapse.le, hfinal]
+
+/-- The same step under the pre-correction anchor `135/1024`, where the cap was
+`186 = 60·2.6/0.84` and the constant `(9/32)·186 = 52.3125`.  Retained because
+the manuscript's erratum lists `186 → 300` and `52.9 → 85.3` explicitly, and a
+reader checking that list should find both ends of it here. -/
+theorem interpolant_step_i_precorrection
+    (u u' k h₁ h₂ p18 p54 p98 : ℝ)
+    (hk : 0 ≤ k) (hh₁ : 0 ≤ h₁) (hh₂ : 0 ≤ h₂)
+    (hp54 : 0 ≤ p54) (hrel : p18 * p54 = p98)
+    (hp98 : 0 ≤ p98)
+    (hu : u ≤ 186 * k * h₂ * p18) (hu' : u' ≤ 186 * k * h₁ * p18) :
+    (9 / 32) * (u + u') * p54 ≤ 52.32 * (k * (h₁ + h₂)) * p98 := by
+  have hsum : u + u' ≤ 186 * (k * (h₁ + h₂)) * p18 := by nlinarith
+  have hstep : (9 / 32) * (u + u') * p54
+      ≤ (9 / 32) * (186 * (k * (h₁ + h₂)) * p18) * p54 := by nlinarith
+  have hcollapse : (9 / 32) * (186 * (k * (h₁ + h₂)) * p18) * p54
+      = 52.3125 * (k * (h₁ + h₂)) * p98 := by
+    rw [← hrel]; ring
+  have hkh : 0 ≤ k * (h₁ + h₂) := by positivity
+  have hfinal : 52.3125 * (k * (h₁ + h₂)) * p98 ≤ 52.32 * (k * (h₁ + h₂)) * p98 := by
+    nlinarith [mul_nonneg hkh hp98]
+  linarith [hstep, hcollapse.le, hfinal]
+
+/-- **Step (ii) of Lemma 5.2b.**  The `β`-product replacement contributes
+`(27/128)·4.3 = 0.9070`, printed as `0.91`.  The manuscript notes that `0.95`
+would not do, because it pushes the sum in (i) past `85.3`; both halves of that
+are recorded here. -/
+theorem interpolant_step_ii_constant :
+    (27 / 128 : ℝ) * 4.3 ≤ 0.91
+      ∧ (85.3 : ℝ) < 84.375 + 0.95
+      ∧ (84.375 : ℝ) + 0.91 ≤ 85.3 := by
+  refine ⟨by norm_num, by norm_num, by norm_num⟩
+
+/-- The same constant under the pre-correction anchor, `(135/1024)·4.3 = 0.567`,
+printed as `0.57`; the erratum's factor is exactly `8/5`.  An earlier draft
+carried `8` here — fourteen times the pre-correction value — and that `8` is the
+source of the `16` in the old `219 = 202.5 + 16`. -/
+theorem interpolant_step_ii_precorrection :
+    (135 / 1024 : ℝ) * 4.3 ≤ 0.57
+      ∧ (8 : ℝ) / ((135 / 1024) * 4.3) > 14
+      ∧ (27 / 128 : ℝ) / (135 / 1024) = 8 / 5 := by
+  refine ⟨by norm_num, by norm_num, by norm_num⟩
+
+/-- **The assembly.**  Steps (i) and (ii) share the shape `k(h₁+h₂)P^(-9/8)`, so
+they add before conversion: `84.38 + 0.91 = 85.29`.  Then `k(h₁+h₂) ≤ 2 P^(1/12)`
+by (C3),(C4) gives `170.58 ≤ 170.6`, with `p112 = P^(1/12)`, `p2524 = P^(-25/24)`
+and `p112 · p98 = p2524`.  The manuscript prints the rounder `171`; `170.6` is
+what `p0_certificate.interpolant_error` uses and is what the nine anchor rows of
+the threshold certificate are solved against. -/
+theorem interpolant_assembly
+    (W₁ W₂ khsum p98 p112 p2524 : ℝ)
+    (hp98 : 0 ≤ p98) (hrel : p112 * p98 = p2524)
+    (hkh : khsum ≤ 2 * p112) (hkh0 : 0 ≤ khsum)
+    (h₁ : W₁ ≤ 84.38 * khsum * p98) (h₂ : W₂ ≤ 0.91 * khsum * p98) :
+    W₁ + W₂ ≤ 170.6 * p2524 := by
+  have hstep : W₁ + W₂ ≤ 85.29 * khsum * p98 := by linarith
+  have hup : 85.29 * khsum * p98 ≤ 85.29 * (2 * p112) * p98 := by nlinarith
+  have hcollapse : 85.29 * (2 * p112) * p98 = 170.58 * p2524 := by
+    rw [← hrel]; ring
+  have hp2524 : 0 ≤ p2524 := by
+    rw [← hrel]
+    nlinarith [hkh, hkh0, hp98]
+  linarith [hstep, hup, hcollapse.le, hp2524]
+
+/-- The same assembly under the pre-correction anchor: `52.32 + 0.57 = 52.89`
+and `105.78 ≤ 106`. -/
+theorem interpolant_assembly_precorrection
+    (W₁ W₂ khsum p98 p112 p2524 : ℝ)
+    (hp98 : 0 ≤ p98) (hrel : p112 * p98 = p2524)
+    (hkh : khsum ≤ 2 * p112) (hkh0 : 0 ≤ khsum)
+    (h₁ : W₁ ≤ 52.32 * khsum * p98) (h₂ : W₂ ≤ 0.57 * khsum * p98) :
+    W₁ + W₂ ≤ 106 * p2524 := by
+  have hstep : W₁ + W₂ ≤ 52.89 * khsum * p98 := by linarith
+  have hup : 52.89 * khsum * p98 ≤ 52.89 * (2 * p112) * p98 := by nlinarith
+  have hcollapse : 52.89 * (2 * p112) * p98 = 105.78 * p2524 := by
+    rw [← hrel]; ring
+  have hp2524 : 0 ≤ p2524 := by
+    rw [← hrel]
+    nlinarith [hkh, hkh0, hp98]
+  linarith [hstep, hup, hcollapse.le, hp2524]
+
+/-- The gain over the earlier `219`, on the `P^(-25/24)` coefficient: `1.28`,
+which is what Appendix A.5 claims.  The pre-correction chain gave `106` and so
+a factor above `2`; the erratum at Lemma 5.2b spends most of that back, and
+`1.28` is what is left.  The second term `0.11 P^(-5/6)` of the interpolant
+error is untouched and is co-dominant at `P₀`, so the *total* error gains less
+than either figure there. -/
+theorem interpolant_gain :
+    (1.28 : ℝ) * 170.6 < 219 ∧ (219 : ℝ) < 1.284 * 170.6
+      ∧ (2 : ℝ) * 106 < 219 := by
+  refine ⟨by norm_num, by norm_num, by norm_num⟩
+
+end Interpolant
+
+/-! ## 3b. Lemma 5.2(i), Stage 6: the (D3) decoration budget
+
+Substitution `P = p^24`, so `P^(-13/8) = p^(-39)`, `P^(-3/4) = p^(-18)`,
+`P^(-5/8) = p^(-15)`, `P^(1/8) = p^3`.  Write `K = k h₁ h₂ ≤ p^3` by (C1).
+
+Stage 6 must dominate the (D3) decoration against the Stage-4 curvature
+`0.35 u h P^(-3/4)`.  What Claim E delivers is
+`|(Δ_{2h₃}φ)''| ≤ 6 k h₁h₂ h₃ P^(-13/8)` -- the *differenced* budget -- and that
+is dominated.  A budget of the undifferenced shape `3 k h₁h₂ P^(-5/8)` is larger
+by `P/(2h)` and is **not**. -/
+
+section Stage6D3
+
+/-- **The differenced (D3) budget is dominated**, at margin 4 and better:
+`6 K h P^(-13/8) ≤ ¼ · 0.35 u h P^(-3/4)` reduces, after multiplying by `p^39`,
+to `6K ≤ 0.0875 u p^21`, which holds by `K ≤ p^3` and `u ≥ 1`. -/
+theorem stage6_D3_differenced_dominated (K u p : ℝ)
+    (hK0 : 0 ≤ K) (hK : K ≤ p ^ 3) (hu : 1 ≤ u) (hp : 2 ≤ p) :
+    6 * K ≤ 0.0875 * u * p ^ 21 := by
+  have hp0 : (0:ℝ) < p := by linarith
+  have h18 : (262144:ℝ) ≤ p ^ 18 := by
+    have h : (2:ℝ) ^ 18 ≤ p ^ 18 := by gcongr
+    have : (262144:ℝ) ≤ (2:ℝ) ^ 18 := by norm_num
+    linarith
+  have h3 : (0:ℝ) < p ^ 3 := pow_pos hp0 3
+  have h21 : (0:ℝ) < p ^ 21 := pow_pos hp0 21
+  calc 6 * K ≤ 6 * p ^ 3 := by linarith
+    _ ≤ 0.0875 * (p ^ 3 * 262144) := by nlinarith [h3]
+    _ ≤ 0.0875 * (p ^ 3 * p ^ 18) := by nlinarith [h3, h18]
+    _ = 0.0875 * p ^ 21 := by ring
+    _ ≤ 0.0875 * u * p ^ 21 := by nlinarith [h21, hu]
+
+/-- **The undifferenced budget is not dominated.**  At the (C1) extreme
+`K = p^3` and `u = h = 1`, the ratio of `3 K P^(-5/8)` to the Stage-4 curvature
+`0.35 u h P^(-3/4)` is `(3/0.35) p^6 = 8.57 P^(1/4)` -- it exceeds the curvature
+by an unbounded factor, so Lemma 3.3 at that scale does not apply and the two can
+cancel outright. -/
+theorem stage6_D3_printed_not_dominated (p : ℝ) (hp : 2 ≤ p) :
+    8 * (0.35 * p ^ 6) ≤ 3 * p ^ 3 * p ^ 3 := by
+  have hp0 : (0:ℝ) < p := by linarith
+  nlinarith [pow_pos hp0 6]
+
+/-- **The size of the gap.**  The undifferenced budget exceeds the differenced one
+by exactly `P/(2h) = p^24/(2h)`; at `h ≤ P^(1/8)` that is at least `½P^(7/8)`. -/
+theorem stage6_D3_gap (K h p : ℝ) (hh : h ≠ 0) :
+    3 * K * p ^ 24 = (p ^ 24 / (2 * h)) * (6 * K * h) := by
+  field_simp; ring
+
+/-! ### The wide (D3) class: the regime split
+
+`P = p^24`, `K = k h₁ h₂ ≤ p^3` by (C1).  The undifferenced budget
+`Φ₂ = 3 K P^(-5/8)` is dominated exactly when `Φ₂ ≤ ¼ · 0.35 u h P^(-3/4)`,
+i.e. `u h ≥ 34.3 K P^(1/8)` (regime A).  Regime B is the complement, and there
+what replaces the derivative tests is the *frozen* `G`: it steps by exactly `1`
+at each cell boundary, so `f''` carries a sawtooth no continuous `φ''` can
+follow, and `f'` jumps at every boundary. -/
+
+-- `linter.unusedVariables` does not count a binder used only inside a
+-- `nlinarith [...]` term list; this one is used in the proof below.
+set_option linter.unusedVariables false in
+/-- **Regime A: the undifferenced budget is dominated.**  `3 K P^(-5/8) ≤
+¼·0.35 u h P^(-3/4)` holds as soon as `u h ≥ (12/0.35) K P^(1/8)`, and
+`12/0.35 = 34.28…`.  Written at `P = p^24`, after multiplying by `p^15`. -/
+theorem wideD3_regimeA_dominated (K uh p : ℝ) (hp : 0 < p) (hK : 0 ≤ K)
+    (hA : (12 / 0.35) * K * p ^ 3 ≤ uh) :
+    3 * K * p ^ 9 ≤ (0.35 / 4) * uh * p ^ 6 := by
+  have h6 : (0:ℝ) < p ^ 6 := pow_pos hp 6
+  have e : p ^ 9 = p ^ 3 * p ^ 6 := by ring
+  nlinarith [h6, hA, hK, pow_pos hp 3]
+
+/-- **Regime B is a small-`uh` regime.**  By (C1), `K ≤ p^3`, so regime B forces
+`u h < 34.3 p^3 = 34.3 P^(1/8)`… and with `u h ≤ P^(1/2)` from the hypotheses of
+(i) this is the range where the Stage-4 curvature is weakest. -/
+theorem wideD3_regimeB_small (K uh p : ℝ) (hK : K ≤ p ^ 3) (hp : 0 < p)
+    (hB : uh < (12 / 0.35) * K * p ^ 3) : uh < 35 * p ^ 6 := by
+  have h3 : (0:ℝ) < p ^ 3 := pow_pos hp 3
+  nlinarith [h3, hK, hB]
+
+/-- **The frozen `G` steps by one, so `f'` jumps at every cell boundary.**  The
+jump is `(9/8) u (ν+2h)^(-1/4)`; the point is only that it is *bounded below*,
+which no choice of the continuous decoration can affect.  Over `N` cells the
+total sweep of `f'` is at least `N` times that. -/
+theorem wideD3_frequency_sweep (u nu2h N sweep : ℝ)
+    (_hu : 0 < u) (hN : 0 ≤ N) (hj : (0.946 : ℝ) * u ≤ 9 / 8 * u * nu2h)
+    (hsweep : sweep = N * ((9:ℝ) / 8 * u * nu2h)) :
+    N * (0.946 * u) ≤ sweep := by
+  rw [hsweep]
+  nlinarith [hN, hj]
+
+-- `linter.unusedVariables` does not count a binder used only inside a
+-- `nlinarith [...]` term list; this one is used in the proof below.
+set_option linter.unusedVariables false in
+/-- **The cells are flat in regime B.**  At the sawtooth curvature scale
+`0.282 u P^(-5/4)`, over a cell of length `ℓ ≤ 0.95 P^(1/2)/h` the phase departs
+from linear by `≤ 0.282 u P^(-5/4) ℓ² ≤ 0.26 u P^(-1/4) h^(-2)`, so the
+second-derivative test is the wrong tool and Kusmin–Landau is the right one. -/
+theorem wideD3_cells_flat (u h Q : ℝ) (hu : 0 < u) (hh : 3 ≤ h) (hQ : 0 < Q)
+    (hB : u * h ≤ 35 * Q) : 0.2545 * u < h ^ 2 * Q := by
+  have hh0 : (0:ℝ) < h := by linarith
+  have h3 : (27:ℝ) ≤ h ^ 3 := by
+    have h : (3:ℝ) ^ 3 ≤ h ^ 3 := by gcongr
+    norm_num at h; linarith
+  nlinarith [hB, hQ, hh0, h3, hu, mul_pos hQ hh0]
+
+/-- **Regime B, case (a): the dyadic Kusmin–Landau total is the printed second
+term.**  A cell total `(ℓ/q)^(1/2)` summed over `1.5 h P^(1/2)` cells, with
+`ℓ ≤ 0.95 P^(1/2)/h` and `q ≥ 0.946 u P^(-1/4)`, gives `≤ 1.6 (h/u)^(1/2) P^(7/8)`.
+Written at `P = p^8` (so `P^(1/2) = p^4`, `P^(3/8) = p^3`, `P^(7/8) = p^7`) and
+with the two square roots cleared. -/
+theorem wideD3_caseA_total (u h p : ℝ) (_hu : 0 < u) (hh : 0 < h) (hp : 0 < p)
+    (cell : ℝ) (hcell : cell ≤ 1.01 * p ^ 3) :
+    1.5 * h * p ^ 4 * cell ≤ 1.6 * h * p ^ 7 := by
+  have hc : (0:ℝ) ≤ 1.5 * h * p ^ 4 := by positivity
+  have hprod := mul_le_mul_of_nonneg_left hcell hc
+  have e : 1.5 * h * p ^ 4 * (1.01 * p ^ 3) = 1.515 * h * p ^ 7 := by ring
+  rw [e] at hprod
+  nlinarith [hprod, mul_pos hh (pow_pos hp 7)]
+
+/-- **Regime B, case (b) is confined to small `uh`.**  `|D_i| < q/(2ℓ)` forces
+`φ''` within `O(u h P^(-3/4))` of `½ u h P^(-3/4)`, so `|φ''| ≤ Φ₂` confines the
+case to `u h ≤ 6 k h₁ h₂ P^(1/8)`. -/
+theorem wideD3_caseB_confined (K uh p : ℝ) (_hK : 0 ≤ K) (_hp : 0 < p)
+    (hcase : (1/2) * uh ≤ 3 * K * p ^ 3) : uh ≤ 6 * K * p ^ 3 := by linarith
+
+-- `linter.unusedVariables` does not count a binder used only inside a
+-- `nlinarith [...]` term list; this one is used in the proof below.
+set_option linter.unusedVariables false in
+/-- **Where case (b) closes outright.**  Its second term is `1.1 u P^(3/4)`,
+inside `P^(7/8)` exactly when `u ≤ 0.9 P^(1/8)`.  At `P = p^8`: `1.1 u p^6 ≤ p^7`
+iff `u ≤ 0.9 p`. -/
+theorem wideD3_caseB_closes (u p : ℝ) (hp : 0 < p) (hu : u ≤ 0.9 * p) (hu0 : 0 ≤ u) :
+    1.1 * u * p ^ 6 ≤ p ^ 7 := by
+  have h6 : (0:ℝ) < p ^ 6 := pow_pos hp 6
+  nlinarith [h6, hu, hu0]
+
+/-- **Case (b) confines the decoration.**  Its defining condition
+`|Ψ' - q/ℓ| < q/(2ℓ)` with `q/ℓ = (27/16) u h ν^(-3/4)` and
+`Ψ' = (27/32) u h ν^(-3/4) + φ''` pins `0 < φ'' < (27/16) u h ν^(-3/4)`.
+So in the only case left open, `|φ''|` is at most `27/16` times
+`u h ν^(-3/4)` -- the wide budget is never attained there. -/
+theorem wideD3_caseB_confines_phi (uh3 phi2 : ℝ) (_h3 : 0 < uh3)
+    (hcase : |((27:ℝ)/32) * uh3 + phi2 - (27/16) * uh3| < (27/32) * uh3) :
+    0 < phi2 ∧ phi2 < (27/16) * uh3 := by
+  rw [abs_lt] at hcase
+  constructor <;> linarith [hcase.1, hcase.2]
+
+/-- The confinement in the form used: `φ''` is at most `4.83` times the Stage-4
+curvature `0.35 u h ν^(-3/4)`, since `(27/16)/0.35 = 4.821…`. -/
+theorem wideD3_caseB_ratio (uh3 phi2 : ℝ) (h3 : 0 ≤ uh3)
+    (hb : phi2 < (27/16) * uh3) : phi2 < 4.83 * (0.35 * uh3) := by linarith
+
+/-- **The cell frequencies have bounded gaps.**  In case (b),
+`Ψ' ∈ [27/32, 81/32] u h ν^(-3/4)`, so with `ℓ = (2/3) ν^(1/2)/h` the gaps
+`α_{i+1} - α_i = Ψ' ℓ` lie in `[0.562, 1.688] u P^(-1/4)`: a strictly increasing
+sequence of bounded ratio `3`. -/
+theorem wideD3_caseB_gaps (Psi uh3 : ℝ) (_h3 : 0 < uh3)
+    (hlo : (27/32) * uh3 ≤ Psi) (hhi : Psi ≤ (81/32) * uh3) :
+    (27/48) * uh3 ≤ Psi * (2/3) ∧ Psi * (2/3) ≤ (81/48) * uh3 := by
+  constructor <;> linarith
+
+end Stage6D3
+
+/-! ## 4. Lemma 3.9: the two sublevel-length bounds -/
+
+section Sublevel
+
+/-- **Lemma 3.9, the `r = 3` piece.**  Where `|f'''|` is good at full scale,
+`f''` is strictly monotone and any two points of `{|f''| ≤ V}` are within
+`2V/c`.  In the manuscript `c = c₃S/P`, giving the length `2PV/(c₃S)` — the
+`O(PV/S)` term of Lemma 3.9(i).
+
+The mean value theorem is *used* here, not assumed. -/
+theorem sublevel_diam_of_deriv_lower
+    (g g' : ℝ → ℝ) (c V x y : ℝ) (hc : 0 < c) (hxy : x < y)
+    (hcont : ContinuousOn g (Set.Icc x y))
+    (hderiv : ∀ t ∈ Set.Ioo x y, HasDerivAt g (g' t) t)
+    (hg' : ∀ t ∈ Set.Ioo x y, c ≤ |g' t|)
+    (hVx : |g x| ≤ V) (hVy : |g y| ≤ V) :
+    y - x ≤ 2 * V / c := by
+  obtain ⟨ξ, hξ, hslope⟩ := exists_hasDerivAt_eq_slope g g' hxy hcont hderiv
+  have hcξ : c ≤ |g' ξ| := hg' ξ hξ
+  rw [hslope] at hcξ
+  have hpos : 0 < y - x := by linarith
+  rw [abs_div, abs_of_pos hpos, le_div_iff₀ hpos] at hcξ
+  have hgap : |g y - g x| ≤ 2 * V := by
+    have h1 := abs_le.mp hVx
+    have h2 := abs_le.mp hVy
+    rw [abs_le]; constructor <;> linarith
+  rw [le_div_iff₀ hc]
+  linarith
+
+/-- **Strong convexity, midpoint form.**  If `t ↦ g t - (c/2)t²` is convex then
+`g` satisfies the midpoint inequality with quadratic defect `(c/8)(y-x)²`.  This
+is exactly what `g'' ≥ c` supplies, and it is the only consequence of the
+`r = 4` hypothesis that the length bound uses. -/
+theorem midpoint_defect_of_convexOn
+    (g : ℝ → ℝ) (c x y : ℝ) (s : Set ℝ)
+    (hconv : ConvexOn ℝ s (fun t => g t - c / 2 * t ^ 2))
+    (hx : x ∈ s) (hy : y ∈ s) :
+    g ((x + y) / 2) ≤ (g x + g y) / 2 - c / 8 * (y - x) ^ 2 := by
+  have h := hconv.2 hx hy (by norm_num : (0:ℝ) ≤ 1 / 2) (by norm_num : (0:ℝ) ≤ 1 / 2)
+    (by norm_num : (1:ℝ) / 2 + 1 / 2 = 1)
+  simp only [smul_eq_mul] at h
+  have he : (1:ℝ) / 2 * x + 1 / 2 * y = (x + y) / 2 := by ring
+  rw [he] at h
+  nlinarith [h]
+
+/-- **Lemma 3.9, the `r = 4` piece.**  Where `|f''''|` is good at full scale,
+`f''` is strongly convex (after a sign flip) and the sublevel set has diameter
+at most `4√(V/c)`.  In the manuscript `c = c₄S/P²`, giving `P(V/(c₄S))^(1/2)` —
+the `(V/S)^(1/2)` term of Lemma 3.9(i), and the term that produces the
+exponent `89/96`.
+
+The hypothesis `hmid` is the `≤ 2 zeros` structure: on the piece, `f''` does not
+dip below `-V` between the two points. -/
+theorem sublevel_diam_of_strong_convexity
+    (g : ℝ → ℝ) (c V x y : ℝ) (hc : 0 < c)
+    (hmid : -V ≤ g ((x + y) / 2))
+    (hdefect : g ((x + y) / 2) ≤ (g x + g y) / 2 - c / 8 * (y - x) ^ 2)
+    (hVx : g x ≤ V) (hVy : g y ≤ V) :
+    (y - x) ^ 2 ≤ 16 * V / c := by
+  have h : c / 8 * (y - x) ^ 2 ≤ 2 * V := by linarith
+  rw [le_div_iff₀ hc]
+  linarith
+
+/-- The two bounds combined, in the shape Lemma 3.9(i) prints: the `r = 3` piece
+contributes `O(PV/S)` and the `r = 4` piece `O(P(V/S)^(1/2))`, and since
+`V ≤ S` the second dominates.  This is why the manuscript displays only
+`C(E) P (W/S)^(1/2)`. -/
+theorem sublevel_second_term_dominates (P V S : ℝ) (hP : 0 ≤ P) (hS : 0 < S)
+    (hVS : V ≤ S) (hV : 0 ≤ V) :
+    P * (V / S) ≤ P * Real.sqrt (V / S) := by
+  have h1 : 0 ≤ V / S := div_nonneg hV hS.le
+  have h2 : V / S ≤ 1 := (div_le_one hS).mpr hVS
+  have hs0 : 0 ≤ Real.sqrt (V / S) := Real.sqrt_nonneg _
+  have hs2 : Real.sqrt (V / S) ^ 2 = V / S := Real.sq_sqrt h1
+  have hs1 : Real.sqrt (V / S) ≤ 1 := by nlinarith [hs2, hs0, h2]
+  have h3 : V / S ≤ Real.sqrt (V / S) := by nlinarith [hs2, hs0, hs1]
+  exact mul_le_mul_of_nonneg_left h3 hP
+
+end Sublevel
+
+end Problems.Juggler

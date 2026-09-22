@@ -1,0 +1,26 @@
+{
+  "authors": [
+    "Mike Winkler"
+  ],
+  "id": "winkler-2026-ferrers-gap-polynomials",
+  "identifiers": {
+    "researchgate": "414461095"
+  },
+  "notes": "NOT READ. Registered 22 September 2026 from the front page of www.mikematics.de, which lists it fourth under Latest research, articles and preprints with no date beyond 2026. THIS IS A FIFTH 2026 WINKLER PREPRINT IN THE PAPER B CLUSTER AND THE REGISTER HAD NO TRACE OF IT. DATING, BY INFERENCE NOT BY STATEMENT: its ResearchGate publication id 414461095 is higher than all four September preprints already held -- 414098271 (coefficient first-passage, 8 Sep), 414299577 (marked rotations, 13 Sep), 414300439 (admissible qx+1, 14 Sep) -- and those ids are monotone in creation order, so it was posted after 14 September 2026 and within the week before this entry. Do not cite a date until one is read off the paper. WHY IT MATTERS. The title names Ferrers gap polynomials, real zeros and column interlacing. The cut polynomial B_n(y) of winkler-2026-coefficient-first-passage refines A100982 = this laboratory's M_d by occurrences of the local cut pattern 011, decomposes into Ferrers non-nesting rook polynomials and was proved there to be fiberwise ultra-log-concave. Real-rootedness plus interlacing is the next step up from log-concavity and is exactly the machinery that delivers a central limit theorem for the refined statistic. THAT IS THE LIMIT LAYER PAPER B CLAIMS, ON THE SAME OBJECT, so this is a live prior-art risk and not a neighbour. The one hedge: through five rows sounds like a finite verification rather than a theorem for all n, which would leave the asymptotic side untouched -- but that reading is from the title alone and must not be relied on. RETRIEVAL. ResearchGate only. It is not on arXiv: his author page https://arxiv.org/a/winkler_m_2.html was read on 22 September 2026 and lists 2609.22303, 1412.0519, 1412.1689, 1709.03385, 2602.13371, 2607.06576 and the matchstick papers, and none of marked rotations, coefficient first-passage or this. It is not self-hosted on mikematics.de either; every href on that site was enumerated and the only self-hosted PDFs are the twin-prime and falling-coin pieces. The ResearchGate gate is a network security check and must not be passed. THIS NEEDS PHILIPPE, one URL: https://www.researchgate.net/publication/414461095_Ferrers_Gap_Polynomials_Real_Zeros_and_Column_Interlacing_through_Five_Rows",
+  "problem_area": "collatz",
+  "project_relationship": "unassessed",
+  "relevant_concepts": [
+    "Ferrers diagram",
+    "cut polynomial",
+    "real-rootedness",
+    "interlacing",
+    "log-concavity",
+    "A100982"
+  ],
+  "status": "NOT CONSULTED; located 2026-09-22 on the author homepage, ResearchGate only, needs a human fetch",
+  "title": "Ferrers Gap Polynomials: Real Zeros and Column Interlacing through Five Rows",
+  "url": {
+    "researchgate": "https://www.researchgate.net/publication/414461095_Ferrers_Gap_Polynomials_Real_Zeros_and_Column_Interlacing_through_Five_Rows"
+  },
+  "year": 2026
+}

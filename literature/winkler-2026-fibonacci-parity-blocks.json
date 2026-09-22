@@ -1,0 +1,29 @@
+{
+  "authors": [
+    "Mike Winkler"
+  ],
+  "id": "winkler-2026-fibonacci-parity-blocks",
+  "identifiers": {
+    "arxiv": "1412.0519",
+    "matheplanet": "Fibonacci-Zahlen in Collatz-Bahnen (2026, German expository version)",
+    "researchgate": "411344198"
+  },
+  "notes": "READ IN FULL 22 September 2026, 10 pages, dated 10 August 2026, from arXiv:1412.0519v3 at literature/sources/winkler-2026-fibonacci-parity-blocks-arxiv-1412.0519v3.pdf. FOUND BY GOING THROUGH www.mikematics.de, which is open to plain curl; the register knew this paper only as a bibliography line inside winkler-2026-coefficient-first-passage and had no record of its own. SAME ARXIV ID AS THE 2014 On the structure and the behaviour of Collatz 3n+1 sequences, retitled between v1 and v3; his own arXiv author page https://arxiv.org/a/winkler_m_2.html now lists 1412.0519 under the new title only. SETTING. Accelerated map T. For odd s, the cut time l(s) is the first k with T^k(s) = 3 mod 4 and T^(k-1)(s) even. THEOREM 1.1: for every r >= 2 the s = 1 mod 4 with l(s) = r form exactly F_(r-1) residue classes modulo 2^(r+2). THEOREM 1.2: same count for s = 3 mod 4, r >= 3. Fixing any odd class mod 12 leaves the counts unchanged, which recovers the two Fibonacci formulas he conjectured in the 2014 v1 and verified to 50. Proof is the Terras-Everett parity correspondence plus one recoding: a term is 3 mod 4 exactly when two consecutive parities are 1, so the classes are counted by binary words avoiding the factor 11. He also proves the no-cut trajectories reach 1 and have density zero in every odd class mod 12. PROPOSITION 5.1, THE FINITE-STATE PARITY PRINCIPLE, is the transferable part: for any finite deterministic partial automaton A on {0,1} with transfer matrix M, the number of residue classes mod 2^k whose length-k parity vector is accepted is exactly a_k = u^T M^k v, so (a_k) satisfies a linear recurrence with constant coefficients given by the characteristic polynomial of M. The Fibonacci case is the two-state instance, Perron root the golden ratio. WHAT IT DOES FOR THIS LABORATORY. Nothing on the Juggler side: J-parity-sequence-complexity already CLOSES finite-state Juggler frontier parity far harder, by factor complexity p(L) >= L^2/8 - O(L) against Cobham, and negative_knowledge.md forbids Walnut, Ostrowski-automatic and any finite-state decision procedure there at any depth. On the Collatz side it is a clean contrapositive worth having in writing: M_d and N_d are residue-class counts mod 2^d, so if the coefficient-stopping-time condition were finite-state they would be C-finite, whereas Corollary 12 of winkler-2026-admissible-qx1-sequences gives liminf 1 and limsup log2(3)/(log2(3)-1) for the Beatty-normalised ratio. The moving Beatty boundary is exactly what puts the count outside the finite-state class. NOT PROVED HERE and not claimed as a laboratory result; recorded as the shape of an argument, not as one. HIS OPEN PROBLEMS, section 6: which modular or orbit conditions give small automata; expressing the class representatives mod 2^(r+2) in Zeckendorf terms; and whether the cut-time construction extends to (qn+1)/2 for odd q, which he explicitly leaves open. He states plainly that no claim about the global conjecture follows. BIBLIOGRAPHY, two items absent from this register: Albert, Gudmundsson and Ulfarsson, Collatz meets Fibonacci, Math. Mag. 95 (2022) 130-136, doi 10.1080/0025570X.2022.2023307, whose Fibonacci enumeration of Collatz-induced permutations holds only through length 14; and Reyes Jimenez, A Fibonacci theorem for Collatz trajectories via modular graph structure, arXiv:2606.02621 (2026), counting odd integers in {1,...,2^m} that avoid 4 mod 6 over an interval, F_(m+1) of them, with the golden ratio as the spectral radius of an avoidance subgraph. Winkler states his own objects are different from both and that only the finite-state mechanism is shared. He also carries a declaration that generative AI tools were used as auxiliary tools.",
+  "problem_area": "collatz",
+  "project_relationship": "known",
+  "relevant_concepts": [
+    "parity vector",
+    "residue classes mod 2^k",
+    "finite automata",
+    "transfer matrix",
+    "Fibonacci numbers",
+    "cut time"
+  ],
+  "status": "read in full, 2026-09-22, from arXiv:1412.0519v3",
+  "title": "Fibonacci Enumeration of Parity Blocks in Collatz Trajectories",
+  "url": {
+    "arxiv": "https://arxiv.org/abs/1412.0519",
+    "arxiv_pdf": "https://arxiv.org/pdf/1412.0519v3"
+  },
+  "year": 2026
+}

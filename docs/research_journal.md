@@ -1,5 +1,42 @@
 # Research journal
 
+## 2026-09-22 -- Winkler homepage sweep: one mirror, one unread preprint
+
+- **Target and falsifier:** Go through www.mikematics.de and decide, per live
+  frontier, whether anything of Winkler's moves it. A Diophantine bound anywhere
+  in his texts would have falsified the negative verdict on cycles.
+- **Route:** The homepage answers plain curl, HTTP 200, no gate, while
+  ResearchGate stays shut. Every page was enumerated and his arXiv author page
+  read. That combination is the method note; the publisher was gated and the
+  person was not.
+- **Corrections:** *Admissible qx+1 Sequences* is **arXiv:2609.22303**, submitted
+  14 September 2026, not ResearchGate-only as this register and the memory both
+  recorded from an OpenAlex check made seven days later. The arXiv text was
+  diffed against the copy Philippe fetched and differs only in bracket glyphs.
+  Paper B cites it as a ResearchGate preprint at reference 13 and should cite the
+  arXiv id; that edit was **not** made, because the text is deposited and it
+  belongs with the pending v1.0.1. One arXiv id, 1709.03385, has now carried four
+  titles. The sandwich lower bound is A293308, catalogued October 2017 by Frank
+  Ellermann against equation 17 of that paper, so the inequality is 2017 and only
+  the equality classification is 2026.
+- **New objects:** Two register entries. *Fibonacci Enumeration of Parity Blocks*,
+  arXiv:1412.0519v3, read in full. *Ferrers Gap Polynomials: Real Zeros and Column
+  Interlacing through Five Rows*, ResearchGate 414461095, **unread and the only
+  live risk found** -- real-rootedness with interlacing for the cut polynomial is
+  a limit theorem on our own minimal-certificate count.
+- **Verified in passing:** The two equality families of Corollary 12 reconstruct
+  A206788 exactly, lower orders 1, 2, 7, 12 and upper orders 1, 3, 5, 17, 29,
+  union equal to the stored head with nothing left over, sides running LLHHLLHH.
+  Computed from the local OEIS mirror with an offset negative control failing 19
+  of 19. `test_winkler_envelope.py` already verifies the corollary to depth 900,
+  so this is a duplicate and no test was added.
+- **Decision:** **No frontier moves.** Cycles, termination and fates are all
+  untouched, recorded under Diophantine walls in
+  [negative_knowledge.md](negative_knowledge.md). The sweep is defensive: it
+  narrows Paper B's novelty statement and closes the transfer-matrix door on the
+  Collatz side. `connection-thresholds` is confirmed unpublished and now needs
+  only an email. Next bounded action belongs to a human: fetch the Ferrers PDF.
+
 ## 2026-09-22 -- Complete retained OOEE carry correlation
 
 - **Continuation audit:** The preceding turn made verified progress in

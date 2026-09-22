@@ -75,8 +75,15 @@ has a description of where all of its plateaus are — the next being
   A365495 and A398792 the periodicity theorem. Philippe's edits: A076227
   (Terras link, three comments, proposed at #184; an editor pass at #185-186
   by Michael De Vlieger expanded the Terras first name and re-proposed, with
-  no comment touched; awaiting approval) and A100982 (link,
-  two comments, drafted the same day). The A100982 comment reads \(M\) at
+  no comment touched) and A100982 (link, two comments, proposed at #260 the
+  same day; editor passes #261-264 by De Vlieger added Hikawa and van Tol
+  links). On 21 September Michel Marcus asked on A100982 that the two
+  comments be signed as one From/(Start)/(End) block and repeated the
+  request on A076227; Sean A. Irvine (#265, a Winkler link href) and Joerg
+  Arndt (#187, status only) returned both drafts to editing, no comment
+  touched. The re-signed blocks, wording unchanged, were prepared on 22
+  September and wait on Philippe's re-proposal.
+  The A100982 comment reads \(M\) at
   length \(A020914(n)\) as the single entry \(n(A020914(n)-n, A020914(n))\)
   of Terras's table, because \((2^{k-1}, 2^k)\) holds at most one power of
   3; brute-forced to \(n = 27\), against A260591 to \(k = 35\), and against

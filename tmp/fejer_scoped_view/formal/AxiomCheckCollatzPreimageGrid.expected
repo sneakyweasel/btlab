@@ -1,0 +1,50 @@
+'Problems.Collatz.PreimageGrid.tree_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageGrid.count_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageGrid.tree_extend' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageGrid.hit_time_unique' depends on axioms: [propext, Quot.sound]
+'Problems.Collatz.PreimageGrid.negT_double' depends on axioms: [propext]
+'Problems.Collatz.PreimageGrid.negT_four' depends on axioms: [propext, Quot.sound]
+'Problems.Collatz.PreimageGrid.four_path' depends on axioms: [propext, Quot.sound]
+'Problems.Collatz.PreimageGrid.odd_path' depends on axioms: [propext, Quot.sound]
+'Problems.Collatz.PreimageGrid.doubled_odd_path' depends on axioms: [propext, Quot.sound]
+'Problems.Collatz.PreimageGrid.odd_trees_disjoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageGrid.doubled_odd_trees_disjoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageGrid.count_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageGrid.cap_ge_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageGrid.cap_quad' depends on axioms: [propext, Quot.sound]
+'Problems.Collatz.PreimageGrid.cap_signed_advance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageGrid.cap_signed_retard' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageGrid.signed_child_ratio' depends on axioms: [propext, Quot.sound]
+'Problems.Collatz.PreimageGrid.odd_cap_fits' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageGrid.doubled_odd_cap_fits' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageGrid.count_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageGrid.count_odd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageGrid.count_doubled_odd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageGrid.rootSize_double' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageGrid.rootSize_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageGrid.signed_power_slack' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageGrid.rootSize_odd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageGrid.measure_children' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageGrid.fertile_children' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.PreimageGrid.nonperiodic_preimage' does not depend on any axioms
+Problems.Collatz.PreimageGrid.count_odd {a t : ℕ} (ha : 4096 ≤ a) (h3 : a % 3 = 1) (hnp : Nonperiodic a) :
+  count (4 * a) (cap t * (4 * a)) +
+      count (Problems.Collatz.PreimageScale.minusOddPreimage a)
+        (cap (t + 129) * Problems.Collatz.PreimageScale.minusOddPreimage a) ≤
+    count a (cap (t + 100) * a)
+Problems.Collatz.PreimageGrid.count_doubled_odd {a t : ℕ} (ha : 4096 ≤ a) (h3 : a % 3 = 1) (hnp : Nonperiodic a) :
+  count (4 * a) (cap t * (4 * a)) +
+      count (2 * Problems.Collatz.PreimageScale.minusOddPreimage a)
+        (cap (t + 79) * (2 * Problems.Collatz.PreimageScale.minusOddPreimage a)) ≤
+    count a (cap (t + 100) * a)
+Problems.Collatz.PreimageGrid.measure_children {a : ℕ} (ha : 4096 ≤ a) (h3 : a % 3 = 1) (t : ℕ) :
+  Problems.Collatz.PreimageGrid.measure t (4 * a) + 4 ≤ Problems.Collatz.PreimageGrid.measure (t + 100) a ∧
+    Problems.Collatz.PreimageGrid.measure (t + 79) (2 * Problems.Collatz.PreimageScale.minusOddPreimage a) + 3 ≤
+        Problems.Collatz.PreimageGrid.measure (t + 100) a ∧
+      Problems.Collatz.PreimageGrid.measure (t + 129) (Problems.Collatz.PreimageScale.minusOddPreimage a) + 1 ≤
+        Problems.Collatz.PreimageGrid.measure (t + 100) a
+Problems.Collatz.PreimageGrid.fertile_children {a : ℕ} (ha : a % 3 = 1) :
+  4 * a % 3 = 1 ∧
+    (a % 9 = 1 → Problems.Collatz.PreimageScale.minusOddPreimage a % 3 = 1) ∧
+      (a % 9 = 7 → 2 * Problems.Collatz.PreimageScale.minusOddPreimage a % 3 = 1) ∧
+        (a % 9 = 4 → Problems.Collatz.PreimageScale.minusOddPreimage a % 3 = 0)

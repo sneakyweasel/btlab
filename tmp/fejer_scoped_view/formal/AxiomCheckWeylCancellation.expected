@@ -1,0 +1,17 @@
+'BTCalculus.WeylDifferencing.normalized_van_der_corput' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.WeylDifferencing.tendsto_average_norm_zero_of_correlations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'BTCalculus.WeylDifferencing.norm_average' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.WeylDifferencing.average_div_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.WeylDifferencing.correlation_boundary_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.WeylDifferencing.tendsto_overlap_zero_of_shifted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.WeylDifferencing.tendsto_average_zero_of_shifted_correlations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'BTCalculus.WeylDifferencing.tendsto_average_zero_of_bounded_correlations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'BTCalculus.WeylDifferencing.tendsto_phase_average_zero_of_differences' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

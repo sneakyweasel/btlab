@@ -1,0 +1,13 @@
+import BTCalculus.WeylCancellation
+
+open BTCalculus.WeylDifferencing
+
+#print axioms normalized_van_der_corput
+#print axioms tendsto_average_norm_zero_of_correlations
+#print axioms norm_average
+#print axioms average_div_const
+#print axioms correlation_boundary_bound
+#print axioms tendsto_overlap_zero_of_shifted
+#print axioms tendsto_average_zero_of_shifted_correlations
+#print axioms tendsto_average_zero_of_bounded_correlations
+#print axioms tendsto_phase_average_zero_of_differences

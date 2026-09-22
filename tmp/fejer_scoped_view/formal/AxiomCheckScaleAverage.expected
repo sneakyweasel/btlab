@@ -1,0 +1,16 @@
+'Problems.Juggler.ScaleAverage.weighted_prefix_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ScaleAverage.rpow_step_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ScaleAverage.rpow_le_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ScaleAverage.weighted_rpow_sum_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ScaleAverage.rho_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ScaleAverage.odd_block_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ScaleAverage.block_le_rho' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ScaleAverage.odd_mass_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ScaleAverage.conjecture_of_odd_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ScaleAverage.conjecture_of_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.ScaleAverage.pressure_average_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+Problems.Juggler.ScaleAverage.pressure_average_conjecture {N₀ k₀ : ℕ} (hN : 2 ≤ N₀)
+  (hfloor : ∀ (m : ℕ), 1 ≤ m → m ≤ N₀ → Problems.Juggler.ReachesOne m) (hk₀ : N₀ < 2 ^ (k₀ + 1)) {C θ q η : ℝ}
+  (hC : 1 < C) (hθ : 0 < θ) (hq0 : 0 < q) (hq1 : q < 1) (hη : 0 ≤ η)
+  (hgap : 103 / 203 < C * (θ * Problems.Juggler.pC C - Real.log (1 - q + q * Real.exp θ)) / Real.log 2 - η)
+  (havg : Bound N₀ k₀ C θ (1 - q + q * Real.exp θ) η) (n : ℕ) : 1 ≤ n → Problems.Juggler.ReachesOne n

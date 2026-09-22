@@ -35,6 +35,7 @@ full** (21 September 2026); see the retired open risk below.
 | survivor condition on a word | **Terras 1976, Def. 1.12**: *admissible*, `e_0 + ... + e_(i-1) > i gamma`, `gamma = ln2/ln3` | the convergence-condition formula |
 | coefficient stopping times `sigma_n` | **A020914** (Winkler, Remark 11) | — |
 | the class lists | **A177789** (Winkler, Remark 11) | — |
+| Winkler's sandwich lower bound `(1/n) C(m_n - 1, n - 1)` | **A293308** — `binom(A056576(n) - 1, n - 1)`, in OEIS since **5 Oct 2017** (Frank Ellermann; Winkler added the example and the PARI on 30 Oct 2017), whose reference line points at *equation (17), p. 9* of arXiv:1709.03385 | — |
 
 One row carries three outside names and a fourth that only we use: the
 minimal certificate length is the dropping time in the Collatz literature, the
@@ -68,7 +69,11 @@ identification.
   `J-free-lengths-are-never-adjacent` is not new, whatever is true at level
   `Lambda`.
 - **Winkler (September 2026),** *Admissible qx+1 Sequences, Semiconvergents,
-  and Rational Catalan Numbers*, and his A100982 comment of 15 September 2026:
+  and Rational Catalan Numbers* — **[arXiv:2609.22303](https://arxiv.org/abs/2609.22303),
+  submitted 14 September 2026**, found 22 September 2026 and not ResearchGate-only as
+  this page and the register both assumed; the arXiv text was diffed against the
+  ResearchGate copy and differs only in bracket glyphs. **Cite the arXiv id.** With
+  his A100982 comment of 15 September 2026:
   the sandwich `(1/n) C(m_n - 1, n - 1) <= a(n) <= (1/n) C(m_n, n - 1)` with
   equality exactly at the one-sided convergents and semiconvergents. Checked
   against our counts at `J-winkler-sandwich-holds-on-the-laboratory-counts`.
@@ -150,7 +155,25 @@ Two obligations replace it, and both are sharper than the risk they retire.
    problem at the same Beatty slope `lambda = log2 3`, on the opposite side of the
    boundary, and states the two constructions are not the same. That is the Paper
    B meander verbatim. It has **no URL and no identifier anywhere**; it is the one
-   source in this cluster with no retrieval route.
+   source in this cluster with no retrieval route. **Narrowed, 22 September 2026:**
+   his homepage `www.mikematics.de` is open to plain `curl` and every page of it was
+   enumerated — it lists fifteen items under *Latest research* and is exhaustive down
+   to German expository pieces — and **this title is not on it**, nor on his arXiv
+   author page, nor in Semantic Scholar, nor in ORCID. It is not merely unindexed; it
+   is not published. The only route left is `mike.winkler@ruhr-uni-bochum.de`, and no
+   further probe is worth spending.
+3. **A fifth preprint exists and is unread — `winkler-2026-ferrers-gap-polynomials`.**
+   *Ferrers Gap Polynomials: Real Zeros and Column Interlacing through Five Rows*,
+   found on his homepage 22 September 2026, ResearchGate publication 414461095 and
+   nowhere else. Its id exceeds all four September ids, so it postdates 14 September.
+   The object is the cut polynomial `B_n(y)` of `winkler-2026-coefficient-first-passage`,
+   which refines `M_d` by the local pattern `011` and was proved there only fiberwise
+   ultra-log-concave. **Real-rootedness with interlacing is the step that yields a
+   central limit theorem for that statistic — the limit layer, on our object.** The
+   hedge is that *through five rows* may be a finite verification rather than a theorem
+   for all `n`, but that reading is from the title alone. This replaces obligation 2 as
+   the nearest unread neighbour, and unlike obligation 2 it has a working URL that a
+   human can open in seconds.
 
 **And every Winkler citation on this page is off by one.** The copy now held is
 the revision of 23 August 2026, 29 pages; arXiv stops at v8 (28 July, 28 pages).

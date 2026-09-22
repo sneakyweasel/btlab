@@ -28,3 +28,36 @@
 'Problems.Juggler.PaperECompletion.certificate_log_ceiling' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.PaperECompletion.full_prefix_tree_masses' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.PaperECompletion.stopping_word_masses' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperEModularReturn.modular_return_of_box' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperEModularReturn.runCode_den' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperEModularReturn.runCode_den_gt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperERecurrence.theorem41' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperERecurrence.box_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.PowerBoxRecurrence.exists_ge_power_fract_box' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.FourierBoxRecurrence.tendsto_continuous_average' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.FourierBoxRecurrence.exists_ge_fract_box_of_phase' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'BTCalculus.PowerPhaseAsymptotics.tendsto_distinct_noninteger_power_average' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'BTCalculus.FourierBoxCounting.tendsto_fract_box_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.PowerBoxCounting.tendsto_power_fract_box_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.PowerBoxCounting.tendsto_powerStarts_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperECorollaries.return_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperECorollaries.return_parameter_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperECorollaries.returnStarts_actual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperECorollaries.return_starts_asymptotic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperECorollaries.return_in_multiplicative_interval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.PaperECorollaries.signature_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperECorollaries.signature_parameter_density' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.PaperECorollaries.modular_return_of_signature' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.PaperECorollaries.signature_returns_infinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
