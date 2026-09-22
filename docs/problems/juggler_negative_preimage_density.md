@@ -1,14 +1,12 @@
-# Signed Collatz preimage density: residue symmetry needs a height argument
+# Signed Collatz preimage density: a checked strict-grid proof
 
-Status: **PARK** (22 September 2026). The former assertion that the
-Krasikov–Lagarias exponent transfers by residue relabelling alone is
-withdrawn as unproved. The eventual 3n-1 bound is not refuted. A follow-up
-now bounds height corrections through any finite family of expanding
-inverse blocks. A second follow-up proves actual signed tree-count
-inequalities on a strict grid for nonperiodic roots at least 4096, with a
-decreasing induction measure. The root domain is now closed for every
-positive target prime to 3. The growth induction and its checked
-certificate remain open.
+Status: **PROMOTE** (22 September 2026). The 3n-1 ancestor bound with
+exponent 21/25 is now kernel-checked. The proof includes actual capped-tree
+recurrences, a closed root domain for every positive target prime to 3,
+the well-founded growth induction, an independent 177147-row integer
+certificate, and interpolation to every sufficiently large natural cutoff.
+The original assertion of automatic transfer by residue relabelling remains
+withdrawn; the strict-grid argument supplies the missing height control.
 
 Branch of the [Collatz bridge](juggler_collatz_bridge.md). The exact
 predecessor comparison is now kernel-checked in
@@ -23,12 +21,23 @@ the associated inequalities for actual height-truncated inverse trees.
 
 ## Exact statement
 
-For g(n)=n/2 at even n and (3n-1)/2 at odd n, the proposed conclusion
-is that every positive target a not divisible by 3 has at least
-x^0.84 positive ancestors below x for all sufficiently large x.
-This remains an unproved claim in this branch.
+For g(n)=n/2 at even n and (3n-1)/2 at odd n, every positive target a
+not divisible by 3 admits X_0 such that, for every natural X>=X_0,
 
-What is proved is the sign-dependent scale comparison. For a=1 mod 3,
+\[
+X^{21}\le N(a,X)^{25}.
+\]
+
+Here N counts positive starts at most X whose orbit reaches a while every
+intermediate state stays at most X. The ordinary positive ancestor count
+is at least N, so it also satisfies the bound. Equivalently there are at
+least X^(21/25)=X^0.84 positive ancestors up to X for all large natural X.
+The Lean declarations are `PreimageCertificate12.density_21_25` and
+`PreimageCertificate12.ancestor_density_21_25`. Both compile without
+additional hypotheses. The ledger retains `EXACT — HUMAN PROOF` pending
+advisory statement-coverage review; the local kernel proof is complete.
+
+The proof retains the sign-dependent scale comparison. For a=1 mod 3,
 the odd predecessor c=(2a+1)/3 satisfies
 
 \[
@@ -143,9 +152,11 @@ not an invariant domain for a growth induction.
 
 ## Conjectures
 
-`J-kl-preimage-density-transposes-to-3n-1` is now **CONJECTURE**.
-This status concerns the missing proof here; no claim is made that
-the asymptotic conclusion is false or unavailable by another method.
+`J-kl-preimage-density-transposes-to-3n-1` now records the complete
+strict-grid proof with tag **EXACT — HUMAN PROOF**, named kernel-checked
+Lean declarations, and advisory statement coverage pending. The earlier
+return to conjecture status concerned the missing height argument;
+the completed proof below resolves that gap.
 
 ## Counterexamples
 
@@ -170,8 +181,9 @@ with 2a/3, the correction factor, and the reversed nominal-budget
 inequalities for every positive real cutoff. `excluded_ancestor`
 checks the finite path and its location; `nineteen_not_periodic`
 checks all positive return times by a finite forward invariant set.
-The density exponent and the all-level residue-program isomorphism
-are not claimed to be formalized.
+These initial lemmas do not themselves establish the density exponent.
+The later growth, certificate, and cutoff modules complete that proof.
+The all-level residue-program isomorphism is not claimed to be formalized.
 
 The follow-up adds `inverseWord` for the real inverse letters
 E(x)=2x and O(x)=(2x+1)/3. `inverseWord_affine` proves
@@ -222,8 +234,8 @@ remains pending.
 
 ## Results
 
-The valid residue algebra is preserved. Its former promotion to a
-counting theorem is withdrawn. The exact missing shift in the minus
+The valid residue algebra is preserved. The earlier residue-only proof of
+the counting theorem is withdrawn. The exact missing shift in the minus
 odd branch is
 
 \[
@@ -345,39 +357,87 @@ productions used by the grid inequalities. Thus their root hypotheses
 hold throughout the induction domain, including arbitrarily deep branches.
 
 Finally the fixed path from r to a has a finite maximum height X_0.
-For every X>=X_0, extending paths gives N(r,X)<=N(a,X). A future growth
-bound on this domain will therefore transfer to the original target.
-The current theorem supplies the domain and transfer, not that growth bound.
+For every X>=X_0, extending paths gives N(r,X)<=N(a,X). The growth bound
+proved below therefore transfers to the original target. The domain
+component itself does not estimate growth.
 
 The known-cycle census means the three known cycles and their fifteen
 members; it supplies no exhaustiveness theorem. Existing finite tree
 split checks remain computational and must retain their noncycle scope.
 
+### The complete growth certificate and cutoff argument
+
+The integer table has 177147 weights, one for every fertile class modulo
+3^12. Its rate per grid step is p/q=5059/5000, and its weights lie between
+7307142888 and Cmax=10^12. Write cbar for the minimum over the three lifts
+of an odd-child class. The kernel checks, on every relevant residue,
+
+\[
+\begin{aligned}
+c_m p^{100}&\le c_{4m}q^{100} &&(m=4\bmod9),\\
+c_m p^{100}&\le c_{4m}q^{100}+\bar c_{(4m+2)/3}p^{79}q^{21}
+  &&(m=7\bmod9),\\
+c_m p^{100}q^{29}&\le c_{4m}q^{129}+\bar c_{(2m+1)/3}p^{129}
+  &&(m=1\bmod9).
+\end{aligned}
+\]
+
+All weight indices are reduced modulo the appropriate power of 3.
+`PreimageCertificate.weightSystem_of_rows` proves that these finite checks
+give the inequalities for every actual fertile root, by selecting its
+actual child's lift. No class-infimum deletion is used.
+
+`PreimageGrowth.growth_root` inducts on M(t,a) over the closed domain and
+proves the exact natural-number inequality
+
+\[
+c_a p^t q^{100}\le N(a,C(t)a)\,C_{\max}q^t p^{100}.
+\]
+
+At t=50j, C(t)=10000*2^j. Count monotonicity covers the cutoffs between
+these dyadic values. The strict integer comparison
+
+\[
+2^{21}5000^{1250}<5059^{1250}
+\]
+
+absorbs the fixed root and normalization constants for all sufficiently
+large cutoffs. This proves the exact exponent 21/25, not a rounded decimal
+claim. The rate's decimal exponent 0.846207... is diagnostic only.
+
+The [certificate data](../../data/research/juggler/negative_preimage_density/README.md)
+and generator make all five generated Lean files reproducible. Four modules
+check blocks of 256 rows with kernel reduction. The independent Python
+verifier checks every inequality and rejects a corrupted positive weight
+at residue 4. Full `lake build` passes (9040 jobs); the
+[21-declaration audit](../../formal/AxiomCheckCollatzPreimageDensity.expected)
+has only standard Lean dependencies. Focused probe, integration, ledger,
+and registry checks pass: 165 passed, 14 skipped. The generated certificate,
+ledger rendering, and branch index pass their consistency checks.
+
 ## Open questions
 
-The strict-grid route now supplies actual pointwise counting inequalities,
-a well-founded measure, and a closed root domain for every positive target
-prime to 3. The next question is to assemble the growth induction and
-check a positive residue-weight certificate for these exact grid shifts.
-The old homogeneous model's output is not that certificate. The original
-deletion argument remains unsupported for the signed functions and is
-not used by this route.
+The signed x^0.84 statement is no longer open here. Its proof does not
+settle whether every 3n-1 orbit reaches one of the known cycles. The
+original residue-only or deletion argument remains unsupported and is
+unnecessary for the checked strict-grid proof.
 
-Even a repaired x^0.84 lower bound would not supply Juggler's required
+The x^0.84 lower bound does not supply Juggler's required
 divergent harmonic-mass estimate or its growing-depth pressure bound.
 
 ## Decision
 
-**PARK** the density exponent pending the growth induction and its
-numerical certificate. **PROMOTE** the closed-domain component: its
-existence and closure now hold for every positive target prime to 3,
-including cycle targets. The expanding-block lemma and strict-grid
-counting recurrences remain proved components. The residue
-symmetry is retained; automatic analytic transfer remains closed. No new
+**PROMOTE** the complete signed density theorem. The residue symmetry,
+height correction, closed domain, growth induction, finite certificate,
+and cutoff argument are now separate checked components. Automatic
+analytic transfer from residue relabelling remains closed. No new
 cycle exclusion, termination theorem, or computation floor follows, and
 neither Paper C nor Paper D requires modification.
 
 ## Publication assessment
 
-Working correction and partial repair. Do not present the 3n-1 exponent
-as a corollary until the growth induction and certificate are supplied.
+The signed adaptation is complete in Lean, using M. Sharpe's attributed
+root-induction method and an independently generated certificate. No
+independent priority claim is made for the grid method. Publication would
+need to distinguish this signed formalization from the established positive
+Collatz density theorem and should retain the original proof correction.

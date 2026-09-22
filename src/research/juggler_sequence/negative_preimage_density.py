@@ -1,4 +1,4 @@
-"""Krasikov-Lagarias residue-model symmetry and its missing height comparison.
+"""Signed Collatz density: residue symmetry, corrected heights, and a checked grid.
 
 Krasikov and Lagarias (arXiv:math/0205002, Acta Arith. 109 (2003) 237-258) prove that for
 any fixed ``a`` not divisible by three and all large ``x``, at least ``x^0.84`` of the
@@ -13,13 +13,18 @@ indices and its assigned homogeneous shifts, but that does not prove those
 shifts are valid for actual height-truncated minus-map trees. Their odd
 predecessor is above ``2a/3``, where the plus predecessor is below it. The
 missing scale factor is ``1 + 1/(2a)``. ``PreimageScale.lean`` proves this
-and a concrete excluded ancestor. The claimed minus-map density exponent
-is now unproved in this branch, not refuted. Solver outputs are model values.
+and a concrete excluded ancestor. The original residue-only argument remains
+invalid; the separate strict-grid proof below now establishes the exponent.
+The old homogeneous solver outputs remain model values.
 
 FOLLOW-UP. ``PreimageGrid.lean`` proves actual signed tree-count recurrences
 on a strict 1/50 grid above root 4096, with a decreasing induction measure.
 ``PreimageDomain.lean`` closes the root domain for every positive target
-prime to 3. The growth induction and its checked certificate remain open.
+prime to 3. ``PreimageGrowth.lean`` proves the root induction, and the
+177147-row certificate at rate 5059/5000 is kernel-checked. The assembled
+``PreimageCertificate12.ancestor_density_21_25`` proves that every positive
+unit target has at least X^(21/25) positive ancestors up to X for all
+sufficiently large natural cutoffs X. This is not a termination theorem.
 
 THE STRUCTURE.  Under ``T`` the preimages of ``a`` are ``2a`` always and ``(2a-1)/3`` when
 that is an odd integer, which happens exactly for ``a = 2 (mod 3)``; call those classes
@@ -74,9 +79,10 @@ from research.juggler_sequence.lean_paths import DATA_ROOT, DOCS_RESEARCH
 
 DATA_DIR = DATA_ROOT / "negative_preimage_density"
 JSON_PATH = DATA_DIR / "summary.json"
+GRID_CERTIFICATE_PATH = DATA_DIR / "grid_k12_certificate.json"
 DOC_PATH = DOCS_RESEARCH / "juggler_negative_preimage_density.md"
 
-CLASS_RESIDUE_ONLY = "RESIDUE_SYMMETRY_WITH_UNPROVED_HEIGHT_TRANSFER"
+CLASS_SIGNED_GRID_DENSITY = "SIGNED_GRID_DENSITY_KERNEL_CHECKED"
 
 #: log2(3), the alpha of Krasikov-Lagarias Proposition 2.1
 ALPHA = log2(3.0)
@@ -369,8 +375,8 @@ def cycle_members_break_the_identity(y: int = 4) -> int:
 # The interleaved cap grid from M. Sharpe's MIT-licensed Grid50.lean.
 # The complete license notice is in formal/Problems/Collatz/PreimageGrid.lean.
 # Its strict slack, not merely its homogeneous exponent, is checked for the
-# minus map in Problems/Collatz/PreimageGrid.lean. No density exponent follows
-# here until the growth induction and its certificate are supplied.
+# minus map in Problems/Collatz/PreimageGrid.lean. The density exponent follows
+# from the separately checked growth induction and level-12 certificate.
 GRID_RUNGS = (
     10000, 10140, 10281, 10425, 10570, 10718, 10867, 11019, 11173, 11329,
     11487, 11647, 11810, 11975, 12142, 12311, 12483, 12658, 12834, 13013,
@@ -394,6 +400,50 @@ def grid_measure(t: int, a: int) -> int:
     return 10 * t + (a ** 498).bit_length() - 1
 
 
+def verify_grid_certificate(certificate: dict[str, Any]) -> dict[str, Any]:
+    """Check every signed strict-grid inequality using only integer arithmetic.
+
+    Floating-point rates and recorded slacks in the input are ignored. The
+    function returns evidence from this check, not a Lean trust classification.
+    """
+    k, p, q = (certificate[name] for name in ("k", "p", "q"))
+    weights = certificate["weights"]
+    if not all(isinstance(v, int) and not isinstance(v, bool) for v in (k, p, q)):
+        raise ValueError("integer level and rate required")
+    if k < 2 or not 1 <= q < p or len(weights) != 3 ** (k - 1):
+        raise ValueError("invalid certificate dimensions or rate")
+    if not all(isinstance(v, int) and not isinstance(v, bool) and v > 0 for v in weights):
+        raise ValueError("every fertile weight must be a positive integer")
+    bound = certificate["maximum"]
+    if not isinstance(bound, int) or isinstance(bound, bool) or bound < max(weights):
+        raise ValueError("invalid upper weight bound")
+    modulus, third = 3 ** k, 3 ** (k - 1)
+    p100, q100 = p ** 100, q ** 100
+    p79q21, q29, q129, p129 = p ** 79 * q ** 21, q ** 29, q ** 129, p ** 129
+    failures: list[int] = []
+    for i, m in enumerate(range(1, modulus, 3)):
+        four = weights[(4 * m % modulus) // 3]
+        lhs, rhs = weights[i] * p100, four * q100
+        if m % 9 != 4:
+            child = ((2 * m + 1) // 3 if m % 9 == 1 else (4 * m + 2) // 3) % third
+            cb = min(weights[(child + j * third) // 3] for j in range(3))
+            if m % 9 == 1:
+                lhs *= q29
+                rhs = four * q129 + cb * p129
+            else:
+                rhs += cb * p79q21
+        if lhs > rhs:
+            failures.append(m)
+    return {
+        "k": k, "p": p, "q": q,
+        "inequalities_checked": len(weights),
+        "failed_residues": failures,
+        "minimum_weight": min(weights), "maximum_weight": max(weights),
+        "rate_strictly_above_21_over_25": 2 ** 21 * q ** 1250 < p ** 1250,
+        "all_integer_inequalities_hold": not failures,
+    }
+
+
 # ------------------------------------------------------------------------ artifacts
 def height_comparison_report() -> dict[str, Any]:
     """An actual child ancestor admitted only by the invalid nominal budget."""
@@ -407,16 +457,17 @@ def height_comparison_report() -> dict[str, Any]:
         "excluded_ancestor": 104, "ancestor_path": [104, 52, 26, 13],
         "actual_child_count": truncated_tree(preimages_minus, c, x),
         "nominal_child_count": truncated_tree(preimages_minus, c, nominal.numerator // nominal.denominator),
-        "density_transfer_established": False,
+        "nominal_height_transfer_valid": False,
     }
 
 
 def classification() -> dict[str, Any]:
     return {
-        "label": CLASS_RESIDUE_ONLY,
-        "statement": "Negation identifies the formal residue programs. Strict-grid count recurrences and a closed root domain for every positive target prime to 3 are now proved. The growth induction and its checked certificate remain; matching model exponents do not establish a minus-map density bound.",
+        "label": CLASS_SIGNED_GRID_DENSITY,
+        "statement": "For every positive 3n-1 target prime to 3, the capped and ordinary positive ancestor counts satisfy X^21<=N(a,X)^25 for every sufficiently large natural X. Actual grid recurrences, a closed root domain, the growth induction, all 177147 certificate rows, and cutoff interpolation are kernel-checked. The original automatic residue-only transfer remains invalid. No Juggler termination conclusion follows.",
         "published_plus_exponent": PUBLISHED["krasikov_lagarias_2003_k11"],
-        "established_minus_exponent": None,
+        "established_minus_exponent": 0.84,
+        "lean_declaration": "Problems.Collatz.PreimageCertificate12.ancestor_density_21_25",
     }
 
 
@@ -435,6 +486,7 @@ def probe_payload(k_lp: int = 6, k_bijection: int = 10) -> dict[str, Any]:
         "classification": classification(),
         "height_comparison": height_comparison_report(),
         "small_root_barrier": small_root_barrier_report(),
+        "grid_certificate": verify_grid_certificate(json.loads(GRID_CERTIFICATE_PATH.read_text(encoding="utf-8"))),
         "alpha_log2_3": ALPHA,
         "published_anchors": PUBLISHED,
         "exponents": exps,
@@ -461,21 +513,25 @@ def render_markdown(d: dict[str, Any]) -> str:
                     f"{v['gamma_minus_residue_model']:.4f} | {'yes' if v['agree_to_1e_7'] else 'NO'} |")
     si = d["split_identity"]
     return "\n".join([
-        "# Krasikov-Lagarias residue symmetry: the height transfer remains open",
+        "# Signed Collatz preimage density: the strict-grid proof is checked",
         "",
         "Generated by `python -m research.juggler_sequence.negative_preimage_density`.",
         "",
-        "Negation carries the formal residue program to the opposite sign. The "
-        "assigned homogeneous shifts need a separate height argument for actual "
-        "minus-map trees. The former density-transfer claim is withdrawn as unproved; "
-        "its asymptotic conclusion is not refuted.",
+        "For every positive target a prime to 3, the minus-map ancestor count "
+        "satisfies X^21 <= N(a,X)^25 for all sufficiently large natural X. "
+        "`PreimageCertificate12.ancestor_density_21_25` checks the ordinary count; "
+        "`density_21_25` proves the stronger bound with every intermediate state "
+        "also bounded by X. The original residue-only argument remains invalid.",
         "",
         "Follow-up: `PreimageGrid.lean` proves actual signed tree-count "
         "recurrences on a strict 1/50 grid above root 4096, together with "
         "a decreasing induction measure. `PreimageDomain.lean` closes the "
-        "root domain for every positive target prime to 3. The growth "
-        "induction and its checked certificate remain open. No minus-map density "
-        "exponent is established by the model outputs below.",
+        "root domain for every positive target prime to 3. `PreimageGrowth.lean` "
+        "proves the induction. The independent level-12 certificate has 177147 "
+        "positive weights and exact rate 5059/5000; every row and the strict "
+        "inequality 2^21 * 5000^1250 < 5059^1250 are kernel-checked. "
+        "The old model outputs below are historical comparisons. No termination "
+        "or infinite escape result follows.",
         "",
         f"At target 19, child 13 and cutoff 103, the nominal child cutoff is "
         f"`{d['height_comparison']['nominal_child_cutoff']}`. It admits the ancestor "
@@ -520,7 +576,7 @@ def write_artifacts(payload: dict[str, Any] | None = None) -> dict[str, Any]:
 def main() -> None:
     data = write_artifacts()
     print(f"{data['classification']['label']}: finite residue checks "
-          f"{data['bijection_holds_every_k']}; no minus-map density exponent established")
+          f"{data['bijection_holds_every_k']}; minus-map exponent 21/25 is kernel-checked")
     for k, v in data["exponents"].items():
         print(f"  k={k}: plus model {v['gamma_3x_plus_1']:.4f}   minus model {v['gamma_minus_residue_model']:.4f}")
     si = data["split_identity"]

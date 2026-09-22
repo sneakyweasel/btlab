@@ -223,15 +223,47 @@ def test_small_root_orbits_form_a_finite_closed_barrier() -> None:
     assert n == 417718
 
 
+def test_strict_grid_certificate_all_integer_inequalities() -> None:
+    certificate = json.loads(npd.GRID_CERTIFICATE_PATH.read_text(encoding="utf-8"))
+    report = npd.verify_grid_certificate(certificate)
+    assert report["inequalities_checked"] == 177147
+    assert report["all_integer_inequalities_hold"]
+    assert report["failed_residues"] == []
+    assert report["minimum_weight"] == 7307142888
+    assert report["maximum_weight"] == 10**12
+    assert report["rate_strictly_above_21_over_25"]
+    # The theorem's rate comparison is an integer inequality, independent
+    # of the floating-point diagnostic field in the stored artifact.
+    certificate["exponent"] = -999
+    assert npd.verify_grid_certificate(certificate) == report
+
+
+def test_strict_grid_verifier_rejects_corrupted_positive_weights() -> None:
+    certificate = json.loads(npd.GRID_CERTIFICATE_PATH.read_text(encoding="utf-8"))
+    # Residue 4 has only the 4a production. Giving it maximal weight makes
+    # its inequality impossible because the rate is strictly greater than one.
+    certificate["weights"][1] = certificate["maximum"]
+    report = npd.verify_grid_certificate(certificate)
+    assert not report["all_integer_inequalities_hold"]
+    assert 4 in report["failed_residues"]
+    certificate["weights"][1] = 0
+    with pytest.raises(ValueError, match="positive integer"):
+        npd.verify_grid_certificate(certificate)
+    certificate["weights"].pop()
+    with pytest.raises(ValueError, match="dimensions"):
+        npd.verify_grid_certificate(certificate)
+
+
 def test_the_recorded_payload_matches_a_fresh_run() -> None:
     fresh = npd.probe_payload(k_lp=4, k_bijection=5)
     assert fresh["bijection_holds_every_k"]
-    assert fresh["classification"]["label"] == npd.CLASS_RESIDUE_ONLY
+    assert fresh["classification"]["label"] == npd.CLASS_SIGNED_GRID_DENSITY
     stored = json.loads(npd.JSON_PATH.read_text(encoding="utf-8"))
-    assert stored["classification"]["label"] == npd.CLASS_RESIDUE_ONLY
-    assert stored["classification"]["established_minus_exponent"] is None
+    assert stored["classification"]["label"] == npd.CLASS_SIGNED_GRID_DENSITY
+    assert stored["classification"]["established_minus_exponent"] == 0.84
     assert fresh["height_comparison"] == stored["height_comparison"]
     assert fresh["small_root_barrier"] == stored["small_root_barrier"]
+    assert fresh["grid_certificate"] == stored["grid_certificate"]
     assert stored["bijection_holds_every_k"] is True
     assert stored["split_identity"]["failures"] == 0
     for k in ("2", "3", "4"):

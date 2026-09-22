@@ -3956,7 +3956,7 @@
       "data_dir": "data/research/juggler/negative_preimage_density",
       "lean": [],
       "conjecture": [],
-      "decision": "PARK",
+      "decision": "PROMOTE",
       "ledger_ids": [
         "J-kl-preimage-density-transposes-to-3n-1",
         "J-kl-signed-preimage-height-gap",

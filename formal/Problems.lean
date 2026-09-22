@@ -14,6 +14,15 @@ import Problems.Collatz.PreimageScale
 import Problems.Collatz.PreimageGrid
 import Problems.Collatz.PreimageBarrier
 import Problems.Collatz.PreimageDomain
+import Problems.Collatz.PreimageGrowth
+import Problems.Collatz.PreimageCertificate
+import Problems.Collatz.PreimageDensity
+import Problems.Collatz.PreimageWeights12
+import Problems.Collatz.PreimageCheck12Part0
+import Problems.Collatz.PreimageCheck12Part1
+import Problems.Collatz.PreimageCheck12Part2
+import Problems.Collatz.PreimageCheck12Part3
+import Problems.Collatz.PreimageCertificate12
 import Problems.Ostrowski.NP
 import Problems.Primes.Residual
 import Problems.BalancedTernary.FiniteStateDynamics

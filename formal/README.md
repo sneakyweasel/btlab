@@ -44,7 +44,9 @@ Compiled theorem groups:
   with a decreasing scale/root measure above 4096;
 - a finite orbit barrier and a closed signed root domain for every positive
   target coprime to 3, including cycle targets, with eventual count transfer;
-  the growth induction and certificate remain open;
+- the signed grid growth induction, a 177147-row integer weight certificate,
+  and cutoff interpolation: every positive 3n-1 target prime to 3 has at
+  least X^(21/25) positive ancestors up to every sufficiently large natural X;
 - `M ≤ X` from the nonnegative `3^m` endpoint lift;
 - the fixed-integer affine gap `G = 2^K (n - x)`, its exact recurrence,
   the periodic-code identity `n(2^K - 3^p) = C`, and `2^K ≠ 3^m` for `m ≥ 1`;

@@ -1,9 +1,10 @@
 {
   "classification": {
-    "label": "RESIDUE_SYMMETRY_WITH_UNPROVED_HEIGHT_TRANSFER",
-    "statement": "Negation identifies the formal residue programs. Strict-grid count recurrences and a closed root domain for every positive target prime to 3 are now proved. The growth induction and its checked certificate remain; matching model exponents do not establish a minus-map density bound.",
+    "label": "SIGNED_GRID_DENSITY_KERNEL_CHECKED",
+    "statement": "For every positive 3n-1 target prime to 3, the capped and ordinary positive ancestor counts satisfy X^21<=N(a,X)^25 for every sufficiently large natural X. Actual grid recurrences, a closed root domain, the growth induction, all 177147 certificate rows, and cutoff interpolation are kernel-checked. The original automatic residue-only transfer remains invalid. No Juggler termination conclusion follows.",
     "published_plus_exponent": 0.84,
-    "established_minus_exponent": null
+    "established_minus_exponent": 0.84,
+    "lean_declaration": "Problems.Collatz.PreimageCertificate12.ancestor_density_21_25"
   },
   "height_comparison": {
     "target": 19,
@@ -20,7 +21,7 @@
     ],
     "actual_child_count": 12,
     "nominal_child_count": 13,
-    "density_transfer_established": false
+    "nominal_height_transfer_valid": false
   },
   "small_root_barrier": {
     "root_threshold": 4096,
@@ -33,6 +34,17 @@
     "forward_closed": true,
     "contains_all_small_starts": true,
     "all_states_below_barrier": true
+  },
+  "grid_certificate": {
+    "k": 12,
+    "p": 5059,
+    "q": 5000,
+    "inequalities_checked": 177147,
+    "failed_residues": [],
+    "minimum_weight": 7307142888,
+    "maximum_weight": 1000000000000,
+    "rate_strictly_above_21_over_25": true,
+    "all_integer_inequalities_hold": true
   },
   "alpha_log2_3": 1.584962500721156,
   "published_anchors": {

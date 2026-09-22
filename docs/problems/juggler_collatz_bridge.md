@@ -983,12 +983,22 @@ new ledger row retains its written-proof label pending advisory coverage.
 ## Preimage-density transfer needs a height argument, 22 September 2026
 
 The [negative preimage-density branch](juggler_negative_preimage_density.md)
-is now **PARK**. Its formal residue programs transpose, but that alone
+was returned to **PARK** by the audit. Its formal residue programs transpose, but that alone
 does not transfer the analytic bound. The minus odd predecessor is
 (2a+1)/3, so its normalized child scale is the nominal scale divided
 by 1+1/(2a). At a=19, child 13 and cutoff 103, the nominal child cutoff
 4017/38 admits the actual ancestor 104, exceeding the parent cutoff.
 The predecessor comparisons and nonperiodicity of 19 are kernel-checked
 in [PreimageScale.lean](../../formal/Problems/Collatz/PreimageScale.lean).
-The existing x^0.84 row is now `CONJECTURE`; this audit does not refute
+The x^0.84 row was returned to `CONJECTURE`; this audit did not refute
 its eventual conclusion or supply a new Juggler pressure estimate.
+
+The subsequent strict-grid repair is now **PROMOTE**. Actual counting
+recurrences, a closed root domain, and well-founded root induction are
+combined with an independently generated 177147-row integer certificate.
+`PreimageCertificate12.ancestor_density_21_25` proves that every positive
+3n-1 target prime to 3 has at least X^(21/25) positive ancestors up to X
+for every sufficiently large natural X. Every certificate row and the
+cutoff interpolation are kernel-checked. The ledger keeps its human-proof
+label pending advisory coverage. This counting theorem supplies no new
+Juggler stopped-pressure estimate or divergent harmonic-mass bound.

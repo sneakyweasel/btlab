@@ -280,7 +280,7 @@ stays computational. Update Paper D Section 8 and
   other, by `decide` for \(k\le6\) and as a residue theorem in general. Low
   priority: it checks a formal residue transposition, not the
   Krasikov–Lagarias theorem. **Correction of 22 September:** the density
-  row is now `CONJECTURE`. `Problems/Collatz/PreimageScale.lean` proves
+  row was returned to `CONJECTURE`. `Problems/Collatz/PreimageScale.lean` proves
   that the actual minus odd predecessor reverses the height comparison,
   with correction factor 1+1/(2a). Its `finite_expanding_shift` now
   absorbs offsets uniformly through a finite family of expanding inverse
@@ -291,7 +291,12 @@ stays computational. Update Paper D Section 8 and
   closes the domain for every positive target prime to 3, including cycle
   targets, using a finite orbit barrier and a nonperiodic large ancestor.
   A fixed connecting path transfers counts after a fixed cutoff. The
-  growth induction and its checked certificate remain; no exponent follows yet.
+  completed `PreimageCertificate12.ancestor_density_21_25` now proves
+  X^21<=ancestorCount(a,X)^25 eventually for every positive unit target.
+  Its root induction, all 177147 integer certificate rows, and cutoff
+  interpolation are kernel-checked. The row is now `EXACT — HUMAN PROOF`
+  pending advisory coverage; the local formal proof is complete. No
+  Juggler pressure estimate or termination transfer follows.
 
 ## 4. Not in Lean, by decision
 

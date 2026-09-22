@@ -1,5 +1,44 @@
 # Research journal
 
+## 2026-09-22 -- The signed ancestor-density exponent 21/25 is kernel-checked
+
+- **Question:** Do the exact signed grid recurrences admit a growth
+  certificate, and does it imply a bound for every sufficiently large cutoff?
+- **Certificate:** An independent damped Collatz–Wielandt iteration found
+  a positive level-12 table at p/q=5059/5000 after 62 iterations. All
+  177147 inequalities pass exact integer checking. Weights range from
+  7307142888 to 10^12. Four Lean modules check every row in blocks of 256;
+  a balanced lookup tree and small data shards bound reduction cost.
+  No compiler-trusted decision tactic is used. The certificate data and
+  `tools/generate_signed_grid_certificate.py --check` reproduce the five
+  generated files; the solver is outside the trusted proof.
+- **Proof:** `PreimageGrowth.growth_root` adapts M. Sharpe's attributed
+  root-induction method to the actual signed recurrences and closed domain.
+  `PreimageCertificate.weightSystem_of_rows` selects the actual child's
+  residue lift. `PreimageDensity.density_of_weight_system` interpolates
+  dyadic cutoffs and absorbs fixed constants using a strict rational rate.
+  The kernel checks 2^21*5000^1250<5059^1250.
+- **Result:** `PreimageCertificate12.density_21_25` proves, for every
+  positive target a prime to 3, the existence of X_0 such that every
+  natural X>=X_0 satisfies X^21<=N(a,X)^25 for the capped inverse tree.
+  `ancestor_density_21_25` proves the same for ordinary positive ancestors.
+  This includes cycle targets and assumes no exhaustive cycle classification.
+- **Decision:** **PROMOTE** the complete signed density theorem. The earlier
+  automatic residue-only proof remains withdrawn. The result supplies no
+  new Juggler pressure estimate, divergent harmonic-mass estimate, universal
+  termination theorem, or infinite escape trajectory. Papers C and D are
+  unchanged. No independent priority claim is made for the grid method.
+- **Validation:** Full `lake build` passes (9040 jobs); all 21 audited
+  declarations have only standard Lean dependencies. All four finite check
+  modules compiled, and the independent verifier rejects corrupted positive
+  weights as well as invalid dimensions and zero weights. Focused probe,
+  integration, ledger, and registry checks pass: 165 passed, 14 skipped.
+  Certificate generation, ledger rendering, and branch indexing also pass
+  their consistency checks.
+- **Coverage:** The existing density row is now `EXACT — HUMAN PROOF`,
+  with the exact Lean declarations and kernel trust recorded. The advisory
+  English-statement check remains pending; no new theorem data was sent out.
+
 ## 2026-09-22 -- A closed signed root domain for every positive unit target
 
 - **Question:** Can every positive target prime to 3 support the strict-grid

@@ -12495,14 +12495,23 @@
  },
  {
   "id": "J-kl-preimage-density-transposes-to-3n-1",
-  "tag": "CONJECTURE",
-  "statement": "Unproved transfer claim: for the positive 3n-1 shortcut map, every fixed positive target a not divisible by 3 has at least x^0.84 positive ancestors below x for all sufficiently large x. Correction of 22 September 2026: the previous proof by residue negation was incomplete. The finite residue programs and their assigned homogeneous exponents do transpose, but the actual odd predecessor (2a+1)/3 lies above 2a/3, reversing the height inequality used by the plus-map argument. The exact normalized child scale is ((x/a)*(3/2))/(1+1/(2a)); dropping the correction is unfavorable. J-kl-signed-preimage-height-gap proves this and an actual excluded ancestor at the nonperiodic target 19. The eventual density bound is not refuted; it requires a separate uniform height argument. Matching floating-point solver results are model evidence, not a transfer theorem. Krasikov-Lagarias 2003 remains the external positive 3x+1 result. The subsequent J-signed-preimage-grid-counting proves actual strict-grid count inequalities and a decreasing induction measure above root 4096; J-signed-preimage-closed-root-domain now closes the root domain for every positive target prime to 3. The growth induction and its checked certificate remain open.",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For the positive natural 3n-1 shortcut map g, every positive target a with a mod 3 nonzero admits a natural cutoff X_0 such that for every natural X>=X_0, X^21<=N(a,X)^25. Here N(a,X) counts positive starts n<=X whose orbit reaches a with every intermediate state at most X. The ordinary positive ancestor count pi(a,X), with no intermediate-height restriction, also satisfies X^21<=pi(a,X)^25; equivalently there are at least X^(21/25)=X^0.84 ancestors up to every sufficiently large natural X. This includes cycle targets and assumes no exhaustive classification of cycles. The proof uses actual signed strict-grid recurrences, a closed root domain, well-founded root induction, and an independently generated level-12 certificate with 177147 positive integer weights and rate 5059/5000. Every row, the exact comparison 2^21*5000^1250<5059^1250, and cutoff interpolation are kernel-checked. The former proof by automatic residue negation remains withdrawn; the new proof retains the signed height correction. M. Sharpe's MIT root-induction method is attributed. No Juggler termination or divergent harmonic-mass estimate follows. Ledger label awaits advisory statement-coverage review.",
   "source": "docs/problems/juggler_negative_preimage_density.md",
-  "lean": "",
+  "lean": "Problems/Collatz/PreimageCertificate12.lean",
   "tests": [
    "tests/research/juggler_sequence/test_negative_preimage_density.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "all_rows",
+   "weight_system",
+   "target_growth",
+   "rate_gap",
+   "density_21_25",
+   "ancestor_density_21_25"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-kl-signed-preimage-height-gap",
@@ -12559,7 +12568,7 @@
  {
   "id": "J-signed-preimage-grid-counting",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "Let N(a,X) count positive integers whose minus-shortcut orbit reaches a while every intervening state stays at most X. Let C(t) be the explicit 50-rung integer cap defined in PreimageGrid.lean. For every nonperiodic a>=4096 with a=1 mod 3, b=(2*a+1)/3, and every natural t, N(a,C(t+100)*a)>=N(4*a,C(t)*4*a)+N(b,C(t+129)*b), and separately N(a,C(t+100)*a)>=N(4*a,C(t)*4*a)+N(2*b,C(t+79)*2*b). The single 4*a term is bounded without nonperiodicity or a lower root threshold. The cap inequalities retain the signed offset: 12288*b<=8193*a, 8193*C(t+29)<=12288*C(t), and 16386*C(t)<=12288*C(t+21). For M(t,a)=10*t+floor(log2(a^498)), the three calls satisfy M(t,4*a)+4<=M(t+100,a), M(t+79,2*b)+3<=M(t+100,a), and M(t+129,b)+1<=M(t+100,a). The fertile residue choices are the direct odd child at a=1 mod 9, doubled odd child at a=7 mod 9, and just 4*a at a=4 mod 9. All these statements are kernel-checked for actual capped integer trees. The root threshold alone is not backward closed. J-signed-preimage-closed-root-domain now supplies a suitable domain for every positive target prime to 3; the growth induction and numerical certificate remain unproved here. No density exponent or termination theorem follows yet. This adapts M. Sharpe's strict-grid root-induction method to the signed correction. Ledger label awaits advisory coverage.",
+  "statement": "Let N(a,X) count positive integers whose minus-shortcut orbit reaches a while every intervening state stays at most X. Let C(t) be the explicit 50-rung integer cap defined in PreimageGrid.lean. For every nonperiodic a>=4096 with a=1 mod 3, b=(2*a+1)/3, and every natural t, N(a,C(t+100)*a)>=N(4*a,C(t)*4*a)+N(b,C(t+129)*b), and separately N(a,C(t+100)*a)>=N(4*a,C(t)*4*a)+N(2*b,C(t+79)*2*b). The single 4*a term is bounded without nonperiodicity or a lower root threshold. The cap inequalities retain the signed offset: 12288*b<=8193*a, 8193*C(t+29)<=12288*C(t), and 16386*C(t)<=12288*C(t+21). For M(t,a)=10*t+floor(log2(a^498)), the three calls satisfy M(t,4*a)+4<=M(t+100,a), M(t+79,2*b)+3<=M(t+100,a), and M(t+129,b)+1<=M(t+100,a). The fertile residue choices are the direct odd child at a=1 mod 9, doubled odd child at a=7 mod 9, and just 4*a at a=4 mod 9. All these statements are kernel-checked for actual capped integer trees. The root threshold alone is not backward closed. J-signed-preimage-closed-root-domain now supplies a suitable domain for every positive target prime to 3; the growth induction and full level-12 certificate have now been completed in PreimageCertificate12.lean, proving the eventual exponent 21/25. The pointwise recurrences alone do not supply that conclusion, and no termination theorem follows. This adapts M. Sharpe's strict-grid root-induction method to the signed correction. Ledger label awaits advisory coverage.",
   "source": "docs/problems/juggler_negative_preimage_density.md",
   "lean": "Problems/Collatz/PreimageGrid.lean",
   "decl": [
@@ -12603,7 +12612,7 @@
  {
   "id": "J-signed-preimage-closed-root-domain",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "For the natural minus-shortcut map g, define Reaches(n,a) by the existence of a finite forward iterate from n to a, and D_r={n: n=1 mod 3 and Reaches(n,r)}. Every positive target a not divisible by 3 admits a root r in D_r reaching a such that every n in D_r is at least 4096 and nonperiodic. The domain is closed under n->4*n, under n->(2*n+1)/3 when n=1 mod 9, and under n->2*(2*n+1)/3 when n=7 mod 9. There exists a fixed cutoff X_0 such that for every X>=X_0 the actual height-truncated positive inverse-tree counts satisfy N(r,X)<=N(a,X). A large fertile nonperiodic ancestor exists even for cycle targets: among two distinct predecessors at most one can be periodic. The boundary is discharged by a finite kernel-checked orbit barrier, not by a classification of all cycles. This supplies all root-domain hypotheses for the signed grid recurrences and decreasing measure. The growth induction and a checked numerical growth certificate remain open; no density exponent or termination result is asserted. Ledger label awaits advisory coverage review.",
+  "statement": "For the natural minus-shortcut map g, define Reaches(n,a) by the existence of a finite forward iterate from n to a, and D_r={n: n=1 mod 3 and Reaches(n,r)}. Every positive target a not divisible by 3 admits a root r in D_r reaching a such that every n in D_r is at least 4096 and nonperiodic. The domain is closed under n->4*n, under n->(2*n+1)/3 when n=1 mod 9, and under n->2*(2*n+1)/3 when n=7 mod 9. There exists a fixed cutoff X_0 such that for every X>=X_0 the actual height-truncated positive inverse-tree counts satisfy N(r,X)<=N(a,X). A large fertile nonperiodic ancestor exists even for cycle targets: among two distinct predecessors at most one can be periodic. The boundary is discharged by a finite kernel-checked orbit barrier, not by a classification of all cycles. This supplies all root-domain hypotheses for the signed grid recurrences and decreasing measure. The subsequent PreimageCertificate12.lean completes the growth induction and checked certificate, proving the eventual exponent 21/25. This domain lemma alone is not that counting bound, and no termination result is asserted. Ledger label awaits advisory coverage review.",
   "source": "docs/problems/juggler_negative_preimage_density.md",
   "lean": "Problems/Collatz/PreimageDomain.lean",
   "decl": [

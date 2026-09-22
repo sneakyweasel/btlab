@@ -140,11 +140,11 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   fair mass one but tilted mass at most 3/4. The coefficient shift and
   fixed-depth identities remain valid; Kraft equality alone does not
   justify an unbounded stopped expectation.
-  The claimed Krasikov–Lagarias x^0.84 transfer to 3n-1 is now PARK:
+  The original automatic Krasikov–Lagarias x^0.84 transfer was incomplete:
   residue negation preserves the formal program but reverses the odd
   predecessor's height comparison. `PreimageScale.lean` proves the
-  missing correction and an excluded ancestor. The asymptotic claim
-  is unproved here, not refuted; matching solvers do not supply it.
+  missing correction and an excluded ancestor. Matching residue solvers
+  alone do not supply the height argument.
   `finite_expanding_shift` now controls height corrections through any
   finite expanding inverse-block family, including internal prefixes.
   `PreimageGrid.lean` now proves actual signed counting inequalities on
@@ -152,9 +152,14 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   scale/root measure. `PreimageDomain.lean` now supplies a closed root
   domain for every positive target coprime to 3, including cycle targets:
   a finite orbit barrier keeps its ancestors above 4096, and a fixed path
-  transfers counts to the target. The growth induction and a checked
-  certificate remain open; no density exponent follows yet. This route
-  avoids the old minimum/deletion step.
+  transfers counts to the target. The complete strict-grid proof is now
+  **PROMOTE**: `PreimageCertificate12.ancestor_density_21_25` proves
+  X^21<=ancestorCount(a,X)^25 for every positive a prime to 3 and every
+  sufficiently large natural X. The root induction, all 177147 integer
+  certificate rows at rate 5059/5000, and cutoff interpolation are kernel
+  checked. This route avoids the old minimum/deletion step. The ledger
+  retains the human-proof tag pending advisory coverage. No Juggler
+  pressure bound or termination theorem follows from this density result.
 - **Anti-overclaim.** Finite checks, period floors, densities, and
   leftover censuses are not a halt theorem and not "no cycle of any
   length". State the theorem with quantifiers, Lean name, and ledger
