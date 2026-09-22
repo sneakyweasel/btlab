@@ -2831,6 +2831,35 @@
         "kernel": 35
       }
     },
+    "Problems.Juggler.OOEEFibreGeometry": {
+      "declarations": 31,
+      "depends_on": [
+        "Problems.Juggler.OOEEParity",
+        "Problems.Juggler.OddPredecessorTransport"
+      ],
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 31
+      }
+    },
+    "Problems.Juggler.OOEEFibreParity": {
+      "declarations": 4,
+      "depends_on": [
+        "Problems.Juggler.OOEEFibreGeometry"
+      ],
+      "file": "formal/Problems/Juggler/OOEEFibreParity.lean",
+      "ledger": [
+        "J-ooee-exact-fibre-parity"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 4
+      }
+    },
     "Problems.Juggler.OOEEMixedModes": {
       "declarations": 10,
       "depends_on": [
@@ -4095,9 +4124,9 @@
     }
   },
   "totals": {
-    "edges": 320,
-    "edges_before_reduction": 2548,
-    "ledger_rows_placed": 513,
-    "nodes": 256
+    "edges": 323,
+    "edges_before_reduction": 2655,
+    "ledger_rows_placed": 515,
+    "nodes": 258
   }
 }

@@ -106,8 +106,9 @@ Every Fourier bound in (3) is proved, not assumed. B and P0 are
 independent of P,a,N,C. When N>=gamma*P^(7/16) for a fixed gamma>0,
 the mixed and root errors divided by N tend to zero. Choose H first,
 C second, then P large: (3) permits any fixed positive parity deficit.
-The last observation explains the application; fibre endpoint geometry
-and the resulting poor-target inclusion are the next formal obligations.
+The [exact fibre application](juggler_ooee_fibre_parity_note.md) now
+discharges the endpoint geometry and candidate-count conditions and
+normalizes the error. The resulting poor-target inclusion remains open.
 
 ## Validation
 
@@ -127,8 +128,8 @@ and pending advisory coverage; no new external service was contacted.
 ## Decision and remaining boundary
 
 **PROMOTE** the actual joint parity estimate. The [poor-fibre proof](juggler_ooee_poor_fibre_tail_note.md)
-still needs the exact target fibres and candidate counts, the fixed-deficit
-resonance inclusion, the reciprocal tail, weighted conversion and physical
+now has exact target fibres and candidate counts in the linked follow-up.
+It still needs fixed-deficit resonance inclusion, the reciprocal tail, weighted conversion and physical
 source cutoffs assembled in Lean. `OOEEProductionBound` remains explicit
 in the contagion theorem. The unconditional Lean exponent remains 100/203;
 5/8 still depends on that production input. The actual failure-rate bound

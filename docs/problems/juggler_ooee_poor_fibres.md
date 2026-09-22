@@ -22,7 +22,10 @@ every fixed mixed mode and uniformly over fixed finite frequency sets.
 The actual last-root comparison, pure slow modes outside explicit resonance
 windows, and the joint three-guard count are now kernel-checked too.
 [Joint-parity proof map](../theory/juggler_ooee_joint_parity_note.md).
-Exact fibre geometry, poor-target inclusion and the tail assembly remain.
+Exact fibre geometry and its normalized count estimate are now kernel-checked
+in `OOEEFibreGeometry.lean` and `OOEEFibreParity.lean`.
+[Fibre proof map](../theory/juggler_ooee_fibre_parity_note.md).
+Poor-target inclusion and the tail assembly remain.
 [Analytic argument](../theory/juggler_ooee_poor_fibre_tail_note.md).
 
 ## Problem
@@ -441,6 +444,16 @@ For any fixed finite family with (i,j) not both zero, one constant and
 one threshold work for every eligible interval. No cancellation premise
 remains in this mixed-mode theorem; pure slow modes remain excluded.
 
+**Twelfth phase: exact fibres and their parity count are kernel-checked.**
+Both inverse ceilings are retained. The odd candidate count differs from
+(8/9)m^(7/9) by at most 3. For m>=64, all candidates satisfy the actual
+source-window hypotheses. The joint-parity theorem therefore gives an
+estimate on the exact guarded fibre, with normalized errors m^(-1/18),
+m^(-2/3), m^(-7/9) and the two fixed-cutoff losses. The constants and
+threshold are uniform in the resonance-width parameter. No assumed
+fibre geometry remains. The fixed-deficit inclusion and weighted tail
+are outside this phase; its result is recorded in the linked fibre note.
+
 ## Open questions
 
 The first phase proposed a second-moment route. Let H_m be the number
@@ -470,8 +483,10 @@ Finite differencing, both derivative tests, and the actual carry-cell
 curvature, carry partition, weighted smooth sums, nonzero Fourier modes,
 and the complete retained carry correlation are now formal too. The
 original linearization comparison and actual mixed-mode differencing are
-also proved. Slow modes, joint discrepancy, poor-target inclusion and physical source
-cutoffs must still be assembled before the full poor-tail proof.
+also proved. Slow modes, joint discrepancy and exact target-fibre geometry
+now supply the normalized count estimate. Poor-target inclusion, reciprocal
+tail, weighted conversion and physical source cutoffs remain before the
+full poor-tail proof.
 
 ## Decision
 
@@ -479,9 +494,9 @@ cutoffs must still be assembled before the full poor-tail proof.
 assembly yielding contagion at 5/8 and the sufficient Tao threshold 3/8.
 The assembly and its OE input are kernel-checked; the new OOEE analytic
 theorem still awaits independent review and Lean proof. Exactly one best
-next question: can the pure slow modes be bounded outside the explicit
-resonance set, retaining the comparison with the actual square-root phase?
-This phase stops after the complete original mixed-mode bound.
+next question: can the normalized actual-fibre estimate be turned into
+fixed-deficit resonance inclusion and a summable reciprocal target tail?
+This phase stops after the normalized actual-fibre estimate.
 
 ## Publication assessment
 

@@ -229,6 +229,8 @@ import Problems.Juggler.OOEEMixedModes
 import Problems.Juggler.OOEERootPhase
 import Problems.Juggler.OOEESlowModes
 import Problems.Juggler.OOEEParity
+import Problems.Juggler.OOEEFibreGeometry
+import Problems.Juggler.OOEEFibreParity
 
 /-!
 # Juggler laboratory barrel

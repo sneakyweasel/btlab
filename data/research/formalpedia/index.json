@@ -70461,6 +70461,426 @@
     },
     {
       "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 17,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "inverse",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 18,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "endpoint",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 19,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "base",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 20,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "scale",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 21,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "firstOdd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 22,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "candidateCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 23,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "sample",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 24,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "candidates",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 25,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "fibre",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 27,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "inverse_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 34,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "inverse_monotone",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 38,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "endpoint_monotone",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 42,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "endpoint_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 45,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "formal_cell",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 56,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "actual_four_steps",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 67,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "sample_injective",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 72,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "mem_candidates",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 84,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "sample_mem",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 87,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "candidate_card",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The finite set is exactly the actual guarded predecessor fibre.",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 91,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "mem_fibre",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 99,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "fibre_card_count",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 105,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "endpoint_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 130,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "power_increment",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 147,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "endpoint_gap_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 155,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "candidate_rounding",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 168,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "candidate_count_error",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 174,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "scale_ge_eight",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 180,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "base_eq_mul_scale",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 187,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "source_window",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 202,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "candidate_count_scale",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-geometry"
+      ],
+      "line": 208,
+      "module": "Problems.Juggler.OOEEFibreGeometry",
+      "name": "candidate_count_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-parity"
+      ],
+      "line": 16,
+      "module": "Problems.Juggler.OOEEFibreParity",
+      "name": "base_rpow",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The remaining source-length division has an explicit vanishing bound.",
+      "file": "formal/Problems/Juggler/OOEEFibreParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-parity"
+      ],
+      "line": 20,
+      "module": "Problems.Juggler.OOEEFibreParity",
+      "name": "normalized_error_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The unnormalized estimate on the exact finite target fibre.",
+      "file": "formal/Problems/Juggler/OOEEFibreParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-parity"
+      ],
+      "line": 49,
+      "module": "Problems.Juggler.OOEEFibreParity",
+      "name": "nonresonant_fibre_discrepancy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "H is chosen first, C second; all other errors vanish as m grows.",
+      "file": "formal/Problems/Juggler/OOEEFibreParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-exact-fibre-parity"
+      ],
+      "line": 92,
+      "module": "Problems.Juggler.OOEEFibreParity",
+      "name": "normalized_fibre_discrepancy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/Problems/Juggler/OOEEFourierModes.lean",
       "kind": "def",
       "ledger": [],
@@ -115041,6 +115461,8 @@
         "Problems.Juggler.OOEECarryCells",
         "Problems.Juggler.OOEECarryFourier",
         "Problems.Juggler.OOEECurvature",
+        "Problems.Juggler.OOEEFibreGeometry",
+        "Problems.Juggler.OOEEFibreParity",
         "Problems.Juggler.OOEEFourierModes",
         "Problems.Juggler.OOEEMixedModes",
         "Problems.Juggler.OOEEParity",
@@ -117433,6 +117855,35 @@
         }
       ]
     },
+    "Problems.Juggler.OOEEFibreGeometry": {
+      "declarations": 31,
+      "file": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "imports": [
+        "Problems.Juggler.OOEEParity",
+        "Problems.Juggler.OddPredecessorTransport"
+      ],
+      "ledger": [
+        {
+          "id": "J-ooee-exact-fibre-geometry",
+          "statement": "Kernel-checked, advisory coverage pending. Put O(n)=isqrt(n^3), Q(n)=isqrt(n), I(a)=ceil(a^(2/3)), L_m=I(I(m^4)), P_m=m^(16/9), S_m=m^(7/9), a_m=2*floor(L_m/2)+1 and H_m=floor(L_(m+1)/2)-floor(L_m/2). For natural m,n, Q(Q(O(O(n))))=m iff L_m<=n<L_(m+1). The odd integers in this exact cell are exactly a_m+2*j for j<H_m, without repetition. Filtering them by the actual OOEE guard gives precisely the n with that guard and fourth Juggler iterate m. For m>=1, P_m<=L_m<=P_m+2 and abs(H_m-(8/9)*S_m)<=3. For m>=64, S_m/2<=H_m<=3*S_m, H_m>0, and every candidate lies in [P_m,2*P_m] and [P_m,P_m+3*S_m]. Both ceilings and all boundaries are retained. No parity distribution or weighted production follows from the geometry alone.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
+    },
+    "Problems.Juggler.OOEEFibreParity": {
+      "declarations": 4,
+      "file": "formal/Problems/Juggler/OOEEFibreParity.lean",
+      "imports": [
+        "Problems.Juggler.OOEEFibreGeometry"
+      ],
+      "ledger": [
+        {
+          "id": "J-ooee-exact-fibre-parity",
+          "statement": "Kernel-checked, advisory coverage pending. For every integer H>=3 there exist B>0 and natural M0>=64, independent of C, such that for every natural m>=M0 and real C>0 with C>=(27/32)*H, if abs(k*(9/8)*m^(2/9)-z)>=C*m^(-7/9) for all integers 0<abs(k)<=H and z, then abs(card(F_m)/H_m-1/8)<=15/sqrt(H+1)+(A_H^3+6*A_H)*(2*B*m^(-1/18)+4/C+18*pi*H*m^(-2/3)+2*m^(-7/9)), where A_H=1+2*harmonic(H), F_m is the exact actual OOEE fibre with fourth iterate m, and H_m is its odd candidate count. The unnormalized version replaces the parenthesized expression by (B*m^(13/18)+(2/C)*m^(7/9)+9*pi*H*m^(1/9)+1)/H_m. The proved geometry discharges every source-window and candidate-length premise of the actual joint-parity theorem. All Fourier bounds are proved. Fixed-deficit resonance inclusion, resonant-target counting, weighted conversion, physical cutoffs, OOEEProductionBound and termination remain outside this statement.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
+    },
     "Problems.Juggler.OOEEFourierModes": {
       "declarations": 12,
       "file": "formal/Problems/Juggler/OOEEFourierModes.lean",
@@ -119205,13 +119656,13 @@
     }
   },
   "totals": {
-    "declarations": 8973,
-    "declarations_with_a_ledger_row": 6142,
-    "ledger_rows_naming_a_file": 513,
-    "modules": 377,
+    "declarations": 9008,
+    "declarations_with_a_ledger_row": 6177,
+    "ledger_rows_naming_a_file": 515,
+    "modules": 379,
     "trust": {
       "compiler": 56,
-      "kernel": 8917
+      "kernel": 8952
     }
   }
 }

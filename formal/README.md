@@ -25,6 +25,11 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- exact OOEE target fibres, including both inverse ceilings, candidate-count
+  error at most 3, and the nonresonant parity estimate with every source-window
+  condition discharged. Its normalized target errors decay as m^(-1/18),
+  m^(-2/3), and m^(-7/9). Resonance inclusion and weighted production remain
+  open. See the [proof map](../docs/theory/juggler_ooee_fibre_parity_note.md);
 - uniform effective OOE Fourier cancellation for every nonzero integer
   cutoff mode: normalized error at most 128*M^(1/4)*H^(1/30)*T^(-1/60),
   for M,H,T>=1 and H<=T^(1/4). Actual derivative chains, both signs and
@@ -36,7 +41,8 @@ Compiled theorem groups:
   including the last square-root comparison, three-coordinate finite
   Fejer discrepancy and the exact natural-map guard identity. The
   count theorem supplies its Fourier bounds from the proved modes;
-  target-fibre geometry, resonance inclusion and the tail remain. See
+  the following fibre theorem supplies the geometry; resonance inclusion
+  and the tail remain. See
   the [proof map](../docs/theory/juggler_ooee_joint_parity_note.md);
 - original OOEE mixed-mode cancellation O(P^(13/32)) on source intervals
   with N<=L*P^(7/16), for every fixed integer mode with (i,j) not both

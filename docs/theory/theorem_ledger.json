@@ -13643,5 +13643,61 @@
    "tests/tools/test_formalpedia.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-ooee-exact-fibre-geometry",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked, advisory coverage pending. Put O(n)=isqrt(n^3), Q(n)=isqrt(n), I(a)=ceil(a^(2/3)), L_m=I(I(m^4)), P_m=m^(16/9), S_m=m^(7/9), a_m=2*floor(L_m/2)+1 and H_m=floor(L_(m+1)/2)-floor(L_m/2). For natural m,n, Q(Q(O(O(n))))=m iff L_m<=n<L_(m+1). The odd integers in this exact cell are exactly a_m+2*j for j<H_m, without repetition. Filtering them by the actual OOEE guard gives precisely the n with that guard and fourth Juggler iterate m. For m>=1, P_m<=L_m<=P_m+2 and abs(H_m-(8/9)*S_m)<=3. For m>=64, S_m/2<=H_m<=3*S_m, H_m>0, and every candidate lies in [P_m,2*P_m] and [P_m,P_m+3*S_m]. Both ceilings and all boundaries are retained. No parity distribution or weighted production follows from the geometry alone.",
+  "source": "docs/problems/juggler_ooee_poor_fibres.md",
+  "lean": "Problems/Juggler/OOEEFibreGeometry.lean",
+  "decl": [
+   "inverse",
+   "endpoint",
+   "base",
+   "scale",
+   "firstOdd",
+   "candidateCount",
+   "sample",
+   "candidates",
+   "fibre",
+   "formal_cell",
+   "mem_candidates",
+   "sample_injective",
+   "mem_fibre",
+   "endpoint_bounds",
+   "candidate_count_error",
+   "source_window",
+   "candidate_count_scale",
+   "candidate_count_pos"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_ooee_poor_fibres.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-ooee-exact-fibre-parity",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked, advisory coverage pending. For every integer H>=3 there exist B>0 and natural M0>=64, independent of C, such that for every natural m>=M0 and real C>0 with C>=(27/32)*H, if abs(k*(9/8)*m^(2/9)-z)>=C*m^(-7/9) for all integers 0<abs(k)<=H and z, then abs(card(F_m)/H_m-1/8)<=15/sqrt(H+1)+(A_H^3+6*A_H)*(2*B*m^(-1/18)+4/C+18*pi*H*m^(-2/3)+2*m^(-7/9)), where A_H=1+2*harmonic(H), F_m is the exact actual OOEE fibre with fourth iterate m, and H_m is its odd candidate count. The unnormalized version replaces the parenthesized expression by (B*m^(13/18)+(2/C)*m^(7/9)+9*pi*H*m^(1/9)+1)/H_m. The proved geometry discharges every source-window and candidate-length premise of the actual joint-parity theorem. All Fourier bounds are proved. Fixed-deficit resonance inclusion, resonant-target counting, weighted conversion, physical cutoffs, OOEEProductionBound and termination remain outside this statement.",
+  "source": "docs/problems/juggler_ooee_poor_fibres.md",
+  "lean": "Problems/Juggler/OOEEFibreParity.lean",
+  "decl": [
+   "base_rpow",
+   "normalized_error_bound",
+   "nonresonant_fibre_discrepancy",
+   "normalized_fibre_discrepancy"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_ooee_poor_fibres.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": []
  }
 ]

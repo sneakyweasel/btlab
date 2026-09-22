@@ -4618,7 +4618,9 @@
         "J-ooee-actual-mixed-mode-cancellation",
         "J-ooee-actual-root-phase",
         "J-ooee-nonresonant-slow-modes",
-        "J-ooee-actual-joint-parity"
+        "J-ooee-actual-joint-parity",
+        "J-ooee-exact-fibre-geometry",
+        "J-ooee-exact-fibre-parity"
       ],
       "aliases": [],
       "nk_cluster": "Good average OOEE mass does not imply uniformly productive fibres"
@@ -6912,7 +6914,9 @@
         "formal/Problems/Juggler/OOEEMixedModes.lean",
         "formal/Problems/Juggler/OOEERootPhase.lean",
         "formal/Problems/Juggler/OOEESlowModes.lean",
-        "formal/Problems/Juggler/OOEEParity.lean"
+        "formal/Problems/Juggler/OOEEParity.lean",
+        "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+        "formal/Problems/Juggler/OOEEFibreParity.lean"
       ],
       "conjecture": [],
       "decision": null,

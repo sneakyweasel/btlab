@@ -174,8 +174,10 @@ in version 0.6.0. Complete quantitative Lean verification remains open. The cons
   frequency families are included. The [actual joint-parity bound](../../docs/theory/juggler_ooee_joint_parity_note.md)
   now supplies the last-root comparison, nonresonant pure slow modes,
   three-coordinate discrepancy and exact natural-map guards in Lean.
-  Target-fibre geometry, poor-target inclusion, reciprocal tail and physical
-  cutoffs remain open.
+  [Exact target-fibre geometry and normalized counts](../../docs/theory/juggler_ooee_fibre_parity_note.md)
+  are now kernel-checked, with candidate error at most 3 and vanishing
+  target errors m^(-1/18), m^(-2/3), m^(-7/9). Poor-target inclusion,
+  reciprocal tail and physical cutoffs remain open.
   The unconditional Lean exponent remains 100/203, and the actual
   failure-rate estimate remains open.
   Kernel localize CLOSE. Do not open a

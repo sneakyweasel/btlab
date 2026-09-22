@@ -1,5 +1,32 @@
 # Research journal
 
+## 2026-09-22 -- Exact OOEE target fibres and normalized parity
+
+- **Scope:** Complete the retained joint-parity application on its exact
+  target fibres. Rounding losses consuming the short-interval saving were
+  the falsifier; no longer-fibre attack or new pressure hypothesis was opened.
+- **Proof:** The double-ceiling inverse thresholds give the exact unguarded
+  cell. Its odd candidates have count (8/9)m^(7/9) with error at most 3;
+  filtering by the actual OOEE guard is exactly the fourth-iterate fibre.
+  For m>=64 the candidate count and source interval meet every hypothesis
+  of the proved joint-parity theorem.
+- **Consequence:** Outside the explicit slow resonance windows, the exact
+  fibre's normalized count differs from 1/8 by at most
+  15/sqrt(H+1)+(A_H^3+6*A_H)*(2B*m^(-1/18)+4/C+
+  18*pi*H*m^(-2/3)+2*m^(-7/9)). B and the target threshold are independent
+  of C. This preserves the order H first, C second, then m large.
+- **Validation:** Both modules compile, the complete 26-theorem dependency
+  audit uses only the three standard Mathlib axioms, and the full Lean
+  build passes 9,085 jobs. Repository checks and the concurrent-publication
+  boundary are recorded in the [proof map](theory/juggler_ooee_fibre_parity_note.md).
+  No external advisory service was contacted; the two ledger rows retain
+  kernel trust with advisory coverage pending.
+- **Decision:** **PROMOTE** the actual fibre count. Fixed-deficit resonance
+  inclusion, reciprocal-tail counting, weighted conversion and physical
+  cutoffs remain before OOEEProductionBound. The unconditional Lean
+  exponent remains 100/203; growing-depth pressure and termination are open.
+  This phase stops here.
+
 ## 2026-09-22 -- Lean and publication consolidation
 
 - **Scope:** Consolidate the recent Lean results and Papers A–E without
