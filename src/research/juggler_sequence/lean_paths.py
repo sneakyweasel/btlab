@@ -297,6 +297,7 @@ LAYERS: dict[str, Path] = {
     "PolynomialDual": JUGGLER_DIR / "PolynomialDual.lean",
     "OddPredecessorTransport": JUGGLER_DIR / "OddPredecessorTransport.lean",
     "CollatzPadic": JUGGLER_DIR / "CollatzPadic.lean",
+    "CodeMassTransport": JUGGLER_DIR / "CodeMassTransport.lean",
 }
 
 # Sources belonging to other targets or historical model interfaces. Keeping

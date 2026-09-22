@@ -176,6 +176,12 @@ with explicit scope and proof mapping; publication work opens no new attack.
   integrality by the word divisibility; under that additional condition,
   ordinary signed Collatz return times agree exactly. The divisibility
   is not proved for Juggler cycles. Ledger coverage review remains pending.
+  `CodeMassTransport.lean` now checks the exact positive even-fibre weight,
+  conservation through all even generations, and finite source cutoffs for
+  both signed codes. Supremum over those cutoffs gives nu(2B)=nu(B), with
+  infinite mass allowed. The same module proves that 16 and 18 share a code
+  but have different odd-predecessor production. Uniqueness and sharp
+  reciprocal comparison remain written; no odd-production rate follows.
   `Problems.Collatz.BackwardMass.backward_mass_counterexample` proves
   the finite-mass backward ray for both shortcut signs. General
   backward-density transfer is CLOSE; the ray is not a fate class.

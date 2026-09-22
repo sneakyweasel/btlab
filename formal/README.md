@@ -25,6 +25,11 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- exact positive logarithmic mass on every even Juggler fibre and every
+  complete even generation; finite source-cutoff transport and infinite
+  nonnegative mass conservation for both signed Collatz codes. The 16/18
+  code collision has different odd-predecessor production. Uniqueness
+  and the sharp reciprocal-error bounds remain written proofs;
 - exact stationary-point phase and curvature for odd-source Juggler
   Fourier sums; odd harmonics have zero complete cubic mean.
   The resulting square-root-plus-epsilon discrepancy bound is a

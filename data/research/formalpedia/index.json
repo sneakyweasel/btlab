@@ -19349,6 +19349,438 @@
     },
     {
       "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "def",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 21,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "paired",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "def",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 23,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "weight",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 26,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "paired_ge_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 30,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "weight_log_ratio",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 35,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "weight_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 39,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "weight_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 44,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "weight_even",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 48,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "evenBlock_progression",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 68,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "even_progression_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 81,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "evenBlock_mass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 111,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "mem_evenBlock_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 121,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "evenBlock_positive",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 126,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "blockTree_mass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "def",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 139,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "evenSources",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "def",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 141,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "partialMass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "def",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 144,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "mass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 147,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "partialMass_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 150,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "partialMass_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 156,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "partialMass_complete",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 167,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "source_fibre",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 178,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "even_weighted_reindex",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 196,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "even_pullback_cutoff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 216,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "fate_even_cutoff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "def",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 230,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "doubled",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "def",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 233,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "codedMass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 236,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "doubled_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 252,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "coded_even_cutoff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 269,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "minus_code_cutoff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 277,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "plus_code_cutoff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 285,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "mass_last",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 291,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "coded_cutoff_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Nonnegative infinite coded mass, defined as the supremum of source cutoffs.",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "def",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 310,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "codedTotal",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 313,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "codedTotal_doubled",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 333,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "minus_code_total",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 339,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "plus_code_total",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The code forgets whether a physical target has an odd predecessor.",
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "line": 346,
+      "module": "Problems.Juggler.CodeMassTransport",
+      "name": "code_collision_odd_preimages",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/Problems/Juggler/Collapse.lean",
       "kind": "def",
       "ledger": [],
@@ -107420,6 +107852,7 @@
         "Problems.Juggler.BranchFreeze",
         "Problems.Juggler.BunchedTight",
         "Problems.Juggler.Certificates",
+        "Problems.Juggler.CodeMassTransport",
         "Problems.Juggler.Collapse",
         "Problems.Juggler.CollatzBridge",
         "Problems.Juggler.CollatzBridgeLab",
@@ -107677,6 +108110,22 @@
         "Problems.Juggler.FirstPassage"
       ],
       "ledger": []
+    },
+    "Problems.Juggler.CodeMassTransport": {
+      "declarations": 36,
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "imports": [
+        "Problems.Juggler.CollatzPadic",
+        "Problems.Juggler.FateSeed",
+        "Problems.Juggler.Preimages"
+      ],
+      "ledger": [
+        {
+          "id": "J-code-mass-kernel-foundation",
+          "statement": "For positive n let e(n)=n+(n mod 2) and w(n)=log((e(n)+1)/(e(n)-1)). Lean proves w(n)>0 and sum_{n in E(m)}w(n)=w(m) for every positive m and the actual even Juggler fibre E(m), including exact conservation through every complete even inverse generation. It proves finite weighted reindexing with arbitrary real target amplitudes. For either actual signed 2-adic code H, any code predicate B, integer X>=1 and M=floor(sqrt X), codedMass_H(2B,X)=codedMass_H(B,M-1)+1_{B(H(M))}*partialMass(X,M), with 0<=partialMass(X,M)<=w(M). The infinite nonnegative coded mass is defined as the supremum of its source cutoffs; nu_H(2B)=nu_H(B), allowing infinity, follows from the cutoff bounds. A separate finite even-source identity retains any full fate predicate A(n) iff A(J(n)). Finally H_minus(16)=H_minus(18), no odd integer maps to 16, and J(7)=18. The conservation, cutoffs, and counterexample are kernel-checked; ledger label retained pending advisory statement coverage. No uniqueness, sharp reciprocal-error comparison, odd-production rate, or termination theorem is included in this row.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
     },
     "Problems.Juggler.Collapse": {
       "declarations": 35,
@@ -111444,13 +111893,13 @@
     }
   },
   "totals": {
-    "declarations": 8353,
-    "declarations_with_a_ledger_row": 5630,
-    "ledger_rows_naming_a_file": 484,
-    "modules": 341,
+    "declarations": 8389,
+    "declarations_with_a_ledger_row": 5666,
+    "ledger_rows_naming_a_file": 485,
+    "modules": 342,
     "trust": {
       "compiler": 56,
-      "kernel": 8297
+      "kernel": 8333
     }
   }
 }

@@ -1019,6 +1019,21 @@
         "kernel": 2
       }
     },
+    "Problems.Juggler.CodeMassTransport": {
+      "declarations": 36,
+      "depends_on": [
+        "Problems.Juggler.CollatzPadic",
+        "Problems.Juggler.FateSeed"
+      ],
+      "file": "formal/Problems/Juggler/CodeMassTransport.lean",
+      "ledger": [
+        "J-code-mass-kernel-foundation"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 36
+      }
+    },
     "Problems.Juggler.CollatzBridge": {
       "declarations": 81,
       "depends_on": [
@@ -3689,9 +3704,9 @@
     }
   },
   "totals": {
-    "edges": 280,
-    "edges_before_reduction": 2192,
-    "ledger_rows_placed": 484,
-    "nodes": 228
+    "edges": 282,
+    "edges_before_reduction": 2215,
+    "ledger_rows_placed": 485,
+    "nodes": 229
   }
 }

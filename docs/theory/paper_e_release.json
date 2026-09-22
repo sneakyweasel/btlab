@@ -457,7 +457,7 @@
     {
       "path": "src/research/juggler_sequence/lean_paths.py",
       "mode": "text",
-      "sha256": "5ca13e61ae2c5447efde58d3131d2284e76102810749aa7b04433768c0a7295f"
+      "sha256": "3a8e1d2b6224930d910e05242b0ffe9415a43908fc998cbbccc4625676a1fdbf"
     },
     {
       "path": "src/research/juggler_sequence/negative_preimage_density.py",

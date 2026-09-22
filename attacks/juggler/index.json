@@ -340,10 +340,13 @@
       "test": "tests/research/juggler_sequence/test_code_mass_transport.py",
       "dossier": "docs/problems/juggler_code_mass_transport.md",
       "data_dir": null,
-      "lean": [],
+      "lean": [
+        "formal/Problems/Juggler/CodeMassTransport.lean"
+      ],
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
+        "J-code-mass-kernel-foundation",
         "J-even-fibre-exact-log-weight",
         "J-code-weight-cutoff-transport"
       ],
@@ -6844,7 +6847,8 @@
         "formal/Problems/Juggler/CollatzRational.lean",
         "formal/Problems/Juggler/PolynomialDual.lean",
         "formal/Problems/Juggler/OddPredecessorTransport.lean",
-        "formal/Problems/Juggler/CollatzPadic.lean"
+        "formal/Problems/Juggler/CollatzPadic.lean",
+        "formal/Problems/Juggler/CodeMassTransport.lean"
       ],
       "conjecture": [],
       "decision": null,

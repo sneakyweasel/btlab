@@ -1,5 +1,43 @@
 # Research journal
 
+## 2026-09-22 -- Exact even-fibre mass and signed cutoff transport in Lean
+
+- **Question:** Secure the exact source-weighted bridge before using it
+  in an odd-predecessor production estimate. The summable difference from
+  2/n means a weight substitution alone cannot improve the contagion exponent.
+- **Lean foundation:** `CodeMassTransport.lean` proves positivity, the
+  logarithmic-ratio formula, exact mass of every actual even fibre, and
+  conservation through all complete even inverse generations. It reuses
+  the existing `evenBlock`, `blockTree`, and actual signed codes.
+- **Source height retained:** Finite weighted reindexing allows any real
+  target amplitude. The exact cutoff formula has complete fibres below
+  floor(sqrt X) and one bounded partial fibre at that target. Both signed
+  code formulas are checked, and a separate predicate theorem retains
+  full fate membership explicitly.
+- **Infinite mass:** Taking suprema of the nonnegative cutoff masses
+  proves nu(2B)=nu(B) for both codes, including infinite values. Cofinal
+  square cutoffs justify the reverse inequality; no invariant probability
+  or finite atom mass is assumed.
+- **Obstruction checked:** H(16)=H(18), every odd predecessor of 16 is
+  excluded by its cube cell, and J(7)=18. Code alone cannot determine
+  an individual target's odd production.
+- **Scope:** Uniqueness, the sharp reciprocal comparison, and the full
+  forest-distortion statement remain written. The separate foundation row
+  records kernel trust while advisory statement coverage is pending.
+  No new TypeSafe/Jev request or analytic production coefficient.
+- **Decision:** Retain **PROMOTE** for the exact conservation and transport
+  result, now formally consolidated. The next question remains a quantitative
+  odd-production estimate retaining the distribution of physical source heights.
+  No new attack is opened by this consolidation.
+  [Definitions, proof mapping, and limits](problems/juggler_code_mass_transport.md).
+- **Validation:** Full `lake build` passed (9047 jobs). All 28 public
+  theorem dependency audits contain only the standard kernel foundations.
+  Selected integration, ledger, source-mass, architecture, registry,
+  theorem-index, and Paper E release checks: 186 passed, 15 skipped.
+  Paper E's pinned registry required a local package refresh; its
+  manuscript and PDF remained byte-identical. Generated ledger/index
+  checks pass. No publication or external advisory call.
+
 ## 2026-09-22 -- Fourth-phase extension returns to the recorded K3 obstruction
 
 - **Question:** Does repaired Paper B now extend to the fourth odd phase

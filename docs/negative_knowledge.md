@@ -65,6 +65,12 @@ the code alone does not determine a physical target's odd production.
 The source cutoff and the distribution within the code fibre must be
 retained for such an argument. Written proofs and exact regression controls
 are in the dossier; no termination or pressure bound is asserted.
+The conservation law, both signed cutoff identities, and the 16/18
+odd-production counterexample are now kernel-checked in
+`CodeMassTransport.lean`. Infinite mass is handled as a supremum of
+nonnegative finite cutoffs. This verifies the distinction without adding
+an odd-production estimate. The sharp reciprocal comparison and uniqueness
+remain written proofs (`J-code-mass-kernel-foundation`).
 
 ## Complete Collatz fibres defeat positive finite ternary mass weights
 

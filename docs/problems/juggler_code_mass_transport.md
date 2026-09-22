@@ -2,7 +2,9 @@
 
 Status: **PROMOTE**, 22 September 2026. The results below are
 **EXACT — HUMAN PROOF** in the repository's terminology: AI-assisted written
-proofs, with independent review and Lean formalization outstanding.
+proofs, with independent review outstanding. The exact conservation and
+signed transport core is now kernel-checked in `CodeMassTransport.lean`;
+the uniqueness and sharp reciprocal comparison remain written proofs.
 
 ## Problem
 
@@ -295,6 +297,12 @@ work: the then-unregistered polynomial-dual dossier and Paper E's changing
 release-input inventory. The former was subsequently registered by that
 work; the Paper E publication gate was not revalidated in this phase.
 
+The subsequent Lean consolidation passed the full build (9047 jobs),
+all 28 public theorem dependency audits, and 186 selected checks with
+15 skips. This includes the current Paper E release gate: its pinned
+registry and local source package were refreshed, while the manuscript
+and PDF stayed byte-identical. No new external coverage call was made.
+
 ## Conjectures
 
 None introduced. Neither universal termination nor a pressure bound is a
@@ -324,17 +332,46 @@ on the extra odd contribution. The earlier tilted-mass obstruction in
 
 ## Formalization
 
-No new Lean module. The code/parity inputs already compile in
-[CollatzPadic.lean](../../formal/Problems/Juggler/CollatzPadic.lean).
-The new logarithmic weight, uniqueness, and measure/cutoff conclusions
-are written proofs only. A full matching formalization is deferred; the
-finite rational checks do not justify a Lean-verified label.
+[CodeMassTransport.lean](../../formal/Problems/Juggler/CodeMassTransport.lean)
+uses the existing actual `evenBlock` and
+[signed code](../../formal/Problems/Juggler/CollatzPadic.lean). Its
+`weight_log_ratio` matches the logarithmic ratio in (1), `weight_pos`
+proves positivity for every positive start, and `evenBlock_mass` proves
+(1), including m=1. `blockTree_mass` iterates exact conservation through
+every complete even generation.
+
+`source_fibre` identifies actual truncated fibres; `even_weighted_reindex`
+retains any real target amplitude. `even_pullback_cutoff` proves the exact
+cutoff identity for any target predicate. `fate_even_cutoff` specializes it
+to a set with A(n) iff A(J(n)), retaining the fate label explicitly.
+`partialMass_nonneg` and `partialMass_le` bound the incomplete boundary fibre.
+
+`minus_code_cutoff` and `plus_code_cutoff` prove (3) for the two actual
+signed codes and every code predicate, without a termination hypothesis.
+For the infinite statement, `codedTotal` is the supremum over finite source
+cutoffs of the nonnegative extended-real mass. `coded_cutoff_bounds` and
+the cofinal square cutoffs prove `minus_code_total` and `plus_code_total`:
+nu(2B)=nu(B), with infinity allowed. No finite probability normalization or
+exchange of conditionally convergent sums is used.
+
+Finally, `code_collision_odd_preimages` proves H(16)=H(18), absence of
+every odd predecessor of 16, and J(7)=18. The absence is an all-integer
+cube-cell proof, not a finite search.
+
+This is the scope of the separate `J-code-mass-kernel-foundation` row.
+The previous two rows also assert uniqueness, sharp reciprocal comparison,
+and other forest conclusions, so their entire English statements are not
+retagged as Lean-verified. Advisory statement coverage is pending; no new
+external coverage request was made. No analytic odd-production estimate is
+included in this formalization.
 
 ## Results
 
 - `J-even-fibre-exact-log-weight`: (1), reciprocal comparison (4), uniqueness.
 - `J-code-weight-cutoff-transport`: (2), (3), the all-depth even forest, and
   failure of a uniform ordinary reciprocal-weight comparison.
+- `J-code-mass-kernel-foundation`: the exact conservation and signed
+  transport core described above, including the code-fibre obstruction.
 
 ## Open questions
 
@@ -346,7 +383,9 @@ values alone? No bound of that kind is supplied here.
 
 **PROMOTE** the exact normalized weight and its source-cutoff transport law.
 They answer where weighted multiplicity is retained, with a concrete
-distinction from ordinary Collatz mass. This closes the bounded phase.
+distinction from ordinary Collatz mass. The Lean follow-up consolidates
+that same result and its cutoff boundary, with no new production coefficient.
+This closes the bounded phase.
 The single best next question is the height-resolved odd-predecessor estimate
 stated above; it is not automatically opened.
 
