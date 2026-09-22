@@ -1,5 +1,47 @@
 # Research journal
 
+## 2026-09-22 -- Paper E: Theorem 4.1 completed in Lean
+
+- **Target and scope:** Turn the proved mixed-power Fourier cancellation
+  into arbitrarily late simultaneous-box visits, then instantiate the
+  actual parameter vector. An assumed approximation or positive-measure
+  premise would falsify completion. This is fixed-depth, fixed-box
+  classical formalization, outside the closed shrinking-target routes.
+- **Fourier criterion:** `FourierBoxRecurrence` computes every monomial's
+  Haar integral, passes the average limit to their span, and uses Mathlib's
+  uniform density to reach every continuous function. Both averaging and
+  integration are contractions. A nonnegative continuous function inside
+  an open set has positive integral and forces arbitrarily late visits.
+  The real fractional-part formulation and dot-product phase are proved.
+- **Application:** `PowerBoxRecurrence` discharges all nonzero Fourier
+  modes using mixed-power cancellation. `PaperERecurrence` proves that
+  3^a/2^(j+1) are distinct positive noninteger exponents and verifies the
+  exact scalings, progression, and intervals, including M=1. It proves
+  BoxRecurrence for every natural a,b and M>0.
+- **Theorem:** `PaperERecurrence.theorem41` is unconditional under the
+  original arithmetic hypotheses. Its conclusions are infinitely many
+  distinct starts above each bound, the actual expanding Juggler prefix,
+  the exact denominator, and its unboundedness. The earlier conditional
+  assembly remains an intermediate lemma, not the final paper theorem.
+- **Audit and publication:** A separate audit covers all 19 new theorems.
+  Version 0.4.0 replaces the conditional assembly in the selected paper
+  audit and adds the main analytic interfaces, for 37 declarations. The
+  source archive now includes the analytic proof notes and full transitive
+  local Lean source closure. Independent statement coverage and priority
+  review remain publication tasks, not claims of the local audit.
+- **Validation:** The full default Lean build passes (9059 jobs). All
+  37 selected paper declarations and all 19 new recurrence theorems use
+  only the permitted standard logical dependencies. Integration, ledger,
+  generated-index, release, and Juggler architecture tests pass:
+  157 passed, 15 skipped. The 177147-row certificate, release manifest,
+  source archive, ledger rendering, and branch index checks pass. Every
+  page of the final 12-page PDF was visually checked; the layout keeps
+  Appendix A with the preceding text and Appendix B on its own page.
+- **Decision:** **PROMOTE** the completed recurrence formalization and
+  Paper E update. No new mathematical conjecture, shrinking-target rate,
+  growing-depth estimate, or termination claim is opened.
+  [Proof and scope](theory/fourier_box_recurrence_note.md).
+
 ## 2026-09-22 -- Paper E: unconditional noninteger mixed-power cancellation
 
 - **Target and scope:** Close the classical higher/mixed-power analytic

@@ -2,7 +2,7 @@
 title: "The Juggler Map and the 3n±1 Maps"
 subtitle: "Exact Coding and Arithmetic Obstructions"
 author: Philippe Cochin
-date: "22 September 2026 · Version 0.3.0"
+date: "22 September 2026 · Version 0.4.0"
 ---
 
 ## Abstract
@@ -22,8 +22,8 @@ exact integer certificate with 177147 rows. A mean inequality places every
 positive certificate in the fixed \(1/50\) grid, for either sign and at
 every finite residue level, strictly below exponent \(0.99\) in the
 at-most-linear range. Lean formalizations accompany the orbit, period,
-counting, and grid-ceiling results. The modular-return theorem has a
-written proof using classical equidistribution. These results separate
+counting, grid-ceiling, and modular-return results, including the latter's
+analytic recurrence input. These results separate
 symbolic correspondence from integer realization and reciprocal-mass
 transport; no universal termination or unrestricted cycle exclusion
 theorem is asserted.
@@ -109,17 +109,16 @@ floors nor the analytic estimates in [B].
 
 ### 1.2. Proof status
 
-This is the living preprint, version 0.3.0. It has not been
+This is the living preprint, version 0.4.0. It has not been
 deposited or independently refereed. Mathematical priority for the
 signed adaptation and the isolated obstruction results remains subject
 to specialist review.
 
-Theorems 2.1, 3.2, 5.1, and 6.1 have corresponding compiled Lean
-statements; Appendix B identifies their precise scope. Theorem 4.1's
-floor construction and denominator arithmetic are formalized; its
-infinitude assembly requires an explicit simultaneous-box recurrence
-premise, whose equidistribution proof remains written. Thus the full
-unconditional theorem is not yet Lean-verified. The finite certificate is checked with exact integers
+Theorems 2.1, 3.2, 4.1, 5.1, and 6.1 have corresponding compiled Lean
+statements; Appendix B identifies their precise scope. Theorem 4.1 is
+unconditional in Lean: first-derivative estimates, mixed-power cancellation,
+and the Fourier criterion prove its simultaneous-box recurrence input.
+The finite certificate is checked with exact integers
 both in Lean and by an independent Python verifier. The numerical
 search that found its weights is outside the proof. Kernel checking,
 agreement between prose and formal statements, and independent
@@ -330,11 +329,19 @@ the explicit sufficient bound
 \[
 a\ge2\bigl(2^b+(Q+1)(2^b-1)\bigr)\quad\Longrightarrow\quad q_{a,b}>Q.
 \]
-The remaining formal input, named BoxRecurrence, is that for every
-\(T\) there is a parameter \(t\ge T\) in the simultaneous box above.
-Lean proves the infinitude conclusion from this input. BoxRecurrence
-itself is not proved in Lean; the preceding equidistribution argument
-remains its written justification.
+The formal analytic proof establishes BoxRecurrence: for every \(T\)
+there is a parameter \(t\ge T\) in the simultaneous box above. It uses
+an elementary derivative argument in place of the Hardy-field criterion.
+For a phase with leading term \(cx^p\), \(c\ne0\), \(0<p<1\), the
+first-derivative estimate gives cancellation. A mean-value point in each
+fixed shifted interval proves that the actual difference lowers the
+leading exponent by one; induction and van der Corput's inequality
+handle higher noninteger powers. The same argument controls lower-order
+terms and the progression \(s=1+2Mt\). Uniform density of Fourier
+monomials on the torus, followed by a nonnegative continuous function
+supported in the interior of the target box, supplies arbitrarily late
+visits. Thus PaperERecurrence.theorem41 has no recurrence or
+exponential-sum hypothesis.
 
 The theorem concerns growing prefixes and their associated
 *periodic-word* codes. It does not identify that code with \(H(n)\),
@@ -777,7 +784,9 @@ the existing proofs without changing their hypotheses.
 | Theorem 3.2 | `CollatzPadic.periodic_bridge` |
 | Theorem 4.1, box to orbit | `PaperEModularReturn.modular_return_of_box` |
 | Denominator and growth | `PaperEModularReturn.runCode_den`, `runCode_den_gt` |
-| Infinitude from BoxRecurrence | `PaperEModularReturn.theorem41_of_box_recurrence`; recurrence premise unproved |
+| Theorem 4.1, unconditional | `PaperERecurrence.theorem41`, `box_recurrence` |
+| Mixed-power cancellation | `PowerPhaseAsymptotics.tendsto_distinct_noninteger_power_average` |
+| Fourier-to-box recurrence | `FourierBoxRecurrence.exists_ge_fract_box_of_phase`; `PowerBoxRecurrence.exists_ge_power_fract_box` |
 | Lemma 5.2 | `PreimageGrid.count_odd`, `count_doubled_odd`, `count_four` |
 | Lemma 5.3 | `PreimageDomain.closed_domain_for_target` |
 | Lemma 5.4 | `PreimageGrowth.growth_root` |
@@ -790,18 +799,17 @@ the existing proofs without changing their hypotheses.
 | Proposition 7.2 | `CollatzMoments.complete_family_moment_loss`, `PaperECompletion.stopping_word_masses` |
 
 AxiomCheckJugglerCollatzPaper.lean prints the dependencies
-of the 32 selected declarations. The permitted logical
+of the 37 selected declarations. The permitted logical
 dependencies are propext, Classical.choice, and Quot.sound.
 No additional logical axiom or native-evaluation trust extension
-belongs to this paper's selected theorem audit. The conditional
-Theorem 4.1 assembly retains BoxRecurrence as an explicit premise;
-the dependency audit does not prove that premise.
+belongs to this paper's selected theorem audit. Theorem 4.1's
+simultaneous-box premise is discharged by the included analytic proofs.
 Review of the correspondence between those statements and
 the prose is a separate responsibility.
 
-Theorem 4.1 imports a fixed-function equidistribution
-criterion, not a shrinking-target estimate or a bound
-uniform in growing \(a,b,M\). The source archive and release
+Theorem 4.1 uses a proved fixed-function recurrence criterion, not a
+shrinking-target estimate or a bound uniform in growing \(a,b,M\).
+The source archive and release
 manifest identify this version's files; they establish
 neither novelty nor independent review.
 

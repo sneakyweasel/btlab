@@ -1,6 +1,6 @@
 # Paper E: reviewer packet and living review record
 
-Version 0.3.0, 22 September 2026. Canonical manuscript:
+Version 0.4.0, 22 September 2026. Canonical manuscript:
 [The Juggler Map and the 3n±1 Maps](juggler_signed_collatz_note.md).
 Build and updates: [PAPER_E_BUILD.md](PAPER_E_BUILD.md).
 
@@ -25,7 +25,7 @@ Build and updates: [PAPER_E_BUILD.md](PAPER_E_BUILD.md).
 | --- | --- | --- |
 | 2.1, 2.3 | CollatzPadic; PaperECompletion series and frequency theorems | No new distribution estimate |
 | 3.1, 3.2 | CollatzPadic order and return-time proofs | Original start must be periodic |
-| 4.1 | PaperEModularReturn exact construction, denominator, conditional assembly | BoxRecurrence remains unproved in Lean |
+| 4.1 | PaperERecurrence.theorem41, with proved BoxRecurrence and exact construction | Fixed parameters; no shrinking-target or growing-depth bound |
 | 5.1-5.4 | PreimageGrid, Domain, Growth, Density, Certificate12 | Human prose-to-statement review pending |
 | 6.1 | PreimageBalance | Fixed shifts only; no actual-count upper bound |
 | 7.1 | BackwardMass | Backward closure is weaker than fate closure |
@@ -74,24 +74,37 @@ conclusion with an explicit BoxRecurrence premise: for every T, some
 parameter t >= T belongs to the simultaneous box. It proves infinitude
 of distinct starts above every B, not just existence of one parameter.
 
-The selected audit has 32 declarations, including this conditional
+The 0.3.0 selected audit had 32 declarations, including this conditional
 assembly and three other new results. Standard logical dependencies
 do not remove explicit theorem hypotheses. The assembly is not an
 unconditional formalization of Theorem 4.1.
 
-## Remaining Lean project: prove BoxRecurrence
+## Theorem 4.1: analytic completion in 0.4.0
 
-BoxRecurrence is defined as a proposition and has no proof in this
-development. The missing result concerns simultaneous visits of the
-fixed power vector along s=1+2Mt; separate coordinate density is insufficient.
-The written analytic route uses Boshernitzan's criterion and Weyl's
-criterion. A source search of the installed Mathlib found no applicable
-formal versions. An external search did not yield a verified reusable
-implementation. No external code was imported.
+PaperERecurrence.box_recurrence proves simultaneous visits of the fixed
+power vector along s=1+2Mt. Every exponent 3^a/2^(j+1) is positive and
+noninteger, and different depths have distinct exponents. The exact
+coordinate scalings and box endpoints are checked, including M=1.
 
-The exact-construction phase stops with this prerequisite explicit.
-The manuscript's unconditional theorem retains its written proof status;
-the conditional assembly is recorded separately, not substituted for it.
+The analytic proof uses the classical first-derivative estimate and
+van der Corput induction on actual shifted differences. All derivative
+asymptotics, lower-order terms, nonzero modes, and positive affine
+progressions are proved. Mathlib's uniform density of Fourier monomials
+then gives convergence for continuous functions. A nonnegative continuous
+function supported inside an open box has positive Haar integral and
+forces arbitrarily late visits. This avoids importing Boshernitzan's
+Hardy-field theorem as an assumption; its citation remains a separate
+written justification of the same fixed-function input.
+
+PaperERecurrence.theorem41 applies that recurrence proof to the exact
+construction, with only a,b,M>0 and the expanding-word inequality as
+hypotheses. The selected audit now covers 37 declarations, including
+the unconditional assembly and its main analytic interfaces.
+
+The local completion check compares each numbered mathematical statement
+with the declarations in Appendix B, retaining the original target,
+cutoff, and infinitude quantifiers. Independent statement coverage and
+specialist review remain separate from this kernel-checked completion.
 
 ## Prior-art boundaries
 
@@ -111,8 +124,8 @@ text treats it as background and imports no proof from it.
 
 - Pending: independent prose-to-Lean statement coverage, especially the
   capped-tree count versus ordinary ancestors and all target quantifiers.
-- Pending: independent review of the written Theorem 4.1 and its use
-  of Boshernitzan's criterion.
+- Pending: independent review of Theorem 4.1's prose, its alternative
+  classical reference, and its now-complete derivative/Fourier formal proof.
 - Pending: specialist novelty comparison for the signed exponent and
   obstruction statements. No claim of literature priority is certified.
 - Pending: journal selection and adaptation to its submission rules.
@@ -123,6 +136,14 @@ using the build guide. These review items cannot be discharged by
 re-running the typesetter.
 
 ## Version history
+
+### 0.4.0 - 22 September 2026
+
+Completed Theorem 4.1 in Lean, including mixed-power cancellation,
+the Fourier-to-box criterion, the precise exponent-vector specialization,
+and the unconditional infinitude assembly. Expanded the selected audit
+to 37 declarations. Updated the proof-status text and publication package;
+the theorem numbers and mathematical conclusions are unchanged.
 
 ### 0.3.0 - 22 September 2026
 

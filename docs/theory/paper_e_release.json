@@ -37,27 +37,87 @@
     {
       "path": "docs/theory/PAPER_E_BUILD.md",
       "mode": "text",
-      "sha256": "b81fdd055a8e9c10cc40779824379c56a4a3c7b394d5244de359f7cf0b95c661"
+      "sha256": "8e287c825cf01d9f497272c535ad4c35755bde69a5fdb92982659e9a89a6c007"
+    },
+    {
+      "path": "docs/theory/finite_weyl_differencing_note.md",
+      "mode": "text",
+      "sha256": "913f5823378c6c92f89ac809009c1b85d2ac507566d38e2ab58a69c930b5662e"
+    },
+    {
+      "path": "docs/theory/first_derivative_power_cancellation_note.md",
+      "mode": "text",
+      "sha256": "1ac8179968d8498a74ab63ab16714325de82adb9b89e6d0b49e545f539fe38af"
+    },
+    {
+      "path": "docs/theory/fourier_box_recurrence_note.md",
+      "mode": "text",
+      "sha256": "20b0c28bd4360e9a2ed275ccd53db2fa31d0133ed6a6feb7b5cae32ed86584f4"
     },
     {
       "path": "docs/theory/juggler_signed_collatz_note.md",
       "mode": "text",
-      "sha256": "2ec8f99aa5e7c5370bf92b5531630ad9a02da9ea065f5d1b06ecb3c65b7aaccd"
+      "sha256": "54a458ba82a63eafe210f28ccc14f535b85471096e2e8b51073c11d6be393e2b"
+    },
+    {
+      "path": "docs/theory/mixed_power_cancellation_note.md",
+      "mode": "text",
+      "sha256": "a509b7d9b821d24a0dd14cc2b611c3d0a82897954e6af963a0d068d6e10b62e1"
     },
     {
       "path": "docs/theory/paper_e_review.md",
       "mode": "text",
-      "sha256": "94097a4278d88067288f2c5c6ef70124b7df84030e874ec21ce1fd9a67d08a0a"
+      "sha256": "4beee33a2382585891b345d6ff70aa954a365ae3e6ce45e1c56980ceafe49d88"
     },
     {
       "path": "docs/theory/paper_e_validation.json",
       "mode": "text",
-      "sha256": "5437a85dc0fb02b9758f4770bbba1b45a6fd567c09369220f8e306caadc101bd"
+      "sha256": "750f1124b6ad5942b3a1e296ca2f29713d57f7e3d467c14b47823d01b4778722"
+    },
+    {
+      "path": "docs/theory/qualitative_weyl_cancellation_note.md",
+      "mode": "text",
+      "sha256": "d4a79567707d296f201e9c5b9c81ba9606ad47818b6d5b6c1d0da656faabda90"
     },
     {
       "path": "formal/AxiomCheckJugglerCollatzPaper.lean",
       "mode": "text",
-      "sha256": "91dfbb33999ba020f7300c016035ca83661effcf700a94b5bc057f77196bbe5c"
+      "sha256": "a541d74915ac91e22bee28cc2acf53a9ca589cb782fa8c60322cfdff80eaa534"
+    },
+    {
+      "path": "formal/BTCalculus/FourierBoxRecurrence.lean",
+      "mode": "text",
+      "sha256": "8f1c3d70eaf4d31ce49e07b054a20f7de1e0568ad75f87ffc19c79417d47abfb"
+    },
+    {
+      "path": "formal/BTCalculus/KusminLandau.lean",
+      "mode": "text",
+      "sha256": "2ea2b2edb22b47a30804bf08138bbc7018d5c814f4a89a2c5e8469df99feed5a"
+    },
+    {
+      "path": "formal/BTCalculus/PowerBoxRecurrence.lean",
+      "mode": "text",
+      "sha256": "5bc32c244af3e94db9d1bf7a28581d00dc26ee9b295a45e2eed91211a046dd0e"
+    },
+    {
+      "path": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
+      "mode": "text",
+      "sha256": "747455b7753c30b6244a95dde7678513a3f5397639dda45f216c2bd1148d4521"
+    },
+    {
+      "path": "formal/BTCalculus/SublinearPowerCancellation.lean",
+      "mode": "text",
+      "sha256": "f0a6f30fdf5514c6613240c5a01d5455c001967272adc89f80e2b8e418ad088d"
+    },
+    {
+      "path": "formal/BTCalculus/WeylCancellation.lean",
+      "mode": "text",
+      "sha256": "459f768073384139503078a628c1ef179581ad00df6512edf6e29a73d03717a0"
+    },
+    {
+      "path": "formal/BTCalculus/WeylDifferencing.lean",
+      "mode": "text",
+      "sha256": "bf0b25df6ca26fc75066aba460f5e4fc4c0b3734539edb1e8e194a235fa83b4b"
     },
     {
       "path": "formal/Problems/Collatz/BackwardMass.lean",
@@ -357,7 +417,12 @@
     {
       "path": "formal/Problems/Juggler/PaperEModularReturn.lean",
       "mode": "text",
-      "sha256": "3f7a6b7306bb6f0d6163418ff03a7f80e7b1826c06b12014ce601fbb8b8c1bd0"
+      "sha256": "3b9a370ae796a3a36799ed0f101c8e62d57c2729f4916d33face95f1315bdb95"
+    },
+    {
+      "path": "formal/Problems/Juggler/PaperERecurrence.lean",
+      "mode": "text",
+      "sha256": "031da8da265e68ae98ad92bc93edf939aada2c40f3a00f0cf1ef0685cb1ad822"
     },
     {
       "path": "formal/Problems/Juggler/Preimages.lean",
@@ -402,7 +467,7 @@
     {
       "path": "formal/Problems/JugglerCollatzPaper.lean",
       "mode": "text",
-      "sha256": "ca53863484b88268a6faf103e904713bd876faa1219492be5693582b7c51f5c2"
+      "sha256": "43eefaec310be5f18ab9c508c4e9917e1a88fe793fb4600ad3b87d47d817f0d7"
     },
     {
       "path": "formal/lake-manifest.json",
@@ -467,7 +532,7 @@
     {
       "path": "src/research/juggler_sequence/lean_paths.py",
       "mode": "text",
-      "sha256": "b3f163f6fd01126f7803a451335d16d455f3e63eb3a297bdc2a8ffd27709f8f1"
+      "sha256": "869d1abff3be34bcfab76e6e87602318a2519c3593cbc337501bd97a07a4fa4e"
     },
     {
       "path": "src/research/juggler_sequence/negative_preimage_density.py",
@@ -477,17 +542,17 @@
     {
       "path": "tests/unit/test_paper_e_release.py",
       "mode": "text",
-      "sha256": "48da3237ebb1f99c6d73bf70989a87d9ed0a5ff736b1c836f21cefe39915ba8e"
+      "sha256": "5b4702b6aeae01d07ee7b0cd153868cb9140d1edf4306a0d30ee2b47e985d995"
     },
     {
       "path": "tools/build_paper_e.py",
       "mode": "text",
-      "sha256": "587a88966f7b51462763262333fd69bc6923fd7e4f3408bbeb3b2bd0c21c43d0"
+      "sha256": "dee0e4f2855be375293dd48d96e72bcddd046a4a9eddf1bcd0a7a1b37427e85e"
     },
     {
       "path": "tools/check_paper_e.py",
       "mode": "text",
-      "sha256": "f9a55a36da6086b255e7dc973d667ce2b8a37048cc4ec064f21ccc3c15a6cf11"
+      "sha256": "27b1f4a0cefe276601396ee35c3d970773280b8b2f82352ac1d5aa95f5f6ec10"
     },
     {
       "path": "tools/generate_signed_grid_certificate.py",
@@ -502,7 +567,7 @@
     {
       "path": "tools/paper_e/layout.lua",
       "mode": "text",
-      "sha256": "1103760a9562e7837d02bb724908f6de207d39c9631d8b1aa593fd8660535d9c"
+      "sha256": "0bfb771c70ababa040539839fa30f52897ae13feed44a4e77c08a058a220f1de"
     },
     {
       "path": "tools/paper_e_common.py",
@@ -514,17 +579,17 @@
     {
       "path": "juggler_review/juggler_signed_collatz_note.pdf",
       "mode": "binary",
-      "sha256": "b348c6daee0e5eaa3df2cd9468dce645bbe9e4c9ba6956e2e32af8b21b1bde53"
+      "sha256": "0cfa35038590e9634dbdb47747704bf371e2ea5da2025224ce58d45f78c959f2"
     },
     {
       "path": "docs/theory/cochin-juggler-signed-collatz.tex",
       "mode": "text",
-      "sha256": "2044b2dd54e31d1832c6cd5af9341113618183522d198473d1117b2f593bd73e"
+      "sha256": "44018017477aa5da13c7882cb83dfdddee8d6642b5d9801292bb87656ff2ec5b"
     },
     {
       "path": "docs/theory/paper_e_zenodo.json",
       "mode": "text",
-      "sha256": "3b57d2af2641d486b94c96c2e217877a1f8a7dfd6a868557756ae02e90fc7780"
+      "sha256": "398439f0d94199e87c422a382e1a7d8f98e856ac9d2da9d95df5427ddc52912b"
     }
   ]
 }

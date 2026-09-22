@@ -198,6 +198,20 @@
         "kernel": 15
       }
     },
+    "BTCalculus.FourierBoxRecurrence": {
+      "declarations": 15,
+      "depends_on": [
+        "BTCalculus.WeylCancellation"
+      ],
+      "file": "formal/BTCalculus/FourierBoxRecurrence.lean",
+      "ledger": [
+        "BTA-fourier-open-box-recurrence"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 15
+      }
+    },
     "BTCalculus.Integral": {
       "declarations": 14,
       "depends_on": [
@@ -442,6 +456,21 @@
       "papers": [],
       "trust": {
         "kernel": 40
+      }
+    },
+    "BTCalculus.PowerBoxRecurrence": {
+      "declarations": 1,
+      "depends_on": [
+        "BTCalculus.FourierBoxRecurrence",
+        "BTCalculus.PowerPhaseAsymptotics"
+      ],
+      "file": "formal/BTCalculus/PowerBoxRecurrence.lean",
+      "ledger": [
+        "BTA-noninteger-power-box-recurrence"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 1
       }
     },
     "BTCalculus.PowerPhaseAsymptotics": {
@@ -3081,6 +3110,21 @@
         "kernel": 33
       }
     },
+    "Problems.Juggler.PaperERecurrence": {
+      "declarations": 4,
+      "depends_on": [
+        "BTCalculus.PowerBoxRecurrence",
+        "Problems.Juggler.PaperEModularReturn"
+      ],
+      "file": "formal/Problems/Juggler/PaperERecurrence.lean",
+      "ledger": [
+        "J-paper-e-theorem41-unconditional"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 4
+      }
+    },
     "Problems.Juggler.ParityComplexity": {
       "declarations": 11,
       "depends_on": [],
@@ -3832,9 +3876,9 @@
     }
   },
   "totals": {
-    "edges": 294,
-    "edges_before_reduction": 2351,
-    "ledger_rows_placed": 494,
-    "nodes": 238
+    "edges": 299,
+    "edges_before_reduction": 2380,
+    "ledger_rows_placed": 497,
+    "nodes": 241
   }
 }

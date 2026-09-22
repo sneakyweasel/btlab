@@ -67,6 +67,11 @@ BUILD_INPUTS = [
     "literature/boshernitzan-1994-hardy-fields.json",
     "literature/terras-1976-stopping-time.json",
     "literature/prasad-prasad-2025-juggler-like.json",
+    "docs/theory/finite_weyl_differencing_note.md",
+    "docs/theory/qualitative_weyl_cancellation_note.md",
+    "docs/theory/first_derivative_power_cancellation_note.md",
+    "docs/theory/mixed_power_cancellation_note.md",
+    "docs/theory/fourier_box_recurrence_note.md",
     "LICENSE", "pyproject.toml", REPORT,
     "tests/unit/test_paper_e_release.py",
     "juggler_review/zenodo_paper_e/README.md",
@@ -77,7 +82,7 @@ KIT = "juggler_review/zenodo_paper_e"
 DEPOSIT_PDF = f"{KIT}/Juggler_and_signed_Collatz.pdf"
 SOURCE_ZIP = f"{KIT}/Sources_and_certificate.zip"
 PDF_EXPORTS = [DEPOSIT_PDF]
-VERSION = "0.3.0"
+VERSION = "0.4.0"
 #: Zenodo takes the bare identifier, not the URL, beside the creator's name.
 ORCID = "0009-0004-1939-3382"
 

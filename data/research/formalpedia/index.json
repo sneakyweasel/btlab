@@ -75917,6 +75917,54 @@
       "trust": "kernel"
     },
     {
+      "doc": "Each denominator contains a factor of two, while the numerator is odd.",
+      "file": "formal/Problems/Juggler/PaperERecurrence.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-theorem41-unconditional"
+      ],
+      "line": 19,
+      "module": "Problems.Juggler.PaperERecurrence",
+      "name": "power_exponent_noninteger",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Different root depths give distinct real exponents.",
+      "file": "formal/Problems/Juggler/PaperERecurrence.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-theorem41-unconditional"
+      ],
+      "line": 31,
+      "module": "Problems.Juggler.PaperERecurrence",
+      "name": "power_exponent_injective",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The precise box in the exact floor construction is recurrent without further hypotheses.",
+      "file": "formal/Problems/Juggler/PaperERecurrence.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-theorem41-unconditional"
+      ],
+      "line": 44,
+      "module": "Problems.Juggler.PaperERecurrence",
+      "name": "box_recurrence",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The complete unconditional statement of Paper E Theorem 4.1.",
+      "file": "formal/Problems/Juggler/PaperERecurrence.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-theorem41-unconditional"
+      ],
+      "line": 90,
+      "module": "Problems.Juggler.PaperERecurrence",
+      "name": "theorem41",
+      "trust": "kernel"
+    },
+    {
       "doc": "Parity of `\u230a(2k+1)^{3/2}\u230b`: the letter following the odd step from `2k+1`.",
       "file": "formal/Problems/Juggler/ParityComplexity.lean",
       "kind": "def",
@@ -97969,6 +98017,186 @@
       "trust": "kernel"
     },
     {
+      "doc": "The Haar integral of a Fourier monomial is its zero-mode indicator.",
+      "file": "formal/BTCalculus/FourierBoxRecurrence.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-fourier-open-box-recurrence"
+      ],
+      "line": 31,
+      "module": "BTCalculus.FourierBoxRecurrence",
+      "name": "integral_mFourier",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Averaging samples is a contraction for the uniform norm, even at N=0.",
+      "file": "formal/BTCalculus/FourierBoxRecurrence.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-fourier-open-box-recurrence"
+      ],
+      "line": 39,
+      "module": "BTCalculus.FourierBoxRecurrence",
+      "name": "norm_average_samples_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Haar integration is also a contraction for the uniform norm.",
+      "file": "formal/BTCalculus/FourierBoxRecurrence.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-fourier-open-box-recurrence"
+      ],
+      "line": 55,
+      "module": "BTCalculus.FourierBoxRecurrence",
+      "name": "norm_integral_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FourierBoxRecurrence.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-fourier-open-box-recurrence"
+      ],
+      "line": 60,
+      "module": "BTCalculus.FourierBoxRecurrence",
+      "name": "integrable_continuous",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Fourier cancellation gives the correct limit for every monomial.",
+      "file": "formal/BTCalculus/FourierBoxRecurrence.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-fourier-open-box-recurrence"
+      ],
+      "line": 65,
+      "module": "BTCalculus.FourierBoxRecurrence",
+      "name": "tendsto_mFourier_average",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Finite linear combinations inherit the Fourier average limit.",
+      "file": "formal/BTCalculus/FourierBoxRecurrence.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-fourier-open-box-recurrence"
+      ],
+      "line": 82,
+      "module": "BTCalculus.FourierBoxRecurrence",
+      "name": "tendsto_span_average",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The qualitative Weyl criterion for all continuous functions on the torus.",
+      "file": "formal/BTCalculus/FourierBoxRecurrence.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-fourier-open-box-recurrence"
+      ],
+      "line": 106,
+      "module": "BTCalculus.FourierBoxRecurrence",
+      "name": "tendsto_continuous_average",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An eventually zero sequence has averages tending to zero.",
+      "file": "formal/BTCalculus/FourierBoxRecurrence.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-fourier-open-box-recurrence"
+      ],
+      "line": 143,
+      "module": "BTCalculus.FourierBoxRecurrence",
+      "name": "tendsto_average_zero_of_eventually_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every nonempty open set is visited after every prescribed sample index.",
+      "file": "formal/BTCalculus/FourierBoxRecurrence.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-fourier-open-box-recurrence"
+      ],
+      "line": 152,
+      "module": "BTCalculus.FourierBoxRecurrence",
+      "name": "exists_ge_mem_open_of_fourier",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The open image of an interval strictly inside one unit period.",
+      "file": "formal/BTCalculus/FourierBoxRecurrence.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-fourier-open-box-recurrence"
+      ],
+      "line": 184,
+      "module": "BTCalculus.FourierBoxRecurrence",
+      "name": "circleInterval",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FourierBoxRecurrence.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-fourier-open-box-recurrence"
+      ],
+      "line": 187,
+      "module": "BTCalculus.FourierBoxRecurrence",
+      "name": "isOpen_circleInterval",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Membership in a unit-period interval is precisely a fractional-part condition.",
+      "file": "formal/BTCalculus/FourierBoxRecurrence.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-fourier-open-box-recurrence"
+      ],
+      "line": 191,
+      "module": "BTCalculus.FourierBoxRecurrence",
+      "name": "mem_circleInterval_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Simultaneous fractional-part boxes follow from joint Fourier cancellation.",
+      "file": "formal/BTCalculus/FourierBoxRecurrence.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-fourier-open-box-recurrence"
+      ],
+      "line": 206,
+      "module": "BTCalculus.FourierBoxRecurrence",
+      "name": "exists_ge_fract_box",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The torus monomial agrees with the real dot-product phase.",
+      "file": "formal/BTCalculus/FourierBoxRecurrence.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-fourier-open-box-recurrence"
+      ],
+      "line": 227,
+      "module": "BTCalculus.FourierBoxRecurrence",
+      "name": "mFourier_real_eq_phase",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Fractional-part recurrence with the usual real exponential-sum hypothesis.",
+      "file": "formal/BTCalculus/FourierBoxRecurrence.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-fourier-open-box-recurrence"
+      ],
+      "line": 241,
+      "module": "BTCalculus.FourierBoxRecurrence",
+      "name": "exists_ge_fract_box_of_phase",
+      "trust": "kernel"
+    },
+    {
       "doc": "",
       "file": "formal/BTCalculus/Integral.lean",
       "kind": "def",
@@ -104216,6 +104444,18 @@
       "trust": "kernel"
     },
     {
+      "doc": "Every positive box is visited by any fixed family of scaled distinct noninteger powers.",
+      "file": "formal/BTCalculus/PowerBoxRecurrence.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-noninteger-power-box-recurrence"
+      ],
+      "line": 20,
+      "module": "BTCalculus.PowerBoxRecurrence",
+      "name": "exists_ge_power_fract_box",
+      "trust": "kernel"
+    },
+    {
       "doc": "A bounded positive shift does not change the leading real-power scale.",
       "file": "formal/BTCalculus/PowerPhaseAsymptotics.lean",
       "kind": "theorem",
@@ -108216,6 +108456,7 @@
         "BTCalculus.CubicN1Valuation",
         "BTCalculus.CubicResidual",
         "BTCalculus.Derivative",
+        "BTCalculus.FourierBoxRecurrence",
         "BTCalculus.Integral",
         "BTCalculus.Jet",
         "BTCalculus.KusminLandau",
@@ -108234,6 +108475,7 @@
         "BTCalculus.PadicLiftingState",
         "BTCalculus.Polynomial",
         "BTCalculus.PolynomialFunctionsMod",
+        "BTCalculus.PowerBoxRecurrence",
         "BTCalculus.PowerPhaseAsymptotics",
         "BTCalculus.Quadratic",
         "BTCalculus.Residual",
@@ -108549,6 +108791,20 @@
           "id": "BTC-decomp",
           "statement": "n = lsd(n) + 3 D(n)",
           "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "BTCalculus.FourierBoxRecurrence": {
+      "declarations": 15,
+      "file": "formal/BTCalculus/FourierBoxRecurrence.lean",
+      "imports": [
+        "BTCalculus.WeylCancellation"
+      ],
+      "ledger": [
+        {
+          "id": "BTA-fourier-open-box-recurrence",
+          "statement": "Kernel-checked qualitative Weyl criterion; advisory statement coverage pending. For any finite index type d and sequence x in the unit torus, if the averages of every nonzero integer Fourier monomial tend to zero, then averages of every continuous complex-valued function tend to its normalized Haar integral. Fourier integrals, the zero mode, finite linear combinations, contraction bounds and the passage by uniform approximation are proved, using Mathlib's dense Fourier span. Every nonempty open set is visited after every prescribed natural index T, using a nonnegative continuous function with positive Haar integral. For real representatives, any simultaneous open fractional-part box with 0<=a_i<b_i<=1 is visited arbitrarily late. The integer dot-product phase is identified with the torus monomial. No approximation or positive-measure assertion is assumed, and no quantitative discrepancy or shrinking-target claim is made.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
     },
@@ -108914,6 +109170,21 @@
           "id": "BTA-coeffwise-nec",
           "statement": "3^k must divide every monomial coefficient for a polynomial to vanish as a function modulo 3^k",
           "tag": "REFUTED"
+        }
+      ]
+    },
+    "BTCalculus.PowerBoxRecurrence": {
+      "declarations": 1,
+      "file": "formal/BTCalculus/PowerBoxRecurrence.lean",
+      "imports": [
+        "BTCalculus.FourierBoxRecurrence",
+        "BTCalculus.PowerPhaseAsymptotics"
+      ],
+      "ledger": [
+        {
+          "id": "BTA-noninteger-power-box-recurrence",
+          "statement": "Kernel-checked simultaneous recurrence for powers; advisory statement coverage pending. For a finite index type, distinct positive noninteger real exponents p_i, nonzero real scales w_i, real A>0 and B, every box 0<=a_i<b_i<=1 has arbitrarily late natural samples n with a_i<fract(w_i*(A*n+B)^p_i)<b_i for all i. The nonzero Fourier coefficients are shown to yield a nonzero mixed-power phase. Cancellation is discharged by the proved mixed-power theorem and the Fourier-to-box criterion. This is unconditional for each fixed family and fixed box; no uniform rate, shrinking target, or growing-depth conclusion is asserted.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
     },
@@ -110297,6 +110568,7 @@
         "Problems.Juggler.PaperBWeightGap",
         "Problems.Juggler.PaperECompletion",
         "Problems.Juggler.PaperEModularReturn",
+        "Problems.Juggler.PaperERecurrence",
         "Problems.Juggler.ParityComplexity",
         "Problems.Juggler.PeriodFamily",
         "Problems.Juggler.PolynomialDual",
@@ -113088,7 +113360,7 @@
       "ledger": [
         {
           "id": "J-paper-e-formal-notation-bridges",
-          "statement": "Paper E's compatible-residue 2-adic code has the infinite sum over exactly its odd Juggler times, indexed by the number of earlier odd times; a telescoping remainder has norm at most 2^(-k), including finite or empty odd-time sets. Exact finite-source cylinder equality transfers all limiting-frequency statements. The eventual ordinary ancestor bound is proved with real exponent 21/25, and the fixed-grid hypotheses imply the logarithmic ceiling below 99/100. Every finite full binary prefix tree has fair mass and multiplier moment one. The minimal stopping words themselves have fair mass one and multiplier moment at most 3/4, with summability proved before regrouping by length. These close presentation gaps without adding a mathematical novelty claim. The six manuscript-facing declarations compile and their dependency audit uses only the standard kernel axioms. Theorem 4.1's equidistribution and actual modular-return family remain written, outside this module. Ledger retagging awaits advisory coverage review.",
+          "statement": "Paper E's compatible-residue 2-adic code has the infinite sum over exactly its odd Juggler times, indexed by the number of earlier odd times; a telescoping remainder has norm at most 2^(-k), including finite or empty odd-time sets. Exact finite-source cylinder equality transfers all limiting-frequency statements. The eventual ordinary ancestor bound is proved with real exponent 21/25, and the fixed-grid hypotheses imply the logarithmic ceiling below 99/100. Every finite full binary prefix tree has fair mass and multiplier moment one. The minimal stopping words themselves have fair mass one and multiplier moment at most 3/4, with summability proved before regrouping by length. These close presentation gaps without adding a mathematical novelty claim. The six manuscript-facing declarations compile and their dependency audit uses only the standard kernel axioms. Theorem 4.1 is outside this notation module and is now completed in PaperERecurrence. Ledger retagging awaits advisory coverage review.",
           "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
@@ -113102,7 +113374,22 @@
       "ledger": [
         {
           "id": "J-paper-e-modular-return-exact-construction",
-          "statement": "For a=k+1, M>0 and 2^(a+b)<3^a, every visit of s=1+2Mt to the specified simultaneous fractional-part box with s>=2^(2^(b+1)) yields a genuine odd-start Juggler O^a E^b prefix: every state is at least its start, the endpoint is strictly larger, and start and endpoint are 1 modulo 2M. The rational periodic-word code has reduced denominator (3^a-2^(a+b))/gcd(3^a-2^a,2^b-1). For b>0 and every Q, every a>=2*(2^b+(Q+1)*(2^b-1)) is expanding and has denominator greater than Q. The infinitude of distinct starts above every bound is proved CONDITIONAL on BoxRecurrence, the explicitly quantified assertion of arbitrarily large simultaneous-box visits. BoxRecurrence itself is not proved in Lean: this is partial coverage of Theorem 4.1, not an unconditional formalization. All listed results compile with standard logical dependencies; advisory statement-coverage review is pending.",
+          "statement": "For a=k+1, M>0 and 2^(a+b)<3^a, every visit of s=1+2Mt to the specified simultaneous fractional-part box with s>=2^(2^(b+1)) yields a genuine odd-start Juggler O^a E^b prefix: every state is at least its start, the endpoint is strictly larger, and start and endpoint are 1 modulo 2M. The rational periodic-word code has reduced denominator (3^a-2^(a+b))/gcd(3^a-2^a,2^b-1). For b>0 and every Q, every a>=2*(2^b+(Q+1)*(2^b-1)) is expanding and has denominator greater than Q. The infinitude of distinct starts above every bound is proved CONDITIONAL on BoxRecurrence, the explicitly quantified assertion of arbitrarily large simultaneous-box visits. This exact-construction module leaves BoxRecurrence as an explicit premise; the separate PaperERecurrence module now proves it and the unconditional Theorem 4.1. All listed results compile with standard logical dependencies; advisory statement-coverage review is pending.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
+    },
+    "Problems.Juggler.PaperERecurrence": {
+      "declarations": 4,
+      "file": "formal/Problems/Juggler/PaperERecurrence.lean",
+      "imports": [
+        "BTCalculus.PowerBoxRecurrence",
+        "Problems.Juggler.PaperEModularReturn"
+      ],
+      "ledger": [
+        {
+          "id": "J-paper-e-theorem41-unconditional",
+          "statement": "Kernel-checked unconditional Paper E Theorem 4.1; advisory statement coverage pending. For natural a,b,M>0 with 2^(a+b)<3^a, infinitely many distinct odd Juggler starts n above every prescribed bound have actual itinerary O^a E^b, stay at least n during the prefix, end strictly above n, and have both endpoints congruent to 1 modulo 2M. The periodic-word code denominator is exactly (3^a-2^(a+b))/gcd(3^a-2^a,2^b-1), and these denominators are unbounded at fixed b>0. The simultaneous ReturnBox is proved recurrent for all natural a,b and M>0: exponents 3^a/2^(j+1) are distinct positive nonintegers, and the exact scalings and box bounds are verified, including M=1. The theorem applies the existing floor construction to this proved recurrence; no BoxRecurrence, exponential-sum, or equidistribution hypothesis remains. No actual cycle, common start at all precisions, integer-code realization, or termination theorem follows.",
           "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
@@ -113889,7 +114176,8 @@
         "Problems.Juggler.CollatzMoments",
         "Problems.Juggler.CollatzPadic",
         "Problems.Juggler.PaperECompletion",
-        "Problems.Juggler.PaperEModularReturn"
+        "Problems.Juggler.PaperEModularReturn",
+        "Problems.Juggler.PaperERecurrence"
       ],
       "ledger": []
     },
@@ -114240,13 +114528,13 @@
     }
   },
   "totals": {
-    "declarations": 8573,
-    "declarations_with_a_ledger_row": 5850,
-    "ledger_rows_naming_a_file": 494,
-    "modules": 351,
+    "declarations": 8593,
+    "declarations_with_a_ledger_row": 5870,
+    "ledger_rows_naming_a_file": 497,
+    "modules": 354,
     "trust": {
       "compiler": 56,
-      "kernel": 8517
+      "kernel": 8537
     }
   }
 }

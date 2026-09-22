@@ -101,6 +101,10 @@ version before the finite-sum theorem is applied to natural samples.
 
 ## Audit and remaining paper work
 
+Subsequent completion: the [recurrence proof](fourier_box_recurrence_note.md)
+now discharges the Fourier-to-box step and Paper E specialization described
+below. This section records the scope of the earlier mixed-power milestone.
+
 [AxiomCheckPowerPhase.lean](../../formal/AxiomCheckPowerPhase.lean) audits
 all 19 public theorems. The expected dependency report records only
 propext, Classical.choice, and Quot.sound. Ledger statement-coverage

@@ -1,9 +1,9 @@
 -- Keep the editorial Markdown readable; presentation belongs in this filter.
 function Header(el)
   el.level = math.max(1, el.level - 1)
-  -- Keep the finite table and the expanded proof map with their appendix headings.
+  -- Give the expanded proof map a full page; let the shorter data appendix flow.
   local title = pandoc.utils.stringify(el.content)
-  if title:match('^Appendix ') then
+  if title:match('^Appendix B%.') then
     return {pandoc.RawBlock('latex', '\\clearpage'), el}
   end
   return el

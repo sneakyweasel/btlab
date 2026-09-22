@@ -37,6 +37,9 @@ def test_current_release_and_archived_sources_agree(release):
     "formal/Problems/Collatz/PreimageGrid.lean",
     "formal/Problems/Juggler/PaperECompletion.lean",
     "formal/Problems/Juggler/PaperEModularReturn.lean",
+    "formal/Problems/Juggler/PaperERecurrence.lean",
+    "formal/BTCalculus/FourierBoxRecurrence.lean",
+    "formal/BTCalculus/PowerPhaseAsymptotics.lean",
 ])
 def test_changed_transitive_proof_requires_new_audit(release, module):
     proof = release / module

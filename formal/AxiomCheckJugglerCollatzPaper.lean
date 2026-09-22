@@ -31,4 +31,9 @@ import Problems.JugglerCollatzPaper
 #print axioms Problems.Juggler.PaperEModularReturn.modular_return_of_box
 #print axioms Problems.Juggler.PaperEModularReturn.runCode_den
 #print axioms Problems.Juggler.PaperEModularReturn.runCode_den_gt
-#print axioms Problems.Juggler.PaperEModularReturn.theorem41_of_box_recurrence
+#print axioms Problems.Juggler.PaperERecurrence.theorem41
+#print axioms Problems.Juggler.PaperERecurrence.box_recurrence
+#print axioms BTCalculus.PowerBoxRecurrence.exists_ge_power_fract_box
+#print axioms BTCalculus.FourierBoxRecurrence.tendsto_continuous_average
+#print axioms BTCalculus.FourierBoxRecurrence.exists_ge_fract_box_of_phase
+#print axioms BTCalculus.PowerPhaseAsymptotics.tendsto_distinct_noninteger_power_average

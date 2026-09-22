@@ -307,6 +307,7 @@ LAYERS: dict[str, Path] = {
 # belong to Paper A's ordered publication layers.
 AUXILIARY_MODULES: dict[str, str] = {
     "PaperEModularReturn": "Paper E Theorem 4.1: exact floor construction and denominator growth; infinitude conditional on explicit BoxRecurrence",
+    "PaperERecurrence": "Paper E Theorem 4.1: proved simultaneous-box recurrence and unconditional modular-return theorem",
     "PaperECompletion": "Paper E: series identification, frequency and exponent statements, direct stopping-word sums, and finite complete prefix trees",
     "CollatzMoments": "Paper B/C word-moment bridge: coefficient shift and complete first-descent stopping counterexample",
     "BranchFreeze": "Paper B review target",

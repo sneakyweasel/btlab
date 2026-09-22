@@ -38,7 +38,7 @@
     ],
     "exact_rate_and_ceiling_comparisons": "pass",
     "manuscript_references_and_table": "pass",
-    "audited_declarations": 32
+    "audited_declarations": 37
   },
   "lean": {
     "status": "passed",
@@ -200,14 +200,46 @@
         "Quot.sound",
         "propext"
       ],
-      "Problems.Juggler.PaperEModularReturn.theorem41_of_box_recurrence": [
+      "Problems.Juggler.PaperERecurrence.theorem41": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "Problems.Juggler.PaperERecurrence.box_recurrence": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "BTCalculus.PowerBoxRecurrence.exists_ge_power_fract_box": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "BTCalculus.FourierBoxRecurrence.tendsto_continuous_average": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "BTCalculus.FourierBoxRecurrence.exists_ge_fract_box_of_phase": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "BTCalculus.PowerPhaseAsymptotics.tendsto_distinct_noninteger_power_average": [
         "Classical.choice",
         "Quot.sound",
         "propext"
       ]
     },
     "input_sha256": {
-      "formal/AxiomCheckJugglerCollatzPaper.lean": "91dfbb33999ba020f7300c016035ca83661effcf700a94b5bc057f77196bbe5c",
+      "formal/AxiomCheckJugglerCollatzPaper.lean": "a541d74915ac91e22bee28cc2acf53a9ca589cb782fa8c60322cfdff80eaa534",
+      "formal/BTCalculus/FourierBoxRecurrence.lean": "8f1c3d70eaf4d31ce49e07b054a20f7de1e0568ad75f87ffc19c79417d47abfb",
+      "formal/BTCalculus/KusminLandau.lean": "2ea2b2edb22b47a30804bf08138bbc7018d5c814f4a89a2c5e8469df99feed5a",
+      "formal/BTCalculus/PowerBoxRecurrence.lean": "5bc32c244af3e94db9d1bf7a28581d00dc26ee9b295a45e2eed91211a046dd0e",
+      "formal/BTCalculus/PowerPhaseAsymptotics.lean": "747455b7753c30b6244a95dde7678513a3f5397639dda45f216c2bd1148d4521",
+      "formal/BTCalculus/SublinearPowerCancellation.lean": "f0a6f30fdf5514c6613240c5a01d5455c001967272adc89f80e2b8e418ad088d",
+      "formal/BTCalculus/WeylCancellation.lean": "459f768073384139503078a628c1ef179581ad00df6512edf6e29a73d03717a0",
+      "formal/BTCalculus/WeylDifferencing.lean": "bf0b25df6ca26fc75066aba460f5e4fc4c0b3734539edb1e8e194a235fa83b4b",
       "formal/Problems/Collatz/BackwardMass.lean": "21bb66733f7f283a038b4c10ba103fd25133f5595735d8e74300895065b51018",
       "formal/Problems/Collatz/NegativeMCycles.lean": "c3346c81b9d2ef614d45e9159d482899577ab8b1c364dfc631f10af3b297d2af",
       "formal/Problems/Collatz/PreimageBalance.lean": "564a161ab2c6163fe1ff686e87d74d59b9b499db9fd8adca371e19fe528e845a",
@@ -267,7 +299,8 @@
       "formal/Problems/Juggler/PaperBSurvivorDecay.lean": "f9e01d5de4209effb4e8e9d0e9219024e0893d51c1e7bb2f3db4443d6733ae22",
       "formal/Problems/Juggler/PaperBThreshold.lean": "8bf17ca45082e1b4ab7940729295898639a552098b295d493d376915657a1857",
       "formal/Problems/Juggler/PaperECompletion.lean": "73bcfa47e6138d8004be56c146a5a2d88bcc316e15a8591feca48437584c5ea6",
-      "formal/Problems/Juggler/PaperEModularReturn.lean": "3f7a6b7306bb6f0d6163418ff03a7f80e7b1826c06b12014ce601fbb8b8c1bd0",
+      "formal/Problems/Juggler/PaperEModularReturn.lean": "3b9a370ae796a3a36799ed0f101c8e62d57c2729f4916d33face95f1315bdb95",
+      "formal/Problems/Juggler/PaperERecurrence.lean": "031da8da265e68ae98ad92bc93edf939aada2c40f3a00f0cf1ef0685cb1ad822",
       "formal/Problems/Juggler/Preimages.lean": "dabe4af2c54b55826cada04dd92b5f35d3face6f86e42e66829699ab4bc87e3f",
       "formal/Problems/Juggler/Progress.lean": "e1b5375e8fde7c0f54ac610b84469887a25392e338e44f2ac4cad3f5c8d545eb",
       "formal/Problems/Juggler/RateFreeDensity.lean": "9a711586243582e4d2ecd6ef9dde3fd342c6db8e8c297a0fd19fd760d25520ce",
@@ -276,7 +309,7 @@
       "formal/Problems/Juggler/Scale.lean": "9156455b03e7095970f69ca7b49762788608502ff9f560414ef9bded6965ccf9",
       "formal/Problems/Juggler/Termination.lean": "7b458453bb0fa6478550d875a1b3d5ac18eeea106b5d08797628dfbd2a9c8eb0",
       "formal/Problems/Juggler/TiltedShare.lean": "7dcafa45a2a0e9bca182a713b495d791cf812e4c70d6472c67bf85b0b736aef4",
-      "formal/Problems/JugglerCollatzPaper.lean": "ca53863484b88268a6faf103e904713bd876faa1219492be5693582b7c51f5c2",
+      "formal/Problems/JugglerCollatzPaper.lean": "43eefaec310be5f18ab9c508c4e9917e1a88fe793fb4600ad3b87d47d817f0d7",
       "formal/lake-manifest.json": "8a4dabaa6346246a71a2fac594a4385e248735a4feacd25082bcad2336d27385",
       "formal/lakefile.toml": "b707e6f9d388d4896695c37d12dc924458f60e50f0ff95f8e02f08d506144221",
       "formal/lean-toolchain": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71"

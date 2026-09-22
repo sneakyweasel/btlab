@@ -29,8 +29,12 @@ Compiled theorem groups:
   noninteger real powers on any progression A*n+B with A>0. The proof
   controls actual shifted differences through derivative asymptotics,
   applies qualitative differencing by induction, and removes zero
-  coefficients before selecting the top exponent. The simultaneous-box
-  recurrence step for Paper E remains to be formalized;
+  coefficients before selecting the top exponent;
+- a qualitative Weyl criterion on every finite-dimensional unit torus,
+  derived from uniform density of Fourier monomials; nonnegative
+  continuous functions inside open sets prove arbitrarily late box
+  visits. The exact power-vector specialization discharges BoxRecurrence
+  and makes Paper E Theorem 4.1 unconditional;
 - the Kusmin--Landau first-derivative estimate with explicit endpoint
   terms: monotone increments in [delta,1-delta] give a 1/delta bound.
   The continuous derivative form and varying-gap consequence are proved.

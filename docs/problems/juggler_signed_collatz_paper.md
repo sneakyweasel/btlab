@@ -65,13 +65,14 @@ counterexample, modular returns, the backward ray, and stopped moment loss.
 ## Formalization
 
 Problems.JugglerCollatzPaper imports the existing modules.
-AxiomCheckJugglerCollatzPaper audits 32 selected declarations.
+AxiomCheckJugglerCollatzPaper audits 37 selected declarations.
 PaperECompletion identifies the odd-time series with the residue-limit code,
 proves the limiting-frequency and real-exponent statements, and proves both
 finite full-tree identities and direct sums over minimal stopping words.
 PaperEModularReturn proves Theorem 4.1's exact construction, denominator
-formula, and unboundedness. The infinitude assembly is conditional on
-BoxRecurrence, whose written equidistribution proof is not formalized.
+formula, and unboundedness. PaperERecurrence proves BoxRecurrence and
+the unconditional Theorem 4.1. Its derivative and Fourier dependencies
+are included in the audited paper import closure.
 
 The subsequent analytic-foundation phase adds
 [WeylCancellation.lean](../../formal/BTCalculus/WeylCancellation.lean),
@@ -103,11 +104,22 @@ of distinct positive noninteger powers on A*n+B with A>0. All 19 public
 theorems have a separate dependency audit; the
 [proof note](../theory/mixed_power_cancellation_note.md) records the exact
 scope. Fourier-to-box recurrence and its concrete Paper E specialization
-remain to be formalized.
+were the next obligations at that milestone and are now proved below.
+
+The recurrence completion adds
+[FourierBoxRecurrence.lean](../../formal/BTCalculus/FourierBoxRecurrence.lean),
+[PowerBoxRecurrence.lean](../../formal/BTCalculus/PowerBoxRecurrence.lean), and
+[PaperERecurrence.lean](../../formal/Problems/Juggler/PaperERecurrence.lean).
+It proves the continuous-function Fourier criterion using uniform density,
+positive-measure recurrence for open sets, the real fractional-part boxes,
+and their specialization to the exact Juggler vector. A separate audit
+covers all 19 new public theorems. The unconditional theorem retains only
+the paper's arithmetic parameter hypotheses.
+See the [proof note](../theory/fourier_box_recurrence_note.md).
 
 ## Results
 
-Version 0.3.0 has a canonical manuscript, full proof narrative, bibliography,
+Version 0.4.0 has a canonical manuscript, full proof narrative, bibliography,
 author metadata, AI disclosure, formalization map, reviewer packet, version
 policy, exact validation report, PDF/TeX build, and local deposit kit with
 source-and-certificate archive.
@@ -121,17 +133,18 @@ the signed ancestor theorem.
 The Theorem 4.1 construction phase adds four audited results. It proves
 all orbit conclusions for a sufficiently large box visit and proves
 infinitely many distinct starts above every bound from BoxRecurrence.
-The denominator results are unconditional. A complete formalization
-still needs a proof of BoxRecurrence; no applicable equidistribution
-theorem was found in the installed Mathlib. The conditional assembly
-is recorded separately from the original unconditional theorem.
+The denominator results are unconditional. The subsequent recurrence
+phase closes BoxRecurrence and gives the unconditional Theorem 4.1.
+The conditional assembly is retained as an intermediate theorem;
+the paper now audits the unconditional result.
 
 Qualitative cancellation now follows formally from vanishing averages of
 every positive fixed-shift correlation. This removes the generic
 differencing lemma from the remaining analytic work. Cancellation for
 the full mixed-power family required by Theorem 4.1 is now proved by
 the subsequent derivative-asymptotic induction. The passage to
-simultaneous box visits is still unproved in Lean. The sublinear
+simultaneous box visits is now proved using Mathlib's density of Fourier
+monomials and a positive continuous function inside the target box. The sublinear
 single-power base case is now unconditional, including negative
 coefficients and removal of a finite initial segment. The first-derivative
 estimate itself retains no assumed variation or exponential-sum bound.
@@ -139,7 +152,9 @@ estimate itself retains no assumed variation or exponential-sum bound.
 ## Open questions
 
 Independent statement coverage, written-proof review, and literature priority.
-Prove simultaneous-box recurrence for the fixed rational-power vector.
+No remaining Lean proof gap is identified in the numbered statements
+mapped in the current paper's Appendix B; independent statement coverage
+and specialist review remain separate publication tasks.
 Publication venue and deposit remain author decisions.
 
 ## Decision
@@ -154,9 +169,11 @@ The first-derivative and sublinear-power phase is also **PROMOTE** as a
 completed analytic formalization milestone. The higher/mixed-power phase
 is also **PROMOTE**: its cancellation theorem covers positive affine
 progressions, with no remaining exponential-sum hypothesis.
-Simultaneous recurrence and its concrete specialization remain open.
-Best next question: can the required fixed-power simultaneous-box recurrence
-be proved in Lean? No new arithmetic attack is opened.
+The recurrence phase is **PROMOTE**: simultaneous recurrence and the
+concrete specialization are proved. Theorem 4.1 is now unconditional.
+The full paper proof mapping and publication package are updated in 0.4.0.
+Best next question: does independent review confirm the prose-to-Lean
+coverage and prior-art boundaries? No new arithmetic attack is opened.
 
 ## Publication assessment
 

@@ -6,7 +6,7 @@ import Mathlib.Algebra.Order.Floor.Semifield
 /-!
 Exact construction and arithmetic for Paper E, Theorem 4.1.
 The analytic assertion that the required simultaneous fractional-part boxes
-are visited arbitrarily far out is a separate, unresolved dependency.
+are visited arbitrarily far out is proved separately in PaperERecurrence.
 -/
 
 namespace Problems.Juggler.PaperEModularReturn

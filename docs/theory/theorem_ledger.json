@@ -2,7 +2,7 @@
  {
   "id": "J-paper-e-modular-return-exact-construction",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "For a=k+1, M>0 and 2^(a+b)<3^a, every visit of s=1+2Mt to the specified simultaneous fractional-part box with s>=2^(2^(b+1)) yields a genuine odd-start Juggler O^a E^b prefix: every state is at least its start, the endpoint is strictly larger, and start and endpoint are 1 modulo 2M. The rational periodic-word code has reduced denominator (3^a-2^(a+b))/gcd(3^a-2^a,2^b-1). For b>0 and every Q, every a>=2*(2^b+(Q+1)*(2^b-1)) is expanding and has denominator greater than Q. The infinitude of distinct starts above every bound is proved CONDITIONAL on BoxRecurrence, the explicitly quantified assertion of arbitrarily large simultaneous-box visits. BoxRecurrence itself is not proved in Lean: this is partial coverage of Theorem 4.1, not an unconditional formalization. All listed results compile with standard logical dependencies; advisory statement-coverage review is pending.",
+  "statement": "For a=k+1, M>0 and 2^(a+b)<3^a, every visit of s=1+2Mt to the specified simultaneous fractional-part box with s>=2^(2^(b+1)) yields a genuine odd-start Juggler O^a E^b prefix: every state is at least its start, the endpoint is strictly larger, and start and endpoint are 1 modulo 2M. The rational periodic-word code has reduced denominator (3^a-2^(a+b))/gcd(3^a-2^a,2^b-1). For b>0 and every Q, every a>=2*(2^b+(Q+1)*(2^b-1)) is expanding and has denominator greater than Q. The infinitude of distinct starts above every bound is proved CONDITIONAL on BoxRecurrence, the explicitly quantified assertion of arbitrarily large simultaneous-box visits. This exact-construction module leaves BoxRecurrence as an explicit premise; the separate PaperERecurrence module now proves it and the unconditional Theorem 4.1. All listed results compile with standard logical dependencies; advisory statement-coverage review is pending.",
   "source": "docs/problems/juggler_signed_collatz_paper.md",
   "lean": "Problems/Juggler/PaperEModularReturn.lean",
   "decl": [
@@ -21,7 +21,7 @@
  {
   "id": "J-paper-e-formal-notation-bridges",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "Paper E's compatible-residue 2-adic code has the infinite sum over exactly its odd Juggler times, indexed by the number of earlier odd times; a telescoping remainder has norm at most 2^(-k), including finite or empty odd-time sets. Exact finite-source cylinder equality transfers all limiting-frequency statements. The eventual ordinary ancestor bound is proved with real exponent 21/25, and the fixed-grid hypotheses imply the logarithmic ceiling below 99/100. Every finite full binary prefix tree has fair mass and multiplier moment one. The minimal stopping words themselves have fair mass one and multiplier moment at most 3/4, with summability proved before regrouping by length. These close presentation gaps without adding a mathematical novelty claim. The six manuscript-facing declarations compile and their dependency audit uses only the standard kernel axioms. Theorem 4.1's equidistribution and actual modular-return family remain written, outside this module. Ledger retagging awaits advisory coverage review.",
+  "statement": "Paper E's compatible-residue 2-adic code has the infinite sum over exactly its odd Juggler times, indexed by the number of earlier odd times; a telescoping remainder has norm at most 2^(-k), including finite or empty odd-time sets. Exact finite-source cylinder equality transfers all limiting-frequency statements. The eventual ordinary ancestor bound is proved with real exponent 21/25, and the fixed-grid hypotheses imply the logarithmic ceiling below 99/100. Every finite full binary prefix tree has fair mass and multiplier moment one. The minimal stopping words themselves have fair mass one and multiplier moment at most 3/4, with summability proved before regrouping by length. These close presentation gaps without adding a mathematical novelty claim. The six manuscript-facing declarations compile and their dependency audit uses only the standard kernel axioms. Theorem 4.1 is outside this notation module and is now completed in PaperERecurrence. Ledger retagging awaits advisory coverage review.",
   "source": "docs/problems/juggler_signed_collatz_paper.md",
   "lean": "Problems/Juggler/PaperECompletion.lean",
   "decl": [
@@ -13197,5 +13197,61 @@
    "tests/tools/test_formalpedia.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/theory/fourier_box_recurrence_note.md",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": [],
+  "id": "BTA-fourier-open-box-recurrence",
+  "lean": "BTCalculus/FourierBoxRecurrence.lean",
+  "statement": "Kernel-checked qualitative Weyl criterion; advisory statement coverage pending. For any finite index type d and sequence x in the unit torus, if the averages of every nonzero integer Fourier monomial tend to zero, then averages of every continuous complex-valued function tend to its normalized Haar integral. Fourier integrals, the zero mode, finite linear combinations, contraction bounds and the passage by uniform approximation are proved, using Mathlib's dense Fourier span. Every nonempty open set is visited after every prescribed natural index T, using a nonnegative continuous function with positive Haar integral. For real representatives, any simultaneous open fractional-part box with 0<=a_i<b_i<=1 is visited arbitrarily late. The integer dot-product phase is identified with the torus monomial. No approximation or positive-measure assertion is assumed, and no quantitative discrepancy or shrinking-target claim is made.",
+  "decl": [
+   "integral_mFourier",
+   "tendsto_continuous_average",
+   "exists_ge_mem_open_of_fourier",
+   "mem_circleInterval_iff",
+   "mFourier_real_eq_phase",
+   "exists_ge_fract_box_of_phase"
+  ]
+ },
+ {
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/theory/fourier_box_recurrence_note.md",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": [],
+  "id": "BTA-noninteger-power-box-recurrence",
+  "lean": "BTCalculus/PowerBoxRecurrence.lean",
+  "statement": "Kernel-checked simultaneous recurrence for powers; advisory statement coverage pending. For a finite index type, distinct positive noninteger real exponents p_i, nonzero real scales w_i, real A>0 and B, every box 0<=a_i<b_i<=1 has arbitrarily late natural samples n with a_i<fract(w_i*(A*n+B)^p_i)<b_i for all i. The nonzero Fourier coefficients are shown to yield a nonzero mixed-power phase. Cancellation is discharged by the proved mixed-power theorem and the Fourier-to-box criterion. This is unconditional for each fixed family and fixed box; no uniform rate, shrinking target, or growing-depth conclusion is asserted.",
+  "decl": [
+   "exists_ge_power_fract_box"
+  ]
+ },
+ {
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/theory/fourier_box_recurrence_note.md",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": [],
+  "id": "J-paper-e-theorem41-unconditional",
+  "lean": "Problems/Juggler/PaperERecurrence.lean",
+  "statement": "Kernel-checked unconditional Paper E Theorem 4.1; advisory statement coverage pending. For natural a,b,M>0 with 2^(a+b)<3^a, infinitely many distinct odd Juggler starts n above every prescribed bound have actual itinerary O^a E^b, stay at least n during the prefix, end strictly above n, and have both endpoints congruent to 1 modulo 2M. The periodic-word code denominator is exactly (3^a-2^(a+b))/gcd(3^a-2^a,2^b-1), and these denominators are unbounded at fixed b>0. The simultaneous ReturnBox is proved recurrent for all natural a,b and M>0: exponents 3^a/2^(j+1) are distinct positive nonintegers, and the exact scalings and box bounds are verified, including M=1. The theorem applies the existing floor construction to this proved recurrence; no BoxRecurrence, exponential-sum, or equidistribution hypothesis remains. No actual cycle, common start at all precisions, integer-code realization, or termination theorem follows.",
+  "decl": [
+   "power_exponent_noninteger",
+   "power_exponent_injective",
+   "box_recurrence",
+   "theorem41"
+  ]
  }
 ]
