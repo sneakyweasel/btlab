@@ -71,15 +71,18 @@ results, field filters, phrases, Boolean queries and proximity queries.
 | `oeis_search` | Ranked text search across names, comments, formulas and references |
 | `oeis_terms` | Stored terms with exact decimal values and original OEIS indices |
 | `oeis_match_terms` | Verified prefix, contiguous-run or ordered-subsequence matches |
+| `oeis_compare_terms` | First disagreement or missing-data diagnosis for a named candidate |
 | `oeis_neighbors` | Incoming and outgoing cross-references or wider textual mentions |
 | `oeis_lab_links` | Live paper, dossier, ledger and Lean references |
 | `oeis_bfile` | Local supplementary content or explicit missing/LFS-pointer status |
 | `oeis_status` | Coverage, parse issues, export date and local snapshot freshness |
 
-All eight tools have structured outputs and read-only annotations. Resources
+All nine tools have structured outputs and read-only annotations. Resources
 `oeis://guide` and `oeis://status`, plus the `investigate_sequence` prompt,
 provide the discovery workflow. Tools use bounded pages and SQL time budgets.
 Large entry fields are split into numbered chunks without dropping text.
+`available_fields` lists every field in the entry, including those outside the
+current page; `field_chunks` counts chunks in the selected fields.
 Follow the returned continuation rather than assuming the first page is all
 the evidence. Numerical continuations validate both the query and the snapshot.
 
@@ -106,6 +109,12 @@ notation and fractional inputs are rejected.
 
 Every result reports the first matching positions and, when known, their OEIS
 indices using the entry's first offset. This is a finite data comparison.
+Three neighboring terms on either side of a match provide context for checking
+an alignment. `oeis_compare_terms` compares a named candidate at an explicit
+zero-based `start_position`, returning the first mismatch and matching prefix.
+It reports `insufficient_data` when the stored terms end before the supplied
+terms; this is distinct from a mismatch. The operation is consecutive only;
+use `oeis_match_terms` for ordered selections with gaps.
 Read the definition and compare further independently computed terms before
 asserting a mathematical identity. Missing longer b-files limit a negative
 search result. A miss cannot establish novelty.
@@ -120,6 +129,12 @@ the short prefix does not distinguish their definitions. Likewise, the lab's
 selected odd counts match positions within A206788 rather than a contiguous
 run. These are regression examples, not new mathematical discoveries.
 
+The term index does **not** search tables embedded in comments or examples.
+Paper B's joint survivor triangle is present in A076227's example text even
+though searching its flattened terms does not identify a matching sequence.
+Inspect `examples`, `comments` and `formulas` on related entries, using field
+filters to reach them without paging through a long comment section.
+
 ## Connect to laboratory knowledge
 
 `oeis_lab_links` searches the live working tree. Its references have a separate
@@ -127,6 +142,11 @@ snapshot from OEIS. Declaration links come from their own docstrings or source
 headers and include a namespace and module for `formalpedia_show`. An arbitrary
 mention elsewhere in the same Lean file is not attributed to a theorem.
 Ledger references preserve the recorded claim tag without upgrading it.
+LaTeX manuscripts and bibliographies are included. Papers appear first; use
+`kinds=["paper"]` to restrict mentions to manuscripts or
+`kinds=["dossier", "negative_knowledge"]` to inspect previous decisions.
+`mention_counts` reports the full distribution; pagination follows the selected
+kinds. Supplementary Lean and ledger summaries remain independent of that filter.
 
 Before exploring a direction, inspect matching dossiers and negative knowledge.
 The [Juggler OEIS neighbourhood](../problems/juggler_oeis_neighbourhood.md) has
@@ -143,3 +163,20 @@ python tools/oeis_catalog.py match "0,1,1,5,2,11" --mode prefix
 python tools/oeis_catalog.py neighbors A076227
 python tools/oeis_catalog.py bfile A094683
 ```
+
+## Reproduce the paper audit
+
+```powershell
+python tools/oeis_paper_audit.py --output tmp/oeis_paper_audit.json
+```
+
+This opt-in audit requires the local full index and MCP SDK. It launches the
+actual stdio server and exercises all nine tools, using independently computed
+integer terms for the Juggler map, orbit statistics, survivor counts, minimal
+certificates and binary lengths of powers of three. It checks ambiguous short
+matches, a selected subsequence, storage limits, the example table, and live
+manuscript links. The normal unit tests use small synthetic databases and do
+not depend on this optional 2 GB index.
+
+See the [September 22 paper audit](oeis_paper_audit_20260922.md) for measured
+results and the improvements prompted by these examples.

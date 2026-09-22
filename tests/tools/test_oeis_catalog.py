@@ -64,6 +64,8 @@ def test_snapshot_and_entry_revisions_remain_distinct(catalog):
     assert result['revision'] == 'a' * 40
     assert result['entry_revision'].startswith('#7')
     assert result['fields'][0]['text'] == 'Hidden phoenix theorem.'
+    assert result['available_fields']['terms'] == 1
+    assert result['field_chunks'] == {'comments': 1}
     assert '/blob/' + 'a' * 40 in result['snapshot_url']
     assert catalog.get('A999999')['status'] == 'not_found'
 
@@ -126,6 +128,44 @@ def test_transformations_are_explicit_and_return_the_searched_values(catalog):
     assert catalog.match_terms(['1', '2', '3'], transform='negate')['results'][0]['aid'] == 'A000005'
 
 
+def test_match_context_exposes_next_terms_at_the_actual_offset(catalog):
+    hit = catalog.match_terms(['0', '9007199254740993', '9'])['results'][0]
+    assert hit['context_before'] == [{'position': 0, 'n': -2, 'value': '-5'}]
+    assert hit['context_after'] == [{'position': 4, 'n': 2, 'value': '16'}]
+
+
+def test_compare_reports_first_disagreement_without_rounding(catalog):
+    result = catalog.compare_terms('A000001', ['0', '9007199254740992', '9'], start_position=1)
+    assert result['status'] == 'mismatch'
+    assert result['matching_prefix_terms'] == 1 and result['compared_terms'] == 3
+    assert result['first_mismatch'] == {'query_position': 1, 'position': 2, 'n': 0,
+                                      'supplied': '9007199254740992', 'stored': '9007199254740993'}
+
+
+def test_compare_distinguishes_storage_limits_from_mismatch_and_identity(catalog):
+    result = catalog.compare_terms('A000001', ['9007199254740993', '9', '16', '123'], start_position=2)
+    assert result['status'] == 'insufficient_data'
+    assert result['matching_prefix_terms'] == 3 and result['unchecked_terms'] == 1
+    assert result['first_mismatch'] is None
+    mismatch = catalog.compare_terms('A000001', ['9', '17', '123'], start_position=3)
+    assert mismatch['status'] == 'mismatch' and mismatch['unchecked_terms'] == 1
+    empty = catalog.compare_terms('A000001', ['1', '2', '3'], start_position=20)
+    assert empty['status'] == 'insufficient_data' and empty['compared_terms'] == 0
+    assert catalog.compare_terms('A999999', ['1', '2', '3'])['status'] == 'not_found'
+
+
+def test_compare_uses_explicit_transforms_and_positions(catalog):
+    result = catalog.compare_terms('A000006', ['1', '2', '3'], multiplier=2)
+    assert result['status'] == 'match' and result['first_oeis_index'] == 0
+    assert result['searched_terms'] == ['2', '4', '6']
+    assert result['transformation']['multiplier'] == 2
+    assert catalog.compare_terms('A000005', ['1', '2', '3'], transform='negate')['status'] == 'match'
+    assert catalog.compare_terms('A000004', ['2', '3', '4'])['status'] == 'mismatch'
+    assert catalog.compare_terms('A000004', ['2', '3', '4'], start_position=1)['status'] == 'match'
+    with pytest.raises(ValueError):
+        catalog.compare_terms('A000001', ['1', '2', '3'], start_position=-1)
+
+
 def test_matching_pagination_is_exact_and_rejects_stale_or_changed_cursors(catalog):
     first = catalog.match_terms(['1', '2', '3'], limit=1)
     second = catalog.match_terms(['1', '2', '3'], limit=1, cursor=first['next_cursor'])
@@ -171,6 +211,7 @@ def test_queries_are_read_only_and_missing_index_is_not_created(catalog, tmp_pat
     catalog.search('example')
     catalog.get('A000001')
     catalog.match_terms(['1', '2', '3'])
+    catalog.compare_terms('A000004', ['1', '2', '3'])
     assert catalog.database.stat().st_mtime_ns == before
     missing = OEIS(tmp_path / 'missing.sqlite3')
     assert missing.status()['status'] == 'missing_index'
@@ -228,3 +269,30 @@ def test_lab_links_join_docs_ledger_and_correct_lean_docstring(tmp_path, monkeyp
     assert result['lean_declarations'][0]['qualified_name'] == 'Math.fibonacci_count'
     assert result['ledger_claims'][0]['id'] == 'test-claim'
     assert result['total_mentions'] == 3
+
+
+def test_lab_links_include_and_prioritize_manuscripts_and_filter_before_paging(tmp_path, monkeypatch):
+    monkeypatch.setattr('oeis_lab_links.shutil.which', lambda _: None)
+    (tmp_path / 'docs/theory').mkdir(parents=True)
+    (tmp_path / 'docs/problems').mkdir()
+    for file, source in {
+        'theory/manuscript.tex': 'A000002 first citation\nA000002 second citation\n',
+        'theory/manuscript.md': 'A000002 manuscript source\n',
+        'theory/references.bib': 'A000002 bibliography\n',
+        'theory/note.md': 'A000002 theory\n',
+        'problems/known.md': 'A000002 CLOSE\n',
+        'negative_knowledge.md': 'A000002 false identification\n',
+    }.items():
+        (tmp_path / 'docs' / file).write_text(source)
+    result = lab_links('A000002', root=tmp_path, limit=1)
+    assert result['mentions'][0]['kind'] == 'paper'
+    assert result['mention_counts']['paper'] == 3
+    assert result['mention_counts']['bibliography'] == 1
+    first = lab_links('A000002', root=tmp_path, kinds=['negative_knowledge', 'dossier'], limit=1)
+    second = lab_links('A000002', root=tmp_path, kinds=['negative_knowledge', 'dossier'],
+                       limit=1, offset=first['next_offset'])
+    assert first['filtered_mentions'] == 2 and first['total_mentions'] == 7
+    assert first['mentions'][0]['kind'] == 'dossier'
+    assert second['mentions'][0]['kind'] == 'negative_knowledge' and second['next_offset'] is None
+    with pytest.raises(ValueError, match='Mention kinds'):
+        lab_links('A000002', root=tmp_path, kinds=['typo'])

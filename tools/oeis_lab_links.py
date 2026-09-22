@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import hashlib
+from collections import Counter
 import json
 import os
 from pathlib import Path
@@ -14,6 +15,26 @@ from oeis_catalog import bounds
 from oeis_index import ROOT
 from oeis_source import aid
 
+KINDS = ('paper', 'dossier', 'negative_knowledge', 'lean', 'theory', 'source',
+         'literature', 'ledger', 'bibliography', 'laboratory_reference')
+
+
+def mention_kind(file: str, root: Path) -> str:
+    path = Path(file)
+    if path.suffix == '.tex' or (path.suffix == '.md' and (root / path).with_suffix('.tex').is_file()):
+        return 'paper'
+    if path.suffix == '.bib':
+        return 'bibliography'
+    if file == 'docs/negative_knowledge.md':
+        return 'negative_knowledge'
+    if path.name in {'theorem_ledger.md', 'theorem_ledger.json'}:
+        return 'ledger'
+    for prefix, kind in [('docs/problems/', 'dossier'), ('docs/theory/', 'theory'),
+                         ('src/', 'source'), ('literature/', 'literature')]:
+        if file.startswith(prefix):
+            return kind
+    return 'lean' if path.suffix == '.lean' else 'laboratory_reference'
+
 
 def find_mentions(identifier: str, root: Path):
     directories = [name for name in ('docs', 'formal', 'src', 'literature', 'attacks')
@@ -21,7 +42,7 @@ def find_mentions(identifier: str, root: Path):
     pattern = re.compile(r'\b' + identifier + r'\b')
     if shutil.which('rg') and directories:
         command = ['rg', '--json', '--no-ignore-parent', '-n', '-e', pattern.pattern,
-                   '-g', '*.md', '-g', '*.lean', '-g', '*.py', '-g', '*.json',
+                   '-g', '*.md', '-g', '*.tex', '-g', '*.bib', '-g', '*.lean', '-g', '*.py', '-g', '*.json',
                    '-g', '!**/.lake/**', '-g', '!docs/research/*.json', '--', *directories]
         try:
             result = subprocess.run(command, cwd=root, capture_output=True, text=True,
@@ -42,7 +63,7 @@ def find_mentions(identifier: str, root: Path):
             dirs[:] = [d for d in dirs if d not in {'.lake', '.git', '__pycache__'}]
             for filename in sorted(files):
                 path = Path(parent) / filename
-                if path.suffix not in {'.md', '.lean', '.py', '.json'}:
+                if path.suffix not in {'.md', '.tex', '.bib', '.lean', '.py', '.json'}:
                     continue
                 if not path.resolve().is_relative_to(root.resolve()):
                     continue
@@ -54,19 +75,22 @@ def find_mentions(identifier: str, root: Path):
                         yield relative, number, text
 
 
-def lab_links(identifier: str, limit: int = 30, offset: int = 0, root: Path = ROOT):
+def lab_links(identifier: str, limit: int = 30, offset: int = 0, root: Path = ROOT,
+              kinds: list[str] | None = None):
     identifier = aid(identifier)
     bounds(limit, offset)
+    if kinds is not None and (not kinds or set(kinds) - set(KINDS)):
+        raise ValueError('Mention kinds: ' + ', '.join(KINDS))
     pattern = re.compile(r'\b' + identifier + r'\b')
-    mentions = sorted(find_mentions(identifier, root))
+    mentions = list(find_mentions(identifier, root))
+    kind_by_file = {file: mention_kind(file, root) for file, _, _ in mentions}
+    mentions.sort(key=lambda m: (KINDS.index(kind_by_file[m[0]]), m[0], m[1]))
+    selected = [m for m in mentions if kinds is None or kind_by_file[m[0]] in kinds]
     results = []
-    for file, line, text in mentions[offset:offset + limit]:
+    for file, line, text in selected[offset:offset + limit]:
         match = pattern.search(text)
         start = max(0, match.start() - 150) if match else 0
-        kind = ('lean' if file.endswith('.lean') else 'dossier' if file.startswith('docs/problems/')
-                else 'paper_or_theory' if file.startswith('docs/theory/') and file.endswith('.md')
-                else 'laboratory_reference')
-        results.append({'file': file, 'line': line, 'kind': kind,
+        results.append({'file': file, 'line': line, 'kind': kind_by_file[file],
                         'excerpt': text[start:start + 650], 'excerpt_truncated': len(text) > 650})
     selected_files = {file for file, _, _ in mentions}
     declarations = []
@@ -93,7 +117,9 @@ def lab_links(identifier: str, limit: int = 30, offset: int = 0, root: Path = RO
         digest.update(f'{file}:{info.st_mtime_ns}:{info.st_size}\n'.encode())
     return {'aid': identifier, 'source': 'live laboratory working tree',
             'reference_snapshot': digest.hexdigest(), 'total_mentions': len(mentions),
-            'mentions': results, 'next_offset': offset + limit if offset + limit < len(mentions) else None,
+            'mention_counts': dict(Counter(kind_by_file[m[0]] for m in mentions)),
+            'filtered_mentions': len(selected), 'kinds': kinds,
+            'mentions': results, 'next_offset': offset + limit if offset + limit < len(selected) else None,
             'lean_declarations': declarations[:50], 'total_lean_declarations': len(declarations),
             'ledger_claims': claims[:50], 'total_ledger_claims': len(claims),
             'related_results_truncated': len(declarations) > 50 or len(claims) > 50,

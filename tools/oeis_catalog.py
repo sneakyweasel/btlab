@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import base64
+from collections import Counter
 from contextlib import contextmanager
 import hashlib
 import itertools
@@ -128,6 +129,8 @@ class OEIS:
                                        part=part + 1, parts=count))
             result.update(self.summary(row), offset_raw=row['offset_raw'], keywords=row['keywords'].split(','),
                 fields=chunks[offset:offset + limit], total_chunks=len(chunks), offset=offset,
+                field_chunks=dict(Counter(f['field'] for f in chunks)),
+                available_fields=dict(Counter(f['field'] for f in json.loads(row['fields']))),
                 next_offset=offset + limit if offset + limit < len(chunks) else None,
                 record_sha256=row['sha256'], parse_issues=json.loads(row['issues']),
                 url=f'https://oeis.org/{identifier}',
@@ -230,10 +233,16 @@ class OEIS:
             for row in rows:
                 scanned += 1
                 after = row['id']
-                match = positions(row['terms'].split(','), query, mode)
+                stored = row['terms'].split(',')
+                match = positions(stored, query, mode)
                 if match is not None:
+                    def context(indices):
+                        return [{'position': i, 'n': row['first_index'] + i if row['first_index'] is not None else None,
+                                 'value': stored[i]} for i in indices]
                     results.append(dict(self.summary(row), first_match_positions=match,
                         oeis_indices=[row['first_index'] + i for i in match] if row['first_index'] is not None else None,
+                        context_before=context(range(max(0, match[0] - 3), match[0])),
+                        context_after=context(range(match[-1] + 1, min(len(stored), match[-1] + 4))),
                         matched_terms=query, relation='first finite stored-term match; not a proof of identity'))
                 if len(results) == limit or scanned == 2000:
                     break
@@ -244,7 +253,49 @@ class OEIS:
                 transformation={'operation': transform, 'multiplier': multiplier, 'addend': addend,
                                 'order': 'apply operation, then multiply, then add'},
                 results=results, scanned_candidates=scanned, next_cursor=next_cursor,
-                exhausted=not more, scope='stored entry terms only; no b-files, no novelty conclusion')
+                exhausted=not more, scope='stored entry terms only; no b-files or example tables, no novelty conclusion',
+                next_steps=[('For a subsequence preserve the reported positions; oeis_compare_terms tests consecutive alignments only.'
+                             if mode == 'subsequence' else
+                             'Compare independently computed terms with oeis_compare_terms at the returned position.'),
+                            'Inspect definitions and examples with oeis_get; tables may be present only in text.',
+                            'Use oeis_lab_links to check existing identifications and counterexamples.'])
+
+    def compare_terms(self, identifier: str, terms: list[str], start_position: int = 0,
+                      transform: str = 'identity', multiplier: int = 1, addend: int = 0):
+        """Diagnose a proposed contiguous alignment without treating missing data as disagreement."""
+        identifier = aid(identifier)
+        bounds(1, start_position)
+        query = transformed(terms, transform, multiplier, addend)
+        with self.connect() as (db, metadata):
+            row = db.execute('SELECT * FROM entries WHERE aid=?', (identifier,)).fetchone()
+            result = dict(self.envelope(metadata), aid=identifier, input_terms=terms,
+                searched_terms=query, start_position=start_position,
+                transformation={'operation': transform, 'multiplier': multiplier, 'addend': addend,
+                                'order': 'apply operation, then multiply, then add'},
+                scope='consecutive stored entry terms at an explicit alignment; no b-files or example tables')
+            if row is None:
+                return dict(result, status='not_found')
+            stored = row['terms'].split(',') if row['terms'] else []
+            available = stored[start_position:start_position + len(query)]
+            mismatches = [i for i, (a, b) in enumerate(zip(query, available)) if a != b]
+            mismatch = mismatches[0] if mismatches else None
+            status = ('mismatch' if mismatch is not None else
+                      'match' if len(available) == len(query) else 'insufficient_data')
+            detail = None
+            if mismatch is not None:
+                position = start_position + mismatch
+                detail = {'query_position': mismatch, 'position': position,
+                          'n': row['first_index'] + position if row['first_index'] is not None else None,
+                          'supplied': query[mismatch], 'stored': available[mismatch]}
+            return dict(result, **self.summary(row), status=status,
+                compared_terms=len(available), matching_prefix_terms=mismatch if mismatch is not None else len(available),
+                mismatching_terms=len(mismatches),
+                unchecked_terms=len(query) - len(available), first_mismatch=detail,
+                first_oeis_index=row['first_index'] + start_position if row['first_index'] is not None else None,
+                parse_issues=json.loads(row['issues']), url=f'https://oeis.org/{identifier}',
+                next_step=('Inspect oeis_bfile for additional local data; missing terms are not a disagreement.'
+                           if status == 'insufficient_data' else
+                           'A mismatch rejects this alignment; a finite match still requires comparison of definitions.'))
 
     def neighbors(self, identifier: str, direction: str = 'both', explicit_only: bool = True,
                   limit: int = 30, offset: int = 0):

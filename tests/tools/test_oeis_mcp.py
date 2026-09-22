@@ -23,7 +23,7 @@ def test_tools_have_structured_schemas_and_read_only_annotations():
     async def check():
         tools = await server.mcp.list_tools()
         assert {t.name for t in tools} == {'oeis_get', 'oeis_search', 'oeis_terms', 'oeis_match_terms',
-            'oeis_neighbors', 'oeis_lab_links', 'oeis_bfile', 'oeis_status'}
+            'oeis_compare_terms', 'oeis_neighbors', 'oeis_lab_links', 'oeis_bfile', 'oeis_status'}
         for tool in tools:
             assert tool.outputSchema
             assert tool.annotations.readOnlyHint
@@ -57,6 +57,13 @@ def test_stdio_reads_searches_matches_and_reports_errors_without_writing(tmp_pat
                 assert entry.structuredContent['fields'][0]['text'] == 'Exact phoenix example.'
                 matched = await session.call_tool('oeis_match_terms', {'terms': ['-2', '0', '9007199254740993']})
                 assert matched.structuredContent['results'][0]['oeis_indices'] == [-1, 0, 1]
+                comparison = await session.call_tool('oeis_compare_terms',
+                    {'identifier': 'A000001', 'terms': ['-2', '0', '9007199254740992']})
+                assert comparison.structuredContent['status'] == 'mismatch'
+                assert comparison.structuredContent['first_mismatch']['n'] == 1
+                incomplete = await session.call_tool('oeis_compare_terms',
+                    {'identifier': 'A000001', 'terms': ['-2', '0', '9007199254740993', '17']})
+                assert incomplete.structuredContent['status'] == 'insufficient_data'
                 terms = await session.call_tool('oeis_terms', {'identifier': 'A000001'})
                 assert terms.structuredContent['terms'][-1]['value'] == '9007199254740993'
                 pointer = await session.call_tool('oeis_bfile', {'identifier': 'A000001'})
