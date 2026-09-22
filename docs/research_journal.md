@@ -30,6 +30,13 @@
   the phase. An additional actual itinerary restriction has not been
   controlled, and the growing-depth termination premise remains open.
   Full proof: [cubic inverse-cell note](theory/juggler_cubic_inverse_cell_note.md).
+- **Validation:** Full `lake build` passed (9043 jobs); all 11 new
+  theorem declarations use only propext, Classical.choice, and Quot.sound.
+  The independent Sympy checks derive the source derivatives and dual
+  remainder derivatives from the original phase. Selected integration,
+  ledger, formalpedia, registry, and calculus tests: 173 passed,
+  14 skipped. Ledger rendering, branch-index consistency, and scoped
+  whitespace checks pass. These checks do not verify the analytic bounds.
 
 ## 2026-09-22 -- Collatz merging fibres and the finite harmonic-weight obstruction
 

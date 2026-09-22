@@ -279,6 +279,9 @@ factors, and the exact inequalities underlying (10)-(14). It does
 not formalize differentiating the inverse function, the B-transform,
 Robert's theorem, Fourier approximation, or the asymptotic bounds.
 These remain written analytic arguments, pending independent review.
+The [symbolic calculus tests](../../tests/research/juggler_sequence/test_cubic_inverse_cell.py)
+independently differentiate the original source phase and Legendre
+relation to verify (6)-(8). They do not test the analytic inequalities.
 
 **PROMOTE** (1)-(2) as a specialized quantitative arithmetic lemma.
 The existing short-count exponents and all published papers remain
