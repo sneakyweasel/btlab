@@ -287,6 +287,14 @@ also obtain fibres independently from the forward Juggler map, check codes
 using forward signed Collatz parities, and include empty/partial/full cutoff
 boundaries. Finite checks corroborate, but do not replace, the written proofs.
 
+Validation context: the selected mathematical, document-link, dossier, and
+ledger checks passed. After refreshing the concurrently changing branch
+index, all 17 branch-index/negative-knowledge tests passed. The earlier broad
+integration run had 136 passes, 15 skips, and two failures from concurrent
+work: the then-unregistered polynomial-dual dossier and Paper E's changing
+release-input inventory. The former was subsequently registered by that
+work; the Paper E publication gate was not revalidated in this phase.
+
 ## Conjectures
 
 None introduced. Neither universal termination nor a pressure bound is a
