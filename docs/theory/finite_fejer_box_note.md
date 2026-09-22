@@ -93,10 +93,11 @@ The ledger renderer and branch-index consistency gates pass.
 
 The effective OOE theorem remains **EXACT — HUMAN PROOF**. A subsequent
 [higher-derivative formalization](higher_derivative_finite_note.md)
-supplies an alternative generic input for Q1, with its OOE specialization
-and constant comparison still open. Q2 (uniform mode cancellation), Q4
-(quantitative OOE assembly), and Q5 (bounded witness extraction) also
-still require Lean proofs. The mode bound above is the natural input of a discrepancy
+supplies an alternative input for Q1; its
+[OOE specialization](juggler_ooe_effective_modes_note.md) and the uniform
+mode estimate Q2 are now proved. Q4 (quantitative OOE assembly) and Q5
+(bounded witness extraction) still require Lean proofs.
+The mode bound above is the natural input of a discrepancy
 theorem; proving the specific OOE rate is Q2, not part of Q3.
 Paper E version 0.5.0 and its 49-declaration publication audit are
 unchanged. This result is ready for use in the quantitative supplement.

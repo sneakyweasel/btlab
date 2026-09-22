@@ -1,0 +1,44 @@
+'Problems.Juggler.OOEEffectiveModes.modeChain_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.deriv_powerChain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.modeChain_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.modeChain_five' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.modeChain_three_axis' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.modeChain_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.support_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.modeChain_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.scale_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.inverse_half_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.inverse_three_quarters_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.fifth_derivative_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.third_derivative_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.fifth_derivative_signed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.third_derivative_signed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.power_le_frequencyScale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.low_power_le_frequencyScale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.high_leading_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.low_leading_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.sqrt_tail_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.inverse_scaled_power' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.quarter_inverse_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.twelfth_inverse_eighth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.high_rate_terms' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.low_rate_terms' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.dyadic_count_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.dyadic_high_mode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.dyadic_low_mode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.dyadic_mode_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.dyadic_mode_power' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.positiveSum_trivial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.dyadic_power_margin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.positiveSum_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.range_endpoint_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.initial_mode_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.OOEEffectiveModes.normalized_mode_bound' depends on axioms: [propext, Classical.choice, Quot.sound]

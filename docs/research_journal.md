@@ -1,5 +1,43 @@
 # Research journal
 
+## 2026-09-22 -- Uniform effective OOE Fourier modes (Q1 application and Q2)
+
+- **Continuation audit:** The preceding goal turn made concrete progress
+  with the explicit finite derivative tests, registered in adca8c8c.
+  This turn applies them to the actual OOE phases and closes the required
+  all-length Fourier bound. The full goal remains open at Q4 and Q5.
+- **Target and falsifier:** Recover constants 32 and 128 without a missing
+  frequency, support loss, or uncontrolled modulus factor. This is an
+  application of classical estimates; no new analytic method is claimed
+  and no closed Juggler attack is reopened.
+- **Proof:** Actual falling-factorial derivative chains give fifth-order
+  signed bounds with ratio six and low-axis third-order signed bounds
+  with ratio four, on [P,2P+1]. The lower-power perturbation cannot change
+  the leading sign. Every derivative-test term is bounded by twice the
+  common frequency scale. The exact count floor(2P)-floor(P) gives the
+  dyadic constant 32. Finite strong induction on T proves the dyadic
+  assembly with initial error 14H^2. The two endpoint terms yield 16H^2,
+  absorbed under H<=T^(1/4) into the normalized constant 128.
+- **Coverage:** `normalized_mode_bound` proves the exact Q2 statement for
+  real M,H>=1 and all admissible natural T, including both axes and signs.
+  This closes Q1's application via an alternative finite derivative proof,
+  without asserting formalization of the exact externally cited formula.
+  The effective counting theorem and bounded witness still require Q4/Q5.
+- **Validation:** The module compiles and all 36 supporting and covering
+  theorems have only standard logical dependencies. The authorized Jev
+  advisory was doubtful (0.44; breadth flag 0.62). A clause-by-clause
+  comparison, recorded in the proof map, confirms exact statement coverage.
+  The full default Lean build passes (9078 jobs). Targeted integration,
+  ledger, layer, branch-index and formalpedia checks give 223 passes,
+  15 skips and 10 failures in concurrent publication and OOEE work: eight
+  release/provenance/mirror failures and two draft inventory/index failures.
+  Exact index freshness, ledger declaration coverage and the Paper E gate
+  pass against committed sources plus this result. The scoped Paper E
+  archive changes only its shared registry input; manuscript, PDF, TeX and
+  selected proof report are unchanged. Concurrent drafts and release edits
+  are excluded from this commit. Ledger and branch-index consistency pass.
+- **Decision:** **PROMOTE** the uniform effective mode theorem. The next
+  bounded obligation is Q4, the exact return count and explicit error.
 ## 2026-09-22 -- Original OOEE mixed-mode cancellation
 
 - **Continuation audit:** The preceding review verified the status but

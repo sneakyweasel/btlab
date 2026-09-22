@@ -85,10 +85,10 @@ The existing written proof remains unchanged.
 
 The high OOE mode requires order five with derivative ratio six; the
 remaining axis requires order three with ratio four. Their actual
-derivative chains, signed estimates on the extended support, and the
-comparison with the normalized 32-times bound still need Lean proofs.
-So do the dyadic all-T bound (Q2), error assembly (Q4), and bounded
-witness extraction (Q5). Q3 is already proved in
+derivative chains, signed estimates on the extended support, comparison
+with the constant 32, and dyadic all-T bound (Q2) are now proved in the
+[OOE specialization](juggler_ooe_effective_modes_note.md). Error assembly
+(Q4) and bounded witness extraction (Q5) remain open. Q3 is proved in
 [FejerBox.lean](../../formal/BTCalculus/FejerBox.lean).
 The universal effective modular-return theorem remains
 **EXACT — HUMAN PROOF**. Paper E's selected publication audit is unchanged.
@@ -107,6 +107,6 @@ the final coverage ruling follows direct comparison of the quantified
 English statement and the declarations. Repository registration checks
 are recorded in the journal.
 
-**PROMOTE** these explicit finite derivative estimates. The next bounded
-step is the OOE phase specialization and constant comparison; no new word,
+**PROMOTE** these explicit finite derivative estimates. The subsequent OOE
+specialization and constant comparison are now proved; no new word,
 modulus optimization, or general termination assertion is part of this result.

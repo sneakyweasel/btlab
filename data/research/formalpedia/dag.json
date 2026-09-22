@@ -2828,6 +2828,20 @@
         "kernel": 10
       }
     },
+    "Problems.Juggler.OOEEffectiveModes": {
+      "declarations": 45,
+      "depends_on": [
+        "BTCalculus.HigherDerivative"
+      ],
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 45
+      }
+    },
     "Problems.Juggler.OddCubicPhase": {
       "declarations": 19,
       "depends_on": [],
@@ -4020,9 +4034,9 @@
     }
   },
   "totals": {
-    "edges": 313,
-    "edges_before_reduction": 2456,
-    "ledger_rows_placed": 507,
-    "nodes": 251
+    "edges": 314,
+    "edges_before_reduction": 2461,
+    "ledger_rows_placed": 508,
+    "nodes": 252
   }
 }

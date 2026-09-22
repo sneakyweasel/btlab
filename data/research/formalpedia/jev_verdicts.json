@@ -2403,6 +2403,21 @@
         "key": "40e6f4ab6ef4fff5",
         "model": "jev-1.13.0"
       },
+      "J-effective-ooe-fourier-modes": {
+        "asked": "2026-09-22",
+        "claim_broader": 0.62,
+        "covers": 0.44,
+        "decl_narrower": 0.49,
+        "decls": [
+          "mode",
+          "amplitude",
+          "dyadic_mode_power",
+          "normalized_mode_bound"
+        ],
+        "different_result": 0.14,
+        "key": "163f51ca348c2673",
+        "model": "jev-1.13.0"
+      },
       "J-envelope-lt-pow": {
         "asked": "2026-09-21",
         "claim_broader": 0.85,
@@ -4028,11 +4043,11 @@
       }
     },
     "totals": {
-      "answered": 251,
+      "answered": 252,
       "asked_now": 0,
       "input_tokens": 0,
-      "reused": 251,
-      "unfound": 1
+      "reused": 252,
+      "unfound": 0
     }
   },
   "models": [

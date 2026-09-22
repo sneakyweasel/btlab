@@ -5,6 +5,11 @@ from an explicitly cited analytic theorem. Independent mathematical review
 and the complete quantitative Lean proof remain outstanding. The finite
 Fejer box estimate (Q3) is now kernel-checked, with its constants and all
 half-open boundary cases; see its [proof map](finite_fejer_box_note.md).
+The actual OOE Fourier-mode bound (Q2) and its higher-derivative input
+are now also kernel-checked; the
+[mode proof map](juggler_ooe_effective_modes_note.md) records the alternative
+finite derivative tests, signs, real endpoints, and constants 32 and 128.
+Explicit counting assembly and bounded witness extraction remain open.
 The [fresh internal audit](juggler_effective_modular_return_audit.md)
 rederives the estimates and confirms the constants, with boundary and
 small-parameter details expanded below. It is not external peer review.

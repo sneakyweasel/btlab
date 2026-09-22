@@ -220,8 +220,8 @@ Q1 to Q2; Q2 and Q3 to Q4; Q4 and the existing construction to Q5.
 
 | Obligation | Required statement | Existing reusable material | Status |
 | --- | --- | --- | --- |
-| Q1 | Explicit derivative estimate at orders 3 and 5, with constants sufficient for (5), real endpoints, and signed form | HigherDerivative: explicit rates with constants 12 and 7, automatic cutoffs, and real-endpoint sums | Alternative finite derivative input kernel-checked; comparison with the OOE constants and extended-support specialization remain at the Q1/Q2 interface |
-| Q2 | For M,H,T>=1 and H<=T^(1/4), every nonzero cutoff mode has normalized norm at most 128*M^(1/4)*H^(1/30)*T^(-1/60) | Phase definitions and real-power calculus | Derivative bounds and quantitative dyadic assembly unformalized |
+| Q1 | Explicit derivative estimates at orders 3 and 5 sufficient for the OOE bound, with real endpoints and both signs | HigherDerivative plus OOEEffectiveModes | Closed for the OOE application: independent finite tests with constants 12 and 7 recover the dyadic constant 32, including actual derivative chains and extended support; the exact cited formula (5) is not claimed as formalized |
+| Q2 | For M,H,T>=1 and H<=T^(1/4), every nonzero cutoff mode has normalized norm at most 128*M^(1/4)*H^(1/30)*T^(-1/60) | OOEEffectiveModes | Closed: `normalized_mode_bound`, including both axes, signs, real dyadic endpoints, the discarded initial segment and the two endpoint terms |
 | Q3 | For integers H,T>=1, any T samples, and every half-open torus box, discrepancy is at most 5/sqrt(H+1)+(3+2*log(H))^2*E_H, where E_H bounds every nonzero cutoff mode | FejerKernel, FejerArc, FourierDiscrepancy, and FejerBox | Closed: `BTCalculus.FejerBox.finite_box_discrepancy`, including saturation and every pointwise boundary case |
 | Q4 | For the exact ReturnParameter(2,1,M,t) count, both displayed all-M, all-T errors | Existing count and ReturnParameter definitions, exact root/box guards | Cutoff, threshold count, and explicit error assembly unformalized |
 | Q5 | Positive count at T=2^2176*M^160 yields a witness with the strict t and n bounds and ModularReturn(2,1,M,n) | modular_return_of_box, with k=1,b=1 | Quantitative extraction unformalized; orbit implication already formalized |
@@ -233,13 +233,15 @@ receive a Lean-verified label until the whole dependency chain is closed.
 Q3 is now kernel-checked; its [proof map and exact scope](finite_fejer_box_note.md)
 record all hypotheses and the 72-theorem dependency audit. The covering
 theorem constructs the smoothing bounds rather than assuming them.
-The generic analytic part of Q1 now has an independently proved alternative:
-`third_derivative_rate`, `fifth_derivative_rate`, and their real-interval
-forms. The [proof map](higher_derivative_finite_note.md) states their
-precise constants and the extra one-unit right support. These are not
-the exact formula of the pinned written source. Their specialization to
-the OOE derivatives and numerical comparison remain to be checked in
-Lean, followed by Q2, Q4, and Q5. The quantitative OOE gap is still open.
+Q1 now has an independently proved alternative: `third_derivative_rate`,
+`fifth_derivative_rate`, and their real-interval forms. Their
+[proof map](higher_derivative_finite_note.md) records the exact support.
+The [OOE specialization](juggler_ooe_effective_modes_note.md) proves the
+actual derivative chains and signed bounds on that support, verifies the
+constant 32, and proves the uniform all-T constant 128 by finite dyadic
+induction. Thus Q1's application and Q2 are closed. This does not assert
+formalization of the exact external formula (5). Q4 and Q5 remain open;
+the universal effective return theorem is not yet Lean verified.
 
 ## 6. Verification record and decision
 

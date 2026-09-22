@@ -25,6 +25,13 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- uniform effective OOE Fourier cancellation for every nonzero integer
+  cutoff mode: normalized error at most 128*M^(1/4)*H^(1/30)*T^(-1/60),
+  for M,H,T>=1 and H<=T^(1/4). Actual derivative chains, both signs and
+  coordinate axes, real dyadic endpoints, discarded initial segments,
+  and endpoint corrections are proved. This closes Q1's OOE application
+  and Q2; effective counting and bounded witnesses remain open. See the
+  [proof map](../docs/theory/juggler_ooe_effective_modes_note.md);
 - original OOEE mixed-mode cancellation O(P^(13/32)) on source intervals
   with N<=L*P^(7/16), for every fixed integer mode with (i,j) not both
   zero and uniformly over fixed finite frequency families. The actual

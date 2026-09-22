@@ -22,8 +22,8 @@ which is what the ledger's list-valued `decl` exists to record.  `REFUTED` rows 
 asked: their declaration is the refutation.
 
 Jev (jev-1.13.0, last asked 2026-09-22) has answered
-251 of the 288 resolved rows: 133 covered,
-66 doubtful, 52 not covered; 118 are
+252 of the 289 resolved rows: 133 covered,
+67 doubtful, 52 not covered; 119 are
 listed below.
 
 ## 1. `J-paper-b-screen-is-a-walk-condition` &mdash; covers 0.03
@@ -8445,7 +8445,49 @@ theorem actual_sorted_positive_surplus {C : Set ℕ} {m M : ℕ}
         ((upperIndices m c).card : ℝ) * Real.log ((3 : ℝ) / 2)
 ```
 
-## 106. `BTA-fn-congr` &mdash; covers 0.45
+## 106. `J-effective-ooe-fourier-modes` &mdash; covers 0.44
+
+*Reads as: the claim asserts more than the declarations state (0.62).*
+
+*Claim broader 0.62; declaration narrower 0.49; different result 0.14.  Tag EXACT — LEAN VERIFIED, trust kernel.*
+
+**Row.** For real M,H>=1 and integers u,v with (u,v) nonzero and abs(u),abs(v)<=H, put f(x)=(u/2)*(1+2*M*x)^(9/2)+(v/(2*M))*(1+2*M*x)^(9/4) and e(y)=exp(2*pi*i*y). For every real P>=max(H^2,6), norm(sum_(P<n<=2P) e(f(n)))<=32*H^(1/30)*M^(1/4)*P^(59/60). For every integer T>=1 with H<=T^(1/4), norm(sum_(0<=t<T) e(f(t)))/T<=128*M^(1/4)*H^(1/30)*T^(-1/60). Both frequency axes, signs, real dyadic endpoints and small T are included. This is the uniform quantitative Fourier input Q2 of the effective OOE theorem, not its counting or witness conclusion.
+
+**Declarations.** `mode` &mdash; kernel-checked, `Problems/Juggler/OOEEffectiveModes.lean:24`
+
+```lean
+def mode (M u v x : ℝ) : ℝ
+```
+
+**And.** `amplitude` &mdash; kernel-checked, `Problems/Juggler/OOEEffectiveModes.lean:495`
+
+```lean
+def amplitude (M H : ℝ) : ℝ
+```
+
+**And.** `dyadic_mode_power` &mdash; kernel-checked, `Problems/Juggler/OOEEffectiveModes.lean:497`
+
+```lean
+theorem dyadic_mode_power {M H P : ℝ} (u v : ℤ) (hM : 1 ≤ M) (hH : 1 ≤ H)
+    (hP : 6 ≤ P) (hHP : H^2 ≤ P) (huH : |(u:ℝ)| ≤ H) (hvH : |(v:ℝ)| ≤ H)
+    (hne : u ≠ 0 ∨ v ≠ 0) :
+    ‖∑ n ∈ Finset.Ioc ⌊P⌋ ⌊2*P⌋, phase (mode M u v (n:ℝ))‖ ≤
+      32*amplitude M H*P^(59/60:ℝ)
+```
+
+**And.** `normalized_mode_bound` &mdash; kernel-checked, `Problems/Juggler/OOEEffectiveModes.lean:622`
+
+> The precise uniform cutoff-mode input of the effective OOE counting theorem.
+
+```lean
+theorem normalized_mode_bound {M H : ℝ} (u v : ℤ) (hM : 1 ≤ M) (hH : 1 ≤ H)
+    (huH : |(u:ℝ)| ≤ H) (hvH : |(v:ℝ)| ≤ H) (hne : u ≠ 0 ∨ v ≠ 0)
+    (T : ℕ) (hT : 1 ≤ T) (hHT : H ≤ (T:ℝ)^(1/4:ℝ)) :
+    ‖∑ n ∈ range T, phase (mode M u v (n:ℝ))‖/(T:ℝ) ≤
+      128*M^(1/4:ℝ)*H^(1/30:ℝ)*(T:ℝ)^(-1/60:ℝ)
+```
+
+## 107. `BTA-fn-congr` &mdash; covers 0.45
 
 *Reads as: the claim asserts more than the declarations state (0.56).*
 
@@ -8462,7 +8504,7 @@ theorem equivK_iff_functionCongr (k : ℕ) (f g : ℤ[X]) :
     equivK k f g ↔ functionCongr k f g
 ```
 
-## 107. `BTA-x3-Q-visible` &mdash; covers 0.45
+## 108. `BTA-x3-Q-visible` &mdash; covers 0.45
 
 *Reads as: the claim asserts more than the declarations state (0.66).*
 
@@ -8481,7 +8523,7 @@ theorem q_visible_mod {t K s : Nat}
     (3 : Int) ^ K ∣ qCubic t u - qCubic t v
 ```
 
-## 108. `J-cyclemin-prefix-bunched-eooee` &mdash; covers 0.45
+## 109. `J-cyclemin-prefix-bunched-eooee` &mdash; covers 0.45
 
 *Reads as: the claim asserts more than the declarations state (0.55).*
 
@@ -8499,7 +8541,7 @@ theorem no_cycleMin_prefix_eooee {n a : ℕ} {u : List Branch}
     ¬CycleMin n (u ++ threeEvenEOOEE a)
 ```
 
-## 109. `J-fate-seed` &mdash; covers 0.45
+## 110. `J-fate-seed` &mdash; covers 0.45
 
 *Reads as: the claim asserts more than the declarations state (0.74).*
 
@@ -8582,7 +8624,7 @@ theorem blockTree_logMass_ge {m : ℕ} (hm : 3 ≤ m) (k : ℕ) :
     3 / 8 / ((m : ℝ) + 1) ≤ ∑ n ∈ blockTree m (k + 1), (1 : ℝ) / n
 ```
 
-## 110. `J-four-block-persistent-expanding` &mdash; covers 0.45
+## 111. `J-four-block-persistent-expanding` &mdash; covers 0.45
 
 *No failure mode above the line; coverage itself is doubtful.*
 
@@ -8615,7 +8657,7 @@ theorem four_block_pe_1999 :
       PersistentExpandingResidual 193753 887471
 ```
 
-## 111. `J-period-family-arithmetic-in-lean` &mdash; covers 0.45
+## 112. `J-period-family-arithmetic-in-lean` &mdash; covers 0.45
 
 *Reads as: the claim asserts more than the declarations state (0.6).*
 
@@ -8732,7 +8774,7 @@ theorem lastMember : fanMember 55 = betaDenoms.getD 15 0
 theorem member_strictMono : StrictMono fanMember
 ```
 
-## 112. `OST-np-reset-prefix` &mdash; covers 0.45
+## 113. `OST-np-reset-prefix` &mdash; covers 0.45
 
 *Reads as: the claim asserts more than the declarations state (0.65).*
 
@@ -8749,7 +8791,7 @@ theorem reset_prefix (r u : List ℤ) (hr : particularSum r = origin) :
     particularSum (r ++ u) = particularSum u
 ```
 
-## 113. `BTA-x3-x` &mdash; covers 0.46
+## 114. `BTA-x3-x` &mdash; covers 0.46
 
 *Reads as: the claim asserts more than the declarations state (0.64).*
 
@@ -8775,7 +8817,7 @@ theorem not_three_dvd_coeff_X_pow_three_sub_X :
     ¬ (3 : ℤ) ∣ coeff ((X : ℤ[X]) ^ 3 - X) 3
 ```
 
-## 114. `BTN-expanding-lambda` &mdash; covers 0.46
+## 115. `BTN-expanding-lambda` &mdash; covers 0.46
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -8801,7 +8843,7 @@ theorem lsdZ_expandingDGain_three (n : ℤ) :
     lsdZ (expandingDGain 3 n) = 0
 ```
 
-## 115. `J-paper-b-linearisation-E-lt-2` &mdash; covers 0.46
+## 116. `J-paper-b-linearisation-E-lt-2` &mdash; covers 0.46
 
 *Reads as: the claim asserts more than the declarations state (0.84).*
 
@@ -8852,7 +8894,7 @@ theorem two_odd_not_safe : ¬ (iter [O, O] < 2)
 theorem odd_even_safe : iter [O, E] < 2
 ```
 
-## 116. `BTN-carry-gain-3` &mdash; covers 0.47
+## 117. `BTN-carry-gain-3` &mdash; covers 0.47
 
 *Reads as: the claim asserts more than the declarations state (0.85).*
 
@@ -8877,7 +8919,7 @@ theorem carryGain3_unbounded (B : ℕ) :
     ∃ n : ℕ, B < (carryGain3 n).natAbs
 ```
 
-## 117. `J-cycle-induced-count-determinant` &mdash; covers 0.48
+## 118. `J-cycle-induced-count-determinant` &mdash; covers 0.48
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -8915,7 +8957,7 @@ theorem InducedPair.expanded_count_gcd {U V : List Branch} (h : InducedPair U V)
       (a * evenCount U + b * evenCount V) = Nat.gcd a b
 ```
 
-## 118. `J-fate-monotone-pairing-repair` &mdash; covers 0.49
+## 119. `J-fate-monotone-pairing-repair` &mdash; covers 0.49
 
 *Reads as: the claim asserts more than the declarations state (0.69).*
 

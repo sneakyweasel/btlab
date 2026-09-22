@@ -13514,5 +13514,25 @@
    "tests/tools/test_formalpedia.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-effective-ooe-fourier-modes",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For real M,H>=1 and integers u,v with (u,v) nonzero and abs(u),abs(v)<=H, put f(x)=(u/2)*(1+2*M*x)^(9/2)+(v/(2*M))*(1+2*M*x)^(9/4) and e(y)=exp(2*pi*i*y). For every real P>=max(H^2,6), norm(sum_(P<n<=2P) e(f(n)))<=32*H^(1/30)*M^(1/4)*P^(59/60). For every integer T>=1 with H<=T^(1/4), norm(sum_(0<=t<T) e(f(t)))/T<=128*M^(1/4)*H^(1/30)*T^(-1/60). Both frequency axes, signs, real dyadic endpoints and small T are included. This is the uniform quantitative Fourier input Q2 of the effective OOE theorem, not its counting or witness conclusion.",
+  "source": "docs/theory/juggler_ooe_effective_modes_note.md",
+  "lean": "Problems/Juggler/OOEEffectiveModes.lean",
+  "decl": [
+   "mode",
+   "amplitude",
+   "dyadic_mode_power",
+   "normalized_mode_bound"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": []
  }
 ]

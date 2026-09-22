@@ -69854,6 +69854,546 @@
     },
     {
       "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "def",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 16,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "falling",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "def",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 18,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "powerChain",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "def",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 21,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "modeChain",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "def",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 24,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "mode",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 27,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "modeChain_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 30,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "deriv_powerChain",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 41,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "modeChain_deriv",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 46,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "modeChain_five",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 53,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "modeChain_three_axis",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 59,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "modeChain_neg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The support includes the final increment beyond the last sampled integer.",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 65,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "support_scale",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 74,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "modeChain_support",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 81,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "scale_product",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 86,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "inverse_half_scale",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 96,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "inverse_three_quarters_scale",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "def",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 118,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "highScale",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "def",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 119,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "lowScale",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Lower-power interference cannot reverse the fifth derivative.",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 122,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "fifth_derivative_positive",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 182,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "third_derivative_positive",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 206,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "fifth_derivative_signed",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 225,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "third_derivative_signed",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "def",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 245,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "frequencyScale",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 247,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "power_le_frequencyScale",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 255,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "low_power_le_frequencyScale",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 277,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "high_leading_rate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 297,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "low_leading_rate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 317,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "sqrt_tail_lower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 331,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "inverse_scaled_power",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 341,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "quarter_inverse_half",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 345,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "twelfth_inverse_eighth",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 350,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "high_rate_terms",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 378,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "low_rate_terms",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The number of sampled integers is comparable to the real dyadic length.",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 401,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "dyadic_count_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 417,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "dyadic_high_mode",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 447,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "dyadic_low_mode",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every nonzero integer Fourier mode, on real dyadic intervals, with the explicit constant 32.",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 480,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "dyadic_mode_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "def",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 495,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "amplitude",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 497,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "dyadic_mode_power",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "def",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 510,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "positiveSum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 513,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "positiveSum_trivial",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 520,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "dyadic_power_margin",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Finite strong induction performs the dyadic decomposition, retaining its initial segment.",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 528,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "positiveSum_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 575,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "range_endpoint_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The all-length bound includes the small initial segment and the two endpoint terms.",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 598,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "initial_mode_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The precise uniform cutoff-mode input of the effective OOE counting theorem.",
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-effective-ooe-fourier-modes"
+      ],
+      "line": 622,
+      "module": "Problems.Juggler.OOEEffectiveModes",
+      "name": "normalized_mode_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/Problems/Juggler/OOEEFourierModes.lean",
       "kind": "def",
       "ledger": [],
@@ -70210,6 +70750,116 @@
       "line": 162,
       "module": "Problems.Juggler.OOEEPhaseComparison",
       "name": "correlation_comparison",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEERootPhase.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 16,
+      "module": "Problems.Juggler.OOEERootPhase",
+      "name": "secondFloor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEERootPhase.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 18,
+      "module": "Problems.Juggler.OOEERootPhase",
+      "name": "actualRoot",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEERootPhase.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 20,
+      "module": "Problems.Juggler.OOEERootPhase",
+      "name": "actualPhase",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEERootPhase.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 23,
+      "module": "Problems.Juggler.OOEERootPhase",
+      "name": "firstFloor_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEERootPhase.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 27,
+      "module": "Problems.Juggler.OOEERootPhase",
+      "name": "secondFloor_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEERootPhase.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 31,
+      "module": "Problems.Juggler.OOEERootPhase",
+      "name": "nestedPower_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An exact one-sided bound, including integer and square boundary hits.",
+      "file": "formal/Problems/Juggler/OOEERootPhase.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 39,
+      "module": "Problems.Juggler.OOEERootPhase",
+      "name": "actualRoot_error",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEERootPhase.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 76,
+      "module": "Problems.Juggler.OOEERootPhase",
+      "name": "actualRoot_abs_error",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEERootPhase.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 83,
+      "module": "Problems.Juggler.OOEERootPhase",
+      "name": "actual_phase_difference",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEERootPhase.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 89,
+      "module": "Problems.Juggler.OOEERootPhase",
+      "name": "actual_phase_comparison",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The mixed-mode theorem now uses the actual square root in the last guard.",
+      "file": "formal/Problems/Juggler/OOEERootPhase.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 115,
+      "module": "Problems.Juggler.OOEERootPhase",
+      "name": "finite_actual_mixed_modes",
       "trust": "kernel"
     },
     {
@@ -113979,6 +114629,7 @@
         "Problems.Juggler.OOEEMixedModes",
         "Problems.Juggler.OOEEPhaseComparison",
         "Problems.Juggler.OOEESmoothModes",
+        "Problems.Juggler.OOEEffectiveModes",
         "Problems.Juggler.OddCountMonotone",
         "Problems.Juggler.OddCubicPhase",
         "Problems.Juggler.OddLandingSets",
@@ -116387,6 +117038,14 @@
       ],
       "ledger": []
     },
+    "Problems.Juggler.OOEERootPhase": {
+      "declarations": 11,
+      "file": "formal/Problems/Juggler/OOEERootPhase.lean",
+      "imports": [
+        "Problems.Juggler.OOEEMixedModes"
+      ],
+      "ledger": []
+    },
     "Problems.Juggler.OOEESmoothModes": {
       "declarations": 2,
       "file": "formal/Problems/Juggler/OOEESmoothModes.lean",
@@ -116394,6 +117053,20 @@
         "Problems.Juggler.OOEEPhaseComparison"
       ],
       "ledger": []
+    },
+    "Problems.Juggler.OOEEffectiveModes": {
+      "declarations": 45,
+      "file": "formal/Problems/Juggler/OOEEffectiveModes.lean",
+      "imports": [
+        "BTCalculus.HigherDerivative"
+      ],
+      "ledger": [
+        {
+          "id": "J-effective-ooe-fourier-modes",
+          "statement": "For real M,H>=1 and integers u,v with (u,v) nonzero and abs(u),abs(v)<=H, put f(x)=(u/2)*(1+2*M*x)^(9/2)+(v/(2*M))*(1+2*M*x)^(9/4) and e(y)=exp(2*pi*i*y). For every real P>=max(H^2,6), norm(sum_(P<n<=2P) e(f(n)))<=32*H^(1/30)*M^(1/4)*P^(59/60). For every integer T>=1 with H<=T^(1/4), norm(sum_(0<=t<T) e(f(t)))/T<=128*M^(1/4)*H^(1/30)*T^(-1/60). Both frequency axes, signs, real dyadic endpoints and small T are included. This is the uniform quantitative Fourier input Q2 of the effective OOE theorem, not its counting or witness conclusion.",
+          "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
     },
     "Problems.Juggler.OddCountMonotone": {
       "declarations": 7,
@@ -118070,13 +118743,13 @@
     }
   },
   "totals": {
-    "declarations": 8887,
-    "declarations_with_a_ledger_row": 6056,
-    "ledger_rows_naming_a_file": 507,
-    "modules": 372,
+    "declarations": 8943,
+    "declarations_with_a_ledger_row": 6101,
+    "ledger_rows_naming_a_file": 508,
+    "modules": 374,
     "trust": {
       "compiler": 56,
-      "kernel": 8831
+      "kernel": 8887
     }
   }
 }

@@ -394,9 +394,246 @@ theorem low_rate_terms {M H P v N : ℝ} (hM : 1 ≤ M) (hH : 1 ≤ H)
     (by norm_num : (0:ℝ) ≤ 1/2) (show (1/4:ℝ)*P^1 ≤ N/2 by rw [Real.rpow_one]; linarith)
   have htail := inverse_scaled_power hP0 (by norm_num : (0:ℝ)<1/4)
     (by norm_num : (0:ℝ) ≤ 1/2) (show (1/4:ℝ)*P^(5/8:ℝ) ≤ N*Real.sqrt ((1/2:ℝ)*lowScale M P v) by simpa using ht)
-  have h4 := quarter_inverse_half
-  norm_num only at h4 hterm htail hp1 hp2 ⊢
-  rw [h4] at hterm htail
+  norm_num at hterm htail hp1 hp2 ⊢
   constructor <;> linarith
+
+/-- The number of sampled integers is comparable to the real dyadic length. -/
+theorem dyadic_count_bounds {P : ℝ} (hP : 6 ≤ P) :
+    0 < integerCount P (2*P) ∧ P/2 ≤ (integerCount P (2*P) : ℝ) ∧
+      (integerCount P (2*P) : ℝ) ≤ (7/6:ℝ)*P := by
+  have hf : ⌊P⌋ ≤ ⌊2*P⌋ := Int.floor_mono (by linarith)
+  have he : ((integerCount P (2*P) : ℕ) : ℤ) = ⌊2*P⌋-⌊P⌋ :=
+    Int.toNat_of_nonneg (sub_nonneg.mpr hf)
+  have heR : (integerCount P (2*P) : ℝ) = (⌊2*P⌋:ℝ)-(⌊P⌋:ℝ) := by exact_mod_cast he
+  have hlow : P-1 < (integerCount P (2*P) : ℝ) := by
+    rw [heR]
+    linarith [Int.lt_floor_add_one (2*P), Int.floor_le P]
+  have hhigh : (integerCount P (2*P) : ℝ) ≤ P+1 := by
+    rw [heR]
+    linarith [Int.floor_le (2*P), Int.lt_floor_add_one P]
+  refine ⟨?_, by linarith, by linarith⟩
+  exact_mod_cast (show (0:ℝ) < integerCount P (2*P) by linarith)
+
+theorem dyadic_high_mode {M H P u v : ℝ} (hM : 1 ≤ M) (hH : 1 ≤ H)
+    (hP : 6 ≤ P) (hHP : H^2 ≤ P) (hu : 1 ≤ |u|) (huH : |u| ≤ H) (hvH : |v| ≤ H) :
+    ‖∑ n ∈ Finset.Ioc ⌊P⌋ ⌊2*P⌋, phase (mode M u v (n:ℝ))‖ ≤
+      32*P*frequencyScale M H P := by
+  have hM0 : 0 < M := by linarith
+  have hP0 : 0 < P := by linarith
+  have hHP' : H ≤ P := by nlinarith
+  have hg : 0 ≤ frequencyScale M H P := by unfold frequencyScale; positivity
+  obtain ⟨hN, hlo, hhi⟩ := dyadic_count_bounds hP
+  have hlam : 0 < 100*highScale M P |u| := by unfold highScale; positivity
+  have hf := modeChain_support hM hP u v 5
+  have htop := fifth_derivative_signed hM hP hHP' hu hvH
+  have hb := fifth_derivative_rate (modeChain M u v) (integerStart P) hN hlam
+    (fun j hj x hx => hf j hj x (integer_support (by linarith : P ≤ 2*P) hx))
+    (htop.imp (fun h x hx => h x (integer_support (by linarith : P ≤ 2*P) hx))
+      (fun h x hx => h x (integer_support (by linarith : P ≤ 2*P) hx)))
+  have hlead := high_leading_rate hM hH (by linarith : 1 ≤ P) hu huH
+  have hterms := high_rate_terms hM hH (by linarith : 1 ≤ P) hu hlo
+  have hm := max_le hlead (max_le hterms.1 hterms.2)
+  rw [integer_sum_eq_range]
+  simp only [modeChain_zero] at hb
+  calc ‖∑ n ∈ range (integerCount P (2*P)), phase (mode M u v (integerStart P+n))‖ ≤
+         7*integerCount P (2*P) * max ((100*highScale M P |u|)^(1/30:ℝ))
+           (max (((integerCount P (2*P):ℝ)/6)^(-1/8:ℝ))
+             (((integerCount P (2*P):ℝ)*Real.sqrt (100*highScale M P |u|))^(-1/8:ℝ))) := by
+               simpa only [neg_div] using hb
+       _ ≤ 7*integerCount P (2*P)*(2*frequencyScale M H P) := by gcongr
+       _ ≤ 32*P*frequencyScale M H P := by
+         nlinarith [mul_le_mul_of_nonneg_right hhi hg]
+
+theorem dyadic_low_mode {M H P v : ℝ} (hM : 1 ≤ M) (hH : 1 ≤ H)
+    (hP : 6 ≤ P) (hHP : H^2 ≤ P) (hv : 1 ≤ |v|) (hvH : |v| ≤ H) :
+    ‖∑ n ∈ Finset.Ioc ⌊P⌋ ⌊2*P⌋, phase (mode M 0 v (n:ℝ))‖ ≤
+      32*P*frequencyScale M H P := by
+  have hM0 : 0 < M := by linarith
+  have hP0 : 0 < P := by linarith
+  have hg : 0 ≤ frequencyScale M H P := by unfold frequencyScale; positivity
+  obtain ⟨hN, hlo, hhi⟩ := dyadic_count_bounds hP
+  have hlam : 0 < (1/2:ℝ)*lowScale M P |v| := by unfold lowScale; positivity
+  have hf := modeChain_support hM hP 0 v 3
+  have htop := third_derivative_signed (v := v) hM hP
+  have hb := third_derivative_rate (modeChain M 0 v) (integerStart P) hN hlam
+    (fun j hj x hx => hf j hj x (integer_support (by linarith : P ≤ 2*P) hx))
+    (htop.imp (fun h x hx => h x (integer_support (by linarith : P ≤ 2*P) hx))
+      (fun h x hx => h x (integer_support (by linarith : P ≤ 2*P) hx)))
+  have hlead := low_leading_rate hM hH (by linarith : 1 ≤ P) hv hvH hHP
+  have hterms := low_rate_terms hM hH (by linarith : 1 ≤ P) hv hlo
+  have hm : max (((1/2:ℝ)*lowScale M P |v|)^(1/6:ℝ))
+      (max (((integerCount P (2*P):ℝ)/2)^(-1/2:ℝ))
+        (((integerCount P (2*P):ℝ)*Real.sqrt ((1/2:ℝ)*lowScale M P |v|))^(-1/2:ℝ))) ≤
+      2*frequencyScale M H P := max_le (by linarith) (max_le hterms.1 hterms.2)
+  rw [integer_sum_eq_range]
+  simp only [modeChain_zero] at hb
+  calc ‖∑ n ∈ range (integerCount P (2*P)), phase (mode M 0 v (integerStart P+n))‖ ≤
+         12*integerCount P (2*P) * max (((1/2:ℝ)*lowScale M P |v|)^(1/6:ℝ))
+           (max (((integerCount P (2*P):ℝ)/2)^(-1/2:ℝ))
+             (((integerCount P (2*P):ℝ)*Real.sqrt ((1/2:ℝ)*lowScale M P |v|))^(-1/2:ℝ))) := by
+               simpa only [neg_div] using hb
+       _ ≤ 12*integerCount P (2*P)*(2*frequencyScale M H P) := by gcongr
+       _ ≤ 32*P*frequencyScale M H P := by
+         nlinarith [mul_le_mul_of_nonneg_right hhi hg]
+
+/-- Every nonzero integer Fourier mode, on real dyadic intervals, with the explicit constant 32. -/
+theorem dyadic_mode_bound {M H P : ℝ} (u v : ℤ) (hM : 1 ≤ M) (hH : 1 ≤ H)
+    (hP : 6 ≤ P) (hHP : H^2 ≤ P) (huH : |(u:ℝ)| ≤ H) (hvH : |(v:ℝ)| ≤ H)
+    (hne : u ≠ 0 ∨ v ≠ 0) :
+    ‖∑ n ∈ Finset.Ioc ⌊P⌋ ⌊2*P⌋, phase (mode M u v (n:ℝ))‖ ≤
+      32*P*frequencyScale M H P := by
+  by_cases hu : u = 0
+  · subst u
+    have hv : v ≠ 0 := hne.resolve_left (by simp)
+    have hv1 : (1:ℤ) ≤ |v| := by have h := abs_pos.mpr hv; omega
+    have hv' : (1:ℝ) ≤ |(v:ℝ)| := by exact_mod_cast hv1
+    simpa only [Int.cast_zero] using dyadic_low_mode hM hH hP hHP hv' hvH
+  · have hu1 : (1:ℤ) ≤ |u| := by have h := abs_pos.mpr hu; omega
+    have hu' : (1:ℝ) ≤ |(u:ℝ)| := by exact_mod_cast hu1
+    exact dyadic_high_mode hM hH hP hHP hu' huH hvH
+
+def amplitude (M H : ℝ) : ℝ := H^(1/30:ℝ)*M^(1/4:ℝ)
+
+theorem dyadic_mode_power {M H P : ℝ} (u v : ℤ) (hM : 1 ≤ M) (hH : 1 ≤ H)
+    (hP : 6 ≤ P) (hHP : H^2 ≤ P) (huH : |(u:ℝ)| ≤ H) (hvH : |(v:ℝ)| ≤ H)
+    (hne : u ≠ 0 ∨ v ≠ 0) :
+    ‖∑ n ∈ Finset.Ioc ⌊P⌋ ⌊2*P⌋, phase (mode M u v (n:ℝ))‖ ≤
+      32*amplitude M H*P^(59/60:ℝ) := by
+  have h := dyadic_mode_bound u v hM hH hP hHP huH hvH hne
+  have hp : P*P^(-1/60:ℝ) = P^(59/60:ℝ) := by
+    convert (Real.rpow_add (by linarith : 0 < P) 1 (-1/60)).symm using 1 <;> norm_num
+  apply h.trans_eq
+  unfold frequencyScale amplitude
+  rw [show 32*P*(H^(1/30:ℝ)*M^(1/4:ℝ)*P^(-1/60:ℝ)) =
+    32*(H^(1/30:ℝ)*M^(1/4:ℝ))*(P*P^(-1/60:ℝ)) by ring, hp]
+
+def positiveSum (M : ℝ) (u v : ℤ) (T : ℕ) : ℂ :=
+  ∑ n ∈ Finset.Ioc (0:ℤ) (T:ℤ), phase (mode M u v (n:ℝ))
+
+theorem positiveSum_trivial (M : ℝ) (u v : ℤ) (T : ℕ) :
+    ‖positiveSum M u v T‖ ≤ T := by
+  unfold positiveSum
+  calc ‖∑ n ∈ Finset.Ioc (0:ℤ) (T:ℤ), phase (mode M u v (n:ℝ))‖ ≤
+         ∑ n ∈ Finset.Ioc (0:ℤ) (T:ℤ), ‖phase (mode M u v (n:ℝ))‖ := norm_sum_le _ _
+       _ = T := by simp [phase_norm, Int.card_Ioc]
+
+theorem dyadic_power_margin : (3/2:ℝ) ≤ (2:ℝ)^(59/60:ℝ) := by
+  have h : (3/2:ℝ) ≤ (2:ℝ)^(3/4:ℝ) := by
+    apply (Real.rpow_le_rpow_iff (by norm_num) (by positivity) (by norm_num : (0:ℝ)<4)).mp
+    rw [← Real.rpow_mul (by norm_num)]
+    norm_num
+  exact h.trans (Real.rpow_le_rpow_of_exponent_le (by norm_num) (by norm_num))
+
+/-- Finite strong induction performs the dyadic decomposition, retaining its initial segment. -/
+theorem positiveSum_bound {M H : ℝ} (u v : ℤ) (hM : 1 ≤ M) (hH : 1 ≤ H)
+    (huH : |(u:ℝ)| ≤ H) (hvH : |(v:ℝ)| ≤ H) (hne : u ≠ 0 ∨ v ≠ 0) (T : ℕ) :
+    ‖positiveSum M u v T‖ ≤ 64*amplitude M H*(T:ℝ)^(59/60:ℝ)+14*H^2 := by
+  have hA : 0 ≤ amplitude M H := by unfold amplitude; positivity
+  induction T using Nat.strong_induction_on with
+  | h T ih =>
+    by_cases hlarge : max (H^2) 6 ≤ (T:ℝ)/2
+    · let P : ℝ := (T:ℝ)/2
+      have hP : 6 ≤ P := (le_max_right _ _).trans hlarge
+      have hHP : H^2 ≤ P := (le_max_left _ _).trans hlarge
+      have hP0 : 0 < P := by linarith
+      let K : ℕ := ⌊P⌋₊
+      have hK : (K:ℝ) ≤ P := Nat.floor_le hP0.le
+      have hKlt : K < T := by
+        have he : (K:ℝ) < T := by dsimp [P] at hP hK; linarith
+        exact_mod_cast he
+      have hKint : (K:ℤ) = ⌊P⌋ := Int.natCast_floor_eq_floor hP0.le
+      have hPT : 2*P = (T:ℝ) := by dsimp [P]; ring
+      have hKT : (K:ℤ) ≤ T := by exact_mod_cast hKlt.le
+      have hsplit : positiveSum M u v T = positiveSum M u v K +
+          ∑ n ∈ Finset.Ioc ⌊P⌋ ⌊2*P⌋, phase (mode M u v (n:ℝ)) := by
+        rw [hPT, Int.floor_natCast, ← hKint]
+        unfold positiveSum
+        rw [← Finset.Ioc_union_Ioc_eq_Ioc (show (0:ℤ) ≤ K by omega) hKT,
+          sum_union (Finset.Ioc_disjoint_Ioc_of_le le_rfl)]
+      have hi := ih K hKlt
+      have hd := dyadic_mode_power u v hM hH hP hHP huH hvH hne
+      have hkpow := Real.rpow_le_rpow (Nat.cast_nonneg K) hK (by norm_num : (0:ℝ) ≤ 59/60)
+      have hgeo : (3/2:ℝ)*P^(59/60:ℝ) ≤ (T:ℝ)^(59/60:ℝ) := by
+        calc (3/2:ℝ)*P^(59/60:ℝ) ≤ (2:ℝ)^(59/60:ℝ)*P^(59/60:ℝ) := by
+               gcongr; exact dyadic_power_margin
+             _ = (T:ℝ)^(59/60:ℝ) := by rw [← Real.mul_rpow (by norm_num) hP0.le, hPT]
+      rw [hsplit]
+      have hn := norm_add_le (positiveSum M u v K)
+        (∑ n ∈ Finset.Ioc ⌊P⌋ ⌊2*P⌋, phase (mode M u v (n:ℝ)))
+      nlinarith [mul_le_mul_of_nonneg_left hkpow hA, mul_le_mul_of_nonneg_left hgeo hA]
+    · have hsmall : (T:ℝ) ≤ 14*H^2 := by
+        have ht : (T:ℝ)/2 < max (H^2) 6 := not_le.mp hlarge
+        have hH2 : 1 ≤ H^2 := by nlinarith
+        rcases le_total (H^2) 6 with hh | hh
+        · rw [max_eq_right hh] at ht
+          linarith
+        · rw [max_eq_left hh] at ht
+          nlinarith
+      exact (positiveSum_trivial M u v T).trans
+        (hsmall.trans (le_add_of_nonneg_left (by positivity)))
+
+theorem range_endpoint_bound (M : ℝ) (u v : ℤ) (T : ℕ) :
+    ‖∑ n ∈ range T, phase (mode M u v (n:ℝ))‖ ≤ ‖positiveSum M u v T‖+2 := by
+  have hs := integer_sum_eq_range (mode M u v) 0 (T:ℝ)
+  simp only [Int.floor_zero, Int.floor_natCast] at hs
+  have hc : integerCount 0 (T:ℝ) = T := by simp [integerCount]
+  rw [hc] at hs
+  have hpos : positiveSum M u v T = ∑ n ∈ range T, phase (mode M u v ((n+1:ℕ):ℝ)) := by
+    simpa [positiveSum, integerStart, add_comm] using hs
+  have he : (∑ n ∈ range T, phase (mode M u v (n:ℝ))) = positiveSum M u v T +
+      phase (mode M u v 0) - phase (mode M u v T) := by
+    have h := Finset.sum_range_succ' (fun n : ℕ => phase (mode M u v (n:ℝ))) T
+    rw [sum_range_succ, ← hpos] at h
+    simp only [Nat.cast_zero] at h
+    exact eq_sub_iff_add_eq.mpr h
+  rw [he]
+  calc ‖positiveSum M u v T + phase (mode M u v 0) - phase (mode M u v T)‖ ≤
+         ‖positiveSum M u v T + phase (mode M u v 0)‖ + ‖phase (mode M u v T)‖ := norm_sub_le _ _
+       _ ≤ ‖positiveSum M u v T‖+2 := by
+         have h := norm_add_le (positiveSum M u v T) (phase (mode M u v 0))
+         simp only [phase_norm] at h ⊢
+         linarith
+
+/-- The all-length bound includes the small initial segment and the two endpoint terms. -/
+theorem initial_mode_bound {M H : ℝ} (u v : ℤ) (hM : 1 ≤ M) (hH : 1 ≤ H)
+    (huH : |(u:ℝ)| ≤ H) (hvH : |(v:ℝ)| ≤ H) (hne : u ≠ 0 ∨ v ≠ 0)
+    (T : ℕ) (hT : 1 ≤ T) (hHT : H ≤ (T:ℝ)^(1/4:ℝ)) :
+    ‖∑ n ∈ range T, phase (mode M u v (n:ℝ))‖ ≤
+      128*amplitude M H*(T:ℝ)^(59/60:ℝ) := by
+  have hT1 : (1:ℝ) ≤ T := by exact_mod_cast hT
+  have hT0 : (0:ℝ) < T := by linarith
+  have hH0 : 0 ≤ H := by linarith
+  have hH2 : 1 ≤ H^2 := by nlinarith
+  have hA1 : 1 ≤ amplitude M H :=
+    one_le_mul_of_one_le_of_one_le (Real.one_le_rpow hH (by norm_num))
+      (Real.one_le_rpow hM (by norm_num))
+  have hA : 0 ≤ amplitude M H := by linarith
+  have hh := pow_le_pow_left₀ hH0 hHT 2
+  rw [← Real.rpow_natCast ((T:ℝ)^(1/4:ℝ)) 2, ← Real.rpow_mul hT0.le] at hh
+  norm_num only at hh
+  have hp := Real.rpow_le_rpow_of_exponent_le hT1 (by norm_num : (1/2:ℝ) ≤ 59/60)
+  have hb := positiveSum_bound u v hM hH huH hvH hne T
+  have he := range_endpoint_bound M u v T
+  have hc : H^2 ≤ amplitude M H*(T:ℝ)^(59/60:ℝ) :=
+    hh.trans (hp.trans (le_mul_of_one_le_left (by positivity) hA1))
+  nlinarith [Real.rpow_pos_of_pos hT0 (59/60)]
+
+/-- The precise uniform cutoff-mode input of the effective OOE counting theorem. -/
+theorem normalized_mode_bound {M H : ℝ} (u v : ℤ) (hM : 1 ≤ M) (hH : 1 ≤ H)
+    (huH : |(u:ℝ)| ≤ H) (hvH : |(v:ℝ)| ≤ H) (hne : u ≠ 0 ∨ v ≠ 0)
+    (T : ℕ) (hT : 1 ≤ T) (hHT : H ≤ (T:ℝ)^(1/4:ℝ)) :
+    ‖∑ n ∈ range T, phase (mode M u v (n:ℝ))‖/(T:ℝ) ≤
+      128*M^(1/4:ℝ)*H^(1/30:ℝ)*(T:ℝ)^(-1/60:ℝ) := by
+  have hT0 : (0:ℝ) < T := by exact_mod_cast (show 0 < T by omega)
+  have hp : (T:ℝ)^(59/60:ℝ)/(T:ℝ) = (T:ℝ)^(-1/60:ℝ) := by
+    convert (Real.rpow_sub hT0 (59/60) 1).symm using 1 <;> norm_num
+  calc ‖∑ n ∈ range T, phase (mode M u v (n:ℝ))‖/(T:ℝ) ≤
+         (128*amplitude M H*(T:ℝ)^(59/60:ℝ))/(T:ℝ) :=
+           div_le_div_of_nonneg_right (initial_mode_bound u v hM hH huH hvH hne T hT hHT) hT0.le
+       _ = 128*M^(1/4:ℝ)*H^(1/30:ℝ)*(T:ℝ)^(-1/60:ℝ) := by
+         rw [show (128*amplitude M H*(T:ℝ)^(59/60:ℝ))/(T:ℝ) =
+           128*amplitude M H*((T:ℝ)^(59/60:ℝ)/(T:ℝ)) by ring, hp]
+         unfold amplitude
+         ring
 
 end Problems.Juggler.OOEEffectiveModes
