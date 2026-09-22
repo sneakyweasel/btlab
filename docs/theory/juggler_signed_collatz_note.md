@@ -2,7 +2,7 @@
 title: "The Juggler Map and the 3n±1 Maps"
 subtitle: "Exact Coding and Arithmetic Obstructions"
 author: Philippe Cochin
-date: "22 September 2026 · Version 0.5.0"
+date: "22 September 2026 · Version 0.6.0"
 ---
 
 ## Abstract
@@ -16,7 +16,10 @@ exactly when an explicit word divisibility holds. A family of genuine
 Juggler prefixes shows that arbitrarily precise modular return does not
 force that divisibility. We count this constructed family with an exact
 leading constant and prescribe its residues throughout the final even run.
-On the positive integers, we prove that every
+For the fixed word OOE, we also give an explicit counting error and a
+uniform polynomial first-witness bound in the modulus; this quantitative
+extension is a written proof pending independent review and full Lean
+verification. On the positive integers, we prove that every
 \(3n-1\) target prime to three has at least \(X^{21/25}\) ancestors below
 \(X\), for all sufficiently large \(X\). This signed adaptation uses
 height-corrected inverse-tree inequalities, a closed root domain, and an
@@ -87,8 +90,8 @@ coding with monotonicity within each branch. The integrality criterion
 is the classical affine cycle equation stated alongside this refinement.
 Section 4 gives a quantified obstruction involving actual floor
 iterates. Its counting and residue corollaries extract further consequences
-of classical power equidistribution; no new general distribution criterion
-or quantitative discrepancy estimate is claimed.
+of classical power equidistribution; no new general distribution criterion is claimed. Theorem 4.4 adds
+a quantitative specialization for the single word OOE.
 
 Krasikov and Lagarias [KL03, Theorem 6.1] prove an ancestor exponent
 \(0.84\) for every positive target prime to three under \(C_{+1}\).
@@ -113,7 +116,7 @@ floors nor the analytic estimates in [B].
 
 ### 1.2. Proof status
 
-This is the living preprint, version 0.5.0. It has not been
+This is the living preprint, version 0.6.0. It has not been
 deposited or independently refereed. Mathematical priority for the
 signed adaptation and the isolated obstruction results remains subject
 to specialist review.
@@ -122,7 +125,10 @@ Theorems 2.1, 3.2, 4.1, 5.1, and 6.1 and Corollaries 4.2-4.3 have compiled Lean
 statements; Appendix B identifies their precise scope. Theorem 4.1 is
 unconditional in Lean: first-derivative estimates, mixed-power cancellation,
 and the Fourier criterion prove its simultaneous-box recurrence input.
-The finite certificate is checked with exact integers
+Theorem 4.4 and Appendix C are a separate quantitative extension with a
+written proof. They use the explicitly cited derivative estimate [AR24];
+their complete counting and witness conclusions are not in the selected
+Lean audit. The finite certificate is checked with exact integers
 both in Lean and by an independent Python verifier. The numerical
 search that found its weights is outside the proof. Kernel checking,
 agreement between prose and formal statements, and independent
@@ -433,6 +439,47 @@ Both corollaries fix \(a,b,M\), the residues, and any
 \(\varepsilon>0\) before taking limits. They provide neither a bound
 on the first witness nor estimates uniform in growing parameters,
 and do not concatenate the finite prefixes into an infinite orbit.
+
+### 4.1. Effective returns for the word OOE
+
+The preceding results fix the modulus before taking a limit. The next
+result retains its dependence explicitly, for one fixed word.
+For integers \(M,T\ge1\), put \(s_t=1+2Mt\) and
+\[
+A_M(T)=\#\{0\le t<T:s_t\ge16,\quad
+ \lfloor s_t^{9/2}\rfloor\equiv0\pmod2,\quad
+ \lfloor s_t^{9/4}\rfloor\equiv1\pmod{2M}\}.
+\]
+
+**Theorem 4.4 (effective OOE returns; written proof).** For every
+\(M,T\ge1\),
+\[
+\begin{split}
+\left|A_M(T)-\frac{T}{4M}\right|
+&\le\left[5+128M^{1/4}\left(3+\frac{\log T}{16}\right)^2\right]T^{63/64}+8\\
+&\le2^{14}M^{1/4}T^{127/128}.
+\end{split}
+\tag{4.7}
+\]
+In particular, some \(0\le t<2^{2176}M^{160}\) gives a start
+\(n=s_t^2<2^{4354}M^{322}\) whose actual three-step itinerary is
+OOE, whose intermediate states are at least \(n\), and whose exit
+is greater than \(n\) and congruent to \(n\equiv1\pmod{2M}\).
+At \(T=2^{2176}M^{160}\), there are at least \(T/(8M)\)
+such parameters.
+
+*Proof.* Appendix C proves the uniform Fourier estimates, the finite
+half-open box bound, their dyadic assembly, and the witness extraction.
+The box is \([0,1/2)\times[1/(2M),1/M)\); its area is \(1/(4M)\),
+including when \(M=1\). The exact construction of Theorem 4.1 with
+\(a=2,b=1\) converts these parameter conditions into the asserted
+orbit conditions. \(\square\)
+
+The constants are theoretical bounds, not practical search budgets.
+This OOE word has periodic-word denominator one; Theorem 4.4 does
+not make the large-denominator family of Theorem 4.1 effective.
+Its written analytic proof has passed an internal audit, but independent
+review and complete quantitative Lean verification remain outstanding.
 
 ## 5. A signed ancestor-count theorem
 
@@ -894,6 +941,236 @@ simultaneous-box premise is discharged by the included analytic proofs.
 Review of the correspondence between those statements and
 the prose is a separate responsibility.
 
+## Appendix C. Quantitative OOE proof
+
+This appendix proves Theorem 4.4. Write \(e(x)=\exp(2\pi i x)\),
+\(s=1+2Mt\), \(u=\lfloor s^{9/2}\rfloor\), and
+\(v=\lfloor s^{9/4}\rfloor\). Its analytic proof is written mathematics;
+the selected 49-declaration audit covers the earlier qualitative results.
+The finite Fejer estimate has a separate kernel-checked proof, but that
+does not certify the complete quantitative theorem.
+
+### C.2 Explicit analytic input
+
+Write \(e(x)=\exp(2\cdot \pi\cdot i\cdot x).\) We use J. Arias de Reyna [AR24],
+Theorem 11 and Table 1, only at derivative orders \(k=3\) and \(k=5.\)
+In notation adapted to this proof, if \(floor(Y)>k,\) f has continuous
+derivatives through order k on (X,X+Y], and its k-th derivative lies
+between positive lambda and Lambda,
+then, with \(D=2^k,\)
+\[
+\frac1Y\left|\sum_{X<m\le X+Y}e(f(m))\right|
+\le 11\max\left\{
+ \left(\frac{\Lambda}{\lambda Y}\right)^{2/D},
+ \left(\frac{\Lambda^2}{\lambda}\right)^{1/(D-2)},
+ (\lambda Y^k)^{-2/D}\right\}. \tag{C.5}
+\]
+The source gives constants smaller than 11 for both orders. A derivative
+of constant negative sign is handled by replacing f by -f, which
+conjugates the exponential sum. No monotonicity hypothesis is needed
+in this higher-derivative estimate. This cited result is a written
+proof input, not an imported Lean theorem or a new claim of this project.
+Our phases are smooth for \(x>0,\) and every retained interval has \(Y=N\ge 6,\)
+so \(floor(Y)>5\ge k.\) The normalization is by the real interval length Y,
+not by the number of integer summands.
+
+### C.3 Uniform estimates for every truncated Fourier mode
+
+Let \(H\ge 1\) be an integer and let integers \(h_1,h_2\) satisfy
+\(0<\max(|h_1|,|h_2|)\le H.\) Consider
+\[
+f_h(x)=\frac{h_1}{2}(1+2Mx)^{9/2}
+       +\frac{h_2}{2M}(1+2Mx)^{9/4}. \tag{C.6}
+\]
+On a real interval \(N<x\le 2N\) with \(N\ge \max(H^2,6),\)
+\[
+2MN\le1+2Mx\le5MN. \tag{C.7}
+\]
+
+### Nonzero high-power coefficient
+
+If \(h_1\) is nonzero, the fifth derivative is
+\[
+f_h^{(5)}(x)=\frac{945}{2}h_1M^5s^{-1/2}
+             +\frac{945}{64}h_2M^4s^{-11/4},\qquad s=1+2Mx.
+\]
+The absolute ratio of the second term to the first is at most
+\(H\cdot s^{-9/4}/(32M)\le 1/32,\) using \(|h_1|\ge 1,\) \(N\ge H,\) and \(s\ge 2MN.\)
+The derivative therefore has the sign of \(h_1\) throughout the interval.
+The weaker factors 1/2 and 3/2 around its leading term give valid bounds
+\[
+\lambda=100|h_1|M^{9/2}N^{-1/2},\qquad
+\Lambda=600|h_1|M^{9/2}N^{-1/2}. \tag{C.8}
+\]
+Indeed \(945/(4\cdot sqrt(5))>100\) and \(2835/(4\cdot sqrt(2))<600.\)
+Substitution into (C.5), with \(k=5,\) gives
+\[
+\frac1N\left|\sum_{N<m\le2N}e(f_h(m))\right|
+\le32H^{1/30}M^{3/20}N^{-1/60}. \tag{C.9}
+\]
+For clarity, the three terms before enlargement are bounded by
+\(11\cdot (6/N)^{1/16},\)
+\(11\cdot (3600\cdot H\cdot M^{9/2}\cdot N^{-1/2})^{1/30},\) and
+\(11\cdot (100\cdot M^{9/2}\cdot N^{9/2})^{-1/16}.\)
+The scalar inequalities \(6<2^16\) and \(3600<2^30\) suffice for the constant 32.
+
+### Vanishing high-power coefficient
+
+If \(h_1=0,\) then \(h_2\) is nonzero and
+\[
+f_h^{(3)}(x)=\frac{45}{16}h_2M^2s^{-3/4}.
+\]
+Use
+\[
+\lambda=\tfrac12|h_2|M^{5/4}N^{-3/4},\qquad
+\Lambda=2|h_2|M^{5/4}N^{-3/4}.
+\]
+The endpoint comparisons follow from
+\(45/(16\cdot 5^{3/4})>1/2\) and \(45/(16\cdot 2^{3/4})<2.\)
+Estimate (C.5), now with \(k=3,\) bounds the normalized sum by
+\(22\cdot H^{1/6}\cdot M^{5/24}\cdot N^{-1/8}.\)
+The three terms before enlargement are at most
+\(11\cdot (4/N)^{1/4},\)
+\(11\cdot (8\cdot H\cdot M^{5/4}\cdot N^{-3/4})^{1/6},\) and
+\(11\cdot ((1/2)\cdot M^{5/4}\cdot N^{9/4})^{-1/4}.\)
+Each is bounded by the displayed common expression using \(H,M,N\ge 1.\)
+Since \(H^2\le N,\)
+\[
+H^{1/6}N^{-1/8}
+\le H^{1/30}N^{-7/120}
+\le H^{1/30}N^{-1/60}.
+\]
+Together with (C.9), this proves the single bound
+\[
+\frac1N\left|\sum_{N<m\le2N}e(f_h(m))\right|
+\le32H^{1/30}M^{1/4}N^{-1/60}. \tag{C.10}
+\]
+All signs and both coordinate-axis cases are covered.
+
+### Passage to an initial segment
+
+Suppose \(1\le H\le T^{1/4}.\) Split (0,T] into intervals (N,2N] with
+\(N=T/2,\) T/4, ... while \(N\ge \max(H^2,6).\) The remaining initial interval
+is (0,R], where \(R<2\cdot \max(H^2,6);\) take \(R=T\) if no interval is retained.
+The intervals are disjoint as half-open sets, even at noninteger endpoints.
+The remainder has floor(R) integer summands. The change from indices
+1,...,T to 0,...,T-1 is exactly \(e(f_h(0))-e(f_h(T)),\) of norm at most 2.
+Their total contribution is at most
+\(floor(R)+2\le 2H^2+14\le 16H^2,\) including when no interval is retained.
+Moreover,
+\[
+\sum_{j\ge0}(T/2^{j+1})^{59/60}
+=\frac{T^{59/60}}{2^{59/60}-1}<2T^{59/60}.
+\]
+Since \(H^2\le T^{1/2},\) (C.10) and the initial remainder imply
+\[
+\frac1T\left|\sum_{0\le t<T}e(f_h(t))\right|
+\le128M^{1/4}H^{1/30}T^{-1/60}. \tag{C.11}
+\]
+The intermediate constant is at most \(64+16=80;\) 128 is a convenient
+enlargement. Integer endpoints require no integrality of the dyadic N.
+
+### C.4 An explicit half-open box estimate
+
+For arbitrary points \(z_0,...,z_{T-1}\) on the two-dimensional unit torus,
+let \(E_H\) bound the normalized sums of every nonzero Fourier mode with
+\(\max(|h_1|,|h_2|)\le H.\) For every half-open product of circular intervals B,
+\[
+\left|\frac{\#\{t<T:z_t\in B\}}T-|B|\right|
+\le\frac5{\sqrt{H+1}}+(3+2\log H)^2E_H. \tag{C.12}
+\]
+Here is a proof with constants and endpoints retained. The Fejer kernel
+\[
+F_H(x)=\frac1{H+1}\left|\sum_{j=0}^H e(jx)\right|^2
+\]
+is nonnegative, has integral one, and has Fourier coefficients
+1-|h|/(H+1) for \(|h|\le H\) and zero otherwise. For \(0<\delta\le 1/2,\)
+\(\sin(\pi\cdot x)\ge 2\cdot x\) on \(0\le x\le 1/2\) gives
+\[
+\int_{\|x\|\ge\delta}F_H(x)\,dx
+\le\frac1{2(H+1)\delta}.
+\]
+The product kernel \(K=F_H\) tensor \(F_H\) therefore has mass at most
+\(q=1/((H+1)\cdot \delta)\) outside the coordinate delta-neighbourhood of zero.
+Expand and contract each interval of B by delta on the circle, obtaining
+\(B^+\) and \(B^-.\) A contracted interval can be empty and an expanded one full;
+both cases are retained. More precisely, write a proper circular interval
+as the image of [a,a+ell), with \(0<ell<1.\) Its expansion is the image of
+[a-delta,a+ell+delta) if \(ell+2\cdot \delta<1,\) and the whole circle otherwise.
+Its contraction is the image of [a+delta,a+ell-delta) if \(ell>2\cdot \delta,\)
+and empty otherwise. Empty and full original intervals are left unchanged.
+For shifts y with each circular distance \(||y_i||<\delta,\) these definitions
+give z in B implies z-y in \(B^+,\) and z-y in \(B^-\) implies z in B.
+The exceptional shifts have K-mass at most q. Since \(0\le 1_B\cdot K\le 1,\)
+the following inequalities hold at every point,
+including the original interval endpoints:
+\[
+\mathbf1_{B^-}*K-q\le\mathbf1_B\le\mathbf1_{B^+}*K+q.
+\]
+The changes in volume are at most \(4\cdot \delta.\) A circular interval's
+Fourier coefficient has absolute value at most 1/max(1,|h|), also
+for the empty or full interval. Thus the sum of absolute nonconstant
+coefficients of either convolution is at most
+\[
+\left(1+2\sum_{h=1}^H\frac1h\right)^2-1
+\le(3+2\log H)^2.
+\]
+Averaging the pointwise inequalities proves an error at most
+\(4\cdot \delta+q+(3+2\cdot \log(H))^2\cdot E_H.\) Take \(\delta=(H+1)^{-1/2}\) for \(H\ge 3.\)
+For \(H=1\) or 2, the trivial discrepancy bound one already implies (C.12).
+
+### C.5 Assembly and first-witness extraction
+
+Apply (C.12) to
+\[
+z_t=\left(\frac{s^{9/2}}2,\frac{s^{9/4}}{2M}\right)\pmod1,
+\qquad B=[0,1/2)\mathbin{\times}[1/(2M),1/M).
+\]
+Its area is 1/(4M). For any \(x\ge 0\) and integers \(m\ge 1\) and \(0\le r<m,\) writing
+\(floor(x)=m\cdot q+r'\) with \(0\le r'<m\) gives \(fract(x/m)=(r'+fract(x))/m.\) Consequently
+\(floor(x)=r\) modulo m is equivalent to
+\(r/m\le fract(x/m)<(r+1)/m,\) including equality at the left endpoint.
+Box membership is therefore exactly u even and \(v=1\) modulo 2M.
+For \(M=1\) the second interval is [1/2,1): its right endpoint is excluded;
+an integer value of x/(2M) has fractional part zero and is rejected.
+The first interval likewise excludes its endpoint 1/2. No absence of
+boundary hits is assumed. Choose \(H=floor(T^{1/32}),\) so
+\(H\ge 1,\) \(H\le T^{1/4},\) and
+\[
+(H+1)^{-1/2}\le T^{-1/64},\qquad
+H^{1/30}T^{-1/60}\le T^{-1/64},\qquad
+2\log H\le\frac{\log T}{16}.
+\]
+Equations (C.11) and (C.12) give the first bound in (4.7) before the final +8.
+Exactly min(T,1+floor(7/M)) parameters have \(1+2Mt<16.\) Deleting the box
+hits among these parameters changes the count by at most eight.
+
+For the second bound in (4.7), put \(x=\log(T)\ge 0.\) The maximum of
+\[
+(3+x/16)^2e^{-x/128}
+\]
+on this half-line is \(256\cdot \exp(-13/8),\) attained at \(x=208,\) and is less
+than 64. For example, the first four terms of the exponential series
+already give \(\exp(13/8)>4.\) Absorb 8/T into \(8\cdot T^{-1/128}\) and
+\(5\cdot T^{-1/64}\) into \(5\cdot T^{-1/128}.\) Since \(M\ge 1\) and
+\(5+128\cdot 64+8=8205<2^14,\) the second inequality follows.
+
+At \(T=2^{2176}M^{160},\) one has \(T^{1/128}=2^17\cdot M^{5/4}.\) Hence the
+error is at most T/(8M), while the main term is T/(4M). Thus \(A_M(T)\ge \)
+\(T/(8M)>0.\) Select a counted t. Since \(t<T\) is integral,
+\(1+2Mt<2MT,\) giving the parameter and start bounds in Theorem 4.4.
+
+The actual orbit is
+\[
+s^2\longmapsto s^3\longmapsto u\longmapsto v.
+\]
+Both initial sources are odd, the third is even by construction, and
+the exact identity \(isqrt(isqrt(s^9))=floor(s^{9/4})\) identifies the exit.
+The already proved size threshold \(s\ge 16\) gives \(v>s^2;\) the first two
+images are larger still. Finally \(s=1\) modulo 2M gives \(n=1\) modulo 2M,
+and the box gives the exit congruence in Theorem 4.4. This completes the written proof.
+
+
 ## References
 
 [T76] R. Terras, *A stopping time problem on the positive integers*,
@@ -943,3 +1220,7 @@ preprint, 2026.
 [D] P. Cochin, *No m-cycles of the 3n-1 map for m at most 61*,
 local version 1.1.0, 2026. Deposited version 1.0.0 states 58.
 [Concept DOI:10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189).
+
+[AR24] J. Arias de Reyna, *Explicit van der Corput's d-th derivative estimate*,
+preprint, version 1, 2024, Theorem 11 and Table 1.
+[arXiv:2407.02094v1](https://arxiv.org/abs/2407.02094v1).

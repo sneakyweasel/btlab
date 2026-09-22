@@ -25,7 +25,7 @@ Cochin},pdfsubject={Parity statistics and five-step descent certificates for the
 Map\\[0.4em]{\large Parity Statistics of Nested Floor Powers}}
 \author{Philippe Cochin\\\small\texttt{philippe@cochin.fr}\\
   \small ORCID \href{https://orcid.org/0009-0004-1939-3382}{0009-0004-1939-3382}}
-\date{20 September 2026}
+\date{22 September 2026}
 \begin{document}
 \maketitle
 \begin{center}\small Preprint\end{center}
@@ -1274,19 +1274,23 @@ against the integer counts and machine-checked in
 \texttt{formal/Problems/Juggler/PaperBBarrierStep.lean} and, as an
 identity of integer counts, in \texttt{PaperBCertificateRecursion.lean}.
 
-This recursion is not new. On A076227 {[}5{]} it is Zarubin's formula of
-11 August 2019, which reads \(a(L_k)=2a(L_k-1)-A_{100982}(k)\) at the
-lengths \(L_k\) where the barrier rises and \(a(L)=2a(L-1)\) where it
-does not --- the display above, in the entry's indexing --- and
-Winkler's formula of 12 September 2017 gives the same counts as a
-Pascal-type sum {[}8{]}; it is also equation (48) of {[}17{]},
-\(X(d)=2N(k_d-1)-N(k_d)\) with \(k_d=\lceil\lambda d\rceil\), the same
-identity in the weight indexing. The entry also carries, from 21 July
-2026, Kazunobu Hikawa's statement of the surviving-word object itself:
-the binary words \(v(1)\dots v(n)\) with \(2^m<3^{v(1)+\dots+v(m)}\) for
-every \(m\) {[}9{]}. Nothing in this subsection is claimed as new. It is
-restated because the argument needs it in this form, and it is
-machine-checked so that the form is certified rather than assumed.
+This recursion is not new. Its two-index antecedent is Terras {[}4,
+Theorem 1.14, equation (11), 1976{]}: summing the gated Pascal recursion
+over the odd-step index and separating surviving from terminal words
+gives the displayed one-index identity. On A076227 {[}5{]} it is
+Zarubin's formula of 11 August 2019, which reads
+\(a(L_k)=2a(L_k-1)-A_{100982}(k)\) at the lengths \(L_k\) where the
+barrier rises and \(a(L)=2a(L-1)\) where it does not --- the display
+above, in the entry's indexing --- and Winkler's formula of 12 September
+2017 gives the same counts as a Pascal-type sum {[}8{]}; it is also
+equation (48) of {[}17{]}, \(X(d)=2N(k_d-1)-N(k_d)\) with
+\(k_d=\lceil\lambda d\rceil\), the same identity in the weight indexing.
+The entry also carries, from 21 July 2026, Kazunobu Hikawa's statement
+of the surviving-word object itself: the binary words \(v(1)\dots v(n)\)
+with \(2^m<3^{v(1)+\dots+v(m)}\) for every \(m\) {[}9{]}. Nothing in
+this subsection is claimed as new. It is restated because the argument
+needs it in this form, and it is machine-checked so that the form is
+certified rather than assumed.
 
 The increments are tabulated too: T. D. Noe's frequency comment on
 A186008 {[}16{]}, February 2011, lists
@@ -3067,9 +3071,11 @@ are not authors.
 
 \section{Availability and version}\label{availability-and-version}
 
-This is version 1.1.0 of Paper B, of 21 September 2026. It is a
-preprint, it has not been refereed, and it is not deposited. The current
-Zenodo version is 1.0.0
+This is version 1.1.1 of Paper B, of 22 September 2026. This revision
+corrects the recursion's attribution to Terras (1976) and cites the
+arXiv version of reference {[}13{]}; its mathematical statements and
+proofs are unchanged. It is a preprint, it has not been refereed, and it
+is not deposited. The current Zenodo version is 1.0.0
 (\href{https://doi.org/10.5281/zenodo.22864934}{doi:10.5281/zenodo.22864934}),
 published 21 September 2026 from the edition of 20 September 2026. The
 concept DOI
@@ -3170,13 +3176,13 @@ keeps the concept DOI, rather than as a new deposit. The repository is
   \href{https://doi.org/10.13140/RG.2.2.31257.79200}{doi:10.13140/RG.2.2.31257.79200}.
 \item
   M. Winkler, ``Admissible qx + 1 Sequences, Semiconvergents, and
-  Rational Catalan Numbers,'' ResearchGate preprint, 14 September 2026.
-  Read for this revision. The source of the two-sided bound on \(M_d\)
-  used in the repository; Corollary 11 gives the growth constant
+  Rational Catalan Numbers,'' arXiv:2609.22303, 14 September 2026. Read
+  for this revision. The source of the two-sided bound on \(M_d\) used
+  in the repository; Corollary 11 gives the growth constant
   \(2.8395137305\) and Corollary 12 the exact normalized oscillation, as
   an envelope between \(1\) and \(2.7095112914\) attained on the record
   minima and maxima of \(\{r\log_23\}\) .
-  \href{https://doi.org/10.13140/RG.2.2.35856.78086}{doi:10.13140/RG.2.2.35856.78086}.
+  \href{https://arxiv.org/abs/2609.22303}{arXiv:2609.22303}.
 \item
   J. C. Lagarias, ``The 3x+1 problem and its generalizations,''
   \emph{American Mathematical Monthly} 92 (1985).

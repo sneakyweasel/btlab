@@ -1,0 +1,79 @@
+sss................s.................................................... [ 29%]
+...........F....sss.s..........sssssssF................................. [ 59%]
+........................................................................ [ 89%]
+..........................                                               [100%]
+================================== FAILURES ===================================
+_ test_the_paper_gate_exists_and_passes_on_the_live_repository[build_paper_b_kit] _
+
+builder = WindowsPath('C:/Users/phili/Desktop/balanced_ternary/tools/build_paper_b_kit.py')
+
+    @pytest.mark.parametrize("builder", BUILDERS, ids=lambda p: p.stem)
+    def test_the_paper_gate_exists_and_passes_on_the_live_repository(builder: Path) -> None:
+        """The gate must exist, be callable on the repository, and be satisfied.
+    
+        A failure here means a committed paper disagrees with its source or its pinned
+        inputs: rebuild with `python tools/<builder>.py` and commit the regenerated
+        artifacts.  It does not mean the test is wrong.
+        """
+        module = _load(builder)
+        check = getattr(module, "check", None)
+        assert callable(check), f"{builder.name} has no check(); a paper without a gate"
+>       check(ROOT)
+
+tests\integration\test_paper_release_gates.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tools\build_paper_b_kit.py:172: in check
+    agree(root)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+root = WindowsPath('C:/Users/phili/Desktop/balanced_ternary')
+
+    def agree(root: Path) -> None:
+        """The release check must describe the artifacts actually on disk.
+    
+        Without this the kit can be rebuilt around a record of some earlier edition,
+        which is how it came to carry a source digest eleven manuscript revisions old.
+        """
+        record = json.loads((root / RELEASE_CHECK).read_text(encoding='utf-8'))
+        pdf = root / f'juggler_review/{STEM}.pdf'
+        expected = {
+            'pdf_sha256': sha256(pdf.read_bytes()),
+            'pdf_bytes': pdf.stat().st_size,
+            'source_sha256': sha256(payload(root, f'docs/theory/{STEM}.md')),
+            'tex_sha256': sha256(payload(root, f'docs/theory/{STEM}.tex')),
+            'source_zip_sha256': sha256((root / SOURCE_ARCHIVE).read_bytes()),
+        }
+        wrong = {k: (record.get(k), v) for k, v in expected.items() if record.get(k) != v}
+        if wrong:
+            detail = ''.join(f'\n  {k}: records {r}, built {b}' for k, (r, b) in wrong.items())
+>           raise ValueError(f'{RELEASE_CHECK} describes other artifacts:{detail}')
+E           ValueError: docs/theory/paper_b_release_check.json describes other artifacts:
+E             pdf_sha256: records 42ed7ff10ef058432a4e85711cd6a98530a60ee0d1965baeaaff9e2130be7cb2, built 472f0a707128572a47e941ddc69f561f0a5caa475dc465f117fad8dc40cf249c
+E             pdf_bytes: records 296960, built 297413
+E             source_sha256: records fe9783261c1caeeeed175a95262731ad62660b96fa9d2775c8240fed1283eae2, built b7cfaf93a45f9e6e281e2a3dafac9c28821ee0720aa61518be72d4552dc74528
+E             tex_sha256: records f27a4327fbc0893acf4bdc55cdc34e23ca52394a2f15fb4a22d56e3544c5585a, built 334c38455ad44f6492312875fb450f8766d72a064b1938f6fa535297833f203b
+E             source_zip_sha256: records 2c0d9643adc0f6ad8d46ab6cf78d068432fe30abae2c898a8aafbe7b4979bc85, built e9e796aa95774d248747f42564b016429ac6d1df50a3c87c250bfc8118f83a3d
+
+tools\build_paper_b_kit.py:168: ValueError
+_____________ test_bundle_carries_no_drifting_copy_of_docs_theory _____________
+
+    def test_bundle_carries_no_drifting_copy_of_docs_theory():
+        pairs = shared_paths()
+        assert CANARY in pairs, (
+            f"{CANARY} is not being compared, so this test is not comparing the trees"
+        )
+        drifted = [
+            rel for rel in pairs
+            if (SOURCE / rel).read_bytes() != (BUNDLE / rel).read_bytes()
+        ]
+>       assert drifted == []
+E       AssertionError: assert ['PAPER_A_BUILD.md'] == []
+E         
+E         Left contains one more item: 'PAPER_A_BUILD.md'
+E         Use -v to get more diff
+
+tests\integration\test_review_bundle_mirrors.py:85: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/integration/test_paper_release_gates.py::test_the_paper_gate_exists_and_passes_on_the_live_repository[build_paper_b_kit]
+FAILED tests/integration/test_review_bundle_mirrors.py::test_bundle_carries_no_drifting_copy_of_docs_theory
+2 failed, 225 passed, 15 skipped in 271.72s (0:04:31)

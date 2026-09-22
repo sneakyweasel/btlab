@@ -30,7 +30,7 @@ Method: [docs/methodology.md](../../docs/methodology.md).
 ## Paper E: living comparative manuscript
 
 [The Juggler Map and the 3n±1 Maps](../../docs/theory/juggler_signed_collatz_note.md)
-is Paper E, version 0.5.0 of 22 September 2026, prepared locally and not
+is Paper E, version 0.6.0 of 22 September 2026, prepared locally and not
 deposited. It consolidates the exact orbit code, preservation of actual
 cycle periods, the signed 21/25 ancestor theorem, the fixed-grid ceiling,
 and the recorded transfer obstructions. Edit the canonical source and
@@ -49,8 +49,8 @@ BTCalculus. The combined paper audit selects 49 declarations.
 The [effective OOE follow-up](../../docs/problems/juggler_effective_modular_return.md)
 now gives a written uniform error 2^14*M^(1/4)*T^(127/128) and first-witness
 parameter bound 2^2176*M^160. It uses a cited explicit derivative estimate
-and a proved Fejer box bound. Its quantitative argument is not yet in Lean
-or the version 0.5.0 manuscript. The constants are not practical search limits.
+and a proved Fejer box bound. Its quantitative argument is included as Theorem 4.4 and Appendix C
+in version 0.6.0. Complete quantitative Lean verification remains open. The constants are not practical search limits.
 
 ## State of the problem
 
@@ -82,8 +82,8 @@ or the version 0.5.0 manuscript. The constants are not practical search limits.
   never below \(L^{2}\) by Dirichlet
   (`J-cyclemin-period-lower-bound`, `J-cyclemin-closure-threshold`,
   [juggler_cycle_wuwang_reduction.md](../../docs/problems/juggler_cycle_wuwang_reduction.md)).
-  Kills nothing; the deposited Corollary 4.11 text still prints
-  \(14.3\). Mechanical window CLOSE.
+  Kills nothing; the local Paper A 1.2.0 adds Corollary 4.11a,
+  while retaining the explicit Rhin bound with exponent \(14.3\). Mechanical window CLOSE.
   Do not reopen as a short-interval Paper B, two-copy Sturmian rigidity,
   or a longer band scan.
 - **Flights.** Descriptively terminal. Extract:
@@ -143,6 +143,8 @@ or the version 0.5.0 manuscript. The constants are not practical search limits.
   remain outstanding. The subsequent
   [E/OE/OOEE assembly](../../docs/theory/juggler_ooee_contagion_note.md)
   gives written contagion at 5/8 and a sufficient Tao-rate threshold e>3/8.
+  Paper C 1.2.0 now includes the complete written input in Appendix E
+  and its assembly in Theorem 5.19; no new deposit was performed.
   `FateOOEEAssembly.lean` checks that implication with the two actual
   odd-production inequalities explicit; it does not certify the analytic
   input. `FateOEWeighted.lean` now discharges the OE inequality, including
@@ -167,8 +169,11 @@ or the version 0.5.0 manuscript. The constants are not practical search limits.
   is now O(P^(13/32)) in Lean: the actual linearization error is at most
   10*pi*abs(u)*L*P^(1/4), and exact-overlap differencing covers both
   signs and short sums. The smooth j=0, i nonzero modes and fixed finite
-  frequency families are included. Pure slow-mode resonance exclusions,
-  full joint discrepancy, poor-target inclusion and cutoffs remain open.
+  frequency families are included. The [actual joint-parity bound](../../docs/theory/juggler_ooee_joint_parity_note.md)
+  now supplies the last-root comparison, nonresonant pure slow modes,
+  three-coordinate discrepancy and exact natural-map guards in Lean.
+  Target-fibre geometry, poor-target inclusion, reciprocal tail and physical
+  cutoffs remain open.
   The unconditional Lean exponent remains 100/203, and the actual
   failure-rate estimate remains open.
   Kernel localize CLOSE. Do not open a

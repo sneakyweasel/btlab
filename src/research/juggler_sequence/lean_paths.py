@@ -307,6 +307,9 @@ LAYERS: dict[str, Path] = {
     "OOEEPhaseComparison": JUGGLER_DIR / "OOEEPhaseComparison.lean",
     "OOEESmoothModes": JUGGLER_DIR / "OOEESmoothModes.lean",
     "OOEEMixedModes": JUGGLER_DIR / "OOEEMixedModes.lean",
+    "OOEERootPhase": JUGGLER_DIR / "OOEERootPhase.lean",
+    "OOEESlowModes": JUGGLER_DIR / "OOEESlowModes.lean",
+    "OOEEParity": JUGGLER_DIR / "OOEEParity.lean",
 }
 
 # Sources belonging to other targets or historical model interfaces. Keeping

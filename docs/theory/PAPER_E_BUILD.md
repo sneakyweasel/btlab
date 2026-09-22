@@ -1,7 +1,7 @@
 # Paper E: living manuscript, checks, and publication package
 
 **The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions.**
-Version 0.5.0, 22 September 2026. Local preprint; no deposit or DOI assigned.
+Version 0.6.0, 22 September 2026. Local preprint; no deposit or DOI assigned.
 
 Canonical source: [juggler_signed_collatz_note.md](juggler_signed_collatz_note.md).
 Edit that source, never its generated reviewer copy or TeX.
@@ -111,3 +111,13 @@ The [review record](paper_e_review.md) distinguishes completed local checks
 from outstanding priority, statement-coverage, and external mathematical
 review. A green build means the package is reproducible and internally
 consistent; it is not an acceptance decision.
+
+## Quantitative extension in 0.6.0
+
+Theorem 4.4 and Appendix C add the effective OOE counting error and
+first-witness bound, uniform in the modulus. These are written results
+using Arias de Reyna's explicit derivative estimate; independent review
+and the complete quantitative Lean proof remain open. The existing
+49-declaration audit continues to certify the earlier qualitative
+results only. Its inventory is not silently enlarged by the new prose.
+The source archive includes the quantitative proof and audit notes.

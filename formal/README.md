@@ -32,12 +32,19 @@ Compiled theorem groups:
   and endpoint corrections are proved. This closes Q1's OOE application
   and Q2; effective counting and bounded witnesses remain open. See the
   [proof map](../docs/theory/juggler_ooe_effective_modes_note.md);
+- actual OOEE joint parity outside explicit slow resonance windows,
+  including the last square-root comparison, three-coordinate finite
+  Fejer discrepancy and the exact natural-map guard identity. The
+  count theorem supplies its Fourier bounds from the proved modes;
+  target-fibre geometry, resonance inclusion and the tail remain. See
+  the [proof map](../docs/theory/juggler_ooee_joint_parity_note.md);
 - original OOEE mixed-mode cancellation O(P^(13/32)) on source intervals
   with N<=L*P^(7/16), for every fixed integer mode with (i,j) not both
   zero and uniformly over fixed finite frequency families. The actual
   nested-floor comparison costs at most 10*pi*abs(u)*L*P^(1/4);
   exact-overlap differencing, negative coefficients and short sums are
-  included. Pure slow modes and joint discrepancy remain open. See the
+  included. The subsequent joint-parity theorem supplies slow modes
+  outside explicit resonance windows and the actual three-guard count. See the
   [proof map](../docs/theory/juggler_ooee_mixed_modes_note.md);
 - explicit third- and fifth-derivative tests, with constants 12 and 7,
   proved from finite differencing and the second-derivative estimate.

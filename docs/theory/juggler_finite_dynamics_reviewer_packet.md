@@ -152,3 +152,12 @@ sources and their audit, and the numerical sources and control artifact
 used by the new comparison. The build checks LaTeX overflow, references,
 glyphs and agreement of the generated copies. These establish provenance
 and reproducibility; independent mathematical review remains necessary.
+
+## Revision of 22 September 2026
+
+Paper A 1.2.0 adds Corollary 4.11a. Review the substitution of height L
+into Wu and Wang's external measure and the absorption of finitely many
+small heights into a positive constant. This is an asymptotic improvement;
+Rhin's explicit constant 915 and the computed floor exclusions remain.
+The supplementary formalization map separates the conditional transfer
+from the external transcendence estimate.

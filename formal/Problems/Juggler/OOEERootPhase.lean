@@ -33,7 +33,7 @@ theorem nestedPower_le {x : ℝ} (hx : 0 ≤ x) : nestedPower x ≤ x^(9/4:ℝ) 
     (Int.floor_le (x^(3/2:ℝ))) (by norm_num : (0:ℝ) ≤ 3/2)
   change nestedPower x ≤ (x^(3/2:ℝ))^(3/2:ℝ) at h
   rw [← Real.rpow_mul hx] at h
-  convert h using 1 <;> norm_num
+  convert h using 1; norm_num
 
 /-- An exact one-sided bound, including integer and square boundary hits. -/
 theorem actualRoot_error {x : ℝ} (hx : 1 ≤ x) :
@@ -87,7 +87,7 @@ theorem actual_phase_difference (u v w x : ℝ) :
   ring
 
 theorem actual_phase_comparison {P a u v w L : ℝ} (N : ℕ)
-    (hP : 1 ≤ P) (ha : P ≤ a) (hL : 0 ≤ L)
+    (hP : 1 ≤ P) (ha : P ≤ a) (_hL : 0 ≤ L)
     (hN : (N:ℝ) ≤ L*P^(7/16:ℝ)) :
     ‖(∑ n ∈ range N, phase (actualPhase u v w (a+2*n))) -
       ∑ n ∈ range N, phase (originalPhase u v w (a+2*n))‖ ≤
@@ -125,7 +125,8 @@ theorem finite_actual_mixed_modes (s : Finset (ℤ × ℤ × ℤ)) {L : ℝ} (hL
   have hP1 : 1 ≤ P := (le_max_left _ _).trans hP
   have hP0 : 0 < P := by linarith
   have hPP : P0 ≤ P := (le_max_right _ _).trans hP
-  have hqK : |(q.2.2:ℝ)| ≤ K := single_le_sum (fun _ _ => abs_nonneg _) hq
+  have hqK : |(q.2.2:ℝ)| ≤ K :=
+    single_le_sum (f := fun r : ℤ × ℤ × ℤ => |(r.2.2:ℝ)|) (fun _ _ => abs_nonneg _) hq
   cases N with
   | zero => simp only [sum_range_zero, norm_zero]; positivity
   | succ N =>

@@ -2,11 +2,12 @@
 
 22 September 2026. **EXACT — HUMAN PROOF** in the laboratory's terminology:
 an AI-assisted written argument, pending independent mathematical review.
-The complete analytic argument below is not yet Lean-verified. Existing
-Lean now proves the original mixed-mode estimate through its remainder,
-carry algebra, derivative tests, complete carry correlation and actual
-differencing. Pure slow modes and the poor-target assembly are still
-required to certify this theorem.
+The complete analytic argument below is not yet Lean-verified. Lean now
+proves the actual mixed modes, last square-root comparison, pure slow
+bounds outside explicit resonance windows and the joint OOEE guard count.
+The [joint-parity proof map](juggler_ooee_joint_parity_note.md) states the
+finite bound and its source-window hypotheses. Exact target-fibre geometry,
+poor-target inclusion, reciprocal tail and production cutoffs remain.
 
 Branch: [actual OOEE fibres](../problems/juggler_ooee_poor_fibres.md).
 This note resolves that branch's missing poor-target inclusion. It does not

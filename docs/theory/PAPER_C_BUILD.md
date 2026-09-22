@@ -47,4 +47,23 @@ Development notes are historical. Where their statements differ, the corrected m
 
 ## Zenodo
 
-This repository holds version 1.1.1, which is prepared and not deposited. The record is at [zenodo.org/records/22865705](https://zenodo.org/records/22865705); its current version is 1.1.0, [doi:10.5281/zenodo.22865705](https://doi.org/10.5281/zenodo.22865705), of 21 September 2026, after 1.0.0 [doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165) of 9 September 2026. The concept DOI [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) resolves to the latest version. Resource type Publication / Preprint, English, open access, CC BY 4.0, with the author's ORCID [0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382). A rebuild writes local metadata only; it does not upload a new version. Later revisions should use that record's new-version operation. The manuscript includes an AI-assistance disclosure and the author's responsibility statement.
+This repository holds version 1.2.0, which is prepared and not deposited. The record is at [zenodo.org/records/22865705](https://zenodo.org/records/22865705); its current version is 1.1.0, [doi:10.5281/zenodo.22865705](https://doi.org/10.5281/zenodo.22865705), of 21 September 2026, after 1.0.0 [doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165) of 9 September 2026. The concept DOI [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) resolves to the latest version. Resource type Publication / Preprint, English, open access, CC BY 4.0, with the author's ORCID [0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382). A rebuild writes local metadata only; it does not upload a new version. Later revisions should use that record's new-version operation. The manuscript includes an AI-assistance disclosure and the author's responsibility statement.
+
+## Revision of 22 September 2026: three productions
+
+Version 1.2.0 incorporates the complete written OOEE poor-fiber argument
+as Appendix E and its physical-cutoff assembly as Theorem 5.19. Theorem 1
+now reaches 5/8; Theorems 3 and 7.2--7.3 use the sufficient rate e > 3/8.
+The earlier two-production exponent 100/203 remains the fully kernel-checked
+baseline. The new analytic proof is AI-assisted and awaits independent
+review and complete Lean verification. Theorem 9.4 adds the scale-average
+pressure implication, separately Lean at r - eta > 103/203 and written
+at r - eta > 3/8 using the new contagion theorem.
+
+The historical 37-module barrel and its 473 reports are unchanged. The
+supplementary OOEE assembly, weighted OE, mixed-mode and scale-average
+modules retain separate audits. Their transitive sources and the written
+proof notes are included in the release provenance. A conditional Lean
+assembly does not certify the complete analytic input. Earlier numerical
+depth tables remain labelled comparisons at their original thresholds.
+The dependency diagram and metadata now describe this edition.

@@ -1,0 +1,30 @@
+import Problems.Juggler.OOEEParity
+
+#print axioms BTCalculus.FejerBox3.smooth_expansion
+#print axioms BTCalculus.FejerBox3.smooth_average_bound
+#print axioms BTCalculus.FejerBox3.product_difference
+#print axioms BTCalculus.FejerBox3.finite_box_discrepancy
+#print axioms Problems.Juggler.OOEERootPhase.firstFloor_nonneg
+#print axioms Problems.Juggler.OOEERootPhase.secondFloor_nonneg
+#print axioms Problems.Juggler.OOEERootPhase.nestedPower_le
+#print axioms Problems.Juggler.OOEERootPhase.actualRoot_error
+#print axioms Problems.Juggler.OOEERootPhase.actualRoot_abs_error
+#print axioms Problems.Juggler.OOEERootPhase.actual_phase_difference
+#print axioms Problems.Juggler.OOEERootPhase.actual_phase_comparison
+#print axioms Problems.Juggler.OOEERootPhase.finite_actual_mixed_modes
+#print axioms Problems.Juggler.OOEESlowModes.slope_variation
+#print axioms Problems.Juggler.OOEESlowModes.slope_integer_band
+#print axioms Problems.Juggler.OOEESlowModes.smooth_slow_sum
+#print axioms Problems.Juggler.OOEESlowModes.actual_slow_sum
+#print axioms Problems.Juggler.OOEESlowModes.actual_slow_samples
+#print axioms Problems.Juggler.OOEESlowModes.target_slow_samples
+#print axioms Problems.Juggler.OOEEParity.arc_fract
+#print axioms Problems.Juggler.OOEEParity.lower_half_floor
+#print axioms Problems.Juggler.OOEEParity.upper_half_floor
+#print axioms Problems.Juggler.OOEEParity.firstFloor_nat
+#print axioms Problems.Juggler.OOEEParity.secondFloor_nat
+#print axioms Problems.Juggler.OOEEParity.actualRoot_floor_nat
+#print axioms Problems.Juggler.OOEEParity.point_guards
+#print axioms Problems.Juggler.OOEEParity.mode_phase
+#print axioms Problems.Juggler.OOEEParity.actual_guard_discrepancy
+#print axioms Problems.Juggler.OOEEParity.nonresonant_guard_discrepancy

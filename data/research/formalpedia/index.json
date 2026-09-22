@@ -70634,6 +70634,138 @@
     },
     {
       "doc": "",
+      "file": "formal/Problems/Juggler/OOEEParity.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-actual-joint-parity"
+      ],
+      "line": 16,
+      "module": "Problems.Juggler.OOEEParity",
+      "name": "point",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-actual-joint-parity"
+      ],
+      "line": 20,
+      "module": "Problems.Juggler.OOEEParity",
+      "name": "arc_fract",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-actual-joint-parity"
+      ],
+      "line": 34,
+      "module": "Problems.Juggler.OOEEParity",
+      "name": "lower_half_floor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-actual-joint-parity"
+      ],
+      "line": 41,
+      "module": "Problems.Juggler.OOEEParity",
+      "name": "upper_half_floor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-actual-joint-parity"
+      ],
+      "line": 48,
+      "module": "Problems.Juggler.OOEEParity",
+      "name": "firstFloor_nat",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-actual-joint-parity"
+      ],
+      "line": 56,
+      "module": "Problems.Juggler.OOEEParity",
+      "name": "secondFloor_nat",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-actual-joint-parity"
+      ],
+      "line": 61,
+      "module": "Problems.Juggler.OOEEParity",
+      "name": "actualRoot_floor_nat",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every floor boundary is included with its correct parity.",
+      "file": "formal/Problems/Juggler/OOEEParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-actual-joint-parity"
+      ],
+      "line": 66,
+      "module": "Problems.Juggler.OOEEParity",
+      "name": "point_guards",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-actual-joint-parity"
+      ],
+      "line": 94,
+      "module": "Problems.Juggler.OOEEParity",
+      "name": "mode_phase",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-actual-joint-parity"
+      ],
+      "line": 102,
+      "module": "Problems.Juggler.OOEEParity",
+      "name": "actual_guard_discrepancy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The actual count uses proved cancellation; only the explicit resonance windows are excluded.",
+      "file": "formal/Problems/Juggler/OOEEParity.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-actual-joint-parity"
+      ],
+      "line": 129,
+      "module": "Problems.Juggler.OOEEParity",
+      "name": "nonresonant_guard_discrepancy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
       "kind": "def",
       "ledger": [],
@@ -70756,7 +70888,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/OOEERootPhase.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-ooee-actual-root-phase"
+      ],
       "line": 16,
       "module": "Problems.Juggler.OOEERootPhase",
       "name": "secondFloor",
@@ -70766,7 +70900,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/OOEERootPhase.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-ooee-actual-root-phase"
+      ],
       "line": 18,
       "module": "Problems.Juggler.OOEERootPhase",
       "name": "actualRoot",
@@ -70776,7 +70912,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/OOEERootPhase.lean",
       "kind": "def",
-      "ledger": [],
+      "ledger": [
+        "J-ooee-actual-root-phase"
+      ],
       "line": 20,
       "module": "Problems.Juggler.OOEERootPhase",
       "name": "actualPhase",
@@ -70786,7 +70924,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/OOEERootPhase.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-ooee-actual-root-phase"
+      ],
       "line": 23,
       "module": "Problems.Juggler.OOEERootPhase",
       "name": "firstFloor_nonneg",
@@ -70796,7 +70936,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/OOEERootPhase.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-ooee-actual-root-phase"
+      ],
       "line": 27,
       "module": "Problems.Juggler.OOEERootPhase",
       "name": "secondFloor_nonneg",
@@ -70806,7 +70948,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/OOEERootPhase.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-ooee-actual-root-phase"
+      ],
       "line": 31,
       "module": "Problems.Juggler.OOEERootPhase",
       "name": "nestedPower_le",
@@ -70816,7 +70960,9 @@
       "doc": "An exact one-sided bound, including integer and square boundary hits.",
       "file": "formal/Problems/Juggler/OOEERootPhase.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-ooee-actual-root-phase"
+      ],
       "line": 39,
       "module": "Problems.Juggler.OOEERootPhase",
       "name": "actualRoot_error",
@@ -70826,7 +70972,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/OOEERootPhase.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-ooee-actual-root-phase"
+      ],
       "line": 76,
       "module": "Problems.Juggler.OOEERootPhase",
       "name": "actualRoot_abs_error",
@@ -70836,7 +70984,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/OOEERootPhase.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-ooee-actual-root-phase"
+      ],
       "line": 83,
       "module": "Problems.Juggler.OOEERootPhase",
       "name": "actual_phase_difference",
@@ -70846,7 +70996,9 @@
       "doc": "",
       "file": "formal/Problems/Juggler/OOEERootPhase.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-ooee-actual-root-phase"
+      ],
       "line": 89,
       "module": "Problems.Juggler.OOEERootPhase",
       "name": "actual_phase_comparison",
@@ -70856,10 +71008,108 @@
       "doc": "The mixed-mode theorem now uses the actual square root in the last guard.",
       "file": "formal/Problems/Juggler/OOEERootPhase.lean",
       "kind": "theorem",
-      "ledger": [],
+      "ledger": [
+        "J-ooee-actual-root-phase"
+      ],
       "line": 115,
       "module": "Problems.Juggler.OOEERootPhase",
       "name": "finite_actual_mixed_modes",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEESlowModes.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-nonresonant-slow-modes"
+      ],
+      "line": 16,
+      "module": "Problems.Juggler.OOEESlowModes",
+      "name": "slowSlope",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEESlowModes.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-nonresonant-slow-modes"
+      ],
+      "line": 18,
+      "module": "Problems.Juggler.OOEESlowModes",
+      "name": "Nonresonant",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEESlowModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-nonresonant-slow-modes"
+      ],
+      "line": 21,
+      "module": "Problems.Juggler.OOEESlowModes",
+      "name": "slope_variation",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEESlowModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-nonresonant-slow-modes"
+      ],
+      "line": 52,
+      "module": "Problems.Juggler.OOEESlowModes",
+      "name": "slope_integer_band",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The smooth slow mode, with an explicit inverse-resonance constant.",
+      "file": "formal/Problems/Juggler/OOEESlowModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-nonresonant-slow-modes"
+      ],
+      "line": 70,
+      "module": "Problems.Juggler.OOEESlowModes",
+      "name": "smooth_slow_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEESlowModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-nonresonant-slow-modes"
+      ],
+      "line": 124,
+      "module": "Problems.Juggler.OOEESlowModes",
+      "name": "actual_slow_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "No extra right support is required beyond the actual sample points.",
+      "file": "formal/Problems/Juggler/OOEESlowModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-nonresonant-slow-modes"
+      ],
+      "line": 142,
+      "module": "Problems.Juggler.OOEESlowModes",
+      "name": "actual_slow_samples",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The same estimate in the target variable of the OOEE fibres.",
+      "file": "formal/Problems/Juggler/OOEESlowModes.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-nonresonant-slow-modes"
+      ],
+      "line": 158,
+      "module": "Problems.Juggler.OOEESlowModes",
+      "name": "target_slow_samples",
       "trust": "kernel"
     },
     {
@@ -100478,6 +100728,90 @@
     },
     {
       "doc": "",
+      "file": "formal/BTCalculus/FejerBox3.lean",
+      "kind": "abbrev",
+      "ledger": [
+        "BTA-finite-three-coordinate-fejer-discrepancy"
+      ],
+      "line": 19,
+      "module": "BTCalculus.FejerBox3",
+      "name": "Point",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerBox3.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-finite-three-coordinate-fejer-discrepancy"
+      ],
+      "line": 21,
+      "module": "BTCalculus.FejerBox3",
+      "name": "mode",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerBox3.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-finite-three-coordinate-fejer-discrepancy"
+      ],
+      "line": 24,
+      "module": "BTCalculus.FejerBox3",
+      "name": "smooth",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerBox3.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-three-coordinate-fejer-discrepancy"
+      ],
+      "line": 27,
+      "module": "BTCalculus.FejerBox3",
+      "name": "smooth_expansion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerBox3.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-three-coordinate-fejer-discrepancy"
+      ],
+      "line": 44,
+      "module": "BTCalculus.FejerBox3",
+      "name": "smooth_average_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerBox3.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-three-coordinate-fejer-discrepancy"
+      ],
+      "line": 103,
+      "module": "BTCalculus.FejerBox3",
+      "name": "product_difference",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerBox3.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-three-coordinate-fejer-discrepancy"
+      ],
+      "line": 119,
+      "module": "BTCalculus.FejerBox3",
+      "name": "finite_box_discrepancy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/BTCalculus/FejerKernel.lean",
       "kind": "def",
       "ledger": [],
@@ -112420,6 +112754,7 @@
         "BTCalculus.Derivative",
         "BTCalculus.FejerArc",
         "BTCalculus.FejerBox",
+        "BTCalculus.FejerBox3",
         "BTCalculus.FejerKernel",
         "BTCalculus.FejerWeighted",
         "BTCalculus.FourierBoxCounting",
@@ -112786,6 +113121,20 @@
           "id": "BTA-finite-fejer-box-discrepancy",
           "statement": "For integers H,N>=1, E>=0, and arbitrary points z_0,...,z_(N-1) on the product of two unit circles, suppose every nonzero integer pair (k,l) with abs(k),abs(l)<=H has normalized Fourier sum norm at most E. For real endpoints a<=b<=a+1 and c<=d<=c+1, the product B of the images of [a,b) and [c,d) then satisfies abs(count(z_n in B)/N-(b-a)*(d-c)) <= 5/sqrt(H+1)+(3+2*log(H))^2*E. Empty, full, wrapped arcs and sample boundary hits are included. The actual Fejer kernel, tails, saturated smoothing, coefficient mass and finite count transfer are proved; no smoothing estimate is assumed. This is the complete finite discrepancy obligation Q3, not the specific OOE Fourier rate or effective modular-return assembly.",
           "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "BTCalculus.FejerBox3": {
+      "declarations": 7,
+      "file": "formal/BTCalculus/FejerBox3.lean",
+      "imports": [
+        "BTCalculus.FejerWeighted"
+      ],
+      "ledger": [
+        {
+          "id": "BTA-finite-three-coordinate-fejer-discrepancy",
+          "statement": "Kernel-checked, advisory coverage pending. For N>0 samples in the product of three unit circles, integer H>=3 and E>=0, suppose the norm of every nonzero normalized Fourier mode with abs(i),abs(j),abs(k)<=H is at most E. For a<=b<=a+1, c<=d<=c+1, e<=f<=e+1, the count in the corresponding product of half-open circular arcs divided by N differs from (b-a)*(d-c)*(f-e) by at most 15/sqrt(H+1)+(A_H^3+6*A_H)*E, where A_H=1+2*harmonic(H). The actual Fejer smoothings, finite expansion and coordinate L1 errors prove this bound, including wrapped, empty and full arcs and sample boundary hits.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
     },
@@ -114627,7 +114976,10 @@
         "Problems.Juggler.OOEECurvature",
         "Problems.Juggler.OOEEFourierModes",
         "Problems.Juggler.OOEEMixedModes",
+        "Problems.Juggler.OOEEParity",
         "Problems.Juggler.OOEEPhaseComparison",
+        "Problems.Juggler.OOEERootPhase",
+        "Problems.Juggler.OOEESlowModes",
         "Problems.Juggler.OOEESmoothModes",
         "Problems.Juggler.OOEEffectiveModes",
         "Problems.Juggler.OddCountMonotone",
@@ -117030,6 +117382,22 @@
         }
       ]
     },
+    "Problems.Juggler.OOEEParity": {
+      "declarations": 11,
+      "file": "formal/Problems/Juggler/OOEEParity.lean",
+      "imports": [
+        "BTCalculus.FejerBox3",
+        "Problems.Juggler.FateOOEEAssembly",
+        "Problems.Juggler.OOEESlowModes"
+      ],
+      "ledger": [
+        {
+          "id": "J-ooee-actual-joint-parity",
+          "statement": "Kernel-checked, advisory coverage pending. For every fixed integer H>=3 and real D>=0 there are B>0 and P0 such that for P>=P0, odd natural a, natural N>0 and real C>0, if all a+2*n (n<N) lie in [P,2P] and [P,P+D*P^(7/16)], N<=D*P^(7/16), C>=(9/32)*D*H, and abs(k*(9/8)*P^(1/8)-z)>=C*P^(-7/16) for all integers 0<abs(k)<=H and z, then abs(count_(n<N)(ooeeGuard(a+2*n))/N-1/8)<=15/sqrt(H+1)+(A_H^3+6*A_H)*(B*P^(13/32)+(2/C)*P^(7/16)+3*pi*H*D*P^(1/16)+1)/N, with A_H=1+2*harmonic(H). The guard is the actual natural Juggler OOEE itinerary. The half-open box identity and every Fourier bound are proved, including floor boundaries. Constants B,P0 are independent of P,a,N,C. Exact target-fibre geometry, poor-target inclusion, reciprocal tail, physical cutoffs and OOEEProductionBound are not supplied.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
+    },
     "Problems.Juggler.OOEEPhaseComparison": {
       "declarations": 12,
       "file": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
@@ -117044,7 +117412,27 @@
       "imports": [
         "Problems.Juggler.OOEEMixedModes"
       ],
-      "ledger": []
+      "ledger": [
+        {
+          "id": "J-ooee-actual-root-phase",
+          "statement": "Kernel-checked, advisory coverage pending. Put M(x)=floor(x^(3/2)), Y(x)=M(x)^(3/2), V(x)=floor(Y(x)), W(x)=sqrt(V(x)). For x>=1, 0<=x^(9/8)-W(x)<=3*x^(-3/8). For P>=1, a>=P, L>=0 and N<=L*P^(7/16), replacing (w/2)*x^(9/8) by (w/2)*W(x) in the phase u*Y(x)+(v/2)*x^(3/2)+(w/2)*x^(9/8) changes its sum over x=a+2*n, n<N, by at most 3*pi*abs(w)*L*P^(1/16). Every fixed finite family of integer modes (i,j,k) with i or j nonzero therefore retains a common eventual O(P^(13/32)) bound for the actual phase (i/2)*x^(3/2)+(j/2)*Y(x)+(k/2)*W(x), when its samples lie in [P,2P] and N<=L*P^(7/16). Boundaries and empty sums are included; growing frequency sets and pure slow modes are excluded.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
+    },
+    "Problems.Juggler.OOEESlowModes": {
+      "declarations": 8,
+      "file": "formal/Problems/Juggler/OOEESlowModes.lean",
+      "imports": [
+        "Problems.Juggler.OOEERootPhase"
+      ],
+      "ledger": [
+        {
+          "id": "J-ooee-nonresonant-slow-modes",
+          "statement": "Kernel-checked, advisory coverage pending. Let P>=1,D>=0,C>0,k real and natural N. Suppose every sample a+2*n, n<N, lies in [P,P+D*P^(7/16)], C>=(9/32)*D*abs(k), and abs(k*(9/8)*P^(1/8)-z)>=C*P^(-7/16) for every integer z. With W(x)=sqrt(floor(floor(x^(3/2))^(3/2))), the norm of sum_(n<N) e((k/2)*W(a+2*n)) is at most (2/C)*P^(7/16)+3*pi*abs(k)*D*P^(1/16)+1. Both signs and actual sampled endpoints are included. Substituting P=m^(16/9), m>=1, gives slope (9/8)*m^(2/9), window length D*m^(7/9), resonance width C*m^(-7/9) and root-error term 3*pi*abs(k)*D*m^(1/9). The nonresonance condition is explicit, not proved for every target.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
     },
     "Problems.Juggler.OOEESmoothModes": {
       "declarations": 2,
@@ -118743,13 +119131,13 @@
     }
   },
   "totals": {
-    "declarations": 8943,
-    "declarations_with_a_ledger_row": 6101,
-    "ledger_rows_naming_a_file": 508,
-    "modules": 374,
+    "declarations": 8969,
+    "declarations_with_a_ledger_row": 6138,
+    "ledger_rows_naming_a_file": 512,
+    "modules": 377,
     "trust": {
       "compiler": 56,
-      "kernel": 8887
+      "kernel": 8913
     }
   }
 }

@@ -22,7 +22,7 @@ import subprocess
 # without this a no-op rebuild changes the bytes and therefore the sha256 in the manifest.
 # The epoch is fixed to the version the build guide records rather than taken from git,
 # because a git-derived date lags one build behind an edit and merely relocates the churn.
-_SOURCE_DATE_EPOCH = "1788912000"  # Paper C publication revision, 9 September 2026
+_SOURCE_DATE_EPOCH = "1790035200"  # Local revision, 22 September 2026
 
 
 def _pin_build_date() -> None:
@@ -39,7 +39,14 @@ MANIFEST = "docs/theory/paper_c_release.json"
 METADATA = "docs/theory/paper_c_zenodo.json"
 OUTPUTS = [PDF, TEX, METADATA]
 EDITORIAL = [SOURCE, "docs/theory/PAPER_C_BUILD.md"]
-BUILD_INPUTS = ["tools/build_paper_c.py", "tools/paper_c/article.tex",
+BUILD_INPUTS = ["docs/theory/juggler_ooee_poor_fibre_tail_note.md",
+                "docs/theory/juggler_ooee_contagion_note.md",
+                "docs/theory/juggler_ooee_mixed_modes_note.md",
+                "formal/AxiomCheckOOEEMixedModes.lean",
+                "formal/AxiomCheckOOEEMixedModes.expected",
+                "formal/AxiomCheckScaleAverage.lean",
+                "formal/AxiomCheckScaleAverage.expected",
+                "tools/build_paper_c.py", "tools/paper_c/article.tex",
                 "tools/paper_c/layout.lua", "tools/check_paper_c_numeric.py",
                 "src/research/juggler_sequence/paper_c_audit.py",
                 "src/research/juggler_sequence/paper_c_formal_layer.py",
@@ -67,14 +74,18 @@ def input_files(root: Path) -> list[str]:
     names = set(EDITORIAL + BUILD_INPUTS + ["formal/lean-toolchain",
                 "formal/lake-manifest.json", "formal/AxiomCheckPaperC.lean",
                 "formal/AxiomCheckPaperC.expected"])
-    pending = ["formal/Problems/JugglerFatePaper.lean"]
+    pending = ["formal/Problems/JugglerFatePaper.lean",
+               "formal/Problems/Juggler/FateOOEEAssembly.lean",
+               "formal/Problems/Juggler/FateOEWeighted.lean",
+               "formal/Problems/Juggler/OOEEMixedModes.lean",
+               "formal/Problems/Juggler/FateScaleAverage.lean"]
     while pending:
         name = pending.pop()
         if name in names:
             continue
         names.add(name)
         text = (root / name).read_text(encoding="utf-8")
-        for module in re.findall(r"^import\s+(Problems\.[\w.]+)", text, re.M):
+        for module in re.findall(r"^import\s+((?:Problems|BTCalculus)\.[\w.]+)", text, re.M):
             pending.append("formal/" + module.replace(".", "/") + ".lean")
     names.update("docs/theory/figures/" + name for name in FIGURES)
     source_text = (root / SOURCE).read_text(encoding="utf-8")

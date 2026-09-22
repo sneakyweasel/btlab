@@ -81,15 +81,35 @@ x.def) (cochin-juggler-signed-collatz.aux)
 (C:\Users\phili\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd)
 (C:\Users\phili\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd)
 [1] [2]
-Underfull \hbox (badness 1584) in paragraph at lines 218--219
+Underfull \hbox (badness 1584) in paragraph at lines 230--231
 []\TU/lmr/bx/n/10.95 Example 2.2 (rational values and collisions). \TU/lmr/m/n/
 10.95 From $\OML/cmm/m/it/10.95 H\OT1/cmr/m/n/10.95 (1) = 1$\TU/lmr/m/n/10.95 ,
  following
-[3] [4] [5] [6] [7] [8] [9] [10] [11] [12] (cochin-juggler-signed-collatz.aux)
+[3] [4] [5]
+Underfull \hbox (badness 2189) in paragraph at lines 401--406
+\TU/lmr/m/n/10.95 Distinct parameters give distinct starts. Substituting $\OML/
+cmm/m/it/10.95 N\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 X\OT1/cmr/m/n/10.95 )$ 
+\TU/lmr/m/n/10.95 into the density limit
+[6] [7] [8] [9] [10] [11] [12] [13]
+Overfull \hbox (181.1266pt too wide) in paragraph at lines 1025--1029
+\TU/lmr/m/it/10.95 For clarity, the three terms before enlargement are bounded 
+by 11\TU/lmr/m/n/10.95 (6/N)^(1/16), 11\TU/lmr/m/it/10.95 (3600\TU/lmr/m/n/10.9
+5 H*M[] (9/2))^(-
+[14]
+Overfull \hbox (214.48587pt too wide) in paragraph at lines 1038--1046
+\TU/lmr/m/n/10.95 (C.5), now with k=3, bounds the normalized sum by 22\TU/lmr/m
+/it/10.95 H[] (5/4)\TU/lmr/m/n/10.95 N[] (1/6),
+[15] [16] [17] [18] (cochin-juggler-signed-collatz.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
+
+Package rerunfilecheck Warning: File `cochin-juggler-signed-collatz.out' has ch
+anged.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
  )
 (see the transcript file for additional information)
-Output written on cochin-juggler-signed-collatz.pdf (12 pages).
+Output written on cochin-juggler-signed-collatz.pdf (18 pages).
 Transcript written on cochin-juggler-signed-collatz.log.

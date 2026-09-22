@@ -75,18 +75,17 @@ echeck.sty
 ounter.sty)))
 (C:\Users\phili\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\l3backend-xete
 x.def) (cochin-juggler-signed-collatz.aux)
-*geometry* driver: auto-detecting
-*geometry* detected driver: xetex
-(cochin-juggler-signed-collatz.out) (cochin-juggler-signed-collatz.out)
-(C:\Users\phili\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd)
-(C:\Users\phili\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd)
-[1] [2]
-Underfull \hbox (badness 1584) in paragraph at lines 218--219
-[]\TU/lmr/bx/n/10.95 Example 2.2 (rational values and collisions). \TU/lmr/m/n/
-10.95 From $\OML/cmm/m/it/10.95 H\OT1/cmr/m/n/10.95 (1) = 1$\TU/lmr/m/n/10.95 ,
- following
-[3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13]
-(cochin-juggler-signed-collatz.aux) )
-(see the transcript file for additional information)
-Output written on cochin-juggler-signed-collatz.pdf (13 pages).
+! I can't write on file `cochin-juggler-signed-collatz.aux'.
+\document ...ate \openout \@mainaux \jobname .aux 
+                                                  \immediate \write \@mainau...
+l.35 \begin{document}
+                     
+(Press Enter to retry, or Control-C to exit; default file extension is `.tex')
+Please type another output file name
+! Emergency stop.
+\document ...ate \openout \@mainaux \jobname .aux 
+                                                  \immediate \write \@mainau...
+l.35 \begin{document}
+                     
+No pages of output.
 Transcript written on cochin-juggler-signed-collatz.log.

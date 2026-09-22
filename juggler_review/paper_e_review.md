@@ -1,6 +1,6 @@
 # Paper E: reviewer packet and living review record
 
-Version 0.5.0, 22 September 2026. Canonical manuscript:
+Version 0.6.0, 22 September 2026. Canonical manuscript:
 [The Juggler Map and the 3n±1 Maps](juggler_signed_collatz_note.md).
 Build and updates: [PAPER_E_BUILD.md](PAPER_E_BUILD.md).
 
@@ -157,7 +157,25 @@ Local build, exact checks, and the combined Lean audit are reproducible
 using the build guide. These review items cannot be discharged by
 re-running the typesetter.
 
+## Quantitative extension and review boundary
+
+Theorem 4.4 and Appendix C reproduce the effective OOE proof and explicit
+constants. Review the derivative sign on both frequency axes, real dyadic
+endpoints, finite initial segment, saturated Fejer arcs and half-open
+box boundaries. The current selected 49-declaration Lean audit does not
+include this theorem. Its internal audit is not independent review;
+complete quantitative formalization remains outstanding. The OOE word
+has denominator one, so this does not quantify the large-denominator
+construction.
+
 ## Version history
+
+### 0.6.0 - 22 September 2026
+
+Added Theorem 4.4 and its full quantitative proof in Appendix C, including
+the uniform counting error and first-witness bound. Preserved all earlier
+theorem numbers and the selected qualitative Lean audit.
+
 
 ### 0.5.0 - 22 September 2026
 

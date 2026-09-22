@@ -212,6 +212,20 @@
         "kernel": 17
       }
     },
+    "BTCalculus.FejerBox3": {
+      "declarations": 7,
+      "depends_on": [
+        "BTCalculus.FejerBox"
+      ],
+      "file": "formal/BTCalculus/FejerBox3.lean",
+      "ledger": [
+        "BTA-finite-three-coordinate-fejer-discrepancy"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 7
+      }
+    },
     "BTCalculus.FourierBoxCounting": {
       "declarations": 15,
       "depends_on": [
@@ -2828,6 +2842,50 @@
         "kernel": 10
       }
     },
+    "Problems.Juggler.OOEEParity": {
+      "declarations": 11,
+      "depends_on": [
+        "BTCalculus.FejerBox3",
+        "Problems.Juggler.FateOOEEAssembly",
+        "Problems.Juggler.OOEESlowModes"
+      ],
+      "file": "formal/Problems/Juggler/OOEEParity.lean",
+      "ledger": [
+        "J-ooee-actual-joint-parity"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 11
+      }
+    },
+    "Problems.Juggler.OOEERootPhase": {
+      "declarations": 11,
+      "depends_on": [
+        "Problems.Juggler.OOEEMixedModes"
+      ],
+      "file": "formal/Problems/Juggler/OOEERootPhase.lean",
+      "ledger": [
+        "J-ooee-actual-root-phase"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 11
+      }
+    },
+    "Problems.Juggler.OOEESlowModes": {
+      "declarations": 8,
+      "depends_on": [
+        "Problems.Juggler.OOEERootPhase"
+      ],
+      "file": "formal/Problems/Juggler/OOEESlowModes.lean",
+      "ledger": [
+        "J-ooee-nonresonant-slow-modes"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 8
+      }
+    },
     "Problems.Juggler.OOEEffectiveModes": {
       "declarations": 45,
       "depends_on": [
@@ -4034,9 +4092,9 @@
     }
   },
   "totals": {
-    "edges": 314,
-    "edges_before_reduction": 2461,
-    "ledger_rows_placed": 508,
-    "nodes": 252
+    "edges": 320,
+    "edges_before_reduction": 2542,
+    "ledger_rows_placed": 512,
+    "nodes": 256
   }
 }

@@ -1,0 +1,29 @@
+ℹ [8728/9070] Replayed Representation.Words
+info: Representation/Words.lean:111:6: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [8798/9082] Replayed BTCalculus.Quadratic
+info: BTCalculus/Quadratic.lean:353:2: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [8804/9082] Replayed BTCalculus.CubicResidual
+info: BTCalculus/CubicResidual.lean:277:2: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+⚠ [9045/9082] Replayed Problems.Juggler.FinanceTransfer
+warning: Problems/Juggler/FinanceTransfer.lean:796:41: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [9078/9082] Built BTCalculus (32s)
+✔ [9080/9082] Built Problems.Juggler (32s)
+✔ [9081/9082] Built Problems (41s)
+Build completed successfully (9082 jobs).

@@ -13534,5 +13534,93 @@
    "tests/tools/test_formalpedia.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-ooee-actual-root-phase",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked, advisory coverage pending. Put M(x)=floor(x^(3/2)), Y(x)=M(x)^(3/2), V(x)=floor(Y(x)), W(x)=sqrt(V(x)). For x>=1, 0<=x^(9/8)-W(x)<=3*x^(-3/8). For P>=1, a>=P, L>=0 and N<=L*P^(7/16), replacing (w/2)*x^(9/8) by (w/2)*W(x) in the phase u*Y(x)+(v/2)*x^(3/2)+(w/2)*x^(9/8) changes its sum over x=a+2*n, n<N, by at most 3*pi*abs(w)*L*P^(1/16). Every fixed finite family of integer modes (i,j,k) with i or j nonzero therefore retains a common eventual O(P^(13/32)) bound for the actual phase (i/2)*x^(3/2)+(j/2)*Y(x)+(k/2)*W(x), when its samples lie in [P,2P] and N<=L*P^(7/16). Boundaries and empty sums are included; growing frequency sets and pure slow modes are excluded.",
+  "source": "docs/problems/juggler_ooee_poor_fibres.md",
+  "lean": "Problems/Juggler/OOEERootPhase.lean",
+  "decl": [
+   "secondFloor",
+   "actualRoot",
+   "actualPhase",
+   "actualRoot_error",
+   "actual_phase_comparison",
+   "finite_actual_mixed_modes"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-ooee-nonresonant-slow-modes",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked, advisory coverage pending. Let P>=1,D>=0,C>0,k real and natural N. Suppose every sample a+2*n, n<N, lies in [P,P+D*P^(7/16)], C>=(9/32)*D*abs(k), and abs(k*(9/8)*P^(1/8)-z)>=C*P^(-7/16) for every integer z. With W(x)=sqrt(floor(floor(x^(3/2))^(3/2))), the norm of sum_(n<N) e((k/2)*W(a+2*n)) is at most (2/C)*P^(7/16)+3*pi*abs(k)*D*P^(1/16)+1. Both signs and actual sampled endpoints are included. Substituting P=m^(16/9), m>=1, gives slope (9/8)*m^(2/9), window length D*m^(7/9), resonance width C*m^(-7/9) and root-error term 3*pi*abs(k)*D*m^(1/9). The nonresonance condition is explicit, not proved for every target.",
+  "source": "docs/problems/juggler_ooee_poor_fibres.md",
+  "lean": "Problems/Juggler/OOEESlowModes.lean",
+  "decl": [
+   "slowSlope",
+   "Nonresonant",
+   "slope_variation",
+   "slope_integer_band",
+   "actual_slow_samples",
+   "target_slow_samples"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "BTA-finite-three-coordinate-fejer-discrepancy",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked, advisory coverage pending. For N>0 samples in the product of three unit circles, integer H>=3 and E>=0, suppose the norm of every nonzero normalized Fourier mode with abs(i),abs(j),abs(k)<=H is at most E. For a<=b<=a+1, c<=d<=c+1, e<=f<=e+1, the count in the corresponding product of half-open circular arcs divided by N differs from (b-a)*(d-c)*(f-e) by at most 15/sqrt(H+1)+(A_H^3+6*A_H)*E, where A_H=1+2*harmonic(H). The actual Fejer smoothings, finite expansion and coordinate L1 errors prove this bound, including wrapped, empty and full arcs and sample boundary hits.",
+  "source": "docs/theory/juggler_ooee_joint_parity_note.md",
+  "lean": "BTCalculus/FejerBox3.lean",
+  "decl": [
+   "Point",
+   "mode",
+   "smooth",
+   "smooth_expansion",
+   "smooth_average_bound",
+   "product_difference",
+   "finite_box_discrepancy"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-ooee-actual-joint-parity",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked, advisory coverage pending. For every fixed integer H>=3 and real D>=0 there are B>0 and P0 such that for P>=P0, odd natural a, natural N>0 and real C>0, if all a+2*n (n<N) lie in [P,2P] and [P,P+D*P^(7/16)], N<=D*P^(7/16), C>=(9/32)*D*H, and abs(k*(9/8)*P^(1/8)-z)>=C*P^(-7/16) for all integers 0<abs(k)<=H and z, then abs(count_(n<N)(ooeeGuard(a+2*n))/N-1/8)<=15/sqrt(H+1)+(A_H^3+6*A_H)*(B*P^(13/32)+(2/C)*P^(7/16)+3*pi*H*D*P^(1/16)+1)/N, with A_H=1+2*harmonic(H). The guard is the actual natural Juggler OOEE itinerary. The half-open box identity and every Fourier bound are proved, including floor boundaries. Constants B,P0 are independent of P,a,N,C. Exact target-fibre geometry, poor-target inclusion, reciprocal tail, physical cutoffs and OOEEProductionBound are not supplied.",
+  "source": "docs/problems/juggler_ooee_poor_fibres.md",
+  "lean": "Problems/Juggler/OOEEParity.lean",
+  "decl": [
+   "point",
+   "point_guards",
+   "mode_phase",
+   "actual_guard_discrepancy",
+   "nonresonant_guard_discrepancy"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": []
  }
 ]

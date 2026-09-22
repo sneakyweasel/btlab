@@ -226,6 +226,9 @@ import Problems.Juggler.OOEECarryFourier
 import Problems.Juggler.OOEEPhaseComparison
 import Problems.Juggler.OOEESmoothModes
 import Problems.Juggler.OOEEMixedModes
+import Problems.Juggler.OOEERootPhase
+import Problems.Juggler.OOEESlowModes
+import Problems.Juggler.OOEEParity
 
 /-!
 # Juggler laboratory barrel

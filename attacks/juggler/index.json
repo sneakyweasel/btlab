@@ -4615,7 +4615,10 @@
         "J-ooee-carry-cell-curvature",
         "J-ooee-weighted-smooth-carry",
         "J-ooee-retained-carry-correlation",
-        "J-ooee-actual-mixed-mode-cancellation"
+        "J-ooee-actual-mixed-mode-cancellation",
+        "J-ooee-actual-root-phase",
+        "J-ooee-nonresonant-slow-modes",
+        "J-ooee-actual-joint-parity"
       ],
       "aliases": [],
       "nk_cluster": "Good average OOEE mass does not imply uniformly productive fibres"
@@ -6905,7 +6908,10 @@
         "formal/Problems/Juggler/OOEECarryFourier.lean",
         "formal/Problems/Juggler/OOEEPhaseComparison.lean",
         "formal/Problems/Juggler/OOEESmoothModes.lean",
-        "formal/Problems/Juggler/OOEEMixedModes.lean"
+        "formal/Problems/Juggler/OOEEMixedModes.lean",
+        "formal/Problems/Juggler/OOEERootPhase.lean",
+        "formal/Problems/Juggler/OOEESlowModes.lean",
+        "formal/Problems/Juggler/OOEEParity.lean"
       ],
       "conjecture": [],
       "decision": null,

@@ -14,11 +14,11 @@ which is what the other habit costs.
 
 | Paper | Title | Repository | Latest deposit | Concept DOI |
 | --- | --- | --- | --- | --- |
-| A | Lower Bounds for Cycle Lengths in the Juggler Map | 1.1.0, not deposited | [1.0.2](https://doi.org/10.5281/zenodo.22865237) | [10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) |
-| B | Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers | 1.1.0, not deposited | [1.0.0](https://doi.org/10.5281/zenodo.22864934) | [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) |
-| C | Fate Contagion and Termination Criteria for the Juggler Map | 1.1.1, not deposited | [1.1.0](https://doi.org/10.5281/zenodo.22865705) | [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) |
+| A | Lower Bounds for Cycle Lengths in the Juggler Map | 1.2.0, not deposited | [1.0.2](https://doi.org/10.5281/zenodo.22865237) | [10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) |
+| B | Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers | 1.1.1, not deposited | [1.0.0](https://doi.org/10.5281/zenodo.22864934) | [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) |
+| C | Fate Contagion and Termination Criteria for the Juggler Map | 1.2.0, not deposited | [1.1.0](https://doi.org/10.5281/zenodo.22865705) | [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) |
 | D | No m-cycles of the 3n−1 map for m ≤ 61 | 1.1.0, not deposited | [1.0.0](https://doi.org/10.5281/zenodo.22876190) | [10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) |
-| E | The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions | 0.3.0, local preprint | None | Not assigned |
+| E | The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions | 0.6.0, local preprint | None | Not assigned |
 
 Every DOI in this file was resolved against doi.org on 21 September 2026, and each
 concept DOI was confirmed to return the version named beside it as the latest. All
@@ -34,10 +34,13 @@ is prepared, checked and committed, and deposited only when the author decides t
 
 ### Paper A, Lower Bounds for Cycle Lengths in the Juggler Map
 
+Prepared 1.2.0, 22 September 2026. Adds the Wu-Wang asymptotic refinement, retaining Rhin's explicit bound and the provenance correction. Numerical cycle exclusions are unchanged. No new deposit has been made.
+
 Record [zenodo.org/records/22865237](https://zenodo.org/records/22865237).
 
 | Version | DOI | Date |
 | --- | --- | --- |
+| 1.2.0 | not deposited | 22 September 2026 |
 | 1.1.0 | not deposited | 21 September 2026 |
 | 1.0.2 | [10.5281/zenodo.22865237](https://doi.org/10.5281/zenodo.22865237) | 20 September 2026 |
 | 1.0.1 | [10.5281/zenodo.22846460](https://doi.org/10.5281/zenodo.22846460) | 19 September 2026 |
@@ -49,19 +52,22 @@ as the state that produced the finance tables. Two files the paper points the re
 to, `exceptions_parity.json` for the 141 exceptional lengths and `budget_opt.json` for
 the run-type table, were added after that commit and do not exist there, so the line
 was already wrong on 9 September 2026, the day 1.0.0 was deposited. It is not rot: it
-shipped that way. The repository now pins `bf018a78`, where all 124 files the release
+shipped that way. The prepared 1.2.0 now pins `5a728d1d`, where all 126 files the release
 manifest records as inputs are byte-identical to the versions the paper reports, and
 `tools/paper_pin.py` holds every paper to that from inside the release gate. The
-correction goes up with the prepared 1.1.0, through the record's new-version
+correction is retained in the prepared 1.2.0, through the record's new-version
 operation. The deposited PDF is not otherwise affected, because Appendix B identifies
 the tables by content and both are byte-identical to the versions 1.0.0 reports.
 
 ### Paper B, Five-Step Descent Certificates for the Juggler Map
 
+Prepared 1.1.1, 22 September 2026. Corrects the recursion attribution to Terras (1976) and Winkler's arXiv citation. Mathematical results are unchanged. No new deposit has been made.
+
 Record [zenodo.org/records/22864934](https://zenodo.org/records/22864934).
 
 | Version | DOI | Date |
 | --- | --- | --- |
+| 1.1.1 | not deposited | 22 September 2026 |
 | 1.1.0 | not deposited | 21 September 2026 |
 | 1.0.0 | [10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934) | 21 September 2026 |
 
@@ -82,10 +88,13 @@ deposited file recovered from git. No page of the mathematical text moved.
 
 ### Paper C, Fate Contagion and Termination Criteria for the Juggler Map
 
+Prepared 1.2.0, 22 September 2026. Adds the full written OOEE proof, contagion at 5/8, rate threshold 3/8, and the scale-average pressure criterion. The fully machine-checked contagion baseline remains 100/203. No new deposit has been made.
+
 Record [zenodo.org/records/22865705](https://zenodo.org/records/22865705).
 
 | Version | DOI | Date |
 | --- | --- | --- |
+| 1.2.0 | not deposited | 22 September 2026 |
 | 1.1.1 | not deposited | 21 September 2026 |
 | 1.1.0 | [10.5281/zenodo.22865705](https://doi.org/10.5281/zenodo.22865705) | 21 September 2026 |
 | 1.0.0 | [10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165) | 9 September 2026 |
@@ -120,6 +129,17 @@ floor raises the theorem's \(m\) and is a new version through the record's
 new-version operation, not a correction.
 
 ### Paper E, The Juggler Map and the 3n±1 Maps
+
+Version 0.6.0, 22 September 2026: adds the written effective OOE theorem
+and complete quantitative appendix. The selected 49-declaration Lean
+audit still covers the qualitative results; full quantitative verification
+and independent review are outstanding. No deposit has been made.
+
+Version 0.5.0, 22 September 2026: exact counting and prescribed-residue
+corollaries, with complete Lean proofs. No deposit has been made.
+
+Version 0.4.0, 22 September 2026: completes Theorem 4.1 in Lean, including
+its analytic box-recurrence input. No deposit has been made.
 
 Version 0.3.0, 22 September 2026: Theorem 4.1's exact construction and
 denominator arithmetic are formalized. The infinitude assembly requires

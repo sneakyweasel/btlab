@@ -3,7 +3,7 @@
   "canonical_source": "docs/theory/juggler_signed_collatz_note.md",
   "status": "living preprint; independent review pending; no external deposit",
   "verification_scope": "File provenance only. The mathematical trust boundaries are in the manuscript and in PAPER_E_BUILD.md.",
-  "pages": 13,
+  "pages": 18,
   "tools": {
     "pandoc": "pandoc.EXE 3.6.3",
     "xelatex": "MiKTeX-XeTeX 4.18 (MiKTeX 26.5)"
@@ -37,7 +37,12 @@
     {
       "path": "docs/theory/PAPER_E_BUILD.md",
       "mode": "text",
-      "sha256": "c579d5378ea9cf70baaa6a81ad43ff6fabbf9747d9951b61807f82e89ec2ae1e"
+      "sha256": "28ec647a96abea9f508a17b6dc698822a002c37560d9fe749200ee6162ccf656"
+    },
+    {
+      "path": "docs/theory/finite_fejer_box_note.md",
+      "mode": "text",
+      "sha256": "f1d54b3c6b31b6f14fd46ec7c694bb86ece769f2c18244b5d690e9387141dd06"
     },
     {
       "path": "docs/theory/finite_weyl_differencing_note.md",
@@ -55,9 +60,19 @@
       "sha256": "20b0c28bd4360e9a2ed275ccd53db2fa31d0133ed6a6feb7b5cae32ed86584f4"
     },
     {
+      "path": "docs/theory/juggler_effective_modular_return_audit.md",
+      "mode": "text",
+      "sha256": "4509b1b2fd945e72f4cecb078cc459c228d7fe2e971a4cbdeaf3d52737a37126"
+    },
+    {
+      "path": "docs/theory/juggler_effective_modular_return_note.md",
+      "mode": "text",
+      "sha256": "087c8a380d87d1bf9c4b540f2c1e0a786f387e1c072500f93a10bf4574587f17"
+    },
+    {
       "path": "docs/theory/juggler_signed_collatz_note.md",
       "mode": "text",
-      "sha256": "7e065298d25e1f00d6c274902ae8d581e509f0ad02c1a495096107bfeb428f92"
+      "sha256": "20b68c0df5d4a06c5174f84a733bcd8843ce88d375b2770d2ff9244bd0c4b518"
     },
     {
       "path": "docs/theory/mixed_power_cancellation_note.md",
@@ -72,7 +87,7 @@
     {
       "path": "docs/theory/paper_e_review.md",
       "mode": "text",
-      "sha256": "da2d4cfa3740631170d6679cf71bb07494524e3b1012a942486de12581722195"
+      "sha256": "4590244080ac8691dbf08bdc1ac8c6968c800cc3d217655bf37fbad1aad53728"
     },
     {
       "path": "docs/theory/paper_e_validation.json",
@@ -520,6 +535,11 @@
       "sha256": "2c2122ac2007f47fced775fc62073ecc4c1ac2397f7e00c274528b184038f59b"
     },
     {
+      "path": "literature/arias-de-reyna-2024-explicit-derivative-estimate.json",
+      "mode": "text",
+      "sha256": "dc780e66427a5f4df5a43bb3f35a15d332b857d485c06fc7b28a60314027673c"
+    },
+    {
       "path": "literature/bernstein-lagarias-1996-conjugacy-map.json",
       "mode": "text",
       "sha256": "877c934d2b50e9b8b22eabbd7eef3897d4d1133fe7111663bd224446d1204577"
@@ -562,7 +582,7 @@
     {
       "path": "src/research/juggler_sequence/lean_paths.py",
       "mode": "text",
-      "sha256": "967e82664f9be7c22af2a697e981b7f20ad65f2c45b39a976cf98a6c570965ae"
+      "sha256": "3d3bc69989976c4204eadd005b95a364ca7b216bebbe6a7886b69e06d2251b8f"
     },
     {
       "path": "src/research/juggler_sequence/negative_preimage_density.py",
@@ -577,12 +597,12 @@
     {
       "path": "tools/build_paper_e.py",
       "mode": "text",
-      "sha256": "498b9f015571ec09ce8cc28b24913eefc35874b3b73567f6dace2c3fddb5481e"
+      "sha256": "748cd873c5f2fb56c2463ccff776b82ea83a382272d5b9043cb81f0657ba2568"
     },
     {
       "path": "tools/check_paper_e.py",
       "mode": "text",
-      "sha256": "ed0bc431a80c732cf07a7a6bde617aa19f26f37f0c9f8dd565d3689aff40fcf9"
+      "sha256": "d5a8c1dc67cb75ae796830c9410cab1d101588278458094ebe9e9e8156b9db29"
     },
     {
       "path": "tools/generate_signed_grid_certificate.py",
@@ -609,17 +629,17 @@
     {
       "path": "juggler_review/juggler_signed_collatz_note.pdf",
       "mode": "binary",
-      "sha256": "f6b4ac327cd2ffa267c6c7db12f24b0c06ce4314dd1616d8fd019cd5a303725d"
+      "sha256": "02df9f031b9905bf4a139b5e85659b497e6aeda9154ed461fc3c7aa610f7de44"
     },
     {
       "path": "docs/theory/cochin-juggler-signed-collatz.tex",
       "mode": "text",
-      "sha256": "160082b568d42ed11b1d248d9e57692dc452544794cf1d38efa0d4fb7fd48836"
+      "sha256": "d16cd4f88c84abc94a061fed436b611d230e13319782677bab570008d12e871b"
     },
     {
       "path": "docs/theory/paper_e_zenodo.json",
       "mode": "text",
-      "sha256": "e53a37df56205ab1295178ff9a21f008e1be51685a77b992ce9153cc64bdc3f4"
+      "sha256": "22b3d28011be775131c76b5ab4ca95db33e828c3485d54009b92751c9517175d"
     }
   ]
 }

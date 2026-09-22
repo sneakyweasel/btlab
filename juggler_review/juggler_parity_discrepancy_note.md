@@ -2,7 +2,7 @@
 title: "Five-Step Descent Certificates for the Juggler Map"
 subtitle: "Parity Statistics of Nested Floor Powers"
 author: Philippe Cochin
-date: 20 September 2026
+date: 22 September 2026
 lang: en
 ---
 
@@ -1329,7 +1329,10 @@ against the integer counts and machine-checked in
 `formal/Problems/Juggler/PaperBBarrierStep.lean` and, as an identity
 of integer counts, in `PaperBCertificateRecursion.lean`.
 
-This recursion is not new. On A076227 [5] it is Zarubin's formula of
+This recursion is not new. Its two-index antecedent is Terras [4,
+Theorem 1.14, equation (11), 1976]: summing the gated Pascal recursion
+over the odd-step index and separating surviving from terminal words
+gives the displayed one-index identity. On A076227 [5] it is Zarubin's formula of
 11 August 2019, which reads  \(a(L_k)=2a(L_k-1)-A_{100982}(k)\)  at the
 lengths  \(L_k\)  where the barrier rises and  \(a(L)=2a(L-1)\)  where it
 does not --- the display above, in the entry's indexing --- and Winkler's
@@ -3347,7 +3350,10 @@ of the preprint. The models are not authors.
 
 ## Availability and version
 
-This is version 1.1.0 of Paper B, of 21 September 2026. It is a preprint, it has
+This is version 1.1.1 of Paper B, of 22 September 2026. This revision
+corrects the recursion's attribution to Terras (1976) and cites the
+arXiv version of reference [13]; its mathematical statements and proofs
+are unchanged. It is a preprint, it has
 not been refereed, and it is not deposited. The current Zenodo version is 1.0.0
 ([doi:10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934)),
 published 21 September 2026 from the edition of 20 September 2026. The concept DOI
@@ -3426,13 +3432,13 @@ power-of-two law  \(2^{\lfloor(n-1)\log_2(3/2)\rfloor}\) . Exact and
 finite throughout.
 [doi:10.13140/RG.2.2.31257.79200](https://doi.org/10.13140/RG.2.2.31257.79200).
 13. M. Winkler, "Admissible qx + 1 Sequences, Semiconvergents, and
-Rational Catalan Numbers," ResearchGate preprint, 14 September 2026.
+Rational Catalan Numbers," arXiv:2609.22303, 14 September 2026.
 Read for this revision. The source of the two-sided bound on  \(M_d\)
 used in the repository; Corollary 11 gives the growth constant
 \(2.8395137305\)  and Corollary 12 the exact normalized oscillation, as
 an envelope between  \(1\)  and  \(2.7095112914\)  attained on the
 record minima and maxima of  \(\{r\log_23\}\) .
-[doi:10.13140/RG.2.2.35856.78086](https://doi.org/10.13140/RG.2.2.35856.78086).
+[arXiv:2609.22303](https://arxiv.org/abs/2609.22303).
 14. J. C. Lagarias, "The 3x+1 problem and its generalizations,"
 *American Mathematical Monthly* 92 (1985).
 [doi:10.1080/00029890.1985.11971528](https://doi.org/10.1080/00029890.1985.11971528).

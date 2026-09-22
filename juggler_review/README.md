@@ -3,7 +3,7 @@
 # Juggler reviewer bundle
 
 **Paper E, 22 September 2026:** [The Juggler Map and the 3n±1 Maps](juggler_signed_collatz_note.pdf)
-is a living preprint, version 0.3.0, prepared locally and not deposited.
+is a living preprint, version 0.6.0, prepared locally and not deposited.
 Its [build guide](PAPER_E_BUILD.md) and [review record](paper_e_review.md)
 cover exact coding, signed ancestor counts, formal proof scope, and updates.
 The local publication kit is in zenodo_paper_e/. The historical review
@@ -195,3 +195,14 @@ own implementation of the valley cap.
 The deposit kit is [zenodo_paper_d/](zenodo_paper_d/). **No upload has been performed and no
 DOI exists yet**; the canonical list is
 [paper_deposits.md](../docs/theory/paper_deposits.md).
+
+## Local revisions of 22 September 2026
+
+Paper A 1.2.0 adds the Wu-Wang asymptotic corollary without raising the
+computed floor. Paper B 1.1.1 corrects attribution and a source citation.
+Paper C 1.2.0 incorporates the written OOEE proof, contagion at 5/8 and
+the sufficient rate threshold 3/8; its unconditional Lean baseline remains
+100/203. Paper D 1.1.0 already contains the m <= 61 extension. Paper E
+0.6.0 adds the written effective OOE theorem and quantitative appendix.
+These packages are local revisions; no external deposit was performed.
+The analytic review and formalization boundaries are stated in each paper.

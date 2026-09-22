@@ -19,7 +19,10 @@ term is now O(P^(5/16)*log(P)) in Lean, and the complete retained carry
 correlation is O(P^(3/8)). The original linearization comparison and
 mixed-mode differencing are now proved too, giving O(P^(13/32)) for
 every fixed mixed mode and uniformly over fixed finite frequency sets.
-Pure slow modes, joint discrepancy and the poor-target assembly remain.
+The actual last-root comparison, pure slow modes outside explicit resonance
+windows, and the joint three-guard count are now kernel-checked too.
+[Joint-parity proof map](../theory/juggler_ooee_joint_parity_note.md).
+Exact fibre geometry, poor-target inclusion and the tail assembly remain.
 [Analytic argument](../theory/juggler_ooee_poor_fibre_tail_note.md).
 
 ## Problem

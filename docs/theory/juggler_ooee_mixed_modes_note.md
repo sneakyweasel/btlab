@@ -120,11 +120,12 @@ pass (67 tests, four skips), including all failures from the initial
 registration run. The commit's generated artifacts are checked separately
 against its scoped source snapshot to exclude concurrent draft changes.
 
-**Decision: PROMOTE.** This closes the fixed mixed-mode phase. Next are
-the actual square-root phase comparison, pure slow-mode resonance
-exclusions, and three-coordinate box discrepancy. The poor-target
-inclusion, reciprocal tail and physical production cutoffs must then
-be assembled before `OOEEProductionBound` is discharged.
+**Decision: PROMOTE.** This closes the fixed mixed-mode phase. The
+[subsequent joint-parity proof](juggler_ooee_joint_parity_note.md) supplies
+the actual square-root comparison, pure slow-mode resonance exclusions
+and three-coordinate discrepancy with exact OOEE guard identification.
+Target-fibre geometry, poor-target inclusion, reciprocal tail and physical
+cutoffs must still be assembled before `OOEEProductionBound` is discharged.
 
 The unconditional Lean contagion exponent remains 100/203. The stronger
 5/8 result still has its explicit OOEE production hypothesis. The

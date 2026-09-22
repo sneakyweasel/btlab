@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.5) (preloaded format=xelatex 2026.9.1)  20 SEP 2026 00:00
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.5) (preloaded format=xelatex 2026.9.1)  22 SEP 2026 00:00
 entering extended mode
  %&-line parsing enabled.
 **./juggler_parity_discrepancy_note.tex
@@ -443,7 +443,7 @@ Koksma in-equal-ity to
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 1886.
+(amsmath)                 on input line 1890.
 
 [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] [37] [38] [39]
 [40] [41] [42] [43] [44] (juggler_parity_discrepancy_note.aux)

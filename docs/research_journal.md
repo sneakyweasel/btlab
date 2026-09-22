@@ -1,5 +1,30 @@
 # Research journal
 
+## 2026-09-22 -- Actual OOEE joint parity and slow resonances
+
+- **Continuation audit:** The previous turn verified the pending root and
+  slow-mode bounds but did not advance the production theorem. This phase
+  completes their registration and proves the actual three-guard count.
+- **Target and falsifier:** Transfer the proved modes to joint OOEE parity
+  on the valid P^(7/16) source window. A boundary loss or an assumed
+  cancellation estimate would falsify the target. Frequencies remain fixed;
+  the closed longer-fibre localization and growing-depth shortcuts stay closed.
+- **Proof:** The actual last root differs from x^(9/8) by at most
+  3*x^(-3/8). The pure slow sum outside C*P^(-7/16) resonance windows
+  is at most (2/C)*P^(7/16)+3*pi*abs(k)*D*P^(1/16)+1. Three-coordinate
+  Fejer discrepancy has error 15/sqrt(H+1)+(A_H^3+6*A_H)*E, where
+  A_H=1+2*harmonic(H). Exact natural-root identities identify its half-open
+  box with the actual OOEE guard, including every floor boundary. The
+  final count theorem supplies all mode bounds from the proved estimates.
+- **Scope:** Source-window and nonresonance conditions are explicit.
+  Exact target fibres and candidate counts, poor-target inclusion,
+  reciprocal tail, weighted conversion and physical cutoffs remain.
+  OOEEProductionBound is not discharged, so 100/203 remains the
+  unconditional Lean contagion exponent. The actual failure rate is open.
+- **Decision:** **PROMOTE** the actual joint parity estimate. The next
+  bounded question is the target-fibre geometry and fixed-deficit resonance
+  inclusion. [Proof map](theory/juggler_ooee_joint_parity_note.md).
+
 ## 2026-09-22 -- Uniform effective OOE Fourier modes (Q1 application and Q2)
 
 - **Continuation audit:** The preceding goal turn made concrete progress
@@ -38,6 +63,7 @@
   are excluded from this commit. Ledger and branch-index consistency pass.
 - **Decision:** **PROMOTE** the uniform effective mode theorem. The next
   bounded obligation is Q4, the exact return count and explicit error.
+
 ## 2026-09-22 -- Original OOEE mixed-mode cancellation
 
 - **Continuation audit:** The preceding review verified the status but

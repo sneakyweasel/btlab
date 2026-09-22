@@ -1385,3 +1385,14 @@ the height argument of Theorem 5.18(ii) is a written proof. No Juggler
 statement of the paper depends on this section. The one Collatz claim
 beyond the published bounds is the negative-cycle period bound of Remark
 5.20, `16483927`, which rests on that floor.
+
+## Supplement: Corollary 4.11a (22 September 2026)
+
+The asymptotic Wu-Wang refinement is a written application of the classical
+measure in reference [31]. Its transfer declarations are
+`cycleMin_length_of_wuWang` and `cycleMin_period_ge_wuWang` in
+[GapTransferWW.lean](../../formal/Problems/Juggler/GapTransferWW.lean).
+They retain the logarithmic lower bound as an explicit hypothesis;
+they do not prove Wu and Wang's theorem. These supplementary declarations
+are outside the historical selected Paper A audit. The stronger exponent
+changes no computed period floor.

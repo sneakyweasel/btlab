@@ -2,7 +2,7 @@
 
 Parity Statistics of Nested Floor Powers.
 
-Version: 2026-09-20-preprint. Author: Philippe Cochin.
+Version: 1.1.1; source edition: 22 September 2026. Author: Philippe Cochin.
 
 The 44-page manuscript proves full five-step power-envelope certificate
 density 7/8, with count error O_epsilon(N^(127/128+epsilon)).
@@ -118,3 +118,12 @@ Paper B was published on Zenodo on 21 September 2026. The author
 page-by-page review of this edition is still outstanding, as
 paper_b_release_check.json records. No independent peer-review
 certification or universal termination claim is made.
+
+## Revision of 22 September 2026
+
+The prepared version 1.1.1 corrects the recursion's attribution to Terras
+(1976, Theorem 1.14, equation (11)) and cites Winkler's arXiv:2609.22303.
+The mathematical theorems, proofs and five-step density 7/8 are unchanged.
+The historical statement that pages 2--42 match the deposit pixel for pixel
+applies to local 1.1.0, not to this edition. The new source, PDF, validation
+record and both archives are rebuilt together. No deposit is performed.

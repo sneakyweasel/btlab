@@ -1,5 +1,5 @@
 GENERATED FROM docs/theory/; do not edit this export.
-Version 1.1.0 is prepared and is not deposited. The record exists: concept doi:10.5281/zenodo.22864933 resolves to the latest version, which is 1.0.0 at doi:10.5281/zenodo.22864934 of 2026-09-21. A new version goes up through the new-version operation of that record, which keeps the concept DOI.
+Version 1.1.1 is prepared and is not deposited. The record exists: concept doi:10.5281/zenodo.22864933 resolves to the latest version, which is 1.0.0 at doi:10.5281/zenodo.22864934 of 2026-09-21. A new version goes up through the new-version operation of that record, which keeps the concept DOI.
 
 TITLE
 Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers
@@ -13,7 +13,7 @@ RESOURCE TYPE
 Publication / Preprint
 
 VERSION
-1.1.0
+1.1.1
 
 LICENSE
 cc-by-4.0

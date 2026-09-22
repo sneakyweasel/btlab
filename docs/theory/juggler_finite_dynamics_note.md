@@ -1,7 +1,7 @@
 ---
 title: "Lower Bounds for Cycle Lengths in the Juggler Map"
 author: Philippe Cochin
-date: 21 September 2026
+date: 22 September 2026
 keywords:
   - Juggler map
   - Juggler sequence
@@ -25,6 +25,10 @@ we prove the cycle-financing inequality
 n\log n\,(3^o-2^L)\le L\,3^o.
 \]
 It bounds the formal expansion that accumulated floor losses can offset.
+Combining its floor-free logarithmic transfer with Wu and Wang's
+classical measure gives
+\(n\log n\ll_\varepsilon L^{5.1163051+\varepsilon}\), improving
+the asymptotic exponent while retaining Rhin's separate explicit bound.
 A refinement transports these losses to a reduced base and bounds the
 resulting exponent-walk charge using an irrational rotation,
 Denjoy--Koksma estimates, and finite Ostrowski decompositions. Combined
@@ -343,6 +347,10 @@ every certified floor, and it shows that the no-cycle problem is
 exactly the exclusion of long cycles,
 \(L>(n\log n/915)^{1/14.3}\), where the finance survivors
 (\(L\approx n^{0.59}\)) live.
+Corollary 4.11a strengthens the asymptotic restriction to
+\(n\log n\ll_\varepsilon L^{5.1163051+\varepsilon}\), using
+Wu and Wang's external measure. It excludes no additional numerical
+period at the certified floors.
 
 **Contribution 6 — complete cycle order under a height hypothesis.**
 For a primitive cycle with \(m>1\) and \(M<m^3\), the sorted states
@@ -697,7 +705,7 @@ whole is formally verified.
 
 ```text
 Repository:  https://github.com/sneakyweasel/btlab
-Commit:      34e5ef33cd2b90d427e971ee7ad65840652fe9c3
+Commit:      5a728d1d80029ee3040063d060699e9460871184
 Lean:        leanprover/lean4:v4.33.1
 Mathlib:     v4.33.1 (lake-manifest rev 0df444a360eaa60ab8c11dca51a86af692955474)
 Build:       lake build Problems.JugglerPaper   (from formal/)
@@ -3093,6 +3101,36 @@ gives the first displayed upper bound. The inequality
 \(2e^{6.1256}<915\) completes the proof. This use of Rhin is an
 external theorem, not a Lean proof of the transcendence estimate.
 \(\square\)
+
+**Corollary 4.11a (asymptotic refinement).** For every
+\(\varepsilon>0\), a nontrivial cycle with minimum \(n\ge2\)
+and period \(L\) satisfies
+\[
+n\log n\ll_\varepsilon L^{5.1163051+\varepsilon},\qquad
+L\gg_\varepsilon(n\log n)^{1/(5.1163051+\varepsilon)}.
+\]
+
+*Proof.* Wu and Wang [31] give, for all sufficiently large
+\(H=\max(|b|,|c|)\), the lower bound
+\(|a+b\log2+c\log3|\ge H^{-4.1163051-\varepsilon}\).
+With \((a,b,c)=(0,-L,o)\), the height is \(H=L\). Absorbing
+the finitely many smaller heights into a positive constant
+\(C_\varepsilon\le1\) gives
+\(\Lambda\ge C_\varepsilon L^{-4.1163051-\varepsilon}\).
+Theorem 4.10 then gives
+\(n\log n\le(2/C_\varepsilon)L^{5.1163051+\varepsilon}\).
+\(\square\)
+
+This improves the asymptotic exponent; Corollary 4.11 retains its
+explicit constant 915. No new numerical period is excluded at the
+certified floor. To close the cycle problem through this argument one
+would still need a matching *lower* bound on the cycle minimum, of
+order \(L^{5.1163051+\varepsilon}\) up to logarithms and constants.
+The transfer is formalized conditionally on the classical logarithmic
+estimate in `cycleMin_length_of_wuWang` and
+`cycleMin_period_ge_wuWang`; Wu and Wang's estimate itself is not
+proved in Lean. The supplementary proof map is recorded separately
+from this paper's selected declaration audit.
 
 **Remark (what the reduction does and does not do).**
 Corollary 4.11 is a reduction of the no-cycle problem, not a
@@ -6959,7 +6997,10 @@ preprint.
 
 ## 8. Availability and version
 
-This is version 1.1.0 of Paper A, of 21 September 2026. It is a preprint, it has
+This is version 1.2.0 of Paper A, of 22 September 2026. It adds the
+asymptotic refinement in Corollary 4.11a and retains the corrected
+provenance record of the prepared 1.1.0. The certified floors and
+numerical period exclusions are unchanged. It is a preprint, it has
 not been refereed, and it is not deposited. The deposited versions are:
 
 - 1.0.2 of 20 September 2026,
@@ -7094,3 +7135,6 @@ The repository is
     (\(n\) even),” Sequence A037084 in *The On-Line Encyclopedia of
     Integer Sequences*, https://oeis.org/A037084 (accessed 20 September
     2026).
+31. Q. Wu and L. Wang, "On the irrationality measure of log 3,"
+    *Journal of Number Theory* 142 (2014), 264--273.
+    [doi:10.1016/j.jnt.2014.03.007](https://doi.org/10.1016/j.jnt.2014.03.007).

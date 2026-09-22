@@ -41,14 +41,16 @@ The live publication task is the Juggler programme.
    ([doi:10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934);
    [10 September proof audit](theory/paper_b_proof_review.md))
 3. [Paper C — fate contagion](theory/juggler_fate_almost_all_note.md)
+   — local version 1.2.0: written exponent 5/8 and rate threshold 3/8;
+   fully machine-checked baseline 100/203; the new analytic proof awaits review
    ([doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165))
 4. [Paper D — no m-cycles of the 3n-1 map for m <= 61](theory/collatz_3n_minus_1_m_cycles_note.md)
    ([doi:10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190) is version 1.0.0,
    which reads m <= 58; version 1.1.0 adds the valley-count lemma and is built but not yet
    deposited) — the Collatz side, not the Juggler map
 5. [Paper E — The Juggler Map and the 3n±1 Maps](theory/juggler_signed_collatz_note.md)
-   — living preprint, version 0.5.0; exact coding, signed ancestor counts,
-   and arithmetic obstructions. [Build and update guide](theory/PAPER_E_BUILD.md);
+   — living preprint, version 0.6.0; exact coding, signed ancestor counts,
+   arithmetic obstructions, and explicit OOE return bounds. [Build and update guide](theory/PAPER_E_BUILD.md);
    [review record](theory/paper_e_review.md). Prepared locally, not deposited.
 6. [Branch ledger](juggler_branch_ledger.md)
 7. [Negative knowledge](negative_knowledge.md) — every recorded
