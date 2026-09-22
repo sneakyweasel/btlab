@@ -109,6 +109,21 @@ C second, then P large: (3) permits any fixed positive parity deficit.
 The last observation explains the application; fibre endpoint geometry
 and the resulting poor-target inclusion are the next formal obligations.
 
+## Validation
+
+The full Lean build passes (9082 jobs). The
+[dependency audit](../../formal/AxiomCheckOOEEJointParity.lean) covers all
+28 theorems in the four modules; every declaration uses only propext,
+Classical.choice and Quot.sound. The main repository run passes 225 tests
+with 15 skips. Two publication checks fail amid concurrent manuscript
+edits; both pass on the committed-source scope plus this change. The
+scoped Paper E and theorem-index rerun passes 15 tests after correcting
+pytest's temporary-directory access. Following the host's publication
+commit, the final live rerun passes 34 tests; the same two publication
+checks still fail. Current Paper E, ledger and theorem-index checks pass.
+The ledger retains kernel trust
+and pending advisory coverage; no new external service was contacted.
+
 ## Decision and remaining boundary
 
 **PROMOTE** the actual joint parity estimate. The [poor-fibre proof](juggler_ooee_poor_fibre_tail_note.md)

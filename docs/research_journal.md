@@ -2,8 +2,8 @@
 
 ## 2026-09-22 -- Actual OOEE joint parity and slow resonances
 
-- **Continuation audit:** The previous turn verified the pending root and
-  slow-mode bounds but did not advance the production theorem. This phase
+- **Continuation audit:** The preceding review was **no progress** toward
+  the production theorem: it checked status and existing bounds. This phase
   completes their registration and proves the actual three-guard count.
 - **Target and falsifier:** Transfer the proved modes to joint OOEE parity
   on the valid P^(7/16) source window. A boundary loss or an assumed
@@ -21,6 +21,17 @@
   reciprocal tail, weighted conversion and physical cutoffs remain.
   OOEEProductionBound is not discharged, so 100/203 remains the
   unconditional Lean contagion exponent. The actual failure rate is open.
+- **Validation:** Full Lean build passes (9082 jobs). All 28 new theorems
+  have only propext, Classical.choice and Quot.sound dependencies. The
+  main run passes 225 tests with 15 skips. Two publication gates fail
+  amid concurrent manuscript changes; both pass against committed-source
+  publication inputs plus this change. The scoped release/index rerun
+  passes 15 tests after giving pytest an accessible temporary directory.
+  After the host committed the concurrent publication update, the final
+  live rerun passed 34 tests, with the same two publication failures.
+  The current Paper E release, ledger and theorem-index checks pass.
+  No new external advisory check was sent; the ledger records kernel trust
+  with advisory statement coverage pending.
 - **Decision:** **PROMOTE** the actual joint parity estimate. The next
   bounded question is the target-fibre geometry and fixed-deficit resonance
   inclusion. [Proof map](theory/juggler_ooee_joint_parity_note.md).
