@@ -107,6 +107,13 @@
   records, no failures, with the reversed-orientation control rejected on 59 of 59
   equal-degree pairs. Runtime 98 seconds, so the ceiling is patience. A
   verification of his conjecture, not a proof, and his to use.
+- **Contact made, 22 September 2026.** Philippe wrote to Winkler and sent it. The
+  message reports the n = 120 verification with its control, offers to extend it,
+  and asks whether `connection-thresholds` is available or in preparation. Text as
+  sent: `literature/sources/correspondence-winkler-2026-09-22-sent.txt`. The
+  retrieval question is now out of this laboratory's hands; do not reopen it as a
+  search. The Terras 1976 attribution was deliberately held back for a second
+  message, if he replies.
 - **Verified in passing:** The two equality families of Corollary 12 reconstruct
   A206788 exactly, lower orders 1, 2, 7, 12 and upper orders 1, 3, 5, 17, 29,
   union equal to the stored head with nothing left over, sides running LLHHLLHH.

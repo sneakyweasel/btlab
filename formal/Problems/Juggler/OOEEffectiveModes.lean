@@ -147,9 +147,10 @@ theorem fifth_derivative_positive {M P H u v x : ℝ}
         (u*M^5*(M*P)^(-1/2:ℝ))/3 by ring, he] at h
       exact h
     · simpa only [he] using mul_le_mul_of_nonneg_left hh (show 0 ≤ u*M^5 by positivity)
-  have hvpow : |v|*s^(-11/4:ℝ) ≤ s^(-1/2:ℝ) := by
-    calc |v|*s^(-11/4:ℝ) ≤ s*s^(-11/4:ℝ) := by gcongr; exact hv.trans (hHP.trans hsP)
-         _ = s^(-7/4:ℝ) := by rw [← Real.rpow_one s, ← Real.rpow_add hs0]; norm_num
+  have hvpow : |v| * s^(-11/4:ℝ) ≤ s^(-1/2:ℝ) := by
+    calc |v| * s^(-11/4:ℝ) ≤ s*s^(-11/4:ℝ) := by gcongr; exact hv.trans (hHP.trans hsP)
+         _ = s^(-7/4:ℝ) := by
+           convert (Real.rpow_add hs0 1 (-11/4)).symm using 1 <;> norm_num
          _ ≤ s^(-1/2:ℝ) := Real.rpow_le_rpow_of_exponent_le hs1 (by norm_num)
   have hMpow : M^4 ≤ u*M^5 := by
     have h1 : M^4 ≤ M^5 := by
@@ -160,7 +161,7 @@ theorem fifth_derivative_positive {M P H u v x : ℝ}
   have herr : |(945/64:ℝ)*v*M^4*s^(-11/4:ℝ)| ≤
       (945/64:ℝ)*(u*M^5*s^(-1/2:ℝ)) := by
     calc |(945/64:ℝ)*v*M^4*s^(-11/4:ℝ)| =
-          (945/64:ℝ)*M^4*(|v|*s^(-11/4:ℝ)) := by
+          (945/64:ℝ)*M^4*(|v| * s^(-11/4:ℝ)) := by
             simp only [abs_mul, abs_of_nonneg (by positivity : (0:ℝ) ≤ 945/64),
               abs_of_nonneg (by positivity : 0 ≤ M^4),
               abs_of_pos (Real.rpow_pos_of_pos hs0 _)]
@@ -240,5 +241,162 @@ theorem third_derivative_signed {M P v : ℝ} (hM : 1 ≤ M) (hP : 6 ≤ P) :
       simpa using modeChain_neg M 0 v 3 x
     rw [he] at h
     constructor <;> nlinarith [h.1, h.2]
+
+def frequencyScale (M H P : ℝ) : ℝ := H^(1/30:ℝ)*M^(1/4:ℝ)*P^(-1/60:ℝ)
+
+theorem power_le_frequencyScale {M H P p : ℝ} (hM : 1 ≤ M) (hH : 1 ≤ H)
+    (hP : 1 ≤ P) (hp : p ≤ -1/60) : P^p ≤ frequencyScale M H P := by
+  have h1 : 1 ≤ H^(1/30:ℝ) := Real.one_le_rpow hH (by norm_num)
+  have h2 : 1 ≤ M^(1/4:ℝ) := Real.one_le_rpow hM (by norm_num)
+  have h3 := Real.rpow_le_rpow_of_exponent_le hP hp
+  have hw : 1 ≤ H^(1/30:ℝ)*M^(1/4:ℝ) := by nlinarith
+  exact h3.trans (le_mul_of_one_le_left (by positivity) hw)
+
+theorem low_power_le_frequencyScale {M H P : ℝ} (hM : 1 ≤ M) (hH : 1 ≤ H)
+    (hP : 1 ≤ P) (hHP : H^2 ≤ P) :
+    H^(1/6:ℝ)*M^(5/24:ℝ)*P^(-1/8:ℝ) ≤ frequencyScale M H P := by
+  have hH0 : 0 < H := by linarith
+  have hP0 : 0 < P := by linarith
+  have hr := Real.rpow_le_rpow (by positivity : 0 ≤ H^2) hHP (by norm_num : (0:ℝ) ≤ 1/15)
+  rw [← Real.rpow_natCast H 2, ← Real.rpow_mul hH0.le] at hr
+  norm_num at hr
+  have hMpow := Real.rpow_le_rpow_of_exponent_le hM (by norm_num : (5/24:ℝ) ≤ 1/4)
+  have hPpow := Real.rpow_le_rpow_of_exponent_le hP (by norm_num : (-7/120:ℝ) ≤ -1/60)
+  have he : H^(1/6:ℝ) = H^(1/30:ℝ)*H^(2/15:ℝ) := by
+    rw [← Real.rpow_add hH0]; norm_num
+  rw [he]
+  calc H^(1/30:ℝ)*H^(2/15:ℝ)*M^(5/24:ℝ)*P^(-1/8:ℝ) ≤
+        H^(1/30:ℝ)*P^(1/15:ℝ)*M^(1/4:ℝ)*P^(-1/8:ℝ) := by gcongr
+       _ = H^(1/30:ℝ)*M^(1/4:ℝ)*P^(-7/120:ℝ) := by
+         rw [show H^(1/30:ℝ)*P^(1/15:ℝ)*M^(1/4:ℝ)*P^(-1/8:ℝ) =
+           H^(1/30:ℝ)*M^(1/4:ℝ)*(P^(1/15:ℝ)*P^(-1/8:ℝ)) by ring,
+           ← Real.rpow_add hP0]
+         norm_num
+       _ ≤ frequencyScale M H P := by unfold frequencyScale; gcongr
+
+theorem high_leading_rate {M H P u : ℝ} (hM : 1 ≤ M) (hH : 1 ≤ H)
+    (hP : 1 ≤ P) (hu : 1 ≤ u) (huH : u ≤ H) :
+    (100*highScale M P u)^(1/30:ℝ) ≤ 2*frequencyScale M H P := by
+  have hM0 : 0 < M := by linarith
+  have hP0 : 0 < P := by linarith
+  have hu0 : 0 < u := by linarith
+  have h100 : (100:ℝ)^(1/30:ℝ) ≤ 2 := by
+    apply (Real.rpow_le_rpow_iff (by positivity) (by norm_num) (by norm_num : (0:ℝ)<30)).mp
+    rw [← Real.rpow_mul (by norm_num)]
+    norm_num
+  have huH' := Real.rpow_le_rpow hu0.le huH (by norm_num : (0:ℝ) ≤ 1/30)
+  have hM' := Real.rpow_le_rpow_of_exponent_le hM (by norm_num : (3/20:ℝ) ≤ 1/4)
+  unfold highScale frequencyScale
+  rw [Real.mul_rpow (by norm_num) (by positivity),
+    Real.mul_rpow (by positivity) (by positivity),
+    Real.mul_rpow hu0.le (by positivity),
+    ← Real.rpow_mul hM0.le, ← Real.rpow_mul hP0.le]
+  norm_num
+  gcongr
+
+theorem low_leading_rate {M H P v : ℝ} (hM : 1 ≤ M) (hH : 1 ≤ H)
+    (hP : 1 ≤ P) (hv : 1 ≤ v) (hvH : v ≤ H) (hHP : H^2 ≤ P) :
+    ((1/2:ℝ)*lowScale M P v)^(1/6:ℝ) ≤ frequencyScale M H P := by
+  have hM0 : 0 < M := by linarith
+  have hP0 : 0 < P := by linarith
+  have hv0 : 0 < v := by linarith
+  have hhalf : (1/2:ℝ)^(1/6:ℝ) ≤ 1 := Real.rpow_le_one (by norm_num) (by norm_num) (by norm_num)
+  have hvH' := Real.rpow_le_rpow hv0.le hvH (by norm_num : (0:ℝ) ≤ 1/6)
+  unfold lowScale
+  rw [Real.mul_rpow (by norm_num) (by positivity),
+    Real.mul_rpow (by positivity) (by positivity),
+    Real.mul_rpow hv0.le (by positivity),
+    ← Real.rpow_mul hM0.le, ← Real.rpow_mul hP0.le]
+  norm_num
+  have hb := low_power_le_frequencyScale hM hH hP hHP
+  apply le_trans _ hb
+  calc (1/2:ℝ)^(1/6:ℝ)*(v^(1/6:ℝ)*M^(5/24:ℝ)*P^(-(1/8:ℝ))) ≤
+         1*(H^(1/6:ℝ)*M^(5/24:ℝ)*P^(-(1/8:ℝ))) := by gcongr
+       _ = _ := by simp only [one_mul, neg_div]
+
+theorem sqrt_tail_lower {N P lam c b : ℝ} (hP : 0 < P) (hc : 0 ≤ c)
+    (hN : P/2 ≤ N) (hlam : c^2*P^(2*b) ≤ lam) :
+    (c/2)*P^(1+b) ≤ N*Real.sqrt lam := by
+  have he : (c*P^b)^2 = c^2*P^(2*b) := by
+    rw [mul_pow, ← Real.rpow_natCast (P^b) 2, ← Real.rpow_mul hP.le]
+    congr 2
+    ring
+  rw [← he] at hlam
+  have hroot := Real.sqrt_le_sqrt hlam
+  rw [Real.sqrt_sq (by positivity)] at hroot
+  have hN0 : 0 ≤ N := by linarith
+  calc (c/2)*P^(1+b) = (P/2)*(c*P^b) := by rw [Real.rpow_add hP, Real.rpow_one]; ring
+       _ ≤ N*Real.sqrt lam := by gcongr
+
+theorem inverse_scaled_power {x P c b a : ℝ} (hP : 0 < P) (hc : 0 < c)
+    (ha : 0 ≤ a) (hx : c*P^b ≤ x) :
+    x^(-a) ≤ c^(-a)*P^(-a*b) := by
+  calc x^(-a) ≤ (c*P^b)^(-a) :=
+         Real.rpow_le_rpow_of_nonpos (by positivity) hx (by linarith)
+       _ = c^(-a)*P^(-a*b) := by
+         rw [Real.mul_rpow hc.le (by positivity), ← Real.rpow_mul hP.le]
+         congr 2
+         ring
+
+theorem quarter_inverse_half : (1/4:ℝ)^(-1/2:ℝ) = 2 := by
+  rw [show (1/4:ℝ) = (1/2:ℝ)^(2:ℝ) by norm_num, ← Real.rpow_mul (by norm_num)]
+  norm_num
+
+theorem twelfth_inverse_eighth : (1/12:ℝ)^(-1/8:ℝ) ≤ 2 := by
+  apply (Real.rpow_le_rpow_iff (by positivity) (by norm_num) (by norm_num : (0:ℝ)<8)).mp
+  rw [← Real.rpow_mul (by norm_num)]
+  norm_num
+
+theorem high_rate_terms {M H P u N : ℝ} (hM : 1 ≤ M) (hH : 1 ≤ H)
+    (hP : 1 ≤ P) (hu : 1 ≤ u) (hN : P/2 ≤ N) :
+    (N/6)^(-1/8:ℝ) ≤ 2*frequencyScale M H P ∧
+      (N*Real.sqrt (100*highScale M P u))^(-1/8:ℝ) ≤ 2*frequencyScale M H P := by
+  have hP0 : 0 < P := by linarith
+  have hp1 := power_le_frequencyScale hM hH hP (by norm_num : (-1/8:ℝ) ≤ -1/60)
+  have hp2 := power_le_frequencyScale hM hH hP (by norm_num : (-3/32:ℝ) ≤ -1/60)
+  have hlo : (2:ℝ)^2*P^(2*(-1/4:ℝ)) ≤ 100*highScale M P u := by
+    have hMp := Real.one_le_rpow hM (by norm_num : (0:ℝ) ≤ 9/2)
+    have huM : 1 ≤ u*M^(9/2:ℝ) := by nlinarith
+    norm_num
+    unfold highScale
+    nlinarith [Real.rpow_pos_of_pos hP0 (-1/2)]
+  have ht := sqrt_tail_lower hP0 (by norm_num : (0:ℝ) ≤ 2) hN hlo
+  norm_num only at ht
+  have hterm := inverse_scaled_power hP0 (by norm_num : (0:ℝ)<1/12)
+    (by norm_num : (0:ℝ) ≤ 1/8) (show (1/12:ℝ)*P^1 ≤ N/6 by rw [Real.rpow_one]; linarith)
+  norm_num only at hterm
+  have htail := inverse_scaled_power hP0 (by norm_num : (0:ℝ)<1)
+    (by norm_num : (0:ℝ) ≤ 1/8) (show 1*P^(3/4:ℝ) ≤ N*Real.sqrt (100*highScale M P u) by simpa using ht)
+  norm_num only at htail
+  have h12 := twelfth_inverse_eighth
+  norm_num only at h12 hp1 hp2 ⊢
+  constructor
+  · exact hterm.trans (mul_le_mul h12 hp1 (by positivity) (by norm_num))
+  · have hg : 0 ≤ frequencyScale M H P := by unfold frequencyScale; positivity
+    linarith
+
+theorem low_rate_terms {M H P v N : ℝ} (hM : 1 ≤ M) (hH : 1 ≤ H)
+    (hP : 1 ≤ P) (hv : 1 ≤ v) (hN : P/2 ≤ N) :
+    (N/2)^(-1/2:ℝ) ≤ 2*frequencyScale M H P ∧
+      (N*Real.sqrt ((1/2:ℝ)*lowScale M P v))^(-1/2:ℝ) ≤ 2*frequencyScale M H P := by
+  have hP0 : 0 < P := by linarith
+  have hp1 := power_le_frequencyScale hM hH hP (by norm_num : (-1/2:ℝ) ≤ -1/60)
+  have hp2 := power_le_frequencyScale hM hH hP (by norm_num : (-5/16:ℝ) ≤ -1/60)
+  have hlo : (1/2:ℝ)^2*P^(2*(-3/8:ℝ)) ≤ (1/2:ℝ)*lowScale M P v := by
+    have hMp := Real.one_le_rpow hM (by norm_num : (0:ℝ) ≤ 5/4)
+    have hvM : 1 ≤ v*M^(5/4:ℝ) := by nlinarith
+    norm_num
+    unfold lowScale
+    nlinarith [Real.rpow_pos_of_pos hP0 (-3/4)]
+  have ht := sqrt_tail_lower hP0 (by norm_num : (0:ℝ) ≤ 1/2) hN hlo
+  norm_num only at ht
+  have hterm := inverse_scaled_power hP0 (by norm_num : (0:ℝ)<1/4)
+    (by norm_num : (0:ℝ) ≤ 1/2) (show (1/4:ℝ)*P^1 ≤ N/2 by rw [Real.rpow_one]; linarith)
+  have htail := inverse_scaled_power hP0 (by norm_num : (0:ℝ)<1/4)
+    (by norm_num : (0:ℝ) ≤ 1/2) (show (1/4:ℝ)*P^(5/8:ℝ) ≤ N*Real.sqrt ((1/2:ℝ)*lowScale M P v) by simpa using ht)
+  have h4 := quarter_inverse_half
+  norm_num only at h4 hterm htail hp1 hp2 ⊢
+  rw [h4] at hterm htail
+  constructor <;> linarith
 
 end Problems.Juggler.OOEEffectiveModes
