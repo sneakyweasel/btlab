@@ -9,6 +9,8 @@ Lean theorem now retains only the precise OOEE production bound: the OE
 input has been discharged in `FateOEWeighted.lean`. Independent review
 and analytic Lean verification are outstanding; the published manuscripts
 and termination status are unchanged.
+The classical finite differencing input is now proved in
+`BTCalculus.WeylDifferencing`; the actual correlation estimates remain written.
 [Analytic argument](../theory/juggler_ooee_poor_fibre_tail_note.md).
 
 ## Problem
@@ -97,6 +99,14 @@ OE poor-fibre tail; no closed localization route is reopened. The budget
 is the exact weight comparison, weighted OE production, and connection
 to the existing assembly. Promotion requires that unconditional input
 to compile; the new OOEE estimate remains outside this phase.
+
+The fifth phase formalizes the classical finite van der Corput inequality
+used by the written OOEE estimate. Lost boundary terms or an assumed
+correlation bound would falsify this consolidation. Finite sums and
+Cauchy--Schwarz suffice, without any closed localization shortcut. The
+budget is the complete inequality with exact overlap correlations, stopping
+before derivative tests and discrepancy. Promotion requires compilation
+without an assumed analytic estimate; this criterion is met.
 
 ## Balanced-ternary formulation
 
@@ -223,6 +233,13 @@ actual OE production for every backward-closed class. Its consequence
 `logMass_growth_of_ooee` retains only `OOEEProductionBound`. The new
 short-interval OOEE estimate itself is still not formalized.
 
+[WeylDifferencing.lean](../../formal/BTCalculus/WeylDifferencing.lean) now
+proves the finite van der Corput inequality from zero padding and
+Cauchy--Schwarz, with constants 2 and 4 and exact correlation length N-d.
+Its odd-lattice specialization retains the actual phase difference.
+This is a classical analytic tool, not a bound on these correlations.
+[Proof mapping and exact statement](../theory/finite_weyl_differencing_note.md).
+
 ## Results
 
 In the exhaustive dyadic blocks with exponents 8, 9, 10, 11, the mean
@@ -294,6 +311,13 @@ source fibres, and n^3<(m+1)^4 then give coefficient 33/100 with a fixed
 additive loss. This is unconditional in Lean. The improved contagion
 implication now assumes only the actual OOEE production bound.
 
+**Fifth phase: finite differencing is kernel-checked.** For a complex
+sequence of length N with modulus at most one and 1<=H<=N, Lean proves
+|S|^2 <= 2*N^2/H + (4*N/H)*sum_(1<=d<H)|T_d|, with each T_d taken over
+exactly N-d terms. No cancellation hypothesis occurs in this theorem.
+The written OOEE application still needs its correlation bound
+O(P^(3/8)), as well as its derivative and discrepancy estimates.
+
 ## Open questions
 
 The first phase proposed a second-moment route. Let H_m be the number
@@ -319,6 +343,9 @@ proof obligation is to discharge `OOEEProductionBound` in Lean for every
 backward-closed class. Its main analytic ingredient is the actual OOEE
 poor-fibre theorem. The OE production and a uniform weight conversion
 are now formal; the OOEE source-cutoff consequence must also be retained.
+Finite differencing is now formal too. The next analytic prerequisite is
+a first-derivative cancellation estimate with explicit hypotheses; it
+supports both the pure slow modes and the second-derivative test.
 
 ## Decision
 
@@ -326,7 +353,8 @@ are now formal; the OOEE source-cutoff consequence must also be retained.
 assembly yielding contagion at 5/8 and the sufficient Tao threshold 3/8.
 The assembly and its OE input are kernel-checked; the new OOEE analytic
 theorem still awaits independent review and Lean proof. Exactly one best
-next question: can the actual `OOEEProductionBound` be discharged in Lean?
+next question: can the first-derivative cancellation estimate needed by
+the actual OOEE proof be discharged in Lean?
 This phase stops at that boundary.
 
 ## Publication assessment

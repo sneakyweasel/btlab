@@ -550,6 +550,18 @@
         "kernel": 20
       }
     },
+    "BTCalculus.WeylDifferencing": {
+      "declarations": 18,
+      "depends_on": [],
+      "file": "formal/BTCalculus/WeylDifferencing.lean",
+      "ledger": [
+        "BTA-finite-weyl-differencing"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 18
+      }
+    },
     "BTCalculus.WordSimpNewman": {
       "declarations": 27,
       "depends_on": [],
@@ -2999,6 +3011,20 @@
         "kernel": 30
       }
     },
+    "Problems.Juggler.PaperEModularReturn": {
+      "declarations": 33,
+      "depends_on": [
+        "Problems.Juggler.CollatzBridge"
+      ],
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 33
+      }
+    },
     "Problems.Juggler.ParityComplexity": {
       "declarations": 11,
       "depends_on": [],
@@ -3750,9 +3776,9 @@
     }
   },
   "totals": {
-    "edges": 289,
-    "edges_before_reduction": 2328,
-    "ledger_rows_placed": 488,
-    "nodes": 232
+    "edges": 290,
+    "edges_before_reduction": 2341,
+    "ledger_rows_placed": 490,
+    "nodes": 234
   }
 }

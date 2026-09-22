@@ -139,6 +139,10 @@ assembly conditional on BoxRecurrence; the recurrence proof remains written.
   input. `FateOEWeighted.lean` now discharges the OE inequality, including
   physical cutoffs and a uniform mass-conversion error at most 6. Only
   `OOEEProductionBound` remains in its strengthened contagion implication.
+  The classical [finite differencing input](../../docs/theory/finite_weyl_differencing_note.md)
+  is now kernel-checked in `BTCalculus.WeylDifferencing`, including exact
+  overlap correlations and the odd-lattice specialization. Their analytic
+  cancellation bounds remain outstanding in Lean.
   The unconditional Lean exponent remains 100/203, and the actual
   failure-rate estimate remains open.
   Kernel localize CLOSE. Do not open a

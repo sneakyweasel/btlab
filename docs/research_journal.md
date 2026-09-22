@@ -1,5 +1,36 @@
 # Research journal
 
+## 2026-09-22 -- Finite differencing for the OOEE analytic proof
+
+- **Target and budget:** Formalize the classical finite van der Corput
+  inequality used in the written short-interval estimate. Lost endpoints
+  or an assumed cancellation estimate would falsify this consolidation.
+  Finite sums and Cauchy--Schwarz supply the machinery; no closed local
+  attack is reopened. The phase stops before derivative and discrepancy
+  estimates.
+- **Formal result:** `BTCalculus.WeylDifferencing` proves
+  |S|^2 <= 2*N^2/H + (4*N/H)*sum_(1<=d<H)|T_d| for 1<=H<=N and
+  |z(n)|<=1. Each T_d uses exactly N-d terms. Zero padding, row overlaps,
+  the diagonal contribution, both distance injections, and the
+  Cauchy--Schwarz energy inequality are proved. The exponential-sum
+  specialization uses the actual odd-lattice phase difference.
+- **Scope:** This is a formalization of a classical inequality, with no
+  Juggler correlation bound assumed or supplied. The written OOEE
+  correlation estimate O(P^(3/8)), derivative tests, carry approximation,
+  and discrepancy theorem remain to be proved in Lean. The new 5/8
+  contagion implication therefore still assumes `OOEEProductionBound`.
+- **Decision:** **PROMOTE** this consolidation. The next question is a
+  first-derivative cancellation estimate with explicit hypotheses, needed
+  by the pure slow modes and the second-derivative test. No termination
+  proof or integer escape construction follows.
+  [Exact statement and proof mapping](theory/finite_weyl_differencing_note.md).
+- **Validation:** Full Lean build: 9052 jobs. All 15 theorem dependency
+  audits use only propext, Classical.choice, and Quot.sound. The selected
+  documentation, ledger, branch, architecture, and index checks report
+  179 passes and 15 skips. Advisory coverage remains pending; no external
+  request was sent. The scoped index omits another task's uncommitted
+  `WeylCancellation.lean` while preserving it in the working tree.
+
 ## 2026-09-22 -- Paper E Theorem 4.1: exact construction in Lean
 
 - **Request:** formalize Theorem 4.1.

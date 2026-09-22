@@ -25,6 +25,11 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- finite van der Corput differencing for bounded complex sequences, with
+  exact overlap correlations and constants 2 and 4; the odd-lattice
+  exponential-sum specialization includes its unit-modulus and phase
+  subtraction proofs. Derivative tests and discrepancy are not assumed
+  by this theorem and are still separate formalization obligations;
 - unconditional actual OE production at conserved-weight coefficient 33/100,
   using the proved poor-fibre tail and a uniform mass-conversion error at
   most 6 for every predicate and cutoff. The 5/8 contagion and e>3/8 Tao

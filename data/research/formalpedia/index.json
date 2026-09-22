@@ -75521,6 +75521,402 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 18,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "iterate_add_after",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 22,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "runWord",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 25,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "runWord_length",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 28,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "runWord_oddCount",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 31,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "runWord_charge_add",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 44,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "runWord_charge",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Repeated integer roots give one exact power cell at every depth.",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 49,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "le_sqrt_iterate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 57,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "sqrt_iterate_cell",
+      "trust": "kernel"
+    },
+    {
+      "doc": "All of the initial perfect-power steps are genuine odd branches.",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 64,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "odd_tower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The last odd branch introduces exactly one square-root floor.",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 85,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "odd_run",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An even run is precisely repeated integer square roots.",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 98,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "even_run",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The integer root tower is the floor of the corresponding real power.",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 112,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "sqrt_iterate_eq_floor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 127,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "power_root_eq_floor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The fractional-part box selects exactly the requested integer residue.",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 134,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "floor_mod_of_box",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 153,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "powerValue",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The particular positive box used in the paper, with coordinates reversed.",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 156,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "ReturnBox",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 162,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "box_guards",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The box supplies actual parity guards, not merely a prescribed symbolic word.",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 178,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "actual_run",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A completely explicit size threshold makes the endpoint exceed the start.",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 194,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "root_endpoint_gt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 208,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "odd_prefix_above",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 229,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "even_prefix_above_endpoint",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 250,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "run_above_start",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The orbit part of Theorem 4.1 for every sufficiently large box visit.",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 268,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "modular_return_of_box",
+      "trust": "kernel"
+    },
+    {
+      "doc": "All orbit conclusions of (4.1), with no reference to a symbolic code.",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 291,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "ModularReturn",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The remaining analytic proposition. It asserts joint visits, not separate coordinate density, and is not proved in this module.",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 298,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "BoxRecurrence",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Exact reduction of infinitude to the outstanding analytic proposition.",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 302,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "infinite_modular_returns_of_box_recurrence",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "def",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 321,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "runCode",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Exact gcd cancellation; this uses the actual word charge.",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 325,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "runWord_gcd",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Formula (4.2) is the reduced denominator of the rational periodic-word code.",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 354,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "runCode_den",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An elementary Bernoulli bound suffices for denominator growth.",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 363,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "bernoulli_three_two",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every sufficiently large odd-run length has denominator above the given bound.",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 371,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "runCode_den_gt",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 396,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "runCode_den_unbounded",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Complete assembly, conditional on the explicitly named analytic input. This is not an unconditional formalization of Theorem 4.1.",
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-paper-e-modular-return-exact-construction"
+      ],
+      "line": 404,
+      "module": "Problems.Juggler.PaperEModularReturn",
+      "name": "theorem41_of_box_recurrence",
+      "trust": "kernel"
+    },
+    {
       "doc": "Parity of `\u230a(2k+1)^{3/2}\u230b`: the letter following the odd step from `2k+1`.",
       "file": "formal/Problems/Juggler/ParityComplexity.lean",
       "kind": "def",
@@ -105767,6 +106163,222 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/BTCalculus/WeylDifferencing.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-finite-weyl-differencing"
+      ],
+      "line": 18,
+      "module": "BTCalculus.WeylDifferencing",
+      "name": "pad",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/WeylDifferencing.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-finite-weyl-differencing"
+      ],
+      "line": 21,
+      "module": "BTCalculus.WeylDifferencing",
+      "name": "correlation",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/WeylDifferencing.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-weyl-differencing"
+      ],
+      "line": 24,
+      "module": "BTCalculus.WeylDifferencing",
+      "name": "sum_pad",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/WeylDifferencing.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-weyl-differencing"
+      ],
+      "line": 47,
+      "module": "BTCalculus.WeylDifferencing",
+      "name": "sum_norm_sq_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/WeylDifferencing.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-weyl-differencing"
+      ],
+      "line": 53,
+      "module": "BTCalculus.WeylDifferencing",
+      "name": "pad_overlap",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/WeylDifferencing.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-weyl-differencing"
+      ],
+      "line": 90,
+      "module": "BTCalculus.WeylDifferencing",
+      "name": "sq_norm_sum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/WeylDifferencing.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-weyl-differencing"
+      ],
+      "line": 97,
+      "module": "BTCalculus.WeylDifferencing",
+      "name": "overlap_real_symmetric",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/WeylDifferencing.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-weyl-differencing"
+      ],
+      "line": 102,
+      "module": "BTCalculus.WeylDifferencing",
+      "name": "correlation_zero_norm_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/WeylDifferencing.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-weyl-differencing"
+      ],
+      "line": 115,
+      "module": "BTCalculus.WeylDifferencing",
+      "name": "overlap_real_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/WeylDifferencing.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-weyl-differencing"
+      ],
+      "line": 131,
+      "module": "BTCalculus.WeylDifferencing",
+      "name": "sum_injection_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/WeylDifferencing.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-weyl-differencing"
+      ],
+      "line": 141,
+      "module": "BTCalculus.WeylDifferencing",
+      "name": "row_distance_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/WeylDifferencing.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-weyl-differencing"
+      ],
+      "line": 182,
+      "module": "BTCalculus.WeylDifferencing",
+      "name": "column_energy_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/WeylDifferencing.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-weyl-differencing"
+      ],
+      "line": 209,
+      "module": "BTCalculus.WeylDifferencing",
+      "name": "differencing_energy",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Finite van der Corput, with the overlap and both endpoint constants explicit.",
+      "file": "formal/BTCalculus/WeylDifferencing.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-weyl-differencing"
+      ],
+      "line": 230,
+      "module": "BTCalculus.WeylDifferencing",
+      "name": "van_der_corput",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/WeylDifferencing.lean",
+      "kind": "def",
+      "ledger": [
+        "BTA-finite-weyl-differencing"
+      ],
+      "line": 252,
+      "module": "BTCalculus.WeylDifferencing",
+      "name": "phase",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/WeylDifferencing.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-weyl-differencing"
+      ],
+      "line": 254,
+      "module": "BTCalculus.WeylDifferencing",
+      "name": "phase_norm",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/WeylDifferencing.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-weyl-differencing"
+      ],
+      "line": 257,
+      "module": "BTCalculus.WeylDifferencing",
+      "name": "phase_mul_conj",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Odd-lattice coordinates keep the overlap length exactly `N - d`.",
+      "file": "formal/BTCalculus/WeylDifferencing.lean",
+      "kind": "theorem",
+      "ledger": [
+        "BTA-finite-weyl-differencing"
+      ],
+      "line": 266,
+      "module": "BTCalculus.WeylDifferencing",
+      "name": "odd_lattice_van_der_corput",
+      "trust": "kernel"
+    },
+    {
       "doc": "Operator words, left-to-right composition order matching Python.",
       "file": "formal/BTCalculus/WordSimp.lean",
       "kind": "abbrev",
@@ -106936,6 +107548,7 @@
         "BTCalculus.Transducer",
         "BTCalculus.TransducerComposition",
         "BTCalculus.Trit",
+        "BTCalculus.WeylDifferencing",
         "BTCalculus.WordSimp",
         "BTCalculus.WordSimpNewman",
         "BTCalculus.XCubeStateComplexity"
@@ -107761,6 +108374,18 @@
           "id": "BTC-trit-kleene",
           "statement": "Trit is a 3-element Kleene algebra and not a Boolean algebra",
           "tag": "EXACT \u2014 LEAN VERIFIED"
+        }
+      ]
+    },
+    "BTCalculus.WeylDifferencing": {
+      "declarations": 18,
+      "file": "formal/BTCalculus/WeylDifferencing.lean",
+      "imports": [],
+      "ledger": [
+        {
+          "id": "BTA-finite-weyl-differencing",
+          "statement": "Kernel-checked formalization of a classical finite van der Corput inequality; advisory statement coverage pending. For z:Nat->Complex, natural 1<=H<=N, and |z(n)|<=1 for n<N, put S=sum_(n<N) z(n) and T_d=sum_(n<N-d) z(n+d)*conj(z(n)). Then |S|^2<=2*N^2/H+(4*N/H)*sum_(1<=d<H)|T_d|. The overlap length is exactly N-d, without periodic completion or a cancellation hypothesis. The more general energy inequality H^2*|S|^2<=(N+H)*H*(N+2*sum_(1<=d<H)|T_d|) holds for every natural N,H under the same modulus bound. The module proves zero-padded row sums and overlaps, finite Cauchy-Schwarz, diagonal and off-diagonal bounds, and the odd-lattice specialization z(n)=exp(2*pi*i*f(a+2*n)) for every real-valued f on natural integers and natural a; each correlation is the exponential sum of the actual shifted phase difference over N-d terms. This supplies a classical finite input to the written OOEE estimate, not its correlation bounds, derivative tests, discrepancy estimates, poor-fibre theorem, or a termination or escape result.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
     },
@@ -108915,6 +109540,7 @@
         "Problems.Juggler.PaperBTilt",
         "Problems.Juggler.PaperBWeightGap",
         "Problems.Juggler.PaperECompletion",
+        "Problems.Juggler.PaperEModularReturn",
         "Problems.Juggler.ParityComplexity",
         "Problems.Juggler.PeriodFamily",
         "Problems.Juggler.PolynomialDual",
@@ -111711,6 +112337,20 @@
         }
       ]
     },
+    "Problems.Juggler.PaperEModularReturn": {
+      "declarations": 33,
+      "file": "formal/Problems/Juggler/PaperEModularReturn.lean",
+      "imports": [
+        "Problems.Juggler.CollatzBridge"
+      ],
+      "ledger": [
+        {
+          "id": "J-paper-e-modular-return-exact-construction",
+          "statement": "For a=k+1, M>0 and 2^(a+b)<3^a, every visit of s=1+2Mt to the specified simultaneous fractional-part box with s>=2^(2^(b+1)) yields a genuine odd-start Juggler O^a E^b prefix: every state is at least its start, the endpoint is strictly larger, and start and endpoint are 1 modulo 2M. The rational periodic-word code has reduced denominator (3^a-2^(a+b))/gcd(3^a-2^a,2^b-1). For b>0 and every Q, every a>=2*(2^b+(Q+1)*(2^b-1)) is expanding and has denominator greater than Q. The infinitude of distinct starts above every bound is proved CONDITIONAL on BoxRecurrence, the explicitly quantified assertion of arbitrarily large simultaneous-box visits. BoxRecurrence itself is not proved in Lean: this is partial coverage of Theorem 4.1, not an unconditional formalization. All listed results compile with standard logical dependencies; advisory statement-coverage review is pending.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
+    },
     "Problems.Juggler.ParityComplexity": {
       "declarations": 11,
       "file": "formal/Problems/Juggler/ParityComplexity.lean",
@@ -112492,7 +113132,8 @@
         "Problems.Collatz.PreimageCertificate12",
         "Problems.Juggler.CollatzMoments",
         "Problems.Juggler.CollatzPadic",
-        "Problems.Juggler.PaperECompletion"
+        "Problems.Juggler.PaperECompletion",
+        "Problems.Juggler.PaperEModularReturn"
       ],
       "ledger": []
     },
@@ -112843,13 +113484,13 @@
     }
   },
   "totals": {
-    "declarations": 8464,
-    "declarations_with_a_ledger_row": 5741,
-    "ledger_rows_naming_a_file": 488,
-    "modules": 345,
+    "declarations": 8515,
+    "declarations_with_a_ledger_row": 5792,
+    "ledger_rows_naming_a_file": 490,
+    "modules": 347,
     "trust": {
       "compiler": 56,
-      "kernel": 8408
+      "kernel": 8459
     }
   }
 }

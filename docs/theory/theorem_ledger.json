@@ -13065,5 +13065,38 @@
    "tests/research/juggler_sequence/test_lean_paths_declares_name.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "BTA-finite-weyl-differencing",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked formalization of a classical finite van der Corput inequality; advisory statement coverage pending. For z:Nat->Complex, natural 1<=H<=N, and |z(n)|<=1 for n<N, put S=sum_(n<N) z(n) and T_d=sum_(n<N-d) z(n+d)*conj(z(n)). Then |S|^2<=2*N^2/H+(4*N/H)*sum_(1<=d<H)|T_d|. The overlap length is exactly N-d, without periodic completion or a cancellation hypothesis. The more general energy inequality H^2*|S|^2<=(N+H)*H*(N+2*sum_(1<=d<H)|T_d|) holds for every natural N,H under the same modulus bound. The module proves zero-padded row sums and overlaps, finite Cauchy-Schwarz, diagonal and off-diagonal bounds, and the odd-lattice specialization z(n)=exp(2*pi*i*f(a+2*n)) for every real-valued f on natural integers and natural a; each correlation is the exponential sum of the actual shifted phase difference over N-d terms. This supplies a classical finite input to the written OOEE estimate, not its correlation bounds, derivative tests, discrepancy estimates, poor-fibre theorem, or a termination or escape result.",
+  "source": "docs/problems/juggler_ooee_poor_fibres.md",
+  "lean": "BTCalculus/WeylDifferencing.lean",
+  "decl": [
+   "pad",
+   "correlation",
+   "phase",
+   "sum_pad",
+   "sum_norm_sq_le",
+   "pad_overlap",
+   "sq_norm_sum",
+   "overlap_real_symmetric",
+   "correlation_zero_norm_le",
+   "overlap_real_le",
+   "sum_injection_le",
+   "row_distance_bound",
+   "column_energy_bound",
+   "differencing_energy",
+   "van_der_corput",
+   "phase_norm",
+   "phase_mul_conj",
+   "odd_lattice_van_der_corput"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": []
  }
 ]

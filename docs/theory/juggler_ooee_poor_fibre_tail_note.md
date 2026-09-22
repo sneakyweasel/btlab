@@ -103,6 +103,14 @@ of Sequences*, Chapter 2, already indexed as
 `kuipers-niederreiter-1974-uniform-distribution`.
 No qualitative Hardy-field or global-count localization is used.
 
+The finite differencing bullet is now kernel-checked, with constants
+2 and 4 and exact overlap length N-h, in
+[WeylDifferencing.lean](../../formal/BTCalculus/WeylDifferencing.lean).
+Its exponential-sum specialization works directly on the odd lattice.
+The [proof mapping](finite_weyl_differencing_note.md) distinguishes
+this completed classical input from the remaining derivative and
+discrepancy estimates.
+
 ## 3. The short mixed estimate
 
 For real x>=3 define X(x)=x^(3/2), Z(x)=x^(9/8); for integer n put
@@ -433,8 +441,9 @@ the existing E/OE shell recursion, checking its boundary losses, and
 formalizing that assembly were subsequent work for this analytic phase.
 The [follow-up assembly](juggler_ooee_contagion_note.md) now gives written
 contagion at 5/8 and a sufficient Tao-rate threshold e>3/8. Its Lean
-implication retains both actual odd-production inequalities explicitly;
-the analytic input of the present note remains a written proof.
+implication now retains only the actual OOEE production inequality:
+`FateOEWeighted.lean` discharges OE. The analytic input of the present
+note remains a written proof.
 
 ## 7. Audit and formalization boundary
 
@@ -452,6 +461,11 @@ Existing kernel-checked components are
 (`carry_eq_fract_add_sub_fract`, `floor_odd_iff_half_le_fract_half`).
 They support the exact algebra and parity interpretation. Neither file
 contains the analytic short-interval estimate or Theorem 1.
+
+The general finite differencing step is now additionally proved in
+`BTCalculus/WeylDifferencing.lean`, including the explicit odd-lattice
+phase correlations. This supplies equation (16)'s classical inequality;
+the correlation estimates needed before that substitution remain written.
 
 The census is a regression control, not a proof of (1). Independent
 review should particularly check (7), the bounded cell count (10), all
