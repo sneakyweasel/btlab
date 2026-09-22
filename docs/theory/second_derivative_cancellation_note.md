@@ -106,9 +106,11 @@ For fixed nonzero mode u and 1<=h<=P^(1/16), their written bound is
 O(P^(3/8)). The phase-specific uniform curvature inequalities, splitting
 into the actual carry cells, partial summation, carry Fourier error, and
 finite discrepancy inequalities are not proved by this generic theorem.
-The next concrete question is the uniform curvature bound for those
-actual carry-cell phases. Qualitative fixed-box counting does not replace
-the quantitative discrepancy step here.
+The [subsequent formalization](juggler_ooee_curvature_note.md) now proves
+that uniform curvature and the unweighted cell bound, with explicit
+floor and size conditions. Carry partition, weighted sums, Fourier errors,
+and finite discrepancy remain. Qualitative fixed-box counting does not
+replace the quantitative discrepancy step here.
 
 `OOEEProductionBound` remains an explicit Lean hypothesis. The unconditional
 Lean contagion exponent remains 100/203; the written 5/8 improvement still

@@ -69086,6 +69086,426 @@
     },
     {
       "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 18,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "powerDiff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 20,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "anchor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 23,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "anchorD1",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 27,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "anchorD2",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 32,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "anchorD2Shift1",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 36,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "anchorD2Shift2",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 40,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "deriv_power",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 44,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "deriv_shift_power",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 49,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "deriv_powerDiff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 56,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "anchor_original",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 64,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "deriv_anchor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 73,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "deriv_anchorD1",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 83,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "deriv_anchorD2_shift",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 95,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "deriv_anchorD2Shift1",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 107,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "anchorD2_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 115,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "anchorD2Shift1_zero",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 122,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "mixed_power_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 131,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "anchor_shift_second_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Both the constant and first-order shift terms vanish in the anchor curvature.",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 145,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "anchor_curvature_remainder",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 166,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "negative_power_difference_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 181,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "cellPhase",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 185,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "cellPhaseD1",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 189,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "cellPhaseD2",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 193,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "deriv_cellPhase",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 203,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "deriv_cellPhaseD1",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 213,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "cell_curvature_error",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A deliberately coarse comparison, avoiding numerical estimates of fractional powers.",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 252,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "rpow_nearby_lower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 261,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "rpow_nearby_half",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The actual first floor difference has the scale required by the cell phase.",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 271,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "carry_coefficient_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The negative carry curvature dominates all lower-order terms at an explicit scale.",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 295,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "cell_curvature_pointwise",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Explicit large-scale conditions work for every growing shift in the stated range.",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 343,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "cell_curvature_uniform",
+      "trust": "kernel"
+    },
+    {
+      "doc": "An actual fixed-floor cell supplies the closed inequalities, including its endpoints.",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 371,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "floor_cell_bounds",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The finite cell sum derives curvature from the carry inequalities, not from a separate analytic hypothesis. Its closed interval includes the final increment.",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 379,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "cell_sum_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The retained endpoint term gives the uniform `P^(3/8)` cell estimate.",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 406,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "cell_sum_power_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "For fixed Fourier coefficients, the explicit size conditions hold eventually.",
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "line": 461,
+      "module": "Problems.Juggler.OOEECurvature",
+      "name": "size_conditions_eventually",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/Problems/Juggler/OstrowskiBlocks.lean",
       "kind": "theorem",
       "ledger": [],
@@ -98185,6 +98605,256 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 25,
+      "module": "BTCalculus.FejerKernel",
+      "name": "dirichlet",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 28,
+      "module": "BTCalculus.FejerKernel",
+      "name": "kernel",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 31,
+      "module": "BTCalculus.FejerKernel",
+      "name": "continuous_dirichlet",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 35,
+      "module": "BTCalculus.FejerKernel",
+      "name": "continuous_kernel",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 38,
+      "module": "BTCalculus.FejerKernel",
+      "name": "kernel_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 42,
+      "module": "BTCalculus.FejerKernel",
+      "name": "integrable_kernel",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 45,
+      "module": "BTCalculus.FejerKernel",
+      "name": "norm_dirichlet_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 51,
+      "module": "BTCalculus.FejerKernel",
+      "name": "kernel_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 56,
+      "module": "BTCalculus.FejerKernel",
+      "name": "fourier_sub",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 60,
+      "module": "BTCalculus.FejerKernel",
+      "name": "kernel_expansion",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 72,
+      "module": "BTCalculus.FejerKernel",
+      "name": "integral_fourier",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 79,
+      "module": "BTCalculus.FejerKernel",
+      "name": "integrable_fourier",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 82,
+      "module": "BTCalculus.FejerKernel",
+      "name": "integral_kernel",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 103,
+      "module": "BTCalculus.FejerKernel",
+      "name": "fourier_nat",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The geometric identity is valid even when its final factor vanishes.",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 111,
+      "module": "BTCalculus.FejerKernel",
+      "name": "dirichlet_mul_sub_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 115,
+      "module": "BTCalculus.FejerKernel",
+      "name": "norm_dirichlet_mul_sub_one_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 122,
+      "module": "BTCalculus.FejerKernel",
+      "name": "norm_fourier_one_sub_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 134,
+      "module": "BTCalculus.FejerKernel",
+      "name": "chord_lower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The inverse-square majorant uses the nearest real representative.",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 149,
+      "module": "BTCalculus.FejerKernel",
+      "name": "kernel_le_inv_sq",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 170,
+      "module": "BTCalculus.FejerKernel",
+      "name": "fourier_neg_input",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 175,
+      "module": "BTCalculus.FejerKernel",
+      "name": "kernel_neg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 180,
+      "module": "BTCalculus.FejerKernel",
+      "name": "continuous_kernel_real",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Each side of the tail has the explicit reciprocal-distance bound.",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 185,
+      "module": "BTCalculus.FejerKernel",
+      "name": "positive_tail_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Both real tails together; the endpoint conventions do not alter these integrals.",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 219,
+      "module": "BTCalculus.FejerKernel",
+      "name": "two_sided_tail_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The actual Haar mass outside the open circle neighbourhood, with its boundary retained.",
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 238,
+      "module": "BTCalculus.FejerKernel",
+      "name": "circle_tail_le",
+      "trust": "kernel"
+    },
+    {
       "doc": "The empirical distribution of the first N+1 samples.",
       "file": "formal/BTCalculus/FourierBoxCounting.lean",
       "kind": "def",
@@ -98542,6 +99212,106 @@
       "line": 241,
       "module": "BTCalculus.FourierBoxRecurrence",
       "name": "exists_ge_fract_box_of_phase",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 19,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "average_finsetSum",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 24,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "average_const_mul",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 28,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "average_const",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 33,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "polynomial",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A finite Fourier-mode bound controls the mean of every polynomial on those modes.",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 37,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "polynomial_average_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "def",
+      "ledger": [],
+      "line": 57,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "realAverage",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 59,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "realAverage_re",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 63,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "polynomial_real_average_bound",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Pointwise lower and upper functions give a count bound, including sample boundary hits.",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 75,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "count_sandwich",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Quantitative transfer from an explicit Fourier-polynomial sandwich to a finite count.",
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "kind": "theorem",
+      "ledger": [],
+      "line": 104,
+      "module": "BTCalculus.FourierDiscrepancy",
+      "name": "count_of_polynomial_sandwich",
       "trust": "kernel"
     },
     {
@@ -109493,6 +110263,14 @@
         }
       ]
     },
+    "BTCalculus.FejerKernel": {
+      "declarations": 25,
+      "file": "formal/BTCalculus/FejerKernel.lean",
+      "imports": [
+        "BTCalculus.FourierBoxCounting"
+      ],
+      "ledger": []
+    },
     "BTCalculus.FourierBoxCounting": {
       "declarations": 15,
       "file": "formal/BTCalculus/FourierBoxCounting.lean",
@@ -109520,6 +110298,14 @@
           "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
+    },
+    "BTCalculus.FourierDiscrepancy": {
+      "declarations": 10,
+      "file": "formal/BTCalculus/FourierDiscrepancy.lean",
+      "imports": [
+        "BTCalculus.FourierBoxCounting"
+      ],
+      "ledger": []
     },
     "BTCalculus.Integral": {
       "declarations": 14,
@@ -110053,7 +110839,7 @@
       "ledger": [
         {
           "id": "BTA-quantitative-second-derivative",
-          "statement": "Kernel-checked formalization of a classical quantitative second-derivative estimate; advisory statement coverage pending. For every natural N, real a, lambda>0 and C>=1, suppose f has derivative g and g has derivative q at every point of the closed interval [a,a+N]. If lambda<=q<=C*lambda throughout that interval, or -C*lambda<=q<=-lambda throughout it, then the norm of sum_(n<N) exp(2*pi*i*f(a+n)) is at most 4*C*N*sqrt(lambda)+8/sqrt(lambda). The analogous hypotheses on [a,a+2*N] give the spacing-two bound 8*C*N*sqrt(lambda)+4/sqrt(lambda). N=0 and the endpoint one lattice step beyond the final summand are retained. The discrete proof assumes lambda*(j-i)<=d(j)-d(i)<=U*(j-i) for all 0<=i<=j<N, with d(n)=F(n+1)-F(n), U>=0; for every 0<delta<=1/2 it proves norm(sum_(n<N) exp(2*pi*i*F(n)))<=(U*N+2)*(2*delta/lambda+2+1/delta). Integer-band partitioning counts both resonant ends and applies the proved Kusmin-Landau estimate to the middle block. Mean-value comparisons prove the continuous-to-discrete hypotheses. No cancellation or correlation bound is assumed. No Juggler production or discrepancy theorem is asserted. The phase-specific OOEE carry-cell curvature and its complete analytic application remain outstanding in Lean.",
+          "statement": "Kernel-checked formalization of a classical quantitative second-derivative estimate; advisory statement coverage pending. For every natural N, real a, lambda>0 and C>=1, suppose f has derivative g and g has derivative q at every point of the closed interval [a,a+N]. If lambda<=q<=C*lambda throughout that interval, or -C*lambda<=q<=-lambda throughout it, then the norm of sum_(n<N) exp(2*pi*i*f(a+n)) is at most 4*C*N*sqrt(lambda)+8/sqrt(lambda). The analogous hypotheses on [a,a+2*N] give the spacing-two bound 8*C*N*sqrt(lambda)+4/sqrt(lambda). N=0 and the endpoint one lattice step beyond the final summand are retained. The discrete proof assumes lambda*(j-i)<=d(j)-d(i)<=U*(j-i) for all 0<=i<=j<N, with d(n)=F(n+1)-F(n), U>=0; for every 0<delta<=1/2 it proves norm(sum_(n<N) exp(2*pi*i*F(n)))<=(U*N+2)*(2*delta/lambda+2+1/delta). Integer-band partitioning counts both resonant ends and applies the proved Kusmin-Landau estimate to the middle block. Mean-value comparisons prove the continuous-to-discrete hypotheses. No cancellation or correlation bound is assumed. No Juggler production or discrepancy theorem is asserted. The subsequent OOEECurvature module proves actual carry-cell curvature and unweighted sums; carry Fourier errors and complete production remain outstanding in Lean.",
           "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
@@ -111279,6 +112065,7 @@
         "Problems.Juggler.NormalizedDefect",
         "Problems.Juggler.NumericBridge",
         "Problems.Juggler.O7EEEEGap",
+        "Problems.Juggler.OOEECurvature",
         "Problems.Juggler.OddCountMonotone",
         "Problems.Juggler.OddCubicPhase",
         "Problems.Juggler.OddLandingSets",
@@ -113612,6 +114399,20 @@
         }
       ]
     },
+    "Problems.Juggler.OOEECurvature": {
+      "declarations": 35,
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "imports": [
+        "BTCalculus.SecondDerivative"
+      ],
+      "ledger": [
+        {
+          "id": "J-ooee-carry-cell-curvature",
+          "statement": "Kernel-checked phase-specific OOEE curvature and unweighted cell sums; advisory statement coverage pending. Put s=2h, A_s(x)=(3/2)*x^(3/2)*(x+s)^(3/4)-x^(9/4)-(1/2)*(x+s)^(9/4), and F(x)=u*A_s(x)+(3/2)*u*(G+eps)*(x+s)^(3/4)+(v/2)*((x+s)^(3/2)-x^(3/2))+(w/2)*((x+s)^(9/8)-x^(9/8)), with G+eps frozen in x. For P>=1, u>0, 1<=h<=P^(1/16), P^(15/16)>=1024, abs(v)+abs(w)<=u*P^(3/4)/1024, 0<=eps<=1, and x in [P,2P] with G<=(x+2h)^(3/2)-x^(3/2)<=G+1, Lean proves -2*u*h*P^(-3/4)<=F_second(x)<=-u*h*P^(-3/4)/16. If G is an integer, N is natural, [a,a+2N] is contained in [P,2P], and the same carry inequalities hold throughout that closed interval, the spacing-two exponential sum has norm at most 256*N*sqrt(u*h*P^(-3/4)/16)+4/sqrt(u*h*P^(-3/4)/16). For L>=0 and N<=L*P^(7/16), this is at most (64*L*sqrt(u)+16/sqrt(u))*P^(3/8). The explicit size conditions hold eventually for fixed u,v,w, uniformly in h and the cell. Both derivatives, the vanishing constant and first-order anchor-curvature terms, the actual floor-to-cell implication, and error dominance are proved. The closed support retains the final increment. No weighted carry correlation, Fourier remainder, finite discrepancy, OOEE production, improved unconditional contagion, or termination theorem is asserted.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
+    },
     "Problems.Juggler.OddCountMonotone": {
       "declarations": 7,
       "file": "formal/Problems/Juggler/OddCountMonotone.lean",
@@ -115287,13 +116088,13 @@
     }
   },
   "totals": {
-    "declarations": 8651,
-    "declarations_with_a_ledger_row": 5928,
-    "ledger_rows_naming_a_file": 501,
-    "modules": 358,
+    "declarations": 8721,
+    "declarations_with_a_ledger_row": 5963,
+    "ledger_rows_naming_a_file": 502,
+    "modules": 361,
     "trust": {
       "compiler": 56,
-      "kernel": 8595
+      "kernel": 8665
     }
   }
 }

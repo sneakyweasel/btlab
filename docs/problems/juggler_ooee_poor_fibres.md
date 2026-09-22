@@ -11,8 +11,9 @@ and analytic Lean verification are outstanding; the published manuscripts
 and termination status are unchanged.
 Classical finite differencing and both derivative tests are now proved
 in Lean. The quantitative second-derivative estimate has explicit
-constants and covers the actual odd lattice; its application to the
-OOEE carry-cell phases and the complete correlation estimates remain written.
+constants and covers the actual odd lattice. The actual carry-cell curvature
+and unweighted O(P^(3/8)) cell sums are now proved uniformly for
+1<=h<=P^(1/16). The complete correlation estimates remain written.
 [Analytic argument](../theory/juggler_ooee_poor_fibre_tail_note.md).
 
 ## Problem
@@ -118,6 +119,16 @@ closed global-count localization is reopened. Scope is the finite bound,
 its continuous-derivative interface, and either sign on the odd lattice.
 Promotion requires compilation without an assumed analytic estimate.
 The phase stops before the actual carry-cell and discrepancy applications.
+
+The seventh phase proves those actual carry-cell derivatives and their
+uniform curvature. A surviving first-order shift remainder or failure of
+main-term dominance would falsify it. Existing real-power calculus and
+the second-derivative theorem suffice; the closed longer-fibre localization
+is not involved. Scope is the actual phase, explicit size and floor
+conditions, and the resulting unweighted cell sum. Promotion requires
+deriving the analytic hypotheses rather than assuming them. The compiled
+bound retains the endpoint term and works for all 1<=h<=P^(1/16).
+Carry Fourier errors and complete discrepancy assembly are outside this phase.
 
 ## Balanced-ternary formulation
 
@@ -258,6 +269,12 @@ increment bounds by two mean-value comparisons. It covers both fixed
 curvature signs and the lattice of spacing two, with explicit constants.
 [Exact hypotheses and proof](../theory/second_derivative_cancellation_note.md).
 
+[OOEECurvature.lean](../../formal/Problems/Juggler/OOEECurvature.lean)
+now derives the actual carry-cell curvature and its unweighted sum bound.
+The first two shift terms in the anchor curvature vanish; the remaining
+error is dominated uniformly by the frozen carry term. All 26 theorems
+are selected by the module audit. [Exact bounds and support conditions](../theory/juggler_ooee_curvature_note.md).
+
 ## Results
 
 In the exhaustive dyadic blocks with exponents 8, 9, 10, 11, the mean
@@ -344,6 +361,17 @@ No correlation or cancellation estimate is assumed. Both derivative
 tests are now available; the actual OOEE curvature and carry-discrepancy
 applications remain to be formalized.
 
+**Seventh phase: actual cell curvature and sums are kernel-checked.**
+For fixed u>0,v,w, sufficiently large P, and every 1<=h<=P^(1/16),
+the actual phase on a closed carry cell in [P,2P] satisfies
+-2*u*h*P^(-3/4)<=F''<=-u*h*P^(-3/4)/16. If the N odd-lattice terms
+have N<=L*P^(7/16), their unweighted sum is at most
+(64*L*sqrt(u)+16/sqrt(u))*P^(3/8). The explicit sufficient size
+conditions, both real-power derivatives, floor inequalities, and eventual
+validity for fixed coefficients are proved. The closed support includes
+the final increment; half-open cell splitting and its endpoint losses
+remain to be assembled with the carry Fourier argument.
+
 ## Open questions
 
 The first phase proposed a second-moment route. Let H_m be the number
@@ -369,10 +397,12 @@ proof obligation is to discharge `OOEEProductionBound` in Lean for every
 backward-closed class. Its main analytic ingredient is the actual OOEE
 poor-fibre theorem. The OE production and a uniform weight conversion
 are now formal; the OOEE source-cutoff consequence must also be retained.
-Finite differencing and both derivative tests are now formal too. The
-next concrete step is the uniform curvature bound for the actual OOEE
-carry-cell phases, for every shift 1<=h<=P^(1/16). Carry Fourier errors
-and finite discrepancy must also be checked before the full poor-tail proof.
+Finite differencing, both derivative tests, and the actual carry-cell
+curvature and unweighted sums are now formal too. Carry partition,
+partial summation, Fourier errors, and finite discrepancy must still
+be checked before the full poor-tail proof. A next bounded question is
+the pointwise carry Fourier remainder and its summed error on the actual
+short odd intervals; qualitative box recurrence does not supply that rate.
 
 ## Decision
 
@@ -380,9 +410,9 @@ and finite discrepancy must also be checked before the full poor-tail proof.
 assembly yielding contagion at 5/8 and the sufficient Tao threshold 3/8.
 The assembly and its OE input are kernel-checked; the new OOEE analytic
 theorem still awaits independent review and Lean proof. Exactly one best
-next question: can the actual carry-cell phases be proved in Lean to
-satisfy the uniform curvature bounds giving the O(P^(3/8)) estimate?
-This phase stops at that boundary.
+next question: can the carry Fourier remainder be proved to have the
+required O(P^(5/16)*log(P)) total error on these short odd intervals?
+This phase stops after the actual unweighted cell bound, before that question.
 
 ## Publication assessment
 

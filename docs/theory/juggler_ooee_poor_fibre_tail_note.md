@@ -2,8 +2,10 @@
 
 22 September 2026. **EXACT — HUMAN PROOF** in the laboratory's terminology:
 an AI-assisted written argument, pending independent mathematical review.
-The analytic estimates below are not Lean-verified. Existing Lean identities
-cover the linearization remainder and the carry algebra, not this theorem.
+The complete analytic argument below is not yet Lean-verified. Existing
+Lean identities cover the linearization remainder and carry algebra;
+the derivative tests and actual unweighted carry-cell estimate are now
+formal too. Their full assembly does not yet certify this theorem.
 
 Branch: [actual OOEE fibres](../problems/juggler_ooee_poor_fibres.md).
 This note resolves that branch's missing poor-target inclusion. It does not
@@ -113,8 +115,12 @@ this classical input from its phase-specific application. The
 and the [quantitative second-derivative test](second_derivative_cancellation_note.md)
 are now also kernel-checked. The latter has constants 4 and 8 on the
 unit lattice, and 8 and 4 on the odd lattice. Uniform curvature of the
-actual carry-cell phases, carry Fourier errors, and finite discrepancy
-remain separate Lean obligations.
+actual carry-cell phases and their unweighted O(P^(3/8)) sums are now
+kernel-checked in `OOEECurvature.lean`, including the growing shift range
+and explicit floor conditions. The [proof mapping](juggler_ooee_curvature_note.md)
+retains the extra endpoint required by the derivative test. Carry partition,
+weighted sums, Fourier errors, and finite discrepancy remain separate
+Lean obligations.
 
 ## 3. The short mixed estimate
 

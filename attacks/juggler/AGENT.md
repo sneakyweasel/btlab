@@ -153,7 +153,10 @@ or the version 0.5.0 manuscript. The constants are not practical search limits.
   overlap correlations and the odd-lattice specialization. The first-derivative
   bound and the [quantitative second-derivative test](../../docs/theory/second_derivative_cancellation_note.md)
   are also proved, with explicit constants and either curvature sign.
-  Actual carry-cell curvature, Fourier errors, and finite discrepancy
+  [Actual carry-cell curvature](../../docs/theory/juggler_ooee_curvature_note.md)
+  and its unweighted O(P^(3/8)) cell sum are now proved in `OOEECurvature`,
+  uniformly for 1<=h<=P^(1/16), with explicit floor and size conditions.
+  Carry partition, weighted sums, Fourier errors, and finite discrepancy
   remain outstanding in Lean.
   The unconditional Lean exponent remains 100/203, and the actual
   failure-rate estimate remains open.

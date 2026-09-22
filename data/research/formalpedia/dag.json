@@ -2742,6 +2742,20 @@
         "kernel": 30
       }
     },
+    "Problems.Juggler.OOEECurvature": {
+      "declarations": 35,
+      "depends_on": [
+        "BTCalculus.SecondDerivative"
+      ],
+      "file": "formal/Problems/Juggler/OOEECurvature.lean",
+      "ledger": [
+        "J-ooee-carry-cell-curvature"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 35
+      }
+    },
     "Problems.Juggler.OddCubicPhase": {
       "declarations": 19,
       "depends_on": [],
@@ -3934,9 +3948,9 @@
     }
   },
   "totals": {
-    "edges": 305,
-    "edges_before_reduction": 2417,
-    "ledger_rows_placed": 501,
-    "nodes": 245
+    "edges": 306,
+    "edges_before_reduction": 2421,
+    "ledger_rows_placed": 502,
+    "nodes": 246
   }
 }

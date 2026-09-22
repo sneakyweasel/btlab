@@ -13333,7 +13333,7 @@
  {
   "id": "BTA-quantitative-second-derivative",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "Kernel-checked formalization of a classical quantitative second-derivative estimate; advisory statement coverage pending. For every natural N, real a, lambda>0 and C>=1, suppose f has derivative g and g has derivative q at every point of the closed interval [a,a+N]. If lambda<=q<=C*lambda throughout that interval, or -C*lambda<=q<=-lambda throughout it, then the norm of sum_(n<N) exp(2*pi*i*f(a+n)) is at most 4*C*N*sqrt(lambda)+8/sqrt(lambda). The analogous hypotheses on [a,a+2*N] give the spacing-two bound 8*C*N*sqrt(lambda)+4/sqrt(lambda). N=0 and the endpoint one lattice step beyond the final summand are retained. The discrete proof assumes lambda*(j-i)<=d(j)-d(i)<=U*(j-i) for all 0<=i<=j<N, with d(n)=F(n+1)-F(n), U>=0; for every 0<delta<=1/2 it proves norm(sum_(n<N) exp(2*pi*i*F(n)))<=(U*N+2)*(2*delta/lambda+2+1/delta). Integer-band partitioning counts both resonant ends and applies the proved Kusmin-Landau estimate to the middle block. Mean-value comparisons prove the continuous-to-discrete hypotheses. No cancellation or correlation bound is assumed. No Juggler production or discrepancy theorem is asserted. The phase-specific OOEE carry-cell curvature and its complete analytic application remain outstanding in Lean.",
+  "statement": "Kernel-checked formalization of a classical quantitative second-derivative estimate; advisory statement coverage pending. For every natural N, real a, lambda>0 and C>=1, suppose f has derivative g and g has derivative q at every point of the closed interval [a,a+N]. If lambda<=q<=C*lambda throughout that interval, or -C*lambda<=q<=-lambda throughout it, then the norm of sum_(n<N) exp(2*pi*i*f(a+n)) is at most 4*C*N*sqrt(lambda)+8/sqrt(lambda). The analogous hypotheses on [a,a+2*N] give the spacing-two bound 8*C*N*sqrt(lambda)+4/sqrt(lambda). N=0 and the endpoint one lattice step beyond the final summand are retained. The discrete proof assumes lambda*(j-i)<=d(j)-d(i)<=U*(j-i) for all 0<=i<=j<N, with d(n)=F(n+1)-F(n), U>=0; for every 0<delta<=1/2 it proves norm(sum_(n<N) exp(2*pi*i*F(n)))<=(U*N+2)*(2*delta/lambda+2+1/delta). Integer-band partitioning counts both resonant ends and applies the proved Kusmin-Landau estimate to the middle block. Mean-value comparisons prove the continuous-to-discrete hypotheses. No cancellation or correlation bound is assumed. No Juggler production or discrepancy theorem is asserted. The subsequent OOEECurvature module proves actual carry-cell curvature and unweighted sums; carry Fourier errors and complete production remain outstanding in Lean.",
   "source": "docs/problems/juggler_ooee_poor_fibres.md",
   "lean": "BTCalculus/SecondDerivative.lean",
   "decl": [
@@ -13358,6 +13358,39 @@
   "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_theorem_ledger.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-ooee-carry-cell-curvature",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked phase-specific OOEE curvature and unweighted cell sums; advisory statement coverage pending. Put s=2h, A_s(x)=(3/2)*x^(3/2)*(x+s)^(3/4)-x^(9/4)-(1/2)*(x+s)^(9/4), and F(x)=u*A_s(x)+(3/2)*u*(G+eps)*(x+s)^(3/4)+(v/2)*((x+s)^(3/2)-x^(3/2))+(w/2)*((x+s)^(9/8)-x^(9/8)), with G+eps frozen in x. For P>=1, u>0, 1<=h<=P^(1/16), P^(15/16)>=1024, abs(v)+abs(w)<=u*P^(3/4)/1024, 0<=eps<=1, and x in [P,2P] with G<=(x+2h)^(3/2)-x^(3/2)<=G+1, Lean proves -2*u*h*P^(-3/4)<=F_second(x)<=-u*h*P^(-3/4)/16. If G is an integer, N is natural, [a,a+2N] is contained in [P,2P], and the same carry inequalities hold throughout that closed interval, the spacing-two exponential sum has norm at most 256*N*sqrt(u*h*P^(-3/4)/16)+4/sqrt(u*h*P^(-3/4)/16). For L>=0 and N<=L*P^(7/16), this is at most (64*L*sqrt(u)+16/sqrt(u))*P^(3/8). The explicit size conditions hold eventually for fixed u,v,w, uniformly in h and the cell. Both derivatives, the vanishing constant and first-order anchor-curvature terms, the actual floor-to-cell implication, and error dominance are proved. The closed support retains the final increment. No weighted carry correlation, Fourier remainder, finite discrepancy, OOEE production, improved unconditional contagion, or termination theorem is asserted.",
+  "source": "docs/problems/juggler_ooee_poor_fibres.md",
+  "lean": "Problems/Juggler/OOEECurvature.lean",
+  "decl": [
+   "powerDiff",
+   "anchor",
+   "anchor_original",
+   "cellPhase",
+   "cellPhaseD1",
+   "cellPhaseD2",
+   "deriv_cellPhase",
+   "deriv_cellPhaseD1",
+   "anchor_curvature_remainder",
+   "cell_curvature_error",
+   "carry_coefficient_bounds",
+   "floor_cell_bounds",
+   "cell_curvature_pointwise",
+   "cell_curvature_uniform",
+   "cell_sum_bound",
+   "cell_sum_power_bound",
+   "size_conditions_eventually"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
    "tests/tools/test_formalpedia.py"
   ],
   "related_conjectures": []

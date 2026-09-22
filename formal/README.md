@@ -25,10 +25,14 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- actual OOEE carry-cell curvature with explicit size and floor conditions,
+  uniform in 1<=h<=P^(1/16), and the resulting unweighted cell bound
+  (64*L*sqrt(u)+16/sqrt(u))*P^(3/8). Carry Fourier errors, weighted sums,
+  finite discrepancy, and complete production remain separate obligations;
 - quantitative second-derivative cancellation with explicit constants,
   including negative curvature and the lattice of spacing two. The proof
   counts resonant terms and applies the proved first-derivative estimate
-  on each remaining block; actual OOEE carry and discrepancy estimates
+  on each remaining block; OOEE carry Fourier and discrepancy estimates
   remain separate obligations;
 - half-open box frequencies from the Fourier criterion, including zero
   endpoints; frequencies for distinct noninteger powers; exact passage

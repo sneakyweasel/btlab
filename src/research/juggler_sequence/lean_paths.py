@@ -300,6 +300,7 @@ LAYERS: dict[str, Path] = {
     "CodeMassTransport": JUGGLER_DIR / "CodeMassTransport.lean",
     "FateOOEEAssembly": JUGGLER_DIR / "FateOOEEAssembly.lean",
     "FateOEWeighted": JUGGLER_DIR / "FateOEWeighted.lean",
+    "OOEECurvature": JUGGLER_DIR / "OOEECurvature.lean",
 }
 
 # Sources belonging to other targets or historical model interfaces. Keeping

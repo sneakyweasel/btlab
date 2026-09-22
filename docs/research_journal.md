@@ -1,5 +1,42 @@
 # Research journal
 
+## 2026-09-22 -- Actual OOEE carry-cell curvature and uniform cell sums
+
+- **Continuation audit:** The preceding review confirmed the existing
+  termination boundary without changing the proof state. Resumed the
+  unfinished curvature draft and repaired its derivative interfaces.
+- **Target and budget:** Derive curvature for the exact frozen carry
+  phase, uniformly over 1<=h<=P^(1/16), then apply the compiled
+  second-derivative theorem. A surviving first-order shift remainder or
+  a dominant error would falsify the argument. The closed longer-fibre
+  localization is not involved. Stop before carry Fourier and discrepancy.
+- **Proof:** Both the constant and linear shift terms of A_s'' vanish.
+  Two mean-value bounds give abs(A_s'')<=3*s^2*x^(-7/4).
+  Actual floor inequalities bound the carry coefficient. Explicit size
+  conditions make its signed main term dominate, yielding
+  -2*u*h*P^(-3/4)<=F''<=-u*h*P^(-3/4)/16 on each closed cell.
+- **Consequence:** For N<=L*P^(7/16), the unweighted odd-lattice sum is
+  bounded by (64*L*sqrt(u)+16/sqrt(u))*P^(3/8). The endpoint term is
+  retained. Size conditions hold eventually for fixed u>0,v,w, uniformly
+  in h and the cell. The closed support includes one step beyond the last
+  summand, so half-open cell assembly still has an endpoint obligation.
+- **Validation:** Full Lean build passes (9064 jobs). All 26 theorems
+  pass the dependency audit with only propext, Classical.choice, and
+  Quot.sound; the new module has no warnings. Integration, ledger,
+  branch index, layer architecture, formalpedia, text integrity, and
+  Paper E tests pass: 193 passed, 15 skipped. Paper E's 177147-row
+  finite checker and 49-declaration saved audit also pass. Registration
+  refreshes only the shared registry input in its source archive;
+  manuscript, PDF, TeX, and proof report are byte-identical.
+- **Trust:** Advisory statement coverage is pending. No external service
+  request was made. Kernel checking is distinct from independent review
+  of the whole written analytic proof.
+- **Decision:** **PROMOTE** this phase-specific consolidation. The next
+  bounded question is the carry Fourier remainder on short odd intervals.
+  No weighted correlation, OOEE production, improved unconditional
+  contagion exponent, failure-rate estimate, or termination proof is claimed.
+  [Proof and exact hypotheses](theory/juggler_ooee_curvature_note.md).
+
 ## 2026-09-22 -- Internal audit of effective OOE modular returns
 
 - **Target and budget:** Audit the all-M, all-T counting error and its
