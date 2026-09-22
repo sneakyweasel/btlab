@@ -95,3 +95,8 @@ literature/sources/*.html
 .build/negative_floor_gpu/*.exe
 .build/negative_floor_gpu/*.exp
 .build/negative_floor_gpu/*.lib
+
+# Private correspondence and unpublished manuscripts received from other authors.
+# The repository is public; keep these local.
+literature/sources/correspondence-*.txt
+literature/*.private.json

@@ -162,7 +162,15 @@ Two obligations replace it, and both are sharper than the risk they retire.
    to German expository pieces — and **this title is not on it**, nor on his arXiv
    author page, nor in Semantic Scholar, nor in ORCID. It is not merely unindexed; it
    is not published. The only route left is `mike.winkler@ruhr-uni-bochum.de`, and no
-   further probe is worth spending.
+   further probe is worth spending. **Resolved by the author, 22 September 2026,**
+   in private correspondence: the title is superseded, he will correct the
+   citation, and its public descendant is the *Marked Rotations* preprint. Do not
+   cite the old title. What he shared privately stays out of this repository.
+   **On the prefactor itself**, no public source of his reaches past the envelope
+   of his Corollary 12. This laboratory measured the rest: his normalised `R+_r`
+   collapses onto `delta_r = {r log2 3}`, with jumps on the orbit `{n log2 3}`,
+   the delta-side counterpart of `psi`'s jump spectrum, not proved
+   (`J-winkler-ratio-collapses-onto-the-phase`).
 3. ~~**A fifth preprint exists and is unread.**~~ **Fetched and read, 22 September
    2026; the risk is discharged.** *Ferrers Gap Polynomials: Real Zeros and Column
    Interlacing through Five Rows*, [doi:10.13140/RG.2.2.32498.06086](https://doi.org/10.13140/RG.2.2.32498.06086),

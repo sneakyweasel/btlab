@@ -1,5 +1,91 @@
 # Research journal
 
+## 2026-09-23 -- Registered: Winkler's ratio collapses onto the phase
+
+- **Registered** as `J-winkler-ratio-collapses-onto-the-phase`, COMPUTATIONALLY
+  VERIFIED, with probe
+  [winkler_phase_collapse.py](../src/research/juggler_sequence/winkler_phase_collapse.py),
+  test [test_winkler_phase_collapse.py](../tests/research/juggler_sequence/test_winkler_phase_collapse.py)
+  and dossier [juggler_winkler_phase_collapse](problems/juggler_winkler_phase_collapse.md),
+  decision PROMOTE. The probe now takes N_d from `jump_spectrum.survivor_counts`, the
+  counts behind psi's jump spectrum, and reproduces every figure of the scratch run
+  exactly, in 4.5 seconds at depth 5000. That is a second, independent count.
+- **What it says:** his Corollary 12 ratio `R+_r` depends on `r` only through
+  `{r log2 3}`, with upward jumps on that orbit; the shuffled-phase control fails
+  as it must, and a test now checks that the control points are off the orbit.
+  Not proved: the same missing local limit theorem as psi.
+- **Privacy, corrected.** The repository is public, and this session had written
+  details of Winkler's privately shared manuscript into tracked files: this
+  journal, the prior-art page and three register entries. They are rewritten to
+  public facts only, his letter and the private entry are git-ignored under a
+  generic pattern, and the scratch script named after his private open problem is
+  gone. Nothing of his had been committed. Philippe's own first letter had been,
+  by a concurrent session's commit, and it is pushed.
+- **Ledger insertion:** the ledger mixes one-line and expanded lists, so the row
+  went in as text before the closing bracket; the 995 earlier rows are
+  byte-identical, and render and `--check` pass.
+
+## 2026-09-23 -- Second letter to Winkler sent, after a bounce
+
+- **Sent.** The reply went out on 23 September. It introduces Philippe as an
+  unaffiliated amateur working with AI models, Lean and GPU computation, answers
+  how the Juggler map produces A076227 and A100982, reports Conjecture 36 to
+  n = 1000, gives the phase-collapse measurement, asks which version of a
+  manuscript he shared privately to cite, raises the Terras 1976
+  attribution, and asks him to proofread Paper B and, conditionally, to endorse
+  Philippe for math.NT on arXiv. Text at
+  `literature/sources/correspondence-winkler-2026-09-23-sent.txt`.
+- **The first send bounced whole.** Ruhr-Universitaet Bochum rejected it with
+  `550 5.7.1 RUB.Foxhole.Zip_bad_attachment.py`: a zip holding `.py` files. The
+  resend carries the certificates, verifier and certifier as a Google Drive link.
+  Never attach scripts to him, even zipped.
+- **Attachments are the deposits.** Paper B 1.1.2, zenodo.org/records/22906043,
+  and Paper E 0.7.1, zenodo.org/records/22905650, both md5-identical to Zenodo.
+  Version 1.1.2 calls psi conjectural and its jumps proposed, and the letter was
+  worded to match. `docs/theory/paper_deposits.md` does not list either record yet.
+- **Decision:** wait for his reply. Open items it could settle: which version of
+  his work to cite, whether he regards the fine-behaviour question as open, the
+  endorsement. The phase-collapse measurement is now shared, so registering it
+  in the ledger is the natural next step if Philippe wants it on record first.
+
+## 2026-09-22 -- Winkler replies: Conjecture 36 certified to 1000, and his ratio collapses onto the phase
+
+- **Reply received.** Winkler answered the first letter warmly, asked for the
+  Conjecture 36 computation to several hundred with certificates, asked how the
+  Juggler map produces A076227 and A100982, and shared an unpublished manuscript
+  privately. His letter and the manuscript are kept out of this public
+  repository: git-ignored files under `literature/`, never to be committed.
+- **Connection Thresholds is resolved by the author.** The title is superseded
+  and he will correct the citation. The register entry now says do not cite.
+- **Measured: his normalized ratio is a function of the phase.** The ratio is
+  `R+_r = r c_r / C_r` of his public Corollary 12, with `c_r = A100982(r)`,
+  `C_r = binom(m_r - 1, r - 1)` and `delta_r = {r log2 3}`. From exact survivor counts,
+  through `c_r = M_(m_r+1)` and `M_d = 2 N_(d-1) - N_d`, over `r <= 3154`: binned by
+  `delta_r` the across-bin range is about fifty times the within-bin spread in
+  three disjoint windows, the shape converges, and shuffling `delta_r` destroys
+  it. `R+` rises from 1 to `alpha/(alpha-1)` with upward jumps at the orbit points
+  `{n log2 3}`, 0.63 at n = 1 falling to 0.02 by n = 7, against at most 0.0045 at
+  six controls between orbit points. Two of the first four controls sat on orbit
+  points by accident and were replaced. The delta-side twin of psi's jump
+  spectrum. **Not proved**; the same missing local limit theorem.
+  [winkler_phase_collapse.py](../src/research/juggler_sequence/winkler_phase_collapse.py).
+- **Conjecture 36 certified for 4 <= n <= 1000, exactly.** New method: per pair,
+  dyadic points separating all zeros, checked by integer signs alone, no root
+  finding. 407 seconds, against 98 seconds to reach 120 with sympy root isolation.
+  An independent stdlib verifier rebuilds B_n with separate code, matches
+  Corollary 35 to Winkler's definition (1) by brute force for n <= 16, accepts
+  997 of 997 certificates, and rejects 499 of 499 swapped, 997 of 997 merged and
+  997 of 997 extra-zero inputs. The merged control first passed every
+  case, because it cut to the start of the Q interval rather than through it; the
+  control was wrong, not the certificates.
+  [certifier](../tmp/ferrers_conj36_certify.py), [verifier](../tmp/ferrers_conj36_verify.py).
+- **Peer session, noted:** Paper B v1.1.1, prepared today and not deposited,
+  already cites his arXiv id and credits Terras 1976, the two fixes the sweep
+  below flagged.
+- **Decision:** reply drafted for Philippe with the certificates, the answer to
+  his question, the phase-collapse measurement and the Terras point. Nothing
+  sent. No ledger row yet; the phase collapse is a candidate for one.
+
 ## 2026-09-22 -- Actual signed fibre mass and persistent deficient targets
 
 - **Continuation audit:** The preceding review confirmed the 5/8 contagion

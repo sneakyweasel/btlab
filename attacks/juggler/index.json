@@ -5713,6 +5713,22 @@
       "nk_cluster": "Walk charge and Denjoy–Koksma"
     },
     {
+      "id": "winkler_phase_collapse",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/winkler_phase_collapse.py",
+      "test": "tests/research/juggler_sequence/test_winkler_phase_collapse.py",
+      "dossier": "docs/problems/juggler_winkler_phase_collapse.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-winkler-ratio-collapses-onto-the-phase"
+      ],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
       "id": "absorbed_cylinder",
       "kind": "dossier_only",
       "probe": null,
