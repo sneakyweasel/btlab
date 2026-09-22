@@ -16,6 +16,7 @@ from pathlib import Path
 import re
 import runpy
 import shutil
+import tempfile
 import subprocess
 
 
@@ -77,6 +78,18 @@ def digest(path: Path, mode: str = "binary") -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def write_text_atomic(path: Path, text: str) -> None:
+    """Publish complete UTF-8 text without truncating a file held by a Windows reader."""
+    with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", newline="",
+                                     dir=path.parent, prefix=path.name + ".", delete=False) as stream:
+        temporary = Path(stream.name)
+        stream.write(text)
+    try:
+        temporary.replace(path)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
 def input_files(root: Path) -> list[str]:
     """Pin the actual transitive Paper A Lean imports, including their audit."""
     names = set(EDITORIAL + BUILD_INPUTS + ["formal/lean-toolchain",
@@ -126,7 +139,7 @@ def sync(root: Path) -> None:
         p.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(root / source, p)
     fields = zenodo_fields(json.loads((root / METADATA).read_text(encoding="utf-8")))
-    (root / "juggler_review/zenodo_paper_a/ZENODO_FIELDS.txt").write_text(fields, encoding="utf-8", newline="")
+    write_text_atomic(root / "juggler_review/zenodo_paper_a/ZENODO_FIELDS.txt", fields)
 
 
 def check(root: Path, exports: bool = True) -> None:
@@ -233,7 +246,7 @@ def write_metadata(root: Path, pandoc: str) -> None:
             "description": description,
             "related_identifiers": [{"identifier": "https://github.com/sneakyweasel/btlab", "relation": "isSupplementTo", "scheme": "url"}]}
     meta = carry_forward(root, meta)
-    (root / METADATA).write_text(json.dumps(meta, ensure_ascii=False, indent=2) + '\n', encoding="utf-8", newline="")
+    write_text_atomic(root / METADATA, json.dumps(meta, ensure_ascii=False, indent=2) + '\n')
 
 
 def executable(name: str, explicit: str | None) -> str:
@@ -303,7 +316,7 @@ def build(root: Path, args) -> None:
                "inputs": [{"path": p, "mode": "text", "sha256": digest(root / p, "text")} for p in input_files(root)],
                "outputs": [{"path": p, "mode": "binary" if p == PDF else "text",
                             "sha256": digest(root / p, "binary" if p == PDF else "text")} for p in OUTPUTS]}
-    (root / MANIFEST).write_text(json.dumps(release, indent=2) + "\n", encoding="utf-8", newline="")
+    write_text_atomic(root / MANIFEST, json.dumps(release, indent=2) + "\n")
     sync(root)
     check(root)
     print(f"Built and synchronized Paper A. Logs: {work}")

@@ -82,3 +82,17 @@ def test_release_tracks_the_shared_full_import_closure(tmp_path):
         "formal/Problems/JugglerPaper.lean", "formal/Problems/One.lean",
         "formal/Problems/Two.lean", "formal/Problems/Three.lean"}
     assert "tools/trust_boundary.py" in inputs
+
+
+def test_failed_atomic_publication_preserves_the_previous_record(tmp_path, monkeypatch):
+    path = tmp_path / "release.json"
+    path.write_text("previous release\n", encoding="utf-8")
+
+    def reject_replace(self, target):
+        raise PermissionError("simulated sharing violation")
+
+    monkeypatch.setattr(Path, "replace", reject_replace)
+    with pytest.raises(PermissionError, match="sharing violation"):
+        B.write_text_atomic(path, "new release\n")
+    assert path.read_text(encoding="utf-8") == "previous release\n"
+    assert list(tmp_path.iterdir()) == [path]
