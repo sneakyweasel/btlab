@@ -1,5 +1,36 @@
 # Research journal
 
+## 2026-09-22 -- Exact fibre mass survives in the signed Collatz code
+
+- **Question:** Philippe asked where Juggler's inverse multiplicity goes when
+  the coding map collapses sources, and requested further investigation.
+- **Result:** For e(n)=n+(n mod 2), the weight w(n)=log((e(n)+1)/(e(n)-1))
+  conserves every even Juggler fibre exactly. It differs from 2/n by at most
+  2/n^2, so source subset masses differ from twice their reciprocal mass by
+  a uniformly bounded additive amount. It is the unique conserved weight
+  with n*w(n)->2. Both parity cases telescope explicitly; iterated fibres
+  prove uniqueness. These are AI-assisted written proofs pending review.
+- **Transfer:** The pushforward through the already proved minus 2-adic
+  code satisfies nu(2B)=nu(B), allowing infinite atom weights. With a source
+  cutoff X, the right side instead has cutoff floor(sqrt X)-1 and one
+  explicit partial-fibre term. The entire family of cutoffs retains weighted
+  source multiplicity and height; one uncut atom need not recover either.
+- **Concrete distinction:** The even inverse generations of 2 have counts
+  1,3,21,1063 through depth three, codes 2,4,8,16, and exactly log(3) mass
+  at every depth. Thus the transferred measure cannot be uniformly bounded
+  by ordinary reciprocal code weights. Equal codes also fail to determine
+  a physical target's odd production: H(16)=H(18)=8, but only 18 has an odd
+  predecessor. No pressure estimate or improved termination bound follows.
+- **Validation:** 21 targeted tests passed. Exact rational products verify
+  targets 1..1000, and 7936 finite coded-cutoff cylinder identities pass.
+  Independent forward-map tests cover parity and cutoff boundaries. The
+  universal assertions have written proofs; no new Lean formalization was
+  attempted, and full formal coverage is explicitly deferred.
+- **Decision:** **PROMOTE** this bounded structural result and stop the
+  phase. The remaining question is an odd-predecessor estimate retaining
+  the original height distribution within each coded fibre.
+  Dossier: [code mass transport](problems/juggler_code_mass_transport.md).
+
 ## 2026-09-22 -- Cubic removal crosses the first inverse-cell frequency threshold
 
 - **Question:** Does the rational cubic method retain a quantitative

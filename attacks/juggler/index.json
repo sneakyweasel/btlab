@@ -334,6 +334,23 @@
       "nk_cluster": "Juggler language, residual, and geometry"
     },
     {
+      "id": "code_mass_transport",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/code_mass_transport.py",
+      "test": "tests/research/juggler_sequence/test_code_mass_transport.py",
+      "dossier": "docs/problems/juggler_code_mass_transport.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-even-fibre-exact-log-weight",
+        "J-code-weight-cutoff-transport"
+      ],
+      "aliases": [],
+      "nk_cluster": "Coded source mass is not ordinary reciprocal Collatz mass"
+    },
+    {
       "id": "collapse_normalization",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/collapse_normalization.py",

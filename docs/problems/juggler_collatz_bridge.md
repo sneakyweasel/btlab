@@ -1134,3 +1134,16 @@ r-eta>103/203 is open, while the implication is kernel-checked in
 corollaries, or another formal wrapper do not discharge it. No new Lean
 module, ledger row, paper revision, floor campaign, or next branch is
 opened by this audit.
+
+### Follow-up: where weighted multiplicity is retained
+
+The subsequent [exact code mass transport](juggler_code_mass_transport.md)
+proves a more precise statement about what does transfer. The weight
+w(n)=log((e(n)+1)/(e(n)-1)), e(n)=n+(n mod 2), conserves every even Juggler
+fibre exactly and differs from 2/n by a summable error. Its pushforward
+satisfies nu(2B)=nu(B), with an exact source-cutoff identity at sqrt(X).
+This retains Paper C's source reciprocal mass as a measure on coded points,
+with source height kept separately. An explicit even forest shows that
+this measure is not uniformly comparable to ordinary reciprocal code
+weights. The written result does not reverse the preceding audit's
+pressure or integer-height limitations, and no manuscript is changed.
