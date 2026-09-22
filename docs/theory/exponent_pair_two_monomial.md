@@ -302,6 +302,61 @@ minimised at \(7/8\) for \(k=3,4\). Heath-Brown's Vinogradov-based
 small-\(\alpha\) regime, and here \(\alpha=4/9\). Post-1990 \(k\)-th
 derivative technology buys this phase nothing.
 
+## Direct use of the Guo--Guo--Jing bilinear estimate
+
+**22 September 2026: CLOSE this direct-import test.** The prime-counting
+application of [Guo--Guo--Jing, arXiv:2510.20562v1](https://arxiv.org/abs/2510.20562v1)
+was already checked in the
+[rate-free dossier](../problems/juggler_k3_rate_free.md). The following
+calculation checks the underlying Theorem 1.1, independently of that
+application's exponent range. The formula was checked against page 2
+of the primary PDF. This is an elementary consequence of its stated
+bound, not a new exponential-sum estimate.
+
+Write its bilinear length as X=MN, with M,N>=1. Ignoring the harmless
+X^(3 epsilon) loss, its right side contains
+\[
+A=M^{1/2}X^{1/2},\qquad
+B=XM^{(\lambda-\kappa-1)/(2\kappa+2)}.
+\]
+For every normalized exponent pair, 0<=kappa<=1/2<=lambda<=1, hence
+\[
+\frac{\lambda-\kappa-1}{2\kappa+2}+\frac13
+=\frac{3\lambda-\kappa-1}{6\kappa+6}\ge0.
+\]
+Thus B>=XM^(-1/3), and
+max(A,B)>=A^(2/5) B^(3/5)>=X^(4/5). Optimizing the factor lengths
+and the exponent pair cannot make this displayed bound sub-X^(4/5).
+This is a lower bound on the *upper-bound expression*, not on the sum.
+
+For the exported phase the obstruction is stronger. Even granting an
+admissible bilinear reduction at the same total length X, its two
+phase amplitudes are c X^(9/4) and -j X^(2/3). At every fixed derivative
+order, c!=0 fixed and |j|<=X^(2/5) give Delta asymptotic to X^(9/4):
+the secondary amplitude is at most X^(16/15). The theorem's fourth
+term has exponent
+\[
+E_4=\frac{2+(13/4)\kappa+(\lambda-1)u}{2\kappa+2},
+\qquad M=X^u,\quad 0\le u\le1.
+\]
+In particular
+\[
+E_4-(1-u/4)
+=\frac{(5/4)\kappa+u(\lambda-1/2+\kappa/2)}{2\kappa+2}\ge0.
+\]
+The first term has exponent (1+u)/2. Their maximum is at least 5/6,
+with equality in this relaxed optimization only at u=2/3 and the
+conjectural pair (0,1/2). Therefore even granting that pair, direct
+optimization of Theorem 1.1 cannot yield the needed exponent below 2/3.
+The prime-counting Theorem 1.3 also excludes c1=c2=3/2: its condition
+26 gamma1 gamma2-2 gamma2-23>0 has left side -115/9 there.
+
+This does not rule out a different bilinear decomposition with further
+structure, cancellation before absolute values, or a new estimate.
+No bilinear representation of the actual Juggler pressure is asserted.
+The growing-depth arithmetic pressure question remains PARK; neither
+the cycle floor nor the Lean implication changes.
+
 ## What would count as a solution
 
 Any one of the following:

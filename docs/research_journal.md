@@ -1,5 +1,24 @@
 # Research journal
 
+## 2026-09-22 -- The recent bilinear estimate does not cross the density line
+
+- **Question:** Can Guo--Guo--Jing's Theorem 1.1 bypass the exported
+  two-monomial barrier, even though its iterated prime-counting application
+  was already outside the Juggler exponent range?
+- **Calculation:** Two terms force a floor of X^(4/5) on the displayed
+  bound for every normalized exponent pair and every factor ratio.
+  For the actual two-monomial phase, its amplitude term strengthens
+  this to X^(5/6), even granting the conjectural pair (0,1/2).
+  Both exceed the required X^(2/3). These are limits of the stated
+  upper-bound formula, not lower bounds on the exponential sum.
+- **Evidence:** The primary PDF's Theorem 1.1, page 2, and the exact
+  inequalities in the [existing external note](theory/exponent_pair_two_monomial.md).
+- **Decision:** **CLOSE** this direct-import test. The actual arithmetic
+  pressure bound stays **PARK**. No new probe, ledger theorem, or Lean
+  module is warranted for this parameter calculation.
+- **Scope:** This does not exclude a different bilinear argument with
+  extra structure. It does not prove a new Juggler count or termination.
+
 ## 2026-09-22 -- Scale-averaged pressure implication checked in Lean
 
 - **Objective:** Consolidate the existing conditional termination route,
