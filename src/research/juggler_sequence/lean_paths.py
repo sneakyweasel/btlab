@@ -313,6 +313,9 @@ LAYERS: dict[str, Path] = {
     "OOEEParity": JUGGLER_DIR / "OOEEParity.lean",
     "OOEEFibreGeometry": JUGGLER_DIR / "OOEEFibreGeometry.lean",
     "OOEEFibreParity": JUGGLER_DIR / "OOEEFibreParity.lean",
+    "OOEEFibreResonance": JUGGLER_DIR / "OOEEFibreResonance.lean",
+    "OOEEResonanceTail": JUGGLER_DIR / "OOEEResonanceTail.lean",
+    "FateOOEEWeighted": JUGGLER_DIR / "FateOOEEWeighted.lean",
 }
 
 # Sources belonging to other targets or historical model interfaces. Keeping

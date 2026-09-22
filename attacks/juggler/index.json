@@ -4620,7 +4620,10 @@
         "J-ooee-nonresonant-slow-modes",
         "J-ooee-actual-joint-parity",
         "J-ooee-exact-fibre-geometry",
-        "J-ooee-exact-fibre-parity"
+        "J-ooee-exact-fibre-parity",
+        "J-ooee-count-poor-resonance",
+        "J-ooee-count-poor-reciprocal-tail",
+        "J-ooee-actual-weighted-production"
       ],
       "aliases": [],
       "nk_cluster": "Good average OOEE mass does not imply uniformly productive fibres"
@@ -6916,7 +6919,10 @@
         "formal/Problems/Juggler/OOEESlowModes.lean",
         "formal/Problems/Juggler/OOEEParity.lean",
         "formal/Problems/Juggler/OOEEFibreGeometry.lean",
-        "formal/Problems/Juggler/OOEEFibreParity.lean"
+        "formal/Problems/Juggler/OOEEFibreParity.lean",
+        "formal/Problems/Juggler/OOEEFibreResonance.lean",
+        "formal/Problems/Juggler/OOEEResonanceTail.lean",
+        "formal/Problems/Juggler/FateOOEEWeighted.lean"
       ],
       "conjecture": [],
       "decision": null,

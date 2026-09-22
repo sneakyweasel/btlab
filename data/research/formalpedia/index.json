@@ -47482,6 +47482,175 @@
       "trust": "kernel"
     },
     {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEWeighted.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-contagion-five-eighths",
+        "J-ooee-actual-weighted-production"
+      ],
+      "line": 18,
+      "module": "Problems.Juggler.FateOOEEWeighted",
+      "name": "eta",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-five-eighths",
+        "J-ooee-actual-weighted-production"
+      ],
+      "line": 20,
+      "module": "Problems.Juggler.FateOOEEWeighted",
+      "name": "scale_large",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-five-eighths",
+        "J-ooee-actual-weighted-production"
+      ],
+      "line": 26,
+      "module": "Problems.Juggler.FateOOEEWeighted",
+      "name": "nonpoor_card_lower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-five-eighths",
+        "J-ooee-actual-weighted-production"
+      ],
+      "line": 41,
+      "module": "Problems.Juggler.FateOOEEWeighted",
+      "name": "nonpoor_fibre_mass_lower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-five-eighths",
+        "J-ooee-actual-weighted-production"
+      ],
+      "line": 65,
+      "module": "Problems.Juggler.FateOOEEWeighted",
+      "name": "ooee_fibre_cutoff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEWeighted.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-contagion-five-eighths",
+        "J-ooee-actual-weighted-production"
+      ],
+      "line": 83,
+      "module": "Problems.Juggler.FateOOEEWeighted",
+      "name": "accepted",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-five-eighths",
+        "J-ooee-actual-weighted-production"
+      ],
+      "line": 86,
+      "module": "Problems.Juggler.FateOOEEWeighted",
+      "name": "accepted_mass_lower",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-five-eighths",
+        "J-ooee-actual-weighted-production"
+      ],
+      "line": 116,
+      "module": "Problems.Juggler.FateOOEEWeighted",
+      "name": "reciprocal_ooee_production",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-five-eighths",
+        "J-ooee-actual-weighted-production"
+      ],
+      "line": 154,
+      "module": "Problems.Juggler.FateOOEEWeighted",
+      "name": "ooee_production_uniform",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-five-eighths",
+        "J-ooee-actual-weighted-production"
+      ],
+      "line": 181,
+      "module": "Problems.Juggler.FateOOEEWeighted",
+      "name": "ooee_production",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-five-eighths",
+        "J-ooee-actual-weighted-production"
+      ],
+      "line": 186,
+      "module": "Problems.Juggler.FateOOEEWeighted",
+      "name": "logMass_growth",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-five-eighths",
+        "J-ooee-actual-weighted-production"
+      ],
+      "line": 192,
+      "module": "Problems.Juggler.FateOOEEWeighted",
+      "name": "conjecture_of_tao_rate",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/FateOOEEWeighted.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-contagion-five-eighths",
+        "J-ooee-actual-weighted-production"
+      ],
+      "line": 199,
+      "module": "Problems.Juggler.FateOOEEWeighted",
+      "name": "pressure_average_conjecture",
+      "trust": "kernel"
+    },
+    {
       "doc": "**Family 3 at the averaged coefficient.** For `U = \u230a\u221ay''\u230b \u2265 10^6` satisfying Lemma 2's block hypotheses, and any shell `(s, y]` containing every fiber `\u03a6(m)` with `U < m \u2264 y'' - 1`, the even-image parts of the non-poor fibers of the members of `A` in `(U, y'' - 1]` are disjoint odd members of `A` in the shell, of total log-mass at least `(c - \u03b5_U)(\u03a3_{m \u2208 A \u2229 (U, y''-1]} 1/m - 2100 \u03b5_U/\u03b7\u2080\u00b2)` with `c = (2/3)(1/2 - \u03b7\u2080)`.",
       "file": "formal/Problems/Juggler/FatePoorProduction.lean",
       "kind": "theorem",
@@ -71193,6 +71362,126 @@
     },
     {
       "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreResonance.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-count-poor-resonance"
+      ],
+      "line": 13,
+      "module": "Problems.Juggler.OOEEFibreResonance",
+      "name": "alpha",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreResonance.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-count-poor-resonance"
+      ],
+      "line": 14,
+      "module": "Problems.Juggler.OOEEFibreResonance",
+      "name": "decay",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreResonance.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-count-poor-resonance"
+      ],
+      "line": 15,
+      "module": "Problems.Juggler.OOEEFibreResonance",
+      "name": "Resonant",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreResonance.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-count-poor-resonance"
+      ],
+      "line": 17,
+      "module": "Problems.Juggler.OOEEFibreResonance",
+      "name": "CountPoor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreResonance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-resonance"
+      ],
+      "line": 20,
+      "module": "Problems.Juggler.OOEEFibreResonance",
+      "name": "signed_resonant",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreResonance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-resonance"
+      ],
+      "line": 36,
+      "module": "Problems.Juggler.OOEEFibreResonance",
+      "name": "nonresonant_signed",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreResonance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-resonance"
+      ],
+      "line": 42,
+      "module": "Problems.Juggler.OOEEFibreResonance",
+      "name": "negative_power_small",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEFibreResonance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-resonance"
+      ],
+      "line": 48,
+      "module": "Problems.Juggler.OOEEFibreResonance",
+      "name": "smoothing_cutoff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Fixed H, then fixed C, then a target threshold: no cutoff depends on m.",
+      "file": "formal/Problems/Juggler/OOEEFibreResonance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-resonance"
+      ],
+      "line": 64,
+      "module": "Problems.Juggler.OOEEFibreResonance",
+      "name": "nonresonant_count_close",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every fixed absolute count deviation is contained in a fixed resonance family.",
+      "file": "formal/Problems/Juggler/OOEEFibreResonance.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-resonance"
+      ],
+      "line": 116,
+      "module": "Problems.Juggler.OOEEFibreResonance",
+      "name": "count_poor_resonant",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
       "file": "formal/Problems/Juggler/OOEEFourierModes.lean",
       "kind": "def",
       "ledger": [],
@@ -71681,6 +71970,210 @@
       "line": 162,
       "module": "Problems.Juggler.OOEEPhaseComparison",
       "name": "correlation_comparison",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEResonanceTail.lean",
+      "kind": "def",
+      "ledger": [
+        "J-ooee-count-poor-reciprocal-tail"
+      ],
+      "line": 14,
+      "module": "Problems.Juggler.OOEEResonanceTail",
+      "name": "countConstant",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEResonanceTail.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-reciprocal-tail"
+      ],
+      "line": 16,
+      "module": "Problems.Juggler.OOEEResonanceTail",
+      "name": "alpha_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEResonanceTail.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-reciprocal-tail"
+      ],
+      "line": 18,
+      "module": "Problems.Juggler.OOEEResonanceTail",
+      "name": "decay_antitone",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEResonanceTail.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-reciprocal-tail"
+      ],
+      "line": 22,
+      "module": "Problems.Juggler.OOEEResonanceTail",
+      "name": "alpha_step",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEResonanceTail.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-reciprocal-tail"
+      ],
+      "line": 32,
+      "module": "Problems.Juggler.OOEEResonanceTail",
+      "name": "two_power_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEResonanceTail.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-reciprocal-tail"
+      ],
+      "line": 36,
+      "module": "Problems.Juggler.OOEEResonanceTail",
+      "name": "alpha_double_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEResonanceTail.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-reciprocal-tail"
+      ],
+      "line": 44,
+      "module": "Problems.Juggler.OOEEResonanceTail",
+      "name": "decay_double_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A closed integer-neighbourhood fits in a shifted arc, even for large widths.",
+      "file": "formal/Problems/Juggler/OOEEResonanceTail.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-reciprocal-tail"
+      ],
+      "line": 56,
+      "module": "Problems.Juggler.OOEEResonanceTail",
+      "name": "resonant_fract",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A fixed positive frequency has O(u^(2/9)) resonant targets in (u,2u].",
+      "file": "formal/Problems/Juggler/OOEEResonanceTail.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-reciprocal-tail"
+      ],
+      "line": 65,
+      "module": "Problems.Juggler.OOEEResonanceTail",
+      "name": "resonance_count_one",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEResonanceTail.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-reciprocal-tail"
+      ],
+      "line": 128,
+      "module": "Problems.Juggler.OOEEResonanceTail",
+      "name": "resonance_count",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEResonanceTail.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-reciprocal-tail"
+      ],
+      "line": 153,
+      "module": "Problems.Juggler.OOEEResonanceTail",
+      "name": "resonance_block_mass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEResonanceTail.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-reciprocal-tail"
+      ],
+      "line": 171,
+      "module": "Problems.Juggler.OOEEResonanceTail",
+      "name": "decay_pow_two_mul",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEResonanceTail.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-reciprocal-tail"
+      ],
+      "line": 181,
+      "module": "Problems.Juggler.OOEEResonanceTail",
+      "name": "resonance_dyadic_mass",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Juggler/OOEEResonanceTail.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-reciprocal-tail"
+      ],
+      "line": 195,
+      "module": "Problems.Juggler.OOEEResonanceTail",
+      "name": "dyadic_ratio_le",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Uniform in the finite upper cutoff; hence a summable reciprocal tail.",
+      "file": "formal/Problems/Juggler/OOEEResonanceTail.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-reciprocal-tail"
+      ],
+      "line": 200,
+      "module": "Problems.Juggler.OOEEResonanceTail",
+      "name": "resonance_tail",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every fixed deviation of the actual fibre count has an eventual reciprocal tail.",
+      "file": "formal/Problems/Juggler/OOEEResonanceTail.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-reciprocal-tail"
+      ],
+      "line": 240,
+      "module": "Problems.Juggler.OOEEResonanceTail",
+      "name": "count_poor_tail",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The same tail bound for the infinite series of deficient-target reciprocals.",
+      "file": "formal/Problems/Juggler/OOEEResonanceTail.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-ooee-count-poor-reciprocal-tail"
+      ],
+      "line": 257,
+      "module": "Problems.Juggler.OOEEResonanceTail",
+      "name": "count_poor_tsum_tail",
       "trust": "kernel"
     },
     {
@@ -115865,6 +116358,7 @@
         "Problems.Juggler.FateNumerics",
         "Problems.Juggler.FateOEWeighted",
         "Problems.Juggler.FateOOEEAssembly",
+        "Problems.Juggler.FateOOEEWeighted",
         "Problems.Juggler.FateOneSided",
         "Problems.Juggler.FateOneSidedAtoms",
         "Problems.Juggler.FateOneSidedCorollary",
@@ -115926,10 +116420,12 @@
         "Problems.Juggler.OOEECurvature",
         "Problems.Juggler.OOEEFibreGeometry",
         "Problems.Juggler.OOEEFibreParity",
+        "Problems.Juggler.OOEEFibreResonance",
         "Problems.Juggler.OOEEFourierModes",
         "Problems.Juggler.OOEEMixedModes",
         "Problems.Juggler.OOEEParity",
         "Problems.Juggler.OOEEPhaseComparison",
+        "Problems.Juggler.OOEEResonanceTail",
         "Problems.Juggler.OOEERootPhase",
         "Problems.Juggler.OOEESlowModes",
         "Problems.Juggler.OOEESmoothModes",
@@ -117350,6 +117846,27 @@
         }
       ]
     },
+    "Problems.Juggler.FateOOEEWeighted": {
+      "declarations": 13,
+      "file": "formal/Problems/Juggler/FateOOEEWeighted.lean",
+      "imports": [
+        "Problems.Juggler.FateOEWeighted",
+        "Problems.Juggler.FateScaleAverage",
+        "Problems.Juggler.OOEEResonanceTail"
+      ],
+      "ledger": [
+        {
+          "id": "J-ooee-contagion-five-eighths",
+          "statement": "Kernel-checked unconditional contagion at 5/8; advisory statement coverage and independent mathematical review pending. For every natural predicate A closed under actual Juggler preimages and every positive member a of A, there exist K>0 and a natural N such that for every natural X>=N, logMass A X>=K*(log X)^(5/8). Both actual odd-production inequalities, including the OOEE conserved-weight coefficient 11/100 and its physical cutoff, are proved and are not hypotheses. Consequently, for every real e>3/8, an eventual dyadic bound card(oddFailures y)<=y*(log y)^(-e) implies every positive start reaches one. The existing ScaleAverage.Bound also implies termination at C*(theta*pC(C)-log(1-q+q*exp(theta)))/log(2)-eta>3/8, under its stated certified-floor and parameter conditions, with no OOEE production premise. The actual failure-rate and cumulative stopped-pressure bounds remain explicit unproved hypotheses; universal termination and infinite escape are not asserted.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        },
+        {
+          "id": "J-ooee-actual-weighted-production",
+          "statement": "Kernel-checked actual OOEE production; advisory statement coverage pending. Using FateOOEEAssembly.fullMass, sourceMass, cutoff(t)=floor(exp(t)), and the actual ooeeGuard, there exists one real C>=0 such that for every natural predicate A closed under actual Juggler preimages and every real t, (11/100)*fullMass A(9*t/16-4)<=sourceMass A ooeeGuard(cutoff t)+C. The constant is independent of A and t. With eta=1/10000 and m>=10^9, a target outside CountPoor eta has at least (1107/10000)*m^(7/9) actual OOEE sources and reciprocal fibre mass at least 11/(100m). The proved summable count-poor tail bounds the discarded target mass uniformly. Exact fourth iterates give disjoint fibres, backward closure places their sources in A, and n<=2*m^(16/9) gives the physical cutoff. The established uniform mass-to-reciprocal comparison completes conserved-weight production. OOEEProductionBound is therefore discharged without an analytic hypothesis. The threshold 10^9 is an analytic size bound and does not change the computational verification floor.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
+    },
     "Problems.Juggler.FateOneSided": {
       "declarations": 20,
       "file": "formal/Problems/Juggler/FateOneSided.lean",
@@ -118348,6 +118865,20 @@
         }
       ]
     },
+    "Problems.Juggler.OOEEFibreResonance": {
+      "declarations": 10,
+      "file": "formal/Problems/Juggler/OOEEFibreResonance.lean",
+      "imports": [
+        "Problems.Juggler.OOEEFibreParity"
+      ],
+      "ledger": [
+        {
+          "id": "J-ooee-count-poor-resonance",
+          "statement": "Kernel-checked, advisory coverage pending. Let F_m be the exact actual OOEE fibre with fourth iterate m, H_m its odd candidate count, alpha_m=(9/8)*m^(2/9), and CountPoor(eta,m) mean eta<=abs(card(F_m)/H_m-1/8). For every real eta>0 there exist a natural H>=3, real C>0 and natural M>=64 such that for every natural m>=M, CountPoor(eta,m) implies there are natural 1<=q<=H and integer z with abs(q*alpha_m-z)<=C*m^(-7/9). Outside that resonance family, the actual count error is strictly less than eta. Both frequency signs and closed boundaries are included. H is chosen first, C second and M last; the cutoffs are independent of m. The result uses the proved exact-fibre discrepancy and has no unproved cancellation input. It is a count-deviation theorem, before conversion to the conserved-weight ratio.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
+    },
     "Problems.Juggler.OOEEFourierModes": {
       "declarations": 12,
       "file": "formal/Problems/Juggler/OOEEFourierModes.lean",
@@ -118393,6 +118924,21 @@
         "Problems.Juggler.OOEECarryFourier"
       ],
       "ledger": []
+    },
+    "Problems.Juggler.OOEEResonanceTail": {
+      "declarations": 17,
+      "file": "formal/Problems/Juggler/OOEEResonanceTail.lean",
+      "imports": [
+        "Problems.Juggler.FateThinFibers",
+        "Problems.Juggler.OOEEFibreResonance"
+      ],
+      "ledger": [
+        {
+          "id": "J-ooee-count-poor-reciprocal-tail",
+          "statement": "Kernel-checked, advisory coverage pending. Put alpha_m=(9/8)*m^(2/9), and let R_(H,C) contain natural m for which abs(q*alpha_m-z)<=C*m^(-7/9) for some natural 1<=q<=H and integer z. For every natural u>=1, natural H and real C>=0, card(R_(H,C) intersect (u,2u])<=K*u^(2/9), K=H*(80*C+10*H). For every natural U>=1 and upper cutoff N, sum_(U<m<=N,m in R_(H,C)) 1/m<=3*K*U^(-7/9). Consequently, for every real eta>0 there are D>0 and a natural M>=64 such that for every natural U>=M, the function equal to 1/m on m>U with abs(card(F_m)/H_m-1/8)>=eta and zero otherwise is summable, and its infinite sum is at most D*U^(-7/9). Here F_m and H_m are the exact actual OOEE fibre and its odd candidate count. The finite-cutoff bound is also proved uniformly in N. The count uses all closed resonance endpoints and no small-width hypothesis. Conversion to the actual conserved-weight ratio, physical production cutoffs, OOEEProductionBound and termination remain outside the statement.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        }
+      ]
     },
     "Problems.Juggler.OOEERootPhase": {
       "declarations": 11,
@@ -120138,13 +120684,13 @@
     }
   },
   "totals": {
-    "declarations": 9048,
-    "declarations_with_a_ledger_row": 6205,
-    "ledger_rows_naming_a_file": 516,
-    "modules": 381,
+    "declarations": 9088,
+    "declarations_with_a_ledger_row": 6245,
+    "ledger_rows_naming_a_file": 520,
+    "modules": 384,
     "trust": {
       "compiler": 56,
-      "kernel": 8992
+      "kernel": 9032
     }
   }
 }

@@ -25,17 +25,29 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- actual OOEE production with conserved-weight coefficient 11/100, a single
+  bounded loss for every backward-closed class, and the physical source cutoff.
+  This discharges the last odd-production input and proves unconditional
+  contagion at 5/8. The Tao and cumulative-pressure reductions need only their
+  rate hypotheses, now at e>3/8 and r-eta>3/8. See the
+  [proof map](../docs/theory/juggler_ooee_weighted_production_note.md);
 - every positive real exponent below one admits an infinite set with
   count at least floor(X^kappa) at every nonnegative real cutoff and
   finite reciprocal mass (`BTCalculus.SublinearCountingMass`). Paper E's
   full rational-value table and terminating positive rational code are
   covered by `PaperECompletion`; all eleven added theorems are checked in
   `AxiomCheckPaperEExamples.lean`;
+- fixed OOEE count deviations force a fixed family of slow resonances;
+  their dyadic count is O(u^(2/9)) and their reciprocal tail is
+  O_eta(U^(-7/9)), including summability and the infinite-series bound.
+  The following weighted-production theorem supplies the required cutoff. See the
+  [proof map](../docs/theory/juggler_ooee_count_poor_tail_note.md);
 - exact OOEE target fibres, including both inverse ceilings, candidate-count
   error at most 3, and the nonresonant parity estimate with every source-window
   condition discharged. Its normalized target errors decay as m^(-1/18),
-  m^(-2/3), and m^(-7/9). Resonance inclusion and weighted production remain
-  open. See the [proof map](../docs/theory/juggler_ooee_fibre_parity_note.md);
+  m^(-2/3), and m^(-7/9). The following count-poor tail supplies resonance
+  inclusion; the weighted-production follow-up completes the application. See the
+  [proof map](../docs/theory/juggler_ooee_fibre_parity_note.md);
 - uniform effective OOE Fourier cancellation for every nonzero integer
   cutoff mode: normalized error at most 128*M^(1/4)*H^(1/30)*T^(-1/60),
   for M,H,T>=1 and H<=T^(1/4). Actual derivative chains, both signs and
@@ -49,8 +61,9 @@ Compiled theorem groups:
   including the last square-root comparison, three-coordinate finite
   Fejer discrepancy and the exact natural-map guard identity. The
   count theorem supplies its Fourier bounds from the proved modes;
-  the following fibre theorem supplies the geometry; resonance inclusion
-  and the tail remain. See
+  the subsequent fibre and count-poor theorems supply the geometry,
+  resonance inclusion and count-deviation tail; weighted production is now
+  supplied by FateOOEEWeighted. See
   the [proof map](../docs/theory/juggler_ooee_joint_parity_note.md);
 - original OOEE mixed-mode cancellation O(P^(13/32)) on source intervals
   with N<=L*P^(7/16), for every fixed integer mode with (i,j) not both
@@ -128,13 +141,13 @@ Compiled theorem groups:
   by this theorem and are still separate formalization obligations;
 - unconditional actual OE production at conserved-weight coefficient 33/100,
   using the proved poor-fibre tail and a uniform mass-conversion error at
-  most 6 for every predicate and cutoff. The 5/8 contagion and e>3/8 Tao
-  implications now retain only the OOEE production as an analytic input;
+  most 6 for every predicate and cutoff. FateOOEEWeighted now supplies the
+  second odd-production input and the unconditional 5/8 contagion theorem;
 - the actual E/OE/OOEE source partition, positive reciprocal comparison
   for the conserved weight, exact even cutoff, removal of shifted and
   additive losses, and the exponent 5/8 certificate. The resulting
-  contagion and Tao implication at e>3/8 keep the two actual odd-source
-  production inequalities explicit; their analytic discharge is written;
+  conditional assembly keeps the two actual odd-source production inequalities
+  explicit; FateOEWeighted and FateOOEEWeighted now discharge both in Lean;
 - exact positive logarithmic mass on every even Juggler fibre and every
   complete even generation; finite source-cutoff transport and infinite
   nonnegative mass conservation for both signed Collatz codes. The 16/18

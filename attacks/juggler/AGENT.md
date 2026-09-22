@@ -135,16 +135,19 @@ review remains open. The constants are not practical search limits.
   also suffices: [corrected implication](../../docs/problems/juggler_pressure_external_average.md),
   `J-pressure-scale-average-suffices`, now Lean in `FateScaleAverage.lean`
   (`ScaleAverage.pressure_average_conjecture`) at `r-eta>103/203`.
-  The reusable contagion reduction also gives `r-eta>3/8` through
-  `pressure_average_conjecture_of_ooee`, conditional on the actual OOEE
-  production bound. The cumulative arithmetic bound is open in both cases.
+  The completed actual OOEE production now improves the unconditional
+  contagion exponent to 5/8 (`FateOOEEWeighted.logMass_growth`). Its
+  `conjecture_of_tao_rate` needs e>3/8; its
+  `pressure_average_conjecture` needs r-eta>3/8. Both retain only their
+  actual arithmetic rate hypotheses, which remain open.
   The [actual OOEE poor-fibre probe](../../docs/problems/juggler_ooee_poor_fibres.md)
   now has a **PROMOTE** [written poor-fibre tail](../../docs/theory/juggler_ooee_poor_fibre_tail_note.md):
   fixed mixed modes save 1/32 on the P^(7/16) source interval, and only
   pure slow modes need resonance exclusions. Every fixed mass deficit has
   reciprocal tail O_eta(U^(-7/9)), giving an actual averaged OOEE coefficient
-  arbitrarily close to 1/9. Independent review and analytic Lean verification
-  remain outstanding. The subsequent
+  arbitrarily close to 1/9 in the written result. Independent review
+  remains outstanding; the coefficient 11/100 and all inputs it needs
+  are now kernel-checked. The subsequent
   [E/OE/OOEE assembly](../../docs/theory/juggler_ooee_contagion_note.md)
   gives written contagion at 5/8 and a sufficient Tao-rate threshold e>3/8.
   Paper C 1.2.0 now includes the complete written input in Appendix E
@@ -152,8 +155,8 @@ review remains open. The constants are not practical search limits.
   `FateOOEEAssembly.lean` checks that implication with the two actual
   odd-production inequalities explicit; it does not certify the analytic
   input. `FateOEWeighted.lean` now discharges the OE inequality, including
-  physical cutoffs and a uniform mass-conversion error at most 6. Only
-  `OOEEProductionBound` remains in its strengthened contagion implication.
+  physical cutoffs and a uniform mass-conversion error at most 6.
+  `FateOOEEWeighted.lean` now discharges `OOEEProductionBound` too.
   The classical [finite differencing input](../../docs/theory/finite_weyl_differencing_note.md)
   is now kernel-checked in `BTCalculus.WeylDifferencing`, including exact
   overlap correlations and the odd-lattice specialization. The first-derivative
@@ -178,10 +181,14 @@ review remains open. The constants are not practical search limits.
   three-coordinate discrepancy and exact natural-map guards in Lean.
   [Exact target-fibre geometry and normalized counts](../../docs/theory/juggler_ooee_fibre_parity_note.md)
   are now kernel-checked, with candidate error at most 3 and vanishing
-  target errors m^(-1/18), m^(-2/3), m^(-7/9). Poor-target inclusion,
-  reciprocal tail and physical cutoffs remain open.
-  The unconditional Lean exponent remains 100/203, and the actual
-  failure-rate estimate remains open.
+  target errors m^(-1/18), m^(-2/3), m^(-7/9). The
+  [count-poor inclusion and reciprocal tail](../../docs/theory/juggler_ooee_count_poor_tail_note.md)
+  are now kernel-checked too: fixed count deviations force fixed slow
+  resonances, and their infinite reciprocal tail is O_eta(U^(-7/9)).
+  [Actual weighted production](../../docs/theory/juggler_ooee_weighted_production_note.md)
+  now supplies coefficient 11/100, a bounded uniform loss and the physical
+  source cutoff. The unconditional Lean exponent is now 5/8; the actual
+  failure-rate and stopped-pressure estimates remain open.
   Kernel localize CLOSE. Do not open a
   third formulation. Not a halt theorem; no fate excluded.
   The inverse-cell Hardy shortcut is also CLOSE: its shrinking

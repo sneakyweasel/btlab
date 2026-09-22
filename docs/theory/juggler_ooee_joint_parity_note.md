@@ -108,7 +108,8 @@ the mixed and root errors divided by N tend to zero. Choose H first,
 C second, then P large: (3) permits any fixed positive parity deficit.
 The [exact fibre application](juggler_ooee_fibre_parity_note.md) now
 discharges the endpoint geometry and candidate-count conditions and
-normalizes the error. The resulting poor-target inclusion remains open.
+normalizes the error. The [count-poor follow-up](juggler_ooee_count_poor_tail_note.md)
+now proves fixed count-deviation inclusion and its reciprocal tail.
 
 ## Validation
 
@@ -129,8 +130,8 @@ and pending advisory coverage; no new external service was contacted.
 
 **PROMOTE** the actual joint parity estimate. The [poor-fibre proof](juggler_ooee_poor_fibre_tail_note.md)
 now has exact target fibres and candidate counts in the linked follow-up.
-It still needs fixed-deficit resonance inclusion, the reciprocal tail, weighted conversion and physical
-source cutoffs assembled in Lean. `OOEEProductionBound` remains explicit
-in the contagion theorem. The unconditional Lean exponent remains 100/203;
-5/8 still depends on that production input. The actual failure-rate bound
-and universal termination remain open.
+Count-poor resonance inclusion and the reciprocal tail are now also proved.
+The [weighted-production follow-up](juggler_ooee_weighted_production_note.md)
+now supplies coefficient 11/100 and the physical source cutoff, discharging
+`OOEEProductionBound`. The unconditional Lean exponent is now 5/8.
+The actual failure-rate bound and universal termination remain open.

@@ -79,10 +79,11 @@ There is no cancellation or interval-geometry premise beyond the
 displayed nonresonance condition.
 
 Equation (1) retains the needed order of choices: H first, C second,
-then m large. Its three target-dependent terms vanish. This supports
-the next fixed-deficit argument, but that quantified inclusion, the
-count of resonant targets, conversion from counts to conserved weight,
-and physical production cutoffs are not claimed by these modules.
+then m large. Its three target-dependent terms vanish. The
+[count-poor follow-up](juggler_ooee_count_poor_tail_note.md) now proves
+the quantified inclusion and the reciprocal tail of resonant targets.
+Conversion from counts to conserved weight and physical production
+cutoffs remain outside these results.
 
 ## Verification and decision
 
@@ -103,7 +104,8 @@ deterministic source archive; manuscript, PDF, TeX and metadata bytes are
 unchanged. This scoped validation excludes the concurrent OOE publication
 edits and is not a claim that every live publication gate passes.
 
-**PROMOTE** the exact fibre count estimate. The unconditional Lean
-contagion exponent is still 100/203; the 5/8 implication retains
-OOEEProductionBound. The actual growing-depth pressure bound and
-universal termination remain open.
+**PROMOTE** the exact fibre count estimate. The subsequent
+[weighted-production proof](juggler_ooee_weighted_production_note.md)
+discharges OOEEProductionBound and gives unconditional Lean contagion
+at 5/8. The actual growing-depth pressure bound and universal termination
+remain open.

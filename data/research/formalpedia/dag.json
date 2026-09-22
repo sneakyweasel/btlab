@@ -2158,6 +2158,22 @@
         "kernel": 26
       }
     },
+    "Problems.Juggler.FateOOEEWeighted": {
+      "declarations": 13,
+      "depends_on": [
+        "Problems.Juggler.FateScaleAverage",
+        "Problems.Juggler.OOEEResonanceTail"
+      ],
+      "file": "formal/Problems/Juggler/FateOOEEWeighted.lean",
+      "ledger": [
+        "J-ooee-actual-weighted-production",
+        "J-ooee-contagion-five-eighths"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 13
+      }
+    },
     "Problems.Juggler.FateOneSided": {
       "declarations": 20,
       "depends_on": [
@@ -2860,6 +2876,20 @@
         "kernel": 4
       }
     },
+    "Problems.Juggler.OOEEFibreResonance": {
+      "declarations": 10,
+      "depends_on": [
+        "Problems.Juggler.OOEEFibreParity"
+      ],
+      "file": "formal/Problems/Juggler/OOEEFibreResonance.lean",
+      "ledger": [
+        "J-ooee-count-poor-resonance"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 10
+      }
+    },
     "Problems.Juggler.OOEEMixedModes": {
       "declarations": 10,
       "depends_on": [
@@ -2888,6 +2918,20 @@
       "papers": [],
       "trust": {
         "kernel": 11
+      }
+    },
+    "Problems.Juggler.OOEEResonanceTail": {
+      "declarations": 17,
+      "depends_on": [
+        "Problems.Juggler.OOEEFibreResonance"
+      ],
+      "file": "formal/Problems/Juggler/OOEEResonanceTail.lean",
+      "ledger": [
+        "J-ooee-count-poor-reciprocal-tail"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 17
       }
     },
     "Problems.Juggler.OOEERootPhase": {
@@ -4140,9 +4184,9 @@
     }
   },
   "totals": {
-    "edges": 326,
-    "edges_before_reduction": 2684,
-    "ledger_rows_placed": 516,
-    "nodes": 259
+    "edges": 330,
+    "edges_before_reduction": 2861,
+    "ledger_rows_placed": 520,
+    "nodes": 262
   }
 }

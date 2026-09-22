@@ -1,8 +1,11 @@
 # Juggler pressure: external averaging of \(M_{\theta,q}\) / \(P_\theta\)
 
 Status: **PARK** (arithmetic-estimate follow-up, 9 September 2026).
-The conditional implication is now **EXACT — LEAN VERIFIED** at the stronger
-threshold `r - eta > 103/203` (22 September 2026; see Formalization).
+The kernel-checked conditional implication now needs only the actual
+cumulative-pressure estimate at `r - eta > 3/8` (22 September 2026):
+the [completed OOEE production](../theory/juggler_ooee_weighted_production_note.md)
+supplies unconditional contagion at 5/8. The earlier 103/203 interface
+remains available; advisory coverage of the new specialization is pending.
 The previously promoted scale-average sufficiency theorem remains
 valid. A sparse-source part is now bounded; the full average remains
 unproved. The one-sided sieve follow-up below establishes only an
@@ -616,6 +619,12 @@ the new row was checked directly against the compiled signature. The new
 row retains `EXACT — HUMAN PROOF` while the advisory coverage step awaits
 authorization to send the unpublished statement and declarations externally;
 its Lean proof and kernel dependency check have passed locally.
+
+The subsequent `FateOOEEWeighted.pressure_average_conjecture` now
+discharges the OOEE premise using the actual weighted-production proof.
+Only the cumulative arithmetic pressure bound remains, with the same
+parameter and certified-floor conditions and the gap `r-eta>3/8`.
+Its complete dependency audit uses only the standard logical principles.
 
 **Decision: PROMOTE** the refactor and conditional corollary. The arithmetic
 estimate remains **PARK**. Stop here; no new analytic branch is opened.

@@ -1,0 +1,15 @@
+'Problems.Juggler.FateOOEEWeighted.scale_large' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOOEEWeighted.nonpoor_card_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOOEEWeighted.nonpoor_fibre_mass_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOOEEWeighted.ooee_fibre_cutoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOOEEWeighted.accepted_mass_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOOEEWeighted.reciprocal_ooee_production' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.FateOOEEWeighted.ooee_production_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOOEEWeighted.ooee_production' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOOEEWeighted.logMass_growth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOOEEWeighted.conjecture_of_tao_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOOEEWeighted.pressure_average_conjecture' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,5 +1,38 @@
 # Research journal
 
+## 2026-09-22 -- Actual OOEE production and unconditional 5/8 contagion
+
+- **Continuation audit:** The preceding review completed the count-tail
+  test record but proved no new mathematical result. The scoped count-tail
+  release and registry check now passes all 48 selected tests.
+- **Target:** Discharge OOEEProductionBound with its actual physical
+  source cutoff. A weight or cutoff loss consuming the margin below 1/9
+  would falsify the argument. No longer-fibre or new cycle branch was opened.
+- **Proof:** At count tolerance 1/10000 and analytic size m>=10^9,
+  card(F_m)>=(1107/10000)*m^(7/9) and n<=m^(16/9)+3*m^(7/9)
+  give reciprocal fibre mass at least 11/(100m). The summable count-poor
+  tail bounds the cost of discarding deficient targets uniformly over A.
+  For m<=floor(exp(9t/16-4)), every source satisfies
+  n<=2*exp(t-64/9)<=exp(t). Exact fourth iterates make fibres disjoint;
+  backward closure places all their sources in A. The established mass
+  comparison gives one conserved-weight loss for every A and every t.
+- **Consequence:** OOEEProductionBound is unconditional. Every
+  backward-closed class with a positive member has reciprocal mass at
+  least K*(log X)^(5/8) eventually. The existing Tao and scale-average
+  reductions now retain only their actual rate hypotheses at e>3/8
+  and r-eta>3/8. Neither rate is proved; termination remains open.
+- **Validation:** The full Lean build passes 9,089 jobs and all 11 theorem
+  dependency reports contain only propext, Classical.choice and Quot.sound.
+  The broad run and corrected publication-gate rerun cover 275 passing
+  selected tests and 15 skips, with no unresolved failures. Details are in the
+  [proof map](theory/juggler_ooee_weighted_production_note.md). No new
+  external advisory request was sent; the ledger keeps kernel trust
+  and pending statement coverage. The size threshold is analytic and
+  does not raise the computational verification floor.
+- **Decision:** **PROMOTE** the completed weighted-production assembly.
+  Stop this phase here; actual growing-depth stopped pressure is the
+  next mathematical obstruction, not a consequence claimed by this proof.
+
 ## 2026-09-22 -- Paper E local statement coverage completed
 
 - **Scope:** Audit the existing manuscript, without opening a new direction.
@@ -18,6 +51,38 @@
   Version 0.7.1 preserves the numbered results and quantitative constants.
 - **Boundary:** Independent review remains. The effective OOE theorem's
   ledger promotion awaits permission for its own Jev advisory check.
+
+## 2026-09-22 -- OOEE count-poor resonance inclusion and reciprocal tail
+
+- **Scope:** Complete the retained fixed-count-deficit inclusion and
+  reciprocal tail. Target-dependent cutoffs or a lost counting exponent
+  would falsify the argument. The weighted ratio and physical cutoff are
+  left for the next phase.
+- **Proof:** Choose the Fourier cutoff, then the resonance width, then the
+  target threshold in the proved normalized fibre estimate. Both frequency
+  signs reduce to a positive natural denominator. Every fixed absolute
+  count deviation eventually lies in the family
+  abs(q*(9/8)*m^(2/9)-z)<=C*m^(-7/9), 1<=q<=H.
+- **Counting:** A fixed q contributes at most
+  (80C+10q)*u^(2/9) targets in (u,2u]. Monotone arc counting retains all
+  closed boundaries and needs no small-width condition. The union over
+  q<=H is at most H*(80C+10H)*u^(2/9). Dyadic summation gives reciprocal
+  tail at most 3H*(80C+10H)*U^(-7/9).
+- **Consequence:** For each eta>0 the actual count-poor targets have an
+  eventual reciprocal tail D_eta*U^(-7/9). Both finite upper cutoffs and
+  summability with the infinite-series bound are proved.
+- **Validation:** Both modules compile. All 22 new theorems pass the
+  dependency audit with only propext, Classical.choice and Quot.sound.
+  Full build and repository gates are recorded in the
+  [proof map](theory/juggler_ooee_count_poor_tail_note.md). No external
+  advisory call was made; the two new rows retain kernel trust and
+  pending statement coverage. Paper E's registry pin and source archive
+  were refreshed without changing its manuscript, PDF, TeX or metadata.
+- **Decision:** **PROMOTE** the count-poor tail. The next question is
+  conversion to the actual conserved-weight production with physical
+  cutoffs. OOEEProductionBound, the stronger unconditional Lean exponent
+  and the actual growing-depth pressure estimate remain open. This phase
+  stops after the count-poor tail.
 
 ## 2026-09-22 -- Effective OOE count and bounded witness fully formalized
 

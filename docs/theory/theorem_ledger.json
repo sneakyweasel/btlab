@@ -13004,13 +13004,22 @@
  {
   "id": "J-ooee-contagion-five-eighths",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "AI-assisted written proof, inheriting the OOEE poor-fibre theorem's outstanding independent analytic review and Lean verification. Every backward-closed subset A of the positive Juggler integers with a positive member has sum_(n<=X,n in A) 1/n >= K*(log X)^(5/8) for some K>0 and all sufficiently large X. Actual E, OE, and OOEE source families are disjoint and give conserved-weight coefficients 1,33/100,11/100 at logarithmic target cutoffs t/2-4,3t/4-4,9t/16-4, with bounded additive loss. Translating by 16 and subtracting 5C removes that loss; the weighted power sum at 5/8 is at least 50011/50000>1. Consequently an eventual odd-failure dyadic bound #(odd failures in (y,2y])<=y*(log y)^(-e), for any e>3/8, implies termination of every positive start. The required failure-rate bound remains open. The full written proof is in juggler_ooee_contagion_note.md; its unconditional claim is not covered by the separate conditional Lean assembly.",
+  "statement": "Kernel-checked unconditional contagion at 5/8; advisory statement coverage and independent mathematical review pending. For every natural predicate A closed under actual Juggler preimages and every positive member a of A, there exist K>0 and a natural N such that for every natural X>=N, logMass A X>=K*(log X)^(5/8). Both actual odd-production inequalities, including the OOEE conserved-weight coefficient 11/100 and its physical cutoff, are proved and are not hypotheses. Consequently, for every real e>3/8, an eventual dyadic bound card(oddFailures y)<=y*(log y)^(-e) implies every positive start reaches one. The existing ScaleAverage.Bound also implies termination at C*(theta*pC(C)-log(1-q+q*exp(theta)))/log(2)-eta>3/8, under its stated certified-floor and parameter conditions, with no OOEE production premise. The actual failure-rate and cumulative stopped-pressure bounds remain explicit unproved hypotheses; universal termination and infinite escape are not asserted.",
   "source": "docs/problems/juggler_ooee_poor_fibres.md",
-  "lean": "",
+  "lean": "Problems/Juggler/FateOOEEWeighted.lean",
   "tests": [
-   "tests/research/juggler_sequence/test_ooee_poor_fibres.py"
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_ooee_poor_fibres.py",
+   "tests/tools/test_formalpedia.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "lean_trust": "kernel",
+  "decl": [
+   "logMass_growth",
+   "conjecture_of_tao_rate",
+   "pressure_average_conjecture"
+  ]
  },
  {
   "id": "J-ooee-contagion-assembly",
@@ -13708,5 +13717,80 @@
    "tests/tools/test_formalpedia.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-ooee-count-poor-resonance",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked, advisory coverage pending. Let F_m be the exact actual OOEE fibre with fourth iterate m, H_m its odd candidate count, alpha_m=(9/8)*m^(2/9), and CountPoor(eta,m) mean eta<=abs(card(F_m)/H_m-1/8). For every real eta>0 there exist a natural H>=3, real C>0 and natural M>=64 such that for every natural m>=M, CountPoor(eta,m) implies there are natural 1<=q<=H and integer z with abs(q*alpha_m-z)<=C*m^(-7/9). Outside that resonance family, the actual count error is strictly less than eta. Both frequency signs and closed boundaries are included. H is chosen first, C second and M last; the cutoffs are independent of m. The result uses the proved exact-fibre discrepancy and has no unproved cancellation input. It is a count-deviation theorem, before conversion to the conserved-weight ratio.",
+  "source": "docs/problems/juggler_ooee_poor_fibres.md",
+  "lean": "Problems/Juggler/OOEEFibreResonance.lean",
+  "decl": [
+   "alpha",
+   "decay",
+   "Resonant",
+   "CountPoor",
+   "signed_resonant",
+   "nonresonant_signed",
+   "smoothing_cutoff",
+   "nonresonant_count_close",
+   "count_poor_resonant"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_ooee_poor_fibres.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-ooee-count-poor-reciprocal-tail",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked, advisory coverage pending. Put alpha_m=(9/8)*m^(2/9), and let R_(H,C) contain natural m for which abs(q*alpha_m-z)<=C*m^(-7/9) for some natural 1<=q<=H and integer z. For every natural u>=1, natural H and real C>=0, card(R_(H,C) intersect (u,2u])<=K*u^(2/9), K=H*(80*C+10*H). For every natural U>=1 and upper cutoff N, sum_(U<m<=N,m in R_(H,C)) 1/m<=3*K*U^(-7/9). Consequently, for every real eta>0 there are D>0 and a natural M>=64 such that for every natural U>=M, the function equal to 1/m on m>U with abs(card(F_m)/H_m-1/8)>=eta and zero otherwise is summable, and its infinite sum is at most D*U^(-7/9). Here F_m and H_m are the exact actual OOEE fibre and its odd candidate count. The finite-cutoff bound is also proved uniformly in N. The count uses all closed resonance endpoints and no small-width hypothesis. Conversion to the actual conserved-weight ratio, physical production cutoffs, OOEEProductionBound and termination remain outside the statement.",
+  "source": "docs/problems/juggler_ooee_poor_fibres.md",
+  "lean": "Problems/Juggler/OOEEResonanceTail.lean",
+  "decl": [
+   "countConstant",
+   "resonant_fract",
+   "resonance_count_one",
+   "resonance_count",
+   "resonance_tail",
+   "count_poor_tail",
+   "count_poor_tsum_tail"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_ooee_poor_fibres.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_ooee_poor_fibres.md",
+  "lean": "Problems/Juggler/FateOOEEWeighted.lean",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_ooee_poor_fibres.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": [],
+  "id": "J-ooee-actual-weighted-production",
+  "statement": "Kernel-checked actual OOEE production; advisory statement coverage pending. Using FateOOEEAssembly.fullMass, sourceMass, cutoff(t)=floor(exp(t)), and the actual ooeeGuard, there exists one real C>=0 such that for every natural predicate A closed under actual Juggler preimages and every real t, (11/100)*fullMass A(9*t/16-4)<=sourceMass A ooeeGuard(cutoff t)+C. The constant is independent of A and t. With eta=1/10000 and m>=10^9, a target outside CountPoor eta has at least (1107/10000)*m^(7/9) actual OOEE sources and reciprocal fibre mass at least 11/(100m). The proved summable count-poor tail bounds the discarded target mass uniformly. Exact fourth iterates give disjoint fibres, backward closure places their sources in A, and n<=2*m^(16/9) gives the physical cutoff. The established uniform mass-to-reciprocal comparison completes conserved-weight production. OOEEProductionBound is therefore discharged without an analytic hypothesis. The threshold 10^9 is an analytic size bound and does not change the computational verification floor.",
+  "decl": [
+   "eta",
+   "nonpoor_card_lower",
+   "nonpoor_fibre_mass_lower",
+   "ooee_fibre_cutoff",
+   "accepted_mass_lower",
+   "reciprocal_ooee_production",
+   "ooee_production_uniform",
+   "ooee_production"
+  ]
  }
 ]

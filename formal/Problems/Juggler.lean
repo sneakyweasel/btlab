@@ -232,6 +232,9 @@ import Problems.Juggler.OOEESlowModes
 import Problems.Juggler.OOEEParity
 import Problems.Juggler.OOEEFibreGeometry
 import Problems.Juggler.OOEEFibreParity
+import Problems.Juggler.OOEEFibreResonance
+import Problems.Juggler.OOEEResonanceTail
+import Problems.Juggler.FateOOEEWeighted
 
 /-!
 # Juggler laboratory barrel

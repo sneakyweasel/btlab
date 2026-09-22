@@ -4,11 +4,11 @@ Status: **PROMOTE**, 22 September 2026. The follow-up now supplies an
 AI-assisted written poor-fibre tail and the averaged OOEE coefficient
 arbitrarily close to 1/9. The subsequent
 [E/OE/OOEE assembly](../theory/juggler_ooee_contagion_note.md) gives written
-contagion at 5/8 and a sufficient Tao-rate threshold e>3/8. Its strengthened
-Lean theorem now retains only the precise OOEE production bound: the OE
-input has been discharged in `FateOEWeighted.lean`. Independent review
-and analytic Lean verification are outstanding; the published manuscripts
-and termination status are unchanged.
+contagion at 5/8 and a sufficient Tao-rate threshold e>3/8. Both are now
+kernel-checked through `FateOOEEWeighted.lean`: the actual OOEE production
+is proved with coefficient 11/100, a uniform bounded loss and its physical
+source cutoff. The rate hypothesis and independent mathematical review
+remain open; the published manuscripts and termination status are unchanged.
 Classical finite differencing and both derivative tests are now proved
 in Lean. The quantitative second-derivative estimate has explicit
 constants and covers the actual odd lattice. The actual carry-cell curvature
@@ -25,7 +25,11 @@ windows, and the joint three-guard count are now kernel-checked too.
 Exact fibre geometry and its normalized count estimate are now kernel-checked
 in `OOEEFibreGeometry.lean` and `OOEEFibreParity.lean`.
 [Fibre proof map](../theory/juggler_ooee_fibre_parity_note.md).
-Poor-target inclusion and the tail assembly remain.
+Fixed count deviations now force slow resonances in Lean, and their
+reciprocal tail is O_eta(U^(-7/9)), including the infinite-series bound.
+[Count-poor tail proof map](../theory/juggler_ooee_count_poor_tail_note.md).
+[Weighted production and cutoff](../theory/juggler_ooee_weighted_production_note.md)
+are now proved for the coefficient 11/100 needed by the contagion theorem.
 [Analytic argument](../theory/juggler_ooee_poor_fibre_tail_note.md).
 
 ## Problem
@@ -454,6 +458,30 @@ threshold are uniform in the resonance-width parameter. No assumed
 fibre geometry remains. The fixed-deficit inclusion and weighted tail
 are outside this phase; its result is recorded in the linked fibre note.
 
+**Thirteenth phase: count-poor inclusion and reciprocal tail are kernel-checked.**
+For each eta>0, fixed H,C and a target threshold put every actual count
+deviation abs(card(F_m)/H_m-1/8)>=eta in the resonance family
+abs(q*(9/8)*m^(2/9)-z)<=C*m^(-7/9), 1<=q<=H. On (u,2u], u>=1,
+that family has at most H*(80C+10H)*u^(2/9) members and reciprocal
+tail at most 3H*(80C+10H)*U^(-7/9). Thus the count-poor targets have
+an eventual reciprocal tail of the required exponent, with both finite
+cutoffs and the infinite series verified. The proof includes both signs,
+closed resonance windows, fixed cutoff order and all integer endpoints.
+The conserved-weight ratio is not yet part of this theorem.
+
+**Fourteenth phase: actual weighted production and 5/8 contagion are kernel-checked.**
+Choose count tolerance 1/10000. For m>=10^9 the exact source window and
+candidate error give card(F_m)>=(1107/10000)*m^(7/9), hence reciprocal
+fibre mass at least 11/(100m), outside the count-poor targets. Their
+summable tail makes the discarded target mass uniformly bounded over
+every predicate A. The exact source cutoff, disjointness and backward
+closure give reciprocal production; the uniform mass-conversion error
+gives the conserved-weight inequality with one constant for all A and t.
+Thus OOEEProductionBound is discharged. Existing assemblies now prove
+unconditional 5/8 contagion and sufficient rates e>3/8 and r-eta>3/8.
+The actual rate estimates remain open. The threshold 10^9 is analytic;
+the computational verification floor remains unchanged.
+
 ## Open questions
 
 The first phase proposed a second-moment route. Let H_m be the number
@@ -474,33 +502,26 @@ result: the resonance inclusion proves (1) directly. Global Paper B
 prefix estimates and the already known two-predecessor Fourier transfer
 still do not supply a short-fibre second moment merely by reindexing.
 
-Independent review of the new local proof remains outstanding. The next
-proof obligation is to discharge `OOEEProductionBound` in Lean for every
-backward-closed class. Its main analytic ingredient is the actual OOEE
-poor-fibre theorem. The OE production and a uniform weight conversion
-are now formal; the OOEE source-cutoff consequence must also be retained.
-Finite differencing, both derivative tests, and the actual carry-cell
-curvature, carry partition, weighted smooth sums, nonzero Fourier modes,
-and the complete retained carry correlation are now formal too. The
-original linearization comparison and actual mixed-mode differencing are
-also proved. Slow modes, joint discrepancy and exact target-fibre geometry
-now supply the normalized count estimate. Poor-target inclusion, reciprocal
-tail, weighted conversion and physical source cutoffs remain before the
-full poor-tail proof.
+Independent review remains outstanding. The retained production argument
+is complete in Lean at coefficient 11/100: cancellation, joint parity,
+exact target fibres, summable exceptional targets, weight conversion,
+source cutoff and contagion assembly are all proved. The next mathematical
+obstruction is the actual growing-depth stopped-pressure estimate, or a
+sufficient failure-rate bound. Neither follows from a fixed four-step
+production theorem. No proof of the optional second-moment estimate above
+or the full arbitrary-coefficient weighted-ratio asymptotic is claimed here.
 
 ## Decision
 
-**PROMOTE.** The written poor-fibre theorem now has a complete cutoff
-assembly yielding contagion at 5/8 and the sufficient Tao threshold 3/8.
-The assembly and its OE input are kernel-checked; the new OOEE analytic
-theorem still awaits independent review and Lean proof. Exactly one best
-next question: can the normalized actual-fibre estimate be turned into
-fixed-deficit resonance inclusion and a summable reciprocal target tail?
-This phase stops after the normalized actual-fibre estimate.
+**PROMOTE.** The actual OOEE production and its physical cutoff are
+kernel-checked, yielding unconditional contagion at 5/8 and sufficient
+Tao and cumulative-pressure thresholds 3/8. The actual arithmetic rate
+remains open. This phase stops after the weighted-production assembly;
+it does not open a longer-fibre or new cycle attack.
 
 ## Publication assessment
 
-Status: **THEOREM**. Written analytic result and conditional Lean assembly,
-with independent analytic review outstanding. The research note improves
-the written contagion exponent to 5/8; no paper, verification floor, or
-unconditional termination claim changes.
+Status: **THEOREM**. Kernel-checked actual production and unconditional
+contagion at 5/8, with advisory statement coverage and independent review
+outstanding. No paper, computational verification floor or unconditional
+termination claim changes.

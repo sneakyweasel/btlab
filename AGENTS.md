@@ -30,10 +30,10 @@ Full reading path, state of the problem, file map, and registration:
 laboratory-kill CLOSE); the closure threshold is a minimum lower bound
 \(n\gg L^{5.1163051}\), never below \(L^{2}\)
 (`J-cyclemin-closure-threshold`). Termination: exported exponent-pair leftover,
-not a Juggler construction. Fates: contagion is now unconditional to
-\(\lambda\le100/203=0.49261\), above the published
-\(\lambda^{**}\) (`J-oe-averaged-two-productions-reach-the-depth-two-ceiling`);
-Tao reduction is still conditional on a rate, now at \(e>103/203\).
+not a Juggler construction. Fates: contagion is now unconditional at
+\(\lambda=5/8\), with the actual OOEE production and source cutoff
+proved in Lean (`J-ooee-contagion-five-eighths`);
+Tao reduction is still conditional on a rate, now at \(e>3/8\).
 Flights: descriptively terminal.
 
 **Do not reopen.** Local attacks (Collision Factorization); Baker/SdW;
