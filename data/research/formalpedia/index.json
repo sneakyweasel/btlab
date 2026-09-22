@@ -6192,7 +6192,8 @@
       "file": "formal/Problems/Collatz/PreimageScale.lean",
       "kind": "def",
       "ledger": [
-        "J-kl-signed-preimage-height-gap"
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
       ],
       "line": 14,
       "module": "Problems.Collatz.PreimageScale",
@@ -6204,7 +6205,8 @@
       "file": "formal/Problems/Collatz/PreimageScale.lean",
       "kind": "def",
       "ledger": [
-        "J-kl-signed-preimage-height-gap"
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
       ],
       "line": 15,
       "module": "Problems.Collatz.PreimageScale",
@@ -6216,7 +6218,8 @@
       "file": "formal/Problems/Collatz/PreimageScale.lean",
       "kind": "theorem",
       "ledger": [
-        "J-kl-signed-preimage-height-gap"
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
       ],
       "line": 17,
       "module": "Problems.Collatz.PreimageScale",
@@ -6228,7 +6231,8 @@
       "file": "formal/Problems/Collatz/PreimageScale.lean",
       "kind": "theorem",
       "ledger": [
-        "J-kl-signed-preimage-height-gap"
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
       ],
       "line": 28,
       "module": "Problems.Collatz.PreimageScale",
@@ -6240,7 +6244,8 @@
       "file": "formal/Problems/Collatz/PreimageScale.lean",
       "kind": "theorem",
       "ledger": [
-        "J-kl-signed-preimage-height-gap"
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
       ],
       "line": 39,
       "module": "Problems.Collatz.PreimageScale",
@@ -6252,7 +6257,8 @@
       "file": "formal/Problems/Collatz/PreimageScale.lean",
       "kind": "theorem",
       "ledger": [
-        "J-kl-signed-preimage-height-gap"
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
       ],
       "line": 45,
       "module": "Problems.Collatz.PreimageScale",
@@ -6264,7 +6270,8 @@
       "file": "formal/Problems/Collatz/PreimageScale.lean",
       "kind": "theorem",
       "ledger": [
-        "J-kl-signed-preimage-height-gap"
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
       ],
       "line": 52,
       "module": "Problems.Collatz.PreimageScale",
@@ -6276,7 +6283,8 @@
       "file": "formal/Problems/Collatz/PreimageScale.lean",
       "kind": "theorem",
       "ledger": [
-        "J-kl-signed-preimage-height-gap"
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
       ],
       "line": 65,
       "module": "Problems.Collatz.PreimageScale",
@@ -6288,7 +6296,8 @@
       "file": "formal/Problems/Collatz/PreimageScale.lean",
       "kind": "theorem",
       "ledger": [
-        "J-kl-signed-preimage-height-gap"
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
       ],
       "line": 75,
       "module": "Problems.Collatz.PreimageScale",
@@ -6300,7 +6309,8 @@
       "file": "formal/Problems/Collatz/PreimageScale.lean",
       "kind": "theorem",
       "ledger": [
-        "J-kl-signed-preimage-height-gap"
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
       ],
       "line": 85,
       "module": "Problems.Collatz.PreimageScale",
@@ -6312,11 +6322,207 @@
       "file": "formal/Problems/Collatz/PreimageScale.lean",
       "kind": "theorem",
       "ledger": [
-        "J-kl-signed-preimage-height-gap"
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
       ],
       "line": 96,
       "module": "Problems.Collatz.PreimageScale",
       "name": "nineteen_not_periodic",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A formal inverse itinerary: `false` doubles, `true` takes `(2*x+1)/3`. Integrality and parity guards are deliberately separate from this real formula.",
+      "file": "formal/Problems/Collatz/PreimageScale.lean",
+      "kind": "def",
+      "ledger": [
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
+      ],
+      "line": 114,
+      "module": "Problems.Collatz.PreimageScale",
+      "name": "inverseWord",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The homogeneous multiplier of an inverse itinerary.",
+      "file": "formal/Problems/Collatz/PreimageScale.lean",
+      "kind": "def",
+      "ledger": [
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
+      ],
+      "line": 120,
+      "module": "Problems.Collatz.PreimageScale",
+      "name": "inverseFactor",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageScale.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
+      ],
+      "line": 125,
+      "module": "Problems.Collatz.PreimageScale",
+      "name": "inverseFactor_pos",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageScale.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
+      ],
+      "line": 130,
+      "module": "Problems.Collatz.PreimageScale",
+      "name": "inverseWord_affine",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageScale.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
+      ],
+      "line": 143,
+      "module": "Problems.Collatz.PreimageScale",
+      "name": "inverseWord_nonneg",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageScale.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
+      ],
+      "line": 149,
+      "module": "Problems.Collatz.PreimageScale",
+      "name": "inverseWord_append",
+      "trust": "kernel"
+    },
+    {
+      "doc": "",
+      "file": "formal/Problems/Collatz/PreimageScale.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
+      ],
+      "line": 155,
+      "module": "Problems.Collatz.PreimageScale",
+      "name": "inverseFactor_append",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The exact criterion for a shift to absorb an inverse block's offset.",
+      "file": "formal/Problems/Collatz/PreimageScale.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
+      ],
+      "line": 163,
+      "module": "Problems.Collatz.PreimageScale",
+      "name": "shifted_block_iff",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The same shift works through arbitrarily many blocks; there is no depth-dependent factor in this estimate.",
+      "file": "formal/Problems/Collatz/PreimageScale.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
+      ],
+      "line": 171,
+      "module": "Problems.Collatz.PreimageScale",
+      "name": "shifted_blocks",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Every finite family of strictly expanding inverse itineraries admits a common nonnegative shift. No validity of a residue counting system is assumed or concluded. One plus the displayed sum is an explicit, possibly nonminimal choice.",
+      "file": "formal/Problems/Collatz/PreimageScale.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
+      ],
+      "line": 191,
+      "module": "Problems.Collatz.PreimageScale",
+      "name": "finite_expanding_shift",
+      "trust": "kernel"
+    },
+    {
+      "doc": "A coarse bound controls every internal prefix, separately from the sharper bound at block boundaries.",
+      "file": "formal/Problems/Collatz/PreimageScale.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
+      ],
+      "line": 218,
+      "module": "Problems.Collatz.PreimageScale",
+      "name": "inverseWord_height",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Internal prefixes of length at most L cost at most one fixed factor 2^L, independently of how many expanding blocks precede them.",
+      "file": "formal/Problems/Collatz/PreimageScale.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
+      ],
+      "line": 234,
+      "module": "Problems.Collatz.PreimageScale",
+      "name": "internal_prefix_height",
+      "trust": "kernel"
+    },
+    {
+      "doc": "Explicit example: the inverse blocks EE and OE have multipliers 4 and 4/3; one common shift is 2. The bound holds at every concatenated depth.",
+      "file": "formal/Problems/Collatz/PreimageScale.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
+      ],
+      "line": 257,
+      "module": "Problems.Collatz.PreimageScale",
+      "name": "two_block_shift",
+      "trust": "kernel"
+    },
+    {
+      "doc": "The OE example is an actual two-step predecessor whenever its odd inverse branch is integral.",
+      "file": "formal/Problems/Collatz/PreimageScale.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
+      ],
+      "line": 269,
+      "module": "Problems.Collatz.PreimageScale",
+      "name": "two_step_preimage",
+      "trust": "kernel"
+    },
+    {
+      "doc": "No single translation absorbs both elementary inverse branches with their exact homogeneous multipliers: doubling needs K \u2265 0, the odd branch needs K \u2264 -1. Expanding blocks are an essential hypothesis.",
+      "file": "formal/Problems/Collatz/PreimageScale.lean",
+      "kind": "theorem",
+      "ledger": [
+        "J-kl-signed-preimage-height-gap",
+        "J-signed-preimage-expanding-block-height"
+      ],
+      "line": 285,
+      "module": "Problems.Collatz.PreimageScale",
+      "name": "no_elementary_shift",
       "trust": "kernel"
     },
     {
@@ -96654,7 +96860,7 @@
       ]
     },
     "Problems.Collatz.PreimageScale": {
-      "declarations": 11,
+      "declarations": 26,
       "file": "formal/Problems/Collatz/PreimageScale.lean",
       "imports": [
         "Problems.Collatz.BackwardMass"
@@ -96663,6 +96869,11 @@
         {
           "id": "J-kl-signed-preimage-height-gap",
           "statement": "For each fertile positive target a, the signed odd predecessors satisfy 3*c_minus=2*a+1 and 3*c_plus+1=2*a. Hence c_minus>2*a/3 while c_plus<2*a/3. For every real x, x/c_minus=((x/a)*(3/2))/(1+1/(2*a)); for positive x, the nominal child budget ((x/a)*(3/2))*c_minus exceeds x, while the plus budget is below x. At nonperiodic target a=19, c_minus=13 and cutoff x=103>=4*a, the nominal child budget is 4017/38 and contains the genuine ancestor 104 with path 104,52,26,13, although 104 exceeds 103. All these statements, including absence of every positive return time for 19, are kernel-checked. This refutes the pointwise cutoff inclusion underlying the recorded sign-transfer proof; it does not refute a compensated residue-infimum inequality or an eventual x^0.84 lower bound. Ledger label awaits advisory coverage review.",
+          "tag": "EXACT \u2014 HUMAN PROOF"
+        },
+        {
+          "id": "J-signed-preimage-expanding-block-height",
+          "statement": "For formal real inverse words in E(x)=2*x and O(x)=(2*x+1)/3, write f_w(x)=R_w*x+B_w. The affine identity, R_w>0 and B_w>=0 are kernel-checked. For every finite family F with R_w>1 for each w in F, there exists a common K>=1 such that every finite concatenation W of blocks from F satisfies f_W(x)+K<=R_W*(x+K), for every real x. More generally the block condition B_w<=(R_w-1)*K suffices. For K>=1 satisfying that condition, x>=0, and any subsequent inverse prefix u of length at most L, f_{Wu}(x)+1<=2^L*R_W*(x+K). Thus the height constants do not grow with the number of blocks. For EE and OE, K=2 suffices; at every natural a=1 mod 3, 2*(2*a+1)/3 is an actual two-step minus-shortcut predecessor and its shifted height equals (4/3)*(a+2). No real translation K absorbs both elementary inverse branches with their exact factors 2 and 2/3. This is the standard affine-shift principle instantiated for signed inverse words, not a density or termination theorem. Integrality, valid counting inequalities, disjointness and residue-minimum/deletion operations are not supplied by the real-word bound. Ledger label awaits advisory coverage review.",
           "tag": "EXACT \u2014 HUMAN PROOF"
         }
       ]
@@ -100779,13 +100990,13 @@
     }
   },
   "totals": {
-    "declarations": 7351,
-    "declarations_with_a_ledger_row": 5430,
-    "ledger_rows_naming_a_file": 475,
+    "declarations": 7366,
+    "declarations_with_a_ledger_row": 5445,
+    "ledger_rows_naming_a_file": 476,
     "modules": 323,
     "trust": {
       "compiler": 56,
-      "kernel": 7295
+      "kernel": 7310
     }
   }
 }

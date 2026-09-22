@@ -282,8 +282,11 @@ stays computational. Update Paper D Section 8 and
   Krasikov–Lagarias theorem. **Correction of 22 September:** the density
   row is now `CONJECTURE`. `Problems/Collatz/PreimageScale.lean` proves
   that the actual minus odd predecessor reverses the height comparison,
-  with correction factor 1+1/(2a). A uniform height argument is still
-  required before the model exponent becomes an actual counting bound.
+  with correction factor 1+1/(2a). Its `finite_expanding_shift` now
+  absorbs offsets uniformly through a finite family of expanding inverse
+  blocks; `internal_prefix_height` also controls the whole path. The
+  missing step is a valid signed counting system, including the
+  minimum/deletion operations. This partial repair supplies no exponent.
 
 ## 4. Not in Lean, by decision
 

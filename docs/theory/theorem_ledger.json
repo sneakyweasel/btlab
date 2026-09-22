@@ -12530,6 +12530,33 @@
   "related_conjectures": []
  },
  {
+  "id": "J-signed-preimage-expanding-block-height",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For formal real inverse words in E(x)=2*x and O(x)=(2*x+1)/3, write f_w(x)=R_w*x+B_w. The affine identity, R_w>0 and B_w>=0 are kernel-checked. For every finite family F with R_w>1 for each w in F, there exists a common K>=1 such that every finite concatenation W of blocks from F satisfies f_W(x)+K<=R_W*(x+K), for every real x. More generally the block condition B_w<=(R_w-1)*K suffices. For K>=1 satisfying that condition, x>=0, and any subsequent inverse prefix u of length at most L, f_{Wu}(x)+1<=2^L*R_W*(x+K). Thus the height constants do not grow with the number of blocks. For EE and OE, K=2 suffices; at every natural a=1 mod 3, 2*(2*a+1)/3 is an actual two-step minus-shortcut predecessor and its shifted height equals (4/3)*(a+2). No real translation K absorbs both elementary inverse branches with their exact factors 2 and 2/3. This is the standard affine-shift principle instantiated for signed inverse words, not a density or termination theorem. Integrality, valid counting inequalities, disjointness and residue-minimum/deletion operations are not supplied by the real-word bound. Ledger label awaits advisory coverage review.",
+  "source": "docs/problems/juggler_negative_preimage_density.md",
+  "lean": "Problems/Collatz/PreimageScale.lean",
+  "decl": [
+   "inverseWord",
+   "inverseFactor",
+   "inverseFactor_pos",
+   "inverseWord_affine",
+   "inverseWord_nonneg",
+   "inverseWord_append",
+   "inverseFactor_append",
+   "shifted_block_iff",
+   "shifted_blocks",
+   "finite_expanding_shift",
+   "inverseWord_height",
+   "internal_prefix_height",
+   "two_block_shift",
+   "two_step_preimage",
+   "no_elementary_shift"
+  ],
+  "lean_trust": "kernel",
+  "tests": ["tests/research/juggler_sequence/test_negative_preimage_density.py"],
+  "related_conjectures": []
+ },
+ {
   "id": "J-uncertified-juggler-drop-needs-long-excursion",
   "tag": "EXACT \u2014 HUMAN PROOF",
   "source": "docs/problems/juggler_drop_first_contracting_length.md",

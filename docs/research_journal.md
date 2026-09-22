@@ -1,5 +1,43 @@
 # Research journal
 
+## 2026-09-22 -- Expanding inverse blocks absorb signed height corrections
+
+- **Question:** Does the signed height correction necessarily compound
+  with inverse depth, obstructing any repair of the density argument?
+- **Result:** No for a finite family of expanding blocks. For inverse
+  words E(x)=2x and O(x)=(2x+1)/3, write f_w(x)=R_w*x+B_w. When R_w>1,
+  one common shift K>=1 absorbs every offset, and every concatenation W
+  satisfies f_W(x)+K<=R_W*(x+K). Internal prefixes of bounded length
+  cost one fixed factor. This is a standard affine argument instantiated
+  for the signed words, with no claim of a novel density result.
+- **Exact example and boundary:** EE and OE need only K=2. The latter
+  is an actual two-step ancestor at every fertile integer target. No
+  single shift absorbs both elementary letters with their ideal factors:
+  doubling forces K>=0 and the odd inverse forces K<=-1.
+- **Proof:** Thirteen additional theorems in `PreimageScale.lean`,
+  including `finite_expanding_shift`, `internal_prefix_height`, and
+  `no_elementary_shift`. The full build passes (9028 jobs); all 22
+  dependency checks in the expanded audit use only standard Lean axioms.
+  An independent path test exercises genuine two-step ancestors through
+  eight blocks from roots 1 through 80, enforcing the integer guards.
+- **Literature:** The published 2003 Theorem 6.1 is explicitly positive.
+  The older Part II preprint has an integer-wide introduction, but we
+  have not reconstructed a signed proof from its normalization. Neither
+  that wording nor residue-model symmetry is treated as a proof here.
+- **Decision:** **PARK** the density transfer. The height bound is now
+  available for any justified finite expanding family; the missing work
+  is proving sufficiently strong counting inequalities for actual signed
+  trees. Deletion inside a minimum is not harmless summand removal.
+  No new density exponent, cycle exclusion, or termination bound follows.
+  Juggler's cumulative stopped-pressure estimate remains the direct
+  arithmetic target for termination.
+- **Coverage:** The ledger statement records exactly the compiled
+  existential bound and its explicit hypotheses. It retains the human
+  proof label pending advisory coverage; no external check was sent.
+- **Validation:** Focused probe tests, integration gates, and ledger
+  tests pass: 153 passed, 14 skipped. Ledger rendering, branch-index
+  consistency, and the scoped whitespace check pass.
+
 ## 2026-09-22 -- Signed preimage-density transfer omitted the height inequality
 
 - **Question:** Does the signed residue symmetry supply any unused

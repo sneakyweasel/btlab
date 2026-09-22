@@ -20,6 +20,15 @@ use of the minimization/deletion steps. Matching numerical programs
 and a larger k supply neither. The previous wrong-sign identity test
 was vacuous; its guard never held on fertile minus classes.
 
+Follow-up: `finite_expanding_shift` now bounds the accumulated height
+correction for any finite family of expanding inverse blocks, including
+internal prefixes with one fixed extra factor. This does not prove that
+the derived residue counting system is valid. `no_elementary_shift`
+rules out absorbing both individual inverse letters with one translation
+and their unchanged multipliers. The open premise is the actual counting
+system, including its minimum/deletion steps, not accumulation of the
+offset in an already justified finite expanding family.
+
 ## Complete unbounded stopping families need not preserve multiplier moment
 
 The former Section 5.7 sentence in Paper C extended both fixed-depth

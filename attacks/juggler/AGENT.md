@@ -145,6 +145,10 @@ Method: [docs/methodology.md](../../docs/methodology.md).
   predecessor's height comparison. `PreimageScale.lean` proves the
   missing correction and an excluded ancestor. The asymptotic claim
   is unproved here, not refuted; matching solvers do not supply it.
+  `finite_expanding_shift` now controls height corrections through any
+  finite expanding inverse-block family, including internal prefixes.
+  Validity of the signed counting system and its minimum/deletion steps
+  remains the missing premise.
 - **Anti-overclaim.** Finite checks, period floors, densities, and
   leftover censuses are not a halt theorem and not "no cycle of any
   length". State the theorem with quantifiers, Lean name, and ledger

@@ -2,7 +2,9 @@
 
 Status: **PARK** (22 September 2026). The former assertion that the
 Krasikov–Lagarias exponent transfers by residue relabelling alone is
-withdrawn as unproved. The eventual 3n-1 bound is not refuted.
+withdrawn as unproved. The eventual 3n-1 bound is not refuted. A follow-up
+now bounds height corrections through any finite family of expanding
+inverse blocks; validity of the actual counting system remains open.
 
 Branch of the [Collatz bridge](juggler_collatz_bridge.md). The exact
 predecessor comparison is now kernel-checked in
@@ -47,6 +49,14 @@ Their Sections 3–5 remove advanced terms and transfer feasible solutions
 to a derived system. Invoking that machinery for minus still requires
 a proof that the actual minus-tree counting functions satisfy suitable
 inequalities. Equality of two formal programs is not that proof.
+
+The [published 2003 version](https://www.impan.pl/shop/en/publication/transaction/download/product/81918)
+also explicitly restricts Theorem 6.1 to positive targets. The older
+[Applegate–Lagarias Part II preprint](https://dept.math.lsa.umich.edu/~lagarias/doc/applegateII.pdf)
+states its 0.81 result in an integer-wide introduction, but its displayed
+normalization (2.2) uses 2^y a, while (2.1) counts absolute heights.
+That broad statement alone does not reconstruct the signed height step
+needed here. We do not use it to certify the stronger 0.84 transfer.
 
 ## Branch budget
 
@@ -128,10 +138,21 @@ checks all positive return times by a finite forward invariant set.
 The density exponent and the all-level residue-program isomorphism
 are not claimed to be formalized.
 
+The follow-up adds `inverseWord` for the real inverse letters
+E(x)=2x and O(x)=(2x+1)/3. `inverseWord_affine` proves
+f_w(x)=R_w x+B_w with R_w>0 and B_w>=0. These are formal real
+itineraries; actual integer paths still need their branch guards.
+`shifted_block_iff`, `shifted_blocks`, and `finite_expanding_shift`
+prove the uniform correction below. `internal_prefix_height` also
+controls intermediate states. `two_step_preimage` verifies that the
+OE example is an actual predecessor at fertile integer targets.
+`no_elementary_shift` proves why the same method cannot apply to both
+single letters with their original multipliers.
+
 Validation: full `lake build` passes (9028 jobs). The
-[nine-declaration audit](../../formal/AxiomCheckCollatzPreimageScale.expected)
+[22-declaration audit](../../formal/AxiomCheckCollatzPreimageScale.expected)
 uses only `propext`, `Classical.choice`, and `Quot.sound`. The focused
-probe tests plus integration and ledger gates give 152 passes and
+probe tests plus integration and ledger gates give 153 passes and
 14 skips. The regenerated probe preserves 366 exact finite tree splits,
 and reports 366 nonintegral wrong-sign expressions explicitly.
 
@@ -151,26 +172,68 @@ to a lower bound. It tends to zero as a grows, but that observation
 alone does not control repeated production steps or the infimum over
 all targets in a residue class.
 
+### Uniform correction for expanding blocks
+
+For a finite family F of inverse words with every R_w>1, take
+
+\[
+K=1+\sum_{w\in F}\frac{B_w}{R_w-1}.
+\]
+
+Then B_w<=(R_w-1)K, hence f_w(x)+K<=R_w(x+K). Induction proves
+for **every** finite concatenation W of these blocks, with any real x,
+
+\[
+f_W(x)+K\le R_W(x+K).
+\]
+
+Thus there is no factor growing with the number of blocks. This is
+the standard affine-shift argument, now instantiated and kernel-checked
+for the signed inverse words; it is not a new density theorem. For x>0
+the endpoint is at most R_W x times 1+K/x, regardless of depth.
+If an internal prefix u has length at most L and x>=0, the formal proof
+also gives
+
+\[
+f_{Wu}(x)+1\le 2^L R_W(x+K).
+\]
+
+This matters for the whole-path cutoff, not just endpoint height.
+For the blocks EE and OE, the maps are 4x and (4x+2)/3, and K=2
+already works. The OE bound is equality. For every a=1 mod 3,
+2(2a+1)/3 is an integer two-step ancestor of a.
+
+The expansion hypothesis cannot be discarded. A common translation
+for E and O individually would require K>=0 and K<=-1 simultaneously.
+In particular, the contracting O production in the original residue
+system is not covered by this block lemma.
+
 The known-cycle census means the three known cycles and their fifteen
 members; it supplies no exhaustiveness theorem. Existing finite tree
 split checks remain computational and must retain their noncycle scope.
 
 ## Open questions
 
-Can the signed height corrections be absorbed uniformly in the finite
-derived production system, while justifying its minimization and
-deletion steps for the actual counting functions? This is the precise
-missing proof, not an invitation to run a larger linear program.
+Can a finite expanding-block system be justified for the actual signed
+counting functions, with sufficient growth? Its height correction is now
+controlled **once the system is justified**. The source's deletion step
+removes alternatives inside a minimum, which can increase that minimum;
+it is not merely dropping positive summands. Endpoint bounds do not
+justify this change, establish disjointness of counted inverse paths,
+or prove the required residue-infimum inequalities. Those are the
+remaining premises, not an invitation to run a larger linear program.
 
 Even a repaired x^0.84 lower bound would not supply Juggler's required
 divergent harmonic-mass estimate or its growing-depth pressure bound.
 
 ## Decision
 
-**PARK** the density transfer pending the height argument. The residue
-symmetry is retained; the claim of automatic analytic transfer is
-closed. No new cycle exclusion, termination theorem, or computation
-floor follows, and neither Paper C nor Paper D requires modification.
+**PARK** the density transfer pending a valid signed counting system.
+The finite expanding-block height lemma is recorded, with both its
+integer example and its single-letter obstruction. The residue symmetry
+is retained; automatic analytic transfer remains closed. No new cycle
+exclusion, termination theorem, or computation floor follows, and neither
+Paper C nor Paper D requires modification.
 
 ## Publication assessment
 

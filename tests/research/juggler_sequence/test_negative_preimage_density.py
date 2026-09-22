@@ -21,6 +21,34 @@ def test_the_fertile_classes_are_the_ones_with_an_odd_preimage() -> None:
     assert (-npd.PLUS.fertile) % 3 == npd.MINUS.fertile
 
 
+def test_shifted_height_controls_guarded_two_step_ancestor_paths() -> None:
+    """Exercise the Lean block example on actual paths, including cycle roots.
+
+    The O branch is available only when integral. Counting every formal
+    binary word would be wrong even though its real height bound holds.
+    """
+    used_odd = skipped_odd = 0
+    for root in range(1, 81):
+        frontier = [(root, Fraction(1), root)]
+        for _ in range(8):
+            following = []
+            for parent, factor, path_max in frontier:
+                predecessors = npd.preimages_minus(parent)
+                skipped_odd += len(predecessors) == 1
+                for middle in predecessors:
+                    child = 2 * middle
+                    assert npd.g_minus(npd.g_minus(child)) == parent
+                    odd_branch = middle % 2 == 1
+                    used_odd += odd_branch
+                    next_factor = factor * (Fraction(4, 3) if odd_branch else 4)
+                    next_max = max(path_max, middle, child)
+                    assert child + 2 <= next_factor * (root + 2)
+                    assert next_max + 2 <= next_factor * (root + 2)
+                    following.append((child, next_factor, next_max))
+            frontier = following
+    assert used_odd > 0 and skipped_odd > 0
+
+
 def test_the_odd_preimage_is_odd_and_lands_where_the_trichotomy_says() -> None:
     """For 3n-1 with a = 1 mod 3, c = (2a+1)/3 is an odd integer, and a mod 9 decides whether
     c is fertile (1 mod 9), dead (4 mod 9) or needs doubling (7 mod 9)."""

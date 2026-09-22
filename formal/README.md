@@ -37,6 +37,9 @@ Compiled theorem groups:
 - odd-endpoint congruence modulo `2^(K+1)`, including a `ZMod` form;
 - Kramer's endpoint congruence `2^K x = C` in `ZMod (3^m)`;
 - affine-center start/endpoint numerators and cross-multiplied scaling;
+- signed inverse-word affine formulas, one uniform height shift for any
+  finite expanding block family, internal-prefix bounds, and the
+  obstruction to a common shift for both individual inverse letters;
 - `M ≤ X` from the nonnegative `3^m` endpoint lift;
 - the fixed-integer affine gap `G = 2^K (n - x)`, its exact recurrence,
   the periodic-code identity `n(2^K - 3^p) = C`, and `2^K ≠ 3^m` for `m ≥ 1`;
