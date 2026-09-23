@@ -21,7 +21,7 @@
     "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
     "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
     "docs/theory/collatz_3n_minus_1_m_cycles_note.md": "1c33b7140e348482cfbc60cd9cf3a854e75a625dafcf55ced62b6004a0d67923",
-    "data/research/juggler/negative_m_cycles/summary.json": "e1ff06cc67ed3fb6c149e05a3af5fbfa0c3962a15efba93ce875cc08e6a2f382"
+    "data/research/juggler/negative_m_cycles/summary.json": "fe71dfc81070e478d0a70ace8d93ada63e22db52da3d4ed91c8f1df4cd685d1a"
   },
   "summary": {
     "floor_assumed": 2251799813685248,

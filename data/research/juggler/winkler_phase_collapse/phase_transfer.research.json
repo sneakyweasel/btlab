@@ -1,8 +1,8 @@
 {
-  "schema": "btlab-output/v1",
+  "schema": "btlab-output/v2",
   "programme": "juggler",
   "research_id": "juggler/winkler_phase_collapse",
-  "created_utc": "2026-09-23T09:31:02.261480+00:00",
+  "created_utc": "2026-09-23T21:37:37.529518+00:00",
   "scope": "Exact survivor counts at depths 0..8000; exact binomial coefficient identity through 256; numerical jump diagnostics through order 5047.",
   "artifact_root": ".",
   "generator": {
@@ -23,64 +23,134 @@
     "python": "3.13.9"
   },
   "source": {
-    "revision": "d20cab375baa47dd207f8a677aec1c93d9046c6f",
+    "revision": "8e974b2379219860310a16762c95e4625aee18a5",
     "dirty": true,
     "coverage": "loaded local Python, project configuration, and explicit sources at manifest creation; not an execution or dependency audit",
     "files": [
       {
         "path": "pyproject.toml",
-        "sha256": "7442b296c0cafeba9b19a4c6a237f691bdd6d48ea9e1624dbdd0c80ab8ae1438",
-        "bytes": 3040
+        "sha256": "e99a8deaad3e42c12db855ee4f72dac9b190db67b5a088bea8377c8f94055ef7",
+        "bytes": 2746,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "e99a8deaad3e42c12db855ee4f72dac9b190db67b5a088bea8377c8f94055ef7",
+          "bytes": 2746
+        }
       },
       {
         "path": "src/research/__init__.py",
         "sha256": "2f57f06dcf8334c7d93eb76d768947fa8c70ac35d681dd7cdcb3f988a1d7b565",
-        "bytes": 58
+        "bytes": 58,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "2f57f06dcf8334c7d93eb76d768947fa8c70ac35d681dd7cdcb3f988a1d7b565",
+          "bytes": 58
+        }
       },
       {
         "path": "src/research/experiments/__init__.py",
         "sha256": "edbe56c7b50bc27f3658d78aabdc3ab5da9c6b35f9f21588cfeeb368d2830bab",
-        "bytes": 209
+        "bytes": 209,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "edbe56c7b50bc27f3658d78aabdc3ab5da9c6b35f9f21588cfeeb368d2830bab",
+          "bytes": 209
+        }
       },
       {
         "path": "src/research/experiments/provenance.py",
-        "sha256": "da03e38a6272cb737bd48543e9bc2c44d44d093056e4a2303efb27e6c3c0a0cd",
-        "bytes": 12187
+        "sha256": "94f86e0252247ee4af9f6423c5d63fe78aaba03f57b594bf08f3030fe7ad95be",
+        "bytes": 15043,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "94f86e0252247ee4af9f6423c5d63fe78aaba03f57b594bf08f3030fe7ad95be",
+          "bytes": 15043
+        }
       },
       {
         "path": "src/research/experiments/schema.py",
         "sha256": "e7e5e2510862621b8d4bd60f9b38e29f7af05a6d2938ec71c0b60b60047632ed",
-        "bytes": 6595
+        "bytes": 6595,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "e7e5e2510862621b8d4bd60f9b38e29f7af05a6d2938ec71c0b60b60047632ed",
+          "bytes": 6595
+        }
       },
       {
         "path": "src/research/experiments/table_io.py",
-        "sha256": "eccc3d72d3d375df7f4a346eff9b68b103395d568e46e45bfc75a018adbf5765",
-        "bytes": 3904
+        "sha256": "dcc6e0d412f9e605cf68d9da9ee47d7d2e1d372c9165f90672e9b03fe2a4585a",
+        "bytes": 3940,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "dcc6e0d412f9e605cf68d9da9ee47d7d2e1d372c9165f90672e9b03fe2a4585a",
+          "bytes": 3940
+        }
       },
       {
         "path": "src/research/juggler_sequence/__init__.py",
         "sha256": "aa88a5a3d4c50945996efdda77c4a653059d58e15bf88bfbb63bcdfd8507e574",
-        "bytes": 64
+        "bytes": 64,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "aa88a5a3d4c50945996efdda77c4a653059d58e15bf88bfbb63bcdfd8507e574",
+          "bytes": 64
+        }
       },
       {
         "path": "src/research/juggler_sequence/beatty_phase_transfer.py",
-        "sha256": "c039564ceb3761022b7376dcd8f5fdb0a224fdb9c205ff03d8706ffb5bb763f5",
-        "bytes": 5877
+        "sha256": "0002029c50761760c6d7c4e67cad6492487b5752a3ab274d39364dc77e7ee325",
+        "bytes": 5890,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "0002029c50761760c6d7c4e67cad6492487b5752a3ab274d39364dc77e7ee325",
+          "bytes": 5890
+        }
       },
       {
         "path": "src/research/juggler_sequence/jump_spectrum.py",
         "sha256": "a4ec3ec5d5d82b3dc4b2575c1e194931a437232d4bddd65334361535270a0401",
-        "bytes": 28709
+        "bytes": 28709,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "a4ec3ec5d5d82b3dc4b2575c1e194931a437232d4bddd65334361535270a0401",
+          "bytes": 28709
+        }
       },
       {
         "path": "src/research/juggler_sequence/lean_paths.py",
-        "sha256": "1a1208cfa3d552f695bcbf4f6a43fe25babbec5152970b3ac0ee019a45ab1263",
-        "bytes": 26144
+        "sha256": "cc436f070f282ffc1ca3b6c493a0c9a99b9b3f2dc7b8f28a61c9c0314e76b251",
+        "bytes": 1212,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "cc436f070f282ffc1ca3b6c493a0c9a99b9b3f2dc7b8f28a61c9c0314e76b251",
+          "bytes": 1212
+        }
       },
       {
         "path": "tools/lab.py",
-        "sha256": "b860082d03e70f1da3e7462a545488898900e780b049828bf750888b6a2dc3fe",
-        "bytes": 3676
+        "sha256": "3d551f4b01c91490c47d9093700d8eb6df3b93aec9cd6507c38974ac161e58e5",
+        "bytes": 5721,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "3d551f4b01c91490c47d9093700d8eb6df3b93aec9cd6507c38974ac161e58e5",
+          "bytes": 5721
+        }
+      },
+      {
+        "path": "tools/requirements-lab.json",
+        "sha256": "26a79648b55b86be204da0f35c280aada68f358bfae3eb1289e016f6009c10be",
+        "bytes": 506,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "26a79648b55b86be204da0f35c280aada68f358bfae3eb1289e016f6009c10be",
+          "bytes": 506
+        }
+      },
+      {
+        "path": "tools/requirements-lab.lock",
+        "sha256": "b634d10f3149eac2f8195fabd17d4c7aafbdeff7f7bb38e393214698e5095ab7",
+        "bytes": 68419
       }
     ]
   },
@@ -88,9 +158,9 @@
   "outputs": [
     {
       "path": "phase_transfer.json",
-      "sha256": "07c14a646459a99b10f1f2bbea1e9e022859ec6d4cb14684fd67c0c51785d96b",
-      "bytes": 3405
+      "sha256": "3100153915affa8c620519ee48ab352b9a64483b60280226657e82bc90e88edd",
+      "bytes": 3268
     }
   ],
-  "verification": "Hashes identify files only; no theorem or compilation status is asserted."
+  "verification": "Outputs are byte-exact. Explicit text fingerprints on inputs/sources accept only UTF-8 CRLF-to-LF representation changes, which are reported. No theorem or compilation status is asserted."
 }
