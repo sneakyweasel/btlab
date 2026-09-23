@@ -10,6 +10,18 @@ The earlier full-length journal is available at Git revision
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-23 -- One fixed ternary class already transports lower bounds globally
+
+The previous recommendation supplied no new fixed-root lower count. The
+proposed neighborhood shortcut now has an exact limitation: every positive
+odd unit root has an actual predecessor in any class modulo 3^r, with
+exponent at most 2*3^r. Lean checks simultaneous coefficient transport and
+finite-block bounds at cost 3/2^(2*3^r), plus equivalence of class-wide and
+global divergence at nonperiodic unit roots. **CLOSE** this route as a weaker
+uniform arithmetic target. Six exact controls pass. No lower-count premise,
+Juggler pressure or termination is proved. See the
+[dossier](problems/collatz_fibre_lower_transfer.md).
+
 ## 2026-09-23 -- One-halving runs have summable fixed-root weight
 
 At a fixed positive root a, all actual words with one arbitrary first

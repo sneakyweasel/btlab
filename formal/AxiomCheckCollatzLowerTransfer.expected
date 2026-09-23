@@ -1,0 +1,13 @@
+'Problems.Collatz.FibreLowerTransfer.stepCost_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreLowerTransfer.exists_predecessor_in_residue' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Collatz.FibreLowerTransfer.coarse_branch_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreLowerTransfer.exists_coarse_lower_transport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Collatz.FibreLowerTransfer.block_lower_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreLowerTransfer.nonsummable_of_residue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreLowerTransfer.nonsummable_on_residue_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

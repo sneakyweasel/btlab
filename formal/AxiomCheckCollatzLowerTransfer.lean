@@ -1,0 +1,9 @@
+import Problems.Collatz.FibreLowerTransfer
+
+#print axioms Problems.Collatz.FibreLowerTransfer.stepCost_pos
+#print axioms Problems.Collatz.FibreLowerTransfer.exists_predecessor_in_residue
+#print axioms Problems.Collatz.FibreLowerTransfer.coarse_branch_lower
+#print axioms Problems.Collatz.FibreLowerTransfer.exists_coarse_lower_transport
+#print axioms Problems.Collatz.FibreLowerTransfer.block_lower_transport
+#print axioms Problems.Collatz.FibreLowerTransfer.nonsummable_of_residue
+#print axioms Problems.Collatz.FibreLowerTransfer.nonsummable_on_residue_iff

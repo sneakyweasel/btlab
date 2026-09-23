@@ -113,3 +113,12 @@ all run lengths, for both signs except the negative fixed point one.
 Exact integer words, actual returns and that growing exception are checked.
 This family can be discarded with a summable loss; the remaining word count
 is open. See the [dossier](../../../docs/problems/collatz_fibre_run_tail.md).
+
+[FibreLowerTransfer.lean](FibreLowerTransfer.lean) reaches any fixed ternary
+class from every positive odd unit root through one actual inverse step.
+The exponent is at most 2*3^r. A uniform local coefficient or depth-block
+lower bound therefore transfers globally at cost 3/2^(2*3^r) and one depth
+shift. Divergence at every nonperiodic integer in a fixed unit class is
+equivalent to divergence at all nonperiodic unit roots. Both premises remain
+open; this does not establish a fixed-root lower count. See the
+[dossier](../../../docs/problems/collatz_fibre_lower_transfer.md).

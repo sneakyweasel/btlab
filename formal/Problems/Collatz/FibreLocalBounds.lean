@@ -55,7 +55,7 @@ private theorem four_mod_three (r i : ℕ) : (4^i % 3^(r+1)) % 3 = 1 := by
   norm_num [Nat.pow_mod]
 
 private theorem exists_four_pow (r : ℕ) (a : Level (r+1)) (ha : a.val % 3 = 1) :
-    ∃ i : ℕ, residue (r+1) (4^i) = a := by
+    ∃ i : ℕ, i < 3^r ∧ residue (r+1) (4^i) = a := by
   let f : Level r → Level r := fun i =>
     ⟨(4^i.val % 3^(r+1))/3, by
       have h := Nat.mod_lt (4^i.val) (by positivity : 0 < 3^(r+1))
@@ -73,7 +73,7 @@ private theorem exists_four_pow (r : ℕ) (a : Level (r+1)) (ha : a.val % 3 = 1)
     omega
   let b : Level r := ⟨a.val/3, by have := a.isLt; simp only [pow_succ] at this; omega⟩
   obtain ⟨i, hi⟩ := hf.bijective_of_finite.surjective b
-  refine ⟨i.val, Fin.ext ?_⟩
+  refine ⟨i.val, i.isLt, Fin.ext ?_⟩
   have he := congrArg Fin.val hi
   change (4^i.val % 3^(r+1))/3 = a.val/3 at he
   have hm := four_mod_three r i.val
@@ -81,10 +81,10 @@ private theorem exists_four_pow (r : ℕ) (a : Level (r+1)) (ha : a.val % 3 = 1)
   omega
 
 private theorem exists_two_pow (r : ℕ) (a : Level (r+1)) (ha : a.val % 3 ≠ 0) :
-    ∃ k : ℕ, residue (r+1) (2^k) = a := by
+    ∃ k : ℕ, k < 2*3^r ∧ residue (r+1) (2^k) = a := by
   by_cases ha1 : a.val % 3 = 1
-  · obtain ⟨i, hi⟩ := exists_four_pow r a ha1
-    refine ⟨2*i, ?_⟩
+  · obtain ⟨i, hlt, hi⟩ := exists_four_pow r a ha1
+    refine ⟨2*i, by omega, ?_⟩
     simpa [pow_mul] using hi
   have ha2 : a.val % 3 = 2 := by omega
   let b := (doubleEquiv (r+1)).symm a
@@ -97,8 +97,8 @@ private theorem exists_two_pow (r : ℕ) (a : Level (r+1)) (ha : a.val % 3 ≠ 0
     rw [Nat.mod_mod_of_dvd _ (dvd_pow_self 3 (by omega : r+1 ≠ 0)), ha2,
       Nat.mul_mod] at he
     omega
-  obtain ⟨i, hi⟩ := exists_four_pow r b hb1
-  refine ⟨2*i+1, Fin.ext ?_⟩
+  obtain ⟨i, hlt, hi⟩ := exists_four_pow r b hb1
+  refine ⟨2*i+1, by omega, Fin.ext ?_⟩
   have he := congrArg Fin.val hi
   change 4^i % 3^(r+1) = b.val at he
   change 2^(2*i+1) % 3^(r+1) = a.val
@@ -106,27 +106,37 @@ private theorem exists_two_pow (r : ℕ) (a : Level (r+1)) (ha : a.val % 3 ≠ 0
   norm_num
   simpa [Nat.mul_mod, he, Nat.mul_comm] using hb
 
+/-- Multiplying any ternary unit by the first `2*3^r` powers of two
+reaches every unit modulo `3^(r+1)`. The bounded exponent is retained
+for quantitative transport through actual inverse branches. -/
+theorem exists_bounded_power_mul (r a b : ℕ) (ha : a % 3 ≠ 0) (hb : b % 3 ≠ 0) :
+    ∃ k : ℕ, k < 2*3^r ∧ 2^k*a ≡ b [MOD 3^(r+1)] := by
+  have hcop : Nat.Coprime (3^(r+1)) a :=
+    (Nat.prime_three.coprime_iff_not_dvd.mpr (by simpa [Nat.dvd_iff_mod_eq_zero] using ha)).pow_left _
+  obtain ⟨c, hc⟩ := (PreimageBalance.affine_bijective (by positivity) a 0 hcop).surjective
+    (residue (r+1) b)
+  have he : (a*c.val) % 3^(r+1) = b % 3^(r+1) := by
+    simpa only [PreimageBalance.affine, Nat.add_zero, residue] using congrArg Fin.val hc
+  have hu : c.val % 3 ≠ 0 := by
+    intro hz
+    have ht := congrArg (fun n : ℕ => n % 3) he
+    simp only [Nat.mod_mod_of_dvd _ (dvd_pow_self 3 (by omega : r+1 ≠ 0))] at ht
+    rw [Nat.mul_mod, hz] at ht
+    exact hb (by simpa using ht.symm)
+  obtain ⟨k, hlt, hk⟩ := exists_two_pow r c hu
+  refine ⟨k, hlt, ?_⟩
+  have hp := congrArg Fin.val hk
+  change 2^k % 3^(r+1) = c.val at hp
+  change (2^k*a) % 3^(r+1) = b % 3^(r+1)
+  rw [Nat.mul_mod, hp]
+  simpa [Nat.mul_mod, Nat.mul_comm] using he
+
 private theorem exists_shift (plus : Bool) (r : ℕ) (a : Level (r+1))
     (ha : a.val % 3 ≠ 0) :
     ∃ k : ℕ, 2^k*a.val ≡ (spike plus (r+1)).val [MOD 3^(r+1)] := by
-  have hcop : Nat.Coprime (3^(r+1)) a.val :=
-    (Nat.prime_three.coprime_iff_not_dvd.mpr (by simpa [Nat.dvd_iff_mod_eq_zero] using ha)).pow_left _
-  obtain ⟨b, hb⟩ := (PreimageBalance.affine_bijective (by positivity) a.val 0 hcop).surjective
-    (spike plus (r+1))
-  have he : (a.val*b.val) % 3^(r+1) = (spike plus (r+1)).val := by
-    simpa only [PreimageBalance.affine, Nat.add_zero] using congrArg Fin.val hb
-  have hu : b.val % 3 ≠ 0 := by
-    intro hz
-    have ht := congrArg (fun n : ℕ => n % 3) he
-    rw [Nat.mod_mod_of_dvd _ (dvd_pow_self 3 (by omega : r+1 ≠ 0)), Nat.mul_mod, hz] at ht
-    exact spike_unit plus (by omega : 1 ≤ r+1) (by simpa using ht.symm)
-  obtain ⟨k, hk⟩ := exists_two_pow r b hu
-  refine ⟨k, ?_⟩
-  have hp := congrArg Fin.val hk
-  change 2^k % 3^(r+1) = b.val at hp
-  change (2^k*a.val) % 3^(r+1) = (spike plus (r+1)).val % 3^(r+1)
-  rw [Nat.mod_eq_of_lt (spike plus (r+1)).isLt, Nat.mul_mod, hp]
-  simpa [Nat.mul_mod, Nat.mul_comm] using he
+  obtain ⟨k, _, hk⟩ := exists_bounded_power_mul r a.val (spike plus (r+1)).val
+    ha (spike_unit plus (by omega : 1 ≤ r+1))
+  exact ⟨k, hk⟩
 
 private theorem shifted_spike_congr (plus : Bool) (r k d : ℕ) (hrd : r ≤ d)
     (a : Level (r+1))

@@ -170,6 +170,13 @@ required fixed-root divergence.
 
 ## Open questions
 
+The subsequent [lower-bound transport](collatz_fibre_lower_transfer.md)
+distinguishes a uniform one-sided bound from Harnack comparison: every
+positive odd unit root has an actual predecessor in any prescribed ternary
+class, with exponent at most 2*3^r. Thus a lower bound uniform throughout one
+fixed class already transfers globally at a fixed positive cost. No such
+bound, and no bound at a single fixed ordinary integer, is proved there.
+
 Can exact affine-word counts at one fixed nonperiodic ordinary integer give
 a divergent coefficient sum, without assuming uniform comparisons over its
 ternary neighborhood? A lower bound c(a)/(j+1) on every sufficiently late
