@@ -1,0 +1,24 @@
+{
+  "id": "krasikov-1989-difference-inequalities",
+  "title": "How many numbers satisfy the 3x+1 conjecture?",
+  "authors": ["Ilia Krasikov"],
+  "year": 1989,
+  "publication": "International Journal of Mathematics and Mathematical Sciences 12 (4), 791-796",
+  "identifiers": {"doi": "10.1155/S0161171289000979"},
+  "url": {
+    "doi": "https://doi.org/10.1155/S0161171289000979",
+    "eudml": "https://eudml.org/doc/46421",
+    "primary_text_mirror": "https://www.researchgate.net/publication/26535243_How_Many_Numbers_Satisfy_the_3x_1_Conjecture"
+  },
+  "problem_area": "collatz",
+  "relevant_concepts": ["difference inequalities", "residue-class infima", "inverse trees", "ancestor density"],
+  "project_relationship": "known",
+  "status": "published-theorem",
+  "consultation": {
+    "checked_on": "2026-09-23",
+    "level": "abstract_and_intro",
+    "scope": "Original article's abstract/introduction in the indexed mirror; located Lemma 4, equations (2.4)-(2.5), and Theorem 1 in OCR. Journal metadata checked against EuDML.",
+    "remaining": "Full article OCR was located, but displayed formula extraction is damaged and a readable PDF was not retrieved. Detailed inequality and proof verification remains open."
+  },
+  "notes": "Original difference-inequality source behind the later Applegate-Lagarias and Krasikov-Lagarias methods. The abstract gives a lower bound c*x^(3/7), with a positive constant c, for the count of starts reaching 1. Preserve this multiplicative constant. This is a sublinear counting bound, not a reciprocal-mass divergence theorem."
+}

@@ -1,0 +1,24 @@
+{
+  "id": "bohm-sontacchi-1978-cycles",
+  "title": "On the existence of cycles of given length in integer sequences like x_(n+1) = x_n/2 if x_n even, and x_(n+1) = 3x_n + 1 otherwise",
+  "authors": ["Corrado Böhm", "Giovanna Sontacchi"],
+  "year": 1978,
+  "publication": "Atti della Accademia Nazionale dei Lincei. Classe di Scienze Fisiche, Matematiche e Naturali. Rendiconti, series 8, 64 (3), 260-264",
+  "identifiers": {"bdim": "RLINA_1978_8_64_3_260_0"},
+  "url": {
+    "institutional_record": "https://www.bdim.eu/item?id=RLINA_1978_8_64_3_260_0",
+    "institutional_pdf": "https://www.bdim.eu/item?fmt=pdf&id=RLINA_1978_8_64_3_260_0",
+    "retrieved_scan_mirror": "https://github.com/tcosmo/BohmSontacchi1978_lean/blob/main/BohmSontacchi1978.pdf"
+  },
+  "problem_area": "collatz",
+  "relevant_concepts": ["cycle parametrization", "signed Collatz", "parity words", "cycle height bounds"],
+  "project_relationship": "known",
+  "status": "published-theorem",
+  "consultation": {
+    "checked_on": "2026-09-23",
+    "level": "selected_sections",
+    "scope": "Original five-page article and BDIM cover recovered from a mirror. Introduction and Section 2 read; Propositions 4-7 on pages 263-264 also checked against rendered images.",
+    "remaining": "The general piecewise-affine claims in Section 1 were not audited. The mirror's separate Lean project was neither executed nor accepted as independent verification."
+  },
+  "notes": "Classical affine iterate and cycle parametrizations; Proposition 6 gives |x| < 3^n for a periodic integer of the shortcut map u with u^n(x)=x. Here n counts shortcut steps, not odd blocks or accelerated returns. The introduction explicitly includes negative integers and their positive 3x-1 counterpart. Relevant prior art for signed cycle identities in Paper D; no universal termination result follows."
+}

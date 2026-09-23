@@ -1,0 +1,24 @@
+{
+  "id": "steiner-1978-syracuse",
+  "title": "A Theorem on the Syracuse Problem",
+  "authors": ["Ray P. Steiner"],
+  "year": 1978,
+  "conference_year": 1977,
+  "publication": "Proceedings of the Seventh Manitoba Conference on Numerical Mathematics and Computing (Winnipeg, 1977), Congressus Numerantium 20, 553-559",
+  "identifiers": {},
+  "url": {
+    "annotated_primary_scan": "https://drive.google.com/file/d/1tIFKsm5tvlvvLdEQiqqLHImK0wKAM5d2/view",
+    "bibliographic_confirmation": "https://arxiv.org/abs/math/0309224"
+  },
+  "problem_area": "collatz",
+  "relevant_concepts": ["one-circuit cycles", "Baker bounds", "continued fractions", "logarithmic cycle equations"],
+  "project_relationship": "known",
+  "status": "published-theorem",
+  "consultation": {
+    "checked_on": "2026-09-23",
+    "level": "selected_sections",
+    "scope": "All seven scanned pages inspected visually, including Sections I-II, Theorems 3-4 and the continued-fraction table. Only original printed text was used; third-party annotations are not evidence.",
+    "remaining": "Continued-fraction computation and numerical constants not independently reproduced. A stable institutional copy would be preferable to the public annotated scan."
+  },
+  "notes": "Excludes nontrivial positive one-circuit cycles through an exponential Diophantine equation, a Baker bound and continued fractions. This is historical input to Paper D's m-cycle programme, not an arbitrary-m exclusion or termination proof. The familiar 1977 citation is the conference year; Lagarias's bibliography dates the proceedings publication to 1978. Record both rather than treating them as separate papers."
+}

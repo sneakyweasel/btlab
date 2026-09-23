@@ -1,0 +1,23 @@
+{
+  "id": "applegate-lagarias-1995-tree-search",
+  "title": "Density Bounds for the 3x+1 Problem I. Tree-Search Method",
+  "authors": ["David Applegate", "Jeffrey C. Lagarias"],
+  "year": 1995,
+  "publication": "Mathematics of Computation 64 (209), 411-426",
+  "identifiers": {},
+  "url": {
+    "author_pdf": "https://websites.umich.edu/~lagarias/doc/applegateI.pdf",
+    "author_bibliography": "https://websites.umich.edu/~lagarias/3x+1.html"
+  },
+  "problem_area": "collatz",
+  "relevant_concepts": ["inverse trees", "weighted residue trees", "ancestor density", "Chernoff bounds"],
+  "project_relationship": "known",
+  "status": "published-theorem",
+  "consultation": {
+    "checked_on": "2026-09-23",
+    "level": "selected_sections",
+    "scope": "Author manuscript dated 15 December 1993: introduction, Theorems 1.1-1.2 and Section 2 through Theorem 2.1; publication metadata checked against the author's bibliography.",
+    "remaining": "Search computation not reproduced. The inspected Part I manuscript states exponent 0.65, while Part II's introduction cites 0.643 for its predecessor; do not conflate these versions."
+  },
+  "notes": "Finite-depth inverse trees are controlled by ternary residue classes, with parity weights used to obtain ancestor-count bounds. Direct prior art for the Collatz fibre and finite-residue counting programme. Cyclic roots can repeat vertex labels, so path counts and distinct ancestors must be separated. This source does not establish divergent reciprocal mass in a fate class or a Juggler transfer. See docs/research/literature_gap_recovery.md."
+}

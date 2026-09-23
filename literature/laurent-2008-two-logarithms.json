@@ -1,0 +1,23 @@
+{
+  "id": "laurent-2008-two-logarithms",
+  "title": "Linear forms in two logarithms and interpolation determinants II",
+  "authors": ["Michel Laurent"],
+  "year": 2008,
+  "publication": "Acta Arithmetica 133 (4), 325-348",
+  "identifiers": {"doi": "10.4064/aa133-4-3"},
+  "url": {
+    "doi": "https://doi.org/10.4064/aa133-4-3",
+    "publisher_pdf": "https://www.impan.pl/shop/en/publication/transaction/download/product/82485"
+  },
+  "problem_area": "transcendence",
+  "relevant_concepts": ["linear forms in two logarithms", "explicit constants", "interpolation determinants", "cycle bounds"],
+  "project_relationship": "known",
+  "status": "published-theorem",
+  "consultation": {
+    "checked_on": "2026-09-23",
+    "level": "selected_sections",
+    "scope": "Publisher full text: introduction, hypotheses of Theorem 2, Corollaries 1-2 and Table 1.",
+    "remaining": "No parameter optimization or comparison with the laboratory's specialized log(2), log(3) bounds was performed; full determinant proof not audited."
+  },
+  "notes": "Refines the LMN two-logarithm estimates. Corollary 2 requires positive real, multiplicatively independent algebraic numbers and admissible degree/height bounds. Its Table 1 includes C2=17.9 with m=30; the max term contains m/D, so selecting that constant alone is invalid. Candidate comparison source for Papers A/D, not evidence of an improved bound over Rhin or of escape from the recorded Diophantine obstruction."
+}

@@ -1,0 +1,24 @@
+{
+  "id": "lagarias-weiss-1992-stochastic-models",
+  "title": "The 3x+1 Problem: Two Stochastic Models",
+  "authors": ["Jeffrey C. Lagarias", "Alan Weiss"],
+  "year": 1992,
+  "publication": "Annals of Applied Probability 2 (1), 229-261",
+  "identifiers": {"doi": "10.1214/aoap/1177005779"},
+  "url": {
+    "doi": "https://doi.org/10.1214/aoap/1177005779",
+    "author_upload": "https://www.researchgate.net/publication/265672392_The_3x_1_Problem_Two_Stochastic_Models",
+    "author_bibliography": "https://websites.umich.edu/~lagarias/3x+1.html"
+  },
+  "problem_area": "collatz",
+  "relevant_concepts": ["stochastic models", "branching random walks", "large deviations", "stopping time"],
+  "project_relationship": "known",
+  "status": "published-model-theorems",
+  "consultation": {
+    "checked_on": "2026-09-23",
+    "level": "abstract_and_intro",
+    "scope": "Abstract and indexed introductory passage on page 231 in Lagarias's public upload; publication metadata checked against his bibliography.",
+    "remaining": "Scanned full text located, but Sections 2-5 and their proofs were not inspected in this pass."
+  },
+  "notes": "Forward random walks model residue dynamics modulo powers of two; backward branching random walks model inverse dynamics modulo powers of three. The shared stopping-time constant about 41.677647 is a theorem for these stochastic models, not for deterministic Collatz trajectories. Useful prior art for rate heuristics, not a certified Juggler parity law or Paper C's missing quantitative hypothesis."
+}

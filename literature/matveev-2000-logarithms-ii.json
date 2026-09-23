@@ -1,0 +1,26 @@
+{
+  "id": "matveev-2000-logarithms-ii",
+  "title": "An explicit lower bound for a homogeneous rational linear form in the logarithms of algebraic numbers. II",
+  "authors": ["E. M. Matveev"],
+  "year": 2000,
+  "publication": "Izvestiya: Mathematics 64 (6), 1217-1269 (English translation)",
+  "identifiers": {
+    "doi": "10.1070/IM2000v064n06ABEH000314",
+    "russian_original_doi": "10.4213/im314"
+  },
+  "url": {
+    "doi": "https://doi.org/10.1070/IM2000v064n06ABEH000314",
+    "mathnet": "https://www.mathnet.ru/eng/im314"
+  },
+  "problem_area": "transcendence",
+  "relevant_concepts": ["linear forms in logarithms", "explicit lower bounds", "algebraic heights"],
+  "project_relationship": "unassessed",
+  "status": "published-theorem",
+  "consultation": {
+    "checked_on": "2026-09-23",
+    "level": "abstract_and_intro",
+    "scope": "MathNet publisher record and abstract, plus indexed first-page introduction; English/Russian bibliographic identities distinguished.",
+    "remaining": "Linked English PDF could not be retrieved. Theorem constants, conventions and applicability must be checked in the complete primary text before numerical use."
+  },
+  "notes": "General explicit logarithmic-form bounds, with dependence exponential in the number of summands. The Russian original is Izv. RAN Ser. Mat. 64 (6), 125-180 (2000); do not mix these pages with the translation. Registered as background for cycle estimates. No replacement of a specialized two-log bound, improved cutoff, or reopened research route is justified by this metadata recovery."
+}
