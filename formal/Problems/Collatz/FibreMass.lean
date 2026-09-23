@@ -154,6 +154,33 @@ theorem transfer_nonneg (plus : Bool) (r : ℕ) {h : Level r → ℝ}
     (hh : ∀ b, 0 ≤ h b) (a : Level (r+1)) : 0 ≤ transfer plus r h a :=
   tsum_nonneg (fun k => row_nonneg plus r k hh a)
 
+/-- A certified modular period turns the complete geometric fibre sum into a
+finite sum. No halving exponents are discarded. -/
+theorem transfer_period_sum (plus : Bool) (r P : ℕ)
+    (hP : 2^P ≡ 1 [MOD 3^(r+1)]) {h : Level r → ℝ}
+    (hh : ∀ b, 0 ≤ h b) (a : Level (r+1)) :
+    (1-(1/2:ℝ)^P) * transfer plus r h a = ∑ k ∈ range P, row plus r k h a := by
+  have hp (k : ℕ) (b : Level r) : parent plus r (k+P) b = parent plus r k b := by
+    apply (parent_iff plus r (k+P) _ b).mpr
+    have he := (parent_iff plus r k (parent plus r k b) b).mp rfl
+    have ht := ((Nat.ModEq.refl (2^(k+1))).mul hP).mul_right
+      (parent plus r k b).val
+    simp only [Nat.mul_one] at ht
+    have hx : k+P+1 = (k+1)+P := by omega
+    simpa only [hx, pow_add, Nat.mul_one] using ht.trans he
+  have hr (k : ℕ) : row plus r (k+P) h a = (1/2:ℝ)^P * row plus r k h a := by
+    simp only [row, hp, coefficient, pow_add]
+    ring
+  have hs := (row_summable plus r hh a).sum_add_tsum_nat_add P
+  have ht : (∑' k, row plus r (k+P) h a) = (1/2:ℝ)^P * transfer plus r h a := by
+    simp_rw [hr]
+    rw [tsum_mul_left]
+    rfl
+  rw [ht] at hs
+  change (∑ k ∈ range P, row plus r k h a) +
+    (1/2:ℝ)^P * transfer plus r h a = transfer plus r h a at hs
+  linarith
+
 theorem row_sum (plus : Bool) (r k : ℕ) (h : Level r → ℝ) :
     ∑ a, row plus r k h a = coefficient k * ∑ b, h b := by
   simp only [row, ← mul_sum]

@@ -178,3 +178,11 @@ ancestor mass and a nonnegative solution with finite weighted square sum.
 The [generating-function audit](../../../docs/problems/collatz_ancestor_generating_audit.md)
 explains why the published Hardy fixed-point and natural-boundary results
 do not supply the open harmonic lower bound.
+
+[FibreSignCoupling.lean](FibreSignCoupling.lean) checks the cross-sign
+odd-image identities and a uniform paired one-generation coefficient of
+at least 9/7. At depth two, both fixed signs are deficient on the class
+4 modulo 27, with sum 20064/29127 < 1. A scalar affine correction extends
+this to actual masses in the written proof. Iterating the paired operator
+introduces mixed-sign paths. See the
+[coupling audit](../../../docs/problems/collatz_fibre_sign_coupling.md).

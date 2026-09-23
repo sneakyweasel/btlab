@@ -1,0 +1,8 @@
+import Problems.Collatz.FibreSignCoupling
+
+#print axioms Problems.Collatz.FibreMass.transfer_period_sum
+#print axioms Problems.Collatz.FibreSignCoupling.oddReturn_minus_two_mul_add_one
+#print axioms Problems.Collatz.FibreSignCoupling.oddReturn_plus_two_mul_sub_one
+#print axioms Problems.Collatz.FibreSignCoupling.paired_unit_lower
+#print axioms Problems.Collatz.FibreSignCoupling.paired_depth_two_deficit
+#print axioms Problems.Collatz.FibreSignCoupling.two_step_reciprocal_upper

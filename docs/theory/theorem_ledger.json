@@ -11280,5 +11280,24 @@
    "tests/research/juggler_sequence/test_collatz_bridge.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "C-fibre-cross-sign-compensation-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For the two positive signed odd-return maps, S_-(2n+1)=S_+(n), and S_+(2n-1)=S_-(n) at n>=1. Their complete one-generation unit-source coefficients have sum at least 9/7 at every unit target. At every a=4 mod 27 the complete depth-two coefficients are K_2^+(a)=12076/29127 and K_2^-(a)=7988/29127; their sum is below one. The pairing, coefficient bounds and common scalar two-step reciprocal upper bound are kernel-checked. A written summation of the scalar inequality gives a*(M_2^+(a)+M_2^-(a))<3/4 for all a=31+54t, where M_2 counts actual positive odd ancestors prime to three at exactly two fixed-sign returns; this summation consequence is not a compiled theorem here. Iterating the paired one-step operator introduces mixed-sign paths. Neither fixed-root coefficient summability nor an improved Juggler pressure rate follows. Independent review and advisory statement coverage pending.",
+  "source": "docs/problems/collatz_fibre_sign_coupling.md",
+  "lean": "formal/Problems/Collatz/FibreSignCoupling.lean",
+  "decl": [
+   "Problems.Collatz.FibreSignCoupling.oddReturn_minus_two_mul_add_one",
+   "Problems.Collatz.FibreSignCoupling.oddReturn_plus_two_mul_sub_one",
+   "Problems.Collatz.FibreSignCoupling.paired_unit_lower",
+   "Problems.Collatz.FibreSignCoupling.paired_depth_two_deficit",
+   "Problems.Collatz.FibreSignCoupling.two_step_reciprocal_upper"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/collatz/test_fibre_sign_coupling.py"
+  ],
+  "related_conjectures": []
  }
 ]

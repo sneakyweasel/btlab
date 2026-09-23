@@ -45,6 +45,7 @@ import Problems.Collatz.FibreBlockWeights
 import Problems.Collatz.FibreSubsolutions
 import Problems.Collatz.FibreRateBarrier
 import Problems.Collatz.FibreWordTail
+import Problems.Collatz.FibreSignCoupling
 import Problems.Engine.ParameterDomain
 import Problems.Engine.ControlWord
 import Problems.Engine.ControlObstruction

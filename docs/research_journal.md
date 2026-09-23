@@ -10,6 +10,18 @@ The earlier full-length journal is available at Git revision
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-23 -- Cross-sign pairing has an actual two-generation deficit
+
+Pairing the signed inverse coefficients gives a one-step lower bound 9/7,
+but keeping each sign fixed for two steps gives joint coefficient
+20064/29127 < 1 on the class 4 modulo 27. Lean checks both identities,
+the exact complete sums and a scalar affine bound. The written proof
+extends the deficit to actual reciprocal masses on a=31+54t, below 3/4.
+**CLOSE** automatic compensation: iterating the one-step gain counts
+mixed-sign paths; Juggler's two signed codes are negatives of one another,
+not independent filters. The 3/8 pressure target is unchanged. See the
+[dossier](problems/collatz_fibre_sign_coupling.md).
+
 ## 2026-09-23 -- Ancestor generating functions retain the harmonic-mass problem
 
 The generating-function audit finds no lower estimate in the published
