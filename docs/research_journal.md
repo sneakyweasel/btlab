@@ -36,11 +36,15 @@ probabilities converge to its normalization. Localized gap counts and a
 `4*epsilon` geometric comparison give every bounded continuous spatial
 average. Nineteen consumer dependency records check the new interfaces,
 including statements directly over the original integer certificate counts.
-Hausdorff dimension, quantitative phase rates, effective numerical
-constants and arbitrary irrational slope remain separate extensions.
+Finite two-thirds Hausdorff measure and `dim_H K<=2/3` are now unconditional.
+A uniform phase-hitting bound with exponent `tau` gives a checked Hölder
+CDF and positive Hausdorff measure at exponent `2/(3*tau)`; `tau=1` gives
+exact dimension `2/3` and positive finite critical measure. The hitting
+premise is explicit and unproved for the logarithmic slope. Exact Hausdorff
+dimension, quantitative rates, effective constants and general slopes remain open.
 **PROMOTE** the completed qualitative
 specialization; no paper/release, priority or trajectory-termination claim is
-changed. Canonical proof boundary: Sections 13–18 of the
+changed. Canonical proof boundary: Sections 13–19 of the
 [comparison note](theory/juggler_beatty_first_passage_note.md) and the
 [dossier](problems/juggler_winkler_phase_collapse.md).
 

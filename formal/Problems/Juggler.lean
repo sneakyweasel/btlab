@@ -114,6 +114,8 @@ import Problems.Juggler.BeattyLocalVolume
 import Problems.Juggler.BeattyTailConvergence
 import Problems.Juggler.BeattyGeometricLaw
 import Problems.Juggler.BeattyCertificateLocalContent
+import Problems.Juggler.BeattyHausdorffUpper
+import Problems.Juggler.BeattyPhaseHolder
 import Problems.Juggler.PaperBLevelWindow
 import Problems.Juggler.PaperBJumpTransposition
 import Problems.Juggler.PaperBPaperCBridge

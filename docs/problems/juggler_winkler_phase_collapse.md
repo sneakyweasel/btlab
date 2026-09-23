@@ -334,6 +334,32 @@ Stop criterion          A new unproved arithmetic premise is required.
 PROMOTE
 ```
 
+**23 September: the Hausdorff boundary.** Finite two-thirds Hausdorff measure
+and `dim_H K<=2/3` are now proved for the actual cluster set from its tube
+bound. The matching direction has an explicit arithmetic interface:
+if every `(a,b)` inside `[0,1]` contains `delta_(n+1)` with
+`(n+1)*(b-a)^tau<=H`, then the certificate CDF is Hölder with exponent
+`2/(3*tau)`, `H^(2/(3*tau))(K)>0`, and `dim_H K>=2/(3*tau)`.
+At `tau=1`, the conditional result is positive finite two-thirds Hausdorff
+measure and dimension exactly `2/3`. The hitting premise is not supplied
+for `alpha=log_2 3`. Qualitative equidistribution and the local Minkowski
+measure do not remove it. The original-count consumer exposes the phase
+as `frac((n+1)/beta)`. See Section 19 of the working note and
+[BeattyPhaseHolder.lean](../../formal/Problems/Juggler/BeattyPhaseHolder.lean).
+
+```text
+Mathematical target     Hausdorff bounds for the actual certificate cluster set.
+Novelty hypothesis      Isolate the exact phase-coverage input for equality.
+Falsifier               Tube geometry or gap placement fails to support the bounds.
+Already killed by?      No matching obstruction; Minkowski content alone
+                        does not provide a Hausdorff lower bound.
+Existing machinery      Tube bounds, positive gap decay, inverse CDF and plateaus.
+Maximum Phase-0 scope   Upper bound, quantitative CDF regularity, conditional lower bound.
+Promotion criterion     Lean checks the claims with the arithmetic premise explicit.
+Stop criterion          The conditional premise is silently assumed at log_2 3.
+PROMOTE
+```
+
 ## Open questions
 
 The qualitative logarithmic-slope phase theorem and normalization are complete
@@ -341,7 +367,8 @@ in Lean, as are the complete accumulation set and its singular continuous
 empirical limiting law. Its tube-volume order and Minkowski dimension `2/3`
 and its exact positive Minkowski content are now checked too, together with
 the whole local content measure and the normalized geometric limiting law. Remaining
-mathematical extensions are Hausdorff dimension, a quantitative phase remainder,
+mathematical extensions are exact Hausdorff dimension and critical-measure
+positivity, quantitative phase hitting, a quantitative phase remainder,
 effective numerical constants, and generalization from the concrete
 logarithmic slope to arbitrary irrational `1<alpha<2`. Literature comparison
 is separate from proof checking; existing paper claims and releases retain
@@ -357,6 +384,8 @@ frequencies and plateau levels, and the cube-root neighbourhood-volume law
 with dimension `2/3` and exact content given by the two-thirds law moment.
 The whole geometric limiting measure is the explicitly scaled
 `y^(2/3)` reweighting of the empirical law, with its probability normalization.
+The Hausdorff upper bound and finite critical measure are unconditional;
+matching lower bounds are proved under an explicit phase-hitting estimate.
 No new branch, publication, priority claim or
 trajectory-termination claim is opened.
 

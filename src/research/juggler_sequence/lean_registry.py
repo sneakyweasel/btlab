@@ -354,6 +354,8 @@ AUXILIARY_MODULES: dict[str, str] = {
     "BeattyTailConvergence": "Weak convergence of real probability and finite measures from their spatial tails and total masses",
     "BeattyGeometricLaw": "Explicit local geometric content and its normalized two-thirds-weighted certificate probability law",
     "BeattyCertificateLocalContent": "Weak convergence of actual rescaled tube measures and uniform tube probabilities to the geometric certificate law",
+    "BeattyHausdorffUpper": "Finite two-thirds Hausdorff measure and unconditional Hausdorff dimension upper bound from actual certificate tube volumes",
+    "BeattyPhaseHolder": "Explicit phase hitting bounds imply certificate CDF Holder regularity, positive Hausdorff measure and conditional dimension lower bounds",
     "PaperBLevelWindow": "The empty-window theorem at every level, not only Paper B's",
     "PaperBJumpTransposition": "Paper B: one barrier transposition costs the barrier mass",
     "CollatzBridgeLab": "Laboratory extensions of the Collatz bridge: the minimal-certificate count as a residue count (Paper B recursion) and the -17 cycle word inside CycleMinShape (IdealCycleMin)",

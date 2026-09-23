@@ -48,6 +48,8 @@ values is continuous and singular. Sections 14–15 give the limit-set and
 frequency proofs; Sections 16–18 prove its two-thirds Minkowski dimension,
 identify its exact content with a moment of the limiting law, and determine
 the whole geometric limiting measure by a two-thirds-power reweighting.
+Section 19 proves finite two-thirds Hausdorff measure and isolates a
+quantitative phase-hitting condition for matching lower bounds.
 Sections 12–13 establish their counting and asymptotic inputs.
 
 **Evidence boundary.** The preceding conclusions are **EXACT — LEAN VERIFIED**
@@ -1304,6 +1306,96 @@ including the original-count tail and observable statements, and permits
 only `propext`, `Classical.choice`, and `Quot.sound`. No additional analytic
 or arithmetic assumption is supplied to the concrete limiting-measure theorem.
 
+## 19. Hausdorff measure and the arithmetic spacing boundary
+
+**EXACT — LEAN VERIFIED.** The tube estimate also gives the unconditional
+Hausdorff conclusion
+\[
+ \mathcal H^{2/3}(K)<\infty,\qquad \dim_H K\le\frac23.          \tag{37}
+\]
+Here Hausdorff measure uses the sum-of-diameter-powers convention of Mathlib.
+Positivity in (37) is a separate question. Neither the positive Minkowski
+content nor the local weak limit of Section 18 supplies that positivity.
+
+The lower-bound theorem states its arithmetic premise explicitly. For
+\(H>0\) and \(\tau>0\), suppose every phase interval satisfies
+\[
+ \begin{split}
+ 0\le a<b\le1\quad\Longrightarrow\quad
+ &\exists n\ge0:\quad a<\delta_{n+1}<b,\\
+ &(n+1)(b-a)^\tau\le H.
+ \end{split}                                                  \tag{38}
+\]
+Thus an interval of width \(h\) is hit by index at most \(Hh^{-\tau}\).
+This is a uniform quantitative condition, stronger than qualitative
+density or the existence of limiting interval frequencies. It is not
+asserted for the concrete logarithmic slope in this note.
+
+Under (38), the actual certificate CDF \(G\) satisfies, for some finite
+\(L>0\),
+\[
+ |G(y)-G(x)|\le L|y-x|^{2/(3\tau)}\qquad(x,y\in\mathbb R).     \tag{39}
+\]
+Consequently the fully formalized conditional conclusions are
+\[
+ \mathcal H^{2/(3\tau)}(K)>0,\qquad
+ \dim_H K\ge\frac{2}{3\tau}.                                  \tag{40}
+\]
+In particular, (38) with \(\tau=1\) gives
+\[
+ 0<\mathcal H^{2/3}(K)<\infty,\qquad \dim_H K=\frac23.          \tag{41}
+\]
+The Lean proof of the implication does not discharge (38); the original-count
+consumer retains this premise with
+\(\delta_{n+1}=\{(n+1)/\beta\}\) written out.
+
+**Upper bound.** Choose a maximal \(2\varepsilon\)-separated finite
+subset of \(K\). Its \(N\) open balls of radius \(\varepsilon\) are disjoint
+and contained in \(K_\varepsilon\), so
+\(2\varepsilon N\le\lambda(K_\varepsilon)\le C\varepsilon^{1/3}\).
+The closed balls of radius \(2\varepsilon\) cover \(K\). Their
+two-thirds diameter cost is at most
+\(N(4\varepsilon)^{2/3}\le2C\). These covers have diameter tending to
+zero, which proves (37), including finiteness at the critical exponent.
+
+**Lower bound.** The gap estimates supply \(A>0\) with
+\(A\le(n+1)w_{n+1}^{2/3}\) for every \(n\). If \(G(x)<G(y)\), use
+(38) in the phase interval \((G(x),G(y))\). The corresponding gap lies
+entirely between \(x\) and \(y\), because both of its endpoints have CDF
+value \(\delta_{n+1}\). Hence \(w_{n+1}\le y-x\), and
+\[
+ A\,[G(y)-G(x)]^\tau\le H(y-x)^{2/3}.
+\]
+Taking the \(\tau\)-th root proves (39), with
+\(L=(H/A)^{1/\tau}\). Finally \(G(K)=[0,1]\); the Hausdorff-measure
+inequality for Hölder maps gives positive measure at exponent
+\(2/(3\tau)\), and therefore (40). Combining with (37) gives (41).
+
+**Literature and remaining question.** Kra and Schmeling [7] establish
+Diophantine dependence of Hausdorff dimension for classical Denjoy minimal
+sets. This is a reason to examine rotation spacing separately from gap
+decay. Their construction uses a two-sided orbit, whereas this certificate
+set uses the positive orbit. No identification with their model or direct
+application of their dimension formula is claimed here. The immediate
+arithmetic target is a proved hitting bound for the actual logarithmic
+phase orbit; exact Hausdorff dimension and critical-measure positivity
+remain open without such further input.
+
+The public proofs are
+[BeattyHausdorffUpper.lean](../../formal/Problems/Juggler/BeattyHausdorffUpper.lean)
+and [BeattyPhaseHolder.lean](../../formal/Problems/Juggler/BeattyPhaseHolder.lean).
+The original-count and fractional-phase interfaces are checked by
+[InterfaceCheckBeattyHausdorff.lean](../../formal/InterfaceCheckBeattyHausdorff.lean)
+and [its executable regression](../../tests/research/juggler_sequence/test_beatty_hausdorff_interface.py).
+**PROMOTE** the unconditional upper theorem and the explicitly conditional
+lower theorem within the existing geometric programme.
+
+Validation: the full retained Lean graph passes (9062 jobs), and the compiled
+theorem catalogue is refreshed. The executed consumer audit checks twelve
+named dependency records with only `propext`, `Classical.choice`, and
+`Quot.sound`. Its conditional consumers retain (38) as an explicit argument;
+the axiom check does not assert that this argument has been constructed.
+
 ## References
 
 1. G. Baxter, *An analytic problem whose solution follows from a simple
@@ -1325,3 +1417,7 @@ or arithmetic assumption is supplied to the concrete limiting-measure theorem.
 6. S. Winter, *Localization results for Minkowski contents*,
    Journal of the London Mathematical Society **99** (2019), 553–582.
    [arXiv:1610.03117](https://arxiv.org/abs/1610.03117).
+7. B. Kra and J. Schmeling, *Diophantine classes, dimension and Denjoy maps*,
+   Acta Arithmetica **105** (2002), 323–340.
+   [Author manuscript](https://www.math.northwestern.edu/~kra/papers/denjoy.pdf),
+   [doi:10.4064/aa105-4-2](https://doi.org/10.4064/aa105-4-2).
