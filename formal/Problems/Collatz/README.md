@@ -130,3 +130,17 @@ if `h_i(a) >= c*(1-q_i)` for one positive constant c. The family is an open
 premise. Eight exact Python certificates at levels one through four do not
 establish this limit. See the
 [dossier](../../../docs/problems/collatz_fibre_critical_minorants.md).
+
+[FibreRootBounds.lean](FibreRootBounds.lean) bounds actual finite exponent
+budgets by the harmonic mass of their possible endpoints. At each fixed
+nonperiodic positive odd root, both unit and all-source coefficients are
+O_a(d+1), for either sign. This upper bound uses the finite-height tail and
+the existing uniform affine correction; it gives no lower count.
+
+[FibreBlockWeights.lean](FibreBlockWeights.lean) applies that bound to
+maximum-normalized geometric sums of complete unit generations. If the rate
+is certified by the corresponding block minimum, the normalized root weight
+divided by `1-q` is at most a constant times N^3*(2/3)^(N-1), and tends to zero.
+This closes that particular construction of the preceding minorant family,
+not other periodic weights or fixed-root divergence. See the
+[block-weight dossier](../../../docs/problems/collatz_fibre_block_weights.md).

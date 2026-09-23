@@ -1,0 +1,6 @@
+'Problems.Collatz.FibreRootBounds.rootConstant_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreRootBounds.unitBudget_le_harmonic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreRootBounds.kernel_le_logarithmic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreRootBounds.one_le_rootAllowance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreRootBounds.kernel_le_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreRootBounds.coarse_le_linear' depends on axioms: [propext, Classical.choice, Quot.sound]

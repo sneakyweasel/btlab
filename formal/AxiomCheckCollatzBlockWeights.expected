@@ -1,0 +1,8 @@
+'Problems.Collatz.FibreBlockWeights.block_floor_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreBlockWeights.peak_le_normalizer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreBlockWeights.block_at_root_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreBlockWeights.block_rate_deficit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreBlockWeights.anchor_ratio_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreBlockWeights.anchor_ratio_tendsto_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

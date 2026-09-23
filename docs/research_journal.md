@@ -10,6 +10,18 @@ The earlier full-length journal is available at Git revision
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-23 -- Fixed-root coefficients are at most linear; block-minimum weights lose their prefactor
+
+Lean now bounds both signed complete unit coefficients by A_s(a)*(d+1)
+at each nonperiodic positive odd root, using actual endpoints, harmonic
+mass and the finite-height tail. The all-source bound loses only 21/5.
+For geometric generation blocks whose rate is certified by the block
+minimum, the normalized root weight divided by 1-q is at most
+4*A_s(a)*N^3*(2/3)^(N-1), and tends to zero. **CLOSE** that construction;
+other periodic subsolutions and fixed-root divergence remain open. Fifteen
+exact controls pass. No Juggler pressure or termination follows. See the
+[dossier](problems/collatz_fibre_block_weights.md).
+
 ## 2026-09-23 -- Subcritical weights isolate the missing fixed-root constant
 
 Lean checks that L_s h>=q*h with 0<=h<=1 gives C_d(a)>=q^d*h(a),

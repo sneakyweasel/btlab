@@ -11133,5 +11133,49 @@
    "tests/research/collatz/test_fibre_critical_minorants.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "C-fibre-fixed-root-linear-bound",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For either signed odd Collatz map and every nonperiodic positive odd root a, each unit-supported finite exponent budget B is at most a*D_s times the harmonic sum through a*2^B, where D_+=1 and D_-=exp(reciprocalBudget) is the existing absolute distortion constant. Thus K_d(a)<=a*D_s*(1+log a+8*d*log 2)+(19683/32768)^d<=A_s(a)*(d+1), with A_s(a)=a*D_s*(1+log a+8*log 2)+1>=1. The complete all-source coefficient satisfies C_d(a)<=(21/5)*A_s(a)*(d+1). These are upper bounds at a fixed ordinary root, not uniform bounds over root heights, lower counts, summability or termination results. Kernel-checked; independent review and advisory statement coverage pending.",
+  "source": "docs/problems/collatz_fibre_block_weights.md",
+  "lean": "formal/Problems/Collatz/FibreRootBounds.lean",
+  "lean_trust": "kernel",
+  "decl": [
+   "Problems.Collatz.FibreRootBounds.rootConstant",
+   "Problems.Collatz.FibreRootBounds.rootConstant_pos",
+   "Problems.Collatz.FibreRootBounds.unitBudget_le_harmonic",
+   "Problems.Collatz.FibreRootBounds.kernel_le_logarithmic",
+   "Problems.Collatz.FibreRootBounds.rootAllowance",
+   "Problems.Collatz.FibreRootBounds.one_le_rootAllowance",
+   "Problems.Collatz.FibreRootBounds.kernel_le_linear",
+   "Problems.Collatz.FibreRootBounds.coarse_le_linear"
+  ],
+  "tests": [
+   "tests/research/collatz/test_fibre_block_weights.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "C-fibre-block-prefactor-collapse",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For either sign, form H_(N,q)=sum_(k<N) q^(N-1-k)*K_k with 0<=q<1 and normalize by its finite supremum M_(N,q), where N>=1. If q^N is at most every unit value of the complete table K_N, then that floor is at most 3/4 and 1-q>=1/(4N). Also M_(N,q)>=(3/2)^(N-1). At any fixed nonperiodic positive odd root a, H_(N,q)(a)<=A_s(a)*N^2, hence (H_(N,q)(a)/M_(N,q))/(1-q)<=4*A_s(a)*N^3*(2/3)^(N-1). For every sequence of rates satisfying the block-minimum premise, this ratio tends to zero. This closes that specific construction of near-critical minorants; it does not exclude arbitrary periodic weights, a different rate certificate for the same table, actual coefficient divergence, or imply Juggler termination. Kernel-checked; independent review and advisory statement coverage pending.",
+  "source": "docs/problems/collatz_fibre_block_weights.md",
+  "lean": "formal/Problems/Collatz/FibreBlockWeights.lean",
+  "lean_trust": "kernel",
+  "decl": [
+   "Problems.Collatz.FibreBlockWeights.block_floor_le",
+   "Problems.Collatz.FibreBlockWeights.blockWeight",
+   "Problems.Collatz.FibreBlockWeights.blockNormalizer",
+   "Problems.Collatz.FibreBlockWeights.peak_le_normalizer",
+   "Problems.Collatz.FibreBlockWeights.block_at_root_le",
+   "Problems.Collatz.FibreBlockWeights.block_rate_deficit",
+   "Problems.Collatz.FibreBlockWeights.anchor_ratio_le",
+   "Problems.Collatz.FibreBlockWeights.anchor_ratio_tendsto_zero"
+  ],
+  "tests": [
+   "tests/research/collatz/test_fibre_block_weights.py"
+  ],
+  "related_conjectures": []
  }
 ]

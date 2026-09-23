@@ -211,6 +211,12 @@ question is the fixed-root family estimate in the preceding paragraph;
 larger finite tables alone do not answer it. No coefficient divergence,
 Juggler pressure bound, termination or infinite escape has been established.
 
+The subsequent [block-weight audit](collatz_fibre_block_weights.md) proves
+that the natural geometric sum of generations, with its rate certified by
+the block minimum, loses the required normalized root prefactor. It also
+proves an all-depth linear upper bound at each nonperiodic positive odd root.
+The general family question above remains open.
+
 ## Publication assessment
 
 Status: `STRUCTURAL`. Standard comparison and limiting arguments, with a
