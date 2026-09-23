@@ -6,5 +6,7 @@
  "url": {"html": "https://terrytao.wordpress.com/2020/01/25/equidistribution-of-syracuse-random-variables-and-density-of-collatz-preimages/"},
  "problem_area": "collatz",
  "project_relationship": "known",
+ "relevant_concepts": ["Syracuse random variables", "preimage density", "critical exponential rate", "reciprocal ancestor mass"],
+ "status": "consulted; scope and limitations recorded in notes",
  "notes": "Read 23 September 2026 for the minimum-cell formulation and conditional Proposition 3, not as an independent audit of the complete blog proof. The proposed critical exponential rate beta=1 is an unproved hypothesis. Its stated consequence is X^(1-o(1)) ancestor counts; this does not itself supply the laboratory's fixed-root reciprocal divergence. The new local unit/coarse comparison is a consequence of the already known geometric operator, not a proof of beta=1. See docs/problems/collatz_fibre_unit_comparison.md."
 }
