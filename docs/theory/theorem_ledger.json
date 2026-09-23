@@ -1,5 +1,49 @@
 [
  {
+  "id": "J-beatty-monotone-phase-moving-cutoff",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For an equidistributed sequence theta_n in [0,1) and a monotone real g with g(0)>=0, T^(-1) times the number of indices n>=0 satisfying n+1<=T*g(theta_n) tends to integral_0^1 g. If g(0)>0 the same limit holds for any bounded-above sequence u_n with u_n-g(theta_n)->0. The proof uses finite phase partitions, dilated prefix frequencies and Darboux sums; dense jumps are permitted. Positive certificate phases satisfy the required interval frequencies without an added equidistribution premise.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyPhaseCounting.lean",
+  "decl": ["diagonalCount_monotone_tendsto", "diagonalCount_tendsto_of_sub_tendsto_zero", "certificatePhase_shift_interval_frequency"],
+  "lean_trust": "kernel",
+  "tests": ["tests/research/juggler_sequence/test_beatty_content_interface.py", "tests/research/juggler_sequence/test_layer_completeness.py"],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-certificate-gap-counting",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For the actual positive certificate weights at alpha=log_2 3, let N(x)=#{r>=1:w_r>=x}. As x tends to zero from above, x^(2/3)*N(x) tends to A=integral_0^1 (kappa*F(t))^(2/3) dt>0, where kappa=beta*sqrt(beta)/sqrt(2*pi*beta*(1-beta)). The power-transformed sequence (n+1)*w_(n+1)^(2/3) differs from (kappa*F(delta_(n+1)))^(2/3) by a quantity tending to zero. All concrete arithmetic and equidistribution inputs are discharged; no rate is asserted.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyGapCounting.lean",
+  "decl": ["certificateGapMoment_pos", "certificateWeight_two_thirds_phase_asymptotic", "certificate_gapCount_asymptotic"],
+  "lean_trust": "kernel",
+  "tests": ["tests/research/juggler_sequence/test_beatty_content_interface.py", "tests/research/juggler_sequence/test_layer_completeness.py"],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-gap-counting-integral",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For a summable nonnegative real sequence w, N(x)=#{n:w_n>=x} is finite for x>0 and sum_n min(w_n,t)=integral_0^t N(x) dx for every t>0. If w_0>0 and x^(2/3)*N(x)->A as x decreases to zero, then t^(-1/3)*sum_n min(w_n,t)->3*A. This generic classical layer-cake implication requires no monotonicity of w and no error rate.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyGapContent.lean",
+  "decl": ["finite_gapCount", "truncated_sum_eq_integral_gapCount", "truncated_sum_asymptotic_of_gapCount"],
+  "lean_trust": "kernel",
+  "tests": ["tests/research/juggler_sequence/test_beatty_content_interface.py", "tests/research/juggler_sequence/test_layer_completeness.py"],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-certificate-minkowski-content",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For the complete subsequential-limit set K of the actual binomial-normalized certificate counts at alpha=log_2 3, the real Lebesgue measure of its open metric epsilon-neighbourhood divided by epsilon^(1/3) tends to the positive finite constant M=3*2^(1/3)*kappa^(2/3)*integral_0^1 F(t)^(2/3) dt. Equivalently M=3*2^(1/3)*kappa^(2/3)*integral y^(2/3) dmu(y) for the proved singular continuous empirical law mu. This is Minkowski measurability in the stated unnormalized real-line tube convention. No self-similarity, bounded-partial-quotient or quantitative equidistribution premise is used. Hausdorff dimension and effective convergence rates are not asserted.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyCertificateContent.lean",
+  "decl": ["certificateGapMoment_eq_profile_moment", "certificateGapMoment_eq_law_moment", "certificateMinkowskiContent_pos", "certificateClusterSet_minkowski_content"],
+  "lean_trust": "kernel",
+  "tests": ["tests/research/juggler_sequence/test_beatty_content_interface.py", "tests/research/juggler_sequence/test_layer_completeness.py"],
+  "related_conjectures": []
+ },
+ {
  "id": "J-beatty-certificate-gap-decay",
  "tag": "EXACT — LEAN VERIFIED",
  "statement": "For the actual certificate weights at beta=log 2/log 3, r*sqrt(r)*w_r-kappa*F(delta_r) tends to zero, where kappa=beta*sqrt(beta)/sqrt(2*pi*beta*(1-beta)). There exist a,b>0 such that a/(r+1)^(3/2)<=w_(r+1)<=b/(r+1)^(3/2) for every natural r. All counting and asymptotic inputs are discharged; no error rate is asserted.",

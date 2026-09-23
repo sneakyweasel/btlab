@@ -257,8 +257,8 @@ proves `r sqrt(r) w_r-kappa F(delta_r)->0` and global positive two-sided
 The logarithmic neighbourhood-volume limit is exactly `2/3`, giving
 Minkowski dimension in the tube convention. Section 16 of the working note
 also records the elementary covering-number equivalence with box dimension.
-The result gives positive finite lower and upper Minkowski contents, not
-their equality or Hausdorff dimension. The original-count consumer audit
+This gives positive finite lower and upper Minkowski contents; the next
+continuation identifies their common value. The original-count consumer audit
 checks the public interfaces and their standard dependency sets.
 
 Continuation triage:
@@ -277,13 +277,41 @@ Stop criterion          An additional unproved analytic premise is required.
 PROMOTE
 ```
 
+**23 September: exact Minkowski content.** The actual gap-counting function
+`N(x)=#{r>=1:w_r>=x}` satisfies `x^(2/3)N(x)->A`, where
+`A=kappa^(2/3) integral_0^1 F(t)^(2/3) dt>0`.
+[BeattyPhaseCounting.lean](../../formal/Problems/Juggler/BeattyPhaseCounting.lean)
+proves the moving-cutoff limit by finite phase partitions and its stability
+under vanishing perturbations. The certificate weights are specialized in
+[BeattyGapCounting.lean](../../formal/Problems/Juggler/BeattyGapCounting.lean).
+Integration of the counting function gives
+`lambda(K_epsilon)/epsilon^(1/3)->3*2^(1/3)*A` in
+[BeattyCertificateContent.lean](../../formal/Problems/Juggler/BeattyCertificateContent.lean).
+Moreover `A=kappa^(2/3) integral y^(2/3) dmu(y)`, identifying the geometric
+constant through the singular empirical law. All concrete premises are
+discharged. The generic gap-to-content implication is classical.
+
+```text
+Mathematical target     Exact positive cube-root tube-volume constant.
+Novelty hypothesis      Identify this certificate set's content through
+                        the two-thirds moment of its singular limiting law.
+Falsifier               A persistent moving index-phase cutoff error.
+Already killed by?      No: proved weight asymptotics and equidistribution
+                        supply the inputs; dense jumps admit Darboux bounds.
+Existing machinery      Exact weights, empirical law and metric tube formula.
+Maximum Phase-0 scope   Moving-cutoff counting, integration and specialization.
+Promotion criterion     Lean checks the limit for the actual certificate set.
+Stop criterion          A new unproved analytic or arithmetic premise is needed.
+PROMOTE
+```
+
 ## Open questions
 
 The qualitative logarithmic-slope phase theorem and normalization are complete
 in Lean, as are the complete accumulation set and its singular continuous
 empirical limiting law. Its tube-volume order and Minkowski dimension `2/3`
-are now checked too. Remaining mathematical extensions are an exact tube
-leading constant, Hausdorff dimension, a quantitative phase remainder,
+and its exact positive Minkowski content are now checked too. Remaining
+mathematical extensions are Hausdorff dimension, a quantitative phase remainder,
 effective numerical constants, and generalization from the concrete
 logarithmic slope to arbitrary irrational `1<alpha<2`. Literature comparison
 is separate from proof checking; existing paper claims and releases retain
@@ -296,7 +324,8 @@ jump-series asymptotic, with its full normalization and strict atom convention
 proved. The continuation identifies the full null perfect accumulation set,
 its exact gaps, the singular continuous empirical law with exact threshold
 frequencies and plateau levels, and the cube-root neighbourhood-volume law
-with dimension `2/3`. No new branch, publication, priority claim or
+with dimension `2/3` and exact content given by the two-thirds law moment.
+No new branch, publication, priority claim or
 trajectory-termination claim is opened.
 
 ## Publication assessment

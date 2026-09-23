@@ -8,8 +8,9 @@ admit an explicit positive cumulative jump profile, with exact weights and
 total mass. Their complete set of accumulation values is the profile's
 envelope with its open jump intervals removed: a nonempty compact perfect
 set of Lebesgue measure zero. Its gap lengths have order `r^(-3/2)` and
-its neighbourhood volume has order `epsilon^(1/3)`, giving Minkowski
-dimension `2/3`. Their empirical probability measures converge
+its neighbourhood volume has an exact positive `epsilon^(1/3)` asymptotic,
+giving Minkowski dimension `2/3` and an explicit Minkowski content.
+Their empirical probability measures converge
 to the image of uniform phase measure under the profile. This limiting law
 is singular continuous. Its continuous distribution function inverts the
 profile and has explicit plateaus at the Beatty phases. All these qualitative
@@ -41,7 +42,8 @@ G(y)=\delta_j\quad\bigl(F(\delta_j)\le y\le F(\delta_j)+w_j\bigr).
 
 Thus the phase profile has dense jumps, while the distribution of its
 values is continuous and singular. Sections 14–15 give the limit-set and
-frequency proofs; Section 16 proves its two-thirds Minkowski dimension.
+frequency proofs; Sections 16–17 prove its two-thirds Minkowski dimension
+and identify its exact content with a moment of the limiting law.
 Sections 12–13 establish their counting and asymptotic inputs.
 
 **Evidence boundary.** The preceding conclusions are **EXACT — LEAN VERIFIED**
@@ -1048,8 +1050,8 @@ Taking logarithms of (26) proves
 \quad}                                                       \tag{27}
 \]
 Thus `K` has Minkowski dimension `2/3`, with positive finite lower and
-upper Minkowski contents. This does not assert equality of those contents
-or the existence of an exact leading constant in (26).
+upper Minkowski contents. Section 17 strengthens these bounds to an exact
+positive leading constant.
 The public interfaces are `certificateClusterSet_tube_formula`,
 `certificateClusterSet_tube_bounds` and
 `certificateClusterSet_minkowski_dimension`.
@@ -1088,6 +1090,101 @@ and the targeted Beatty, layer, registry, ledger and documentation tests pass.
 Lean style has zero new violations; the existing five publication releases
 and kits still pass their freshness check.
 
+## 17. Exact Minkowski content and the singular-law moment
+
+**EXACT — LEAN VERIFIED, at `alpha=log_2 3`.** Retain `K`, `w_r` and `kappa`
+from Section 16, and put
+\[
+ A=\int_0^1(\kappa F(t))^{2/3}\,dt
+   =\kappa^{2/3}\int_0^1F(t)^{2/3}\,dt>0.
+\]
+Then the gap-counting function and metric tube volume satisfy
+\[
+ \boxed{N(x):=\#\{r\ge1:w_r\ge x\}\sim A x^{-2/3}
+ \quad(x\downarrow0),}                                      \tag{28}
+\]
+\[
+ \boxed{\lambda(K_\varepsilon)\sim
+ 3\,2^{1/3}\kappa^{2/3}
+ \left(\int_0^1 F(t)^{2/3}\,dt\right)\varepsilon^{1/3}
+ \quad(\varepsilon\downarrow0).}                             \tag{29}
+\]
+In the convention `M^(2/3)(K)=lim lambda(K_epsilon)/epsilon^(1/3)`,
+this proves Minkowski measurability and identifies a positive finite content.
+There is no additional unit-ball normalization in this convention.
+Since `mu=F_*(uniform(0,1])`, the same constant is
+\[
+ \mathcal M^{2/3}(K)
+ =3\,2^{1/3}\kappa^{2/3}\int_{\mathbb R}y^{2/3}\,d\mu(y).
+                                                                  \tag{30}
+\]
+The singular limiting distribution therefore determines the exact tube-volume
+coefficient through its two-thirds moment.
+
+**Moving-cutoff counting.** The cutoff changes with the index, so the proof
+first establishes a general consequence of equidistribution. If `theta_n`
+is equidistributed in `[0,1)` and `g` is a nonnegative monotone real function,
+then
+\[
+ \frac1T\#\{n\ge0:n+1\le T g(\theta_n)\}
+ \longrightarrow\int_0^1g(t)\,dt.                              \tag{31}
+\]
+Partition the phase interval into `k` half-open intervals. Left and right
+endpoint values bound the moving ceiling. Equidistribution at the resulting
+fixed dilations of `T` gives the lower and upper Darboux sums. Their
+difference is exactly `(g(1)-g(0))/k`. Dense jumps cause no problem.
+If `g(0)>0`, the conclusion persists for a bounded-above sequence `u_n`
+with `u_n-g(theta_n)->0`: perturb the ceilings by a small constant and
+absorb the finite exceptional prefix. These statements are checked in
+[BeattyPhaseCounting.lean](../../formal/Problems/Juggler/BeattyPhaseCounting.lean).
+
+Apply (31) to `theta_n=delta_(n+1)`, `g(t)=(kappa F(t))^(2/3)` and
+`u_n=(n+1)w_(n+1)^(2/3)`. Equation (23), the uniform bounds and continuity
+of the power function on a compact interval give `u_n-g(theta_n)->0`.
+At `T=x^(-2/3)`, the inequality `n+1<=T u_n` is exactly `x<=w_(n+1)`.
+This proves (28); summability makes every count at a positive threshold
+finite. The specialization and positivity of `A` are in
+[BeattyGapCounting.lean](../../formal/Problems/Juggler/BeattyGapCounting.lean).
+
+**Integration and the metric scale.** Summability gives the exact identity
+\[
+ \sum_{r\ge1}\min(w_r,t)=\int_0^tN(x)\,dx.
+\]
+The proof integrates the gap indicators and interchanges sum and integral
+using summability of their integral norms. Squeezing (28) between
+`(A-eta)x^(-2/3)` and `(A+eta)x^(-2/3)` near zero then gives
+\[
+ \sum_{r\ge1}\min(w_r,t)\sim3A t^{1/3}.
+\]
+This implication is checked generically in
+[BeattyGapContent.lean](../../formal/Problems/Juggler/BeattyGapContent.lean).
+The tube formula (25), with `t=2 epsilon`, proves (29); the outer collars
+contribute `2 epsilon=o(epsilon^(1/3))`. The public theorem
+`certificateClusterSet_minkowski_content` and the law-moment identity are in
+[BeattyCertificateContent.lean](../../formal/Problems/Juggler/BeattyCertificateContent.lean).
+
+**Scope and review.** Gap-length criteria for Minkowski measurability are
+classical; see de Santiago, Lapidus, Roby and Rock [5], Theorem 3.8 and its
+preceding attribution to Lapidus–Pomerance. Here the result identifies the
+exact constant for these certificate counts and connects it to their
+singular empirical law. No quantitative equidistribution bound,
+bounded-partial-quotient hypothesis or self-similarity assumption is used.
+Hausdorff dimension, effective error bounds and arbitrary irrational slopes
+remain separate questions. **PROMOTE** the completed exact-content theorem
+within the existing dossier.
+
+The consumer audit
+[InterfaceCheckBeattyContent.lean](../../formal/InterfaceCheckBeattyContent.lean)
+exposes the original integer counts both in (28) and in the definition of
+the cluster set in (29). All fourteen checked dependency records use only
+`propext`, `Classical.choice` and `Quot.sound`. Its executable check is
+[test_beatty_content_interface.py](../../tests/research/juggler_sequence/test_beatty_content_interface.py).
+
+Validation: the complete retained Lean graph builds successfully (9055 jobs),
+the original-count content audit and targeted Beatty, layer, ledger and
+documentation-link tests pass, and Lean style reports zero new violations.
+The five existing publication releases and their kits remain current.
+
 ## References
 
 1. G. Baxter, *An analytic problem whose solution follows from a simple
@@ -1102,3 +1199,7 @@ and kits still pass their freshness check.
 4. K. E. Hare, F. Mendivil and L. Zuberman, *The Sizes of Rearrangements
    of Cantor Sets*, author-hosted manuscript, Sections 1–2.
    [Manuscript](https://www.acadiau.ca/~fmendivi/Papers/rearranged_cantor_sets.pdf).
+5. R. de Santiago, M. L. Lapidus, S. A. Roby and J. A. Rock,
+   *Multifractal Analysis via Scaling Zeta Functions and Recursive Structure
+   of Lattice Strings*, author manuscript, Section 3.2, Theorem 3.8.
+   [IHES manuscript](https://preprints.ihes.fr/storage/MAZ.pdf).

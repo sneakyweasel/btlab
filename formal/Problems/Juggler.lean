@@ -105,6 +105,10 @@ import Problems.Juggler.BeattyCertificateWeights
 import Problems.Juggler.BeattyGapVolume
 import Problems.Juggler.BeattyGapDecay
 import Problems.Juggler.BeattyCertificateCantor
+import Problems.Juggler.BeattyPhaseCounting
+import Problems.Juggler.BeattyGapCounting
+import Problems.Juggler.BeattyGapContent
+import Problems.Juggler.BeattyCertificateContent
 import Problems.Juggler.PaperBLevelWindow
 import Problems.Juggler.PaperBJumpTransposition
 import Problems.Juggler.PaperBPaperCBridge
