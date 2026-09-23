@@ -24,12 +24,13 @@ Collatz is one application: `docs/collatz_mathematics.md`. Use the seven ledger 
 
 `docs/theory/theorem_ledger.md` is generated. Edit the JSON, then render.
 
-`docs/research_journal.md` records work; do not auto-open Milestone *N+1*.
-A journal CLOSE / REFUTED entry names the **index cluster** in one line.
+`docs/research_journal.md` holds at most twelve recent decisions; do not auto-open
+Milestone *N+1*. A CLOSE / REFUTED entry links its canonical obstruction record.
 
-New `REFUTED` ledger rows and CLOSE dossiers must be cited in
-[docs/negative_knowledge.md](docs/negative_knowledge.md)
-(`tests/integration/test_negative_knowledge.py`).
+New `REFUTED` ledger rows and CLOSE dossiers must be cited in a record under
+`docs/negative_knowledge/` (`tests/integration/test_negative_knowledge.py`).
+Run `python tools/research_memory.py` to refresh the generated directory;
+do not edit `docs/negative_knowledge.md` by hand.
 
 New problems copy `docs/problems/TEMPLATE.md`. Cite `literature/` ids.
 

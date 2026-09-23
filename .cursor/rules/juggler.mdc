@@ -20,7 +20,8 @@ restate the state of the problem here.
 - New probe → `<id>.py`, `test_<id>.py`, `docs/problems/juggler_<id>.md`
   with `PROMOTE | PARK | CLOSE`, ledger if named (via
   `.cursor/skills/add-ledger-row/SKILL.md`), rebuild the index,
-  CLOSE/REFUTED into `docs/negative_knowledge.md`.
+  CLOSE/REFUTED into a `docs/negative_knowledge/` record, then run
+  `python tools/research_memory.py` to refresh the directory.
   Scaffold: `python -m research.juggler_sequence.branch_index new foo`.
 - Phase-0 requires `Already killed by?` (index cluster, or which of
   the three tests fails; `none` only with a reason).

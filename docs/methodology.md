@@ -191,16 +191,21 @@ mathematics.
 ## Negative knowledge
 
 Failures are kept, not discarded. The lookup is
-[negative_knowledge.md](negative_knowledge.md). Search that page
-first. The underlying homes remain:
+[negative_knowledge.md](negative_knowledge.md), a generated directory of the
+canonical records under `docs/negative_knowledge/`. Search them with
+`python tools/lab.py search "your question" --kind obstruction`; use the returned
+ID with `context --section obstructions`. Edit the relevant record and run
+`python tools/research_memory.py` to regenerate the directory.
+The underlying evidence homes remain:
 
 - `conjectures/refuted/*.json` — refuted registry entries;
 - `REFUTED` rows in [theory/theorem_ledger.md](theory/theorem_ledger.md);
-- the **Refuted ideas** line of each
-  [research_journal.md](research_journal.md) entry;
 - the **Counterexamples** section of each `problems/<id>.md` dossier;
 - regression tests under `tests/regression/` and the named
   counterexample tests under `tests/unit/`.
+
+The [journal](research_journal.md) holds at most twelve short recent decisions
+linking those permanent records. Earlier chronology is recoverable from Git.
 
 Three tests, same wording as `.cursor/rules/methodology.mdc`:
 

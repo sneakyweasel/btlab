@@ -40,7 +40,8 @@ alwaysApply: true
   link as a filesystem path; keep bracket-then-paren math out of prose.
   Dossiers keep all TEMPLATE headings and one of
   `PROMOTE | PARK | CLOSE` under `## Decision`. CLOSE dossiers and
-  REFUTED rows must be indexed in `docs/negative_knowledge.md`.
+  REFUTED rows must be cited in `docs/negative_knowledge/` records; regenerate
+  their directory with `python tools/research_memory.py`.
 - Juggler reading path and registration: `attacks/juggler/AGENT.md`.
   Branch index: `attacks/juggler/index.json`.
 

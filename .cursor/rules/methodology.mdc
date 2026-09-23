@@ -38,7 +38,13 @@ Infrastructure (CLI, visualization, Lean packaging, benchmarks) comes after the 
 
 ## Negative knowledge
 
-First home: [docs/negative_knowledge.md](docs/negative_knowledge.md). Then `conjectures/refuted/`, `REFUTED` ledger rows, journal **Refuted ideas**, and dossier **Counterexamples**. Record counterexamples permanently; they are results, not failures.
+Search `python tools/lab.py search "your question" --kind obstruction` first.
+Canonical arguments live in `docs/negative_knowledge/`, linked from the generated
+[directory](docs/negative_knowledge.md). Keep exact evidence in
+`conjectures/refuted/`, `REFUTED` ledger rows and dossier **Counterexamples**.
+The rolling journal links those records; it is not permanent evidence storage.
+Regenerate the directory with `python tools/research_memory.py` after edits.
+Record counterexamples permanently; they are results, not failures.
 
 Three tests:
 
