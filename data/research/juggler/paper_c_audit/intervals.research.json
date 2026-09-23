@@ -1,0 +1,107 @@
+{
+  "schema": "btlab-output/v1",
+  "programme": "juggler",
+  "research_id": null,
+  "created_utc": "2026-09-23T16:25:30.617566+00:00",
+  "scope": "COMPUTATIONALLY VERIFIED: finite Arb certificates for explicit Paper C production roots, recurrence slack, and integer rate crossings. No Lean proof, production estimate, asymptotic bound, or termination claim.",
+  "artifact_root": ".",
+  "generator": {
+    "command": [
+      "python",
+      "tools/check_paper_c_intervals.py",
+      "--output",
+      "data\\research\\juggler\\paper_c_audit\\intervals.json"
+    ],
+    "parameters": {
+      "backend": "python-flint/Arb",
+      "version": "0.9.0",
+      "initial_bits": 128,
+      "max_bits": 4096,
+      "root_decimal_width": 24,
+      "inputs": "exact rationals; endpoints exported as rational strings"
+    },
+    "python": "3.13.9"
+  },
+  "source": {
+    "revision": "c507443e78df03b31587d967fd762eaf3d617be8",
+    "dirty": true,
+    "coverage": "loaded local Python, project configuration, and explicit sources at manifest creation; not an execution or dependency audit",
+    "files": [
+      {
+        "path": "pyproject.toml",
+        "sha256": "e99a8deaad3e42c12db855ee4f72dac9b190db67b5a088bea8377c8f94055ef7",
+        "bytes": 2746
+      },
+      {
+        "path": "src/research/__init__.py",
+        "sha256": "2f57f06dcf8334c7d93eb76d768947fa8c70ac35d681dd7cdcb3f988a1d7b565",
+        "bytes": 58
+      },
+      {
+        "path": "src/research/experiments/__init__.py",
+        "sha256": "edbe56c7b50bc27f3658d78aabdc3ab5da9c6b35f9f21588cfeeb368d2830bab",
+        "bytes": 209
+      },
+      {
+        "path": "src/research/experiments/provenance.py",
+        "sha256": "da03e38a6272cb737bd48543e9bc2c44d44d093056e4a2303efb27e6c3c0a0cd",
+        "bytes": 12187
+      },
+      {
+        "path": "src/research/experiments/schema.py",
+        "sha256": "e7e5e2510862621b8d4bd60f9b38e29f7af05a6d2938ec71c0b60b60047632ed",
+        "bytes": 6595
+      },
+      {
+        "path": "src/research/experiments/table_io.py",
+        "sha256": "eccc3d72d3d375df7f4a346eff9b68b103395d568e46e45bfc75a018adbf5765",
+        "bytes": 3904
+      },
+      {
+        "path": "src/research_engine/__init__.py",
+        "sha256": "9c2d16eda72eb3d74d58967d0c1a7117455c2aad15cf7ace61c81b99a7e48964",
+        "bytes": 94
+      },
+      {
+        "path": "src/research_engine/intervals.py",
+        "sha256": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+        "bytes": 5630
+      },
+      {
+        "path": "tools/check_paper_c_intervals.py",
+        "sha256": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b",
+        "bytes": 7131
+      },
+      {
+        "path": "tools/lab.py",
+        "sha256": "d29778fdff81b9c9ad5f464d7cbc0ce22a52c500451c872371f3c7b25e2c4822",
+        "bytes": 4370
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "path": "docs/theory/juggler_fate_almost_all_note.md",
+      "sha256": "ff0f8e6bbea766896f0d70b5526f2d48227ea5971a2a345f51b32c512795688d",
+      "bytes": 244571
+    },
+    {
+      "path": "docs/theory/juggler_ooee_contagion_note.md",
+      "sha256": "31187565168d74fe1cd2ee06c081daeaeea769ea99d5aa142a9b47c219604c37",
+      "bytes": 11245
+    },
+    {
+      "path": "formal/Problems/Juggler/FateContagionBound.lean",
+      "sha256": "d8991fd05c076875a0e8fd75692a10bb31930c289a3812de07212b620645acca",
+      "bytes": 20575
+    }
+  ],
+  "outputs": [
+    {
+      "path": "intervals.json",
+      "sha256": "eca8645bb453a5ed96d06e0c54ba0bf838fd2fba93ff0dde1329f4119c82cd62",
+      "bytes": 47985
+    }
+  ],
+  "verification": "Hashes identify files only; no theorem or compilation status is asserted."
+}

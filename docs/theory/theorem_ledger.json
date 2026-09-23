@@ -6914,6 +6914,18 @@
   "related_conjectures": []
  },
  {
+  "id": "J-paper-c-arb-certificates",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "FLINT/Arb certifies twelve finite Paper C production roots in rational brackets of width at most 10^-24, positive fixed-OOEE recurrence slack at 5/8, and forty integer rate crossings (five contagion regimes, Chernoff and Azuma, q=1/2,11/20,3/5,31/50). For the written 5/8 contagion result, every integer C from 5 through the first strict rate crossing of 3/8 is checked: Chernoff minima 16,34,168,1135; Azuma minima 16,34,175,1201. The fully formal 100/203 baseline retains 19 and 41 at the first two caps. Exact rational inputs, outward endpoints, precision escalation and run provenance replace point-value evidence for these expressions only. No production hypothesis, asymptotic error bound, model eigenvalue, Lean proof, or termination result is established; the written OOEE result retains its review boundary.",
+  "source": "docs/architecture/certified_numerics.md",
+  "lean": "",
+  "tests": [
+   "tests/research_engine/test_intervals.py",
+   "tests/tools/test_paper_c_intervals.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-paper-c-audit",
   "tag": "COMPUTATIONALLY VERIFIED",
   "statement": "Audit module for Paper C (paper_c_audit), closing the asymmetry that Papers A and B had one and Paper C did not. Contagion exponents (lambda* 0.3774, pairing-only 0.4480, OEOEE 0.4801, V_5 0.4924 named intermediate, lambda** 0.4926 with V_6, V_4 0.4916 named intermediate, V_3 0.4891 named intermediate, lambda*** 0.5392, ideal ceiling 0.4927, and the conditional smooth-model Section 5.7 ladder 0.4480/0.4927, 0.6247/0.7180, 0.7095/0.8414, 0.7516/0.9121) recomputed from both the three-state residual and the run-ladder transfer matrix; the Tao thresholds and depths (e(20) = 0.574, e(19) = 0.527, e(18) = 0.480, least depth 19 / 19 / 19 / 19 / 19 / 20 / 18 by V_6 / V_5 / V_4 / V_3 / OEOEE / pairing / lambda*** regime, one-sided C(q)); the Section 8.4 constants table at 1e20, 1e100 and 1e1000 kept at the conservative C = 20 display, every cell reproducing (L = 1.25/3.55/6.87, d = 25/72/138, bad probability 0.0650/0.0167/0.0038, target 0.1005/0.0383/0.0096, least depth 19/56/117). Each check names its regime, because C(q) denotes different numbers under lambda**, pairing, and lambda*** — C(0.55) is 41 / 44 / 39. The exponent calculus previously lived only inside test_contagion_exponent_calculus.py and is now in src. A script check is consistency of what is printed, not a proof.",

@@ -28,6 +28,12 @@ programmes. It is a live derived view, not another manually maintained ledger.
 New outputs use versioned provenance sidecars; `python tools/lab.py check`
 validates references and metadata without running mathematical computations.
 
+[Certified numerics](certified_numerics.md) uses FLINT/Arb through
+`research_engine.intervals` for rigorous real enclosures, definite comparisons,
+and positive-production root brackets. The Paper C audit records exact rational
+endpoints and run provenance; its finite numerical guarantees do not establish
+the open analytic hypotheses.
+
 `research.knowledge` reads the canonical obstruction records in
 `docs/negative_knowledge/` for the catalogue and branch discovery. The compact
 Markdown directory is derived with `tools/research_memory.py`; full arguments

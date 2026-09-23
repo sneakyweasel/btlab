@@ -87,7 +87,7 @@ def doctor(root: Path = ROOT, *, probe: bool = False) -> dict:
     root = root.resolve()
     checks = [{'id': 'python', 'status': 'passed' if sys.version_info >= (3, 11) else 'failed',
                'required': True, 'version': sys.version.split()[0], 'executable': sys.executable}]
-    for package in ('pytest', 'ruff', 'mpmath', 'mcp'):
+    for package in ('pytest', 'ruff', 'mpmath', 'python-flint', 'mcp'):
         try:
             version = importlib.metadata.version(package)
             checks.append({'id': package, 'status': 'passed', 'required': package != 'mcp', 'version': version})

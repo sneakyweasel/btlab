@@ -211,9 +211,26 @@ def test_doctor_does_not_run_executables_without_probe(repo, monkeypatch):
     monkeypatch.setattr(env.subprocess, 'run', lambda *a, **k: pytest.fail('unexpected process'))
     monkeypatch.setenv('OEIS_DATABASE', str(root / 'missing.sqlite3'))
     result = env.doctor(root)
+    flint = next(c for c in result['checks'] if c['id'] == 'python-flint')
+    assert flint['status'] == 'passed' and flint['required']
     oeis = next(c for c in result['checks'] if c['id'] == 'oeis_database')
     assert oeis['status'] == 'skipped'
     assert not (root / 'missing.sqlite3').exists()
+
+
+def test_doctor_reports_missing_interval_backend(repo, monkeypatch):
+    root, _ = repo
+    version = env.importlib.metadata.version
+
+    def missing_flint(package):
+        if package == 'python-flint':
+            raise env.importlib.metadata.PackageNotFoundError(package)
+        return version(package)
+
+    monkeypatch.setattr(env.importlib.metadata, 'version', missing_flint)
+    row = next(c for c in env.doctor(root)['checks'] if c['id'] == 'python-flint')
+    assert row['status'] == 'failed' and row['required']
+    assert 'pip install' in row['remedy']
 
 
 def test_missing_pinned_toolchain_never_falls_back_to_an_elan_download(repo, monkeypatch):

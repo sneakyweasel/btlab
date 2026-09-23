@@ -100,6 +100,10 @@ worktree is installed in editable mode. To parallelize tests, use
 The [agent workflow](docs/architecture/agent_workflow.md) explains change impact,
 verification scope, and the corresponding read-only Formalpedia MCP tools.
 
+[Certified numerics](docs/architecture/certified_numerics.md) uses FLINT/Arb for
+rigorous numerical bounds. Run `python tools/check_paper_c_intervals.py` to
+certify Paper C's production roots and rate thresholds with explicit error bounds.
+
 ## Find the mathematics
 
 Start with a bounded research lookup across Juggler and Collatz:
