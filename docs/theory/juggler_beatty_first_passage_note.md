@@ -91,9 +91,10 @@ at the concrete logarithmic slope, without unproved counting, binomial,
 first-passage or equidistribution inputs. Sections 1–7 also retain a broader
 written argument for irrational `1<alpha<2`, including a quantitative
 `O(r^(-1/2))` rate. Those stronger statements are explicitly distinguished
-from the checked qualitative specialization. The BGL comparison and spectral
-corollary in Section 17 are written deductions, not additional Lean-checked
-interfaces. This is a standalone working
+from the checked qualitative specialization. The exact Gamma-normalized
+first-passage amplitude in Section 1.1 is also Lean-checked. The path dictionary
+with BGL and the spectral corollary in Section 17 remain written deductions.
+This is a standalone working
 note supporting Paper B; it does not revise a deposited paper or establish
 literature priority or trajectory termination.
 
@@ -215,7 +216,7 @@ probabilities `q w_r`. The critical flow identity [8, (3.15)] becomes
 `0=beta-q sum_r w_r`, exactly our mass identity. Section 7 and the concrete
 formalization prove the vanishing critical survival probability.
 
-**First-passage amplitude: written consequence of the concrete theorem.**
+**First-passage amplitude: EXACT — LEAN VERIFIED at the logarithmic slope.**
 For BGL's normalization [8, (4.11)], put
 \[
  D_r=\frac{\Gamma(r/\beta)}{r!\,\Gamma(rq/\beta+1)},\qquad
@@ -229,9 +230,33 @@ Stirling gives `D_r=kappa B^r r^(-3/2)(1+O(r^(-1)))`. The identity
 Thus `mathcal B(t)=q^t F(t)` on `[0,1)`, extended periodically, realizes
 the irrational-slope form proposed in [8, Section 6.1, (6.8)–(6.9)] at
 `alpha=log_2 3`. Its endpoint traces agree since `q F(1)=F(0)=1`.
-This gamma-normalized translation is a written deduction; the concrete
-Lean theorem uses the integer binomial normalization. It asserts neither
-an arbitrary-slope formalization nor priority over subsequent literature.
+The concrete theorem
+[certificateGammaRatio_periodic_asymptotic](../../formal/Problems/Juggler/BeattyFirstPassageAmplitude.lean)
+uses exactly this Gamma quotient and the original integer counts. Its
+independent consumer statement is
+[original_count_gamma_amplitude](../../formal/InterfaceCheckBeattyAmplitude.lean).
+The dependency audit permits only Lean's standard `propext`,
+`Classical.choice` and `Quot.sound`; no extra analytic premise remains.
+
+The checked normalization bridge avoids assuming a real-variable Stirling
+remainder. Log-convexity gives, uniformly for `0<=t<=1` and integers `n>=2`,
+\[
+ \frac{n-1}{n}\le
+ H(n,t):=\frac{\Gamma(n+t)}{\Gamma(n)n^t}\le1.
+\]
+With `k_r=m_r-r+1`, exact factorial identities give
+\[
+ \mathcal B_r=R_r^+q^{\delta_r}
+ \frac{H(k_r,\delta_r)}{H(m_r,\delta_r)}
+ \left(\frac{k_r}{m_rq}\right)^{\delta_r}.
+\]
+Both integer arguments diverge and `k_r/m_r -> q`, so the last two
+factors tend to one even when the phases keep moving. This proves the
+qualitative additive limit directly from the checked binomial-normalized
+phase theorem. The general interpolation lemmas are in
+[BeattyGammaNormalization.lean](../../formal/Problems/Juggler/BeattyGammaNormalization.lean).
+No Gamma-normalized convergence rate, arbitrary-slope formalization or
+priority over subsequent literature is asserted.
 
 ## 2. Exact comparison of normalizations
 

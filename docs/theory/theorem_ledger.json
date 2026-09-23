@@ -478,6 +478,25 @@
  "related_conjectures": []
 },
  {
+  "id": "J-beatty-gamma-first-passage-amplitude",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "At beta=log 2/log 3, q=1-beta, m_r=floor(r/beta), c_r=minimalCertCount(m_r+1), delta_r=fract(r/beta) and D_r=Gamma(r/beta)/(r! Gamma(r*q/beta+1)), the original integer counts satisfy c_r/D_r-q^delta_r F(delta_r) -> 0. Equivalently they approach the exactly unit-periodic amplitude B(r/beta), where B(t)=q^fract(t) F(fract(t)). Uniform Gamma interpolation from log-convexity and an exact binomial/Gamma identity discharge the normalization without a phase-convergence or real-variable Stirling premise. D_r is positive for r>0. This is the qualitative concrete specialization of BGL's proposed irrational first-passage amplitude, not a claim of priority, convergence rate or arbitrary-slope formalization.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyFirstPassageAmplitude.lean",
+  "decl": [
+   "certificateGammaScale_pos",
+   "certificateGammaRatio_phase_asymptotic",
+   "certificatePassageProfile_periodic",
+   "certificateGammaRatio_periodic_asymptotic"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_amplitude_interface.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-survivor-counting-identity",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For the existing natural-number survivor counts N_n=neverNegCount n and strict positive-endpoint binomial counts T_n=endpointCount n, n*N_n=sum_{j<n} T_(n-j)*N_j for every n>=0, with no counting or asymptotic premise. Consequently SurvivorExponentialIdentity holds for the actual normalized counts. The proof retains the odd-letter polynomial variable, uses the exact last-letter survivor/first-descent partition, preserves endpoint support under formal inversion and Euler differentiation, and separates the logarithmic derivatives. The strict threshold is checked using the inequality between positive powers of two and powers of three. This is a formalization of the classical counting identity, with no priority or trajectory-termination claim.",

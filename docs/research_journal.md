@@ -45,6 +45,11 @@ exponent and explicit constant `4^tau/c+1`. Bounds for every `tau>1`
 already suffice for dimension `2/3`, whereas `tau=1` also supplies positive
 critical measure. No such arithmetic bound is supplied for the logarithmic slope. Exact Hausdorff
 dimension, quantitative rates, effective constants and general slopes remain open.
+The exact BGL Gamma-normalized first-passage amplitude is now also checked:
+`c_r/D_r-q^(delta_r) F(delta_r) -> 0`, with the actual Gamma quotient and
+integer counts exposed in the consumer audit. Uniform log-convex Gamma
+interpolation handles the moving phases. The path dictionary remains a
+written comparison; no novelty for classical Gamma estimates is claimed.
 **PROMOTE** the completed qualitative
 specialization; no paper/release, priority or trajectory-termination claim is
 changed. Canonical proof boundary: Sections 13–20 of the

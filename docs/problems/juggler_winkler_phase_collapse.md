@@ -398,6 +398,33 @@ their mass from the proved total `1/(alpha-1)`. Positivity and
 **COMPUTATIONALLY VERIFIED** consequences of the established identities.
 They give no effective convergence rate or new Hausdorff lower bound.
 
+**23 September: the exact BGL Gamma normalization is now checked.**
+For `D_r=Gamma(r/beta)/(r! Gamma(r(1-beta)/beta+1))`, Lean proves
+`c_r/D_r-(1-beta)^(delta_r) F(delta_r) -> 0` at the logarithmic slope.
+The explicit amplitude `B(t)=(1-beta)^{fract(t)} F(fract(t))` is
+unit-periodic, and the original Gamma-normalized integer counts approach
+`B(r/beta)`. A direct binomial/Gamma identity and log-convex interpolation
+control arbitrary moving phases in `[0,1]`; no real-variable Stirling
+asymptotic or phase-convergence premise is left open. The eight consumer
+dependency records permit only `propext`, `Classical.choice` and `Quot.sound`.
+See [BeattyFirstPassageAmplitude.lean](../../formal/Problems/Juggler/BeattyFirstPassageAmplitude.lean),
+[BeattyGammaNormalization.lean](../../formal/Problems/Juggler/BeattyGammaNormalization.lean)
+and [InterfaceCheckBeattyAmplitude.lean](../../formal/InterfaceCheckBeattyAmplitude.lean).
+This formalizes the explicit specialization of BGL's proposed amplitude;
+the path dictionary is still written mathematics and no priority is asserted.
+
+```text
+Mathematical target     Check BGL's exact Gamma-normalized first-passage amplitude.
+Novelty hypothesis      A checked identification for these counts, not a new Gamma inequality.
+Falsifier               An index shift or normalization factor prevents the stated limit.
+Already killed by?      No matching obstruction; this is a first-passage comparison.
+Existing machinery      The phase theorem, exact binomial identities, Gamma log-convexity.
+Maximum Phase-0 scope   Uniform Gamma interpolation and the concrete normalization bridge.
+Promotion criterion     Compiled original-count theorem and standard-dependency audit.
+Stop criterion          Record any remaining analytic premise explicitly.
+PROMOTE
+```
+
 ## Open questions
 
 The qualitative logarithmic-slope phase theorem and normalization are complete
@@ -442,7 +469,8 @@ the profile realizes their proposed irrational first-passage amplitude as
 `q^t F(t)` at the logarithmic slope. The exposition focuses on the cumulative
 profile, complete cluster set, singular law and explicit local geometric
 measure. The global gap-to-content criterion is attributed to
-Lapidus–Pomerance (1993). The dictionary and spectral corollary are written
-deductions, not new formal interfaces. Whether to publish separately or
+Lapidus–Pomerance (1993). The exact Gamma-normalized amplitude is now
+Lean-checked; the path dictionary and spectral corollary remain written
+deductions. Whether to publish separately or
 incorporate this into Paper B remains an editorial decision; literature
 priority requires a wider search. The working note is not a new deposit.

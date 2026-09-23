@@ -342,6 +342,8 @@ AUXILIARY_MODULES: dict[str, str] = {
     "BeattyPhaseEquidistribution": "Irrational Fourier cancellation and unconditional uniform empirical distribution of exact certificate phases",
     "BeattyCertificateDistribution": "Singular continuous empirical certificate law, continuous distribution function and exact phase thresholds",
     "BeattyCertificateWeights": "Moving phase asymptotic and uniform two-sided three-halves bounds for actual certificate gap weights",
+    "BeattyGammaNormalization": "Uniform Gamma interpolation for arbitrary moving fractional parts from log-convexity",
+    "BeattyFirstPassageAmplitude": "Exact BGL Gamma normalization and explicit periodic amplitude for original integer certificate counts",
     "BeattyGapVolume": "Exact metric neighbourhood volume of an interval complement from its disjoint exhaustive gaps",
     "BeattyGapDecay": "Integral-test tail bound and cube-root truncated-sum bounds for three-halves gap lengths",
     "BeattyCertificateCantor": "Exact certificate tube formula, positive finite cube-root volume bounds and Minkowski dimension two thirds",
