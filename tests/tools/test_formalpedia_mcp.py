@@ -183,6 +183,14 @@ def test_real_stdio_client_searches_resolves_and_rejects_invalid_pagination(chec
                     {'paths': ['tools/lab.py'], 'limit': 2})
                 assert not plan.isError
                 assert all(c['status'] == 'not_checked' for c in plan.structuredContent['items'])
+                focused = await session.call_tool('formalpedia_verification_plan',
+                    {'paths': ['tools/lab.py'], 'profile': 'focused', 'limit': 2})
+                assert not focused.isError
+                assert focused.structuredContent['purpose'] == 'iteration'
+                assert focused.structuredContent['test_selection']['mode'] == 'full'
+                assert focused.structuredContent['test_selection']['fallback_reasons']
+                invalid_profile = await session.call_tool('formalpedia_verification_plan', {'profile': 'guess'})
+                assert invalid_profile.isError
                 invalid = await session.call_tool('formalpedia_change_impact', {'paths': ['../outside']})
                 assert invalid.isError
     asyncio.run(asyncio.wait_for(check(), timeout=120))

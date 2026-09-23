@@ -32,6 +32,9 @@ The [agent workflow](agent_workflow.md) prepares each checkout independently.
 `tools/lab_prepare.py` owns the Python lock and readiness receipt;
 `tools/lab_dependencies.py` materializes pinned Lean packages and copies caches.
 `tools/lab_verify.py` runs checks against recorded source, Git and runtime state.
+`tools/lab_selection.py` selects explicit focused iteration tests from import and
+claim associations, with conservative full-suite fallbacks. The default full
+verification profile remains the acceptance gate.
 Managed environments, build outputs and scratch files remain in `.build/`.
 
 [Certified numerics](certified_numerics.md) uses FLINT/Arb through

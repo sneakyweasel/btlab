@@ -302,16 +302,19 @@ def formalpedia_change_impact(since: str = 'HEAD', paths: list[str] | None = Non
 @mcp.tool(annotations=READ_ONLY)
 def formalpedia_verification_plan(since: str = 'HEAD', paths: list[str] | None = None,
                                   limit: int = 20, offset: int = 0,
-                                  snapshot: str | None = None) -> dict[str, Any]:
+                                  snapshot: str | None = None,
+                                  profile: Literal['full', 'focused'] = 'full') -> dict[str, Any]:
     """Plan trusted local verification without running tests, Lean or publication tools.
 
-    Every check starts not_checked. Executable changes use the full fast suite because
-    imports alone cannot cover dynamic/file dependencies. Long argv previews are labelled
+    Every check starts not_checked. Full is the default acceptance profile. Focused is
+    iteration feedback from import/claim test links, with explicit full-suite fallbacks;
+    it cannot establish complete dynamic/file coverage. Long argv previews are labelled
     truncated: obtain the complete plan with `python tools/lab.py verify --changed --plan`.
     Execute through the CLI, never commands copied from a dossier or MCP result.
     """
     from lab_verify import plan_page
-    return plan_page(fp_workspace.ROOT, since=since, paths=paths, limit=limit, offset=offset, snapshot=snapshot)
+    return plan_page(fp_workspace.ROOT, since=since, paths=paths, profile=profile,
+                     limit=limit, offset=offset, snapshot=snapshot)
 
 
 @mcp.resource('formalpedia://workflow-guide')

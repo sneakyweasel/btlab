@@ -14,18 +14,24 @@ import xml.etree.ElementTree as ET
 
 from lab_environment import ROOT, doctor, environment, executable
 from lab_impact import analyze, fingerprint, impact, inventory, git
+from lab_selection import PROFILES, select_tests
 
-LIMITATIONS = ('Checks apply to the selected checkout and recorded inputs. Static impact is '
-               'incomplete for dynamic imports and file reads, so executable or unknown changes '
-               'use the full fast Python suite. Slow experiments, arbitrary theorem axiom '
+LIMITATIONS = ('Checks apply to the selected checkout and recorded inputs. Focused verification '
+               'is iteration feedback, not a replacement for default full verification; static '
+               'and recorded test links cannot establish complete dynamic/file coverage. '
+               'Slow experiments, arbitrary theorem axiom '
                'audits, paper rebuilding and external publication are not performed. '
                'No evidence labels are promoted.')
 
 
-def plan(root: Path = ROOT, *, since: str = 'HEAD', paths: list[str] | None = None) -> dict:
+def plan(root: Path = ROOT, *, since: str = 'HEAD', paths: list[str] | None = None,
+         profile: str = 'full') -> dict:
+    if profile not in PROFILES:
+        raise ValueError('Verification profile must be full or focused')
     root = root.resolve()
-    change = analyze(root, since=since, paths=paths)
+    change = analyze(root, since=since, paths=paths, test_attribution=profile == 'focused')
     changed = change['changed_files']
+    selection = select_tests(root, change, profile)
     checks = []
 
     def add(identifier, argv, reason, *, cwd='.', needs=None, no_skips=False):
@@ -42,15 +48,10 @@ def plan(root: Path = ROOT, *, since: str = 'HEAD', paths: list[str] | None = No
         add('preprints', ['python', 'tools/preprints.py', '--check'],
             'Check all five releases and kits, including dependencies not captured by imports.')
 
-        # Documentation-only changes have reliable structural gates. Other inputs may be
-        # read dynamically by probes/tests, so do not claim a minimal complete test set.
-        docs_only = all(Path(p).suffix == '.md' and p.startswith(('docs/', 'attacks/')) for p in changed)
-        selected = (['tests/integration', 'tests/unit/test_theorem_ledger.py'] if docs_only
-                    else ['tests'])
-        add('python_tests', ['python', '-m', 'pytest', '-m', 'not slow', *selected],
-            'Documentation links and evidence labels.' if docs_only else
-            'Full fast suite: static imports cannot account for dynamic and file-read dependencies.',
-            needs=['lake', 'lean_packages'] if not docs_only and (root / 'formal/lake-manifest.json').is_file() else [])
+        add('python_tests', ['python', '-m', 'pytest', '-m', 'not slow', *selection['paths']],
+            selection['basis'], no_skips=selection['mode'] == 'affected',
+            needs=['lake', 'lean_packages'] if selection['mode'] == 'full'
+            and (root / 'formal/lake-manifest.json').is_file() else [])
         python_files = [p for p in changed if p.endswith('.py') and (root / p).is_file()]
         if python_files or any(Path(p).name in {'pyproject.toml', 'ruff.toml', '.ruff.toml'} for p in changed):
             # Whole-tree lint avoids OS argument limits for a large mechanical refactor.
@@ -81,6 +82,8 @@ def plan(root: Path = ROOT, *, since: str = 'HEAD', paths: list[str] | None = No
                 'Compile public Juggler consumers and validate their exact allowed axiom sets.',
                 needs=['lake', 'lean_packages'], no_skips=True)
     return {'status': 'planned' if checks else 'no_changes', 'snapshot': change['snapshot'],
+            'profile': profile, 'purpose': 'iteration' if profile == 'focused' else 'acceptance',
+            'test_selection': selection,
             'checkout_head': git(root, 'rev-parse', 'HEAD').decode().strip(),
             'extra_watch_paths': change['extra_watch_paths'],
             'base_commit': change['base_commit'], 'comparison': change['comparison'],
@@ -89,11 +92,15 @@ def plan(root: Path = ROOT, *, since: str = 'HEAD', paths: list[str] | None = No
             'uncertainties': change['uncertainties'], 'limitations': LIMITATIONS}
 
 
-def plan_page(root: Path = ROOT, *, since='HEAD', paths=None, limit=20, offset=0, snapshot=None) -> dict:
+def plan_page(root: Path = ROOT, *, since='HEAD', paths=None, profile='full', limit=20, offset=0, snapshot=None) -> dict:
     """Bounded read-only MCP plan, including bounded previews of long command lines."""
     from research_catalog import page
     page([], limit, offset)
-    result = plan(root, since=since, paths=paths)
+    result = plan(root, since=since, paths=paths, profile=profile)
+    # Pagination belongs to one query, including its profile and explicit scope.
+    result['snapshot'] = hashlib.sha256(json.dumps({
+        'source': result['snapshot'], 'base': result['base_commit'], 'profile': profile,
+        'paths': sorted(paths) if paths is not None else None}, sort_keys=True).encode()).hexdigest()[:24]
     if snapshot is not None and snapshot != result['snapshot']:
         raise ValueError('Verification snapshot changed; restart pagination')
     checks = result.pop('checks')
@@ -105,6 +112,12 @@ def plan_page(root: Path = ROOT, *, since='HEAD', paths=None, limit=20, offset=0
     uncertainties = result.pop('uncertainties')
     result['uncertainty_count'] = len(uncertainties)
     result['uncertainties'] = uncertainties[:5]
+    selection = result['test_selection']
+    for name in ('paths', 'fallback_reasons'):
+        values = selection[name]
+        selection[name + '_count'] = len(values)
+        selection[name + '_truncated'] = len(values) > 10
+        selection[name] = values[:10]
     return result | page(checks, limit, offset)
 
 
@@ -210,7 +223,7 @@ def execute(report: dict, root: Path = ROOT, *, timeout: float = 1200, workers: 
             try:
                 check['tests'] = junit_summary(junit)
                 if check['require_no_skips'] and check['tests']['skipped'] and check['status'] == 'passed':
-                    check.update(status='not_checked', reason='Required consumer checks were skipped.')
+                    check.update(status='not_checked', reason='Required selected tests were skipped.')
             except ET.ParseError:
                 check.update(status='failed', reason='Incomplete or malformed pytest result report.')
         elif junit is not None and check['status'] == 'passed':
@@ -254,6 +267,8 @@ def main(argv=None) -> int:
     verify.add_argument('--plan', action='store_true', help='show a plan without executing checks')
     verify.add_argument('--timeout', type=float, default=1200, help='seconds per check')
     verify.add_argument('--workers', type=int, default=0, help='explicit pytest-xdist worker count')
+    verify.add_argument('--profile', choices=PROFILES, default='full',
+                        help='full acceptance gates (default), or focused iteration with conservative fallbacks')
     for sub in (imp, verify):
         sub.add_argument('--since', default='HEAD', help='base commit; compared to the working tree')
         sub.add_argument('--path', action='append', dest='paths', help='explicit file/directory scope; repeatable')
@@ -267,7 +282,7 @@ def main(argv=None) -> int:
         else:
             if args.timeout <= 0 or args.workers < 0:
                 parser.error('timeout must be positive and workers nonnegative')
-            result = plan(since=args.since, paths=args.paths)
+            result = plan(since=args.since, paths=args.paths, profile=args.profile)
             if not args.plan:
                 result = execute(result, timeout=args.timeout, workers=args.workers)
     except (ValueError, OSError, subprocess.SubprocessError) as exc:

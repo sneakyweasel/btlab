@@ -81,6 +81,7 @@ python tools/lab.py build
 python tools/lab.py check                                 # references, metadata, manifests
 python tools/lab.py doctor                                # local prerequisites
 python tools/lab.py verify --changed --plan               # inspect planned gates
+python tools/lab.py verify --changed --profile focused --plan  # iteration test selection
 python tools/lab.py verify --changed --workers 8          # execute them
 ```
 
@@ -88,6 +89,8 @@ python tools/lab.py verify --changed --workers 8          # execute them
 even when Python has another worktree installed in editable mode. Use these
 commands in worktrees. `lab.py build` uses this checkout's `formal/` directory.
 Put `--` before pytest options. Target checks to the change before running wider gates.
+Use `verify --changed --profile focused` for iteration; inspect its selected tests
+and fallback reasons. Run the default full profile before committing or handing off.
 Fresh worktrees use `prepare --apply --from <ready-checkout>` to copy compatible
 caches as independent files. Install Python, uv, Git and the pinned Lean compiler
 first; details and the Python-only profile are in the agent workflow. Refresh the

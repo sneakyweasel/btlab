@@ -74,7 +74,7 @@ def python_module(path: str) -> str:
 
 def graph(root: Path, files: set[str], previous: dict[str, bytes]) -> tuple[dict, list[str]]:
     sources = {p for p in files | previous.keys() if p.endswith(('.py', '.lean'))
-               and p.startswith(('src/', 'tools/', 'tests/', 'formal/'))}
+               and (p.startswith(('src/', 'tools/', 'tests/', 'formal/')) or p == 'conftest.py')}
     identities = defaultdict(set)
     for path in sources:
         if path.endswith('.py'):
@@ -155,7 +155,8 @@ def descriptors(rows, owner: str) -> set[str]:
     return {r['path'] for r in rows}
 
 
-def analyze(root: Path = ROOT, *, since: str = 'HEAD', paths: list[str] | None = None) -> dict:
+def analyze(root: Path = ROOT, *, since: str = 'HEAD', paths: list[str] | None = None,
+            test_attribution: bool = False) -> dict:
     root = root.resolve()
     base = git(root, 'rev-parse', '--verify', '--end-of-options', since + '^{commit}').decode().strip()
     files = inventory(root)
@@ -176,11 +177,18 @@ def analyze(root: Path = ROOT, *, since: str = 'HEAD', paths: list[str] | None =
     before = fingerprint(root, watched)
     reverse, uncertain = graph(root, files, old_sources(root, base, changed))
     affected = closure(reverse, changed)
+    # Ordinary impact/full verification needs only the union, not a closure per file.
+    reach = {path: closure(reverse, {path}) for path in changed} if test_attribution else {}
+    uncertain += [f'Changed code reaches pytest setup: {p}' for p in sorted(affected)
+                  if (p == 'conftest.py' or p.startswith('tests/'))
+                  and Path(p).name in {'conftest.py', '__init__.py'}]
     items = [{'kind': 'changed_file', 'path': p, 'exists': (root / p).is_file(), 'basis': 'selected Git comparison or explicit path'}
              for p in sorted(changed)]
     items += [{'kind': 'dependent_module', 'path': p, 'basis': 'transitive static import; old and new edges included'}
               for p in sorted(affected - changed)]
-    tests = {p for p in affected if p.startswith('tests/') and p.endswith('.py') and (root / p).is_file()}
+    tests = {p for p in affected if p.startswith('tests/') and p.endswith('.py') and (root / p).is_file()
+             and (Path(p).name.startswith('test_') or Path(p).name.endswith('_test.py'))}
+    test_links = {path: tests & linked for path, linked in reach.items()}
     from research_catalog import ResearchCatalogue
     catalogue = ResearchCatalogue(root)
     claims = load_claims(root, required=False)
@@ -191,8 +199,19 @@ def analyze(root: Path = ROOT, *, since: str = 'HEAD', paths: list[str] | None =
             items.append({'kind': 'claim', 'id': row['id'], 'tag': row['tag'],
                           'claim_location': origin, 'paths': sorted(linked),
                           'basis': 'recorded association; not proof coverage'})
-            tests.update(p for p in row.get('tests', []) if p.startswith('tests/')
-                         and p.endswith('.py') and (root / p).is_file())
+            cited = set()
+            for reference in row.get('tests', []):
+                if reference.startswith('tests/'):
+                    if reference.endswith('.py') and reference in files and (root / reference).is_file():
+                        cited.add(reference)
+                    elif (root / reference).is_dir():
+                        cited.update(p for p in files if p.startswith(reference.rstrip('/') + '/')
+                                     and p.endswith('.py') and Path(p).name.startswith('test_')
+                                     and (root / p).is_file())
+            tests.update(cited)
+            for path, reached in reach.items():
+                if linked & reached or path in {origin['path'], EXPORT}:
+                    test_links[path].update(cited)
     papers = set()
     for letter in 'abcde':
         manifest = f'docs/theory/paper_{letter}_' + ('build.json' if letter == 'b' else 'release.json')
@@ -232,6 +251,7 @@ def analyze(root: Path = ROOT, *, since: str = 'HEAD', paths: list[str] | None =
     return {'status': 'planned', 'snapshot': before, 'base_commit': base,
             'comparison': 'base commit to working tree, including staged and untracked files' if paths is None else 'explicit paths',
             'changed_files': sorted(changed), 'affected_tests': sorted(tests), 'lean_targets': lean,
+            'test_links': {p: sorted(v) for p, v in sorted(test_links.items())},
             'extra_watch_paths': sorted(changed - files),
             'affected_papers': sorted(papers), 'uncertainties': uncertain,
             'items': items, 'limitations': LIMITATIONS}
@@ -245,6 +265,7 @@ def impact(root: Path = ROOT, *, since: str = 'HEAD', paths: list[str] | None = 
     if snapshot is not None and snapshot != result['snapshot']:
         raise ValueError('Impact snapshot changed; restart pagination')
     items = result.pop('items')
+    result.pop('test_links')  # Internal attribution; paginated test items remain bounded.
     for row in items:
         if 'paths' in row:
             row['path_count'] = len(row['paths'])

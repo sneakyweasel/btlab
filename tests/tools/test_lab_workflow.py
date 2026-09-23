@@ -72,6 +72,65 @@ def test_package_init_and_lean_transitive_imports(repo):
     assert not (root / '.cache').exists()
 
 
+def test_focused_plan_traces_real_imports_keeps_gates_and_rejects_hidden_gaps(repo):
+    root, _ = repo
+    selected = verify.plan(root, paths=['src/pkg/core.py'], profile='focused')
+    assert selected['profile'] == 'focused' and selected['purpose'] == 'iteration'
+    assert selected['test_selection']['paths'] == ['tests/test_consumer.py']
+    checks = {c['id']: c for c in selected['checks']}
+    assert {'research_structure', 'branch_index', 'claim_ledger', 'preprints', 'python_lint'} <= checks.keys()
+    assert checks['python_tests']['require_no_skips']
+    assert checks['python_tests']['argv'][-1] == 'tests/test_consumer.py'
+    write(root, 'src/pkg/orphan.py', 'VALUE = 3\n')
+    mixed = verify.plan(root, paths=['src/pkg/core.py', 'src/pkg/orphan.py'], profile='focused')
+    assert mixed['test_selection']['mode'] == 'full'
+    assert any('orphan.py' in reason for reason in mixed['test_selection']['fallback_reasons'])
+    full = verify.plan(root, paths=['src/pkg/core.py'])
+    assert full['profile'] == 'full' and full['test_selection']['paths'] == ['tests']
+
+
+def test_claim_test_directories_participate_in_attribution(repo):
+    root, _ = repo
+    write(root, 'tests/topic/test_first.py', 'def test_first(): pass\n')
+    write(root, 'tests/topic/nested/test_second.py', 'def test_second(): pass\n')
+    write(root, 'tests/topic/helpers.py', 'VALUE = 1\n')
+    topic = 'docs/claims/juggler/example.json'
+    write(root, topic, json.dumps([{'id': 'J-example', 'tag': 'EXACT — HUMAN PROOF',
+        'statement': 'A claim.', 'source': 'docs/theory/proof.md', 'tests': ['tests/topic']}]))
+    result = impact.analyze(root, paths=[topic], test_attribution=True)
+    assert result['test_links'][topic] == ['tests/topic/nested/test_second.py', 'tests/topic/test_first.py']
+    assert 'test_links' not in impact.impact(root, paths=[topic])
+    assert verify.plan(root, paths=[topic], profile='focused')['test_selection']['mode'] == 'affected'
+
+
+@pytest.mark.parametrize('setup', ['conftest.py', 'tests/conftest.py', 'tests/__init__.py'])
+def test_indirect_pytest_setup_dependencies_force_full_verification(repo, setup):
+    root, _ = repo
+    write(root, setup, 'from pkg.core import VALUE\n')
+    plan = verify.plan(root, paths=['src/pkg/core.py'], profile='focused')
+    assert plan['test_selection']['paths'] == ['tests']
+    assert any('pytest setup' in reason for reason in plan['test_selection']['fallback_reasons'])
+
+
+def test_uncollected_helpers_are_not_counted_as_a_focused_test_suite(repo):
+    root, _ = repo
+    write(root, 'tests/helpers.py', 'VALUE = 42\n')
+    plan = verify.plan(root, paths=['tests/helpers.py'], profile='focused')
+    assert plan['affected_test_count'] == 0
+    assert plan['test_selection']['mode'] == 'full'
+
+
+def test_plan_pagination_is_bound_to_profile_and_explicit_scope(repo):
+    root, _ = repo
+    first = verify.plan_page(root, paths=['src/pkg/core.py'], profile='focused', limit=1)
+    assert verify.plan_page(root, paths=['src/pkg/core.py'], profile='focused', limit=1,
+                            offset=1, snapshot=first['snapshot'])['offset'] == 1
+    for options in ({'profile': 'full', 'paths': ['src/pkg/core.py']},
+                    {'profile': 'focused', 'paths': ['src/pkg/consumer.py']}):
+        with pytest.raises(ValueError, match='snapshot changed'):
+            verify.plan_page(root, snapshot=first['snapshot'], **options)
+
+
 def test_topic_change_selects_own_claims_and_recorded_tests(repo):
     root, _ = repo
     for topic in ('selected', 'unrelated'):
