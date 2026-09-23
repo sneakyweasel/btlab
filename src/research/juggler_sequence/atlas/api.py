@@ -279,7 +279,7 @@ def pe_records(
     language_id: str = PE_CERTIFIED,
 ) -> list[dict[str, Any]]:
     root = Path(data_dir) if data_dir is not None else DEFAULT_DATA_DIR
-    con = connect(root)
+    con = connect(root, read_only=True)
     try:
         from research.juggler_sequence.atlas.query import _latest_experiment
 
@@ -305,7 +305,7 @@ def experiment_manifest(
     data_dir: Path | None = None,
 ) -> dict[str, Any]:
     root = Path(data_dir) if data_dir is not None else DEFAULT_DATA_DIR
-    con = connect(root)
+    con = connect(root, read_only=True)
     try:
         from research.juggler_sequence.atlas.query import _latest_experiment
 
@@ -379,7 +379,7 @@ def validate(
     if sqlite_path_exists(root):
         from research.juggler_sequence.atlas.query import _latest_experiment
 
-        con = connect(root)
+        con = connect(root, read_only=True)
         try:
             eid = experiment_id or _latest_experiment(con)
         finally:

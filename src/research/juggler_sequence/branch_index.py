@@ -441,16 +441,19 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from research.experiments.outputs import artifact_path
 from research.experiments.provenance import write_manifest
 from research.juggler_sequence.lean_paths import DATA_ROOT
 
 DATA_DIR = DATA_ROOT / "{stem}"
 
 
-def record_outputs(outputs: list[Path], *, scope: str, parameters: dict) -> Path:
+def record_outputs(
+    outputs: list[Path], *, scope: str, parameters: dict, output_root: Path | None = None
+) -> Path:
     """Call after generating outputs; supply the actual finite scope and parameters."""
     return write_manifest(
-        DATA_DIR / "run.research.json", programme="juggler",
+        artifact_path(DATA_DIR, output_root) / "run.research.json", programme="juggler",
         research_id="juggler/{stem}", scope=scope, parameters=parameters,
         outputs=outputs, sources=[Path(__file__)],
     )

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 
+from research.experiments.outputs import artifact_path
 from research.juggler_sequence.bunched_short_return import (
     CLASS_PARK,
     FORBIDDEN_THEOREMS,
@@ -90,8 +91,8 @@ def test_return_set_is_exact_forward_preimage():
     assert return_set(13, 2, 0) == []
 
 
-def test_probe_and_classify_park():
-    payload = write_artifacts()
+def test_probe_and_classify_park(tmp_path):
+    payload = write_artifacts(output_root=tmp_path)
     scan = payload["scan"]
     lean = payload["lean"]
     decision = classify(scan, lean)
@@ -136,16 +137,16 @@ def test_lean_api_without_halt_or_z5():
     assert lean["FloorPower_not_rewritten"] is True
 
 
-def test_classify_render_and_artifacts():
+def test_classify_render_and_artifacts(tmp_path):
     from research.juggler_sequence.bunched_short_return import JSON_PATH
 
-    payload = write_artifacts()
+    payload = write_artifacts(output_root=tmp_path)
     text = render_markdown(payload)
     assert CLASS_PARK in text
     assert "n^2" in text
     assert "last-odd" in text or "last-even" in text
-    assert JSON_PATH.is_file()
-    data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    assert artifact_path(JSON_PATH, tmp_path).is_file()
+    data = json.loads(artifact_path(JSON_PATH, tmp_path).read_text(encoding="utf-8"))
     assert data["experiment"] == "juggler_bunched_short_return"
     assert data["decision"]["classification"] == CLASS_PARK
     assert data["anti_overclaim"]["cycles_impossible"] is False

@@ -16,6 +16,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
+from research.experiments.outputs import artifact_path
 from research.juggler_sequence.backward_geometry import pred_odd
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_DIR, JUGGLER_PAPER_BARREL
@@ -564,11 +565,15 @@ def render_markdown(payload: dict[str, Any]) -> str:
     return "\n".join(lines) + "\n"
 
 
-def write_artifacts(payload: dict[str, Any] | None = None) -> dict[str, Any]:
+def write_artifacts(
+    payload: dict[str, Any] | None = None, *, output_root: Path | None = None
+) -> dict[str, Any]:
+    doc_path = artifact_path(DOC_PATH, output_root)
+    json_path = artifact_path(JSON_PATH, output_root)
     data = payload if payload is not None else probe_payload()
-    JSON_PATH.parent.mkdir(parents=True, exist_ok=True)
-    JSON_PATH.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
-    DOC_PATH.write_text(render_markdown(data), encoding="utf-8")
+    json_path.parent.mkdir(parents=True, exist_ok=True)
+    json_path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+    doc_path.write_text(render_markdown(data), encoding="utf-8")
     return data
 
 

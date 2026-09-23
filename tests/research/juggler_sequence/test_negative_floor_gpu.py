@@ -90,11 +90,11 @@ def test_projection_is_monotone_and_starts_from_the_calibrated_rate() -> None:
 
 
 @pytest.mark.skipif(not gpu.gpu_available(), reason="GPU verifier not buildable or no GPU")
-def test_gpu_binary_agrees_with_the_python_walker_on_2000() -> None:
-    rep = gpu.run(3, 2000)
+def test_gpu_binary_agrees_with_the_python_walker_on_2000(tmp_path) -> None:
+    rep = gpu.run(3, 2000, json_path=tmp_path / 'normal.json')
     assert rep["walked"] == 32 and rep["max_steps"] == 62 and gpu.peak_of(rep) == 413344
     assert rep["fails"] == 0 and rep["new_cycles"] == 0 and rep["known_cycle_returns"] == 1
-    bad = gpu.run(3, 2000, forget_17=True)
+    bad = gpu.run(3, 2000, json_path=tmp_path / 'forget-17.json', forget_17=True)
     assert bad["new_cycles"] == 1 and bad["new_cycle_starts"] == [17] and bad["exit_code"] == 1
 
 
@@ -133,4 +133,3 @@ def test_spot_checks_agree_with_the_cpu_jump_walker() -> None:
         assert w["gpu"]["max_steps"] <= w["cpu"]["max_steps"]
         assert w["peaks_equal"] and w["gpu"]["peak"] == w["cpu"]["peak"]
     assert [w["cpu_steps_minus_gpu"] for w in spot["windows"]] == [72, 12, 48]
-

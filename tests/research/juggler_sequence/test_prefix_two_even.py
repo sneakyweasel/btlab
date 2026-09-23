@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 
+from research.experiments.outputs import artifact_path
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 from research.juggler_sequence.prefix_two_even import (
     CLASS_GREEN,
@@ -71,16 +72,16 @@ def test_lean_api_without_halt_or_census():
     assert lean["no_global_termination_theorem"] is True
 
 
-def test_classify_render_and_artifacts():
-    payload = write_artifacts()
+def test_classify_render_and_artifacts(tmp_path):
+    payload = write_artifacts(output_root=tmp_path)
     text = render_markdown(payload)
     assert CLASS_GREEN in text
     assert "OOOOEE" in text
     assert "algebra" in text.lower()
     from research.juggler_sequence.prefix_two_even import JSON_PATH
 
-    assert JSON_PATH.is_file()
-    data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    assert artifact_path(JSON_PATH, tmp_path).is_file()
+    data = json.loads(artifact_path(JSON_PATH, tmp_path).read_text(encoding="utf-8"))
     assert data["experiment"] == "juggler_prefix_two_even"
     assert data["decision"]["classification"] == CLASS_GREEN
     assert data["anti_overclaim"]["cycles_impossible"] is False

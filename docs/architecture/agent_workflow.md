@@ -87,3 +87,23 @@ registry still depend on it and must record it in their provenance.
 
 See the [research catalogue](research_catalogue.md) for evidence associations
 and manifests, and [Lean discovery](lean_discovery.md) for names and proof reuse.
+
+## Test output isolation
+
+Artifact-writing tests pass `output_root=tmp_path`. The destination retains the
+checkout-relative `docs/research/` and `data/research/` layout; mathematical and
+Lean inputs still come from the checkout. Omitting the override in an explicitly
+invoked probe regenerates canonical artifacts.
+
+Pytest installs a process-local write guard for canonical research reports and
+Juggler/Collatz datasets. Reading committed evidence is allowed. Writing it,
+even with identical bytes, fails immediately. Child processes do not inherit
+Python audit hooks; any subprocess test that generates artifacts must also use
+an explicit temporary destination. Regeneration belongs in a deliberate probe
+command, outside pytest.
+
+Atlas query connections use `read_only=True`, which opens an existing SQLite
+store in read-only mode without schema initialization. Atlas builders retain
+write access to their explicitly selected data directory. GPU tests pass a
+temporary report path to the verifier. New branch scaffolds also support
+`output_root` when recording provenance.

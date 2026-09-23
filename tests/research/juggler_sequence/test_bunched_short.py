@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 
+from research.experiments.outputs import artifact_path
 from research.juggler_sequence.bunched_last_cluster import family_word
 from research.juggler_sequence.bunched_short import (
     CLASS_PARK,
@@ -72,15 +73,15 @@ def test_lean_api_without_halt_or_z5():
     assert lean["no_global_termination_theorem"] is True
 
 
-def test_classify_render_and_artifacts():
-    payload = write_artifacts()
+def test_classify_render_and_artifacts(tmp_path):
+    payload = write_artifacts(output_root=tmp_path)
     text = render_markdown(payload)
     assert CLASS_PARK in text
     assert "OOOOOEEE" in text
     from research.juggler_sequence.bunched_short import JSON_PATH
 
-    assert JSON_PATH.is_file()
-    data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    assert artifact_path(JSON_PATH, tmp_path).is_file()
+    data = json.loads(artifact_path(JSON_PATH, tmp_path).read_text(encoding="utf-8"))
     assert data["experiment"] == "juggler_bunched_short"
     assert data["decision"]["classification"] == CLASS_PARK
     assert data["anti_overclaim"]["cycles_impossible"] is False

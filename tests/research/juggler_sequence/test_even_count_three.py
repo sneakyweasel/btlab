@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from research.experiments.outputs import artifact_path
 from research.juggler_sequence.even_count_three import (
     ALLOWED,
     CLASS_GREEN,
@@ -92,8 +93,8 @@ def test_lean_even_count_assembler_and_paper_a_boundary():
     assert "theorem no_juggler_cycle" not in even
 
 
-def test_classify_green_and_write_artifacts():
-    data = write_artifacts()
+def test_classify_green_and_write_artifacts(tmp_path):
+    data = write_artifacts(output_root=tmp_path)
     scan = data["scan"]
     lean = data["lean"]
     decision = classify(scan, lean)
@@ -108,8 +109,8 @@ def test_classify_green_and_write_artifacts():
     assert "no_cycle_itinerary_even_count_le_three" in text
     from research.juggler_sequence.even_count_three import JSON_PATH
 
-    assert JSON_PATH.is_file()
-    recorded = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    assert artifact_path(JSON_PATH, tmp_path).is_file()
+    recorded = json.loads(artifact_path(JSON_PATH, tmp_path).read_text(encoding="utf-8"))
     assert recorded["decision"]["classification"] == CLASS_GREEN
     assert ANTI_OVERCLAIM["global_termination"] is False
 

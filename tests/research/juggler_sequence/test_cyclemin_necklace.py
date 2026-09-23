@@ -84,7 +84,7 @@ def test_lean_has_fudge_and_no_census():
     assert lean["paper_a_has_no_necklace"] is True
 
 
-def test_classify_render_and_artifacts():
+def test_classify_render_and_artifacts(tmp_path):
     data = probe_payload()
     assert classify(data["scan"], data["lean"])["classification"] == CLASS_REFUTED
     summary = data["scan"]["summary"]
@@ -95,7 +95,7 @@ def test_classify_render_and_artifacts():
     text = render_markdown(data)
     assert CLASS_REFUTED in text
     assert "OOEEEOOOOOE" in text
-    write_artifacts(data)
+    write_artifacts(data, output_root=tmp_path)
     stored = json.loads(
         Path(__file__).resolve().parents[3]
         .joinpath("docs/research/juggler_cyclemin_necklace.json")

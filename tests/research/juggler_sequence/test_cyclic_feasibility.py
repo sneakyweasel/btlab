@@ -90,7 +90,7 @@ def test_tiny_probe_reproduces():
     assert leftover_k == []
 
 
-def test_probe_and_classify_vocabulary():
+def test_probe_and_classify_vocabulary(tmp_path):
     payload = probe_payload()
     assert payload["decision"]["classification"] in {
         CLASS_UNIVERSAL,
@@ -104,7 +104,7 @@ def test_probe_and_classify_vocabulary():
     }
     assert payload["decision"]["classification"] == CLASS_CLOSED
     assert payload["decision"]["classification"] != CLASS_INCOMPLETE
-    written = write_artifacts(payload)
+    written = write_artifacts(payload, output_root=tmp_path)
     assert written["decision"]["classification"] == CLASS_CLOSED
     text = render_markdown(payload)
     assert "NOT OBSERVED WITHIN SEARCH BOUND" in text

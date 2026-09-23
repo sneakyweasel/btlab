@@ -504,7 +504,7 @@ def atlas_follows_control(
         from research.juggler_sequence.atlas.storage import connect
     except ImportError:
         return {"available": False, "reason": "atlas storage unavailable"}
-    con = connect(DEFAULT_DATA_DIR)
+    con = connect(DEFAULT_DATA_DIR, read_only=True)
     try:
         row = con.execute(
             "SELECT experiment_id FROM experiments ORDER BY start_time DESC LIMIT 1"

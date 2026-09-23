@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 
+from research.experiments.outputs import artifact_path
 from research.juggler_sequence.amplify_surplus import (
     CLASS_REFUTED,
     EEEE_WORD,
@@ -69,15 +70,15 @@ def test_lean_api_has_amplify_and_no_census():
     assert lean["no_all_cycles_impossible"] is True
 
 
-def test_classify_render_and_artifacts():
+def test_classify_render_and_artifacts(tmp_path):
     data = payload()
     text = render_markdown(data)
     assert CLASS_REFUTED in text
     assert EEEE_WORD in text or "2184" in text
     from research.juggler_sequence.amplify_surplus import JSON_PATH, write_artifacts
 
-    write_artifacts(data)
-    stored = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    write_artifacts(data, output_root=tmp_path)
+    stored = json.loads(artifact_path(JSON_PATH, tmp_path).read_text(encoding="utf-8"))
     assert stored["experiment"] == "juggler_amplify_surplus"
     assert stored["decision"]["classification"] == CLASS_REFUTED
     assert stored["anti_overclaim"]["cycles_impossible"] is False

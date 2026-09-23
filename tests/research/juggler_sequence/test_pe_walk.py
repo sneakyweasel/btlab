@@ -6,6 +6,7 @@ import json
 from fractions import Fraction
 from pathlib import Path
 
+from research.experiments.outputs import artifact_path
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.pe_walk import (
     CLASS_PARK,
@@ -104,11 +105,11 @@ def test_lean_boundaries():
     assert lean["paper_a_has_new_api"] is False
 
 
-def test_classify_render_and_artifacts():
-    payload = write_artifacts()
+def test_classify_render_and_artifacts(tmp_path):
+    payload = write_artifacts(output_root=tmp_path)
     text = render_markdown(payload)
     assert CLASS_PARK in text
-    data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    data = json.loads(artifact_path(JSON_PATH, tmp_path).read_text(encoding="utf-8"))
     assert data["experiment"] == "juggler_pe_walk"
     assert data["decision"]["classification"] == CLASS_PARK
     assert dict(ANTI_OVERCLAIM)["global_termination"] is False

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 
+from research.experiments.outputs import artifact_path
 from research.juggler_sequence.isolated_odd_return import (
     CLASS_CLOSE,
     FORBIDDEN_THEOREMS,
@@ -52,8 +53,8 @@ def test_empty_and_single_o_are_the_only_cyclemin_prefixes():
         assert in_return_fibre(13, 46, b, c) is False
 
 
-def test_probe_and_classify_close():
-    payload = write_artifacts()
+def test_probe_and_classify_close(tmp_path):
+    payload = write_artifacts(output_root=tmp_path)
     scan = payload["scan"]
     lean = payload["lean"]
     decision = classify(scan, lean)
@@ -88,15 +89,15 @@ def test_lean_api_without_halt_or_z5():
     assert lean["FloorPower_not_rewritten"] is True
 
 
-def test_classify_render_and_artifacts():
+def test_classify_render_and_artifacts(tmp_path):
     from research.juggler_sequence.isolated_odd_return import JSON_PATH
 
-    payload = write_artifacts()
+    payload = write_artifacts(output_root=tmp_path)
     text = render_markdown(payload)
     assert CLASS_CLOSE in text
     assert "oe_block_contracts" in text
-    assert JSON_PATH.is_file()
-    data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    assert artifact_path(JSON_PATH, tmp_path).is_file()
+    data = json.loads(artifact_path(JSON_PATH, tmp_path).read_text(encoding="utf-8"))
     assert data["experiment"] == "juggler_isolated_odd_return"
     assert data["decision"]["classification"] == CLASS_CLOSE
     assert data["anti_overclaim"]["cycles_impossible"] is False

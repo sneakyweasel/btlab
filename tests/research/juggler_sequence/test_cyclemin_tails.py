@@ -98,7 +98,7 @@ def test_lean_has_fudge_and_no_assembler():
     assert lean["paper_a_has_no_tails"] is True
 
 
-def test_classify_render_and_artifacts():
+def test_classify_render_and_artifacts(tmp_path):
     data = probe_payload()
     assert classify(data["scan"], data["lean"])["classification"] == CLASS_PROVED
     summary = data["scan"]["summary"]
@@ -111,7 +111,7 @@ def test_classify_render_and_artifacts():
     text = render_markdown(data)
     assert CLASS_PROVED in text
     assert "OOOOOOOOEEEE" in text
-    write_artifacts(data)
+    write_artifacts(data, output_root=tmp_path)
     stored = json.loads(
         Path(__file__).resolve().parents[3]
         .joinpath("docs/research/juggler_cyclemin_tails.json")

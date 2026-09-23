@@ -32,6 +32,8 @@ its canonical proof sources, not in duplicated instructions.
   `research.collatz_finite_descent`. Shared machinery lives in `research_engine`.
 - Preserve concurrent work. Inspect Git status and the latest commit before
   editing or staging. Commit bounded changes; do not stage unrelated files.
+- Tests read committed research evidence. Tests that exercise artifact writers
+  must use explicit `tmp_path` destinations; pytest rejects canonical output writes.
 - Use the seven evidence labels in `docs/README.md`. A Lean statement must cover
   the English claim before retagging it; finite checks do not prove termination.
 - For a new mathematical direction, emit the triage block in

@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from research.experiments.outputs import artifact_path
 from research.juggler_sequence.cyclemin_obstruction import (
     CLASS_GREEN,
     CLASSES,
@@ -97,8 +98,8 @@ def test_lean_cube_transport_and_boundaries():
     assert "theorem cycleMin_ooo_residual_ge_cube" not in census7
 
 
-def test_classify_green_and_write_artifacts():
-    data = write_artifacts()
+def test_classify_green_and_write_artifacts(tmp_path):
+    data = write_artifacts(output_root=tmp_path)
     decision = classify(
         data["scan"], data["cube"], data["transport"], data["invariant"], data["lean"]
     )
@@ -112,8 +113,8 @@ def test_classify_green_and_write_artifacts():
     assert "bunched-short last cluster" in text or "bunched_short" in text
     from research.juggler_sequence.cyclemin_obstruction import JSON_PATH
 
-    assert JSON_PATH.is_file()
-    recorded = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    assert artifact_path(JSON_PATH, tmp_path).is_file()
+    recorded = json.loads(artifact_path(JSON_PATH, tmp_path).read_text(encoding="utf-8"))
     assert recorded["decision"]["classification"] == CLASS_GREEN
     assert ANTI_OVERCLAIM["global_termination"] is False
 

@@ -182,7 +182,7 @@ def atlas_pe_starts(*, n_cap: int = ATLAS_PE_N_CAP, limit: int = ATLAS_PE_LIMIT)
     path = DEFAULT_DATA_DIR / "word_atlas.sqlite"
     if not path.is_file():
         return []
-    con = connect(DEFAULT_DATA_DIR)
+    con = connect(DEFAULT_DATA_DIR, read_only=True)
     try:
         rows = con.execute(
             """

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 
+from research.experiments.outputs import artifact_path
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.minimal_ooe_corridor import square_cell_gap
 from research.juggler_sequence.post_ooo_crossing import (
@@ -124,14 +125,14 @@ def test_lean_api_without_halt_or_z5():
     assert lean["no_new_lean"] is True
 
 
-def test_classify_render_and_artifacts():
-    payload = write_artifacts()
+def test_classify_render_and_artifacts(tmp_path):
+    payload = write_artifacts(output_root=tmp_path)
     text = render_markdown(payload)
     assert CLASS_GREEN in text
     assert "243" in text
     from research.juggler_sequence.post_ooo_crossing import JSON_PATH
 
-    data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    data = json.loads(artifact_path(JSON_PATH, tmp_path).read_text(encoding="utf-8"))
     assert data["experiment"] == "juggler_post_ooo_crossing"
     assert data["decision"]["classification"] == CLASS_GREEN
     assert data["anti_overclaim"]["ooo_fatal"] is False

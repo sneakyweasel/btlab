@@ -22,6 +22,7 @@ from math import isqrt
 from pathlib import Path
 from typing import Any
 
+from research.experiments.outputs import artifact_path
 from research.juggler_sequence.atlas.schema import CLAIM_NOT_OBSERVED, LANGUAGE_IDS
 from research.juggler_sequence.lean_paths import (
     DATA_ROOT,
@@ -1164,16 +1165,17 @@ def _write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
         writer.writerows(slim)
 
 
-def write_data_artifacts(payload: dict[str, Any]) -> None:
+def write_data_artifacts(payload: dict[str, Any], *, output_root: Path | None = None) -> None:
+    data_dir = artifact_path(DATA_DIR, output_root)
     scan = payload["scan"]
     dirs = {
-        "primitive_words": DATA_DIR / "primitive_words",
-        "envelope_filters": DATA_DIR / "envelope_filters",
-        "exact_constraints": DATA_DIR / "exact_constraints",
-        "infeasible_classes": DATA_DIR / "infeasible_classes",
-        "feasible_candidates": DATA_DIR / "feasible_candidates",
-        "near_cycles": DATA_DIR / "near_cycles",
-        "closure_thresholds": DATA_DIR / "closure_thresholds",
+        "primitive_words": data_dir / "primitive_words",
+        "envelope_filters": data_dir / "envelope_filters",
+        "exact_constraints": data_dir / "exact_constraints",
+        "infeasible_classes": data_dir / "infeasible_classes",
+        "feasible_candidates": data_dir / "feasible_candidates",
+        "near_cycles": data_dir / "near_cycles",
+        "closure_thresholds": data_dir / "closure_thresholds",
     }
     for path in dirs.values():
         path.mkdir(parents=True, exist_ok=True)
@@ -1200,7 +1202,7 @@ def write_data_artifacts(payload: dict[str, Any]) -> None:
         if r["leftover_shape"]
     ]
     _write_csv(dirs["closure_thresholds"] / "leftover.csv", thresh)
-    (DATA_DIR / "summary.json").write_text(
+    (data_dir / "summary.json").write_text(
         json.dumps(
             {
                 "classification": payload["decision"]["classification"],
@@ -1215,7 +1217,7 @@ def write_data_artifacts(payload: dict[str, Any]) -> None:
         + "\n",
         encoding="utf-8",
     )
-    (DATA_DIR / "README.md").write_text(
+    (data_dir / "README.md").write_text(
         "# Juggler cyclic feasibility\n\n"
         "Closed word filters. Absence is NOT_OBSERVED_WITHIN_BOUND.\n\n"
         "Regenerate with `python -m research.juggler_sequence.cyclic_feasibility`.\n",
@@ -1223,12 +1225,16 @@ def write_data_artifacts(payload: dict[str, Any]) -> None:
     )
 
 
-def write_artifacts(payload: dict[str, Any] | None = None) -> dict[str, Any]:
+def write_artifacts(
+    payload: dict[str, Any] | None = None, *, output_root: Path | None = None
+) -> dict[str, Any]:
+    doc_path = artifact_path(DOC_PATH, output_root)
+    json_path = artifact_path(JSON_PATH, output_root)
     data = payload if payload is not None else probe_payload()
-    JSON_PATH.parent.mkdir(parents=True, exist_ok=True)
-    JSON_PATH.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
-    DOC_PATH.write_text(render_markdown(data), encoding="utf-8")
-    write_data_artifacts(data)
+    json_path.parent.mkdir(parents=True, exist_ok=True)
+    json_path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+    doc_path.write_text(render_markdown(data), encoding="utf-8")
+    write_data_artifacts(data, output_root=output_root)
     return data
 
 

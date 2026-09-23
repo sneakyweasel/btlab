@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
+import sys
 
 from hypothesis.configuration import set_hypothesis_home_dir
 import pytest
@@ -12,6 +13,10 @@ def pytest_configure(config: pytest.Config) -> None:
     """Keep generated test state with the checkout's other tool caches."""
     if "HYPOTHESIS_STORAGE_DIRECTORY" not in os.environ:
         set_hypothesis_home_dir(Path(config.rootpath) / ".cache" / "hypothesis")
+    sys.path.insert(0, str(Path(config.rootpath) / 'tools'))
+    from test_output_guard import install
+
+    install(Path(config.rootpath))
 
 
 def pytest_addoption(parser: pytest.Parser) -> None:

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 
+from research.experiments.outputs import artifact_path
 from research.juggler_sequence.isolated_odd_fibre import (
     CLASS_PARK,
     FORBIDDEN_THEOREMS,
@@ -61,14 +62,14 @@ def test_lean_api_without_halt_or_z5():
     assert lean["no_new_lean"] is True
 
 
-def test_classify_render_and_artifacts():
-    payload = write_artifacts()
+def test_classify_render_and_artifacts(tmp_path):
+    payload = write_artifacts(output_root=tmp_path)
     text = render_markdown(payload)
     assert CLASS_PARK in text
     assert "OOOEOEEEE" in text or "OOEEOEEE" in text
     from research.juggler_sequence.isolated_odd_fibre import JSON_PATH
 
-    data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    data = json.loads(artifact_path(JSON_PATH, tmp_path).read_text(encoding="utf-8"))
     assert data["experiment"] == "juggler_isolated_odd_fibre"
     assert data["decision"]["classification"] == CLASS_PARK
     assert data["anti_overclaim"]["cycles_impossible"] is False

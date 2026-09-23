@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 
+from research.experiments.outputs import artifact_path
 from research.juggler_sequence.front_overshoot import (
     CLASS_PARK,
     DIAGNOSTIC_LEAKS,
@@ -112,16 +113,16 @@ def test_lean_api_without_halt_or_z5():
     assert lean["no_new_lean"] is True
 
 
-def test_classify_render_and_artifacts():
-    payload = write_artifacts()
+def test_classify_render_and_artifacts(tmp_path):
+    payload = write_artifacts(output_root=tmp_path)
     text = render_markdown(payload)
     assert CLASS_PARK in text
     assert "OOOOEOOOEEOOEE" in text
     assert "(n+2)^2" in text
     from research.juggler_sequence.front_overshoot import JSON_PATH
 
-    assert JSON_PATH.is_file()
-    data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    assert artifact_path(JSON_PATH, tmp_path).is_file()
+    data = json.loads(artifact_path(JSON_PATH, tmp_path).read_text(encoding="utf-8"))
     assert data["experiment"] == "juggler_front_overshoot"
     assert data["decision"]["classification"] == CLASS_PARK
     assert data["anti_overclaim"]["cycles_impossible"] is False

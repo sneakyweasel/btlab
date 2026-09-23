@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 
+from research.experiments.outputs import artifact_path
 from research.juggler_sequence.block_map_q import CONTROLS
 from research.juggler_sequence.q_return_section import (
     CLASS_PARK,
@@ -120,13 +121,13 @@ def test_lean_api_without_new_layer():
     assert lean["not_in_paper_barrel"] is True
 
 
-def test_classify_render_and_artifacts():
-    payload = write_artifacts()
+def test_classify_render_and_artifacts(tmp_path):
+    payload = write_artifacts(output_root=tmp_path)
     text = render_markdown(payload)
     assert CLASS_PARK in text
     from research.juggler_sequence.q_return_section import JSON_PATH
 
-    data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    data = json.loads(artifact_path(JSON_PATH, tmp_path).read_text(encoding="utf-8"))
     assert data["experiment"] == "juggler_q_return_section"
     assert data["decision"]["classification"] == CLASS_PARK
     assert data["anti_overclaim"]["return_section_lean"] is False

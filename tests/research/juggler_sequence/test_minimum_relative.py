@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 
+from research.experiments.outputs import artifact_path
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.minimum_relative import (
     CLASS_GREEN,
@@ -106,13 +107,13 @@ def test_lean_api_without_halt():
     assert lean["not_in_paper_barrel"] is True
 
 
-def test_classify_render_and_artifacts():
-    payload = write_artifacts()
+def test_classify_render_and_artifacts(tmp_path):
+    payload = write_artifacts(output_root=tmp_path)
     text = render_markdown(payload)
     assert CLASS_GREEN in text
     from research.juggler_sequence.minimum_relative import JSON_PATH
 
-    data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    data = json.loads(artifact_path(JSON_PATH, tmp_path).read_text(encoding="utf-8"))
     assert data["experiment"] == "juggler_minimum_relative"
     assert data["decision"]["classification"] == CLASS_GREEN
     assert dict(ANTI_OVERCLAIM)["global_termination"] is False

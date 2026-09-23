@@ -48,7 +48,7 @@ def factor_set(
     )
     if parquet_hits is not None:
         return parquet_hits
-    con = connect(data_dir)
+    con = connect(data_dir, read_only=True)
     try:
         eid = experiment_id or _latest_experiment(con)
         rows = con.execute(
@@ -74,7 +74,7 @@ def continuation_mask(
     from research.juggler_sequence.atlas.packed import pack_word, word_id
 
     length, packed = pack_word(word)
-    con = connect(data_dir)
+    con = connect(data_dir, read_only=True)
     try:
         eid = experiment_id or _latest_experiment(con)
         row = con.execute(
@@ -112,7 +112,7 @@ def continuation_histogram(
     experiment_id: str | None = None,
     data_dir: Path,
 ) -> list[dict[str, Any]]:
-    con = connect(data_dir)
+    con = connect(data_dir, read_only=True)
     try:
         eid = experiment_id or _latest_experiment(con)
         rows = con.execute(
@@ -150,7 +150,7 @@ def _duckdb_factors(
     except ImportError:
         return None
     if experiment_id is None:
-        con = connect(data_dir)
+        con = connect(data_dir, read_only=True)
         try:
             experiment_id = _latest_experiment(con)
         finally:
@@ -193,7 +193,7 @@ def word_record(
     meta = word_metadata(length, packed)
     if not sqlite_path(data_dir).is_file():
         return {"word": word, **meta, "realization_status": None}
-    con = connect(data_dir)
+    con = connect(data_dir, read_only=True)
     try:
         eid = experiment_id or _latest_experiment(con)
         row = con.execute(

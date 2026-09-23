@@ -79,16 +79,15 @@ def test_lean_api_has_bootstrap_and_no_census():
     assert lean["no_all_cycles_impossible"] is True
 
 
-def test_classify_render_and_artifacts():
+def test_classify_render_and_artifacts(tmp_path):
     data = payload()
     text = render_markdown(data)
     assert CLASS_REFUTED in text
     assert EEEE_WORD in text or "open CycleMin" in text
-    from research.juggler_sequence.length11_nonpullback import JSON_PATH
+    from research.juggler_sequence.length11_nonpullback import write_artifacts
 
-    JSON_PATH.parent.mkdir(parents=True, exist_ok=True)
-    JSON_PATH.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
-    from research.juggler_sequence.length11_nonpullback import DOC_PATH
-
-    DOC_PATH.write_text(text, encoding="utf-8")
+    write_artifacts(data, output_root=tmp_path)
+    report = tmp_path / 'docs/research/juggler_length11_nonpullback.json'
+    assert json.loads(report.read_text(encoding='utf-8')) == data
+    assert (tmp_path / 'docs/research/juggler_length11_nonpullback.md').read_text(encoding='utf-8') == text
     assert ANTI_OVERCLAIM["global_termination"] is False

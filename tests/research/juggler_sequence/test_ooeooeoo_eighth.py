@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 
+from research.experiments.outputs import artifact_path
 from research.juggler_sequence.first_lift_eighth import (
     UNSAFE_WORD,
     WITNESS_4309,
@@ -113,13 +114,13 @@ def test_lean_api_without_halt():
     assert lean["no_new_ooeooeoo_eighth_lean"] is True
 
 
-def test_classify_render_and_artifacts():
-    payload = write_artifacts()
+def test_classify_render_and_artifacts(tmp_path):
+    payload = write_artifacts(output_root=tmp_path)
     text = render_markdown(payload)
     assert CLASS_PARKED in text
     from research.juggler_sequence.ooeooeoo_eighth import JSON_PATH
 
-    data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    data = json.loads(artifact_path(JSON_PATH, tmp_path).read_text(encoding="utf-8"))
     assert data["experiment"] == "juggler_ooeooeoo_eighth"
     assert data["decision"]["classification"] == CLASS_PARKED
     assert data["anti_overclaim"]["ooeooeoo_forced_eighth"] is False

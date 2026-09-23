@@ -189,7 +189,7 @@ def stored_metadata_matches(
     from research.juggler_sequence.atlas.storage import connect
 
     errors: list[str] = []
-    con = connect(data_dir)
+    con = connect(data_dir, read_only=True)
     try:
         rows = con.execute(
             """

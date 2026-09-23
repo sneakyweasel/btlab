@@ -109,7 +109,7 @@ def science_report(
     data_dir: Path,
     r_max: int,
 ) -> dict[str, Any]:
-    con = connect(data_dir)
+    con = connect(data_dir, read_only=True)
     try:
         exp = con.execute(
             "SELECT k_max, n_max, record_counts FROM experiments WHERE experiment_id = ?",

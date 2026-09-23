@@ -18,6 +18,7 @@ from itertools import product
 from pathlib import Path
 from typing import Any, Iterator
 
+from research.experiments.outputs import artifact_path
 from research.juggler_sequence.bunched_last_cluster import FAMILIES
 from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_PAPER_BARREL
 from research.juggler_sequence.lean_registry import (
@@ -645,10 +646,13 @@ Maximum Phase-0 scope   symbolic last-cluster classification;
 """
 
 
-def write_artifacts() -> dict[str, Any]:
+def write_artifacts(*, output_root: Path | None = None) -> dict[str, Any]:
+    doc_path = artifact_path(DOC_PATH, output_root)
+    json_path = artifact_path(JSON_PATH, output_root)
     data = probe_payload()
-    JSON_PATH.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
-    DOC_PATH.write_text(render_markdown(data), encoding="utf-8")
+    json_path.parent.mkdir(parents=True, exist_ok=True)
+    json_path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+    doc_path.write_text(render_markdown(data), encoding="utf-8")
     return data
 
 

@@ -84,12 +84,19 @@ def sqlite_path(data_dir: Path) -> Path:
     return data_dir / "word_atlas.sqlite"
 
 
-def connect(data_dir: Path) -> sqlite3.Connection:
-    data_dir.mkdir(parents=True, exist_ok=True)
-    con = sqlite3.connect(sqlite_path(data_dir))
+def connect(data_dir: Path, *, read_only: bool = False) -> sqlite3.Connection:
+    """Open a store; readers neither create it nor initialize its schema."""
+    if read_only:
+        con = sqlite3.connect(sqlite_path(data_dir).resolve().as_uri() + '?mode=ro', uri=True)
+    else:
+        data_dir.mkdir(parents=True, exist_ok=True)
+        con = sqlite3.connect(sqlite_path(data_dir))
     con.row_factory = sqlite3.Row
     con.execute("PRAGMA foreign_keys = ON")
-    _init(con)
+    if read_only:
+        con.execute('PRAGMA query_only = ON')
+    else:
+        _init(con)
     return con
 
 

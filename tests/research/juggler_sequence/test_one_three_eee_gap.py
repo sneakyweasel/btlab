@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from research.experiments.outputs import artifact_path
 from research.juggler_sequence.one_three_eee_gap import (
     CELL_BITS,
     CLASS_PROVED,
@@ -85,7 +86,7 @@ def test_lean_has_o7_and_no_family_census():
     assert lean["paper_a_has_no_family"] is True
 
 
-def test_classify_render_and_artifacts():
+def test_classify_render_and_artifacts(tmp_path):
     from research.juggler_sequence.one_three_eee_gap import JSON_PATH, probe_payload
 
     data = probe_payload()
@@ -94,8 +95,8 @@ def test_classify_render_and_artifacts():
     assert CLASS_PROVED in text
     assert "OOOOOOEOEEE" in text
     assert "OOEOOOOOEEE" in text
-    write_artifacts(data)
-    stored = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    write_artifacts(data, output_root=tmp_path)
+    stored = json.loads(artifact_path(JSON_PATH, tmp_path).read_text(encoding="utf-8"))
     assert stored["experiment"] == "juggler_one_three_eee_gap"
     assert stored["decision"]["classification"] == CLASS_PROVED
     assert stored["anti_overclaim"]["length_eleven_census"] is False

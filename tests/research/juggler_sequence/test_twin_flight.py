@@ -187,15 +187,15 @@ def test_lean_api_without_new_layer():
         assert path.is_file() is False
 
 
-def test_write_artifacts_and_dossier_boundary():
-    payload = write_artifacts()
+def test_write_artifacts_and_dossier_boundary(tmp_path):
+    payload = write_artifacts(output_root=tmp_path)
     repo = Path(__file__).resolve().parents[3]
     dossier = (repo / "docs" / "problems" / "juggler_twin_flight.md").read_text(
         encoding="utf-8"
     )
-    json_path = repo / "docs" / "research" / "juggler_twin_flight.json"
-    md_path = repo / "docs" / "research" / "juggler_twin_flight.md"
-    summary = repo / "data" / "research" / "juggler" / "twin_flight" / "summary.json"
+    json_path = tmp_path / 'docs' / 'research' / "juggler_twin_flight.json"
+    md_path = tmp_path / 'docs' / 'research' / "juggler_twin_flight.md"
+    summary = tmp_path / 'data' / 'research' / "juggler" / "twin_flight" / "summary.json"
     assert json_path.is_file()
     assert md_path.is_file()
     assert summary.is_file()

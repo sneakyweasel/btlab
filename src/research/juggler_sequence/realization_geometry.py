@@ -426,7 +426,7 @@ def atlas_available(data_dir: Path = DEFAULT_DATA_DIR) -> bool:
 def reproduce_atlas(*, data_dir: Path = DEFAULT_DATA_DIR, experiment_id: str = ATLAS_EID) -> dict[str, Any]:
     if not atlas_available(data_dir):
         return {"available": False}
-    con = connect(data_dir)
+    con = connect(data_dir, read_only=True)
     try:
         tower = []
         for r in range(1, 8):
@@ -611,7 +611,7 @@ def interior_factors(
         return {"available": False}
     packed_targets = {word: pack_word(word)[1] for word in words}
     lengths = {word: len(word) for word in words}
-    con = connect(data_dir)
+    con = connect(data_dir, read_only=True)
     try:
         rows = con.execute(
             """
@@ -723,7 +723,7 @@ def atlas_unary_return(
 ) -> dict[str, Any]:
     if not atlas_available(data_dir):
         return {"available": False}
-    con = connect(data_dir)
+    con = connect(data_dir, read_only=True)
     try:
         rows = con.execute(
             """

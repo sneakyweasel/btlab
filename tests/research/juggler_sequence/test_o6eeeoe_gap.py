@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 
+from research.experiments.outputs import artifact_path
 from research.juggler_sequence.o6eeeoe_gap import (
     CELL_EXP,
     CHAIN_N0,
@@ -79,7 +80,7 @@ def test_lean_has_o7_and_no_o6_census():
     assert lean["paper_a_has_no_o6eeeoe"] is True
 
 
-def test_classify_render_and_artifacts():
+def test_classify_render_and_artifacts(tmp_path):
     from research.juggler_sequence.o6eeeoe_gap import probe_payload
 
     data = probe_payload()
@@ -87,8 +88,8 @@ def test_classify_render_and_artifacts():
     text = render_markdown(data)
     assert CLASS_PROVED in text
     assert WORD in text
-    write_artifacts(data)
-    stored = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    write_artifacts(data, output_root=tmp_path)
+    stored = json.loads(artifact_path(JSON_PATH, tmp_path).read_text(encoding="utf-8"))
     assert stored["experiment"] == "juggler_o6eeeoe_gap"
     assert stored["decision"]["classification"] == CLASS_PROVED
     assert stored["anti_overclaim"]["length_eleven_census"] is False
