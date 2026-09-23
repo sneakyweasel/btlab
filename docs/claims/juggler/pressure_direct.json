@@ -1,0 +1,41 @@
+[
+ {
+  "id": "J-pressure-direct-routes",
+  "tag": "REPARAMETERIZATION",
+  "statement": "Phase-0 direct estimates of live pressure P_θ and no-momentum M_{θ,q} (Tao note §10, Paper C §9). Route A, last-even reset of the tilted odd share: s_θ ≤ 1/2 + μ_k/2 if complementary cylinders split at 1/2. Fair-coin tilted walk-live μ_4 leaves q_★ ≈ 0.57 below p_19 = 0.598 at the Tao depths, so there is numerical room at k = 4; μ_3 does not (q_★ ≈ 0.61). The complementary term is not Paper B: a high-walk start-cylinder ending in E has a sparse forward image (OOOE at y = 10^5: 6342 points in a span 6.08·10^8, density 1.0·10^{-5}), not a dyadic interval, so Paper B Theorems 4.1, 4.4 and 4.7 do not apply and the split is H_q at unbounded depth, killed by Tao note §10.4(e). Route B1, forward S-sampling Z_d(y) = e^θ times the live tilted moment of S ∩ I(y), is S-fairness of the live set: already odd generation / J-tao-free-term-is-live-mass. Route B2, walk-live Walsh product: |W_T| ≤ N on |T| ≤ k_0 fixed is e^{O(log d)} = e^{o(d)}; the tail is (1+ρ)^d = e^{Θ(d)} with ρ = tanh(θ/2) ≈ 0.196; two-sided control of the tail is J-tao-cylinder-forms-reparameterization; Vaaler plus van der Corput on the nested-floor phase hits the two-monomial leftover or the Weyl budget cC < 1; Paper B on max T ≤ 4 is §10.4(e). No new sufficient inequality. CLOSE. Not a halt theorem.",
+  "source": "docs/problems/juggler_pressure_direct.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_pressure_direct.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ },
+ {
+  "id": "J-pressure-log-order-certificate",
+  "tag": "REFUTED",
+  "statement": "For C>1, at an optimizing pressure tilt theta=log(p_C*(1-q)/(q*(1-p_C))), 0<q<p_C=(1-1/C)*log2/log3, a positive fixed-logarithmic-order state weight cannot satisfy the eventual pointwise killed drift K_theta h <= (1-q+q*exp(theta))*h, even after replacing one step by any fixed block length. The unavoidable log rate is theta*q_*, while the target is theta*p_C-D(p_C||q)<theta*q_*. At C=19,q=1/2 the unavoidable/target factor is 1.03290217; any finite-order irregular weight would need log-order oscillation >=0.04670362, a necessary condition only. This refutes the uniform certificate class, not the open averaged hypotheses M or P. Both obstruction towers stay above the floor; no fate is excluded. MARGIN AUDIT. The claim is for all C>1 and all 0<q<p_C but was recorded from two instances, (19, 1/2) and (41, 0.55), with the penalty quoted at q=1/2. Both sides vanish as q -> p_C, since theta -> 0 there, so two interior points cannot show the margin's shape. Swept on a 20000-point q grid at C = 2, 5, 19, 41, 100, 10^3, 10^4, 10^6, 10^9, the gap is strictly positive everywhere: THE CONCLUSION IS SAFE and is now swept rather than sampled. The MARGIN is not flat. At C=19 the per-step penalty falls from 1.0329022 at q=1/2 to 1.000004129 as q -> p_C, and at C=10^6 to 1.000000002. More to the point, q=1/2 is not the q that arises: the dossier's own operative value is q_star = 1/2 + mu_k/2, and at k=4 (mu_4 in [0.13,0.17]) that is 0.567 to 0.584, where the penalty is 1.0061494 to 1.0022766 and the necessary log-order oscillation is 0.008845 to 0.003281 rather than the 0.046704 quoted -- weaker by a factor 5 to 14. At k=3 (q_star in [0.611,0.625]) q_star exceeds p_C = 0.59772292 outright, so M_theta,q has no room there at all and the comparison is never reached. Nothing reopens: the route stays closed. What changes is that anyone pricing a revisit from the recorded 3.3% would be working from a margin five to fourteen times more comfortable than the operative one.",
+  "source": "docs/problems/juggler_pressure_direct.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_pressure_direct.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ },
+ {
+  "id": "J-pressure-log-order-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Fix N0>=2 and theta>0. For positive h on n>N0 let K_theta h(n)=exp(theta*1_odd(n))*h(Jn) if Jn>N0, and 0 otherwise. If log h(n)/log log n tends to s, then R(h)=limsup_{n->infinity} K_theta h(n)/h(n) >= max(2^(-s), exp(theta)*(3/2)^s) >= exp(theta*log2/log3). The infimum over all finite logarithmic orders and all such h is exactly exp(theta*log2/log3), attained as a limsup by h(n)=(log n)^(-theta/log3), not asserted as an exact finite-cutoff inequality. Same lower bound per step for every fixed block length. Proof uses exact live E towers b^(2^k)->b and O towers a^(2^k)->a^(3^k), with even b and odd a above any cutoff. More generally finite lower/upper logarithmic orders s_-<=s_+ give log R(h)>=theta*log2/log3-(s_+-s_-)*log2. No regularity beyond the stated orders; arbitrary subpower arithmetic fluctuations are included. Human proof, no new Lean theorem. This is a pointwise-certificate obstruction, not a dyadic live-pressure or no-momentum refutation.",
+  "source": "docs/problems/juggler_pressure_direct.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_pressure_direct.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ }
+]

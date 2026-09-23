@@ -1,0 +1,35 @@
+[
+ {
+  "id": "C-syracuse-fate-nonperiodic-unit",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Every nonempty full positive 3n+1 fate class contains a nonperiodic positive odd unit. Forward iteration supplies an odd unit; its complete fibre has infinitely many unit siblings, and at most one can be periodic since the map is injective on periodic points. This is the written existence argument separated from the formal given-target generation-series criterion. Lean verification and independent review remain outstanding; no coefficient-series divergence is asserted.",
+  "source": "docs/problems/collatz_fibre_mass.md",
+  "lean": "",
+  "tests": [
+   "tests/research/collatz/test_fibre_mass.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "C-syracuse-fixed-depth-integer-fibre-mass-error",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/collatz_fibre_mass.md",
+  "tests": [
+   "tests/research/collatz/test_fibre_mass.py"
+  ],
+  "related_conjectures": [],
+  "statement": "AI-assisted written proof; Lean verification and independent review remain outstanding. For either sign s, a nonnegative periodic unit-supported weight h modulo 3^r bounded by H, a fixed generation depth d>=1 and positive odd unit target m, put D_d=(3/2)^d-1. For m>D_d the actual unit-generation mass satisfies |m*W_(h,d)(m)-L_s^d h(m)|<=D_d/(m-D_d)*L_s^d h(m)<=3^d*H*D_d/(m-D_d). Determinism makes the path to any endpoint unique at that depth. For a strictly positive unit table the homogeneous deficient row therefore persists on an entire sufficiently large odd arithmetic progression with divergent reciprocal mass. The one-generation error and deletion obstruction are separately formalized; this row preserves the higher-depth written scope. No lower bound on the intersection with a prescribed fate class follows.",
+  "lean": ""
+ },
+ {
+  "id": "C-syracuse-geometric-fibre-residue-coverage",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For s in {1,-1}, let S_s(n)=(3n+s)/2^v2(3n+s) on positive odd integers and R_s(n)=4n+s. The fibre of a positive odd target m is empty iff 3 divides m; otherwise it consists exactly of (2^k*m-s)/3 for the admissible parity of k>=1, hence one complete R_s ray. S_s(R_s(n))=S_s(n). For i>j>=0, v3(R_s^i(n)-R_s^j(n))=v3(i-j); the first 3^r siblings cover every residue modulo 3^r exactly once. Shifted heights 3n+s grow by four per sibling. Classical merging mechanism with a signed written derivation; residue coverage alone supplies no harmonic growth. AI-assisted written proof; independent review and Lean verification outstanding.",
+  "source": "docs/problems/collatz_fibre_mass.md",
+  "lean": "",
+  "tests": [
+   "tests/research/collatz/test_fibre_mass.py"
+  ],
+  "related_conjectures": []
+ }
+]

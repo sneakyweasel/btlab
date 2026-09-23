@@ -1,0 +1,29 @@
+[
+ {
+  "id": "J-absorbed-cylinder",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Fix N0 >= 2 and C > 1. For every sufficiently large k there is a dyadic y_k with L(y_k)=k+O(1), d=ceil(C L(y_k))>k+5, such that the single exact-map cylinder O E^(k+4) O^(d-k-5) contains at least y_k/(216 log y_k) odd starts in (y_k,2y_k]. Every start in that cylinder reaches 1 at time k+5. Proof: the E-depth-k inverse tree of 4 retains harmonic mass >=1/12; the fixed OEE production gives >=1/6 of each large leaf's harmonic weight; dyadic pigeonhole on log-support width O(2^k). These are non-bad absorbed cylinders, excluded from live pressure. No bound for surviving mass is proved; analytic human proof, not Lean verified.",
+  "source": "docs/problems/juggler_absorbed_cylinder.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_absorbed_cylinder.py"
+  ],
+  "related_conjectures": [
+   "juggler_unstopped_cylinder_bound",
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ },
+ {
+  "id": "J-unstopped-cylinder-bound",
+  "tag": "REFUTED",
+  "statement": "The unrestricted all-word version of H(C,A) is false for every C>1,A>1: the exact absorbed cylinders in J-absorbed-cylinder have >= y/(216 log y) starts along infinitely many dyadic scales, whereas its upper bound is O(y/(log y)^C)+y/(log y)^A=o(y/log y). The all-prefix version of H_q(C,A) is likewise false for q<1,C>1,A>1, because the entire selected prefix cylinder is already at 1 and has odd next share 1. Restricting H to bad words and H_q to bad prefixes removes this obstruction, not their unproved status. The live-pressure hypothesis is unaffected.",
+  "source": "docs/problems/juggler_absorbed_cylinder.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_absorbed_cylinder.py"
+  ],
+  "related_conjectures": [
+   "juggler_unstopped_cylinder_bound"
+  ]
+ }
+]

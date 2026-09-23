@@ -75,6 +75,10 @@ python tools/formalpedia.py status
 python tools/formalpedia.py build --check
 ```
 
+`claim` returns `claim_location`, the canonical topic path and JSON pointer.
+Edit that row and regenerate the combined ledger with
+`python tools/render_theorem_ledger.py`. See [claim storage](../claims/README.md).
+
 Search, show, claim, impact and status read the current working tree without
 rewriting artifacts. Search combines names, complete source statements,
 docstrings and explicitly linked ledger claims. Use namespace, exact module,

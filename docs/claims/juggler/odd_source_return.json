@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-two-episode-source-descent",
+  "tag": "REFUTED",
+  "statement": "On an AboveAnchor prefix, successive odd-run starts x_i satisfy x_{i+2} < x_i. False. Sources are maximal odd-run starts, so NextOddSource is the existing Q-landing when Q is odd. The 37-chain is 37, 9317, 2233 with 2233 > 37; 3375 is interior to the first run. The leftover 365-chain 365, 763, 1749, 4447, 12707 is strictly increasing. A cube-odd triple also fails: n=321, 225539 -> 5958969 -> 520655. This is not a new source map, not a Z5 family, and not a halt theorem.",
+  "source": "docs/problems/juggler_odd_source_return.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_odd_source_return.py"
+  ],
+  "related_conjectures": []
+ }
+]

@@ -1,0 +1,14 @@
+[
+ {
+  "id": "J-paper-b-lemma-5-1-minimal-certificates",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper B Lemma 5.1: the contracting words of length at most five with no proper nonempty contracting prefix are exactly E, OE, OOEE, OOOEE, and OOEOE. Their formal cylinder measures sum to 1/2+1/4+1/16+1/32+1/32=7/8 (and the four-step and 27/32 subfamily sums likewise). Lean: Problems.Juggler.PaperBCertificates.lemma51 and certificate_measures_sum. This is the combinatorial classification only; it does not count starts, bound exponential sums, or prove Theorem 5.4. The two subfamily sums are separate declarations: four_step_measures_sum is 1/2+1/4+1/16 = 13/16 and twenty_seven_thirty_two_sum is 13/16+1/32 = 27/32.",
+  "source": "docs/problems/juggler_paper_b_certificates.md",
+  "lean": "Problems/Juggler/PaperBCertificates.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_manuscript_self_audit.py"
+  ],
+  "related_conjectures": []
+ }
+]

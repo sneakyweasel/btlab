@@ -1,0 +1,27 @@
+[
+ {
+  "id": "C-fibre-cross-sign-compensation-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For the two positive signed odd-return maps, S_-(2n+1)=S_+(n), and S_+(2n-1)=S_-(n) at n>=1. Their complete one-generation unit-source coefficients have sum at least 9/7 at every unit target. At every a=4 mod 27 the complete depth-two coefficients are K_2^+(a)=12076/29127 and K_2^-(a)=7988/29127; their sum is below one. Let M_2^s(a) be the actual reciprocal mass of positive odd sources prime to three at exactly two fixed-sign returns. For every odd a>=2, M_2^s(a)<=K_2^s(a)/(a-5/4); this mass is finite and its ordinary real reciprocal series converges. For all t>=0 and a=31+54t, a*(M_2^+(a)+M_2^-(a))<3/4. Unique inverse-exponent pairs enumerate actual ancestors without multiplicity, and the complete infinite sums are kernel-checked. Iterating the paired one-step operator introduces mixed-sign paths. No summability over all depths, improved Juggler pressure rate or termination follows. Independent review and advisory statement coverage pending.",
+  "source": "docs/problems/collatz_fibre_sign_coupling.md",
+  "lean": "formal/Problems/Collatz/FibreSignCoupling.lean",
+  "decl": [
+   "Problems.Collatz.FibreSignCoupling.oddReturn_minus_two_mul_add_one",
+   "Problems.Collatz.FibreSignCoupling.oddReturn_plus_two_mul_sub_one",
+   "Problems.Collatz.FibreSignCoupling.paired_unit_lower",
+   "Problems.Collatz.FibreSignCoupling.paired_depth_two_deficit",
+   "Problems.Collatz.FibreSignCoupling.two_step_reciprocal_upper",
+   "Problems.Collatz.FibreSignCoupling.twoStepMass",
+   "Problems.Collatz.FibreSignCoupling.twoStepMass_le",
+   "Problems.Collatz.FibreSignCoupling.twoStepMass_lt_top",
+   "Problems.Collatz.FibreSignCoupling.two_step_reciprocals_summable",
+   "Problems.Collatz.FibreSignCoupling.paired_twoStepMass_lt",
+   "Problems.Collatz.FibreSignCoupling.paired_twoStepMass_progression"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/collatz/test_fibre_sign_coupling.py"
+  ],
+  "related_conjectures": []
+ }
+]

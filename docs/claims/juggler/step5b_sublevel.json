@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-step5b-interval-counts-were-float-noise",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "source": "docs/problems/juggler_step5b_sublevel.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_step5b_sublevel.py"
+  ],
+  "related_conjectures": [],
+  "statement": "Step 5b's published interval counts were floating-point noise, and the corrected measurement is stronger than the one it replaces. step5b_sublevel._delta returned (d, dp, dpp) as direct differences of 1.5-powers of two nearby large numbers, carrying 3.4e-7 relative error on BOTH derivatives at P = 1e10, the top of P_LIST. Those feed f_sm_derivs and hence the anchor term of lambda_interp, so Lambda was a staircase: inside a single 200000-point grid cell the predicate |Lambda| <= V flipped 1845 times before the fix and once after, the step height falling from 1.8e-4 V to 4.2e-9 V. The consequences in the committed payload, reproduced bit-exactly from both endpoints: verdict.max_omega_intervals 3 -> 1; omega_intervals 3 -> 1 at P = 1e10 centre_cancel_w0 k=2 and 2 -> 1 at centre_cancel_w k=1; count_ok False -> True on the first of those, so the payload had recorded a cap violation (3 intervals against interval_cap 2) that never happened; max_lambda_phi_resid up to 3.45x too large, because it was measuring derivative noise rather than interpolation error. The verdict PROMOTE, the c7 block, every T count and the whole phi branch are unchanged, the phi branch because it never calls _delta. MARGIN: the smallest _delta-carrying margin in the module is 0.0707 perturbation units -- the per-grid-step drift of |Lambda| at the Omega_V boundary is 1.7e-5 V against a pre-fix perturbation of 2.4e-4 V, worth fourteen grid steps of genuine signal. Post-fix the perturbation is about 1e-16 relative, some eight orders inside that margin, so the corrected count of 1 is robust where the 3 was not. A third row sat in the danger band at margin 0.100 and did not flip, which is luck rather than safety. DOWNSTREAM: nothing else depends on it. No other ledger row, no Lean declaration and none of the three manuscripts carries a constant from this module; step5b_p0 imports only C7, which is _delta-free. The stale value reached exactly two documents, both corrected here, where it was printed as '#Omega_V <= 3' -- a bound that stayed true while being presented as the measurement. Not a bound on any Juggler orbit and not a change to Lemma 3.9; the branch conclusion that interval counts are O_E(1) and do not track N is unchanged and slightly strengthened."
+ }
+]

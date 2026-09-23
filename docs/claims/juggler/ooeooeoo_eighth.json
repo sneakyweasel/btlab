@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-ooeooeoo-eighth-scan",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "For every odd n < 200001 whose first cube-odd landing x follows OOEOOEOO, x^3 >= n^8. This includes odd T(x). The even-T cases begin at n=4309. The ratio x^3/n^8 tracks n^{139/256} from the upper envelope x^{256} <= n^{729} and recedes from the eighth boundary as n grows. Full-word LowerPowerBound does not force the comparison below about 73-bit n. This is not a lower-cell theorem, not a defect restriction, and not a halt theorem.",
+  "source": "docs/problems/juggler_ooeooeoo_eighth.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_ooeooeoo_eighth.py"
+  ],
+  "related_conjectures": []
+ }
+]

@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-two-block-persistent-expanding",
+  "tag": "REFUTED",
+  "statement": "Two consecutive persistent expanding Juggler residual blocks are impossible. Counterexample: 365 follows OOE to 763 and 763 follows OOE to 1749; both steps are PersistentExpandingResidual. An expanding O^a E^b block has a≥2, and a persistent residual endpoint is odd-to-odd so the next residual also has a≥2; that state is compatible with another expanding block. The n≤80 contracting sequels at 37 and 69 are a small-window artifact.",
+  "source": "docs/problems/juggler_two_block_residual.md",
+  "lean": "Problems/Juggler/Residuals.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_two_block_residual.py"
+  ],
+  "related_conjectures": []
+ }
+]

@@ -9,8 +9,11 @@ from collections import Counter
 import json
 from pathlib import Path
 import re
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'src'))
+from research.claims import load_claims
 POLICY = ROOT / 'data/lab_scope.json'
 SCOPES = ('active', 'archive', 'all')
 
@@ -24,12 +27,10 @@ def policy(root: Path = ROOT) -> dict:
     capsule = root / 'attacks/juggler/index.json'
     if capsule.is_file():
         texts.append(capsule.read_text(encoding='utf-8'))
-    ledger = root / 'docs/theory/theorem_ledger.json'
-    if ledger.is_file():
-        for row in json.loads(ledger.read_text(encoding='utf-8')):
-            lean = str(row.get('lean') or '')
-            if str(row.get('id', '')).startswith('J-') or 'Problems/Collatz/' in lean or 'Problems/Juggler/' in lean:
-                texts.append(json.dumps(row, ensure_ascii=False))
+    for row in load_claims(root, required=False).entries:
+        lean = str(row.get('lean') or '')
+        if str(row.get('id', '')).startswith('J-') or 'Problems/Collatz/' in lean or 'Problems/Juggler/' in lean:
+            texts.append(json.dumps(row, ensure_ascii=False))
     # Associations preserve dossiers whose names don't contain the application's name.
     rules['_active_documents'] = sorted({p for text in texts for p in
         re.findall(r'docs/(?:problems|theory)/[A-Za-z0-9_./-]+\.md', text)})
@@ -40,9 +41,8 @@ def active_lean_modules(index: dict, root: Path | None = None) -> set[str]:
     modules = index['modules']
     roots = {name for name in modules if name.startswith(('Problems.Juggler', 'Problems.Collatz.'))}
     roots.update(set(modules) & {'Core', 'Representation', 'Operators', 'BTCalculus', 'Problems'})
-    ledger = (root or ROOT) / 'docs/theory/theorem_ledger.json'
-    if roots and ledger.is_file():
-        for row in json.loads(ledger.read_text(encoding='utf-8')):
+    if roots:
+        for row in load_claims(root or ROOT, required=False).entries:
             name = str(row.get('lean') or '').removeprefix('formal/').removesuffix('.lean').replace('/', '.')
             if name in modules:
                 roots.add(name)

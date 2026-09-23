@@ -1,0 +1,15 @@
+[
+ {
+  "id": "J-cycle-near-tight-monochrome",
+  "tag": "REFUTED",
+  "statement": "A hypothetical Juggler cycle at a record near-convergent length (L=19, 84, 569, 1054, …) is forced into an almost-monochrome tower, because cycle near-tightness (return + tiny θ=1-2^L/3^o) is a stricter form of open-orbit near-tightness (q→0). False. On a return, 1+q=n^{3^o-2^L} (at L=19 this is n^{7153}-1). Hamming to monochrome at o_min is 7, 31, 210, 389 along those lengths. Realized OOE expands and never returns; the mixed OOE at 180370579261640036336071806107777 has 0<q<10^{-30} against cycle-required q=y-1. R=1 on a return is image_eq_start_defectRatio. NearTightScale does not exclude a leftover length.",
+  "source": "docs/problems/juggler_cycle_near_tight.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_near_tight.py"
+  ],
+  "related_conjectures": [
+   "juggler_cycle_near_tight_monochrome"
+  ]
+ }
+]

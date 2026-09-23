@@ -1,0 +1,15 @@
+[
+ {
+  "id": "C-R-direct",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Direct residue formula for R",
+  "source": "docs/collatz_dual_coding.md",
+  "lean": "Problems/Collatz/Arithmetic.lean",
+  "decl": "direct_realizer_residue",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/collatz/test_dual_code.py"
+  ],
+  "related_conjectures": []
+ }
+]

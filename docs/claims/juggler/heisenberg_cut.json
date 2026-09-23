@@ -1,0 +1,15 @@
+[
+ {
+  "id": "J-heisenberg-vertical-riemann",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Riemann regularity of the Heisenberg vertical, and the precise fourth-layer falsifier at observable regularity. On X = H_3(R)/H_3(Z) the Mal'cev z-coordinate chi of the fundamental domain [0,1)^3 is bounded and discontinuous only on the faces (Haar-null), hence Riemann integrable. The nil-lift identity (row J-tower-heisenberg-coordinate) says n |-> {(3/2) m^{3/4} floor(m^{3/2})} equals chi(g(n) Gamma) for g(n) = exp(A e_12 + B e_23), A = (3/2) m^{3/4}, B = m^{3/2}, m = floor(n^{3/2}). The continuous sandwich already used for the hug observable (Paper A Prop 5.5) therefore yields: Haar equidistribution of g(n) Gamma implies equidistribution of the vertical provided the orbit does not charge the face {y = 0}, i.e. {m^{3/2}} = 0. At observable regularity the fourth ergodic layer is exactly cut-charging of {m^{3/2}} - not a new structural obstruction, and not characteristic-factor self-similarity (that recorded route-falsifier stays external). Exact hits occur when m is a square (B = k^3); they are a thin set (order P^{1/4}) and do not charge Haar. Probe (dyadic (10^6, 2*10^6], 5*10^5 odd starts): cut-mass ratios P(dist({B}, Z) < eps)/(2 eps) run 1.081 down to 1.005 along eps in {0.001,...,0.1}, all inside the Poisson cap (no atom); 4 exact square landings; 16-bin TV of the vertical law on {dist < 0.02} vs the complement is 0.012 vs allowance 0.084 (fiber does not jump; abelian control 0.008). Not an equidistribution theorem, not a K3 bound, not a halt theorem; Conjectures V/HH and the BB/GG/JJ PARK are untouched; Paper B frozen.",
+  "source": "docs/problems/juggler_heisenberg_cut.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_heisenberg_cut.py"
+  ],
+  "related_conjectures": [
+   "juggler_tower_rate_free_equidistribution"
+  ]
+ }
+]

@@ -1,6 +1,6 @@
 # Claim dependency graphs
 
-The canonical [theorem ledger](../theory/theorem_ledger.json) can record which
+The canonical [topic claims](../claims/README.md) can record which
 claims a written proof uses. This complements Formalpedia's module/import graph
 and its [compiled declaration graph](lean_semantics.md). It introduces no new
 evidence label and does not certify that a proof is correct.

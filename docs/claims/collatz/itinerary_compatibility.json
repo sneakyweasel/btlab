@@ -1,0 +1,13 @@
+[
+ {
+  "id": "C-affine-formula",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "T^m(n)=(3^m n+C)/2^K",
+  "source": "docs/collatz_itinerary_compatibility.md",
+  "lean": "Problems/Collatz/",
+  "tests": [
+   "tests/research/collatz/test_affine_formula.py"
+  ],
+  "related_conjectures": []
+ }
+]

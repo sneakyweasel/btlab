@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-episode-source-descent",
+  "tag": "REFUTED",
+  "statement": "Each completed odd cube-band expansion episode has a strictly smaller next episode source. False. On n=37 the cube-odd sources are 3375, 9317, 2233. The first persistent-odd episode grows the source; later sources oscillate. This is not whole-orbit rank, not PredClosure, and not a halt theorem.",
+  "source": "docs/problems/juggler_source_relative_odd.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_source_relative_odd.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-source-relative-odd-reset",
+  "tag": "REFUTED",
+  "statement": "If n^2 ≤ x < n^3 is odd and T(x) stays odd, the first later even state e satisfies e < x^2 and T(e) < x. False. Two odd steps only give e^4 ≤ x^9, and 9 > 8. For n=37 the cube-odd source x=3375 follows OO with e=86818724 ≥ 3375^2 and T(e)=9317 ≥ 3375. The tau=1 source-relative reset T^2(x) < x is unchanged. This is not a new integer-power census, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_source_relative_odd.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_source_relative_odd.py"
+  ],
+  "related_conjectures": []
+ }
+]

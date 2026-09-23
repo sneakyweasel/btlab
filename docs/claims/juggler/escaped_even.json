@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-ce-escaped-even-oe-preimage",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If n ≥ 2 follows OOEOOEOOEOE, then T_OOEOOEOOEOE(n) < n^2 because w^{2048} ≤ n^{2187} forbids n^2 ≤ w (4096 > 2187). A CE that follows OOEOOEOOE follows OOEOOEOOEO. On MinimalNonTerm an even OE landing after a third OOE is descent. This is not a length-11 cycle census, not a proof that every escaped even drops, and not a halt theorem.",
+  "source": "docs/problems/juggler_escaped_even.md",
+  "lean": "Problems/Juggler/Escape.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_escaped_even.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-escaped-even-always-drops",
+  "tag": "REFUTED",
+  "statement": "After a third OOE with even T(y) ≥ n^2, the following OE landing always drops below n. False. 429 follows OOEOOEOOEOE to even 646 and then E to 25, which is the even-landing trap. 1517 follows OOEOOEOOEOE to odd 2493 in [1517, 1517^2). The even intermediate of 1517 is 6217088 ≥ 1517^2. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_escaped_even.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_escaped_even.py"
+  ],
+  "related_conjectures": []
+ }
+]

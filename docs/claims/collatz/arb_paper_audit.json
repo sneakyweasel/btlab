@@ -1,0 +1,24 @@
+[
+ {
+  "id": "C-paper-d-arb-exclusion-audit",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "At the assumed positive 3n-1 descent floor 2^51, Arb certifies all 62 Rhin ceilings and every admissible-length exclusion through 61 minima. An exact floor-sum enumeration of a provably widened rational rotation window covers all lengths below the m=62 ceiling. Every exclusion has a negative chaining or rational valley-threshold witness. All counts agree with the recorded table; at m=62 the sole length 83130157078217 survives all 62 optimized valley branches among 120 admissible lengths. The external Rhin theorem and descent campaign are inputs, not re-proved; no exclusion through 62 or new Lean certificate is claimed.",
+  "source": "docs/research/arb_paper_audit.md",
+  "lean": "",
+  "tests": [
+   "tests/tools/test_arb_paper_audit.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "C-paper-e-rational-exponent-423-500",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Arb certifies 50*log2(5059/5000)>423/500, independently backed by the exact integer check 5059^25000>2^423*5000^25000. With Paper E Lemmas 5.3-5.4 and the same strict-growth interpolation argument as Theorem 5.1, every positive 3n-1 target a prime to three therefore satisfies X^423<=N(a,X)^500<=(pi^-_a(X))^500 for all sufficiently large integer X. This recorded written consequence uses the existing 177147-row growth certificate; the Lean exponent theorem remains 21/25. No new onset bound, positive density, reciprocal-mass divergence or termination result follows.",
+  "source": "docs/research/arb_paper_audit.md",
+  "lean": "",
+  "tests": [
+   "tests/tools/test_arb_paper_audit.py"
+  ],
+  "related_conjectures": []
+ }
+]

@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-modified-juggler-mixed-pair-descent",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For unrestricted integer branches O(n)=floor(n^(3/2)) and E(n)=floor(n^(2/3)) on n>=0, E(O(n)) equals n at perfect squares and n-1 otherwise; O(E(n))<=n with equality exactly at perfect cubes. For the parity-selected modified Juggler map A095396, every actual OE pair has F(F(n))=n-1, and every actual EO pair from n>0 has F(F(n))<n, since parity excludes the respective equality cases. There is no positive two-cycle with two distinct elements. Written proof and exact regressions through n=10000 and at large perfect-power boundaries; no Lean coverage, originality claim, longer-cycle exclusion, or termination theorem.",
+  "source": "docs/problems/juggler_modified_juggler_descent.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_modified_juggler_descent.py"
+  ],
+  "related_conjectures": []
+ }
+]

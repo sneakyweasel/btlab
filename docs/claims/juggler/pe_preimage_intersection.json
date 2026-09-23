@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-pe-preimage-intersection",
+  "tag": "REFUTED",
+  "statement": "A PE-produced odd landing makes I_y ∩ J(n) empty as a new history-sensitive Diophantine obstruction, or all such odd one-step preimages are empty for n ≥ N0. False. The PE word ends in E, so y = isqrt(z) and J(n) = {z} sits in [y^2, (y+1)^2), while I_y sits at scale y^{2/3}. Their emptiness is even_preimage versus odd_preimage, not a PE envelope. Leftover Type I is the ambient cube gap. Type II OOE landings exist (199). Type III compatible odd predecessors do not occur for PE resets. This is not PredClosure-from-1, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_pe_preimage_intersection.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_pe_preimage_intersection.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-pe-preimage-intersection-shape",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "On leftover PE landings of 365, 501, 1517, 6187 the predecessor z is even, occupies the square one-step preimage of the odd landing y, and does not lie in the odd one-step-preimage interval I_y. Those landings are Type I (no odd predecessor). Among OOE odd landings with start in 3..4000 there is a Type II family (199 maps to 385 with odd predecessor 53; also 483, 979, ...) and no Type III. 69 lands at 117 with even cube 24 in I_y; 89 lands at 291 with even cube 44. This is not PredClosure, not a residue automaton, and not a halt theorem.",
+  "source": "docs/problems/juggler_pe_preimage_intersection.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_pe_preimage_intersection.py"
+  ],
+  "related_conjectures": []
+ }
+]

@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-normalized-relative-slack",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For a realized Juggler itinerary, the relative slack 1+q = n^{3^{#O(w)}} / T_w(n)^{2^{|w|}} multiplies under concatenation: 1+q_{uv} = (1+q_u)^{3^{#O(v)}} (1+q_v)^{2^{|u|}}. An even letter multiplies by (1+η)^{2^k}; an odd letter multiplies by (1+q)^3 (1+η)^{2^k}. Running 1+q does not decrease under a realized extension. The surplus ratio R=Δ/S satisfies R≤1 iff T_w(n)≥n whenever S>0, so R is the endpoint comparison in other coordinates. A realized return T_w(n)=n uses the whole formal surplus.",
+  "source": "docs/problems/juggler_normalized_defect.md",
+  "lean": "Problems/Juggler/NormalizedDefect.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_normalized_defect.py"
+  ],
+  "related_conjectures": []
+ }
+]

@@ -1,0 +1,25 @@
+[
+ {
+  "id": "C-negative-generation-polynomial-affine-loss",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For S(n)=(3n-1)/2^v2(3n-1) on positive odd integers, let a be nonperiodic and K_d^-=L_-^d 1_units the complete homogeneous residue coefficient. Every actual depth-d path to a has distinct odd source states x_j>=5; its affine product product_j(1-1/(3*x_j)) has sixth power at least 1/(d+1). The complete coefficient equals the sum of homogeneous coefficients over actual paths. Consequently the actual depth-d unit-ancestor reciprocal mass is at least K_d^-(a)/(a*(d+1)^(1/6)). If sum_d K_d^-(a)/(d+1)^(1/6) is not summable, the ordinary natural-number reciprocal indicator series of the actual positive odd unit ancestors of a is not summable. The divergence premise remains OPEN, and the sixth-root allowance is not claimed optimal. Periodic targets are excluded. Kernel-checked; independent review and advisory statement coverage remain pending. No Juggler pressure estimate, termination theorem or infinite escape follows.",
+  "source": "docs/theory/collatz_negative_generation_mass_lean_note.md",
+  "lean": "Problems/Collatz/FibreDistortion.lean",
+  "lean_trust": "kernel",
+  "decl": [
+   "Problems.Collatz.FibreDistortion.kernel",
+   "Problems.Collatz.FibreDistortion.normalizedKernel",
+   "Problems.Collatz.FibreDistortion.distinct_odd_loss",
+   "Problems.Collatz.FibreDistortion.pathLoss_pow_lower",
+   "Problems.Collatz.FibreDistortion.pathCoefficient_le",
+   "Problems.Collatz.FibreDistortion.kernel_eq_path_sum",
+   "Problems.Collatz.FibreDistortion.kernel_mass_le",
+   "Problems.Collatz.FibreDistortion.ancestor_reciprocals_not_summable"
+  ],
+  "tests": [
+   "tests/research/collatz/test_fibre_distortion.py",
+   "tests/research/collatz/test_fibre_mass.py"
+  ],
+  "related_conjectures": []
+ }
+]

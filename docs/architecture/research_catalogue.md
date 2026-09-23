@@ -1,7 +1,7 @@
 # Research discovery and output provenance
 
 The research catalogue derives its records from canonical Juggler and Collatz
-dossiers, the claim ledger, current source paths, existing Juggler aliases, and
+dossiers, [canonical topic claims](../claims/README.md), current source paths, existing Juggler aliases, and
 negative knowledge. It reads the working tree and never rewrites an index.
 The existing Juggler branch CLI remains available for probe scaffolding and
 its more detailed source inventory, including support modules without dossiers.
@@ -23,6 +23,9 @@ Juggler probe aliases resolve to their canonical dossiers. An ambiguous short
 name returns candidates; a missing decision stays null. A decision is copied
 from the dossier's Decision section, or an explicitly labelled introductory
 decision, with its source line and bounded excerpt.
+
+Claim records include `claim_location` (topic path and JSON pointer) so an agent
+can edit the owning source directly. Moving a row leaves its ID unchanged.
 
 Context sections are `overview`, `claims`, `sources`, `data`, `obstructions`,
 `questions`, `commands`, and `papers`. The overview supplies section counts.

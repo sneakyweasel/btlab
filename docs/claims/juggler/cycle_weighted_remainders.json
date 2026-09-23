@@ -1,0 +1,25 @@
+[
+ {
+  "id": "J-cycle-integer-weight-refinements",
+  "statement": "For an actual primitive cubic-band cycle with m>=3,L>2,e<o, the positive integer gaps ell_i=c_(i+1)-c_i and ell_(L-1)=m^3-M obey B_i ell_sigma(i)=N_i ell_i-r_i on every rank edge. Common corrections are adjacent initialized square-remainder differences; the algebraic cut uses r_cut=(s^2+sm^2+m^4)R_s-R_h, and the wrap uses R_m-R_M. The explicit downstream weights give F=sum W_i r_i=(P-1)ell_0, with P=product(N_i/B_i). All N_i are odd and exactly two B_i are odd; therefore productN-productB is odd, P!=1, |F|>=ell_0/productB>=2/productB, and the denominator-cleared force has 2-adic valuation nu2(ell_0). The compulsory parity part is positive, but the remaining incidence-weighted carries have no proved sign; the exact carry boxes and level-set formula do not supply an independent contradiction. Every actual OE passage ending at odd y>1 has delta_E-delta_O>eta(y^2)-eta(y^2+1)>0, eta(u)=loglog(u+1)-loglog(u). At the cyclic cut, the logarithmic gap exceeds the wrap gap by more than C=eta(m^2)-eta(M)>0 (and C>1/(10m^2 log m) for m>=64). The resulting positive entropy/variance bound yields only Lambda>sqrt(L/(2(L-1)))C, weaker than the existing compulsory minimum loss. These are AI-assisted written integer refinements, not an independently reviewed or Lean-verified proof, a sign determination for F, a numerical height/period improvement, or a no-cycle theorem. The carry-level continuation proves that nested carry levels inside the actual interval cap envelopes are exactly equivalent to the independent integer boxes and attain their same sharp linear minimum. Free ordered genuine E cells realize every permitted E carry vector; no O predecessor, shared cycle or unchanged endogenous weight is supplied by that realization. The exact normalized OE contrast adds no restriction to its initialized local carry boxes. Spatial weight signs are equivalent to explicit products over terminal return arcs; both terminal lengths tend to infinity along any hypothetical sequence of actual cubic cycles with m->infinity, without assuming bounded L Lambda. No paired-error estimate sufficient to sign the spatial weights or bound the carry flux follows from that continuation. The signed-return audit derives associative affine composition on actual image pairs, with an additional explicitly signed calibration for full-word ideal-power normalization. Shared cycle states cancel to give absolute paired log-log discrepancy at most Lambda uniformly in return depth, with compulsory parity-charge offsets. This re-expresses the established gap oscillation and charge budgets; relative control still has allowance Lambda/gap. The invariant nonnegative logarithmic endpoint-loss cone and normalized moving-pair secants reduce to existing closure when both P/mixed/Q boundaries are retained. No raw-product sign, stronger actual-cycle restriction or independently justified next mechanism follows.",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_cycle_weighted_remainders.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_weighted_remainders.py",
+   "tests/integration/test_docs_links.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-real-cell-weight-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every real m>1 there are coprime e,L with e<o=L-e<2e and strictly ordered real states c0=m,...,c(L-1)<m^3, threshold cut c(o-1)<m^2<c(o), rank rotation sigma(i)=i+e modL, and all strict initialized real unit cells c_sigma^2<c_i^(3 or 1)<(c_sigma+1)^2, with constant positive log-log defects. Arbitrarily small perturbations keeping c0 fixed realize every zero-sum defect direction. Thus every nonconstant fixed centered defect weight has both signs, as does any continuous weighted adjacent-defect sum on the two common paths whose weights are nonzero at the uniform model. This is a real-cell method obstruction, not an integer floor cycle or a counterexample retaining odd spacing, parity, DC/LR height strips or full guarded returns. It does not transfer unchanged to raw square-remainder weights. No new actual cycle bound. AI-assisted written proof cross-checked by AI, not human review or Lean.",
+  "source": "docs/problems/juggler_cycle_weighted_remainders.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_weighted_remainders.py"
+  ],
+  "related_conjectures": []
+ }
+]

@@ -1,0 +1,47 @@
+[
+ {
+  "id": "J-above-anchor",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "AboveAnchor(n,w) means n follows w and every T^i(n) for i ≤ |w| is at least n. CycleMin(n,w) implies AboveAnchor(n,w). MinimalNonTerm(n) implies AboveAnchor(n,w) for every realized finite prefix w. A realized image T_w(n) < n is FiniteProgress. If the image is even and below n^2, one more even letter is FiniteProgress (the k=1 case of T(x) < n^k when x is even and x < n^{2k}). An AboveAnchor prefix plus ReturnBelow at the image is FiniteProgress. This is not cycle closure, not a no-cycle theorem, and not a halt theorem.",
+  "source": "docs/problems/juggler_minimum_relative.md",
+  "lean": "Problems/Juggler/MinimumRelative.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_minimum_relative.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-envelope-lt-pow",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If n ≥ 2, A > 0, x^A ≤ n^B, and B < k·A, then x < n^k. EnvelopeState n x packages the free inequality x^A ≤ n^B, with even (A,B)→(2A,B) and odd (A,B)→(2A,3B). PowerBound is the special case A=2^|w|, B=3^{oddCount w}. A realized itinerary with 3^{oddCount w} < k·2^{|w|} therefore has T_w(n) < n^k. power_bound_contracts is the k=1 case. Escape square and cube cells are k=2 and k=3 instances. The leftover itinerary OOEOOEOOEOEOO has the cube gap 3^9 < 3·2^13 and not the square gap 3^9 < 2·2^13. This is not a halt theorem and not a cycle-exclusion theorem.",
+  "source": "docs/problems/juggler_minimum_relative.md",
+  "lean": "Problems/Juggler/Envelope.lean",
+  "decl": [
+   "power_bound_lt_pow",
+   "envelope_lt_pow",
+   "PowerBound",
+   "EnvelopeState",
+   "EnvelopeState.even",
+   "EnvelopeState.odd",
+   "power_bound_contracts"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_minimum_relative.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-no-cycle-no-bounded-nonterm",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If every CycleItinerary at m ≥ 2 is impossible, then any n ≥ 2 that does not reach 1 escapes to infinity. Bounded nontermination is eventual cycling, and a repeat of period at least 1 is a CycleItinerary at the repeated state. This does not prove that every cycle is impossible, does not prove that escape is impossible, and is not a halt theorem.",
+  "source": "docs/problems/juggler_minimum_relative.md",
+  "lean": "Problems/Juggler/Escape.lean",
+  "decl": "no_nontrivial_cycle_no_bounded_nonterm",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_minimum_relative.py"
+  ],
+  "related_conjectures": []
+ }
+]

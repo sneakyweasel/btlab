@@ -1,0 +1,21 @@
+[
+ {
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/theory/fourier_box_recurrence_note.md",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": [],
+  "id": "J-paper-e-theorem41-unconditional",
+  "lean": "Problems/Juggler/PaperERecurrence.lean",
+  "statement": "Kernel-checked unconditional Paper E Theorem 4.1; advisory statement coverage pending. For natural a,b,M>0 with 2^(a+b)<3^a, infinitely many distinct odd Juggler starts n above every prescribed bound have actual itinerary O^a E^b, stay at least n during the prefix, end strictly above n, and have both endpoints congruent to 1 modulo 2M. The periodic-word code denominator is exactly (3^a-2^(a+b))/gcd(3^a-2^a,2^b-1), and these denominators are unbounded at fixed b>0. The simultaneous ReturnBox is proved recurrent for all natural a,b and M>0: exponents 3^a/2^(j+1) are distinct positive nonintegers, and the exact scalings and box bounds are verified, including M=1. The theorem applies the existing floor construction to this proved recurrence; no BoxRecurrence, exponential-sum, or equidistribution hypothesis remains. No actual cycle, common start at all precisions, integer-code realization, or termination theorem follows.",
+  "decl": [
+   "power_exponent_noninteger",
+   "power_exponent_injective",
+   "box_recurrence",
+   "theorem41"
+  ]
+ }
+]

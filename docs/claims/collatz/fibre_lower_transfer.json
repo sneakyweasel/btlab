@@ -1,0 +1,24 @@
+[
+ {
+  "id": "C-fibre-local-lower-transfer",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For either signed accelerated Collatz map, every positive odd unit root a has a genuine one-step predecessor m in each prescribed class modulo 3^r, with halving exponent at most 2*3^r. The same m satisfies q_r*C_d(m)<=C_(d+1)(a) at every depth, where q_r=3/2^(2*3^r)>0 and C is the complete all-source coefficient. Thus any coefficient-sum lower bound valid uniformly on that class transfers to all positive odd unit roots for the same finite depth set shifted by one, at cost q_r. For a fixed unit class with r>=1, coefficient-series divergence at every nonperiodic positive odd integer in that class is equivalent to divergence at all nonperiodic positive odd unit roots. No local or global lower-count or divergence premise is proved. No transfer between signs, Juggler pressure, termination or infinite escape follows. Kernel-checked; independent review and advisory statement coverage pending.",
+  "source": "docs/problems/collatz_fibre_lower_transfer.md",
+  "lean": "formal/Problems/Collatz/FibreLowerTransfer.lean",
+  "lean_trust": "kernel",
+  "decl": [
+   "Problems.Collatz.FibreLowerTransfer.stepCost",
+   "Problems.Collatz.FibreLowerTransfer.stepCost_pos",
+   "Problems.Collatz.FibreLowerTransfer.exists_predecessor_in_residue",
+   "Problems.Collatz.FibreLowerTransfer.coarse_branch_lower",
+   "Problems.Collatz.FibreLowerTransfer.exists_coarse_lower_transport",
+   "Problems.Collatz.FibreLowerTransfer.block_lower_transport",
+   "Problems.Collatz.FibreLowerTransfer.nonsummable_of_residue",
+   "Problems.Collatz.FibreLowerTransfer.nonsummable_on_residue_iff"
+  ],
+  "tests": [
+   "tests/research/collatz/test_fibre_lower_transfer.py"
+  ],
+  "related_conjectures": []
+ }
+]

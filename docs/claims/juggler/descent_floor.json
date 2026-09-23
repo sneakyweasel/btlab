@@ -1,0 +1,46 @@
+[
+ {
+  "id": "J-cycle-period-fifty-thousand",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "At the verified descent floor N_0 = 26254995 the length-only parity 6/5 table (Paper A Theorem 4.6 architecture) excludes every cycle length L ≤ 50507: any nontrivial Juggler cycle has period at least 50508. First survivor L = 50508 with n_max^par = 162848325; 19 parity leftovers through L = 2·10^5 (run-packing leaves 11 at the same cutoff). SHA-256 of the parity length list is d5946efdfac95c715ea46c81979a0eeaf40ad8a1dc893d161bab84ffa7f2afd9. Same inequality as J-cycle-parity-finance-instance evaluated at the larger certified floor J-residual-floor-twenty-six-million; the published Paper A instance remains N_0 = 10^6 with cutoff 25780. Not a halt theorem and not a no-cycle-of-any-length theorem.",
+  "source": "docs/problems/juggler_descent_floor.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_floor_sensitivity.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-residual-floor-one-hundred-sixty-two-million",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Every integer 2 ≤ n ≤ 162849448 reaches 1 under the Juggler map by first-passage descent induction (verify_floor_certified). Extension segment from n_from = 26254996: 68297226 odd starts walked with exact integer isqrt over 547 contiguous chunk records, zero step-cap, bit-cap, or other failures at the 512·10^6-bit cap; maximum first passage 433 steps at seed 78641579; largest intermediate 463362780 bits at seed 92502777; the chunk [56254997, 56504996] contains the campaign's hardest orbit (seed 56261531, peak 351395163 bits). Base segment 2..26254995 is J-residual-floor-twenty-six-million. Certificate data/research/juggler/cycle_finance/floor_verify/N162849448/certificate.json (SHA-256 of chunks 35d9755ce52a225a161b009d0f3674b24a5d0add16035f09ea83cf3880414ae4). The floor exceeds n_max^par(50508) = 162848325, so the parity table kills the F2 cluster {50508, 101016, 151524} outright. Printed as part of Corollary 5.10 of Paper A (docs/theory/juggler_finite_dynamics_note.md). This is not a halt theorem and not a no-cycle-of-any-length theorem.",
+  "source": "docs/problems/juggler_descent_floor.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_floor_sensitivity.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-residual-floor-three-hundred-fifty-million",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Every integer 2 ≤ n ≤ 350000000 reaches 1 under the Juggler map by first-passage descent induction (verify_floor_certified). Extension segment from n_from = 162849449: 93575276 odd starts walked with exact integer isqrt over 749 contiguous chunk records; two bit-cap seeds 172376627 and 240154767 resolved exactly at a 3·10^9-bit cap with gmpy2 mpz isqrt (largest intermediate 1493770145 bits at 172376627, 249 steps, landing 23298163; 240154767: 265 steps, 1096792314 bits, landing 5677296); zero unresolved failures; maximum first passage 466 steps at seed 198424189. Base segments 2..26254995 and 26254996..162849448 are J-residual-floor-twenty-six-million and J-residual-floor-one-hundred-sixty-two-million. Certificate data/research/juggler/cycle_finance/floor_verify/N350000000/certificate.json (SHA-256 of chunks c57f5ccc9bce980f478dafec00c449050a5e217a4f0f3e100916c41dacbe7472; resolved-seed SHA ea4ab9b18e76c6f45e114071c45bf6ce3cf271a59d25ce1c8145ba7402b15fe7). The floor exceeds the DK break-even n*(478245) = 348306663.43. Printed as Corollary 5.11 of Paper A (docs/theory/juggler_finite_dynamics_note.md). This is not a halt theorem and not a no-cycle-of-any-length theorem.",
+  "source": "docs/problems/juggler_descent_floor.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_floor_sensitivity.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-residual-floor-twenty-six-million",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Every integer 2 ≤ n ≤ 26254995 reaches 1 under the Juggler map by first-passage descent induction (verify_floor_certified). 13127497 odd starts walked with exact integer isqrt over 106 contiguous chunk records; three bit-cap seeds (7110201, 13184021, 13782577) resolved exactly at a 512·10^6-bit cap with gmpy2 mpz isqrt, the largest intermediate having 298912128 bits at seed 7110201; maximum first passage 325 steps at seed 15909091. Certificate data/research/juggler/cycle_finance/floor_verify/N26254995/certificate.json (SHA-256 of chunks cbcbb540dd860b775d2a3b4351f7cf779609104d3aaf30c342aed6b87f36c9dc). The floor 26254995 = n_max^par(25781) is the cheapest floor that moves the Theorem 4.6 cutoff. This is not a halt theorem and not a no-cycle-of-any-length theorem. EXPLAINED 16 September 2026 by J-parity-leftovers-are-a-one-sided-bohr-set. The claim that 26254995 = n_max^par(25781) is the cheapest floor moving the Theorem 4.6 cutoff is confirmed by direct scan -- the first exception moves from 25781 to 50508 there -- and the reason is structural: the surviving lengths are the one-sided Bohr set { L : 0 < g(L) < kappa L } with kappa about 0.63/(n0 ln n0), so raising the floor shrinks the window and the first survivor walks up the record-setters of the one-sided approximation. The next two such floors are 162848325, which moves the cutoff to 101016, and 1044093214, which clears every length below 300000.",
+  "source": "docs/problems/juggler_descent_floor.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_floor_sensitivity.py"
+  ],
+  "related_conjectures": []
+ }
+]

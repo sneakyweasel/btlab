@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-pe-walk-predictors",
+  "tag": "REFUTED",
+  "statement": "Repeated PE recovery moves a forward predictive anchor-relative quantity: landing/n is a Lyapunov, or the square remainder is a Lyapunov, or the inherited envelope 3^{#O}/2^{|w|} determines the next PE block. False. No leftover control has monotone landing/n or monotone remainder. After three OOE both 365 and 1517 have alpha=729/512; 365 continues OOE to 12707 and 1517 takes OE to 2493. Isolated OE-contracts is already known and does not imply a drop below n. This is not PredClosure, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_pe_walk.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_pe_walk.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-pe-walk-shape",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "The leftover controls 365, 501, 1517, 6187 are residual-block walks O^a E (with a possible lone E). 365 is (OOE)^4 OE E with landings 763, 1749, 4447, 12707, 1196, 34. 1517 is (OOE)^3 OE OOOE E and dips 33811 to 2493 still above 1517. Isolated OE contracts the current state (33811 to 2493) and need not fall below the original anchor. This is not an OE-frequency theorem, not empty-cell dynamics, and not a halt theorem.",
+  "source": "docs/problems/juggler_pe_walk.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_pe_walk.py"
+  ],
+  "related_conjectures": []
+ }
+]

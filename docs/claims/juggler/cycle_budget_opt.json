@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-cycle-budget-opt-finance",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "On a Juggler CycleMin start n ≥ 12 of leftover length L at o = o_min(L), a circuit from n with k odds and ℓ evens requires 3^k ≥ 2^{k+ℓ}. Hence n admits no OE-start and an OO-circuit from n takes only one even. The adversarial length-only packing is therefore o−e copies of OOE from n (one unique visit, the rest at n+2) and 2e−o copies of OE from the least odd v with v^3 ≥ n^4. Combined with internals at T(n) and evens at n^2 this yields a 6/5 ceiling strictly smaller than the parity sum whenever 2e−o > 0. The cycle maximum can be sent to infinity without changing the valley packing. Not Lean. Not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_budget_opt.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_budget_opt.py"
+  ],
+  "related_conjectures": []
+ }
+]

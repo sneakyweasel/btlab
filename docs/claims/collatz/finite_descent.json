@@ -1,0 +1,52 @@
+[
+ {
+  "id": "C-no-uniform-L-descent",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every L≥1, n=2^L-1 realises L odd shortcut steps and C^L(n)=3^L-1>n. No residual n mod 2^L with blocks of length at most L certifies strict descent.",
+  "source": "docs/problems/collatz_finite_descent.md",
+  "lean": "Problems/Collatz/Shortcut.lean",
+  "decl": [
+   "shortcutC_no_uniform_L_descent",
+   "shortcutC_all_odd_iter"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/collatz_finite_descent/test_finite_descent.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "C-shortcut-one-step-lyapunov",
+  "tag": "REFUTED",
+  "statement": "V(n)=n strictly decreases on every shortcut step.",
+  "source": "docs/problems/collatz_finite_descent.md",
+  "lean": "Problems/Collatz/Shortcut.lean",
+  "tests": [
+   "tests/research/collatz_finite_descent/test_finite_descent.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "C-shortcut-welldefined",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The shortcut map C(n)=n/2 (even) or (3n+1)/2 (odd) is well-defined on positive integers, and {1,2} is a 2-cycle.",
+  "source": "docs/problems/collatz_finite_descent.md",
+  "lean": "Problems/Collatz/Shortcut.lean",
+  "tests": [
+   "tests/research/collatz_finite_descent/test_finite_descent.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "shortcutC_even",
+   "shortcutC_odd",
+   "shortcutC_one",
+   "shortcutC_two",
+   "shortcutC_terminal_cycle"
+  ],
+  "lean_trust": "mixed",
+  "compiler_decls": [
+   "shortcutC_one",
+   "shortcutC_two"
+  ]
+ }
+]

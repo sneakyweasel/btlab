@@ -45,6 +45,12 @@ The [Arb MCP](arb_mcp.md) separates the bounded AST language in
 and stdio transport / worker deadlines in `tools/arb_mcp.py`. Workers bind this
 checkout, isolate global FLINT precision, and reuse the canonical Paper C formulas.
 
+`research.claims` loads and validates canonical topic files in `docs/claims/`.
+The reader preserves each row, reports its file and JSON pointer, and shares
+proof-route validation from `research.claim_dependencies` across CLI, MCP and gates.
+The combined JSON and Markdown ledger are generated exports; discovery reads
+topic sources directly. See [claim storage](../claims/README.md).
+
 `research.knowledge` reads the canonical obstruction records in
 `docs/negative_knowledge/` for the catalogue and branch discovery. The compact
 Markdown directory is derived with `tools/research_memory.py`; full arguments

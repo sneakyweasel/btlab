@@ -1,0 +1,258 @@
+[
+ {
+  "id": "J-cycle-quartic-absolute-reentry",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_cycle_quartic_band.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_quartic_band.py"
+  ],
+  "related_conjectures": [],
+  "statement": "For an actual primitive quartic Juggler cycle with m>=16, m^3<=M<m^4, gcd(L,o)=1 and (e-1)*Lambda+e*eta(m)<=log(3/2), the separated H return has ordered auxiliary valleys v_i=B(H_i), actual targets T_i=H_(s+i), and prescribed missing-valley images w_i=O(v_i). The minimum G source is H_0 and T_0=O(m). For every lower i>=1, T_(i-1)<=w_i<=T_i. If w_i<T_i and w_i belongs to H, then w_i=T_(i-1), both consecutive sources are F, v_i=v_(i-1)+1<=2m, and the preceding F attains its upper O(v_(i-1)+1) envelope. Thus every strict image with v_i>2m is unselected. Adjoining all missing F valleys closes O below k/B at or above k exactly when every F endpoint equals G; the resulting threshold cycle preserves L, branch counts and surplus, with c high odd wrong-E states plus any even inserted wrong-O states. At an endpoint equality with v>=8 the source is uniquely ceil(v^(4/3)); its large-valley actual guards are compatible with equality along the later unbounded open family J-cycle-quartic-unbounded-equality; periodic membership remains unproved. A derived unbounded separated guarded minimum-G/F open family shows local anchors, cells and gap allowance alone do not force the auxiliary image to be selected. This family has no asserted cyclic completion. AI-assisted written proof audited by three AI agents; new full Lean verification and independent human review remain outstanding. The small-product hypothesis remains additional; no whole-slab or global no-cycle theorem, orbit divergence, or numerical floor increase."
+ },
+ {
+  "id": "J-cycle-quartic-auxiliary-loss-budget",
+  "statement": "For an actual primitive Juggler cycle with m>=16 and m^3<=M<m^4, use e=L-o, r=o-e, s=2e-o, d=gcd(L,o), F/G/B and c,c0 from the quartic return theorem, and Lambda=log(3^o/2^L)>0. Under c0=0, the auxiliary O/OE map on low states is the low-section return of the cubic threshold map S_m. Its H return has nondecreasing lift T(i)=f(i)+s, with each cell prefix collapsed to its first rank. Periodic components have common H period n and upper count p. With N components, Delta=sn-ep>=0, t_tr=e-Nn>=c, and lambda=(n/e)Lambda+(Delta/e)log(3/2). Full active-cut residue coverage gives Delta>=d. Replacing each periodic altered F edge by its distinct transient G partner's genuine OE block gives the disjoint actual-return budget Lambda>=N*lambda+Gamma+D_F, where Gamma=sum_periodicF log(log y/log x)>0 and D_F>0 is the defect of all omitted actual F towers. Thus t_tr*Lambda>=N*Delta*log(3/2)+e*(Gamma+D_F). Full coverage implies (e-1)Lambda>d*log(3/2). Consequently d=1 and (e-1)Lambda<=log(3/2) force c0>=1, or c0>=2 when c is even. The small-product condition is additional and is not established uniformly. If one cut residue is missing, the auxiliary H map has a unique untouched rotation component of period e/d. At c=d-1 it contains exactly one periodic F and lifts to an S_m cycle of period L/d with exactly one wrong-parity high odd state; this is not a smaller actual Juggler cycle and cannot use the actual-cycle period floor. The complementary excursion loss decomposition is compatible with Lambda. AI-assisted written proof cross-checked by three AI agents; independent human review and Lean verification remain outstanding. No whole-slab exclusion, global no-cycle theorem or improved numerical period floor.",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_cycle_quartic_band.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_quartic_band.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-quartic-boundary-loss",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_cycle_quartic_band.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_quartic_band.py"
+  ],
+  "related_conjectures": [],
+  "statement": "Every actual positive odd-to-even O edge x->p has x^3-p^2>=3: the classical Gaussian factorization of p^2+1=x^3 excludes a unit remainder. Thus its excess over eta(p^2) is at least kappa(p)=loglog(p^2+3)-loglog(p^2+1)>0. In a genuine OE pair 0<kappa(p)<=D(v), where D is the earlier coupled charge. For fixed original-edge coefficients, reserving kappa on O and only D-kappa on the remaining pair gives the located min/max support bounds Q96, valid across cut pairs without double counting. Two equal proper chronological arcs split at most four OE pairs. For a hypothetical actual primitive cubic cycle m>=5,M<m^3 with the established P/mixed/Q factorization, P and mixed split exactly the m-landing OE pair with coefficients (+1,0) and (0,+1); Q splits none and assigns that pair (-1,-1). Both endpoints of every separate-charge interval improve strictly. The located charge additionally raises P's lower bound by kappa(s) and lowers the mixed upper bound by kappa(s). All three coefficient vectors still sum to zero on every edge, and no required signed contraction or no-cycle contradiction is proved. The cubic terminal table is not claimed for the original states of taller quartic cycles. Only the supplied-record support inequalities are newly Lean verified; Gaussian arithmetic, logarithmic and actual-cycle assembly are AI-assisted written proofs audited by three agents, pending full formalization and independent human review. No new floor, cycle, divergent orbit or paper release."
+ },
+ {
+  "id": "J-cycle-quartic-component-gap-witness",
+  "statement": "For an actual primitive Juggler cycle with m>=16 and m^3<=M<m^4, use the quartic H return F/G/B, e=L-o, r=o-e, s=2e-o, Lambda=log(3^o/2^L)>0, A=log(3/2), eta(m)=log(log(m+1)/log m). Project each lower source's B valley to the greatest selected G valley not exceeding it (the compulsory m valley ensures existence). The H map T_minus collapses each predecessor block to its first source rank before R_s; its nondecreasing lift has c collapse cuts. Periodic components have common n,p, including n=1,p=0, with Delta=sn-ep=sum_component(i-f_minus(i))>=0 and e-N*n>=c. For each individual component the disjoint genuine H-block budget gives (e-n)*Lambda+e*Gamma_minus>Delta*A. If d=gcd(L,o)=1 and (e-1)*Lambda+e*eta(m)<=A, then Delta>=1 and tau=A/e-(e-n)*Lambda/(e*Delta)>=eta(m)>0. Each component contains an uncovered F source of rank i, with predecessor G partner y and block start a, such that (loglog x-loglog y)/(i-a)>tau. Hence the uncovered F count is at least N, and the partner interval contains an adjacent selected H gap in loglog coordinates greater than tau. Transient uncovered sources alone cannot suffice. The same additional count/minimum hypothesis is not proved uniformly; no bound excludes these component-selected gaps. The coarse maximum neighboring-valley gap condition follows already from count identities and interval span and adds no restriction. Projected components using uncovered sources are not threshold-map cycles. AI-assisted written proof cross-checked by three AI agents; independent human review and Lean verification remain outstanding. No whole-slab or global no-cycle exclusion and no numerical floor increase.",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_cycle_quartic_band.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_quartic_band.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-quartic-coupled-remainder",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "In every actual OE path x odd -> p even -> v odd with v>1, the positive odd remainders R=x^3-p^2 and Q=p-v^2 cannot both be one, by their shared cube equation modulo7. With Z=loglog, eta(u)=Z(u+1)-Z(u) and D(v)=Z((v^2+1)^2+3)-Z((v^2+1)^2+1)>0, the pair defect is at least eta(p^2)+eta(v^2)+D(v). Actual primitive quartic F/G/B return towers contain edge-disjoint OE pairs, so replacing each separate-charge baseline b_i by b_i+D_i reduces the residual budget by sum D_i. For disjoint whole-return sets S+,S- with complement S0, the lower signed endpoint rises by 2D(S+)+D(S0), and the upper endpoint falls by 2D(S-)+D(S0). This strictly improves both endpoints when both exclusive sets are nonempty, without Q43. The center changes and no uniform sign or no-cycle contradiction follows. Original-edge arcs cutting a pair require further boundary accounting. The arithmetic face is Lean verified in QuarticCells; the logarithmic and actual-cycle assembly are AI-assisted written proofs audited by three AI agents, pending independent human review and full formalization. No new floor. The later boundary gate proves R>=3 on the incoming O edge alone by a classical Gaussian factorization argument: this refines the interpretation of the valid modulo7 pair theorem and locates an additional charge; an irreducible two-edge interaction is not claimed.",
+  "source": "docs/problems/juggler_cycle_quartic_band.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_quartic_band.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-quartic-covered-cell-budget",
+  "statement": "For an actual primitive Juggler cycle with m>=16 and m^3<=M<m^4, use e=L-o, r=o-e, s=2e-o, d=gcd(L,o), F/G/B and c,c0 from the quartic return theorem, Lambda=log(3^o/2^L)>0, A=log(3/2), and eta(m)=log(log(m+1)/log m)<1/(m log m). An F source x is covered by a selected G in the same B cell iff B(x) belongs to the actual low section Y. If all F are covered, U is closed and its H return collapses each entire selected cell, including F after G, to its first source rank before R_s. Common component counts n,p give Delta=sn-ep=sum_component(i-f(i))>=0, d divides Delta, and t_tr=e-Nn>=c. The number q_minus of periodic late F is at most min(c0,r-c,N*Delta). Each negative replacement magnitude is below eta(m). The signed disjoint actual-block partition yields t_tr*Lambda>N*Delta*(A-e*eta(m)). Consequently d=1 and (e-1)*Lambda+e*eta(m)<=A force an uncovered F: B(x) not in Y, equivalently no selected G in its exact B cell. More generally all-covered cycles whose full collapse cuts cover all d residues satisfy (e-1)*Lambda+d*e*eta(m)>d*A. The count/height hypothesis is additional and unproved uniformly. A late shift cannot be absorbed by its own F tower: delta_F(x)+log(log y/log x)<0. An exact open late-pair family and a fixed primitive abstract permutation with only a late periodic F separate local/order shortcuts from the proved budget. AI-assisted written proof cross-checked by three AI agents; independent human review and Lean verification remain outstanding. No global no-cycle, whole-slab exclusion, or improved numerical period floor.",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_cycle_quartic_band.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_quartic_band.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-quartic-formal-budget",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "A finite injective actual-block substitution with nonnegative actual defects and one omitted positive defect gives a strict defect budget. Given the explicit component count/total calibration and displacement bounds, the budget gives a normalized gap witness above tau. With A=log(3/2), actual loglog source gaps, integer OE cells and the small-product condition, the witness has an unselected B valley. The strict budget is derived from the certificate, not assumed. Constructing all certificate fields and original-cycle count identities for arbitrary primitive quartic cycles remains unformalized; this is not an unconditional cycle exclusion. Additional pointwise and finite-sum support inequalities hold for supplied real pair records: k<=u, 0<=v, D<=u+v and coefficient bounds give located min/max terms plus the exact unused total residual. They do not prove the Gaussian unit-remainder exclusion or extract the original cycle's disjoint pair records.",
+  "source": "docs/problems/juggler_cycle_quartic_band.md",
+  "lean": "Problems/Juggler/QuarticLossBudget.lean",
+  "decl": [
+   "BlockSubstitution.strict_budget",
+   "BlockSubstitution.component_budget",
+   "BlockSubstitution.unselected_valley_witness",
+   "located_pair_lower",
+   "located_pair_upper",
+   "located_pairs_lower",
+   "located_pairs_upper",
+   "calibrated_component_budget",
+   "weighted_gap_witness",
+   "weighted_uncovered_witness",
+   "gapThreshold_ge",
+   "gapThreshold_sum_lt",
+   "BlockSubstitution.uncovered_component_witness",
+   "BlockSubstitution.unequal_cell_witness"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_cycle_quartic_band.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-quartic-formal-cells",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Exact guarded F/G return comparisons: for distinct ordered actual periodic sources, an earlier F and later G invert exactly when their B=OE cell agrees; each periodic cell has at most one G and an F inverts at most one G. The auxiliary OE source cell is exact, and sources in the same cell with valley at least m>1 have loglog gap below logEta(m)=log(log(m+1)/log(m)); logEta is positive, decreasing and below 1/(m log m). The global cell-prefix permutation and resulting gcd/height restrictions remain written results. The shared cube excludes x^3=(v^2+1)^2+1 modulo7. For every odd x, even h and odd v with h^2<=x^3 and v^2<=h, either h^2+3<=x^3 or v^2+3<=h, and (v^2+1)^2+3<=x^3; this specializes to the actual O(x), B(x) cells. The new logarithmic pair correction and its full cycle-budget assembly remain written results.",
+  "source": "docs/problems/juggler_cycle_quartic_band.md",
+  "lean": "Problems/Juggler/QuarticCells.lean",
+  "decl": [
+   "periodic_inversion_iff_cell",
+   "periodic_G_cell_unique",
+   "periodic_F_inverts_at_most_one_G",
+   "same_cell_loglog_lt_min",
+   "cube_ne_square_successor_square_successor",
+   "guarded_OE_remainder_dichotomy",
+   "guarded_OE_lower_cube",
+   "actual_OE_lower_cube",
+   "B_eq_iff",
+   "B_source_cell",
+   "logEta_pos",
+   "logEta_antitone",
+   "logEta_lt_inv"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_cycle_quartic_band.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-quartic-formal-defect",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For actual periodic extrema with m>=5 and M<m^4, every selected quartic return has nonnegative loglog defect using multiplier 9/8 on lower cells and 3/4 on upper cells. Every actual F source has strictly positive defect, proved from the final guarded even-to-odd square step. Any finite actual return permutation has total defect card*log(9/8)-upper_count*log(3/2), and a selected family containing an F has positive total. The identification with the original chronological cycle counts remains a separate assembly obligation.",
+  "source": "docs/problems/juggler_cycle_quartic_band.md",
+  "lean": "Problems/Juggler/QuarticDefect.lean",
+  "decl": [
+   "F_strict_upper_pow",
+   "blockDefect_nonneg",
+   "blockDefect_pos_F",
+   "blockDefect_sum",
+   "selected_defect_sum_pos",
+   "actual_sorted_positive_surplus"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_cycle_quartic_band.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-quartic-formal-gap-separation",
+  "tag": "EXACT — LEAN VERIFIED",
+  "source": "docs/problems/juggler_cycle_quartic_band.md",
+  "lean": "Problems/Juggler/QuarticGapSeparation.lean",
+  "decl": [
+   "adjacent_gap_lower",
+   "B_injective_of_adjacent_gaps",
+   "B_injective_of_cocycle",
+   "B_ge_of_lower_power",
+   "section_B_injective_of_cocycle"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_cycle_quartic_band.py"
+  ],
+  "related_conjectures": [],
+  "statement": "A supplied nonnegative finite transitive cocycle commuting with adjacent rotation, with total Lambda, gives adjacent gap at least [A-(e-1)*Lambda]/e. Applied to a strictly sorted integer array with source and OE-cell minima at least m>1, and the stated small-product condition, the exact floor-cell bound proves B injective on the array. The module derives the gap bound from the cocycle rather than assuming gap oscillation. The lower-power section predicate supplies the B-cell minimum. Full extraction of the positive sorted cocycle and original counts from an arbitrary primitive quartic Juggler cycle remains a separate written assembly, not an unconditional no-cycle theorem."
+ },
+ {
+  "id": "J-cycle-quartic-formal-projection",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For a supplied finite modular rank component with injective ambient ranks, collapse<=rank and the stated lifted return, the total collapse displacement Delta satisfies e*p+Delta=s*n and gcd(e,s) divides Delta. Under coprime e,s, nonempty component and an omitted ambient rank, Delta is positive. The module proves predecessor geometry, selected displacement and distinct-partner bounds, and an adjacent-gap consequence from a normalized interval gap. It does not construct the full anchor/rank model from an arbitrary primitive cycle or prove common component periods.",
+  "source": "docs/problems/juggler_cycle_quartic_band.md",
+  "lean": "Problems/Juggler/QuarticProjection.lean",
+  "decl": [
+   "ofModular",
+   "displacement_balance",
+   "totalDisplacement_pos_of_omitted",
+   "adjacent_gap_of_ratio",
+   "RankComponent",
+   "gcd_dvd_totalDisplacement",
+   "predecessor_le",
+   "predecessor_monotone",
+   "predecessor_eq_self",
+   "predecessor_mem",
+   "predecessor_eq_on_cell",
+   "selected_displacement_le",
+   "selected_displacement_cast_le",
+   "negative_card_le",
+   "partner_interval_sum_le",
+   "partner_injOn",
+   "partner_not_mem",
+   "block_injOn",
+   "component_target_injective",
+   "component_partner_injective",
+   "component_partner_not_in_range",
+   "component_block_injective"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_cycle_quartic_band.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-quartic-formal-return",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For bounded actual periodic extrema with m>=5 and M<m^4, the selected section x<m^2, m^4<=x^3 has guarded F/G/B returns. The return map preserves the section, is injective there, and admits a strictly sorted complete enumeration with a return permutation. If m^3<=M, an actual guarded F source exists. PeriodicExtrema need not be a single primitive orbit: this statement does not identify the enumeration size with the original even count, assert permutation transitivity, or derive the complete rank shuffle.",
+  "source": "docs/problems/juggler_cycle_quartic_band.md",
+  "lean": "Problems/Juggler/QuarticBand.lean",
+  "decl": [
+   "sorted_return_model",
+   "exists_F_source",
+   "Section",
+   "returnMap",
+   "returnMap_closed",
+   "returnMap_inj",
+   "guarded_return_cases"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_cycle_quartic_band.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-quartic-return-order",
+  "statement": "For an actual primitive nontrivial Juggler cycle with minimum m>=16, maximum M<m^4, period L, odd count o and e=L-o, set k=ceil(m^(4/3)), ell=ceil(k^(4/3)), q=O(m), D=ceil(ell^(1/4)). The all-odd section H=C intersect[k,m^2) has e states. Its chronological returns are F=OOE or G=OEO on the first r=o-e sources below ell, and B=OE on the last s=2e-o sources; r,s>0. The return permutation is sigma=R_s composed with (pi direct-sum id_s), where pi sorts the growing images and has displacement at most D<=ceil(2m^(4/9)). Only earlier-F/later-G pairs invert. Let c count F sources, equivalently high odd states at or above m^2, and let I count inversions. The shared-cell refinement proves F(x)>G(y) for selected F-source x<G-source y if and only if B(x)=B(y). Each B-fiber has at most one selected G source. Hence pi is a direct sum of cell-prefix cycles; F displacements are0 or1, and I counts exactly the participating F sources. Thus d=gcd(L,o) satisfies d-1<=I<=min(c,(r-c)D), d<=c+1, and I=d-1 mod2. Active F cuts must connect the d residue classes of R_s; at I=d-1, connectivity is also sufficient for the abstract return permutation to be one cycle, without asserting floor realizability. If additionally M>=m^3, put J=max(1,d-1); then c>=J, (M+1)^2>(m^2+2J)^3, M>=m^3+3mJ, and M>=(q+2J)^2+1. The last bound counts distinct actual odd valleys, not raw preimages. For every odd t>=3, the fully guarded open returns from t^8+8 and t^8+10 at free anchor t^5 reverse merged order while remaining below the anchor's fourth power. This is not a cycle realization. AI-assisted written proof cross-checked by three AI agents; independent human review and Lean verification are outstanding. No whole-slab exclusion, global no-cycle result, divergent-orbit conclusion or improved certified numerical period floor. In a fiber with G, all F targets lie in (O(v),O(v+1)] and have no odd O predecessor; this is compatible with their required even predecessors. For v>=64 the free odd target-slot count exceeds all free odd source candidates in that fiber, so this local slot comparison gives no deficit. No contradictory lower bound on nonparticipating F states is obtained. The bounded nonparticipant audit records the maximal F source's actual OOEOE descent with exponent27/32, an existing power-certificate consequence. If that source participates, the exact companion returns have v<W<T<a<b<w<t; the smaller endpoints have no forced F labels or invariant cycle. On the taller side M>=m^3, under c0=0 the selected low set is closed under O below k and B above, but this auxiliary map is noninjective: the c old F targets lose their incoming edges, and every periodic component must use changed F edges. The full-set exponent balance has the negative indegree term sum_F(loglog B(x)-loglog F(x)); it cannot telescope as for a permutation. The c0>=1 target remains PARK. No new cycle count or height restriction follows from this extremal/aggregate-exponent audit.",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_cycle_quartic_band.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_quartic_band.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-quartic-separated-cells",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_cycle_quartic_band.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_quartic_band.py"
+  ],
+  "related_conjectures": [],
+  "statement": "For an actual primitive Juggler cycle with m>=16 and m^3<=M<m^4, write H for its sorted quartic return section, e=L-o, s=2e-o, A=log(3/2), Lambda=log(3^o/2^L)>0 and eta(m)=log(log(m+1)/log(m)). Sorting the genuine F/G power envelopes gives nonnegative redistributed defects epsilon_i=z_i+log(9/8)-z_(i+s), using z_(i+e)=z_i+A, with total Lambda. If gcd(L,o)=1, every cyclic adjacent loglog gap is at least [A-(e-1)*Lambda]/e. Under the existing additional condition (e-1)*Lambda+e*eta(m)<=A, exact OE cell widths force B=OE to be injective on all H. Thus every F source is uncovered, the inversion count is zero and the actual return permutation is the pure rank rotation R_s. This strengthens the earlier one-witness-per-component conclusion without an additional hypothesis. The original small-product condition remains unproved uniformly. Bare transport only preserves the witness budget; a fixed real-potential control with nonconstant positive losses keeps all lifted length-two witnesses above tau, without integer floor or parity realization. AI-assisted written proof cross-checked by three AI agents; the cyclic gap/cell-injectivity kernel is Lean checked separately, but full actual-cycle sorted-envelope/count assembly and independent human review remain outstanding. No whole-slab or global no-cycle conclusion and no numerical floor increase."
+ },
+ {
+  "id": "J-cycle-quartic-unbounded-equality",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every integer t>=8192 with t=9 mod16, the explicit polynomials in quartic Q90 give v=t^6-3t^2+6, x=t^8-4t^4+8t^2+2 and an actual odd/odd/even/odd F path x->h->p->q satisfying B(x)=v and O(v)=q, hence F(x)=G(x). The auxiliary valley v is even and tends to infinity; the alternative O edge there is prescribed, not actual. Ten exact polynomial margin certificates prove all five floor cells uniformly. This refutes eventual F>G from the full F guards and a large valley alone, but supplies no minimum-G anchor, full H-return partition, Q43 counts or periodic membership, and does not realize Q74 inside an actual cycle or imply divergence. AI-assisted written proof audited by three AI agents using independent symbolic and integer polynomial expansions; complete Lean verification and independent human review remain outstanding. Fixed large-scale checks are controls, not the basis of the infinite theorem; numerical cycle floors are unchanged.",
+  "source": "docs/problems/juggler_cycle_quartic_band.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_quartic_band.py"
+  ],
+  "related_conjectures": []
+ }
+]

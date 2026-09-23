@@ -1,0 +1,35 @@
+[
+ {
+  "id": "J-expanding-block-even-bound",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "A residual-shaped word O^a E^b is formally expanding iff 2^{a+b}<3^a. For a≥1 this is equivalent to a+b ≤ log₂(3^a), or b ≤ maxExpandingEvens(a). In particular a=2 or 3 forces b≤1, and a=4 forces b≤2. This is the syntactic expanding language, not a realized-orbit theorem.",
+  "source": "docs/problems/juggler_expanding_grammar.md",
+  "lean": "Problems/Juggler/ExpandingGrammar.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_expanding_grammar.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-expanding-grammar-obstruction",
+  "tag": "REFUTED",
+  "statement": "The expanding residual word grammar, or a finite residue-mod-8 successor automaton, is an independent obstruction to an infinite persistent expanding chain. Counterexamples: on n≥2 persistence already is expansion, so the attack reduces to T_w(n)>n; the OOE type self-loop 365→763→1749 exits odd-to-even at 4447; every odd class modulo 8 both continues and leaves the PE frontier. A finite run bound M is not proved and is not supplied by this grammar.",
+  "source": "docs/problems/juggler_expanding_grammar.md",
+  "lean": "Problems/Juggler/ExpandingGrammar.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_expanding_grammar.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-persistent-implies-expanding",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For n≥2, PersistentOddResidual x y if and only if PersistentExpandingResidual x y. A contracting residual cannot overshoot, and 2^k=3^o is impossible for a nonempty residual. The expanding qualifier of a persistent residual is therefore redundant.",
+  "source": "docs/problems/juggler_expanding_grammar.md",
+  "lean": "Problems/Juggler/ExpandingGrammar.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_expanding_grammar.py"
+  ],
+  "related_conjectures": []
+ }
+]

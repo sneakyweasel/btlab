@@ -345,8 +345,8 @@ def main(argv=None):
                         help='Checkout/worktree to read (defaults to this installation)')
     args = parser.parse_args(argv)
     root = args.root.resolve()
-    if not (root / 'formal').is_dir() or not (root / 'docs/theory/theorem_ledger.json').is_file():
-        parser.error('--root must contain formal/ and docs/theory/theorem_ledger.json')
+    if not (root / 'formal').is_dir() or not (root / 'docs/claims').is_dir():
+        parser.error('--root must contain formal/ and docs/claims/')
     global semantic, catalogue, research
     fp_workspace.configure(root)
     semantic = SemanticCatalogue(root)

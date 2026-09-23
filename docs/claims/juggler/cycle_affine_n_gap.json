@@ -1,0 +1,15 @@
+[
+ {
+  "id": "J-affine-n-gap-escapes-dominance",
+  "tag": "REFUTED",
+  "statement": "An n-dependent lower bound on |3^o-2^L| along the three affine families F1/F2/F3 of Paper A Proposition 4.9 escapes Baker dominance and is not a reparameterization of cycleMin_finance, image_eq_start_defectRatio, or the already-closed form p+Lambda. False. For each known lattice point G is determined by (L, o_min) alone; any correct lower bound delta <= G produces n_max at least as large as the exact-gap n_max (locked at L=19: G=7153, n_max=297; adjacent gap 7152 stays at 297; half-gap 3576 raises n_max to 538). Relative weakening theta -> 0.999 theta raises n_max on F1, F2, F3, and the live blocker L=478245. Every n-involving CycleMin identity is finance (upper bound on G), log R = G log n, or height/position finance (still an upper bound). Defect-sum n-power is walk-charge structure (terminal). Lattice binary recurrences cannot beat exact theta at a known point. The merge surviving formulation is discharged; the fan-minimum CF question is not reopened. Not a halt theorem and not a Paper A edit.",
+  "source": "docs/problems/juggler_cycle_affine_n_gap.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_affine_n_gap.py"
+  ],
+  "related_conjectures": [
+   "juggler_affine_n_gap_escapes_dominance"
+  ]
+ }
+]

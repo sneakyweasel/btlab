@@ -1,0 +1,13 @@
+[
+ {
+  "id": "C-center",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Affine-center numerator identities",
+  "source": "docs/collatz_affine_center.md",
+  "lean": "Problems/Collatz/Center.lean",
+  "tests": [
+   "tests/research/collatz/test_affine_center.py"
+  ],
+  "related_conjectures": []
+ }
+]

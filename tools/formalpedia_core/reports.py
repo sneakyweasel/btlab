@@ -203,7 +203,7 @@ def review_digest(
             "",
         ]
     out += [
-        "Answer by adding `decl` and `lean_trust` to the row in `docs/theory/theorem_ledger.json`.",
+        "Answer by adding `decl` and `lean_trust` to the canonical topic row in `docs/claims/`; `formalpedia claim` reports its location.",
         "",
     ]
     shown = 0

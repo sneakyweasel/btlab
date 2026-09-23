@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-block-map-q-state",
+  "tag": "REFUTED",
+  "statement": "A finite exact descriptor coarser than the integer landing gives Q a transition law on residual D_n: (a,sign(Q-x)) or (a_{i-1},a_i) determines a_{i+1}; the first odd defect or closing even remainder determines the next run; Q>x forces Q^2 descent; or Q<x with Q>=n forces Q^2 below the anchor. False. At the 365/1517 collision the landings 4447 and 33811 share no tested intrinsic coordinate. After expanding a=2 the next run takes values in {1,...,9} on n<2001. 1517 contracts 33811 to 2493>=1517 then expands to 539470. This is not PredClosure, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_block_map_q.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_block_map_q.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-block-map-q-trajectories",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "On leftover AboveAnchor controls the maximal odd-run block map Q(x)=T^{a(x)+1}(x) has odd-start trajectories 365: 365,763,1749,4447,12707; 1517: 1517,3789,10613,33811,2493; 501 joins 365 at 763 after an even landing; 6187 exits by OE from 11189. After three OOE blocks, Q^3(365)=4447 has a=2 and Q^3(1517)=33811 has a=1. No leftover trajectory and no odd start n<2001 repeats an integer block endpoint. This is not a cycle theorem, not a residue automaton, and not a halt theorem.",
+  "source": "docs/problems/juggler_block_map_q.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_block_map_q.py"
+  ],
+  "related_conjectures": []
+ }
+]

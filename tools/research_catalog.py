@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from research.experiments.provenance import check_manifest, write_manifest
 from research.knowledge import journal_errors, negative_entries, negative_errors, negative_paths
-from render_theorem_ledger import TAGS
+from research.claims import ClaimError, claim_files, load_claims, EXPORT, render_json
 
 LINK = re.compile(r"\[[^\]]*\]\(([^)\s]+)(?:\s+[^)]*)?\)")
 PATH = re.compile(r"\b(?:src|tests|formal|docs|literature|data/research)/[A-Za-z0-9_./-]+\.(?:py|lean|md|json|yaml|csv|tsv|parquet|jsonl)\b")
@@ -69,7 +69,7 @@ class ResearchCatalogue:
 
     def _files(self) -> list[Path]:
         root = self.root
-        files = [root / "docs/theory/theorem_ledger.json", root / "docs/research_journal.md", *negative_paths(root),
+        files = [*claim_files(root), root / EXPORT, root / "docs/research_journal.md", *negative_paths(root),
                  root / "src/research/juggler_sequence/branch_index.py"]
         files += [p for p in (root / "docs/problems").glob("*.md") if programme(p)]
         files += [p for p in (root / "literature").glob("*.json") if not p.name.endswith(".private.json")]
@@ -132,21 +132,13 @@ class ResearchCatalogue:
         root = self.root
         texts = {p.relative_to(root).as_posix(): p.read_text(encoding="utf-8")
                  for p in files if p.is_file() and p.suffix in {".md", ".json"}}
-        ledger_path = "docs/theory/theorem_ledger.json"
-        ledger = json.loads(texts.get(ledger_path, "[]"))
-        if not isinstance(ledger, list) or any(not isinstance(row, dict) for row in ledger):
-            raise ValueError("The theorem ledger must be a list of records")
-        errors, valid_ledger = [], []
-        for row in ledger:
-            if (not isinstance(row.get("id"), str) or not row["id"]
-                    or not isinstance(row.get("tag"), str)
-                    or not isinstance(row.get("statement"), str)
-                    or not isinstance(row.get("tests", []), list)
-                    or any(not isinstance(p, str) for p in row.get("tests", []))):
-                errors.append({"path": ledger_path, "error": "Invalid claim record: " + str(row.get("id"))[:100]})
-            else:
-                valid_ledger.append(row)
-        ledger = valid_ledger
+        ledger_path = EXPORT
+        errors, ledger, locations = [], [], {}
+        try:
+            claims = load_claims(root, required=False)
+            ledger, locations = claims.entries, claims.locations
+        except ClaimError as exc:
+            errors.extend(exc.issues)
         by_path = defaultdict(list)
         for row in ledger:
             for ref in self._references(str(row.get("source", "")), root / ledger_path):
@@ -217,6 +209,7 @@ class ResearchCatalogue:
                                "declaration_reference_count": len(declarations),
                                "declaration_references_truncated": len(declarations) > 16,
                                "basis": "ledger source/test association; not a statement-coverage audit",
+                               "claim_location": locations[key],
                                "lookup": {"tool": "formalpedia_claim", "ledger_id": key}})
                 for ref in self._claim_references(row, root / ledger_path):
                     refs.setdefault(ref, "linked ledger record")
@@ -290,7 +283,7 @@ class ResearchCatalogue:
         for part in negative:
             part["sources"] = sorted(self._references(part["body"], root / part["file"]))
             part["programmes"] = sorted({app for ref in part["sources"] if (app := programme(Path(ref)))})
-        return {"records": records, "obstructions": negative, "manifests": manifests, "ledger": ledger, "errors": errors,
+        return {"records": records, "obstructions": negative, "manifests": manifests, "ledger": ledger, "claim_locations": locations, "errors": errors,
                 "source_hash": hashlib.sha256(json.dumps(texts, sort_keys=True).encode()).hexdigest()}
 
     def _current(self, snapshot: str | None) -> dict:
@@ -375,17 +368,18 @@ class ResearchCatalogue:
               snapshot: str | None = None) -> dict:
         data = self._current(snapshot)
         issues = [dict(i, severity="error") for i in data["errors"]]
-        for kind, values in (("research", [r["id"] for r in data["records"]]),
-                             ("claim", [r.get("id") for r in data["ledger"]])):
-            for identifier, count in Counter(values).items():
-                if not identifier or count > 1:
-                    issues.append({"severity": "error", "error": f"Invalid/duplicate {kind} id: {identifier}"})
+        for identifier, count in Counter(r['id'] for r in data['records']).items():
+            if not identifier or count > 1:
+                issues.append({'severity': 'error', 'error': f'Invalid/duplicate research id: {identifier}'})
         for row in data["ledger"]:
-            if row.get("tag") not in TAGS:
-                issues.append({"severity": "error", "error": f"Unknown evidence tag: {row.get('id')}"})
-            for ref in self._claim_references(row, self.root / "docs/theory/theorem_ledger.json"):
+            for ref in self._claim_references(row, self.root / EXPORT):
                 if not (self.root / ref).exists():
-                    issues.append({"severity": "error", "path": ref, "error": f"Missing claim reference: {row.get('id')}"})
+                    issues.append({"severity": "error", "path": ref, "error": f"Missing claim reference: {row['id']}"})
+        aggregate = self.root / EXPORT
+        if (self.root / 'docs/claims').is_dir() and aggregate.exists() and not data['errors']:
+            if aggregate.read_text(encoding='utf-8') != render_json(data['ledger']):
+                issues.append({'severity': 'error', 'path': EXPORT,
+                               'error': 'Generated claim aggregate is stale; run tools/render_theorem_ledger.py'})
         known = {r["id"] for r in data["records"]}
         for manifest in data["manifests"]:
             metadata = manifest["metadata"]

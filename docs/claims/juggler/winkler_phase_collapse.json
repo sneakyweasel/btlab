@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-winkler-ratio-collapses-onto-the-phase",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Winkler's normalised first-passage count is a function of the phase alone, numerically. With alpha = log2 3, m_r = floor(r alpha), c_r = A100982(r) and C_r = binom(m_r - 1, r - 1), his public Corollary 12 (arXiv:2609.22303) proves liminf R+_r = 1 and limsup R+_r = alpha/(alpha - 1) for R+_r = r c_r / C_r, both on the record orders of {r alpha}: an envelope on two sparse sets of orders. MEASURED at every order r = 1..3154 (depth 5000), with c_r = M_(m_r + 1) and M_d = 2 N_(d-1) - N_d from jump_spectrum.survivor_counts, reproducing A100982. Binned by delta_r = {r alpha} into 20 bins, R+_r collapses onto one curve: across-bin range 1.685, 1.686, 1.687 against within-bin spread 0.033, 0.032, 0.033 in the windows r in [395, 788], [789, 1577], [1578, 3154], a signal of x50.5, x52.0, x51.7. The per-bin shape drifts by 0.0069 and then 0.0011 between successive windows, so it converges, and shuffling delta_r among the orders drops the signal to x0.39. The curve rises from 1.01 near delta = 0 to 2.70 near delta = 1, inside the envelope, and jumps upward across the orbit points {n alpha}: +0.633, +0.148, +0.188, +0.066, +0.098, +0.039, +0.023, +0.042 for n = 1..8, while six control points at the midpoints of the widest gaps between the first 40 orbit points show +0.0017 to +0.0045. So R+_r depends on r only through delta_r, with a jump spectrum on the orbit of log2 3: the delta-side counterpart of psi's jumps on the orbit of log 2 / log 3 (J-paper-b-meander-prefactor-is-almost-periodic, J-paper-b-jump-spectrum-is-the-survivor-sequence), related through c_r = M_(m_r + 1). NOT PROVED: a limit profile F with R+_r = F(delta_r) + o(1) is the same missing local limit theorem as for psi (J-paper-b-tilt-reduction-and-the-phase-factor). Controls: the shuffled phases must not collapse and do not; the control points are tested to lie more than 0.015 from the first 40 orbit points, after two hand-picked controls turned out to sit on orbit points 8 and 11.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_winkler_phase_collapse.py"
+  ],
+  "related_conjectures": []
+ }
+]

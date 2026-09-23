@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-minimal-ooeooe-escape-trap",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If n ≥ 2 follows OOEOOE, then T_OOEOOE(n) < n^2 because x^{64} ≤ n^{81} forbids n^2 ≤ x. If n follows OOEOOEO, then the next image is < n^2 because z^{128} ≤ n^{243} forbids n^2 ≤ z. On MinimalNonTerm n the OOEOOE landing is odd, and the forced next O is followed by another O: an even landing or an even next image below n^2 is descent. The argument does not use a CycleMin return image = n. This is not a proof that escape is impossible, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_non_escape.md",
+  "lean": "Problems/Juggler/Escape.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_non_escape.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-trajectory-cycle-or-escape",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Every n satisfies EventuallyCycles n or EscapesToInfinity n. A uniformly bounded trajectory repeats: if T^k(n) ≤ M for every k, then some i < j have T^i(n) = T^j(n). ReachesOne n implies EventuallyCycles n because T(1) = 1. On MinimalNonTerm n a cycle value stays ≥ n. This is not a proof that escape is impossible, not a cycle-exclusion theorem, and not a halt theorem.",
+  "source": "docs/problems/juggler_non_escape.md",
+  "lean": "Problems/Juggler/Escape.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_non_escape.py"
+  ],
+  "related_conjectures": []
+ }
+]

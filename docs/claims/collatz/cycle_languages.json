@@ -1,0 +1,13 @@
+[
+ {
+  "id": "C-cycles",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Expanding periods excluded; D divides C; even amplitude",
+  "source": "docs/collatz_cycle_languages.md",
+  "lean": "Problems/Collatz/Cycles.lean",
+  "tests": [
+   "tests/research/collatz/test_cycles.py"
+  ],
+  "related_conjectures": []
+ }
+]

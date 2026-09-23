@@ -57,7 +57,7 @@ Phase-0 branch or treat a density/period bound as a solution.
 |---|---|
 | Probes and tests | `src/research/juggler_sequence/<branch>.py`, `tests/research/juggler_sequence/test_<branch>.py` |
 | Dossier and decision | `docs/problems/juggler_<branch>.md` |
-| Durable claim | `docs/theory/theorem_ledger.json`, then render its Markdown sibling |
+| Durable claim | `docs/claims/juggler/<topic>.json`, then render both ledger exports |
 | Lean module | `formal/Problems/Juggler/`; barrel `formal/Problems/Juggler.lean` |
 | Stable path constants | `src/research/juggler_sequence/lean_paths.py` |
 | Module registry and layer order | `src/research/juggler_sequence/lean_registry.py` |

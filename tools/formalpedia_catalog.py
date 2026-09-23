@@ -9,6 +9,7 @@ import threading
 
 from formalpedia_core import graph as fp_graph, identities as fp_identities, source as fp_source, workspace as fp_workspace
 from lab_scope import active_lean_modules, validate_scope
+from research.claims import claim_files, load_claims
 
 TRUST_NOTICE = ('Source markers are navigation evidence, not an executed Lean check or a '
                 'transitive axiom audit. Read the complete hypotheses before using a result.')
@@ -47,6 +48,7 @@ class Catalogue:
         self._stamp = None
         self._index = None
         self._ledger = []
+        self._claim_locations = {}
         self._snapshot = ''
         self._documents = {}
         self._semantic = semantic
@@ -64,7 +66,7 @@ class Catalogue:
                         'freshness': self._semantic.status()}
 
     def _state(self):
-        paths = fp_source.sources() + [fp_workspace.LEDGER]
+        paths = fp_source.sources() + list(claim_files(fp_workspace.ROOT))
         return tuple((p.relative_to(fp_workspace.ROOT).as_posix(), p.stat().st_mtime_ns, p.stat().st_size)
                      for p in paths if p.exists())
 
@@ -73,14 +75,16 @@ class Catalogue:
             before = self._state()
             if self._index is None or before != self._stamp:
                 for _ in range(3):
-                    index = fp_source.build()
-                    ledger = json.loads(fp_workspace.LEDGER.read_text(encoding='utf-8'))
+                    claims = load_claims(fp_workspace.ROOT)
+                    ledger = claims.entries
+                    index = fp_source.build(ledger)
                     after = self._state()
                     if before == after:
                         break
                     before = after
                 else:
                     raise RuntimeError('Sources kept changing during indexing; retry after the edits settle')
+                self._claim_locations = claims.locations
                 by_id = {row['id']: row for row in ledger}
                 self._documents = {}
                 for d in index['declarations']:
@@ -89,7 +93,7 @@ class Catalogue:
                     self._documents[d['id']] = (' '.join(fields).casefold(),
                                                  set(tokens(' '.join(fields))))
                 self._index, self._ledger, self._stamp = index, ledger, after
-                self._snapshot = hashlib.sha256(fp_source.render(index).encode()).hexdigest()[:16]
+                self._snapshot = hashlib.sha256(fp_source.render([index, claims.snapshot]).encode()).hexdigest()[:16]
             return self._index, self._ledger, self._snapshot
 
     def search(self, query: str, *, namespace: str | None = None, module: str | None = None,
@@ -199,7 +203,9 @@ class Catalogue:
                 'trust_notice': TRUST_NOTICE}
 
     def claim(self, ledger_id: str) -> dict:
-        index, ledger, snapshot = self.snapshot()
+        with self._lock:
+            index, ledger, snapshot = self.snapshot()
+            location = self._claim_locations.get(ledger_id, {}).copy()
         row = next((r for r in ledger if r['id'] == ledger_id), None)
         if row is None:
             return {'status': 'not_found', 'ledger_id': ledger_id, 'snapshot': snapshot}
@@ -211,6 +217,7 @@ class Catalogue:
                                            'ambiguous' if matches else 'not_found',
                                  'candidates': matches})
         return {'status': 'found', 'snapshot': snapshot, 'claim': row,
+                'claim_location': location,
                 'declarations': declarations, 'trust_notice': TRUST_NOTICE}
 
     def claim_dependencies(self, ledger_id: str, **options) -> dict:

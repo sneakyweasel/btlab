@@ -14,6 +14,7 @@ from . import reports as _fp_reports
 from . import source as _fp_source
 from . import verdicts as _fp_verdicts
 from . import workspace as _fp_workspace
+from research.claims import load_claims
 
 
 def _write_jev_artifacts(index: dict[str, Any], ledger: list[dict[str, Any]],
@@ -164,7 +165,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.cmd == "jev-coverage":
         index = _fp_source.load()
-        ledger = json.load(io.open(_fp_workspace.LEDGER, encoding="utf-8"))
+        ledger = load_claims(_fp_workspace.ROOT).entries
         only = {s.strip() for s in args.rows.split(",") if s.strip()} if args.rows else None
         ask = _fp_advisory._no_ask if args.limit == 0 else _fp_advisory.jev_ask_nouls(args.model)
         record = _fp_advisory.jev_coverage(index, ledger, ask, cached=_fp_verdicts.load_jev(), refresh=args.refresh,
@@ -190,7 +191,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.cmd == "jev-propose":
         index = _fp_source.load()
-        ledger = json.load(io.open(_fp_workspace.LEDGER, encoding="utf-8"))
+        ledger = load_claims(_fp_workspace.ROOT).entries
         record = _fp_advisory.jev_propose(index, ledger, _fp_advisory.jev_ask(args.model), cached=_fp_verdicts.load_jev(),
                              refresh=args.refresh, limit=args.limit, workers=args.workers)
         _write_jev_artifacts(index, ledger, record)
@@ -206,7 +207,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.cmd == "jev-calibrate":
         index = _fp_source.load()
-        ledger = json.load(io.open(_fp_workspace.LEDGER, encoding="utf-8"))
+        ledger = load_claims(_fp_workspace.ROOT).entries
         cal = _fp_advisory.jev_calibrate(index, ledger, _fp_advisory.jev_ask(args.model), sample=args.sample,
                             seed=args.seed, workers=args.workers)
         cached = _fp_verdicts.load_jev()
@@ -243,7 +244,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.cmd == "review":
         index = _fp_source.load()
-        ledger = json.load(io.open(_fp_workspace.LEDGER, encoding="utf-8"))
+        ledger = load_claims(_fp_workspace.ROOT).entries
         _fp_workspace.REVIEW.parent.mkdir(parents=True, exist_ok=True)
         _fp_workspace.REVIEW.write_text(_fp_reports.review_digest(index, ledger), encoding="utf-8")
         print(f"wrote {_fp_workspace.REVIEW.relative_to(_fp_workspace.ROOT)}")
@@ -265,7 +266,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.cmd == "propose":
         index = _fp_source.load()
-        ledger = json.load(io.open(_fp_workspace.LEDGER, encoding="utf-8"))
+        ledger = load_claims(_fp_workspace.ROOT).entries
         out = _fp_matching.propose(index, ledger)
         _fp_workspace.PROPOSALS.parent.mkdir(parents=True, exist_ok=True)
         _fp_workspace.PROPOSALS.write_text(_fp_source.render(out), encoding="utf-8")
@@ -275,7 +276,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.cmd == "dag":
         index = _fp_source.load()
-        ledger = json.load(io.open(_fp_workspace.LEDGER, encoding="utf-8"))
+        ledger = load_claims(_fp_workspace.ROOT).entries
         graph = _fp_graph.dag(index, ledger)
         _fp_workspace.DAG.parent.mkdir(parents=True, exist_ok=True)
         _fp_workspace.DAG.write_text(_fp_source.render(graph), encoding="utf-8")

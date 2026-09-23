@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-prefix-retention-budget",
+  "tag": "REPARAMETERIZATION",
+  "statement": "Write x_k^{2^k} = n^{3^{O_k}} F_k for a finite Juggler prefix. The proposed survival inequality F_k >= n^{2^k - 3^{O_k}} is equivalent to x_k >= n. The proposed growth law 3^{O_k} >= 2^k on an AboveAnchor prefix is power_bound_word plus x_k >= n, already Lean as aboveAnchor_not_envelope_drop. The weighted floor product is globalDefect. Leftover controls 365, 501, 1517, 6187 stay noncontracting until a formally contracting drop letter. This is not a new global budget and not a halt theorem.",
+  "source": "docs/problems/juggler_growth_balance.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_growth_balance.py"
+  ],
+  "related_conjectures": []
+ }
+]

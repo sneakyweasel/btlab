@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-parity-neighbor-scale",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Sharp first-image opposite-parity neighbor exponent. For every odd integer n ≥ 4096, L = ceil(n^(1/4)), both parities occur among floor((n+2j)^(3/2)), 0 ≤ j ≤ 4L. Hence an odd u > n with opposite first-image parity exists at distance ≤ 8L. If D(n) is the minimum distance to any positive odd source with opposite first-image parity, infinitely many odd nonsquare n with odd nonsquare first image satisfy D(n) ≥ n^(1/4)/4. Upper proof: smooth increments of (n+2x)^(3/2) increase by less than two, so monochromatic floors have at most one switch between adjacent even increments; a constant run of 2L increments contradicts the midpoint curvature gap > 1 versus floor errors < 1. Lower family: for odd c,t ≥ 1 with t² ≤ 4c, floor((4c²+t)^(3/2)) = 8c³+3ct; prime c ≥ 37 makes all these sources and images nonsquare. Central sources have monochromatic radius at least floor(sqrt(c)+1/2). The exponent, not the constants, is sharp. The pointwise theorem alone supplies no bounded-capacity assignment. A 10 September standard corollary uses classical second-derivative and Erdos--Turan bounds to give even-image count M/2+O(M*y^(-1/6)+y^(1/4)) on any M-point odd-source block inside (y,2y]. For sufficiently large y, blocks of size ceil(A*y^(1/4)), with an absolute unspecified A, admit a two-to-one within-window pairing from OO continuers to OE exits, with displacement O(y^(1/4)); the preceding lower family makes this exponent optimal. Endpoint subtraction of current Paper B counts extends the assignment to prescribed odd prefixes t=2,3 at displacement O_epsilon(y^(127/128+epsilon)), 0<epsilon<1/128. These written corollaries are AI-assisted and inherit the stated analytic inputs; no independent review, new Lean verification, growing-depth capacity, or termination bound is claimed. The whole explicit cluster family has O(y^(3/4)) sources in (y,2y] and is covered by the existing sparse-source pressure lemma.",
+  "source": "docs/problems/juggler_parity_neighbor_scale.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_parity_neighbor_scale.py"
+  ],
+  "related_conjectures": []
+ }
+]

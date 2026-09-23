@@ -7,7 +7,11 @@ from pathlib import Path
 import re
 import shutil
 import subprocess
+import sys
 import uuid
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
+from research.claims import claim_files
 
 GIT = ['git', '-c', 'core.longpaths=true']
 
@@ -78,7 +82,9 @@ def math_inputs(root: Path) -> dict[str, str]:
     paths += [formal / n for n in ('lean-toolchain', 'lakefile.toml', 'lakefile.lean', 'lake-manifest.json')]
     paths += [root / n for n in ('tools/lab.py', 'tools/lab_scope.py', 'tools/lab_environment.py',
         'tools/lab_prepare.py', 'tools/lab_dependencies.py',
+        'src/research/claims.py', 'src/research/claim_dependencies.py',
         'tools/formalpedia_core/semantic_build.py', 'tools/lean/SemanticExport.lean')]
+    paths += list(claim_files(root))  # Claim associations participate in the active Lean build graph.
     return {p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
             for p in sorted(set(paths)) if p.is_file()}
 

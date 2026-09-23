@@ -19,7 +19,8 @@ import lean_style
 def library(tmp_path, monkeypatch):
     formal = tmp_path / 'formal'
     (formal / 'Problems').mkdir(parents=True)
-    ledger = tmp_path / 'ledger.json'
+    ledger = tmp_path / 'docs/claims/shared/example.json'
+    ledger.parent.mkdir(parents=True)
     ledger.write_text('[]', encoding='utf-8')
     monkeypatch.setattr(fp_workspace, 'ROOT', tmp_path)
     monkeypatch.setattr(fp_workspace, 'FORMAL', formal)
@@ -185,7 +186,7 @@ def test_search_uses_statements_exact_claims_filters_and_pagination(library):
     write(folder, 'A', 'namespace Math\n/-- Reciprocal mass growth. -/\n'
           'theorem growth (n : Nat) : n ≤ n := Nat.le_refl n\n'
           '/-- Another result. -/\ntheorem other : True := trivial\nend Math\n')
-    ledger.write_text(json.dumps([{'id': 'J-growth', 'tag': 'EXACT — HUMAN PROOF',
+    ledger.write_text(json.dumps([{'source': 'formal/Problems/A.lean', 'id': 'J-growth', 'tag': 'EXACT — HUMAN PROOF',
         'lean': 'Problems/A.lean', 'decl': 'Math.growth', 'statement': 'Contagion exponent transfer.'}]))
     catalogue = Catalogue()
     assert catalogue.search('contagion transfer')['results'][0]['id'] == 'Math.growth'
@@ -215,11 +216,36 @@ def test_claim_does_not_choose_between_same_file_short_names(library):
     folder, ledger = library
     write(folder, 'Two', 'namespace A\ntheorem x : True := trivial\nend A\n'
           'namespace B\ntheorem x : True := trivial\nend B\n')
-    ledger.write_text(json.dumps([{'id': 'ambiguous', 'lean': 'Problems/Two.lean',
+    ledger.write_text(json.dumps([{'source': 'formal/Problems/Two.lean', 'id': 'ambiguous', 'lean': 'Problems/Two.lean',
         'decl': 'x', 'statement': 'A claim.', 'tag': 'EXACT — HUMAN PROOF'}]))
     result = Catalogue().claim('ambiguous')
     assert result['declarations'][0]['status'] == 'ambiguous'
     assert all(not d['ledger_exact'] for d in fp_source.build()['declarations'])
+
+
+def test_claim_edits_and_moves_refresh_without_export_changes(library):
+    folder, topic = library
+    write(folder, 'A', 'namespace N\ntheorem first : True := trivial\nend N\n')
+    row = {'id': 'J-live', 'source': 'formal/Problems/A.lean', 'lean': 'Problems/A.lean',
+           'decl': 'N.first', 'tag': 'EXACT — HUMAN PROOF', 'statement': 'First version.'}
+    topic.write_text(json.dumps([row]))
+    export = fp_workspace.ROOT / 'docs/theory/theorem_ledger.json'
+    export.parent.mkdir(parents=True)
+    export.write_text('stale export')
+    catalogue = Catalogue()
+    first = catalogue.claim('J-live')
+    moved = topic.with_name('moved.json')
+    topic.rename(moved)
+    second = catalogue.claim('J-live')
+    assert first['claim'] == second['claim']
+    assert first['snapshot'] != second['snapshot']
+    assert second['claim_location'] == {'path': 'docs/claims/shared/moved.json', 'pointer': '/0'}
+    row['statement'] = 'Changed version with a new premise.'
+    moved.write_text(json.dumps([row]))
+    assert catalogue.claim('J-live')['claim']['statement'] == row['statement']
+    moved.write_text('[]')
+    assert catalogue.claim('J-live')['status'] == 'not_found'
+    assert export.read_text() == 'stale export'
 
 
 def test_impact_reports_module_granularity_and_path_ambiguity(library):

@@ -2,6 +2,10 @@
 from __future__ import annotations
 
 from pathlib import Path
+import sys
+
+# Direct tool entry points use this checkout's shared research readers.
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 
 LIBRARIES = ("Core", "Representation", "Operators", "Problems", "BTCalculus")
 """The lean_lib roots; imports outside them belong to Mathlib or the standard library."""

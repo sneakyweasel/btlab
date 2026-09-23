@@ -1,0 +1,65 @@
+[
+ {
+  "id": "J-failure-margin",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "The tilted momentum that the conjecture's failure forces. Theorem 9.2 and Proposition 9.3 of Paper C are unconditional and J-tao-rate-implies-conjecture is a theorem, so if the conjecture is false then for every C and q, infinitely often in y, (1/d) sum_{t<d} (s_theta(t) - q)^+ >= m(C,q) - o(1) with m(C,q) = [D(p_C||q) - e* ln2/C]/c_theta, e* = 1 - lambda** = 0.5074, theta the re-centring tilt log(p_C(1-q)/(q(1-p_C))), using theta p_C - ln a_{theta,q} = D(p_C||q). The margin is exactly 0 below the laboratory's least C for each q and positive from it (least_C_pressure: 19, 41, 214 at q = 0.5, 0.55, 0.6), grows with C, and tends to D(log2/log3||q)/c_{theta_inf,q} = 6.62% at q = 1/2 (0.58% at C = 20, 4.49% at C = 50). The pressure census depth 40 is C = 76 at 1e12 (margin 5.25%, resolution +/-0.06) but C = 15.6 at 1e50 and 11.3 at 1e100, below the least C, where the margin is zero: at those scales the observation cannot bear on M_{theta,q}. Seeing the required momentum needs depth >= 50L and resolution below 4%, and observes only the contrapositive. CLOSE. Not a halt theorem. UNCONDITIONAL, 20 September 2026. The e* = 1 - lambda** = 0.5074 this row runs on came from a contagion bound conditional on Paper C's Proposition 4.4. It is now e* = 1 - 100/203 = 0.5073891626, unconditional (J-oe-averaged-two-productions-reach-the-depth-two-ceiling, Production.logMass_contagion_averaged). MEASURED, tao_reduction.unconditional_depth_drop: against lambda** NOTHING numerical moves -- least_C_pressure stays 19, 41, 214, 1496 at q = 0.5, 0.55, 0.6, 0.62, because the rate improves by only 3.93e-5, far too little to shift an integer depth. The arithmetic gain is against 13/40, which is what an unconditional statement could use before: least C falls 23 -> 19, and the pressure thresholds fall 23 -> 19, 50 -> 41, 273 -> 214, 1953 -> 1496. So the margin numbers this row prints are unchanged and are now theorems rather than consequences of a conjecture.",
+  "lean": "",
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ],
+  "source": "docs/problems/juggler_failure_margin.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_failure_margin.py"
+  ]
+ },
+ {
+  "id": "J-live-count-weight",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The live count liveCount N0 N w = #{n in [1,N] : itinerary n |w| = w and n, J n, ..., J^|w| n all exceed N0} is a WeightSplit weight (liveWeight_weightSplit: the two one-letter extensions have disjoint live classes inside the parent's), and juggler_count_le_of_noMomentum instantiates the chain on it: if NoMomentum (liveWeight N0 N) x q delta d holds, then #{n in [1,N] : live for d steps, oddCount(itinerary n d) >= k} <= N a_q^d exp(c_q delta d) / x^k with a_q = 1 + (x-1) q, c_q = (x-1)/a_q. The fibrewise identity liveCount_sum_oddCount writes that count as the sum of live counts over the words with at least k odd letters. So the no-momentum hypothesis is now a proposition about itineraries of floorPower, not about an abstract weight. Axioms propext, Classical.choice, Quot.sound only.",
+  "lean": "formal/Problems/Juggler/LiveCountWeight.lean",
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ],
+  "source": "docs/problems/juggler_failure_margin.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ]
+ },
+ {
+  "id": "J-mean-share-exceptional-depths",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "What the mean-share hypothesis does not need, machine-checked. Paper C section 9.3(a) and 9.3(b) were prose; these are the statements. (a) MeanShareOff mu x q d E := sum over t in [0,d) minus E of s_t <= q |[0,d) minus E|, with nothing whatever assumed on the exceptional set E. Then weightGen_le_of_meanShareOff gives Z_d <= Z_0 x^|[0,d) cap E| a_q^|[0,d) minus E|: each excluded depth costs exactly one factor of x and nothing more, because a single letter multiplies the tilted moment by at most x (tiltedShare_le_one). count_le_of_meanShareOff and juggler_count_le_of_meanShareOff carry it to the Tao-type count and to the live count of Juggler starts. meanShareOff_empty: the empty exceptional set is MeanShare, so this is a strict weakening of J-mean-share-form, which is itself a weakening of Paper C's M_(theta,q). (b) initial_depths_are_free: taking E to be the first k depths, no assumption at all on those depths costs more than the constant factor x^k, so every fixed-depth split, the depth-five one included, cannot bear on the reduction. This is why bounded-depth cylinder work is not a route, stated as a theorem rather than a warning. (c) tower_ratio_lt_one with tower_tolerance_half: an all-odd tower splitting with odd share beta at every level carries relative tilted weight (beta x / a_q)^t, so it is free exactly when beta < a_q/x; at q = 1/2 the threshold is (1+x)/(2x) = (1 + e^-theta)/2, which is the 0.836 the note quotes at theta_19. Axioms propext, Classical.choice, Quot.sound only.",
+  "lean": "formal/Problems/Juggler/TiltedShare.lean",
+  "related_conjectures": [],
+  "source": "docs/problems/juggler_failure_margin.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ]
+ },
+ {
+  "id": "J-mean-share-form",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Mean-share form of the no-momentum hypothesis. MeanShare mu x q d := sum_{t<d} s_t <= q d, with s_t the tilted odd share of the WeightSplit weight mu at tilt x. Then (weightGen_le_of_meanShare) Z_d <= Z_0 a_q^d with a_q = 1 + (x-1) q and no exponential slack, by the product form Z_d <= Z_0 prod_{t<d} (1 + (x-1) s_t) (weightGen_le_prod) and AM-GM (prod_le_mean_pow, Jensen for log); hence (count_le_of_meanShare) #{o_d >= k} <= Z_0 a_q^d / x^k, and on the live count (juggler_count_le_of_meanShare) #{n in [1,N] : live for d steps, oddCount >= k} <= N a_q^d / x^k. NoMomentum mu x q delta d implies MeanShare mu x (q + delta) d (meanShare_of_noMomentum), so the mean form is the weaker sufficient hypothesis: Paper C's M_(theta,q) bounds the positive excursions sum (s_t - q)^+; only the depth-average of s_t is needed, and depths with share below q compensate depths above it. The difference is depth-to-depth variation only, since s_t already averages over all starts at depth t. Axioms propext, Classical.choice, Quot.sound only.",
+  "lean": "formal/Problems/Juggler/TiltedShare.lean",
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ],
+  "source": "docs/problems/juggler_failure_margin.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ]
+ },
+ {
+  "id": "J-tilted-share-telescoping",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper C Proposition 9.3 on the word-weight framework of RateFreeDensity. For a nonnegative word weight mu with WeightSplit (each word's two children carry at most the parent's weight) and x >= 1: the tilted generating function Z_d = weightGen mu x d satisfies Z_{d+1} <= Z_d + (x-1) oddMass_d (weightGen_succ_le) and Z_{d+1} <= Z_d (1 + (x-1) s_d) with s_d = tiltedShare mu x d = oddMass_d / Z_d (weightGen_succ_le_share); for 0 <= q, 1 + (x-1)s <= a_q exp(c_q max(s-q,0)) with a_q = 1 + (x-1)q, c_q = (x-1)/a_q (one_add_le_exp_excess); hence Z_d <= Z_0 a_q^d exp(c_q sum_{t<d} max(s_t - q, 0)) (weightGen_le_pressure), and with weight_markov the mass of words with at least k odd letters is at most that over x^k (count_le_pressure). This is the reduction M_{theta,q} => P_theta => Tao-type count, kernel-checked; axioms propext, Classical.choice, Quot.sound only. Also: NoMomentum mu x q delta d := sum_{t<d} max(s_t - q, 0) <= delta d is the hypothesis as a Lean proposition, and count_le_of_noMomentum gives the Tao-type count <= Z_0 a_q^d exp(c_q delta d) / x^k under it; tilt_exponent_eq_kl shows that at the re-centring tilt x = p(1-q)/(q(1-p)) the per-step exponent p log x - log(1 + (x-1)q) equals the relative entropy p log(p/q) + (1-p) log((1-p)/(1-q)), so the exponent of the count is d D(p||q) minus the excess term. Axioms propext, Classical.choice, Quot.sound only.",
+  "lean": "Problems/Juggler/TiltedShare.lean",
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ],
+  "source": "docs/problems/juggler_failure_margin.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ]
+ }
+]

@@ -1,0 +1,15 @@
+[
+ {
+  "id": "J-survivor-count-decay",
+  "tag": "EXACT — LEAN VERIFIED",
+  "source": "docs/problems/juggler_survivor_count_decay.md",
+  "lean": "Problems/Juggler/PaperBSurvivorDecay.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [
+   "juggler_tower_rate_free_equidistribution"
+  ],
+  "statement": "The never-contracting word count N_d of the rate-free density-one reduction (rows J-equidistribution-implies-density-one, J-rate-free-density-one) is identified with a binomial tail and provably decays, closing the link PaperBMarkov's header listed as written mathematics. (i) count_oddCount_ge: length-d parity words with at least a odd letters number exactly sum_{k=a}^{d} C(d,k), by Pascal induction on d. (ii) oddCount_ge_of_mem_neverNeg: every survivor w of length d has oddCount w >= ceil(d beta) with beta = log2/log3 (neverNeg_endpoint plus log monotonicity). (iii) neverNegCount_div_pow_le_theta: N_d/2^d <= theta(beta)^d, the tilt taken at the endpoint q = beta itself (the published proof tilts at the midpoint; the upper bound needs no threshold admissibility). (iv) neverNegCount_div_pow_tendsto_zero: N_d/2^d -> 0, since theta(beta) < 1 (PaperBChernoff.theta_lt_one, beta != 1/2 via 2^8 > 3^5). (v) neverCertified_density_zero: under FairClasses (the manuscript's Hypothesis FD: per-class #w(N) = 2^{-d} N + o(N) at each fixed depth), the never-certified starts in {1,...,N} have natural density zero -- the conditional Theorem 6.1 assembled end-to-end, with RateFreeDensity.uncertifiedCount_eq_sum supplying the union step that J-fd-step-is-formal-and-theorem-six-one-stays-conditional recorded as written mathematics, and PaperBDensity.exceptional_density_zero supplying the limit order N -> infinity before d -> infinity. (vi) Kernel-computed values: N_1..N_8 = 1, 1, 2, 3, 4, 8, 13, 19; neverNegWords_five lists the depth-5 survivors OOOOO, OOOOE, OOOEO, OOEOO, the word count behind Corollary 6.4's 7/8 (uncertified_fraction_depth_five: 1 - 4/32 = 7/8); N_6 = 8 is the ledger's 'all eight children survive'. All kernel-trusted (decide +kernel for the values; no native_decide). What stays open is FD itself, the active conjecture juggler_tower_rate_free_equidistribution; the exact rate -log rho = 0.034688 (one part in eighty sharper than this endpoint-only Hoeffding majorant) is not formalised. Not a halt theorem; no unconditional density claim. The small-depth values are kernel-decided one per theorem: neverNegCount_one = 1, neverNegCount_two = 1, neverNegCount_three = 2, neverNegCount_four = 3, neverNegCount_five = 4, neverNegCount_six = 8, neverNegCount_seven = 13 and neverNegCount_eight = 19, each by decide +kernel rather than by a shared table."
+ }
+]

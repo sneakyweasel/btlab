@@ -1,0 +1,21 @@
+[
+ {
+  "id": "C-ancestor-source-weighted-equivalence",
+  "tag": "REPARAMETERIZATION",
+  "statement": "For any self-map T and nonperiodic target a, the real ancestor indicator b_a(n)=1 iff some nonnegative iterate of n equals a satisfies b_a(n)=b_a(T(n))+1_(n=a), and is not a pullback fixed point. Every nonnegative real solution of this source equation dominates b_a. For any nonnegative weight w, such a solution g with Summable(w*g^2) exists if and only if Summable(w*b_a). These are known coefficient identities, kernel-checked in the shared inverse-generation module. In particular replacing a weighted ancestor-mass problem by nonexistence of a nonnegative finite-energy source solution supplies no independent lower bound. The complex-analytic norm identification and the cited literature theorems are not part of the Lean claim.",
+  "source": "docs/problems/collatz_ancestor_generating_audit.md",
+  "lean": "formal/BTCalculus/PreimageGenerations.lean",
+  "decl": [
+   "BTCalculus.PreimageGenerations.ancestorIndicator",
+   "BTCalculus.PreimageGenerations.ancestorIndicator_eq",
+   "BTCalculus.PreimageGenerations.ancestorIndicator_not_fixed",
+   "BTCalculus.PreimageGenerations.ancestorIndicator_le_of_source_eq",
+   "BTCalculus.PreimageGenerations.exists_summable_source_iff"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_collatz_bridge.py"
+  ],
+  "related_conjectures": []
+ }
+]

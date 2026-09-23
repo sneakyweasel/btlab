@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-leftover-first-eighth",
+  "tag": "REFUTED",
+  "statement": "On an AboveAnchor leftover, the first cube-odd landing x with even T(x) satisfies x^3 < n^8. False. For n=4309 the first cube-odd state is x=22357213525 after the leftover-generated prefix OOEOOEOO, T(x) is even, and T^2(x)=57818025 >= 4309^2. The same word appears on the long leftover n=5791. Named leftovers 365, 501, 1517, 6187 remain below n^8 at their first lift because those itineraries keep 3^{o+1} < 8*2^{|w|}; OOEOOEOO is the first PE prefix that loses the gap. This is not a claim about later landings, not a new exponent chain, and not a halt theorem.",
+  "source": "docs/problems/juggler_first_lift_eighth.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_first_lift_eighth.py"
+  ],
+  "related_conjectures": []
+ }
+]

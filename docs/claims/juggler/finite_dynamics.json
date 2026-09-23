@@ -1,0 +1,1152 @@
+[
+ {
+  "id": "J-automatic-descent-density",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "The odd-to-odd Juggler starts have natural density 1/4. Equivalently, the starts that admit a uniform one- or two-step FiniteProgress certificate (every even start n ≥ 2, and every odd start whose first image is even) have natural density 3/4. This is the counting corollary |OO(N)-N/4| ≪ N^{5/6} of the ambient odd-input discrepancy bound. It is a density of that uniform short-certificate class, not of all FiniteProgress, not of ReachesOne, and not a Lean counting theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_odd_image_discrepancy.py",
+   "tests/research/juggler_sequence/test_progress_coverage.py"
+  ],
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "partial",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Theorem 3.1 (single-floor parity).** One has",
+     "end": "**Proposition 3.2 (the OE third letter).** One has",
+     "sha256": "1e05e7371f23e2be874c13d5518bcfe0e0bdf62a563cec94604999d89ffe096e"
+    },
+    "uses": [],
+    "notes": "The elementary count uses the classical second-derivative/discrepancy input in this proof. Those external theorem instances are not yet separate ledger nodes."
+   }
+  ]
+ },
+ {
+  "id": "J-cycle-absolute-cell-grid-charge",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For a primitive exact threshold cycle S_b, or an actual Juggler cycle with minimum m>1 and maximum M<m^3, let L,o be its period and lower/odd count, T=log 3, Lambda=o log 3-L log 2>0, and A=(log m) exp(-(1-1/L)Lambda)>0. Then Lambda < exp(-A)/A times the finite sum over 0<=i<L of exp(-i T(A+1)/L), and exp(A) A(A+1)Lambda < A+1+L/T. The exact upper unit cells bound each logarithmic defect by 1/(y log y); the sorted grid bounds the total by a geometric sum. Along sequences with log m tending to infinity, log m=o(L), and Lambda log m tending to zero, this yields m(log m)^2 Lambda <= (1+o(1))L/log 3. In the explicitly conditional regime Lambda~c/L and polynomially growing m, this narrows the necessary scale to m(log m)^2<=(1+o(1))L^2/(c log 3). No uniform lower bound of order 1/L for Lambda is asserted. The result also holds for wrong-parity threshold cycles and does not prove a parity obstruction, no-cycle, or a new numerical period bound. The exact finite and scaled scalar inequalities are kernel checked in CubicUpperCells. The asymptotic consequences remain written, so this combined row retains its written-proof tag. Independent human review is not claimed.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CubicUpperCells.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_band.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "power_cells_grid_charge",
+   "power_cells_scaled_charge",
+   "logCellDefect_lt_logEta",
+   "inv_log_sum_le_grid",
+   "grid_charge_le_geometric",
+   "geometric_grid_charge_lt",
+   "threshold_cycle_upper_charge",
+   "cubicBand_cycle_upper_charge"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-branch-offset-obstruction",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Let G(1)=1, G(x)=J(x)-1 for odd x>=3, and G(x)=J(x) for even x. Exact integer square-cell inequalities certify the primitive cycle 13,45,300,17,69,572,23,109,1136,33,188,13, with (L,o,e)=(11,7,4) and maximum 1136<13^3. It is also an R_11 cycle. For any two odd sources >=3, or two positive even sources, G(x')-G(x)=J(x')-J(x). All same-branch higher finite differences on sources >1 therefore agree as well. Even strict nearest-even smooth-gap tests hold for same-parity successor pairs. Hence correct source parity, global rank order and exact within-branch image differences restricted to sources >1 alone cannot exclude cycles: an additive branch constant is lost. Differences involving 1 are excluded because they could anchor the odd-branch constant. This is a cycle of a different map, not a Juggler counterexample. Consolidated in Paper A Section 3.10 and formalized in the seven Cubic modules. The cited declarations and supporting modules are compiled kernel proofs. The illustrative asymptotic comparison and universal wrong-parity question are not promoted; no new cycle exclusion, floor or period bound follows.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CubicRounding.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_band.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "branchOffset_same_branch_difference",
+   "branchOffset_same_branch_smooth_gap",
+   "branchOffset_nearest_even_gap",
+   "branchOffsetCycle_primitive",
+   "branchOffsetCycle_cells",
+   "branchOffset",
+   "branchOffsetCycle",
+   "branchOffsetCycle_edges",
+   "branchOffsetCycle_distinct",
+   "branchOffsetCycle_counts",
+   "branchOffsetCycle_bounds",
+   "branchOffsetCycle_rounding",
+   "branchOffsetCycle_iterate",
+   "branchOffsetCycle_iterates",
+   "branchOffsetCycle_rank_rotation"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-budget-opt-instance",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "At n = 10^6+1 the run-type 6/5 packing is strictly below the parity RHS on every one of the 141 lengths in E_par(10^6). It certified-excludes the 42 lengths 56347+1054k for k = 0..41 and leaves 99 leftovers. First survivor remains L = 25781 (θ ≈ 2.55e-5 versus packed RHS ≈ 5.89e-4). Dropping one even term (M → ∞) does not change the kill list. Paper A Theorem 4.8. Not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_budget_opt.py",
+   "tests/research/juggler_sequence/test_cycle_run_survivor_lattice.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-cubic-band-order",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Conditional cycle-order theorem. Let C be a primitive nontrivial Juggler cycle with minimum m>1, maximum M<m^3, length L and o odd states; set e=L-o. If c_0=m<...<c_(L-1) lists its states, the odd states are exactly those below m^2 and J(c_i)=c_((i+e) mod L). Hence gcd(L,o)=1 and the odd count in the first k steps from m is ceil(k o/L), for 0<=k<=L: the exact ceiling mechanical word. Proof separates odd/even states and images, uses injectivity to eliminate possible floor ties, then ranks the resulting cyclic permutation. A non-mechanical primitive cycle or one with gcd(L,o)>1 must instead have M>=m^3+1. The height hypothesis is essential to this argument; no unconditional Christoffel claim, no parity obstruction, no new period exclusion. Consolidated in Paper A Section 3.10 and formalized in the seven Cubic modules. The cited declarations and supporting modules are compiled kernel proofs. The illustrative asymptotic comparison and universal wrong-parity question are not promoted; no new cycle exclusion, floor or period bound follows.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CubicConsequences.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_band.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "cubicBand_mechanical_itinerary"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-cubic-euclidean-induction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For a finite sorted invariant set with rank permutation i->i+b modulo a+b, positive a,b, and chronological return words A,B, inducing on a prefix gives (a-b,b;A,AB) if a>b, or (a,b-a;AB,B) if b>a. Accelerating a=qb+r gives (r,b;A,A^q B), and b=qa+r gives (a,r;AB^q,B); a zero remainder gives the identity on the gcd-sized prefix. Return towers partition all original states, preserving a|A|+b|B|=L and letter counts. Exact parity predicates compose as P_AB(x)=P_A(x) AND P_B(F_A(x)). Therefore the full expanded tower representation retains exactly L original source-parity tests at every stage. For a primitive cycle the terminal single base carries the entire original fixed-point and parity condition. These first returns concern the finite invariant set, not every integer between its extrema. This is elementary symbolic induction with a faithful parity interpretation, not a uniform arithmetic-closure theorem, a lower bound on every possible representation, or a no-cycle proof. The exact subtractive rank first returns and their word statistics are Lean verified in J-cycle-subtractive-return-step; the accelerated full tower partition remains written. No uniform guard compression or no-cycle theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_induction.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-cubic-hidden-parity",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every odd integer s>=3, take threshold b=s^3 and source x=s^4. The exact threshold map S_b makes the lower-to-lower first-return block s^4 -> s^6 -> s^3, since s^3<=s^4<s^6=b^2<b^3. Both endpoints are odd and the collapsed OE endpoint is exactly x^(3/4)=s^3, but the eliminated E source s^6 is odd; the actual Juggler map there gives s^9. Thus exact collapsed endpoint cells, odd endpoint parity and threshold cuts do not imply the original internal parity guard. This family occurs at unbounded cube thresholds, not every threshold, and its members are blocks rather than closed cycles. It refutes omitting internal parity, not short-word endpoint identities, guarded compression, or any full-cycle assertion. The prescribed power family and all three odd parities are Lean verified by oe_perfect_power and oe_perfect_power_hidden_odd; the threshold placement is an elementary written consequence. These are blocks, not cycles.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_induction.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-cubic-return-compression",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For positive integer x and O(x)=floor(x^(3/2)), E(x)=floor(sqrt x), chronological OE equals floor(x^(3/4)) exactly. If H=floor(x^(9/8)), then F_OOE(x) is H or H-1, so an odd output equals the largest odd integer at most x^(9/8). For x>=5, 0<=x^(27/32)-F_OOEOE(x)<2; hence an odd output is the odd projection. The same odd-output assertion holds for positive odd sources below 5 by x=1 and x=3 controls. For any fixed word, defining n_j=floor(n_(j-1)^alpha_j), p_j=product alpha up to j, q_j=p_k/p_j, and actual error eps_j=n_(j-1)^alpha_j-n_j, the loss telescopes exactly as x^p_k-n_k=sum_j[(n_j+eps_j)^q_j-n_j^q_j]. If every nonempty proper prefix, 1<=j<k, has p_j>p_k, it is less than 1+sum_(j<k)q_j n_j^(q_j-1). A sum at most 1 therefore suffices for odd projection; each such fixed word eventually satisfies this as x grows. This supplies no uniform word-independent bound and does not establish internal source parity, arbitrary Euclidean endpoint closure, or a no-cycle theorem. OE/OOE integer cells and the OOE odd maximal endpoint are Lean verified in J-cycle-short-return-cells. The OOEOE projection and fixed-word asymptotic transport remain written; no uniform growing-word conclusion.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_induction.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-cubic-sorted-grid",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For a primitive S_b cycle, or an actual Juggler cycle with minimum m>1 and maximum M<m^3, sort its states c_i and set T=log 3, Lambda=o log 3-L log 2>0, v_i=log(log c_i/log m), v_(i+L)=v_i+T and w_i=v_i-iT/L. Then osc(w)<= (1-1/L)Lambda and |w_i|<= (1-1/L)Lambda. The lifted adjacent gaps h_i=v_(i+1)-v_i satisfy range(h)<=Lambda and |h_i-T/L|<=(1-1/L)Lambda. The proof uses nonnegative logarithmic rounding defects summing to Lambda and the coprime rank rotation, with no factor L loss. The bounds do not resolve integer parity or exclude cycles. Consolidated in Paper A Section 3.10 and formalized in the seven Cubic modules. The cited declarations and supporting modules are compiled kernel proofs. The illustrative asymptotic comparison and universal wrong-parity question are not promoted; no new cycle exclusion, floor or period bound follows.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CubicLogGrid.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_band.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "threshold_cycle_grid",
+   "cubicBand_cycle_grid",
+   "logCellDefect_nonneg",
+   "logCellDefect_sum",
+   "rank_rotation_real",
+   "log_grid_of_power_cells",
+   "logGridSurplus_pos_of_power_cells",
+   "log_gap_bounds_of_power_cells",
+   "threshold_log_grid",
+   "cubicBand_log_grid",
+   "threshold_invariant_grid",
+   "realized_grid_bounds_of_power_cells",
+   "RealizedGridBounds",
+   "surplus_pos",
+   "grid_bound",
+   "error_oscillation",
+   "gap_range",
+   "gap_mean_bound"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-direction-change-batches",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For a guarded sorted OOE/OE return model with positive counts a,b and least source at least m>=2^24, the first maximal left and right batches have quotient2 and nonzero remainders: a=2b+r,b=2r+s,0<s<r<b. dc_rank_stages proves this from exact guarded rank equations and compiled growth/decrease inequalities, including terminal equality. periodicExtrema_return_model constructs this model for an actual cycle with M<m^3. periodicExtrema_dc_transfers proves that the left steps recycle one seam and the next two right steps genuinely transfer it through C. The broader unguarded threshold-model version remains written; this Lean row states the guarded version.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/ReturnQuotients.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_direction_change.py"
+  ],
+  "related_conjectures": [],
+  "lean_trust": "kernel",
+  "decl": [
+   "dc_rank_stages",
+   "force_two_left",
+   "force_two_right"
+  ]
+ },
+ {
+  "id": "J-cycle-direction-change-contraction",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For the prescribed return C=OOEOOEOE and every integer x>=2^24, 0<=x^(243/256)-F_C(x)<9/8. The kernel-checked seven-tail majorant is 63121/524288<1/8. For integers z>w>=2^24 with d=z-w>=2, 0<=F_C(z)-F_C(w)<(243/256)w^(-13/256)d+9/8<d. No parity hypothesis is needed for this prescribed-map inequality. The compiled even-gap and actual-cycle transfer layers supply its cycle use. Paper A Section3.12 and AppendixF; no no-cycle claim.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/ReturnWordBounds.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_direction_change.py"
+  ],
+  "related_conjectures": [],
+  "lean_trust": "kernel",
+  "decl": [
+   "c_contract",
+   "c_certificate",
+   "c_dyadic_sum",
+   "c_budget_lt",
+   "c_loss",
+   "c_slope_lt",
+   "c_pair_from_floor"
+  ]
+ },
+ {
+  "id": "J-cycle-direction-change-height",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper A Theorem3.40(i): Every actual Juggler cycle with minimum m>=2^24 and maximum M<m^3 satisfies M<m^3-(1/2)m^(253/128), and m^253<[2(m^3-M)]^128. The compiled companion dc_cycle_gap proves d0=F_OOE(m)-F_OE(sqrt M)>=6 and d0>(26240/59049)m^(13/128). The actual section, guards, forced batches, two genuine transfers, analytic bounds and exact extremal cells are derived internally. Ordinary periodic-orbit and CycleMin wrappers are included. The remaining cubic region and taller cycles remain open; period780239 and descent floor350000000 are unchanged.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/ReturnTransferHeight.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_direction_change.py"
+  ],
+  "related_conjectures": [],
+  "lean_trust": "kernel",
+  "decl": [
+   "dc_cycle_height",
+   "dc_cycle_gap",
+   "periodicOrbit_dc_height"
+  ]
+ },
+ {
+  "id": "J-cycle-finance-inequality",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "On a Juggler CycleMin start n ≥ 2 with word w of length L and oddCount o, the dyadic-cell logarithm bound log z ≤ 2 log y + 2/y unrolls to n · log n · (3^o − 2^L) ≤ L · 3^o (Paper A Theorem 4.4; Lean cycleMin_finance). Every cycle state is at least 12 and the rotated minimum is odd, so the minimum is at least 13 and 13 log 13 > 65/2, hence (65/2)(3^o − 2^L) ≤ L · 3^o for every CycleItinerary (cycle_finance_min_thirteen). This is the whole-cycle financing of the formal expansion 2^L < 3^o by relative floor defects. It is not a halt theorem, not an exclusion of every length, and not the computational 6/5 table used for L ≤ 10^5.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CycleFinance.lean",
+  "decl": [
+   "cycleMin_finance",
+   "log_le_two_log_add",
+   "cycleMin_log_envelope"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-finite-even-transfer-budget",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For a finite sequence of even natural gaps d(0),...,d(n), if every step strictly decreases then d(n)+2n<=d(0). If the final gap is positive then 2(n+1)<=d(0). The previous two- and three-transfer bounds are special cases. Every strict transfer remains a hypothesis; no unlimited chain is inferred.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/ReturnGapHeight.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "even_transfers_sum",
+   "even_transfers_positive"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-finite-structure",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Every nontrivial Juggler cycle itinerary based at n ≥ 2 is formally expanding. Cycle extrema satisfy the certified parity, order, square-scale, and nested-cell constraints; a minimum-based cycle orientation cannot end in an odd letter. The path from a cycle minimum to any later even state is superquadratic. These are necessary cycle restrictions, not an exclusion of all cycles.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/Cycles.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_extrema.py",
+   "tests/research/juggler_sequence/test_cycle_ooo_scale.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-fixed-residue-witness",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper A Appendix E.6, explicit formal witness. For every requested modulus q>0, c=512q-1 and b=c^3 yield two prescribed OOE first-return blocks in the same full cubic threshold band and the same section. The source, first image and endpoint are odd, all six threshold edges and first-return memberships are proved, and the final E-source parities differ. The records agree in source/first-image/endpoint/natural-aggregate residues modulo q, exact first remainder zero, and exact aggregate 2-adic valuation three. No classifier of this record can give both hidden parities correctly, even when supplied the exact common threshold and section boundary. The general positive free-b Taylor construction remains written. These blocks are not asserted periodic points; no impossibility for full absolute-value formulas or cycle-specific guards is claimed. Kernel verified.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/GuardResidueFamily.lean",
+  "decl": [
+   "guardResidueFamily_no_record_classifier",
+   "guardResidueParameter",
+   "guardResidueParameter_valid",
+   "guardResidueFamily_every_modulus",
+   "guardResidueFamily_record_collision",
+   "guardResidueRecord",
+   "guardResidue_ooe_traces",
+   "guardResidue_good_juggler_block",
+   "guardResidue_threshold_blocks",
+   "guardResidue_common_band_and_section",
+   "guardResidue_nat_parities",
+   "guardResidue_nat_record",
+   "guardResidue_nat_aggregate_record",
+   "guardResidue_first_remainders_zero",
+   "guardResidue_aggregate_valuation"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_guard_residues.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-induced-count-determinant",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every word pair induced from (OOE,OE) by the two Euclidean substitutions, o(U)e(V)-o(V)e(U)=1 as an integer identity. Each word has coprime odd/even counts. For arbitrary natural section populations a,b, the expanded totals L=a|U|+b|V| and o=a o(U)+b o(V) satisfy gcd(L,o)=gcd(a,b). These count identities preserve the guards in separate actual-return interfaces; they alone do not construct a cycle.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/ReturnWordFactorization.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "InducedPair.count_determinant",
+   "InducedPair.count_coprime",
+   "InducedPair.expanded_count_gcd"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-itinerary-eliahou-leftover",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If a nontrivial Juggler cycle itinerary exists at n ≥ 2, and every length in [30, 10^5) outside a named list of near-convergents is already excluded, then the period is 84, or belongs to that list, or is at least 10^5. Lean theorem cycle_itinerary_eliahou_leftover: bookkeeping on cycle_itinerary_length_eighty_four_or_ge_eighty_five plus EliahouTable, not a new inequality. This is the Collatz Eliahou leftover shape (period ≥ X, or a named convergent family) on the floor-power map. Paper A prints the floor-10^6 instance as Theorem 4.6; leftover 84 is Appendix A companion. This is not a proof of the finance table, not a no-cycle-of-any-length theorem, and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "decl": [
+   "cycle_itinerary_eliahou_leftover",
+   "EliahouTable",
+   "EliahouLeftover",
+   "eliahouTableCutoff"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-itinerary-eliahou-leftover-instance",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "If a nontrivial Juggler cycle exists, there is no period ≤ 25780, and no period ≤ 10^5 outside the 141 near-convergent lengths of ln 2 / ln 3 at the Python floor 10^6 using the length-only parity 6/5 table (Paper A Theorem 4.6). First record survivor is L = 25781. Instantiation of J-cycle-itinerary-eliahou-leftover by the parity finance gap table L ≤ 10^5 and descent floor 10^6. Length 84 is the Lean-named leftover (Appendix A companion) and is computationally already excluded. Lengths 19, 38, 57, and 76 are excluded in Lean at the residual floor 261. This is not a no-cycle-of-any-length theorem and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-later-return-certificate",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For a prescribed word with full ideal exponent 0<p<1 and every proper tail q_j=p/p_j<1, two traces whose sources and proper states are at least m>=1 satisfy 0<=F(z)-F(w)<p*m^(p-1)*(z-w)+K_W(m), where K_W=1+sum(q_j*m^(q_j-1)). The condition 2*p*m^(p-1)+K_W<=2 forces strict contraction on gaps at least two. For p>1/2 and a proper prefix this sufficient certificate requires m>(2p)^(1/(1-p)); hence it cannot hold uniformly at a fixed minimum for a family with p approaching one from below. This is a limitation of the one-sided error estimate, not a counterexample to true paired contraction or a claim that every possible later upper word has these exponents. The exact transported loss, paired bound and necessary finite minimum threshold are kernel checked in ReturnWordLoss, retaining the published ReturnWordBounds namespace for the threshold. The p-to-one asymptotic interpretation remains written, so this combined row retains its written-proof tag. No no-cycle conclusion.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/ReturnWordLoss.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_later_returns.py"
+  ],
+  "related_conjectures": [],
+  "lean_trust": "kernel",
+  "decl": [
+   "certificate_requires_large_minimum",
+   "eval_mono",
+   "paired_bound",
+   "loss_exact"
+  ]
+ },
+ {
+  "id": "J-cycle-later-return-height",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper A Theorem3.40(ii): Every actual Juggler cycle with minimum m>=2^128 and maximum M<m^3 satisfies M<m^3-(1/2)m^theta, theta=381/128-3^41/2^65>127/64, also M<m^3-(1/2)m^(127/64) and m^127<[2(m^3-M)]^64. The forced next batch has r=3s+u,0<u<s. The unconditional 65-letter W=D^3C loss is below6/5 and its genuine third transfer forces d0>=8 and d0>(2/5)m^(13/128+1-3^41/2^65). The full actual placement, guards and cell transport are kernel checked; ordinary periodic-orbit and CycleMin wrappers are included. This theorem retains its much larger cutoff and does not exclude all cubic or taller cycles or increase the period/descent floor.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/ReturnTransferHeight.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_later_returns.py"
+  ],
+  "related_conjectures": [],
+  "lean_trust": "kernel",
+  "decl": [
+   "lr_cycle_height",
+   "lr_cycle_gap",
+   "periodicOrbit_lr_height"
+  ]
+ },
+ {
+  "id": "J-cycle-oe-quotient-parity-carry",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper A Proposition E.2. For positive y and y^4<=N<(y+1)^4, let u=isqrt(N), c=u-y^2, d=(N-y^4) div (2y^2), h=min(d,2y). Then 0<=c<=2y and c<=h<=c+2. The exact 0/1/2 correction is recovered by the two adjacent square comparisons (baseline_zero_iff, baseline_one_iff, baseline_two_iff). For odd y, the hidden source u is even iff c is odd (square_guard_iff). With N=x^3 and an odd OE source, this is the exact internal guard. Kernel-verified quantified bounds and recovery; the sharpness example 93->896->29 is separately checked finite arithmetic. No arbitrary-word closure or cycle theorem is asserted.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/RemainderCarry.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_induction.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "baseline_bounds",
+   "baseline",
+   "baseline_correction",
+   "baseline_zero_iff",
+   "baseline_one_iff",
+   "baseline_two_iff",
+   "square_guard_iff"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-ooe-carry-substitution-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every odd integer r>=3, x=r^8+8,u=r^12+12r^4,v=r^18+18r^10+54r^2-1,z=r^9+9r-1 form a genuine parity-valid Juggler OOE block x->u->v->z in threshold band [b,b^3), b=r^8, with x,u,z below b^2 and v above it; max(block)<min(block)^3. Its true suffix quotient is d=floor((u^3-z^4)/(2z^2)); the candidate pure-power replacement is D=floor((x^(9/2)-z^4)/(2z^2)). Exactly D-d is 36r^2 or 36r^2+1. For c=v-z^2 and H=min(D,2z), c=2z-27r^2, H=2z, and H-c=27r^2. Meanwhile floor(x^(9/8))=z+1 and odd projection gives the correct endpoint z. Hence no uniformly bounded additive correction repairs this specified quotient or clipped-displacement substitution. The ideal radicand lies outside the original unit endpoint cell at z, so the example refutes a candidate closure extension rather than the valid one-block normal form. The actual first square remainder is 48r^8+512 and cannot simply be discarded in that extension. These are blocks, not cycles; the family itself has a polynomial-plus-one-carry correction, so no impossibility for general fixed-dimensional data or parity-only formulas is claimed. The exact polynomial Juggler block is Lean verified separately; the real quotient-substitution inequalities and clipped-error calculation remain written proofs. No periodic membership is claimed.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_induction.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-ooe-exact-remainder-repair",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper A Proposition E.5 and ER1. For an exact first root u=isqrt(x^3)>=3, retained remainder R=x^3-u^2, and validated OE suffix endpoint z, the correction error C-Delta=eta^2(t+2u)/(4z^2) is in [0,5/6). The signed corrected floor q is d or d-1, where d=floor((u^3-z^4)/(2z^2)). corrected_quotient_integer proves q=(isqrt(K^2*x^3)-2z^4) floor-divided by 4z^2, K=2x^3-3R. endpoint_validation certifies z via z^8<=(x^3-R)^3<(z+1)^8; record_initializes checks an independently supplied square/remainder witness. The executable recoverPeak evaluates this integer quotient and the four candidate fourth-power cells; recoverPeak_eq proves exact recovery of v=isqrt(u^3). For odd initial x, both hidden OOE source guards hold iff R is even and recoverPeak is even. Initial record and endpoint validity are explicit, not inferred from a projected candidate. This is a kernel-verified short-word algorithm; the additional OOEOE composition remains written, and no arbitrary-word closure or speedup is claimed.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/RemainderCarry.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_remainder_transport.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "recoverPeak_guard_iff",
+   "correction_identity",
+   "correction_error_bound",
+   "exact_remainder_correction",
+   "exact_quotient_gap",
+   "corrected_baseline_bounds",
+   "corrected_baseline_correction",
+   "integerQuotient",
+   "corrected_quotient_integer",
+   "endpoint_validation",
+   "record_initializes",
+   "recoverPeak",
+   "recoverPeak_eq"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-ooe-family-chain-bound",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper A Theorem E.4. For X(r)=r^8+8 and odd parameters r>=3, the exact three-step Juggler image is r^9+9r-1. A family transition r->s is equivalent to s^8+9=r^9+9r and forces r=1 modulo48. Between continuing sources, nu2(s-1)=nu2(r-1)-2. For a finite actual J^3 chain of k transitions through odd parameters >=3, k<=(nu2(r0-1)-2)/2 with natural-number subtraction and division; this is max(0,floor((nu2(r0-1)-2)/2)) in integer notation. No valuation drop is assumed after the final destination. ooeFamily_no_infinite_juggler_chain excludes an infinite exact family chain. These are direct actual-Juggler wrappers, not merely an assumed polynomial recurrence. The supplementary 3-adic identity is written and six terminating sample traces are computations. No universal family termination, general escape exclusion, or no-cycle theorem follows.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/FamilyChains.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_remainder_transport.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "ooeFamily_juggler_chain_bound",
+   "ooeFamilyReturn",
+   "ooeFamilyReturn_iff",
+   "ooeFamilyReturn_mod_fortyeight",
+   "ooeFamilyReturn_valuation_drop",
+   "ooeFamily_no_infinite_juggler_chain"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-ooe-fixed-residue-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every even Q>=2 put c=Q-1 and choose a positive integer b=3 mod4 with b^2>504c^5. For d=1,-c define t_d=b^4+4d, x_d=t_d^2, u_d=t_d^3, V_d=b^18+18db^14+126d^2b^10+420d^3b^6+630d^4b^2 and Z_d=b^9+9db^5+(45d^2b-1)/2. Exact prescribed OOE traces have second images v_1=V_1 and v_-c=V_-c-1 and endpoints Z_d. Both first remainders x_d^3-u_d^2 equal zero. Both x_d,u_d,Z_d are odd, but v_1 is odd and v_-c is even, so precisely the negative-d guard holds. The traces are first returns to the same integer section [B,Z_1+1), B=t_-c^2, of the same threshold map on [B,B^3), with both intermediate states outside that section and correct OOE threshold placement. Their x,u,Z and endpoint-aggregate x^9-Z^8 residues agree modulo Q, and both aggregate 2-adic valuations equal 3. Taking Q an even multiple of any fixed finite collection of residue moduli proves that no function of just those residues, the exact first remainder, aggregate valuation, word and common full threshold/section can recognize every such guard. This refutes that precise fixed-residue summary class on the geometric return domain, not absolute-value quotient formulas, a fixed number of unbounded registers, or a cycle-selected representation. Periodic membership of these blocks is not asserted. The general positive-b construction is a written proof. A fully quantified explicit every-modulus subfamily is Lean verified in J-cycle-fixed-residue-witness. No periodicity or global no-cycle claim.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_guard_residues.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-ooe-polynomial-block",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper A Proposition E.3, formal polynomial-block subset. For every odd r>=3, x=r^8+8,u=r^12+12r^4,v=r^18+18r^10+54r^2-1,z=r^9+9r-1 satisfy all three adjacent-square cells, x,u,z odd and v even, and the actual Juggler steps x->u->v->z. The direct iterate-three identity is proved. Kernel verified; this row does not cover the real-power quotient substitution estimates or assert a closed orbit.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/FamilyChains.lean",
+  "decl": [
+   "ooeFamily_juggler_block",
+   "ooeFamilySource",
+   "ooeFamilyFirst",
+   "ooeFamilySecond",
+   "ooeFamilyExit",
+   "ooeFamily_square_cells",
+   "ooeFamily_parities",
+   "ooeFamily_iterate_three"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_induction.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-parity-finance-instance",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "The length-only parity 6/5 table at the published floor N_0 = 10^6 excludes every cycle length L ≤ 25780 and every L ≤ 10^5 outside 141 near-convergent lengths. First survivor L = 25781 with n_max^par = 26254995; n_max^par(1054) = 788014. No comparison is uncertain. SHA-256 of the length list is dd71aa1527656ba51cb031bafa5497f7bfdbbc43151ffba2c595793326bf7944. This is not the crude table at floor 2·10^6 (same prefix, weaker inequality). Not a halt theorem and not a no-cycle-of-any-length theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-periodic-return-height-strip",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper A Theorem 3.39. For every actual cycle with attained minimum m>=5 and maximum M<m^3, t=isqrt(M) and z=F_OOE(m) satisfy t^3+2<=[z(z-2)]^2 and M+2<=(t+1)^2 (cycleMin_exact_return_seam). The periodic E-image section is exactly C intersect [m,O(m)); its extrema return images have a strict odd gap, derived from actual periodicity and injectivity rather than assumed. For m>=7, m^15<(m^3-M)^8 (cycleMin_height_strip), equivalently M<m^3-m^(15/8); the all-states version is cycleMin_all_states_height_strip. Every threshold cycle in the complementary top strip has a wrong-parity state (threshold_cycle_wrong_parity). Exact OE/OOE cells identify the odd endpoint z. The sharper fractional bound for t, maximum-odd-integer ceiling restatement, and full rank adjacency are separately written consequences. The remaining cubic region, tall cycles and global no-cycle remain unexcluded; the period floor is unchanged. Kernel verified from actual periodic-orbit and CycleMin hypotheses.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CubicReturnStrip.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_periodic_carries.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "cycleMin_height_strip",
+   "height_strip",
+   "periodicOrbit_height_strip",
+   "cycleMin_all_states_height_strip",
+   "threshold_cycle_wrong_parity"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-short-return-cells",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper A Appendix E.1, formal subset. The prescribed OE return equals y iff y^4<=x^3<(y+1)^4. Every prescribed OOE return v satisfies v^8<=x^9<(v+2)^8; relative to an eighth-root cell y it is y or y-1. If v is odd, it is the greatest odd integer whose eighth power is at most x^9. The family s^4->s^6->s^3 has all three states odd when s is odd, so endpoint parities do not imply the hidden E guard. Actual OE/OOE composition bridges retain every source-parity premise. Kernel verified; no arbitrary-root or OOEOE projection theorem is claimed by this row.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/ReturnCells.lean",
+  "decl": [
+   "ooe_odd_maximal",
+   "oe",
+   "ooe",
+   "oe_eq_iff",
+   "oe_cell",
+   "oe_actual",
+   "ooe_actual",
+   "ooe_upper_pow",
+   "ooe_lower_pow",
+   "ooe_two_cell",
+   "ooe_one_integer",
+   "oe_perfect_power",
+   "oe_perfect_power_hidden_odd"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_induction.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-subtractive-return-step",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper A Appendix E.2, formal core. For rankStep(a,b,i)=i+b when i<a and i-a otherwise, a>b gives the first return on [0,a) as rankStep(a-b,b), in one or two iterations with every earlier positive iterate outside. For b>a the first return on [0,b) is rankStep(a,b-a); equal counts give a two-step identity. Weighted word lengths and O/E statistics are preserved by A,AB or AB,B substitution. Kernel-verified return iterates and first-visit properties; full accelerated towers and their global partition remain written.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/ReturnInduction.lean",
+  "decl": [
+   "left_subtractive_first_return",
+   "rankStep",
+   "right_subtractive_first_return",
+   "equal_first_return",
+   "left_word_statistics",
+   "right_word_statistics"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_induction.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-terminal-mixed-gap",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Every actual positive periodic orbit with minimum m>=3, attained maximum M<m^3 and all states in [m,M] supplies a primitive terminal two-base section {m,v}. The supplied period need not be least. The original adjacent pair follows induced words U,V with U(m)=v and V(v)=m, and guarded factors UV=P OE Q, VU=P EO Q. Their common prefix reaches the globally adjacent largest odd/smallest even pair (h,s), with O(h)=M and E(s)=m. The common suffix returns (floor(sqrt M),O(m)) to (m,v), and 0<O(m)-floor(sqrt M)<s-h. The periodic-set interface explicitly requires connectedness; the ordinary-orbit interface derives it. Primitive termination, original-set adjacency, exact cut identification and every guard are kernel checked. No contraction of the complete prefix/mixed/suffix passage or no-cycle conclusion is asserted. The stronger TerminalOrbitCut interface is indexed by the same PeriodicOrbitModel used for charge: terminal word lengths sum to its true least period, and odd/even totals equal the parity-filter cardinalities of its sorted states.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/ReturnTerminal.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_later_returns.py",
+   "tests/research/juggler_sequence/test_lean_interface_contracts.py"
+  ],
+  "related_conjectures": [],
+  "lean_trust": "kernel",
+  "decl": [
+   "mixed_gap",
+   "periodicExtrema_terminal_cut",
+   "periodicOrbit_terminal_cut",
+   "TerminalOrbitCut",
+   "terminal_cut_from_section",
+   "periodicOrbit_terminal_totals",
+   "cycleMin_terminal_totals",
+   "TerminalCut",
+   "AdjacentIn.image",
+   "AdjacentIn.cut_extrema",
+   "terminal_cut"
+  ]
+ },
+ {
+  "id": "J-cycle-threshold-common-period",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For a fixed integer b>=3, all primitive cycles of the size-switched threshold map S_b have the same period L, branch counts (o,e), and minimum-based ceiling mechanical word. If there are t cycles, they interlace: each occupies one rank residue class modulo t in the sorted union of all periodic points. Proof: on that finite invariant union, branch image separation and injectivity give rank addition by E, the total upper-branch count; t=gcd(N,E), L=N/t, e=E/t. No uniqueness, uniform wrong-parity intersection or actual Juggler cycle exclusion follows. Consolidated in Paper A Section 3.10 and formalized in the seven Cubic modules. The cited declarations and supporting modules are compiled kernel proofs. The illustrative asymptotic comparison and universal wrong-parity question are not promoted; no new cycle exclusion, floor or period bound follows.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CubicInterlacing.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_band.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "rankRotation_orbit_iff_residue",
+   "rankRotation_orbit_representatives",
+   "rankRotation_orbit_upper_card",
+   "rankResidue_interlaces",
+   "rankRotation_orbit_finset",
+   "rankResidue_range_card",
+   "rankResidue_fin_card",
+   "rankResidue_parameterization",
+   "rankResidue_upper_card"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-threshold-relaxation",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For each integer b>=3, the size-switched map S_b on integers b<=x<b^3 uses floor(sqrt(x^3)) for x<b^2 and floor(sqrt(x)) otherwise. This finite interval is invariant and S_b has no fixed point, so it has a primitive cycle of length at least two at arbitrarily large minima. Its cycles have the separated-image rank rotation, coprime branch counts and ceiling mechanical words; 3^o>2^L. S_b is not Juggler: a full cycle is a Juggler cycle iff every low state is odd and every high state even. This parity compatibility is not established, and the construction refutes only attempts to get no-cycle from the listed parity-relaxed properties alone. Consolidated in Paper A Section 3.10 and formalized in the seven Cubic modules. The cited declarations and supporting modules are compiled kernel proofs. The illustrative asymptotic comparison and universal wrong-parity question are not promoted; no new cycle exclusion, floor or period bound follows.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CubicBand.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_band.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "thresholdMap_exists_primitive",
+   "threshold_sorted_rotation",
+   "thresholdMap_eq_floorPower_iff",
+   "thresholdMap",
+   "thresholdMap_invariant",
+   "thresholdMap_ne_self",
+   "thresholdMap_image_separation",
+   "threshold_iterates_eq_of_compatible"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-trailing-evens",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If a Juggler cycle itinerary based at n ends with r ≥ 1 even letters, the state immediately before that trailing even run is strictly less than (n+1)^{2^r}. The case r = 1 is the last-even one-step preimage; r = 2 is the two-even bound of Paper A Lemma 3.5 on OOOOEE; r = 3 is the three-even bound for OOOOOOEEE. Lean theorem cycle_trailing_evens_lt. This is a one-step-preimage identity, not a leftover exclusion and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CycleCore.lean",
+  "decl": "cycle_trailing_evens_lt",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_length_nine.py",
+   "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-unit-perturbation",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every odd integer b>=3, let D_b consist of odd integers in [b,b^2] and even integers in [b^2+1,b^3-1], and let P_b(z) be its largest element <=z for b<=z<=b^3. Define R_b(x)=P_b(x^(3/2)) on odd x and P_b(sqrt x) on even x. This finite map has no fixed point and has a nontrivial cycle; every edge has R_b(x) in {J(x),J(x)-1}. Every primitive cycle uses its actual source parity, has M<m^3, rank rotation, coprime counts and the ceiling mechanical word. Thus one-sided power-rounding error <2 admits such cycles at every scale. Inclusion of odd b^2 is essential at the projection seam. R_b is a different map; it is NOT proved that every R_b cycle has an altered edge, and no actual Juggler no-cycle statement follows. Consolidated in Paper A Section 3.10 and formalized in the seven Cubic modules. The cited declarations and supporting modules are compiled kernel proofs. The illustrative asymptotic comparison and universal wrong-parity question are not promoted; no new cycle exclusion, floor or period bound follows.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CubicRounding.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_band.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "cubicRounding_exists_primitive",
+   "cubicRounding_eq_or_pred",
+   "cubicRounding_real_loss",
+   "cubicRounding_finite_invariant_rotation",
+   "cubicParityDomain",
+   "cubicParityProject",
+   "cubicRounding",
+   "cubicRounding_mem",
+   "cubicRounding_no_fixed",
+   "cubicRounding_iterate_mem"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-upper-charge-least-period",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "An actual positive closed orbit with minimum m>1, attained maximum M<m^3 and all states in [m,M] supplies an OrbitUpperChargeCertificate extending one complete PeriodicOrbitModel. The same sorted states and successor permutation retain full coverage, extrema, the exact odd count, parity and threshold cuts, rank rotation, coprimality, true least period, RealizedGridBounds and FullUpperCellChargeBounds. The latter retains the stronger finite nonlinear charge before its finite geometric and closed scalar relaxations. An existing model can be strengthened with equality of the projected base, so terminal and charge data share one witness. The CycleMin adapter handles repeated itineraries; older existential interfaces are unchanged projections. No numerical cutoff, asymptotic estimate or cycle exclusion is asserted.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CubicOrbitCharge.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py",
+   "tests/research/juggler_sequence/test_lean_interface_contracts.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "periodicOrbit_upper_charge",
+   "cycleMin_upper_charge",
+   "OrbitUpperChargeCertificate",
+   "orbitModel_upper_charge",
+   "periodicOrbit_upper_charge_certificate",
+   "cycleMin_upper_charge_certificate"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cycle-upper-charge-monotonicity",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For fixed positive primitive length L and odd count o, all three nonlinear, finite geometric and closed geometric upper-cell charge bounds decrease strictly with the minimum m>1. If the selected bound at a real cutoff m0>1 is at most logGridSurplus L o, any FullUpperCellChargeBounds certificate at the same counts has m<m0. OrbitUpperChargeCertificate adapters use its own true least period and odd count. The nonlinear bound is at most the finite geometric bound, which is strictly below the closed geometric bound at positive scale. This formalizes symbolic cutoff propagation only; the 520-million numerical interval comparison and UC3 asymptotics remain outside Lean. No descent floor or period bound is changed.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/CubicChargeMonotonicity.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_lean_interface_contracts.py",
+   "tests/research/juggler_sequence/test_paper_a_trust_boundary.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "Problems.Juggler.CubicGrid.nonlinearChargeBound_strictAntiOn_minimum",
+   "Problems.Juggler.CubicGrid.finiteGeometricChargeBound_strictAntiOn_minimum",
+   "Problems.Juggler.CubicGrid.closedGeometricChargeBound_strictAntiOn_minimum",
+   "Problems.Juggler.CubicGrid.nonlinearChargeBound_le_finiteGeometric",
+   "Problems.Juggler.CubicGrid.finiteGeometricChargeBound_lt_closed",
+   "Problems.Juggler.CubicGrid.FullUpperCellChargeBounds.nonlinear_cutoff_excludes",
+   "Problems.Juggler.CubicGrid.FullUpperCellChargeBounds.closedGeometric_cutoff_excludes",
+   "Problems.Juggler.CubicGrid.FullUpperCellChargeBounds.minimum_lt_of_nonlinear_cutoff",
+   "Problems.Juggler.CubicGrid.FullUpperCellChargeBounds.minimum_lt_of_finiteGeometric_cutoff",
+   "Problems.Juggler.CubicGrid.FullUpperCellChargeBounds.minimum_lt_of_closedGeometric_cutoff",
+   "Problems.Juggler.CubicGrid.OrbitUpperChargeCertificate.minimum_lt_of_nonlinear_cutoff",
+   "Problems.Juggler.CubicGrid.OrbitUpperChargeCertificate.minimum_lt_of_finiteGeometric_cutoff",
+   "Problems.Juggler.CubicGrid.OrbitUpperChargeCertificate.minimum_lt_of_closedGeometric_cutoff"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-even-count-le-eight",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "No cycle itinerary with cycle minimum at least 300 has fewer than eight even letters, so a nontrivial cycle has period at least twenty-two (Paper A Theorem 3.31). Every n ≤ 299 reaches 1. The e ≤ 7 census enumerates 16 + 186 + 2037 + 25353 + 325452 canonical forms and closes them by the sharp run-suffix law of Theorem 3.29; the last family closes at n ≥ 64. Theorem 3.22 remains the floor-free Lean bound (e ≥ 4, period ≥ 11 for every n ≥ 2). Enumeration in run_suffix_law.closure; not Lean and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_run_suffix_law.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-even-count-le-three",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "No n ≥ 2 realizes a Juggler cycle itinerary with at most three even letters (Paper A Theorem 3.22). Every CycleItinerary has a CycleMin rotation that starts OO, ends E, and is formally expanding; those itineraries are the odd-run family, the two-even leftovers (Theorem 3.12), the internal-E bootstrap, the seven bunched leftovers (Theorems 3.14–3.20), or the gapped leftovers (Theorems 3.13 and 3.21). The corollary is that a nontrivial cycle itinerary has length at least eleven (Paper A Corollary 3.23). Lean theorems no_cycle_itinerary_even_count_le_three and cycle_itinerary_length_ge_eleven in EvenCountThree.lean. This is an even-count assembler, not a length-9 or length-10 itinerary census, and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/EvenCountThree.lean",
+  "decl": [
+   "no_cycle_itinerary_even_count_le_three",
+   "cycleMin_starts_two_odds",
+   "cycleMin_getLast_even",
+   "no_cycleMin_odd_run",
+   "no_cycleMin_bootstrap_last_gap",
+   "no_cycleMin_two_even",
+   "no_cycleMin_three_even",
+   "no_cycleMin_even_count_le_three",
+   "cycle_itinerary_length_ge_eleven"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_even_count_three.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-first-e-transport-ee",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every n ≥ 2, a ≥ 2, and b ≥ 4, the gapped three-even leftover O^a E O^b EE is not a Juggler CycleMin at n. CycleMin puts the remainder O^b EE at y = T_{O^a E}(n) ≥ n. The leftover cell is measured against n, so y ≥ n tightens it against the shared two-even tail at y. Large y is the uniform cutoff y ≥ 256; below 256 the argument is seven consecutive odds on the prefix or the remainder, or a Fin 256 table on the short-gap window 2 ≤ a ≤ 6, 4 ≤ b ≤ 6. Lean theorem no_cycleMin_gapped_three_even_ee. This excludes gapped CycleMins only; it is not a CycleItinerary theorem at a non-minimum start, not a bunched-tail attack, not a length-8 or length-9 census, and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycleMin_gapped_three_even_ee",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_first_e_transport.py",
+   "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-first-e-transport-eoe",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every n ≥ 2, a ≥ 2, and b ≥ 3, the gapped three-even leftover O^a E O^b EOE is not a Juggler CycleMin at n. The same first-E transport applies: y ≥ n tightens the leftover cell against the shared two-even tail at y, using the last-odd cube reduction already used for O^{k-3}EOE. Large y is y ≥ 256; below 256 the argument is seven-odd or a Fin 256 table on 2 ≤ a ≤ 6, 3 ≤ b ≤ 6. Lean theorem no_cycleMin_gapped_three_even_eoe. This excludes gapped CycleMins only; it is not a CycleItinerary theorem at a non-minimum start, not a bunched-tail attack, not a length-8 or length-9 census, and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycleMin_gapped_three_even_eoe",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_first_e_transport.py",
+   "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fixed-itinerary-image-monotone",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If n and m realize the same finite Juggler word w and n ≤ m, then the image of n after w is at most the image of m after w.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/Itinerary.lean",
+  "decl": "image_monotone_of_follows",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-gapped-cycle-itinerary-ee",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every n ≥ 2, a ≥ 2, and b ≥ 4, the gapped three-even leftover O^a E O^b EE is not a Juggler cycle itinerary. Every CycleItinerary has a CycleMin rotation. The k=0 rotation is the first-E CycleMin exclusion; the rotation at k=a+1 is the bootstrap itinerary O^b EE O^a E, excluded by last-gap ≥ 2 (OOO at N=3, or OO at N=5 with n=3 failing to follow four odds); the last even starts even; every other rotation ends odd. Lean theorem no_cycle_itinerary_gapped_three_even_ee. This upgrades the CycleMin theorem to CycleItinerary; it is not first-E transport at a non-minimum start, not a bunched-tail theorem, not a length-8 or length-9 census, and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_gapped_three_even_ee",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_gapped_cycle_itinerary.py",
+   "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-gapped-cycle-itinerary-eoe",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every n ≥ 2, a ≥ 2, and b ≥ 3, the gapped three-even leftover O^a E O^b EOE is not a Juggler cycle itinerary. The same rotation classes apply: first-E CycleMin at k=0; bootstrap O^b EOE O^a E at k=a+1 (last-gap ≥ 2, with n=3 and b=3 failing after OOOE at 6); start OE at k=a+b+2; every other rotation ends odd. Lean theorem no_cycle_itinerary_gapped_three_even_eoe. This upgrades the CycleMin theorem to CycleItinerary; it is not first-E transport at a non-minimum start, not a bunched-tail theorem, not a length-8 or length-9 census, and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": [
+   "no_cycle_itinerary_gapped_three_even_eoe",
+   "gapped_eoe_rotate_succ_a",
+   "no_cycleMin_gapped_eoe_bootstrap",
+   "no_follows_three_eoe_bootstrap",
+   "cycleMin_rotate_start_OE",
+   "cycleMin_of_rotate_ends_odd",
+   "gappedThreeEvenEOE_pred_odd"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_gapped_cycle_itinerary.py",
+   "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-inverse-preimage-asymmetry",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The even fiber J(n)=m is the parity-restricted square interval m² ≤ n < (m+1)², while the odd fiber is the parity-restricted cube-to-square interval m² ≤ n³ < (m+1)²; any odd fiber contains at most one integer.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/Preimages.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_floor_cells.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-itinerary-semantics",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every natural n and finite parity itinerary w, follows n w if and only if the actual length-|w| Juggler itinerary of n equals w. The itinerary image equals the |w|-fold iterate, and images and realization compose under word concatenation.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/Itinerary.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-lean-arithmetic-certificates-kernel-checked",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Trust-boundary audit of the Juggler Lean layer, 5 Sep 2026. Of 325 native_decide sites, 302 run the dynamics or a structure (floorPower iteration, itinerary lists, List.all over ranges, the floor-257 orbit tables) and stay; 23 sites covering 18 distinct theorems are pure Nat literal arithmetic and all 18 convert to norm_num, so they are checked by the kernel rather than by the compiled runtime. The converted set is load-bearing: FanLaw.fan_step_pow (3^190537 < 2^301994) is the negativity of the affine step in Paper A Proposition 5.12, the reason the semiconvergent fan has 56 members; RunSurvivorLattice.three_pow_step_gt_two_pow_step and three_pow_pred_step_le_two_pow_step (3^665 > 2^1054, 3^664 <= 2^1054) are Proposition 4.9's survivor lattice; CycleHeightFinance.l84_height_cap_nat is the leftover-84 height cap; O7EEEEGap.three_mul_pow256_gt_pow257 is the O^7EEEE gap; ten more are the leftover cell evaluations of LeftoverEval. With theta_sandwich_upper and theta_sandwich_lower moved in the same pass, twenty of the layer's arithmetic certificates now rest on the kernel. Counts 325 -> 307; the barrel builds (3473 jobs) and tools/trust_boundary.py still reports every cited identifier declared and reachable. The dividing line is goal shape, not size: a six-hundred-thousand-bit comparison converts in under a second because Nat literal arithmetic is GMP-backed in the kernel, while a twenty-step orbit table does not convert at all because the kernel would have to unfold a definition. No theorem statement changed and no proof was weakened. Extended 5 Sep 2026 to the whole layer: the elaborator's decide is stuck on floorPower (reduction does not unfold Nat.sqrt) but decide +kernel is not, so all 307 remaining sites were converted and the barrel built. Two failed with (kernel) deterministic timeout and were reverted, both quarter-million-length scans: window_digit_scan over [50508, 301994) and greedy_eq_ostro_below_window over [0, 301994), each running a thirteen-denominator greedy decomposition per length. Final state 305 decide +kernel, 20 norm_num, 2 native_decide, from 327 before the three passes. Verified by #print axioms rather than by counting: reachesOne_n193 depends on [propext], FanLaw.fan_step_pow on [propext, Classical.choice, Quot.sound], and the holdout window_digit_scan on [propext, window_digit_scan._native.native_decide.ax_1_1] - the converted proofs carry no compiler-trust assumption and each holdout carries a named one. The ReachesOne class alone is 130 sites, deepest witness k = 73 from n = 193. Three regimes, three tactics: literal arithmetic to norm_num, closed computations over definitions to decide +kernel, and large scans staying native. No theorem statement changed and no proof was weakened.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/FanLaw.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-leftover-length-seven-orientations",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Neither OOOOEOE nor OOOOOEE is a Juggler cycle itinerary at any n ≥ 2 (Paper A Lemma 3.7). The argument is an exhaustive evaluation for n < 14 together with the last-even one-step preimage against the coarse lower envelope n^{243} > 2^{422}(n+1)^{128} for n ≥ 14. This excludes those two orientations only; the length-≤7 census is the separate row J-small-cycle-census-seven.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/LeftoverShort.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py",
+   "tests/research/juggler_sequence/test_cycle_length_seven.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-leftover-length-six-orientations",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Neither OOOEOE nor OOOOEE is a Juggler cycle itinerary at any n ≥ 2 (Paper A Lemma 3.5). The argument is an exhaustive evaluation for n < 256 together with the last-even one-step preimage against the coarse lower envelope n^{81} > 2^{130}(n+1)^{64} for n ≥ 256. This excludes those two orientations only; the length-≤6 census is the separate row J-small-cycle-census.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/LeftoverShort.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-leftover-ooooooeee",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "OOOOOOEEE is not a Juggler cycle itinerary at any n ≥ 2. The argument is an exhaustive evaluation for n < 128 together with the three-even cell z < (n+1)^8 against the coarse lower envelope n^{729} > 2^{1330}(n+1)^{512} for n ≥ 128. The computational prefix-cell first fires at N0 = 73; 128 is the algebraic cutoff. This excludes that one three-even leftover only; it is not a length-9 census, not an exclusion of the remaining eight leftovers, and not a halt theorem. Lean theorem no_cycle_itinerary_ooooooeee.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_ooooooeee",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_length_nine.py",
+   "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-manuscript-crossquote-audit",
+  "tag": "OBSERVATION",
+  "statement": "Cross-quotation audit of the three manuscripts, 5 Sep 2026. Each paper's audit module checks that paper's own constants; a number one paper attributes to another is checked by nothing, which is how Paper A's contagion exponent stayed at the pre-sharpening 0.4050 / 0.595. Every sentence carrying both a reference marker and a numeric constant was enumerated - six in Paper A, four in Paper B, twelve in Paper C - and apart from the Paper A drift already fixed, all trace to their sources. In particular Paper B's frontier pair e > 0.508 with C >= 19, attributed to Paper C, is faithful: Paper C names 1 - lambda_ideal = 0.5073 as the rate threshold of Theorem 3 in the ideal-fiber case and uses C = 19 in the same cC < 1 argument (2^(1/19) = 1.037 per depth); the generous depth is also the correct choice for an a fortiori negative result, since Weyl differencing loses c >= 1 against the weakest requirement c < 1/19. Paper B's '0.4050 to 0.4922' is the sweep base plus the OOEEE term (block_sweep_plus_ooeee = 0.4923), not lambda**. Paper A drifted alone because its citation predated the OE-fiber sharpening 1/7 -> 1/3. Guard added: the three regimes the papers use - lambda** unconditional, lambda*** under Hypothesis L, and the depth-two ideal ceiling - each determine a pair (rate, depth), and every pair quoted anywhere satisfies least_C(rate) == depth, namely (0.5520, 20), (0.4608, 18) and (0.5073, 19). Open asymmetry, not closed: Papers A and B have audit modules and Paper C has none.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_manuscript_consistency.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-odd-image-upper-square-gap",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For odd natural numbers x and y with x^3<(y+1)^2, one has x^3+3<=(y+1)^2. If the positive odd upper-square complement were one, then y(y+2)=x^3; coprimality forces two positive cubes differing by two, which is impossible. Specialized in Lean to every actual odd-to-odd floorPower edge. This is a local arithmetic refinement only; no no-cycle conclusion, period or descent-floor improvement, or external novelty is claimed. The subsequent logarithmic cap comparison and global symbolic audits are written analysis, outside this Lean claim.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/UpperSquareGap.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "cube_add_one_ne_odd_succ_sq",
+   "floorPower_odd_image_upper_gap",
+   "cube_add_three_le_odd_succ_sq",
+   "odd_mul_add_two_ne_cube"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-ooe-escape-residue-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every even Q>=2, odd 1<=a<Q and integer h>=1, set t=2Qh and x=t^8+a. Exact square margins prove O(x)=t^12+(3a/2)t^4 is even. Thus every odd residue class contains arbitrarily large sources failing the second-O guard, and no nonempty eventual union of odd residue classes is a fully guarded all-OOE invariant domain. Finite fixed polynomial congruences are included; floor-output predicates, variable moduli and thin nonperiodic subsets are not. AI-assisted written proof, not Lean or independently human reviewed. No escape or no-escape theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_ooe_escape_families.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-ooe-polynomial-tail-departure",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For a positive-leading polynomial P of degree d>=2 which is positive integer-valued on an eventual integer tail, at least one of every three sufficiently large consecutive parameters n has prescribed A(P(n)) outside that same eventual value set, where A(x)=E(O(O(x))) and 0<=x^(9/8)-A(x)<2. The inverse-polynomial target coordinate has positive second difference asymptotic to (9C/64)n^(-7/8); a return parameter differs from it by O(n^(-(9/8)(d-1))), so three integer returns are impossible. Arbitrary target parameters and fixed source progressions are allowed. This is a full-domain obstruction, not an exclusion of sparse orbits or general escape. AI-assisted written proof; no new Lean verification or independent human review.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_ooe_escape_families.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-parity-leftovers-are-a-one-sided-bohr-set",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "tests": [
+   "tests/research/juggler_sequence/paper_b_prefix_count/test_staircase.py"
+  ],
+  "lean": "",
+  "related_conjectures": [],
+  "statement": "The parity layer's surviving lengths are exactly a one-sided Bohr set with a window linear in L, and its gaps are BETA's Ostrowski denominators. THE CHARACTERISATION. With g(L) = o_min(L) log2(3) - L the walk gap, a cycle needs 3^o > 2^L so only g > 0 matters, and the finance bound (6/5) L 3^o/(3^o - 2^L) is (6/5) L/(1 - 2^(-g)), which blows up as g -> 0. So a length survives a floor exactly when its gap is small RELATIVE to its length: survivors = { L : 0 < g(L) < kappa L }. Measured at floor 1e6 over l_max = 200000, the largest g/L among survivors is 4.635150e-08 and the smallest among non-survivors is 4.647621e-08, so a single threshold separates them and misclassifies NONE of the 199424 lengths with g > 0. THE WINDOW SCALES AS 1/(n0 ln n0): kappa n0 ln n0 reads 0.6412, 0.6241, 0.6390, 0.6585, 0.5453 at floors 1e6, 1e7, 26254995, 68000000, 1e8, flat to about ten percent over two decades. THE GAPS ARE OSTROWSKI DENOMINATORS: consecutive survivors at floor 1e6 differ by 84, 485, 401, 569, 1054, 317 -- 268, 132, 105, 24, 23, 23 times -- every one a convergent or semiconvergent denominator of BETA, which is the three-distance theorem for a Bohr set. 401 and 317 are least-peak staircase jumps and 569 and 1054 are cycle record lengths, so this is the skeleton of J-staircase-and-cycle-records-split-betas-semiconvergents seen from the floor side. WHAT THE LEFTOVERS ARE NOT, and this corrects the obvious guess: they are not the semiconvergents. Of 576 survivors at floor 1e6 only 3 are semiconvergents and 8 are multiples of one; 565 are neither. The semiconvergents are the RECORD-SETTERS of the one-sided approximation, which is why one of them is the FIRST survivor at each floor, not why the set is what it is. WHERE THE CUTOFF MOVES. First exception by floor: 25781 at 1e6 and 1e7; 50508 at 26254995 through 1e8; 101016 at 162848325; 176251 at 3.5e8; and none below 300000 at 1044093214. The floors that move it are n_max^par of the length being killed -- 26254995 for 25781, confirming J-residual-floor-twenty-six-million's claim that it is the cheapest floor moving the Theorem 4.6 cutoff, then 162848325 for 50508 and 1044093214 for 176251. AN OBSERVATION, NOT A CRITICISM: the parked 5.54e8 leaves the parity first exception at 176251, the same as the current N_0 = 3.5e8; it is CONDITIONAL_FLOOR in paper_a_audit and DK_BREAKEVEN_FLOOR in the visualization layer, so it targets the Denjoy-Koksma competition rather than the parity layer, and nothing here bears on whether it is the right floor for that. Machinery: parity_leftover_window. No bound moves, no floor is raised, and this is not a halt theorem. PLACED IN PAPER A as Remark 5.13, and the containment turns out to be Paper A's own theorem rather than an import. Theorem 4.10 states n log n min(Lambda,1) <= 2L, so a cycle with minimum n >= N_0 survives a floor only if 0 < Lambda(L) <= 2L/(N_0 log N_0) -- the positivity being the 3^o > 2^L that makes the finance inequality meaningful at all. That is the Bohr condition, PROVED, with crude constant 2; only the sharp constant is measured, and in Paper A's normalisation Lambda = o log 3 - L log 2 it fits to 0.4445, 0.4326, 0.4429, 0.4564, 0.3779 at N_0 = 1e6, 1e7, 26254995, 68000000, 1e8, so the parity layer of Section 5.7 is about 4.5 times sharper than Theorem 4.10's crude form. WHAT IT ADDS TO SECTION 5.8. Proposition 5.12 gives the fan as an arithmetic progression of 56 terms ending on a convergent and then states its own limitation: 'no all-index transition theorem is asserted: excluding a fan member also requires ruling out intervening non-fan lengths.' The Bohr set is what those intervening lengths are, so the caveat becomes an explicit finite set at each floor rather than an open worry. The remark also corrects the natural misreading of Proposition 5.12 -- the survivors are NOT the fan; of 576 at N_0 = 1e6 only three are semiconvergents and eight are multiples, and the fan members are the record-setters, which is why one is always the FIRST survivor and why the frontier climbs the fan. Nothing in the remark is a new exclusion and no bound moves; Paper A's headline period bound 780239 is unchanged and was already in the deposited version 1.0.0."
+ },
+ {
+  "id": "J-run-survivor-lattice",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The vectors (25781, 16266) and (1054, 665) are a unimodular basis of Z^2: 25781·665 − 1054·16266 = 1. The seeds 50508 = 2·25781 − 1054 and 76289 = 3·25781 − 1054 are the next principal convergent and the Farey sum. The generator satisfies 3^665 > 2^1054 ≥ 3^664. The three affine families F1 (a=1, b=0..28), F2 (a=2, b=−1..45), F3 (a=3, b=−1..21) are 99 distinct lattice points; the F1 continuation b=29..70 is 42 further points. Lean: run_survivor_unimodular, run_survivor_seed_F2, run_survivor_seed_F3, three_pow_step_gt_two_pow_step, runSurvivors_length. This is Paper A Proposition 4.9's arithmetic. Identification of those 99 points with E_run(10^6) is the computational table J-cycle-budget-opt-instance / Theorem 4.8, not this row. Not a cycle obstruction and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/RunSurvivorLattice.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_run_survivor_lattice.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-small-cycle-census",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "No itinerary of length at most six is a Juggler cycle itinerary at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least seven (Paper A Theorem 3.6). Assembly: rotation invariance of cycle itineraries, exclusion of all-odd itineraries by strict odd ascent, rotation to an even-terminating orientation, the formal-expansion filter, the next-square thresholds of Lemma 3.4, the leftover exclusions of OOOEOE and OOOOEE (Lemma 3.5; rotation targets of OEOOOE and EOOOOE). Lean theorem no_cycle_itinerary_length_le_six. Strengthened by J-small-cycle-census-seven; this row is the length-≤6 statement only. This is not an exclusion of all cycles and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/SmallCycleCensus.lean",
+  "decl": "no_cycle_itinerary_length_le_six",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-small-cycle-census-seven",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "No itinerary of length at most seven is a Juggler cycle itinerary at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least eight (Paper A Theorem 3.8). Assembly: the length-≤6 census, the formal-expansion filter on length seven, the odd-run exclusion of O^6E, the internal-E bootstrap exclusions of OOEOOOE and OOOEOOE, rotation of EOOOOOE and OEOOOOE onto the leftovers, and the leftover exclusions of OOOOEOE and OOOOOEE (Lemma 3.7). Lean theorem no_cycle_itinerary_length_le_seven. Strengthened by Paper A Theorem 3.22 / Corollary 3.23 (even-count at most three is impossible, so the period is at least eleven). This is not an exclusion of all cycles and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/SmallCycleCensus.lean",
+  "decl": "no_cycle_itinerary_length_le_seven",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py",
+   "tests/research/juggler_sequence/test_cycle_length_seven.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-three-even-eee",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every a ≥ 6 and every n ≥ 2, the bunched leftover O^a EEE is not a Juggler cycle itinerary. Large n uses the three-even cell z < (n+1)^8 against C_{O^a}, which is the tail n^{3^a} > 2^{e_a}(n+1)^{2^{a+3}} at the algebraic cutoff n ≥ 128, obtained by cubing the OOOOOOEEE comparison; e_a = 2(3^a-2^a) = log2(lowerDenom(O^a)). Below 128 the argument is the existing a=6 table and the fact that n ≥ 2 does not follow seven consecutive odds. Lean theorem no_cycle_itinerary_three_even_eee. This excludes that one bunched family only; it is not the other six bunched tails, not a length-8 or length-9 census, and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_three_even_eee",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_bunched_last_cluster.py",
+   "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-three-even-eeoe",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every a ≥ 5 and every n ≥ 2, the bunched leftover O^a EEOE is not a Juggler cycle itinerary. For n ≥ 4 the mixed cell is z < (n+1)^6: the last-odd cube gives y^3 < (n+1)^4, two leading evens give z < (y+1)^4, and n ≥ 4 upgrades that to z < (n+1)^6. The resulting comparison is the EOEE tail n^{3^a} > 2^{e_a}(n+1)^{6·2^a}, already proved for a ≥ 5. Large n at a = 5 is n ≥ 314; at a = 6 the same cell already fires at n ≥ 16. Below those cutoffs the argument is the a = 5 table, the a = 6 table, and seven consecutive odds. Lean theorem no_cycle_itinerary_three_even_eeoe. This excludes that one bunched family only; it is not a length-8 or length-9 census and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_three_even_eeoe",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_bunched_last_cluster.py",
+   "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-three-even-eoee",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every a ≥ 5 and every n ≥ 2, the bunched leftover O^a EOEE is not a Juggler cycle itinerary. For n ≥ 4 the mixed cell is z < (n+1)^6: two trailing evens give p < (n+1)^4, the one-odd envelope gives y^3 ≤ 4p^2, and n ≥ 4 upgrades that to y < (n+1)^3. Large n at a = 5 uses the tail n^{3^a} > 2^{e_a}(n+1)^{6·2^a} at the algebraic cutoff n ≥ 314, obtained by persisting the comparison at 314 and cubing in a; e_a = 2(3^a-2^a). At a = 6 the same cell already fires at n ≥ 16. Below those cutoffs the argument is the a = 5 table, the a = 6 table, and seven consecutive odds. Lean theorem no_cycle_itinerary_three_even_eoee. This excludes that one bunched family only; a uniform coarse (n+1)^K cell for all six remaining bunched families is false; it is not a length-8 or length-9 census and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_three_even_eoee",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_bunched_last_cluster.py",
+   "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-three-even-eoeoe",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every a ≥ 4 and every n ≥ 2, the bunched leftover O^a EOEOE is not a Juggler cycle itinerary. For n ≥ 32 the mixed cell is z < (n+1)^4: the last-odd cube gives y^3 < (n+1)^4, the one-odd envelope on the first gap upgrades to w < (n+1)^2, and the even cell at z then gives z < (n+1)^4. The resulting comparison is the shared two-even tail at length a+2, which holds for n ≥ 256. Below 256 the argument is Fin 256 tables at a = 4,5,6 and seven consecutive odds thereafter. Lean theorem no_cycle_itinerary_three_even_eoeoe. This excludes that one bunched family only; it is not a length-8 or length-9 census and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_three_even_eoeoe",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_bunched_last_cluster.py",
+   "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-three-even-eooee",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every a ≥ 4 and every n ≥ 2, the bunched leftover O^a EOOEE is not a Juggler cycle itinerary. For n ≥ 32 the mixed cell is z < (n+1)^4: two trailing evens give p < (n+1)^4, the two-odd envelope gives y^9 ≤ 1024 p^4, and n ≥ 32 upgrades that to y < (n+1)^2. The resulting comparison is the shared two-even tail at length a+2, which holds for n ≥ 256. Below 256 the argument is Fin 256 tables at a = 4,5,6 and seven consecutive odds thereafter. Lean theorem no_cycle_itinerary_three_even_eooee. This excludes that one bunched family only; it is not a length-8 or length-9 census and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_three_even_eooee",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_bunched_last_cluster.py",
+   "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-three-even-eooeoe",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every a ≥ 3 and every n ≥ 2, the bunched leftover O^a EOOEOE is not a Juggler cycle itinerary. For a ≥ 4 and n ≥ 4 the mixed cell is z < (n+1)^4: last-odd plus two-odd give u^9 < 1024(y+1)^8 and (y+1)^3 < 2(n+1)^4, hence u^{27} < 2^{38}(n+1)^{32} and u < (n+1)^2. The resulting comparison is the shared two-even tail at length a+2, which holds for n ≥ 256. At a = 3 the same tight split as O^3 EOOOEE applies with u in place of y. Below 256 the argument is Fin 256 tables at a = 3,4,5,6 and seven consecutive odds thereafter. Lean theorem no_cycle_itinerary_three_even_eooeoe. This excludes that one bunched family only; it is not a length-8 or length-9 census and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_three_even_eooeoe",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_bunched_last_cluster.py",
+   "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-three-even-eoooee",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every a ≥ 3 and every n ≥ 2, the bunched leftover O^a EOOOEE is not a Juggler cycle itinerary. For a ≥ 4 and n ≥ 3 the mixed cell is z < (n+1)^4: two trailing evens give p < (n+1)^4, the three-odd envelope gives y^{27} ≤ 2^{38} p^8, and n ≥ 3 upgrades that to y < (n+1)^2. The resulting comparison is the shared two-even tail at length a+2, which holds for n ≥ 256. At a = 3 the coarse exponent is impossible, so the argument uses the tight cell z < (y+1)^2 against C_{O^3}: y < 39 contradicts n ≥ 24, and y ≥ 39 reduces to n^{729} > 2^{1650}(n+1)^{512} from n ≥ 197. Below 256 the argument is Fin 256 tables at a = 3,4,5,6 and seven consecutive odds thereafter. Lean theorem no_cycle_itinerary_three_even_eoooee. This excludes that one bunched family only; it is not a length-8 or length-9 census and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_three_even_eoooee",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_bunched_last_cluster.py",
+   "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-two-even-leftover-ee",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every k ≥ 6 and every n ≥ 2, the even-terminating two-even leftover O^{k-2}EE is not a Juggler cycle itinerary. Large n uses the shared tail n^{3^{k-2}} > 2^{e_{k-2}}(n+1)^{2^k} at the uniform algebraic cutoff n ≥ 256, obtained by cubing the length-6 comparison; e_a = 2(3^a-2^a) = log2(lowerDenom(O^a)). Below 256 the argument is the existing k=6,7 leftovers, a Fin 256 table at k=8, and the fact that n ≥ 2 does not follow seven consecutive odds. Lean theorem no_cycle_itinerary_two_even_ee. This excludes that one family only; it is not a length-8 census and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_two_even_ee",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_uniform_two_even.py",
+   "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-two-even-leftover-eoe",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every k ≥ 6 and every n ≥ 2, the leftover O^{k-3}EOE is not a Juggler cycle itinerary. The last-odd cube trick plus (y+1)^3 < 2(n+1)^4 reduces to the same shared tail as O^{k-2}EE. Large n is n ≥ 256; below 256 the argument is the existing k=6,7 leftovers, Fin 256 tables at k=8,9, and the seven-odd obstruction for k ≥ 10. Lean theorem no_cycle_itinerary_two_even_eoe. This excludes that one family only; it is not a length-8 census and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/LeftoverFamilies.lean",
+  "decl": "no_cycle_itinerary_two_even_eoe",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_uniform_two_even.py",
+   "tests/research/juggler_sequence/test_cycle_leftover_itineraries.py"
+  ],
+  "related_conjectures": []
+ }
+]

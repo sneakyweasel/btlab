@@ -1,0 +1,15 @@
+[
+ {
+  "id": "J-hug-flow-image-gap",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every odd integer x ≥ 3, floor((x+2)^{3/2}) − floor(x^{3/2}) ≥ 3 floor(√x). Proof: (x+2)^{3/2} > x^{3/2}+3√x because (x+2)^3 − (x^{3/2}+3√x)^2 = 3x+8 > 0, hence the floor difference is at least floor(3√x) ≥ 3 floor(√x). At image scale Y = floor(x^{3/2}) the depth-1 working window is (2/3) Y^{1/3} ≤ (2/3)√x, so the gap exceeds that whole window (ratio → 9/2). Therefore the image V(I) of any odd window I is a 3√X-separated packing, not a consecutive interval, and interval Erdős–Turán cannot be applied to y = floor(x^{3/2}). Not a depth-2 mixing theorem, not C_L nonempty, not a Paper B edit, and not a halt theorem.",
+  "source": "docs/problems/juggler_hug_flow_depth_two.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_hug_flow_depth_two.py"
+  ],
+  "related_conjectures": [
+   "juggler_hug_flow_window"
+  ]
+ }
+]

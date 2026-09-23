@@ -1,0 +1,15 @@
+[
+ {
+  "id": "J-tower-heisenberg-coordinate",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Heisenberg lift of the depth-3 tower phase: with v = floor(n^{3/2}), B = v^{3/2}, z = floor(B), theta = {B}, A = (3/2) v^{3/4}, the exact Lagrange-Taylor identity z^{3/2} = v^{9/4} - A theta + r with 0 <= r = (3/8) theta^2 xi^{-1/2} <= (3/8) theta^2 z^{-1/2} (xi in (z, B); the Lemma 7.2 mechanism), and since A theta = AB - A floor(B) with AB = (3/2) v^{9/4} inside the Hardy monomial family, {z^{3/2}} = { -(1/2) v^{9/4} + (3/2) v^{3/4} floor(v^{3/2}) + r } where (3/2) v^{3/4} floor(v^{3/2}) mod 1 is exactly the vertical Mal'cev coordinate of the Heisenberg orbit ((3/2) v^{3/4}, v^{3/2}, 0) Gamma - the lift is pure group algebra, valid for arbitrary real entries (Bergelson-Leibman's polynomial hypothesis is consumed only by the equidistribution theorem applied AFTER the lift). Consequence: up to the explicit O(n^{-9/8}) error, the K3 kernel's phase is a coordinate of an orbit on T x H_3(R)/H_3(Z) with horizontal torus ((3/2) v^{3/4}, v^{3/2}, (1/2) v^{9/4}) mod 1; the amplitude-product class dissolves into FIXED-harmonic statements (no amplitude ever multiplies a harmonic, so Proposition GG's drift mechanism cannot see the base; BB and JJ are not invoked), and the single remaining open step of the rate-free route (J-rate-free-density-one, juggler_tower_rate_free_equidistribution) is the ergodic transfer along this specific floor-Hardy orbit - the concrete instance of the unbuilt Hardy-field bracket theory. Probe witnesses (dyadic window (10^6, 2*10^6], exact scaled-integer roots): the Taylor constant is attained (worst ratio exactly 0.375); horizontal triple uniform (512/512 cells, max deviation 0.103 vs allowance 0.161); all 124 fixed harmonics |k| <= 2 at square-root scale (max 2.11 sqrt N); Heisenberg vertical decouples from the abelian coordinate (16^2 census uniform). Not an equidistribution theorem, not a K3 bound, not a halt theorem; Conjectures V/HH and the BB/GG/JJ PARK are untouched; Paper B frozen.",
+  "source": "docs/problems/juggler_bracket_nil_lift.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_bracket_nil_lift.py"
+  ],
+  "related_conjectures": [
+   "juggler_tower_rate_free_equidistribution"
+  ]
+ }
+]

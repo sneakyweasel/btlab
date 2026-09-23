@@ -1,0 +1,42 @@
+[
+ {
+  "id": "J-paper-e-formal-notation-bridges",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper E's compatible-residue 2-adic code has the infinite sum over exactly its odd Juggler times, indexed by the number of earlier odd times; a telescoping remainder has norm at most 2^(-k), including finite or empty odd-time sets. Exact finite-source cylinder equality transfers all limiting-frequency statements. The eventual ordinary ancestor bound is proved with real exponent 21/25, and the fixed-grid hypotheses imply the logarithmic ceiling below 99/100. Every finite full binary prefix tree has fair mass and multiplier moment one. The minimal stopping words themselves have fair mass one and multiplier moment at most 3/4, with summability proved before regrouping by length. These close presentation gaps without adding a mathematical novelty claim. The six manuscript-facing declarations compile and their dependency audit uses only the standard kernel axioms. Theorem 4.1 is outside this notation module and is now completed in PaperERecurrence. Ledger retagging awaits advisory coverage review.",
+  "source": "docs/problems/juggler_signed_collatz_paper.md",
+  "lean": "Problems/Juggler/PaperECompletion.lean",
+  "decl": [
+   "code_hasSum_odd_times",
+   "all_frequency_limits_iff",
+   "ancestor_density_real",
+   "certificate_log_ceiling",
+   "full_prefix_tree_masses",
+   "stopping_word_masses"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_paper_e_release.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-e-modular-return-exact-construction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For a=k+1, M>0 and 2^(a+b)<3^a, every visit of s=1+2Mt to the specified simultaneous fractional-part box with s>=2^(2^(b+1)) yields a genuine odd-start Juggler O^a E^b prefix: every state is at least its start, the endpoint is strictly larger, and start and endpoint are 1 modulo 2M. The rational periodic-word code has reduced denominator (3^a-2^(a+b))/gcd(3^a-2^a,2^b-1). For b>0 and every Q, every a>=2*(2^b+(Q+1)*(2^b-1)) is expanding and has denominator greater than Q. The infinitude of distinct starts above every bound is proved CONDITIONAL on BoxRecurrence, the explicitly quantified assertion of arbitrarily large simultaneous-box visits. This exact-construction module leaves BoxRecurrence as an explicit premise; the separate PaperERecurrence module now proves it and the unconditional Theorem 4.1. All listed results compile with standard logical dependencies; advisory statement-coverage review is pending.",
+  "source": "docs/problems/juggler_signed_collatz_paper.md",
+  "lean": "Problems/Juggler/PaperEModularReturn.lean",
+  "decl": [
+   "modular_return_of_box",
+   "runCode_den",
+   "runCode_den_gt",
+   "theorem41_of_box_recurrence"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_paper_e_release.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ }
+]

@@ -11,6 +11,7 @@ from typing import Any
 import lean_source
 from . import identities as _fp_identities
 from . import workspace as _fp_workspace
+from research.claims import load_claims
 
 
 _ATTR = r"@\[[^\]]*\][ \t]*"
@@ -190,11 +191,10 @@ def imports(path: Path, known: set[str]) -> list[str]:
     return sorted({m.group(1) for m in IMPORT.finditer(text) if m.group(1) in known})
 
 
-def ledger_by_file() -> dict[str, list[dict[str, str]]]:
+def ledger_by_file(rows=None) -> dict[str, list[dict[str, str]]]:
     """Ledger rows keyed by the file their ``lean`` field names, normalised to repo paths."""
-    if not _fp_workspace.LEDGER.is_file():
-        return {}
-    rows = json.load(io.open(_fp_workspace.LEDGER, encoding="utf-8"))
+    if rows is None:
+        rows = load_claims(_fp_workspace.ROOT, required=False).entries
     out: dict[str, list[dict[str, str]]] = defaultdict(list)
     for row in rows:
         ref = row.get("lean")
@@ -207,10 +207,12 @@ def ledger_by_file() -> dict[str, list[dict[str, str]]]:
     return dict(out)
 
 
-def build() -> dict[str, Any]:
+def build(ledger=None) -> dict[str, Any]:
     paths = sources()
     known = {module_of(p) for p in paths}
-    by_file = ledger_by_file()
+    if ledger is None:
+        ledger = load_claims(_fp_workspace.ROOT, required=False).entries
+    by_file = ledger_by_file(ledger)
     decls: list[dict[str, Any]] = []
     modules: dict[str, dict[str, Any]] = {}
     for path in paths:
@@ -244,7 +246,6 @@ def build() -> dict[str, Any]:
             "ledger_rows_naming_a_file": sum(len(v) for v in by_file.values()),
         },
     }
-    ledger = json.loads(_fp_workspace.LEDGER.read_text(encoding="utf-8")) if _fp_workspace.LEDGER.is_file() else []
     for d in decls:
         d["ledger_exact"] = []
     for row in ledger:

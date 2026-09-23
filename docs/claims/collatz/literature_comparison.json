@@ -1,0 +1,18 @@
+[
+ {
+  "id": "C-endpoint",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "From the affine endpoint equation 3^m R + C = 2^K x: Kramer's 3-adic endpoint congruence 2^K x ≡ C (mod 3^m), and for odd x the 2-adic endpoint congruence 3^m R + C ≡ 2^K (mod 2^(K+1)).",
+  "source": "docs/literature_comparison.md",
+  "lean": "Problems/Collatz/Endpoint.lean",
+  "decl": [
+   "kramer_endpoint_congruence_zmod",
+   "endpoint_congruence_zmod"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/collatz/test_four_coordinate_core.py"
+  ],
+  "related_conjectures": []
+ }
+]

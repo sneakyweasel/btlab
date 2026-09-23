@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-power-envelope-contraction",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every finite Juggler word w realized at n, J^{|w|}(n)^{2^{|w|}} ≤ n^{3^{#O(w)}}. If n ≥ 2 and 3^{#O(w)} < 2^{|w|}, then J^{|w|}(n) < n.",
+  "source": "docs/problems/juggler_power_composition.md",
+  "lean": "Problems/Juggler/Envelope.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_power_composition.py"
+  ],
+  "related_conjectures": []
+ }
+]

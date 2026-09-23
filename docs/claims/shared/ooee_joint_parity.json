@@ -1,0 +1,25 @@
+[
+ {
+  "id": "BTA-finite-three-coordinate-fejer-discrepancy",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked, advisory coverage pending. For N>0 samples in the product of three unit circles, integer H>=3 and E>=0, suppose the norm of every nonzero normalized Fourier mode with abs(i),abs(j),abs(k)<=H is at most E. For a<=b<=a+1, c<=d<=c+1, e<=f<=e+1, the count in the corresponding product of half-open circular arcs divided by N differs from (b-a)*(d-c)*(f-e) by at most 15/sqrt(H+1)+(A_H^3+6*A_H)*E, where A_H=1+2*harmonic(H). The actual Fejer smoothings, finite expansion and coordinate L1 errors prove this bound, including wrapped, empty and full arcs and sample boundary hits.",
+  "source": "docs/theory/juggler_ooee_joint_parity_note.md",
+  "lean": "BTCalculus/FejerBox3.lean",
+  "decl": [
+   "Point",
+   "mode",
+   "smooth",
+   "smooth_expansion",
+   "smooth_average_bound",
+   "product_difference",
+   "finite_box_discrepancy"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": []
+ }
+]

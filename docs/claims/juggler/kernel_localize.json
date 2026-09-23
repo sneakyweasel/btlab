@@ -1,0 +1,15 @@
+[
+ {
+  "id": "J-kernel-localize",
+  "tag": "REFUTED",
+  "statement": "Localization of Paper B Theorem 5.3 to the even-block fibers of OOOEE and OOEOE does not meet the T2 target. Those fibers have length Y ≍ P^{5/32}, so Y P^{-1/24} = P^{11/96}. Lemma 3.9's printed trivial bound is P^{89/96}, hence |Ω_V ∩ I| ≤ min(Y, P^{89/96}) = Y at both Y = P^{5/32} and the §7.4 length Y = P^{23/32}, which exceeds the target by P^{1/24}. The printed absolute leftovers P^{7/16} and P^{3/8} also exceed P^{11/96}. Retuning V cannot close both the sublevel length and the piece-boundary sum (σ ≤ P^{-31/48} versus σ ≥ P^{-5/24} at Y = P^{23/32}). The dyadic kernel theorem J-kernel-cancellation is untouched. The free term is untouched. CLOSE. Not a halt theorem.",
+  "source": "docs/problems/juggler_kernel_localize.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_kernel_localize.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ }
+]

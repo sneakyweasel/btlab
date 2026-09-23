@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-first-even-overshoots",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "On a MinimalNonTerm or CycleMin start, the first even residual always overshoots: T(O^a E)(n) > n and the even residual sits at or above (n+1)^2. The return-to-n cell of the first-even dichotomy is an even-count-1 cycle itinerary, now excluded by no_cycle_itinerary_even_count_le_three. Lean theorems minimal_first_even_overshoots and cycleMin_first_even_overshoots in EvenCountThree.lean. This sharpens the leftover start. It is not a four-even exclusion, not a halt theorem, and not a ReturnBelow law.",
+  "source": "docs/problems/juggler_even_count_three.md",
+  "lean": "Problems/Juggler/EvenCountThree.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_even_count_three.py"
+  ],
+  "related_conjectures": []
+ }
+]

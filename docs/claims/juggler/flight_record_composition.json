@@ -1,0 +1,15 @@
+[
+ {
+  "id": "J-flight-record-composition",
+  "tag": "REPARAMETERIZATION",
+  "statement": "Record composition: summing the jump-quantization law of J-flight-return-quantization along consecutive record segments of a divergent flight gives, for records j < J with totals (O, P) and height gain U = log_2(log m_J / log m_j), the inequality U <= O log_2 3 − P <= U + Σ_k Δ'_k. This is the per-pair law at the wide record pair (the lattice {o log_2 3 − p} is an additive monoid, so composition cannot create new constraint types, and (i_j, i_J) is itself covered by 'any later position'), hence a reparameterization. The one real gain is width: the re-anchored sum never exceeds the direct width (Σ −log_2(1−x_k) = −log_2 Π(1−x_k) <= −log_2(1−Σ x_k), intermediate anchors exceed m_j), so on flights with record deficits summable (spacings p_k << m_{k−1} ln m_{k−1}) the quantization holds with bounded width at ALL distances — past the direct vacuity cutoff 0.63 m_j ln m_j — but this is implied by finitely many applications of the existing row. The jump sequence carries no constraint beyond its totals: the state side realizes any lattice window at achievable resolutions (~1e-9 spacing at frontier anchors, far below Δ'). Recorded near-miss: 'quantization dissolves under summation' is false — sums of near-lattice jumps are near-lattice. Branch CLOSE; the flight program's descriptive arc (envelope, dichotomy, anchor-period, divergent structure, quantization, composition) is terminal. The PARKed terminating-side valley-crossing composition is not reopened. Not a halt theorem; no flight class excluded; no existence claims.",
+  "source": "docs/problems/juggler_flight_record_composition.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_flight_return_quantization.py"
+  ],
+  "related_conjectures": [
+   "juggler_asymptotic_descent"
+  ]
+ }
+]

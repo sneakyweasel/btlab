@@ -1,0 +1,40 @@
+[
+ {
+  "id": "J-expansion-slack-uniform-tax",
+  "tag": "REFUTED",
+  "statement": "Positive local slack, after the exact expansion weights, puts a nontrivial upper bound on the density or run length of expanding persistent residual blocks independently of T_w(n)≥n. In particular there is a uniform ε>0 with c/(λ-1)≥ε on every expanding persistent block, or the normalized budget B_m is bounded below independently of the endpoint tautology B_m≤y_0(1-1/Λ_m). Counterexamples: the OOE block at 180370579261640036336071806107777 has 0<q<10^{-30}; B_m/B_taut reaches 10^{-9} on the n≤4000 window; a length-5 all-expanding persistent run starts at 2183.",
+  "source": "docs/problems/juggler_expansion_slack.md",
+  "lean": "Problems/Juggler/ExpansionSlack.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_expansion_slack.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-four-block-persistent-expanding",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Four consecutive persistent expanding Juggler residual blocks exist: 1999 follows OOE to 5169, 5169 follows OOOOEE to 50093, 50093 follows OOE to 193753, and 193753 follows OOE to 887471. Each step is PersistentExpandingResidual.",
+  "source": "docs/problems/juggler_expansion_slack.md",
+  "lean": "Problems/Juggler/ExpansionSlack.lean",
+  "decl": [
+   "four_consecutive_persistent_expanding_exists",
+   "four_block_pe_1999"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_expansion_slack.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-weighted-slack-cocycle",
+  "tag": "REPARAMETERIZATION",
+  "statement": "For a realized Juggler itinerary, the pair (A,B)=(3^{#O(w)}, 2^{|w|}) multiplies under concatenation, and n^A = T_w(n)^B + Δ_w(n). The 1+q concatenation law is the same identity in multiplier coordinates: 1+q_{uv} = (1+q_u)^{A_v} (1+q_v)^{B_u}. In logarithms this is log T = λ log n - c and the weighted cocycle y_m = Λ_m y_0 - C_m with B_m = C_m/Λ_m. The local comparison c < (λ-1) log n is T_w(n) > n on an expanding itinerary. These are the existing slack identities, not a new obstruction.",
+  "source": "docs/problems/juggler_expansion_slack.md",
+  "lean": "Problems/Juggler/ExpansionSlack.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_expansion_slack.py"
+  ],
+  "related_conjectures": []
+ }
+]

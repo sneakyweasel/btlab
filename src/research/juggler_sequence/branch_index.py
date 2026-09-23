@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Any
 
 from research.knowledge import negative_text
+from research.claims import load_claims
 
 from research.juggler_sequence.lean_paths import (
     BRANCHES_ROOT,
@@ -27,7 +28,6 @@ from research.juggler_sequence.lean_registry import LAYERS
 
 PACKAGE = REPO_ROOT / "src" / "research" / "juggler_sequence"
 TESTS = REPO_ROOT / "tests" / "research" / "juggler_sequence"
-LEDGER_PATH = DOCS_ROOT / "theory" / "theorem_ledger.json"
 
 INFRASTRUCTURE = frozenset(
     {
@@ -298,10 +298,7 @@ def _row(
 
 
 def build_index() -> dict[str, Any]:
-    ledger_rows: list[dict[str, Any]] = []
-    if LEDGER_PATH.is_file():
-        ledger_rows = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
-
+    ledger_rows = load_claims(REPO_ROOT).entries
     probes = {p.stem: p for p in sorted(PACKAGE.glob("*.py"))}
     dossiers = {
         p.stem.removeprefix("juggler_"): p

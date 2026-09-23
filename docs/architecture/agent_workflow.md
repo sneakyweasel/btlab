@@ -149,7 +149,10 @@ The guides record which expressions are covered and which hypotheses remain open
 
 A server started before a tooling update may retain its earlier Python code;
 restart that server to pick up new dependency checks. The CLI doctor reads the
-current checkout immediately. Recorded claims are read from the current ledger.
+current checkout immediately. Recorded claims are read from `docs/claims/` through `research.claims.load_claims`.
+Claim queries and impact reports include the owning topic file and JSON pointer.
+After editing topics, regenerate both ledger exports with
+`python tools/render_theorem_ledger.py`; its `--check` gate rejects stale views.
 
 ## Stable paths and changing registries
 

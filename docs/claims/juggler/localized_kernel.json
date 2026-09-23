@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-localized-kernel",
+  "tag": "CONJECTURE",
+  "statement": "Publication review 9 September 2026: the analytic claim below is not established by Paper B and is retained only as a historical research target. The revised paper gives conditional implications, not this analytic proof. See docs/theory/paper_b_review.md. Historical target: Standalone localized kernel estimate, not a production theorem. Paper B Theorem 5.5: for c(n)=(3k/4)n^(9/8), 1<=k<=P^(1/24), delta>0, a slow twist g(n)=(l/2)n^(9/16) with |l|<=P^(1/24), and I inside (P,2P] of length Y>=P^(29/48+delta), |K_c^g(I)| << Y P^(-1/96+eps), uniformly in the stated parameters. The human proof classifies proportional and absolute costs, transfers the latter through three A-processes to P^((7y+25/48)/8), and retains the printed saving above 25/48+8/96=29/48. The largest tabulated absolute cost is the transition term P^(25/48), not the depth-three P^(7/16). Uniformly for Y<=P, the twist variation is at most 0.26 P^(-3/8). The bookkeeping and extracted inventory are consistency checks, not independent proofs of that analytic classification. The legacy reference y=23/32 is admissible, with margin 11/768. It is NOT the nominal inverse-fiber scale of OOOEEE or OOEOEE: both have landing exponent 27/64 and nominal inverse exponent 37/64 < 29/48. Accordingly the claimed unchanged-1/96 production application and its contagion dividend are withdrawn. Substitution of 37/64 into the formal two-term bookkeeping suggests saving 11/1536, but extending the estimate and transporting the exact floor/parity restrictions remain proof obligations. No new production or termination theorem. PROMOTE for the stated standalone estimate only; production application not established.",
+  "lean": "formal/Problems/Juggler/LocalizedKernel.lean",
+  "related_conjectures": [],
+  "source": "docs/problems/juggler_localized_kernel.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_localized_kernel.py"
+  ]
+ },
+ {
+  "id": "J-localized-kernel-arithmetic",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Rational bookkeeping only, not an exponential-sum estimate. LocalizedKernel.lean proves absTail_eq: three nested half-averages give (7y+a)/8; threshold_iff and threshold_value: retaining saving 1/96 requires y>=29/48. Legacy companionY=23/32 is explicitly a reference scale, not a production scale; absTail_companion=533/768, target_companion=17/24, margin_companion=11/768 remain true. The repaired production variables have productionLanding=27/64 and productionY=37/64, with productionY_eq_one_sub. absTail_production=877/1536; target_production=109/192; production_lt_threshold and production_misses_same_saving certify the mismatch; production_same_saving_deficit=5/1536. production_formal_effective_saving=11/1536 is arithmetic only and does not assert a shorter-interval estimate or a production. The file also proves proportional_chain, claimC_balance, claimC_output, claimC_others_dominated, legacy twist_negligible, and twist_uniform_exponent=-3/8 for Y<=P. It belongs to the laboratory barrel, not Paper B's certified corpus. Source extraction and cost-table checks in the Python probe are separate computational consistency checks, not part of this Lean claim.",
+  "lean": "formal/Problems/Juggler/LocalizedKernel.lean",
+  "related_conjectures": [],
+  "source": "docs/problems/juggler_localized_kernel.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_localized_kernel.py"
+  ]
+ }
+]

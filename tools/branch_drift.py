@@ -31,6 +31,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+# Historical refs may predate topic files; compare their committed aggregate exports.
 LEDGER = "docs/theory/theorem_ledger.json"
 
 #: Artifact classes worth noticing. A branch that adds none of these and no

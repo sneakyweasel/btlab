@@ -1,0 +1,34 @@
+[
+ {
+  "id": "J-odd-landing-set-structure",
+  "tag": "REFUTED",
+  "statement": "The iterated odd-landing sets P_r occupy shrinking arithmetic cylinders, or iteration is recognized modulo 2^m, or successive square-gap coordinates on long odd runs are constrained. Counterexamples: on odd n≤8000 the stay fraction |P_{r+1}|/|P_r| is 0.49–0.53 through r=7; P_r is mostly isolated odds; every residue modulo 64 both continues and exits; θ on P_r and on the exit from P_{r-1} both occupy [0,1].",
+  "source": "docs/problems/juggler_odd_landing_sets.md",
+  "lean": "Problems/Juggler/OddLandingSets.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_odd_landing_sets.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-odd-run-recursive",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Write oddLanding y for y odd and T(y) odd, and oddRun 0 y = oddLanding y, oddRun (r+1) y = oddLanding y and oddRun r (T(y)). Then oddRun (r+1) y if and only if y is odd and oddRun r (T(y)). The odd-landing cylinder of a fixed m contains at most one integer.",
+  "source": "docs/problems/juggler_odd_landing_sets.md",
+  "lean": "Problems/Juggler/OddLandingSets.lean",
+  "decl": [
+   "oddRun_recursive",
+   "oddLanding",
+   "oddRun",
+   "oddLanding_iff",
+   "oddRun_zero",
+   "oddRun_succ",
+   "oddLanding_preimage_unique"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_odd_landing_sets.py"
+  ],
+  "related_conjectures": []
+ }
+]

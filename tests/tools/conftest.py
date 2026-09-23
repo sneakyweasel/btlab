@@ -52,13 +52,14 @@ def example_catalog(tmp_path, monkeypatch):
         "end Example\n", encoding="utf-8",
     )
     ledger = [
-        {"id": name, "tag": "EXACT", "statement": f"The {name} claim.",
+        {"id": name, "source": "formal/Problems/Example.lean", "tag": "EXACT — HUMAN PROOF", "statement": f"The {name} claim.",
          "lean": "Problems/Example.lean", "decl": f"Example.{name}"}
         for name in ("first", "second", "third")
     ]
-    ledger.append({"id": "unresolved", "tag": "OPEN", "statement": "An offered claim.",
+    ledger.append({"id": "unresolved", "source": "formal/Problems/Example.lean", "tag": "CONJECTURE", "statement": "An offered claim.",
                    "lean": "Problems/Example.lean"})
-    ledger_path = tmp_path / "ledger.json"
+    ledger_path = tmp_path / "docs/claims/shared/example.json"
+    ledger_path.parent.mkdir(parents=True, exist_ok=True)
     ledger_path.write_text(json.dumps(ledger), encoding="utf-8")
     for name, value in {"ROOT": tmp_path, "FORMAL": formal, "LEDGER": ledger_path,
                         "JEV": tmp_path / "evidence.json"}.items():

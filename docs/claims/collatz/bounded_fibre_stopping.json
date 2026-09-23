@@ -1,0 +1,24 @@
+[
+ {
+  "id": "C-fibre-bounded-stopping-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For either signed Collatz odd-return coefficient operator, every level r>=1, every nonnegative weight h periodic modulo 3^r, zero on multiples of three and positive at residue -s, and every d>=0, define U_0=h and U_(d+1)=max(h,L_s U_d). The envelope U_d is attained by a bounded inverse-tree policy and dominates every policy of depth at most d, including separate history-dependent choices on every branch. Some unit residue modulo 3^(r+d+1) satisfies L_s U_d<h; consequently every policy forced to expand first and stop by depth d+1 has homogeneous payoff below h at every positive integer representative of that residue. All admissible positive halving exponents are included. This does not provide a single deficient integer for all horizons, concern unbounded stopping, identify the payoff with actual reciprocal mass, or settle coefficient-series divergence. Kernel-checked; independent review and advisory statement coverage pending.",
+  "source": "docs/problems/collatz_bounded_fibre_stopping.md",
+  "lean": "formal/Problems/Collatz/FibreStopping.lean",
+  "lean_trust": "kernel",
+  "decl": [
+   "Problems.Collatz.FibreStopping.envelope",
+   "Problems.Collatz.FibreStopping.Policy",
+   "Problems.Collatz.FibreStopping.payoff",
+   "Problems.Collatz.FibreStopping.bounded_stopping_deficit",
+   "Problems.Collatz.FibreStopping.payoff_bounds",
+   "Problems.Collatz.FibreStopping.envelope_attained",
+   "Problems.Collatz.FibreStopping.forced_payoff_le",
+   "Problems.Collatz.FibreStopping.bounded_policy_deficit"
+  ],
+  "tests": [
+   "tests/research/collatz/test_fibre_stopping.py"
+  ],
+  "related_conjectures": []
+ }
+]

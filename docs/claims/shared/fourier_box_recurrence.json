@@ -1,0 +1,39 @@
+[
+ {
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/theory/fourier_box_recurrence_note.md",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": [],
+  "id": "BTA-fourier-open-box-recurrence",
+  "lean": "BTCalculus/FourierBoxRecurrence.lean",
+  "statement": "Kernel-checked qualitative Weyl criterion; advisory statement coverage pending. For any finite index type d and sequence x in the unit torus, if the averages of every nonzero integer Fourier monomial tend to zero, then averages of every continuous complex-valued function tend to its normalized Haar integral. Fourier integrals, the zero mode, finite linear combinations, contraction bounds and the passage by uniform approximation are proved, using Mathlib's dense Fourier span. Every nonempty open set is visited after every prescribed natural index T, using a nonnegative continuous function with positive Haar integral. For real representatives, any simultaneous open fractional-part box with 0<=a_i<b_i<=1 is visited arbitrarily late. The integer dot-product phase is identified with the torus monomial. No approximation or positive-measure assertion is assumed, and no quantitative discrepancy or shrinking-target claim is made.",
+  "decl": [
+   "integral_mFourier",
+   "tendsto_continuous_average",
+   "exists_ge_mem_open_of_fourier",
+   "mem_circleInterval_iff",
+   "mFourier_real_eq_phase",
+   "exists_ge_fract_box_of_phase"
+  ]
+ },
+ {
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/theory/fourier_box_recurrence_note.md",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": [],
+  "id": "BTA-noninteger-power-box-recurrence",
+  "lean": "BTCalculus/PowerBoxRecurrence.lean",
+  "statement": "Kernel-checked simultaneous recurrence for powers; advisory statement coverage pending. For a finite index type, distinct positive noninteger real exponents p_i, nonzero real scales w_i, real A>0 and B, every box 0<=a_i<b_i<=1 has arbitrarily late natural samples n with a_i<fract(w_i*(A*n+B)^p_i)<b_i for all i. The nonzero Fourier coefficients are shown to yield a nonzero mixed-power phase. Cancellation is discharged by the proved mixed-power theorem and the Fourier-to-box criterion. This is unconditional for each fixed family and fixed box; no uniform rate, shrinking target, or growing-depth conclusion is asserted.",
+  "decl": [
+   "exists_ge_power_fract_box"
+  ]
+ }
+]

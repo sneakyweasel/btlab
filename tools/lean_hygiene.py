@@ -7,10 +7,12 @@ ambiguous suffixes are reported rather than assigned to every declaration.
 from __future__ import annotations
 
 from collections import defaultdict
-import json
 import os
 from pathlib import Path
 import re
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+from research.claims import load_claims
 
 
 # ".claude" holds agent worktrees: full repository copies nested inside the
@@ -23,11 +25,6 @@ import re
 SCAN_SKIP = {".lake", "node_modules", ".git", ".claude", ".cache", "dist", "__pycache__",
              ".pytest_cache", ".venv", ".venv-seed", "venv", ".tox", ".build", "build", "tmp"}
 SCAN_SUFFIXES = {".lean", ".md", ".ts", ".tsx", ".py"}
-# The curated registry that cites declarations by name. `render_theorem_ledger`
-# never emits the `decl` field, and `.json` is outside SCAN_SUFFIXES, so a
-# ledger row is a citation no scanned document repeats. Curated, not generated:
-# the formalpedia inventories stay excluded.
-DECLARATION_REGISTRY = "docs/theory/theorem_ledger.json"
 ANSI = re.compile(r"\x1b\[[0-?]*[ -/]*[@-~]")
 STATUS = re.compile(r"^\s*(?:[^\w\s\[]+\s*)?\[\d+/\d+\]\s+(Built|Replayed)\s+([A-Za-z0-9_.]+)(?:\s|$)")
 LOCATION_WARNING = re.compile(r"^\s*warning:\s+(.+?\.lean):(\d+):(\d+):\s*(.*)$")
@@ -196,21 +193,18 @@ def orphan_report(root: Path, trust) -> dict:
                     if full in candidates and full != owner:
                         if len(references[full]) < 3:
                             references[full].append({"path": relative, "line": line, "token": token})
-    registry = root / DECLARATION_REGISTRY
-    if registry.exists():
-        rows = json.loads(registry.read_text(encoding="utf-8"))
-        for position, row in enumerate(rows if isinstance(rows, list) else [], 1):
-            declared = row.get("decl") if isinstance(row, dict) else None
-            cited = [declared] if isinstance(declared, str) else declared or []
-            for token in (name for name in cited if isinstance(name, str)):
-                matches = resolve(token, None)
-                if len(matches) > 1:
-                    ambiguous[token].update(matches & candidates.keys())
-                elif len(matches) == 1:
-                    full = next(iter(matches))
-                    if full in candidates and len(references[full]) < 3:
-                        references[full].append({"path": DECLARATION_REGISTRY,
-                                                 "line": position, "token": token})
+    claims = load_claims(root, required=False)
+    for row in claims.entries:
+        declared = row.get("decl")
+        cited = [declared] if isinstance(declared, str) else declared or []
+        for token in cited:
+            matches = resolve(token, None)
+            if len(matches) > 1:
+                ambiguous[token].update(matches & candidates.keys())
+            elif len(matches) == 1:
+                full = next(iter(matches))
+                if full in candidates and len(references[full]) < 3:
+                    references[full].append(claims.location(row['id']) | {"token": token})
     orphans = [{"qualified_name": full, "locations": candidates[full]}
                for full in sorted(candidates) if not references[full]]
     return {"candidate_count": len(candidates), "orphans": orphans,

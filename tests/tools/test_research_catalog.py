@@ -47,7 +47,7 @@ See [Juggler](juggler_example.md).
 [Example](problems/juggler_example.md): a counterexample rules this out.
 """)
     write(tmp_path, "formal/Problems/Juggler/Example.lean", "theorem example : True := trivial\n")
-    write(tmp_path, "docs/theory/theorem_ledger.json", json.dumps([{
+    write(tmp_path, "docs/claims/juggler/example.json", json.dumps([{
         "id": "J-example", "tag": "EXACT — HUMAN PROOF", "statement": "Conditional result",
         "source": "docs/problems/juggler_example.md", "tests": [],
         "lean": "formal/Problems/Juggler/Example.lean", "decl": ["Example.example"],
@@ -98,7 +98,7 @@ def test_unknown_decisions_and_missing_refs_are_explicit(repo):
 
 
 def test_duplicate_claim_ids_invalid_tags_and_metadata_fail_validation(repo):
-    path = repo / "docs/theory/theorem_ledger.json"
+    path = repo / "docs/claims/juggler/example.json"
     rows = json.loads(path.read_text(encoding="utf-8"))
     rows.append(dict(rows[0], tag="PROVED"))
     path.write_text(json.dumps(rows), encoding="utf-8")
@@ -156,7 +156,7 @@ def test_private_bibliography_and_escape_links_are_not_indexed(repo):
 
 
 def test_claim_statements_are_not_parsed_as_repository_links(repo):
-    path = repo / "docs/theory/theorem_ledger.json"
+    path = repo / "docs/claims/juggler/example.json"
     rows = json.loads(path.read_text(encoding="utf-8"))
     rows[0]["statement"] = "For all n, T^[3](n) > n; [notation](missing.md) is not a source."
     rows[0]["source"] += "\n[Proof note](../../docs/theory/proof.md)"

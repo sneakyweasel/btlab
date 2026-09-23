@@ -1,0 +1,28 @@
+[
+ {
+  "id": "J-cycle-unique-minimum-visit",
+  "tag": "REPARAMETERIZATION",
+  "statement": "If CycleItinerary n w and T^k(n)=n for 0<k<L, then CycleItinerary n (w.take k) by follows_take and image_take_of_le. On a leftover length (currently 84 or ≥ 85) every shorter cycle itinerary is already excluded, so n occurs once per period. The CycleMin start is that unique occurrence. For m≥2 every other local minimum is a different odd state and is at least n+2. This is first-return, not a new valley-height law. Not a leftover-length exclusion and not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_equal_valleys.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_equal_valleys.py"
+  ],
+  "related_conjectures": [
+   "juggler_cycle_all_valleys_equal"
+  ]
+ },
+ {
+  "id": "J-equal-valleys-leftover-killer",
+  "tag": "REFUTED",
+  "statement": "Charging one Juggler CycleMin valley at n and the other m−1 valleys at n+2 excludes leftover L=84 at m≥3 at the residual floor 261, under joint-minima or under the odd-run height law. False. At n=261, o=53, m=3, θ≈0.002086, Lean constant 1: split RHS≈0.003515 and height-plus-n+2 RHS≈0.002180, both above θ. Joint-style split never kills: fifty climb interiors at T(261)=4216 already exceed the gap. Height-split would need the other valleys ≥ 281.",
+  "source": "docs/problems/juggler_cycle_equal_valleys.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_equal_valleys.py"
+  ],
+  "related_conjectures": [
+   "juggler_equal_valleys_leftover_killer"
+  ]
+ }
+]

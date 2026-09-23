@@ -48,9 +48,9 @@ def test_rendered_ledger_is_not_stale() -> None:
 
 
 def test_both_ledger_rows_cite_this_regression() -> None:
-    import json
+    from research.claims import load_claims
 
-    rows = json.load(io.open(ROOT / "docs" / "theory" / "theorem_ledger.json", encoding="utf-8"))
+    rows = load_claims(ROOT).entries
     by_id = {r["id"]: r for r in rows}
     for rid in ("J-equidistribution-implies-density-one", "J-rate-free-density-one"):
         assert any("paper_b_prefix_count" in t for t in by_id[rid]["tests"]), rid

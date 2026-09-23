@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from research.claims import load_claims
 import json
 import re
 from pathlib import Path
@@ -28,7 +29,7 @@ def _refuted_conjecture_ids() -> set[str]:
 
 
 def _refuted_ledger_ids() -> set[str]:
-    rows = json.loads(LEDGER.read_text(encoding="utf-8"))
+    rows = load_claims(ROOT).entries
     return {row["id"] for row in rows if row.get("tag") == "REFUTED"}
 
 

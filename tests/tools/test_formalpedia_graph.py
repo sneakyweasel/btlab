@@ -1,8 +1,7 @@
 """Formalpedia graph regressions; live corpus snapshots are isolated by conftest."""
 from __future__ import annotations
 
-import io
-import json
+from research.claims import load_claims
 
 from formalpedia_core import (
     graph as fp_graph,
@@ -28,7 +27,7 @@ def test_impact_of_a_leaf_is_a_superset_of_its_direct_importers(corpus_index) ->
 def test_the_claim_graph_is_acyclic_and_reduced(corpus_index) -> None:
     """A DAG is only useful if it is both: cycles make it unreadable, redundancy makes it long."""
     index = corpus_index
-    ledger = json.load(io.open(fp_workspace.LEDGER, encoding="utf-8"))
+    ledger = load_claims(fp_workspace.ROOT).entries
     g = fp_graph.dag(index, ledger)
     edges = {name: set(node["depends_on"]) for name, node in g["nodes"].items()}
 
@@ -58,7 +57,7 @@ def test_the_claim_graph_is_acyclic_and_reduced(corpus_index) -> None:
 def test_every_graph_node_carries_at_least_one_ledger_row(corpus_index) -> None:
     """The graph is over claims, not over the whole corpus; a node with no row is noise."""
     index = corpus_index
-    ledger = json.load(io.open(fp_workspace.LEDGER, encoding="utf-8"))
+    ledger = load_claims(fp_workspace.ROOT).entries
     g = fp_graph.dag(index, ledger)
     empty = [n for n, node in g["nodes"].items() if not node["ledger"]]
     assert empty == [], empty

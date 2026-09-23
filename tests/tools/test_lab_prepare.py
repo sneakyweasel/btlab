@@ -136,6 +136,10 @@ def test_lean_receipt_invalidates_on_source_or_object_change(tmp_path, monkeypat
         obj.relative_to(tmp_path).as_posix(): prep.hashlib.sha256(obj.read_bytes()).hexdigest()}}}
     prep.atomic_json(tmp_path, tmp_path / prep.RECEIPT, receipt)
     assert prep.readiness(tmp_path)['lean_build']['status'] == 'ready'
+    topic = write(tmp_path, 'docs/claims/shared/example.json', '[]')
+    assert prep.readiness(tmp_path)['lean_build']['status'] == 'stale'
+    topic.unlink()
+    assert prep.readiness(tmp_path)['lean_build']['status'] == 'ready'
     source.write_text('def value : Nat := 43\n')
     assert prep.readiness(tmp_path)['lean_build']['status'] == 'stale'
     source.write_bytes(b'def value : Nat := 42\n')

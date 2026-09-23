@@ -1,0 +1,133 @@
+[
+ {
+  "id": "J-ooee-pressure-rate-termination",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked conditional implication; advisory statement coverage and independent review pending. The existing ScaleAverage.Bound implies universal termination when C*(theta*pC(C)-log(1-q+q*exp(theta)))/log(2)-eta>3/8 and the certified-target and parameter conditions below hold. Actual OOEE production is discharged. The arithmetic stopped-pressure bound remains open.",
+  "source": "docs/theory/juggler_ooee_weighted_production_note.md",
+  "lean": "Problems/Juggler/FateOOEEWeighted.lean",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_ooee_poor_fibres.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "pressure_average_conjecture"
+  ],
+  "lean_trust": "kernel",
+  "conditions": [
+   "Natural N0>=2 and k0 with N0<2^(k0+1); every positive m<=N0 reaches one.",
+   "C>1, theta>0, 0<q<1 and eta>=0.",
+   "C*(theta*pC(C)-log(1-q+q*exp(theta)))/log(2)-eta>3/8.",
+   "ScaleAverage.Bound N0 k0 C theta (1-q+q*exp(theta)) eta."
+  ],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "partial",
+    "source": {
+     "path": "docs/theory/juggler_ooee_weighted_production_note.md",
+     "start": "## Exact statement",
+     "end": "## Proof map and validation",
+     "sha256": "71b8bda6b5b8d5b05227c4c284de126b73d3a145a60e768120d4bb0c2505f037"
+    },
+    "uses": [
+     {
+      "claim": "J-ooee-actual-weighted-production",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-pressure-scale-average-contagion-transfer",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-c-hypothesis-stopped-pressure",
+      "kind": "assumption"
+     }
+    ],
+    "notes": "The named open pressure input and generic reduction are explicit. The finite target is a local parameter condition, not a newly certified computational floor. Lower-level pressure proof dependencies remain unexpanded."
+   }
+  ]
+ },
+ {
+  "id": "J-ooee-tao-rate-termination",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked conditional implication; advisory statement coverage and independent review pending. For every e>3/8, an eventual actual odd-failure count bound card(oddFailures y)<=y*(log y)^(-e) implies that every positive start reaches one. Actual OE and OOEE production are discharged; the failure-rate premise remains open.",
+  "source": "docs/theory/juggler_ooee_weighted_production_note.md",
+  "lean": "Problems/Juggler/FateOOEEWeighted.lean",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_ooee_poor_fibres.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "conjecture_of_tao_rate"
+  ],
+  "lean_trust": "kernel",
+  "conditions": [
+   "e>3/8 and the eventual actual dyadic odd-failure estimate at that e."
+  ],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "complete",
+    "source": {
+     "path": "docs/theory/juggler_ooee_weighted_production_note.md",
+     "start": "## Exact statement",
+     "end": "## Proof map and validation",
+     "sha256": "71b8bda6b5b8d5b05227c4c284de126b73d3a145a60e768120d4bb0c2505f037"
+    },
+    "uses": [
+     {
+      "claim": "J-ooee-contagion-five-eighths",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-ooee-contagion-assembly",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-c-hypothesis-tao-rate",
+      "kind": "assumption"
+     }
+    ],
+    "notes": "Immediate dependencies in the selected written proof; this is not an independent proof audit."
+   }
+  ]
+ },
+ {
+  "id": "J-paper-c-hypothesis-stopped-pressure",
+  "tag": "CONJECTURE",
+  "statement": "Open arithmetic input to the pressure implication: ScaleAverage.Bound N0 k0 C theta (1-q+q*exp(theta)) eta holds for parameters satisfying the certified-target and gap conditions recorded in J-ooee-pressure-rate-termination. No such bound is established by the contagion theorem.",
+  "source": "docs/theory/juggler_ooee_weighted_production_note.md",
+  "lean": "",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_ooee_poor_fibres.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": [],
+  "claim_kind": "hypothesis"
+ },
+ {
+  "id": "J-paper-c-hypothesis-tao-rate",
+  "tag": "CONJECTURE",
+  "statement": "Open rate input: there exist a real e>3/8 and a natural y0 such that, for every natural y>=y0, the actual odd nonterminating starts in (y,2y] number at most y*(log y)^(-e). Contagion at 5/8 supplies no proof of this rate.",
+  "source": "docs/theory/juggler_ooee_weighted_production_note.md",
+  "lean": "",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_ooee_poor_fibres.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": [],
+  "claim_kind": "hypothesis"
+ }
+]

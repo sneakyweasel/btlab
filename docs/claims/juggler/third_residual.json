@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-ce-third-residual-preimages",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If n ≥ 2 follows OOEOOEOO, then T_OOEOOEOO(n) < n^3 because x^{256} ≤ n^{729} forbids n^3 ≤ x (768 > 729). If n follows OOEOOEOOE, then T_OOEOOEOOE(n) < n^2 because y^{512} ≤ n^{729} forbids n^2 ≤ y (1024 > 729). A CE that follows OOEOOE follows OOEOOEOO. On MinimalNonTerm a completed third OOE cannot land even: an even landing below n^2 is descent. This is not a proof that the third residual is always OOE, not a PE theorem, and not a halt theorem.",
+  "source": "docs/problems/juggler_third_residual.md",
+  "lean": "Problems/Juggler/Escape.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_third_residual.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-third-residual-drop-or-pe",
+  "tag": "REFUTED",
+  "statement": "After the CE OOEOOE trap forces OOEOOEOO, the completed third residual always drops below n, or always stays PE. False. 365 follows OOEOOEOOE to 4447, which is PE. 429 follows OOEOOEOOE to 5595, which is odd and above the OOEOOE landing but not odd-odd: T(5595)=418504 is even and ≥ 429^2. 565 completes an a=9 third residual above n^2 that is not PE. Window drops (2177, 2185, 3565) are formally contracting. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_third_residual.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_third_residual.py"
+  ],
+  "related_conjectures": []
+ }
+]

@@ -1,0 +1,22 @@
+[
+ {
+  "id": "J-effective-ooe-modular-return",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every natural M>=1, define A_M(T) to be the number of natural t<T such that s=1+2*M*t>=16, floor(s^(9/2)) is even, and floor(s^(9/4)) modulo (2*M) is 1. For every natural T>=1, abs(A_M(T)-T/(4*M)) <= [5+128*M^(1/4)*(3+log(T)/16)^2]*T^(63/64)+8 <= 2^14*M^(1/4)*T^(127/128). Powers with fractional exponents are real powers, floors are natural floors, and log is the natural logarithm. For T0=2^2176*M^160, A_M(T0)>=T0/(8*M)>0. There exists a natural t<T0 with s=1+2*M*t>=16 and n=s^2<2^4354*M^322 whose actual Juggler source parities at times 0,1,2 are odd,odd,even; n<=J^[j](n) for every natural j<=3; n<J^[3](n); and n modulo (2*M) and J^[3](n) modulo (2*M) both equal 1. Here J(n)=Nat.sqrt(n) for even n and Nat.sqrt(n^3) for odd n, Nat.sqrt is the integer square root, and J^[j] denotes j-fold iteration.",
+  "source": "docs/theory/juggler_effective_modular_return_note.md",
+  "lean": "Problems/Juggler/OOEEffectiveReturn.lean",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_effective_modular_return.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "return_parameter_iff",
+   "count_error",
+   "error_power_bound",
+   "witnessCutoff",
+   "count_at_witnessCutoff",
+   "exists_bounded_modular_return"
+  ]
+ }
+]

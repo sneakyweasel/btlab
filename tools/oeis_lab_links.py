@@ -15,6 +15,7 @@ from oeis_catalog import bounds
 from oeis_index import ROOT
 from oeis_source import aid
 from lab_scope import active_lean_modules, path_scope, policy, validate_scope
+from research.claims import load_claims
 
 KINDS = ('paper', 'dossier', 'negative_knowledge', 'lean', 'theory', 'source',
          'literature', 'ledger', 'bibliography', 'laboratory_reference')
@@ -28,7 +29,7 @@ def mention_kind(file: str, root: Path) -> str:
         return 'bibliography'
     if file == 'docs/negative_knowledge.md' or file.startswith('docs/negative_knowledge/'):
         return 'negative_knowledge'
-    if path.name in {'theorem_ledger.md', 'theorem_ledger.json'}:
+    if file.startswith('docs/claims/') or path.name in {'theorem_ledger.md', 'theorem_ledger.json'}:
         return 'ledger'
     for prefix, kind in [('docs/problems/', 'dossier'), ('docs/theory/', 'theory'),
                          ('src/', 'source'), ('literature/', 'literature')]:
@@ -46,7 +47,8 @@ def find_mentions(identifier: str, root: Path):
                  for arg in ('--type-add', f'oeislab:*.{ext}')]
         command = ['rg', '--json', '--no-ignore-dot', '-n', '-e', pattern.pattern,
                    *types, '--type', 'oeislab',
-                   '-g', '!**/.lake/**', '-g', '!docs/research/*.json', '--', *directories]
+                   '-g', '!**/.lake/**', '-g', '!docs/research/*.json',
+                   '-g', '!docs/theory/theorem_ledger.*', '--', *directories]
         try:
             result = subprocess.run(command, cwd=root, capture_output=True, text=True,
                                     encoding='utf-8', timeout=20, stdin=subprocess.DEVNULL)
@@ -85,6 +87,8 @@ def find_mentions(identifier: str, root: Path):
                 relative = path.relative_to(root).as_posix()
                 if candidates is not None and relative not in candidates:
                     continue
+                if relative in {'docs/theory/theorem_ledger.json', 'docs/theory/theorem_ledger.md'}:
+                    continue  # Generated views repeat the canonical claims.
                 if relative.startswith('docs/research/') and path.suffix == '.json':
                     continue
                 for number, text in enumerate(path.read_text(encoding='utf-8').splitlines(), 1):
@@ -139,8 +143,8 @@ def lab_links(identifier: str, limit: int = 30, offset: int = 0, root: Path = RO
                     ('id', 'qualified_name', 'visibility', 'module', 'file', 'line')} |
                     {'match_basis': matched, 'formalpedia_lookup': {'name': d['id'], 'module': module,
                                                                   'include_private': d['visibility'] == 'private'}})
-    ledger_file = root / 'docs/theory/theorem_ledger.json'
-    rows = json.loads(ledger_file.read_text(encoding='utf-8')) if ledger_file.is_file() else []
+    ledger = load_claims(root, required=False)
+    rows = ledger.entries
     def claim_in_scope(row):
         if scope == 'all' or not rules:
             return True
@@ -151,10 +155,11 @@ def lab_links(identifier: str, limit: int = 30, offset: int = 0, root: Path = RO
         return path_scope(source, root, rules) == scope
 
     claims = [{'id': row['id'], 'tag': row.get('tag'), 'lean_file': row.get('lean'),
+               'claim_location': ledger.location(row['id']),
                'declaration_references': row.get('decl'), 'statement_excerpt': row.get('statement', '')[:1000]}
               for row in rows if pattern.search(json.dumps(row, ensure_ascii=False)) and claim_in_scope(row)]
     digest = hashlib.sha256()
-    digest.update(json.dumps([scope, kinds, rules], sort_keys=True).encode())
+    digest.update(json.dumps([scope, kinds, rules, ledger.snapshot], sort_keys=True).encode())
     for file in sorted(selected_files):
         info = (root / file).stat()
         digest.update(f'{file}:{info.st_mtime_ns}:{info.st_size}\n'.encode())

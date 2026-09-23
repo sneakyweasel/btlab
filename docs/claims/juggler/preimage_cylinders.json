@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-itinerary-cylinder-exact",
+  "tag": "REPARAMETERIZATION",
+  "statement": "y=T_w(x) with x realising w if and only if follows x w and image x w = y. Each letter is the existing inverse-floor cell: T(n)=m iff m²≤F(n)<(m+1)² with F(n)=n on the even branch and F(n)=n³ on the odd branch. These are the itinerary and cell lemmas under cylinder names.",
+  "source": "docs/problems/juggler_preimage_cylinders.md",
+  "lean": "Problems/Juggler/PreimageCylinders.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_preimage_cylinders.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-pe-cylinder-next-landing",
+  "tag": "REFUTED",
+  "statement": "The predecessor cylinder of a persistent-expanding residual word constrains T(y) mod 2 or the next residual grammar in a way invisible from y, y mod 8, or θ(y). Counterexamples: 3461 maps under OOE to 9585 with T even and 3803 maps under OOE to 10657 with T odd; both endpoints are 1 mod 8 with θ≈0.382. On expanding overshoots n≤4000 every PE word with at least 8 samples realises both next parities.",
+  "source": "docs/problems/juggler_preimage_cylinders.md",
+  "lean": "Problems/Juggler/PreimageCylinders.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_preimage_cylinders.py"
+  ],
+  "related_conjectures": []
+ }
+]

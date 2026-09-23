@@ -1,0 +1,15 @@
+[
+ {
+  "id": "J-small-cycle-census-eight",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "No itinerary of length at most eight is a Juggler cycle itinerary at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least nine. Assembly: the length-≤7 census, the formal-expansion filter on length eight, the odd-run exclusion of O^7E, Theorem 3.12 at k=8, rotation of EOOOOOOE and OEOOOOOE onto those leftovers, and the internal-E bootstrap exclusions of OOOOEOOE, OOOEOOOE, and OOEOOOOE. Lean theorem no_cycle_itinerary_length_le_eight in LengthEightCensus.lean. Implied by Paper A Corollary 3.23 (period at least eleven). Strengthened by J-small-cycle-census-ten. This is not a length-9 itinerary census and not a halt theorem.",
+  "source": "docs/problems/juggler_length_eight_cycles.md",
+  "lean": "Problems/Juggler/LengthEightCensus.lean",
+  "decl": "no_cycle_itinerary_length_le_eight",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_length_eight.py"
+  ],
+  "related_conjectures": []
+ }
+]

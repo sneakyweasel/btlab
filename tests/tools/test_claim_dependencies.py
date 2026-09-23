@@ -1,5 +1,6 @@
 """Trust boundaries of recorded proof routes and their compiler overlay."""
 import hashlib
+from research.claims import load_claims
 import json
 from pathlib import Path
 
@@ -120,7 +121,8 @@ def test_computation_scope_and_local_premises_survive_rendering(tmp_path):
 def claim_catalog(tmp_path, monkeypatch):
     formal = tmp_path / 'formal'
     formal.mkdir()
-    ledger_path = tmp_path / 'ledger.json'
+    ledger_path = tmp_path / 'docs/claims/shared/example.json'
+    ledger_path.parent.mkdir(parents=True, exist_ok=True)
     rows = [row('A', proof_routes=[route(tmp_path, [('B', 'proof')])]), row('B')]
     ledger_path.write_text(json.dumps(rows), encoding='utf-8')
     for key, value in {'ROOT': tmp_path, 'FORMAL': formal, 'LEDGER': ledger_path}.items():
@@ -176,7 +178,7 @@ def test_compiled_projection_keeps_paths_snapshot_and_unmapped_helpers(tmp_path)
 
 
 def test_paper_scopes_preserve_finite_density_and_contagion_boundaries():
-    ledger = json.loads((ROOT / 'docs/theory/theorem_ledger.json').read_text(encoding='utf-8'))
+    ledger = load_claims(ROOT).entries
     assert graph.validate(ledger, ROOT) == []
     finite = graph.build(ledger, ROOT, 'J-paper-b-five-step-density-127')
     assert finite['summary']['assumptions'] == []

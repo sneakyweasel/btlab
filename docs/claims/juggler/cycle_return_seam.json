@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-cycle-return-seam-family",
+  "statement": "For every integer u>=2^32,u=65 mod2048, refine the exact cut-predecessor family by r=u^4+2. The four explicit rational polynomial outputs in the canonical dossier give even H_t=O(t),H_q=O(q) and odd w=E(H_t),z=E(H_q). Thus A(a)=t,B(b±)=m,A(m)=z,B(t)=w are actual guarded returns for A=OOE,B=OE, with m<w<z<a<b-<b+<t<q<h<m^2<s-<s+<H_t<H_q<M<m^3. The two alternative faces retain Delta-<-3/4 and Delta+>2r-1. Their common gap is d=(216u^11+1188u^7+1863u^3-3)/64, is positive and even, and satisfies 2r^(11/4)<d<4r^(11/4),d>m^(11/24), d<(27/32)m^(-5/32)(b±-a), and the exact initialized seam inequalities. The inherited m^3-M>2m^2 and these bounds satisfy the named scalar DC/LR constraints. Fifteen exact coefficient-dominance certificates prove the new cells/order uniformly; three fixed controls replay all twelve distinct edges across the two alternatives. This does not supply common periodic rank adjacency, selected C/W transfers, cycle-compatible counts or a complete cyclic matching. No new actual cycle, height, period or no-cycle theorem. AI-assisted written proof, not Lean or independent human review.",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_cycle_return_seam.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_return_seam.py"
+  ],
+  "related_conjectures": []
+ }
+]

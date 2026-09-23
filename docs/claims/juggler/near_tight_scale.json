@@ -1,0 +1,35 @@
+[
+ {
+  "id": "J-approx-equality-rigidity",
+  "tag": "REFUTED",
+  "statement": "If a realized mixed itinerary has q_w(n)→0 then the itinerary converges to an exact rigid monochrome tower. Counterexample: the mixed itinerary OOE at 180370579261640036336071806107777 has 0<q<10^{-30}. Exact equality rigidity has no naive quantitative stability theorem.",
+  "source": "docs/problems/juggler_near_tight_scale.md",
+  "lean": "Problems/Juggler/NearTightScale.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_near_tight_scale.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-near-tight-scale-bounds",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The local Juggler remainder satisfies 0≤ρ<2T+1, hence η=ρ/T^2 < 2/T + 1/T^2 and 1+η < ((T+1)/T)^2. For the mixed itinerary OOE, 1+q = (1+η0)^3 (1+η1)^2 (1+η2)^4, and 1+q is strictly below the successor-ratio product ((T0+1)/T0)^6 ((T1+1)/T1)^4 ((T2+1)/T2)^8. The same bound at a successor start y depends only on the itinerary of y.",
+  "source": "docs/problems/juggler_near_tight_scale.md",
+  "lean": "Problems/Juggler/NearTightScale.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_near_tight_scale.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-ooe-scale-decay",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "On realized odd-odd OOE starts, the last even remainder dominates the relative slack, and q_OOE(n) has order n^{-9/8}. After 329 follows OOOOOOOOE to y≈1.80·10^{32}, the next OOE block has 0<q<10^{-30} with q/y^{-9/8}≈2.64. Persistent expanding pairs have OOE-sequel q2 tracking y^{-9/8}. Large λ reduces successor q only by inflating y.",
+  "source": "docs/problems/juggler_near_tight_scale.md",
+  "lean": "Problems/Juggler/NearTightScale.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_near_tight_scale.py"
+  ],
+  "related_conjectures": []
+ }
+]

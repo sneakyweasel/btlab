@@ -136,13 +136,9 @@ def test_prose_ledger_references_resolve() -> None:
     resolves every backticked `J-...` id in `docs/theory/*.md` against the
     ledger.
     """
-    import json
+    from research.claims import load_claims
 
-    ledger = json.loads(
-        (REPO / "docs" / "theory" / "theorem_ledger.json").read_text(
-            encoding="utf-8"
-        )
-    )
+    ledger = load_claims(REPO).entries
     known = {row["id"] for row in ledger}
 
     dangling: dict[str, list[str]] = {}

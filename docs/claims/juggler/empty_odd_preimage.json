@@ -1,0 +1,35 @@
+[
+ {
+  "id": "J-empty-odd-pe-forward",
+  "tag": "REFUTED",
+  "statement": "An empty-odd-preimage PE landing on an AboveAnchor leftover forces the next parity, or a proper subinterval of the preceding square one-step preimage, or orbit-persistent emptiness, or a finite consecutive-empty bound beyond generic width. False. 763 maps to the odd 21075 and 12707 maps to the even 1432400. Leftover square-cell offsets run from about 0.04 to about 0.92. Any odd x makes T(x) Type 2, empty or not, so empty-to-empty PE sequences are not persistence. Type 0 is the ambient majority. This is not PredClosure-from-1, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_empty_odd_preimage.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_empty_odd_preimage.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-empty-odd-pe-landings",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "On the leftover controls 365, 501, 1517, 6187 every PE landing is Type 0, including 763, 1749, 4447, 12707 and the inherited 763 on 501. Among x ≤ 4000 the Type 0 share is above 9/10. Ambient PE landings of odd starts below 200 are Type 0 with share above 4/5. 69 has a Type 1 landing at 117. 89 has a Type 2 landing at 70. T(763)=21075 is Type 2 with occupant 763. This is not a finite-K theorem, not PredClosure, and not a halt theorem.",
+  "source": "docs/problems/juggler_empty_odd_preimage.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_empty_odd_preimage.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-odd-pred-empty-cube",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Let k be the least integer with k^3 ≥ x^2. The odd one-step preimage {z : x^2 ≤ z^3 < (x+1)^2} is empty iff k^3 ≥ (x+1)^2 (Type 0), contains the even k iff k^3 < (x+1)^2 and k is even (Type 1), and contains the odd k iff k^3 < (x+1)^2 and k is odd (Type 2). OddPredEmpty(x) means there is no odd z with T(z)=x, equivalently Type 0 or Type 1, equivalently k^3 ≥ (x+1)^2 or k even. At most one occupant exists by odd_preimage_unique. This is not a forward restriction, not PredClosure, and not a halt theorem.",
+  "source": "docs/problems/juggler_empty_odd_preimage.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_empty_odd_preimage.py"
+  ],
+  "related_conjectures": []
+ }
+]

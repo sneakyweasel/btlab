@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-cycle-loglog-surplus-window",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For a nontrivial primitive actual Juggler cycle with minimum m>1, period L and odd count o, write Lambda=o*log(3)-L*log(2) and b(m)=log(log(m^2+1)/(2*log(m))). Exact normalized logarithmic floor losses telescope to Lambda. The compulsory last-even loss and distinct integer targets give 0<b(m)<=Lambda<log(log(m+L)/log(m)). Consequently, IF L*Lambda<=C then L<=C/b(m)<C*(m^2+1)*log(m^2+1), without a cubic-height hypothesis. The two unconditional sides alone give only the vacuous lower bound L>sqrt(m^2+1)-m. AI-assisted written proof, not Lean or independently human reviewed. No uniform surplus estimate, unconditional period upper bound, or cycle exclusion is claimed.",
+  "source": "docs/problems/juggler_cycle_period_upper_bound.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_period_upper_bound.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-period-surplus-word-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "There are infinitely many coprime pairs (L,o), with o=ceil(L*log(2)/log(3)), whose primitive rational mechanical words start OO, end EOE, have all noncontracting prefixes and the stronger even-endpoint prefix envelope, yet L*(o*log(3)-L*log(2))>=L*log(3)/4 tends to infinity. The construction uses adjacent upper/lower convergents p/q,r/s and k=ceil((alpha*s-r+1/4)/(p-alpha*q)), o=kp+r,L=kq+s. These are formal words only: no integer floor-cell realization or actual cycle is supplied, and they are not identified with the irrational greedy hug word. AI-assisted written proof, not Lean or independently human reviewed. Finite arithmetic regression fixtures do not prove the infinite assertion.",
+  "source": "docs/problems/juggler_cycle_period_upper_bound.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_period_upper_bound.py"
+  ],
+  "related_conjectures": []
+ }
+]

@@ -1,0 +1,28 @@
+[
+ {
+  "id": "J-cycle-period-four-hundred-seventy-eight-thousand",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "At the certified descent floor N_0 = 162849448 (J-residual-floor-one-hundred-sixty-two-million) the parity 6/5 table plus the reduced-base walk charge of J-cyclemin-walk-transport exclude every cycle length L ≤ 478244: any nontrivial Juggler cycle has period at least 478245. The parity table leaves 25 leftovers through L = 6·10^5 (data/research/juggler/cycle_walk_charge/new_floor_parity_leftovers.json); the 15 below the blocker (176251 through 454572) are all walk-killed with certified margins 1.198 (176251, 352502) up to 8.437 (202032); SHA-256 of the 15 kill records concatenated in length order is 148180cbbfba93985b7a1be455fee16db97816f1534b1feca5a4740d475aeda0 (data/research/juggler/cycle_walk_charge/new_floor_kills/). Lengths L ≤ 176250 are covered because both exclusions are monotone in the floor (J-cyclemin-walk-charge-instance at 26254995; for fixed (L, o) the parity rhs and the reduced-base DP budget strictly decrease as N_0 grows). First survivor L = 478245 = 176251 + 301994, the k = 1 member of the F1 semiconvergent fan: required improvement 19.46 against walk supply ≈ 7.7, DK break-even floor 3.48·10^8 (J-cyclemin-walk-competition-law) — the blocker is Diophantine, not computational. Supersedes the cutoff 176250 of J-cyclemin-walk-charge-instance (factor 2.71). Printed as Corollary 5.10 of Paper A (docs/theory/juggler_finite_dynamics_note.md), with the certificate, parity-scan, and kill-table hashes in its Appendix B. Same trust boundary as Theorem 4.6: exact human inequalities plus guarded float comparisons. Not a halt theorem and not a no-cycle-of-any-length theorem.",
+  "source": "docs/problems/juggler_cycle_walk_charge.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_charge.py"
+  ],
+  "related_conjectures": [
+   "juggler_cycle_walk_charge"
+  ]
+ },
+ {
+  "id": "J-cycle-period-seven-hundred-eighty-thousand",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "At the certified descent floor N_0 = 350000000 (J-residual-floor-three-hundred-fifty-million) the parity 6/5 table plus the reduced-base walk charge of J-cyclemin-walk-transport exclude every cycle length L ≤ 780238: any nontrivial Juggler cycle has period at least 780239. The parity table leaves 17 leftovers through L = 8·10^5 (data/research/juggler/cycle_walk_charge/N350000000_parity_leftovers.json); the 5 leftovers below 478245 carry by monotonicity from J-cycle-period-four-hundred-seventy-eight-thousand, and the 10 leftovers in [478245, 755512] are walk-killed with certified margins 1.00555 at L = 478245 up to 7.824 at 504026; SHA-256 of the 10 kill records concatenated in length order is d24d6422036bafb41f032b59f9aaa118b206e5d18f07d11e5e25b36ae7afe80f (data/research/juggler/cycle_walk_charge/N350000000_kills/). Lengths L ≤ 478244 are covered because both exclusions are monotone in the floor. First survivor L = 780239 = 176251 + 2·301994, the k = 2 member of the F1 semiconvergent fan: required improvement 14.46 against walk margin 0.6049, DK break-even floor n* = 5.54·10^8 (J-cyclemin-walk-competition-law) — the blocker is Diophantine, not computational. Supersedes the cutoff 478244 of J-cycle-period-four-hundred-seventy-eight-thousand (factor 1.63). Printed as Corollary 5.11 of Paper A (docs/theory/juggler_finite_dynamics_note.md). Same trust boundary as Theorem 4.6: exact human inequalities plus guarded float comparisons. Not a halt theorem and not a no-cycle-of-any-length theorem.",
+  "source": "docs/problems/juggler_cycle_walk_charge.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_charge.py"
+  ],
+  "related_conjectures": [
+   "juggler_cycle_walk_charge"
+  ]
+ }
+]

@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-cycle-band-discrepancy",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Conditional abstract word identities, not actual cycle geometry. walk_eq_discrepancy assumes L>0 and o alpha = (L-o) beta and proves o_t alpha - (t-o_t) beta = (alpha+beta)(o_t - t o/L). Without that supplied closure the drift term (t/L)(o alpha-(L-o) beta) must be retained; no log R = log 3 Delta identity for actual Juggler cycles is claimed. band_min_needs_three_climbs: if prefixNoncontracting ((OOE)^k ++ OE ++ v), then k>=3. band_min_no_second_fall: prefixNoncontracting ((OOE)^3 ++ OE ++ OE ++ v) is impossible. These results assume the displayed prefixes and do not derive an alphabet or force the first fall after exactly three climbs. The former height-to-band and forced-fourteen-letter claims are withdrawn. Prescribed-word necklace counts remain finite computations in a separately labelled idealized model, not part of this Lean claim. CLOSE.",
+  "lean": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+  "related_conjectures": [],
+  "source": "docs/problems/juggler_cycle_run_alphabet.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_run_alphabet.py"
+  ]
+ },
+ {
+  "id": "J-cycle-run-alphabet",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Exact run inequalities, with no height-to-alphabet conclusion. odd_run_upper: if the first r iterates from v are odd, y = T^[r] v satisfies y^(2^r) <= v^(3^r), an UPPER growth bound, not (3/2)^r <= log M/log m. even_run_contracts: under the stated even-iterate condition, z^(2^g) <= w. oo_step_lower: if x and T(x) are odd and T(x) >= 8, then x^9 < 2(T^2(x)+1)^4; retain the factor two and shift. oddCount_le_of_noAdjOdd: a linear word with no adjacent odd letters has 2 oddCount w <= |w|+1. ee_forces_fourth_power: two even steps give (T^2(w))^4 <= w. These are the quantified Lean statements. The former factor-free maximum, exact cycle closure, odd-run cap, and R<27/8 two-block alphabet are withdrawn; actual cycles have positive floor drift. Conditional zero-drift word algebra is separate in J-cycle-band-discrepancy. The dossier gives the human cycle interpretation m^9 < 2(M+1)^4 at the certified floor, not M >= m^(9/4). No cycle exclusion or termination result. CLOSE.",
+  "lean": "formal/Problems/Juggler/CycleRunAlphabet.lean",
+  "related_conjectures": [],
+  "source": "docs/problems/juggler_cycle_run_alphabet.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_run_alphabet.py"
+  ]
+ }
+]

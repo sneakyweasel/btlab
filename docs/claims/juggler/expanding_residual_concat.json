@@ -1,0 +1,46 @@
+[
+ {
+  "id": "J-expanding-concat-is-ce",
+  "tag": "REPARAMETERIZATION",
+  "statement": "An infinite concatenation of expanding residual blocks with no contracting itinerary is not a strictly smaller class than MinimalNonTerm. A CE never realizes an exponent-gap itinerary, and expanding concatenations stay expanding, so the leftover is the unbounded CE branch already isolated by the non-escape spine. Window n < 801: 87/87 persistent residual blocks expand; 83 later residuals stay above the original start while contracting versus their own x, which is not PE. This is not a finite PE-run bound and not a halt theorem.",
+  "source": "docs/problems/juggler_expanding_residual_concat.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_expanding_residual_concat.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-exponent-expanding-append",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If u and v are expanding itineraries (2^{|u|} < 3^{#O(u)} and 2^{|v|} < 3^{#O(v)}), then u ++ v is expanding: 2^{|u|+|v|} = 2^{|u|} 2^{|v|} < 3^{#O(u)} 3^{#O(v)}. A concatenation of expanding residual blocks is never an exponent-gap certificate. This is not a finite PE-run bound and not a halt theorem.",
+  "source": "docs/problems/juggler_expanding_residual_concat.md",
+  "lean": "Problems/Juggler/ItineraryStats.lean",
+  "decl": [
+   "exponentExpanding_append",
+   "exponentExpanding",
+   "exponentExpanding_not_gap"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_expanding_residual_concat.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-minimal-prefix-noncontracting",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If MinimalNonTerm n and n follows w, then w is not an exponent-gap itinerary, and every prefix of w is noncontracting. Contrapositive of power_bound_contracts plus minimal_nonterm_no_descent. Concatenating expanding residual blocks therefore cannot create an exponent certificate on a CE. This is not a proof that escape is impossible and not a halt theorem.",
+  "source": "docs/problems/juggler_expanding_residual_concat.md",
+  "lean": "Problems/Juggler/Escape.lean",
+  "decl": [
+   "minimal_nonterm_prefix_noncontracting",
+   "minimal_nonterm_not_exponentGap"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_expanding_residual_concat.py"
+  ],
+  "related_conjectures": []
+ }
+]

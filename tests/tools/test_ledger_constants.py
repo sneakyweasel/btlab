@@ -14,7 +14,7 @@ truncation of the true value.
 
 from __future__ import annotations
 
-import json
+from research.claims import load_claims
 import re
 from pathlib import Path
 
@@ -97,7 +97,7 @@ RENDERED = {"theorem_ledger.md"}
 
 
 def _ledger_decimals() -> list[tuple[str, str]]:
-    rows = json.loads(LEDGER.read_text(encoding="utf-8"))
+    rows = load_claims(REPO).entries
     out = []
     for row in rows:
         for match in re.finditer(r"(?<![\d.])(\d\.\d{6,}|0\.\d{6,})", row["statement"]):
@@ -151,7 +151,7 @@ def test_ledger_decimals_match_the_constants_they_name() -> None:
 
 def test_the_corrected_rho_stays_corrected() -> None:
     """The specific value this gate was written for."""
-    rows = json.loads(LEDGER.read_text(encoding="utf-8"))
+    rows = load_claims(REPO).entries
     row = next(
         r for r in rows if r["id"] == "J-paper-b-sturmian-zero-law-is-the-empty-window"
     )

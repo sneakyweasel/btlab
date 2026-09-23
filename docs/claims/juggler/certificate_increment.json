@@ -1,0 +1,35 @@
+[
+ {
+  "id": "J-paper-b-increment-is-not-a-rotation-function",
+  "tag": "REFUTED",
+  "statement": "The per-step death rate of Paper B's survivors is not a function of the rotation coordinate alone. With r_d = M_d/(2 N_(d-1)) the fraction of survivors dying at step d, the recursion J-paper-b-survivor-certificate-recursion gives N_d = 2^d prod (1 - r_k) exactly, so an r_k depending only on frac(d beta), beta = log2/log3, would make the survivor count almost-periodic outright and yield the measured prefactor of J-paper-b-meander-prefactor-is-almost-periodic without a local limit theorem. It does not. Residue classes mod 485, the denominator of the convergent 306/485, fix the coordinate to 9.3e-4; over depths to 3000 fitting d >= 1000, all 306 classes are strictly monotone in d, which scattered values would be about two to eight percent of the time. Median within-class spread 9.9e-4 against a median a+b/d residual of 3.2e-6, and 264 of 306 classes exceed tenfold the 6.5e-5 the residual coordinate motion explains. Witness: d = 300, 785, 1270 give 0.05279228, 0.04912429, 0.04821094. Counts are exact integers from a (length, oddCount) dynamic program reproducing the brute-force enumeration; only the fits are floating point. Left open rather than killed: the fitted 1/d coefficient exceeds the 3 theta/2 = 1.45 that the exponent -3/2 predicts -- a tension in the measured shape, not a refutation of it. A first reading of this row called b/a a constant near 40.8 and is corrected: over all 305 classes b/a scatters by 125%, and on the well-conditioned 225 (fit residual below 1e-5) it clusters at 40.98 but shifts 4.2% when a 1/d^2 term is added, so it is determined to a few percent and identifies no closed form. Pi in this cluster lives in kappa = 1/(sqrt(2 pi) theta sigma) of J-paper-b-meander-constant-derived, from the non-lattice local limit theorem, not here. MeanderShape stays a hypothesis.",
+  "source": "docs/problems/juggler_certificate_increment.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_certificate_increment.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-increment-tension-is-the-class-method",
+  "tag": "REFUTED",
+  "source": "docs/problems/juggler_certificate_increment.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_jump_spectrum.py"
+  ],
+  "related_conjectures": [],
+  "statement": "The certificate-increment tension is the residue-class method, not the shape. The increment dossier records that the 1/d correction to r_d = M_d/(2 N_(d-1)) does not have the size the exponent -3/2 predicts -- b near 1.45 predicted against fitted values that are larger and vary by class -- and keeps it as a tension rather than a refutation. Exactly, r_d = 1 - theta t_d/t_(d-1) with t_d = N_d/(2 theta)^d, so within a fixed rotation coordinate the shape gives r_d = a + b/d with a = 1 - theta rho and b = (3/2)(1 - a): b carries NO free parameter and the testable statement is b/(1-a) = 3/2. WHY THE CLASS METHOD CANNOT SEE IT. A class modulo q fixes the coordinate to delta = |frac(q beta)| and the method assumes the target then moves by O(delta). psi does not: its jumps are dense, and the amplitudes beyond 1/delta sum to about 17 sqrt(delta), so psi moves by a SQUARE ROOT more. At the branch's period 485, delta = 9.3e-4 and psi varies by 0.52, which is 4.8 percent of psi, against a 1/d signal of a few percent at the depths used. The coefficient was never measurable there. MEASURED ACROSS CONVERGENT DENOMINATORS, on d to 1e6 with r_d taken from an array that matches the exact integer counts to 2.2e-12: at periods 65, 84, 485, 1054, 24727, 50508 the coordinate drift falls 1.0e-2, 1.9e-3, 9.3e-4, 4.0e-5, 1.7e-5, 6.6e-6, psi's variation across a class falls 1.74, 0.74, 0.52, 0.107, 0.069, 0.044, and the interquartile spread of b/(1-a) collapses 51, 295, 1249, 44.5, 1.29, 1.06 while the median goes from chaos to 2.22 and then 1.99. Linear in psi's variation the two finest periods extrapolate to 1.59 against the predicted 1.50. CONCLUSION. The tension is withdrawn as evidence about the shape. It is not confirmation of the shape either -- b is still not measured, and on this evidence it cannot be at any depth this laboratory reaches, because fixing the coordinate well enough would need a class finer than the sample can fill. What is established is that the discrepancy is accounted for by the method."
+ },
+ {
+  "id": "J-residue-classes-lose-a-square-root-on-jump-functions",
+  "tag": "REPARAMETERIZATION",
+  "source": "docs/problems/juggler_certificate_increment.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_jump_spectrum.py"
+  ],
+  "related_conjectures": [],
+  "statement": "A residue class loses a square root on a function that jumps. The laboratory uses residue classes modulo a convergent denominator q of beta to fix the rotation coordinate frac(d beta) and then reads off d-dependence within the class; J-paper-b-increment-is-not-a-rotation-function is built on it and so is the quantitative tension attached to it. The method is sound when the target is Lipschitz in the coordinate, because the class fixes it to delta = |frac(q beta)| and everything else moves by O(delta). It is not sound for a jump function on a dense orbit. psi's jump amplitudes satisfy sum_(n>1/delta) a_n about 17 sqrt(delta) (J-paper-b-jump-spectrum-is-the-survivor-sequence), so psi varies across the class by the square root of what the method assumes: 4.8 percent of psi at q = 485, where the coordinate looks fixed to a part in a thousand. Getting psi's variation below a tenth of a percent needs delta below 4e-7, and a class that fine holds under one sample point in a run to 1e6, so the requirement is not a matter of more depth. Before using a class to measure a d-dependence, check whether the target is continuous in the coordinate; if it is not, the honest bound on what a class can resolve is 17 sqrt(|frac(q beta)|) and not |frac(q beta)|."
+ }
+]

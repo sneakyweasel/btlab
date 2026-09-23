@@ -12,6 +12,9 @@ import subprocess
 import zipfile
 
 from lab_environment import ROOT, environment
+import sys
+sys.path.insert(0, str(ROOT / "src"))
+from research.claims import load_claims, EXPORT
 
 LIMITATIONS = ('Static module imports and recorded file associations, not theorem-level dependence, '
                'complete dynamic dependency discovery, compilation or mathematical verification. '
@@ -178,22 +181,18 @@ def analyze(root: Path = ROOT, *, since: str = 'HEAD', paths: list[str] | None =
     items += [{'kind': 'dependent_module', 'path': p, 'basis': 'transitive static import; old and new edges included'}
               for p in sorted(affected - changed)]
     tests = {p for p in affected if p.startswith('tests/') and p.endswith('.py') and (root / p).is_file()}
-    ledger_path = root / 'docs/theory/theorem_ledger.json'
-    if ledger_path.is_file():
-        from research_catalog import ResearchCatalogue
-        catalogue = ResearchCatalogue(root)
-        ledger = json.loads(ledger_path.read_text(encoding='utf-8'))
-        if not isinstance(ledger, list) or any(not isinstance(row, dict) for row in ledger):
-            raise ValueError('Malformed claim ledger; run lab.py check')
-        for row in ledger:
-            if not isinstance(row.get('tests', []), list):
-                raise ValueError('Malformed claim test links; run lab.py check')
-            linked = catalogue._claim_references(row, ledger_path) & affected
-            if linked or 'docs/theory/theorem_ledger.json' in changed:
-                items.append({'kind': 'claim', 'id': row.get('id'), 'tag': row.get('tag'),
-                              'paths': sorted(linked), 'basis': 'recorded association; not proof coverage'})
-                tests.update(p for p in row.get('tests', []) if isinstance(p, str) and p.startswith('tests/')
-                             and p.endswith('.py') and (root / p).is_file())
+    from research_catalog import ResearchCatalogue
+    catalogue = ResearchCatalogue(root)
+    claims = load_claims(root, required=False)
+    for row in claims.entries:
+        origin = claims.location(row['id'])
+        linked = catalogue._claim_references(row, root / EXPORT) & affected
+        if linked or origin['path'] in changed or EXPORT in changed:
+            items.append({'kind': 'claim', 'id': row['id'], 'tag': row['tag'],
+                          'claim_location': origin, 'paths': sorted(linked),
+                          'basis': 'recorded association; not proof coverage'})
+            tests.update(p for p in row.get('tests', []) if p.startswith('tests/')
+                         and p.endswith('.py') and (root / p).is_file())
     papers = set()
     for letter in 'abcde':
         manifest = f'docs/theory/paper_{letter}_' + ('build.json' if letter == 'b' else 'release.json')

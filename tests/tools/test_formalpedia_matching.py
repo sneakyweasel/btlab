@@ -1,8 +1,7 @@
 """Formalpedia matching regressions; live corpus snapshots are isolated by conftest."""
 from __future__ import annotations
 
-import io
-import json
+from research.claims import load_claims
 
 from formalpedia_core import (
     identities as fp_identities,
@@ -16,7 +15,7 @@ def test_proposals_are_never_written_into_the_ledger(corpus_index) -> None:
     in seven, fine for a list a person reads and wrong for a ledger whose purpose is making a
     claim checkable."""
     index = corpus_index
-    ledger = json.load(io.open(fp_workspace.LEDGER, encoding="utf-8"))
+    ledger = load_claims(fp_workspace.ROOT).entries
     out = fp_matching.propose(index, ledger)
     proposed = {r["id"] for r in out["rows"]}
     resolved = {r["id"] for r in ledger if r.get("decl")}
@@ -27,7 +26,7 @@ def test_proposals_are_never_written_into_the_ledger(corpus_index) -> None:
 
 def test_every_proposed_candidate_lives_in_the_row_s_own_file(corpus_index) -> None:
     index = corpus_index
-    ledger = json.load(io.open(fp_workspace.LEDGER, encoding="utf-8"))
+    ledger = load_claims(fp_workspace.ROOT).entries
     by_file = {}
     for d in index["declarations"]:
         by_file.setdefault(d["file"], set()).add(d["name"])
@@ -45,7 +44,7 @@ def test_proposals_never_offer_a_declaration_another_row_already_claims(corpus_i
     that offers a taken declaration spends a reviewer's judgement on a foregone answer.
     Two of the 43 confident entries did exactly that before this filter."""
     index = corpus_index
-    ledger = json.load(io.open(fp_workspace.LEDGER, encoding="utf-8"))
+    ledger = load_claims(fp_workspace.ROOT).entries
     taken = {(r["lean"], name) for r in ledger for name in fp_identities.row_decls(r)}
     offered = [
         f"{row['id']} -> {c['decl']}"
@@ -60,7 +59,7 @@ def test_definitions_are_ranked_apart_from_theorems(corpus_index) -> None:
     """Merging them into one ranking displaces the true answer on rows already resolved --
     measured at 3 of 103 -- so a row that means a `def` gets its own short list instead."""
     index = corpus_index
-    ledger = json.load(io.open(fp_workspace.LEDGER, encoding="utf-8"))
+    ledger = load_claims(fp_workspace.ROOT).entries
     kinds = {d["name"]: d["kind"] for d in index["declarations"]}
     for row in fp_matching.propose(index, ledger)["rows"]:
         for c in row["candidates"]:

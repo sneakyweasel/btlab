@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-cycle-cut-predecessor-alignment",
+  "statement": "For guarded integer paths a->O h->O M->E t and b->O s->E m->O q with a<b odd,h,m,t,q odd,s,M even,h<m^2<s,M<m^3,m>1, let Delta=s^(3/4)-h^(3/4)-(q-t). Delta<=0 forces floor(s^(3/4))=q. For m>=8 it also forces 0<b-m^(4/3)<(8/9)m^(-1/6)+(2/3)m^(-2/3)+(8/27)m^(-5/3)<91/108, so b is the odd ceiling of m^(4/3) and m is not a cube. For m=c^3 with odd c>=3, Delta>2sqrt(c)-1. These are conditional local sign restrictions, not an exclusion of cube-minimum cycles or a no-cycle theorem. AI-assisted written proof, not Lean or independent human review.",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_cycle_cut_predecessors.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cut_predecessors.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-cut-predecessor-two-signs",
+  "statement": "For every integer r>=67,r=3 mod16, put a=r^8+8,h=r^12+12r^4,M=r^18+18r^10+54r^2-1,t=r^9+9r-1,m=r^6+3r^2-3,q=(8r^9+36r^5-36r^3+27r-1)/8,b-=r^8+4r^4-4r^2+2,b+=b-+2,s-=m^2+6r^2-1,s+=s-+3r^4+5. All eight distinct edges a->O h->O M->E t and b±->O s±->E m->O q have actual guards and exact cells. The ordering is m<a<b-<b+<t<q<h<m^2<s-<s+<M<m^3 and m^3-M>2m^2, so every published smooth height strip is satisfied on its domain. Nevertheless Delta(h,s-)<-3/4 and Delta(h,s+)>2r-1, with common m,h,M,t,q and predecessor difference2. This refutes a sign forced by those predecessor/mixed cells; it is an open-path family, not actual cyclic rank selection, the full original return seam or common terminal P/Q closure. AI-assisted symbolic proof with exact coefficient certificates and three fixed controls; not Lean or independent human review.",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_cycle_cut_predecessors.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cut_predecessors.py"
+  ],
+  "related_conjectures": []
+ }
+]

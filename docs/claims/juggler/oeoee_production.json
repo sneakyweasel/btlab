@@ -1,0 +1,62 @@
+[
+ {
+  "id": "J-fate-oeoee-production",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Elementary V_2 = OEOEE production (oeoee-production note, Propositions 3 and 4; fixed-depth endpoint repair, 9 September 2026). The chain through the nested OE variables w_0 = n, w_{i+1} = floor(w_i^{3/4}) is exact on the word, with final state floor(w_1^{3/8}). The landing window for that nested expression has integer endpoints obtained by 1 iterations of Φ(z) = ceil(z^{4/3}), starting at ceil(m'^{8/3}) and ceil((m'+1)^{8/3}); impose the word's parities inside this window. It is not the single smooth-power interval. For fixed k = 2, put s = (3/4)^{k−1}, ρ = 9/32, P = m'^{1/ρ}. Each exact endpoint differs from its smooth endpoint by O_k(P^{1−s}), giving relative symmetric-difference error O_k(P^{−5s/8}), smaller than the existing binding error P^{−s/6+ε}. Thus triangle inequality transfers the smooth-window estimate to the exact nested window: |O(m')| = 1/16 times its odd-start count plus O_k(|J_k(m')| P^{−1/8+ε}). The old numerical constants and sampled counts in the audit ledger certify smooth windows only; their unchanged transfer to exact fibers is not claimed. The asymptotic production coefficient remains +(1/27) g_A(9/32 t). The cumulative finite-truncation root 0.4801 is a named intermediate; the official unconditional V_6 root is 0.4926. No infinite-family limit or termination theorem is asserted. Paper C Appendix D now supplies the self-contained analytic estimate directly for the exact nested windows, with relative error O_{k,ε}(m^{−4/9+ε}); historical explicit constants are not transferred.",
+  "source": "docs/theory/juggler_oeoee_production.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_oeoee_production.py",
+   "tests/research/juggler_sequence/test_oeoee_audit.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-v3-production",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Elementary V_3 = OEOEOEE production (oeoee-production note, Propositions 8 and 9; fixed-depth endpoint repair, 9 September 2026). The chain through the nested OE variables w_0 = n, w_{i+1} = floor(w_i^{3/4}) is exact on the word, with final state floor(w_2^{3/8}). The landing window for that nested expression has integer endpoints obtained by 2 iterations of Φ(z) = ceil(z^{4/3}), starting at ceil(m'^{8/3}) and ceil((m'+1)^{8/3}); impose the word's parities inside this window. It is not the single smooth-power interval. For fixed k = 3, put s = (3/4)^{k−1}, ρ = 27/128, P = m'^{1/ρ}. Each exact endpoint differs from its smooth endpoint by O_k(P^{1−s}), giving relative symmetric-difference error O_k(P^{−5s/8}), smaller than the existing binding error P^{−s/6+ε}. Thus triangle inequality transfers the smooth-window estimate to the exact nested window: |O(m')| = 1/64 times its odd-start count plus O_k(|J_k(m')| P^{−3/32+ε}). The old numerical constants and sampled counts in the audit ledger certify smooth windows only; their unchanged transfer to exact fibers is not claimed. The asymptotic production coefficient remains +(1/81) g_A(27/128 t). The cumulative finite-truncation root 0.4891 is a named intermediate; the official unconditional V_6 root is 0.4926. No infinite-family limit or termination theorem is asserted. Paper C Appendix D now supplies the self-contained analytic estimate directly for the exact nested windows, with relative error O_{k,ε}(m^{−4/9+ε}); historical explicit constants are not transferred.",
+  "source": "docs/theory/juggler_oeoee_production.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_oeoee_production.py",
+   "tests/research/juggler_sequence/test_v3_audit.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-v4-production",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Elementary V_4 = OEOEOEOEE production (oeoee-production note, Propositions 11 and 12; fixed-depth endpoint repair, 9 September 2026). The chain through the nested OE variables w_0 = n, w_{i+1} = floor(w_i^{3/4}) is exact on the word, with final state floor(w_3^{3/8}). The landing window for that nested expression has integer endpoints obtained by 3 iterations of Φ(z) = ceil(z^{4/3}), starting at ceil(m'^{8/3}) and ceil((m'+1)^{8/3}); impose the word's parities inside this window. It is not the single smooth-power interval. For fixed k = 4, put s = (3/4)^{k−1}, ρ = 81/512, P = m'^{1/ρ}. Each exact endpoint differs from its smooth endpoint by O_k(P^{1−s}), giving relative symmetric-difference error O_k(P^{−5s/8}), smaller than the existing binding error P^{−s/6+ε}. Thus triangle inequality transfers the smooth-window estimate to the exact nested window: |O(m')| = 1/256 times its odd-start count plus O_k(|J_k(m')| P^{−9/128+ε}). The old numerical constants and sampled counts in the audit ledger certify smooth windows only; their unchanged transfer to exact fibers is not claimed. The asymptotic production coefficient remains +(1/243) g_A(81/512 t). The cumulative finite-truncation root 0.4916 is a named intermediate; the official unconditional V_6 root is 0.4926. No infinite-family limit or termination theorem is asserted. Paper C Appendix D now supplies the self-contained analytic estimate directly for the exact nested windows, with relative error O_{k,ε}(m^{−4/9+ε}); historical explicit constants are not transferred.",
+  "source": "docs/theory/juggler_oeoee_production.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_oeoee_production.py",
+   "tests/research/juggler_sequence/test_v4_audit.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-v5-production",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Elementary V_5 = OEOEOEOEOEE production (oeoee-production note, Propositions 13 and 14; fixed-depth endpoint repair, 9 September 2026). The chain through the nested OE variables w_0 = n, w_{i+1} = floor(w_i^{3/4}) is exact on the word, with final state floor(w_4^{3/8}). The landing window for that nested expression has integer endpoints obtained by 4 iterations of Φ(z) = ceil(z^{4/3}), starting at ceil(m'^{8/3}) and ceil((m'+1)^{8/3}); impose the word's parities inside this window. It is not the single smooth-power interval. For fixed k = 5, put s = (3/4)^{k−1}, ρ = 243/2048, P = m'^{1/ρ}. Each exact endpoint differs from its smooth endpoint by O_k(P^{1−s}), giving relative symmetric-difference error O_k(P^{−5s/8}), smaller than the existing binding error P^{−s/6+ε}. Thus triangle inequality transfers the smooth-window estimate to the exact nested window: |O(m')| = 1/1024 times its odd-start count plus O_k(|J_k(m')| P^{−27/512+ε}). The old numerical constants and sampled counts in the audit ledger certify smooth windows only; their unchanged transfer to exact fibers is not claimed. The asymptotic production coefficient remains +(1/729) g_A(243/2048 t). The cumulative finite-truncation root 0.4924 is a named intermediate; the official unconditional V_6 root is 0.4926. No infinite-family limit or termination theorem is asserted. Paper C Appendix D now supplies the self-contained analytic estimate directly for the exact nested windows, with relative error O_{k,ε}(m^{−4/9+ε}); historical explicit constants are not transferred.",
+  "source": "docs/theory/juggler_oeoee_production.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_oeoee_production.py",
+   "tests/research/juggler_sequence/test_v5_audit.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-v6-production",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Elementary V_6 = OEOEOEOEOEOEE production (oeoee-production note, Propositions 15 and 16; fixed-depth endpoint repair, 9 September 2026). The chain through the nested OE variables w_0 = n, w_{i+1} = floor(w_i^{3/4}) is exact on the word, with final state floor(w_5^{3/8}). The landing window for that nested expression has integer endpoints obtained by 5 iterations of Φ(z) = ceil(z^{4/3}), starting at ceil(m'^{8/3}) and ceil((m'+1)^{8/3}); impose the word's parities inside this window. It is not the single smooth-power interval. For fixed k = 6, put s = (3/4)^{k−1}, ρ = 729/8192, P = m'^{1/ρ}. Each exact endpoint differs from its smooth endpoint by O_k(P^{1−s}), giving relative symmetric-difference error O_k(P^{−5s/8}), smaller than the existing binding error P^{−s/6+ε}. Thus triangle inequality transfers the smooth-window estimate to the exact nested window: |O(m')| = 1/4096 times its odd-start count plus O_k(|J_k(m')| P^{−81/2048+ε}). The old numerical constants and sampled counts in the audit ledger certify smooth windows only; their unchanged transfer to exact fibers is not claimed. The asymptotic production coefficient remains +(1/2187) g_A(729/8192 t). The cumulative finite-truncation root 0.4926 is the official unconditional λ**. No infinite-family limit or termination theorem is asserted. Paper C Appendix D now supplies the self-contained analytic estimate directly for the exact nested windows, with relative error O_{k,ε}(m^{−4/9+ε}); historical explicit constants are not transferred.",
+  "source": "docs/theory/juggler_oeoee_production.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_oeoee_production.py",
+   "tests/research/juggler_sequence/test_v6_audit.py"
+  ],
+  "related_conjectures": []
+ }
+]

@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-finite-progress-boundary",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Universal FiniteProgress for starts above one implies universal reachability of one. Every even start n ≥ 2 and every odd start n ≥ 2 whose first image is even has FiniteProgress; consequently, any start without FiniteProgress is odd and has an odd first image. This isolates the automatic odd-to-odd frontier without proving universal progress.",
+  "source": "docs/problems/juggler_progress_coverage.md",
+  "lean": "Problems/Juggler/Progress.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_progress_coverage.py"
+  ],
+  "related_conjectures": []
+ }
+]

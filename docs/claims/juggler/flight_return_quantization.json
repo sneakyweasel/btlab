@@ -1,0 +1,15 @@
+[
+ {
+  "id": "J-flight-return-quantization",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Record-jump quantization for divergent flights: at a record index of a divergent descent-free flight with anchor m = x_i >= 400, any later position at distance p with state M, segment odd count o, and doubly-log jump delta = log_2(log M / log m) >= 0 satisfies delta <= o log_2 3 − p <= delta + Delta', where Delta' = −log_2(1 − Delta/ln m) and Delta <= 1.05 p/m is the Paper A transport deficit (proof: the tail from a record is descent-free by J-flight-divergent-structure point 5, so follows_log_le_walkWeight gives the left inequality and aboveAnchor_transport the right, both Lean). Consequences: (1) jump rigidity — for given p the admissible jumps lie within Delta' of the lattice {o log_2 3 − p : o >= o_min(p)} of gap log_2 3, a measure fraction O(p/(m ln m)) (4e-9 at p=19, anchor 3.5e8; vacuity only past p* ~ 0.63 m ln m ~ 7e9 steps at the frontier); (2) return-time quantization — delta <= eps forces theta_p = o_min(p) log_2 3 − p <= eps + Delta', and theta_p is exactly the hug walk height, so near-returns in doubly-log scale happen only at Ostrowski times R_eps = {p : theta_p <= eps}: shortest 19 (theta_19 = 12 log_2 3 − 19 = 0.01955), three-gap structure at every scale (verified exactly on p <= 1e5 at four eps), spectrum passing through the cycle survivor lengths (84 at eps=0.005, 1054 at eps=0.001); (3) closure answer — cycle pricing is the delta = 0 boundary slice, DK/parity pricing of segment lengths intrinsically requires (near-)closure with the jump budget delta + Delta' replacing the finance identity, and recurrent hug domination alone prices nothing. Census mirror: 20136 anchored-segment positions (orbits n <= 2000, anchors >= 400), zero violations of either inequality; all realized near-returns (delta <= 0.05) occur at lengths 19 (44 times) and 38 (7 times) — only the two shortest quantized times. Not a halt theorem, no divergence exclusion, no claim that divergent flights or near-returns exist, no DK-layer extension, no realizability claims.",
+  "source": "docs/problems/juggler_flight_return_quantization.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_flight_return_quantization.py"
+  ],
+  "related_conjectures": [
+   "juggler_asymptotic_descent"
+  ]
+ }
+]

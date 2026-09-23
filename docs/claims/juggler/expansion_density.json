@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-expansion-block-grammar",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The integer exponent surplus of a finite Juggler word is E(w)=3^{#O(w)}-2^{|w|}, and E(w)>0 if and only if the itinerary is formally expanding. An expanding residual block O^a E^b with b≥1 has b<a. On an expanding itinerary, n^{3^{#O}}=n^{2^{|w|}+E(w)}. Relative slack multiplies under concatenation, and the slack numerator of a three-block word is n^{3^{o(v)+o(w)}}. The chain 365 --OOE--> 763 --OOE--> 1749 --OOE--> 4447 is a PersistentExpansionChain. This does not bound consecutive expanding persistent runs.",
+  "source": "docs/problems/juggler_expansion_density.md",
+  "lean": "Problems/Juggler/ExpansionBlocks.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_expansion_density.py"
+  ],
+  "related_conjectures": []
+ }
+]

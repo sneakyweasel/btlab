@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-cube-odd-even-below-square",
+  "tag": "REFUTED",
+  "statement": "An even high lift after an odd cube-band landing n^2 ≤ x < n^3 returns below n^2. False. For n=501 the later cube-odd state x=48693935 has even y=339791341082 ≥ 501^4 and z=582916 in [501^2, 501^3). The source return z < x still holds. First leftover lifts of 365, 501, 1517, 6187 do return below n^2, but that is not the theorem. This is not PredClosure, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_cube_odd_return.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cube_odd_return.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cube-odd-even-reset",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If n ≥ 2 and n^2 ≤ x < n^3 with x odd, then n^3 ≤ T(x) < n^5 and T(x)^2 < n^9. If T(x) is even, the first return satisfies n ≤ T^2(x) < x < n^3 and T^2(x)^4 < n^9. If T(x) is odd, then x < T^2(x) and n^4 ≤ T^2(x). An even reset that is itself even and already below n^2 is FiniteProgress; on MinimalNonTerm that case is impossible. This is not a claim that every even reset lands below n^2, not a new integer-power census, and not a halt theorem.",
+  "source": "docs/problems/juggler_cube_odd_return.md",
+  "lean": "Problems/Juggler/MinimumRelative.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cube_odd_return.py"
+  ],
+  "related_conjectures": []
+ }
+]

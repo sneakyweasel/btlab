@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-paper-b-quadratic-partition-bound",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For Lambda=a x^(-3/4)+b x^(-5/8)+w0 x^(-1/2) on [P,2P], let S=max(|a|P^(-3/4),|b|P^(-5/8),|w0|P^(-1/2))>0. The sublevel |Lambda|<=sS has O(1) components and length O(P sqrt(s)); the same bounds hold for dyadic bands. If f is C^2 on cells with local count O(1+nu L), |f''-Lambda|<=rho S,0<=rho<=1/8,S<=1,SP^2>=1, then any integer or odd-integer interval sum is bounded by O(P sqrt(S)+(1+nu P)S^(-1/2)log(2P)+P^(1/2)S^(-1/4)+P sqrt(rho)+1). A finite family with a common reference and total coefficient sup norms plus variations <=M0 per cell obeys the same bound times M0. Proof uses t=(x/P)^(1/8), quadratic interpolation, and second derivatives summed over every cell and dyadic band. Written proof; finite exact controls do not independently certify cancellation.",
+  "source": "docs/theory/paper_b_signed_waves_report.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_signed_waves.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-signed-zero-offset",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Let X=x^(3/2),m=floor X,Y=m^(3/2),d_i=2h_i,Delta_i the d_i difference,c_d=3k(x+d1+d2)^(9/8)/4. For integers 1<=k,h1,h2<=P^(1/24), real u,u' with |u|h1,|u'|h2<=P^(1/2), and a real C^2-per-cell twist psi with |psi''|<=C P^(-3/4) on a partition with local cell count C(1+L P^(-3/8)), the sum over odd P<n<=2P with Delta1 Delta2 m=0 of e(c_d{Delta1 Delta2Y}+u Delta1Y+u' Delta2Y+psi) is O_(C,epsilon)(P^(31/32+epsilon)). An extra q Delta1 Delta2Y with |q|<=P^(1/24) and a fixed number of the preceding D2 factors fit the bound. All signs, zero wave coefficients, equal shifts, and exact leading cancellation are included. The proof centers only the wave coefficient; small signed combination uses a quadratic sublevel estimate, and large combination uses O(1) resonant frequencies per window with weight O(log(P)/A). This is a zero-offset family estimate, not a general kernel theorem or OOOEE count. AI-assisted written proof with exact controls; no independent review or Lean verification.",
+  "source": "docs/theory/paper_b_signed_waves_report.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_signed_waves.py"
+  ],
+  "related_conjectures": []
+ }
+]

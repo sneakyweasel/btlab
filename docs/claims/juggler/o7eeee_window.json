@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-o7eeee-window",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "No n ≥ 3 realizes the Juggler cycle itinerary O^7 EEEE. On 3 ≤ n < 828484409 the seven-odd image never enters the EEEE inverse cell [n^16, (n+1)^16): 6473954 O^7 starts, 3234088 even images, all strictly above the cell, closest ratio T^7(n)/(n+1)^16 = 445.01 at n=289. For n ≥ 828484409 the leftover prefix-cell n^{3^7} > 2^{denomBits(7)} (n+1)^{2^{11}} forbids a return. This is a one-word empty-window scan, not a Lean theorem, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_o7eeee_window.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_o7eeee_window.py"
+  ],
+  "related_conjectures": []
+ }
+]

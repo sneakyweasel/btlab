@@ -1,0 +1,432 @@
+[
+ {
+  "id": "J-fate-block-average",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper C Proposition 4.4, corrected 9 September 2026. For m' ≥ 2, I(m') = [m'^{8/3}, (m'+1)^{8/3}) and U(m') consists of its odd integers with both floor(n^{3/4}) and floor(n^{3/2}) even. There is an absolute C_B with |U(m')| ≥ (1/4) #{odd n in I(m')} − C_B m'^{11/9} log(m'+1). Vaaler, the second-derivative test for fast modes, Kusmin–Landau for slow modes at sufficiently large m', and a finite enlargement of C_B prove the estimate. The former explicit C_0 = 250 is retired: its printed majorants fail already at m' = 2. No explicit numerical C_B is certified. The asymptotic production coefficient 1/3 and downstream exponents are unchanged. The archived block census has maximum normalized deviation 0.717219, but is not a proof of a uniform constant.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_fate_contagion.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-block-average-layer",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The exact layer of Paper C Proposition 4.4, the slow sum, the block count, and equation (4.1) given the paper's two remaining exponential-sum bounds as hypotheses. The block: the odd n of I(m') = [m'^{8/3}, (m'+1)^{8/3}) are exactly the odd n with m'^2 <= floor(n^{3/4}) < (m'+1)^2 (mem_oddBlock, through the landing window of Appendix D.1). The decomposition: U(m') is the disjoint union of the even-image parts of the fibers Phi(m) over the even m of the block, so |U(m')| is the sum of Lemma 4.2's evenImageCount over E(m') (U_card_eq); the whole block is the disjoint union of the fibers (oddBlock_card_eq). The expansion: 4|U(m')| = M + S1 + S2 + S12 exactly (four_card_U). The slow sum S1 = sum psi(floor(n^{3/4})) is the alternating sum of fiber sizes over the block (slowSum_eq_fibers); the fiber bounds (2/3)m^{1/3} - 1 <= |Phi(m)| <= (2/3)(m+1)^{1/3} + 1 (FiberParity.oeFiber_card_ge, oeFiber_card_le) make consecutive fibers differ by at most 2 (oeFiber_card_succ_diff), and pairing the 2m'+1 fibers gives |S1| <= 2m' + (2/3)(m'+1)^{2/3} + 1 (slowSum_abs_le): the paper's 'the slow sum is O(m')', proved. The same fiber bounds give (2m'+1)((2/3)m'^{2/3} - 1) <= M <= (2m'+1)((2/3)(m'+1)^{2/3} + 1) (oddBlock_card_ge, oddBlock_card_le), hence |M/4 - m'^{5/3}/3| <= m' + 1 (oddBlock_quarter_close). Given |S2|, |S12| <= B, equation (4.1) holds as |U - M/4| <= B/2 + m' + 1 (block_average_two_bounds), in the paper's shape with B = C m'^{11/9} log(m'+1) and C_B = C/2 + 2 for m' >= 2 (block_average_bound_two), and the asymptotic form as |U - m'^{5/3}/3| <= B/2 + 2(m'+1) (block_average_asymptotic). THE TWO REMAINING BOUNDS ARE HYPOTHESES, NOT THEOREMS: the fast sum sum psi(floor(n^{3/2})) and the product sum are the exponential sums of the paper, estimated there by Vaaler's interval approximation, the second-derivative test and Kusmin-Landau, none of which is formalized here or anywhere in this repository; Proposition 4.4 remains a human proof in the paper's verification table. Nothing here bounds a density and nothing here is a halt theorem.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "Problems/Juggler/FateBlockAverage.lean",
+  "decl": [
+   "block_average_two_bounds",
+   "oddBlock",
+   "mem_oddBlock",
+   "blockE",
+   "U",
+   "U_card_eq",
+   "oddBlock_card_eq",
+   "four_card_U",
+   "slowSum",
+   "slowSum_eq_fibers",
+   "oeFiber_card_succ_diff",
+   "slowSum_abs_le",
+   "oddBlock_card_ge",
+   "oddBlock_card_le",
+   "oddBlock_quarter_close",
+   "block_average_asymptotic",
+   "block_average_bound_two"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-certified-thirty",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "A certified instance of the side condition of Paper C's unconditional criteria, at C = 30, with no audit script in the chain. Device: a logarithm is certified by an integer power comparison. If E <= e and x^n <= E^m then n log x <= m (log_le_of_pow_le); if e <= E and E^m <= x^n then m <= n log x (le_log_of_pow_le); and the base-two pair logb_two_le, le_logb_two. With Mathlib's Real.exp_one_gt_d9 and exp_one_lt_d9 pinning 2.718 <= e <= 2.719 (e_ge, e_le), six comparisons closed by norm_num give: log 2 <= 7/10 (from 2^10 <= 2.718^7), 2/3 <= log 2 (2.719^2 <= 2^3), 84/53 <= log_2 3 (2^84 <= 3^53), log_2 3 <= 149/94 (3^94 <= 2^149), 19/100 <= log(3049/2500) (2.719^19 <= (3049/2500)^100) and log(39/50) >= -1/4 ((50/39)^4 <= 2.718). Hence p_30 = pC 30 lies in [3049/5000, 61/100] (pC_thirty_ge, pC_thirty_le), and by the sandwich klHalf_ge_of, D(p_30 || 1/2) >= 9156/500000 = 0.018312 (klHalf_thirty_ge); with log 2 <= 7/10 this gives e(30) = 30 D(p_30 || 1/2)/log 2 > 39/50 (chernoffExponent_thirty_gt), in particular > 7/10. Two further comparisons give D(p_30 || 1/2) <= 71/2500 and, with 2/3 <= log 2, e(30) < 13/10 (chernoffExponent_thirty_lt), which makes the side condition A > C + e(C) explicit as A >= 32. Consequences, each with every constant a numeral: cylinder_bound_thirty (Corollary 8.4 at C = 30: a cylinder bound H(30, A) at all large scales with A >= 32, above a certified floor N_0 >= 2, gives that every positive integer reaches 1), pressure_thirty (Theorem 9.2's criterion at C = 30 with no loss), and one_sided_thirty (Theorem 9.1's criterion at C = 30 and the fair share q = 1/2, with A >= 52; klDiv_half and oneSidedExponent_half identify the one-sided exponent at q = 1/2 with the Chernoff exponent, and logb_tilt_thirty_le bounds log_2 of the re-centring tilt by 13/20 from (61/39)^20 <= 2^13). NOT formalized: C = 30 is an instance, not the least; the audit finds e(C) > 7/10 first at C = 23, and the paper's own threshold e(C) > 1 - lambda** at C = 19 is a statement about lambda**. The bounds are deliberately loose (the true value is e(30) about 1.05). Nothing here proves any hypothesis, and nothing here is a halt theorem.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "Problems/Juggler/FateCertified.lean",
+  "decl": [
+   "chernoffExponent_thirty_gt",
+   "e_ge",
+   "e_le",
+   "log_le_of_pow_le",
+   "le_log_of_pow_le",
+   "logb_two_le",
+   "le_logb_two",
+   "log_two_le",
+   "le_log_two",
+   "le_logb_three",
+   "logb_three_le",
+   "le_log_lo",
+   "le_log_hi",
+   "log_lo_le",
+   "log_hi_le",
+   "pC_thirty_ge",
+   "pC_thirty_le",
+   "klHalf_ge_of",
+   "klHalf_le_of",
+   "klHalf_thirty_ge",
+   "klHalf_thirty_le",
+   "chernoffExponent_thirty_lt",
+   "cylinder_bound_thirty",
+   "pressure_thirty",
+   "klDiv_half",
+   "oneSidedExponent_half",
+   "logb_tilt_thirty_le",
+   "one_sided_thirty"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-collapse-bias",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The collapsed component is nearly fair, exact layer (Paper C Section 10(d), after the cylinder-energy measurement). For a finite set S of starts and a depth t, fiber S t v = #{n in S : J^t(n) = v}, window S t a b = the starts whose t-th iterate lies in [a, b], and windowBias S t a b = #{odd iterate} - #{even iterate} in the window, the bias of the next letter. windowBias = - sum over v in [a, b] of (-1)^v fiber(v) (windowBias_eq_sum, on card_filter_window), hence |windowBias| <= sum over v in [a, b) of |fiber(v+1) - fiber(v)| + fiber(b) (abs_windowBias_le), by summation by parts on alternating sums with the partial sums of (-1)^i bounded by 1 (abs_alt_sum_le). One step of the map: fiber(t+1, v) = sum of fiber(t, u) over the preimages u of v, all below (v+1)^2 (fiber_succ, lt_sq_succ_of_floorPower_eq); the even preimages are the even numbers of [v^2, (v+1)^2) (pre_filter_even, Lemma 3.1's even block in fiber form), so fiber(t+1, v) = blockSum + oddPart (fiber_succ_eq). The even branch smooths: v <= evenCount v <= v + 1 (le_evenCount, evenCount_le), so if m <= fiber(t, u) <= M on the double block [v^2, (v+2)^2) then |blockSum(v+1) - blockSum(v)| <= (v+1)(M - m) + 2M (blockSum_sub_le); the odd branch's variation over a window is at most twice its mass (sum_abs_oddPart_sub_le). Hence collapse_bias_le: |windowBias S (t+1) a b| <= sum over v in [a, b) of ((v+1)(M_v - m_v) + 2 M_v) + 2 sum over v in [a, b] of oddPart(v) + fiber(t+1, b) whenever the depth-t profile is sandwiched between m_v and M_v on each double block. Read against a smooth profile, M_v - m_v of order f/v on a block of size f v, the first term is O(f) per value against a window mass of f v: the collapsed mass entering through the even branch is fair up to a relative O(1/v). Even steps are self-smoothing: a sandwich m <= fiber(t, .) <= M on [v^2, (v+1)^2) with odd branch at most P propagates to v m <= fiber(t+1, v) <= (v+1) M + P (fiber_succ_sandwich), so two even steps bound the bias at depth t+2 by the depth-t sandwich on [w^4, (w+2)^4) with the propagated bounds w^2 m_w and (w+2)^2 M_w + P_w (collapse_bias_two_step): the relative oscillation is not amplified and the loss is a relative O(1/w) at the final scale; iterated, an even run leaves the oscillation it started with plus O(1/w). What an even run cannot repair is the profile after the preceding odd run, whose first even step is the share law of Section 4 and whose block average is Proposition 4.4. NOT formalized: any bound on the variation of a fiber profile beyond that propagation, and the parity of the odd-preimage mass, the share law at bounded scale. Nothing here is a halt theorem.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "Problems/Juggler/FateCollapse.lean",
+  "decl": [
+   "collapse_bias_le",
+   "card_filter_window",
+   "windowBias_eq_sum",
+   "abs_alt_sum_le",
+   "abs_windowBias_le",
+   "lt_sq_succ_of_floorPower_eq",
+   "fiber_succ",
+   "pre_filter_even",
+   "fiber_succ_eq",
+   "evenCount_le",
+   "le_evenCount",
+   "blockSum_sub_le",
+   "sum_abs_oddPart_sub_le",
+   "fiber_succ_sandwich",
+   "collapse_bias_two_step"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-contagion-elementary",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The production inequality of Paper C Section 5.1 without its exponential sums, and the unconditional theorem it yields. Of the three families of members of A on (sqrt x, x], the E-images of the members at scale t/2 (Lemma 3.1; Production.family_E) and the OE-fibers of the members at scale 3t/4 (Lemma 4.2 on good fibers, Lemma 4.3 for the bad; Production.family_OE, on the per-fiber bound (2/9)(1 - (25/2) m^{-1/3})/m) need no analysis. With the paper's sqrt x read as floor(e^{t/2}) (sqrt_floor_exp) they give, for t >= 40, g_A(t) >= (1 - 4e^{-t/4}) g_A(t/2) + (2/9 - (50/9)e^{-t/8}) g_A(3t/4) - eta_0(t) with eta_0(t) = 2e^{-t/2} + (4/9)e^{-3t/4} + 136 e^{-t/8}, every error explicit (production_two). Lemma 5.1 (recursion_lemma) on these two productions, with 2^{-13/40} + (2/9)(3/4)^{13/40} > 1 certified by 0.798^40 <= 2^{-13} and 0.91^40 <= (3/4)^13 (zeta2_pos) and the seed of Lemma 5.2, gives: for every nonempty backward-closed A and every 0 < lambda <= 13/40 there are K > 0 and x_0 with sum_{n in A, n <= x} 1/n >= K (log x)^lambda for all x >= x_0 (contagion_elementary, logMass_contagion_elementary), WITH NO HYPOTHESIS; and if some positive integer does not reach 1 the failures have that log-mass (failures_logMass_ge, Corollary 5.5(2) at exponent 13/40). Composed with Theorem 7.2 and Corollary 8.4, whose contagion hypothesis has exactly this shape: a Tao-type rate, odd failures in (y, 2y] at most y (log y)^{-e} for all large y with e > 7/10, implies that every positive integer reaches 1 (conjecture_of_tao_rate), and so does a cylinder bound H(C, A) at all large scales with A > C + e(C) and e(C) > 7/10 above a certified floor (conjecture_of_cylinder_bound), with no other hypothesis; the paper's conditional forms need e > 1 - lambda** ~ 0.51 and (5.2). This is Theorem 5.3 with 3/10 in place of lambda** ~ 0.4926: the root of 2^{-lambda} + (2/9)(3/4)^lambda = 1 is about 0.325. NOT formalized: the block-average family (Section 5.1 item 2), which needs the two exponential-sum bounds of Proposition 4.4 (hypotheses in FateBlockAverage) and is what lifts the exponent to 0.49, and the ladder (5.10), whose Appendix D estimates are human; (5.2) itself remains a human row. Nothing here is a density theorem in the paper's sense and nothing here is a halt theorem. EXPONENT LIFTED 2026-09-19, from 3/10 to 13/40. The exponent is not intrinsic to the argument: it enters only through zeta2_pos, and zeta2_antitone carries it to the theorems, so raising the certificate raises the theorem. The root of 2^{-lambda} + (2/9)(3/4)^lambda = 1 is 0.3261209621146946, so the old certificate 3/10 = 0.300 used 92 percent of what the TWO-production inequality can give and 13/40 = 0.325 uses 99.6 percent; the remaining 0.4 percent is the gap to an irrational root and is not worth a larger denominator. The new certificate is 399/500 <= (1/2)^{13/40}, since (399/500)^40 <= 2^{-13}, with the previous 91/100 <= (3/4)^{13/40} unchanged, and 399/500 + (2/9)(91/100) = 1.000222 > 1; the 40th powers are exact rational arithmetic in norm_num and the module compiles in 174 s. WHAT THIS DOES NOT DO: it does not approach Paper C's lambda** = 0.4926, which needs the block-average family and its two exponential-sum bounds, and those remain hypotheses in FateBlockAverage with no Lean proof. 13/40 is the ceiling of the unconditional route, not a step toward the conditional one. THRESHOLD WEAKENED THE SAME DAY. The Tao-rate wrapper needs only e > 1 - lambda, so lifting lambda to 13/40 lowered the requirement from 7/10 = 0.700 to 27/40 = 0.675; both public statements had kept 7/10, a gap invisible because linarith discharges it silently whenever the stated hypothesis is stronger than the proof needs. Five statements now ask for 27/40 across six modules -- conjecture_of_tao_rate and conjecture_of_cylinder_bound (FateProduction), one_sided_implies_conjecture and its no-momentum form (FateOneSidedCorollary, including a midpoint construction that had 7/10 in the value it picks), the pressure and no-momentum corollaries (FatePressureCorollary), and the atom forms (FateOneSidedAtoms, FateEnergyAtoms) -- each a strictly weaker hypothesis for the same conclusion. The literal 7/10 that remains in FateCertified is the bound log 2 <= 7/10, a different fact. THE LEAST ADMISSIBLE CONSTANT DOES NOT MOVE: e(22) = 0.668392 misses 27/40 and e(23) = 0.716046 clears it, so the least integer C is 23 at both thresholds; the computation reproduces the paper's own e(21) = 0.6210, e(25) = 0.8119 and e(30) = 1.0541. Paper C's manuscript was brought into agreement in the same pass: it had been quoting the retired certificates by name and attributing them to zeta2_pos, so it described a proof that no longer existed. Nine thresholds and two exponents rewritten, and the least-C result recorded in the passage that names it. SUPERSEDED, 20 September 2026: Production.logMass_contagion_averaged is unconditional at lambda <= 100/203 = 0.4926108, where this row is unconditional at 13/40 = 0.325. The difference is that this row pays Lemma 4.2's pointwise 2/9 on every fibre while the averaged route pays (2/3)(1/2 - eta_0), the poor fibres having finite total 1/m-mass. Concretely, in the Tao reduction the least cylinder depth drops from C = 23 to C = 19 (tao_reduction.unconditional_depth_drop). This row is still the cheapest unconditional contagion bound -- its proof needs no block lock, no Dirichlet, no arc count -- so it stays.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "Problems/Juggler/FateProduction.lean",
+  "decl": [
+   "logMass_contagion_elementary",
+   "sqrt_floor_exp",
+   "family_E",
+   "good_fiber_logMass_ge",
+   "family_OE",
+   "production_two",
+   "zeta2_pos",
+   "zeta2_antitone",
+   "contagion_elementary",
+   "failures_logMass_ge",
+   "conjecture_of_tao_rate",
+   "conjecture_of_cylinder_bound"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-cylinder-energy",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper C Section 10(d), the counting half of the Parseval display. For an arbitrary finite set S of starts, write #[w] for the starts of S whose length-|w| itinerary is w (wordCount), D(w) = #[wO] - #[w]/2 for the first-letter bias (bias) and C_t = sum over |w| = t of #[w]^2 for the cylinder energy (energy). A cylinder splits into its two children, #[w] = #[wE] + #[wO] (wordCount_split), because the (t+1)-st letter of an itinerary is the parity of the t-th image (itinerary_succ_append). Hence sum over |w| = t of D(w)^2 = C_{t+1}/2 - C_t/4 exactly (sum_bias_sq), which is the second equality of the note's display; the algebra behind it is (b - (a+b)/2)^2 = (a^2+b^2)/2 - (a+b)^2/4. NOT formalized: the first equality, Parseval for the Walsh sums on the same starts -- no Walsh transform appears in the module -- and the quantitative bound on these sums that would supply an exceptional-atom estimate. Nothing here bounds a discrepancy and nothing here is a halt theorem.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "Problems/Juggler/FateCylinderEnergy.lean",
+  "decl": [
+   "sum_bias_sq",
+   "wordCount_split",
+   "itinerary_succ_append"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-energy-atoms",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper C Section 10(d): the bias energy of the L-bad words supplies the exceptional atoms. energyOn y t S = sum over w in S of bias(w)^2 with bias(w) = #[wO] - #[w]/2 over the odd starts of (y, 2y]; biasEnergy y t is the sum over all words of length t, equal to the paper's C_{t+1}/2 - C_t/4 with C_t = sum of #[w]^2 (biasEnergy_eq, on CylinderEnergy.sum_bias_sq; wordCount_cylinder identifies the word count over the odd starts with the cylinder); badEnergy y L t is the sum over the L-bad words, at most the unrestricted one (badEnergy_le_biasEnergy). For a share q > 1/2, a bad atom violating #[wO] <= q #[w] has bias(w) > (q - 1/2) #[w], so the squared masses of the bad violators sum to at most badEnergy / (q - 1/2)^2, and Cauchy-Schwarz over the at most 2^t atoms of depth t (card_allWords) gives (sum over bad violators of #[w])^2 <= 2^t badEnergy / (q - 1/2)^2 (mass_violators_le). Hence badEnergy y L t <= (q - 1/2)^2 exc^2 / 2^t at every depth 1 <= t < d gives OneSidedShareExc y L q 0 exc d, the one-sided hypothesis with exceptional atoms of mass exc and no error term (oneSidedShareExc_of_energy), and with err = y (log y)^{-A} for any A (oneSidedBoundExc_of_energy, on OneSidedShareExc.mono_err). EnergyBound N_0 C q B y is that bound with L = L(y) and exc = y (log y)^{-B} at the depths below ceil(C L(y)); composed with FateOneSidedAtoms: energy_conj_of_contagion with the contagion bound as a hypothesis, and energy_implies_conjecture with nothing else assumed: EnergyBound at all large scales above a certified floor, with C >= 5, 1/2 < q < p_C, B > C log_2 x + 1 + e and 7/10 < e < C D(p_C || q) / log 2, gives that every positive integer reaches 1. The restriction to bad words is forced: the unrestricted energy is dominated by absorbed orbits (J-absorbed-cylinder). MEASURED (juggler_cylinder_energy_measure, exact enumeration at 10^4..10^7 to depth 30): the bad energy itself sits at its worst-case value sum of #[w]^2 / 4 from depth 16-20 at every computable scale, on cylinders of thousands of members, because bad words that dip to a bounded value collapse onto single deterministic futures; the reduction is exact, the hypothesis has no numerical support. NOT formalized: the energy bound itself, and the Parseval form in Walsh sums. Nothing here is a halt theorem.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "Problems/Juggler/FateEnergyAtoms.lean",
+  "decl": [
+   "energy_implies_conjecture",
+   "OneSidedShareExc.mono_err",
+   "badEnergy_le_biasEnergy",
+   "card_allWords",
+   "mass_violators_le",
+   "oneSidedShareExc_of_energy",
+   "wordCount_cylinder",
+   "biasEnergy_eq",
+   "EnergyBound",
+   "oneSidedBoundExc_of_energy",
+   "energy_conj_of_contagion"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-first-letter-split",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The exact layer of Paper C's first-letter identity (6.1). For a two-way closed class A (ForwardClosed and BackwardClosed), any weight w and any finite index set s, the weighted mass of A splits exactly into three pieces by first letter: the even members, the odd members with even image (OE-type) and the odd members with odd image (OO-type), each piece indexed by its image lying in A as the paper indexes it (first_letter_split); shellLogMass_split is the log-mass form on a shell (y, x]. The map J is strictly increasing on the odd integers (floorPower_odd_lt), hence injective there (floorPower_odd_injective), so the paper's odd preimage n(m) of the free term is well defined, and sum_image_ooPiece rewrites the OO-type piece as a sum over the odd images. This is the partition, with no error term. The identity (6.1) itself is not formalized: the densities phi_A, phi^fib_A and psi_A, the identification of each piece with its term of (6.1), and the boundary error O(e^{-t/4}/t) of Lemma 3.1 stay human. Nothing here bounds a density and nothing here is a halt theorem.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "Problems/Juggler/FateFirstLetter.lean",
+  "decl": [
+   "first_letter_split",
+   "shellLogMass_split",
+   "floorPower_odd_lt",
+   "floorPower_odd_injective",
+   "sum_image_ooPiece"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-landing-window",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper C Appendix D.1, equations (D.1) and (D.2), the exact landing windows of the nested productions. Write F(u) = floor(u^{3/4}) as the integer operation cell34 n = sqrt(sqrt(n^3)), which is J^2 on an OE step (cell34_eq_floorPower_two), and Phi(a) = ceil(a^{4/3}) as windowStart a, the least n with a^4 <= n^3 -- which is what the ceiling means in exact arithmetic. The two are a Galois connection: windowStart a <= n and a <= cell34 n are both a^4 <= n^3 (windowStart_le_iff, le_cell34_iff). Hence (D.1): {n : a <= F(n) < b} = [Phi(a), Phi(b)) exactly (exact_endpoints, setOf_cell34_mem_Ico), and by induction the nested window (D.2) for the i-fold image (exact_endpoints_iterate, setOf_iterate_mem_Ico). Exact, with no error term and no real number. What Appendix D does with the window is not formalized: the smooth comparison (D.3), the endpoint error O_k(P^{1-s}), the inner-layer multiplicities, and the production inequality (5.2) they feed all stay human, as does the imposition of the parity conditions of V_k. Nothing here bounds a density and nothing here is a halt theorem.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "Problems/Juggler/FateLandingWindow.lean",
+  "decl": [
+   "exact_endpoints",
+   "cell34",
+   "cell34_eq_floorPower_two",
+   "le_cell34_iff",
+   "windowStart",
+   "windowStart_le_iff",
+   "setOf_cell34_mem_Ico",
+   "exact_endpoints_iterate",
+   "setOf_iterate_mem_Ico"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-log-density",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Logarithmic density of a fate class (fate-contagion note, Theorem 4.2 and Corollary 4.3; Paper C Theorem 1). Let λ** = 0.4925715447… be the root of 2^{−λ} + (1/9)(3/8)^λ + (2/9)(3/4)^λ + (1/27)(9/32)^λ + (1/81)(27/128)^λ + (1/243)(81/512)^λ + (1/729)(243/2048)^λ + (1/2187)(729/8192)^λ = 1 (V_5 truncation 0.4924 of the first seven terms; V_4 truncation 0.4916 of the first six terms; V_3 truncation 0.4891 of the first five terms; OEOEE truncation 0.4801 of the first four terms; pairing-only root 0.4480 of the first three; λ* ≈ 0.3774, root of 2^{−λ} + (1/3)(3/8)^λ = 1, without pairing; the adversarial sweep 1/7 gave 0.4050). For every nonempty backward-closed A ⊆ ℕ and every λ < λ** there are c, x_0 > 0 with Σ_{n ∈ A, n ≤ x} 1/n ≥ c (log x)^λ for x ≥ x_0. Proof: even blocks contribute g(t/2)(1 − o(1)), OE images of E-blocks contribute (1/3) g(3t/8)(1 − o(1)), OE images of the rest contribute (2/9)·(g(3t/4) − g(3t/8))·(1 − o(1)) by monotone pairing, the elementary OEOEE production contributes (1/27) g(9t/32)(1 − o(1)) (J-fate-oeoee-production), the V_3 = OEOEOEE production contributes (1/81) g(27t/128)(1 − o(1)) (J-fate-v3-production), the V_4 = OEOEOEOEE production contributes (1/243) g(81t/512)(1 − o(1)) (J-fate-v4-production), the V_5 = OEOEOEOEOEE production contributes (1/729) g(243t/2048)(1 − o(1)) (J-fate-v5-production), and the V_6 = OEOEOEOEOEOEE production contributes (1/2187) g(729t/8192)(1 − o(1)) (J-fate-v6-production), all in (√x, x] and pairwise disjoint after removing those shares from family 3. The formal ideal depth-two recursion has root 0.4927; this is a model ceiling, not an attained infinite-family theorem. Not a halt theorem; no fate is excluded. The 9 September publication revision supplies a self-contained finite-depth proof in Appendix D using exact nested inverse endpoints, smooth multiplicity weights and averaged cancellation; no unproved pointwise cancellation on each short fiber is assumed. The analytic production estimates remain outside Lean. The recursion-and-seed half of the proof is Lean given the production inequality (5.2), for every λ ≤ 0.49: row J-fate-contagion-conditional (contagion_of_production_inequality in FateContagionBound.lean); (5.2) itself and the root λ** stay human. UNCONDITIONAL ABOVE THIS, 20 September 2026: J-oe-averaged-two-productions-reach-the-depth-two-ceiling reaches lambda <= 100/203 = 0.4926108 with no hypothesis, Production.logMass_contagion_averaged in Problems/Juggler/FatePoorProduction.lean, so Proposition 4.4's exponential sums are off the critical path for this consequence.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_fate_contagion.py",
+   "tests/research/juggler_sequence/test_oeoee_production.py",
+   "tests/research/juggler_sequence/test_oeoee_audit.py",
+   "tests/research/juggler_sequence/test_v3_audit.py",
+   "tests/research/juggler_sequence/test_v4_audit.py",
+   "tests/research/juggler_sequence/test_v5_audit.py",
+   "tests/research/juggler_sequence/test_v6_audit.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-one-sided-atoms",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper C Section 10(d), first paragraph: Theorem 9.1 with exceptional atoms, on the exponential-moment proof. OneSidedShareExc y L q err exc d: at each depth 1 <= t < d there is a set E of words of total cylinder mass at most exc such that every L-bad word outside E sends at most q #[w] + err of its members to an odd next letter; the original hypothesis is the case E empty (oneSidedShareExc_of_share). An exceptional bad atom sends at most its whole mass to its odd child, which costs (x - a_q) #[w] x^{o(w)} = (x-1)(1-q) #[w] x^{o(w)} in the tilted mass, so badMass(t+1) <= a_q badMass(t) + (x-1)(err (2x)^t + (1-q) exc x^t) (badMass_succ_le_exc), unrolled to x a_q^t N + (x-1) t (err (2x)^t + (1-q) exc x^t) (badMass_le_exc), and with Lemma 8.1 and the Markov tilt the odd failures of (y, 2y] number at most (x a_q^{d-1} N + (x-1)(d-1)(err (2x)^{d-1} + (1-q) exc x^{d-1})) / x^{p_C d} (one_sided_bound_exc), whose main term at the re-centring tilt is (x/a_q) N exp(-d D(p_C || q)) (one_sided_bound_kl_exc, on main_term_eq). Absorption (oddFailures_le_of_exc, on the one-tail lemma tail_le: (d-1) z^{d-1} y (log y)^{-A} <= K y (log y)^{C log_2 z + 1 - A} for z >= 1): with err = y (log y)^{-A}, exc = y (log y)^{-B}, A > C (1 + log_2 x) + 1 + e, B > C log_2 x + 1 + e and e < C D(p_C || q) / log 2, the odd failures number at most y (log y)^{-e} for all large y; the exceptional atoms cost C less than the error because they are not doubled at each depth. Then Theorem 7.2: exc_conj_of_contagion with the contagion bound as a hypothesis, exc_implies_conjecture with nothing else assumed when 7/10 < e. This is the weakest one-sided hypothesis the paper states, and the form the cylinder-energy statistic of Section 10(d) is meant to supply. NOT formalized: the paper's condition B > e_q(C), which is the Markov absorption of the martingale proof; the conditions here are sufficient and not sharp. Nothing here bounds a share, and nothing here is a halt theorem.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "Problems/Juggler/FateOneSidedAtoms.lean",
+  "decl": [
+   "exc_implies_conjecture",
+   "OneSidedShareExc",
+   "oneSidedShareExc_of_share",
+   "badMass_succ_le_exc",
+   "badMass_le_exc",
+   "one_sided_bound_exc",
+   "main_term_eq",
+   "one_sided_bound_kl_exc",
+   "tail_le",
+   "oddFailures_le_of_exc",
+   "exc_conj_of_contagion"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-one-sided-conjecture",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper C Theorem 9.1's consequence, the conjecture from the one-sided hypothesis, in the pattern of Corollary 8.4. OneSidedBound N_0 C q A y is H_q(C, A) at the scale y: every L(y)-bad cylinder of depth 1 <= t < ceil(C L(y)) sends at most q #[w] + y (log y)^{-A} of its members to an odd next letter; oneSidedExponent C q = C D(p_C || q) / log 2 is the Chernoff exponent of Proposition 9.3. Absorption (oddFailures_le_of_one_sided): under H_q(C, A) at all large scales, with C >= 5, 0 < q < p_C, A > C (1 + log_2 x) + 1 + e for the re-centring tilt x = p_C (1-q)/(q (1-p_C)), and e < C D(p_C || q) / log 2, the odd failures in (y, 2y] number at most y (log y)^{-e} for all large y; on Gibbs' inequality D(p || q) >= 0 (klDiv_nonneg), exp(-d D) <= Lambda^{-C D / log 2} for d >= C log_2 Lambda (exp_le_rpow_scale) and (2x)^{d-1} <= Lambda^{C (1 + log_2 x)} for d - 1 <= C log_2 Lambda (pow_le_rpow_scale), with log y / log N_0 <= Lambda <= 2 log y / log N_0. Then Theorem 7.2: implies_conjecture_of_contagion keeps the contagion bound of Theorem 5.3 as a hypothesis at an exponent lambda with 1 - lambda < e, and one_sided_implies_conjecture discharges it through the unconditional Theorem 5.3 at exponent 3/10 (Production.failures_logMass_ge): H_q(C, A) at all large scales above a certified floor N_0 >= 2, with 7/10 < e < C D(p_C || q) / log 2, gives that every positive integer reaches 1, with nothing else assumed. exact_share_implies_conjecture is the paper's remark after Theorem 9.1: a share bound with no error term (OneSidedExact) at all large scales with C D(p_C || q) / log 2 > 7/10 gives the conjecture, and A disappears. NOT the paper's statement: the paper has the Azuma exponent e_q(C) and A > C + e_q(C); here the exponent is the Chernoff one, which the paper records is at least e_q(C), and the condition on A is sufficient, not sharp (the exact form pays the tilt on the error, and d - 1 is bounded by a multiple of log y). The numerical forms, the least C at each q, are not formalized. Nothing here proves the one-sided hypothesis, and nothing here is a halt theorem.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "Problems/Juggler/FateOneSidedCorollary.lean",
+  "decl": [
+   "one_sided_implies_conjecture",
+   "OneSidedBound",
+   "OneSidedExact",
+   "klDiv_nonneg",
+   "exp_le_rpow_scale",
+   "pow_le_rpow_scale",
+   "oddFailures_le_of_one_sided",
+   "implies_conjecture_of_contagion",
+   "exact_share_implies_conjecture"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-one-sided-moments",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper C Theorem 9.1 (the one-sided form) in exact form, by exponential moments and without the martingale, carrying out the paper's remark after Proposition 9.3. For a tilt x >= 1 let badMass(t) be the sum over the L-bad words w of length t of #[w] x^{o(w)}, the tilted mass of the bad cylinders of depth t. Under the one-sided hypothesis OneSidedShare (every L-bad cylinder of depth 1 <= t < d sends at most q #[w] + err of its members to an odd next letter), bad words being prefix-closed and a cylinder splitting into its two children, badMass(t+1) <= (1 + (x-1) q) badMass(t) + (x-1) err (2x)^t (badMass_succ_le), which unrolls to badMass(t+1) <= x (1 + (x-1) q)^t N + (x-1) err t (2x)^t with N the odd starts of (y, 2y] (badMass_le). Lemma 8.1 and the Markov tilt put every odd failure of (y, 2y] in a bad cylinder of depth d with at least p_C d odd letters (oddFailures_card_le_badMass), so for every y >= 1 and every d >= max(1, C L(y)), L(y) = log_2(log 2y / log N_0), above a certified floor N_0 >= 2: #{odd failures in (y, 2y]} <= (x a_q^{d-1} N + (x-1) err (d-1) (2x)^{d-1}) / x^{p_C d} with a_q = 1 + (x-1) q, at every tilt x >= 1 and with no epsilon (one_sided_bound); at the re-centring tilt x = p_C (1-q)/(q (1-p_C)) the main term is (x/a_q) N exp(-d D(p_C || q)) (one_sided_bound_kl, on tilt_pow_ratio and tilt_exponent_eq_kl), the exponent C D(p_C || q)/log 2 of Proposition 9.3, which the paper records is at least the Azuma exponent e_q(C). NOT formalized: the error term carries (2x)^{d-1} / x^{p_C d} where the martingale proof's Markov step carries 2^d, so absorbing it into y (log y)^{-r} needs A > C (1 + (1 - p_C) log_2 x) + r in place of the paper's A > C + r; that absorption, the substitution d = ceil(C L(y)) and the displayed asymptotic form (log 2y / log N_0)^{-(e_q(C) - epsilon)} are human. Nothing here bounds a cylinder and nothing here is a halt theorem.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "Problems/Juggler/FateOneSided.lean",
+  "decl": [
+   "one_sided_bound",
+   "cylinder_split",
+   "LBad_of_LBad_append",
+   "OneSidedShare",
+   "badMass_succ_le",
+   "badMass_le",
+   "oddFailures_card_le_badMass",
+   "tilt_pow_ratio",
+   "one_sided_bound_kl"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-pressure-conjecture",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper C Section 9.2's consequences: the pressure hypothesis P_theta(C) and the no-momentum hypothesis M_{theta,q}(C) each imply the conjecture, in the pattern of Corollary 8.4. Bridge: above a certified floor N_0, an odd failure of (y, 2y] is a start of {1, ..., 2y} that stays above N_0 for every number of steps (oddFailures_subset_live), so the live weight of LiveCountWeight, on which Theorem 9.2 (live_count_le_of_pressure) and Proposition 9.3 under no momentum (juggler_count_le_of_noMomentum) are stated, counts the failures. PressureBound N_0 C eps y is P_theta(C) at the scale y with the paper's e^{o(d)} quantified as (log y)^eps: the live pressure of {1, ..., 2y} at the tilt x = p_C/(1 - p_C) and depth d(y) = ceil(C L(y)) is at most 2y a_theta^{d(y)} (log y)^eps. NoMomentumBound N_0 C q delta y is M_{theta,q}(C) at the scale y: on the live weight of {1, ..., 2y} at the re-centring tilt x = p_C (1-q)/(q (1-p_C)), the excess odd shares (s_x(t) - q)^+ over t < d(y) sum to at most delta d(y); momentumExponent C q delta = C (D(p_C || q) - c_x delta) / log 2 with c_x = (x-1)/a_q. Shared absorption (absorb): a bound 2y exp(-d(y) D) (log y)^eps on the odd failures at all large scales, with D >= 0, is below y (log y)^{-e} for every e < C D / log 2 - eps and all large y, on exp_le_rpow_scale and log y / log N_0 <= Lambda. Hence (oddFailures_le_of_pressure, oddFailures_le_of_noMomentum) the dyadic rate y (log y)^{-e} for every e < e(C) - eps, respectively every 0 <= e < momentumExponent C q delta, and by Theorem 7.2: with the contagion bound of Theorem 5.3 as a hypothesis at an exponent lambda with 1 - lambda < e (pressure_conj_of_contagion, noMomentum_conj_of_contagion), or with nothing else assumed through the unconditional Theorem 5.3 at exponent 3/10 when 7/10 < e (pressure_implies_conjecture, noMomentum_implies_conjecture): every positive integer reaches 1. With FateOneSidedCorollary this closes the rate-side jaw of the pincer in Lean for every hypothesis Paper C states on that side (cylinder, one-sided, pressure, no-momentum). NOT formalized: the paper's numerical forms (the least C at each q). Nothing here proves any of the hypotheses, and nothing here is a halt theorem.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "Problems/Juggler/FatePressureCorollary.lean",
+  "decl": [
+   "pressure_implies_conjecture",
+   "oddFailures_subset_live",
+   "PressureBound",
+   "NoMomentumBound",
+   "absorb",
+   "oddFailures_le_of_pressure",
+   "pressure_conj_of_contagion",
+   "oddFailures_le_of_noMomentum",
+   "noMomentum_conj_of_contagion",
+   "noMomentum_implies_conjecture"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-share-law-layer",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The exact layer of Paper C Section 4.3, the share law (Lemma 4.5) and Corollary 4.6. The expansion: along a fiber n_j = n_1 + 2(j-1) the phase x_j = n_j^{3/2}/2 (xval) equals x_1 + (3/2) sqrt(n_1) (j-1) + (3/4) (j-1)^2 / sqrt(n_1) + E_j with |E_j| <= (1/4)(j-1)^3 n_1^{-3/2} (xval_expansion); the Taylor step is, after v = sqrt(1+u), the polynomial inequality 0 <= 1 + (3/2)(v^2-1) + (3/8)(v^2-1)^2 - v^3 <= (v^2-1)^3/16 (taylor_three_halves), no derivative taken; on a fiber Phi(m) the remainder is at most (2/27)(m+1)/m^2 (xval_expansion_fiber), the paper's O(1/m) with a constant. The range: phi_beta(s) = beta s + s^2/3 has on [0,1] the range beta + 1/3 for beta >= 0, -beta - 1/3 for beta <= -2/3, and max(0, beta + 1/3) + (3/4) beta^2 between (phiRange; never exceeded, phi_sub_le; attained, exists_phi_sub_eq), and that range is at most 1/2 exactly for beta in [-5/6, 1/6] (phiRange_le_half_iff), the arithmetic of Corollary 4.6(2). The integral: max(0, 1/2 - range) vanishes outside [-5/6, 1/6] (extremeMeasure_eq_zero) and its interval integral over [-5/6, 1/6] is 25/108, as 1/72 + 11/108 + 11/108 + 1/72 over four polynomial pieces (integral_extremeMeasure), the arithmetic of Corollary 4.6(3). NOT formalized: the reduction of x_j modulo 1 to theta_m + beta_m s + s^2/3 with its O(1/H_m) error, the inverse-image and grid-sampling estimates that give Lemma 4.5, the Fubini argument of Corollary 4.6(1), and the identification of the theta-measure of the extreme fibers with max(0, 1/2 - range) in (2) and (3); the share law stays a human proof in the paper's table. Nothing in Sections 5-10 of the paper depends on this subsection, nothing here bounds a density, and nothing here is a halt theorem.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "Problems/Juggler/FateShareLaw.lean",
+  "decl": [
+   "xval_expansion",
+   "taylor_three_halves",
+   "xval_expansion_fiber",
+   "phi_sub_le",
+   "exists_phi_sub_eq",
+   "phiRange_le_half_iff",
+   "extremeMeasure_eq_zero",
+   "extremeMeasure_piece1",
+   "extremeMeasure_piece2",
+   "extremeMeasure_piece3",
+   "extremeMeasure_piece4",
+   "integral_extremeMeasure"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-oe-fiber-share-law",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper C Lemma 4.5 and Corollary 4.6, corrected 9 September 2026. For H_m ≥ 2, let α_m be the centered residue of (3/2)m^{2/3}, β_m = α_m(H_m−1), θ_m = {n_1^{3/2}/2}, and S(β,θ) the measure of s in [0,1] with {θ+βs+s²/3}<1/2. Then G_m/H_m = S(β_m,θ_m) + O(H_m^{−1/2} + (1+|β_m|)/H_m). The square-root error covers tangencies of the quadratic phase to a discontinuity; the old global O(1/H_m) claim is retired. The estimate is useful on restricted drift ranges, not for arbitrary β of order H. The θ-average of S is 1/2; extreme values 0 or 1 are possible precisely for β in [−5/6,1/6]; the β-integral of the phase measure of S=0 is 25/108. The archived code uses beta_hat = αH rather than the corrected lemma parameter α(H−1), so its fit statistics are observations of that convention. A weighted mean share 1/2 is sufficient for a fair production; conditional equidistribution of θ is sufficient under the required error control and is not necessary. No distribution law on a fate class is proved.",
+  "lean": "formal/Problems/Juggler/CubeFiber.lean",
+  "related_conjectures": [],
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_oe_fiber_share.py"
+  ]
+ },
+ {
+  "id": "J-paper-c-audit",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Audit module for Paper C (paper_c_audit), closing the asymmetry that Papers A and B had one and Paper C did not. Contagion exponents (lambda* 0.3774, pairing-only 0.4480, OEOEE 0.4801, V_5 0.4924 named intermediate, lambda** 0.4926 with V_6, V_4 0.4916 named intermediate, V_3 0.4891 named intermediate, lambda*** 0.5392, ideal ceiling 0.4927, and the conditional smooth-model Section 5.7 ladder 0.4480/0.4927, 0.6247/0.7180, 0.7095/0.8414, 0.7516/0.9121) recomputed from both the three-state residual and the run-ladder transfer matrix; the Tao thresholds and depths (e(20) = 0.574, e(19) = 0.527, e(18) = 0.480, least depth 19 / 19 / 19 / 19 / 19 / 20 / 18 by V_6 / V_5 / V_4 / V_3 / OEOEE / pairing / lambda*** regime, one-sided C(q)); the Section 8.4 constants table at 1e20, 1e100 and 1e1000 kept at the conservative C = 20 display, every cell reproducing (L = 1.25/3.55/6.87, d = 25/72/138, bad probability 0.0650/0.0167/0.0038, target 0.1005/0.0383/0.0096, least depth 19/56/117). Each check names its regime, because C(q) denotes different numbers under lambda**, pairing, and lambda*** — C(0.55) is 41 / 44 / 39. The exponent calculus previously lived only inside test_contagion_exponent_calculus.py and is now in src. A script check is consistency of what is printed, not a proof.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_audit.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-c-chernoff-step-is-already-sharp",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Paper C's Chernoff step has no analogue of the slack found in Paper B's Theorem 6.1, and sharpening it is not where effort should go. THE THRESHOLD IS EXACT. chernoff_exponent bounds P(u_t > -L for all t <= d) at d = C L by the endpoint bound exp(-d KL(p_C)) with p_C = (1 - 1/C)/log2(3). The bad event is o log2(3) - d > -L, i.e. o/d > (1 - L/d)/log2(3), and L/d is exactly 1/C, so p_C is the break-even threshold with nothing given away -- unlike the retreat from p to (p+1/2)/2 recorded in J-theorem-six-one-threshold-is-slack, which cost that proof 75.2% of its exponent. The strictness of u_t > -L moves the threshold by at most one lattice point, an O(1/d) effect on p_C and O(1) on the bound. WHAT IS GIVEN AWAY IS ONLY sqrt(d). Bounding a barrier probability by an endpoint one does cost something, but far less than in Paper B, because the barrier -L recedes proportionally to d and the cheapest path reaches it only at time d. Against the exact DP bad_word_probability at C = 19, the ratio exp(-d KL(p_C)) / truth measures 17.5, 24.0, 32.5, 43.4, 63.1 at d = 190, 380, 760, 1520, 3040, a log-log slope of 0.46 over a sixteenfold range; ratio/sqrt(d) stays inside [1.11, 1.28] throughout. So the slack is Theta(sqrt d) rather than Paper B's d^(3/2), and rather than Paper B's published midpoint version whose overshoot is exponential. A CHECKED NEGATIVE. This is recorded because it closes a question rather than opens one: the parallel repair that worked for Theorem 6.1 is unavailable here and would gain a square root at most. Found while measuring it, and fixed: both exact DPs divided their integer counts by a float power, so bad_word_probability and bad_word_probability_odd_start raised OverflowError at d >= 1024 and 1025 -- precisely the depths at which the asymptotics they exist to measure become readable. Integer division rounds correctly at any depth and underflows to 0.0 rather than raising.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_tao_reduction.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-c-ladder-recovers-the-depth-two-ceiling",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "Problems/Juggler/FateContagionBound.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_production_roots.py"
+  ],
+  "related_conjectures": [],
+  "statement": "Paper C's production ladder recovers the depth-two ceiling and stops there, so the 2/9 coefficient is not what costs the exponent. THE NUMBERS, all reproduced from the Lean constants rather than from the manuscript: productionCoeff and productionRate in FateContagionBound.lean are the eight pairs of Theorem 1's equation (1.1), and the root of sum c_i e_i^L = 1 over the first n of them reproduces every decimal the manuscript prints -- 0.4480 pairing-only, 0.4801 at OEOEE, 0.4891 at V_3, 0.4916 at V_4, 0.4924 at V_5 and 0.492572 for the full eight, which the paper prints as lambda** = 0.4926. Section 5's two comparison values also come out: the sweep alone at 2/21 gives 0.138, and perfect fiber equidistribution at depth two, coefficient 1/3, gives lambda_ideal = 0.492658, which the manuscript names 'the ceiling of the depth-two method'. THE STRUCTURAL POINT: 2/9 = (2/3)(1/3) is the fiber size times the GUARANTEED parity share of Lemma 4.2, while 1/3 = (2/3)(1/2) is the same fiber at the AVERAGE share of Corollary 4.6(1); that single factor 3/2 is the entire distance from the unconditional exponent to the ceiling. The unconditional two-production route sits at the worst-case share and its root is 0.3261209621, which is why the certified 13/40 of J-fate-contagion-elementary is its ceiling. The block-average family and the six-word ladder together lift 0.326121 to 0.492572, which is 99.98 percent of the way to 0.492658 and does not pass it: lambda** < lambda_ideal by 0.000086. CONSEQUENCE, and it answers an open question a peer session raised the same day: improving the 2/9, or sharpening the inclusion-exclusion overlap, can buy at most 0.000086, because the depth-two ceiling binds first. Going past 0.4926 needs depth three or more, not better depth-two constants. IN LEAN: productionRate_ladder pins the five ladder rates to rho_k = (1/2)(3/4)^k, productionCoeff_ladder pins the coefficients to the increments c_k - (2/9) c_{k-1} with c_k = 3^{-k} -- the inclusion-exclusion against the depth-two OE family, which is (5.9) -- and productionCoeff_ladder_closed gives the collapsed form 3^{-(k+1)}. Before this the eight constants were bare numerals with nothing tying them to the derivation. NOT a bound on any Juggler orbit, not a cycle exclusion, not a termination result; the ceiling statement is about what this method can give, not about the map."
+ },
+ {
+  "id": "J-paper-c-production-words-are-prefix-free",
+  "tag": "EXACT — LEAN VERIFIED",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "Problems/Juggler/FateProductionWords.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_fate_production_words.py"
+  ],
+  "related_conjectures": [],
+  "statement": "Paper C's finite production words are prefix-free, in Lean, for the whole family rather than for the six the manuscript fixes. Paper C (docs/theory/juggler_fate_almost_all_note.md) builds Theorem 1 from six productions V_k = (OE)^(k-1) OEE with rho_k = (1/2)(3/4)^k, 1 <= k <= 6, and uses their prefix-freeness three times: 'Production words must be prefix-free' when the candidate list is drawn up, 'These six words are prefix-free' when the six are fixed, and, load-bearing, at the close of Appendix D, 'Finally the prefix-free words give disjoint source sets, and the subtraction in (5.9) proves (5.10). This completes the analytic input to Theorem 5.3.' Until 2026-09-19 the assertion was written only and the words were not defined anywhere under formal/. Problems/Juggler/FateProductionWords.lean now defines Vword : ℕ → List Branch by Vword 0 = [odd, even, even] and Vword (k+1) = odd :: even :: Vword k, so Vword i is the paper's V_(i+1) and the six are Vword 0 .. Vword 5, and proves: Vword_length, (Vword k).length = 2k + 3; Vword_oddCount, oddCount (Vword k) = k + 1; Vword_eq_odd_cons, every production word starts odd; and Vword_prefix_iff, Vword i <+: Vword j implies i = j -- prefix-freeness for every pair of indices, by induction, the point being that V_i closes with its second E exactly where V_j for j > i opens another OE. Vword_six_prefixFree is the six-word instance and Vword_five the written-out word, both by decide +kernel. Compiles with no sorry, admit or axiom; standard axioms. WIRED INTO PAPER C 2026-09-19, by the pass this row asked for. The module is now a Paper C barrel module: imported by formal/Problems/JugglerFatePaper.lean, registered in LAYERS of lean_paths.py rather than AUXILIARY_MODULES, cited in Appendix A with its seven declarations, carried in Appendix B's hash list, and interrogated by AxiomCheckPaperC.lean, which records its six theorems as resting on Mathlib's three and nothing more. The same pass fixed the count that had blocked it: Appendix A claimed to import 'exactly the thirty modules named here' while naming 29, TerminationFloor257 being imported and never mentioned, so the barrel is now thirty-one modules and Appendix A names all thirty-one, the Lean floor row carrying TerminationFloor257 by name. WHAT THIS IS NOT: the combinatorial step only. Appendix D's analytic content -- the two-sided asymptotic for each fixed word, the coefficient c_k = 3^(-k), the landing windows with iterated ceiling endpoints -- is written proof and untouched, and disjointness of the SOURCE SETS follows from prefix-freeness only together with that layer. Not a bound on any Juggler orbit, not a cycle exclusion, not a termination result."
+ },
+ {
+  "id": "J-tao-free-term-is-live-mass",
+  "tag": "REPARAMETERIZATION",
+  "statement": "Paper C Section 10, corrected 9 September 2026. For odd n, n is a failure iff its orbit never enters the certified interval [1,N₀]. With x = exp(t), the normalized free term is ψ_F(t) = q_OO(t) lim_d P_log(τ > d | OO), where q_OO(t) = (8/t) Σ_{sqrt(x)<n≤x, word₂(n)=OO} 1/n = 1 + O(exp(−c t)); it is not exactly the conditional probability alone. A time-bounded live-count rate r gives ψ_F(t) = O(t^{−r+ε}) after weighted dyadic summation. The two-way decomposition gives φ_F(t) ≤ φ_F(t/2)/2 + (1/3+o(1)) φ_F(3t/4) + ψ_F(t)/4 + exponentially small error. If ψ_F = O(t^{−r}), it proves φ_F = O(t^{−a}) for every a < min(r,e_crit), where 2^{e_crit}/2 + (1/3)(4/3)^{e_crit} = 1. No endpoint exponent or matching lower bound is asserted. The ideal coefficient 1/4 is a separate model. For a uniform majorant E_d(y) ≤ K 2^{κd} y^{1−δ₀2^{−cd}} above a depth-independent threshold, cC < 1 is precisely the criterion for that majorant to give arbitrary logarithmic savings at d = C log₂ log y; failure of the criterion does not lower-bound the actual discrepancy or exclude other proof methods. All parity and live-pressure hypotheses remain unproved. No termination theorem is claimed.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_tao_reduction.py",
+   "tests/research/juggler_sequence/test_fate_contagion.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ }
+]

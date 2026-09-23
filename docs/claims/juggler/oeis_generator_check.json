@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-oeis-generator-published-transform-fails",
+  "tag": "REFUTED",
+  "statement": "The A100982 transform attributed to Lombardo (18 October 2019), as printed in the OEIS export of 20 September 2026, has upper limit A020914(n-1)-n-2 and fails already at n=2: the sum is empty, giving 0, whereas the unique OOEE certificate gives A100982(2)=1. This refutes the displayed formula, not the counting sequence or Paper B's independent dynamic program.",
+  "source": "docs/problems/juggler_oeis_generator_check.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_oeis_generator_check.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-oeis-generator-repaired-finite-comparison",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Using exact integer A325913 boundary indices and the A325904 recurrence, replacing the printed A100982 upper limit by A020914(n-1)-n reproduces every minimal-certificate count at orders 1..256 and every survivor count at depths 0..406 after reinserting the length-one certificate. Independent inversion from the prefix DP recovers more than 50 generator coefficients. The dated A325904 stored terms first disagree with their recurrence at index 21 (-517564939540551 versus -517564939540550), with further disagreements through stored index 26. Using those stored coefficients makes even the repaired transform fail at order 37 by one. Finite agreement is not an all-orders proof, an asymptotic estimate, or a termination result.",
+  "source": "docs/problems/juggler_oeis_generator_check.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_oeis_generator_check.py"
+  ],
+  "related_conjectures": []
+ }
+]

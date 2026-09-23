@@ -258,8 +258,9 @@ def test_lab_links_join_docs_ledger_and_correct_lean_docstring(tmp_path, monkeyp
     (tmp_path / 'formal/Problems').mkdir(parents=True)
     (tmp_path / 'docs/theory').mkdir(parents=True)
     (tmp_path / 'docs/theory/paper.md').write_text('An identity involving A000002.\n')
-    (tmp_path / 'docs/theory/theorem_ledger.json').write_text(json.dumps([
-        {'id': 'test-claim', 'statement': 'A000002 under a condition', 'tag': 'EXACT — HUMAN PROOF',
+    (tmp_path / 'docs/claims/shared').mkdir(parents=True)
+    (tmp_path / 'docs/claims/shared/example.json').write_text(json.dumps([
+        {'source': 'docs/theory/paper.md', 'id': 'test-claim', 'statement': 'A000002 under a condition', 'tag': 'EXACT — HUMAN PROOF',
          'lean': 'Problems/Test.lean', 'decl': 'Math.fibonacci_count'}]))
     (tmp_path / 'formal/Problems/Test.lean').write_text('namespace Math\n'
         'theorem previous : True := trivial\n/-- A000002 interpretation. -/\n'

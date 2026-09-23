@@ -153,8 +153,8 @@
       "conjecture": [],
       "decision": "PARK",
       "ledger_ids": [
-        "J-block-map-q-trajectories",
-        "J-block-map-q-state"
+        "J-block-map-q-state",
+        "J-block-map-q-trajectories"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -187,12 +187,12 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-three-even-eee",
-        "J-three-even-eoee",
-        "J-three-even-eooee",
-        "J-three-even-eoooee",
         "J-three-even-eeoe",
+        "J-three-even-eoee",
         "J-three-even-eoeoe",
-        "J-three-even-eooeoe"
+        "J-three-even-eooee",
+        "J-three-even-eooeoe",
+        "J-three-even-eoooee"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -224,8 +224,8 @@
       "conjecture": [],
       "decision": "PARK",
       "ledger_ids": [
-        "J-cyclemin-short-ee-compose",
-        "J-cyclemin-short-defect-obstruction"
+        "J-cyclemin-short-defect-obstruction",
+        "J-cyclemin-short-ee-compose"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -241,9 +241,9 @@
       "conjecture": [],
       "decision": "PARK",
       "ledger_ids": [
-        "J-cyclemin-short-reroot",
         "J-cyclemin-short-31-exponent",
-        "J-cyclemin-short-front-census"
+        "J-cyclemin-short-front-census",
+        "J-cyclemin-short-reroot"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -324,8 +324,8 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-paper-b-increment-is-not-a-rotation-function",
-        "J-paper-b-meander-constant-derived",
         "J-paper-b-increment-tension-is-the-class-method",
+        "J-paper-b-meander-constant-derived",
         "J-residue-classes-lose-a-square-root-on-jump-functions"
       ],
       "aliases": [],
@@ -363,8 +363,8 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-code-mass-kernel-foundation",
-        "J-even-fibre-exact-log-weight",
-        "J-code-weight-cutoff-transport"
+        "J-code-weight-cutoff-transport",
+        "J-even-fibre-exact-log-weight"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -399,25 +399,25 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-padic-periodic-cycle-transfer",
-        "J-padic-orbit-code",
-        "J-rational-terminating-orbit-bridge",
-        "J-juggler-is-collatz-one-exponential-up",
-        "J-word-density-results-are-not-juggler-specific",
-        "J-proposition-j-on-collatz-is-terras",
-        "J-proposition-j-loss-is-the-union-bound",
+        "C-ancestor-source-weighted-equivalence",
+        "J-collatz-bridge-is-exact-at-the-word-level",
+        "J-collatz-complete-stopping-loses-moment",
+        "J-empty-window-is-two-theorems-not-one",
         "J-good-set-walsh-route-is-refuted",
         "J-good-set-wiener-norm-carries-the-rotation",
-        "J-collatz-bridge-is-exact-at-the-word-level",
-        "J-survivor-count-is-a-collatz-residue-count",
-        "J-winkler-sandwich-holds-on-the-laboratory-counts",
+        "J-juggler-is-collatz-one-exponential-up",
+        "J-padic-orbit-code",
+        "J-padic-periodic-cycle-transfer",
+        "J-paper-c-ceiling-is-the-collatz-walk-mgf",
         "J-paper-c-collatz-analogue-is-false-by-exhibit",
         "J-paper-c-contagion-dichotomy-is-log-mass",
-        "J-paper-c-ceiling-is-the-collatz-walk-mgf",
-        "J-collatz-complete-stopping-loses-moment",
+        "J-proposition-j-loss-is-the-union-bound",
+        "J-proposition-j-on-collatz-is-terras",
+        "J-rational-terminating-orbit-bridge",
+        "J-survivor-count-is-a-collatz-residue-count",
         "J-survivor-count-is-the-certificate-tail",
-        "J-empty-window-is-two-theorems-not-one",
-        "C-ancestor-source-weighted-equivalence"
+        "J-winkler-sandwich-holds-on-the-laboratory-counts",
+        "J-word-density-results-are-not-juggler-specific"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -440,14 +440,14 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-paper-a-finance-transposed-reproduces-eliahou-and-hercher",
-        "J-cycle-gaps-are-mirror-images",
+        "J-collatz-cycle-equation-is-a-word-divisibility",
         "J-collatz-even-step-charge-identity",
         "J-collatz-walk-charge-constant",
         "J-collatz-walk-charge-is-sharp",
-        "J-collatz-cycle-equation-is-a-word-divisibility",
+        "J-cycle-gaps-are-mirror-images",
         "J-juggler-cycle-words-are-collatz-negative-cycle-words",
-        "J-negative-cycle-finance-is-the-juggler-mirror"
+        "J-negative-cycle-finance-is-the-juggler-mirror",
+        "J-paper-a-finance-transposed-reproduces-eliahou-and-hercher"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -465,24 +465,24 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-collision-bound-half-exponent",
-        "J-collision-bound-does-not-invert",
-        "J-collision-bound-phase0-census",
-        "J-tau-le-sigma",
-        "J-walsh-downweighting-survives-live",
         "J-bad-set-spectrum-cannot-win",
-        "J-walsh-restricted-product-shape",
-        "J-live-set-tilted-fair",
-        "J-tilted-live-mass-is-expanding",
-        "J-tilted-live-meander",
-        "J-dominant-defect-at-walk-minimum",
+        "J-collision-bound-does-not-invert",
+        "J-collision-bound-half-exponent",
+        "J-collision-bound-phase0-census",
         "J-damping-at-running-minimum",
-        "J-ladder-density-first-renewal",
-        "J-live-set-ladder-factorisation",
+        "J-dominant-defect-at-walk-minimum",
         "J-excursion-parity-monomial-twists",
         "J-first-renewal-density-three-phases",
+        "J-ladder-density-first-renewal",
+        "J-live-set-ladder-factorisation",
+        "J-live-set-tilted-fair",
         "J-renewal-chain-conserves-depth",
-        "J-the-meander-is-shared-and-supplies-paper-bs-polynomial"
+        "J-tau-le-sigma",
+        "J-the-meander-is-shared-and-supplies-paper-bs-polynomial",
+        "J-tilted-live-mass-is-expanding",
+        "J-tilted-live-meander",
+        "J-walsh-downweighting-survives-live",
+        "J-walsh-restricted-product-shape"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -544,8 +544,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-cube-not-square-split",
-        "J-cube-even-is-progress"
+        "J-cube-even-is-progress",
+        "J-cube-not-square-split"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -561,8 +561,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-cube-odd-even-reset",
-        "J-cube-odd-even-below-square"
+        "J-cube-odd-even-below-square",
+        "J-cube-odd-even-reset"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -695,8 +695,8 @@
       "conjecture": [],
       "decision": "CLOSE",
       "ledger_ids": [
-        "J-cycle-ceiling-landing",
-        "J-ceiling-finance-leftover-killer"
+        "J-ceiling-finance-leftover-killer",
+        "J-cycle-ceiling-landing"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -782,15 +782,15 @@
       "conjecture": [],
       "decision": "PARK",
       "ledger_ids": [
-        "J-cycle-absolute-cell-grid-charge",
         "J-cycle-absolute-cell-extrema",
-        "J-cycle-threshold-phase-plateau",
-        "J-cycle-threshold-common-period",
-        "J-cycle-cubic-sorted-grid",
-        "J-cycle-unit-perturbation",
+        "J-cycle-absolute-cell-grid-charge",
         "J-cycle-branch-offset-obstruction",
         "J-cycle-cubic-band-order",
-        "J-cycle-threshold-relaxation"
+        "J-cycle-cubic-sorted-grid",
+        "J-cycle-threshold-common-period",
+        "J-cycle-threshold-phase-plateau",
+        "J-cycle-threshold-relaxation",
+        "J-cycle-unit-perturbation"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -809,14 +809,14 @@
       "conjecture": [],
       "decision": "PARK",
       "ledger_ids": [
-        "J-cycle-ooe-polynomial-block",
-        "J-cycle-subtractive-return-step",
-        "J-cycle-short-return-cells",
+        "J-cycle-cubic-euclidean-induction",
+        "J-cycle-cubic-hidden-parity",
+        "J-cycle-cubic-return-compression",
         "J-cycle-oe-quotient-parity-carry",
         "J-cycle-ooe-carry-substitution-obstruction",
-        "J-cycle-cubic-euclidean-induction",
-        "J-cycle-cubic-return-compression",
-        "J-cycle-cubic-hidden-parity"
+        "J-cycle-ooe-polynomial-block",
+        "J-cycle-short-return-cells",
+        "J-cycle-subtractive-return-step"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -975,8 +975,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-cycle-direction-change-contraction",
         "J-cycle-direction-change-batches",
+        "J-cycle-direction-change-contraction",
         "J-cycle-direction-change-height"
       ],
       "aliases": [],
@@ -1203,27 +1203,27 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-cycle-finance-inequality",
-        "J-small-cycle-census-ten",
-        "J-cycle-itinerary-length-eleven-or-ge-fourteen",
-        "J-residual-floor-fifty-three",
-        "J-small-cycle-census-eleven",
-        "J-cycle-itinerary-length-ge-fourteen",
-        "J-small-cycle-census-eighteen",
-        "J-cycle-itinerary-length-nineteen-or-ge-thirty",
         "J-cycle-itinerary-eliahou-leftover",
         "J-cycle-itinerary-eliahou-leftover-instance",
+        "J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five",
+        "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five",
+        "J-cycle-itinerary-length-eleven-or-ge-fourteen",
+        "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
+        "J-cycle-itinerary-length-ge-fourteen",
+        "J-cycle-itinerary-length-ge-thirty",
+        "J-cycle-itinerary-length-nineteen-or-ge-thirty",
+        "J-cycle-itinerary-length-thirty-eight-or-ge-thirty-nine",
         "J-cycle-parity-finance",
         "J-cycle-parity-finance-instance",
-        "J-residual-floor-two-million",
-        "J-residual-floor-two-hundred-fifty-seven",
-        "J-small-cycle-census-nineteen",
-        "J-cycle-itinerary-length-ge-thirty",
-        "J-cycle-itinerary-length-thirty-eight-or-ge-thirty-nine",
         "J-log-two-hundred-fifty-seven-gt-sixty-one-elevenths",
-        "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
+        "J-residual-floor-fifty-three",
+        "J-residual-floor-two-hundred-fifty-seven",
         "J-residual-floor-two-hundred-sixty-one",
-        "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five",
-        "J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five"
+        "J-residual-floor-two-million",
+        "J-small-cycle-census-eighteen",
+        "J-small-cycle-census-eleven",
+        "J-small-cycle-census-nineteen",
+        "J-small-cycle-census-ten"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -1583,8 +1583,8 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-cyclemin-gap-transfer",
-        "J-cyclemin-short-cycle-rhin",
-        "J-cyclemin-mechanical-window-coin"
+        "J-cyclemin-mechanical-window-coin",
+        "J-cyclemin-short-cycle-rhin"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -1829,8 +1829,8 @@
       "conjecture": [],
       "decision": "CLOSE",
       "ledger_ids": [
-        "J-cycle-preimage-capacity-diagnostics",
-        "J-cycle-joint-prefix-capacity"
+        "J-cycle-joint-prefix-capacity",
+        "J-cycle-preimage-capacity-diagnostics"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -1855,22 +1855,22 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-cubic-critical-ooe-pair-obstruction",
-        "J-cubic-ooe-square-start-packing",
         "J-cubic-critical-cost-compatibility",
         "J-cubic-critical-cost-kernels",
-        "J-cubic-equal-gap-oo-triple",
-        "J-cubic-critical-selected-pair-localization",
         "J-cubic-critical-localization-kernels",
+        "J-cubic-critical-ooe-pair-obstruction",
         "J-cubic-critical-run-gap-budget",
         "J-cubic-critical-run-kernels",
+        "J-cubic-critical-selected-pair-localization",
+        "J-cubic-equal-gap-oo-triple",
+        "J-cubic-ooe-square-start-packing",
+        "J-cubic-remainder-assembly",
         "J-cubic-remainder-variation",
         "J-cubic-remainder-variation-kernels",
-        "J-cubic-remainder-assembly",
-        "J-square-start-ooe-cells",
-        "J-return-small-normalized-loss",
         "J-cycle-rank-capacity-envelope",
-        "J-cycle-rank-curvature-window"
+        "J-cycle-rank-curvature-window",
+        "J-return-small-normalized-loss",
+        "J-square-start-ooe-cells"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -1932,8 +1932,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-cycle-ooe-family-chain-bound",
-        "J-cycle-ooe-exact-remainder-repair"
+        "J-cycle-ooe-exact-remainder-repair",
+        "J-cycle-ooe-family-chain-bound"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -1985,8 +1985,8 @@
       "conjecture": [],
       "decision": "CLOSE",
       "ledger_ids": [
-        "J-cycle-run-alphabet",
-        "J-cycle-band-discrepancy"
+        "J-cycle-band-discrepancy",
+        "J-cycle-run-alphabet"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -2182,14 +2182,14 @@
       ],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-cyclemin-walk-transport",
-        "J-cyclemin-walk-charge-instance",
         "J-cycle-period-four-hundred-seventy-eight-thousand",
         "J-cycle-period-seven-hundred-eighty-thousand",
-        "J-cyclemin-walk-transport-envelope",
-        "J-cyclemin-hug-charge-max",
         "J-cyclemin-defect-finance-kill",
-        "J-cyclemin-rotation-average"
+        "J-cyclemin-hug-charge-max",
+        "J-cyclemin-rotation-average",
+        "J-cyclemin-walk-charge-instance",
+        "J-cyclemin-walk-transport",
+        "J-cyclemin-walk-transport-envelope"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -2221,8 +2221,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-cyclemin-walk-hitting-one",
-        "J-cyclemin-walk-crude-envelope"
+        "J-cyclemin-walk-crude-envelope",
+        "J-cyclemin-walk-hitting-one"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -2240,8 +2240,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-cyclemin-walk-hug-exchange",
-        "J-cyclemin-walk-cstar"
+        "J-cyclemin-walk-cstar",
+        "J-cyclemin-walk-hug-exchange"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -2402,10 +2402,10 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-cyclemin-walk-window-envelope",
-        "J-cyclemin-walk-word-identity",
         "J-cyclemin-hug-prefix-bound",
-        "J-cyclemin-walk-ostrowski-numeration"
+        "J-cyclemin-walk-ostrowski-numeration",
+        "J-cyclemin-walk-window-envelope",
+        "J-cyclemin-walk-word-identity"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -2421,8 +2421,8 @@
       "conjecture": [],
       "decision": "CLOSE",
       "ledger_ids": [
-        "J-cycle-real-cell-weight-obstruction",
-        "J-cycle-integer-weight-refinements"
+        "J-cycle-integer-weight-refinements",
+        "J-cycle-real-cell-weight-obstruction"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -2446,9 +2446,9 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
+        "J-cyclemin-closure-threshold",
         "J-cyclemin-gap-power-transfer",
-        "J-cyclemin-period-lower-bound",
-        "J-cyclemin-closure-threshold"
+        "J-cyclemin-period-lower-bound"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -2504,9 +2504,9 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-ooo-residual-cube",
+        "J-cyclemin-last-cluster",
         "J-cyclemin-transport-oo",
-        "J-cyclemin-last-cluster"
+        "J-ooo-residual-cube"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -2522,8 +2522,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-cyclemin-tails",
-        "J-cyclemin-slack"
+        "J-cyclemin-slack",
+        "J-cyclemin-tails"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -2619,8 +2619,8 @@
       "conjecture": [],
       "decision": "CLOSE",
       "ledger_ids": [
-        "J-depth-one-main-term",
-        "J-depth-one-arithmetic-layer"
+        "J-depth-one-arithmetic-layer",
+        "J-depth-one-main-term"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -2714,8 +2714,8 @@
       "conjecture": [],
       "decision": "CLOSE",
       "ledger_ids": [
-        "J-tower-absorption",
-        "J-effective-tower-height-reset-tolerance"
+        "J-effective-tower-height-reset-tolerance",
+        "J-tower-absorption"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -2733,9 +2733,9 @@
       "conjecture": [],
       "decision": "PARK",
       "ledger_ids": [
-        "J-odd-pred-empty-cube",
+        "J-empty-odd-pe-forward",
         "J-empty-odd-pe-landings",
-        "J-empty-odd-pe-forward"
+        "J-odd-pred-empty-cube"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -2807,8 +2807,8 @@
       "conjecture": [],
       "decision": "PARK",
       "ledger_ids": [
-        "J-escape-episode-shape",
-        "J-escape-episode-dichotomy"
+        "J-escape-episode-dichotomy",
+        "J-escape-episode-shape"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -2857,9 +2857,9 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
+        "J-cyclemax-succ-sq",
         "J-even-count-le-three",
-        "J-first-even-overshoots",
-        "J-cyclemax-succ-sq"
+        "J-first-even-overshoots"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -2956,8 +2956,8 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-expanding-block-even-bound",
-        "J-persistent-implies-expanding",
-        "J-expanding-grammar-obstruction"
+        "J-expanding-grammar-obstruction",
+        "J-persistent-implies-expanding"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -2973,9 +2973,9 @@
       "conjecture": [],
       "decision": "CLOSE",
       "ledger_ids": [
+        "J-expanding-concat-is-ce",
         "J-exponent-expanding-append",
-        "J-minimal-prefix-noncontracting",
-        "J-expanding-concat-is-ce"
+        "J-minimal-prefix-noncontracting"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -3009,9 +3009,9 @@
       "conjecture": [],
       "decision": "CLOSE",
       "ledger_ids": [
-        "J-weighted-slack-cocycle",
+        "J-expansion-slack-uniform-tax",
         "J-four-block-persistent-expanding",
-        "J-expansion-slack-uniform-tax"
+        "J-weighted-slack-cocycle"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -3027,8 +3027,8 @@
       "conjecture": [],
       "decision": "CLOSE",
       "ledger_ids": [
-        "J-lemma-eight-is-the-exponent-valuation",
-        "J-exponential-sends-density-to-log-density"
+        "J-exponential-sends-density-to-log-density",
+        "J-lemma-eight-is-the-exponent-valuation"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -3047,11 +3047,11 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-wuwang-import-verified-at-source",
-        "J-wuwang-effectivity-is-a-saddle-point-cost",
-        "J-rhin-eight-readings-are-one-theorem",
+        "J-moving-boundary-qsd-literature-exists-and-excludes-us",
         "J-rhin-eight-has-no-computed-threshold",
-        "J-moving-boundary-qsd-literature-exists-and-excludes-us"
+        "J-rhin-eight-readings-are-one-theorem",
+        "J-wuwang-effectivity-is-a-saddle-point-cost",
+        "J-wuwang-import-verified-at-source"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -3084,10 +3084,10 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-failure-margin",
-        "J-tilted-share-telescoping",
         "J-live-count-weight",
+        "J-mean-share-exceptional-depths",
         "J-mean-share-form",
-        "J-mean-share-exceptional-depths"
+        "J-tilted-share-telescoping"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -3105,18 +3105,18 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-fate-classes-backward-closed",
-        "J-fate-oe-fiber-cell",
-        "J-fate-fiber-sweep",
         "J-fate-block-average",
-        "J-fate-log-density",
-        "J-fate-contagion-equivalence",
+        "J-fate-classes-backward-closed",
         "J-fate-closure-census",
+        "J-fate-contagion-equivalence",
+        "J-fate-fiber-sweep",
+        "J-fate-log-density",
         "J-fate-odd-generation",
+        "J-fate-oe-fiber-cell",
         "J-fate-ooeee-production",
+        "J-oe-fiber-pairing-third-is-attained",
         "J-parity-triple-discrepancy-localized",
-        "J-tao-free-term-is-live-mass",
-        "J-oe-fiber-pairing-third-is-attained"
+        "J-tao-free-term-is-live-mass"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -3233,8 +3233,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-cyclemin-ooo-second-step-square",
-        "J-cyclemin-ooo-inevitable"
+        "J-cyclemin-ooo-inevitable",
+        "J-cyclemin-ooo-second-step-square"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -3360,8 +3360,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-flight-return-quantization",
-        "J-flight-record-composition"
+        "J-flight-record-composition",
+        "J-flight-return-quantization"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -3377,8 +3377,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-flight-walk-divergence",
-        "J-flight-height-law"
+        "J-flight-height-law",
+        "J-flight-walk-divergence"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -3538,8 +3538,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-horizontal-leftover-exponents",
         "J-horizontal-axis-species",
+        "J-horizontal-leftover-exponents",
         "J-horizontal-theorem-r-shortcut"
       ],
       "aliases": [],
@@ -3691,17 +3691,17 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-paper-b-jump-spectrum-is-the-survivor-sequence",
-        "J-paper-b-transposition-costs-the-barrier-mass",
-        "J-paper-b-jump-sum-is-the-meander-series",
-        "J-paper-b-sturmian-zero-law-is-the-empty-window",
-        "J-paper-b-psi-fourier-is-the-orbit-series",
-        "J-paper-b-jump-amplitude-is-not-a-fixed-point",
-        "J-paper-b-ladder-profile-is-closed-form",
-        "J-paper-b-jump-amplitude-is-closed-form",
         "J-paper-b-increment-tension-is-the-class-method",
-        "J-residue-classes-lose-a-square-root-on-jump-functions",
-        "J-paper-b-survivors-are-oeis-a076227"
+        "J-paper-b-jump-amplitude-is-closed-form",
+        "J-paper-b-jump-amplitude-is-not-a-fixed-point",
+        "J-paper-b-jump-spectrum-is-the-survivor-sequence",
+        "J-paper-b-jump-sum-is-the-meander-series",
+        "J-paper-b-ladder-profile-is-closed-form",
+        "J-paper-b-psi-fourier-is-the-orbit-series",
+        "J-paper-b-sturmian-zero-law-is-the-empty-window",
+        "J-paper-b-survivors-are-oeis-a076227",
+        "J-paper-b-transposition-costs-the-barrier-mass",
+        "J-residue-classes-lose-a-square-root-on-jump-functions"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -3722,8 +3722,8 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-rate-free-density-one",
-        "J-rate-free-prop-j-finite",
-        "J-rate-free-floor-certificates"
+        "J-rate-free-floor-certificates",
+        "J-rate-free-prop-j-finite"
       ],
       "aliases": [
         "k3"
@@ -3809,28 +3809,28 @@
       "conjecture": [],
       "decision": "PARK",
       "ledger_ids": [
-        "J-lachesis-walk-rotation",
-        "J-lachesis-loglog-clock",
-        "J-lachesis-etree-density",
+        "J-clotho-basin-every-block-criterion",
+        "J-clotho-hug-excess-rate",
+        "J-clotho-record-gap-reduction",
+        "J-clotho-slow-escape-not-forced",
+        "J-clotho-threads-per-thread-contagion",
+        "J-fate-visibility-one-law",
+        "J-flight-record-structure",
+        "J-floor-stratifies-even-cylinders-lean",
+        "J-free-term-is-fate-blind",
+        "J-hug-band-residence-is-prefix-realization",
         "J-lachesis-basin-every-block",
+        "J-lachesis-basin-inverse-sum",
         "J-lachesis-census-dominated",
+        "J-lachesis-etree-density",
+        "J-lachesis-loglog-clock",
         "J-lachesis-oe-detour-cost",
         "J-lachesis-upper-bound-free-term",
-        "J-lachesis-basin-inverse-sum",
-        "J-clotho-basin-every-block-criterion",
-        "J-clotho-slow-escape-not-forced",
-        "J-loglog-clock-walk-rotation-lean",
-        "J-loglog-clock-even-chain-burst-lean",
-        "J-clotho-hug-excess-rate",
-        "J-loglog-clock-hug-band-lean",
+        "J-lachesis-walk-rotation",
         "J-loglog-clock-band-word-forced-lean",
-        "J-hug-band-residence-is-prefix-realization",
-        "J-floor-stratifies-even-cylinders-lean",
-        "J-fate-visibility-one-law",
-        "J-clotho-record-gap-reduction",
-        "J-flight-record-structure",
-        "J-clotho-threads-per-thread-contagion",
-        "J-free-term-is-fate-blind"
+        "J-loglog-clock-even-chain-burst-lean",
+        "J-loglog-clock-hug-band-lean",
+        "J-loglog-clock-walk-rotation-lean"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -4018,8 +4018,8 @@
       "conjecture": [],
       "decision": "PARK",
       "ledger_ids": [
-        "J-minimal-anchor-leftover-spine",
-        "J-minimal-anchor-closure"
+        "J-minimal-anchor-closure",
+        "J-minimal-anchor-leftover-spine"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -4052,8 +4052,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-cyclemin-ooeooe-square-preimage",
-        "J-cyclemin-ooeooe-finite-progress"
+        "J-cyclemin-ooeooe-finite-progress",
+        "J-cyclemin-ooeooe-square-preimage"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -4090,8 +4090,8 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-above-anchor",
-        "J-no-cycle-no-bounded-nonterm",
-        "J-envelope-lt-pow"
+        "J-envelope-lt-pow",
+        "J-no-cycle-no-bounded-nonterm"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -4107,8 +4107,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-mixed-oe-eighth",
-        "J-mixed-oe-defect-gap"
+        "J-mixed-oe-defect-gap",
+        "J-mixed-oe-eighth"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -4190,9 +4190,9 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
+        "J-approx-equality-rigidity",
         "J-near-tight-scale-bounds",
-        "J-ooe-scale-decay",
-        "J-approx-equality-rigidity"
+        "J-ooe-scale-decay"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -4224,10 +4224,10 @@
       "conjecture": [],
       "decision": "CLOSE",
       "ledger_ids": [
-        "J-lemma-eight-floor-is-tight-at-every-known-cycle",
-        "J-the-missing-juggler-floor-is-worth-a-quarter-at-length-22",
         "J-knight-is-sign-free-and-catalan-bounds-the-escapes",
-        "J-multiplicative-knight-residual-is-the-state-dependence"
+        "J-lemma-eight-floor-is-tight-at-every-known-cycle",
+        "J-multiplicative-knight-residual-is-the-state-dependence",
+        "J-the-missing-juggler-floor-is-worth-a-quarter-at-length-22"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -4266,10 +4266,10 @@
       "ledger_ids": [
         "J-kl-preimage-density-transposes-to-3n-1",
         "J-kl-signed-preimage-height-gap",
-        "J-signed-preimage-expanding-block-height",
-        "J-signed-preimage-grid-counting",
+        "J-signed-grid-mean-ceiling",
         "J-signed-preimage-closed-root-domain",
-        "J-signed-grid-mean-ceiling"
+        "J-signed-preimage-expanding-block-height",
+        "J-signed-preimage-grid-counting"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -4336,8 +4336,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-trajectory-cycle-or-escape",
-        "J-minimal-ooeooe-escape-trap"
+        "J-minimal-ooeooe-escape-trap",
+        "J-trajectory-cycle-or-escape"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -4466,10 +4466,10 @@
       "ledger_ids": [
         "J-ambient-odd-discrepancy",
         "J-automatic-descent-density",
-        "J-odd-source-square-root-discrepancy",
-        "J-odd-cubic-phase-cancellation",
+        "J-cubic-inverse-cell-algebra",
         "J-first-inverse-cell-mixed-bound",
-        "J-cubic-inverse-cell-algebra"
+        "J-odd-cubic-phase-cancellation",
+        "J-odd-source-square-root-discrepancy"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -4525,8 +4525,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-cyclemin-odd-k5-y-fourth",
-        "J-cyclemin-odd-k5-generic"
+        "J-cyclemin-odd-k5-generic",
+        "J-cyclemin-odd-k5-y-fourth"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -4544,8 +4544,8 @@
       "conjecture": [],
       "decision": "CLOSE",
       "ledger_ids": [
-        "J-odd-run-recursive",
-        "J-odd-landing-set-structure"
+        "J-odd-landing-set-structure",
+        "J-odd-run-recursive"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -4606,8 +4606,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-cyclemin-odd-oooe-next-o",
-        "J-cyclemin-odd-oooe-even-q-drops"
+        "J-cyclemin-odd-oooe-even-q-drops",
+        "J-cyclemin-odd-oooe-next-o"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -4637,8 +4637,8 @@
       "conjecture": [],
       "decision": "PARK",
       "ledger_ids": [
-        "J-odd-run-itinerary-shape",
-        "J-odd-run-itinerary-grammar"
+        "J-odd-run-itinerary-grammar",
+        "J-odd-run-itinerary-shape"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -4684,8 +4684,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-cyclemin-odd-u-v-eleventh",
-        "J-cyclemin-odd-u-generic"
+        "J-cyclemin-odd-u-generic",
+        "J-cyclemin-odd-u-v-eleventh"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -4760,11 +4760,11 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-oe-low-share-weight-decays-polynomially",
-        "J-oe-fiber-block-lock",
-        "J-oe-poor-fiber-tail",
+        "J-low-share-forces-a-small-order-resonance",
         "J-oe-averaged-two-productions-reach-the-depth-two-ceiling",
-        "J-low-share-forces-a-small-order-resonance"
+        "J-oe-fiber-block-lock",
+        "J-oe-low-share-weight-decays-polynomially",
+        "J-oe-poor-fiber-tail"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -4886,12 +4886,12 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-ooe-escape-sparse-pair-obstruction",
-        "J-ooe-escape-power-tube-obstruction",
-        "J-ooe-polynomial-tail-departure",
-        "J-ooe-escape-residue-obstruction",
         "J-ooe-escape-polynomial-obstruction",
-        "J-ooe-escape-shifted-valuation"
+        "J-ooe-escape-power-tube-obstruction",
+        "J-ooe-escape-residue-obstruction",
+        "J-ooe-escape-shifted-valuation",
+        "J-ooe-escape-sparse-pair-obstruction",
+        "J-ooe-polynomial-tail-departure"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -4913,29 +4913,29 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-paper-c-hypothesis-tao-rate",
-        "J-paper-c-hypothesis-stopped-pressure",
-        "J-ooee-tao-rate-termination",
-        "J-ooee-pressure-rate-termination",
-        "J-ooee-short-mixed-modes",
-        "J-ooee-poor-fibre-tail",
-        "J-ooee-contagion-five-eighths",
-        "J-ooee-contagion-assembly",
-        "J-oe-conserved-weight-production",
         "BTA-finite-weyl-differencing",
         "BTA-quantitative-second-derivative",
-        "J-ooee-carry-cell-curvature",
-        "J-ooee-weighted-smooth-carry",
-        "J-ooee-retained-carry-correlation",
+        "J-oe-conserved-weight-production",
+        "J-ooee-actual-joint-parity",
         "J-ooee-actual-mixed-mode-cancellation",
         "J-ooee-actual-root-phase",
-        "J-ooee-nonresonant-slow-modes",
-        "J-ooee-actual-joint-parity",
+        "J-ooee-actual-weighted-production",
+        "J-ooee-carry-cell-curvature",
+        "J-ooee-contagion-assembly",
+        "J-ooee-contagion-five-eighths",
+        "J-ooee-count-poor-reciprocal-tail",
+        "J-ooee-count-poor-resonance",
         "J-ooee-exact-fibre-geometry",
         "J-ooee-exact-fibre-parity",
-        "J-ooee-count-poor-resonance",
-        "J-ooee-count-poor-reciprocal-tail",
-        "J-ooee-actual-weighted-production"
+        "J-ooee-nonresonant-slow-modes",
+        "J-ooee-poor-fibre-tail",
+        "J-ooee-pressure-rate-termination",
+        "J-ooee-retained-carry-correlation",
+        "J-ooee-short-mixed-modes",
+        "J-ooee-tao-rate-termination",
+        "J-ooee-weighted-smooth-carry",
+        "J-paper-c-hypothesis-stopped-pressure",
+        "J-paper-c-hypothesis-tao-rate"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -4985,35 +4985,35 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-fate-sweep-lemma",
-        "J-fate-recursion-lemma",
-        "J-fate-seed",
-        "J-fate-minimal-failure-oo",
+        "J-fate-block-average-layer",
+        "J-fate-certified-thirty",
+        "J-fate-chernoff-count",
+        "J-fate-classes-density-averaged",
+        "J-fate-collapse-bias",
+        "J-fate-contagion-conditional",
+        "J-fate-contagion-elementary",
+        "J-fate-cylinder-corollary",
+        "J-fate-cylinder-energy",
+        "J-fate-dyadic-pigeonhole",
+        "J-fate-energy-atoms",
+        "J-fate-fiber-parity",
         "J-fate-first-letter-split",
         "J-fate-landing-window",
-        "J-fate-cylinder-energy",
-        "J-fate-block-average-layer",
-        "J-fate-share-law-layer",
-        "J-fate-contagion-elementary",
-        "J-fate-one-sided-moments",
-        "J-fate-one-sided-conjecture",
-        "J-fate-pressure-conjecture",
-        "J-fate-one-sided-atoms",
-        "J-fate-energy-atoms",
-        "J-fate-collapse-bias",
-        "J-fate-certified-thirty",
-        "J-paper-c-trust-surface",
+        "J-fate-minimal-failure-oo",
         "J-fate-monotone-pairing-repair",
-        "J-fate-chernoff-count",
-        "J-fate-tao-union-bound",
+        "J-fate-one-sided-atoms",
+        "J-fate-one-sided-conjecture",
+        "J-fate-one-sided-moments",
+        "J-fate-pressure-conjecture",
         "J-fate-pressure-form",
-        "J-fate-cylinder-corollary",
-        "J-fate-fiber-parity",
-        "J-fate-thin-fibers",
-        "J-fate-contagion-conditional",
+        "J-fate-recursion-lemma",
+        "J-fate-seed",
+        "J-fate-share-law-layer",
+        "J-fate-sweep-lemma",
         "J-fate-tao-equivalence",
-        "J-fate-dyadic-pigeonhole",
-        "J-fate-classes-density-averaged"
+        "J-fate-tao-union-bound",
+        "J-fate-thin-fibers",
+        "J-paper-c-trust-surface"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -5113,8 +5113,8 @@
       "conjecture": [],
       "decision": "PARK",
       "ledger_ids": [
-        "J-pe-preimage-intersection-shape",
-        "J-pe-preimage-intersection"
+        "J-pe-preimage-intersection",
+        "J-pe-preimage-intersection-shape"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -5130,8 +5130,8 @@
       "conjecture": [],
       "decision": "PARK",
       "ledger_ids": [
-        "J-pe-walk-shape",
-        "J-pe-walk-predictors"
+        "J-pe-walk-predictors",
+        "J-pe-walk-shape"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -5164,8 +5164,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-cyclemin-post-ooo-oooe",
-        "J-cyclemin-post-ooo-always-drop"
+        "J-cyclemin-post-ooo-always-drop",
+        "J-cyclemin-post-ooo-oooe"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -5228,12 +5228,12 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-cyclemin-prefix-bunched-eee",
-        "J-cyclemin-prefix-bunched-eoee",
-        "J-cyclemin-prefix-bunched-eooee",
-        "J-cyclemin-prefix-bunched-eoooee",
         "J-cyclemin-prefix-bunched-eeoe",
+        "J-cyclemin-prefix-bunched-eoee",
         "J-cyclemin-prefix-bunched-eoeoe",
-        "J-cyclemin-prefix-bunched-eooeoe"
+        "J-cyclemin-prefix-bunched-eooee",
+        "J-cyclemin-prefix-bunched-eooeoe",
+        "J-cyclemin-prefix-bunched-eoooee"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -5303,9 +5303,9 @@
       "conjecture": [],
       "decision": "CLOSE",
       "ledger_ids": [
-        "J-pressure-log-order-obstruction",
+        "J-pressure-direct-routes",
         "J-pressure-log-order-certificate",
-        "J-pressure-direct-routes"
+        "J-pressure-log-order-obstruction"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -5584,8 +5584,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-cyclemin-second-post-l-ooe-square",
-        "J-cyclemin-second-post-l-ooe-oe-drops"
+        "J-cyclemin-second-post-l-ooe-oe-drops",
+        "J-cyclemin-second-post-l-ooe-square"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -5604,8 +5604,8 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-odd-remainder-even",
-        "J-sequential-defect-oo",
-        "J-peak-transports-to-oo"
+        "J-peak-transports-to-oo",
+        "J-sequential-defect-oo"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -5621,8 +5621,8 @@
       "conjecture": [],
       "decision": "CLOSE",
       "ledger_ids": [
-        "J-source-relative-odd-reset",
-        "J-episode-source-descent"
+        "J-episode-source-descent",
+        "J-source-relative-odd-reset"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -5765,13 +5765,13 @@
       "decision": "PROMOTE",
       "ledger_ids": [
         "J-fate-envelope-floor",
-        "J-tao-rate-implies-conjecture",
-        "J-tao-loglog-depth-bound",
+        "J-paper-c-chernoff-step-is-already-sharp",
         "J-tao-biased-split-bound",
-        "J-tao-pressure-form",
         "J-tao-cylinder-forms-reparameterization",
         "J-tao-free-term-is-live-mass",
-        "J-paper-c-chernoff-step-is-already-sharp"
+        "J-tao-loglog-depth-bound",
+        "J-tao-pressure-form",
+        "J-tao-rate-implies-conjecture"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -5868,43 +5868,43 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-nested-parity-linearization",
-        "J-fourth-letter-linearization",
-        "J-second-order-linearization",
-        "J-equidistribution-implies-density-one",
-        "J-tier2-gap-and-shifted-forms",
-        "J-depth4-slow-branch",
-        "J-kernel-cancellation",
+        "J-block-carry-models",
         "J-depth4-complete",
+        "J-depth4-slow-branch",
         "J-depth5-contracting",
-        "J-level3-inner-linearization",
-        "J-scale-invariant-R-extension",
-        "J-w-family-thirty-three-thirty-seconds",
-        "J-w-family-below-nine-eighths",
-        "J-length7-remainder-engine",
+        "J-depth7-engine-contracting",
+        "J-depth8-engine-quartet",
+        "J-derandomization-obstruction",
+        "J-dispersion-count-route",
+        "J-eight-step-descent-density",
+        "J-equidistribution-implies-density-one",
+        "J-fourth-letter-linearization",
+        "J-harvest-counting-terminal",
+        "J-increment-first-K3",
+        "J-increment-linearization",
+        "J-intra-block-harmonic-obstruction",
+        "J-k3-toolkit-obstruction",
+        "J-kernel-cancellation",
+        "J-length7-integer-w-block",
         "J-length7-passenger-theorem-t",
+        "J-length7-remainder-engine",
         "J-length7-vdc3-chirps",
         "J-length7-x3-qr3-carry",
-        "J-length7-integer-w-block",
-        "J-harvest-counting-terminal",
-        "J-depth7-engine-contracting",
-        "J-seven-step-descent-density",
-        "J-increment-linearization",
-        "J-increment-first-K3",
-        "J-x1-landing-criterion",
-        "J-x1-absorption-K3",
-        "J-nested-floor-without-W-family",
-        "J-k3-toolkit-obstruction",
-        "J-dispersion-count-route",
-        "J-block-carry-models",
-        "J-level3-block-phase-model",
-        "J-intra-block-harmonic-obstruction",
-        "J-pure-model-amplitude-product",
-        "J-shift-average-square-root",
-        "J-derandomization-obstruction",
         "J-length8-remainder-discard",
-        "J-depth8-engine-quartet",
-        "J-eight-step-descent-density"
+        "J-level3-block-phase-model",
+        "J-level3-inner-linearization",
+        "J-nested-floor-without-W-family",
+        "J-nested-parity-linearization",
+        "J-pure-model-amplitude-product",
+        "J-scale-invariant-R-extension",
+        "J-second-order-linearization",
+        "J-seven-step-descent-density",
+        "J-shift-average-square-root",
+        "J-tier2-gap-and-shifted-forms",
+        "J-w-family-below-nine-eighths",
+        "J-w-family-thirty-three-thirty-seconds",
+        "J-x1-absorption-K3",
+        "J-x1-landing-criterion"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -6037,8 +6037,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-cyclemin-w5-second-oo-z-fifth",
-        "J-cyclemin-w5-second-oo-u-fifth"
+        "J-cyclemin-w5-second-oo-u-fifth",
+        "J-cyclemin-w5-second-oo-z-fifth"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -6070,8 +6070,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-beatty-phase-transfer-kernel",
         "J-beatty-phase-transfer-finite-checks",
+        "J-beatty-phase-transfer-kernel",
         "J-winkler-ratio-collapses-onto-the-phase"
       ],
       "aliases": [],
@@ -6278,21 +6278,21 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-cycle-quartic-return-order",
-        "J-cycle-quartic-auxiliary-loss-budget",
-        "J-cycle-quartic-covered-cell-budget",
-        "J-cycle-quartic-component-gap-witness",
-        "J-cycle-quartic-formal-return",
-        "J-cycle-quartic-formal-cells",
-        "J-cycle-quartic-formal-projection",
-        "J-cycle-quartic-formal-budget",
-        "J-cycle-quartic-formal-defect",
-        "J-cycle-quartic-separated-cells",
-        "J-cycle-quartic-formal-gap-separation",
         "J-cycle-quartic-absolute-reentry",
+        "J-cycle-quartic-auxiliary-loss-budget",
+        "J-cycle-quartic-boundary-loss",
+        "J-cycle-quartic-component-gap-witness",
         "J-cycle-quartic-coupled-remainder",
-        "J-cycle-quartic-unbounded-equality",
-        "J-cycle-quartic-boundary-loss"
+        "J-cycle-quartic-covered-cell-budget",
+        "J-cycle-quartic-formal-budget",
+        "J-cycle-quartic-formal-cells",
+        "J-cycle-quartic-formal-defect",
+        "J-cycle-quartic-formal-gap-separation",
+        "J-cycle-quartic-formal-projection",
+        "J-cycle-quartic-formal-return",
+        "J-cycle-quartic-return-order",
+        "J-cycle-quartic-separated-cells",
+        "J-cycle-quartic-unbounded-equality"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -6319,10 +6319,10 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-residual-floor-twenty-six-million",
         "J-cycle-period-fifty-thousand",
         "J-residual-floor-one-hundred-sixty-two-million",
-        "J-residual-floor-three-hundred-fifty-million"
+        "J-residual-floor-three-hundred-fifty-million",
+        "J-residual-floor-twenty-six-million"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -6704,8 +6704,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-paper-b-five-step-count-assembly",
-        "J-paper-b-certificates-extend-to-length-seven"
+        "J-paper-b-certificates-extend-to-length-seven",
+        "J-paper-b-five-step-count-assembly"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -6910,8 +6910,8 @@
       "decision": "CLOSE",
       "ledger_ids": [
         "J-fixed-first-gap-separation",
-        "J-two-predecessor-paper-b-transfer",
-        "J-odd-predecessor-exact-transport"
+        "J-odd-predecessor-exact-transport",
+        "J-two-predecessor-paper-b-transfer"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -6930,10 +6930,10 @@
       "conjecture": [],
       "decision": "PARK",
       "ledger_ids": [
+        "J-pressure-external-average",
         "J-pressure-scale-average-contagion-transfer",
-        "J-pressure-sparse-starts",
         "J-pressure-scale-average-suffices",
-        "J-pressure-external-average"
+        "J-pressure-sparse-starts"
       ],
       "aliases": [],
       "nk_clusters": [
@@ -6986,8 +6986,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-paper-e-modular-return-exact-construction",
-        "J-paper-e-formal-notation-bridges"
+        "J-paper-e-formal-notation-bridges",
+        "J-paper-e-modular-return-exact-construction"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -7441,11 +7441,11 @@
       "conjecture": [],
       "decision": null,
       "ledger_ids": [
-        "J-kernel-cancellation",
         "J-depth4-complete",
         "J-depth5-contracting",
-        "J-parity-triple-discrepancy-localized",
-        "J-parity-paper-b-audit"
+        "J-kernel-cancellation",
+        "J-parity-paper-b-audit",
+        "J-parity-triple-discrepancy-localized"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -7475,74 +7475,74 @@
       "conjecture": [],
       "decision": null,
       "ledger_ids": [
+        "J-barrier-cap-bias-is-a-killed-diffusion",
+        "J-barrier-rate-is-the-chernoff-rate-at-its-slope",
+        "J-boundary-fraction-is-a-step-function-on-the-orbit",
+        "J-boundary-fraction-is-the-clean-coordinate",
+        "J-boundary-fraction-jumps-at-every-rational-slope",
+        "J-bounded-variation-is-a-critical-cocycle-exponent",
+        "J-bump-kernel-factorises-into-distance-and-phase",
+        "J-convergent-word-errs-at-delta-t-squared",
+        "J-count-recursion-is-the-boundary-mass",
+        "J-cycle-period-bounds-are-one-semiconvergent-family",
+        "J-cycle-records-are-the-staircase-non-jumps",
         "J-equidistribution-implies-density-one",
-        "J-rate-free-density-one",
+        "J-g-of-one-is-a-ladder-transform-and-stops-there",
+        "J-killed-chain-is-rho-null",
+        "J-killed-walk-forgets-polynomially",
+        "J-least-peak-staircase-is-beta-ostrowski",
+        "J-log-psi-is-a-coboundary-over-the-rotation",
+        "J-memory-loss-exponent-is-not-uniform",
+        "J-near-closure-costs-nothing-in-word-count",
+        "J-no-exponential-weight-restores-the-gap",
+        "J-non-rising-barrier-step-doubles-the-count",
+        "J-noncontracting-peak-supremum-log2-three",
+        "J-paper-b-E-is-the-exponent-walk",
+        "J-paper-b-count-is-the-level-zero-bad-count",
         "J-paper-b-defect-coefficient-chain",
         "J-paper-b-linearisation-E-lt-2",
-        "J-paper-b-screen-thresholds-are-hypotheses",
-        "J-paper-b-E-is-the-exponent-walk",
-        "J-paper-b-screen-skips-the-maximal-defect",
-        "J-paper-b-screen-is-a-walk-condition",
-        "J-noncontracting-peak-supremum-log2-three",
-        "J-paper-b-count-is-the-level-zero-bad-count",
-        "J-paper-c-exponent-is-paper-b-rate-at-level-zero",
-        "J-the-two-tilts-are-one-measure",
-        "J-least-peak-staircase-is-beta-ostrowski",
-        "J-paper-b-meander-constant-splits",
         "J-paper-b-meander-constant-derived",
-        "J-g-of-one-is-a-ladder-transform-and-stops-there",
-        "J-cycle-records-are-the-staircase-non-jumps",
-        "J-the-cycle-staircase-split-is-a-sign-condition",
-        "J-near-closure-costs-nothing-in-word-count",
-        "J-cycle-period-bounds-are-one-semiconvergent-family",
-        "J-the-55-family-is-the-last-hard-one-in-reach",
-        "J-period-family-arithmetic-in-lean",
-        "J-theorem-six-one-threshold-is-slack",
+        "J-paper-b-meander-constant-splits",
         "J-paper-b-meander-prefactor-is-almost-periodic",
+        "J-paper-b-screen-is-a-walk-condition",
+        "J-paper-b-screen-skips-the-maximal-defect",
+        "J-paper-b-screen-thresholds-are-hypotheses",
         "J-paper-b-tilt-reduction-and-the-phase-factor",
-        "J-psi-is-bounded-variation-with-an-ostrowski-spectrum",
-        "J-psi-jumps-are-the-rotation-orbit-of-zero",
-        "J-psi-jump-amplitudes-are-only-partly-resolvable",
+        "J-paper-c-exponent-is-paper-b-rate-at-level-zero",
+        "J-parity-leftovers-are-a-one-sided-bohr-set",
+        "J-period-family-arithmetic-in-lean",
+        "J-phase-shift-is-one-update-and-R-halves",
+        "J-profile-is-linear-times-geometric-in-the-line-coordinate",
         "J-psi-amplitude-ratio-is-one-over-rho-at-the-sturmian-zeros",
         "J-psi-amplitude-rule-is-second-order-in-the-sturmian-word",
-        "J-psi-reconstructed-from-its-jump-measure",
-        "J-sturmian-zero-step-leaves-the-raw-jump-invariant",
-        "J-non-rising-barrier-step-doubles-the-count",
-        "J-count-recursion-is-the-boundary-mass",
-        "J-boundary-fraction-is-the-clean-coordinate",
-        "J-rho-has-a-tail-variable-variational-formula",
-        "J-killed-walk-forgets-polynomially",
-        "J-log-psi-is-a-coboundary-over-the-rotation",
         "J-psi-bounded-only-at-resolvable-resonances",
-        "J-boundary-fraction-is-a-step-function-on-the-orbit",
-        "J-r-jumps-halve-at-the-sturmian-zeros",
-        "J-phase-shift-is-one-update-and-R-halves",
+        "J-psi-is-bounded-variation-with-an-ostrowski-spectrum",
+        "J-psi-jump-amplitudes-are-only-partly-resolvable",
+        "J-psi-jumps-are-summable-and-psi-is-bounded-variation",
+        "J-psi-jumps-are-the-rotation-orbit-of-zero",
+        "J-psi-reconstructed-from-its-jump-measure",
+        "J-q-process-is-bessel-three-and-transient",
         "J-quasi-stationary-convergence-is-not-diophantine",
         "J-quasi-stationary-profile-is-tight-shape-unsettled",
-        "J-rational-barriers-give-exact-profiles",
+        "J-r-jumps-halve-at-the-sturmian-zeros",
+        "J-rate-free-density-one",
         "J-rate-slope-derivative-is-the-tilt",
-        "J-barrier-rate-is-the-chernoff-rate-at-its-slope",
-        "J-barrier-cap-bias-is-a-killed-diffusion",
-        "J-boundary-fraction-jumps-at-every-rational-slope",
-        "J-bump-kernel-factorises-into-distance-and-phase",
-        "J-no-exponential-weight-restores-the-gap",
-        "J-killed-chain-is-rho-null",
-        "J-memory-loss-exponent-is-not-uniform",
-        "J-q-process-is-bessel-three-and-transient",
-        "J-yaglom-rate-is-one-over-d",
-        "J-sturmian-driving-is-uniform-in-q",
-        "J-convergent-word-errs-at-delta-t-squared",
-        "J-yaglom-constant-is-the-relaxation-time",
-        "J-profile-is-linear-times-geometric-in-the-line-coordinate",
-        "J-tail-amplitude-is-a-cocycle-over-the-boundary-fraction",
-        "J-tail-spectral-gap-closes-like-one-over-root-q",
-        "J-bounded-variation-is-a-critical-cocycle-exponent",
-        "J-psi-jumps-are-summable-and-psi-is-bounded-variation",
+        "J-rational-barriers-give-exact-profiles",
+        "J-rho-has-a-tail-variable-variational-formula",
         "J-staircase-and-cycle-records-split-betas-semiconvergents",
-        "J-parity-leftovers-are-a-one-sided-bohr-set",
-        "J-tail-double-root-in-lean-and-paper-b-updated",
+        "J-sturmian-driving-is-uniform-in-q",
+        "J-sturmian-zero-step-leaves-the-raw-jump-invariant",
+        "J-tail-amplitude-is-a-cocycle-over-the-boundary-fraction",
         "J-tail-does-not-determine-the-boundary-fraction",
-        "J-weight-basis-prefactor-is-the-same-rotation"
+        "J-tail-double-root-in-lean-and-paper-b-updated",
+        "J-tail-spectral-gap-closes-like-one-over-root-q",
+        "J-the-55-family-is-the-last-hard-one-in-reach",
+        "J-the-cycle-staircase-split-is-a-sign-condition",
+        "J-the-two-tilts-are-one-measure",
+        "J-theorem-six-one-threshold-is-slack",
+        "J-weight-basis-prefactor-is-the-same-rotation",
+        "J-yaglom-constant-is-the-relaxation-time",
+        "J-yaglom-rate-is-one-over-d"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -7658,10 +7658,10 @@
       "conjecture": [],
       "decision": null,
       "ledger_ids": [
-        "J-beatty-survivor-counting-identity",
-        "J-beatty-phase-transfer-kernel",
         "J-beatty-phase-profile-jump-series",
-        "J-beatty-phase-transfer-finite-checks"
+        "J-beatty-phase-transfer-finite-checks",
+        "J-beatty-phase-transfer-kernel",
+        "J-beatty-survivor-counting-identity"
       ],
       "aliases": [],
       "nk_clusters": []
@@ -7691,10 +7691,10 @@
       "conjecture": [],
       "decision": null,
       "ledger_ids": [
-        "J-residual-floor-twenty-six-million",
         "J-cycle-period-fifty-thousand",
         "J-residual-floor-one-hundred-sixty-two-million",
-        "J-residual-floor-three-hundred-fifty-million"
+        "J-residual-floor-three-hundred-fifty-million",
+        "J-residual-floor-twenty-six-million"
       ],
       "aliases": [],
       "nk_clusters": []

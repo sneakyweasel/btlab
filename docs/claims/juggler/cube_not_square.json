@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-cube-even-is-progress",
+  "tag": "REFUTED",
+  "statement": "An even landing in the cube-not-square cell n^2 ≤ x < n^3 is FiniteProgress. False. For n=3 the even x=16 lies in [9,27) and T(16)=4 ≥ 3. The second even then drops: T(4)=2 < 3. 1517 takes the odd branch (43916043). This is not PredClosure, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_cube_not_square.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cube_not_square.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cube-not-square-split",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If n ≥ 2 and n^2 ≤ x < n^3, then an even x resets to n ≤ T(x) < n^2, and an odd x lifts to T(x) ≥ n^3. Even x < n^3 already gives T(x) < n^2 because n^3 < n^4. If that next image is also even, two even letters are FiniteProgress. On MinimalNonTerm a cube-cell even landing has odd next image. This is not a claim that a cube-cell even landing drops, not a next-letter envelope, and not a halt theorem.",
+  "source": "docs/problems/juggler_cube_not_square.md",
+  "lean": "Problems/Juggler/MinimumRelative.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cube_not_square.py"
+  ],
+  "related_conjectures": []
+ }
+]

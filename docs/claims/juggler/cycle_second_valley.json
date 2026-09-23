@@ -1,0 +1,28 @@
+[
+ {
+  "id": "J-second-valley-landing",
+  "tag": "REPARAMETERIZATION",
+  "statement": "On a Juggler CycleMin of length 84 at residual floor 261 the first circuit cannot start OE. After k≥2 odds the even-run odd landing is a corollary of even_iter_lt_succ_pow plus odd parity. At n=261 the first circuit can land at 281 (k=12, r=7). From that valley the next circuit can land at 303 (k=12, r=7). A later valley may start OE once T(v) is even and ≥ n² (cycleMin_even_ge_sq); the witness v=1687 lands at 263. This is the named upper cell, not a new valley-height law. Not a leftover-length exclusion and not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_second_valley.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_second_valley.py"
+  ],
+  "related_conjectures": [
+   "juggler_second_valley_leftover_killer"
+  ]
+ },
+ {
+  "id": "J-second-valley-leftover-killer",
+  "tag": "REFUTED",
+  "statement": "CycleMin geometry forces every non-start valley on leftover L=84 at m≥3 to sit at ≥ 281, and that height-split excludes the leftover at residual floor 261 under a proved finance constant. False. Height-split constant 1 first kills at 281 but is not a proved form. Lean inv-sum still misses when both others sit at 281 (S≈0.012126>θ·61/11≈0.011568). The adversarial Lean-allowed triple is 261/281/303: constant 6/5 RHS≈0.002429>θ≈0.002086; inv-sum S≈0.011868. Those forms first kill at n2≥369. A later OE landing at 263 requires a start valley ≥1687 and that triple dies. Not a leftover-itinerary census and not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_second_valley.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_second_valley.py"
+  ],
+  "related_conjectures": [
+   "juggler_second_valley_leftover_killer"
+  ]
+ }
+]

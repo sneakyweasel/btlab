@@ -1,0 +1,51 @@
+[
+ {
+  "id": "J-rate-free-density-one",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Rate-free and biased-split reductions of the density-one hypothesis. (A) If for each FIXED depth d every parity class w of length d satisfies #w(N) = 2^{-d} N + o(N) as N -> infinity (qualitative, no rate, non-uniform in d), then the set of Juggler starts with a finite descent certificate has natural density one: Proposition J's inequality (row J-equidistribution-implies-density-one) #(no contracting prefix <= d) <= (N_d/2^d) N + N_d E_d(N), with N -> infinity taken BEFORE d -> infinity, gives upper density <= N_d/2^d for every d (and <= e^{-cd} via the closed form); certificates are the Lean power envelope (power_bound_word: an exponent-negative prefix 3^{a_k} < 2^k forces x_k <= n^{3^a/2^k} < n). (B) Full equidistribution is not needed: if for each fixed depth every surviving class sends O-share at most 1 - beta with beta > beta* = 1 - log2/log3 = 0.36907..., rate-free, then the never-contracting measure at depth d is <= exp(-D(gamma || 1-beta) d) by generating-function domination (sum over classes of mu(sigma) x^{o(sigma)} <= (beta + (1-beta)x)^d) and Chernoff at gamma = log2/log3 (a never-contracting itinerary has o_d >= gamma d), and density one follows the same way. Consequence for the K3 wall: the BB/GG/JJ obstruction ladder (rows J-k3-toolkit-obstruction, J-intra-block-harmonic-obstruction, J-derandomization-obstruction) blocks power-savings mechanisms only; the weakest sufficient kernel input is rate-free (or 0.37-biased) fixed-depth equidistribution - recorded as the active conjecture juggler_tower_rate_free_equidistribution, ergodic species (bracket-Hardy / nilmanifold), outside the toolkit the wall closes. Exact profiles: never-negative word count C_200/2^200 = 3.06e-6 (empirical rate 0.0635/letter, Hoeffding majorizes at 0.0343 -- the apparent factor of two is the d^{-3/2} of row J-equidistribution-implies-density-one, not a different exponential rate; the observed rate falls to 0.0401 by d = 1600 against an asymptote of 0.034688); biased adversary at beta = 0.37 decays at 0.0154/letter at d = 200. Not a K3 bound, not a density-one claim, not a halt theorem; Conjectures K/V/HH stay PARKED unchanged; Paper B untouched.",
+  "source": "docs/problems/juggler_k3_rate_free.md",
+  "lean": "Problems/Juggler/RateFreeDensity.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_k3_rate_free.py",
+   "tests/research/juggler_sequence/paper_b_prefix_count/test_counting.py",
+   "tests/research/juggler_sequence/paper_b_prefix_count/test_publication.py"
+  ],
+  "related_conjectures": [
+   "juggler_tower_rate_free_equidistribution"
+  ]
+ },
+ {
+  "id": "J-rate-free-floor-certificates",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If every positive m <= N0 reaches 1 and every n > N0 has FiniteProgress, then every positive n reaches 1. Lean theorem reachesOne_of_floor_and_certificates. The certificate hypothesis is universal, not a density statement. Not a halt theorem.",
+  "source": "docs/problems/juggler_k3_rate_free.md",
+  "lean": "Problems/Juggler/RateFreeDensity.lean",
+  "decl": "reachesOne_of_floor_and_certificates",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_k3_rate_free.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-rate-free-prop-j-finite",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Finite Proposition J. If every length-d parity class w satisfies classCount w N * 2^d <= N + E * 2^d, then the number of starts in 1..N whose length-d itinerary is prefix-noncontracting obeys uncertifiedCount d N * 2^d <= neverNegCount d * (N + E * 2^d). Any finite set of starts in 1..N with no coefficient stop sits inside that uncertified set. Lean theorem propJ_count. Not a density-one claim and not a halt theorem.",
+  "source": "docs/problems/juggler_k3_rate_free.md",
+  "lean": "Problems/Juggler/RateFreeDensity.lean",
+  "decl": [
+   "propJ_count",
+   "uncertifiedCount",
+   "neverCertified_subset_uncertified"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_k3_rate_free.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [
+   "juggler_tower_rate_free_equidistribution"
+  ]
+ }
+]

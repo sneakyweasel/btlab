@@ -33,8 +33,8 @@ alwaysApply: true
 
 # Registration gates (each forgotten one costs a failing test)
 
-- Ledger: edit `docs/theory/theorem_ledger.json` (`indent=1`, UTF-8,
-  literal `—`), then `python tools/render_theorem_ledger.py` and
+- Ledger: edit `docs/claims/<programme>/<topic>.json` (`indent=1`, UTF-8,
+  literal `—`), then regenerate both aggregate views with `python tools/render_theorem_ledger.py` and
   `--check`. Every `source`/`tests`/`lean` path must exist.
 - Docs: `tests/integration/test_docs_links.py` reads every markdown
   link as a filesystem path; keep bracket-then-paren math out of prose.

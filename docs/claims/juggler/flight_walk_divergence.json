@@ -1,0 +1,34 @@
+[
+ {
+  "id": "J-flight-height-law",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Walk-height law (divergence rate) on descent-free prefixes: if AboveAnchor(n,w) with n >= 400 and the exponent walk is at height >= B doublings at step k (2^(k+B) <= 3^{a_k} with a_k the odd count of the k-prefix), then 2^B (log n − D) <= log x_k with the transport deficit D = 1.05 e/n + 0.7 o/(n√n); exponentiating, x_k >= (n e^{−D})^{2^B} — heights along a descent-free prefix are doubly exponential in the walk height (aboveAnchor_height_of_walk, weight form two_pow_le_walkWeight, WalkTransport.lean). One-case composition of aboveAnchor_transport with 2^B <= w_k = 3^{a_k}/2^k; when log n < D the bound is vacuously true since x_k >= 1. Appearing corollary of the September 2026 re-rooting of transport on AboveAnchor: composed with the flight walk-divergence theorem (J-flight-walk-divergence, human pigeonhole glue), every descent-free flight realizes this rate along an unbounded walk, so a divergent orbit escapes doubly exponentially in its walk height. Nonvacuous while D < log n (prefix lengths up to order n log n / 1.05); constrains descent-free prefixes only — not a halt theorem, not a divergence theorem, not a cycle obstruction.",
+  "source": "docs/problems/juggler_flight_walk_divergence.md",
+  "lean": "Problems/Juggler/WalkTransport.lean",
+  "decl": [
+   "aboveAnchor_height_of_walk",
+   "two_pow_le_walkWeight",
+   "aboveAnchor_transport"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_flight_walk_divergence.py"
+  ],
+  "related_conjectures": [
+   "juggler_asymptotic_descent"
+  ]
+ },
+ {
+  "id": "J-flight-walk-divergence",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Flight walk-divergence: every descent-free Juggler flight (infinite orbit with x_k >= n for all k) has unbounded exponent walk sup_k u_k = ∞, where u_k = a_k log_2 3 − k. Proof: a walk bounded by B forces x_k <= n^{2^B} (power_bound_word / follows_log_le_walkWeight, Lean), so the flight visits finitely many states and is eventually periodic; its period word is a realized return and hence strictly expanding, 2^p < 3^o (cycle_strict_envelope, Lean; 3^o = 2^p is impossible for p >= 1), so each traversal adds δ = log_2(3^o/2^p) > 0 to the walk — contradiction. Since the hug walk is bounded (hugOdds_pow_ge/hugOdds_pow_lt: 0 <= u^hug < log_2 3, Lean), no flight stays within bounded excess of the hug itinerary: the extremal hug-hugging adversary of the above-anchor branch is cycle-exclusive. Dichotomy at the laboratory frontier: a descent-free flight starts above the certified floor 162849448 and either enters a nontrivial cycle (minimum above the floor, period >= 478245) or has unbounded states (a divergent orbit). Answers the Paper B × hug flights question negatively for Paper B as mechanism: its proved depth-<=4 layer is ambient-density, the ambient-to-orbit transfer stays REFUTED, and no finite window is forbidden pointwise; the kill uses pigeonhole plus strict expansion instead. Not a halt theorem, not a divergent-orbit existence claim, and not a claim about orbits that dip below their anchor.",
+  "source": "docs/problems/juggler_flight_walk_divergence.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_flight_walk_divergence.py"
+  ],
+  "related_conjectures": [
+   "juggler_asymptotic_descent"
+  ]
+ }
+]

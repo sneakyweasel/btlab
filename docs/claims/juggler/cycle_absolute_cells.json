@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-cycle-absolute-cell-extrema",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Every actual primitive Juggler cycle with minimum m>1 and maximum M<m^3 satisfies, with q=J(m)=floor(sqrt(m^3)), r=m^3-q^2, and largest odd state u: M<=(q-1)^2-2, m^3-M>=r+2q+1, u^3<=[q(q-2)]^2-2, and u<m^2-(4/3)sqrt(m). Equivalently the last bound implies u<=m^2-2 floor(2 sqrt(m)/3)-2. Proof: q and J(M) are adjacent odd ranks, so J(M)<=q-2; the even upper square-cell face leaves an even gap of at least two. The largest odd state maps to M and its upper cell leaves another gap of two. The real strip follows from (s^4-4s/3)^3-(s^6-2s^3)^2=(4/27)s^3(9s^3-16)>0 for s=sqrt(m)>=sqrt(3). These are conditional extrema exclusions; they leave a large region and do not exclude the full cubic band or improve the Paper A's numerical period lower bound. The two-edge m=9,q=27,M=674 control attains the maximum ceiling without forming a Juggler cycle. AI-assisted written proof with separate AI algebra audits; no new Lean verification or independent human review claimed.",
+  "source": "docs/problems/juggler_cycle_absolute_cells.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_band.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-threshold-phase-plateau",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every integer b>=3, independently adding pre-floor phases theta_O,theta_E in [0,1/(2b^3)] to the two real branches of S_b leaves every output on [b,b^3) unchanged. Hence all finite dynamics, cycles, rank rotation and output anchors persist on that positive phase rectangle. Exact proof: B=b^3, integer branch radicand N<B^2, q=floor(sqrt N), q+1<=B; then [2B(q+1)-1]^2-4B^2N=4B^2[(q+1)^2-N]-4B(q+1)+1>=1, so sqrt N<q+1-1/(2B), including the maximal allowed phase. This rules out strict rotation-response arguments requiring every positive phase to change the map. It does not prove a wrong-parity state or refute a proof using absolute cells. The plateau is one-sided, depends on b and is not claimed sharp or uniform in b. AI-assisted written proof with exact small integer controls; no new Lean verification or independent human review claimed.",
+  "source": "docs/problems/juggler_cycle_absolute_cells.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_cubic_band.py"
+  ],
+  "related_conjectures": []
+ }
+]

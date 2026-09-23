@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-o6eeeoe-gap",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "If n ≥ 2 follows the Juggler word O^6, then T^6(n) lies at or above the EEEOE inverse cell of n: z < (v+1)^8 with v^3 < (n+1)^4. In particular OOOOOOEEEOE is not a cycle itinerary. Proof: no n < 163 follows O^6; on an O^6 run the exact cells x_k^3 < (x_{k+1}+1)^2 and x_k ≥ n compose to n^{1995} < (n+1)^{1266}(T^6(n)+1)^{64}; for n ≥ 25 one has n^{1995} > (n+1)^{1970}, and for n ≥ 16 one has (v_max+1)^8 < (n+1)^{11} (at the first O^6 start, 898^8 < 164^{11}). This replaces the leftover 4-fudge (first fire at 437599552) by the exact successor cell. The cycle-itinerary conclusion is independently Lean as no_cycle_itinerary_ooooooeeeoe in CycleMinFudge.lean (unique CycleMin-shaped rotation). The T^6 versus EEEOE cell inequalities remain human. Not a length-11 census, not the five (1,3) leftovers, and not a halt theorem.",
+  "source": "docs/problems/juggler_o6eeeoe_gap.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_o6eeeoe_gap.py"
+  ],
+  "related_conjectures": []
+ }
+]

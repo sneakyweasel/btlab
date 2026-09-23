@@ -1,0 +1,53 @@
+[
+ {
+  "id": "J-code-mass-kernel-foundation",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For positive n let e(n)=n+(n mod 2) and w(n)=log((e(n)+1)/(e(n)-1)). Lean proves w(n)>0 and sum_{n in E(m)}w(n)=w(m) for every positive m and the actual even Juggler fibre E(m), including exact conservation through every complete even inverse generation. It proves finite weighted reindexing with arbitrary real target amplitudes. For either actual signed 2-adic code H, any code predicate B, integer X>=1 and M=floor(sqrt X), codedMass_H(2B,X)=codedMass_H(B,M-1)+1_{B(H(M))}*partialMass(X,M), with 0<=partialMass(X,M)<=w(M). The infinite nonnegative coded mass is defined as the supremum of its source cutoffs; nu_H(2B)=nu_H(B), allowing infinity, follows from the cutoff bounds. A separate finite even-source identity retains any full fate predicate A(n) iff A(J(n)). Finally H_minus(16)=H_minus(18), no odd integer maps to 16, and J(7)=18. The conservation, cutoffs, and counterexample are kernel-checked; ledger label retained pending advisory statement coverage. No uniqueness, sharp reciprocal-error comparison, odd-production rate, or termination theorem is included in this row.",
+  "source": "docs/problems/juggler_code_mass_transport.md",
+  "lean": "Problems/Juggler/CodeMassTransport.lean",
+  "decl": [
+   "weight_log_ratio",
+   "weight_pos",
+   "evenBlock_mass",
+   "blockTree_mass",
+   "even_weighted_reindex",
+   "partialMass_nonneg",
+   "partialMass_le",
+   "fate_even_cutoff",
+   "minus_code_cutoff",
+   "plus_code_cutoff",
+   "codedTotal",
+   "minus_code_total",
+   "plus_code_total",
+   "code_collision_odd_preimages"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_code_mass_transport.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-code-weight-cutoff-transport",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For the unconditional minus 2-adic Juggler code H and the weight w of J-even-fibre-exact-log-weight, define nu_X(B)=sum_{1<=n<=X,H(n) in B} w(n) and nu(B) with all positive starts, allowing infinity. For every set B, nu(2B)=nu(B). For integer X>=1 and M=floor(sqrt X), nu_X(2B)=nu_{M-1}(B)+1_{H(M) in B}*sum_{n in E(M),n<=X}w(n), where E(M) is the even Juggler fibre; the boundary term lies between zero and w(M). The d-th complete even inverse generation of 2 has total weight log 3 and common code 2^(d+1) for every d>=0, so nu({2^(d+1)})>=log 3. Consequently no finite K gives nu({q})<=K/q for all positive integer codes q. The identities concern source-weighted signed coding space, not ordinary Collatz reciprocal mass; odd-production or termination estimates do not follow. AI-assisted written proof; independent review and Lean verification outstanding.",
+  "source": "docs/problems/juggler_code_mass_transport.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_code_mass_transport.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-even-fibre-exact-log-weight",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every positive integer n set e(n)=n+(n mod 2) and w(n)=log((e(n)+1)/(e(n)-1)). For every positive target m, the sum of w(n) over all even Juggler predecessors of m equals w(m) exactly. Also 1/n<=w(n)<=4/n and |w(n)-2/n|<=2/n^2; hence any source subset and cutoff have weighted mass differing from twice reciprocal mass by at most 4. For each real c this conservation law has a unique real-valued solution v with n*v(n)->c, namely v=(c/2)*w. The proof telescopes consecutive even-cell ratios, then iterates fibres to prove uniqueness at arbitrarily large source heights. AI-assisted written proof; independent review and Lean verification outstanding; no priority claim.",
+  "source": "docs/problems/juggler_code_mass_transport.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_code_mass_transport.py"
+  ],
+  "related_conjectures": []
+ }
+]

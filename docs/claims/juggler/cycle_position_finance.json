@@ -1,0 +1,46 @@
+[
+ {
+  "id": "J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is 84 with at least three odd-runs on a CycleMin rotation, or at least 85. At residual floor 261 the inv-sum form of cycleMin_finance (constant 1) plus a uniform odd-run height cap excludes every length-84 CycleMin with cycleCircuitCount ≤ 2: valleys ≤ m/n, first odds ≤ m/4217, later odds ≤ o/273845, evens ≤ e/n², using floorPower 261 = 4216 and floorPower 4217 = 273845. Lean theorems no_cycleMin_length_eighty_four_of_circuit_le_two and cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five in CycleHeightFinance.lean. This is not the 6/5 greedy packing of J-cycle-position-finance, not an exclusion of length 84 at m ≥ 3, not a no-cycle-of-any-length theorem, and not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_position_finance.md",
+  "lean": "Problems/Juggler/CycleHeightFinance.lean",
+  "decl": [
+   "cycle_itinerary_length_eighty_four_m_ge_three_or_ge_eighty_five",
+   "no_cycleMin_length_eighty_four_of_circuit_le_two",
+   "no_length_eighty_four_circuit_le_two",
+   "cycleMin_inv_sum_le_pack",
+   "cycleMin_l84_inv_sum_le_cap",
+   "floorPower_two_hundred_sixty_one",
+   "floorPower_four_thousand_two_hundred_seventeen"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_position_finance.py",
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-m-finance-no-length-thirty-eight",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "On a Juggler CycleMin with n ≥ 257, the existing joint-minima finance bound with climb/even error terms excludes every cycle of length 38 (any m ≤ 14). At n=257, t=⌊257^{3/2}⌋=4120, the worst case m=14 has (6/5)(14/(257 ln 257)+10/(4120 ln 4120)+14/(257² · 2 ln 257)) < θ=1−2^{38}/3^{24}. Global cycleMin_finance now also excludes L=38 via log 257 > 61/11 (J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight). This is the m-finance inequality at the Lean residual floor 257, not a new defect law and not a height-law consequence. Not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_position_finance.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_position_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-position-finance",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "On a Juggler CycleMin start n ≥ 3 with m local minima and o odd letters, after j consecutive odd steps from a valley the state is at least τ_j, where τ_0=n and τ_{j+1} is the least odd integer ≥ T(τ_j). At most m climb interiors can sit at each height τ_j, so θ ≤ (6/5)(m/(n ln n)+Σ_j C_j/(τ_j ln τ_j)+(L−o)/(n² · 2 ln n)) with greedy C_j = min(m, remaining climbs). This is strictly stronger than charging every climb at T(n) whenever o−m > m. At floor 257 it excludes every length-84 1-cycle and 2-cycle (joint-minima misses both). The Lean leftover J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five packages the m≤2 exclusion at constant 1 and floor 261; the full 6/5 greedy packing is not Lean. Adversarial circuit-partition without a height law remains a reparameterization of cycleMin_finance. Not a halt theorem and not a new paper.",
+  "source": "docs/problems/juggler_cycle_position_finance.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_position_finance.py"
+  ],
+  "related_conjectures": []
+ }
+]

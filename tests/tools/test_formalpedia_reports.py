@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import io
+from research.claims import load_claims
 import json
 
 from formalpedia_core import (
@@ -18,7 +19,7 @@ from formalpedia_core import (
 def test_review_digest_pairs_each_row_with_its_candidate_s_prose(corpus_index) -> None:
     """The digest exists so a person can decide; deciding needs the docstring beside the row."""
     index = corpus_index
-    ledger = json.load(io.open(fp_workspace.LEDGER, encoding="utf-8"))
+    ledger = load_claims(fp_workspace.ROOT).entries
     text = fp_reports.review_digest(index, ledger)
     assert "# Declaration review queue" in text
     assert "rows below, of" in text
@@ -34,7 +35,7 @@ def test_review_digest_warns_about_both_part_for_whole_failures(corpus_index) ->
     candidate, and a candidate narrower than its row. The digest names a worked example of
     each, because a reviewer cannot see either one in the numbers."""
     index = corpus_index
-    ledger = json.load(io.open(fp_workspace.LEDGER, encoding="utf-8"))
+    ledger = load_claims(fp_workspace.ROOT).entries
     text = fp_reports.review_digest(index, ledger)
     assert "record a part as the whole" in text
     assert "BTC-select3" in text                      # row broader than candidate
@@ -46,7 +47,7 @@ def test_every_digest_entry_shows_a_docstring_or_a_signature(corpus_index) -> No
     carry no docstring, so the digest falls back to the statement the docstring would have
     paraphrased."""
     index = corpus_index
-    ledger = json.load(io.open(fp_workspace.LEDGER, encoding="utf-8"))
+    ledger = load_claims(fp_workspace.ROOT).entries
     text = fp_reports.review_digest(index, ledger)
     entries = text.count("\n## ")
     assert text.count("> ") + text.count("```lean") >= entries
@@ -62,7 +63,7 @@ def test_the_digest_computes_its_precision_rather_than_asserting_one(corpus_inde
     be scored against and would only dilute the figure.
     """
     index = corpus_index
-    ledger = json.load(io.open(fp_workspace.LEDGER, encoding="utf-8"))
+    ledger = load_claims(fp_workspace.ROOT).entries
     cal = fp_matching.calibrate(index, ledger)
     assert cal["resolved"] == sum(1 for r in ledger if len(fp_identities.row_decls(r)) == 1)
     assert cal["resolved"] < sum(1 for r in ledger if fp_identities.row_decls(r))
@@ -77,7 +78,7 @@ def test_digest_flags_a_top_candidate_that_extends_a_runner_up(corpus_index) -> 
     top candidate beside a shorter runner-up is the shape that cost two wrong answers:
     q_eq_iff_of_same_bal over q_eq_iff, and predecessor_on_F over unique_predecessor."""
     index = corpus_index
-    ledger = json.load(io.open(fp_workspace.LEDGER, encoding="utf-8"))
+    ledger = load_claims(fp_workspace.ROOT).entries
     text = fp_reports.review_digest(index, ledger)
     flagged = 0
     for row in fp_matching.propose(index, ledger)["rows"]:
@@ -91,7 +92,7 @@ def test_digest_flags_a_top_candidate_that_extends_a_runner_up(corpus_index) -> 
 
 def test_coverage_digest_says_so_when_jev_has_not_been_asked(corpus_index) -> None:
     index = corpus_index
-    ledger = json.load(io.open(fp_workspace.LEDGER, encoding="utf-8"))
+    ledger = load_claims(fp_workspace.ROOT).entries
     text = fp_reports.coverage_digest(index, ledger, jev={})
     assert "has not been asked yet" in text and "\n## " not in text
 
@@ -101,7 +102,8 @@ def test_reports_ignore_stale_exports_and_see_source_changes(tmp_path, monkeypat
     source = formal / "Core" / "Example.lean"
     source.parent.mkdir(parents=True)
     source.write_text("namespace Example\ntheorem first : True := by trivial\nend Example\n")
-    ledger = tmp_path / "ledger.json"
+    ledger = tmp_path / "docs/claims/shared/example.json"
+    ledger.parent.mkdir(parents=True, exist_ok=True)
     ledger.write_text("[]")
     saved = tmp_path / "stale.json"
     saved.write_text("not even valid JSON: a report must never read this")
@@ -116,7 +118,8 @@ def test_reports_ignore_stale_exports_and_see_source_changes(tmp_path, monkeypat
 def test_report_commands_rebuild_consistently_without_saved_inventory(example_catalog, tmp_path, monkeypatch):
     index, ledger = example_catalog
     cache = tmp_path / ".cache" / "formalpedia"
-    ledger_path = tmp_path / "ledger.json"
+    ledger_path = tmp_path / "docs/claims/shared/example.json"
+    ledger_path.parent.mkdir(parents=True, exist_ok=True)
     ledger_path.write_text(json.dumps(ledger), encoding="utf-8")
     evidence = tmp_path / "evidence.json"
     evidence.write_text('{"rows": {}, "coverage": {"rows": {}}, "retained_evidence": true}')

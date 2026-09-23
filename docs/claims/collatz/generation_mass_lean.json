@@ -1,0 +1,22 @@
+[
+ {
+  "id": "C-syracuse-generation-harmonic-criterion",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For the positive 3n+1 odd-return map S and every positive odd target a, put K_d=L_+^d 1_units using the complete residue operator. Actual depth-d positive odd unit ancestors have reciprocal mass at least K_d(a)/a. If a is nonperiodic and the nonnegative series sum_d K_d(a) is not summable, the ordinary natural-number reciprocal indicator series of its actual positive odd unit ancestors is not summable. The proof identifies the full operator with actual predecessors and counts disjoint generations. The coefficient-series divergence premise remains OPEN. Kernel-checked; independent review and advisory statement coverage remain pending. The separate existence argument for a nonperiodic unit in every full fate class is not included in this formal row.",
+  "source": "docs/theory/collatz_generation_mass_lean_note.md",
+  "lean": "Problems/Collatz/FibreGeneration.lean",
+  "tests": [
+   "tests/research/collatz/test_fibre_mass.py"
+  ],
+  "related_conjectures": [],
+  "lean_trust": "kernel",
+  "decl": [
+   "Problems.Collatz.FibreGeneration.kernel",
+   "Problems.Collatz.FibreGeneration.kernel_succ",
+   "Problems.Collatz.FibreGeneration.kernel_succ_summable",
+   "Problems.Collatz.FibreGeneration.kernel_mass_le",
+   "Problems.Collatz.FibreGeneration.ancestorMass_eq_top",
+   "Problems.Collatz.FibreGeneration.ancestor_reciprocals_not_summable"
+  ]
+ }
+]

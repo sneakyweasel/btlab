@@ -1,0 +1,28 @@
+[
+ {
+  "id": "J-ceiling-finance-leftover-killer",
+  "tag": "REFUTED",
+  "statement": "The even-run upper cell M < (p+1)^{2^r}, coupled to the odd-run height of the peak, forces enough 1/(x ln x) mass out of the valleys that leftover L=84 at m≥3 dies at residual floor 261 under a proved finance constant. False. At n=261, m=3, the adversarial peak run k=24 has r=14 and landing p=304. Constant 6/5 RHS≈0.002495>θ≈0.002086; Lean inv-sum S≈0.012130>θ·61/11≈0.011568. Those forms first kill at p≥659 and p≥367. Pigeonhole k=18 lands at 3075 and would kill; a leftover itinerary may use k=24. Large m is worse. Not a leftover-itinerary census and not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_ceiling_finance.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_ceiling_finance.py"
+  ],
+  "related_conjectures": [
+   "juggler_ceiling_finance_leftover_killer"
+  ]
+ },
+ {
+  "id": "J-cycle-ceiling-landing",
+  "tag": "REPARAMETERIZATION",
+  "statement": "On a Juggler even-run of length r from a cycle maximum M onto an odd landing p, even_iter_lt_succ_pow gives M < (p+1)^{2^r}. If M ≥ M_min then monotone integer square-root yields p ≥ isqrt^r(M_min). CycleMin forces p ≥ n, so r cannot exceed the last root that stays ≥ n. This is the named upper cell, not a new defect law. Not a leftover-length exclusion and not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_ceiling_finance.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_ceiling_finance.py"
+  ],
+  "related_conjectures": [
+   "juggler_ceiling_finance_leftover_killer"
+  ]
+ }
+]

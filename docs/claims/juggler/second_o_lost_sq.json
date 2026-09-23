@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-ce-second-o-cube",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The itinerary OOEOOEOOEOEOO loses the square-cell gap (19683 > 16384). If n ≥ 2 follows that itinerary, then T(n) < n^3 because u^{8192} ≤ n^{19683} forbids n^3 ≤ u (24576 > 19683). A CE that follows OOEOOEOOEOE follows OOEOOEOOEOEOO. This is not a proof that the image stays below n^2, not a length-11 cycle census, and not a halt theorem.",
+  "source": "docs/problems/juggler_second_o_lost_sq.md",
+  "lean": "Problems/Juggler/Escape.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_second_o_lost_sq.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-second-o-below-square",
+  "tag": "REFUTED",
+  "statement": "After 1517 → 124475, the second O of the new OO still lies below n^2. False. 1517 follows OOEOOEOOEOEOO to 43916043, which is odd and satisfies 1517^2 = 2301289 ≤ 43916043 < 1517^3. The 13-letter word already lacks a square-cell gap (19683 > 16384). This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_second_o_lost_sq.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_second_o_lost_sq.py"
+  ],
+  "related_conjectures": []
+ }
+]

@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-paper-b-offset-anchor-sums",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Fix C,M. Let X=x^(3/2),m=floor X,Y=m^(3/2), positive integers k,h1,h2<=CP^(1/24), nonzero integer |j|<=2, and c=3k(x+v)^(9/8)/4 with nonnegative even v=O_C(P^(1/24)). The odd dyadic sum on Delta_(2h1)Delta_(2h2)m=j of eta e(c{Delta_(2h1)Delta_(2h2)Y}+sum a_b Delta_(2r_b)Y(n+e_b)+q Delta_(2h1)Delta_(2h2)Y+psi) is O_(C,M,epsilon)(P^(23/24+epsilon)). There are at most M waves, e_b nonnegative even,r_b positive, e_b,r_b<=CP^(1/24),|a_b|r_b<=CP^(1/2),|q|<=CP^(1/24). Coefficients are constant on a partition of local count C(1+L P^(-1/4)), psi is real C^2 per cell with |psi''|<=CP^(-1/4), and eta has sup norm plus variation <=C per cell. The additional slow terms and already-differenced D2 factors are exactly those in Section 7 of the source, with original D2 labels preserved. Centering B_*=(9/16)kjx^(3/8)+(9/4)alpha x^(-1/4),alpha=sum a_b r_b, and retaining residual modes at P^(5/16) gives frozen curvature (81/64)kjx^(-1/8)+O_(C,M)(P^(-3/16)); all cuts number O_(C,M)(P^(3/4)). Both signs and full widened ranges are included. This is a family theorem, not a complete kernel or OOOEE result. AI-assisted written proof with exact controls; independent review and Lean verification outstanding.",
+  "source": "docs/theory/paper_b_offset_anchor_report.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_offset_anchor.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-offset-composite-729",
+  "tag": "REFUTED",
+  "statement": "The historical Paper B Theorem 5.3 Step 5(a) claim that 729/512 is the leading kjx^(-1/8) coefficient of the full nonzero-offset anchor-plus-center curvature is false. With c=3kx^(9/8)/4,G_offset=(3j/2)x^(3/4) at leading order,J=floor G,N=(9/16)kjx^(3/8)+lower terms, and J,N frozen when differentiating, the phase c(G-J)-NX has coefficient 945/512-81/512-216/512=81/64. The omitted term c''J contributes 81/512. This refutes the displayed identity and invalidates reuse of its numerical margins; it does not refute a power-saving estimate. The corrected family bound is J-paper-b-offset-anchor-sums.",
+  "source": "docs/theory/paper_b_offset_anchor_report.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_offset_anchor.py"
+  ],
+  "related_conjectures": []
+ }
+]

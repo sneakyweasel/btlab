@@ -1,0 +1,618 @@
+[
+ {
+  "id": "J-even-branch-third-letter",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Proposition 3.2 (9 September 2026 repair): OEE and OEO each have count N/8 + O(N^(5/6) log(2N)). The identity floor(sqrt(floor(x)))=floor(sqrt(x)) for x>=0 makes the parity replacement exact. Two-dimensional discrepancy with cutoff P^(1/6) and the classical second-derivative estimate gives the stated error, replacing the inconsistent historical truncation.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b.py",
+   "tools/validate_paper_b_repairs.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fd-step-is-formal-and-theorem-six-one-stays-conditional",
+  "tag": "EXACT — LEAN VERIFIED",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "formal/Problems/Juggler/PaperBDensity.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_trust_boundary.py"
+  ],
+  "related_conjectures": [],
+  "statement": "The FD step is formalised as an inference, and Theorem 6.1 stays conditional -- which is what the manuscript already says and what the formalisation must not quietly improve on. WHAT FD IS. A HYPOTHESIS, not a result: 'Hypothesis FD. For every fixed d >= 1 and every odd-rooted word w of length d, #{n <= N : word_d(n) = w} = 2^(-d) N + o_w(N). No common error rate in d is assumed.' Theorem 6.1 is headed 'conditional density-one certificate theorem' and the manuscript's own table lists the density-one certificates as conditional on FD. So the task was never to prove the step; it was to state the hypothesis and derive the conclusion. WHAT IS PROVED. PaperBDensity, three theorems, axioms [propext, Classical.choice, Quot.sound]. density_of_finite_union: if each of finitely many classes has density r, their union has density card * r. That is the entire content of 'FD and a finite sum over surviving words show that the natural density is their number divided by 2^d' -- FD gives r = 2^(-d) for one class and finite additivity does the rest, which is exactly why the hypothesis is needed at each fixed d separately and why no uniformity in d is asserted. tendsto_zero_of_eventually_le: a nonnegative quantity eventually below c d for every d, with c d -> 0, tends to zero -- the 'letting d -> infinity proves the assertion' at the end of the proof. exceptional_density_zero combines them in the shape Theorem 6.1 uses. THE CHAIN NOW READS, formally: the bad words number at most 2^n theta q ^ n (PaperBMarkov.chernoff_density), theta q < 1 (PaperBChernoff.theta_lt_one), at the optimal tilt the two agree exactly (PaperBMarkov.tilt_gives_theta), and a density dominated at every depth by a vanishing bound is zero (PaperBDensity). WHAT IS STILL NOT PROVED, and the module header says so: Hypothesis FD itself, which is open; and that the bad set at depth d IS a finite union of word classes, which is the combinatorial reading of word_d and stays written mathematics. Theorem 6.1 is not formalised. Its inference from FD is. Paper B's barrel now names four modules beyond identities and thresholds and still says the analytic core -- Theorem 4.11, Theorem 5.4, Appendices A to C -- is unformalised. No bound moves."
+ },
+ {
+  "id": "J-five-step-certificate-subfamily",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Unconditional Paper B Theorem 5.3: D_5=C_4 union {n>=2: word_5(n)=OOEOE} is a subset of C_5 with count 27N/32+O(N^(47/48)). The prefixes E, OE, OOEE, OOEOE are disjoint contracting certificates. Thus C_5 has lower natural density at least 27/32; its exact density is not asserted unconditionally.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_ooeoe.py"
+  ],
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "complete",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Theorem 5.3 (a five-step subfamily of density  \\(27/32\\) ).** Let",
+     "end": "**Theorem 5.4 (full five-step certificate density).** For every",
+     "sha256": "2bb989955a8fa6df903b0f6beab4821a2749b2078f38619189795c701220de4b"
+    },
+    "uses": [
+     {
+      "claim": "J-four-step-descent-density",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-b-ooeoe-split",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-b-minimal-prefixes-five",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Immediate dependencies in the selected written proof; this is not an independent proof audit."
+   }
+  ]
+ },
+ {
+  "id": "J-five-step-descent-density",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Consolidated Paper B Theorem 5.4 (9 September 2026): for every epsilon>0, the full five-step power-envelope certificate class C_5 has count 7N/8+O_epsilon(N^(127/128+epsilon)), hence natural density 7/8. The OOOEE hypothesis of the former conditional revision is discharged by Theorem 4.11, Corollary 4.12, and Appendices A-C. The result counts the certificate class, not all starts that descend in five steps. AI-assisted written proof; no independent mathematical review, complete Lean verification, or universal termination conclusion.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b.py",
+   "tools/validate_paper_b_ooeoe.py",
+   "tools/validate_paper_b_consolidated.py"
+  ],
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "complete",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Theorem 5.4 (full five-step certificate density).** For every",
+     "end": "The partition behind Theorem 5.4 --- at depth five the cylinders of the",
+     "sha256": "2b1110886159a7731627d470e75364b493fdee21ec3768389cbbf682564e782d"
+    },
+    "uses": [
+     {
+      "claim": "J-paper-b-five-step-density-127",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Historical ledger alias of the same full five-step theorem; follow the canonical dependency entry."
+   }
+  ]
+ },
+ {
+  "id": "J-four-step-descent-density",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Unconditional Paper B Theorem 5.2 (9 September 2026 repair): the starts admitting a power-envelope descent certificate of length at most four have count 13N/16 + O(N^(23/24) log(2N)^3). The disjoint minimal prefixes are E, OE, OOEE. Corollary 4.6 proves the previously missing OOEE correlation. This sufficient certificate class need not exhaust every start descending within four operations; it is not a termination theorem.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b.py",
+   "tools/validate_paper_b_repairs.py"
+  ],
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "complete",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Theorem 5.2 (unconditional four-step density).** One has",
+     "end": "**Theorem 5.3 (a five-step subfamily of density  \\(27/32\\) ).** Let",
+     "sha256": "cb55ccdfcf1f19e547d150fe0a87cc9a60cf35c9274a6a5eeeeaf8d0663a785e"
+    },
+    "uses": [
+     {
+      "claim": "J-automatic-descent-density",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-triple-parity-discrepancy",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-b-minimal-prefixes-five",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Immediate dependencies in the selected written proof; this is not an independent proof audit."
+   }
+  ]
+ },
+ {
+  "id": "J-nested-parity-discrepancy",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Corollary 4.6 (9 September 2026 repair), taking a marginal: each joint parity class of (floor(n^(3/2)), floor(floor(n^(3/2))^(3/2))) over odd n <= N has count N/8 + O(N^(23/24) log(2N)^3). Theorem 4.5 gives a replacement small-shift proof, including mixed signs and zero frequencies. Ambient counting, not an orbit-frequency or termination theorem; the old general decorated kernel is not used.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b.py",
+   "tools/validate_paper_b_repairs.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-chernoff-chain-is-formal",
+  "tag": "EXACT — LEAN VERIFIED",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "formal/Problems/Juggler/PaperBMarkov.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_trust_boundary.py"
+  ],
+  "related_conjectures": [],
+  "statement": "Theorem 6.1's Chernoff chain is now formal end to end, from the word count to a bound that decays. PaperBMarkov, four theorems, axioms [propext, Classical.choice, Quot.sound], joining PaperBChernoff from earlier the same day. STATED COMBINATORIALLY, which is both closer to the manuscript and far cheaper: Paper B counts words of length d by their number of odd letters and divides by 2^d, so the statements are about binomial coefficients and finite sums rather than about a probability space. sum_choose_mul_pow is the binomial generating function, sum over k in range(n+1) of C(n,k) x^k = (1+x)^n, from Commute.add_pow. chernoff_tail is the exponential Markov step: for t > 0, the sum of C(n,k) over k >= a is at most exp(-t a) (1 + exp t)^n, proved by charging every word with at least a odd letters the factor 1 <= exp(t(k-a)), extending the sum to the full range and applying the generating function. chernoff_density is the same divided by 2^n, which is the manuscript's form. THE OPTIMISATION IS AN IDENTITY, NOT A DIFFERENTIATION. tilt_gives_theta: at t = log(q/(1-q)) and a = q n the right-hand side equals theta q ^ n exactly. The manuscript optimises t by differentiating; in Lean it is an equality between two closed forms, verified numerically to 1e-15 at q = 0.55, BETA, 0.75 and n = 1, 5, 20. That theorem is what joins this module to PaperBChernoff.theta_lt_one, so the chain reads: word count <= theta q ^ n, and theta q < 1. WHAT IS STILL WRITTEN MATHEMATICS, and both module headers say so: the passage from these word counts to the natural density of N minus C_d -- the FD step and the finite sum over surviving words -- and the identification of the surviving words as a binomial count in the first place. So Theorem 6.1 is not formalised; its Chernoff engine is. THE BARREL'S CLAIM IS NOW TWICE CORRECTED. It read 'not one of them is an estimate' until 16 September; it now names two modules that are, and still says the analytic core is unformalised and the trust-boundary discussion governs. Paper B's formal layer stands at 49 identities, constants and thresholds plus ten theorems of estimate, against Paper A's 335 and Paper C's 409 axiom-checked declarations. No bound moves."
+ },
+ {
+  "id": "J-paper-b-density-one-under-fd",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Theorem 6.1: assuming Hypothesis FD, the union C_infinity of all finite power-envelope descent certificate classes has natural density one. The proof takes the counting limit at each fixed depth before letting depth increase. This proves neither Hypothesis FD nor universal termination.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_trust_boundary.py"
+  ],
+  "related_conjectures": [],
+  "conditions": [
+   "Hypothesis FD at each fixed depth; no uniform error in depth."
+  ],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "partial",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Theorem 6.1 (conditional density-one certificate theorem).** Under",
+     "end": "**Remark 6.2 (the threshold, and what it leaves).** The threshold",
+     "sha256": "2823dae7d74ec8b98fb24d4e311da71a262e2c351f4875a29afa6c054eb9124c"
+    },
+    "uses": [
+     {
+      "claim": "J-paper-b-hypothesis-fd",
+      "kind": "assumption"
+     },
+     {
+      "claim": "J-power-envelope-contraction",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-b-chernoff-chain-is-formal",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-fd-step-is-formal-and-theorem-six-one-stays-conditional",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-theorem-six-one-threshold-is-slack",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Named hypothesis and main formal/combinatorial inputs are recorded. Identification of actual survivor classes with the finite word union and the monotonic threshold argument need finer claim-level annotation. No density-one or termination conclusion is unconditional."
+   }
+  ]
+ },
+ {
+  "id": "J-paper-b-five-step-density-127",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every epsilon>0, the full class C_5 of n>=2 with a uniform power-envelope descent certificate of length at most five has count 7N/8+O_epsilon(N^(127/128+epsilon)) up to N, hence natural density 7/8. The disjoint minimal prefix classes are E,OE,OOEE,OOEOE,OOOEE. Combine the existing 27/32 subfamily count with J-paper-b-oooee-count. Consolidated Paper B Theorem 5.4 now includes this unconditional conclusion, with its full proof in Appendices A-C; independent review is outstanding. This is not the exact class of all starts that descend within five steps and not a termination theorem. AI-assisted written proof; independent mathematical review and Lean verification outstanding. The 10 September 2026 proof audit supplies the bounded signed-residual Fourier extension and its variation proof in the manuscript; conclusions and error exponent are unchanged. See docs/theory/paper_b_proof_review.md.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_oooee_transfer.py",
+   "tools/validate_paper_b_consolidated.py"
+  ],
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "complete",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Theorem 5.4 (full five-step certificate density).** For every",
+     "end": "The partition behind Theorem 5.4 --- at depth five the cylinders of the",
+     "sha256": "2b1110886159a7731627d470e75364b493fdee21ec3768389cbbf682564e782d"
+    },
+    "uses": [
+     {
+      "claim": "J-five-step-certificate-subfamily",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-b-oooee-count",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-b-minimal-prefixes-five",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Immediate dependencies in the selected written proof; this is not an independent proof audit."
+   }
+  ]
+ },
+ {
+  "id": "J-paper-b-formal-layer-has-an-estimate",
+  "tag": "EXACT — LEAN VERIFIED",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_trust_boundary.py"
+  ],
+  "lean": "formal/Problems/Juggler/PaperBChernoff.lean",
+  "related_conjectures": [],
+  "statement": "Paper B's formal layer now contains an estimate, where before it contained none. THE STANDING POSITION, stated in the paper's own barrel JugglerParityPaper.lean: 'Building it does not corroborate the paper's analysis. Every declaration reachable from here is an identity, a constant, or a threshold; not one of them is an estimate.' That was accurate and is the reason 49 axiom-checked declarations do not amount to corroboration, against Paper A's 335 and Paper C's 409. WHAT IS NOW PROVED. PaperBChernoff, six theorems, axioms [propext, Classical.choice, Quot.sound]. one_sub_inv_lt_log gives the strict form 1 - x^(-1) < log x for x > 0, x not 1, from Real.add_one_lt_exp. klDiv_pos is strict Gibbs: 0 < D(p||q) whenever p is not q, which the fate layer's klDiv_nonneg does not give. theta_eq_exp_neg_klDiv bridges the manuscript's printed theta q = q^(-q)(1-q)^(q-1)/2 to exp(-D(q||1/2)) -- the same identity the 16 September re-audit checks numerically to 1e-12. theta_lt_one is then the estimate: theta q < 1 for every q in (0,1) other than 1/2, with theta_pos and theta_pow_lt in the form Theorem 6.1 uses. WHY IT IS THE RIGHT ONE. klDiv_nonneg gives only theta <= 1, and a bound of 1^(d-1)/2 is vacuous at every depth; the strictness is what makes Theorem 6.1's density bound DECAY rather than merely fail to grow. It is the single inequality the whole of Section 6 is aimed at. WIRED IN, not merely present: the module is imported by the Paper B barrel, the barrel's claim is corrected to say one declaration is now an estimate and the rest are not, and the manuscript cites theta_lt_one at the point where theta_d < 1 is used. WHAT IS STILL NOT FORMALISED, and the module says so in its own header: the exponential Markov step, the binomial generating function, and the passage from surviving words to natural density are all still written mathematics. This formalises the inequality those steps are aimed at, not the steps. So Paper B's analytic core remains unformalised and the barrel still says the trust-boundary discussion governs. No bound moves."
+ },
+ {
+  "id": "J-paper-b-four-coordinate-sums",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Theorem 4.9: with X=n^(3/2), m=floor(X), Y=m^(3/2), v=floor(Y), U=sqrt(v), w=floor(U), W=w^(3/2), all nonzero integer quadruples bounded by P^(1/48) give odd-input sums of e((iX+jY+ell U+kW)/2) bounded by O(P^(23/24) log(2P)). The exact centered identity (4.19) removes the growing first-floor term. Includes zero coordinates and mixed signs.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_ooeoe.py"
+  ],
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "partial",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Theorem 4.9 (four formal coordinates).** Uniformly over nonzero",
+     "end": "**Corollary 4.10 (the OOEO split).** Each of the sixteen formal",
+     "sha256": "74e32663cc89d3e6dd31092d1f2cc95177dd3d969a337b9c49349d905abd9245"
+    },
+    "uses": [
+     {
+      "claim": "J-paper-b-frequency-interval-sums",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-b-restricted-mixed-sums",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Recorded frequency-interval and lower-coordinate inputs. Centered Fourier expansion, positive truncation errors and endpoint steps still need separate dependency records."
+   }
+  ]
+ },
+ {
+  "id": "J-paper-b-fourier-parity-transfer",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Proposition 4.2: for fixed d>=2, w and 0<eta,sigma<1, a uniform O_w(N^(1-sigma)) bound for every nonzero mixed frequency vector of sup norm at most floor(N^eta) implies H(w;delta) for every 0<delta<min(eta,sigma). Every zero-coordinate and mixed-sign case must be covered.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [],
+  "conditions": [
+   "Uniform mixed exponential-sum bound for all indicated nonzero vectors, including zero coordinates and mixed signs."
+  ],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "partial",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Proposition 4.2 (conditional Fourier-to-parity transfer).** Fix",
+     "end": "### 4.2 A nested estimate sufficient for four-step descent",
+     "sha256": "71b47b9819e4334621eb783c082d498d1c56972f7eb9b54ff6c0e65244aad2dc"
+    },
+    "uses": [],
+    "notes": "The explicit external input is Erdos-Turan-Koksma, cited as reference [3], Chapter 2, p.116. It is not yet a theorem-level ledger node. The Fourier bound is a local premise, discharged separately in each application."
+   }
+  ]
+ },
+ {
+  "id": "J-paper-b-frequency-interval-sums",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Lemma 4.8: for 1<=|k|<=P^(1/48), 1/2<=u<=P^(1/48)/2, |i|<=P^(1/48), and D=O(|k|P^(9/16)) intervals of length O(P^(7/16)/|k|), the sum of local supremum norms of e(iX/2+uY+kn^(27/16)/2+Rn^(9/8)), |R|<=C|k|P^(9/16), is O_C(P^(23/24)). Every gap-cell and frequency-interval boundary is counted; this is a summed estimate, not proportional rescaling.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_ooeoe.py"
+  ],
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "partial",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Lemma 4.8 (mixed sums over the frequency intervals).** Set",
+     "end": "**Theorem 4.9 (four formal coordinates).** Uniformly over nonzero",
+     "sha256": "b8e59d84908314a9b0775d1494331da5c571c96e71507995072fe3e57077185b"
+    },
+    "uses": [],
+    "notes": "This summed analytic estimate remains a written-proof leaf; its local collision/cell arguments have not been enumerated as ledger edges."
+   }
+  ]
+ },
+ {
+  "id": "J-paper-b-frozen-gap-collision",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Proposition 7.6: for u>=1/2, 1<=h<=P^(1/8), uh<=P^(1/2), and positive w comparable to uh P^(-1/4), the basic frozen-gap phase u A_h+(3u/2)floor(Delta_h x^(3/2))(x+2h)^(3/4)+w x^(3/2) has odd-input sum O((uh)^(1/2)P^(5/8)+(h/u)^(1/2)P^(7/8)+(uh)^(-1/3)P^(7/12)+h+P^(1/2)/h+1). The reference-curvature comparison is of values, not derivatives of the floor. This verifies only the basic model, not all decorated Fourier families. For integer w in the collision band, uh is at least a constant times P^(1/4), so this basic-model bound is O(P^(7/8)); this does not complete the decorated assembly.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b.py",
+   "tools/validate_paper_b_repairs.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-hypothesis-fd",
+  "tag": "CONJECTURE",
+  "statement": "Open Hypothesis FD, Paper B Section 6: for every fixed d>=1 and every odd-rooted length-d itinerary w, the number of n<=N with word_d(n)=w is 2^(-d)*N+o_w(N). No error uniform in d is assumed. This is a premise of the density-one theorem, not a premise of the finite five-step 7/8 result.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_trust_boundary.py"
+  ],
+  "related_conjectures": [],
+  "claim_kind": "hypothesis"
+ },
+ {
+  "id": "J-paper-b-minimal-prefixes-five",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Lemma 5.1: the minimal power-envelope contracting prefixes through length five are exactly E, OE, OOEE, OOEOE and OOOEE. They give disjoint prefix classes whose union is the five-step certificate class; accidental earlier descent outside this certificate class is not included.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "complete",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Lemma 5.1 (minimal certificates through length five).** The contracting",
+     "end": "**Theorem 5.2 (unconditional four-step density).** One has",
+     "sha256": "a113f7ce50584964b17c32ec8e39cad084ff16caa23397c08a539c7302a6f7bf"
+    },
+    "uses": [
+     {
+      "claim": "J-power-envelope-contraction",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Immediate dependencies in the selected written proof; this is not an independent proof audit."
+   }
+  ]
+ },
+ {
+  "id": "J-paper-b-ooeoe-split",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Corollary 4.10: each of the sixteen formal sign classes of (psi(X),psi(Y),psi(U),psi(W)) on odd n<=N has count N/32+O(N^(47/48)). In particular OOEOE and OOEOO each have this count, and H(OOEOE;1/48) is established. Does not count the OOOEE chain or all five-letter itineraries.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_ooeoe.py"
+  ],
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "complete",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Corollary 4.10 (the OOEO split).** Each of the sixteen formal",
+     "end": "### 4.4 The OOOEE mixed-mode estimate",
+     "sha256": "c3b031fbf0a12d2de43101297eb4f44b97c0646772ede9b4eb2a490d7f5369c7"
+    },
+    "uses": [
+     {
+      "claim": "J-paper-b-four-coordinate-sums",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-b-fourier-parity-transfer",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Immediate dependencies in the selected written proof; this is not an independent proof audit."
+   }
+  ]
+ },
+ {
+  "id": "J-paper-b-oooee-count",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every epsilon>0, every one of the sixteen formal parity-sign classes of (X,Y,Z,U), with X=n^(3/2),m=floor X,Y=m^(3/2),v=floor Y,Z=v^(3/2),w=floor Z,U=sqrt(w), on odd n<=N has count N/32+O_epsilon(N^(127/128+epsilon)). In particular the actual Juggler OOOEE class, where m,v are odd and w,floor U are even, has that count. All fifteen nonempty parity-sign products have the same error, so H(OOOEE;delta) holds for every 0<delta<1/128. Erdős–Turán–Koksma is applied separately on each dyadic block using its own cutoff. The sixteen formal classes must not be identified with sixteen actual itineraries. AI-assisted written proof; independent review and Lean verification outstanding.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_oooee_transfer.py",
+   "tools/validate_paper_b_consolidated.py"
+  ],
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "complete",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Corollary 4.12 (the OOOE split).** Every formal parity-sign class",
+     "end": "## 5. Finite-depth descent densities",
+     "sha256": "29d072231d02fbdf0a85b6b483115c05ab60c9bb7f00f349dab0c8512f14d63e"
+    },
+    "uses": [
+     {
+      "claim": "J-paper-b-oooee-mixed-127",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-b-fourier-parity-transfer",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Immediate dependencies in the selected written proof; this is not an independent proof audit."
+   }
+  ]
+ },
+ {
+  "id": "J-paper-b-oooee-mixed-127",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For every fixed C>=1 and epsilon>0, let X=n^(3/2),m=floor X,Y=m^(3/2),v=floor Y,Z=v^(3/2),w=floor Z,U=sqrt(w). Uniformly over nonzero integer quadruples (i,j,k,l) with max absolute value <= C P^(1/24), the sum over odd P<n<=2P of e((iX+jY+kZ+lU)/2) is O_(C,epsilon)(P^(127/128+epsilon)). All signs and zero coordinates are covered. For k nonzero the negative kernel inventory retains k DD(m^(9/4))/2 and l DD(m^(9/8))/2; recomputed curvature coefficients are -243/512 for nonzero first-floor offsets and 3645/2048 for the zero-offset family with actual negative moving centers. The double correlation has exponent 31/32, then both outer A-processes give 63/64 and 127/128. This is the specified OOOEE formal chain, not an arbitrary decorated or localized family. AI-assisted written proof based on the earlier analytic supplements; exact finite controls are not a proof of cancellation. Independent review and Lean verification outstanding. The 10 September 2026 proof audit supplies the bounded signed-residual Fourier extension and its variation proof in the manuscript; conclusions and error exponent are unchanged. See docs/theory/paper_b_proof_review.md.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b_oooee_transfer.py",
+   "tools/validate_paper_b_consolidated.py"
+  ],
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "partial",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Theorem 4.11 (OOOEE mixed modes).** For every fixed  \\(C\\ge1\\)",
+     "end": "**Corollary 4.12 (the OOOE split).** Every formal parity-sign class",
+     "sha256": "bd039c705a3df82f70a8dc06811a9f2be96897b8e51ba76200bd521f1fba5b46"
+    },
+    "uses": [],
+    "notes": "The proof explicitly delegates to Appendix C using Lemmas A.1-A.4 and Theorem B.1. Their full internal dependency inventory is not yet mapped. This is an unexpanded analytic proof boundary, not an assumption FD."
+   }
+  ]
+ },
+ {
+  "id": "J-paper-b-partition-curvature",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Lemma 7.5: if cells have local count O(1+nu L), a continuous reference curvature Lambda has O(1)-component sublevel and dyadic-band sets of total length O(Ps), and |f_second-Lambda|<=rho M with 0<=rho<=1/8, 0<M<=1, MP^2>=1, then the sum is O(P sqrt(M)+(1+nu P)/sqrt(M)+(P/M)^(1/3)+P rho+1). Constants in the hypotheses are fixed. A global transition count and band-by-band cell counting retain the boundary cost.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b.py",
+   "tools/validate_paper_b_repairs.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-restricted-mixed-sums",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Theorem 4.5: for each fixed C, nonzero integer triples max(|i|,|j|,|k|)<=C P^(1/24) give an odd-input sum of e((i/2)n^(3/2)+(j/2)floor(n^(3/2))^(3/2)+(k/2)n^(9/8)) bounded by O_C(P^(23/24)) on (P,2P]. One differencing with H=P^(1/12), an exact carry expansion, and estimates summed over every gap cell suffice. Includes half-integer j/2 directly; no general decorated-kernel assertion.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b.py",
+   "tools/validate_paper_b_repairs.py"
+  ],
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "partial",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Theorem 4.5 (restricted mixed exponential sums).** For every fixed",
+     "end": "**Corollary 4.6 (three formal signs).** Put",
+     "sha256": "b44acda415bf7c424f509cece55cc00898d446db91b2dc87d9af6fa99f23f7a2"
+    },
+    "uses": [],
+    "notes": "Lemma 4.4, van der Corput differencing and the smooth second-derivative cases are the remaining unexpanded proof boundary; no FD hypothesis is invoked."
+   }
+  ]
+ },
+ {
+  "id": "J-survivor-count-is-the-certificate-tail",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "PROVED IN LEAN, for every pair d <= K, over the naturals: 2^(K-d) * N_d = sum_{j=d+1}^{K} 2^(K-j) * M_j + N_K, where N_d = neverNegCount d counts the length-d words with no contracting prefix and M_j = minimalCertCount j counts those contracting for the first time at j. Divided by 2^K it reads N_d/2^d = sum_{j=d+1}^{K} M_j/2^j + N_K/2^K, so the survivor density at depth d is the mass of the certificates still to come plus whatever has not decided by K; letting K run off leaves the survivor density as the tail mass of the minimal certificates. The proof is neverNegCount_add_minimalCertCount summed under Nat.le_induction and nothing else, so no rational, no limit and no real number enters the statement or the proof. WHY IT WAS WORTH PROVING rather than leaving measured. The telescoped form was established on 2026-09-19 in rational arithmetic at d = 4, 12, 24, 40, 60 against a cap of 200 (J-winkler-sandwich-holds-on-the-laboratory-counts, and the test in test_collatz_bridge.py). It then became load-bearing: Paper B's Section 6 uses it to argue that Winkler's Corollary 12 envelope transfers termwise to psi and therefore pins psi only within a factor 2.7095112914, against psi's own span of 1.06. A five-point spot check is not a basis for a published scope claim, and this closes that gap. It does NOT bear on no-cycle or on termination, for either problem: it is an identity between two counts, with no dynamical content. Declarations: Problems.Juggler.neverNegCount_telescope and, with the tail isolated on the left as Section 6 uses it, Problems.Juggler.minimalCert_tail_eq. Both kernel.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "formal/Problems/Juggler/PaperBCertificateRecursion.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_collatz_bridge.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-tail-double-root-in-lean-and-paper-b-updated",
+  "tag": "EXACT — LEAN VERIFIED",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "tests": [
+   "tests/research/juggler_sequence/paper_b_prefix_count/test_boundary_fraction.py",
+   "tests/research/juggler_sequence/paper_b_prefix_count/test_rational_barriers.py"
+  ],
+  "lean": "formal/Problems/Juggler/PaperBTailSpectrum.lean",
+  "related_conjectures": [],
+  "statement": "The tail variable's minimum is Lean-verified and Paper B's open-questions section is brought up to it. THE LEAN. PaperBTailSpectrum proves what J-tail-spectral-gap-closes-like-one-over-root-q reads its numerics against, for h s z = log(1+z) - log 2 - (1-s) log z: the derivative is 1/(1+z) - (1-s)/z (h_hasDerivAt); it vanishes at the tail root (1-s)/s (h_deriv_eq_zero_at_tailRoot), which is why r* is the only positive root of the characteristic equation and why it is DOUBLE rather than simple; the second derivative there is s^3/(1-s) (h_secondDeriv_at_tailRoot) and is positive (h_secondDeriv_pos), which is the constant in the measured gap law |z - r*| ~ sqrt(4 pi k/(q h''(r*))); and the minimum VALUE is H(s) - log 2 (h_at_tailRoot), the binary entropy less log 2, which is log rho. That last identity is the same one PaperBAmplitudeCocycle.cocycle_average_eq reaches from the amplitude side, so the tail spectrum and the cocycle's single-valuedness are one statement approached from two directions. Seven theorems, kernel-checked on propext, Classical.choice and Quot.sound alone. Consolidates with PaperBSturmianBarrier and PaperBAmplitudeCocycle, both added the same day. WHAT IS NOT IN LEAN: the complex boundary-layer roots are located numerically, and nothing formal asserts the profile HAS this tail. THE MANUSCRIPT. Paper B's 'what is open, and what is excluded' passage is updated. The unproved link is unchanged -- that the iteration converges, R_d -> R({d beta}) -- but three things around it moved. The two attacks ruled out by measurement become three, and the third is ruled out by ARGUMENT: no exponential weight restores a spectral gap, since the log essential radius at weight r^m is the same expression whose stationary point is r*, meeting log rho there and strictly above it elsewhere, so a Foster-Lyapunov drift V(m) = theta^m is pinned at exactly rho and useless otherwise. The literature is named: Ocafrain's moving-boundary results give that no strict quasi-stationary distribution exists once the boundary moves, so the phase-indexed family is forced rather than chosen, and that a quasi-ergodic distribution exists for a finite state space with a periodic boundary by Darroch-Seneta, covering the truncated rational barrier -- while the general theorems assume a conditional Doeblin condition equivalent to exponential uniform convergence, which this process fails by being critical. And the driving is shown not to be the obstruction: the constant in TV ~ c/d is flat in q across six convergents from 19 to 24727. Also strengthened: psi was claimed bounded and is now stated as of bounded variation, with sum |a_k| = 4.58 and the warning that the exponent steepens with the window. PAPERS A AND C ARE UNCHANGED and deliberately so. Paper A's text -- 'with Rhin's effective measure this excludes every cycle with L^14.3 <= n log n / 915' -- is accurate as written, since the 915 arises in the Simons-de Weger conversion of Rhin's measure and the paper credits both separately; J-rhin-eight-has-no-computed-threshold confirms L^14.3 rather than changing it, and Paper A never claimed L^8.616. Paper C has no contact with any result of the day. Both are deposited with DOIs, so leaving them alone is the action, not the absence of one. No bound moves. PaperBTailSpectrum.tailRoot_pos records that the tail root is positive on 0 < s < 1, which is what lets the root be divided by. SUPERSEDED IN THE MANUSCRIPT, 20 September 2026: the differenced sum 4.58 and the steepening-exponent warning were replaced in Section 6 by the closed-form jump spectrum of J-paper-b-jump-spectrum-is-the-survivor-sequence and J-paper-b-jump-amplitude-is-closed-form; the Lean statement of this row is unchanged."
+ },
+ {
+  "id": "J-theorem-six-one-threshold-is-slack",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper B's Theorem 6.1 discards three quarters of its own exponent, and the discard is avoidable at no cost. THE STEP. The proof needs a Chernoff threshold q with 1/2 < q < p, p = log2/log3, satisfying p*d - 1 >= q*(d-1); the -1 is the leading O, spent before the binomial starts. The published proof takes q = (p+1/2)/2. THE SHARP CHOICE. The break-even threshold is q_d = p - (1-p)/(d-1), at which the step holds with EQUALITY, so it is the largest admissible threshold at depth d rather than one choice among many: PaperBThreshold.breakEven, breakEven_saturates, breakEven_admissible, and le_breakEven_of_admissible, all over any Field (order added only where used, via Admissible). q = p itself is genuinely blocked, and blocked only by p < 1 (self_not_admissible, beta_self_not_admissible, beta_lt_one). NO LARGE-d CLAUSE. The one remaining constraint is q_d > 1/2, which by breakEven_four and breakEven_three reduces to 5/8 < p <= 2/3, i.e. to the two integer facts 2^8 > 3^5 (256 > 243) and 2^3 < 3^2 (8 < 9): beta_gt_five_eighths, beta_le_two_thirds, breakEven_gt_half_four, breakEven_le_half_three, with first_usable_depth naming the depth. So the sharpened bound holds at every depth from d = 4 on, and the published 'for all sufficiently large fixed d' can be deleted. THE SIZE OF THE GAIN. chernoff_rate, which minimises E[e^(theta X)] for the step X in {log(3/2), -log2}, returns exactly theta(p) = 0.965906553233 to 1.1e-16: the walk stays nonnegative exactly when o*log3 >= d*log2, so the Cramer rate of the walk and the binomial large-deviation rate at threshold p are the same number, and Theorem 6.1's own inequality reaches it. Paper B reports 0.0085959587 per letter against the available 0.0346881850: 24.8%. CLOSED FORM. At q_d the bound is not merely sharp in rate; its constant is p. With KL(q) = -log theta(q) and KL'(q) = log(q/(1-q)), (1/2) theta(q_d)^(d-1) / rho^d -> (1/2) exp(KL(p)) exp((1-p) KL'(p)) = p^p (1-p)^(1-p) (p/(1-p))^(1-p) = p^p p^(1-p) = p -- every factor of (1-p) cancels. So the sharpened Theorem 6.1 reads dens(N minus C_d) <= p rho^d (1+O(1/d)) with both constants explicit and no unspecified 'some fixed t > 0'; the O(1/d) is confirmed to decay by exactly a factor 10 per decade of d from 1e3 to 1e5. WHAT IS LEFT. N_d/2^d ~ C rho^d d^(-3/2) with C = kappa G(1) = 10.90, so the sharpened bound overshoots by exactly the meander polynomial: truth/(p rho^d) * d^(3/2) measures 16.4, 17.0, 16.6 at d = 640, 1280, 2560 against C/p = 17.28. CORRECTED by J-paper-b-meander-prefactor-is-almost-periodic: C is not a constant, so those three numbers are samples of psi/p rather than approaches to a limit, and their wobble is the oscillation and not measurement noise. The sharpened bound and the d^(-3/2) exponent are unaffected. That is an independent route to the meander constant, using only the exact DP count and the sharpened Chernoff bound and none of the ladder-height transform. The published midpoint version by contrast overshoots by an exponentially growing factor -- 1.2e6 at d = 320, 6.9e17 at d = 1280, log-log slope 25.5 and rising -- so the gap it leaves is not a polynomial at all. WHAT DOES NOT MOVE. Theorem 6.1's conclusion is density one, which follows from any theta < 1 and is untouched; this is a rate, not a new theorem, and it excludes no cycle and proves no termination. It does close the gap between Theorem 6.1 as published and the measured constant: after sharpening, the only thing between the two is the meander factor already identified.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "formal/Problems/Juggler/PaperBThreshold.lean",
+  "tests": [
+   "tests/research/juggler_sequence/paper_b_prefix_count/test_rates.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-triple-parity-discrepancy",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Corollary 4.6 (9 September 2026 repair): for m=floor(n^(3/2)), v=floor(m^(3/2)), each of the eight sign classes ((-1)^m, (-1)^v, (-1)^floor(sqrt(v))) over odd n <= N has count N/16 + O(N^(23/24) log(2N)^3). The third coordinate is the formal even branch; this is not the complete depth-four itinerary census. Theorem 4.5 and a pointwise square-root comparison prove the result.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tools/validate_paper_b.py",
+   "tools/validate_paper_b_repairs.py"
+  ],
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "complete",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Corollary 4.6 (three formal signs).** Put",
+     "end": "### 4.3 The fifth-letter split of OOEO",
+     "sha256": "6da4f2f5541195b0dd30f91b6cb9c3e79435dc051513b95eb62b0c79c26627cb"
+    },
+    "uses": [
+     {
+      "claim": "J-paper-b-restricted-mixed-sums",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-b-fourier-parity-transfer",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Immediate dependencies in the selected written proof; this is not an independent proof audit."
+   }
+  ]
+ }
+]

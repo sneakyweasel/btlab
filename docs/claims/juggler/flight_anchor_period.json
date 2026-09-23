@@ -1,0 +1,15 @@
+[
+ {
+  "id": "J-flight-anchor-period",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Flight anchor-period law, first instance: any descent-free Juggler flight from anchor n >= 3.5e8 with bounded exponent walk enters a nontrivial cycle of period >= 780239 = 176251 + 2*301994. Anchor-transfer lemma (EXACT — HUMAN PROOF): by the walk-divergence dichotomy the eventual cycle has minimum >= n, and both cycle kill right-hand sides (parity finance and the DK/IET envelope) are strictly decreasing in the floor, so the kill tables evaluated at floor n apply with no certified descent below n — the flight's anchor replaces the certified floor for free, upgrading the competition branch's hypothetical schedule points to conditional theorems. Certification of the instance: lengths < 478245 killed at the certified floor 162849448 and persisting upward; all 301995 lengths in [478245, 780239] scanned at anchor floor 3.5e8 (301883 parity-killed by a conservative float bound with 10x safety, 112 near-resonant lengths resolved with exact big-integer theta, 101 of them parity-killed); the 11 parity survivors priced by the census-free DK envelope (upper bound on the walk charge via hug_charge_maximal, Lean): the ten below 780239 all die (blocker 478245 margin 1.0053 just above its break-even 3.48e8; the nine near-convergent combinations 478245 + {25781, 50508 and offsets, 176251, ...} at margins 1.48-7.82), first survivor 780239 (margin 0.6048). All margins monotone up from the certified floor. Same trust boundary as Theorem 4.6. Not a halt theorem, not a floor raise, not a new unconditional period bound, and silent on flights with unbounded states.",
+  "source": "docs/problems/juggler_flight_anchor_period.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_flight_anchor_period.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_finance_competition"
+  ]
+ }
+]

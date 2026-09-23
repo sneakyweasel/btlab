@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-q-return-section-descent",
+  "tag": "REFUTED",
+  "statement": "On a leftover AboveAnchor Q-orbit there is an exact scale section S_n(α)={x : n <= x and x^A < n^B} such that every first return satisfies R_S(x) < x or R_S(x) = x. False. For α in {9/4, 8/3, 3} every leftover defined return has tau_S = 1, so R_S is Q. For α = 3/2 the 365 returns 365 -> 763 -> 1749 -> 4447 are strictly ascending and not recurrent; only the later excursion 4447 -> 1196 descends. Section record-lows fail: the minimum visit stays n. This is not ReturnBelow, not a Q-descriptor, and not a halt theorem.",
+  "source": "docs/problems/juggler_q_return_section.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_q_return_section.py"
+  ],
+  "related_conjectures": []
+ }
+]

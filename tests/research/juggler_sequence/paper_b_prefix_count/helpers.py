@@ -32,7 +32,7 @@ def surviving_words(d: int) -> list[str]:
 
 
 DEPENDENTS = {
-    "docs/theory/theorem_ledger.json": "the canonical row",
+    "docs/theory/theorem_ledger.json": "the generated claim export",
     "docs/theory/theorem_ledger.md": "rendered from the JSON",
     "docs/theory/juggler_cycle_itinerary_structure_note.md": "imports it as Proposition 6.1",
     "docs/problems/juggler_k3_rate_free.md": "derives the rate-free reduction from it",

@@ -1,0 +1,27 @@
+[
+ {
+  "id": "BTA-qualitative-weyl-cancellation",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked formalization of qualitative van der Corput; advisory statement coverage pending. For every complex sequence z and fixed real C>0 with norm(z(n))<=C for all natural n, if for every fixed positive natural d the complex averages (1/N)*sum_(n<N) z(n+d)*conj(z(n)) tend to zero as N tends to infinity, then (1/N)*sum_(n<N) z(n) tends to zero. For a unit-bounded sequence, the full shifted sum differs from its N-d-term overlap correlation by norm at most d for every N,d, including N<d. The normalized finite inequality has right side 2/H+(4/H)*sum_(1<=d<H) norm(correlation(z,N,d))/N for 1<=H<=N. The phase specialization proves cancellation for exp(2*pi*i*f(n)) from cancellation for every positive fixed difference f(n+d)-f(n). All difference-cancellation hypotheses remain explicit. This does not prove the power-phase estimates or BoxRecurrence needed for Paper E Theorem 4.1, and gives no quantitative or growing-depth uniformity.",
+  "source": "docs/theory/qualitative_weyl_cancellation_note.md",
+  "lean": "BTCalculus/WeylCancellation.lean",
+  "decl": [
+   "average",
+   "normalized_van_der_corput",
+   "tendsto_average_norm_zero_of_correlations",
+   "norm_average",
+   "average_div_const",
+   "correlation_boundary_bound",
+   "tendsto_overlap_zero_of_shifted",
+   "tendsto_average_zero_of_shifted_correlations",
+   "tendsto_average_zero_of_bounded_correlations",
+   "tendsto_phase_average_zero_of_differences"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": []
+ }
+]

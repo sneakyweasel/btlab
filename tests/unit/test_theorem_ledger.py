@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import json
+from research.claims import load_claims
 import re
 import subprocess
 import sys
@@ -60,7 +60,7 @@ def _declares(text: str, name: str) -> bool:
 
 
 def _entries() -> list[dict]:
-    return json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    return load_claims(ROOT).entries
 
 
 def _decls(row: dict) -> list[str]:

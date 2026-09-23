@@ -1,0 +1,15 @@
+[
+ {
+  "id": "C-Nk",
+  "tag": "CONJECTURE",
+  "statement": "N_k = 2^k+1",
+  "source": "docs/collatz_research_questions.md",
+  "lean": "",
+  "tests": [
+   "tests/research/collatz/test_complexity_spectrum.py"
+  ],
+  "related_conjectures": [
+   "Nk_state_count"
+  ]
+ }
+]

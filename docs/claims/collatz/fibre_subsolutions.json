@@ -1,0 +1,38 @@
+[
+ {
+  "id": "C-fibre-capped-subsolution-brackets-levels-one-four",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "For both signs at ternary levels 1 through 4 and respective rates 1/4, 1/2, 2/3 and 3/4, exact rounded capped inverse iterations bracket the greatest bounded unit-supported periodic subsolution in every coordinate with width at most 10^(-9). Lower iteration starts from earlier feasible certificates and upper iteration from the unit cap. Independent integer replay constructs ordinary positive odd predecessors and folds every positive exponent geometrically. At level four, H(7)/(1-q) for plus lies near 0.465726 versus seed 0.280836 at the same q; H(47)/(1-q) for minus lies near 0.255636 versus seed 0.145636. Saved rational endpoints are authoritative. These eight finite brackets are not kernel-checked data and establish no limit as q tends to one or coefficient divergence.",
+  "source": "docs/problems/collatz_fibre_subsolutions.md",
+  "lean": "",
+  "tests": [
+   "tests/research/collatz/test_fibre_subsolutions.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "C-fibre-greatest-periodic-subsolution",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For either signed complete inverse coefficient operator, every finite ternary level and nonnegative rate q admit a greatest nonnegative unit-supported periodic subsolution H with H<=1 and L_s H>=q*H. It simultaneously dominates every feasible table at every residue, is antitone in q, and increases under ternary refinement at a fixed nonnegative q once the level is at least one. It gives C_d(a)>=q^d*H(a) for each positive ordinary root. A sequence of rates below one tending to one, with H(a)>=c*(1-q) for one c>0, implies coefficient-series divergence; existence of that sequence and root estimate remains open. An increasing update g remains feasible when h<=g<=unitCap and q*g<=L_s h. Kernel-checked; independent review and advisory statement coverage pending. No termination or Juggler pressure input is proved.",
+  "source": "docs/problems/collatz_fibre_subsolutions.md",
+  "lean": "formal/Problems/Collatz/FibreSubsolutions.lean",
+  "lean_trust": "kernel",
+  "decl": [
+   "Problems.Collatz.FibreSubsolutions.Subsolution",
+   "Problems.Collatz.FibreSubsolutions.maximalWeight",
+   "Problems.Collatz.FibreSubsolutions.subsolution_of_between",
+   "Problems.Collatz.FibreSubsolutions.le_maximalWeight",
+   "Problems.Collatz.FibreSubsolutions.maximalWeight_bounds",
+   "Problems.Collatz.FibreSubsolutions.maximalWeight_subsolution",
+   "Problems.Collatz.FibreSubsolutions.maximalWeight_antitone_rate",
+   "Problems.Collatz.FibreSubsolutions.subsolution_lift",
+   "Problems.Collatz.FibreSubsolutions.maximalWeight_mono_level",
+   "Problems.Collatz.FibreSubsolutions.maximalWeight_geometric_lower",
+   "Problems.Collatz.FibreSubsolutions.coarse_not_summable_of_maximalWeight"
+  ],
+  "tests": [
+   "tests/research/collatz/test_fibre_subsolutions.py"
+  ],
+  "related_conjectures": []
+ }
+]

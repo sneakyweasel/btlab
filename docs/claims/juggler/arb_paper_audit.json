@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-paper-a-arb-minimum-cutoff",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "The actual Arb MCP certifies U(487011720)<Lambda<U(487011719) for Paper A's final UC2 scalar bound at (L,o,e)=(780239,492276,287963). The existing monotonicity argument and assumed descent floor imply 350000000<m<487011720 for a primitive actual Juggler cycle with these counts and maximum M<m^3. All lengths below the existing frontiers 25781,176251,478245,780239 are independently screened at their respective assumed floors. No descent campaign, new Lean numerical proof, period-780239 exclusion or assertion outside the cubic band is supplied.",
+  "source": "docs/research/arb_paper_audit.md",
+  "lean": "",
+  "tests": [
+   "tests/tools/test_arb_paper_audit.py"
+  ],
+  "related_conjectures": []
+ }
+]

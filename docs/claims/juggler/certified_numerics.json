@@ -1,0 +1,14 @@
+[
+ {
+  "id": "J-paper-c-arb-certificates",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "FLINT/Arb certifies twelve finite Paper C production roots in rational brackets of width at most 10^-24, positive fixed-OOEE recurrence slack at 5/8, and forty integer rate crossings (five contagion regimes, Chernoff and Azuma, q=1/2,11/20,3/5,31/50). For the written 5/8 contagion result, every integer C from 5 through the first strict rate crossing of 3/8 is checked: Chernoff minima 16,34,168,1135; Azuma minima 16,34,175,1201. The fully formal 100/203 baseline retains 19 and 41 at the first two caps. Exact rational inputs, outward endpoints, precision escalation and run provenance replace point-value evidence for these expressions only. No production hypothesis, asymptotic error bound, model eigenvalue, Lean proof, or termination result is established; the written OOEE result retains its review boundary.",
+  "source": "docs/architecture/certified_numerics.md",
+  "lean": "",
+  "tests": [
+   "tests/research_engine/test_intervals.py",
+   "tests/tools/test_paper_c_intervals.py"
+  ],
+  "related_conjectures": []
+ }
+]

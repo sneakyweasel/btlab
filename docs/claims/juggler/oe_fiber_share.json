@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-cube-fiber-exact",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The OE fiber of a perfect cube is full or exactly alternating. For every a >= 1 and every n with (2a)^4 <= n and n^3 < ((2a)^3+1)^4, floor(n^(3/2)) = Nat.sqrt (n^3) is even (even_cube_fiber_full); for every odd n with (2a+1)^4 <= n and n^3 < ((2a+1)^3+1)^4, Nat.sqrt (n^3) + (n - (2a+1)^4)/2 is odd (odd_cube_fiber_alternating), so consecutive fiber elements have opposite image parity. Both rest on the integer identity Nat.sqrt ((k^4+t)^3) = k^6 + 3k^2 t/2 for 3t <= 4k (cube_fiber_sqrt_even, cube_fiber_sqrt_odd, by Nat.eq_sqrt and nlinarith from the two square inequalities: n^3 - q^2 = (3/4)k^4 t^2 + t^3 >= 0 and (q+1)^2 - n^3 = 2k^6 + 3k^2 t + 1 - (3/4)k^4 t^2 - t^3 > 0), together with cube_fiber_range: 3t <= 4k on the whole fiber, since 3t >= 4k+1 gives (3k^4+4k+1)^3 >= 27(k^3+1)^4. The range bound is attained (3 t_max = 4k for many k) and the identity itself outlives the fiber to t < 1.63k. Mechanism: n^(3/2) = k^6 (1 + t/k^4)^(3/2) = k^6 + (3/2)k^2 t + (3/8)t^2/k^2 - ..., and the quadratic term stays below one on the fiber; the parity of k^6 + (3/2)k^2 t is 0 for even k and 1 + t/2 for odd k. So m = 10^6 = 100^3 has a full fiber (67 of 67), and every odd cube splits exactly in half. Mathlib's three axioms only. Now Lemma 4.7 of Paper C, with the Lean names in its Appendix A. Remark 4.8 there identifies the window's centre arithmetically: alpha_m = 0 exactly means 27 m^2 = 8 k^3, whose integer solutions are m = (2e)^3 and k = 6e^2, so the even cubes are the exact-solution locus of a Mordell-type equation and the extreme fibers are its near-solutions, spaced asymptotically m^(1/3) apart with about (3/2) M^(2/3) below M. The two sides differ in strength: the full side contains this proved infinite family, while an empty fiber needs a near-miss plus a phase condition and whether there are infinitely many is open. A standing caution: the fiber of a cube is deterministic, not a coin.",
+  "lean": "formal/Problems/Juggler/CubeFiber.lean",
+  "related_conjectures": [],
+  "source": "docs/problems/juggler_oe_fiber_share.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_oe_fiber_share.py"
+  ]
+ }
+]

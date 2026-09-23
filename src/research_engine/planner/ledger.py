@@ -18,8 +18,8 @@ class LedgerError(ValueError):
 class ResearchLedger:
     """Hypotheses and attack outcomes for one experimental session.
 
-    This does not write ``theorem_ledger.json``. Named Lean theorems
-    stay in that file.
+    This does not write the canonical topic claims in ``docs/claims/``.
+    Named theorem records belong there.
     """
 
     knowledge: NegativeKnowledge = field(default_factory=NegativeKnowledge)

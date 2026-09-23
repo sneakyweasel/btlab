@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-shared-parity-balance-gap",
+  "tag": "REFUTED",
+  "statement": "Already-proved shared AboveAnchor restrictions (isolated OE, initial OE, first-OO shape, even-reset identities) force oddCount(w) <= ρ|w|+C on long surviving prefixes with ρ < log2/log3, hence 2^{|w|} > 3^{oddCount(w)}, contradicting the envelope survival law 2^{|w|} <= 3^{oddCount(w)}. False. After removing CycleMin-only and termination-only wrappers, the shared language is exactly the prefix envelope: every prefix u satisfies 2^{|u|} <= 3^{oddCount(u)}. Isolated O^a E(OE)^r uses the same exponents. The optimizer through length 18 has ρ_max = 1 via O* and mixed ρ_max = (N-1)/N via O^{N-1}E. The concatenable block OOE has 8 <= 9. O and OOE are nonnegative cycle means. This is not a CycleMin theorem, not a numerical parity statistic, and not a halt theorem.",
+  "source": "docs/problems/juggler_parity_balance.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_parity_balance.py"
+  ],
+  "related_conjectures": []
+ }
+]

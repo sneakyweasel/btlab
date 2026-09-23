@@ -1,0 +1,14 @@
+[
+ {
+  "id": "J-cyclemax-succ-sq",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "On a CycleMin start n ≥ 2 the cycle maximum satisfies (n+1)^2 ≤ M. Equivalently, on a CycleMax the rotated minimum m satisfies (m+1)^2 ≤ M, so T(M) > m. The first-cell family m^2 < M < (m+1)^2 is impossible. cycle_distinguished_order_succ_sq is the distinguished-order package with that scale. Corollary of cycleMin_first_even_overshoots: the first even residual already sits at or above (n+1)^2 and is a cycle state. Lean: cycleMin_max_ge_succ_sq, cycleMax_min_succ_sq_le, cycleMax_landing_gt_min, cycleMax_exists_min_succ_sq, cycle_distinguished_order_succ_sq in EvenCountThree.lean. Not a first-cell census, not a leftover exclusion, and not a halt theorem. Not imported by JugglerPaper.",
+  "source": "docs/problems/juggler_cycle_extrema.md",
+  "lean": "Problems/Juggler/EvenCountThree.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_extrema.py",
+   "tests/research/juggler_sequence/test_even_count_three.py"
+  ],
+  "related_conjectures": []
+ }
+]

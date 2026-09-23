@@ -59,7 +59,7 @@ def checkout(tmp_path):
     write('formal/Operators/Fixture.lean',
           'namespace Custom\n/-- Only the selected ledger cites this. -/\n'
           'theorem root_only : True := trivial\nend Custom\n')
-    write('docs/theory/theorem_ledger.json', json.dumps([{
+    write('docs/claims/collatz/example.json', json.dumps([{
         'id': 'C-fixture', 'statement': 'Fixture identity', 'tag': 'EXACT — HUMAN PROOF',
         'lean': 'formal/Operators/Fixture.lean', 'decl': 'Custom.root_only',
         'source': 'docs/problems/collatz_fibre_sign_coupling.md', 'tests': []}]))
@@ -120,6 +120,9 @@ def test_real_stdio_client_searches_resolves_and_rejects_invalid_pagination(chec
                 assert not claims.isError
                 assert not claims.structuredContent['dependency_coverage_complete']
                 assert claims.structuredContent['summary']['incomplete_dependencies'] == ['C-fixture']
+                origin = await session.call_tool('formalpedia_claim', {'ledger_id': 'C-fixture'})
+                assert origin.structuredContent['claim_location'] == {
+                    'path': 'docs/claims/collatz/example.json', 'pointer': '/0'}
                 semantic = await session.call_tool('formalpedia_semantic_status', {})
                 assert not semantic.isError
                 assert semantic.structuredContent['status'] == 'current'

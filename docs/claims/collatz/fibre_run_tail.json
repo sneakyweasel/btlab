@@ -1,0 +1,24 @@
+[
+ {
+  "id": "C-fibre-one-halving-run-summable",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For either signed map and a fixed positive odd root a, let R_d(a) sum the homogeneous coefficients (3/2)^(d+1)*2^(-k) over all actual positive odd inverse words whose first exponent is k+1 and whose next d exponents are one, including every k>=0 and allowing all source residues. For the plus sign, and for the minus sign when a!=1, 0<=R_d(a)<=3a/2^(d+1); the complete depth series is summable and its sum is at most 3a. Every counted word reaches a in d+1 actual odd returns and forces 3^(d+1) to divide 2^k*a+s. The negative fixed point is a genuine exception: R_d^-(1)>=(3/2)^(d+1). This bounds only the specified word family; no complete coefficient lower count, termination theorem or Juggler transfer follows. Kernel-checked; independent review and advisory statement coverage pending.",
+  "source": "docs/problems/collatz_fibre_run_tail.md",
+  "lean": "formal/Problems/Collatz/FibreRunTail.lean",
+  "lean_trust": "kernel",
+  "decl": [
+   "Problems.Collatz.FibreRunTail.RealizedRun",
+   "Problems.Collatz.FibreRunTail.runCoefficient",
+   "Problems.Collatz.FibreRunTail.realizedRun_divisibility",
+   "Problems.Collatz.FibreRunTail.realizedRun_returns",
+   "Problems.Collatz.FibreRunTail.runCoefficient_bounds",
+   "Problems.Collatz.FibreRunTail.runCoefficient_summable",
+   "Problems.Collatz.FibreRunTail.total_runCoefficient_le",
+   "Problems.Collatz.FibreRunTail.negative_fixed_point_lower"
+  ],
+  "tests": [
+   "tests/research/collatz/test_fibre_run_tail.py"
+  ],
+  "related_conjectures": []
+ }
+]

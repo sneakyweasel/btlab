@@ -1,0 +1,380 @@
+[
+ {
+  "id": "J-cycle-itinerary-length-eighty-four-or-ge-eighty-five",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is 84 or at least 85. Lengths ≤ 56 are excluded at floor 257; lengths 57–83 are excluded by cycle_finance_min_two_hundred_sixty_one at 15921/11 (finance_excludes_length_fiftyseven, finance_excludes_length_seventysix, and companions, packaged as no_cycle_itinerary_length_lt_eighty_four). Length 84 is the next record near-convergent (need ≈ 40269). Lean theorem cycle_itinerary_length_eighty_four_or_ge_eighty_five. Strengthened by J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five, which kills length 84 with at most two odd-runs, and by J-cycle-itinerary-eliahou-leftover, which rewrites the length leftover plus the finance table as period 84, a listed near-convergent, or at least 10^5. This is not a no-cycle-of-any-length theorem, and not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_finance.md",
+  "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "decl": [
+   "cycle_itinerary_length_eighty_four_or_ge_eighty_five",
+   "cycle_finance_min_two_hundred_sixty_one",
+   "finance_excludes_length_fiftyseven",
+   "finance_excludes_length_seventysix",
+   "no_cycle_itinerary_length_lt_eighty_four"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-itinerary-length-eleven-or-ge-fourteen",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is 11 or at least 14. Lengths ≤ 10 are J-small-cycle-census-ten; lengths 12 and 13 are excluded by the same finance comparison (no_cycle_itinerary_length_twelve, no_cycle_itinerary_length_thirteen); length 16 is likewise excluded (no_cycle_itinerary_length_sixteen) but is absorbed into the ≥ 14 residual. Lean theorem cycle_itinerary_length_eleven_or_ge_fourteen. Strengthened by J-cycle-itinerary-length-ge-fourteen, which kills the length-11 disjunct. This is not a leftover-itinerary length-11 census, not a no-cycle-of-any-length theorem, and not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_finance.md",
+  "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "decl": [
+   "cycle_itinerary_length_eleven_or_ge_fourteen",
+   "no_cycle_itinerary_length_twelve",
+   "no_cycle_itinerary_length_thirteen",
+   "no_cycle_itinerary_length_sixteen"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is 57 or at least 58. Lengths ≤ 19 are J-small-cycle-census-nineteen; lengths 20–56 are excluded at floor 257. This row is the leftover before the two extra odd seeds 257 and 259. Strengthened by J-cycle-itinerary-length-eighty-four-or-ge-eighty-five, which kills the length-57 disjunct at the residual floor 261. Lean theorem cycle_itinerary_length_fifty_seven_or_ge_fifty_eight. This is not a no-cycle-of-any-length theorem, and not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_finance.md",
+  "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "decl": "cycle_itinerary_length_fifty_seven_or_ge_fifty_eight",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-itinerary-length-ge-fourteen",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is at least 14. Strengthened through J-cycle-itinerary-length-eighty-four-or-ge-eighty-five: lengths 14–83 except the named leftovers along the way are excluded, so the laboratory leftover is period 84 or at least 85. Lean theorem cycle_itinerary_length_ge_fourteen. This is not a no-cycle-of-any-length theorem, and not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_finance.md",
+  "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "decl": "cycle_itinerary_length_ge_fourteen",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-itinerary-length-ge-thirty",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is at least 30. The floor-53 leftover J-cycle-itinerary-length-nineteen-or-ge-thirty plus finance_excludes_length_nineteen kills the length-19 disjunct. Strengthened by J-cycle-itinerary-length-thirty-eight-or-ge-thirty-nine and J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight. Lean theorem cycle_itinerary_length_ge_thirty. This is not a no-cycle-of-any-length theorem, and not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_finance.md",
+  "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "decl": "cycle_itinerary_length_ge_thirty",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-itinerary-length-nineteen-or-ge-thirty",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is 19 or at least 30. Lengths ≤ 18 are J-small-cycle-census-eighteen; lengths 20–29 are excluded by the same floor-53 finance comparison. Length 19 is the next near-convergent (2^19 < 3^12) and survives 371/2; length 30 also survives 371/2. Lean theorems cycle_itinerary_length_nineteen_or_ge_thirty and the weaker corollary cycle_itinerary_length_nineteen_or_ge_twenty. This row is the floor-53 leftover. Strengthened by J-cycle-itinerary-length-thirty-eight-or-ge-thirty-nine, which kills the length-19 disjunct at the residual floor 257. This is not a no-cycle-of-any-length theorem, and not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_finance.md",
+  "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "decl": [
+   "cycle_itinerary_length_nineteen_or_ge_thirty",
+   "cycle_itinerary_length_nineteen_or_ge_twenty"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-itinerary-length-thirty-eight-or-ge-thirty-nine",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If a nontrivial Juggler cycle itinerary exists at n ≥ 2, its period is 38 or at least 39. Lengths ≤ 19 are J-small-cycle-census-nineteen; lengths 20–29 remain excluded at the residual floor 53; lengths 30–37 are excluded by cycle_finance_min_two_hundred_fifty_seven. This row is the leftover before the 61/11 log certificate. Strengthened by J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight, which kills the length-38 disjunct. Lean theorems cycle_itinerary_length_thirty_eight_or_ge_thirty_nine and no_cycle_itinerary_length_lt_thirty_eight. This is not a no-cycle-of-any-length theorem, and not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_finance.md",
+  "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "decl": [
+   "cycle_itinerary_length_thirty_eight_or_ge_thirty_nine",
+   "no_cycle_itinerary_length_lt_thirty_eight",
+   "cycle_finance_min_two_hundred_fifty_seven",
+   "no_cycle_itinerary_length_lt_thirty_ne_nineteen"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-parity-finance",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "On a Juggler CycleMin start n ≥ 12 of length L with o odd letters and e = L − o even letters, the number of odd-run starts is at most e, every even state is at least n² (cycleMin_even_ge_sq), and every odd preceded by an odd is at least t = ⌊n^{3/2}⌋. Hence Σ 1/(x_i ln x_i) ≤ e/(n ln n) + (o−e)/(t ln t) + e/(2 n² ln n). Combined with the existing 6/5 unroll this is strictly stronger than charging all L states at 1/(n ln n). It is the joint-minima bound at the adversarial circuit count m = e, not a reparameterization of B(L) = (6/5) L / θ. Not Lean. Not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_finance.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-log-two-hundred-fifty-seven-gt-sixty-one-elevenths",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "log 257 > 61/11, via e < 2.7182818286 and e^61 < 257^11 (log_two_hundred_fifty_seven_gt). Combined with the residual floor 257 this gives n log n > 15677/11 on a CycleMin, which excludes cycle length 38. The weaker half-integer bound 11/2 was enough for length 19 but not for 38. This is a numeric certificate, not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_finance.md",
+  "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "decl": [
+   "log_two_hundred_fifty_seven_gt",
+   "cycleItinerary_iterate_not_lt_two_hundred_fifty_seven",
+   "finance_excludes_length_thirtyeight"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-residual-floor-fifty-three",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Every positive integer strictly below 53 reaches 1 under the Juggler map (reachesOne_of_lt_fifty_three). Evens below 144 already reduce to the residual class {1,…,11}; the odd seeds 13,15,…,51 are finite orbit certificates. This is a finite certificate, not a halt theorem. Combined with cycleMin_finance it excludes cycle length 11.",
+  "source": "docs/problems/juggler_cycle_finance.md",
+  "lean": "Problems/Juggler/Termination.lean",
+  "decl": [
+   "reachesOne_of_lt_fifty_three",
+   "reachesOne_of_lt_twelve",
+   "even_lt_sq_twelve_reachesOne",
+   "thirteen_reachesOne",
+   "fifteen_reachesOne",
+   "seventeen_reachesOne",
+   "nineteen_reachesOne",
+   "twentyone_reachesOne",
+   "twentythree_reachesOne",
+   "twentyfive_reachesOne",
+   "twentyseven_reachesOne",
+   "twentynine_reachesOne",
+   "thirtyone_reachesOne",
+   "thirtythree_reachesOne",
+   "thirtyfive_reachesOne",
+   "thirtyseven_reachesOne",
+   "thirtynine_reachesOne",
+   "fortyone_reachesOne",
+   "fortythree_reachesOne",
+   "fortyfive_reachesOne",
+   "fortyseven_reachesOne",
+   "fortynine_reachesOne",
+   "fiftyone_reachesOne"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-residual-floor-two-hundred-fifty-seven",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Every positive integer strictly below 257 reaches 1 under the Juggler map (reachesOne_of_lt_two_hundred_fifty_seven). Evens below 2809 already reduce to the residual class {1,…,52}; the odd seeds 53,55,…,255 are finite orbit certificates. This is a finite certificate, not a halt theorem. Combined with cycleMin_finance and log 257 > 61/11 it excludes cycle lengths 19 and 38. The Lean constant 1 only needs n ln n > 1411.63 to kill length 19, so the smallest such n is 255; the Python 6/5 table has n_max(19) = 297.",
+  "source": "docs/problems/juggler_cycle_finance.md",
+  "lean": "Problems/Juggler/TerminationFloor257.lean",
+  "decl": [
+   "reachesOne_of_lt_two_hundred_fifty_seven",
+   "reachesOne_n53",
+   "reachesOne_n55",
+   "reachesOne_n57",
+   "reachesOne_n59",
+   "reachesOne_n61",
+   "reachesOne_n63",
+   "reachesOne_n65",
+   "reachesOne_n67",
+   "reachesOne_n69",
+   "reachesOne_n71",
+   "reachesOne_n73",
+   "reachesOne_n75",
+   "reachesOne_n77",
+   "reachesOne_n79",
+   "reachesOne_n81",
+   "reachesOne_n83",
+   "reachesOne_n85",
+   "reachesOne_n87",
+   "reachesOne_n89",
+   "reachesOne_n91",
+   "reachesOne_n93",
+   "reachesOne_n95",
+   "reachesOne_n97",
+   "reachesOne_n99",
+   "reachesOne_n101",
+   "reachesOne_n103",
+   "reachesOne_n105",
+   "reachesOne_n107",
+   "reachesOne_n109",
+   "reachesOne_n111",
+   "reachesOne_n113",
+   "reachesOne_n115",
+   "reachesOne_n117",
+   "reachesOne_n119",
+   "reachesOne_n121",
+   "reachesOne_n123",
+   "reachesOne_n125",
+   "reachesOne_n127",
+   "reachesOne_n129",
+   "reachesOne_n131",
+   "reachesOne_n133",
+   "reachesOne_n135",
+   "reachesOne_n137",
+   "reachesOne_n139",
+   "reachesOne_n141",
+   "reachesOne_n143",
+   "reachesOne_n145",
+   "reachesOne_n147",
+   "reachesOne_n149",
+   "reachesOne_n151",
+   "reachesOne_n153",
+   "reachesOne_n155",
+   "reachesOne_n157",
+   "reachesOne_n159",
+   "reachesOne_n161",
+   "reachesOne_n163",
+   "reachesOne_n165",
+   "reachesOne_n167",
+   "reachesOne_n169",
+   "reachesOne_n171",
+   "reachesOne_n173",
+   "reachesOne_n175",
+   "reachesOne_n177",
+   "reachesOne_n179",
+   "reachesOne_n181",
+   "reachesOne_n183",
+   "reachesOne_n185",
+   "reachesOne_n187",
+   "reachesOne_n189",
+   "reachesOne_n191",
+   "reachesOne_n193",
+   "reachesOne_n195",
+   "reachesOne_n197",
+   "reachesOne_n199",
+   "reachesOne_n201",
+   "reachesOne_n203",
+   "reachesOne_n205",
+   "reachesOne_n207",
+   "reachesOne_n209",
+   "reachesOne_n211",
+   "reachesOne_n213",
+   "reachesOne_n215",
+   "reachesOne_n217",
+   "reachesOne_n219",
+   "reachesOne_n221",
+   "reachesOne_n223",
+   "reachesOne_n225",
+   "reachesOne_n227",
+   "reachesOne_n229",
+   "reachesOne_n231",
+   "reachesOne_n233",
+   "reachesOne_n235",
+   "reachesOne_n237",
+   "reachesOne_n239",
+   "reachesOne_n241",
+   "reachesOne_n243",
+   "reachesOne_n245",
+   "reachesOne_n247",
+   "reachesOne_n249",
+   "reachesOne_n251",
+   "reachesOne_n253",
+   "reachesOne_n255",
+   "non_reachesOne_ge_two_hundred_fifty_seven"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-residual-floor-two-hundred-sixty-one",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Every positive integer strictly below 261 reaches 1 under the Juggler map (reachesOne_of_lt_two_hundred_sixty_one). The floor-257 class plus the two odd seeds 257 and 259 (five steps each) raise the floor. Exact log 257 cannot kill length 57 (257 ln 257 ≈ 1426 < 1430.8). Combined with cycleMin_finance and 261 log 257 > 15921/11 this excludes the cheap leftovers 57 and 76, so the named leftover is the record near-convergent 84. This is a finite certificate, not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_finance.md",
+  "lean": "Problems/Juggler/TerminationFloor257.lean",
+  "decl": [
+   "reachesOne_of_lt_two_hundred_sixty_one",
+   "reachesOne_n257",
+   "reachesOne_n259"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-residual-floor-two-million",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Every integer 2 ≤ n ≤ 2·10^6 reaches 1 under the Juggler map by first-passage descent induction (verify_floor). Combined with the crude 6/5 finance table this excludes every cycle length ≤ 25780, and every length ≤ 10^5 outside 166 near-convergent lengths of ln 2 / ln 3. First record survivor is L = 25781. Max first-passage in the window is 257 steps at seed 1122603. Paper A Theorem 4.6 now prints the parity table at floor 10^6 (prefix 25780, 141 exceptions), a stronger inequality at the weaker floor. This is not a halt theorem and not a no-cycle-of-any-length theorem.",
+  "source": "docs/problems/juggler_cycle_finance.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-small-cycle-census-eighteen",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "No itinerary of length at most 18 is a Juggler cycle itinerary at any n ≥ 2, except that length 19 is not excluded here. Lengths ≤ 11 are J-small-cycle-census-eleven; lengths 12, 13, and 16 remain excluded at the residual floor 12; lengths 14, 15, 17, and 18 are excluded by cycle_finance_min_fifty_three (finance_excludes_length_fourteen and companions, packaged as no_cycle_itinerary_length_le_eighteen). Strengthened by J-small-cycle-census-nineteen. This is a Lean companion to Paper A Theorem 4.6, not a leftover-itinerary census, not an exclusion of length 19, not a no-cycle-of-any-length theorem, and not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_finance.md",
+  "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "decl": [
+   "no_cycle_itinerary_length_le_eighteen",
+   "cycle_finance_min_fifty_three",
+   "finance_excludes_length_fourteen",
+   "cycle_finance_min_thirteen"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-small-cycle-census-eleven",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "No itinerary of length at most eleven is a Juggler cycle itinerary at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least twelve, and in fact at least fourteen by J-cycle-itinerary-length-ge-fourteen. Strengthened by J-small-cycle-census-eighteen. Length 11 is the first near-convergent (2^11 < 3^7); the residual floor 53 plus cycle_finance_min_fifty_three excludes it (finance_excludes_length_eleven, packaged as no_cycle_itinerary_length_le_eleven). This is a Lean companion to Paper A Theorem 4.6, not a leftover-itinerary census of the thirty length-11 short-gap families, not a theorem named no_cycle_itinerary_length_eleven, not a no-cycle-of-any-length theorem, and not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_finance.md",
+  "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "decl": [
+   "no_cycle_itinerary_length_le_eleven",
+   "finance_excludes_length_eleven",
+   "cycleItinerary_iterate_not_lt_fifty_three"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-small-cycle-census-nineteen",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "No itinerary of length at most 19 is a Juggler cycle itinerary at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least 20, and in fact 57 or at least 58 by J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight. Lengths ≤ 18 are J-small-cycle-census-eighteen; length 19 is the near-convergent 2^19 < 3^12 killed by the residual floor 257 plus cycle_finance_min_two_hundred_fifty_seven (finance_excludes_length_nineteen, packaged as no_cycle_itinerary_length_le_nineteen). This is a Lean companion to Paper A Theorem 4.6, not a leftover-itinerary census, not a no-cycle-of-any-length theorem, and not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_finance.md",
+  "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-small-cycle-census-ten",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "No itinerary of length at most ten is a Juggler cycle itinerary at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least eleven. Lengths ≤ 8 are the census J-small-cycle-census-eight; lengths 9 and 10 are excluded by the finance inequality at the residual floor 12 (no_cycle_itinerary_length_nine, no_cycle_itinerary_length_ten, packaged as no_cycle_itinerary_length_le_ten). Strengthened by J-small-cycle-census-eleven. This is a Lean companion to Paper A Theorem 4.6, not a leftover-itinerary length-11 census, not a no-cycle-of-any-length theorem, and not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_finance.md",
+  "lean": "Problems/Juggler/CycleFinanceLeftovers.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_finance.py"
+  ],
+  "related_conjectures": []
+ }
+]

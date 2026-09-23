@@ -1,0 +1,15 @@
+[
+ {
+  "id": "J-ooo-residual-cube",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "An odd state z ≥ (n+1)^2 has odd-step image at least (n+1)^3. Consequently, on OOO at q ≥ 5 the residual is T^3(q) ≥ (q+1)^3, not merely the next-square bound of ooo_suffix_threshold. On a CycleMin whose first odd run has length at least three, the first three-odd residual is at least (n+1)^3. Lean: odd_ge_succ_sq_floorPower_ge_cube, ooo_residual_ge_cube in Preimages.lean; cycleMin_ooo_residual_ge_cube in CycleMinObstruction.lean. The smallest universal local-overshoot A on CycleMin is 2, not 3. Not a halt theorem and not a contained-run prohibition.",
+  "source": "docs/problems/juggler_cyclemin_obstruction.md",
+  "lean": "Problems/Juggler/CycleMinObstruction.lean",
+  "decl": "cycleMin_ooo_residual_ge_cube",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cyclemin_obstruction.py"
+  ],
+  "related_conjectures": []
+ }
+]

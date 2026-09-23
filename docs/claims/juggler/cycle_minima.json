@@ -1,0 +1,1190 @@
+[
+ {
+  "id": "J-cyclemin-bunched-short-path",
+  "tag": "REFUTED",
+  "statement": "The leftover-suffix path table that excludes expanding bunched leftovers after an arbitrary prefix also excludes the bunched-short residual a < a_min: no y follows O^a ++ tail and lands in [12, y]. False. Below 256 there are 18 such returns, including 129 → 100 on OOOOOEEE and 81 → 16 on OOOEOEE, and no short leftover overshoots y. Isolated-odd bunched-short shapes with e ≥ 5 exist in the expanding window. A return is not a CycleMin. This is not a Z5 family, not a length-11 census, not a four-even cell, and not a halt theorem.",
+  "source": "docs/problems/juggler_bunched_short.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_bunched_short.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-closure-threshold",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Closure threshold for the no-cycle problem. If a Diophantine budget C · L^{−p} ≤ Λ holds on every nontrivial Juggler cycle and cycle minima satisfy the matching lower bound n log n > (2/C) L^{p+1}, then every CycleMin word based at a minimum n ≥ 2 is empty: there is no nontrivial cycle (no_cycleMin_of_gap_and_minimum). Neither hypothesis is proved here; the theorem is the implication. It puts a number on the standing reopen condition of juggler_cycle_method_ceilings, \"a lower bound on the cycle minimum in terms of the period\": the unconditional target is n ≫ L^{5.1163051} via Wu–Wang, against n ≫ L^{14.3} via Rhin, and since p ≥ 1 for every irrational by Dirichlet no instance of the scheme ever asks for less than n ≫ L^{2}. The finance survivors sit at n log n ≍ L^{2} (ratio n log n / L^{2} in [0.164, 1.207] at L = 25781, 50508, 176251, 478245, 780239), so the gap to the unconditional target is the unbounded ratio q_{k+1}/q_k that Paper D exports. Not a halt theorem, not a proof of either hypothesis, and no cycle of any length is claimed.",
+  "source": "docs/problems/juggler_cycle_wuwang_reduction.md",
+  "lean": "Problems/Juggler/GapTransferWW.lean",
+  "decl": "no_cycleMin_of_gap_and_minimum",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_wuwang_reduction.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-defect-finance-kill",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The defect-sum finance inequality (the certified identity of Paper A Theorem 4.6, previously human) and the walk-charge kill criterion (Theorem 5.9 mechanism), Lean end to end (DefectFinance.lean). Finance: on a CycleMin cycle with minimum n ≥ 400, 1 − 2^L/3^o ≤ (6/5)·Σ_k 1/(x_k·log x_k) (cycleMin_defect_finance). Ingredients all Lean: per-step floor losses in image form — for a state x with image y = T(x), the relative defect δ = (x^e − y²)/x^e satisfies δ ≤ 2/y and −log(1−δ) ≤ (6/5)δ on δ ≤ 1/6 (neg_log_one_sub_le_sixth), so each step loses at most (6/5)/y in log terms (log_floorPower_even_ge_sub at x ≥ 441, log_floorPower_odd_ge_sub at x ≥ 9), plus the floor-only-loses upper bounds (log_floorPower_even_le, log_floorPower_odd_le); the unroll is the WalkTransport weight induction run twice — upper invariant log x_k ≤ w_k·log n (cycleMin_log_le_weight) pricing the amplification, charged lower invariant w_k(log n − C_k) ≤ log x_k (cycleMin_charge_prefix) accumulating C_k = Σ 1.2·log n/(x_{i+1}·log x_{i+1}) — closed at x_L = n and reindexed cyclically. Kill criterion: chaining with cycleMin_defect_le_hug_charge (WalkChargeMax.lean), every CycleMin at n ≥ 400 with positive reduced log-base ν = log n − D must satisfy 1 − 2^L/3^o ≤ (6/5)·Σ_k g(hugWeight k) at the reduced base (cycleMin_hug_kill_criterion) — the entire finance-vs-hug-charge implication is a single Lean theorem; the per-length numeric kill evaluations (Thm 5.9 tables) remain verified computation, as does the parity refinement of Cor 4.5. Not a cycle obstruction by itself and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/DefectFinance.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_charge.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_window_envelope"
+  ]
+ },
+ {
+  "id": "J-cyclemin-first-oo-r-bound",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Let x1 = T_{O^{a0} E}(n) and B = T_OE. If O^{a0} E follows at n, (OE)^r follows at x1, and B^r(x1) ≥ n, then 2^{2r+a0+1} ≤ 3^{a0+r}. Write R(a0) for the largest such r. Then R(2)=0, R(3)=1, R(4)=3. This is an AboveAnchor / isolated-prefix theorem, not a cycle-return theorem. On a CycleMin-shaped prefix this bounds isolated-OE transport before the first internal OO: r ≤ R(a0). In particular an a0=2 CycleMin cannot complete one OE after the first even while staying ≥ n, so its first internal OO, if it exists, is immediate (r=0). The same r=0 bound holds for a MinimalNonTerm realization of O^{2}E(OE)^r. Lean: isolatedOddSurvival_bound, isolated_oe_ge_implies_exponent, isolated_oe_lt_of_scale_gap, isolated_oe_r_max_two in FirstInternalOO.lean; aboveAnchor_isolated_two in MinimumRelative.lean; no_cycleMin_prefix_ooe_oe, cycleMin_isolated_two in CycleObstructions.lean; minimal_isolated_two in Minimal.lean. The suffix after that OO is not classified. This is not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_first_internal_oo.md",
+  "lean": "Problems/Juggler/FirstInternalOO.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_first_internal_oo.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-first-oo-surplus",
+  "tag": "REFUTED",
+  "statement": "The first internal OO after O^{a0} E (OE)^r, while xj ≥ n, creates an irreversible return-cost surplus: either r may grow without bound, or the first OO instantly forces FiniteProgress, or T^b(xj) is uniformly stronger than the generic square (xj+1)^2. False. The isolated-OE comparison forbids r > R(a0). The start 193 stays 66 steps after its first OO. Every b=2 event in 13 ≤ n < 801 lands ≥ n after OOE. Named r=2 witnesses 2155, 2503, 2985 exist and still obey r ≤ R(a0). This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_first_internal_oo.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_first_internal_oo.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-front-oo-raise",
+  "tag": "REFUTED",
+  "statement": "Once an early even step has overshot the CycleMin cell, a later OO permanently raises the return floor above what a bunched-short tail can undo: the existing transport already disjoints every short-tail exact-return cell, and T_remaining after that OO cannot land in [n, y]. False. The prefix-independent floor (n+2)^2 lies below every remaining scale n^8, n^{16/3}, n^{32/9}, n^{64/27}. T_OO after the first-even landing is below [n^8, (n+1)^8) for a0 ≤ 4 and above it for some a0 ≥ 5, never uniformly above. Three CycleMin-shaped interval leaks with a later OO exist (37 → 76 on OOOOEOOOEEOOEE, 113 → 1942 on OOOEOOOOOEEE, 205 → 598 on OOOOEOEOOEOOEE) and do not share a post-OO cell depth. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_front_overshoot.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_front_overshoot.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-front-oo-scan",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "On odd 13 ≤ n < 201 and 2 ≤ a0 ≤ 7, every first-even overshoot followed by OO has T_OO(y) outside [n^4, (n+1)^4) and [n^8, (n+1)^8) (10 below EE, 1 above; 11 below EEE). On 13 ≤ n < 501 and 2 ≤ a0 ≤ 8 the same T_OO is outside [n^8, (n+1)^8) (27 below, 4 above, 0 inside). No such start maps remaining E O^b E O^c E exactly to n. Case A e=4 bunched-short words with n < 201 have 0 CycleMin returns and one interval hit (113 → 1942 on OOOEOOOOOEEE). Case B e=5 words with n < 151 have 0 CycleMin returns. All 18 parked suffix returns start below n^2. This is a finite scan, not a parameterized Lean theorem, not a Z5 family, and not a halt theorem.",
+  "source": "docs/problems/juggler_front_overshoot.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_front_overshoot.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-fudge",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The thirty first-expanding four-even short-gap leftovers O^{a0} E O^{a1} E O^{a2} E O^{a3} E are not CycleMin words. On a CycleMin every later state is >= n, so the exact cells compose by absorb_odd_step and absorb_even_step: n^A < (n+1)^B (x+1)^γ implies n^{A+γ} < (n+1)^{B+γ} (isqrt(x)+1)^{2γ}. After the prefix, cycle_trailing_evens_lt puts the image below (n+1)^{2^r}. Any 7-odd word that starts O keeps γ a power of two and raises on each later odd, so the slack is identically 3^7-2^{11}=139, independent of even placement. For n >= 30 and A <= 13905 the comparison is (n+1)^{A-139} < n^A; no n with 2 <= n < 30 follows any of the thirty prefixes. The eight leftovers whose only CycleMin-shaped rotation is themselves (OOOOOOOEEEE, OOOOOOEOEEE, OOOOOOEEEOE, OOOOOEOEEOE, OOOOOOEEOEE, OOOOOEOEOEE, OOOOOEEOEOE, OOOOEOEOEOE) are not cycle itineraries. Lean: absorb_even_step, family_slack139, no_cycleMin_cyclemin_fudge, and the named unique-rotation CycleItinerary theorems in CycleMinFudge.lean. This replaces leftover 2-fudge cutoffs 10^8 through 10^15. Not a length-11 census, not no_cycle_itinerary_four_even, not the a0>=8 tails, and not a halt theorem. Not imported by JugglerPaper.",
+  "source": "docs/problems/juggler_cyclemin_fudge.md",
+  "lean": "Problems/Juggler/CycleMinFudge.lean",
+  "decl": [
+   "no_cycleMin_cyclemin_fudge",
+   "absorb_even_step",
+   "family_slack139",
+   "no_cycle_itinerary_of_unique_fudge",
+   "fourEvenWord",
+   "plus_one_chain",
+   "plus_one_vs_trailing",
+   "exponents_starts_odd",
+   "slack139_of_seven_odd_length_eleven",
+   "succ_pow_slack139_of_ge_30",
+   "no_follows_from2_below",
+   "unique_oooooooeeee",
+   "unique_ooooooeoeee",
+   "unique_ooooooeeeoe",
+   "unique_oooooeoeeoe",
+   "unique_ooooooeeoee",
+   "unique_oooooeoeoee",
+   "unique_oooooeeoeoe",
+   "unique_ooooeoeoeoe",
+   "no_cycle_itinerary_fudge_oooooooeeee",
+   "no_cycle_itinerary_ooooooeoeee",
+   "no_cycle_itinerary_ooooooeeeoe",
+   "no_cycle_itinerary_oooooeoeeoe",
+   "no_cycle_itinerary_ooooooeeoee",
+   "no_cycle_itinerary_oooooeoeoee",
+   "no_cycle_itinerary_oooooeeoeoe",
+   "no_cycle_itinerary_ooooeoeoeoe"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cyclemin_fudge.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-gap-power-transfer",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Power-budget gap transfer. On a Juggler CycleMin start n ≥ 2 with word w of positive length L and oddCount o, for real 0 < C ≤ 1 and p ≥ 0, a Diophantine budget C · L^{−p} ≤ Λ = o log 3 − L log 2 gives n log n ≤ (2/C) L^{p+1} (cycleMin_length_of_gap_power). It is cycleMin_length_of_gap at ε = C L^{−p}, with gapBudget_le_one supplying ε ≤ 1; the transcendence input stays a hypothesis, as Rhin does in GapTransfer.lean. Instances: p = 13.3, C = e^{−6.1256} is Paper A Corollary 4.11; p = 4.1163051 is the Wu–Wang instance cycleMin_length_of_wuWang, length exponent 5.1163051. Floor-free. Not a halt theorem, not a kill, and not a period bound at any floor.",
+  "source": "docs/problems/juggler_cycle_wuwang_reduction.md",
+  "lean": "Problems/Juggler/GapTransferWW.lean",
+  "decl": "cycleMin_length_of_gap_power",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_wuwang_reduction.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-gap-transfer",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Gap transfer (Paper A Theorem 4.10). On a Juggler CycleMin start n ≥ 2 with word w of length L and oddCount o, n · log n · min(o log 3 − L log 2, 1) ≤ 2 L (cycleMin_gap_transfer). Proof: Theorem 4.4 reads P(A − B) ≤ L A with A = 3^o, B = 2^L, P = n log n; if A ≤ B the left side is nonpositive, if A ≥ 2B then P ≤ 2L, and if B < A < 2B then Λ = log(A/B) ≤ (A − B)/B and P(A − B)/B ≤ LA/B ≤ 2L. Abstract form cycleMin_length_of_gap: any ε ≤ min(Λ, 1) gives n log n · ε ≤ 2L. The printed Corollary 4.11 display under the hypothesis L^{−13.3} ≤ Λ is cycleMin_length_of_rhin. Floor-free; the classical transcendence input is a hypothesis, not a Lean theorem. Not a halt theorem and not a period bound at any floor.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/GapTransfer.lean",
+  "decl": "cycleMin_gap_transfer",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_mechanical_window.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-hug-charge-max",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Hug charge maximality and the §5.2 defect-to-charge consequence of Paper A, Lean end to end (Theorem 5.4 analytic half, previously human). The per-state charge stateCharge ν W = 1/(e^{Wν}·W·ν) — the paper's g(u) = 1/(n'^{2^u}·2^u·log n') written through the rational weight W = 3^a/2^k — is antitone in the weight (stateCharge_antitone, WalkChargeMax.lean); since the hug itinerary carries the pointwise-least admissible odd count (hugOdds_le_of_admissible), the exact hug itinerary maximises the total walk charge over ALL admissible exponent walks (hug_charge_maximal), strengthening the paper's fixed-(L,o) statement. Chained with the transport inequality: on a CycleMin cycle with n ≥ 400 and positive reduced log-base ν = log n − D, the cyclic defect sum obeys Σ_k 1/(x_k log x_k) ≤ Σ_k g(w_k) ≤ Σ_k g(hugWeight k) (cycleMin_defect_le_charge, cycleMin_defect_le_hug_charge), exponentiating cycleMin_transport via exp monotonicity only — no charge integral. Strict within-(L,o) uniqueness is also Lean: if an admissible profile has the same total charge as the hug profile, then every prefix weight and odd count agrees (`stateCharge_strictAnti`, `stateCharge_inj`, `hug_charge_unique`, with ν > 0). The two charge normalisations meet at `blockObservable_eq_stateCharge` and `hugCharge_eq_scaled_stateCharge`. Denjoy–Koksma and its block composition are separately Lean; its hug-charge conclusion is relative to the circle integral `circleMean`. The elementary identification of that integral with Proposition 5.5's displayed `rotationAverage (log n')` is `circleMean_eq_rotationAverage`. The final kill evaluations remain verified computation. Not a cycle obstruction and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/WalkChargeMax.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_charge.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_window_envelope"
+  ]
+ },
+ {
+  "id": "J-cyclemin-hug-prefix-bound",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Cycle itineraries dominate the hug itinerary (Paper A Section 5.3 remark). On any minimum-based cycle itinerary w at minimum n ≥ 2, every length-k prefix carries at least hugOdds k = o_min(k) odd letters (cycleMin_prefix_odds_ge_hug; full word cycleMin_odds_ge_hug), by composing the formalized cycle prefix envelope 2^k ≤ 3^(oddCount (w.take k)) (cycleMin_prefix_pow_le, CycleFinance) with hug minimality (hugOdds_least). Strict window 2^k < 3^(hugOdds k) for k ≥ 1 (hugOdds_pow_gt, powers of 2 and 3 never meet) identifies hugOdds with the finance table's strict o_min. The survivor-lattice generators of Proposition 4.9 lie on the hug diagonal o = hugOdds L: (1054, 665), (25781, 16266), (50508, 31867) (hugOdds_1054, hugOdds_lattice_base, hugOdds_seed), and the hug counts along the certified convergent denominators are Lean-listed (hugOdds_convergent_denoms). This bounds odd counts from below only; it is not a charge bound, not a cycle obstruction, and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/WalkChargeItineraries.lean",
+  "decl": [
+   "cycleMin_prefix_odds_ge_hug",
+   "hugOdds",
+   "hugOdds_least",
+   "hugOdds_pow_gt",
+   "cycleMin_odds_ge_hug",
+   "hugOdds_1054",
+   "hugOdds_lattice_base",
+   "hugOdds_seed",
+   "hugOdds_convergent_denoms"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_window.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_hug_exchange"
+  ]
+ },
+ {
+  "id": "J-cyclemin-inhomogeneous-log",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "On a CycleMin word the exact identities produce only the homogeneous form Λ = o log 3 − L log 2. The global-defect return gives log R = G log n with G = 3^o−2^L, not an integer, and the block-exponent sum is identically Λ. For every integer p ≠ 0, |p+Λ| ≥ 1−|Λ|. On the leftover seeds 19, 84, 569, 1054, 25781, 50508, 176251 this gap is in [0.986, 1), so every unscaled inhomogeneous Wu–Wang form is order 1 while |Λ| is the finance gap. Choosing k = round(1/Λ) after the fact makes |kΛ−1| smaller than |Λ| (any small Λ permits this) and stays at least 2.52·10^{10} above the diagnostic Wu–Wang floor H^{−4.1163051}. The slogan that the integer 1 in Wu–Wang is a third coefficient two-log finance cannot see is REFUTED (juggler_inhomogeneous_ww_beats_finance). Not a leftover killer and not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_inhomogeneous_log.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_inhomogeneous_log.py"
+  ],
+  "related_conjectures": [
+   "juggler_inhomogeneous_ww_beats_finance",
+   "juggler_walk_fan_growth_measure"
+  ]
+ },
+ {
+  "id": "J-cyclemin-iso-odd-fibre",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "On odd 13 ≤ n < 151, no isolated-odd bunched-short word with e in {5,6} and 2 ≤ a0 ≤ 8 lands in the exact short-tail fibre T_{O^b E O^c E}(y) = n. There are 588 such words. 34 follow; all drop below n (a0 in {2,3,5}); none stay ≥ n; none are CycleMin. The e=4 isolated-odd remainder is the parked four-even cell and is not included. This is a finite window, not a parameterized Lean transport theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_isolated_odd_fibre.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_isolated_odd_fibre.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-iso-odd-return",
+  "tag": "REPARAMETERIZATION",
+  "statement": "An isolated-odd CycleMin prefix u (every maximal odd run has length 1) cannot land in a bunched-short return fibre R_{b,c}(n). Any such u that completes OE contracts below n by oe_block_contracts, so the only CycleMin-admissible isolated-odd prefixes are empty and O. Those plus O^b E O^c E are CycleItineraries of length at most 6, excluded by no_cycle_itinerary_length_le_six. Therefore P_iso(n) ∩ R_{b,c}(n) is empty. This is not a new obstruction, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_isolated_odd_return.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_isolated_odd_return.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-k5-post-l-cube",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "If n ≥ 2 follows W_5 = M(OOE)^5 with M = OOEOOOEOOEEOOE, then W_5 has length 29 and 19 odds, so x_5 = T_{W_5}(n) satisfies x_5^{2^{29}} ≤ n^{3^{19}}. The square cell fails (2^{30} < 3^{19}) and the cube cell holds (3^{19} < 3·2^{29}), hence x_5 < n^{3^{19}/2^{29}} < n^3. The k=4 ceiling lies below 2 (3^{17} < 2^{27}); the k=5 ceiling lies above 2; the exponent ratios differ by exactly 9/8. If x_5 is even then T(x_5) < n^{3/2} < n^2 (same comparison 3^{19} < 3·2^{29}) and x_5 cannot start L; even x_5 is not FiniteProgress (3^{19} > 2^{30}). If x_5 is odd then the next O satisfies T(x_5) < n^4 (3^{20} < 4·2^{30}). This is a near-square replacement of the square cell, not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_k5_post_l_ooe.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_k5_post_l_ooe.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-k5-post-l-hierarchy",
+  "tag": "REFUTED",
+  "statement": "The k=5 post-L OOE escape has no useful finite upper power bound below n^4, the even branch creates a new scale hierarchy, and x_5 ≥ n^2 is forced by the square-cell failure. False. 3^{19} < 3·2^{29} gives x_5 < n^3. Even x_5 returns to T < n^{3/2} < n^2 and does not drop below n (3^{19} > 2^{30}). The k=5/k=4 exponent ratios differ by exactly 9/8; the first integer threshold is n^3, not n^4. Losing the square ceiling does not create a square floor. 501 never follows W_5 (max k=2, landing 12707 starts OE). This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_k5_post_l_ooe.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_k5_post_l_ooe.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-l-image-odd-run-five",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Among the 23 starts that follow L = OOEOOOEOOEE in 12 ≤ n < 50000, the L-image t is odd for 17 of them. The immediate odd-to-odd stay is 8/17. Odd-run lengths from t are 1^9 2^4 3^2 4^1 5^1. The maximum is 5: 33391 follows L to t = 67709 and then OOOOOE. 28367 has run 4 and 29371 has run 3. No start in the list follows W_5. This is not a finite-K theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_parity_persist.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_parity_persist.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-l-odd-run-envelope",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "If t^{2048} ≤ n^{2187} and t follows O^k, then T_{O^k}(t) < n would require 2187·3^k < 2048·2^k. That inequality fails for every k ≥ 0 because 2187 > 2048 and 3^k ≥ 2^k. Slack at k = 0 is 139 and increases. Therefore the inherited L-envelope never compose-drops an odd continuation. This is not a finite-K theorem, not an unboundedness theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_l_odd_run_cap.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_l_odd_run_cap.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-l-odd-run-envelope-caps",
+  "tag": "REFUTED",
+  "statement": "The inherited envelope t^{2048} ≤ n^{2187} supplies a finite odd-run budget K from t = T_L(n), or no_cycle_odd_run_append_even caps those paths. False. 2187·3^k > 2048·2^k for every k ≥ 0, so the compose test never drops. no_cycle_odd_run_append_even is a CycleItinerary obstruction, not a path obstruction. 33391 follows L to 67709 and then OOOOOE. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_l_odd_run_cap.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_l_odd_run_cap.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-last-cluster",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Every CycleMin-shaped even-terminating word O^{a0} E ⋯ E with a0 ≥ 2 and e ≥ 4 has last gap in {0,1} or is bootstrap. If the last gap is in {0,1}, the last two-even suffix is an excluded two-even leftover, or the last three-even suffix is an excluded bunched family, or the last cluster is one of the seven bunched-short pairs (b,c) ∈ {(0,0),(1,0),(2,0),(3,0),(0,1),(1,1),(2,1)}. This is a finite last-cluster split, not an itinerary list. The expanding window 4 ≤ e ≤ 6, 7 ≤ o ≤ 14 is computationally empty of missed shapes. The residual family is the bunched-short last cluster. Not a length-11 census, not Z5, not no_cycleMin_four_even, and not a halt theorem.",
+  "source": "docs/problems/juggler_cyclemin_obstruction.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cyclemin_obstruction.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-last-odd-run",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "On a CycleMin word that ends O^a E with a ≥ 1 and the preceding letter not odd, the last odd-run has length exactly one. Equivalently, a CycleMin word cannot end O^a E for a ≥ 2. This is no_cycleMin_odd_run when the prefix is empty and no_cycleMin_bootstrap_last_gap after an internal even: oo_suffix_threshold at the last valley versus the last-even one-step preimage, the OOEOOE sandwich of Theorem 3.6. Every CycleMin word ends O^a E with a ≤ 1; a = 0 is a trailing even run of length at least two and is not excluded. Lean: exists_trailing_odds, cycleMin_not_last_odd_run_ge_two, cycleMin_last_odd_run_eq_one, exists_cycleMin_last_odd_run in EvenCountThree.lean. Not a forced-OE incoming side, not a leftover-killer, and not a halt theorem. Not imported by JugglerPaper.",
+  "source": "docs/problems/juggler_cycle_entry_corridor.md",
+  "lean": "Problems/Juggler/EvenCountThree.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_entry_corridor.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-mechanical-window-coin",
+  "tag": "OBSERVATION",
+  "statement": "For the hug word at L = 19, 84, 1054 the integer fixed points of the prescribed-branch map f_w (odd branch isqrt(m^3), even branch isqrt(m), parity ignored) number 11, 55, 1689 against the drift prediction 1/(Λ(1 + log m)) = 16.3, 68.6, 1869.6 (ratios 0.68, 0.80, 0.90), sit in a band of span 18, 249, 14931 around the finance crossing 34, 397, 77062 (a band, not a run), and the realized parity depth on the band is a fair coin: at L = 1054 the histogram is 833, 411, 213, 119, 55, 37, 11, 6, 4 with mean 1.03 and maximum 8 < log2(1689). No member realizes its word. A cycle with word w exists iff a band member realizes w; nothing on the band distinguishes it from a coin, so per-orbit parity at depth growing with n has no candidate mechanism. Not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_mechanical_window.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_mechanical_window.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-necklace",
+  "tag": "REFUTED",
+  "statement": "Slack 139 plus a bounded CycleMin pin excludes every length-11 start-OO four-even itinerary (the 56 CycleMin-shaped orientations). False: slack is identically 139 on all 56, but OOEEEOOOOOE has first prefix start 5 and chain N0=55 (A=30705), and OOOEEEOOOOE has first prefix start 3 and chain N0=42 (A=21633). Early evens inflate A past the fudge bound 13905. The other 24 extra orientations fire. Not a length-11 census, not a two-word pin rescue, not no_cycleMin_necklace, and not a halt theorem.",
+  "source": "docs/problems/juggler_cyclemin_necklace.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cyclemin_necklace.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-odd-k5-generic",
+  "tag": "REFUTED",
+  "statement": "The odd k=5 next O has only the generic y < n^{9/2} bound, stays in C_3, and an even y opens a new scale hierarchy; the short words E, OE, OOE, OOOE recover from x_5. False. The inherited envelope is y < n^{3^{20}/2^{30}} < n^4, which is below 9/2 and not below n^3 (3^{20} > 3·2^{30}). Even y returns to z < n^2 (3^{20} < 2^{32}) and does not drop below n. OEE contracts; E, OE, OOE, and OOOE do not. 501 never follows W_5. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_odd_k5_leak.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_odd_k5_leak.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-odd-k5-y-fourth",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "If n ≥ 2 follows W_5 = M(OOE)^5 with M = OOEOOOEOOEEOOE and x_5 = T_{W_5}(n) is odd, then y = T(x_5) satisfies y^{2^{30}} ≤ n^{3^{20}}. The cube cell fails (3^{20} > 3·2^{30}) and the fourth-power cell holds (3^{20} < 4·2^{30}), hence y < n^{3^{20}/2^{30}} < n^4. The inherited ceiling is below the generic 9/2 (3^{20} < 9·2^{29}). If y is even then z = T(y) satisfies z < n^{3^{20}/2^{31}} < n^2 and y cannot start L; even y is not FiniteProgress (3^{20} > 2^{31}). The itinerary OEE contracts versus n (3^{20} < 2^{32}); E, OE, OOE, and OOOE do not. A second O from odd y stays below n^5 (3^{21} < 5·2^{31}). This is a near-cube replacement of C_3, not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_odd_k5_leak.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_odd_k5_leak.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-odd-oooe-even-q-drops",
+  "tag": "REFUTED",
+  "statement": "After an odd OOEOOOE landing, even q = T(w) gives FiniteProgress, and every surviving branch shrinks inside n^2. False. Even q need not drop: 483 has q = 43866306 even and r = 6623 odd in [483, 483^{3/2}). Odd q leaves the square cell: 491 has q = 46021865 in [491^2, 491^3). Both 483 and 491 have w/n^2 ≈ 0.533; the split is the parity of q, not the cell position. Even-even still drops (319 → 60 via OOEOOOEOEE). This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_odd_oooe_next.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_odd_oooe_next.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-odd-oooe-next-o",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "If n ≥ 2 follows OOEOOOE and w = T_OOEOOOE(n) is odd, then w^{128} ≤ n^{243}. The next image q = T(w) satisfies q^{256} ≤ n^{729} < n^{768} = (n^3)^{256}, so q < n^3. Combined with w ≥ isqrt((n+1)^3) and isqrt((n+1)^3)^3 ≥ (n+1)^4, one has n^2 ≤ q < n^3. The itinerary OOEOOOEO loses the square-cell gap (512 < 729); OOEOOOEOE restores it (1024 > 729). If q is even, the OE landing r lies in [n, n^{3/2}). If r is even, OOEOOOEOEE contracts versus n (729 < 1024) and FiniteProgress follows. If q is odd, a second OO starts from [n^2, n^3). This is not a uniform shrinking-cell theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_odd_oooe_next.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_odd_oooe_next.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-odd-u-generic",
+  "tag": "REFUTED",
+  "statement": "After odd u on the W_5 branch the next O has only the generic v < n^{12} bound, even v resets to C_1–C_4, n^{11} is a new structural rung, and the odd residual has a finite set of rational-exponent states. False. The inherited envelope is v < n^{3^{23}/2^{33}} < n^{11}, which is below 12 and not below 10. Even v returns below n^6, not n^4. The integers 3,4,5,8,11 are crossings of (3/2)^k · 3^{19}/2^{29}; repeated O multiplies the ceiling by 3/2. OE/OOE/OEE from u do not contract. 501 never follows W_5. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_odd_u_next_o.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_odd_u_next_o.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-odd-u-v-eleventh",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "If n ≥ 2 follows W_5 = M(OOE)^5 with M = OOEOOOEOOEEOOE, the states x_5, y = T(x_5), z = T(y) are odd, and u = T(z) is odd, then v = T(u) satisfies v^{2^{33}} ≤ n^{3^{23}}. The tenth-power cell fails (3^{23} > 10·2^{33}) and the eleventh-power cell holds (3^{23} < 11·2^{33}), hence v < n^{3^{23}/2^{33}} < n^{11}. This beats generic v < n^{12} from u < n^8. If v is even then T(v) < n^{3^{23}/2^{34}} < n^6; even v is not below n^4 (3^{23} > 4·2^{34}) and cannot start L. After W_5 plus k extra odds the first integers are 3,4,5,8,11 for k = 0,…,4, the crossings of (3/2)^k · 3^{19}/2^{29}. This is not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_odd_u_next_o.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_odd_u_next_o.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-oneshot-oe-drop",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "If n ≥ 2 follows OOEOOOEOOEE and t = T_OOEOOOEOOEE(n), then t^{2048} ≤ n^{2187}. If t follows a further word W with 2187 · 3^{#O(W)} < 2048 · 2^{|W|}, then T_W(t) < n. In particular an even t drops (W = E: 2187 < 4096) and a t that follows OE drops (6561 < 8192). Those post-L states cannot start OOE, so they lie outside the pre-L entrance of the even-even second-OO corridor. OOE alone does not compose below n (19683 > 16384), and a second copy of OOEOOOEOOEE does not compose below n (2187^2 > 2048^2). This is not a claim that every post-L state starts OE, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_oneshot_recovery.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_oneshot_recovery.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-oneshot-reenters",
+  "tag": "REFUTED",
+  "statement": "Every post-L state t = T_OOEOOOEOOEE(n) re-enters the same pre-L entrance, every recovery is OE, and the final even remainder is a Lyapunov certificate. False. 11233 returns to even t = 21154 and drops by E to 145. 6187 and 11853 drop by OE. 501 returns to 763, which still starts OOE but never pays a first OOO and recovers by OOEOOEOOEOEE to 34. None of these four inherited even-even images follows OOEOOOEOOEE, and second_oo(t) is missing. Remainders ε(s) are 747, 7719, 9186, 27853. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_oneshot_recovery.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_oneshot_recovery.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-ooeooe-finite-progress",
+  "tag": "REFUTED",
+  "statement": "CycleMin(n, OOEOOE v) implies FiniteProgress(n) for every suffix v. False. The landing after OOEOOE may be odd and still lie in [n, n^2). Witnesses: 89 → 291 and 111 → 385. Those prefixes continue with O. Even landings do drop (69 → 212 → 14), but that is only one of the two parities. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_minimal_ooe_corridor.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_minimal_ooe_corridor.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-ooeooe-next-o",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "If n ≥ 2 follows OOEOOE and x = T_OOEOOE(n) is odd, then x^{64} ≤ n^{81} implies x^3 < n^4 (because 243 < 256), so z = ⌊x^{3/2}⌋ satisfies z < n^2. If z is even, T(z) ≤ n-1 (FiniteProgress). If z is odd, a CycleMin continuation after the forced O must begin with O, i.e. another OO. Empty continuation is excluded by cycleMin_not_end_odd. The itinerary OOEOOEO has the same square-cell gap 256 > 243. This is not an indefinite-odd-survival theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_odd_ooe_landing.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_odd_ooe_landing.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-ooeooe-next-o-always-drop",
+  "tag": "REFUTED",
+  "statement": "After an odd OOEOOE landing, the forced next O always gives FiniteProgress, and every later odd run stays below n^2. False. Case B exists: 365 → z = 73145 odd, then a second OOE lands at 4447 still below 365^2. A long odd run can escape n^2: 565 follows OOEOOEO by O^9 and leaves the square cell. Even z still drops (89 → 4964 → 70). This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_odd_ooe_landing.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_odd_ooe_landing.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-ooeooe-square-preimage",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "If n ≥ 2 follows OOEOOE, then T_OOEOOE(n) < n^2. Proof: power_bound_word gives x6^{64} ≤ n^{81}; n^2 ≤ x6 would imply n^{128} ≤ n^{81}, impossible for n ≥ 2. If that landing is even, the next even step is at most n-1, hence FiniteProgress. Therefore a CycleMin prefix OOEOOE v has v empty (already excluded by no_cycleMin_ooeooe) or beginning with O. The same square-cell gap holds for OOEOOOE (256 > 243) and fails for b ≥ 4. This is not a FiniteProgress theorem for every v, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_minimal_ooe_corridor.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_minimal_ooe_corridor.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-ooo-inevitable",
+  "tag": "REFUTED",
+  "statement": "Every CycleMin continuation in OOE.{OE,OOE}* must reach a first OOO. False. Witness: 365 follows (OOE)^4 then OE then E and drops to 34, never producing OOO. After k ≥ 3 a following OE may survive one step because the even intermediate already lies above n^2 (365: 12707 → 1432400 → 1196; also 429). Early OE after one or two OOE still drops. A bounded OOE-count is not a theorem: the formal exponent 9/8 > 1 gives no r-bound analogue. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_first_ooo_escape.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_first_ooo_escape.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-ooo-second-step-square",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "If n ≥ 3, then isqrt(n^3)^3 ≥ n^4. Hence if x ≥ n is odd and T(x) is odd, T^2(x) ≥ n^2. A first post-first-OO OOO entered from a CycleMin state therefore loses the square-cell ceiling at the second odd letter. For k ≤ 5 the itinerary (OOE)^k still has the square-cell gap 2^{3k+1} > 3^{2k}, so that entrance lies in [n, n^2). OOEOOO is the first OOO-prefix that loses the gap; completed OOEOOOE restores it (256 > 243). This is not an OOO-inevitability theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_first_ooo_escape.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_first_ooo_escape.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-parity-persist-budget",
+  "tag": "REFUTED",
+  "statement": "An inherited post-L landing forces T(t) even, or at most two consecutive odds (OOE only), or a shrinking residue class modulo 8. False. 501 maps 763 through OO. 33391 maps 67709 through five odds. Stay among odd L-images below 50000 is 8/17. Every odd class modulo 8 both continues odd and exits even. W_5 is absent in that window. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_parity_persist.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_parity_persist.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-period-lower-bound",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Floor-free period lower bound. Under the same budget C · L^{−p} ≤ Λ, a nontrivial Juggler cycle of minimum n has period L ≥ (C n log n / 2)^{1/(p+1)} (cycleMin_period_ge; Wu–Wang form cycleMin_period_ge_wuWang). This is Paper A Corollary 4.11 read as a bound on the period rather than the minimum, and it is the only proved statement in which a cycle's period grows with its minimum — the descent floor is a constant. The exponent in n rises from 1/14.3 = 0.0699 with Rhin to 1/5.1163051 = 0.1954 with Wu–Wang (wu-wang-2014-irrationality-measure-log3, |a + b log 2 + c log 3| ≥ H^{−4.1163051−ε} at a = 0, H = max(L, o) = L). Distinct from the fan-width cap of juggler_cycle_walk_fan_growth and from the REFUTED floor-level Baker transfer of juggler_cycle_gap_baker: no floor enters and nothing is excluded. At N_0 = 3.5·10^8 it forces L ≥ 74 against 780239 from the finance table, and only 58676 even at the Dirichlet floor p = 1. Not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_wuwang_reduction.md",
+  "lean": "Problems/Juggler/GapTransferWW.lean",
+  "decl": [
+   "cycleMin_period_ge",
+   "cycleMin_period_ge_wuWang"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_wuwang_reduction.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-post-l-ooe-me-drop",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "If n ≥ 2 follows OOEOOOEOOEE through the inherited even-even second-OO corridor, t = T_OOEOOOEOOEE(n) starts OOE, and s = T_OOE(t), then the composite word M = OOEOOOEOOEEOOE satisfies s^{16384} ≤ n^{19683} < n^{32768} = (n^2)^{16384}, so s < n^2. M does not contract versus n (19683 > 16384). If s is even, M+E contracts (19683 < 32768). If s follows OE, M+OE contracts (59049 < 65536). Those landings are FiniteProgress and cannot meet the OOE+OOO entrance of L. A second post-L OOE then OE does not contract versus n (3^{12} > 2^{19}). This is not a claim that every post-L OOE landing starts OE, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_post_l_ooe.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_post_l_ooe.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-post-l-ooe-reenters-l",
+  "tag": "REFUTED",
+  "statement": "A post-L OOE residual immediately dies, or it recreates the original L-entrance, or it has no n-relative envelope beyond a generic OOE from t. False. 501 maps 763 through OOE to 1749, which starts OO; walk_language(763) exits by drop, second_oo(763) is missing, and neither 763 nor 1749 follows OOEOOOEOOEE. 17245 maps 33435 through OOE to 122949 and drops by OE to 6565, the M+OE contraction. OOE from t does not compose-drop (19683 > 16384 on the 8/9 step). This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_post_l_ooe.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_post_l_ooe.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-post-ooo-always-drop",
+  "tag": "REFUTED",
+  "statement": "Every first OOO from C_3(n) recovers by FiniteProgress, and a second OOO requires a strictly stronger entrance. False. An odd OOOE landing continues: 483 → w = 124381 odd in [483, 483^2), then a second OOO at 6623 still in C_3(483). A second OOO can also start above n^2: 491 → 558757. A longer odd run is a residual (173 after one OOE; 565 after two). Even completed OOOE landings still drop (105 → 6818 → 82). This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_post_ooo_crossing.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_post_ooo_crossing.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-post-ooo-oooe",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "If n ≥ 2 follows OOE and the next odd run at x = T_OOE(n) is a first OOO, then x^8 ≤ n^9 and T^3(x)^8 ≤ x^{27} give T^3(x)^{64} ≤ n^{243} < n^{256} = (n^4)^{64}, so u = T^3(x) < n^4. The cube lemma gives u ≥ (x+1)^3. Whenever u is even, the completed OOOE landing w = isqrt(u) satisfies n ≤ w < n^2. If w is even, OOEOOOEE contracts versus n (243 < 256) and the next E is at most n-1 (FiniteProgress). If w is odd, a CycleMin continuation begins with O from a state still in [n, n^2). The itinerary OOEOOOE has the same square-cell gap 256 > 243. This is not an OOO-fatality theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_post_ooo_crossing.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_post_ooo_crossing.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-prefix-bunched-eee",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every n ≥ 2, every a ≥ 6, and every prefix u, the itinerary u ++ O^a EEE is not a Juggler CycleMin at n. CycleMin puts the leftover at y = T_u(n) ≥ n. The leftover cell is measured against n, so y ≥ n tightens it against the EEE tail at y. Large y is y ≥ 256. Below 256, no start follows the leftover and lands in [2, y] (Fin 256 returnsIntoB table at a = 6; seven consecutive odds on the remainder for a ≥ 7). The case y = n reduces to no_cycle_itinerary_three_even_eee. Lean theorem no_cycleMin_prefix_eee. This excludes that one last-cluster class only; it is not a CycleItinerary theorem at a non-minimum start, not a bunched-short attack, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_prefix_bunched.md",
+  "lean": "Problems/Juggler/PrefixBunched.lean",
+  "decl": "no_cycleMin_prefix_eee",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_prefix_bunched.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-prefix-bunched-eeoe",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every n ≥ 2, every a ≥ 5, and every prefix u, the itinerary u ++ O^a EEOE is not a Juggler CycleMin at n. The leftover cell lifts to y ≥ n against the EOEE tail already used for O^a EEOE. Large y is y ≥ 314 at a = 5 and y ≥ 256 at a ≥ 6. Below those cutoffs the argument is returnsIntoB tables and seven-odd for a ≥ 7. The case y = n reduces to no_cycle_itinerary_three_even_eeoe. Lean theorem no_cycleMin_prefix_eeoe. This excludes that one bunched family only; it is not a bunched-short attack, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_prefix_bunched.md",
+  "lean": "Problems/Juggler/PrefixBunched.lean",
+  "decl": "no_cycleMin_prefix_eeoe",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_prefix_bunched.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-prefix-bunched-eoee",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every n ≥ 2, every a ≥ 5, and every prefix u, the itinerary u ++ O^a EOEE is not a Juggler CycleMin at n. The leftover cell lifts to y = T_u(n) ≥ n against the EOEE tail at y. Large y is y ≥ 314 at a = 5 and y ≥ 256 at a ≥ 6. Below those cutoffs the argument is returnsIntoB tables and seven-odd for a ≥ 7. The case y = n reduces to no_cycle_itinerary_three_even_eoee. Lean theorem no_cycleMin_prefix_eoee. This excludes that one bunched family only; it is not a bunched-short attack, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_prefix_bunched.md",
+  "lean": "Problems/Juggler/PrefixBunched.lean",
+  "decl": "no_cycleMin_prefix_eoee",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_prefix_bunched.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-prefix-bunched-eoeoe",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every n ≥ 2, every a ≥ 4, and every prefix u, the itinerary u ++ O^a EOEOE is not a Juggler CycleMin at n. The leftover cell lifts to y ≥ n against the shared two-even tail at length a+2, which holds for y ≥ 256. Below 256 the argument is Fin 256 returnsIntoB tables at a = 4,5,6 and seven-odd thereafter. The case y = n reduces to no_cycle_itinerary_three_even_eoeoe. Lean theorem no_cycleMin_prefix_eoeoe. This excludes that one bunched family only; it is not a bunched-short attack, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_prefix_bunched.md",
+  "lean": "Problems/Juggler/PrefixBunched.lean",
+  "decl": "no_cycleMin_prefix_eoeoe",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_prefix_bunched.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-prefix-bunched-eooee",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every n ≥ 2, every a ≥ 4, and every prefix u, the itinerary u ++ O^a EOOEE is not a Juggler CycleMin at n. The leftover cell lifts to y ≥ n against the shared two-even tail at length a+2, which holds for y ≥ 256. Below 256 the argument is Fin 256 returnsIntoB tables at a = 4,5,6 and seven-odd thereafter. The case y = n reduces to no_cycle_itinerary_three_even_eooee. Lean theorem no_cycleMin_prefix_eooee. This excludes that one bunched family only; it is not a bunched-short attack, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_prefix_bunched.md",
+  "lean": "Problems/Juggler/PrefixBunched.lean",
+  "decl": "no_cycleMin_prefix_eooee",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_prefix_bunched.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-prefix-bunched-eooeoe",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every n ≥ 2, every a ≥ 3, and every prefix u, the itinerary u ++ O^a EOOEOE is not a Juggler CycleMin at n. For a ≥ 4 the leftover cell lifts to y ≥ n against the shared two-even tail at y ≥ 256. At a = 3 the coarse exponent is impossible, so the argument uses the same tight split as O^3 EOOOEE, measured at y. Below 256 the argument is Fin 256 returnsIntoB tables at a = 3,4,5,6 and seven-odd thereafter. The case y = n reduces to no_cycle_itinerary_three_even_eooeoe. Lean theorem no_cycleMin_prefix_eooeoe. This excludes that one bunched family only; it is not a bunched-short attack, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_prefix_bunched.md",
+  "lean": "Problems/Juggler/PrefixBunched.lean",
+  "decl": "no_cycleMin_prefix_eooeoe",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_prefix_bunched.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-prefix-bunched-eoooee",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every n ≥ 2, every a ≥ 3, and every prefix u, the itinerary u ++ O^a EOOOEE is not a Juggler CycleMin at n. For a ≥ 4 the leftover cell lifts to y ≥ n against the shared two-even tail at y ≥ 256. At a = 3 the coarse exponent is impossible, so the argument uses the tight split already proved for CycleItinerary, measured at y: the internal landing after O^3 E is either below 39 or reduces to the large-y tight comparison at y. Below 256 the argument is Fin 256 returnsIntoB tables at a = 3,4,5,6 and seven-odd thereafter. The case y = n reduces to no_cycle_itinerary_three_even_eoooee. Lean theorem no_cycleMin_prefix_eoooee. This excludes that one bunched family only; it is not a bunched-short attack, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_prefix_bunched.md",
+  "lean": "Problems/Juggler/PrefixBunched.lean",
+  "decl": "no_cycleMin_prefix_eoooee",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_prefix_bunched.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-prefix-two-even-ee",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every n ≥ 2, every k ≥ 6, and every prefix u, the itinerary u ++ O^{k-2}EE is not a Juggler CycleMin at n. CycleMin puts the leftover at y = T_u(n) ≥ n. The leftover cell is measured against n, so y ≥ n tightens it against the shared two-even tail at y. Large y is y ≥ 256. Below 256, no start follows the leftover and lands in [2, y] (Fin 256 returnsIntoB tables at k = 6,7,8; seven consecutive odds on the remainder for k ≥ 9). The case y = n reduces to no_cycle_itinerary_two_even_ee. Lean theorem no_cycleMin_prefix_two_even_ee. First-E transport is the special case u = O^a E. This excludes that one last-cluster class only; it is not a CycleItinerary theorem at a non-minimum start, not a bunched-short attack, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_prefix_two_even.md",
+  "lean": "Problems/Juggler/PrefixTwoEven.lean",
+  "decl": "no_cycleMin_prefix_two_even_ee",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_prefix_two_even.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-prefix-two-even-eoe",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every n ≥ 2, every k ≥ 6, and every prefix u, the itinerary u ++ O^{k-3}EOE is not a Juggler CycleMin at n. The same prefix transport applies: y ≥ n tightens the leftover cell against the shared two-even tail at y, using the last-odd cube reduction already used for O^{k-3}EOE. Large y is y ≥ 256. Below 256 the argument is returnsIntoB tables at k = 6,7,8,9 and seven-odd for k ≥ 10. The case y = n reduces to no_cycle_itinerary_two_even_eoe. Lean theorem no_cycleMin_prefix_two_even_eoe. This excludes that one last-cluster class only; it is not a CycleItinerary theorem at a non-minimum start, not a bunched-short attack, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_prefix_two_even.md",
+  "lean": "Problems/Juggler/PrefixTwoEven.lean",
+  "decl": "no_cycleMin_prefix_two_even_eoe",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_prefix_two_even.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-rotation-average",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The rotation average Laplace bound (Paper A Proposition 5.5, quantitative half, previously human). For every ν > 0 the rotation average C*(ν) = (1/log 3)·∫_1^3 e^{ν(1−t)} t⁻² dt satisfies C*(ν) < 1/(log 3·ν) and the sharper Laplace bound C*(ν) ≤ (1 − 2/ν + 6/ν²)/(log 3·ν), hence the gap form (2/ν − 6/ν²)/(log 3·ν) ≤ 1/(log 3·ν) − C*(ν) consumed by the Theorem 5.8 window computation (rotation_average_lt, rotation_average_le, rotationAverage_lt, rotationAverage_le, rotationAverage_gap, RotationAverage.lean). No quadrature: the quadratic majorant 1/t² ≤ 1 − 2(t−1) + 3(t−1)² on [1,3] (inv_sq_le_quad; the product with t² is 1 + 4(t−1)³ + 3(t−1)⁴) turns the bound into an exact fundamental-theorem-of-calculus evaluation with explicit antiderivative (quadPrim, hasDerivAt_quadPrim), whose boundary term −e^{−2ν}(9/ν + 10/ν² + 6/ν³) drops with the right sign. Separately, Lean proves that the finite hug average differs from the circle integral `circleMean n'` by at most 2s(L)/L for n' > 1 and L > 0 (`hugCharge_sub_circleMean_le`, via `denjoy_koksma_blocks`). The elementary change of variables `circleMean n' = rotationAverage (log n')` is `circleMean_eq_rotationAverage`. The printed displays |C_L − C_*(n')| are `hugCharge_sub_rotationAverage_le`, `hugCharge_sub_rotationAverage_window`, and `hugCharge_sub_rotationAverage_extended`; `hugCharge_lt_invLog_add_budget` adds the Laplace bound without the numeric kill. Not a cycle obstruction and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/RotationAverage.lean",
+  "decl": [
+   "hugCharge_sub_rotationAverage_le",
+   "inv_sq_le_quad",
+   "hasDerivAt_quadPrim",
+   "integral_quad_exp_le",
+   "rotation_average_lt",
+   "rotation_average_le",
+   "rotationAverage_lt",
+   "rotationAverage_le",
+   "rotationAverage_gap",
+   "circleMean_eq_rotationAverage",
+   "hugCharge_sub_rotationAverage_window",
+   "hugCharge_sub_rotationAverage_extended",
+   "hugCharge_lt_invLog_add_budget"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_charge.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_window_envelope"
+  ]
+ },
+ {
+  "id": "J-cyclemin-scale-loop-oneshot",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "An inherited even-even second-OO return C2 → C4 → C2 → C1 is the itinerary OEE on the odd cube-corridor state q, equivalently OOEOOOEOOEE on n. The image t satisfies t^{2048} ≤ n^{2187}. The refined C1 states C1-pre (CycleMin start, first OOO unpaid) and C1-post (image of OOEOOOEOOEE) coincide if and only if t = n. Scale plus parity therefore does not identify the return with the start unless the numerical state closes. This is not a proof that t = n is impossible, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_scale_loop_hidden.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_scale_loop_hidden.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-scale-loop-signature-repeats",
+  "tag": "REFUTED",
+  "statement": "The coarse loop C2 → C4 → C2 → C1 repeats with the same exact signature, scale plus parity is a Markov state, and the missing state is 2-adic or a one-way defect Φ. False. 501 follows OOEOOOEOOEE to 763 with one coarse hit, then (OOE)^3 OE E to 34; 763 is C1-odd relative to 501 but walk_language exits by drop, not OOO. 6187 follows OOEOOOEOOEE to 11189 and drops by OE to 1087. Neither return pays a second first-OOO. On the inherited odd-q sample, 2^e is not a distinguished predictor among {2,3,5,7}. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_scale_loop_hidden.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_scale_loop_hidden.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-second-oo-envelope",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "If n ≥ 2 follows OOEOOOE, w = T_OOEOOOE(n) is odd in [n, n^2), and q = T(w) is odd, then q^{256} ≤ n^{729}. The next image u = T(q) satisfies u^{512} ≤ n^{2187} < n^{2560} = (n^5)^{512}, and q ≥ n^2 forces u ≥ n^3, so n^3 ≤ u < n^{2187/512}. This is sharper than the generic bound u < n^{9/2} from q < n^3 (2187 < 2304); u < n^4 is not inherited (2187 > 2048). If u is even, the landing s = isqrt(u) satisfies n^{3/2} ≤ s < n^{2187/1024}. If u is odd, v = T(u) satisfies v^{1024} ≤ n^{6561} < n^{7168} = (n^7)^{1024} and v ≥ n^{9/2}, so n^{9/2} ≤ v < n^{6561/1024}, sharper than generic n^{27/4} (6561 < 6912). This is not a C_2 ∪ C_3 location theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_second_oo_cube.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_second_oo_cube.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-second-oo-scale-acyclic",
+  "tag": "REFUTED",
+  "statement": "The second OO from an inherited odd cube-corridor q stays in C_2 ∪ C_3, the scale/parity graph is acyclic, even u drops, and consecutive odd defects obey a narrow relation. False. 491 has u = 312209649122 in C_4 and s = 558757 odd in C_2. 1181 has odd u and v = 48329349373548636613 in C_6. 501 has even u, even s = 582916, and t = 763 in C_1 with t ≥ 501, so C_2 → C_4 → C_2 → C_1 is realized. The itinerary OOEOOOEOOEE does not contract versus n (2187 > 2048). Inherited-window defects satisfy 0.04 < δ_0/(2q) < 0.75. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_second_oo_cube.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_second_oo_cube.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-second-post-l-ooe-oe-drops",
+  "tag": "REFUTED",
+  "statement": "OE after the second post-L OOE is FiniteProgress, the square cell persists for all k, and the second OOE has no n-relative envelope. False. M+OOEOE does not contract (3^{12} = 531441 > 524288 = 2^{19}) though it still has a square cell (531441 < 1048576). M(OOE)^k loses the square cell at k = 5. 501 maps 1749 through OOE to 4447 < 501^2, and 4447 starts OO; walk_language(1749) exits by drop. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_second_post_l_ooe.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_second_post_l_ooe.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-second-post-l-ooe-square",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "If n ≥ 2 follows M = OOEOOOEOOEEOOE, s = T_M(n) starts OO, and r = T_OOE(s), then the itinerary M+OOE has length 17 and 11 odds, so r^{131072} ≤ n^{177147} and 2^{18} > 3^{11} gives n ≤ r < n^2. Even r is FiniteProgress (3^{11} < 2^{18}). For k ≥ 0 the itinerary M(OOE)^k has the square-cell gap 2^{15+3k} > 3^{9+2k} if and only if k ≤ 4; the cell is lost at k = 5 (2^{30} < 3^{19}). CycleMin(n, M OOE v) therefore implies FiniteProgress or v starts with O. This is a corridor budget, not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_second_post_l_ooe.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_second_post_l_ooe.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-short-31-exponent",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "The pair (3,1) is absent from the bunched-short set S because it is O^3 EOE = twoEvenEOE 6, already excluded by no_cycleMin_prefix_two_even_eoe. In the rectangle {0,1,2,3} × {0,1} it is the unique pair with 3^{b+c} > 2^{b+c+2}. The seven survivors are exactly the contracting pairs. The quantity Q(b,c) = 3^{b+c}/2^{b+c+2} increases toward the leftover thresholds and does not obstruct the short tails. This is not a bunched-short exclusion and not a halt theorem.",
+  "source": "docs/problems/juggler_bunched_short_front.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_bunched_short_front.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-short-cycle-rhin",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Short-cycle reduction (Paper A Corollary 4.11). Rhin's effective measure in the packaged form of Simons–de Weger Lemma 12, Λ = o log 3 − L log 2 > e^{−13.3(0.46057 + log L)} = e^{−6.1256} L^{−13.3} (H = max(L, o) = L on a cycle itinerary), fed into cycleMin_length_of_gap gives for every nontrivial Juggler cycle n log n ≤ 2 e^{6.1256} L^{14.3} < 915 L^{14.3}. The first display under the hypothesis L^{−13.3} ≤ Λ is the Lean theorem cycleMin_length_of_rhin; Rhin itself and the calculator step 2 e^{6.1256} < 915 stay human. Hence no cycle has L^{14.3} ≤ n log n / 915, for all n ≥ 2 and without any descent floor, and the no-cycle problem is exactly the exclusion of long cycles. At the certified floor 3.5·10^8 this forces only L ≥ 4 against 780239 from the finance table: a floor-free reduction, toothless at floors, consistent with the REFUTED Baker transfer (juggler_cycle_gap_baker). Not a halt theorem and not a claim in the long regime.",
+  "source": "docs/problems/juggler_cycle_mechanical_window.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_mechanical_window.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-short-defect-obstruction",
+  "tag": "REFUTED",
+  "statement": "Exact short-cluster closure T_{O^b E O^c E}(y) = n forces an impossible defect equation: a tiny gap z^3 = n^4 + delta, a wrong parity, or a finite algebraic signature that CycleMin prefixes cannot meet. False. For odd n the last-odd equation is z^3 = (n^2 + eps)^2 + delta with eps >= 1 odd and 0 < delta <= 2t, delta odd; the gap from n^4 is at least 2n^2+1. The EE fibre at n = 13 has 2366 states and all 16 admissible (eps, eta) mod 8 pairs. Last-odd hits for odd 13 <= n < 49 occupy all odd classes mod 8. The composed 1+Q is the leftover EE cell. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_bunched_short_defect.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_bunched_short_defect.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-short-ee-compose",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "If T_EE(y) = n with y even, write t = T_E(y), eps = localDefectEven(t) = t - n^2, and eta = localDefectEven(y) = y - t^2. Then y = n^4 + 2 eps n^2 + eps^2 + eta. For odd CycleMin n, eps is odd and at least 1, so y - n^4 >= 2n^2 + 1. The b = 1,2,3 short tails are this EE fibre after b ordinary odd-step defects. This is the leftover EE cell in defect coordinates, not a CycleMin exclusion, not a Z5 family, and not a halt theorem.",
+  "source": "docs/problems/juggler_bunched_short_defect.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_bunched_short_defect.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-short-even-not-square",
+  "tag": "REFUTED",
+  "statement": "If T_E(z) = n then z = n^2, so every short-cluster cycle equation has last even landing exactly n^2. False. floorPower on an even z equals n if and only if n^2 ≤ z < (n+1)^2, an interval of length 2n+1. For odd n the point n^2 is odd and is excluded by cycle_last_even_ne_odd_sq. Witness: n = 13 has even preimages {170, 172, …, 194}. This is not a CycleMin exclusion, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_bunched_short_return.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_bunched_short_return.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-short-front-census",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "The 18 leftover-suffix returns with 12 ≤ n ≤ y < 256 are predecessor-infeasible as CycleMin fronts: 11 have even n, and the 7 odd n have no CycleMin-shaped prefix with 2 or 3 evens reaching y. On 12 ≤ n < 256 no itinerary u ++ O^b E O^c E with (b,c) in S, u starting OO, staying ≥ n, and e_u in {2,3} is a CycleMin (image n). Four interval leaks with S > n exist; they use only c=0, scatter across three predecessor types and four cell ranks, and their trailing-even overflow is equivalent to S ≥ n+1. This is not a parameterized cell-intersection theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_bunched_short_front.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_bunched_short_front.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-short-odd-square-preimage",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "The odd one-step preimage of m = n^2 contains at most one integer (odd_preimage_unique). For 2 ≤ n ≤ 500 that one-step preimage is empty for 477 values, contains a unique even integer for 10 values, and contains a unique odd integer for 12 values: (n, z) in {(6,11), (15,37), (27,81), (79,339), (125,625), (150,797), (165,905), (168,927), (188,1077), (273,1771), (276,1797), (343,2401)}. On a CycleMin the start n is odd, so n^2 is not in the last-even one-step preimage and this square-edge list is not the last-odd layer of an EOE tail. This is a finite census, not a parameterized Lean emptiness theorem, not a Z5 family, and not a halt theorem.",
+  "source": "docs/problems/juggler_bunched_short_return.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_bunched_short_return.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-short-reroot",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Every even-landing suffix of a bunched-short last-cluster word keeps the same last pair (b,c) in S and the same last three-even gap a < a_min, or is shorter than three evens. None is an excluded two-even leftover or an excluded bunched three-even family. Concatenation into an already-forbidden arbitrary-prefix class is therefore not an unavoidable lemma. Isolated-odd e ≥ 5 shapes exist, so CycleMin does not force a ≥ a_min. This is not a CycleMin exclusion, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_bunched_short_front.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_bunched_short_front.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-short-return-census",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Exact preimages R_{b,c}(n) = {y ≥ n : T_{O^b E O^c E}(y) = n} split by the last gap c. For c = 0 the EE fibre has order n^3 (|R_{0,0}(12)| = 2041, |R_{0,0}(13)| = 2379). For c = 1 return factors through the last-odd layer of the last-even one-step preimage; that layer is empty for 15 values of 2 ≤ n ≤ 48 and has size at most 2. Through n ≤ 48, |R_{1,1}(12)| = 2 and R_{2,1} is nonempty only at n = 6 (y = 9). On odd 12 ≤ n < 64, two-even CycleMin-shaped prefixes O^{a0} E O^a E yield one landing (37 → 4990602 on OOOOEOOOE) and no short tail follows it, hence no exact return. This is not an interval seal, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_bunched_short_return.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_bunched_short_return.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-slack",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "On every start-O four-even Juggler word with o >= 7 odds, the CycleMin exponent machine has slack identically 3^o - 2^{o+4}. After a start-O prefix, A = B + gamma * 2^r + familySlack o, and familySlack o + 2^{o+4} = 3^o because 2^{o+4} <= 3^o. The length-11 case is familySlack 7 = 139. Lean: familySlack, two_pow_add_four_le_three_pow, exponents_slack_add, slack_of_four_even, slack_of_four_even_word in CycleMinFudge.lean. Not a CycleMin exclusion of the tails, not no_cycleMin_four_even, and not a halt theorem. Not imported by JugglerPaper.",
+  "source": "docs/problems/juggler_cyclemin_tails.md",
+  "lean": "Problems/Juggler/CycleMinFudge.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cyclemin_tails.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-tails",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "On every four-even short-gap tail O^{a0} E O^{a1} E O^{a2} E O^{a3} E with a0 > a0* and a0 <= 16 (367 words, 8 through 21 odds) the CycleMin exponent machine has slack identically 3^o-2^{o+4} >= 2465 and chain N0 <= 7. No n < 8 follows any of those prefixes. The first tail layer (thirty words, eight odds) fires at the first prefix start (37 through 4481). Leftover Z4 (N0 <= 180 at a0*+1) is unused. The slack identity is Lean (J-cyclemin-slack). The 367-word pin and N0 scan is not Lean. Not a four-even assembler, not Z5, not no_cycleMin_four_even, and not a halt theorem.",
+  "source": "docs/problems/juggler_cyclemin_tails.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cyclemin_tails.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-transport-oo",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "On a CycleMin, after the first O^a E with a ≥ 2, an immediate odd run of length at least two overshoots the landing y = T_{O^a E}(n) > n: the next two-odd residual is at least (y+1)^2, hence at least (n+2)^2. Lean: cycleMin_transport_second_oo, cycleMin_transport_second_oo_ge in CycleMinObstruction.lean. The second residual lies outside the last-even one-step preimage when it is not the last even letter. Not a halt theorem, not a four-even assembler, and not a claim that two short odd runs close a cycle.",
+  "source": "docs/problems/juggler_cyclemin_obstruction.md",
+  "lean": "Problems/Juggler/CycleMinObstruction.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cyclemin_obstruction.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-w5-second-oo-u-fifth",
+  "tag": "REFUTED",
+  "statement": "After odd y on the W_5 branch, the completed second OO occupies an n^5 cell, two further odds raise the integer ceiling by exactly one, and only generic 3/2 growth survives. False. If z = T(y) is odd then u = T(z) satisfies 3^{22} > 5·2^{32} (31381059609 > 21474836480), so u < n^5 fails; the first integer is n^8 (3^{22} < 8·2^{32}), still below generic n^9. Even z returns below n^{5/2}, not a new hierarchy. OE/OOE/OEE from y do not contract. 501 never follows W_5. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_w5_second_oo.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_w5_second_oo.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-w5-second-oo-z-fifth",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "If n ≥ 2 follows W_5 = M(OOE)^5 with M = OOEOOOEOOEEOOE, x_5 = T_{W_5}(n) is odd, and y = T(x_5) is odd, then z = T(y) satisfies z^{2^{31}} ≤ n^{3^{21}}. The fourth-power cell fails (3^{21} > 4·2^{31}) and the fifth-power cell holds (3^{21} < 5·2^{31}), hence z < n^{3^{21}/2^{31}} < n^5. This beats generic z < n^6 from y < n^4. If z is even then T(z) < n^{3^{21}/2^{32}} < n^{5/2} < n^3 and z cannot start L; even z is not below n^2 (3^{21} > 2^{33}). If z is odd then u = T(z) satisfies u^{2^{32}} ≤ n^{3^{22}} and u < n^8 (3^{22} < 8·2^{32}); even u returns below n^4. This is not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_w5_second_oo.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_w5_second_oo.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cyclemin-walk-arch-kills-blocker",
+  "tag": "REFUTED",
+  "statement": "A human arch bound e(L) = O(max_j a_{j+1}) on the hug Birkhoff excess tightens the DK cap 2 s(L)/L enough to pull n*(478245) below the certified floor 162849448. False. Hug is the unique maximizer and the certified DP already computes C_L: at L=478245 / floor 162849448 the DP margin is 0.4334 < 1, so no valid upper bound on C_L can kill. Digit sum s=2, so 2s/L = 4/478245 against C_* = 0.04372 (relative 1.91e-4); the illegal cap C_L <= C_* drops n* from 3.483e8 to 3.482e8. Kill requires excess kappa <= L C_*(m_0 - 1) = -11848; an arch bound supplies O(max a) = O(55), wrong sign and more than 200x too small. The same sign holds on fan A k=2, k=28 and seed 16785921. The O(max a) height observation itself is not refuted. Envelope currency stays 2 s(L). Not a halt theorem and not a Paper A edit.",
+  "source": "docs/problems/juggler_cycle_walk_arch.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_arch.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_arch_kills_blocker",
+   "juggler_walk_excess_arch"
+  ]
+ },
+ {
+  "id": "J-cyclemin-walk-charge-instance",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "At the certified descent floor N_0 = 26254995 (J-residual-floor-twenty-six-million) the reduced-base walk charge of J-cyclemin-walk-transport excludes 18 of the 19 parity leftovers through L = 2·10^5. Kill margins run from 1.1204 at the F2 seed L = 50508 (required improvement over parity 6.87, walk supplies 7.70; reduced-base deficit D = 7.4566e-4) and 1.1187–1.1195 at its multiples 101016 and 151524, up to 7.69 at the parity-marginal lengths. The sole walk survivor is the F1 seed L = 176251 (margin 0.159; required 48, parity ceiling n_max^par = 1.044e9). Combined parity + walk contiguous prefix 176250: any nontrivial Juggler cycle has period at least 176251 at this floor. SHA-256 of the walk-alive list is 225d76ad12802a690934d01e2d37b3418865441a6825a015dd883c989d8942ec (data/research/juggler/cycle_walk_charge/survey.json). Extends the cutoff of J-cycle-period-fifty-thousand at the same floor by a factor 3.49 with no new floor verification. Calibration at (25781, 10^6) reproduces the archived necklace value and correctly does not kill (margin 0.196). Same trust boundary as Theorem 4.6: exact human inequalities plus guarded float comparisons. Not a halt theorem and not a no-cycle-of-any-length theorem.",
+  "source": "docs/problems/juggler_cycle_walk_charge.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_charge.py"
+  ],
+  "related_conjectures": [
+   "juggler_cycle_walk_charge"
+  ]
+ },
+ {
+  "id": "J-cyclemin-walk-competition-law",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Walk-finance competition instance (arithmetic only, no floor verification): x = log 2/log 3 lies strictly between 171928773/272500658 and 53715833/85137581 (two big-int comparisons, interval width 4.31e−17), certifying the θ = log(3/2)/log 3 partial quotients [0;2,1,2,2,3,1,5,2,23,2,2,1,1,55,1,4] and convergent denominators through 85137581. On the dangerous seeds 50508, 176251, 16785921, 85137581 and the semiconvergent fans 176251 + k·301994 (k ≤ 54; k = 1 is 478245) and 16785921 + k·17087915 (k ≤ 3) — 78 rows with exact big-int θ and per-row o-minimality certificates 3^(o−1) ≤ 2^L < 3^o — the smallest floor n*(L) at which the DK envelope kills L satisfies n*(ln n*)² θ(L)/L = (6/(5 ln 3))·r with r ∈ [0.8956, 0.9409], monotone along the seeds and matching the J-correction 1 − 2/ln n*; on the seeds with certified next denominator, n*(ln n*)²/(q_j q_{j+1}) ∈ {1.077, 0.912, 1.140}. Break-even floors: 2.37e7 (50508), 1.38e8 (176251), 3.48e8 (478245), 4.54e11 (16785921), 2.64e13 (85137581); DK margin 1.1980 at 176251/floor 162849448, below the certified DP margin 1.1983 and still a kill. The self-consistent schedule n_{j+1} = n*(first survivor at n_j) anchored at 26254995 and 162849448 terminates in 61 levels with every priced row killed, kill-contiguity over the rows at each level, and required improvement 6.30 → 2.31 → min 1.0735 (mid-fan) → seed jumps. Floors beyond 162849448 are hypothetical; no new period bound; not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_walk_competition.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_competition.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_finance_competition",
+   "juggler_walk_dk_envelope"
+  ]
+ },
+ {
+  "id": "J-cyclemin-walk-crude-envelope",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Leftover hug/IET charge-per-letter at the certified reduced base satisfies C_L < 1/(ln 3 ln n'). Schema (human): f decreasing and occupancy error ≤ h imply C_L ≤ (1 + h m / L)(C_* + 1/m); J ≤ 1 − 2/ln n + 6/(ln n)² gives an explicit gap under 1/(ln 3 ln n). At m = 250, h = 4, L ≥ 50508, ln n ≥ 17 the binning excess 0.005139 is below the J-gap 0.005188. Occupancy ≤ 4 holds on all 19 leftovers (max overshoot 3.35; integer census). The 6/5 unroll then excludes the same 18 lengths as the walk DP (margin 1.008 at L = 50508) and still misses L = 176251 (margin 0.143). Period bound unchanged. Hitting ≤ 1 is refuted. Koksma +1/L stays refuted. Uniform B/θ < 1 stays false. Not a halt theorem and not a theorem for every L ≥ 50508.",
+  "source": "docs/problems/juggler_cycle_walk_envelope.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_envelope.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_crude_envelope",
+   "juggler_walk_hitting_one"
+  ]
+ },
+ {
+  "id": "J-cyclemin-walk-cstar",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "The infinite hug walk is rotation by α = log_2(3/2) on the circle R/(1+α)Z. Unique ergodicity gives charge-per-letter C_*(n) = (1/ln 3) ∫_1^3 n^{1-t} t^{-2} dt = 1/(ln 3 ln n) ∫_0^{2 ln n} e^{-s}/(1+s/ln n)^2 ds, and the integrand is at most e^{-s}, so C_*(n) < 1/(ln 3 ln n). This is the infinite-itinerary average, not a finite-L inequality: leftover hug C exceeds C_* by up to 1.57e-5 on the certified 19-row survey, so C_hug ≤ C_* is false. Uniform B/θ < 1 at a fixed floor stays false. Not a halt theorem and not a certified replacement for the walk-charge DP.",
+  "source": "docs/problems/juggler_cycle_walk_exchange.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_exchange.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_hug_exchange"
+  ]
+ },
+ {
+  "id": "J-cyclemin-walk-dk-envelope",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Census-free envelope: for the exact hug/IET prefix of length L at reduced base n', |C_L − C_*(n')| ≤ 2 s(L)/L, where s(L) = Σ b_j for any decomposition L = Σ b_j q_j into convergent denominators q_j of θ = log(3/2)/log 3. Formal core: `observable_window_variation_lt_two` proves Var(F) < 2 for n' > 1; `denjoy_koksma_rotation` proves the one-block inequality from q > 0, coprimality, |θ − p/q| ≤ 1/q², periodicity, bounded variation, and interval integrability; and `denjoy_koksma_blocks` composes any list of blocks satisfying those hypotheses uniformly in the starting phase. For the fixed thirteen-level certified Ostrowski assembly, `theta_block_envelope_of_length`, `hugCharge_sub_circleMean_le`, and the printed form `hugCharge_sub_rotationAverage_le` give the stated 2s(L)/L error for n' > 1 and L > 0. This broad row remains EXACT — HUMAN PROOF: identifying every denominator in an arbitrary printed decomposition as an actual convergent, and the numerical leftover comparisons, are not all one matching Lean theorem. The circle-integral identification is now Lean (`circleMean_eq_rotationAverage`). Instance (exact integers + guarded floats): q list 1,2,3,8,19,65,84,485,1054,24727,50508,125743,176251 certified by interval CF on 2^17087915 > 3^10781274 and 2^16785921 < 3^10590737; on all 19 leftovers the budgeted hug equals the exact IET prefix (E at step k iff 3^a ≥ 2^(k+1)), greedy digit sums s ∈ [1,6], excess·L ≤ 1.868 ≤ 2s, and 2s/L ≤ 1.03e−4 < J-gap 0.0051, so C_L < 1/(ln 3 ln n') with no occupancy census and no walk DP; margins 1.1196 at L = 50508, 18 kills, L = 176251 survives (0.1588). Explains the refuted Koksma constant 1 (correct constant 2 s(L)). Period bound unchanged. Not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_walk_ostrowski.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_ostrowski.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_dk_envelope",
+   "juggler_walk_koksma_one_over_L",
+   "juggler_walk_crude_envelope"
+  ]
+ },
+ {
+  "id": "J-cyclemin-walk-excess-sharpness",
+  "tag": "OBSERVATION",
+  "statement": "Sharpness census for the DK envelope at the representative reduced base (ln n' = 17.0826): the Birkhoff excess e(L) = Σ_{k<L} F({kα}) − L C_* of the exact hug/IET orbit satisfies e(L) ∈ (−0.28, 4.97] for every 1 ≤ L < 301994, and the DK price 2 s(L) is never tight (|e|/2s ≤ 0.476 overall, ≤ 0.355 on [50508, 301994), attained at L = 125743). The running maximum saturates after the level-9 tower (1.87 at 1054, 4.72 at 24727, 4.97 at 301993); along L = m·1054 the excess is a quadratic arch peaking at 2.99 (m = 12) and closing to −0.04 at m = 24 ≈ q_10/q_9, the classical phase-affine sawtooth picture; the 50508-tower is flat (≤ 0.33). Three structural laws fail: alternating digit sum (r = 0.21), additive digit law (r² = −0.39), endpoint coboundary (no collapse: bin range 4.63 vs global 5.25). Fixed-base excesses match the 19 per-row DK-branch excesses to 6e−4. Float census; no bound beyond the window; the certified envelope currency stays 2 s(L); no new kills; period bound unchanged. Not a halt theorem. PARK SWEEP, 15 Sep 2026. The census runs L < 301994 = q_13(theta) and the row's headline reading is a ONE-SIDED window-bounded excess. Extended fivefold to L < 1.5e6: the MAXIMUM is unchanged at 4.96958 and is still attained at L = 238541, inside the recorded range, so the upper saturation that the envelope currency, the kill table and the period bound actually rest on is confirmed five times further out and nothing moves. The MINIMUM does not hold: it falls 7.6x, from -0.27750 at L = 151031 to -2.10047 at L = 1359007, so beyond its own census the excess is TWO-SIDED and the one-sided reading is an artifact of where the census stopped. That matters because 301994 is below every length the cycle kills use -- 478245, 780239, 1082233 -- where e(L) reads -0.2695, -0.7326, -1.1780, already past the recorded floor. Not numerics: C_* converges to 0.047941275456 and a 256x quadrature refinement moves the minimum by 3e-4. COUPLED-LIMIT HAZARD, now guarded. certified_theta_cf stops at 176251, so digit_profiles' greedy expansion produces digits above their Ostrowski bound from L = 352502 on and s(L) is inflated -- s(780239) reads 6 against a true 3. Since the envelope reads |e|/2s, an inflated s UNDERSTATES the ratio, so the error ran toward the safe-looking conclusion. digit_profiles now raises instead, and the shipped census at LIMIT sits exactly on the validity boundary and is unaffected. No bound moves; the row's conservative conclusions stand and its one-sidedness does not.",
+  "source": "docs/problems/juggler_cycle_walk_sharpness.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_sharpness.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_excess_arch",
+   "juggler_walk_dk_envelope"
+  ]
+ },
+ {
+  "id": "J-cyclemin-walk-fan-growth",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Wu–Wang’s linear-independence measure |a + b log 2 + c log 3| ≥ H^{-4.1163051-ε} transfers, by the continued-fraction identity |α − p_j/q_j| < 1/(a_{j+1} q_j²) for α = log 2/log 3, to a_{j+1} ≤ C_ε q_j^{3.1163051+ε} for large j. Every Juggler survivor fan L_k = q + kQ therefore has width O_ε(q^{3.1163051+ε}). The bound does not give a = O(1) and does not prevent the fan-minimum R_min ≥ exp(4/(C_ε q^{3.1163051+ε}+2)) from tending to 1; it is not a leftover killer (the Baker/Rhin transfer stays REFUTED). Consistency census (COMPUTATIONALLY VERIFIED, arithmetic only): on the stored deep sandwich the certified CF of α is [0;1,1,1,2,2,3,1,5,2,23,2,2,1,1,55,1,4]; every certified quotient with q ≥ 19 has a/((log 3) q^{3.1163051}) ≤ 2.827·10^{-4}; the 55-fan at q = 301994 sits at 4.190·10^{-16}; Wu–Wang already allows R_min ≤ 1.001 at q ≳ 14. No floor verification; no new period bound; not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_walk_fan_growth.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_fan_growth.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_fan_growth_measure",
+   "juggler_walk_fan_minimum_law"
+  ]
+ },
+ {
+  "id": "J-cyclemin-walk-fan-minimum",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Fan-minimum balance law, PROVED IN EXACT FORM 20 September 2026 (Paper D manuscript, docs/theory/juggler_near_convergent_diophantine_note.md). Along a dangerous fan L_k = q + kQ, write eps_k = o_k - L_k x for the linear form (x = log2/log3, o_k = o_min(L_k)), A = eps_0/eta with eta = Qx - P, and B = q/Q in (0,1). Then eps_k = eps_0 - k*eta is an IDENTITY, not a first-order model -- eps_k IS the linear form and both o_k and L_k step linearly along the fan -- so R_k = (eps_k/eps_{k+1})(L_{k+1}/L_k) = ((A-k)/(A-k-1))((B+k+1)/(B+k)) exactly, with no error term. Minimising in the continuous variable: a unique minimum at k* = (A-B-1)/2 with R_min = ((A+B+1)/(A+B-1))^2. Lemma: A = a + eps_a/eta lies in (a, a+1) for a the closing partial quotient, so a < A+B < a+2, giving the RATIONAL two-sided bound ((a+3)/(a+1))^2 < R_k for every member and R_min < ((a+1)/(a-1))^2 for a >= 2 -- no exponential, no asymptotic. Hence the equivalence 'required-improvement infimum over fans = 1 iff the dangerous-position partial quotients of log2/log3 are unbounded' is a THEOREM (juggler_walk_fan_minimum_law, now PROVED), and the classical OPEN part is only the Diophantine input. The gap form satisfies (1 - eps_0 log3/2) R_k < R^theta_k < R_k, rigorous with explicit constants. INSTANCES, closed form against the stored thetas: fan A (a14 = 55) A = 55.810766, B = 0.583624, k* = 27.113571, continuous R_min 1.073513030, identity at integer k = 27 gives 1.073514266, schedule measures 1.073514266 at survivor 8632083 -- ten digits; fan B (a16 = 4) A = 4.284476, B = 0.982327, k* = 1.151074, continuous 2.157182679, identity at k = 1 gives 2.163014728, schedule measures 2.163015 at survivor 50961751 -- eight digits. Brackets (1.072704, 1.075446) and (1.960000, 2.777778) hold. CORRECTED: the earlier first-order reading ln R_min = 4/(A+B) at k* = (A-B)/2 applied the expansion ln(1+1/u) ~ 1/u twice and attributed the residual to a second order. There is no second order; the residual is the integrality of k. The expansion costs 8.6e-6 relative at a = 55 and 1.2e-2 at a = 4, and its upper bound e^(4/a) = 2.7183 at a = 4 lies BELOW the true worst case 2.7778 -- which is where the '<~' was hiding. Small quotients are where the family question lives. No floor verification; no new period bound; no cycle excluded; not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_walk_fan_minimum.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_fan_minimum.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_fan_minimum_law",
+   "juggler_walk_finance_competition"
+  ]
+ },
+ {
+  "id": "J-cyclemin-walk-hitting-one",
+  "tag": "REFUTED",
+  "statement": "Equal-width bins of the IET {k θ}, θ = log₂(3/2)/log₂ 3, have occupancy |#I − L μ(I)| ≤ 1. False: at leftover L = 180467 and m = 250 the first bin [0, 1/250) has 725 points against L/m = 721.868 (error 3.13); high-precision confirmation agrees. The overshoot sits at u = 0, the peak of the charge density. Not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_walk_envelope.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_envelope.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_hitting_one"
+  ]
+ },
+ {
+  "id": "J-cyclemin-walk-hug-exchange",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Among nonnegative exponent walks with a prescribed (L, o) (u_k = (1+μ)a_k − k ≥ 0, μ = log_2(3/2)), the hug itinerary that takes E iff u ≥ 1 and an even remains is the unique prefix-minimal path. First disagreement with any other admissible word is hug-E versus other-O, because hug takes O only when E is illegal and the two words share the same prefix state; the odd-count gap δ_k = a_k(other) − a_k(hug) is a path in {−1,0,+1} that cannot go negative, since δ = 0 restores the same state. Feasible pairs ( (1+μ)o ≥ L ) never strand: o_left = 0 implies u = surplus + e_left ≥ e_left. The charge g(u) = 1/(n^{2^u} 2^u ln n) is strictly decreasing, so hug uniquely maximises the walk sum. This is a statement about the u ≥ 0 relaxation, not about realized cycle itineraries. Not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_walk_exchange.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_exchange.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_hug_exchange",
+   "juggler_walk_greedy_prefix"
+  ]
+ },
+ {
+  "id": "J-cyclemin-walk-koksma-one-over-L",
+  "tag": "REFUTED",
+  "statement": "Leftover hug charge-per-letter satisfies C_L ≤ C_*(n') + 1/L at the certified reduced base, by Denjoy–Koksma with Var(f)<1. False: six leftover offsets violate the inequality (worst (C_hug − C_*)L = 1.868 at L = 180467). The IET prefix of the same length fails in lockstep (hug C equals IET C to 10^{-12}), so the hole is the rotation at family offsets, not a letter-budget dump. Seeds hold with constant 0.333. The crude bound C < 1/(ln 3 ln n') remains a 19-row observation, not a replacement theorem. Uniform B/θ < 1 at a fixed floor stays false. Not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_walk_koksma.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_koksma.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_koksma_one_over_L"
+  ]
+ },
+ {
+  "id": "J-cyclemin-walk-ostrowski-arithmetic",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Certified quotient arithmetic behind the Denjoy–Koksma block envelope (Paper A Theorem 5.7) and the window digit caps (Theorem 5.8). Lean proves: the big-integer sandwich 3^10781274 < 2^17087915 and 2^16785921 < 3^10590737 (theta_sandwich_upper/lower, norm_num, kernel-checked); the real bounds 6195184/16785921 < log(3/2)/log 3 < 6306641/17087915 (lower_lt_walkTheta, walkTheta_lt_upper, via Real.log monotonicity); both rational endpoints open with the continued-fraction quotients [2,1,2,2,3,1,5,2,23,2,2,1] and continue past them (cf_lower_prefix, cf_upper_prefix, cf_lower_continues, cf_upper_continues); and the standard convergent recurrence on those quotients yields the block-denominator list 1,2,3,8,19,65,84,485,1054,24727,50508,125743,176251 (theta_convergent_denominators); and the greedy Ostrowski digit scan of Theorem 5.8 — for every window length 50508 ≤ L < 301994 the greedy digits over the certified denominators reconstruct L and reconstruct L and sum to at most 47 (pointwise window_digit_cap, on the structural cap greedyDigitSum_le), with 37 attained at L = 275632 (window_digit_max). The native scan window_digit_scan that certified the sharper 37 across the window was retired on 14 September 2026, leaving the Juggler layer with nothing off the kernel; nothing consumed the 37, replacing the previously computational scan of J-cyclemin-walk-window-envelope. Convergent quality (the DK hypothesis, 1 Sep 2026 extension): the numerator recurrence yields 0,1,1,3,7,24,31,179,389,9126,18641,46408,65049 (theta_convergent_numerators, thetaConvergents_eq_zip), consecutive pairs are unimodular with p_{j+1}q_j − p_jq_{j+1} = (−1)^j (theta_convergents_unimodular), every pair is coprime (theta_convergents_coprime), every certified pair satisfies |θ − p/q| < 1/q² against the sandwich bounds (theta_convergent_quality — the quantitative hypothesis Denjoy–Koksma needs per block), and multiplication by p permutes ZMod q (residue_mul_bijective, theta_block_permutations). The endpoint-cylinder identification of the displayed list as a literal continued-fraction prefix of θ remains human prose, but the formal block bound does not require it: `theta_convergent_quality` supplies the approximation hypothesis directly. The variation-versus-integral inequality, signed anchored orbit-cell argument, mean form, and uniform block composition are Lean (`denjoy_koksma_abstract`, `denjoy_koksma_rotation`, `denjoy_koksma_rotation_mean`, `denjoy_koksma_blocks`); the broader analytic/numerical row J-cyclemin-walk-dk-envelope keeps its human tag for the scope distinctions stated there. Not a cycle obstruction and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/OstrowskiSandwich.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_ostrowski.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_dk_envelope",
+   "juggler_walk_window_envelope"
+  ],
+  "decl": [
+   "theta_sandwich_upper",
+   "lower_lt_walkTheta",
+   "walkTheta_lt_upper",
+   "cf_lower_prefix",
+   "cf_upper_prefix",
+   "cf_lower_continues",
+   "cf_upper_continues",
+   "theta_convergent_denominators",
+   "window_digit_max",
+   "theta_convergent_numerators",
+   "thetaConvergents_eq_zip",
+   "theta_convergents_unimodular",
+   "theta_convergents_coprime",
+   "theta_convergent_quality",
+   "residue_mul_bijective",
+   "theta_block_permutations",
+   "theta_sandwich_lower",
+   "greedy_reconstruct_all"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
+  "id": "J-cyclemin-walk-ostrowski-numeration",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "General Ostrowski numeration and the structural digit cap (Paper A Theorem 5.8, digit-cap step, previously human). For any denominator sequence q with 0 < q 0 and q monotone satisfying the convergent recurrence bound q(j+1) ≤ a(j+1)·q(j) + q(j−1), the greedy digits from any L < q(n+1) obey the remainder invariant (ostroRem_lt), the digit cap b_j ≤ a_{j+1} (ostroDigit_le), exact reconstruction L = Σ b_j q_j when q 0 = 1 (ostro_sum_eq), and the digit-sum cap Σ b_j ≤ Σ a_j (ostro_digitSum_le) — problem-independent, reusable for any deeper certified quotient list. Instantiated at the certified θ denominators closed at q₁₃ = 301994: every L < 301994 has greedy digit sum at most 47 = a₁+⋯+a₁₃, structurally, with exact decomposition (theta_digitSum_le, theta_sum_eq); the function form agrees with the fold form greedyDigitSum for every L (greedy_eq_ostro), structurally and kernel-checked: the two are the same algorithm written twice, the fold peeling L/q and keeping L mod q over the descending denominator list and the recursion doing the same indexed by 12-i, with the two lists equal entry for entry. That replaces a native_decide scan of all 301994 lengths and is stronger than it, since the scan bounded L for no reason; greedy_eq_ostro_below_window is retained in its bounded shape as a corollary, and the fold corollary greedyDigitSum_le follows. Reconstruction went the same way: greedy_reconstruct_all is the division algorithm thirteen times and holds for every L, so window_digit_scan certified only the sharp constant 37, and was itself retired on 14 September 2026 as the layer last proof off the kernel. The structural 47 is now the window bound too, via window_digit_cap; 37 remains recorded as attained at L = 275632 (window_digit_max, kernel-checked) but is no longer certified across the window. The Denjoy–Koksma comparison is now Lean: `theta_block_envelope_of_length` and `hugCharge_sub_circleMean_le` give the 2s(L)/L bound for the fixed certified thirteen-level assembly when n' > 1 and L > 0, while `theta_block_envelope_window` and `hugCharge_sub_circleMean_window` give the constant cap only for L < 301994. The printed-window instance `hugCharge_sub_circleMean_extended` on [50508, 16785921) uses the mixed q13 list; the printed C_* forms are `hugCharge_sub_rotationAverage_le` and `hugCharge_sub_rotationAverage_extended`; and `circleMean_eq_rotationAverage` identifies the circle integral with the explicit rotation average. Not a cycle obstruction and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/OstrowskiNumeration.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_window.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_window_envelope"
+  ]
+ },
+ {
+  "id": "J-cyclemin-walk-transport",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Coupled exponent-walk charge with reduced-base transport. On a CycleMin cycle with minimum n ≥ 400, word length L and o odd letters, set u_k = (1+μ)a_k − k with μ = log_2(3/2). The defect-free floors give the upper envelope x_k ≤ n^(2^{u_k}) and CycleMin forces u_k ≥ 0 at every step. For the lower side, writing ln x_k ≥ w_k ln n − E_k with w_k = 2^{u_k}, the floor-loss recursion E' ≤ (3/2)E + 1.05 x^{-3/2} (odd), E' ≤ (1/2)E + 1.05 x^{-1/2} (even) with amplification exactly w_k/w_{j+1} from injection j to state k, odd injections at x_j ≥ n and even injections at x_j ≥ n^2 (cycleMin_even_ge_sq), yields E_k ≤ w_k·D with D = 1.05e/n + 0.7o/n^{3/2}. Hence x_k ≥ (n e^{-D})^{w_k}: the cyclic sum Σ 1/(x_i ln x_i) is bounded above by the exact (step, odd-count)-lattice DP maximum over all nonnegative closed exponent walks evaluated at the reduced base n' = n e^{-D}. No free parameter remains; the DP value feeds the 6/5 unroll of Theorem 4.4 exactly as in the parity table. Not a halt theorem and not a cycle obstruction by itself.",
+  "source": "docs/problems/juggler_cycle_walk_charge.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_charge.py"
+  ],
+  "related_conjectures": [
+   "juggler_cycle_walk_charge"
+  ]
+ },
+ {
+  "id": "J-cyclemin-walk-transport-envelope",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The transport inequality of Paper A Theorem 5.3, Lean end to end in log form. On a CycleMin cycle with minimum n ≥ 400, every state satisfies walkWeight w k · (log n − D) ≤ log x_k with walkWeight w k = 3^(a_k)/2^k (the walk weight 2^(u_k), rational — no real exponentiation) and D = 1.05·e/n + 0.7·o/(n·√n) (cycleMin_transport, WalkTransport.lean); exponentiating gives x_k ≥ (n e^(−D))^(w_k). Ingredients all Lean: per-step floor losses log T(x) ≥ (3/2)·log x − 1.05/(x√x) (odd, x ≥ 9) and log T(x) ≥ (1/2)·log x − 1.05/√x (even, x ≥ 441) from the floor cells and −log(1−t) ≤ 1.05t on t ≤ 1/21 (log_floorPower_odd_ge, log_floorPower_even_ge, neg_log_one_sub_le); the exact weight recursion w_{k+1} = (3/2)w_k (odd), w_k/2 (even); odd injections priced at x_j ≥ n (cycleMin_iterate_ge) against w_{j+1} ≥ 3/2, even injections at x_j ≥ n² (cycleMin_even_ge_sq) against w_{j+1} ≥ 1 (cycleMin_prefix_pow_le via one_le_walkWeight). The walk-charge consequence — the DP over nonnegative closed walks at the reduced base and its feed into the 6/5 unroll — stays a human reduction (J-cyclemin-walk-transport keeps its tag). Not a cycle obstruction and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/WalkTransport.lean",
+  "decl": [
+   "cycleMin_transport",
+   "log_floorPower_odd_ge",
+   "log_floorPower_even_ge",
+   "neg_log_one_sub_le",
+   "one_le_walkWeight"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_charge.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_window_envelope"
+  ]
+ },
+ {
+  "id": "J-cyclemin-walk-window-envelope",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Named Lean window and its printed-window instance (Paper A Theorem 5.8): `hugCharge_sub_circleMean_window` covers L < 301994; `hugCharge_sub_circleMean_extended` names the analytic window [50508, 16785921). The printed C_* forms are `hugCharge_sub_rotationAverage_window` and `hugCharge_sub_rotationAverage_extended`. Thus the half-open extended window includes fan members k = 0,...,54, but not k = 55 at L_55 = q_14 = 16785921. The comparison C_L < 1/(ln 3 ln n') on that window, with the ν-range 16.41 < ν < 17.084, remains human arithmetic. The following original uniform census-free envelope records the narrower window: for every L in [50508, 301994) at the certified floor, C_L <= C_*(n') + 2 s(L)/L < 1/(ln 3 ln n') for the budgeted hug itinerary. Two lemmas: (1) itinerary identity — for every L the budgeted hug at (L, o_min) equals the exact IET L-prefix, because the exact rule keeps u in [0, 1+α), forcing exactly o_min = ⌈L·log2/log3⌉ odds, and a first budget-forced divergence would make the exact prefix exceed its own letter total; (2) digit cap — greedy Ostrowski digits obey b_j ≤ a_{j+1}, so the certified quotients give s(L) ≤ 47 on the window, while the deficit keeps ln n' ≥ 17.07, hence 2s/L ≤ 94/50508 = 1.87e−3 < 0.00514 ≤ J-gap; conclude by J-cyclemin-walk-dk-envelope. Instance (exact scan of all 251486 lengths): every digit within cap (level 1054 hits 23 exactly), exact max s = 37 at L = 275632, worst 2s/L over gap 0.1823 at L = 74654 — uniform margin ≥ 5.48. Discharges the crude-envelope caveat on the window and retires the per-row word-identity check. Envelope only: no new kills, survivors unchanged (L = 176251), period bound unchanged. Not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_walk_window.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_window.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_window_envelope",
+   "juggler_walk_dk_envelope",
+   "juggler_walk_crude_envelope"
+  ]
+ },
+ {
+  "id": "J-cyclemin-walk-word-identity",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Discrete side of the walk-charge itinerary identity (Paper A Lemma 5.6) and the combinatorial core of the hug exchange (Paper A Theorem 5.4). For the exact hug rule — the letter at position k with a odd letters used is even iff 2^(k+1) ≤ 3^a — the odd count hugOdds satisfies the unit-window invariant 2^k ≤ 3^(hugOdds k) < 3·2^k at every prefix (hugOdds_pow_ge, hugOdds_pow_lt), is the least odd budget admissible at k (hugOdds_least, the integer form of o_min(k) = ⌈k log 2/log 3⌉), and is prefix-minimal among admissible exponent walks with u ≥ 0 (hugOdds_le_of_admissible). Consequently the budgeted hug itinerary at (L, hugOdds L) equals the exact rotation L-prefix: budgetedWord_eq_hugWord — the budget never binds. Sanity instances hugOdds 84 = 53, hugOdds 1054 = 665, hugOdds 50508 = 31867 match the finance table. The real charge, its strict monotonicity, and the maximisation claim of Theorem 5.4 remain human proofs (J-cyclemin-walk-hug-exchange). Not a cycle obstruction and not a halt theorem.",
+  "source": "docs/theory/juggler_finite_dynamics_note.md",
+  "lean": "Problems/Juggler/WalkChargeItineraries.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_walk_window.py"
+  ],
+  "related_conjectures": [
+   "juggler_walk_window_envelope",
+   "juggler_walk_hug_exchange"
+  ]
+ }
+]

@@ -1,0 +1,37 @@
+[
+ {
+  "id": "J-odd-remainder-even",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If x is odd, T(x)=y is odd, and ρ=x³-y² is the local odd remainder, then ρ is even. This is the opposite parity of peakOddDefect_odd, which requires an even maximum.",
+  "source": "docs/problems/juggler_sequential_mordell.md",
+  "lean": "Problems/Juggler/SequentialMordell.lean",
+  "decl": "odd_remainder_even",
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_sequential_mordell.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-peak-transports-to-oo",
+  "tag": "REFUTED",
+  "statement": "The peak slack identity x³=(p^{2^r}+ε)²+δ, which requires an even maximum M, transports to a persistent odd-odd pair. Counterexamples: on every odd-odd start n≤2000, including the residual chain 365, 763, 1749, the landing y=T(x) is odd, so peakOddDefect_odd does not apply and peakOddDefect(x,y) is even.",
+  "source": "docs/problems/juggler_sequential_mordell.md",
+  "lean": "Problems/Juggler/SequentialMordell.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_sequential_mordell.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-sequential-defect-oo",
+  "tag": "REPARAMETERIZATION",
+  "statement": "On a realized OO word with z=T(T(x)), the sequential defect Γ=x⁹-z⁴ equals globalDefect(x,[odd,odd]). The two-step polynomial (x³-ρ)³=(z²+σ)² is y⁶=y⁶. These are the existing OO slack identity and the local floor identities under sequential names.",
+  "source": "docs/problems/juggler_sequential_mordell.md",
+  "lean": "Problems/Juggler/SequentialMordell.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_sequential_mordell.py"
+  ],
+  "related_conjectures": []
+ }
+]

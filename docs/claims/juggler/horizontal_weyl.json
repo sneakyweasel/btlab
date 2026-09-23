@@ -1,0 +1,41 @@
+[
+ {
+  "id": "J-horizontal-axis-species",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Species classification of the horizontal nil-orbit monomials. Let X = n^{3/2}, v = floor(X), theta = {X} (nil-lift v is Paper B's m). Lagrange Taylor of x |-> x^alpha at X gives the exact unwinds v^{3/4} = n^{9/8} - (3/4) n^{-3/8} theta + R_{3/4} with -(3/32) v^{-5/4} theta^2 <= R_{3/4} <= 0; v^{3/2} = n^{9/4} - (3/2) n^{3/4} theta + R_{3/2} with 0 <= R_{3/2} <= (3/8) v^{-1/2} theta^2; v^{9/4} = n^{27/8} - (9/4) n^{15/8} theta + R_{9/4} with (45/32) v^{1/4} theta^2 <= R_{9/4} <= (45/32) X^{1/4} theta^2. The keep-m forms of the first and third are Lemma G (row J-second-order-linearization). First difference of the abelian axis: for odd n, v(n+2)-v(n) = floor(Delta X) + kappa with kappa in {0,1}, and v(n+2)^{9/4}-v(n)^{9/4} = (9/4) xi^{5/4} (v(n+2)-v(n)); the carry has amplitude C ~ n^{15/8} (below Theorem R's engine line 9/4) and C' ~ n^{7/8} >> 1. Species: v^{3/4} is decaying (classical van der Corput on e(k n^{9/8})); v^{3/2} is a tame amplitude-product (A' ~ n^{-1/4} << 1; Theorem C substrate; Theorem R at alpha=0 is not citable, row J-w-family-below-nine-eighths is CONJECTURE); unwinding v^{9/4} is HH species and is forbidden by row J-nested-floor-without-W-family; one Weyl step on v^{9/4} is GG species (BB silent, GG fires). Mixed harmonics with k_3 != 0 are dominated by the 9/4 axis. Probe: Taylor constants attained (3/32, 3/8, 45/32); C/n^{15/8} -> 9/4 and C'/n^{7/8} -> 135/32 on 240 odd pairs; Lemma G reused. Not an equidistribution theorem, not a K3 bound, not a halt theorem; the rate-free target is unharmed; Paper B frozen.",
+  "source": "docs/problems/juggler_horizontal_weyl.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_horizontal_weyl.py"
+  ],
+  "related_conjectures": [
+   "juggler_tower_rate_free_equidistribution"
+  ]
+ },
+ {
+  "id": "J-horizontal-leftover-exponents",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "First-level leftover exponents of the nil-lift horizontal triple. With m = floor(n^{3/2}), X = n^{3/2}, theta = {X}, and (A, B, C) = ((3/2) m^{3/4}, m^{3/2}, (1/2) m^{9/4}), the exact Taylor identity m^beta = X^beta - beta X^{beta-1} theta + R_beta holds at beta in {3/4, 3/2, 9/4} with |R_beta| <= |beta(beta-1)/2| theta^2 xi^{beta-2} (xi in (m, X)). The leftover after the smooth monomial is a first-level W-family of amplitude beta X^{beta-1} ~ n^{(3/2)(beta-1)}: A has leftover alpha = -3/8 (decaying, Taylor constant 3/32); B has alpha = 3/4 (the excluded special value of the withdrawn Corollary R', constant 3/8); C has alpha = 15/8 (in the gap (9/8, 9/4), constant 45/32). All three are strictly below Theorem R's engine line 9/4, so BB mechanism (II) does not fire. Combined leftover for a fixed integer harmonic k · (A,B,C) has alpha = 15/8 if k3 != 0, 3/4 if k3 = 0 and k2 != 0, and decays if only k1 is present. The m-derivative (9/8) k1 m^{-1/4} + (3/2) k2 m^{1/2} + (9/8) k3 m^{5/4} vanishes identically iff k = 0 (three distinct exponents). First-level b-runs exist (X'' ~ n^{-1/2} < 1). These sums S_k are first-level monomials in m; Theorem R bounds the second-level kernel e(c {m^{3/2}}) at c ~ n^{9/8} and is not a citation (the withdrawn Corollary R' already forbids transfer by monotonicity). The A-prime / first-difference landing (C' ~ n^{7/8} >> 1, GG species on one Weyl step of the 9/4 axis) is row J-horizontal-axis-species; the rated shortcut is row J-horizontal-theorem-r-shortcut (REFUTED). Probe witnesses: Taylor constants attained (worst ratios 0.09375, 0.375, 1.40625). Not a power-saving bound, not a K3 bound, not a halt theorem; Conjectures V/HH and the BB/GG/JJ PARK are untouched; Paper B frozen.",
+  "source": "docs/problems/juggler_horizontal_weyl.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_horizontal_weyl.py"
+  ],
+  "related_conjectures": [
+   "juggler_tower_rate_free_equidistribution"
+  ]
+ },
+ {
+  "id": "J-horizontal-theorem-r-shortcut",
+  "tag": "REFUTED",
+  "statement": "The fixed-harmonic Weyl sums of the horizontal triple ((3/2) v^{3/4}, v^{3/2}, (1/2) v^{9/4}), v = floor(n^{3/2}), admit power savings by Theorem R's van der Corput chain (the optimistic 'horizontal half of the nil-route is already a theorem'). False: mixed harmonics with k_3 != 0 are dominated by the abelian v^{9/4} axis; unwinding that axis through theta = {n^{3/2}} produces an amplitude-product with A ~ n^{15/8}, A' ~ n^{7/8} >> 1 (HH species, forbidden as a proof route by row J-nested-floor-without-W-family); keeping v and taking one Weyl step produces a carry sawtooth of amplitude 15/8 < 9/4 (BB does not fire) whose derivative C' ~ n^{7/8} >> 1 is GG species (row J-intra-block-harmonic-obstruction: no drift-1 window). The v^{3/2} axis is e(k {v^{3/2}}) at constant coefficient and cannot cite Theorem R (row J-w-family-below-nine-eighths is CONJECTURE; Corollary R' withdrawn). The two cheap axes (v^{3/4} decaying, v^{3/2} tame) are reduction lemmas in row J-horizontal-axis-species and do not salvage the triple. The rate-free conjecture juggler_tower_rate_free_equidistribution is not refuted — it never needed a rate. Not a K3 bound and not a halt theorem.",
+  "source": "docs/problems/juggler_horizontal_weyl.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_horizontal_weyl.py"
+  ],
+  "related_conjectures": [
+   "juggler_tower_rate_free_equidistribution"
+  ]
+ }
+]

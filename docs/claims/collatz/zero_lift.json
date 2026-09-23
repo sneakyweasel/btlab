@@ -1,0 +1,15 @@
+[
+ {
+  "id": "C-lift-zero",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Positive integer realizer iff eventual zero lift.",
+  "source": "docs/collatz_zero_lift.md",
+  "lean": "Problems/Collatz/Lift.lean",
+  "tests": [
+   "tests/research/collatz/test_zero_lift.py"
+  ],
+  "related_conjectures": [
+   "low_Km_m_infinite_lifts"
+  ]
+ }
+]

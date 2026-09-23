@@ -1,0 +1,46 @@
+[
+ {
+  "id": "J-ooe-escape-polynomial-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For prescribed A=OOE with 0<=x^(9/8)-A(x)<2, the full eventual value set of a positive-leading integer-valued polynomial of degree>=2 misses A-return at one of every three sufficiently large consecutive parameters. No finite union of such nonlinear polynomial value tails is eventually A-invariant, even with arbitrary integer parameter updates and switching: minimal 2-adic degree, inverse-polynomial finite differences and finite van der Waerden coloring force a noninteger integer difference. Degree-one tails fail full actual OOE guards by the residue obstruction. Fixed parameter progressions and finite changes are allowed. A separate finite polynomial-update-template path loses at least three in nu2(state degree) per unbounded template. Sparse subsets with nonpolynomial updates and all individual escaping trajectories remain unexcluded. AI-assisted written proof, not Lean or independently human reviewed; no external novelty claim.",
+  "source": "docs/problems/juggler_ooe_escape_families.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_ooe_escape_families.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-ooe-escape-power-tube-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_ooe_escape_families.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_ooe_escape_families.py"
+  ],
+  "related_conjectures": [],
+  "lean": "",
+  "statement": "Fix a real base c>1 and 0<=epsilon<1/17. No infinite prescribed OOE chain x_(n+1)=A(x_n), x_0>=5, can eventually satisfy |log_c(x_n)-d_n|<=epsilon for integers d_n. Above x>max(5,c^epsilon,16/((1-17epsilon)log(c))), the exact endpoint error gives |8d_next-9d|<1, hence 8d_next=9d with positive exponents. Every k-step segment staying above the threshold in the tubes has 3k<=v2(d_start), excluding an infinite tail. The exponent set and update are arbitrary; fixed bounded additive errors from fixed-base powers and ratios x_n/c^d_n tending to one are corollaries. The width is sufficient, not asserted optimal. This is an AI-assisted written proof independently AI-audited, using existing Lean endpoint/growth theorems; the new analytic and infinite-chain statement is not Lean verified and human review remains outstanding. Arbitrary sparse invariant sets, wider tubes, varying bases and general escape remain unresolved."
+ },
+ {
+  "id": "J-ooe-escape-shifted-valuation",
+  "tag": "REFUTED",
+  "statement": "The proposed universal decreasing ranks nu2(x-1), nu2(x+1), and nu2(x-9) on actual OOE returns are refuted by exact finite witnesses. In particular 199->2807->148718->385 has guards odd/odd/even/odd and raises nu2(x-1) from 1 to 7. The fixed 9999-start OOE-only control has both increases and decreases for all three shifts, ignoring zero arguments. This does not refute the specific polynomial-family chain valuation or a rank using additional remainder data, and supplies neither an escape nor a no-escape conclusion.",
+  "source": "docs/problems/juggler_ooe_escape_families.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_ooe_escape_families.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-ooe-escape-sparse-pair-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_ooe_escape_families.md",
+  "tests": [
+   "tests/research/juggler_sequence/test_ooe_escape_families.py"
+  ],
+  "related_conjectures": [],
+  "lean": "",
+  "statement": "Let T={4t^2±1: t>=1 odd} and A be prescribed OOE. For every integer s>=5, the two returns zminus=A(4s^2-1), zplus=A(4s^2+1) satisfy 2<zplus-zminus<8sqrt(zminus). Distinct elements of T have gap two at a common parameter, or gap greater than eight times the square root of the smaller value at distinct parameters. Therefore at least one return lies outside T, so no A-invariant subset of T can contain both paired starts at such a parameter. This permits arbitrary sparse parameter selection but does not exclude one-sided subsets. Both prior s=19999 seeds fail their next repeated-OOE guard by exact square-cell checks. AI-assisted written proof with an independent AI audit; human review and Lean verification of this universal obstruction remain outstanding. No general no-escape or invariant-set existence theorem is claimed."
+ }
+]

@@ -1,0 +1,34 @@
+[
+ {
+  "id": "J-odd-odd-remainder-mod-eight",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If y is odd and T(y) is odd, then the local remainder ρ=y³-T(y)² satisfies ρ≡y-1 (mod 8). Consequently v₂(ρ)=1 when y≡3 or 7 (mod 8), v₂(ρ)=2 when y≡5 (mod 8), and v₂(ρ)≥3 when y≡1 (mod 8) and ρ≠0. The same congruences hold for any odd square below y³; the floor T(y)=⌊y^{3/2}⌋ is not used beyond selecting an odd landing.",
+  "source": "docs/problems/juggler_landing_valuation.md",
+  "lean": "Problems/Juggler/LandingValuation.lean",
+  "decl": [
+   "odd_odd_remainder_mod_eight",
+   "landingRemainder",
+   "odd_cube_minus_odd_square_mod_eight",
+   "landing_valuation_three_or_seven",
+   "landing_valuation_five",
+   "landing_valuation_one",
+   "landing_valuation_classification"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_landing_valuation.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-pe-history-valuation",
+  "tag": "REFUTED",
+  "statement": "Persistent-expanding residual history forces a 2-adic landing restriction stronger than y mod 8: either v₂(y³-T(y)²)≥r>1 at a PE endpoint, or y≡1 (mod 16) forces v₂≥4, or the valuation locks the next residual word. Counterexamples: 365 maps to the PE endpoint 763 with v₂=1; 33≡1 (mod 16) has v₂=3; on odd n≤4000 the PE valuation table is the residue law, and v₂=1 continues as both persistent OOE and non-persistent OOEE.",
+  "source": "docs/problems/juggler_landing_valuation.md",
+  "lean": "Problems/Juggler/LandingValuation.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_landing_valuation.py"
+  ],
+  "related_conjectures": []
+ }
+]

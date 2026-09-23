@@ -1,0 +1,17 @@
+[
+ {
+  "id": "J-nil-lift-does-not-derandomize",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "The Heisenberg lift does not transfer Proposition 7.4 (J-shift-average-square-root) from almost every shift to lambda = 0. For arbitrary reals A, B, lambda, the identity A{B+lambda} = AB + A lambda - A floor(B+lambda) identifies -A floor(B+lambda) mod 1 as the vertical Mal'cev coordinate of g_lambda = ((A, B+lambda, 0)) — the lambda-family of J-tower-heisenberg-coordinate. The instance's special arithmetic is the real parabola A^2 = (9/4) B (tower pair A = (3/2) v^{3/4}, B = v^{3/2}) or A^2 = (9 k^2 / 16) B (pure-model pair); a parabola is not a Leibman horizontal character k1 A + k2 B in Z, so it does not close the horizontal torus and does not pin lambda = 0 as a closed, rational, or resonant fiber — the identity section is one fiber of a free center circle. Proposition JJ survives in this language: (i) integration over lambda is Haar on the center and pinning the identity section is the same specific-point problem (no new second averaging variable; named family averages stay forbidden); (ii) a Fourier mode j of the vertical coordinate is the orbit at amplitude j A (inverse self-similarity); (iii) y-translation deposits -A lambda in the center, so S_lambda decorrelates at scale 1/A_max ~ P^{-27/16} (the same scale). Consequence: the lift is a dictionary for the Proposition 7.4 shift, not a method outside BB/GG/JJ; the outside-toolkit reopen of quantitative K3 is CLOSED and Conjectures V/HH stay PARKED. Probe witnesses (exact Fractions; scaled-integer gap 0; 24 horizontal forms, min torus distance 0.0023, max spread 0.46; cheap typicality at P = 10^6: |S_0|/sqrt(L) mean 0.946 vs grid 0.888, median rank 17/32 — typicality is not a transfer). Not a K3 bound, not a proof of HH, not a halt theorem; Paper B frozen.",
+  "source": "docs/problems/juggler_lambda0_nil_transfer.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_lambda0_nil_transfer.py"
+  ],
+  "related_conjectures": [
+   "J-derandomization-obstruction",
+   "J-pure-model-amplitude-product",
+   "juggler_tower_rate_free_equidistribution"
+  ]
+ }
+]

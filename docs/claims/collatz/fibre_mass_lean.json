@@ -1,0 +1,28 @@
+[
+ {
+  "id": "C-syracuse-finite-residue-harmonic-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked; advisory statement coverage and independent review remain open. For either sign s in {1,-1}, define the complete homogeneous odd-return operator on h modulo 3^r by L_s h(a)=sum_{k>=1} (3/2^k)*sum_{b mod 3^r, 2^k*a=3*b+s mod 3^(r+1)} h(b). The concrete branch congruence, uniqueness of the child at each exponent, nonnegative-row summability, zero nonunit output and sum_a L_s h(a)=3*sum_b h(b) are proved. For every r>=1 and fixed d>=1, if h vanishes on multiples of three and is positive on units, some unit residue a modulo 3^(r+d) satisfies L_s^d h(a)<h(a mod 3^r). The stronger form only requires h>=0 and h(-s)>0. The repeated k=1 branch gives L_s^d h(-s)>=(3/2)^d*h(-s), while both table sums equal 3^d*sum h. Actual-integer affine errors, deficient progressions, fate-class divergence and termination are outside this formal statement; no priority claim.",
+  "source": "docs/theory/collatz_fibre_mass_lean_note.md",
+  "lean": "Problems/Collatz/FibreMass.lean",
+  "tests": [
+   "tests/research/collatz/test_fibre_mass.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "parent_signed_iff",
+   "parent_injective",
+   "row_at_parent",
+   "transfer_formula",
+   "row_summable",
+   "transfer_zero",
+   "transfer_sum",
+   "iterate_sum",
+   "project_sum",
+   "iterate_spike",
+   "exists_deficit",
+   "finite_weight_obstruction"
+  ],
+  "lean_trust": "kernel"
+ }
+]

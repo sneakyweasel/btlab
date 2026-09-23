@@ -1,0 +1,22 @@
+[
+ {
+  "id": "J-global-defect-identity",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every realized finite Juggler word w, n^{3^{#O(w)}} = T_w(n)^{2^{|w|}} + Δ_w(n), where Δ is the recursively lifted accumulation of local floor remainders. Δ ≥ 0, so the power envelope is a corollary; Δ = 0 iff every local remainder vanishes; concatenation is the two-term power-gap lift, not an additive sum.",
+  "source": "docs/problems/juggler_global_defect.md",
+  "lean": "Problems/Juggler/GlobalDefect.lean",
+  "decl": [
+   "global_defect_identity",
+   "globalDefect",
+   "global_defect_nonneg",
+   "power_bound_of_global_defect",
+   "global_defect_eq_zero_iff_locals",
+   "global_defect_append"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_global_defect.py"
+  ],
+  "related_conjectures": []
+ }
+]

@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-ce-oe-next-oo",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If n ≥ 2 follows OOEOOEOOEOEO, then T_OOEOOEOOEOEO(n) < n^2 because q^{4096} ≤ n^{6561} forbids n^2 ≤ q (8192 > 6561). A CE that follows OOEOOEOOEOE follows OOEOOEOOEOEO, and that image is odd. Another escaped even is impossible on this step. This is not a length-11 cycle census and not a halt theorem.",
+  "source": "docs/problems/juggler_oe_next_oo.md",
+  "lean": "Problems/Juggler/Escape.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_oe_next_oo.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-oe-next-escaped-even",
+  "tag": "REFUTED",
+  "statement": "After the odd OE landing 1517 → 2493, the next image can be another escaped even (even and ≥ n^2). False. The itinerary OOEOOEOOEOEO has the square-cell gap 6561 < 8192, so the next O lies below n^2. 1517 maps to odd 124475 in [1517, 1517^2) and starts another OO. 7653 maps to even 1663784 < 7653^2 and drops by E to 1289. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_oe_next_oo.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_oe_next_oo.py"
+  ],
+  "related_conjectures": []
+ }
+]

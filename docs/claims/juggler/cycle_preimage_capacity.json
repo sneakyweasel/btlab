@@ -1,0 +1,25 @@
+[
+ {
+  "id": "J-cycle-joint-prefix-capacity",
+  "statement": "In the initialized actual cubic-cycle geometry with m>=8, A=OOE, A(m)=z<=a<A(a)=t and H=K(a+1)-1, A bijects {x in[m,H]:x in D_A,A(x) in D_A} with D_A intersect Gamma_A intersect[z,a]. All guards include odd output after two A returns, so these sources have seven state parities OOEOOEO. Current Paper B Corollary 4.10 bounds a free source interval[ell,h] by (h-ell+1)/32+C5(h^(47/48)+(ell-1)^(47/48)), with fixed C5>0; therefore alpha-beta is at most this expression on[m,H]. No numerical C5 or full-AA density is certified. When L=o(m^(47/48)), this upper expression exceeds every quota<=L uniformly on every nonempty source interval above m. The analogous three imported OO,OOEO,OOEOO endpoint bounds all fail this test if L=o(m^(5/6)). These are limitations of the upper expressions, not lower bounds on true errors or support. Under the additional unproved uniform-surplus hypothesis Lambda<=C0/L along m,L->infinity, the existing grid gives H=m^(32/27+o(1)) and L=O_C0(m log m), hence H/L->infinity; any fixed positive whole-block allowance with nonnegative error then exceeds the cycle population. Source fourth powers already fail OOEOO and cannot be subtracted twice. Transported fourth-power deletions have upper budget P4(A(m),A(H))-P32(m,H)=O(H^(9/32)), not a proved positive lower count. No strict support deficit or numerical period/height improvement follows. AI-assisted written proof using Paper B; neither Lean verification nor independent human review.",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_cycle_preimage_capacity.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_preimage_capacity.py",
+   "tests/integration/test_docs_links.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-cycle-preimage-capacity-diagnostics",
+  "statement": "For the prescribed word A=OOE and any integer target y>=8, every integer preimage lies in [y^(8/9),((y+1)^(4/3)+1)^(2/3)), an interval of width less than44/45<1. Thus its only candidate is ceil(y^(8/9)); exact cells and all actual guards remain necessary. Odd fourth-power sources fail the final E guard, giving the necessary packing bound alpha<=(a-m)/2+1-P4(m,a), where P4 counts odd fourth powers in[m,a]. For odd v>=3 and odd 1<=j< v/2, the exact guarded B=OE passage v^4+2j -> v^6+3v^2j -> v^3 has floor((v+1)/4) exhibited sources per target. In the prior cut-predecessor family r>=67,r=3mod16, all odd v in[r^2+2,2r^2-1] give valid B sources for both faces, with (r^2-1)/2 distinct exhibited targets and (3r^4-2r^2-1)/16 distinct exhibited sources. The singleton target (r^2+2)^3 lies inside(m,w), has distinct B support1, and has raw preimage count at least(r^2+3)/4. The target r^9 lies inside(z,t) but has no guarded A preimage: its unique prescribed source r^8 has odd second O output r^18. These are exact local diagnostics of support and multiplicity, not a forced population deficit, a complete matching, or a new height/period or no-cycle theorem. The ordinary deterministic-fiber Hall criterion reduces to nonempty singleton fibers; the same-Y support conditions and Euclidean rank towers are direct consequences of existing return machinery. AI-assisted written proofs, not Lean or independent human review.",
+  "tag": "EXACT — HUMAN PROOF",
+  "source": "docs/problems/juggler_cycle_preimage_capacity.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_preimage_capacity.py"
+  ],
+  "related_conjectures": []
+ }
+]

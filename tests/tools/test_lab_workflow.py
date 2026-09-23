@@ -72,6 +72,20 @@ def test_package_init_and_lean_transitive_imports(repo):
     assert not (root / '.cache').exists()
 
 
+def test_topic_change_selects_own_claims_and_recorded_tests(repo):
+    root, _ = repo
+    for topic in ('selected', 'unrelated'):
+        write(root, f'docs/claims/juggler/{topic}.json', json.dumps([{
+            'id': 'J-' + topic, 'tag': 'EXACT — HUMAN PROOF', 'statement': topic,
+            'source': 'docs/theory/example.md',
+            'tests': ['tests/test_consumer.py'] if topic == 'selected' else []}]))
+    result = impact.analyze(root, paths=['docs/claims/juggler/selected.json'])
+    selected = [r for r in result['items'] if r['kind'] == 'claim']
+    assert [r['id'] for r in selected] == ['J-selected']
+    assert selected[0]['claim_location']['pointer'] == '/0'
+    assert result['affected_tests'] == ['tests/test_consumer.py']
+
+
 def test_tool_packages_resolve_script_and_relative_imports(repo):
     root, _ = repo
     write(root, 'tools/catalogue/__init__.py')

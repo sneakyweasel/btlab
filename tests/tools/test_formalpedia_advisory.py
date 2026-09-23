@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import io
+from research.claims import load_claims
 import json
 
 from formalpedia_core import (
@@ -51,7 +52,7 @@ def test_jev_propose_asks_each_unresolved_row_about_its_own_file_and_nothing_els
     declarations another row already claims, plus the option that none of them is the claim.
     The tests above pin those two rules for the scorer; this pins them for the offer."""
     index = corpus_index
-    ledger = json.load(io.open(fp_workspace.LEDGER, encoding="utf-8"))
+    ledger = load_claims(fp_workspace.ROOT).entries
     seen: list = []
     record = fp_advisory.jev_propose(index, ledger, _fake_ask(seen=seen), workers=1)
     asked = {state["ledger_id"] for state, _ in seen}
@@ -83,7 +84,7 @@ def test_jev_propose_reuses_a_verdict_until_the_row_or_its_offer_changes(corpus_
     is dropped rather than carried, and ``limit`` leaves the rows it does not reach as they
     were instead of forgetting them."""
     index = corpus_index
-    ledger = json.load(io.open(fp_workspace.LEDGER, encoding="utf-8"))
+    ledger = load_claims(fp_workspace.ROOT).entries
     first = fp_advisory.jev_propose(index, ledger, _fake_ask(), workers=1)
     n = first["totals"]["answered"]
     assert n > 0
@@ -114,7 +115,7 @@ def test_propose_routes_a_confident_jev_pick_to_review_and_leaves_the_candidates
     and only upward: a pick at or above JEV_REVIEW lists the row; a pick below it and a
     "none of these" leave the scorer's verdict as it was."""
     index = corpus_index
-    ledger = json.load(io.open(fp_workspace.LEDGER, encoding="utf-8"))
+    ledger = load_claims(fp_workspace.ROOT).entries
     ids = sorted(_queue_ids(index, ledger))
     none_for = set(ids[::3])
     sure = fp_advisory.jev_propose(index, ledger, _fake_ask(confidence=0.95, none_for=none_for),
@@ -155,7 +156,7 @@ def test_propose_ignores_a_jev_pick_that_the_file_does_not_offer(corpus_index) -
     row since, renamed, or invented -- is recorded as not_a_candidate and routes nothing;
     the digest says so and never renders it as a candidate."""
     index = corpus_index
-    ledger = json.load(io.open(fp_workspace.LEDGER, encoding="utf-8"))
+    ledger = load_claims(fp_workspace.ROOT).entries
     plain = fp_matching.propose(index, ledger, jev={})
     shown = next(r for r in plain["rows"] if r["confidence"] == "review" and r["candidates"])
     hidden = next(r for r in plain["rows"] if r["confidence"] == "low" and r["candidates"])
@@ -179,7 +180,7 @@ def test_propose_marks_a_verdict_stale_once_the_row_or_the_offer_moved(corpus_in
     """A verdict answers one wording of the claim against one offer.  When either changes,
     the cached answer is shown as stale and routes nothing until jev-propose re-asks."""
     index = corpus_index
-    ledger = json.load(io.open(fp_workspace.LEDGER, encoding="utf-8"))
+    ledger = load_claims(fp_workspace.ROOT).entries
     record = fp_advisory.jev_propose(index, ledger, _fake_ask(confidence=0.99), workers=1)
     plain = {r["id"]: r for r in fp_matching.propose(index, ledger, jev={})["rows"]}
     victim = next(rid for rid in record["rows"] if plain[rid]["confidence"] == "low")
@@ -198,7 +199,7 @@ def test_review_digest_shows_jev_beside_the_scorer_and_quotes_its_stored_calibra
     prints Jev's declaration in full so the reviewer reads both; and the figures in the
     opening come from the stored, dated calibration record, never from a constant."""
     index = corpus_index
-    ledger = json.load(io.open(fp_workspace.LEDGER, encoding="utf-8"))
+    ledger = load_claims(fp_workspace.ROOT).entries
     record = fp_advisory.jev_propose(index, ledger, _fake_ask(confidence=0.9), workers=1)
     record["calibration"] = {
         "asked": "2026-09-21", "model": "jev-test", "sampled": 30, "top1": 19, "top3": 26,
@@ -224,7 +225,7 @@ def test_jev_calibrate_scores_the_recorded_answer_on_the_scorer_s_own_population
     A fake that always answers the recorded name scores every row; one that never does
     scores none, and the misses list names the rows it got wrong."""
     index = corpus_index
-    ledger = json.load(io.open(fp_workspace.LEDGER, encoding="utf-8"))
+    ledger = load_claims(fp_workspace.ROOT).entries
     truth = {r["id"]: fp_identities.row_decls(r)[0] for r in ledger if len(fp_identities.row_decls(r)) == 1}
     oracle = fp_advisory.jev_calibrate(index, ledger, _fake_ask(pick=truth, confidence=0.9),
                               sample=12, seed=1, workers=1)
@@ -267,7 +268,7 @@ def test_jev_coverage_asks_every_resolved_row_with_all_the_declarations_it_names
     list is asked about the list, and the four questions are the constant ones.  The offer
     verdicts and the calibration already in the record survive the run untouched."""
     index = corpus_index
-    ledger = json.load(io.open(fp_workspace.LEDGER, encoding="utf-8"))
+    ledger = load_claims(fp_workspace.ROOT).entries
     # Exercise exclusion independently of which historical claims remain in the lab.
     ledger.append(dict(next(r for r in ledger if fp_identities.row_decls(r)),
                        id='test-refuted-row', tag='REFUTED'))

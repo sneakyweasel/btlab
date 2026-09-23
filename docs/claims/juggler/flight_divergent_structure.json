@@ -1,0 +1,15 @@
+[
+ {
+  "id": "J-flight-divergent-structure",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Divergent flight structure: a descent-free Juggler flight (x_k >= n >= 2 for all k) that is not eventually periodic satisfies, pointwise: (1) all states are distinct and x_k → ∞ (a repeat forces periodicity by determinism; distinct integers >= n leave every bounded set), with x_0 = n the global minimum; (2) linear peak growth max_{j<=k} x_j >= n + k (k+1 distinct integers >= n); (3) pointwise walk divergence with a log-log rate: u_k >= log_2(log x_k / log n) → ∞ by the anchor-free upper envelope log x_k <= 2^{u_k} log n (follows_log_le_walkWeight / power_bound_word, Lean), hence sup_{j<=k} u_j >= log_2(log(n+k)/log n) — strengthening J-flight-walk-divergence from sup to pointwise in the divergent case; (4) hug-excess divergence a_k − hugOdds(k) → ∞ (hug band hugOdds_pow_lt, Lean); (5) recurrent hug domination: tail minima are attained (x_k → ∞) and strictly increase (distinctness), giving infinitely many cofinal record indices from which the tail is itself a descent-free flight with anchor x_i, so hug domination (aboveAnchor_prefix_odds_ge_hug, Lean) restarts from every record. Sharp: the log-log rate is attained with equality at realized peaks (probe slack 0.0 on all seven high-flyers, peaks up to 6.5e6 bits); no faster pointwise rate follows from these layers. Answers the anchor-period branch's standing question: the proved layers describe divergent flights with rates; only their exclusion (including the open eventually-all-odd / infinite odd tower subcase) is behind all-depth equidistribution. Not a halt theorem; no exclusion claimed; the PARKed re-anchored excursion envelope is not reopened.",
+  "source": "docs/problems/juggler_flight_divergent_structure.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_flight_divergent_structure.py"
+  ],
+  "related_conjectures": [
+   "juggler_asymptotic_descent"
+  ]
+ }
+]

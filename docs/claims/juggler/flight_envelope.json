@@ -1,0 +1,16 @@
+[
+ {
+  "id": "J-flight-envelope-transport",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Flight envelope on open descent-free prefixes: the Paper A Theorem 5.3 transport ported from minimum-based cycles to AboveAnchor, plus the anchor-free upper side. If AboveAnchor(n,w) with n >= 400 then for every k <= |w|, in log form, w_k (log n − Δ) <= log x_k <= w_k log n, where w_k = 3^{a_k}/2^k is the walk weight and Δ = 1.05 e/n + 0.7 o/(n√n) is the transport deficit over the full itinerary (aboveAnchor_transport, aboveAnchor_flight_envelope, WalkTransport.lean). The upper side is the log form of power_bound_word and needs only follows(n,w) with n >= 1 (follows_log_le_walkWeight): floors only lose, so every realized peak satisfies log H <= w_P log n with no anchor. The lower side is the cycleMin_transport induction verbatim with the cycle hypothesis replaced by the anchor hypothesis: odd injections priced at x_j >= n (aboveAnchor_iterate_ge), even injections at x_j >= n² (even_ge_sq_of_aboveAnchor), walk nonnegativity from aboveAnchor_prefix_pow_le (one_le_walkWeight_aboveAnchor). Consequence: the fly exponent Φ = log H / log n of an ascent prefix equals its peak walk weight w_P up to O(w_P Δ / log n). Sharpness audit (COMPUTATIONALLY VERIFIED, float diagnostics): through 2·10^4 zero violations of either side and worst transport-applicable relative fly excess 1.61·10^{-4}; on the seven high-flyers (peaks to 6.49·10^6 bits) the floors shave at most 0.014 bits off the ideal peak, Φ = w_P to relative 10^{-9}; 19.6% of odd starts peak after first descent and are priced only by the anchor-free upper side. Constrains realized ascent prefixes and hypothetical descent-free flights only: not a halt theorem, not a divergence theorem, and not a cycle obstruction.",
+  "source": "docs/problems/juggler_flight_envelope.md",
+  "lean": "Problems/Juggler/WalkTransport.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_flight_envelope.py"
+  ],
+  "related_conjectures": [
+   "juggler_asymptotic_descent",
+   "juggler_descent_time_log"
+  ]
+ }
+]

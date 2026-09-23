@@ -1,0 +1,15 @@
+[
+ {
+  "id": "J-l84-m-ge-three-floor-261",
+  "tag": "REFUTED",
+  "statement": "A cheap refinement of the odd-run height law or the Lean inv-sum cap excludes every Juggler CycleMin of length 84 with at least three odd-runs at residual floor 261. False. At n=261, o=53, m=3, θ≈0.002086: height constant 1 RHS≈0.002193; Lean inv-sum S≈0.012672>θ·61/11≈0.011568; singleton start (T(261) even) plus n+2 valleys RHS≈0.002179. Height first kills m=3 at 273 and every m at 1981; those raises stay PARK. Not a halt theorem.",
+  "source": "docs/problems/juggler_cycle_l84_m3.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_l84_m3.py"
+  ],
+  "related_conjectures": [
+   "juggler_l84_m_ge_three_floor_261"
+  ]
+ }
+]

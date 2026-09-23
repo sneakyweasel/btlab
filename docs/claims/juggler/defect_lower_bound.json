@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-first-defect-amplification",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For a realized Juggler word w, the first positive local remainder sits after a tight even or odd power-of-two prefix. That remainder contributes at least ρ_j^{2^j} to Δ, and the suffix operator Amplify (later remainders dropped) is a lower bound. An odd letter lifts an inserted defect by the exact cubic (x^a+D)^3-x^{3a} ≥ 3 x^{2a} D. Mixed OOE has firstDefect ≤ 1, with Δ ≥ 3 T(n)^4 ρ_0 or Δ ≥ ρ_1^2. These bounds do not claim Δ exceeds the formal surplus.",
+  "source": "docs/problems/juggler_defect_lower_bound.md",
+  "lean": "Problems/Juggler/DefectLowerBound.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_defect_lower_bound.py"
+  ],
+  "related_conjectures": []
+ }
+]

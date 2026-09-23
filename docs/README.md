@@ -29,6 +29,10 @@ Current PDFs and publication kits live in [preprints](../preprints/README.md).
 Edit canonical paper sources and rebuild; `python tools/preprints.py --check`
 verifies the inventory and all five releases.
 
+Claim sources live in [topic files](claims/README.md). The combined theorem
+ledger JSON and Markdown are generated views; use `formalpedia.py claim <ID>`
+to locate the source row before editing it.
+
 ## Evidence labels
 
 - **EXACT — HUMAN PROOF**: a recorded proof with its hypotheses.

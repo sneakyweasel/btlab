@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-minimal-anchor-closure",
+  "tag": "REFUTED",
+  "statement": "A leftover odd-escape corridor forces a strictly smaller bad predecessor, or the first overshoot lies in Pred_{E,OE,OOE,OOOE}([1,n-1]), or corridor rank decreases through each reset. False. From each first overshoot the only applicable short word is OE and lands above n. Rank oscillates: 365 resets 582276 to 763 and later reaches rank 4. 365 and 1517 have no smaller same-word start, no high-orbit merge, and no short structured return on the obstruction-free corridor. 501 inherits 365, which is a larger good start hitting a smaller good orbit, not a smaller bad anchor. 6187 drops by OE from its L-image; 501 follows L and continues, so that exit is not a closure law. This is not PredClosure-from-1, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "source": "docs/problems/juggler_minimal_anchor_closure.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_minimal_anchor_closure.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-minimal-anchor-leftover-spine",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "On the leftover odd-escape controls 365, 501, 1517, 6187 the first overshoot is odd and its unique odd predecessor is the start. Every AboveAnchor state before the terminal even-below-n^2 trap has no odd predecessor smaller than the start. PE landings 763, 1749, 4447, 12707 of 365 have empty odd cells. 501 intersects the orbit of 365 at 763. 6187 follows L to 11189 and then OE to 1087. No smaller start follows the same full drop word. This is not PredClosure-from-1, not a residue automaton, and not a halt theorem.",
+  "source": "docs/problems/juggler_minimal_anchor_closure.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_minimal_anchor_closure.py"
+  ],
+  "related_conjectures": []
+ }
+]

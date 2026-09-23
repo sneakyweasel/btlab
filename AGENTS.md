@@ -48,6 +48,10 @@ its canonical proof sources, not in duplicated instructions.
   [.cursor/rules/methodology.mdc](.cursor/rules/methodology.mdc), including
   `Already killed by?`, and end with `PROMOTE | PARK | CLOSE`. Do not auto-open
   the next branch. This research protocol does not prevent authorized maintenance.
+- Edit claims in `docs/claims/<programme>/<topic>.json`; use `formalpedia.py claim <ID>`
+  for the source location. Read through `research.claims.load_claims`, then regenerate
+  both aggregate ledger views with `tools/render_theorem_ledger.py`. Keep IDs and
+  evidence fields unchanged when moving rows. See [claim storage](docs/claims/README.md).
 - Keep durable results in dossiers, proof maps, obstruction records and the claim
   ledger. The journal holds at most twelve short decisions; earlier chronology is
   recoverable from Git. Regenerate the obstruction directory with

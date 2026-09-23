@@ -1,0 +1,71 @@
+[
+ {
+  "id": "J-pressure-external-average",
+  "tag": "REPARAMETERIZATION",
+  "statement": "Corrected 9 September 2026: this row retains only the closed METHODS in the external-averaging dossier; its former rejection of the Cesaro normalized pressure average Pi is withdrawn and replaced by J-pressure-scale-average-suffices. Identity A, completing the single live-tilted odd sum, produces a cylinder-weighted nested phase. The recorded inputs remain Walsh-tail pair correlation, the two-monomial/Weyl depth budget cC<1, or fixed-depth truncation (Tao note 10.4(e)). Parseval is already J-tao-cylinder-forms-reparameterization. The harmonic average of live counts is finite-depth free-term live mass, and a proposed inverse-production estimate still needs tilted S-fairness on its odd branch. These are not new arithmetic estimates. They do not invalidate the corrected conditional sufficiency of scale-averaged pressure. The conditional weakening was promoted; the subsequent arithmetic-estimate attempt is PARK, with only the sparse-source bound J-pressure-sparse-starts proved. Its full arithmetic hypothesis and unconditional termination remain unproved.",
+  "source": "docs/problems/juggler_pressure_external_average.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_pressure_external_average.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ },
+ {
+  "id": "J-pressure-scale-average-contagion-transfer",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Parametric scale-average reduction and conditional OOEE corollary. For 0<lambda<=1 assume FailureMassLowerBound lambda: every positive nonterminating start supplies constants c>0 and x0 with c*(log x)^lambda <= logMass of failures for every natural x>=x0. Under the same actual stopped odd-pressure Bound and verified-floor hypotheses as J-pressure-scale-average-suffices, r-eta>1-lambda implies every positive integer reaches 1. conjecture_of_bound_of_contagion proves this for general positive normalization a and nonnegative theta. The existing unconditional interface specializes lambda=100/203. pressure_average_conjecture_of_ooee specializes lambda=5/8 and a=1-q+q*exp(theta), with C>1, theta>0, 0<q<1, eta>=0 and r-eta>3/8, assuming both the actual OOEEProductionBound on failures and the cumulative pressure Bound. Neither arithmetic hypothesis is discharged. This composes existing results; it is not a new pressure estimate or unconditional termination theorem. The listed Lean declarations compile with only standard logical dependencies; ledger promotion awaits the external advisory statement-coverage review.",
+  "source": "docs/problems/juggler_pressure_external_average.md",
+  "lean": "Problems/Juggler/FateScaleAverage.lean",
+  "decl": [
+   "FailureMassLowerBound",
+   "conjecture_of_odd_mass_of_contagion",
+   "conjecture_of_bound_of_contagion",
+   "pressure_average_conjecture_of_ooee"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_pressure_external_average.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ },
+ {
+  "id": "J-pressure-scale-average-suffices",
+  "tag": "EXACT — LEAN VERIFIED",
+  "lean_trust": "kernel",
+  "statement": "Conditional scale-averaged pressure theorem at the unconditional contagion threshold. Fix integers N0>=2 and k0>=0 with N0<2^(k0+1), and assume every integer from 1 through N0 reaches 1. Let C>1, theta>0, 0<q<1, eta>=0, a=1-q+q*exp(theta), pC=(1-1/C)/log_2(3), and r=C*(theta*pC-log(a))/log(2). For y=2^k set d=ceil(C*log_2(log(2*y)/log(N0))). Let Z_k be the sum of exp(theta*o_d(n)) over odd integer starts y<n<=2*y whose Juggler iterates at every time 0 through d exceed N0; o_d(n) counts odd states at times 0 through d-1. Set rho_k=Z_k/((2^k/2)*a^d). Suppose that for every epsilon>0 there exists a real D>=0 such that, for every integer K>=0, sum(rho_(k0+j),0<=j<K)<=D*K^(1+eta+epsilon). If r-eta>103/203, every positive integer reaches 1. ScaleAverage.pressure_average_conjecture proves precisely this conditional implication. Its Bound definition spells out the cumulative hypothesis, and liveOdds, oddPressure and rho define the actual stopped Juggler moments. The actual cumulative pressure estimate remains unproved; the formal result introduces no additional distribution assumption and does not prove unconditional termination. Scalar spike examples, numerical tilt evaluations and sparse-source estimates elsewhere in the dossier are outside this row.",
+  "source": "docs/problems/juggler_pressure_external_average.md",
+  "lean": "Problems/Juggler/FateScaleAverage.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_pressure_external_average.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ],
+  "decl": [
+   "liveOdds",
+   "oddPressure",
+   "rho",
+   "Bound",
+   "pressure_average_conjecture"
+  ]
+ },
+ {
+  "id": "J-pressure-sparse-starts",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Actual sparse-source pressure bound. Fix N0>=2, C>1, theta>0, 0<q<1, a=1-q+q*exp(theta), and the scale-averaged pressure notation of J-pressure-scale-average-suffices. If a source set B has O(2^((1-delta)*k)) members in (2^k,2^(k+1)] for fixed delta>0, its restricted normalized live moment satisfies rho_k(B)=O(2^(-delta*k)*(k+1)^kappa), kappa=C*(theta-log a)/log2, so its cumulative contribution is bounded independently of K. Proof grants every source d_k odd letters and survival, then compares the exponential source-density saving with the polynomial tilt. For the actual odd source subset n square OR J(n) square, injectivity of the odd branch gives count <=floor(sqrt(2y))+floor((2y)^(3/4))<=4*y^(3/4), hence delta=1/4 and an O(1/K) contribution to the normalized scale average. Exact odd power towers n=b^(2^j), j>=1, are square starts and have delta=1/2. No assertion about later parities, arbitrary inverse closures, unbounded later square hits, or relative live tilted shares. The complement and the full averaging hypothesis remain uncontrolled. Human proof, not Lean verified; no termination conclusion.",
+  "source": "docs/problems/juggler_pressure_external_average.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_pressure_external_average.py"
+  ],
+  "related_conjectures": [
+   "juggler_loglog_depth_cylinder_bound"
+  ]
+ }
+]

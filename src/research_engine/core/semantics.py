@@ -31,7 +31,7 @@ class CertificateKind(str, Enum):
     """Engine-only subtype of an attack outcome.
 
     This is not a theorem-ledger tag. Named theorems still use the seven
-    strings in ``docs/theory/theorem_ledger.json``. ``PROVED`` is not a
+    strings in ``research.claims.TAGS``. ``PROVED`` is not a
     value here.
     """
 

@@ -1,0 +1,24 @@
+[
+ {
+  "id": "J-landing-preimage-iff",
+  "tag": "REPARAMETERIZATION",
+  "statement": "T(x)=m if and only if m²≤F(x)<(m+1)², with F(x)=x on the even branch and F(x)=x³ on the odd branch. The landing gap ρ=F(x)-m² satisfies 0≤ρ<2T(x)+1. Odd landing is membership of F(x) in a union of odd-m one-step preimages. These are the existing inverse-floor and remainder-window lemmas under landing names.",
+  "source": "docs/problems/juggler_landing_parity.md",
+  "lean": "Problems/Juggler/LandingParity.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_landing_parity.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-landing-theta-state",
+  "tag": "REFUTED",
+  "statement": "The normalized landing position θ=ρ/(2T+1) is a compact state for persistent odd-to-odd continuation: it occupies a proper subinterval of [0,1], or a coarse θ-bin predicts the next landing parity better than a residue class, or θ(T(x)) is a function of θ(x) and the branch. Counterexamples: on odd n≤2000, odd-odd θ occupies [0,0.997] and every tenth of [0,1]; PE-continuation landings span [0,0.995]; next-parity entropy given a θ-bin is ≈0.99, matching x mod 8; θ→θ transitions fill essentially all bins.",
+  "source": "docs/problems/juggler_landing_parity.md",
+  "lean": "Problems/Juggler/LandingParity.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_landing_parity.py"
+  ],
+  "related_conjectures": []
+ }
+]

@@ -1,0 +1,15 @@
+[
+ {
+  "id": "J-christoffel-one-parameter",
+  "tag": "REFUTED",
+  "statement": "At a leftover near-convergent length L with o = o_min(L), leftover-itinerary cells or CycleMin-legal expanding itineraries of weight o concentrate on the Christoffel / mechanical necklace of slope o/L, so those cells apply to a one-parameter family instead of C(L, o) words. False. The thirty length-11 first-expanding leftovers have cyclic Hamming histogram 0:1, 2:16, 4:13 versus necklace size 4. Length-19 CycleMin weight-12 has 12376 words, median Hamming 6, radius 0 only 7. The isolated-even worst-m family at length 19 has 462 words. Finance and CycleMin slack 139 are word-order-independent. Lebel modular sieving is not transferred. Cycle-only near-Christoffel rigidity is not claimed refuted.",
+  "source": "docs/problems/juggler_cycle_christoffel.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_cycle_christoffel.py"
+  ],
+  "related_conjectures": [
+   "juggler_christoffel_one_parameter"
+  ]
+ }
+]

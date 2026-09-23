@@ -1,0 +1,40 @@
+[
+ {
+  "id": "C-T-welldefined",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Accelerated T is well-defined on positive odd integers.",
+  "source": "docs/collatz_mathematics.md",
+  "lean": "Problems/Collatz/Accelerated.lean",
+  "decl": [
+   "acceleratedT_odd",
+   "acceleratedT_pos"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/collatz/test_core.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "C-append-plus",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "BT(3n+1)=BT(n)+ for n≠0",
+  "source": "docs/collatz_mathematics.md",
+  "lean": "Representation/Words.lean",
+  "tests": [
+   "tests/research/collatz/test_theorems.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "C-odd-part-not-one-fst",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Unrestricted odd-part is not one rational transduction.",
+  "source": "docs/collatz_mathematics.md",
+  "lean": "",
+  "tests": [
+   "tests/research/collatz/test_transducers.py"
+  ],
+  "related_conjectures": []
+ }
+]
