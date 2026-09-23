@@ -150,8 +150,13 @@ error, deficient progression and divergent reciprocal mass are now
 kernel-checked in `FibreActual`, `FibreMassError` and `FibreDeficit`.
 The [actual-mass proof map](../theory/collatz_actual_fibre_mass_lean_note.md)
 records the exact scope. Full sibling residue coverage, the fixed-depth
-actual error for d>1 and the generation-series implication remain written
-proofs with exact-arithmetic checks. Independent review remains open.
+actual error for d>1 remain written proofs with exact-arithmetic checks.
+The coefficient-series implication at a given nonperiodic target is now
+kernel-checked in `FibreGeneration`, using the generic disjoint-generation
+theorem in `BTCalculus.PreimageGenerations`; see its
+[proof map](../theory/collatz_generation_mass_lean_note.md). The existence
+of a nonperiodic odd unit in every full fate class remains a separate
+written argument. Independent review remains open.
 Ledger labels stay **EXACT — HUMAN PROOF** pending advisory statement
 coverage; the compiled results also record kernel trust.
 
@@ -311,11 +316,38 @@ of any fate class containing it. This is a proved implication with an
 cycle points. It is stated only for plus; the minus affine inequality
 runs the other way.
 
+This full coefficient-to-actual-ancestor implication is now kernel-checked
+in `Problems.Collatz.FibreGeneration.ancestor_reciprocals_not_summable`.
+Its generation comparison uses the actual predecessor bijection and the
+concrete infinite coefficient operator. Its counting proof uses extended
+nonnegative sums and needs no prior finiteness of actual generation masses.
+The series-divergence premise itself is still open.
+
 Every nonempty full plus fate class contains a nonperiodic odd unit:
 it contains an odd unit after forward iteration, whose fibre has
 infinitely many unit siblings. At most one of these can be periodic,
 since a function is injective on its periodic points. Thus there is
 no additional existence assumption hidden in the proposed target.
+
+### 5. Polynomial affine loss for negative-map generations
+
+For the minus map, put K_d^-=L_-^d 1_units. At every nonperiodic positive
+odd target a, the actual unit-generation mass is at least
+K_d^-(a)/(a*(d+1)^(1/6)). On an actual depth-d path the source states are
+distinct odd integers at least five. Their exact affine correction is
+product_j(1-1/(3*x_j)); its sixth power is at least 1/(d+1).
+Thus the stronger-than-unweighted divergence premise
+sum_d K_d^-(a)/(d+1)^(1/6)=infinity implies divergent actual ancestor
+reciprocal mass. The complete operator identity, path comparison and
+ordinary reciprocal-series conclusion are kernel-checked in
+`Problems.Collatz.FibreDistortion`; see the
+[proof map](../theory/collatz_negative_generation_mass_lean_note.md).
+
+The divergence premise remains open. This does not reinstate uniform
+fixed-depth reproduction or establish a termination theorem. Periodic
+targets are excluded, and the repeated path at 1 is an exact control
+showing why that hypothesis matters. Independent review and advisory
+coverage remain pending; the ledger retains its HUMAN PROOF label.
 
 ## Open questions
 
@@ -324,6 +356,8 @@ nonperiodic odd unit in every full fate class? Tao's averaged residue
 mixing does not by itself control these prescribed integer targets.
 The exact modular recurrence and its agreement with Tao identify the
 arithmetic object; they do not supply the missing pointwise estimate.
+For the minus map, the corresponding sufficient series is the corrected
+one in Result 5. No divergence theorem for it is asserted.
 
 ## Decision
 
@@ -331,8 +365,10 @@ arithmetic object; they do not supply the missing pointwise estimate.
 obstruction. A finite ternary weight table cannot furnish the proposed
 uniform reciprocal-mass production, even with any fixed number of
 generations grouped together. The broader fate-specific question remains
-open. The single best next question is the nonperiodic-target series
-in Result 4; this phase stops without opening that next branch.
+open. **PROMOTE** the 23 September polynomial negative affine bound and
+the complete conditional criteria for both signs. The nonperiodic-target
+series in Results 4 and 5 are the remaining arithmetic questions; this
+phase stops without asserting their divergence.
 
 ## Publication assessment
 

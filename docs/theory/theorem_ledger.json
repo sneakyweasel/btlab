@@ -213,11 +213,22 @@
  {
   "id": "C-syracuse-generation-harmonic-criterion",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "For the positive 3n+1 odd-return map S, let a be a positive odd unit nonperiodic under S, and K_d=L_+^d 1_units. Divergence of sum_{d>=0} K_d(a) implies divergence of the reciprocal sum over positive ancestors of a. Every valid inverse path has endpoint n<=a*2^(sum k_i)/3^d, so generation d has reciprocal mass at least K_d(a)/a; nonperiodicity makes these generations disjoint. Every nonempty full positive Collatz fate class contains a nonperiodic odd unit, since an odd unit target has infinitely many unit siblings and at most one can be periodic. The series-divergence premise is OPEN. The implication is for plus only, because the minus affine comparison reverses. AI-assisted written proof; independent review and Lean verification outstanding.",
-  "source": "docs/problems/collatz_fibre_mass.md",
-  "lean": "",
-  "tests": ["tests/research/collatz/test_fibre_mass.py"],
-  "related_conjectures": []
+  "statement": "For the positive 3n+1 odd-return map S and every positive odd target a, put K_d=L_+^d 1_units using the complete residue operator. Actual depth-d positive odd unit ancestors have reciprocal mass at least K_d(a)/a. If a is nonperiodic and the nonnegative series sum_d K_d(a) is not summable, the ordinary natural-number reciprocal indicator series of its actual positive odd unit ancestors is not summable. The proof identifies the full operator with actual predecessors and counts disjoint generations. The coefficient-series divergence premise remains OPEN. Kernel-checked; independent review and advisory statement coverage remain pending. The separate existence argument for a nonperiodic unit in every full fate class is not included in this formal row.",
+  "source": "docs/theory/collatz_generation_mass_lean_note.md",
+  "lean": "Problems/Collatz/FibreGeneration.lean",
+  "tests": [
+   "tests/research/collatz/test_fibre_mass.py"
+  ],
+  "related_conjectures": [],
+  "lean_trust": "kernel",
+  "decl": [
+   "Problems.Collatz.FibreGeneration.kernel",
+   "Problems.Collatz.FibreGeneration.kernel_succ",
+   "Problems.Collatz.FibreGeneration.kernel_succ_summable",
+   "Problems.Collatz.FibreGeneration.kernel_mass_le",
+   "Problems.Collatz.FibreGeneration.ancestorMass_eq_top",
+   "Problems.Collatz.FibreGeneration.ancestor_reciprocals_not_summable"
+  ]
  },
  {
   "id": "J-padic-periodic-cycle-transfer",
@@ -13874,6 +13885,40 @@
   "lean": "",
   "tests": [
    "tests/research/juggler_sequence/test_winkler_phase_collapse.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "C-syracuse-fate-nonperiodic-unit",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Every nonempty full positive 3n+1 fate class contains a nonperiodic positive odd unit. Forward iteration supplies an odd unit; its complete fibre has infinitely many unit siblings, and at most one can be periodic since the map is injective on periodic points. This is the written existence argument separated from the formal given-target generation-series criterion. Lean verification and independent review remain outstanding; no coefficient-series divergence is asserted.",
+  "source": "docs/problems/collatz_fibre_mass.md",
+  "lean": "",
+  "tests": [
+   "tests/research/collatz/test_fibre_mass.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "C-negative-generation-polynomial-affine-loss",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For S(n)=(3n-1)/2^v2(3n-1) on positive odd integers, let a be nonperiodic and K_d^-=L_-^d 1_units the complete homogeneous residue coefficient. Every actual depth-d path to a has distinct odd source states x_j>=5; its affine product product_j(1-1/(3*x_j)) has sixth power at least 1/(d+1). The complete coefficient equals the sum of homogeneous coefficients over actual paths. Consequently the actual depth-d unit-ancestor reciprocal mass is at least K_d^-(a)/(a*(d+1)^(1/6)). If sum_d K_d^-(a)/(d+1)^(1/6) is not summable, the ordinary natural-number reciprocal indicator series of the actual positive odd unit ancestors of a is not summable. The divergence premise remains OPEN, and the sixth-root allowance is not claimed optimal. Periodic targets are excluded. Kernel-checked; independent review and advisory statement coverage remain pending. No Juggler pressure estimate, termination theorem or infinite escape follows.",
+  "source": "docs/theory/collatz_negative_generation_mass_lean_note.md",
+  "lean": "Problems/Collatz/FibreDistortion.lean",
+  "lean_trust": "kernel",
+  "decl": [
+   "Problems.Collatz.FibreDistortion.kernel",
+   "Problems.Collatz.FibreDistortion.normalizedKernel",
+   "Problems.Collatz.FibreDistortion.distinct_odd_loss",
+   "Problems.Collatz.FibreDistortion.pathLoss_pow_lower",
+   "Problems.Collatz.FibreDistortion.pathCoefficient_le",
+   "Problems.Collatz.FibreDistortion.kernel_eq_path_sum",
+   "Problems.Collatz.FibreDistortion.kernel_mass_le",
+   "Problems.Collatz.FibreDistortion.ancestor_reciprocals_not_summable"
+  ],
+  "tests": [
+   "tests/research/collatz/test_fibre_distortion.py",
+   "tests/research/collatz/test_fibre_mass.py"
   ],
   "related_conjectures": []
  }

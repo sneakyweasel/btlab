@@ -25,6 +25,17 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- negative Collatz ancestor generations have a polynomial affine loss:
+  nonperiodicity gives distinct odd source states, bounding the correction
+  below by (d+1)^(-1/6). The complete coefficient series with this loss
+  implies divergent actual reciprocal ancestor mass. Its divergence
+  remains open; see the
+  [proof map](../docs/theory/collatz_negative_generation_mass_lean_note.md);
+- generic nonperiodic preimage generations count actual ancestors once;
+  the complete positive Collatz coefficient series is dominated by actual
+  generation mass. Its divergence implies harmonic divergence of actual
+  positive odd unit ancestors. The divergence premise remains open; see the
+  [proof map](../docs/theory/collatz_generation_mass_lean_note.md);
 - actual signed Collatz predecessor masses: the complete predecessor bijection,
   one-generation affine error H/(m-1/2), and deficient odd progressions with
   divergent reciprocal mass. A finite reciprocal-mass deletion cannot repair

@@ -1102,6 +1102,34 @@
         "kernel": 16
       }
     },
+    "Problems.Collatz.FibreDistortion": {
+      "declarations": 47,
+      "depends_on": [
+        "Problems.Collatz.FibreGeneration"
+      ],
+      "file": "formal/Problems/Collatz/FibreDistortion.lean",
+      "ledger": [
+        "C-negative-generation-polynomial-affine-loss"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 47
+      }
+    },
+    "Problems.Collatz.FibreGeneration": {
+      "declarations": 20,
+      "depends_on": [
+        "Problems.Collatz.FibreMassError"
+      ],
+      "file": "formal/Problems/Collatz/FibreGeneration.lean",
+      "ledger": [
+        "C-syracuse-generation-harmonic-criterion"
+      ],
+      "papers": [],
+      "trust": {
+        "kernel": 20
+      }
+    },
     "Problems.Collatz.FibreMass": {
       "declarations": 43,
       "depends_on": [
@@ -4322,9 +4350,9 @@
     }
   },
   "totals": {
-    "edges": 334,
-    "edges_before_reduction": 2869,
-    "ledger_rows_placed": 523,
-    "nodes": 265
+    "edges": 336,
+    "edges_before_reduction": 2878,
+    "ledger_rows_placed": 525,
+    "nodes": 267
   }
 }

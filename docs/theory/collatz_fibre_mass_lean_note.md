@@ -72,9 +72,11 @@ This formalizes the homogeneous coefficient theorem. The
 [actual-mass continuation](collatz_actual_fibre_mass_lean_note.md) separately
 formalizes the actual one-generation error, deficient arithmetic progression
 and divergent reciprocal mass. The actual error at higher fixed depths, full
-ternary coverage of sibling rays, and conditional generation-series criterion
-remain written proofs in the dossier. They are not included in this theorem's
-Lean coverage.
+ternary coverage of sibling rays, and the fate-class nonperiodic-root existence
+argument remain written proofs in the dossier. The conditional
+[generation-series criterion](collatz_generation_mass_lean_note.md) is now
+formalized separately, with its divergence premise retained. These results
+are not included in this coefficient theorem's Lean coverage.
 
 The result prevents a uniform finite-periodic-weight replacement for
 Juggler's harmonic production, for either sign and any fixed grouping depth.

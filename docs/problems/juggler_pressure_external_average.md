@@ -774,6 +774,17 @@ certifies the rational lower bound 3/7 independently of the decimal.
 
 At the least fair depth C=16, the optimizing tilt gives
 kappa=3.879070210474..., while eta<r-3/8=0.013673401720....
+
+The shorter-prefix calibration also improves (23 September 2026).
+With m(y)=ceil(4*log_2(log(2*y)/log(N0))), a uniform actual all-odd count
+O(y/(log(y))^4) through m(y) would bound the full-depth all-odd pressure
+sum by O(K^(1+kappa-4))=O(K^0.879070210474...). More generally, a uniform
+logarithmic saving gamma>kappa-r+3/8=3.865396808754... would fit some
+permitted pressure budget for this contribution alone. This is the
+existing source-inclusion argument recalibrated, not a counting theorem.
+Mixed high-odd-count words remain uncontrolled. The actual all-odd count
+is still unproved; fixed-depth Paper B estimates do not supply it.
+
 Hence even an arbitrarily sparse unbounded exceptional set can carry
 cap-sized spikes that exceed the entire cumulative budget: along an
 exceptional K the cumulative sum could be at least K^kappa, while

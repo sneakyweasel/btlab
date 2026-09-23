@@ -1,0 +1,28 @@
+'Problems.Collatz.FibreDistortion.distinct_odd_loss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.syracuse_iterate_val' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.loss_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.step_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.pathCoefficient_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.pathLoss_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.path_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.pathLoss_pow_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.depthLoss_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.depthLoss_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.pathCoefficient_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.inverseEquiv_val' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.inverse_multiplier' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.kernel_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.kernel_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.kernel_succ_summable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.unitCoefficient_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.unitCoefficient_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.kernel_eq_path_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.normalizedKernel_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.kernel_mass_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.normalizedKernel_series_top' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Collatz.FibreDistortion.ancestorMass_eq_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreDistortion.ancestor_reciprocals_not_summable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

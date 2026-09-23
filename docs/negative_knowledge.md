@@ -117,9 +117,20 @@ for both signs and every finite level and fixed positive depth. The actual
 one-generation error, predecessor bijection, deficient progression and
 divergent reciprocal mass are also kernel-checked; see the
 [actual-mass proof map](theory/collatz_actual_fibre_mass_lean_note.md).
-The actual error at higher fixed depths and the generation-series implication
-remain written proofs. The [coefficient proof map](theory/collatz_fibre_mass_lean_note.md)
-records the original homogeneous scope.
+The actual error at higher fixed depths remains a written proof. The
+[generation-series implication](theory/collatz_generation_mass_lean_note.md)
+is now kernel-checked for the plus map at a given nonperiodic target, with
+the coefficient-series divergence premise still open. This does not repair
+uniform finite-weight reproduction. The
+[coefficient proof map](theory/collatz_fibre_mass_lean_note.md) records the
+original homogeneous scope.
+
+The [negative generation continuation](theory/collatz_negative_generation_mass_lean_note.md)
+now gives a lower mass bound with loss (d+1)^(1/6) for nonperiodic targets.
+Distinct actual odd states control the accumulated negative affine
+correction; the corresponding weighted coefficient-series criterion is
+kernel-checked. Its divergence premise remains open. This does not repair
+the uniform fixed-depth reproduction inequality or give Juggler pressure.
 
 ## Collatz orbit packing does not bypass Juggler parity counts
 

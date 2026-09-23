@@ -28,6 +28,8 @@ import Problems.Collatz.FibreMass
 import Problems.Collatz.FibreActual
 import Problems.Collatz.FibreMassError
 import Problems.Collatz.FibreDeficit
+import Problems.Collatz.FibreGeneration
+import Problems.Collatz.FibreDistortion
 import Problems.Ostrowski.NP
 import Problems.Primes.Residual
 import Problems.BalancedTernary.FiniteStateDynamics

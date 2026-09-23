@@ -1,5 +1,52 @@
 # Research journal
 
+## 2026-09-23 -- Negative Collatz affine loss is polynomial on nonperiodic paths
+
+- **Continuation audit:** The previous recommendation supplied a recalibrated
+  target but no arithmetic counting theorem. The actual all-odd Juggler count
+  remains open: the existing Paper B transfer covers two predecessor weights,
+  and its next nested phase remains unsupported. At C=16, the existing
+  shorter-prefix argument needs logarithmic saving greater than 3.865396808754;
+  the suggested power-four count would control only the all-odd contribution.
+  This calibration is recorded without promoting it as a counting result.
+- **New mathematical result:** For S(n)=(3n-1)/2^v2(3n-1), an actual path
+  to a nonperiodic target has distinct odd source states at least five. Its
+  exact affine product has sixth power at least 1/(d+1), by Bernoulli's
+  inequality and a telescoping comparison on the sorted distinct states.
+  The negative affine comparison therefore costs at most (d+1)^(1/6).
+- **Complete bridge:** `FibreDistortion.kernel_eq_path_sum` identifies the
+  existing complete residue coefficient with all actual integer paths.
+  Actual generation mass is at least K_d^-(a)/(a*(d+1)^(1/6)); nonsummability
+  of the corrected coefficient series implies nonsummability of the literal
+  natural-number reciprocal series of actual unit ancestors. Every halving
+  exponent is included, and extended nonnegative sums require no prior
+  finiteness of actual mass. The periodic root 1 is a checked negative control.
+- **Earlier work completed:** Registered the pending plus-map criterion and
+  generic disjoint-generation theorem. The written fate-class root-existence
+  argument is separated from the given-target formal statement. The two
+  coefficient-series divergence premises remain open; the minus theorem
+  does not preserve the plus theorem's absence of a depth loss.
+- **Validation:** Active Lean build passes 9,011 jobs. Audits cover all 17
+  public generic/plus theorems and all 24 public negative theorems, using only
+  propext, Classical.choice and Quot.sound. Eight new exact regression checks
+  pass. Style, ledger rendering, branch index and Paper E release checks pass.
+  The combined selected run has 47 passes and three failures caused by two
+  concurrently deleted older ledger targets: docs/literature_comparison.md
+  and formal/Representation/Words.lean. The new mathematical checks,
+  declaration resolution, generated records and documentation links pass.
+  The isolated source tree passes all 49 selected mathematical, ledger,
+  declaration and generated-artifact tests; all unchanged ledger rows and
+  named source paths are checked against its own base revision.
+  Unrelated staged edits and deletions are excluded from the scoped commit.
+- **Coverage:** HUMAN PROOF labels with kernel trust are retained pending
+  advisory statement coverage; no external request was sent. The
+  [proof map](theory/collatz_negative_generation_mass_lean_note.md) states the
+  exact hypotheses, complete counting correspondence and remaining premise.
+- **Decision:** **PROMOTE** the polynomial negative affine bound and the
+  complete signed conditional generation criteria. Stop this bounded phase.
+  No coefficient-series divergence, Juggler pressure bound, termination,
+  infinite escape or new cycle exclusion is asserted. The full goal stays active.
+
 ## 2026-09-23 -- Registered: Winkler's ratio collapses onto the phase
 
 - **Registered** as `J-winkler-ratio-collapses-onto-the-phase`, COMPUTATIONALLY

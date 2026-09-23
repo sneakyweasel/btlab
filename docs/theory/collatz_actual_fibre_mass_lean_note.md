@@ -97,8 +97,11 @@ conclusion directly using the full actual predecessor series.
 The homogeneous obstruction is already formal for every fixed positive
 generation depth. This continuation formalizes the actual affine error
 and deficient-progression consequence at one generation. The fixed-depth
-actual error, full ternary coverage of sibling rays, and conditional
-generation-series criterion remain written proofs in the dossier.
+actual error and full ternary coverage of sibling rays remain written
+proofs in the dossier. The
+[generation-series continuation](collatz_generation_mass_lean_note.md)
+now separately formalizes the conditional coefficient-to-ancestor implication
+at a given nonperiodic target; its divergence premise remains open.
 
 Juggler's OOEE production succeeds by bounding the reciprocal mass of
 poor targets. For the proposed uniform signed Collatz production using

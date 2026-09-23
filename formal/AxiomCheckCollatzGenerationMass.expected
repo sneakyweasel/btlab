@@ -1,0 +1,21 @@
+'BTCalculus.PreimageGenerations.mass_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.PreimageGenerations.mass_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.PreimageGenerations.depth_unique' depends on axioms: [propext]
+'BTCalculus.PreimageGenerations.sum_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreGeneration.syracuse_iterate_val' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreGeneration.inverseEquiv_val' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreGeneration.kernel_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreGeneration.kernel_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreGeneration.kernel_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreGeneration.kernel_succ_summable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreGeneration.coefficient_child_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreGeneration.normalized_branch_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreGeneration.normalized_branch_ennreal_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Collatz.FibreGeneration.kernel_mass_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreGeneration.kernel_series_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreGeneration.ancestorMass_eq_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreGeneration.ancestor_reciprocals_not_summable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -40,3 +40,19 @@ mass. Deleting a globally finite reciprocal-mass set cannot repair uniform
 reproduction. Higher-depth actual errors and fate-specific harmonic
 divergence remain separate questions; see the
 [proof map](../../../docs/theory/collatz_actual_fibre_mass_lean_note.md).
+
+[FibreGeneration.lean](FibreGeneration.lean) proves the complete conditional
+generation-series criterion for the plus map. The concrete residue operator
+is bounded by actual reciprocal generation mass; nonperiodicity makes the
+generations disjoint. Divergence of the coefficient series implies divergent
+reciprocal mass of actual positive odd unit ancestors. The coefficient-series
+divergence premise itself remains open; see the
+[proof map](../../../docs/theory/collatz_generation_mass_lean_note.md).
+
+[FibreDistortion.lean](FibreDistortion.lean) proves the negative-map counterpart
+with a sixth-root depth loss. Distinct odd states on a path to a nonperiodic
+target control the accumulated affine correction. The complete residue
+coefficient equals the sum over actual paths, and divergence of the corrected
+coefficient series implies divergent actual ancestor reciprocal mass. Its
+arithmetic premise remains open; see the
+[proof map](../../../docs/theory/collatz_negative_generation_mass_lean_note.md).
