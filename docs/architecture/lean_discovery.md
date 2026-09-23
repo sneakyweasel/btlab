@@ -121,9 +121,11 @@ evidence. Original verdicts and the reviewed style baseline remain versioned in
 
 For compiler-derived types, structural type search, proof dependencies and
 snapshot comparisons, use the [semantic discovery guide](lean_semantics.md).
-Run `python tools/formalpedia.py semantic build` explicitly to create that optional
-index. Semantic queries reject stale exports; the live source catalogue below
-does not require an export.
+`python tools/lab.py build` and successful verification build gates refresh this
+index; `python tools/formalpedia.py semantic build --module <Module>` refreshes a
+selected scope. Semantic queries exclude stale modules and disclose coverage while
+unrelated current modules stay searchable. `show` combines source and available
+compiled records. Live source discovery does not require an export.
 
 Maintenance also uses the [agent workflow](agent_workflow.md): the same MCP
 offers `formalpedia_lab_doctor`, `formalpedia_change_impact`, and
@@ -155,8 +157,8 @@ configuration is shared; reconnect once to discover newly added tools.
 
 All server tools are local and read-only. They neither edit proofs nor invoke
 external advisory services. Source-catalogue queries refresh their in-memory
-snapshot when files change. Semantic queries require a fresh, explicitly built
-compiler snapshot. Use `lean-lsp` to
+snapshot when files change. Semantic queries use fresh modules from explicitly built
+compiler snapshots and never start a build. Use `lean-lsp` to
 inspect goals, check a candidate in context, and verify a proof. Reconnect an
 MCP client after changing its server configuration.
 

@@ -15,9 +15,9 @@ import lean_style
 from research_catalog import ResearchCatalogue
 from formalpedia_semantic import SemanticCatalogue
 
-catalogue = Catalogue()
-research = ResearchCatalogue()
 semantic = SemanticCatalogue()
+catalogue = Catalogue(semantic)
+research = ResearchCatalogue()
 mcp = FastMCP('formalpedia', instructions=(
     'Search the local Lean library before proving a result. Resolve a fully qualified name, '
     'read its complete statement and hypotheses, and inspect exact claim links. '
@@ -29,8 +29,9 @@ mcp = FastMCP('formalpedia', instructions=(
     'formalpedia_lab_doctor discovers local prerequisites. Execute checks through tools/lab.py. '
     'Use formalpedia_type_search and formalpedia_semantic_show for compiler-derived local '
     'types, formalpedia_dependencies for proof/type edges, and formalpedia_semantic_diff '
-    'for historical changes. These require an explicit CLI semantic build and reject '
-    'stale exports. Structural matches are not proof applicability. '
+    'for historical changes. Builds refresh compiled metadata; queries exclude stale '
+    'modules and disclose coverage. formalpedia_show joins exact source and compiled identities. '
+    'Structural matches are not proof applicability. '
     'All tools here are local and read-only.'))
 READ_ONLY = ToolAnnotations(readOnlyHint=True, destructiveHint=False,
                             idempotentHint=True, openWorldHint=False)
@@ -58,10 +59,12 @@ def formalpedia_search(query: str, namespace: str | None = None, module: str | N
 @mcp.tool(annotations=READ_ONLY)
 def formalpedia_show(name: str, module: str | None = None,
                     include_private: bool = False) -> dict[str, Any]:
-    """Inspect a theorem's complete source statement, documentation, and exact claim links.
+    """Inspect source, compiled type/binders/axioms/dependencies, claims, papers and freshness.
 
     Prefer the fully qualified id from search. Short names are accepted only when unique.
     File-level ledger associations are separately labelled and are not theorem coverage.
+    Accepts Module.Name::fully.qualified.name. Unavailable compiled metadata leaves live
+    source visible; compiler-generated declarations have explicit missing source status.
     """
     return catalogue.show(name, module=module, include_private=include_private)
 
@@ -99,7 +102,7 @@ def formalpedia_capabilities() -> dict[str, Any]:
     The code fingerprint identifies this running process's loaded entry point, not a
     security attestation. A fresh connection is required to load edited server code.
     """
-    return {'protocol_version': 2, 'server_fingerprint': SERVER_FINGERPRINT,
+    return {'protocol_version': 3, 'server_fingerprint': SERVER_FINGERPRINT,
             'root': str(fp.ROOT), 'tool_groups': {
                 'source': ['search', 'show', 'claim', 'impact', 'status', 'lint'],
                 'research': ['research_search', 'research_context', 'research_check'],
@@ -143,7 +146,8 @@ def formalpedia_type_search(constants: list[str] | None = None, like: str | None
     Patterns use the AST from semantic_show(include_ast=True); {"hole":"x"} matches
     a subtree, and repeating a hole requires the identical subtree. Conclusion-only
     matching omits hypotheses: ALWAYS inspect binders and use Lean LSP to check reuse.
-    Stale exports and changed pagination snapshots are rejected, never rebuilt here.
+    Stale modules are excluded with coverage counts; unrelated current modules remain
+    searchable. Pagination tokens cover freshness changes. Never rebuilds here.
     """
     return semantic.search(constants, like, pattern, part, kind, module, include_private,
                            limit, offset, snapshot)

@@ -51,11 +51,11 @@ def test_real_stdio_client_searches_resolves_and_rejects_invalid_pagination():
                 assert 'formalpedia_type_search' in {t.name for t in advertised.tools}
                 capabilities = await session.call_tool('formalpedia_capabilities', {})
                 assert not capabilities.isError
-                assert capabilities.structuredContent['protocol_version'] == 2
+                assert capabilities.structuredContent['protocol_version'] == 3
                 assert 'semantic' in capabilities.structuredContent['tool_groups']
                 semantic = await session.call_tool('formalpedia_semantic_status', {})
                 assert not semantic.isError
-                assert semantic.structuredContent['status'] in {'missing', 'current', 'stale', 'unreadable'}
+                assert semantic.structuredContent['status'] in {'missing', 'current', 'partial', 'stale', 'unreadable'}
                 result = await session.call_tool('formalpedia_search',
                     {'query': 'cycleMin_finance', 'limit': 3})
                 assert not result.isError

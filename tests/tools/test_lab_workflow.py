@@ -64,6 +64,12 @@ def test_package_init_and_lean_transitive_imports(repo):
     result = impact.analyze(root, paths=['src/pkg/__init__.py', 'formal/Problems/Base.lean'])
     assert result['affected_tests'] == ['tests/test_consumer.py']
     assert result['lean_targets'] == ['Problems.Base', 'Problems.Consumer']
+    planned = verify.plan(root, paths=['formal/Problems/Base.lean'])
+    build = next(c for c in planned['checks'] if c['id'] == 'lean_build')
+    assert build['argv'] == ['python', 'tools/lab.py', 'build', '--module', 'Problems.Base',
+                             '--module', 'Problems.Consumer']
+    assert build['cwd'] == '.' and build['status'] == 'not_checked'
+    assert not (root / '.cache').exists()
 
 
 def test_root_scope_ignored_artifact_and_invalid_metadata(repo):

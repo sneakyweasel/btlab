@@ -42,13 +42,26 @@ class Catalogue:
     another service. A lock keeps concurrent MCP requests on a coherent snapshot.
     """
 
-    def __init__(self):
+    def __init__(self, semantic=None):
         self._lock = threading.RLock()
         self._stamp = None
         self._index = None
         self._ledger = []
         self._snapshot = ''
         self._documents = {}
+        self._semantic = semantic
+
+    def compiled(self, name: str) -> dict:
+        """Optional exact compiler view; missing/stale metadata never hides live source."""
+        from formalpedia_semantic import SemanticCatalogue
+        with self._lock:
+            if self._semantic is None:
+                self._semantic = SemanticCatalogue()
+            try:
+                return self._semantic.show(name)
+            except (ValueError, OSError) as exc:
+                return {'status': 'unavailable', 'reason': str(exc),
+                        'freshness': self._semantic.status()}
 
     def _state(self):
         paths = fp.sources() + [fp.LEDGER]
@@ -134,18 +147,53 @@ class Catalogue:
 
     def show(self, name: str, *, module: str | None = None, include_private: bool = False) -> dict:
         index, ledger, snapshot = self.snapshot()
+        if '::' in name and '::private::' not in name:
+            owner, name = name.split('::', 1)
+            if module and module != owner:
+                raise ValueError('Module filter conflicts with the canonical ID')
+            module = owner
         found = fp.resolve_declarations(index, name, module=module, include_private=include_private)
+        if not found:
+            compiled = self.compiled(module + '::' + name if module else name)
+            if compiled['status'] == 'ambiguous':
+                return {'status': 'ambiguous', 'query': name, 'snapshot': snapshot,
+                        'source_status': 'not_indexed', 'compiled': compiled,
+                        'candidates': compiled['candidates'],
+                        'total_candidates': compiled['candidate_count'],
+                        'hint': 'Use Module.Name::fully.qualified.name; no candidate was selected.'}
+            if compiled['status'] == 'found':
+                row = compiled['declaration']
+                if row['name'].startswith('_private.') and not include_private:
+                    compiled = {'status': 'private', 'hint': 'Pass include_private to inspect this compiler identity.'}
+                else:
+                    reach = fp.reachable(index)
+                    source_file = 'formal/' + row['module'].replace('.', '/') + '.lean'
+                    file_claims = [r for r in ledger if fp.lean_key(r.get('lean')) == source_file]
+                    return {'status': 'found', 'snapshot': snapshot, 'canonical_id': row['id'],
+                            'source_status': 'not_indexed', 'declaration': None, 'compiled': compiled,
+                            'source_file': source_file,
+                            'scope': 'active' if row['module'] in active_lean_modules(index) else 'archive',
+                            'exact_claims': [r for r in file_claims if row['name'] in fp.row_decls(r)],
+                            'file_claim_ids': [r['id'] for r in file_claims],
+                            'reachable_from_paper_roots': [p for p, root in fp.PAPER_ROOTS.items()
+                                if row['module'] in reach.get(root, set()) | {root}],
+                            'trust_notice': TRUST_NOTICE}
         if len(found) != 1:
             return {'status': 'ambiguous' if found else 'not_found', 'query': name,
                     'snapshot': snapshot, 'candidates': [compact(d) for d in found[:100]],
                     'total_candidates': len(found),
+                    **({'compiled': compiled} if not found else {}),
                     'hint': 'Use a fully qualified name or the module filter; no candidate was selected.'}
         d = found[0]
         scope = 'active' if d['module'] in active_lean_modules(index) else 'archive'
         reach = fp.reachable(index)
         papers = [paper for paper, root in fp.PAPER_ROOTS.items()
                   if d['module'] in reach.get(root, set()) | {root}]
+        canonical = d['module'] + '::' + d['qualified_name'] if d['qualified_name'] else None
+        compiled = self.compiled(canonical) if canonical else {
+            'status': 'unmapped_private', 'reason': 'Source private names are not compiler identities.'}
         return {'status': 'found', 'snapshot': snapshot, 'scope': scope, 'declaration': d,
+                'canonical_id': canonical, 'source_status': 'found', 'compiled': compiled,
                 'exact_claims': [row for row in ledger if row['id'] in d['ledger_exact']],
                 'file_claim_ids': d['ledger'], 'reachable_from_paper_roots': papers,
                 'trust_notice': TRUST_NOTICE}

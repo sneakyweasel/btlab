@@ -90,8 +90,9 @@ unsafe def main (args : List String) : IO UInt32 := do
     |>.set `maxHeartbeats (2000000 : Nat)
   let env ← importModules (requested.map fun m => { module := m }) opts (loadExts := true)
   let stream ← IO.FS.Handle.mk outputPath .write
-  let objects ← env.header.moduleNames.mapM fun mod => do
+  let objects ← env.header.moduleNames.mapIdxM fun idx mod => do
     return Json.mkObj [("module", toJson mod.toString),
+      ("imports", toJson (env.header.moduleData[idx]!.imports.map (·.module.toString))),
       ("path", toJson (← findOLean mod).toString)]
   stream.putStrLn (Json.mkObj [("record", toJson "environment"),
     ("objects", toJson objects)]).compress

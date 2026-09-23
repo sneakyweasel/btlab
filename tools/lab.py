@@ -9,7 +9,7 @@ import sys
 
 import formalpedia as fp
 from lab_scope import active_lean_modules
-from lab_environment import environment, executable
+from lab_environment import environment
 
 
 def build_targets() -> list[str]:
@@ -44,6 +44,8 @@ def main(argv=None) -> int:
     commands = parser.add_subparsers(dest='command', required=True)
     build = commands.add_parser('build', help='build every retained Lean application and dependency')
     build.add_argument('--list', action='store_true', help='show targets without building')
+    build.add_argument('--module', action='append', dest='modules', help='build and refresh selected modules')
+    build.add_argument('--timeout', type=int, default=1800)
     run = commands.add_parser('run', help='run a Python module from this checkout')
     run.add_argument('module', help='for example research.juggler_sequence.branch_index')
     run.add_argument('args', nargs=argparse.REMAINDER)
@@ -68,17 +70,20 @@ def main(argv=None) -> int:
         forwarded = args.args[1:] if args.args[:1] == ['--'] else args.args
         module = args.module if args.command == 'run' else 'pytest'
         return run_python(['-m', module, *forwarded])
-    targets = build_targets()
+    targets = args.modules or build_targets()
     if not targets:
         parser.error('No Juggler/Collatz modules found; check the source checkout')
     if args.list:
         print('\n'.join(targets))
         return 0
-    lake = executable('lake', fp.ROOT)
-    if not lake:
-        parser.error('Pinned Lean toolchain is not installed locally; run lab.py doctor')
-    return subprocess.run([lake, 'build', *targets], cwd=fp.FORMAL,
-                          env=environment(fp.ROOT), stdin=subprocess.DEVNULL).returncode
+    from formalpedia_semantic import build as semantic_build
+    try:
+        result = semantic_build(targets, root=fp.ROOT, timeout=args.timeout)
+    except (ValueError, OSError, subprocess.TimeoutExpired) as exc:
+        print(json.dumps({'status': 'failed', 'reason': str(exc)}))
+        return 1
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    return 0
 
 
 if __name__ == '__main__':

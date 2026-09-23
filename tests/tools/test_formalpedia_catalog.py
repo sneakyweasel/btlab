@@ -50,6 +50,54 @@ def test_missing_or_stale_export_does_not_control_live_discovery(library):
     assert catalogue.show('N.first')['status'] == 'not_found'
 
 
+def test_unified_lookup_joins_exact_identity_and_preserves_stale_source_view(library):
+    import formalpedia_semantic as sem
+    folder, _ = library
+    source = write(folder, 'A', 'namespace N\ntheorem first : True := trivial\nend N\n')
+    cat = Catalogue()
+    missing = cat.show('N.first')
+    assert missing['canonical_id'] == 'Problems.A::N.first'
+    assert missing['compiled']['freshness']['status'] == 'missing'
+    row = {'id': 'Problems.A::N.first', 'name': 'N.first', 'module': 'Problems.A', 'kind': 'theorem',
+           'type': 'True', 'type_ast': ['const', 'True', []], 'axioms': [], 'binders': [],
+           'type_dependencies': ['True'], 'value_dependencies': ['True.intro']}
+    env = {'imports': {'Problems.A': []}, 'inputs': sem.inputs(fp.ROOT),
+           'source_modules': ['Problems.A'], 'objects': {}, 'object_modules': {}}
+    sem.publish(sem.SemanticCatalogue(), ['Problems.A'], [row], env)
+    joined = cat.show('Problems.A::N.first')
+    assert joined['compiled']['declaration']['type_dependencies'] == ['True']
+    assert joined['declaration']['qualified_name'] == 'N.first'
+    source.write_text(source.read_text() + '-- new research\n')
+    stale = cat.show('N.first')
+    assert stale['status'] == 'found' and stale['source_status'] == 'found'
+    assert stale['compiled']['freshness']['status'] == 'stale'
+    with pytest.raises(ValueError, match='conflicts'):
+        cat.show('Problems.A::N.first', module='Problems.B')
+
+
+def test_generated_lookup_never_invents_source_or_private_identity(library):
+    import formalpedia_semantic as sem
+    folder, _ = library
+    write(folder, 'A', 'namespace N\nstructure Box where\n  x : Nat\n'
+                     'private theorem hidden : True := trivial\nend N\n')
+    row = {'id': 'Problems.A::N.Box.mk', 'name': 'N.Box.mk', 'module': 'Problems.A',
+           'kind': 'constructor', 'type': 'Nat → N.Box', 'type_ast': [], 'axioms': []}
+    env = {'imports': {'Problems.A': []}, 'inputs': sem.inputs(fp.ROOT),
+           'source_modules': ['Problems.A'], 'objects': {}, 'object_modules': {}}
+    other = dict(row, id='Problems.A::M.Box.mk', name='M.Box.mk')
+    sem.publish(sem.SemanticCatalogue(), ['Problems.A'], [row, other], env)
+    cat = Catalogue()
+    generated = cat.show('Problems.A::N.Box.mk')
+    assert generated['status'] == 'found' and generated['declaration'] is None
+    assert generated['source_status'] == 'not_indexed' and generated['exact_claims'] == []
+    assert generated['source_file'] == 'formal/Problems/A.lean'
+    ambiguous = cat.show('mk')
+    assert ambiguous['status'] == 'ambiguous' and ambiguous['total_candidates'] == 2
+    hidden = cat.show('hidden', include_private=True)
+    assert hidden['canonical_id'] is None
+    assert hidden['compiled']['status'] == 'unmapped_private'
+
+
 def test_scoped_search_hides_legacy_results_but_exact_lookup_stays_global(library):
     folder, _ = library
     (folder / 'Juggler').mkdir()

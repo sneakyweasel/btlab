@@ -11,20 +11,30 @@ Neither catalogue changes an evidence label or judges an English claim's coverag
 ```powershell
 python tools/formalpedia.py semantic build
 python tools/formalpedia.py semantic status
-# A smaller export contains exactly the requested modules, excluding their imports:
+# Refresh selected modules while preserving existing coverage:
 python tools/formalpedia.py semantic build --module Problems.Juggler.ReturnWordLoss
+python tools/lab.py build --module Problems.Juggler.ReturnWordLoss
 ```
 
 The builder uses the installed pinned compiler, first builds the selected local
 modules with Lake, then exports their declarations using Lean itself. The default
 selects every retained library source, including standalone application modules.
+After compilation, only missing or outdated selected modules are exported. A
+current selection skips the exporter. `lab.py build` uses this same workflow for
+the active graph; the Lean build gate in `lab.py verify` refreshes the affected
+modules and import consumers after successful compilation. A refresh failure
+fails that gate. This does not assert that the other verification gates passed.
+Plans and every MCP tool remain read-only.
 Missing compiler/packages fail with setup instructions. It does not install tools
 or change the project configuration. Normal Lake build hooks still run, so this
 is an explicit trusted-checkout CLI action, never an MCP query.
 
 Complete snapshots live in ignored `.cache/formalpedia/semantic/`; logs and raw
 exports live in `.build/formalpedia/`. A content-addressed immutable snapshot is
-published through an atomic `current` pointer. A failed build or a detected
+published through an atomic `current` pointer. Publication takes a short OS lock
+and merges against the latest snapshot, preserving other exporters' coverage.
+Deleted modules are pruned on the next refresh; historical snapshots remain.
+A failed build or a detected
 concurrent edit leaves the previous snapshot intact. Keep a snapshot identifier
 before rebuilding if you want a historical comparison.
 
@@ -34,21 +44,35 @@ query-only changes do not invalidate compiled data. Imported compiled object reg
 modification time before/after export and on queries. This detects ordinary
 concurrent rebuilds; it is not a cryptographic audit of the toolchain or external
 packages, nor an atomic certificate of the filesystem. External source edits
-require rebuilding those packages. Full exports track all local sources and
-their inventory. Partial exports track the selected modules and their actual
-compiler-reported local import closure, so unrelated research can continue.
-Edits/deletions within that closure invalidate the snapshot; changed imports are
-caught through their importing source. Missing dependency sources reject builds.
+require rebuilding those packages. Lean exports the actual module import graph.
+Source and object changes invalidate their module and transitive import consumers,
+while unrelated modules stay current. Toolchain, configuration and exporter changes
+invalidate all recorded modules. New local modules are explicitly unindexed until
+selected for export. Changed imports are caught through the importing source.
+Missing dependency sources reject builds. Refreshing a dependency alone does not
+make its old consumer records current: select the consumers too, or build the full
+active graph. Version-1 snapshots remain readable for historical comparisons and
+use conservative whole-export freshness until their modules are re-exported.
 
-Semantic queries reject missing, corrupt, or stale snapshots and return the
-rebuild command. Source search remains usable independently. Semantic builds are
-optional and are not a new publication prerequisite or a generated Git artifact.
+Status is `current`, `partial` (a mixture of current and stale modules), `stale`,
+`missing`, or `unreadable`. Search and dependency queries use only current modules
+and report stale/unindexed coverage. A requested stale module or declaration is
+rejected with the rebuild command; a stale candidate never makes an ambiguous
+short name look unique. Missing, corrupt, and entirely stale indexes reject
+semantic queries. Source search remains usable independently. These records are
+local discovery artifacts, not a publication prerequisite or a Git artifact.
 
 ## Research workflow
 
 1. Use source `search`, `show`, and `claim` to find a result and its recorded role.
-2. Use `formalpedia_semantic_show` to inspect its compiled type and all binders.
-   Exact IDs are `Module.Name::Fully.qualified.name`; short names must be unique.
+   `show` joins source location/docs, exact ledger claims, paper-root reachability,
+   and available compiled type/binders/axioms/dependencies, with separate freshness.
+   Its canonical public ID is `Module.Name::Fully.qualified.name`.
+2. Use `formalpedia_semantic_show` for the optional full AST. Generated declarations
+   also resolve through `show`, with explicit absent source records. Private source
+   names are never guessed into compiler-generated private identities. Short names
+   must be unique. File-level claims and import reachability do not establish that
+   a theorem proves a claim or appears in a paper.
 3. Use `formalpedia_type_search` with exact constants, a `like` declaration, or an
    AST pattern. Inspect every hypothesis before using a conclusion match.
 4. Use Lean LSP to elaborate a proposed application in the actual proof context.
@@ -64,7 +88,10 @@ python tools/formalpedia.py semantic diff <previous-snapshot-id>
 Names in examples may require the module-qualified ID returned by search.
 Search pages default to 20 results, cap at 100, and disclose shortened type
 previews. `show` returns the complete statement. Pass the snapshot on later pages
-to reject changes during pagination.
+to reject changes during pagination. Query `snapshot` tokens cover both the export
+and live module freshness/coverage; they differ from immutable `export_snapshot`
+IDs. Use `semantic status`'s `snapshot` or a query's `export_snapshot` for diffs,
+and use the query's `snapshot` when fetching its next page.
 
 ### Structural patterns
 
@@ -86,7 +113,7 @@ This is a local structural search, not a replacement for Lean's elaborator.
 
 Type and value edges are separate. Value edges include proof bodies for theorems
 and defining expressions for definitions. Reverse traversal finds recorded local
-users; bounded traversal stops at external constants, includes private/generated
+users among current modules; bounded traversal stops at unindexed constants, includes private/generated
 helpers, and reports truncation at 10,000 edges. Module imports remain available
 through the original `formalpedia_impact` tool.
 
@@ -101,13 +128,14 @@ universe arity, dependency, kind, and axiom changes. The value hash is Lean's no
 expression hash: a change hint, not proof equivalence or a collision-free digest.
 Users of changed local definitions are flagged transitively even when their own
 types are unchanged. Coverage changes are explicit, since entries can disappear
-when exporting fewer modules. Historical comparisons work even if current sources
+when adding or deleting modules. A smaller refresh preserves other modules.
+Historical comparisons work even if current sources
 are stale; their output says so. A changed statement is never automatically
 classified as stronger or weaker.
 
 ## MCP connection checks
 
-The existing server now advertises 18 read-only tools. The six additions are
+Protocol version 3 advertises 18 read-only tools. The compiler tools are
 `formalpedia_capabilities`, `formalpedia_semantic_status`,
 `formalpedia_semantic_show`, `formalpedia_type_search`,
 `formalpedia_dependencies`, and `formalpedia_semantic_diff`.

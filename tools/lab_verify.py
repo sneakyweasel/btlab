@@ -65,9 +65,11 @@ def plan(root: Path = ROOT, *, since: str = 'HEAD', paths: list[str] | None = No
                 modules = [m for m in change['lean_targets'] if '.' in m or m in
                            {'Core', 'Representation', 'Operators', 'BTCalculus', 'Problems'}]
                 if modules:
-                    add('lean_build', ['lake', 'build', *modules],
-                        'Compile changed modules and transitive local import consumers.',
-                        cwd='formal', needs=['lake', 'lean_packages'])
+                    add('lean_build', ['python', 'tools/lab.py', 'build',
+                                       *(arg for m in modules for arg in ('--module', m))],
+                        'Compile changed modules and transitive local import consumers; '
+                        'refresh their semantic records only after successful compilation.',
+                        needs=['lake', 'lean_packages'])
                 for target in change['lean_targets']:
                     if target not in modules:
                         add('lean_file_' + target, ['lake', 'env', 'lean', target + '.lean'],

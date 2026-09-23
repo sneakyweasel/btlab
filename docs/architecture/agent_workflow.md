@@ -47,7 +47,13 @@ fast Python suite: static imports cannot account for dynamic imports and file
 reads. Documentation-only changes under `docs/` and `attacks/` use integration
 and ledger tests. Slow experiments remain excluded. Python changes also run
 Ruff; Lean changes add style, affected compilation, and public Juggler consumer
-checks with exact allowed axiom sets. Those checks cover their named interfaces,
+checks with exact allowed axiom sets. Successful Lean build gates also refresh
+the selected modules' compiled Formalpedia records through `lab.py build`.
+Refresh errors fail the gate; other verification results remain independent.
+Ordinary `lab.py build` refreshes the full active graph, while `--module` selects
+a smaller scope. Queries and verification plans never build or write these records.
+See [semantic discovery](lean_semantics.md) for module freshness and coverage.
+Those checks cover their named interfaces,
 not every theorem in the library. Paper-specific audits remain authoritative
 for each paper's trust boundary.
 

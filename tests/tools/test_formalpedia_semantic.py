@@ -27,7 +27,7 @@ def declaration(name, *, module='Problems.Demo', ast=None, uses=(), values=(), p
 
 
 def save(cat, rows, *, objects=None, make_current=True, source_modules=None):
-    data = {'schema': sem.SCHEMA, 'built_at': 'test',
+    data = {'schema': 1, 'built_at': 'test',
             'inputs': sem.scoped_inputs(sem.inputs(cat.root), source_modules), 'source_modules': source_modules,
             'objects': objects or {}, 'modules': sorted({r['module'] for r in rows}),
             'coverage': 'selected_modules', 'declarations': rows}
@@ -115,7 +115,8 @@ def test_search_constants_shape_and_snapshot_pagination(cat):
     assert cat.search(like='N.first', part='conclusion')['total'] == 3
     assert cat.search(constants=['Nat', 'Nat.succ'])['total'] == 2
     assert cat.search(pattern=['forall', 'implicit', {'hole': 'T'}, {'hole': 'P'}])['total'] == 1
-    page = cat.search(limit=1, snapshot=sid)
+    assert cat.status()['snapshot'] == sid
+    page = cat.search(limit=1, snapshot=cat.status()['query_snapshot'])
     assert page['next_offset'] == 1 and len(page['items']) == 1
     with pytest.raises(ValueError, match='snapshot changed'):
         cat.search(snapshot='old')
@@ -237,6 +238,169 @@ def test_invalid_search_inputs(cat, kwargs):
         cat.search(**kwargs)
 
 
+def module_environment(cat, graph, object_paths=None):
+    objects = object_paths or {}
+    return {'imports': graph, 'source_modules': list(graph),
+            'inputs': sem.scoped_inputs(sem.inputs(cat.root), list(graph)),
+            'objects': {str(p): sem.file_stamp(p) for p in objects},
+            'object_modules': {str(p): m for p, m in objects.items()}}
+
+
+def module_fixture(cat):
+    graph = {'Problems.Demo': [], 'Problems.Consumer': ['Problems.Demo'], 'Problems.Independent': []}
+    for m in graph:
+        (cat.root / sem.module_path(m)).write_text('-- ' + m)
+    rows = [declaration('demo'), declaration('consumer', module='Problems.Consumer', values=['demo']),
+            declaration('independent', module='Problems.Independent')]
+    sem.publish(cat, list(graph), rows, module_environment(cat, graph))
+    return graph, rows
+
+
+def test_module_freshness_keeps_unrelated_queries_and_invalidates_pages(cat):
+    graph, rows = module_fixture(cat)
+    page = cat.search(limit=1)
+    (cat.root / sem.module_path('Problems.Demo')).write_text('-- changed')
+    state = cat.status()
+    assert state['status'] == 'partial'
+    assert state['stale_modules'] == ['Problems.Consumer', 'Problems.Demo']
+    assert cat.search()['total'] == 1
+    assert cat.show('independent')['status'] == 'found'
+    for query in (lambda: cat.show('consumer'), lambda: cat.search(like='demo'),
+                  lambda: cat.search(module='Problems.Demo'), lambda: cat.dependencies('consumer')):
+        with pytest.raises(ValueError, match='stale'):
+            query()
+    with pytest.raises(ValueError, match='snapshot changed'):
+        cat.search(offset=1, snapshot=page['snapshot'])
+    # Refresh the changed module alone: its consumer is still stale until rebuilt/exported.
+    updated = module_environment(cat, {'Problems.Demo': []})
+    result = sem.publish(cat, ['Problems.Demo'], [rows[0]], updated)
+    assert result['modules'] == 3
+    assert cat.status()['stale_modules'] == ['Problems.Consumer']
+    assert cat.show('demo')['status'] == 'found'
+    sem.publish(cat, ['Problems.Consumer'], [rows[1]], module_environment(cat, graph))
+    assert cat.status()['status'] == 'current'
+    assert cat.search()['total'] == 3
+
+
+def test_unreadable_pointer_can_be_recovered_by_explicit_publish(cat):
+    cat.cache.mkdir(parents=True)
+    (cat.cache / 'current').write_text('broken')
+    assert cat.status()['status'] == 'unreadable'
+    sem.publish(cat, ['Problems.Demo'], [declaration('demo')],
+                module_environment(cat, {'Problems.Demo': []}))
+    assert cat.status()['status'] == 'current'
+    assert cat.show('demo')['status'] == 'found'
+
+
+def test_external_object_changes_follow_compiler_import_graph(cat):
+    graph, rows = module_fixture(cat)
+    external = cat.root / 'external.olean'
+    external.write_bytes(b'one')
+    graph['Problems.Demo'] = ['External']
+    graph['External'] = []
+    sem.publish(cat, [r['module'] for r in rows], rows,
+                module_environment(cat, graph, {external: 'External'}))
+    external.write_bytes(b'two longer')
+    assert cat.status()['stale_modules'] == ['Problems.Consumer', 'Problems.Demo']
+    assert cat.show('independent')['status'] == 'found'
+
+
+def test_global_config_stales_all_and_new_module_is_explicitly_unindexed(cat):
+    module_fixture(cat)
+    token = cat.search()['snapshot']
+    (cat.root / 'formal/Problems/New.lean').write_text('-- new module')
+    state = cat.status()
+    assert state['status'] == 'current' and state['unindexed_modules'] == ['Problems.New']
+    with pytest.raises(ValueError, match='snapshot changed'):
+        cat.search(snapshot=token)
+    (cat.root / 'formal/lean-toolchain').write_text('changed pin')
+    assert cat.status()['status'] == 'stale'
+
+
+def test_stale_candidate_cannot_turn_ambiguous_name_into_unique_name(cat):
+    graph, rows = module_fixture(cat)
+    rows[2] = declaration('demo', module='Problems.Independent')
+    sem.publish(cat, list(graph), rows, module_environment(cat, graph))
+    assert cat.show('demo')['status'] == 'ambiguous'
+    (cat.root / sem.module_path('Problems.Demo')).write_text('-- edit')
+    with pytest.raises(ValueError, match='stale'):
+        cat.show('demo')
+    assert cat.show('Problems.Independent::demo')['status'] == 'found'
+
+
+def test_publish_merges_latest_pointer_and_rejects_changed_inputs(cat):
+    graph, rows = module_fixture(cat)
+    other_reader = sem.SemanticCatalogue(cat.root)
+    other_reader._load()  # A second builder may still have the previous snapshot cached.
+    independent = deepcopy(rows[2])
+    independent['value_hash64'] = 'new'
+    sem.publish(cat, ['Problems.Independent'], [independent], module_environment(cat, graph))
+    result = sem.publish(other_reader, ['Problems.Demo'], [rows[0]], module_environment(cat, graph))
+    assert cat.show('independent')['declaration']['value_hash64'] == 'new'
+    assert cat.status()['snapshot'] == result['snapshot']
+    old_env = module_environment(cat, graph)
+    (cat.root / sem.module_path('Problems.Demo')).write_text('-- concurrent source change')
+    with pytest.raises(ValueError, match='previous snapshot preserved'):
+        sem.publish(cat, list(graph), rows, old_env)
+    assert (cat.cache / 'current').read_text() == result['snapshot']
+
+
+def test_deleted_module_is_pruned_on_refresh_and_history_is_retained(cat):
+    graph, rows = module_fixture(cat)
+    before = cat.status()['snapshot']
+    (cat.root / sem.module_path('Problems.Independent')).unlink()
+    assert cat.status()['stale_modules'] == ['Problems.Independent']
+    sem.publish(cat, ['Problems.Demo'], [rows[0]], module_environment(cat, {'Problems.Demo': []}))
+    assert cat.status()['module_count'] == 2
+    assert cat.show('independent')['status'] == 'not_found'
+    changes = cat.diff(before)['items']
+    assert changes == [{'id': rows[2]['id'], 'name': 'independent', 'changes': ['removed']}]
+
+
+def test_incremental_build_only_exports_outdated_selected_modules(cat, monkeypatch):
+    (cat.root / 'formal/lake-manifest.json').write_text('{"packages":[]}')
+    graph, rows = module_fixture(cat)
+    monkeypatch.setattr(sem, 'executable', lambda *args: 'lake')
+    monkeypatch.setattr(sem, 'environment', lambda *args: {})
+    monkeypatch.setattr(sem, 'compiled_inventory', lambda *args: {})
+    commands = []
+    class Passed:
+        returncode = 0
+    def run(command, **kwargs):
+        commands.append(command)
+        if '--run' in command:
+            requested = json.loads(Path(command[-2]).read_text())['modules']
+            assert requested == ['Problems.Demo']
+            Path(command[-1]).write_text(json.dumps({'record': 'environment', 'objects': []}) + '\n'
+                                        + json.dumps(rows[0]) + '\n')
+        return Passed()
+    monkeypatch.setattr(sem.subprocess, 'run', run)
+    assert sem.build(root=cat.root)['status'] == 'unchanged'
+    assert len(commands) == 1  # Lake still checks the requested targets.
+    (cat.root / sem.module_path('Problems.Demo')).write_text('-- edit')
+    result = sem.build(['Problems.Demo'], root=cat.root)
+    assert result['refreshed_modules'] == ['Problems.Demo']
+    assert result['modules'] == 3
+    assert cat.status()['stale_modules'] == ['Problems.Consumer']
+
+
+def test_noop_build_prunes_deleted_module_without_running_exporter(cat, monkeypatch):
+    (cat.root / 'formal/lake-manifest.json').write_text('{"packages":[]}')
+    module_fixture(cat)
+    (cat.root / sem.module_path('Problems.Independent')).unlink()
+    monkeypatch.setattr(sem, 'executable', lambda *args: 'lake')
+    monkeypatch.setattr(sem, 'environment', lambda *args: {})
+    commands = []
+    def run(command, **kwargs):
+        commands.append(command)
+        return subprocess.CompletedProcess(command, 0)
+    monkeypatch.setattr(sem.subprocess, 'run', run)
+    result = sem.build(root=cat.root)
+    assert len(commands) == 1 and '--run' not in commands[0]
+    assert result['exported_declarations'] == 0 and result['modules'] == 2
+    assert cat.status()['status'] == 'current'
+
+
 def test_compiler_export_preserves_hidden_binders_axioms_and_alpha_types(tmp_path):
     """An actual pinned compiler, independent of optional lab snapshot/cache state."""
     root = TOOLS.parent
@@ -269,6 +433,9 @@ end SemanticFixture
     run(['--run', str(TOOLS / 'lean/SemanticExport.lean'), str(request), str(output)])
     records = [json.loads(line) for line in output.read_text(encoding='utf-8').splitlines()]
     assert records[0]['record'] == 'environment' and records[0]['objects']
+    imports = {r['module']: r['imports'] for r in records[0]['objects']}
+    assert 'Init' in imports['SemanticFixture']
+    assert all(dep in imports for deps in imports.values() for dep in deps)
     rows = {r['name']: r for r in records[1:]}
     assumption = rows['SemanticFixture.usesAssumption']
     assert assumption['axioms'] == ['SemanticFixture.assumed']
