@@ -96,6 +96,13 @@ def test_multiple_obstructions_remain_searchable_for_one_branch():
     assert search_rows("separate boundary", {"branches": [row]}) == [row]
 
 
+def test_modular_probe_keeps_its_lean_associations():
+    from research.juggler_sequence.branch_index import show_row
+
+    row = show_row("paper_b_audit")
+    assert "formal/Problems/Juggler/MasterIdentity.lean" in row["lean"]
+
+
 def test_render_new_branch_uses_template_and_path_constants():
     from research.juggler_sequence.branch_index import render_new_branch
 

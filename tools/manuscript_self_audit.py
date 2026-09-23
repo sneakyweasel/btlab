@@ -1151,7 +1151,7 @@ DEPTH5_SOURCES = {
     "ledger_json": ("docs/theory/theorem_ledger.json", r"OOEOO\(N\) = N/32 \+ O\(N\^\{(\d+)/(\d+)\+eps\}\)"),
     "lean": ("formal/Problems/Juggler/DepthFourFive.lean",
              r"theorem cor64_error_exponent : \((\d+)/(\d+) : " + chr(8474) + r"\)"),
-    "audit": ("src/research/juggler_sequence/paper_b_audit.py",
+    "audit": ("src/research/juggler_sequence/paper_b_audit_core/exponents.py",
               r"6\.4: error is the worse exponent, (\d+)/(\d+) <= 1 - 1/96"),
 }
 

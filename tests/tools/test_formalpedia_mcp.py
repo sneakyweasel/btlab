@@ -64,6 +64,11 @@ def checkout(tmp_path):
         'source': 'docs/problems/collatz_fibre_sign_coupling.md', 'tests': []}]))
     write('docs/problems/collatz_fibre_sign_coupling.md',
           '# Fibre sign coupling\n## Decision\nPARK\n## Obstructions\nA fixture obstruction.\n')
+    write('docs/negative_knowledge/fixture.md',
+          '# A zircon barrier\n\nA finite counterexample does not refute termination.\n'
+          '[Dossier](../problems/collatz_fibre_sign_coupling.md)\n')
+    from research.knowledge import render_negative_index
+    write('docs/negative_knowledge.md', render_negative_index(tmp_path))
     write('docs/architecture/lean_discovery.md', 'Use fully qualified names.\n')
     write('src/research/juggler_sequence/lean_registry.py', 'VALUE = 1\n')
     write('src/research/juggler_sequence/consumer.py',
@@ -147,6 +152,16 @@ def test_real_stdio_client_searches_resolves_and_rejects_invalid_pagination(chec
                      'snapshot': branches.structuredContent['snapshot']})
                 assert not context.isError and context.structuredContent['items']
                 assert 'not' in context.structuredContent['limitations'].lower() or 'no tests' in context.structuredContent['limitations'].lower()
+                obstacles = await session.call_tool('formalpedia_research_search',
+                    {'query': 'zircon', 'kind': 'obstruction', 'programme': 'collatz'})
+                assert not obstacles.isError
+                assert obstacles.structuredContent['items'][0]['id'] == 'obstruction/fixture'
+                obstacle = await session.call_tool('formalpedia_research_context',
+                    {'identifier': 'obstruction/fixture', 'section': 'obstructions'})
+                assert not obstacle.isError
+                record = obstacle.structuredContent['items'][0]
+                assert record['file'] == 'docs/negative_knowledge/fixture.md'
+                assert 'does not refute termination' in record['text']
                 stale = await session.call_tool('formalpedia_research_search',
                     {'query': 'coupling', 'snapshot': 'outdated'})
                 assert stale.isError

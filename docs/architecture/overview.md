@@ -59,6 +59,25 @@ load compiler orchestration or external review clients. The small `build`,
 publication probe interface. New internal consumers import the owning module.
 See [semantic discovery](lean_semantics.md) for storage and migration details.
 
+The retained historical Paper B numerical audit has a small public entry point,
+`research.juggler_sequence.paper_b_audit`. Its implementation is in
+`paper_b_audit_core/`; it checks the dated 2026-09-04 manuscript, not the current
+conditional publication. Existing probe names and the explicit CLI still work.
+New internal consumers should import the module that owns their calculation:
+
+| Audit modules | Responsibility |
+|---|---|
+| `numeric_objects`, `identities`, `interpolation` | Numerical objects and exact identity instruments |
+| `censuses`, `precision_bounds`, `standing` | Finite samples, precision bounds and standing estimates |
+| `exponents`, `budgets`, `block_ranges` | Exact exponent bookkeeping and operating budgets |
+| `kernels`, `derivatives`, `operating_caps` | Kernel measurements, derivatives and admissible ranges |
+| `remainders`, `sharpness` | Remainder bounds and constant sharpness |
+| `provenance`, `printed_thresholds`, `manuscript_bounds` | Source consistency and printed claim checks |
+| `report` | Explicit aggregate run and report writer |
+
+These numerical checks retain their original evidence limits. Importing the
+public API does not run the aggregate probe or regenerate research artifacts.
+
 Collatz outputs live in `data/research/collatz/`, including finite-descent and
 Syracuse records. CLI writers resolve this location from their source checkout,
 so running a command elsewhere does not create another output tree. Generated

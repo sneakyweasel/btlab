@@ -205,7 +205,10 @@ def _lean_for(stem: str, probe: Path | None) -> list[str]:
     if camel in LAYERS:
         hits.append(_rel(LAYERS[camel]) or "")
     if probe is not None and probe.is_file():
-        body = probe.read_text(encoding="utf-8")
+        # A probe's owned implementation may be split behind its public entry point.
+        implementation = probe.with_name(probe.stem + "_core")
+        files = [probe, *sorted(implementation.rglob("*.py"))]
+        body = "\n".join(p.read_text(encoding="utf-8") for p in files)
         for name in _LEAN_FILE.findall(body):
             layer = JUGGLER_DIR / f"{name}.lean"
             rel = _rel(layer)
