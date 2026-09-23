@@ -9,6 +9,7 @@ is their home. Do not recreate compatibility packages or a parallel research are
 
 | Task | Read first |
 |---|---|
+| Maintenance, change impact or verification | [Agent workflow](docs/architecture/agent_workflow.md); use `lab.py doctor`, `impact`, and `verify --changed --plan` |
 | Research context or dataset provenance | [Research catalogue](docs/architecture/research_catalogue.md); use `lab.py search` and `context` |
 | Juggler research or a new branch | [Juggler guide](attacks/juggler/AGENT.md), then the selected dossier |
 | Signed Collatz research | [Collatz guide](attacks/collatz/AGENT.md), then its proof map |
@@ -59,6 +60,9 @@ python tools/render_theorem_ledger.py --check
 python tools/lean_style.py
 python tools/lab.py build
 python tools/lab.py check                                 # references, metadata, manifests
+python tools/lab.py doctor                                # local prerequisites
+python tools/lab.py verify --changed --plan               # inspect planned gates
+python tools/lab.py verify --changed --workers 8          # execute them
 ```
 
 `lab.py run` and `lab.py test` bind imports and output paths to this checkout,

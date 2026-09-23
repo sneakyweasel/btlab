@@ -34,14 +34,27 @@ def modules() -> list[Path]:
     return sorted(JUGGLER.glob("*.lean"))
 
 
+def incomplete_tokens(source: str) -> set[str]:
+    """Inspect executable source, not explanatory comments or string literals."""
+    masked = '\n'.join(TB.source_commands(source))
+    return {token for token in INCOMPLETE
+            if re.search(rf"(?<![A-Za-z0-9_]){token}(?![A-Za-z0-9_])", masked)}
+
+
 def test_every_module_on_disk_is_complete() -> None:
     """Not only the ones in LAYERS: the gate should not depend on registration."""
     assert modules(), "no Juggler modules found"
     for path in modules():
         src = io.open(path, encoding="utf-8", errors="replace").read()
-        for token in INCOMPLETE:
-            hit = re.search(rf"(?<![A-Za-z0-9_]){token}(?![A-Za-z0-9_])", src)
-            assert hit is None, f"{path.name} contains {token}"
+        assert not incomplete_tokens(src), f"{path.name} contains {incomplete_tokens(src)}"
+
+
+def test_completeness_masks_comments_but_rejects_actual_proof_holes():
+    prose = '/- No axiom. /- No sorry. -/ -/\n-- admit is forbidden\ndef note := "sorry"\n'
+    assert incomplete_tokens(prose) == set()
+    assert incomplete_tokens(prose + 'theorem bad : False := by sorry\n') == {'sorry'}
+    assert incomplete_tokens('theorem bad : False := by /- checked? -/ admit\n') == {'admit'}
+    assert incomplete_tokens('/- proof obligation -/ axiom bad : False\n') == {'axiom'}
 
 
 def test_unregistered_modules_are_visible() -> None:

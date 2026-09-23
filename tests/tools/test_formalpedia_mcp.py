@@ -22,7 +22,8 @@ def test_mcp_discovery_is_structured_and_read_only():
         assert {t.name for t in tools} == {
             'formalpedia_search', 'formalpedia_show', 'formalpedia_claim',
             'formalpedia_impact', 'formalpedia_status', 'formalpedia_lint',
-            'formalpedia_research_search', 'formalpedia_research_context', 'formalpedia_research_check'}
+            'formalpedia_research_search', 'formalpedia_research_context', 'formalpedia_research_check',
+            'formalpedia_lab_doctor', 'formalpedia_change_impact', 'formalpedia_verification_plan'}
         for tool in tools:
             assert tool.annotations.readOnlyHint
             assert tool.annotations.destructiveHint is False
@@ -30,7 +31,8 @@ def test_mcp_discovery_is_structured_and_read_only():
             assert tool.outputSchema
         resources = await server.mcp.list_resources()
         assert {str(r.uri) for r in resources} == {
-            'formalpedia://guide', 'formalpedia://status', 'formalpedia://research-guide'}
+            'formalpedia://guide', 'formalpedia://status', 'formalpedia://research-guide',
+            'formalpedia://workflow-guide'}
         prompts = await server.mcp.list_prompts()
         assert [p.name for p in prompts] == ['find_existing_result']
     asyncio.run(check())
@@ -71,4 +73,15 @@ def test_real_stdio_client_searches_resolves_and_rejects_invalid_pagination():
                 stale = await session.call_tool('formalpedia_research_search',
                     {'query': 'coupling', 'snapshot': 'outdated'})
                 assert stale.isError
+                doctor = await session.call_tool('formalpedia_lab_doctor', {})
+                assert not doctor.isError and doctor.structuredContent['checks']
+                changes = await session.call_tool('formalpedia_change_impact',
+                    {'paths': ['src/research/juggler_sequence/lean_registry.py'], 'limit': 2})
+                assert not changes.isError and len(changes.structuredContent['items']) == 2
+                plan = await session.call_tool('formalpedia_verification_plan',
+                    {'paths': ['tools/lab.py'], 'limit': 2})
+                assert not plan.isError
+                assert all(c['status'] == 'not_checked' for c in plan.structuredContent['items'])
+                invalid = await session.call_tool('formalpedia_change_impact', {'paths': ['../outside']})
+                assert invalid.isError
     asyncio.run(asyncio.wait_for(check(), timeout=120))

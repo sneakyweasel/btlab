@@ -28,6 +28,11 @@ programmes. It is a live derived view, not another manually maintained ledger.
 New outputs use versioned provenance sidecars; `python tools/lab.py check`
 validates references and metadata without running mathematical computations.
 
+The [agent workflow](agent_workflow.md) adds checkout-scoped diagnostics,
+static change impact, and explicit verification through the same lab CLI and
+read-only MCP. Juggler's stable directory constants live in `lean_paths.py`;
+changing module registrations and layer order live in `lean_registry.py`.
+
 Collatz outputs live in `data/research/collatz/`, including finite-descent and
 Syracuse records. CLI writers resolve this location from their source checkout,
 so running a command elsewhere does not create another output tree. Generated

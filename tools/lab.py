@@ -3,14 +3,13 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 from pathlib import Path
-import shutil
 import subprocess
 import sys
 
 import formalpedia as fp
 from lab_scope import active_lean_modules
+from lab_environment import environment, executable
 
 
 def build_targets() -> list[str]:
@@ -25,9 +24,7 @@ def build_targets() -> list[str]:
 def run_python(arguments: list[str], root: Path | None = None) -> int:
     """Prefer this checkout's sources over any other editable installation."""
     root = fp.ROOT if root is None else root.resolve()
-    env = os.environ.copy()
-    inherited = env.get('PYTHONPATH')
-    env['PYTHONPATH'] = str(root / 'src') + (os.pathsep + inherited if inherited else '')
+    env = environment(root)
     if len(arguments) >= 2 and arguments[0] == '-m' and arguments[1] != 'pytest':
         env['BTLAB_RUN_COMMAND'] = json.dumps(['python', 'tools/lab.py', 'run', *arguments[1:]])
     else:
@@ -37,6 +34,9 @@ def run_python(arguments: list[str], root: Path | None = None) -> int:
 
 def main(argv=None) -> int:
     arguments = list(sys.argv[1:] if argv is None else argv)
+    if arguments and arguments[0] in {'doctor', 'impact', 'verify'}:
+        from lab_verify import main as workflow_main
+        return workflow_main(arguments)
     if arguments and arguments[0] in {'search', 'context', 'check', 'manifest'}:
         from research_catalog import main as research_main
         return research_main(arguments)
@@ -49,6 +49,12 @@ def main(argv=None) -> int:
     run.add_argument('args', nargs=argparse.REMAINDER)
     test = commands.add_parser('test', help='run pytest using this checkout\'s source tree')
     test.add_argument('args', nargs=argparse.REMAINDER)
+    for name in ('doctor', 'impact', 'verify'):
+        commands.add_parser(name, add_help=False, help={
+            'doctor': 'inspect local prerequisites',
+            'impact': 'trace changed files to modules, claims, papers and tests',
+            'verify': 'plan or run change-aware validation',
+        }[name])
     for name in ('search', 'context', 'check', 'manifest'):
         command = commands.add_parser(name, add_help=False, help={
             'search': 'search Juggler and Collatz research dossiers',
@@ -68,11 +74,11 @@ def main(argv=None) -> int:
     if args.list:
         print('\n'.join(targets))
         return 0
-    lake = shutil.which('lake')
+    lake = executable('lake', fp.ROOT)
     if not lake:
-        candidate = Path(os.environ.get('USERPROFILE', str(Path.home()))) / '.elan/bin/lake.exe'
-        lake = str(candidate) if candidate.is_file() else 'lake'
-    return subprocess.run([lake, 'build', *targets], cwd=fp.FORMAL, stdin=subprocess.DEVNULL).returncode
+        parser.error('Pinned Lean toolchain is not installed locally; run lab.py doctor')
+    return subprocess.run([lake, 'build', *targets], cwd=fp.FORMAL,
+                          env=environment(fp.ROOT), stdin=subprocess.DEVNULL).returncode
 
 
 if __name__ == '__main__':

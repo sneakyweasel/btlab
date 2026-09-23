@@ -115,3 +115,9 @@ an unchanged dataset. Legacy formats are not silently upgraded or certified.
 
 CI runs the structural gate. Tests, compilation, publication release checks,
 and mathematical statement review retain their own commands and authority.
+
+For change-aware orchestration, see the [agent workflow](agent_workflow.md).
+`lab.py impact` connects Git changes with recorded dependencies;
+`lab.py verify --changed --plan` selects trusted checks and exposes its scope.
+Execution remains in the CLI. The existing MCP exposes read-only diagnostics,
+impact, and verification plans.

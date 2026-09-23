@@ -119,6 +119,11 @@ evidence. Original verdicts and the reviewed style baseline remain versioned in
 
 ## MCP
 
+Maintenance also uses the [agent workflow](agent_workflow.md): the same MCP
+offers `formalpedia_lab_doctor`, `formalpedia_change_impact`, and
+`formalpedia_verification_plan`. These are read-only; execute tests and builds
+through `python tools/lab.py verify --changed`.
+
 Install `python -m pip install -r tools/requirements-formalpedia.txt` and run
 `python tools/formalpedia_mcp.py`. The server uses the official MCP SDK's
 supported v1 line over stdio. Configure a `formalpedia` entry alongside the

@@ -28,7 +28,7 @@ def test_entropy_and_centered_walk_normalizations_agree(counts):
         entropy = math.exp(math.log(atom.count) - atom.order*math.log(B)
                            - atom.phase*math.log(Q))
         assert atom.weight == pytest.approx(entropy, rel=2e-12)
-        m, r, delta = atom.depth - 1, atom.order, atom.phase
+        m, delta = atom.depth - 1, atom.phase
         assert (m / ALPHA) % 1 == pytest.approx(1-delta/ALPHA, abs=6e-14)
         assert ((m+1) / ALPHA) % 1 == pytest.approx((1-delta)/ALPHA, abs=6e-14)
 

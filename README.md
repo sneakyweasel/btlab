@@ -83,6 +83,9 @@ python tools/lab.py test -- --runslow          # include long checks
 python tools/lab.py build                      # retained Lean library
 python tools/lean_style.py                     # public Lean names and documentation
 python tools/render_theorem_ledger.py --check  # claim ledger consistency
+python tools/lab.py doctor                     # local prerequisites
+python tools/lab.py verify --changed --plan    # inspect change-aware checks
+python tools/lab.py verify --changed           # execute the selected gates
 ```
 
 The Lean build requires **Lean and Lake through elan**; the versions are pinned
@@ -93,6 +96,9 @@ and axiom audits. Paper-specific build guides and release manifests under
 `lab.py run` and `lab.py test` use this checkout's sources even when another
 worktree is installed in editable mode. To parallelize tests, use
 `python tools/lab.py test -- -n 8 --dist loadfile`.
+
+The [agent workflow](docs/architecture/agent_workflow.md) explains change impact,
+verification scope, and the corresponding read-only Formalpedia MCP tools.
 
 ## Find the mathematics
 
