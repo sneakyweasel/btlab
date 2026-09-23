@@ -122,3 +122,11 @@ shift. Divergence at every nonperiodic integer in a fixed unit class is
 equivalent to divergence at all nonperiodic unit roots. Both premises remain
 open; this does not establish a fixed-root lower count. See the
 [dossier](../../../docs/problems/collatz_fibre_lower_transfer.md).
+
+[FibreMinorants.lean](FibreMinorants.lean) turns a normalized periodic weight
+with `L_s h >= q*h` into the complete bound `C_d(a) >= q^d*h(a)`. A family
+with `q_i -> 1` forces coefficient-series divergence at a fixed positive root
+if `h_i(a) >= c*(1-q_i)` for one positive constant c. The family is an open
+premise. Eight exact Python certificates at levels one through four do not
+establish this limit. See the
+[dossier](../../../docs/problems/collatz_fibre_critical_minorants.md).

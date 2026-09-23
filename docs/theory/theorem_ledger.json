@@ -11106,5 +11106,32 @@
    "tests/research/collatz/test_fibre_lower_transfer.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "C-fibre-critical-minorant-criterion",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For either signed complete inverse operator, a finite periodic weight 0<=h<=1 with L_s h>=q*h and q>=0 gives C_d(a)>=q^d*h(a) at every positive integer a and depth d. For a family of such weights h_i, possibly at different ternary levels, with 0<=q_i<1 and q_i tending to one, the coefficient series at a fixed positive root a is nonsummable if one c>0 satisfies h_i(a)>=c*(1-q_i) for every i. The limiting family and fixed-root lower bound are open premises, not consequences of finite certificates. No Juggler transfer, termination or infinite escape is claimed. Kernel-checked; independent review and advisory statement coverage pending.",
+  "source": "docs/problems/collatz_fibre_critical_minorants.md",
+  "lean": "formal/Problems/Collatz/FibreMinorants.lean",
+  "lean_trust": "kernel",
+  "decl": [
+   "Problems.Collatz.FibreMinorants.coarse_geometric_lower",
+   "Problems.Collatz.FibreMinorants.coarse_not_summable_of_weights"
+  ],
+  "tests": [
+   "tests/research/collatz/test_fibre_critical_minorants.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "C-fibre-subcritical-certificates-levels-one-four",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "For both signed complete inverse coefficient operators, saved positive unit weights at ternary levels 1 through 4, zero on nonunits and normalized by their maximum, satisfy L_s h>=q*h for certified rates 0.285714285, 0.575889816, 0.713279690 and 0.771500620 respectively. Every refined unit residue and every positive exponent are covered by exact integer rows and geometric period folding; independent rational checks construct ordinary odd children. The rates need not be optimal. These eight Python certificates are not kernel-checked data and prove no limiting rate or fixed-root divergence.",
+  "source": "docs/problems/collatz_fibre_critical_minorants.md",
+  "lean": "",
+  "tests": [
+   "tests/research/collatz/test_fibre_critical_minorants.py"
+  ],
+  "related_conjectures": []
  }
 ]

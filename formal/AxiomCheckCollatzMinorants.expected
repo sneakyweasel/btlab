@@ -1,0 +1,4 @@
+'Problems.Collatz.FibreMinorants.coarse_geometric_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreMinorants.coarse_not_summable_of_weights' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

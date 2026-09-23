@@ -1,0 +1,13 @@
+{
+  "authors": ["Parsa Nikpour", "Masoud Rabbani"],
+  "id": "nikpour-rabbani-2026-certified-density",
+  "identifiers": {"doi": "10.2139/ssrn.7239062"},
+  "notes": "SSRN primary abstract and metadata read on 23 September 2026; written 2 August and posted 11 August 2026. Authors claim an exact level-20 certificate giving ancestor-count exponent 0.914947 and a smallest Syracuse atom bound c_n >> (3t)^(-n), t=10449/10000. Full paper and certificate have not been obtained or independently checked here. These are attributed preprint claims, not established laboratory inputs. Under the existing normalized-cell identification, the latter advertised bound gives only a summable geometric minorant. See docs/problems/collatz_fibre_critical_minorants.md. The laboratory's small complete-transfer certificates are a separate calculation; no identity with the authors' full KL operator is asserted.",
+  "problem_area": "collatz",
+  "project_relationship": "known",
+  "relevant_concepts": ["inverse density", "nonlinear Perron-Frobenius", "Syracuse random variable", "subcritical periodic weights"],
+  "status": "preprint",
+  "title": "A Certified Density Exponent for the 3x + 1 Problem and the Smallest Atom of the Syracuse Random Variable",
+  "url": {"doi": "https://doi.org/10.2139/ssrn.7239062", "ssrn": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7239062"},
+  "year": 2026
+}

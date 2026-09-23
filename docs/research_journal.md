@@ -10,6 +10,18 @@ The earlier full-length journal is available at Git revision
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-23 -- Subcritical weights isolate the missing fixed-root constant
+
+Lean checks that L_s h>=q*h with 0<=h<=1 gives C_d(a)>=q^d*h(a),
+and that a family q_i tending to one forces divergence if its normalized
+root values stay above c*(1-q_i). Both family premises remain open.
+Eight exact Python certificates at levels 1–4 reach q=0.771500620;
+they establish no asymptotic rate or root constant. **PARK** further finite
+tables; the next target is the analytic family estimate. The newly located
+Nikpour–Rabbani preprint is registered as an unchecked abstract claim,
+not a verified input. No Juggler pressure or termination follows. See the
+[dossier](problems/collatz_fibre_critical_minorants.md).
+
 ## 2026-09-23 -- One fixed ternary class already transports lower bounds globally
 
 The previous recommendation supplied no new fixed-root lower count. The
