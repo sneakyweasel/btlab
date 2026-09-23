@@ -11,7 +11,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
 
 from render_theorem_ledger import HEADER, TAGS, check_tags  # noqa: E402
-import formalpedia as fp  # noqa: E402
+from formalpedia_core import identities as fp_identities, matching as fp_matching, source as fp_source  # noqa: E402
 import lean_source  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -56,7 +56,7 @@ DECL_LINE = re.compile(
 def _declares(text: str, name: str) -> bool:
     """Resolve a public reference uniquely, using the catalogue's namespace rules."""
     index = {'declarations': lean_source.scan(text, 'LedgerInput', 'formal/LedgerInput.lean')}
-    return len(fp.resolve_declarations(index, name)) == 1
+    return len(fp_identities.resolve_declarations(index, name)) == 1
 
 
 def _entries() -> list[dict]:
@@ -158,7 +158,7 @@ def test_every_lean_row_is_attributed_to_its_module_in_the_index():
     pre-fix index at a9f8efce, this formulation fails on exactly those 43 rows and the
     current index passes.
     """
-    index = fp.build()
+    index = fp_source.build()
     # Keyed by resolved path, so the check never re-implements the prefix convention it guards.
     by_path = {(ROOT / m["file"]).resolve(): (name, m)
                for name, m in index["modules"].items() if m.get("file")}
@@ -323,7 +323,7 @@ def test_decl_when_present_names_a_declaration_in_the_rows_own_file():
             continue
         lean = str(row.get("lean") or "").strip()
         assert lean.endswith(".lean"), f"{row['id']}: decl needs a file, not {lean!r}"
-        text = (ROOT / fp.lean_key(lean)).read_text(encoding="utf-8")
+        text = (ROOT / fp_identities.lean_key(lean)).read_text(encoding="utf-8")
         assert len(decls) == len(set(decls)), f"{row['id']}: repeats a declaration"
         for decl in decls:
             assert _declares(text, decl), f"{row['id']}: {decl} not in {lean}"
@@ -379,11 +379,11 @@ def test_decl_agrees_with_the_theorem_the_statement_names():
             continue
         names = named.findall(row["statement"])
         if names:
-            text = (ROOT / fp.lean_key(row['lean'])).read_text(encoding='utf-8')
-            index = {'declarations': lean_source.scan(text, 'LedgerInput', fp.lean_key(row['lean']))}
-            chosen = fp.resolve_declarations(index, decls[0])
+            text = (ROOT / fp_identities.lean_key(row['lean'])).read_text(encoding='utf-8')
+            index = {'declarations': lean_source.scan(text, 'LedgerInput', fp_identities.lean_key(row['lean']))}
+            chosen = fp_identities.resolve_declarations(index, decls[0])
             assert len(chosen) == 1 and any(
-                fp.resolve_declarations(index, name) == chosen for name in names
+                fp_identities.resolve_declarations(index, name) == chosen for name in names
             ), f"{row['id']}: decl={decls[0]} but prose names {names}"
 
 
@@ -392,10 +392,10 @@ def test_no_two_rows_claim_the_same_declaration():
     or the two rows are really one -- either way it wants a person's eye, not silence."""
     import collections
 
-    index = fp.build()
+    index = fp_source.build()
     claims = collections.Counter(
         (d['file'], d['id']) for row in _entries() for name in _decls(row)
-        for d in fp.resolve_declarations(index, name, file=fp.lean_key(row['lean']))
+        for d in fp_identities.resolve_declarations(index, name, file=fp_identities.lean_key(row['lean']))
     )
     shared = {k: v for k, v in claims.items() if v > 1}
     assert shared == {}, shared
@@ -418,9 +418,9 @@ def test_no_row_chose_a_declaration_far_worse_than_one_it_names():
     import sys
 
     sys.path.insert(0, str(ROOT / "tools"))
-    import formalpedia as fp
+    from formalpedia_core import identities as fp_identities, source as fp_source
 
-    index = fp.build()
+    index = fp_source.build()
     ident = re.compile(r"[A-Za-z][A-Za-z0-9_']*_[A-Za-z0-9_']+")
     bad = []
     for row in _entries():
@@ -430,21 +430,21 @@ def test_no_row_chose_a_declaration_far_worse_than_one_it_names():
         if len(decls) != 1:
             continue
         decl = decls[0]
-        path = fp.lean_key(row.get("lean"))
-        candidates = fp.resolve_declarations(index, decl, file=path)
+        path = fp_identities.lean_key(row.get("lean"))
+        candidates = fp_identities.resolve_declarations(index, decl, file=path)
         if len(candidates) != 1:
             continue
         chosen = candidates[0]
-        words = fp.words(row["statement"])
-        mine = fp.similarity(words, chosen)
+        words = fp_matching.words(row["statement"])
+        mine = fp_matching.similarity(words, chosen)
         for name in dict.fromkeys(ident.findall(row["statement"])):
-            candidates = fp.resolve_declarations(index, name, file=path)
+            candidates = fp_identities.resolve_declarations(index, name, file=path)
             if len(candidates) != 1 or candidates[0]['id'] == chosen['id']:
                 continue
             other = candidates[0]
-            if fp.similarity(words, other) > 3.0 * max(mine, 1e-9):
+            if fp_matching.similarity(words, other) > 3.0 * max(mine, 1e-9):
                 bad.append(f"{row['id']}: chose {decl} ({mine:.3f}) over {name} "
-                           f"({fp.similarity(words, other):.3f})")
+                           f"({fp_matching.similarity(words, other):.3f})")
     assert bad == [], bad
 
 def test_no_row_credits_native_decide_to_a_kernel_checked_declaration():
@@ -495,9 +495,9 @@ def test_recorded_trust_matches_what_the_declarations_actually_are():
     import sys
 
     sys.path.insert(0, str(ROOT / "tools"))
-    import formalpedia as fp
+    from formalpedia_core import identities as fp_identities, source as fp_source
 
-    index = fp.build()
+    index = fp_source.build()
     for row in _entries():
         decls = _decls(row)
         recorded = row.get("lean_trust")
@@ -505,7 +505,7 @@ def test_recorded_trust_matches_what_the_declarations_actually_are():
             continue
         found = {}
         for name in decls:
-            matches = fp.resolve_declarations(index, name, file=fp.lean_key(row.get('lean')))
+            matches = fp_identities.resolve_declarations(index, name, file=fp_identities.lean_key(row.get('lean')))
             assert len(matches) == 1, f"{row['id']}: {name} must resolve uniquely"
             found[name] = matches[0]["trust"]
         levels = set(found.values())

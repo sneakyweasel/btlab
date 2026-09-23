@@ -12,10 +12,10 @@ from pathlib import Path
 import re
 import subprocess
 
-import formalpedia as fp
+from formalpedia_core import source as fp_source, workspace as fp_workspace
 import lean_source
 
-BASELINE = fp.ROOT / 'data/research/formalpedia/style_baseline.json'
+BASELINE = fp_workspace.ROOT / 'data/research/formalpedia/style_baseline.json'
 RULES = {
     'public_doc': 'Add a docstring explaining the public result and its important hypotheses.',
     'namespace': 'Place the declaration in its mathematical namespace.',
@@ -85,15 +85,15 @@ def report(index: dict, baseline: dict) -> dict:
 
 def committed_index(revision: str) -> tuple[str, dict]:
     """Read committed blobs in one Git process; never baseline a peer's draft edits."""
-    git = ['git', '-c', f'safe.directory={fp.ROOT.as_posix()}']
+    git = ['git', '-c', f'safe.directory={fp_workspace.ROOT.as_posix()}']
     resolved = subprocess.check_output(git + ['rev-parse', '--verify', revision + '^{commit}'],
-                                       cwd=fp.ROOT, text=True).strip()
+                                       cwd=fp_workspace.ROOT, text=True).strip()
     paths = subprocess.check_output(git + ['ls-tree', '-r', '--name-only', resolved, 'formal'],
-                                   cwd=fp.ROOT, text=True).splitlines()
+                                   cwd=fp_workspace.ROOT, text=True).splitlines()
     paths = [p for p in paths if p.endswith('.lean') and
-             p.split('/')[1].removesuffix('.lean') in fp.LIBRARIES]
+             p.split('/')[1].removesuffix('.lean') in fp_workspace.LIBRARIES]
     payload = ''.join(f'{resolved}:{p}\n' for p in paths).encode()
-    output = subprocess.check_output(git + ['cat-file', '--batch'], input=payload, cwd=fp.ROOT)
+    output = subprocess.check_output(git + ['cat-file', '--batch'], input=payload, cwd=fp_workspace.ROOT)
     cursor, declarations = 0, []
     for path in paths:
         end = output.index(b'\n', cursor)
@@ -119,14 +119,14 @@ def main(argv=None) -> int:
                 'violations': [{k: d[k] for k in ('id', 'file', 'rule', 'fingerprint')}
                                for d in violations(index)]}
         args.baseline.parent.mkdir(parents=True, exist_ok=True)
-        args.baseline.write_text(fp.render(data), encoding='utf-8')
+        args.baseline.write_text(fp_source.render(data), encoding='utf-8')
         print(f"Recorded {len(data['violations'])} existing violations at {revision}")
         return 0
     if not args.baseline.is_file():
         parser.error('Missing reviewed style baseline')
-    result = report(fp.build(), json.loads(args.baseline.read_text(encoding='utf-8')))
+    result = report(fp_source.build(), json.loads(args.baseline.read_text(encoding='utf-8')))
     if args.json:
-        print(fp.render(result), end='')
+        print(fp_source.render(result), end='')
     else:
         for row in result['new_violations']:
             print(f"{row['file']}:{row['line']}: {row['id']} [{row['rule']}] {row['message']}")

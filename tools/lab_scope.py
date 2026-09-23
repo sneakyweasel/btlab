@@ -36,11 +36,11 @@ def policy(root: Path = ROOT) -> dict:
     return rules
 
 
-def active_lean_modules(index: dict) -> set[str]:
+def active_lean_modules(index: dict, root: Path | None = None) -> set[str]:
     modules = index['modules']
     roots = {name for name in modules if name.startswith(('Problems.Juggler', 'Problems.Collatz.'))}
     roots.update(set(modules) & {'Core', 'Representation', 'Operators', 'BTCalculus', 'Problems'})
-    ledger = ROOT / 'docs/theory/theorem_ledger.json'
+    ledger = (root or ROOT) / 'docs/theory/theorem_ledger.json'
     if roots and ledger.is_file():
         for row in json.loads(ledger.read_text(encoding='utf-8')):
             name = str(row.get('lean') or '').removeprefix('formal/').removesuffix('.lean').replace('/', '.')
@@ -87,8 +87,8 @@ def path_scope(file: str, root: Path = ROOT, rules: dict | None = None) -> str:
 
 
 def inventory() -> dict:
-    import formalpedia as fp
-    index = fp.build()
+    from formalpedia_core import source as fp_source
+    index = fp_source.build()
     active = active_lean_modules(index)
     rules = policy()
     return {'archive_revision': rules['archive_revision'],

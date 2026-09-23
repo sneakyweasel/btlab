@@ -89,14 +89,11 @@ def test_the_note_claims_exactly_what_is_proved() -> None:
     assert "not yet in Lean" not in note
 
 
-def test_the_index_agrees_that_the_module_is_kernel_checked() -> None:
-    """The theorem index reads the Lean source directly, so it is the second opinion on the
-    trust level of every declaration in the module."""
-    import formalpedia as fp
+def test_the_index_reports_no_source_trust_markers() -> None:
+    """Source discovery must inspect every declaration; this is not a compiler audit."""
+    from formalpedia_core.source import build
 
-    index = fp.build_index() if hasattr(fp, "build_index") else None
-    if index is None:  # the tool's entry point differs; the source checks above still stand
-        return
+    index = build()
     rows = [d for d in _iter_decls(index) if d.get("module") == "Problems.Collatz.NegativeMCycles"]
     assert rows, "the module is missing from a fresh index"
     assert all(d.get("trust") == "kernel" for d in rows), [d["name"] for d in rows

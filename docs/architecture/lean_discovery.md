@@ -134,7 +134,9 @@ through `python tools/lab.py verify --changed`.
 
 Install `python -m pip install -r tools/requirements-formalpedia.txt` and run
 `python tools/formalpedia_mcp.py`. The server uses the official MCP SDK's
-supported v1 line over stdio. Configure a `formalpedia` entry alongside the
+stdio transport. Use `--root <checkout>` to read another worktree explicitly;
+the root reported by `formalpedia_capabilities` identifies its data source.
+The SDK dependency stays on the supported v1 line. Configure a `formalpedia` entry alongside the
 existing `lean-lsp` entry; use absolute interpreter and script paths in a
 machine-local `.mcp.json`. An example is in
 [the server configuration template](../../tools/formalpedia_mcp.example.json).

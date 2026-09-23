@@ -105,12 +105,12 @@ def lab_links(identifier: str, limit: int = 30, offset: int = 0, root: Path = RO
     scope_by_file = {file: path_scope(file, root, rules) for file, _, _ in mentions}
     active_lean = None
     if rules and any(file.startswith('formal/') for file, _, _ in mentions):
-        import formalpedia as fp
+        from formalpedia_core import source as fp_source
         # Import graph only: no need to parse thousands of declaration bodies.
-        paths = fp.sources()
-        known = {fp.module_of(p) for p in paths}
+        paths = fp_source.sources()
+        known = {fp_source.module_of(p) for p in paths}
         active_lean = active_lean_modules({'modules': {
-            fp.module_of(p): {'imports': fp.imports(p, known)} for p in paths}})
+            fp_source.module_of(p): {'imports': fp_source.imports(p, known)} for p in paths}})
         for file in scope_by_file:
             if file.startswith('formal/') and file.endswith('.lean'):
                 scope_by_file[file] = ('active' if file[7:-5].replace('/', '.') in active_lean else 'archive')

@@ -29,14 +29,35 @@ Missing compiler/packages fail with setup instructions. It does not install tool
 or change the project configuration. Normal Lake build hooks still run, so this
 is an explicit trusted-checkout CLI action, never an MCP query.
 
-Complete snapshots live in ignored `.cache/formalpedia/semantic/`; logs and raw
-exports live in `.build/formalpedia/`. A content-addressed immutable snapshot is
-published through an atomic `current` pointer. Publication takes a short OS lock
+Snapshots live in ignored `.cache/formalpedia/semantic/`; logs and raw exports
+live in `.build/formalpedia/`. Schema 3 stores a small immutable manifest referring
+to content-addressed per-module records (`modules/`), compact search summaries
+(`indexes/`), and shared compiler provenance (`environments/`). Status reads no
+declarations. Ordinary searches, dependency queries and diffs read the summaries;
+full types and AST patterns load module records on demand. In-process object
+caching is capped at 64 MiB of serialized data; parsed Python objects use more RAM.
+An unchanged module reuses its existing objects during publication.
+
+The manifest is published through an atomic `current` pointer. Publication takes a short OS lock
 and merges against the latest snapshot, preserving other exporters' coverage.
 Deleted modules are pruned on the next refresh; historical snapshots remain.
 A failed build or a detected
 concurrent edit leaves the previous snapshot intact. Keep a snapshot identifier
-before rebuilding if you want a historical comparison.
+before rebuilding if you want a historical comparison. Readers verify object
+hashes on load; status checks record availability and sizes without reading every
+AST. Status is a freshness check, not a full cache-integrity audit.
+
+Convert an existing schema-1 or schema-2 snapshot explicitly with:
+
+```powershell
+python tools/formalpedia.py semantic migrate
+```
+
+Migration preserves the original build timestamp, declarations and provenance,
+including existing staleness. It does not run Lean or promote proof evidence.
+Successful builds also migrate older storage when publishing. Failed builds leave
+the pointer unchanged. Old snapshots remain readable for historical differences;
+migration does not delete them. Every MCP query remains read-only.
 
 Local Lean sources, the toolchain pin, Lake configuration/manifest, and exporter
 Lean code are hashed. The snapshot schema versions the Python representation;
@@ -51,8 +72,8 @@ invalidate all recorded modules. New local modules are explicitly unindexed unti
 selected for export. Changed imports are caught through the importing source.
 Missing dependency sources reject builds. Refreshing a dependency alone does not
 make its old consumer records current: select the consumers too, or build the full
-active graph. Version-1 snapshots remain readable for historical comparisons and
-use conservative whole-export freshness until their modules are re-exported.
+active graph. Version-1 provenance uses conservative whole-export freshness until
+its modules are re-exported, including after a storage migration.
 
 Status is `current`, `partial` (a mixture of current and stale modules), `stale`,
 `missing`, or `unreadable`. Search and dependency queries use only current modules

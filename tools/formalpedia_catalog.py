@@ -7,7 +7,7 @@ import json
 import re
 import threading
 
-import formalpedia as fp
+from formalpedia_core import graph as fp_graph, identities as fp_identities, source as fp_source, workspace as fp_workspace
 from lab_scope import active_lean_modules, validate_scope
 
 TRUST_NOTICE = ('Source markers are navigation evidence, not an executed Lean check or a '
@@ -53,7 +53,7 @@ class Catalogue:
 
     def compiled(self, name: str) -> dict:
         """Optional exact compiler view; missing/stale metadata never hides live source."""
-        from formalpedia_semantic import SemanticCatalogue
+        from formalpedia_core.semantic_query import SemanticCatalogue
         with self._lock:
             if self._semantic is None:
                 self._semantic = SemanticCatalogue()
@@ -64,8 +64,8 @@ class Catalogue:
                         'freshness': self._semantic.status()}
 
     def _state(self):
-        paths = fp.sources() + [fp.LEDGER]
-        return tuple((p.relative_to(fp.ROOT).as_posix(), p.stat().st_mtime_ns, p.stat().st_size)
+        paths = fp_source.sources() + [fp_workspace.LEDGER]
+        return tuple((p.relative_to(fp_workspace.ROOT).as_posix(), p.stat().st_mtime_ns, p.stat().st_size)
                      for p in paths if p.exists())
 
     def snapshot(self) -> tuple[dict, list[dict], str]:
@@ -73,8 +73,8 @@ class Catalogue:
             before = self._state()
             if self._index is None or before != self._stamp:
                 for _ in range(3):
-                    index = fp.build()
-                    ledger = json.loads(fp.LEDGER.read_text(encoding='utf-8'))
+                    index = fp_source.build()
+                    ledger = json.loads(fp_workspace.LEDGER.read_text(encoding='utf-8'))
                     after = self._state()
                     if before == after:
                         break
@@ -89,7 +89,7 @@ class Catalogue:
                     self._documents[d['id']] = (' '.join(fields).casefold(),
                                                  set(tokens(' '.join(fields))))
                 self._index, self._ledger, self._stamp = index, ledger, after
-                self._snapshot = hashlib.sha256(fp.render(index).encode()).hexdigest()[:16]
+                self._snapshot = hashlib.sha256(fp_source.render(index).encode()).hexdigest()[:16]
             return self._index, self._ledger, self._snapshot
 
     def search(self, query: str, *, namespace: str | None = None, module: str | None = None,
@@ -104,7 +104,7 @@ class Catalogue:
             index, _, snapshot = self.snapshot()
             documents = self._documents
         terms, needle = tokens(query), query.strip().casefold()
-        active = active_lean_modules(index)
+        active = active_lean_modules(index, fp_workspace.ROOT)
         hits = []
         for d in index['declarations']:
             if scope != 'all' and (d['module'] in active) != (scope == 'active'):
@@ -152,7 +152,7 @@ class Catalogue:
             if module and module != owner:
                 raise ValueError('Module filter conflicts with the canonical ID')
             module = owner
-        found = fp.resolve_declarations(index, name, module=module, include_private=include_private)
+        found = fp_identities.resolve_declarations(index, name, module=module, include_private=include_private)
         if not found:
             compiled = self.compiled(module + '::' + name if module else name)
             if compiled['status'] == 'ambiguous':
@@ -166,16 +166,16 @@ class Catalogue:
                 if row['name'].startswith('_private.') and not include_private:
                     compiled = {'status': 'private', 'hint': 'Pass include_private to inspect this compiler identity.'}
                 else:
-                    reach = fp.reachable(index)
+                    reach = fp_graph.reachable(index)
                     source_file = 'formal/' + row['module'].replace('.', '/') + '.lean'
-                    file_claims = [r for r in ledger if fp.lean_key(r.get('lean')) == source_file]
+                    file_claims = [r for r in ledger if fp_identities.lean_key(r.get('lean')) == source_file]
                     return {'status': 'found', 'snapshot': snapshot, 'canonical_id': row['id'],
                             'source_status': 'not_indexed', 'declaration': None, 'compiled': compiled,
                             'source_file': source_file,
-                            'scope': 'active' if row['module'] in active_lean_modules(index) else 'archive',
-                            'exact_claims': [r for r in file_claims if row['name'] in fp.row_decls(r)],
+                            'scope': 'active' if row['module'] in active_lean_modules(index, fp_workspace.ROOT) else 'archive',
+                            'exact_claims': [r for r in file_claims if row['name'] in fp_identities.row_decls(r)],
                             'file_claim_ids': [r['id'] for r in file_claims],
-                            'reachable_from_paper_roots': [p for p, root in fp.PAPER_ROOTS.items()
+                            'reachable_from_paper_roots': [p for p, root in fp_graph.PAPER_ROOTS.items()
                                 if row['module'] in reach.get(root, set()) | {root}],
                             'trust_notice': TRUST_NOTICE}
         if len(found) != 1:
@@ -185,9 +185,9 @@ class Catalogue:
                     **({'compiled': compiled} if not found else {}),
                     'hint': 'Use a fully qualified name or the module filter; no candidate was selected.'}
         d = found[0]
-        scope = 'active' if d['module'] in active_lean_modules(index) else 'archive'
-        reach = fp.reachable(index)
-        papers = [paper for paper, root in fp.PAPER_ROOTS.items()
+        scope = 'active' if d['module'] in active_lean_modules(index, fp_workspace.ROOT) else 'archive'
+        reach = fp_graph.reachable(index)
+        papers = [paper for paper, root in fp_graph.PAPER_ROOTS.items()
                   if d['module'] in reach.get(root, set()) | {root}]
         canonical = d['module'] + '::' + d['qualified_name'] if d['qualified_name'] else None
         compiled = self.compiled(canonical) if canonical else {
@@ -204,8 +204,8 @@ class Catalogue:
         if row is None:
             return {'status': 'not_found', 'ledger_id': ledger_id, 'snapshot': snapshot}
         declarations = []
-        for name in fp.row_decls(row):
-            matches = fp.resolve_declarations(index, name, file=fp.lean_key(row.get('lean')))
+        for name in fp_identities.row_decls(row):
+            matches = fp_identities.resolve_declarations(index, name, file=fp_identities.lean_key(row.get('lean')))
             declarations.append({'reference': name,
                                  'status': 'resolved' if len(matches) == 1 else
                                            'ambiguous' if matches else 'not_found',
@@ -221,14 +221,14 @@ class Catalogue:
                    if name == target or data['file'] == needle
                    or data['file'].endswith('/' + needle.lstrip('/'))]
         if not modules:
-            matches = fp.resolve_declarations(index, target)
+            matches = fp_identities.resolve_declarations(index, target)
             modules = sorted({d['module'] for d in matches})
         if len(modules) != 1:
             return {'status': 'ambiguous' if modules else 'not_found', 'target': target,
                     'snapshot': snapshot, 'candidates': modules}
         name = modules[0]
-        reverse = fp.dependents(index)
-        dependents = fp.transitive(reverse, name)
+        reverse = fp_graph.dependents(index)
+        dependents = fp_graph.transitive(reverse, name)
         return {'status': 'found', 'snapshot': snapshot, 'module': name,
                 'granularity': 'module imports; not proof-level dependency evidence',
                 'imports': index['modules'][name]['imports'],
@@ -236,17 +236,17 @@ class Catalogue:
                 'total_dependents': len(dependents),
                 'dependents': dependents[offset:offset + limit],
                 'next_offset': offset + limit if offset + limit < len(dependents) else None,
-                'paper_roots_affected': [p for p, root in fp.PAPER_ROOTS.items()
+                'paper_roots_affected': [p for p, root in fp_graph.PAPER_ROOTS.items()
                                          if root == name or root in dependents]}
 
     def status(self) -> dict:
         index, _, snapshot = self.snapshot()
-        active = active_lean_modules(index)
+        active = active_lean_modules(index, fp_workspace.ROOT)
         public = [d for d in index['declarations'] if d['visibility'] == 'public']
         names = Counter(d['name'] for d in public)
         duplicates = Counter(d['qualified_name'] for d in public)
         try:
-            disk = json.loads(fp.INDEX.read_text(encoding='utf-8'))
+            disk = json.loads(fp_workspace.INDEX.read_text(encoding='utf-8'))
             export_state = 'current' if disk == index else 'stale'
         except FileNotFoundError:
             disk, export_state = None, 'missing'

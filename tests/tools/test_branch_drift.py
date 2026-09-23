@@ -118,52 +118,46 @@ def test_acknowledgements_are_not_stale(drifts: list[BD.Drift]) -> None:
 
 
 
-def test_files_are_counted_against_the_merge_base_not_main() -> None:
-    """The calibration that cost the orphan gate its first two readings.
+def test_files_are_counted_against_the_merge_base_not_main(tmp_path) -> None:
+    """Main's deletions are not branch work; actual branch additions still count.
 
-    Measuring "present on the branch, absent from main" counts every file main
-    has since *deleted*. The August cursor/* branches each scored 17 Lean files
-    and 102 sources that way -- all casualties of the src/bt restructure, none
-    of them the branch's work. Counting additions since the merge base gives
-    zero, which is the truth.
-
-    Those branches are merged and gone, so the property is exercised against a
-    throwaway ref at an ancestor commit rather than against whichever branch
-    happens to illustrate it. An ancestor is the sharpest case: its merge base
-    is itself, so it added nothing, while it still carries files main no longer
-    has. The naive metric is computed alongside to show the two disagree --
-    without that, a metric that always returned zero would pass.
+    The fixture owns its Git refs and history. It must never write a calibration
+    ref in the shared checkout or depend on its pre-cleanup history.
     """
-
     import subprocess
 
-    ancestor = subprocess.run(
-        ["git", "rev-list", "-1", "HEAD", "--", "src/automata/modular.py"],
-        capture_output=True, cwd=REPO, text=True,
-    ).stdout.strip()
-    if not ancestor:
-        pytest.skip("pre-restructure history not present in this clone")
+    def git(*args):
+        return subprocess.run(['git', '-c', f'safe.directory={tmp_path.as_posix()}',
+                               '-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid',
+                               '-c', 'commit.gpgsign=false', *args], cwd=tmp_path,
+                              check=True, capture_output=True, text=True).stdout.strip()
 
-    ref = "refs/drift-calibration"
-    subprocess.run(["git", "update-ref", ref, ancestor], cwd=REPO, check=True)
-    try:
-        on_ref = set(subprocess.run(
-            ["git", "ls-tree", "-r", "--name-only", ancestor], capture_output=True,
-            cwd=REPO, text=True).stdout.split())
-        on_main = set(subprocess.run(
-            ["git", "ls-tree", "-r", "--name-only", "main"], capture_output=True,
-            cwd=REPO, text=True).stdout.split())
-        naive = {f for f in on_ref - on_main if f.startswith(("src/", "formal/"))}
-        assert naive, "the control needs an ancestor that main has since pruned"
+    git('init', '-b', 'main')
+    source = tmp_path / 'src/old.py'
+    source.parent.mkdir()
+    source.write_text('# deleted by main\n')
+    git('add', 'src/old.py')
+    git('commit', '-m', 'Ancestor')
+    git('branch', 'ancestor')
+    source.unlink()
+    (tmp_path / 'src/current.py').write_text('# main\n')
+    git('add', 'src')
+    git('commit', '-m', 'Main cleanup')
+    on_ref = set(git('ls-tree', '-r', '--name-only', 'ancestor').splitlines())
+    on_main = set(git('ls-tree', '-r', '--name-only', 'main').splitlines())
+    assert on_ref - on_main == {'src/old.py'}
+    drift = BD.drift_for(tmp_path, 'ancestor')
+    assert drift.ahead == 0
+    assert not any(drift.files.values())
 
-        drift = BD.drift_for(REPO, ref)
-        assert drift.ahead == 0, "an ancestor is behind main, never ahead"
-        assert not any(drift.files.values()), (
-            f"the merge-base metric must ignore main's own deletions; naive would "
-            f"have reported {len(naive)} files"
-        )
-    finally:
-        subprocess.run(["git", "update-ref", "-d", ref], cwd=REPO, check=False)
+    git('checkout', '-b', 'research', 'ancestor')
+    (tmp_path / 'src/new_result.py').write_text('# independent result\n')
+    git('add', 'src/new_result.py')
+    git('commit', '-m', 'Branch result')
+    drift = BD.drift_for(tmp_path, 'research')
+    assert drift.ahead == 1 and drift.carries_work
+    assert drift.files['probe'] == ['src/new_result.py']
+
 
 def test_artifacts_are_counted_and_not_only_ledger_rows() -> None:
     """The other calibration: a branch can carry a module and no ledger row.

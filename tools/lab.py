@@ -7,15 +7,15 @@ from pathlib import Path
 import subprocess
 import sys
 
-import formalpedia as fp
+from formalpedia_core import source as fp_source, workspace as fp_workspace
 from lab_scope import active_lean_modules
 from lab_environment import environment
 
 
 def build_targets() -> list[str]:
-    paths = fp.sources()
-    known = {fp.module_of(p) for p in paths}
-    graph = {'modules': {fp.module_of(p): {'imports': fp.imports(p, known)} for p in paths}}
+    paths = fp_source.sources()
+    known = {fp_source.module_of(p) for p in paths}
+    graph = {'modules': {fp_source.module_of(p): {'imports': fp_source.imports(p, known)} for p in paths}}
     active = active_lean_modules(graph)
     # Include standalone application and ledger-cited modules, not only paper barrels.
     return sorted(active)
@@ -23,7 +23,7 @@ def build_targets() -> list[str]:
 
 def run_python(arguments: list[str], root: Path | None = None) -> int:
     """Prefer this checkout's sources over any other editable installation."""
-    root = fp.ROOT if root is None else root.resolve()
+    root = fp_workspace.ROOT if root is None else root.resolve()
     env = environment(root)
     if len(arguments) >= 2 and arguments[0] == '-m' and arguments[1] != 'pytest':
         env['BTLAB_RUN_COMMAND'] = json.dumps(['python', 'tools/lab.py', 'run', *arguments[1:]])
@@ -76,9 +76,9 @@ def main(argv=None) -> int:
     if args.list:
         print('\n'.join(targets))
         return 0
-    from formalpedia_semantic import build as semantic_build
+    from formalpedia_core.semantic_build import build as semantic_build
     try:
-        result = semantic_build(targets, root=fp.ROOT, timeout=args.timeout)
+        result = semantic_build(targets, root=fp_workspace.ROOT, timeout=args.timeout)
     except (ValueError, OSError, subprocess.TimeoutExpired) as exc:
         print(json.dumps({'status': 'failed', 'reason': str(exc)}))
         return 1

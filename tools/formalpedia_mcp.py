@@ -9,11 +9,11 @@ from typing import Any, Literal
 from mcp.server.fastmcp import FastMCP
 from mcp.types import ToolAnnotations
 
-import formalpedia as fp
+from formalpedia_core import workspace as fp_workspace
 from formalpedia_catalog import Catalogue
 import lean_style
 from research_catalog import ResearchCatalogue
-from formalpedia_semantic import SemanticCatalogue
+from formalpedia_core.semantic_query import SemanticCatalogue
 
 semantic = SemanticCatalogue()
 catalogue = Catalogue(semantic)
@@ -103,7 +103,7 @@ def formalpedia_capabilities() -> dict[str, Any]:
     security attestation. A fresh connection is required to load edited server code.
     """
     return {'protocol_version': 3, 'server_fingerprint': SERVER_FINGERPRINT,
-            'root': str(fp.ROOT), 'tool_groups': {
+            'root': str(fp_workspace.ROOT), 'tool_groups': {
                 'source': ['search', 'show', 'claim', 'impact', 'status', 'lint'],
                 'research': ['research_search', 'research_context', 'research_check'],
                 'maintenance': ['lab_doctor', 'change_impact', 'verification_plan'],
@@ -190,7 +190,8 @@ def formalpedia_lint(limit: int = 30, offset: int = 0) -> dict[str, Any]:
     from formalpedia_catalog import page_bounds
     page_bounds(limit, offset)
     index, _, snapshot = catalogue.snapshot()
-    baseline = json.loads(lean_style.BASELINE.read_text(encoding='utf-8'))
+    baseline_path = fp_workspace.ROOT / 'data/research/formalpedia/style_baseline.json'
+    baseline = json.loads(baseline_path.read_text(encoding='utf-8'))
     result = lean_style.report(index, baseline)
     result['new_violations'] = result['new_violations'][offset:offset + limit]
     result.update(snapshot=snapshot, offset=offset,
@@ -201,7 +202,7 @@ def formalpedia_lint(limit: int = 30, offset: int = 0) -> dict[str, Any]:
 @mcp.resource('formalpedia://guide')
 def discovery_guide() -> str:
     """The repository's Lean naming and theorem-discovery policy."""
-    return (fp.ROOT / 'docs/architecture/lean_discovery.md').read_text(encoding='utf-8')
+    return (fp_workspace.ROOT / 'docs/architecture/lean_discovery.md').read_text(encoding='utf-8')
 
 
 @mcp.tool(annotations=READ_ONLY)
@@ -248,7 +249,7 @@ def formalpedia_research_check(limit: int = 20, offset: int = 0,
 @mcp.resource('formalpedia://research-guide')
 def research_guide() -> str:
     """Research catalogue, output manifest and validation workflow."""
-    return (fp.ROOT / 'docs/architecture/research_catalogue.md').read_text(encoding='utf-8')
+    return (fp_workspace.ROOT / 'docs/architecture/research_catalogue.md').read_text(encoding='utf-8')
 
 
 @mcp.tool(annotations=READ_ONLY)
@@ -259,7 +260,7 @@ def formalpedia_lab_doctor() -> dict[str, Any]:
     Directory presence is not compilation. Use CLI doctor --probe for version probes.
     """
     from lab_environment import doctor
-    return doctor(fp.ROOT)
+    return doctor(fp_workspace.ROOT)
 
 
 @mcp.tool(annotations=READ_ONLY)
@@ -273,7 +274,7 @@ def formalpedia_change_impact(since: str = 'HEAD', paths: list[str] | None = Non
     Dynamic dependencies may be absent. Pass snapshot on subsequent pages.
     """
     from lab_impact import impact
-    return impact(fp.ROOT, since=since, paths=paths, limit=limit, offset=offset, snapshot=snapshot)
+    return impact(fp_workspace.ROOT, since=since, paths=paths, limit=limit, offset=offset, snapshot=snapshot)
 
 
 @mcp.tool(annotations=READ_ONLY)
@@ -288,13 +289,13 @@ def formalpedia_verification_plan(since: str = 'HEAD', paths: list[str] | None =
     Execute through the CLI, never commands copied from a dossier or MCP result.
     """
     from lab_verify import plan_page
-    return plan_page(fp.ROOT, since=since, paths=paths, limit=limit, offset=offset, snapshot=snapshot)
+    return plan_page(fp_workspace.ROOT, since=since, paths=paths, limit=limit, offset=offset, snapshot=snapshot)
 
 
 @mcp.resource('formalpedia://workflow-guide')
 def workflow_guide() -> str:
     """Change impact, environment diagnostics, verification scope and result semantics."""
-    return (fp.ROOT / 'docs/architecture/agent_workflow.md').read_text(encoding='utf-8')
+    return (fp_workspace.ROOT / 'docs/architecture/agent_workflow.md').read_text(encoding='utf-8')
 
 
 @mcp.resource('formalpedia://status')
@@ -314,5 +315,23 @@ def find_existing_result(goal: str) -> str:
             'A search miss is not evidence that the theorem is absent.')
 
 
-if __name__ == '__main__':
+def main(argv=None):
+    """Bind all read-only services to one explicit checkout for this process."""
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--root', type=Path, default=fp_workspace.ROOT,
+                        help='Checkout/worktree to read (defaults to this installation)')
+    args = parser.parse_args(argv)
+    root = args.root.resolve()
+    if not (root / 'formal').is_dir() or not (root / 'docs/theory/theorem_ledger.json').is_file():
+        parser.error('--root must contain formal/ and docs/theory/theorem_ledger.json')
+    global semantic, catalogue, research
+    fp_workspace.configure(root)
+    semantic = SemanticCatalogue(root)
+    catalogue = Catalogue(semantic)
+    research = ResearchCatalogue(root)
     mcp.run(transport='stdio')
+
+
+if __name__ == '__main__':
+    main()

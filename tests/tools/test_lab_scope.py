@@ -74,10 +74,10 @@ def test_retained_python_imports_resolve_inside_the_checkout():
 
 def test_retained_lean_imports_have_source_files():
     import re
-    import formalpedia as fp
+    from formalpedia_core import source as fp_source, workspace as fp_workspace
     missing = []
-    for path in fp.sources():
+    for path in fp_source.sources():
         for name in re.findall(r'^import\s+(\S+)', path.read_text(encoding='utf-8'), re.M):
-            if name.split('.')[0] in fp.LIBRARIES and not (fp.FORMAL / (name.replace('.', '/') + '.lean')).is_file():
+            if name.split('.')[0] in fp_workspace.LIBRARIES and not (fp_workspace.FORMAL / (name.replace('.', '/') + '.lean')).is_file():
                 missing.append((path.name, name))
     assert missing == []

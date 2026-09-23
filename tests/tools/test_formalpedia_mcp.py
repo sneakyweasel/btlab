@@ -1,6 +1,9 @@
 """Exercise the MCP contract and real stdio transport, not only Python wrappers."""
 import asyncio
+import hashlib
+import json
 from pathlib import Path
+import subprocess
 import sys
 
 import pytest
@@ -40,10 +43,62 @@ def test_mcp_discovery_is_structured_and_read_only():
     asyncio.run(check())
 
 
-def test_real_stdio_client_searches_resolves_and_rejects_invalid_pagination():
+@pytest.fixture
+def checkout(tmp_path):
+    """An independent checkout with known source, research and compiled metadata."""
+    def write(name, content):
+        path = tmp_path / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(content, encoding='utf-8')
+
+    write('formal/Problems/Juggler/Example.lean',
+          'namespace Example\n/-- Finance fixture. -/\ntheorem cycleMin_finance : True := trivial\n'
+          'def step : Nat := 1\nend Example\n')
+    write('formal/Problems/Collatz/Example.lean', 'namespace Other\ndef step : Nat := 2\nend Other\n')
+    write('formal/Operators/Fixture.lean',
+          'namespace Custom\n/-- Only the selected ledger cites this. -/\n'
+          'theorem root_only : True := trivial\nend Custom\n')
+    write('docs/theory/theorem_ledger.json', json.dumps([{
+        'id': 'C-fixture', 'statement': 'Fixture identity', 'tag': 'EXACT — HUMAN PROOF',
+        'lean': 'formal/Operators/Fixture.lean', 'decl': 'Custom.root_only',
+        'source': 'docs/problems/collatz_fibre_sign_coupling.md', 'tests': []}]))
+    write('docs/problems/collatz_fibre_sign_coupling.md',
+          '# Fibre sign coupling\n## Decision\nPARK\n## Obstructions\nA fixture obstruction.\n')
+    write('docs/architecture/lean_discovery.md', 'Use fully qualified names.\n')
+    write('src/research/juggler_sequence/lean_registry.py', 'VALUE = 1\n')
+    write('src/research/juggler_sequence/consumer.py',
+          'from research.juggler_sequence.lean_registry import VALUE\n')
+    write('tools/lab.py', '# fixture CLI\n')
+    write('.gitignore', '.cache/\n')
+    subprocess.run(['git', 'init', '-b', 'main'], cwd=tmp_path, check=True, capture_output=True)
+    subprocess.run(['git', 'add', '.'], cwd=tmp_path, check=True, capture_output=True)
+    subprocess.run(['git', '-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid',
+                    '-c', 'commit.gpgsign=false', 'commit', '-m', 'Fixture'],
+                   cwd=tmp_path, check=True, capture_output=True)
+    from formalpedia_core.semantic_common import inputs, digest
+    from formalpedia_core.semantic_query import SemanticCatalogue
+    from formalpedia_core.semantic_store import publish
+    module = 'Problems.Juggler.Example'
+    ast = ['const', 'True', []]
+    row = {'id': module + '::Example.cycleMin_finance', 'name': 'Example.cycleMin_finance',
+           'module': module, 'kind': 'theorem', 'type': 'True', 'type_ast': ast,
+           'type_sha256': digest(ast), 'binders': [], 'axioms': [], 'value_hash64': '1',
+           'type_dependencies': ['True'], 'value_dependencies': ['True.intro']}
+    publish(SemanticCatalogue(tmp_path), [module], [row],
+            {'inputs': inputs(tmp_path), 'objects': {}, 'source_modules': None,
+             'imports': {module: []}, 'object_modules': {}})
+    return tmp_path
+
+
+def test_real_stdio_client_searches_resolves_and_rejects_invalid_pagination(checkout):
+    def inventory():
+        return {p.relative_to(checkout).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                for p in checkout.rglob('*') if p.is_file()}
+
+    before = inventory()
     async def check():
         params = StdioServerParameters(command=sys.executable,
-            args=[str(TOOLS / 'formalpedia_mcp.py')], cwd=str(ROOT))
+            args=[str(TOOLS / 'formalpedia_mcp.py'), '--root', str(checkout)], cwd=str(checkout))
         async with stdio_client(params) as (read, write):
             async with ClientSession(read, write) as session:
                 await session.initialize()
@@ -52,10 +107,12 @@ def test_real_stdio_client_searches_resolves_and_rejects_invalid_pagination():
                 capabilities = await session.call_tool('formalpedia_capabilities', {})
                 assert not capabilities.isError
                 assert capabilities.structuredContent['protocol_version'] == 3
+                assert Path(capabilities.structuredContent['root']) == checkout
                 assert 'semantic' in capabilities.structuredContent['tool_groups']
                 semantic = await session.call_tool('formalpedia_semantic_status', {})
                 assert not semantic.isError
-                assert semantic.structuredContent['status'] in {'missing', 'current', 'partial', 'stale', 'unreadable'}
+                assert semantic.structuredContent['status'] == 'current'
+                assert semantic.structuredContent['storage_schema'] == 3
                 result = await session.call_tool('formalpedia_search',
                     {'query': 'cycleMin_finance', 'limit': 3})
                 assert not result.isError
@@ -65,6 +122,15 @@ def test_real_stdio_client_searches_resolves_and_rejects_invalid_pagination():
                     {'name': data['results'][0]['qualified_name']})
                 assert detail.structuredContent['status'] == 'found'
                 assert detail.structuredContent['declaration']['signature']
+                assert detail.structuredContent['compiled']['status'] == 'found'
+                scoped = await session.call_tool('formalpedia_search', {'query': 'root_only'})
+                assert not scoped.isError and scoped.structuredContent['total'] == 1
+                assert scoped.structuredContent['results'][0]['ledger_exact'] == ['C-fixture']
+                types = await session.call_tool('formalpedia_type_search', {'constants': ['True']})
+                assert not types.isError and types.structuredContent['total'] == 1
+                dependencies = await session.call_tool('formalpedia_dependencies',
+                    {'name': 'Example.cycleMin_finance'})
+                assert not dependencies.isError and dependencies.structuredContent['total'] == 2
                 ambiguous = await session.call_tool('formalpedia_show', {'name': 'step'})
                 assert ambiguous.structuredContent['status'] == 'ambiguous'
                 bad = await session.call_tool('formalpedia_search', {'query': '', 'limit': 0})
@@ -96,3 +162,14 @@ def test_real_stdio_client_searches_resolves_and_rejects_invalid_pagination():
                 invalid = await session.call_tool('formalpedia_change_impact', {'paths': ['../outside']})
                 assert invalid.isError
     asyncio.run(asyncio.wait_for(check(), timeout=120))
+    assert inventory() == before, 'Read-only MCP requests changed the selected checkout'
+
+
+def test_read_only_server_does_not_import_compilers_or_external_review_clients():
+    probe = ('import json, sys; import formalpedia_mcp; '
+             'print(json.dumps(sorted(sys.modules)))')
+    result = subprocess.run([sys.executable, '-c', probe], cwd=TOOLS,
+                            capture_output=True, text=True, check=True, timeout=30)
+    loaded = set(json.loads(result.stdout))
+    assert not loaded.intersection({'formalpedia_core.advisory', 'formalpedia_core.cli',
+                                    'formalpedia_core.semantic_build', 'typesafe_sdk'})

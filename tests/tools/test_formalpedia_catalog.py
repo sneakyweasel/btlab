@@ -9,7 +9,7 @@ TOOLS = Path(__file__).resolve().parents[2] / 'tools'
 if str(TOOLS) not in sys.path:
     sys.path.insert(0, str(TOOLS))
 
-import formalpedia as fp
+from formalpedia_core import cli as fp_cli, source as fp_source, workspace as fp_workspace
 from formalpedia_catalog import Catalogue
 import lean_source
 import lean_style
@@ -21,10 +21,10 @@ def library(tmp_path, monkeypatch):
     (formal / 'Problems').mkdir(parents=True)
     ledger = tmp_path / 'ledger.json'
     ledger.write_text('[]', encoding='utf-8')
-    monkeypatch.setattr(fp, 'ROOT', tmp_path)
-    monkeypatch.setattr(fp, 'FORMAL', formal)
-    monkeypatch.setattr(fp, 'LEDGER', ledger)
-    monkeypatch.setattr(fp, 'INDEX', tmp_path / 'index.json')
+    monkeypatch.setattr(fp_workspace, 'ROOT', tmp_path)
+    monkeypatch.setattr(fp_workspace, 'FORMAL', formal)
+    monkeypatch.setattr(fp_workspace, 'LEDGER', ledger)
+    monkeypatch.setattr(fp_workspace, 'INDEX', tmp_path / 'index.json')
     return formal / 'Problems', ledger
 
 
@@ -39,10 +39,10 @@ def test_missing_or_stale_export_does_not_control_live_discovery(library):
     write(folder, 'A', 'namespace N\ntheorem first : True := trivial\nend N\n')
     catalogue = Catalogue()
     assert catalogue.status()['local_export'] == {'required': False, 'state': 'missing'}
-    fp.INDEX.write_text('broken JSON')
+    fp_workspace.INDEX.write_text('broken JSON')
     assert catalogue.status()['local_export']['state'] == 'unreadable'
     assert catalogue.show('N.first')['status'] == 'found'
-    fp.INDEX.write_text(fp.render(fp.build()), encoding='utf-8')
+    fp_workspace.INDEX.write_text(fp_source.render(fp_source.build()), encoding='utf-8')
     assert catalogue.status()['local_export']['state'] == 'current'
     write(folder, 'A', 'namespace N\ntheorem second : True := trivial\nend N\n')
     assert catalogue.status()['local_export']['state'] == 'stale'
@@ -51,7 +51,7 @@ def test_missing_or_stale_export_does_not_control_live_discovery(library):
 
 
 def test_unified_lookup_joins_exact_identity_and_preserves_stale_source_view(library):
-    import formalpedia_semantic as sem
+    from formalpedia_core import semantic_common as sem_common, semantic_query as sem_query, semantic_store as sem_store
     folder, _ = library
     source = write(folder, 'A', 'namespace N\ntheorem first : True := trivial\nend N\n')
     cat = Catalogue()
@@ -61,9 +61,9 @@ def test_unified_lookup_joins_exact_identity_and_preserves_stale_source_view(lib
     row = {'id': 'Problems.A::N.first', 'name': 'N.first', 'module': 'Problems.A', 'kind': 'theorem',
            'type': 'True', 'type_ast': ['const', 'True', []], 'axioms': [], 'binders': [],
            'type_dependencies': ['True'], 'value_dependencies': ['True.intro']}
-    env = {'imports': {'Problems.A': []}, 'inputs': sem.inputs(fp.ROOT),
+    env = {'imports': {'Problems.A': []}, 'inputs': sem_common.inputs(fp_workspace.ROOT),
            'source_modules': ['Problems.A'], 'objects': {}, 'object_modules': {}}
-    sem.publish(sem.SemanticCatalogue(), ['Problems.A'], [row], env)
+    sem_store.publish(sem_query.SemanticCatalogue(), ['Problems.A'], [row], env)
     joined = cat.show('Problems.A::N.first')
     assert joined['compiled']['declaration']['type_dependencies'] == ['True']
     assert joined['declaration']['qualified_name'] == 'N.first'
@@ -76,16 +76,16 @@ def test_unified_lookup_joins_exact_identity_and_preserves_stale_source_view(lib
 
 
 def test_generated_lookup_never_invents_source_or_private_identity(library):
-    import formalpedia_semantic as sem
+    from formalpedia_core import semantic_common as sem_common, semantic_query as sem_query, semantic_store as sem_store
     folder, _ = library
     write(folder, 'A', 'namespace N\nstructure Box where\n  x : Nat\n'
                      'private theorem hidden : True := trivial\nend N\n')
     row = {'id': 'Problems.A::N.Box.mk', 'name': 'N.Box.mk', 'module': 'Problems.A',
            'kind': 'constructor', 'type': 'Nat → N.Box', 'type_ast': [], 'axioms': []}
-    env = {'imports': {'Problems.A': []}, 'inputs': sem.inputs(fp.ROOT),
+    env = {'imports': {'Problems.A': []}, 'inputs': sem_common.inputs(fp_workspace.ROOT),
            'source_modules': ['Problems.A'], 'objects': {}, 'object_modules': {}}
     other = dict(row, id='Problems.A::M.Box.mk', name='M.Box.mk')
-    sem.publish(sem.SemanticCatalogue(), ['Problems.A'], [row, other], env)
+    sem_store.publish(sem_query.SemanticCatalogue(), ['Problems.A'], [row, other], env)
     cat = Catalogue()
     generated = cat.show('Problems.A::N.Box.mk')
     assert generated['status'] == 'found' and generated['declaration'] is None
@@ -208,7 +208,7 @@ def test_live_search_refreshes_without_writing_saved_artifacts(library):
     assert catalogue.show('renamed')['status'] == 'found'
     assert catalogue.show('old_name')['status'] == 'not_found'
     assert catalogue.status()['snapshot'] != before
-    assert not fp.INDEX.exists()
+    assert not fp_workspace.INDEX.exists()
 
 
 def test_claim_does_not_choose_between_same_file_short_names(library):
@@ -219,7 +219,7 @@ def test_claim_does_not_choose_between_same_file_short_names(library):
         'decl': 'x', 'statement': 'A claim.', 'tag': 'EXACT — HUMAN PROOF'}]))
     result = Catalogue().claim('ambiguous')
     assert result['declarations'][0]['status'] == 'ambiguous'
-    assert all(not d['ledger_exact'] for d in fp.build()['declarations'])
+    assert all(not d['ledger_exact'] for d in fp_source.build()['declarations'])
 
 
 def test_impact_reports_module_granularity_and_path_ambiguity(library):
@@ -261,7 +261,7 @@ def test_cli_ambiguous_show_returns_candidates_and_nonzero(library, capsys):
     folder, _ = library
     write(folder, 'A', 'namespace A\ntheorem same : True := trivial\nend A\n'
           'namespace B\ntheorem same : True := trivial\nend B\n')
-    assert fp.main(['show', 'same']) == 2
+    assert fp_cli.main(['show', 'same']) == 2
     assert json.loads(capsys.readouterr().out)['status'] == 'ambiguous'
 
 

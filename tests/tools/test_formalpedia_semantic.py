@@ -11,7 +11,7 @@ import pytest
 TOOLS = Path(__file__).resolve().parents[2] / 'tools'
 if str(TOOLS) not in sys.path:
     sys.path.insert(0, str(TOOLS))
-import formalpedia_semantic as sem
+from formalpedia_core import semantic_build as sem_build, semantic_common as sem_common, semantic_query as sem_query, semantic_store as sem_store
 
 
 def const(name):
@@ -21,17 +21,17 @@ def const(name):
 def declaration(name, *, module='Problems.Demo', ast=None, uses=(), values=(), proof='1'):
     ast = ast or const('True')
     return {'id': module + '::' + name, 'name': name, 'module': module, 'kind': 'theorem',
-            'type': 'True', 'type_ast': ast, 'type_sha256': sem.digest(ast),
+            'type': 'True', 'type_ast': ast, 'type_sha256': sem_common.digest(ast),
             'axioms': [], 'binders': [], 'conclusion': 'True', 'value_hash64': proof,
             'type_dependencies': list(uses), 'value_dependencies': list(values)}
 
 
 def save(cat, rows, *, objects=None, make_current=True, source_modules=None):
     data = {'schema': 1, 'built_at': 'test',
-            'inputs': sem.scoped_inputs(sem.inputs(cat.root), source_modules), 'source_modules': source_modules,
+            'inputs': sem_common.scoped_inputs(sem_common.inputs(cat.root), source_modules), 'source_modules': source_modules,
             'objects': objects or {}, 'modules': sorted({r['module'] for r in rows}),
             'coverage': 'selected_modules', 'declarations': rows}
-    identifier = sem.digest(data)
+    identifier = sem_common.digest(data)
     cat.cache.mkdir(parents=True, exist_ok=True)
     (cat.cache / f'{identifier}.json').write_text(json.dumps(data), encoding='utf-8')
     if make_current:
@@ -44,7 +44,7 @@ def cat(tmp_path):
     source = tmp_path / 'formal/Problems/Demo.lean'
     source.parent.mkdir(parents=True)
     source.write_text('theorem demo : True := True.intro')
-    return sem.SemanticCatalogue(tmp_path)
+    return sem_query.SemanticCatalogue(tmp_path)
 
 
 def test_missing_is_read_only_and_cannot_search(cat):
@@ -68,7 +68,7 @@ def test_content_changes_even_same_size_invalidate_queries(cat):
 def test_object_replacement_invalidates_queries(cat):
     p = cat.root / 'external.olean'
     p.write_bytes(b'compiled')
-    save(cat, [declaration('demo')], objects={str(p): sem.file_stamp(p)})
+    save(cat, [declaration('demo')], objects={str(p): sem_common.file_stamp(p)})
     p.write_bytes(b'changed object')
     assert cat.status()['changed_object_count'] == 1
     assert cat.status()['status'] == 'stale'
@@ -99,9 +99,9 @@ def test_ambiguity_and_generated_private_names(cat):
 
 def test_named_holes_require_identical_subtrees_and_do_not_unify():
     pattern = ['app', {'hole': 'same'}, {'hole': 'same'}]
-    assert sem.structural_match(pattern, ['app', const('Nat'), const('Nat')])
-    assert not sem.structural_match(pattern, ['app', const('Nat'), const('Int')])
-    assert not sem.structural_match(const('Nat.add'), const('HAdd.hAdd'))
+    assert sem_common.structural_match(pattern, ['app', const('Nat'), const('Nat')])
+    assert not sem_common.structural_match(pattern, ['app', const('Nat'), const('Int')])
+    assert not sem_common.structural_match(const('Nat.add'), const('HAdd.hAdd'))
 
 
 def test_search_constants_shape_and_snapshot_pagination(cat):
@@ -181,22 +181,22 @@ def test_snapshot_paths_and_corruption_rejected(cat):
 def test_failed_compile_preserves_last_snapshot(cat, monkeypatch):
     previous = save(cat, [declaration('f')])
     (cat.root / 'formal/lake-manifest.json').write_text('{"packages":[]}')
-    monkeypatch.setattr(sem, 'executable', lambda *args: 'lake')
-    monkeypatch.setattr(sem, 'environment', lambda *args: {})
+    monkeypatch.setattr(sem_build, 'executable', lambda *args: 'lake')
+    monkeypatch.setattr(sem_build, 'environment', lambda *args: {})
     class Failed:
         returncode = 1
-    monkeypatch.setattr(sem.subprocess, 'run', lambda *args, **kwargs: Failed())
+    monkeypatch.setattr(sem_build.subprocess, 'run', lambda *args, **kwargs: Failed())
     with pytest.raises(ValueError, match='previous snapshot preserved'):
-        sem.build(root=cat.root)
+        sem_build.build(root=cat.root)
     assert (cat.cache / 'current').read_text() == previous
 
 
 def test_source_change_during_build_cannot_publish(cat, monkeypatch):
     previous = save(cat, [declaration('f')])
     (cat.root / 'formal/lake-manifest.json').write_text('{"packages":[]}')
-    monkeypatch.setattr(sem, 'executable', lambda *args: 'lake')
-    monkeypatch.setattr(sem, 'environment', lambda *args: {})
-    monkeypatch.setattr(sem, 'compiled_inventory', lambda *args: {})
+    monkeypatch.setattr(sem_build, 'executable', lambda *args: 'lake')
+    monkeypatch.setattr(sem_build, 'environment', lambda *args: {})
+    monkeypatch.setattr(sem_build, 'compiled_inventory', lambda *args: {})
     calls = []
     class Passed:
         returncode = 0
@@ -205,26 +205,26 @@ def test_source_change_during_build_cannot_publish(cat, monkeypatch):
         if len(calls) == 2:
             (cat.root / 'formal/Problems/Demo.lean').write_text('-- concurrent research edit')
         return Passed()
-    monkeypatch.setattr(sem.subprocess, 'run', run)
+    monkeypatch.setattr(sem_build.subprocess, 'run', run)
     with pytest.raises(ValueError, match='Sources changed'):
-        sem.build(root=cat.root)
+        sem_build.build(root=cat.root)
     assert calls[0] == ['lake', 'build', '+Problems.Demo']
     assert (cat.cache / 'current').read_text() == previous
 
 
 def test_import_only_module_can_publish_an_empty_export(cat, monkeypatch):
     (cat.root / 'formal/lake-manifest.json').write_text('{"packages":[]}')
-    monkeypatch.setattr(sem, 'executable', lambda *args: 'lake')
-    monkeypatch.setattr(sem, 'environment', lambda *args: {})
-    monkeypatch.setattr(sem, 'compiled_inventory', lambda *args: {})
+    monkeypatch.setattr(sem_build, 'executable', lambda *args: 'lake')
+    monkeypatch.setattr(sem_build, 'environment', lambda *args: {})
+    monkeypatch.setattr(sem_build, 'compiled_inventory', lambda *args: {})
     class Passed:
         returncode = 0
     def run(command, **kwargs):
         if '--run' in command:
             Path(command[-1]).write_text(json.dumps({'record': 'environment', 'objects': []}) + '\n')
         return Passed()
-    monkeypatch.setattr(sem.subprocess, 'run', run)
-    result = sem.build(root=cat.root)
+    monkeypatch.setattr(sem_build.subprocess, 'run', run)
+    result = sem_build.build(root=cat.root)
     assert result['declarations'] == 0
     assert cat.status()['status'] == 'current'
     assert cat.search()['items'] == []
@@ -241,25 +241,25 @@ def test_invalid_search_inputs(cat, kwargs):
 def module_environment(cat, graph, object_paths=None):
     objects = object_paths or {}
     return {'imports': graph, 'source_modules': list(graph),
-            'inputs': sem.scoped_inputs(sem.inputs(cat.root), list(graph)),
-            'objects': {str(p): sem.file_stamp(p) for p in objects},
+            'inputs': sem_common.scoped_inputs(sem_common.inputs(cat.root), list(graph)),
+            'objects': {str(p): sem_common.file_stamp(p) for p in objects},
             'object_modules': {str(p): m for p, m in objects.items()}}
 
 
 def module_fixture(cat):
     graph = {'Problems.Demo': [], 'Problems.Consumer': ['Problems.Demo'], 'Problems.Independent': []}
     for m in graph:
-        (cat.root / sem.module_path(m)).write_text('-- ' + m)
+        (cat.root / sem_common.module_path(m)).write_text('-- ' + m)
     rows = [declaration('demo'), declaration('consumer', module='Problems.Consumer', values=['demo']),
             declaration('independent', module='Problems.Independent')]
-    sem.publish(cat, list(graph), rows, module_environment(cat, graph))
+    sem_store.publish(cat, list(graph), rows, module_environment(cat, graph))
     return graph, rows
 
 
 def test_module_freshness_keeps_unrelated_queries_and_invalidates_pages(cat):
     graph, rows = module_fixture(cat)
     page = cat.search(limit=1)
-    (cat.root / sem.module_path('Problems.Demo')).write_text('-- changed')
+    (cat.root / sem_common.module_path('Problems.Demo')).write_text('-- changed')
     state = cat.status()
     assert state['status'] == 'partial'
     assert state['stale_modules'] == ['Problems.Consumer', 'Problems.Demo']
@@ -273,11 +273,11 @@ def test_module_freshness_keeps_unrelated_queries_and_invalidates_pages(cat):
         cat.search(offset=1, snapshot=page['snapshot'])
     # Refresh the changed module alone: its consumer is still stale until rebuilt/exported.
     updated = module_environment(cat, {'Problems.Demo': []})
-    result = sem.publish(cat, ['Problems.Demo'], [rows[0]], updated)
+    result = sem_store.publish(cat, ['Problems.Demo'], [rows[0]], updated)
     assert result['modules'] == 3
     assert cat.status()['stale_modules'] == ['Problems.Consumer']
     assert cat.show('demo')['status'] == 'found'
-    sem.publish(cat, ['Problems.Consumer'], [rows[1]], module_environment(cat, graph))
+    sem_store.publish(cat, ['Problems.Consumer'], [rows[1]], module_environment(cat, graph))
     assert cat.status()['status'] == 'current'
     assert cat.search()['total'] == 3
 
@@ -286,7 +286,7 @@ def test_unreadable_pointer_can_be_recovered_by_explicit_publish(cat):
     cat.cache.mkdir(parents=True)
     (cat.cache / 'current').write_text('broken')
     assert cat.status()['status'] == 'unreadable'
-    sem.publish(cat, ['Problems.Demo'], [declaration('demo')],
+    sem_store.publish(cat, ['Problems.Demo'], [declaration('demo')],
                 module_environment(cat, {'Problems.Demo': []}))
     assert cat.status()['status'] == 'current'
     assert cat.show('demo')['status'] == 'found'
@@ -298,7 +298,7 @@ def test_external_object_changes_follow_compiler_import_graph(cat):
     external.write_bytes(b'one')
     graph['Problems.Demo'] = ['External']
     graph['External'] = []
-    sem.publish(cat, [r['module'] for r in rows], rows,
+    sem_store.publish(cat, [r['module'] for r in rows], rows,
                 module_environment(cat, graph, {external: 'External'}))
     external.write_bytes(b'two longer')
     assert cat.status()['stale_modules'] == ['Problems.Consumer', 'Problems.Demo']
@@ -320,9 +320,9 @@ def test_global_config_stales_all_and_new_module_is_explicitly_unindexed(cat):
 def test_stale_candidate_cannot_turn_ambiguous_name_into_unique_name(cat):
     graph, rows = module_fixture(cat)
     rows[2] = declaration('demo', module='Problems.Independent')
-    sem.publish(cat, list(graph), rows, module_environment(cat, graph))
+    sem_store.publish(cat, list(graph), rows, module_environment(cat, graph))
     assert cat.show('demo')['status'] == 'ambiguous'
-    (cat.root / sem.module_path('Problems.Demo')).write_text('-- edit')
+    (cat.root / sem_common.module_path('Problems.Demo')).write_text('-- edit')
     with pytest.raises(ValueError, match='stale'):
         cat.show('demo')
     assert cat.show('Problems.Independent::demo')['status'] == 'found'
@@ -330,27 +330,27 @@ def test_stale_candidate_cannot_turn_ambiguous_name_into_unique_name(cat):
 
 def test_publish_merges_latest_pointer_and_rejects_changed_inputs(cat):
     graph, rows = module_fixture(cat)
-    other_reader = sem.SemanticCatalogue(cat.root)
+    other_reader = sem_query.SemanticCatalogue(cat.root)
     other_reader._load()  # A second builder may still have the previous snapshot cached.
     independent = deepcopy(rows[2])
     independent['value_hash64'] = 'new'
-    sem.publish(cat, ['Problems.Independent'], [independent], module_environment(cat, graph))
-    result = sem.publish(other_reader, ['Problems.Demo'], [rows[0]], module_environment(cat, graph))
+    sem_store.publish(cat, ['Problems.Independent'], [independent], module_environment(cat, graph))
+    result = sem_store.publish(other_reader, ['Problems.Demo'], [rows[0]], module_environment(cat, graph))
     assert cat.show('independent')['declaration']['value_hash64'] == 'new'
     assert cat.status()['snapshot'] == result['snapshot']
     old_env = module_environment(cat, graph)
-    (cat.root / sem.module_path('Problems.Demo')).write_text('-- concurrent source change')
+    (cat.root / sem_common.module_path('Problems.Demo')).write_text('-- concurrent source change')
     with pytest.raises(ValueError, match='previous snapshot preserved'):
-        sem.publish(cat, list(graph), rows, old_env)
+        sem_store.publish(cat, list(graph), rows, old_env)
     assert (cat.cache / 'current').read_text() == result['snapshot']
 
 
 def test_deleted_module_is_pruned_on_refresh_and_history_is_retained(cat):
     graph, rows = module_fixture(cat)
     before = cat.status()['snapshot']
-    (cat.root / sem.module_path('Problems.Independent')).unlink()
+    (cat.root / sem_common.module_path('Problems.Independent')).unlink()
     assert cat.status()['stale_modules'] == ['Problems.Independent']
-    sem.publish(cat, ['Problems.Demo'], [rows[0]], module_environment(cat, {'Problems.Demo': []}))
+    sem_store.publish(cat, ['Problems.Demo'], [rows[0]], module_environment(cat, {'Problems.Demo': []}))
     assert cat.status()['module_count'] == 2
     assert cat.show('independent')['status'] == 'not_found'
     changes = cat.diff(before)['items']
@@ -360,9 +360,9 @@ def test_deleted_module_is_pruned_on_refresh_and_history_is_retained(cat):
 def test_incremental_build_only_exports_outdated_selected_modules(cat, monkeypatch):
     (cat.root / 'formal/lake-manifest.json').write_text('{"packages":[]}')
     graph, rows = module_fixture(cat)
-    monkeypatch.setattr(sem, 'executable', lambda *args: 'lake')
-    monkeypatch.setattr(sem, 'environment', lambda *args: {})
-    monkeypatch.setattr(sem, 'compiled_inventory', lambda *args: {})
+    monkeypatch.setattr(sem_build, 'executable', lambda *args: 'lake')
+    monkeypatch.setattr(sem_build, 'environment', lambda *args: {})
+    monkeypatch.setattr(sem_build, 'compiled_inventory', lambda *args: {})
     commands = []
     class Passed:
         returncode = 0
@@ -374,11 +374,11 @@ def test_incremental_build_only_exports_outdated_selected_modules(cat, monkeypat
             Path(command[-1]).write_text(json.dumps({'record': 'environment', 'objects': []}) + '\n'
                                         + json.dumps(rows[0]) + '\n')
         return Passed()
-    monkeypatch.setattr(sem.subprocess, 'run', run)
-    assert sem.build(root=cat.root)['status'] == 'unchanged'
+    monkeypatch.setattr(sem_build.subprocess, 'run', run)
+    assert sem_build.build(root=cat.root)['status'] == 'unchanged'
     assert len(commands) == 1  # Lake still checks the requested targets.
-    (cat.root / sem.module_path('Problems.Demo')).write_text('-- edit')
-    result = sem.build(['Problems.Demo'], root=cat.root)
+    (cat.root / sem_common.module_path('Problems.Demo')).write_text('-- edit')
+    result = sem_build.build(['Problems.Demo'], root=cat.root)
     assert result['refreshed_modules'] == ['Problems.Demo']
     assert result['modules'] == 3
     assert cat.status()['stale_modules'] == ['Problems.Consumer']
@@ -387,15 +387,15 @@ def test_incremental_build_only_exports_outdated_selected_modules(cat, monkeypat
 def test_noop_build_prunes_deleted_module_without_running_exporter(cat, monkeypatch):
     (cat.root / 'formal/lake-manifest.json').write_text('{"packages":[]}')
     module_fixture(cat)
-    (cat.root / sem.module_path('Problems.Independent')).unlink()
-    monkeypatch.setattr(sem, 'executable', lambda *args: 'lake')
-    monkeypatch.setattr(sem, 'environment', lambda *args: {})
+    (cat.root / sem_common.module_path('Problems.Independent')).unlink()
+    monkeypatch.setattr(sem_build, 'executable', lambda *args: 'lake')
+    monkeypatch.setattr(sem_build, 'environment', lambda *args: {})
     commands = []
     def run(command, **kwargs):
         commands.append(command)
         return subprocess.CompletedProcess(command, 0)
-    monkeypatch.setattr(sem.subprocess, 'run', run)
-    result = sem.build(root=cat.root)
+    monkeypatch.setattr(sem_build.subprocess, 'run', run)
+    result = sem_build.build(root=cat.root)
     assert len(commands) == 1 and '--run' not in commands[0]
     assert result['exported_declarations'] == 0 and result['modules'] == 2
     assert cat.status()['status'] == 'current'
@@ -404,7 +404,7 @@ def test_noop_build_prunes_deleted_module_without_running_exporter(cat, monkeypa
 def test_compiler_export_preserves_hidden_binders_axioms_and_alpha_types(tmp_path):
     """An actual pinned compiler, independent of optional lab snapshot/cache state."""
     root = TOOLS.parent
-    lean = sem.executable('lean', root)
+    lean = sem_build.executable('lean', root)
     if not lean:
         pytest.skip('Pinned Lean compiler not installed')
     source = tmp_path / 'SemanticFixture.lean'
@@ -421,7 +421,7 @@ theorem alphaTwo {β : Sort u} (y : β) : y = y := rfl
 private theorem hidden : True := True.intro
 end SemanticFixture
 ''', encoding='utf-8')
-    env = sem.environment(root)
+    env = sem_build.environment(root)
     env['LEAN_PATH'] = str(tmp_path) + (os.pathsep + env['LEAN_PATH'] if env.get('LEAN_PATH') else '')
     def run(args):
         result = subprocess.run([lean, *args], cwd=tmp_path, env=env, capture_output=True,

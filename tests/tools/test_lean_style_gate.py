@@ -7,7 +7,6 @@ TOOLS = Path(__file__).resolve().parents[2] / 'tools'
 if str(TOOLS) not in sys.path:
     sys.path.insert(0, str(TOOLS))
 
-import formalpedia as fp
 import lean_style
 
 

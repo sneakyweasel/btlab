@@ -48,12 +48,12 @@ def test_command_forwards_arguments_and_exit_status(monkeypatch, argv, expected)
 
 
 def test_build_refreshes_selected_modules_and_propagates_failure(monkeypatch):
-    import formalpedia_semantic as sem
+    from formalpedia_core import semantic_build as sem_build
     calls = []
     def build(modules, **kwargs):
         calls.append(modules)
         return {'status': 'built'}
-    monkeypatch.setattr(sem, 'build', build)
+    monkeypatch.setattr(sem_build, 'build', build)
     monkeypatch.setattr(lab, 'build_targets', lambda: ['Problems.Active'])
     assert lab.main(['build', '--list']) == 0
     assert not calls
@@ -62,5 +62,5 @@ def test_build_refreshes_selected_modules_and_propagates_failure(monkeypatch):
     assert calls == [['Problems.Active'], ['Problems.Selected']]
     def failed(*args, **kwargs):
         raise ValueError('compilation failed; previous snapshot preserved')
-    monkeypatch.setattr(sem, 'build', failed)
+    monkeypatch.setattr(sem_build, 'build', failed)
     assert lab.main(['build']) == 1

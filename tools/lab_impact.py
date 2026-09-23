@@ -76,8 +76,9 @@ def graph(root: Path, files: set[str], previous: dict[str, bytes]) -> tuple[dict
     for path in sources:
         if path.endswith('.py'):
             identities[python_module(path)].add(path)
-            if path.startswith('tools/') and path.count('/') == 1:
-                identities[Path(path).stem].add(path)
+            if path.startswith('tools/'):
+                # Scripts run with tools/ on sys.path, including its packages.
+                identities[python_module(path).removeprefix('tools.')].add(path)
         else:
             identities[path.removeprefix('formal/').removesuffix('.lean').replace('/', '.')].add(path)
     reverse = defaultdict(set)

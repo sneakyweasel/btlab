@@ -96,6 +96,23 @@ and manifests, and [Lean discovery](lean_discovery.md) for names and proof reuse
 
 ## Test output isolation
 
+For independent concurrent tasks, prefer separate Git worktrees. Inspect the
+latest commit and status before editing or staging in a shared checkout; commit
+only the files belonging to the task. Build outputs, semantic snapshots and test
+scratch directories belong to the selected checkout. A worktree must set up its
+own pinned dependencies before compiling; do not assume another checkout's build
+results establish freshness here.
+
+Formalpedia accepts `python tools/formalpedia_mcp.py --root <checkout>` to bind
+one server process to a worktree. The default is the checkout containing the
+script. Never switch roots within a serving process. Check the root reported by
+`formalpedia_capabilities` when several checkouts are in use.
+
+Tests that mutate Git history or refs create their own temporary repositories.
+The MCP transport regression uses an independent fixture checkout and verifies
+that queries leave it unchanged. Live catalogue smoke checks are a separate
+integration action, so concurrent research edits cannot change test fixtures.
+
 Artifact-writing tests pass `output_root=tmp_path`. The destination retains the
 checkout-relative `docs/research/` and `data/research/` layout; mathematical and
 Lean inputs still come from the checkout. Omitting the override in an explicitly

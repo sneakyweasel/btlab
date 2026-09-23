@@ -72,6 +72,19 @@ def test_package_init_and_lean_transitive_imports(repo):
     assert not (root / '.cache').exists()
 
 
+def test_tool_packages_resolve_script_and_relative_imports(repo):
+    root, _ = repo
+    write(root, 'tools/catalogue/__init__.py')
+    write(root, 'tools/catalogue/storage.py', 'VALUE = 1\n')
+    write(root, 'tools/catalogue/query.py', 'from .storage import VALUE\n')
+    write(root, 'tools/service.py', 'from catalogue import query\n')
+    write(root, 'tests/test_service.py', 'import service\n')
+    result = impact.analyze(root, paths=['tools/catalogue/storage.py'])
+    assert 'tests/test_service.py' in result['affected_tests']
+    result = impact.analyze(root, paths=['tools/catalogue/__init__.py'])
+    assert 'tests/test_service.py' in result['affected_tests']
+
+
 def test_root_scope_ignored_artifact_and_invalid_metadata(repo):
     root, _ = repo
     assert len(impact.analyze(root, paths=['.'])['changed_files']) >= 5

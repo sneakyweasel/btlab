@@ -33,6 +33,26 @@ static change impact, and explicit verification through the same lab CLI and
 read-only MCP. Juggler's stable directory constants live in `lean_paths.py`;
 changing module registrations and layer order live in `lean_registry.py`.
 
+Formalpedia's entry point is `tools/formalpedia.py`. Its implementation lives in
+`tools/formalpedia_core/`, split by responsibility:
+
+| Modules | Responsibility |
+|---|---|
+| `workspace`, `identities`, `source` | Checkout paths, exact identities and live source inventory |
+| `graph` | Lean imports and paper-root reachability |
+| `matching`, `verdicts`, `reports` | Local claim matching, recorded advisory evidence and reports |
+| `advisory` | Explicit optional external review clients and jobs |
+| `semantic_common`, `semantic_store`, `semantic_query` | Freshness, immutable module storage and read-only compiled queries |
+| `semantic_build` | Explicit Lean compilation/export and atomic publication |
+| `cli` | Command dispatch and explicit artifact writers |
+
+`tools/formalpedia_catalog.py` joins live source discovery to compiled records;
+`tools/formalpedia_mcp.py` exposes the read-only services. MCP import paths do not
+load compiler orchestration or external review clients. The small `build`,
+`reachable` and `paper_surface` exports on `formalpedia.py` preserve the current
+publication probe interface. New internal consumers import the owning module.
+See [semantic discovery](lean_semantics.md) for storage and migration details.
+
 Collatz outputs live in `data/research/collatz/`, including finite-descent and
 Syracuse records. CLI writers resolve this location from their source checkout,
 so running a command elsewhere does not create another output tree. Generated
