@@ -98,7 +98,9 @@ private theorem descent_kernel_reindex (x : ℝ) :
 private theorem log_ratio : Real.log terminalRatio = Real.log (1-beta)-Real.log beta :=
   Real.log_div (ne_of_gt q_pos) (ne_of_gt beta_pos)
 
-private theorem weight_rpow (r : ℕ) : certificateWeight r =
+/-- Express a jump weight in the survivor exponential scale with its exact
+fractional-phase correction. -/
+theorem certificateWeight_eq_rpow (r : ℕ) : certificateWeight r =
     (minimalCertCount (certificateIndex r+1) : ℝ)/survivorBase^certificateIndex r *
       terminalRatio^(-beta*certificatePhase r) := by
   rw [certificateWeight, criticalWordMass_eq_exp]
@@ -143,7 +145,7 @@ private theorem scaled_kernel_step {δ : ℝ} (hd0 : 0 < δ) (hd1 : δ < 1) (r :
         terminalPhase (1-beta*δ-(certificateIndex r : ℝ)*beta)) =
       terminalRatio/(1-terminalRatio)*certificateWeight r +
         (if certificatePhase r < δ then certificateWeight r else 0) := by
-  rw [terminalPhase, crossing_kernel_fract hd0 hd1 r, weight_rpow]
+  rw [terminalPhase, crossing_kernel_fract hd0 hd1 r, certificateWeight_eq_rpow]
   have ha := ne_of_gt amplitude_pos
   have hs := ne_of_gt ratio_bounds.1
   have hd := ne_of_gt (sub_pos.2 ratio_bounds.2)

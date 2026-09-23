@@ -247,12 +247,44 @@ Stop criterion          An additional unproved analytic premise remains.
 PROMOTE
 ```
 
+**23 September: two-thirds Cantor geometry.**
+[BeattyCertificateWeights.lean](../../formal/Problems/Juggler/BeattyCertificateWeights.lean)
+proves `r sqrt(r) w_r-kappa F(delta_r)->0` and global positive two-sided
+`r^(-3/2)` gap bounds. The exact metric neighbourhood formula
+`lambda(K_epsilon)=2 epsilon+sum_r min(w_r,2 epsilon)` and the bounds
+`c epsilon^(1/3)<=lambda(K_epsilon)<=C epsilon^(1/3)` are checked in
+[BeattyCertificateCantor.lean](../../formal/Problems/Juggler/BeattyCertificateCantor.lean).
+The logarithmic neighbourhood-volume limit is exactly `2/3`, giving
+Minkowski dimension in the tube convention. Section 16 of the working note
+also records the elementary covering-number equivalence with box dimension.
+The result gives positive finite lower and upper Minkowski contents, not
+their equality or Hausdorff dimension. The original-count consumer audit
+checks the public interfaces and their standard dependency sets.
+
+Continuation triage:
+
+```text
+Mathematical target     Prove |K_epsilon| comparable to epsilon^(1/3).
+Novelty hypothesis      Exact geometry of this certificate accumulation set;
+                        the generic gap-length method is classical.
+Falsifier               Failure of positive two-sided r^(-3/2) gap bounds.
+Already killed by?      No matching obstruction: the complete phase theorem
+                        supplies the input missing from recurrence-only routes.
+Existing machinery      Stirling limit, exact positive gaps and total jump mass.
+Maximum Phase-0 scope   Gap bounds, exact tube formula and dimension limit.
+Promotion criterion     Kernel-checked result for the actual count cluster set.
+Stop criterion          An additional unproved analytic premise is required.
+PROMOTE
+```
+
 ## Open questions
 
 The qualitative logarithmic-slope phase theorem and normalization are complete
 in Lean, as are the complete accumulation set and its singular continuous
-empirical limiting law. Remaining mathematical extensions are a quantitative remainder,
-effective numerical truncation bounds, and generalization from the concrete
+empirical limiting law. Its tube-volume order and Minkowski dimension `2/3`
+are now checked too. Remaining mathematical extensions are an exact tube
+leading constant, Hausdorff dimension, a quantitative phase remainder,
+effective numerical constants, and generalization from the concrete
 logarithmic slope to arbitrary irrational `1<alpha<2`. Literature comparison
 is separate from proof checking; existing paper claims and releases retain
 their earlier evidence labels.
@@ -262,8 +294,9 @@ their earlier evidence labels.
 `PROMOTE` -- the actual normalized certificate counts have the explicit positive
 jump-series asymptotic, with its full normalization and strict atom convention
 proved. The continuation identifies the full null perfect accumulation set,
-its exact gaps, and the singular continuous empirical law with exact threshold
-frequencies and plateau levels. No new branch, publication, priority claim or
+its exact gaps, the singular continuous empirical law with exact threshold
+frequencies and plateau levels, and the cube-root neighbourhood-volume law
+with dimension `2/3`. No new branch, publication, priority claim or
 trajectory-termination claim is opened.
 
 ## Publication assessment

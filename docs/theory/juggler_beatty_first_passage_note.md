@@ -7,7 +7,9 @@ boundary. At the slope `alpha=log_2 3`, the normalized first-passage counts
 admit an explicit positive cumulative jump profile, with exact weights and
 total mass. Their complete set of accumulation values is the profile's
 envelope with its open jump intervals removed: a nonempty compact perfect
-set of Lebesgue measure zero. Their empirical probability measures converge
+set of Lebesgue measure zero. Its gap lengths have order `r^(-3/2)` and
+its neighbourhood volume has order `epsilon^(1/3)`, giving Minkowski
+dimension `2/3`. Their empirical probability measures converge
 to the image of uniform phase measure under the profile. This limiting law
 is singular continuous. Its continuous distribution function inverts the
 profile and has explicit plateaus at the Beatty phases. All these qualitative
@@ -39,8 +41,8 @@ G(y)=\delta_j\quad\bigl(F(\delta_j)\le y\le F(\delta_j)+w_j\bigr).
 
 Thus the phase profile has dense jumps, while the distribution of its
 values is continuous and singular. Sections 14–15 give the limit-set and
-frequency proofs; Sections 12–13 establish their counting and asymptotic
-inputs.
+frequency proofs; Section 16 proves its two-thirds Minkowski dimension.
+Sections 12–13 establish their counting and asymptotic inputs.
 
 **Evidence boundary.** The preceding conclusions are **EXACT — LEAN VERIFIED**
 at the concrete logarithmic slope, without unproved counting, binomial,
@@ -67,6 +69,8 @@ and the empirical-law interface is
 [certificateRatio_empiricalLaw_tendsto](../../formal/Problems/Juggler/BeattyCertificateDistribution.lean).
 The latter module also proves continuity of the CDF, singularity and the
 exact threshold and plateau formulas.
+The neighbourhood-volume and dimension interfaces are in
+[BeattyCertificateCantor.lean](../../formal/Problems/Juggler/BeattyCertificateCantor.lean).
 
 ## 1. Statement and notation
 
@@ -536,6 +540,7 @@ bounded phase kernel.
 | Survivor-to-certificate series identification and total mass | Lean proved in Section 13 |
 | Complete compact perfect null accumulation set and exact gaps | Lean proved in Section 14 |
 | Uniform phase law, singular continuous empirical law and exact threshold frequencies | Lean proved in Section 15 |
+| Three-halves gap bounds, exact metric tube formula and Minkowski dimension `2/3` | Lean proved in Section 16; covering-number equivalence recorded as a written argument |
 | Quantitative `O(r^(-1/2))` error | Written proof; this continuation proves `o(1)` only |
 
 These distinctions must be preserved in any communication about the result.
@@ -970,6 +975,119 @@ has zero new violations. The targeted Beatty, layer, ledger and documentation
 link tests pass, along with registry lint, ledger rendering, branch-index
 validation and research metadata checks (zero errors and warnings).
 
+## 16. Gap decay and two-thirds Minkowski dimension
+
+**EXACT — LEAN VERIFIED, at `alpha=log_2 3`.** For the accumulation set
+`K` of Section 14, let
+\[
+K_\varepsilon=\{x\in\mathbb R:\operatorname{dist}(x,K)<\varepsilon\}.
+\]
+The following statements concern this actual open metric neighbourhood.
+
+**Gap asymptotic.** With
+\[
+\kappa=\beta\sqrt\beta\,(2\pi\beta(1-\beta))^{-1/2}
+       =(2\pi\alpha(\alpha-1))^{-1/2},
+\]
+the complete moving asymptotic is
+\[
+r^{3/2}w_r-\kappa F(\delta_r)\longrightarrow0.                 \tag{23}
+\]
+In particular there exist positive constants `a,b` such that, for every
+integer `r>=1`,
+\[
+a r^{-3/2}\le w_r\le b r^{-3/2}.                              \tag{24}
+\]
+The Lean amplitude uses the first, beta-coordinate expression for `kappa`.
+The declarations `certificateWeight_phase_asymptotic` and
+`certificateWeight_three_halves_bounds` are in
+[BeattyCertificateWeights.lean](../../formal/Problems/Juggler/BeattyCertificateWeights.lean).
+
+To obtain (23), use the checked first-term Stirling limit at `m_r`, multiply
+by its inverse fractional-phase factor, and use `r/m_r -> beta` together
+with `R_r^+-F(delta_r)->0`. The exact binomial normalization cancels the
+counting denominator. Since `1<=F<=E` and `kappa>0`, this gives eventual
+two-sided bounds; positivity of every weight absorbs the finite initial
+segment into the constants. No quantitative phase remainder is needed.
+
+**Exact tube formula.** For every `epsilon>0`,
+\[
+\boxed{\quad
+\lambda(K_\varepsilon)=2\varepsilon+
+       \sum_{r\ge1}\min(w_r,2\varepsilon).
+\quad}                                                       \tag{25}
+\]
+Each gap contributes its length truncated at `2 epsilon`. There are two
+outer collars, each of length `epsilon`. Formally,
+[BeattyGapVolume.lean](../../formal/Problems/Juggler/BeattyGapVolume.lean)
+identifies the neighbourhood with the enlarged envelope minus the closed
+central cores of the gaps. Pairwise disjointness and exhaustion of the
+envelope length give (25), including empty central cores.
+
+**Sharp tube order and dimension.** There exist positive `c,C` such that
+\[
+c\varepsilon^{1/3}\le\lambda(K_\varepsilon)
+       \le C\varepsilon^{1/3}\qquad(0<\varepsilon\le1/2).      \tag{26}
+\]
+The lower bound sums the first `floor(t^(-2/3))` terms of the truncated
+series at threshold `t=2 epsilon`. The upper bound splits at
+`ceil(t^(-2/3))`, bounds the initial terms by `t`, and uses the proved
+integral-test estimate
+\[
+\sum_{n>N}n^{-3/2}\le2N^{-1/2}\qquad(N\ge1).
+\]
+These estimates are formalized in
+[BeattyGapDecay.lean](../../formal/Problems/Juggler/BeattyGapDecay.lean).
+
+Taking logarithms of (26) proves
+\[
+\boxed{\quad
+\lim_{\varepsilon\downarrow0}
+ \left(1-\frac{\log\lambda(K_\varepsilon)}{\log\varepsilon}\right)
+ =\frac23.
+\quad}                                                       \tag{27}
+\]
+Thus `K` has Minkowski dimension `2/3`, with positive finite lower and
+upper Minkowski contents. This does not assert equality of those contents
+or the existence of an exact leading constant in (26).
+The public interfaces are `certificateClusterSet_tube_formula`,
+`certificateClusterSet_tube_bounds` and
+`certificateClusterSet_minkowski_dimension`.
+
+The standard real-line box dimension has the same value. To see the
+equivalence directly, let `N(epsilon)` count the mesh intervals of length
+`epsilon` meeting `K`. Their union lies in `K_(2 epsilon)`, while their
+enlargements by `epsilon` cover `K_epsilon`. Consequently
+`epsilon N(epsilon) <= lambda(K_(2 epsilon))` and
+`lambda(K_epsilon) <= 3 epsilon N(epsilon)`, so (26) gives
+`N(epsilon)=Theta(epsilon^(-2/3))`. This covering-number comparison is
+recorded here as a written argument; the Lean dimension interface is
+exactly the logarithmic neighbourhood-volume limit (27).
+
+**Scope and literature.** The dependence of box dimension on complementary
+gap lengths is classical; see Hare, Mendivil and Zuberman [4]. The result
+here identifies the gap decay and dimension for the actual certificate
+accumulation set. It does not establish Hausdorff dimension `2/3`: a
+matching Hausdorff lower bound would require additional control of the
+placement of the gaps. No bounded-partial-quotient hypothesis, effective
+phase error, arbitrary-slope generalization or priority claim is used.
+**PROMOTE** this completed Cantor-geometry theorem within the existing dossier.
+
+The reproducible consumer audit is
+[InterfaceCheckBeattyCantor.lean](../../formal/InterfaceCheckBeattyCantor.lean),
+executed by
+[test_beatty_cantor_interface.py](../../tests/research/juggler_sequence/test_beatty_cantor_interface.py).
+It expands the gap weights into the original integer counts and Bernoulli
+powers, and applies (27) to the subsequential-limit set of the original
+binomial-normalized count sequence. Its ten dependency records contain
+only `propext`, `Classical.choice` and `Quot.sound`.
+
+Validation of this continuation: the complete retained Lean graph builds
+successfully (9051 jobs), the executed original-count consumer audit passes,
+and the targeted Beatty, layer, registry, ledger and documentation tests pass.
+Lean style has zero new violations; the existing five publication releases
+and kits still pass their freshness check.
+
 ## References
 
 1. G. Baxter, *An analytic problem whose solution follows from a simple
@@ -981,3 +1099,6 @@ validation and research metadata checks (zero errors and warnings).
 3. M. Winkler, *Admissible qx+1 Sequences, Semiconvergents, and Rational
    Catalan Numbers*, preprint, 14 September 2026, Corollary 12.
    [arXiv:2609.22303v1](https://arxiv.org/abs/2609.22303v1).
+4. K. E. Hare, F. Mendivil and L. Zuberman, *The Sizes of Rearrangements
+   of Cantor Sets*, author-hosted manuscript, Sections 1–2.
+   [Manuscript](https://www.acadiau.ca/~fmendivi/Papers/rearranged_cantor_sets.pdf).

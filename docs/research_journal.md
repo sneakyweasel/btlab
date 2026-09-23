@@ -24,11 +24,15 @@ Every gap endpoint is a subsequential limit, and closed intervals strictly
 inside gaps are eventually avoided. The empirical law is now proved to be
 `F_*(uniform[0,1])`, atomless and singular with respect to Lebesgue measure,
 with continuous CDF `G`, exact identity `G(F(t))=t` and plateau height `delta_j`
-on the j-th closed jump interval. Quantitative rates, effective numerical
+on the j-th closed jump interval. The gap weights now have checked sharp
+order `r^(-3/2)`; the exact tube formula gives `lambda(K_epsilon)` of order
+`epsilon^(1/3)` and Minkowski dimension `2/3`. Ten consumer dependency
+records check the original-count interfaces. Hausdorff dimension and an
+exact tube leading constant remain open. Quantitative phase rates, effective numerical
 constants and arbitrary irrational slope remain separate extensions.
 **PROMOTE** the completed qualitative
 specialization; no paper/release, priority or trajectory-termination claim is
-changed. Canonical proof boundary: Sections 13–15 of the
+changed. Canonical proof boundary: Sections 13–16 of the
 [comparison note](theory/juggler_beatty_first_passage_note.md) and the
 [dossier](problems/juggler_winkler_phase_collapse.md).
 

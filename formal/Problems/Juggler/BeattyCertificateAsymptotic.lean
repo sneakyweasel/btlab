@@ -143,14 +143,16 @@ private theorem all_depth_ratio_limit :
         exact add_le_add (mul_le_mul_of_nonneg_left (hb _) (by norm_num))
           (mul_le_mul_of_nonneg_left (hb _) survivorBase_pos.le)
 
-private theorem index_ge (r : ℕ) : r ≤ certificateIndex r := by
+/-- Every crossing length is at least its prescribed odd count. -/
+theorem le_certificateIndex (r : ℕ) : r ≤ certificateIndex r := by
   apply Nat.le_floor
   exact (le_div_iff₀ beta_pos).2 (mul_le_of_le_one_right (Nat.cast_nonneg r) beta_lt_one.le)
 
 private theorem index_atTop : Tendsto certificateIndex atTop atTop :=
-  tendsto_atTop_mono index_ge tendsto_id
+  tendsto_atTop_mono le_certificateIndex tendsto_id
 
-private theorem crossing_cutoff {r : ℕ} (hr : 0 < r) : endpointCutoff (certificateIndex r) = r := by
+/-- At a positive certificate crossing the strict binomial cutoff is its odd count. -/
+theorem endpointCutoff_certificateIndex {r : ℕ} (hr : 0 < r) : endpointCutoff (certificateIndex r) = r := by
   have hp := certificatePhase_pos hr
   have hw := (certWindow_iff_endpoint _ _).1 (certificateIndex_window r)
   have hl : (certificateIndex r : ℝ)*beta < r := by
@@ -167,7 +169,8 @@ private theorem crossing_cutoff {r : ℕ} (hr : 0 < r) : endpointCutoff (certifi
   rw [he]
   omega
 
-private theorem crossing_phases {r : ℕ} (hr : 0 < r) :
+/-- The two survivor phases adjoining a positive certificate crossing. -/
+theorem certificateIndex_crossing_phases {r : ℕ} (hr : 0 < r) :
     Int.fract ((certificateIndex r : ℝ)*beta) = 1-beta*certificatePhase r ∧
     Int.fract ((certificateIndex r : ℝ)*beta+beta) = beta*(1-certificatePhase r) := by
   have ha : 1 < 1/beta := (one_lt_div beta_pos).2 beta_lt_one
@@ -184,7 +187,7 @@ private theorem crossing_transfer {r : ℕ} (hr : 0 < r) :
       certificateProfile (certificatePhase r) := by
   have hd0 := certificatePhase_pos hr
   have hd1 := (certificatePhase_mem_Ico r).2
-  have hf := crossing_phases hr
+  have hf := certificateIndex_crossing_phases hr
   have hy : 0 ≤ beta*(1-certificatePhase r) := mul_nonneg beta_pos.le (by linarith)
   have hy1 : beta*(1-certificatePhase r) < 1 := by nlinarith [beta_lt_one]
   have hf' : Int.fract (1-beta*certificatePhase r+beta) = beta*(1-certificatePhase r) := by
@@ -203,12 +206,13 @@ private theorem crossing_transfer {r : ℕ} (hr : 0 < r) :
   have ha := ne_of_gt amplitude_pos
   field_simp
 
-private theorem normalization_identity {r : ℕ} (hr : 0 < r) :
+/-- The all-depth binomial normalization equals the original odd-count normalization. -/
+theorem certificate_normalization_identity {r : ℕ} (hr : 0 < r) :
     (certificateIndex r : ℝ)*(minimalCertCount (certificateIndex r+1) : ℝ)/
       ((certificateIndex r).choose (endpointCutoff (certificateIndex r)) : ℝ) =
     (r : ℝ)*(minimalCertCount (certificateIndex r+1) : ℝ)/
       ((certificateIndex r-1).choose (r-1) : ℝ) := by
-  have hmr := index_ge r
+  have hmr := le_certificateIndex r
   have hm : 0 < certificateIndex r := lt_of_lt_of_le hr hmr
   have he := Nat.add_one_mul_choose_eq (certificateIndex r-1) (r-1)
   rw [Nat.sub_add_cancel (by omega : 1 ≤ certificateIndex r), Nat.sub_add_cancel (by omega : 1 ≤ r)] at he
@@ -217,7 +221,7 @@ private theorem normalization_identity {r : ℕ} (hr : 0 < r) :
   have hc : ((certificateIndex r).choose r : ℝ) ≠ 0 := by exact_mod_cast (Nat.choose_pos hmr).ne'
   have hc' : ((certificateIndex r-1).choose (r-1) : ℝ) ≠ 0 := by
     exact_mod_cast (Nat.choose_pos (Nat.sub_le_sub_right hmr 1)).ne'
-  rw [crossing_cutoff hr]
+  rw [endpointCutoff_certificateIndex hr]
   field_simp
   linear_combination (minimalCertCount (certificateIndex r+1) : ℝ)*heR
 
@@ -233,6 +237,6 @@ theorem certificate_phase_asymptotic :
   apply h.congr'
   filter_upwards [eventually_ge_atTop 1] with r hr
   dsimp [Function.comp_def]
-  rw [normalization_identity (by omega), crossing_transfer (by omega)]
+  rw [certificate_normalization_identity (by omega), crossing_transfer (by omega)]
 
 end Problems.Juggler.BeattyPhase

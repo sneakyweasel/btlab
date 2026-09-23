@@ -1,5 +1,74 @@
 [
  {
+ "id": "J-beatty-certificate-gap-decay",
+ "tag": "EXACT — LEAN VERIFIED",
+ "statement": "For the actual certificate weights at beta=log 2/log 3, r*sqrt(r)*w_r-kappa*F(delta_r) tends to zero, where kappa=beta*sqrt(beta)/sqrt(2*pi*beta*(1-beta)). There exist a,b>0 such that a/(r+1)^(3/2)<=w_(r+1)<=b/(r+1)^(3/2) for every natural r. All counting and asymptotic inputs are discharged; no error rate is asserted.",
+ "source": "docs/theory/juggler_beatty_first_passage_note.md",
+ "lean": "Problems/Juggler/BeattyCertificateWeights.lean",
+ "decl": [
+  "certificateAmplitude_pos",
+  "certificateWeight_phase_asymptotic",
+  "certificateWeight_three_halves_bounds"
+ ],
+ "lean_trust": "kernel",
+ "tests": [
+  "tests/research/juggler_sequence/test_beatty_cantor_interface.py",
+  "tests/research/juggler_sequence/test_layer_completeness.py"
+ ],
+ "related_conjectures": []
+ },
+ {
+ "id": "J-beatty-gap-neighbourhood-volume",
+ "tag": "EXACT — LEAN VERIFIED",
+ "statement": "If K is a closed interval [a,b] minus pairwise disjoint open gaps of summable nonnegative lengths w_n, all gap and envelope endpoints belong to K, and sum w_n=b-a, then the real Lebesgue volume of its open metric epsilon-neighbourhood is 2*epsilon+sum_n min(w_n,2*epsilon) for every epsilon>0. This is a generic classical gap formula, not a novelty claim.",
+ "source": "docs/theory/juggler_beatty_first_passage_note.md",
+ "lean": "Problems/Juggler/BeattyGapVolume.lean",
+ "decl": [
+  "volume_thickening_of_gap_lengths"
+ ],
+ "lean_trust": "kernel",
+ "tests": [
+  "tests/research/juggler_sequence/test_beatty_cantor_interface.py",
+  "tests/research/juggler_sequence/test_layer_completeness.py"
+ ],
+ "related_conjectures": []
+ },
+ {
+ "id": "J-beatty-three-halves-truncated-sum",
+ "tag": "EXACT — LEAN VERIFIED",
+ "statement": "The model tail sum_(n>N) n^(-3/2) is at most 2*N^(-1/2) for positive N. If a summable sequence w has positive two-sided bounds a*(n+1)^(-3/2)<=w_n<=b*(n+1)^(-3/2), then (min(a,1)/2)*t^(1/3)<=sum_n min(w_n,t)<=(2+2*b)*t^(1/3) for every 0<t<=1. These generic estimates use an integral test and finite blocks, with no monotonicity assumption on w itself.",
+ "source": "docs/theory/juggler_beatty_first_passage_note.md",
+ "lean": "Problems/Juggler/BeattyGapDecay.lean",
+ "decl": [
+  "three_halves_tail_le",
+  "truncated_sum_three_halves_bounds"
+ ],
+ "lean_trust": "kernel",
+ "tests": [
+  "tests/research/juggler_sequence/test_beatty_cantor_interface.py",
+  "tests/research/juggler_sequence/test_layer_completeness.py"
+ ],
+ "related_conjectures": []
+ },
+ {
+ "id": "J-beatty-certificate-cantor-dimension",
+ "tag": "EXACT — LEAN VERIFIED",
+ "statement": "For the full subsequential-limit set K of the actual binomial-normalized certificate counts at alpha=log_2 3, volume(K_epsilon)=2*epsilon+sum_(r>=1) min(w_r,2*epsilon). Positive c,C bound this volume between c*epsilon^(1/3) and C*epsilon^(1/3) for every 0<epsilon<=1/2. The limit of 1-log(volume(K_epsilon))/log(epsilon) as epsilon tends to zero from above is 2/3: Minkowski dimension in the real-line tube convention, with positive finite lower and upper contents. The separate covering-number equivalence is written in the note. No Hausdorff-dimension equality or exact tube leading constant is asserted.",
+ "source": "docs/theory/juggler_beatty_first_passage_note.md",
+ "lean": "Problems/Juggler/BeattyCertificateCantor.lean",
+ "decl": [
+  "certificateClusterSet_tube_formula",
+  "certificateClusterSet_tube_bounds",
+  "certificateClusterSet_minkowski_dimension"
+ ],
+ "lean_trust": "kernel",
+ "tests": [
+  "tests/research/juggler_sequence/test_beatty_cantor_interface.py",
+  "tests/research/juggler_sequence/test_layer_completeness.py"
+ ],
+ "related_conjectures": []
+ },
+ {
  "id": "J-beatty-empirical-weak-transfer",
  "tag": "EXACT — LEAN VERIFIED",
  "statement": "For sequences of Borel probability measures on metric spaces, weak convergence passes through a measurable map continuous almost everywhere for the limiting measure. Empirical laws are preserved under vanishing real sample errors, and converge on measurable sets with null limiting boundary. These are generic measure-theoretic tools, not a novelty claim.",
