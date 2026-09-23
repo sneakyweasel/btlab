@@ -94,4 +94,99 @@ theorem sum_mass (f : α → α) (w : α → ℝ≥0∞) (a : α)
         (ENNReal.tsum_sigma (fun d (x : {x : α // f^[d] x = a}) => w x.val)).symm
     _ = _ := (ancestorEquiv f a ha).tsum_eq (fun x => w x.val)
 
+/-- The real indicator of a target's complete ancestor set, including depth zero. -/
+def ancestorIndicator (f : α → α) (a n : α) : ℝ :=
+  if ∃ d : ℕ, f^[d] n = a then 1 else 0
+
+/-- At a nonperiodic target the ancestor indicator has exactly one source:
+its value minus its pullback by the map is the indicator of the target.
+It therefore solves an inhomogeneous equation, not a fixed-point equation. -/
+theorem ancestorIndicator_eq (f : α → α) (a : α)
+    (ha : ∀ k : ℕ, 0 < k → f^[k] a ≠ a) (n : α) :
+    ancestorIndicator f a n = ancestorIndicator f a (f n) + if n = a then 1 else 0 := by
+  have hroot : ¬∃ d : ℕ, f^[d] (f a) = a := by
+    rintro ⟨d, hd⟩
+    apply ha (d+1) (Nat.succ_pos d)
+    simpa only [Function.iterate_succ_apply] using hd
+  by_cases hn : n = a
+  · subst n
+    simp [ancestorIndicator, hroot, show ∃ d : ℕ, f^[d] a = a from ⟨0, rfl⟩]
+  · have hr : (∃ d : ℕ, f^[d] n = a) ↔ ∃ d : ℕ, f^[d] (f n) = a := by
+      constructor
+      · rintro ⟨d, hd⟩
+        cases d with
+        | zero => exact False.elim (hn hd)
+        | succ d => exact ⟨d, by simpa only [Function.iterate_succ_apply] using hd⟩
+      · rintro ⟨d, hd⟩
+        exact ⟨d+1, by simpa only [Function.iterate_succ_apply] using hd⟩
+    simp [ancestorIndicator, hr, hn]
+
+/-- The ancestor indicator of a nonperiodic target cannot be a pullback fixed point. -/
+theorem ancestorIndicator_not_fixed (f : α → α) (a : α)
+    (ha : ∀ k : ℕ, 0 < k → f^[k] a ≠ a) :
+    ¬∀ n, ancestorIndicator f a n = ancestorIndicator f a (f n) := by
+  intro h
+  have he := ancestorIndicator_eq f a ha a
+  rw [h a] at he
+  simp at he
+
+/-- Every nonnegative solution of the single-source pullback equation
+dominates the ancestor indicator. Together with `ancestorIndicator_eq`,
+this makes that indicator the least nonnegative solution off cycles. -/
+theorem ancestorIndicator_le_of_source_eq (f : α → α) (a : α) {g : α → ℝ}
+    (hg : ∀ n, 0 ≤ g n)
+    (he : ∀ n, g n = g (f n) + if n = a then 1 else 0) (n : α) :
+    ancestorIndicator f a n ≤ g n := by
+  have hroot : 1 ≤ g a := by
+    rw [he a, if_pos rfl]
+    exact le_add_of_nonneg_left (hg (f a))
+  have hm (x : α) : g (f x) ≤ g x := by
+    conv_rhs => rw [he x]
+    exact le_add_of_nonneg_right (by split <;> simp)
+  have hpath (d : ℕ) (x : α) (hx : f^[d] x = a) : 1 ≤ g x := by
+    induction d generalizing x with
+    | zero =>
+        change x = a at hx
+        simpa only [hx] using hroot
+    | succ d ih =>
+        exact (ih (f x) (by simpa only [Function.iterate_succ_apply] using hx)).trans (hm x)
+  unfold ancestorIndicator
+  split_ifs with hn
+  · obtain ⟨d, hd⟩ := hn
+    exact hpath d n hd
+  · exact hg n
+
+/-- There exists a nonnegative solution of the source equation with finite
+weighted square sum exactly when the ancestor indicator has finite weighted mass. Thus asking
+for nonexistence of such a solution is an equivalent mass problem, not a
+new sufficient estimate. The weight may in particular be `1/(n+1)`. -/
+theorem exists_summable_source_iff (f : α → α) (a : α)
+    (ha : ∀ k : ℕ, 0 < k → f^[k] a ≠ a) (w : α → ℝ) (hw : ∀ n, 0 ≤ w n) :
+    (∃ g : α → ℝ, (∀ n, 0 ≤ g n) ∧
+      (∀ n, g n = g (f n) + if n = a then 1 else 0) ∧
+      Summable (fun n => w n * (g n)^2)) ↔
+    Summable (fun n => w n * ancestorIndicator f a n) := by
+  constructor
+  · rintro ⟨g, hg, he, hs⟩
+    apply Summable.of_nonneg_of_le _ _ hs
+    · intro n
+      unfold ancestorIndicator
+      split_ifs <;> simp [hw n]
+    · intro n
+      apply mul_le_mul_of_nonneg_left _ (hw n)
+      have hl := ancestorIndicator_le_of_source_eq f a hg he n
+      unfold ancestorIndicator at hl ⊢
+      split_ifs at hl ⊢ with hn
+      · nlinarith
+      · positivity
+  · intro hs
+    refine ⟨ancestorIndicator f a, ?_, ancestorIndicator_eq f a ha, ?_⟩
+    · intro n
+      unfold ancestorIndicator
+      split_ifs <;> norm_num
+    · have hid (n : α) : (ancestorIndicator f a n)^2 = ancestorIndicator f a n := by
+        unfold ancestorIndicator
+        split_ifs <;> norm_num
+      simpa only [hid] using hs
+
 end BTCalculus.PreimageGenerations

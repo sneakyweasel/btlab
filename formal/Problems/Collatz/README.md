@@ -170,3 +170,11 @@ The vanishing affine anchor forces a periodic root, and the negative 5,7
 cycle supplies a growing two-step exception. Arbitrary mixtures of blocks
 remain outside this bound. Both tail modules reuse the shared geometric
 mask lemma. See the [dossier](../../../docs/problems/collatz_fibre_word_tail.md).
+
+The shared `BTCalculus.PreimageGenerations` now checks the single-source
+equation for a nonperiodic target's ancestor indicator, its least
+nonnegative-solution property, and the equivalence between finite weighted
+ancestor mass and a nonnegative solution with finite weighted square sum.
+The [generating-function audit](../../../docs/problems/collatz_ancestor_generating_audit.md)
+explains why the published Hardy fixed-point and natural-boundary results
+do not supply the open harmonic lower bound.

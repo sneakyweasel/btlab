@@ -1,0 +1,6 @@
+'BTCalculus.PreimageGenerations.ancestorIndicator_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.PreimageGenerations.ancestorIndicator_not_fixed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BTCalculus.PreimageGenerations.ancestorIndicator_le_of_source_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'BTCalculus.PreimageGenerations.exists_summable_source_iff' depends on axioms: [propext, Classical.choice, Quot.sound]

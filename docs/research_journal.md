@@ -10,6 +10,19 @@ The earlier full-length journal is available at Git revision
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-23 -- Ancestor generating functions retain the harmonic-mass problem
+
+The generating-function audit finds no lower estimate in the published
+Hardy fixed-point or natural-boundary results. A nonperiodic root has a
+single-source equation, not a fixed-point equation; harmonic mass uses
+the Bergman norm, where expansiveness fails. Lean checks the ancestor
+indicator's source equation, minimality, and the exact finite-energy
+equivalence for arbitrary nonnegative weights. The known ancestor ray of
+3 has finite harmonic mass and a natural boundary for both signs.
+**CLOSE** this automatic analytic transfer; the unit-root word-count
+target and Juggler pressure remain open. See the
+[dossier](problems/collatz_ancestor_generating_audit.md).
+
 ## 2026-09-23 -- Every fixed repeated inverse block has summable mass off cycles
 
 Lean extends the one-halving tail to any fixed positive inverse block w:

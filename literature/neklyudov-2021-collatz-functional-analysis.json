@@ -1,0 +1,10 @@
+{
+ "authors": ["Mikhail Neklyudov"],
+ "id": "neklyudov-2021-collatz-functional-analysis",
+ "title": "Functional analysis approach to the Collatz conjecture",
+ "year": 2021,
+ "url": {"arxiv": "https://arxiv.org/abs/2106.11859", "html": "https://arxiv.org/html/2106.11859"},
+ "problem_area": "collatz",
+ "project_relationship": "known",
+ "notes": "Read 23 September 2026, arXiv v9 dated 1 June 2022: Introduction and Section 4, especially Proposition 4.2, Theorem 4.4 proof and Theorem 4.5. The coefficient pullback F(g)_n=g_{T(n)} is expansive on the Hardy space H^2, and only constants are H^2 fixed points. The pushforward operator T is distinct; its other fixed points must not be confused with pullback fixed points. Harmonic ancestor mass instead corresponds to Bergman square norm sum |b_n|^2/(n+1) for an indicator. That norm is not expansive, even on the unit-supported monomial z^7. A nonperiodic target's ancestor indicator has the source equation b-b o T=delta_a, not a homogeneous fixed-point equation. These results provide no fixed-root harmonic lower bound. See docs/problems/collatz_ancestor_generating_audit.md. Other spectral and index assertions were not independently audited."
+}
