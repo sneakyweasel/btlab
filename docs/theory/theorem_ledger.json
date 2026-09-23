@@ -1,5 +1,53 @@
 [
  {
+ "id": "J-beatty-jump-range-geometry",
+ "tag": "EXACT — LEAN VERIFIED",
+ "statement": "For distinct atoms in (0,1) with summable nonnegative weights, the closure of the cumulative jump profile range is its envelope minus the pairwise disjoint open jump intervals, and this complement has zero Lebesgue measure. Dense strictly positive atoms make the profile strictly increasing and the range closure perfect. Recurrent phase sampling has exactly that range closure as its real subsequential limit set; an additive error tending to zero preserves all such limits. These are generic pure-jump consequences, not a novelty claim.",
+ "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+ "lean": "Problems/Juggler/BeattyProfileGeometry.lean",
+ "decl": [
+  "closure_range_jumpProfile",
+  "jumpProfile_gaps_pairwiseDisjoint",
+  "volume_jumpRange",
+  "jumpProfile_strictMonoOn",
+  "perfect_jumpRange",
+  "mapClusterPt_jumpProfile_iff",
+  "mapClusterPt_iff_of_sub_tendsto_zero"
+ ],
+ "lean_trust": "kernel",
+ "tests": [
+  "tests/research/juggler_sequence/test_layer_architecture.py",
+  "tests/research/juggler_sequence/test_layer_completeness.py"
+ ],
+ "related_conjectures": []
+ },
+ {
+ "id": "J-beatty-certificate-accumulation-set",
+ "tag": "EXACT — LEAN VERIFIED",
+ "statement": "For alpha=log_2 3, the actual normalized certificate counts R_r=r*c_r/binom(m_r-1,r-1) have exactly K=[1,alpha/(alpha-1)] minus the union over j>=1 of (F(delta_j),F(delta_j)+w_j) as their real subsequential limit set. K is nonempty, compact, perfect, Lebesgue-null and has empty interior. Both endpoints of every listed gap are subsequential limits. Every closed interval strictly inside a gap is eventually avoided. Exact phase recurrence is proved; no unproved density or asymptotic input remains. No empirical limiting law, convergence rate, arbitrary-slope theorem or novelty claim is asserted.",
+ "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+ "lean": "Problems/Juggler/BeattyCertificateCluster.lean",
+ "decl": [
+  "certificatePhase_recurrent",
+  "certificateProfile_strictMonoOn",
+  "certificateClusterSet_eq_closure_range",
+  "certificateRatio_cluster_iff",
+  "isCompact_certificateClusterSet",
+  "perfect_certificateClusterSet",
+  "volume_certificateClusterSet",
+  "interior_certificateClusterSet",
+  "certificateRatio_gap_endpoints_cluster",
+  "certificateRatio_eventually_avoids_gap",
+  "certificateClusterSet_nonempty"
+ ],
+ "lean_trust": "kernel",
+ "tests": [
+  "tests/research/juggler_sequence/test_layer_architecture.py",
+  "tests/research/juggler_sequence/test_layer_completeness.py"
+ ],
+ "related_conjectures": []
+ },
+ {
  "id": "J-beatty-fine-terminal-survivor-phase",
  "tag": "EXACT — LEAN VERIFIED",
  "statement": "At beta=log 2/log 3 the strict binomial tail satisfies sqrt(n) T_n/v^n-Phi(n beta)->0 with the exact fractional-part correction. Stirling and a vanishing entropy remainder give the first-term limit; dominated convergence gives the geometric-tail ratio. The actual survivor counts therefore have the explicit convolution phase asymptotic and satisfy the existing MeanderShape predicate unconditionally. The limit is additive o(1), not a quantitative rate.",

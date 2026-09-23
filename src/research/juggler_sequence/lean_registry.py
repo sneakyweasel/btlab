@@ -336,6 +336,8 @@ AUXILIARY_MODULES: dict[str, str] = {
     "BeattyCertificateSeries": "Actual Beatty certificate jump weights, exact total mass, positivity and one-sided traces",
     "BeattyCertificateIdentification": "Exact identification of the transferred survivor profile with the certificate jump series",
     "BeattyCertificateAsymptotic": "Unconditional original binomial-normalized certificate asymptotic with additive o(1) error",
+    "BeattyProfileGeometry": "Exact gap complement, null perfect range closure, and recurrent sampling of cumulative jump profiles",
+    "BeattyCertificateCluster": "Complete certificate accumulation set: compact perfect null geometry, exact gaps and eventual interior-gap avoidance",
     "PaperBLevelWindow": "The empty-window theorem at every level, not only Paper B's",
     "PaperBJumpTransposition": "Paper B: one barrier transposition costs the barrier mass",
     "CollatzBridgeLab": "Laboratory extensions of the Collatz bridge: the minimal-certificate count as a residue count (Paper B recursion) and the -17 cycle word inside CycleMinShape (IdealCycleMin)",

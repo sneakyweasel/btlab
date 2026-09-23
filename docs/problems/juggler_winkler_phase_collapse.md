@@ -189,10 +189,39 @@ atoms. Finally `certificate_phase_asymptotic` proves the original
 `r c_r/binom(m_r-1,r-1)-F(delta_r) -> 0` without unproved inputs. See Section 13
 of the [comparison note](../theory/juggler_beatty_phase_transfer_note.md).
 
+**23 September: complete accumulation set.** The new
+[certificate cluster module](../../formal/Problems/Juggler/BeattyCertificateCluster.lean)
+proves that all subsequential limits of `R+_r` form exactly the envelope
+`[1,alpha/(alpha-1)]` with the open intervals
+`(F(delta_j),F(delta_j)+w_j)` removed. This is a nonempty compact perfect set
+of Lebesgue measure zero. Both endpoints of every gap are subsequential
+limits; every closed interval strictly inside a gap is eventually avoided.
+The generic geometry and recurrent-sampling argument are in
+[BeattyProfileGeometry.lean](../../formal/Problems/Juggler/BeattyProfileGeometry.lean).
+Section 14 of the comparison note records the proof and scope.
+
+Continuation triage:
+
+```text
+Mathematical target     Identify all certificate accumulation values and exact gaps.
+Novelty hypothesis      The specialization refines the known extremal envelopes;
+                        the generic pure-jump geometry is not claimed new.
+Falsifier               A missing continuous component or overlapping gaps.
+Already killed by?      No matching obstruction; the proved exact series identity
+                        removes the missing-component issue. No recurrence-only
+                        shortcut or unproved frequency assumption is used.
+Existing machinery      Positive weights, total mass, one-sided traces, phase limit.
+Maximum Phase-0 scope   Generic range geometry and logarithmic-slope specialization.
+Promotion criterion     Kernel-checked exact cluster set and null perfect geometry.
+Stop criterion          A new unproved analytic premise is needed.
+PROMOTE
+```
+
 ## Open questions
 
 The qualitative logarithmic-slope phase theorem and normalization are complete
-in Lean. The remaining mathematical extensions are a quantitative remainder,
+in Lean, as is the complete accumulation set. An empirical limiting distribution
+is not yet formalized. Other remaining mathematical extensions are a quantitative remainder,
 effective numerical truncation bounds, and generalization from the concrete
 logarithmic slope to arbitrary irrational `1<alpha<2`. Literature comparison
 is separate from proof checking; existing paper claims and releases retain
@@ -202,8 +231,8 @@ their earlier evidence labels.
 
 `PROMOTE` -- the actual normalized certificate counts have the explicit positive
 jump-series asymptotic, with its full normalization and strict atom convention
-proved. The requested continuation adds five analytic/certificate modules
-within the existing branch. No new branch, publication, priority claim or
+proved. The continuation also identifies the full null perfect accumulation set
+and its exact gaps. No new branch, publication, priority claim or
 trajectory-termination claim is opened.
 
 ## Publication assessment

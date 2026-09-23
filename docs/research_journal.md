@@ -18,11 +18,14 @@ The qualitative logarithmic-slope theorem is now **EXACT — LEAN VERIFIED**:
 The finer binomial phase limit discharges the survivor asymptotic input;
 finite first moments prove critical first-passage mass one; exact reindexing
 identifies the whole jump series, with total mass `1/(alpha-1)` and first
-jump `beta`. The strict atom convention and one-sided traces are checked.
-The quantitative rate, effective numerical constants and arbitrary irrational
-slope remain separate extensions. **PROMOTE** the completed qualitative
+jump `beta`. The complete accumulation set is now also Lean-checked: the
+envelope minus the explicit open jumps is compact, perfect and Lebesgue-null.
+Every gap endpoint is a subsequential limit, and closed intervals strictly
+inside gaps are eventually avoided. An empirical limiting law, quantitative
+rate, effective numerical constants and arbitrary irrational slope remain
+separate extensions. **PROMOTE** the completed qualitative
 specialization; no paper/release, priority or trajectory-termination claim is
-changed. Canonical proof boundary: Section 13 of the
+changed. Canonical proof boundary: Sections 13–14 of the
 [comparison note](theory/juggler_beatty_phase_transfer_note.md) and the
 [dossier](problems/juggler_winkler_phase_collapse.md).
 

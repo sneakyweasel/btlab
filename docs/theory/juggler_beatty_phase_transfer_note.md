@@ -10,6 +10,8 @@ counting, binomial or first-passage premise. Sections 1–7 retain the broader
 written calculation for irrational `1<alpha<2`; that generalization and the
 quantitative `O(r^(-1/2))` rate in (3) are not asserted by the Lean theorem.
 Sections 12–13 describe the checked specialization and its proof boundary.
+Section 14 identifies all accumulation values of the normalized certificate
+counts as an explicit compact perfect set of Lebesgue measure zero.
 No trajectory-termination or priority claim is made.
 
 The new end-to-end interface is
@@ -232,8 +234,9 @@ The abstract Lean moving-kernel theorem applies to the first-half kernel
 \(\mathbf1_{j<n,\;2j\le n}\sqrt n A_{n-j}\), the shifted kernel
 \(\Phi(\{x_n-j\beta\})\), and the second-half remainder above. Its fixed-index
 approximation follows from (10) and \(\sqrt{n/(n-j)}\to1\); its domination
-follows from \(n/(n-j)\le2\). Establishing these concrete inputs is part of
-this written argument, not yet of its Lean specialization.
+follows from \(n/(n-j)\le2\). Sections 12–13 formalize the qualitative
+specialization of these inputs at the logarithmic slope. The displayed
+quantitative remainder remains part of the written argument.
 It never replaces a moving phase by its limit, and so does not require
 continuity at an orbit point or uniform separation from the dense jump set.
 The constants depend on the fixed slope; no uniformity as \(\alpha\to2\)
@@ -726,3 +729,86 @@ principal declarations list only `propext`, `Classical.choice` and
 has zero new violations. The targeted Beatty, layer, ledger and documentation
 link tests pass, as do ledger rendering, branch-index and research metadata
 checks (zero errors and warnings).
+
+## 14. The complete certificate accumulation set
+
+**EXACT — LEAN VERIFIED, at `alpha=log_2 3`.** Write
+`E=alpha/(alpha-1)=1+1/s`. The complete set of real subsequential limits is
+
+\[
+\boxed{\quad
+\operatorname{Clust}(R_r^+)=K
+=[1,E]\setminus\bigcup_{j\ge1}
+  \bigl(F(\delta_j),F(\delta_j)+w_j\bigr).
+\quad}                                                     \tag{18}
+\]
+
+The set `K` is nonempty, compact and perfect, with Lebesgue measure zero
+and empty interior. Thus the envelope contains a Cantor set of accumulation
+values with explicitly identified complementary gaps. Both endpoints of
+every listed gap are actual subsequential limits. The first gap has length
+`w_1=beta`. This is a qualitative description of the complete limit set;
+it does not assert a rate of approach or a limiting frequency law.
+
+The public interface
+[certificateRatio_cluster_iff](../../formal/Problems/Juggler/BeattyCertificateCluster.lean)
+uses `MapClusterPt y atTop certificateRatio`, which for real sequences is
+equivalent to convergence along a strictly increasing subsequence. Its
+right-hand side is membership in the explicitly defined `certificateClusterSet`.
+The original integer counts and binomial denominator are retained in
+`certificateRatio`; no fitted or independently assumed phase model replaces them.
+
+**Range geometry.** The generic module
+[BeattyProfileGeometry.lean](../../formal/Problems/Juggler/BeattyProfileGeometry.lean)
+proves that the closure of a summable nonnegative cumulative jump profile's
+range is precisely its envelope minus its open jump intervals. The atoms
+must be distinct and lie in `(0,1)`; density is unnecessary for this first
+statement. For the reverse inclusion, a supremum cut locates any omitted
+value between the two traces at one phase. If the traces differ, that phase
+is an atom, and the omitted value lies in its listed gap. This rules out
+unlisted gaps as well as an unaccounted continuous component.
+
+Monotonicity makes the open gaps pairwise disjoint. Each has Lebesgue measure
+equal to its weight, and their total measure equals `sum w_j=E-1`. Subtracting
+them from the envelope leaves measure zero. Dense strictly positive atoms
+make `F` strictly increasing on `[0,1]`. Its left traces, and its right trace
+at zero, approximate every range value by distinct range values. The closure
+is consequently perfect. These statements are proved for the generic series
+before specializing to the certificate weights.
+
+**Actual subsequences.** The new certificate module proves recurrence of the
+exact phase sequence in every open subinterval of `[0,1]`, arbitrarily far
+along the sequence. Positivity of every nonzero certificate phase first
+proves irrationality of `1/beta`. Mathlib's density and recurrence theorems
+for a compact additive circle then apply. Sampling the one-sided continuous
+profile along these recurrent phases gives exactly its range closure as
+the set of subsequential limits. A separate general lemma proves that an
+additive error tending to zero preserves every real subsequential limit in
+both directions. Applying the existing `certificate_phase_asymptotic` proves
+(18) without a new analytic premise.
+
+**A precise finite-depth consequence.** For every listed gap and every
+closed interval `[a,b]` strictly inside it, there is a depth beyond which
+`R_r^+` never belongs to `[a,b]`. This is
+`certificateRatio_eventually_avoids_gap`. Individual finite-depth values may
+still enter a gap near its endpoints. The formal theorem does not claim that
+all sufficiently large values lie exactly in `K`.
+
+**Boundary and decision.** The geometry of a positive pure jump series is
+a general consequence, not a novelty claim. The application here specifies
+every certificate accumulation value and every interior gap beyond the
+earlier extremal envelopes. Empirical weak convergence to the law of `F(U)`
+for uniform `U`, and singular continuity of that law, are separate proposed
+corollaries and are not asserted by these Lean modules. Quantitative errors,
+effective constants and arbitrary irrational slopes remain separate as well.
+**PROMOTE** this completed accumulation-set theorem within the existing dossier.
+
+Validation: the complete retained Lean graph passes (9046 jobs). The executed
+consumer audit in `.build/beatty-cluster/Audit.lean` expands the count ratio and
+the gap set, and checks compactness, perfectness, null measure, empty interior,
+nonemptiness and the two endpoint limits. All seventeen audited principal
+declarations depend only on `propext`, `Classical.choice` and `Quot.sound`.
+There are no proof placeholders or added assumptions. Lean style reports zero
+new violations; the targeted Beatty, layer, ledger and documentation-link tests
+pass. Registry lint, ledger rendering, branch-index validation and research
+metadata checks pass, with zero metadata errors or warnings.
