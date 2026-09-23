@@ -56,3 +56,12 @@ coefficient equals the sum over actual paths, and divergence of the corrected
 coefficient series implies divergent actual ancestor reciprocal mass. Its
 arithmetic premise remains open; see the
 [proof map](../../../docs/theory/collatz_negative_generation_mass_lean_note.md).
+
+[SignedOrbitPacking.lean](SignedOrbitPacking.lean) extends the exact binary
+moment and packing bound to both signs and finite nonrepeating paths.
+[UniformFibreDistortion.lean](UniformFibreDistortion.lean) uses the summable
+terminal-window correction to replace the sixth-root allowance with one
+absolute constant, uniformly over all depths and nonperiodic targets.
+Unweighted coefficient-series divergence suffices for both signs; that
+premise remains open. See the
+[proof map](../../../docs/theory/collatz_uniform_generation_mass_lean_note.md).

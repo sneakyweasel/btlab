@@ -1,0 +1,27 @@
+'Problems.Collatz.SignedOrbitPacking.step_even' depends on axioms: [propext]
+'Problems.Collatz.SignedOrbitPacking.step_odd' depends on axioms: [propext, Quot.sound]
+'Problems.Collatz.SignedOrbitPacking.step_congr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.SignedOrbitPacking.oddCount_congr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.SignedOrbitPacking.parity_moment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.SignedOrbitPacking.odd_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.SignedOrbitPacking.endpoint_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.SignedOrbitPacking.small_endpoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.SignedOrbitPacking.packing_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.SignedOrbitPacking.finite_path_packing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.SignedOrbitPacking.shellBudget_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.SignedOrbitPacking.shellBudget_summable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.SignedOrbitPacking.reciprocalBudget_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.SignedOrbitPacking.finite_path_reciprocal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.UniformFibreDistortion.path_reciprocal_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Collatz.UniformFibreDistortion.distortionConstant_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Collatz.UniformFibreDistortion.pathLoss_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.UniformFibreDistortion.pathCoefficient_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.UniformFibreDistortion.kernel_mass_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.UniformFibreDistortion.ancestorMass_eq_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.UniformFibreDistortion.ancestor_reciprocals_not_summable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

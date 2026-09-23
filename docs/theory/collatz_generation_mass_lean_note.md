@@ -5,6 +5,10 @@ the [fibre dossier](../problems/collatz_fibre_mass.md). The divergence
 premise remains open. Independent review and advisory statement coverage
 remain pending.
 
+The [uniform negative continuation](collatz_uniform_generation_mass_lean_note.md)
+now proves the corresponding unweighted series criterion for 3n-1, with one
+absolute multiplicative allowance. Both arithmetic divergence premises remain open.
+
 ## Exact statement
 
 Let S(n)=(3n+1)/2^v2(3n+1) on positive odd integers. Let h be the indicator

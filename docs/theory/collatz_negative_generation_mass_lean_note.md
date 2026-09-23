@@ -5,6 +5,12 @@
 Independent review and advisory statement coverage remain pending. No
 literature priority is claimed.
 
+**Strengthening, later on 23 September:** the
+[uniform continuation](collatz_uniform_generation_mass_lean_note.md) replaces
+the sixth-root allowance by one absolute constant, using signed finite-path
+packing. The earlier theorem below remains valid. Unweighted coefficient
+divergence suffices on the minus side too, and remains open.
+
 ## Exact statements
 
 Let S(n)=(3n-1)/2^v2(3n-1) on positive odd integers. Let

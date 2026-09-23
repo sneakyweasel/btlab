@@ -132,6 +132,12 @@ correction; the corresponding weighted coefficient-series criterion is
 kernel-checked. Its divergence premise remains open. This does not repair
 the uniform fixed-depth reproduction inequality or give Juggler pressure.
 
+The [uniform finite-path continuation](theory/collatz_uniform_generation_mass_lean_note.md)
+subsequently replaces the polynomial negative allowance by one absolute
+constant. The last-window correction handles preperiodic targets. Unweighted
+coefficient-series divergence suffices for either sign and remains open.
+This does not give uniform fixed-depth reproduction or a Juggler packing transfer.
+
 ## Collatz orbit packing does not bypass Juggler parity counts
 
 The [orbit-packing audit](problems/juggler_collatz_bridge.md) separates

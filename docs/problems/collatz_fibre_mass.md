@@ -349,6 +349,19 @@ targets are excluded, and the repeated path at 1 is an exact control
 showing why that hypothesis matters. Independent review and advisory
 coverage remain pending; the ledger retains its HUMAN PROOF label.
 
+### 6. Uniform negative affine loss
+
+The [finite-path continuation](../theory/collatz_uniform_generation_mass_lean_note.md)
+now replaces the sixth-root depth allowance by one absolute constant C>0.
+Signed shortcut parity gives the exact binary-residue moment. Removing the
+last 5m steps before applying equal-time packing adds a summable shell error,
+so every positive nonrepeating finite shortcut path has uniformly bounded
+reciprocal mass. The actual acceleration correspondence includes preperiodic
+targets. Thus actual negative depth-d mass is at least K_d^-(a)/(C*a), and
+divergence of the unweighted sum_d K_d^-(a) suffices. This full implication
+is kernel-checked in UniformFibreDistortion. The arithmetic divergence
+premise remains open, and the finite periodic weight obstruction is unchanged.
+
 ## Open questions
 
 Can the series in Result 4 be shown to diverge at at least one actual
@@ -356,8 +369,8 @@ nonperiodic odd unit in every full fate class? Tao's averaged residue
 mixing does not by itself control these prescribed integer targets.
 The exact modular recurrence and its agreement with Tao identify the
 arithmetic object; they do not supply the missing pointwise estimate.
-For the minus map, the corresponding sufficient series is the corrected
-one in Result 5. No divergence theorem for it is asserted.
+For the minus map, Result 6 now removes the depth weight from the
+sufficient series in Result 5. No divergence theorem for it is asserted.
 
 ## Decision
 

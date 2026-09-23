@@ -1,5 +1,34 @@
 # Research journal
 
+## 2026-09-23 -- Finite-path packing removes the negative affine depth loss
+
+- **Previous-turn audit:** The polynomial generation proof was completed and
+  committed in bc779ab7. The proposed dyadic coefficient lower bound was still
+  a recommendation with an open arithmetic premise.
+- **Result:** Signed shortcut parity has exact residue moment 3^k. Packing
+  the first N-5m states of a nonrepeating finite path and bounding its last
+  5m states separately gives a summable reciprocal shell bound, uniformly
+  over finite path length. A preperiodic target is allowed; future equal-time
+  injectivity is not assumed.
+- **Actual bridge:** The negative accelerated map is explicitly related to
+  shortcut iteration by its odd part and return clock. The source reciprocal
+  sum is at most one absolute B. Hence the affine product is at least exp(-B),
+  and actual generation mass is at least K_d^-(a)/(a*exp(B)).
+- **Consequence:** The sufficient negative coefficient series is now unweighted,
+  like the plus criterion. Its divergence and the fixed-root dyadic lower
+  bound remain open. No Juggler pressure or termination implication is asserted.
+- **Attribution:** Packing is known; the five-step constants follow M. Sharpe's
+  MIT-licensed OrbitPacking.lean. The signed moment, finite terminal-window
+  correction and application to the complete negative generation operator are
+  proved locally. No literature priority is claimed.
+- **Validation:** Both modules compile; exact signed parity, finite-path,
+  preperiodic-merger and periodic controls pass. The final proof map records
+  the full-build and public-declaration audit outcomes.
+- **Decision:** PROMOTE the uniform affine bound and the complete unweighted
+  generation-series criterion. Stop this bounded phase. Arithmetic coefficient
+  divergence and the larger termination goal remain open.
+- **Proof map:** [uniform generation mass](theory/collatz_uniform_generation_mass_lean_note.md).
+
 ## 2026-09-23 -- Negative Collatz affine loss is polynomial on nonperiodic paths
 
 - **Continuation audit:** The previous recommendation supplied a recalibrated

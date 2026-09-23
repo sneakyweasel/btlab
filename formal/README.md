@@ -25,6 +25,11 @@ The project contains no `sorry` or `admit`.
 
 Compiled theorem groups:
 
+- negative Collatz generation mass dominates the complete unweighted
+  coefficient divided by the target and one absolute constant. Signed
+  finite-path packing removes the sixth-root depth loss, including
+  preperiodic targets. Coefficient-series divergence remains open; see the
+  [proof map](../docs/theory/collatz_uniform_generation_mass_lean_note.md);
 - negative Collatz ancestor generations have a polynomial affine loss:
   nonperiodicity gives distinct odd source states, bounding the correction
   below by (d+1)^(-1/6). The complete coefficient series with this loss

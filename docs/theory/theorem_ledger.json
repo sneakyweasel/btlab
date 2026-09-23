@@ -10894,5 +10894,49 @@
    "tests/research/collatz/test_fibre_mass.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "C-signed-finite-path-reciprocal-bound",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For each signed Collatz shortcut map T_s, the complete binary-residue moment sum_(0<=n<2^k) 2^o_k(n) equals 3^k. For any finite nonrepeating path of length N, every subset A of its states in [0,32^m) satisfies 8^m*|A| <= 2*216^m+243^m+8^m*(5*m). Discarding the final 5*m states suffices for equal-time injectivity on the earlier segment; no hypothesis on future orbit behavior is required. Every positive subset of the path has reciprocal mass at most the same absolute B=sum_m[54*(27/32)^m+(243/8)*(243/256)^m+5*(m+1)*(1/32)^m], a convergent real series. Known packing method with the five-step constants attributed to M. Sharpe; signed moment and finite-path correction proved locally. Kernel-checked; independent review and advisory coverage pending. No Juggler source-count transfer is asserted.",
+  "source": "docs/theory/collatz_uniform_generation_mass_lean_note.md",
+  "lean": "Problems/Collatz/SignedOrbitPacking.lean",
+  "lean_trust": "kernel",
+  "decl": [
+   "Problems.Collatz.SignedOrbitPacking.step",
+   "Problems.Collatz.SignedOrbitPacking.oddCount",
+   "Problems.Collatz.SignedOrbitPacking.parity_moment",
+   "Problems.Collatz.SignedOrbitPacking.packing_bound",
+   "Problems.Collatz.SignedOrbitPacking.finite_path_packing",
+   "Problems.Collatz.SignedOrbitPacking.shellBudget",
+   "Problems.Collatz.SignedOrbitPacking.shellBudget_summable",
+   "Problems.Collatz.SignedOrbitPacking.reciprocalBudget",
+   "Problems.Collatz.SignedOrbitPacking.finite_path_reciprocal"
+  ],
+  "tests": [
+   "tests/research/collatz/test_signed_orbit_packing.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "C-negative-generation-uniform-affine-loss",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For the negative odd-return map S and its complete coefficient K_d=L_-^d 1_units, one absolute C>0 satisfies actual depth-d unit-ancestor reciprocal mass >= K_d(a)/(C*a), for every positive odd nonperiodic target a and every d>=0. Actual path-source reciprocal sums have one absolute bound B, the affine correction is at least exp(-B), and C=exp(B). The acceleration correspondence includes preperiodic targets. Consequently nonsummability of the unweighted coefficient series sum_d K_d(a) implies nonsummability of the ordinary reciprocal indicator series of all actual positive odd unit ancestors of a. Coefficient divergence remains OPEN. Kernel-checked; independent review and advisory statement coverage pending. No Juggler pressure estimate, termination or infinite escape is claimed.",
+  "source": "docs/theory/collatz_uniform_generation_mass_lean_note.md",
+  "lean": "Problems/Collatz/UniformFibreDistortion.lean",
+  "lean_trust": "kernel",
+  "decl": [
+   "Problems.Collatz.UniformFibreDistortion.distortionConstant",
+   "Problems.Collatz.UniformFibreDistortion.distortionConstant_pos",
+   "Problems.Collatz.UniformFibreDistortion.path_reciprocal_bound",
+   "Problems.Collatz.UniformFibreDistortion.pathLoss_lower",
+   "Problems.Collatz.UniformFibreDistortion.kernel_mass_le",
+   "Problems.Collatz.UniformFibreDistortion.ancestor_reciprocals_not_summable"
+  ],
+  "tests": [
+   "tests/research/collatz/test_signed_orbit_packing.py",
+   "tests/research/collatz/test_fibre_distortion.py"
+  ],
+  "related_conjectures": []
  }
 ]
