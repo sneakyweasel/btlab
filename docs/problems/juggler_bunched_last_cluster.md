@@ -179,11 +179,9 @@ It is not required.
 - Tests: `tests/research/juggler_sequence/test_bunched_last_cluster.py`
 - The Research Engine control layer is not modified.
 - No cycle-state search. No length-8 or length-9 census.
-- Lean lives in `BunchedEEE.lean`, `BunchedEOEE.lean`,
-  `BunchedEOOEE.lean`, `BunchedEEOE.lean`,
-  `BunchedEOEOE.lean`, `BunchedEOOOEE.lean`,
-  `BunchedEOOEOE.lean`, and the shared tight-cell file
-  `BunchedTight.lean`. Paper A records Theorems 3.14--3.20.
+- The seven Lean exclusions are consolidated in `LeftoverFamilies.lean`,
+  with shared tight cells in `BunchedTight.lean`.
+  The original Paper A record numbers them as Theorems 3.14--3.20.
 
 ## Conjectures
 
@@ -214,20 +212,23 @@ claims that remain false or unproved:
 
 ## Formalization
 
-`formal/Problems/Juggler/BunchedEEE.lean` excludes the `EEE`
-family: `no_cycle_itinerary_three_even_eee`.
-`formal/Problems/Juggler/BunchedEOEE.lean` excludes the `EOEE`
-family: `no_cycle_itinerary_three_even_eoee`.
-`formal/Problems/Juggler/BunchedEOOEE.lean` excludes the `EOOEE`
-family: `no_cycle_itinerary_three_even_eooee`.
-`formal/Problems/Juggler/BunchedEEOE.lean` excludes the `EEOE`
-family: `no_cycle_itinerary_three_even_eeoe`.
-`formal/Problems/Juggler/BunchedEOEOE.lean` excludes the `EOEOE`
-family: `no_cycle_itinerary_three_even_eoeoe`.
-`formal/Problems/Juggler/BunchedEOOOEE.lean` excludes the
-`EOOOEE` family: `no_cycle_itinerary_three_even_eoooee`.
-`formal/Problems/Juggler/BunchedEOOEOE.lean` excludes the
-`EOOEOE` family: `no_cycle_itinerary_three_even_eooeoe`.
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/LeftoverFamilies.lean` contains all seven
+exclusions in namespace `Problems.Juggler`:
+
+| Tail | Declaration |
+|---|---|
+| `EEE` | `no_cycle_itinerary_three_even_eee` |
+| `EOEE` | `no_cycle_itinerary_three_even_eoee` |
+| `EOOEE` | `no_cycle_itinerary_three_even_eooee` |
+| `EEOE` | `no_cycle_itinerary_three_even_eeoe` |
+| `EOEOE` | `no_cycle_itinerary_three_even_eoeoe` |
+| `EOOOEE` | `no_cycle_itinerary_three_even_eoooee` |
+| `EOOEOE` | `no_cycle_itinerary_three_even_eooeoe` |
+
 There is no `no_cycle_itinerary_bunched` and no
 `no_cycleMin_bunched`. `SmallCycleCensus.lean` still assembles
 only through length seven. No `no_cycle_itinerary_length_eight`. No

@@ -109,10 +109,15 @@ barrier and is not a frequency statement.
 
 ## Formalization
 
-`formal/Problems/Engine/RepeatedOE.lean`, above `MinimalNonTerm`.
-Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
 
-- `wordOE` / `repeatedOE`
+`formal/Problems/Juggler/ItineraryStats.lean`,
+`formal/Problems/Juggler/Scale.lean`, and
+`formal/Problems/Juggler/Envelope.lean`. Branch additions:
+
+- `itineraryOE` / `repeatedOE`
 - `oe_block_scale` / `oe_block_contracts`
 - `repeated_oe_scale`
 - `repeated_oe_scale_barrier` / `oe_requires_scale`

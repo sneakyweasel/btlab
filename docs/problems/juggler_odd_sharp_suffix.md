@@ -91,8 +91,10 @@ It is not required.
   parameter \(a\); no huge \(n^{3/2}\) construction; no floats
 - Records: [juggler_odd_sharp_suffix.md](../research/juggler_odd_sharp_suffix.md),
   [juggler_odd_sharp_suffix.json](../research/juggler_odd_sharp_suffix.json)
-- Tests: `tests/research/juggler_sequence/test_odd_sharp_suffix.py`,
-  `tests/tools/test_odd_fourth_power_search.py`
+- Tests: `tests/research/juggler_sequence/test_odd_sharp_suffix.py`.
+  The auxiliary `test_odd_fourth_power_search.py` was removed in the
+  September cleanup; its original record is available through
+  [Git recovery](../history.md#earlier-research-programmes).
 - The Research Engine control layer is not modified.
 
 ## Conjectures
@@ -109,7 +111,11 @@ None opened.
 
 ## Formalization
 
-`formal/Problems/Engine/FloorPower.lean`. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Preimages.lean`. Added:
 
 - `floor_sqrt_eq_iff_sq_interval`
 - `floorPower_odd_eq_iff_cube_interval`

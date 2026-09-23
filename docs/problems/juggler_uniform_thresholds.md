@@ -116,7 +116,11 @@ to infinity: \(\alpha(v_k)=(27/16)^k\).
 
 ## Formalization
 
-`formal/Problems/Engine/FloorPower.lean`. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Collapse.lean`. Added:
 
 - `alphaMargin` / `minimal_superquadratic_margin`
 - `even_tower_to_one` / `even_tower_odd_tail_contracts`

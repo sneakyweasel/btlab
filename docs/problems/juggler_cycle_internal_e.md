@@ -132,7 +132,12 @@ None to the bootstrap. The stronger claims that fail:
 
 ## Formalization
 
-`formal/Problems/Engine/CycleItinerary.lean`, a small extension. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/CycleCore.lean` and
+`formal/Problems/Juggler/CycleObstructions.lean`, a small extension. Added:
 
 - `CycleMin` / `cycleMin_even_ge_sq` / `cycleMin_not_odd_even`
 - `no_cycleMin_internal_even_threshold`

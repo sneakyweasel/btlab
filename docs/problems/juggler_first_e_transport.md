@@ -137,7 +137,7 @@ It is not required.
 - Tests: `tests/research/juggler_sequence/test_first_e_transport.py`
 - The Research Engine control layer is not modified.
 - No cycle-state search. No length-8 or length-9 census.
-- Gapped `CycleMin` Lean is in `FirstETransport.lean`. No
+- Gapped `CycleMin` Lean is in `LeftoverFamilies.lean`. No
   bunched-tail Lean. Paper A records the transport as Theorem 3.13.
 
 ## Conjectures
@@ -163,7 +163,11 @@ stronger claims that remain false or unproved:
 
 ## Formalization
 
-`formal/Problems/Juggler/FirstETransport.lean` excludes the gapped
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/LeftoverFamilies.lean` excludes the gapped
 `CycleMin`s: `no_cycleMin_gapped_three_even_ee` and
 `no_cycleMin_gapped_three_even_eoe`. Large \(y\) is the shared
 two-even tail at the leftover start; \(n<256\) is seven-odd or

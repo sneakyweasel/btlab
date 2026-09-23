@@ -138,7 +138,12 @@ None to the extrema package. The stronger claims that fail:
 
 ## Formalization
 
-`formal/Problems/Engine/CycleItinerary.lean`, a small extension. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/CycleExtrema.lean` and
+`formal/Problems/Juggler/EvenCountThree.lean`, a small extension. Added:
 
 - `CycleMax` / `exists_cycle_max_even` / `cycleMax_start_even`
 - `cycleMin_max_gt_sq` / `cycleMax_return_preimage`

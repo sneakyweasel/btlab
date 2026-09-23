@@ -81,7 +81,7 @@ Existing machinery      formal expansion; rotation to even-terminating;
                         odd-run; OO/OOO thresholds; CycleMin barriers;
                         no_cycleMin_internal_even_threshold;
                         lowerDenom / last-even cell; leftover finite
-                        table + tail (LeftoverCycles.lean).
+                        table + tail (LeftoverShort.lean).
 Maximum Phase-0 scope   One probe: inventory + leftover-tail cutoffs
                         + exact CycleItinerary check on 2≤n<N0 for the two
                         leftovers only. No Lean, no Paper A edit, no
@@ -143,7 +143,7 @@ It is not required.
 - Tests: `tests/research/juggler_sequence/test_cycle_length_seven.py`
 - The Research Engine control layer is not modified.
 - No cycle-state search. No length 8. No O-terminating programme.
-- Lean: `LeftoverEval.lean`, `LeftoverCycles.lean`, `Cycles.lean`,
+- Lean: `LeftoverEval.lean`, `LeftoverShort.lean`, `CycleObstructions.lean`,
   `SmallCycleCensus.lean`. No `sorry`.
 
 ## Conjectures
@@ -163,11 +163,15 @@ claims that remain false or unproved:
 
 ## Formalization
 
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
 `formal/Problems/Juggler/LeftoverEval.lean` isolates the `Fin 14`
 tables and `2^{422}15^{128}<14^{243}`.
-`formal/Problems/Juggler/LeftoverCycles.lean` proves
+`formal/Problems/Juggler/LeftoverShort.lean` proves
 `no_cycle_itinerary_oooooee` and `no_cycle_itinerary_ooooeoe`.
-`formal/Problems/Juggler/Cycles.lean` proves the bootstrap pair
+`formal/Problems/Juggler/CycleObstructions.lean` proves the bootstrap pair
 `no_cycle_itinerary_ooeoooe` and `no_cycle_itinerary_oooeooe`.
 `formal/Problems/Juggler/SmallCycleCensus.lean` assembles
 `no_cycle_itinerary_length_le_seven`. No `sorry`. No halt theorem. No

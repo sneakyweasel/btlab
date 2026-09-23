@@ -113,8 +113,8 @@ It is not required.
   `tests/research/juggler_sequence/test_cycle_leftover_itineraries.py`
 - The Research Engine control layer is not modified.
 - No cycle-state search. No length-8 census. No three-even programme.
-- Lean: `formal/Problems/Juggler/LeftoverTwoEven.lean`, imported by
-  `Problems.Juggler` only. Paper A records the families as
+- Lean: `formal/Problems/Juggler/LeftoverFamilies.lean`, exported through
+  `Problems.Juggler`. Paper A records the families as
   Theorem 3.12. No `no_cycle_itinerary_length_eight`.
 
 ## Conjectures
@@ -137,7 +137,11 @@ that remain false or unproved:
 
 ## Formalization
 
-`formal/Problems/Juggler/LeftoverTwoEven.lean` proves
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/LeftoverFamilies.lean` proves
 `no_cycle_itinerary_two_even_ee` and `no_cycle_itinerary_two_even_eoe` for
 every \(k\ge 6\) and \(n\ge 2\). Large \(n\) is the shared tail at
 the uniform cutoff \(n\ge 256\), inducting from the length-6

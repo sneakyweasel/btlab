@@ -123,7 +123,11 @@ None to the `OOE`/`OEO` exclusions. The stronger claims that fail:
 
 ## Formalization
 
-`formal/Problems/Engine/CycleItinerary.lean`, a small extension. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/CycleCore.lean`, a small extension. Added:
 
 - `cycle_last_even_interval` / `cycle_last_even_ne_odd_sq`
 - `cycle_last_odd_interval`

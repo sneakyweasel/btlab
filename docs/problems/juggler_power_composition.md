@@ -94,7 +94,11 @@ scope.
 
 ## Formalization
 
-`formal/Problems/Engine/FloorPower.lean`. API:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Envelope.lean`. API:
 
 - `power_bound_empty`
 - `power_bound_append_even`

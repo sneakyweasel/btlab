@@ -180,9 +180,9 @@ It is not required.
 - The Research Engine control layer is not modified.
 - No cycle-state search. No length 10. No four-even programme.
 - Phase 1 Lean: `cycle_trailing_evens_lt` in
-  `formal/Problems/Juggler/Cycles.lean` and
+  `formal/Problems/Juggler/CycleCore.lean` and
   `no_cycle_itinerary_ooooooeee` in
-  `formal/Problems/Juggler/LeftoverCycles.lean`.
+  `formal/Problems/Juggler/LeftoverFamilies.lean`.
   No `no_cycle_itinerary_length_nine`. Paper A records the trailing-even
   cell as Lemma 3.9 and \(OOOOOOEEE\) as the \(a=6\) case of
   Theorem 3.14.
@@ -213,12 +213,16 @@ claims that remain false or unproved:
 
 ## Formalization
 
-`cycle_trailing_evens_lt` in `Cycles.lean`: if a cycle itinerary ends
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`cycle_trailing_evens_lt` in `CycleCore.lean`: if a cycle itinerary ends
 with \(r\ge 1\) even letters then the state before that run is
 strictly less than \((n+1)^{2^r}\). The case \(r=3\) is the
 three-even cell for `OOOOOOEEE`.
 
-`no_cycle_itinerary_ooooooeee` in `LeftoverCycles.lean`: finite
+`no_cycle_itinerary_ooooooeee` in `LeftoverFamilies.lean`: finite
 evaluation on `Fin 128` plus
 \(n^{729}>2^{1330}(n+1)^{512}\) for \(n\ge 128\). The
 computational prefix-cell first fires at \(N_0=73\); \(128\) is

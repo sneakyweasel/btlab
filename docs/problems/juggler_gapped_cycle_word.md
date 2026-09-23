@@ -102,7 +102,7 @@ It is not required.
 - Tests: `tests/research/juggler_sequence/test_gapped_cycle_itinerary.py`
 - The Research Engine control layer is not modified.
 - No cycle-state search. No length-8 or length-9 census.
-- Lean lives in `GappedCycleItinerary.lean`. Paper A records Theorem 3.21.
+- Lean lives in `LeftoverFamilies.lean`. Paper A records Theorem 3.21.
 
 ## Conjectures
 
@@ -125,14 +125,19 @@ stronger claims that remain false or unproved:
 
 ## Formalization
 
-`formal/Problems/Juggler/GappedCycleItinerary.lean` excludes both
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/LeftoverFamilies.lean` excludes both
 gapped families as `CycleItinerary`s:
 `no_cycle_itinerary_gapped_three_even_ee` and
 `no_cycle_itinerary_gapped_three_even_eoe`. The \(k=0\) rotation is
 Theorem 3.13; the bootstrap rotation is last-gap \(\ge 2\); the
 last even (resp. the `OE` pair) is start-even (resp. start-`OE`);
-every other rotation ends odd. `FirstETransport.lean` is
-unchanged and remains CycleMin-only. `SmallCycleCensus.lean`
+every other rotation ends odd. The first-E transport lemmas retain
+their `CycleMin` hypotheses; the itinerary exclusions in the same
+module supply the rotation argument. `SmallCycleCensus.lean`
 still assembles only through length seven. No
 `no_cycle_itinerary_length_eight`. No `no_cycle_itinerary_length_nine`.
 No `no_cycle_itinerary_bunched`. No `sorry`. No halt theorem.

@@ -85,7 +85,7 @@ It is not required.
 ## Experiments
 
 - Lean: `formal/Problems/Juggler/LeftoverEval.lean`,
-  `formal/Problems/Juggler/LeftoverCycles.lean`
+  `formal/Problems/Juggler/LeftoverShort.lean`
 - Tests: `tests/research/juggler_sequence/test_cycle_leftover_itineraries.py`
 - The Research Engine control layer is not modified.
 - No cycle-state search. No length 7. No O-terminating programme.
@@ -104,8 +104,12 @@ None to the two exclusions. The stronger claims that remain false:
 
 ## Formalization
 
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
 `formal/Problems/Juggler/LeftoverEval.lean` isolates `native_decide`
-facts. `formal/Problems/Juggler/LeftoverCycles.lean` proves
+facts. `formal/Problems/Juggler/LeftoverShort.lean` proves
 
 - `no_cycle_itinerary_oooeoe`
 - `no_cycle_itinerary_ooooee`

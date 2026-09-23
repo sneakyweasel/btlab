@@ -140,8 +140,13 @@ None opened.
 
 ## Formalization
 
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
 None added. Envelope and compensated contraction already live in
-`formal/Problems/Engine/FloorPower.lean`. No `Excursions.lean`.
+`formal/Problems/Juggler/Envelope.lean` and
+`formal/Problems/Juggler/Defect.lean`. No `Excursions.lean`.
 `ResidualChain.lean` is not rewritten. Candidate names
 `first_return_envelope`, `excursion_peak_bound`, and
 `first_return_contraction` stay unclaimed. No `sorry`. No ledger row.

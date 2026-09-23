@@ -108,7 +108,11 @@ None opened.
 
 ## Formalization
 
-`formal/Problems/Engine/FloorPower.lean`. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Preimages.lean`. Added:
 
 - `cell_any_contracts_iff` / `cell_all_contracts_iff`
 - `first_even_any_contracts_iff` / `first_even_all_contracts_iff`

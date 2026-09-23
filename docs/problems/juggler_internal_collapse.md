@@ -114,10 +114,14 @@ second even run is stacked in front of `OEEE`.
 
 ## Formalization
 
-`formal/Problems/Engine/FloorPower.lean`. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Collapse.lean`. Added:
 
 - `maxEvenRun` / `internal_even_collapse` / `collapse_basin_one`
-- `wordEE_OEEE12` / `nested_even_collapse_2500` /
+- `itineraryEE_OEEE12` / `nested_even_collapse_2500` /
   `nested_even_collapse_2500_superquadratic`
 
 Unchanged: `LowerPowerBound`, `eventually_no_first_even_contraction`,

@@ -140,7 +140,11 @@ cycle-only theorem.
 
 ## Formalization
 
-`formal/Problems/Engine/CycleItinerary.lean`, a small extension. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/CycleExtrema.lean`, a small extension. Added:
 
 - `exists_first_even_iterate`
 - `cycle_top_window_strict`

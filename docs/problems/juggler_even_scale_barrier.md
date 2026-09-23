@@ -104,8 +104,12 @@ orbits visit even states above the start (e.g. \(3\to\cdots\to 36\)).
 
 ## Formalization
 
-`formal/Problems/Engine/MinimalNonTerm.lean`, above
-`FloorPower`. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Minimal.lean` and
+`formal/Problems/Juggler/Envelope.lean`. Branch additions:
 
 - `MinimalNonTerm`
 - `minimal_nonterm_ge_of_not_reachesOne`

@@ -138,8 +138,12 @@ family and do not imply a bound \(L\).
 
 ## Formalization
 
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
 None added. The inverse-floor lemmas and `odd_preimage_unique` already
-live in `formal/Problems/Engine/FloorPower.lean`. No
+live in `formal/Problems/Juggler/Preimages.lean`. No
 `PrefixNCAdmissibility.lean`. `ResidualChain.lean` is not
 rewritten. No `sorry`. No ledger row.
 

@@ -123,8 +123,11 @@ inequality.
 
 ## Formalization
 
-`formal/Problems/Engine/RepeatedBlock.lean`, above `OddRunFinancing`.
-Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Scale.lean`. Branch additions:
 
 - `repeatedOddEven`
 - `odd_even_exponents_ne` / `contracting_gap_repeat`

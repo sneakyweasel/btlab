@@ -126,8 +126,11 @@ None to the composition rules. The stronger claims that fail:
 
 ## Formalization
 
-`formal/Problems/Engine/ResidualChain.lean`, above `OddOddFrontier`.
-Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Residuals.lean`. Branch additions:
 
 - `ResidualStep` / `PersistentOddResidual` / `ResidualChain`
 - `reachesOne_of_residualStep` / `reachesOne_of_residualChain`

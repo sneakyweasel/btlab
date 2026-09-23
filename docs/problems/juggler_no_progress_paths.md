@@ -73,7 +73,7 @@ It is not required.
   **EXACT — LEAN VERIFIED**
 - `minimal_avoids_reachesOne_image` —
   **EXACT — LEAN VERIFIED**
-- `even_word_descent` / `minimal_odd_start` —
+- `even_itinerary_descent` / `minimal_odd_start` —
   **EXACT — LEAN VERIFIED**
 - `OOOE` at \(3\) and `OOE` at \(5\) land at \(6\ge n\), so they are
   not descent and not capture, but they are `ReachesOne`-implied —
@@ -111,13 +111,19 @@ observation, not a halt theorem. No defect-reset witness on the scan.
 
 ## Formalization
 
-`formal/Problems/Engine/FloorPower.lean`. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Termination.lean` and
+`formal/Problems/Juggler/Itinerary.lean` and
+`formal/Problems/Juggler/Certificates.lean`. Added:
 
 - `two_reachesOne` / `four_reachesOne` / `six_reachesOne` /
   `eight_reachesOne`
 - `reachesOne_of_image` / `image_two_reachesOne` (and \(4,6,8\))
 - `minimal_avoids_reachesOne_image`
-- `even_word_descent` / `minimal_odd_start`
+- `even_itinerary_descent` / `minimal_odd_start`
 
 Unchanged: `minimal_avoids_progress`,
 `power_bound_compensated_contracts`, `first_even_freeze`,

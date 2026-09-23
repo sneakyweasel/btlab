@@ -152,8 +152,12 @@ cycle-only theorem.
 
 ## Formalization
 
-`formal/Problems/Engine/CycleDiophantine.lean`, imported from
-`formal/Problems.lean`. Wrappers and the sequential identity only.
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/CycleDiophantine.lean`, imported from
+`formal/Problems/Juggler.lean`. Wrappers and the sequential identity only.
 `CycleItinerary.lean` and `FloorPower.lean` are not rewritten.
 
 Added:

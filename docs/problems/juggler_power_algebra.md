@@ -122,7 +122,12 @@ scope.
 
 ## Formalization
 
-`formal/Problems/Engine/FloorPower.lean`. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Envelope.lean` and
+`formal/Problems/Juggler/Equality.lean`. Added:
 
 - `power_bound_word`
 - `floorPower_even_sq_eq_iff_square`

@@ -115,7 +115,11 @@ stronger claims that fail:
 
 ## Formalization
 
-`formal/Problems/Engine/CycleItinerary.lean`, a small extension. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/CycleCore.lean`, a small extension. Added:
 
 - `threshold_inherits_odd_append`
 - `odd_run_suffix_threshold` / `no_cycle_odd_run_append_even`

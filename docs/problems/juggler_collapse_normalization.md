@@ -114,14 +114,18 @@ not with the initial even-run length.
 
 ## Formalization
 
-`formal/Problems/Engine/FloorPower.lean`. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Collapse.lean`. Added:
 
 - `initialEvenRun` / `stripInitialEven` / `initial_even_decomposition`
 - `iterate_even_pow_two_eq` (alias)
 - `collapse_residual_identity` / `collapse_on_pow_two` /
   `collapse_tower_contracts_iff`
 - `even_tower_collapse_residual` / `odd_then_even_collapse`
-- `wordOEEE9` / `odd_even_tower_seven`
+- `itineraryOEEE9` / `odd_even_tower_seven`
 
 Unchanged: `LowerPowerBound`, `eventually_no_first_even_contraction`,
 `changing_suffix_unbounded_contraction`, `first_even_freeze`,

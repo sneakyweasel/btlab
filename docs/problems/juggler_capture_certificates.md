@@ -93,9 +93,15 @@ allows.
 
 ## Formalization
 
-`formal/Problems/Engine/FloorPower.lean`. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
 
-- `InertBasin` / `Capture` / `Descent` / `ReachesOne`
+`formal/Problems/Juggler/Certificates.lean` and
+`formal/Problems/Juggler/Termination.lean`. Added:
+
+- `InertBasin` / `ReachesOne` / `DescentCertificate`; the original standalone
+  `Capture` and `Descent` predicates were folded into the certificate API
 - `capture_of_suffix` / `capture_append`
 - `even_tower_capture` / `even_tower_odd_tail_capture`
 - `odd_even_tower_seven_capture` / `nested_even_collapse_2500_capture`

@@ -113,11 +113,16 @@ None opened.
 
 ## Formalization
 
-`formal/Problems/Engine/FloorPower.lean`. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Defect.lean` and
+`formal/Problems/Juggler/Preimages.lean`. Added:
 
 - `power_bound_compensated_contracts` /
   `power_bound_compensated_contracts_follows`
-- `itineraryEOO` / `wordOOE` / `wordOEO` and `follows` wrappers
+- `itineraryEOO` / `itineraryOOE` / `itineraryOEO` and `follows` wrappers
 - `floorPower_eoo_contracts_iff`
 - `floorPower_eoo_two_contracts` / `_twelve_` / `_fourteen_`
 - `eoo_first_defect_lt_formal_gap`

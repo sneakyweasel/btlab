@@ -129,11 +129,18 @@ None opened.
 
 ## Formalization
 
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
 None added. Envelope, equality, compensated contraction, and
 `minimal_nonterm_image_ge` already live in
-`formal/Problems/Engine/FloorPower.lean` and
-`formal/Problems/Engine/MinimalNonTerm.lean`. No
-`Corridor.lean`. `ResidualChain.lean` is not rewritten. The
+`formal/Problems/Juggler/Envelope.lean` and
+`formal/Problems/Juggler/Equality.lean` and
+`formal/Problems/Juggler/Defect.lean` and
+`formal/Problems/Juggler/Minimal.lean`. The current corridor API is in
+`formal/Problems/Juggler/Corridor.lean`. At the original branch decision,
+`ResidualChain.lean` was not rewritten. The
 composition identity is a trivial lemma composition and is not
 packaged. No `sorry`. No ledger row.
 

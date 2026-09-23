@@ -126,8 +126,11 @@ claims that fail:
 
 ## Formalization
 
-`formal/Problems/Engine/OddOddFrontier.lean`, above `Progress` and
-`OddRunFinancing`. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Residuals.lean`. Branch additions:
 
 - `post_even_overshoot` / `overshoot_residual_gt_start`
 - `post_overshoot_parity`

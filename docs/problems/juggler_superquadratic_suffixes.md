@@ -98,7 +98,11 @@ None found. Scanned superquadratic itineraries of length \(\le5\) have
 
 ## Formalization
 
-`formal/Problems/Engine/FloorPower.lean`. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Preimages.lean`. Added:
 
 - `LowerPowerBound` / `lowerDenom` / `lower_growth_word`
 - `four_mul_floorPower_even_sq` / `four_mul_floorPower_odd_sq`

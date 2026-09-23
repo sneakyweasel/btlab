@@ -153,3 +153,20 @@ def test_manifest_links_reproduction_and_detects_data_corruption(repo):
 def test_private_bibliography_and_escape_links_are_not_indexed(repo):
     write(repo, "literature/notes.private.json", 'not valid JSON; deliberately private')
     assert ResearchCatalogue(repo).check()["errors"] == 0
+
+
+def test_claim_statements_are_not_parsed_as_repository_links(repo):
+    path = repo / "docs/theory/theorem_ledger.json"
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    rows[0]["statement"] = "For all n, T^[3](n) > n; [notation](missing.md) is not a source."
+    rows[0]["source"] += "\n[Proof note](../../docs/theory/proof.md)"
+    write(repo, "docs/theory/proof.md", "# Proof note\n")
+    path.write_text(json.dumps(rows), encoding="utf-8")
+    catalogue = ResearchCatalogue(repo)
+    sources = {s["path"] for s in catalogue.context("juggler/example", "sources")["items"]}
+    assert "docs/theory/proof.md" in sources
+    assert "docs/theory/n" not in sources and "docs/theory/missing.md" not in sources
+    assert catalogue.search("notation")["total"] == 1
+    assert catalogue.check()["errors"] == 0 and catalogue.check()["warnings"] == 0
+    (repo / "docs/theory/proof.md").unlink()
+    assert catalogue.check()["errors"] == 1

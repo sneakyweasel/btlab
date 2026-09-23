@@ -120,6 +120,12 @@ class ResearchCatalogue:
         return {ref for raw in [*LINK.findall(text), *PATH.findall(text)]
                 if (ref := self._reference(raw, owner)) is not None}
 
+    def _claim_references(self, row: dict, owner: Path) -> set[str]:
+        """Read reference fields as text, never mathematical statements or serialized JSON."""
+        fields = [row.get("source"), row.get("lean"), *(row.get("tests") or [])]
+        return {ref for value in fields if isinstance(value, str)
+                for ref in self._references(value, owner)}
+
     def _build(self, files: list[Path]) -> dict:
         self._references_cache.clear()
         root = self.root
@@ -209,7 +215,7 @@ class ResearchCatalogue:
                                "declaration_references_truncated": len(declarations) > 16,
                                "basis": "ledger source/test association; not a statement-coverage audit",
                                "lookup": {"tool": "formalpedia_claim", "ledger_id": key}})
-                for ref in self._references(json.dumps(row, ensure_ascii=False), root / ledger_path):
+                for ref in self._claim_references(row, root / ledger_path):
                     refs.setdefault(ref, "linked ledger record")
             decision_part = next((p for p in parts if p["heading"].casefold() == "decision"), None)
             decision = None
@@ -340,8 +346,7 @@ class ResearchCatalogue:
         for row in data["ledger"]:
             if row.get("tag") not in TAGS:
                 issues.append({"severity": "error", "error": f"Unknown evidence tag: {row.get('id')}"})
-            for ref in self._references(json.dumps({k: row.get(k) for k in ("source", "tests", "lean")}),
-                                        self.root / "docs/theory/theorem_ledger.json"):
+            for ref in self._claim_references(row, self.root / "docs/theory/theorem_ledger.json"):
                 if not (self.root / ref).exists():
                     issues.append({"severity": "error", "path": ref, "error": f"Missing claim reference: {row.get('id')}"})
         known = {r["id"] for r in data["records"]}

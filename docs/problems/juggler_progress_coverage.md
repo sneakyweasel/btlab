@@ -127,8 +127,12 @@ None to the even or `OE` coverage. The stronger claims that fail:
 
 ## Formalization
 
-`formal/Problems/Engine/Progress.lean`, above `FloorPower` and
-independent of the scale-budget modules. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Progress.lean`, independent of the scale-budget
+modules. Branch additions:
 
 - `FiniteProgress`
 - `reachesOne_of_finiteProgress` / `reachesOne_of_all_finiteProgress`

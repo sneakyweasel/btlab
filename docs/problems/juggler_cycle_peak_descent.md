@@ -129,7 +129,11 @@ None to the peak descent. The stronger claims that fail:
 
 ## Formalization
 
-`formal/Problems/Engine/CycleItinerary.lean`, a small extension. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/CycleExtrema.lean`, a small extension. Added:
 
 - `peak_block_formally_contracting` / `peak_block_contracts`
 - `cycle_peak_descent`

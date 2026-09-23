@@ -117,13 +117,20 @@ cycle-only theorem. Off-cycle, the balance fails by the correction
 
 ## Formalization
 
-`formal/Problems/Engine/FloorPower.lean` gained only the local
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Defect.lean` gained only the local
 remainder lemmas that belong there:
 
 - `localDefectEven_lt_succ` / `localDefectOdd_lt_succ`
 - `branchDefect` / `branchExp` / `branchDefect_add` / `branchDefect_lt`
 
-`formal/Problems/Engine/CycleItinerary.lean` gained the cycle system:
+The exponent definition `branchExp` is in
+`formal/Problems/Juggler/ItineraryStats.lean`.
+
+`formal/Problems/Juggler/CycleExtrema.lean` gained the cycle system:
 
 - `cycle_remainder_eq` / `cycle_remainder_lt`
 - `cycle_remainder_balance`

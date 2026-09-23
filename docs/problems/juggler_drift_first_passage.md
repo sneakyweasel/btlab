@@ -167,8 +167,12 @@ None opened.
 
 ## Formalization
 
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
 None added. Envelope and `power_bound_contracts` already live in
-`formal/Problems/Engine/FloorPower.lean`. No
+`formal/Problems/Juggler/Envelope.lean`. No
 `DriftFirstPassage.lean`. `ResidualChain.lean` is not rewritten.
 No `sorry`. No ledger row.
 

@@ -127,8 +127,12 @@ stronger claims that fail:
 
 ## Formalization
 
-`formal/Problems/Engine/ResidualPath.lean`, above `ResidualChain` and
-`RepeatedBlock`. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Residuals.lean` and
+`formal/Problems/Juggler/Envelope.lean`. Branch additions:
 
 - `ResidualDescent` / `ResidualReturn` / `ResidualOvershoot`
 - `two_pow_ne_three_pow` / `cycle_envelope` / `cycle_strict_envelope`

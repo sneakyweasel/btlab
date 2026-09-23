@@ -114,7 +114,12 @@ conjecture that it holds for all \(n\), and is not a totality statement.
 
 ## Formalization
 
-`formal/Problems/Engine/FloorPower.lean`. New primitives
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Dynamics.lean` and
+`formal/Problems/Juggler/Envelope.lean`. New primitives
 `floorPower_even_sq_le`, `floorPower_odd_sq_le_cube`, `pow_sq_le`,
 `pow_sq_le_cube`, `pow_lt_of_two_le`. New block theorem
 `floorPower_oooeeeoo_eight_step_lt`: if \(n\ge 2\) follows `OOOEEEOO`,

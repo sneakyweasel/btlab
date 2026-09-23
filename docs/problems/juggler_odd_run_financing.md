@@ -125,8 +125,13 @@ descent and is already forbidden for a minimal counterexample.
 
 ## Formalization
 
-`formal/Problems/Engine/OddRunFinancing.lean`, above `RepeatedOE`.
-Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/ItineraryStats.lean`,
+`formal/Problems/Juggler/Itinerary.lean`, and
+`formal/Problems/Juggler/Scale.lean`. Branch additions:
 
 - `oddEvenBlock` / `follows_of_append_right` / `odd_run_even_residual`
 - `odd_run_power_bound`

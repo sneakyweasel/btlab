@@ -145,8 +145,12 @@ statement and do not imply a bound \(L\).
 
 ## Formalization
 
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
 None added. `ResidualStep` and `PersistentOddResidual` already live
-in `formal/Problems/Engine/ResidualChain.lean`. No
+in `formal/Problems/Juggler/Residuals.lean`. No
 `OddOddResidual.lean`. `CycleItinerary.lean`, `CycleDiophantine.lean`, and
 `FloorPower.lean` are not rewritten. No `sorry`. No ledger row.
 

@@ -130,8 +130,14 @@ None opened.
 
 ## Formalization
 
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
 None added. Envelope, equality, and compensated contraction already
-live in `formal/Problems/Engine/FloorPower.lean`. No
+live in `formal/Problems/Juggler/Envelope.lean` and
+`formal/Problems/Juggler/Equality.lean` and
+`formal/Problems/Juggler/Defect.lean`. No
 `DriftCrossing.lean`. The even-letter crossing identity is a
 \(G\)-recurrence and is not packaged. No `sorry`. No ledger row.
 

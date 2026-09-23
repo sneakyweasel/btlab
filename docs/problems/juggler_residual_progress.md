@@ -111,7 +111,12 @@ No residual from the \(n\le 80\) uncertified-collapse list evaded
 
 ## Formalization
 
-`formal/Problems/Engine/FloorPower.lean`. Added wrappers only:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Termination.lean` and
+`formal/Problems/Juggler/Itinerary.lean`. Added wrappers only:
 
 - `three_reachesOne` … `eleven_reachesOne`
 - `image_pos`

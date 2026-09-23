@@ -120,7 +120,11 @@ None to the window or the normal form. The stronger claims that fail:
 
 ## Formalization
 
-`formal/Problems/Engine/CycleItinerary.lean`, a small extension. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/CycleExtrema.lean`, a small extension. Added:
 
 - `even_iter_pow_le` / `even_iter_lt_succ_pow`
 - `power_scale_superquadratic` / `top_ascent_superquadratic`

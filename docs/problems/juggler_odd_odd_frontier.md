@@ -132,8 +132,11 @@ that fail:
 
 ## Formalization
 
-`formal/Problems/Engine/OddOddFrontier.lean`, above `Progress` and
-`OddRunFinancing`. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Residuals.lean`. Branch additions:
 
 - `image_oddEvenBlock` / `first_even_return`
 - `even_floorPower_lt_iff` / `eq` / `gt`

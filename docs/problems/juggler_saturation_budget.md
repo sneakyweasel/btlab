@@ -102,7 +102,11 @@ words remains out of scope.
 
 ## Formalization
 
-`formal/Problems/Engine/FloorPower.lean`. Added:
+Source locations below follow the current Lean layout. Development notes
+retain this branch's original scope; subsequent results and open directions
+are tracked in the [Juggler guide](../../attacks/juggler/AGENT.md).
+
+`formal/Problems/Juggler/Equality.lean`. Added:
 
 - `HasPowTwoDepth`
 - `floorPower_of_pow_two_depth_even`
