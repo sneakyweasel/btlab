@@ -1,2 +1,0 @@
-✔ [3621/3624] Built BTCalculus.FourierBoxCounting (23s)
-Build completed successfully (3624 jobs).

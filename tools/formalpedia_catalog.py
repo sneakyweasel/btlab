@@ -199,10 +199,15 @@ class Catalogue:
         duplicates = Counter(d['qualified_name'] for d in public)
         try:
             disk = json.loads(fp.INDEX.read_text(encoding='utf-8'))
+            export_state = 'current' if disk == index else 'stale'
+        except FileNotFoundError:
+            disk, export_state = None, 'missing'
         except (OSError, ValueError):
             disk = None
+            export_state = 'unreadable'
         return {'schema': index['schema'], 'snapshot': snapshot,
                 'source': 'live working tree', 'saved_index_current': disk == index,
+                'local_export': {'required': False, 'state': export_state},
                 'totals': index['totals'], 'public_declarations': len(public),
                 'scope_modules': {'active': len(active), 'archive': len(index['modules']) - len(active)},
                 'documented_public_declarations': sum(bool(d['doc']) for d in public),

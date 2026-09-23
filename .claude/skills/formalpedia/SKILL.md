@@ -71,12 +71,15 @@ deprecated aliases when needed and preserve published references.
 
 ## Generated records and concurrent work
 
-`build`, `dag`, `propose`, and `review` deliberately write generated artifacts;
-the discovery tools do not. Run `build --check` to inspect index freshness.
-Before committing a rebuild, inspect `git status --short -- formal/` and the
-ledger. Do not commit another session's uncommitted declarations into the saved
-catalogue. A freshness failure while another session edits is meaningful;
-the live discovery API still reports the working tree accurately.
+`build`, `dag`, `propose`, `review`, and cached coverage review write reproducible
+exports under ignored `.cache/formalpedia/`. Every report reads current Lean
+sources and ledger claims; an old exported index is never its input. Exports are
+optional and should not be committed. `build --check` only checks whether the
+last local index export still matches the source tree.
+
+The reviewed style baseline and original advisory verdicts remain versioned
+under `data/research/formalpedia/`. `jev-coverage --limit 0` refreshes only local
+reports; it neither sends a request nor rewrites the retained advisory evidence.
 
 ## Advisory statement coverage
 

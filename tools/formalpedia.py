@@ -36,12 +36,13 @@ import lean_source
 ROOT = Path(__file__).resolve().parents[1]
 FORMAL = ROOT / "formal"
 LEDGER = ROOT / "docs" / "theory" / "theorem_ledger.json"
-INDEX = ROOT / "data" / "research" / "formalpedia" / "index.json"
-DAG = ROOT / "data" / "research" / "formalpedia" / "dag.json"
-PROPOSALS = ROOT / "data" / "research" / "formalpedia" / "decl_proposals.json"
-REVIEW = ROOT / "docs" / "research" / "formalpedia_decl_review.md"
+CACHE = ROOT / ".cache" / "formalpedia"
+INDEX = CACHE / "index.json"
+DAG = CACHE / "dag.json"
+PROPOSALS = CACHE / "decl_proposals.json"
+REVIEW = CACHE / "decl_review.md"
 JEV = ROOT / "data" / "research" / "formalpedia" / "jev_verdicts.json"
-COVERAGE = ROOT / "docs" / "research" / "formalpedia_coverage_review.md"
+COVERAGE = CACHE / "coverage_review.md"
 
 _ATTR = r"@\[[^\]]*\][ \t]*"
 """An attribute block in front of a declaration, on the declaration's own line.
@@ -1577,9 +1578,8 @@ def render(payload: Any) -> str:
 
 
 def load() -> dict[str, Any]:
-    if not INDEX.is_file():
-        sys.exit("no index; run: python tools/formalpedia.py build")
-    return json.load(io.open(INDEX, encoding="utf-8"))
+    """Reports use current sources; a saved export is never an implicit input."""
+    return build()
 
 
 def _resolve(index: dict[str, Any], target: str) -> str | None:
@@ -1594,15 +1594,18 @@ def _resolve(index: dict[str, Any], target: str) -> str | None:
 
 
 def _write_jev_artifacts(index: dict[str, Any], ledger: list[dict[str, Any]],
-                         record: dict[str, Any]) -> None:
-    """The verdict record, then the two artifacts that merge it, in that order."""
-    JEV.parent.mkdir(parents=True, exist_ok=True)
-    JEV.write_text(render(record), encoding="utf-8")
+                         record: dict[str, Any], *, persist_evidence: bool = True) -> None:
+    """Keep advisory evidence in Git; reproducible views belong in the local cache."""
+    if persist_evidence:
+        JEV.parent.mkdir(parents=True, exist_ok=True)
+        JEV.write_text(render(record), encoding="utf-8")
+    PROPOSALS.parent.mkdir(parents=True, exist_ok=True)
     PROPOSALS.write_text(render(propose(index, ledger, jev=record)), encoding="utf-8")
     REVIEW.parent.mkdir(parents=True, exist_ok=True)
     REVIEW.write_text(review_digest(index, ledger, jev=record), encoding="utf-8")
+    COVERAGE.parent.mkdir(parents=True, exist_ok=True)
     COVERAGE.write_text(coverage_digest(index, ledger, jev=record), encoding="utf-8")
-    for path in (JEV, PROPOSALS, REVIEW, COVERAGE):
+    for path in ((JEV,) if persist_evidence else ()) + (PROPOSALS, REVIEW, COVERAGE):
         print(f"wrote {path.relative_to(ROOT).as_posix()}")
 
 
@@ -1702,7 +1705,7 @@ def main(argv: list[str] | None = None) -> int:
         ask = _no_ask if args.limit == 0 else jev_ask_nouls(args.model)
         record = jev_coverage(index, ledger, ask, cached=load_jev(), refresh=args.refresh,
                               limit=args.limit, only=only, workers=args.workers)
-        _write_jev_artifacts(index, ledger, record)
+        _write_jev_artifacts(index, ledger, record, persist_evidence=args.limit != 0)
         t = record["coverage"]["totals"]
         print(f"{t['answered']} resolved rows carry a coverage verdict: asked {t['asked_now']} "
               f"now ({t['input_tokens']} input tokens), reused {t['reused']}"

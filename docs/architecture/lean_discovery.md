@@ -102,6 +102,21 @@ markers only. It does not certify compilation or transitive axiom dependencies.
 Use the executable Lean audits for those claims. No metadata silently promotes
 a theorem or discharges an assumption.
 
+## Optional local reports
+
+`build`, `dag`, `propose`, and `review` write reproducible exports under ignored
+`.cache/formalpedia/`. Reports read the current sources and ledger, never an older
+saved inventory. A fresh clone therefore needs no generated catalogue committed
+alongside its Lean sources. `build --check` checks an explicitly generated local
+index; it is not a prerequisite for discovery or a freshness gate on Git history.
+Status distinguishes a missing, unreadable, stale or current optional export;
+none of these changes the live source catalogue.
+
+`jev-coverage --limit 0` writes `.cache/formalpedia/coverage_review.md` and the
+proposal digest from retained advice without sending requests or modifying that
+evidence. Original verdicts and the reviewed style baseline remain versioned in
+`data/research/formalpedia/`; deterministic report copies do not.
+
 ## MCP
 
 Install `python -m pip install -r tools/requirements-formalpedia.txt` and run

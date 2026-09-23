@@ -3,6 +3,8 @@ formal/.lake/
 .lake/
 
 # Python / tool caches
+.cache/
+.build/
 .venv/
 venv/
 __pycache__/

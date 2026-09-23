@@ -34,6 +34,22 @@ def write(folder, name, text):
     return path
 
 
+def test_missing_or_stale_export_does_not_control_live_discovery(library):
+    folder, _ = library
+    write(folder, 'A', 'namespace N\ntheorem first : True := trivial\nend N\n')
+    catalogue = Catalogue()
+    assert catalogue.status()['local_export'] == {'required': False, 'state': 'missing'}
+    fp.INDEX.write_text('broken JSON')
+    assert catalogue.status()['local_export']['state'] == 'unreadable'
+    assert catalogue.show('N.first')['status'] == 'found'
+    fp.INDEX.write_text(fp.render(fp.build()), encoding='utf-8')
+    assert catalogue.status()['local_export']['state'] == 'current'
+    write(folder, 'A', 'namespace N\ntheorem second : True := trivial\nend N\n')
+    assert catalogue.status()['local_export']['state'] == 'stale'
+    assert catalogue.show('N.second')['status'] == 'found'
+    assert catalogue.show('N.first')['status'] == 'not_found'
+
+
 def test_scoped_search_hides_legacy_results_but_exact_lookup_stays_global(library):
     folder, _ = library
     (folder / 'Juggler').mkdir()

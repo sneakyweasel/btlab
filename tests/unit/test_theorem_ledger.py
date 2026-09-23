@@ -158,8 +158,7 @@ def test_every_lean_row_is_attributed_to_its_module_in_the_index():
     pre-fix index at a9f8efce, this formulation fails on exactly those 43 rows and the
     current index passes.
     """
-    index = json.loads((ROOT / "data" / "research" / "formalpedia" / "index.json")
-                       .read_text(encoding="utf-8"))
+    index = fp.build()
     # Keyed by resolved path, so the check never re-implements the prefix convention it guards.
     by_path = {(ROOT / m["file"]).resolve(): (name, m)
                for name, m in index["modules"].items() if m.get("file")}

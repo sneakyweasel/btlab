@@ -836,63 +836,54 @@ def test_coverage_digest_says_so_when_jev_has_not_been_asked() -> None:
     assert "has not been asked yet" in text and "\n## " not in text
 
 
-#: Every file this tool writes is committed, and until 14 September 2026 nothing
-#: compared any of them to a rebuild.  All four had drifted.  The index did not
-#: know InformationField's ninety declarations, still listed `window_digit_scan`
-#: after that scan was retired, and still placed `window_digit_cap` in
-#: OstrowskiSandwich after the declaration had moved to OstrowskiNumeration.  The
-#: claim DAG was missing 58 of its 177 modules and 68 ledger-row placements, which
-#: is the graph that answers "what does changing this module rebuild".  Four rows
-#: in the proposal queue pointed at a declaration that was no longer the best
-#: match.  And the review digest had lost its first 48 bytes -- its `# Declaration
-#: review queue` title and the opening words of the first sentence -- to the
-#: tool's own "wrote ..." success message, which is what a shell redirect onto a
-#: file the tool already writes itself does: the shell truncates, the tool writes
-#: the document, the banner lands back at offset 0.
-#:
-#: The failure was not that any one of these went stale.  It is that every other
-#: test in this file calls fp.build() fresh, so the artifacts on disk -- the ones
-#: a session actually reads -- were the only thing nobody checked.  A gate over
-#: one of the four would have left the same hole three times over.
-#:
-#: All four rebuild deterministically across hash seeds in about 1.4 seconds
-#: together, so the comparison is exact bytes and covers the whole set.
-def _generated() -> list[tuple[str, Path, str]]:
+def test_reports_ignore_stale_exports_and_see_source_changes(tmp_path, monkeypatch):
+    formal = tmp_path / "formal"
+    source = formal / "Core" / "Example.lean"
+    source.parent.mkdir(parents=True)
+    source.write_text("namespace Example\ntheorem first : True := by trivial\nend Example\n")
+    ledger = tmp_path / "ledger.json"
+    ledger.write_text("[]")
+    saved = tmp_path / "stale.json"
+    saved.write_text("not even valid JSON: a report must never read this")
+    for name, value in {"ROOT": tmp_path, "FORMAL": formal, "LEDGER": ledger, "INDEX": saved}.items():
+        monkeypatch.setattr(fp, name, value)
+    assert {d["name"] for d in fp.load()["declarations"]} == {"first"}
+    source.write_text("namespace Example\ntheorem second : True := by trivial\nend Example\n")
+    assert {d["name"] for d in fp.load()["declarations"]} == {"second"}
+    assert saved.read_text().startswith("not even valid JSON")
+
+
+def test_report_commands_rebuild_consistently_without_saved_inventory(tmp_path, monkeypatch):
     index = fp.build()
-    ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
-    return [
-        ("build", fp.INDEX, fp.render(index)),
-        ("propose", fp.PROPOSALS, fp.render(fp.propose(index, ledger))),
-        ("dag", fp.DAG, fp.render(fp.dag(index, ledger))),
-        ("review", fp.REVIEW, fp.review_digest(index, ledger)),
-        ("jev-coverage --limit 0", fp.COVERAGE, fp.coverage_digest(index, ledger)),
+    ledger = json.loads(fp.LEDGER.read_text(encoding="utf-8"))
+    cache = tmp_path / ".cache" / "formalpedia"
+    ledger_path = tmp_path / "ledger.json"
+    ledger_path.write_text(json.dumps(ledger), encoding="utf-8")
+    evidence = tmp_path / "evidence.json"
+    evidence.write_text('{"rows": {}, "coverage": {"rows": {}}, "retained_evidence": true}')
+    original_evidence = evidence.read_bytes()
+    outputs = {"INDEX": "index.json", "DAG": "dag.json", "PROPOSALS": "decl_proposals.json",
+               "REVIEW": "decl_review.md", "COVERAGE": "coverage_review.md"}
+    monkeypatch.setattr(fp, "ROOT", tmp_path)
+    monkeypatch.setattr(fp, "LEDGER", ledger_path)
+    monkeypatch.setattr(fp, "JEV", evidence)
+    monkeypatch.setattr(fp, "build", lambda: index)
+    for name, filename in outputs.items():
+        monkeypatch.setattr(fp, name, cache / filename)
+    # Report commands work before any saved index exists, and all five exports
+    # retain deterministic content. No external advisory request is made.
+    cases = [
+        (["propose"], fp.PROPOSALS, fp.render(fp.propose(index, ledger))),
+        (["dag"], fp.DAG, fp.render(fp.dag(index, ledger))),
+        (["review"], fp.REVIEW, fp.review_digest(index, ledger)),
+        (["jev-coverage", "--limit", "0"], fp.COVERAGE, fp.coverage_digest(index, ledger)),
+        (["build"], fp.INDEX, fp.render(index)),
     ]
-
-
-def test_every_committed_artifact_matches_a_fresh_build() -> None:
-    stale = []
-    for cmd, path, fresh in _generated():
-        committed = path.read_text(encoding="utf-8").replace("\r\n", "\n")
-        if committed != fresh.replace("\r\n", "\n"):
-            rel = path.relative_to(REPO).as_posix()
-            stale.append(f"  {rel}: rebuild with `python tools/formalpedia.py {cmd}`")
-    assert not stale, (
-        "formalpedia artifacts on disk disagree with a fresh build:\n"
-        + "\n".join(stale)
-        + "\n\nThese are what the formalpedia skill tells a session to consult before "
-        "touching formal/. A stale one does not go quiet -- it answers wrong."
-    )
-
-
-def test_the_review_digest_still_opens_with_its_own_title() -> None:
-    """The specific corruption above, named so it cannot come back quietly.
-
-    Regenerating fixes it, but `formalpedia.py review > <the file it writes>` puts
-    it straight back, and the result still looks like a plausible document.
-    """
-    first = fp.REVIEW.read_text(encoding="utf-8").lstrip().splitlines()[0]
-    assert first.startswith("# "), (
-        f"{fp.REVIEW.name} starts with {first!r}, not a Markdown title. "
-        "It was most likely written by redirecting the tool's stdout into the "
-        "same file the tool writes itself, which drops the opening bytes."
-    )
+    for args, path, expected in cases:
+        assert fp.main(args) == 0
+        assert path.read_text(encoding="utf-8") == expected
+    assert evidence.read_bytes() == original_evidence
+    assert fp.REVIEW.read_text(encoding="utf-8").startswith("# ")
+    assert fp.main(["build", "--check"]) == 0
+    fp.INDEX.write_text("stale")
+    assert fp.main(["build", "--check"]) == 1

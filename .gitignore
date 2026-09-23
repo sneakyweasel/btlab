@@ -17,6 +17,8 @@ build/
 .hypothesis/
 .mypy_cache/
 .ruff_cache/
+/.cache/
+/.build/
 /tmp/
 /.pytest_tmp*/
 /grep.exe.stackdump
@@ -50,7 +52,7 @@ experiments/**/*.parquet
 experiments/**/*.csv
 experiments/**/*.txt
 
-# Heavy odd-fourth-power search artifacts
+# Local research databases and range caches
 data/research/**/*.sqlite
 data/research/**/*.sqlite-wal
 data/research/**/*.sqlite-shm
@@ -85,19 +87,11 @@ data/research/juggler/certificate_harvest/harvest-100000001-1000000000.tsv.uncap
 # Local OEIS bulk download (regenerate with curl from oeis.org, ~41 MB)
 data/external/
 
-# Built PDFs are not tracked: each paper has one copy, in juggler_review/.
-.build/**/*.pdf
-
 # Retrieved source texts are local-only: this remote is public and most of these
 # are copyrighted articles. literature/*.json carries the provenance; the files
 # themselves stay on disk. The tracked .jpg excerpt predates this rule.
 literature/sources/*.pdf
 literature/sources/*.html
-
-# GPU verifier binaries (built by data/research/juggler/negative_floor_3x1/build_gpu.bat)
-.build/negative_floor_gpu/*.exe
-.build/negative_floor_gpu/*.exp
-.build/negative_floor_gpu/*.lib
 
 # Private correspondence and unpublished manuscripts received from other authors.
 # The repository is public; keep these local.

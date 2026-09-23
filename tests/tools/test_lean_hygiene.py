@@ -357,13 +357,13 @@ def _orphan_fixture(tmp_path, monkeypatch, sources, documents=None):
 def test_orphan_inventory_is_live_and_generated_lists_are_not_references(tmp_path, monkeypatch) -> None:
     report = _orphan_fixture(tmp_path, monkeypatch,
         {"Fresh.lean": "namespace Problems.Juggler\ntheorem fresh : True := by trivial\nend Problems.Juggler\n"},
-        {"data/research/formalpedia/index.json": "[]",
-         "docs/research/formalpedia_decl_review.md": "Problems.Juggler.fresh"})
+        {".cache/formalpedia/index.json": "[]",
+         ".cache/formalpedia/decl_review.md": "Problems.Juggler.fresh"})
     assert report["candidate_count"] == 1
     assert [d["qualified_name"] for d in report["orphans"]] == ["Problems.Juggler.fresh"]
 
 
-@pytest.mark.parametrize("folder", [".build", "tmp", ".venv-seed", "venv", ".tox"])
+@pytest.mark.parametrize("folder", [".cache", ".build", "tmp", ".venv-seed", "venv", ".tox"])
 def test_temporary_and_dependency_copies_are_not_lean_consumers(tmp_path, monkeypatch, folder) -> None:
     report = _orphan_fixture(tmp_path, monkeypatch,
         {"Fresh.lean": "namespace Problems.Juggler\ntheorem fresh : True := by trivial\nend Problems.Juggler\n"},
