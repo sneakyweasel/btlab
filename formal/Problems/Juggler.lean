@@ -109,6 +109,11 @@ import Problems.Juggler.BeattyPhaseCounting
 import Problems.Juggler.BeattyGapCounting
 import Problems.Juggler.BeattyGapContent
 import Problems.Juggler.BeattyCertificateContent
+import Problems.Juggler.BeattyLocalCounting
+import Problems.Juggler.BeattyLocalVolume
+import Problems.Juggler.BeattyTailConvergence
+import Problems.Juggler.BeattyGeometricLaw
+import Problems.Juggler.BeattyCertificateLocalContent
 import Problems.Juggler.PaperBLevelWindow
 import Problems.Juggler.PaperBJumpTransposition
 import Problems.Juggler.PaperBPaperCBridge

@@ -1,5 +1,60 @@
 [
  {
+  "id": "J-beatty-local-gap-counting",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The moving-cutoff asymptotic is stable under vanishing perturbations for nonnegative sequences and nonnegative monotone ceilings, including ceilings that vanish. For each real spatial threshold y, retain the actual certificate weight w_r exactly when y<F(delta_r). Then x^(2/3) times the number of retained weights at least x tends, as x decreases to zero, to integral_0^1 1_{y<F(t)}*(kappa*F(t))^(2/3) dt. Empty retained families are allowed. No new arithmetic or equidistribution premise is imposed on the concrete certificate sequence.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyLocalCounting.lean",
+  "decl": ["diagonalCount_nonneg_tendsto_of_sub_tendsto_zero", "certificate_tail_gapCount_asymptotic"],
+  "lean_trust": "kernel",
+  "tests": ["tests/research/juggler_sequence/test_beatty_local_content_interface.py", "tests/research/juggler_sequence/test_layer_completeness.py"],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-local-tube-comparison",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For a null subset K of [a,b] given by removing pairwise disjoint open gaps with summable nonnegative lengths w_n and left endpoints l_n, with every gap and envelope endpoint retained in K, define S_epsilon(y)=sum_{y<l_n} min(w_n,2*epsilon). For every epsilon>0 and real y, S_epsilon(y)<=lambda(K_epsilon intersect (y,infinity))<=S_epsilon(y)+4*epsilon. The bound accounts for at most one crossing gap and the two exterior collars. It is a geometric comparison error, not an effective rate for the limiting measure.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyLocalVolume.lean",
+  "decl": ["volume_thickening_inter_gap", "volume_thickening_tail_bounds"],
+  "lean_trust": "kernel",
+  "tests": ["tests/research/juggler_sequence/test_beatty_local_content_interface.py", "tests/research/juggler_sequence/test_layer_completeness.py"],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-tail-weak-convergence",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For real probability measures indexed by a countably generated filter, convergence of the mass of every open upper ray to that of a fixed probability measure implies weak convergence. For finite measures, convergence of every open upper-ray mass together with convergence of total mass to a nonzero finite limiting measure implies weak convergence. The proof uses differences of tails on half-open intervals and the Portmanteau theorem. These are general classical measure-theoretic implications.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyTailConvergence.lean",
+  "decl": ["tendsto_probabilityMeasure_of_tails", "tendsto_finiteMeasure_of_tails"],
+  "lean_trust": "kernel",
+  "tests": ["tests/research/juggler_sequence/test_beatty_local_content_interface.py", "tests/research/juggler_sequence/test_layer_completeness.py"],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-geometric-law",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The finite measure dnu(y)=3*2^(1/3)*kappa^(2/3)*y^(2/3) dmu(y), where mu is the actual singular certificate law, has total mass equal to the previously proved positive Minkowski content. Its probability normalization has exact measurable-set and integral formulas dnu_hat(y)=y^(2/3) dmu(y)/integral y^(2/3) dmu(y). All scale constants cancel in this normalization; its connection to actual metric tubes is proved in J-beatty-certificate-local-content.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyGeometricLaw.lean",
+  "decl": ["certificateLocalContent_tail", "certificateLocalContent_mass", "certificateGeometricLaw_real", "certificateLocalContent_integral", "certificateGeometricLaw_integral"],
+  "lean_trust": "kernel",
+  "tests": ["tests/research/juggler_sequence/test_beatty_local_content_interface.py", "tests/research/juggler_sequence/test_layer_completeness.py"],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-certificate-local-content",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For the complete cluster set K of the original binomial-normalized integer certificate counts at alpha=log_2 3, epsilon^(-1/3) times Lebesgue measure restricted to its open metric epsilon-neighbourhood converges weakly to dnu(y)=3*2^(1/3)*kappa^(2/3)*y^(2/3) dmu(y). The ordinary uniform tube probabilities converge weakly to y^(2/3) dmu(y)/integral y^(2/3) dmu(y). Every bounded continuous spatial observable has the corresponding normalized moment limit, and every open upper-ray tube volume has its explicit local-content limit. All concrete premises are discharged. No full asymptotic error rate, arbitrary-measurable-set convergence, Hausdorff-dimension equality or extension to arbitrary irrational slopes is asserted.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyCertificateLocalContent.lean",
+  "decl": ["certificate_tail_truncated_asymptotic", "certificateClusterSet_local_tube_tail", "certificateScaledTubeMeasure_tendsto", "certificateTubeLaw_real", "certificateTubeLaw_integral", "certificateTubeLaw_tendsto", "certificateClusterSet_tube_average_tendsto"],
+  "lean_trust": "kernel",
+  "tests": ["tests/research/juggler_sequence/test_beatty_local_content_interface.py", "tests/research/juggler_sequence/test_layer_completeness.py"],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-monotone-phase-moving-cutoff",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For an equidistributed sequence theta_n in [0,1) and a monotone real g with g(0)>=0, T^(-1) times the number of indices n>=0 satisfying n+1<=T*g(theta_n) tends to integral_0^1 g. If g(0)>0 the same limit holds for any bounded-above sequence u_n with u_n-g(theta_n)->0. The proof uses finite phase partitions, dilated prefix frequencies and Darboux sums; dense jumps are permitted. Positive certificate phases satisfy the required interval frequencies without an added equidistribution premise.",
@@ -24,10 +79,10 @@
  {
   "id": "J-beatty-gap-counting-integral",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "For a summable nonnegative real sequence w, N(x)=#{n:w_n>=x} is finite for x>0 and sum_n min(w_n,t)=integral_0^t N(x) dx for every t>0. If w_0>0 and x^(2/3)*N(x)->A as x decreases to zero, then t^(-1/3)*sum_n min(w_n,t)->3*A. This generic classical layer-cake implication requires no monotonicity of w and no error rate.",
+  "statement": "For a summable nonnegative real sequence w, N(x)=#{n:w_n>=x} is finite for x>0 and sum_n min(w_n,t)=integral_0^t N(x) dx for every t>0. If x^(2/3)*N(x)->A as x decreases to zero, then t^(-1/3)*sum_n min(w_n,t)->3*A, including the identically zero sequence. The original interface with the additional w_0>0 premise remains available. This generic classical layer-cake implication requires no monotonicity of w and no error rate.",
   "source": "docs/theory/juggler_beatty_first_passage_note.md",
   "lean": "Problems/Juggler/BeattyGapContent.lean",
-  "decl": ["finite_gapCount", "truncated_sum_eq_integral_gapCount", "truncated_sum_asymptotic_of_gapCount"],
+  "decl": ["finite_gapCount", "truncated_sum_eq_integral_gapCount", "truncated_sum_asymptotic_of_gapCount", "truncated_sum_asymptotic_of_gapCount_nonneg"],
   "lean_trust": "kernel",
   "tests": ["tests/research/juggler_sequence/test_beatty_content_interface.py", "tests/research/juggler_sequence/test_layer_completeness.py"],
   "related_conjectures": []

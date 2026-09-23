@@ -78,13 +78,23 @@ theorem truncated_sum_eq_integral_gapCount {w : ℕ → ℝ}
   exact (gapCount_eq_tsum_indicator hw hx.1).symm
 
 private theorem gapCount_integrable {w : ℕ → ℝ}
-    (hw : Summable w) (hn : ∀ n, 0 ≤ w n) (hp : 0 < w 0) {t : ℝ} (ht : 0 < t) :
+    (hw : Summable w) (hn : ∀ n, 0 ≤ w n) {t : ℝ} (ht : 0 < t) :
     IntegrableOn (fun x => (gapCount w x : ℝ)) (Ioc 0 t) := by
+  by_cases hz : ∀ n, w n = 0
+  · apply (integrable_const (0 : ℝ) : Integrable _ (volume.restrict (Ioc 0 t))).congr
+    filter_upwards [ae_restrict_mem measurableSet_Ioc] with x hx
+    have he : {n | x ≤ w n} = ∅ := by
+      ext n
+      simp [hz, not_le_of_gt hx.1]
+    simp [gapCount, he]
+  push Not at hz
+  obtain ⟨n, hnz⟩ := hz
+  have hp : 0 < w n := lt_of_le_of_ne (hn n) (Ne.symm hnz)
   apply Integrable.of_integral_ne_zero
   rw [← truncated_sum_eq_integral_gapCount hw hn ht]
   have hs : Summable (fun n => min (w n) t) :=
     Summable.of_nonneg_of_le (fun n => le_min (hn n) ht.le) (fun _ => min_le_left _ _) hw
-  exact ne_of_gt ((lt_min hp ht).trans_le (hs.le_tsum 0 (fun n _ => le_min (hn n) ht.le)))
+  exact ne_of_gt ((lt_min hp ht).trans_le (hs.le_tsum n (fun n _ => le_min (hn n) ht.le)))
 
 private theorem integral_two_thirds (t : ℝ) :
     (∫ x in (0 : ℝ)..t, x^(-2/3 : ℝ)) = 3*t^(1/3 : ℝ) := by
@@ -93,10 +103,9 @@ private theorem integral_two_thirds (t : ℝ) :
   ring
 
 /-- A two-thirds gap-counting asymptotic integrates to an exact cube-root
-asymptotic for the truncated total length. A single positive gap suffices;
-the remaining gaps may vanish. -/
-theorem truncated_sum_asymptotic_of_gapCount {w : ℕ → ℝ} {A : ℝ}
-    (hw : Summable w) (hn : ∀ n, 0 ≤ w n) (hp : 0 < w 0)
+asymptotic for nonnegative summable gaps, including an empty localization. -/
+theorem truncated_sum_asymptotic_of_gapCount_nonneg {w : ℕ → ℝ} {A : ℝ}
+    (hw : Summable w) (hn : ∀ n, 0 ≤ w n)
     (hA : Tendsto (fun x : ℝ => x^(2/3 : ℝ)*(gapCount w x : ℝ))
       (𝓝[>] 0) (𝓝 A)) :
     Tendsto (fun t : ℝ => (∑' n, min (w n) t)/t^(1/3 : ℝ))
@@ -119,7 +128,7 @@ theorem truncated_sum_asymptotic_of_gapCount {w : ℕ → ℝ} {A : ℝ}
       nlinarith
     · rw [← div_eq_mul_inv, le_div_iff₀ hp]
       nlinarith
-  have hi := gapCount_integrable hw hn hp ht.1
+  have hi := gapCount_integrable hw hn ht.1
   have hpow : IntervalIntegrable (fun x : ℝ => x^(-2/3 : ℝ)) volume 0 t :=
     intervalIntegral.intervalIntegrable_rpow' (by norm_num)
   have hL := setIntegral_mono_on (hpow.const_mul (A-ε/6)).1 hi measurableSet_Ioc
@@ -138,5 +147,16 @@ theorem truncated_sum_asymptotic_of_gapCount {w : ℕ → ℝ} {A : ℝ}
     nlinarith [hU]
   rw [Real.dist_eq, abs_lt]
   constructor <;> linarith
+
+/-- A two-thirds gap-counting asymptotic integrates to an exact cube-root
+asymptotic for the truncated total length. This interface retains the
+positive first-gap premise used by the original content theorem. -/
+theorem truncated_sum_asymptotic_of_gapCount {w : ℕ → ℝ} {A : ℝ}
+    (hw : Summable w) (hn : ∀ n, 0 ≤ w n) (_hp : 0 < w 0)
+    (hA : Tendsto (fun x : ℝ => x^(2/3 : ℝ)*(gapCount w x : ℝ))
+      (𝓝[>] 0) (𝓝 A)) :
+    Tendsto (fun t : ℝ => (∑' n, min (w n) t)/t^(1/3 : ℝ))
+      (𝓝[>] 0) (𝓝 (3*A)) :=
+  truncated_sum_asymptotic_of_gapCount_nonneg hw hn hA
 
 end Problems.Juggler.BeattyPhase

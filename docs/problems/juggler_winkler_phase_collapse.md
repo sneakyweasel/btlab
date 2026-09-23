@@ -305,12 +305,42 @@ Stop criterion          A new unproved analytic or arithmetic premise is needed.
 PROMOTE
 ```
 
+**23 September: the whole geometric limiting measure.** The cube-root-rescaled
+Lebesgue measures of the actual metric tubes converge weakly to
+`dnu(y)=3*2^(1/3)*kappa^(2/3)*y^(2/3) dmu(y)`. Consequently a uniform
+point in the shrinking tube has limiting probability law
+`y^(2/3) dmu(y) / integral y^(2/3) dmu(y)`. This identifies every bounded
+continuous spatial average, in addition to the total content. The local
+gap-counting theorem permits zero retained weights; at each spatial threshold
+the marked truncated-gap sum differs from the true tube-tail volume by at
+most `4*epsilon`. No new arithmetic premise is used. The result is weak
+convergence, not convergence on arbitrary measurable sets: the null set `K`
+has zero tube probability at every radius and full limiting probability.
+The public proof is
+[BeattyCertificateLocalContent.lean](../../formal/Problems/Juggler/BeattyCertificateLocalContent.lean),
+with original-count consumers in
+[InterfaceCheckBeattyLocalContent.lean](../../formal/InterfaceCheckBeattyLocalContent.lean).
+See Section 18 of the working note for the formulas and proof structure.
+
+```text
+Mathematical target     The local tube-volume limit and its probability normalization.
+Novelty hypothesis      The geometric limit is the y^(2/3)-weighted certificate law.
+Falsifier               Localized gap counts or boundary terms contradict that limit.
+Already killed by?      No matching obstruction; gap locations and weights are explicit.
+Existing machinery      Moving-cutoff counts, exact tube volumes, singular law.
+Maximum Phase-0 scope   Localized counts, tube limits, weak convergence.
+Promotion criterion     Lean checks the result for the actual certificate cluster set.
+Stop criterion          A new unproved arithmetic premise is required.
+PROMOTE
+```
+
 ## Open questions
 
 The qualitative logarithmic-slope phase theorem and normalization are complete
 in Lean, as are the complete accumulation set and its singular continuous
 empirical limiting law. Its tube-volume order and Minkowski dimension `2/3`
-and its exact positive Minkowski content are now checked too. Remaining
+and its exact positive Minkowski content are now checked too, together with
+the whole local content measure and the normalized geometric limiting law. Remaining
 mathematical extensions are Hausdorff dimension, a quantitative phase remainder,
 effective numerical constants, and generalization from the concrete
 logarithmic slope to arbitrary irrational `1<alpha<2`. Literature comparison
@@ -325,6 +355,8 @@ proved. The continuation identifies the full null perfect accumulation set,
 its exact gaps, the singular continuous empirical law with exact threshold
 frequencies and plateau levels, and the cube-root neighbourhood-volume law
 with dimension `2/3` and exact content given by the two-thirds law moment.
+The whole geometric limiting measure is the explicitly scaled
+`y^(2/3)` reweighting of the empirical law, with its probability normalization.
 No new branch, publication, priority claim or
 trajectory-termination claim is opened.
 

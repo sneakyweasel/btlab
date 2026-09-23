@@ -10,6 +10,9 @@ envelope with its open jump intervals removed: a nonempty compact perfect
 set of Lebesgue measure zero. Its gap lengths have order `r^(-3/2)` and
 its neighbourhood volume has an exact positive `epsilon^(1/3)` asymptotic,
 giving Minkowski dimension `2/3` and an explicit Minkowski content.
+The whole rescaled neighbourhood measure converges weakly to an explicit
+local content measure: the empirical law weighted by its value to the
+two-thirds power, with the same geometric scale factor.
 Their empirical probability measures converge
 to the image of uniform phase measure under the profile. This limiting law
 is singular continuous. Its continuous distribution function inverts the
@@ -42,8 +45,9 @@ G(y)=\delta_j\quad\bigl(F(\delta_j)\le y\le F(\delta_j)+w_j\bigr).
 
 Thus the phase profile has dense jumps, while the distribution of its
 values is continuous and singular. Sections 14–15 give the limit-set and
-frequency proofs; Sections 16–17 prove its two-thirds Minkowski dimension
-and identify its exact content with a moment of the limiting law.
+frequency proofs; Sections 16–18 prove its two-thirds Minkowski dimension,
+identify its exact content with a moment of the limiting law, and determine
+the whole geometric limiting measure by a two-thirds-power reweighting.
 Sections 12–13 establish their counting and asymptotic inputs.
 
 **Evidence boundary.** The preceding conclusions are **EXACT — LEAN VERIFIED**
@@ -1185,6 +1189,121 @@ the original-count content audit and targeted Beatty, layer, ledger and
 documentation-link tests pass, and Lean style reports zero new violations.
 The five existing publication releases and their kits remain current.
 
+## 18. The whole geometric limiting measure
+
+**EXACT — LEAN VERIFIED, at \(\alpha=\log_2 3\).** Let \(\mu\) be the
+singular empirical certificate law of Section 15, and retain the actual
+cluster set \(K\), its open metric tube \(K_\varepsilon\), and \(\kappa\).
+Put \(J=\int_{\mathbb R}y^{2/3}\,d\mu(y)>0\). As finite measures on the
+real line with the weak topology,
+\[
+ \boxed{\quad
+ \varepsilon^{-1/3}\lambda\!\restriction_{K_\varepsilon}
+ \ \Longrightarrow\
+ \nu,\qquad
+ d\nu(y)=3\,2^{1/3}\kappa^{2/3}y^{2/3}\,d\mu(y).
+ \quad}                                                       \tag{32}
+\]
+Thus the global content of Section 17 extends to an explicit spatial
+measure, whose total mass is exactly \(\mathcal M^{2/3}(K)\).
+Probability normalization gives the law of a uniformly sampled point
+in the shrinking metric neighbourhood:
+\[
+ \boxed{\quad
+ \frac{\lambda\!\restriction_{K_\varepsilon}}{\lambda(K_\varepsilon)}
+ \ \Longrightarrow\ \widehat\nu,\qquad
+ d\widehat\nu(y)=\frac{y^{2/3}}{J}\,d\mu(y).
+ \quad}                                                       \tag{33}
+\]
+This statement distinguishes geometric sampling from sampling the original
+normalized counts: geometric sampling weights a value \(y\) by \(y^{2/3}\).
+For every bounded continuous real function \(g\), Lean checks the explicit
+observable form
+\[
+ \frac{\int_{K_\varepsilon}g(y)\,dy}{\lambda(K_\varepsilon)}
+ \longrightarrow
+ \frac{\int_{\mathbb R}g(y)y^{2/3}\,d\mu(y)}{J}.                 \tag{34}
+\]
+The identities defining \(\widehat\nu\) also hold for every measurable set;
+the convergence assertion itself is weak convergence, not convergence on
+all measurable sets. For example every tube measure gives \(K\) mass zero,
+whereas the limiting probability is concentrated on \(K\).
+
+**Localized counting.** For a spatial threshold \(z\), retain the gap
+weight \(w_r\) exactly when \(z<F(\delta_r)\), replacing it by zero otherwise.
+The corresponding power-transformed ceiling is approximated by
+\[
+ g_z(t)=\mathbf1_{\{z<F(t)\}}(\kappa F(t))^{2/3}.
+\]
+This is nonnegative and monotone, but may vanish on an initial phase
+interval or everywhere. The moving-cutoff stability proof is extended to
+this case using \(\max(g_z-\eta,0)\) and \(g_z+\eta\).
+Integration of the resulting localized gap count gives
+\[
+ \varepsilon^{-1/3}
+ \sum_{\substack{r\ge1\\z<F(\delta_r)}}\min(w_r,2\varepsilon)
+ \longrightarrow
+ 3\,2^{1/3}\int_0^1g_z(t)\,dt.                               \tag{35}
+\]
+Empty localizations are covered; the layer-cake theorem no longer needs
+a positive first retained gap.
+
+**Passage to the actual metric tube.** Write the sum in (35) as
+\(S_\varepsilon(z)\). The geometric estimate is uniform in the threshold:
+\[
+ 0\le\lambda(K_\varepsilon\cap(z,\infty))-S_\varepsilon(z)
+ \le4\varepsilon.                                           \tag{36}
+\]
+Every gap whose left endpoint exceeds \(z\) contributes its full truncated
+length. At most one remaining gap can cross the threshold; it contributes
+at most \(2\varepsilon\). The two exterior collars contribute at most
+\(2\varepsilon\), and \(K\) itself has zero Lebesgue measure.
+After division by \(\varepsilon^{1/3}\), the error in (36) tends to zero.
+This is a geometric comparison bound, not a rate for the full limiting
+asymptotic.
+
+Consequently all spatial upper tails converge to those of \(\nu\).
+Upper-tail differences give half-open interval masses. A proved
+convergence criterion for finite measures uses this interval family,
+the positive limiting total mass, and the Portmanteau theorem to conclude
+(32). Continuity of probability normalization gives (33), and bounded
+continuous test functions give (34). No rate of equidistribution or
+additional Diophantine hypothesis is needed.
+
+**Formal interfaces and scope.** The generic geometric estimate is in
+[BeattyLocalVolume.lean](../../formal/Problems/Juggler/BeattyLocalVolume.lean);
+the localized counts are in
+[BeattyLocalCounting.lean](../../formal/Problems/Juggler/BeattyLocalCounting.lean).
+The law and moment formulas are in
+[BeattyGeometricLaw.lean](../../formal/Problems/Juggler/BeattyGeometricLaw.lean),
+and the finite-measure convergence criterion is in
+[BeattyTailConvergence.lean](../../formal/Problems/Juggler/BeattyTailConvergence.lean).
+The complete specialization and observable limit are in
+[BeattyCertificateLocalContent.lean](../../formal/Problems/Juggler/BeattyCertificateLocalContent.lean).
+Its tube-law evaluation theorem identifies ordinary uniform Lebesgue
+probability on the actual metric neighbourhood at every positive radius.
+
+Local Minkowski content is a classical measure-theoretic refinement;
+see Winter [6]. The result here identifies the local content explicitly
+for these certificate counts through their singular empirical law.
+It does not establish Hausdorff dimension, an effective asymptotic error,
+or the arbitrary-slope extension.
+**PROMOTE** this completed geometric limiting-measure theorem.
+
+The executable consumer audit is
+[InterfaceCheckBeattyLocalContent.lean](../../formal/InterfaceCheckBeattyLocalContent.lean),
+with its regression in
+[test_beatty_local_content_interface.py](../../tests/research/juggler_sequence/test_beatty_local_content_interface.py).
+It expands the cluster set into subsequential limits of the original
+integer certificate ratios and checks both every spatial tail and every
+bounded continuous observable.
+
+Validation: the complete retained Lean graph builds successfully (9060 jobs).
+The executed consumer audit checks nineteen named dependency records,
+including the original-count tail and observable statements, and permits
+only `propext`, `Classical.choice`, and `Quot.sound`. No additional analytic
+or arithmetic assumption is supplied to the concrete limiting-measure theorem.
+
 ## References
 
 1. G. Baxter, *An analytic problem whose solution follows from a simple
@@ -1203,3 +1322,6 @@ The five existing publication releases and their kits remain current.
    *Multifractal Analysis via Scaling Zeta Functions and Recursive Structure
    of Lattice Strings*, author manuscript, Section 3.2, Theorem 3.8.
    [IHES manuscript](https://preprints.ihes.fr/storage/MAZ.pdf).
+6. S. Winter, *Localization results for Minkowski contents*,
+   Journal of the London Mathematical Society **99** (2019), 553–582.
+   [arXiv:1610.03117](https://arxiv.org/abs/1610.03117).

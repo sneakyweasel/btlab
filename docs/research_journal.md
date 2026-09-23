@@ -30,13 +30,17 @@ order `r^(-3/2)`; the exact tube formula gives `lambda(K_epsilon)` of order
 `epsilon^(1/3)` and Minkowski dimension `2/3`. The exact content is now
 `3*2^(1/3)*kappa^(2/3) integral_0^1 F(t)^(2/3) dt`, equivalently the
 two-thirds moment of the singular law times the explicit scale factor.
-The proof checks the moving-cutoff count and integrates it; fourteen new
-consumer dependency records check the original-count content interfaces.
+The whole geometric law is now checked too: cube-root-rescaled tube measures
+converge weakly to `3*2^(1/3)*kappa^(2/3)*y^(2/3) dmu(y)`; uniform tube
+probabilities converge to its normalization. Localized gap counts and a
+`4*epsilon` geometric comparison give every bounded continuous spatial
+average. Nineteen consumer dependency records check the new interfaces,
+including statements directly over the original integer certificate counts.
 Hausdorff dimension, quantitative phase rates, effective numerical
 constants and arbitrary irrational slope remain separate extensions.
 **PROMOTE** the completed qualitative
 specialization; no paper/release, priority or trajectory-termination claim is
-changed. Canonical proof boundary: Sections 13–17 of the
+changed. Canonical proof boundary: Sections 13–18 of the
 [comparison note](theory/juggler_beatty_first_passage_note.md) and the
 [dossier](problems/juggler_winkler_phase_collapse.md).
 
