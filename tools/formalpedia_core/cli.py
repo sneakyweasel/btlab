@@ -45,6 +45,16 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("status", help="live catalogue health and saved-index freshness")
     p = sub.add_parser("claim", help="an exact ledger claim and its declaration statements")
     p.add_argument("id")
+    p = sub.add_parser('claim-graph', help='written claim dependencies and their unresolved review boundary')
+    p.add_argument('id')
+    p.add_argument('--choose', action='append', default=[], metavar='CLAIM=ROUTE')
+    p.add_argument('--compiled', action='store_true', help='add bounded current compiler associations')
+    p.add_argument('--max-nodes', type=int, default=100)
+    p.add_argument('--limit', type=int, default=50)
+    p.add_argument('--offset', type=int, default=0)
+    p.add_argument('--snapshot')
+    p.add_argument('--format', choices=['json', 'markdown'], default='json')
+    p.add_argument('--require-complete', action='store_true', help='fail on incomplete written dependency coverage')
     p = sub.add_parser("search", help="ranked search across names, statements, docs and exact claims")
     p.add_argument("text")
     p.add_argument("--limit", type=int, default=20)
@@ -63,7 +73,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--include-private", action="store_true")
     p = sub.add_parser("impact", help="modules rebuilt by a change to this module or file")
     p.add_argument("target")
-    sub.add_parser("dag", help="rebuild the claim graph over ledger-carrying modules")
+    sub.add_parser("dag", help="rebuild the module graph over ledger-carrying modules")
     sub.add_parser("propose", help="rank declarations for rows that name none")
     sub.add_parser("papers", help="each manuscript's reachable trust surface")
     sub.add_parser("review", help="write the confident proposals as a readable digest")
@@ -92,6 +102,32 @@ def main(argv: list[str] | None = None) -> int:
                    help="comma-separated ledger ids to ask about, e.g. the row being retagged")
     p.add_argument("--workers", type=int, default=4)
     args = ap.parse_args(argv)
+
+    if args.cmd == 'claim-graph':
+        from formalpedia_catalog import Catalogue
+        from . import claim_graph
+        catalogue = Catalogue()
+        try:
+            choices = {}
+            for choice in args.choose:
+                name, separator, route = choice.partition('=')
+                if not separator or not name or not route or name in choices:
+                    raise ValueError('--choose requires distinct CLAIM=ROUTE selections')
+                choices[name] = route
+            if args.format == 'markdown':
+                if args.compiled or args.offset or args.snapshot:
+                    raise ValueError('Markdown renders the bounded written graph; use JSON for compiled edges/pagination')
+                _, ledger, _ = catalogue.snapshot()
+                result = claim_graph.build(ledger, _fp_workspace.ROOT, args.id, choices=choices, max_nodes=args.max_nodes)
+                print(claim_graph.markdown(result), end='')
+            else:
+                result = catalogue.claim_dependencies(args.id, choices=choices, include_compiled=args.compiled,
+                    max_nodes=args.max_nodes, limit=args.limit, offset=args.offset, snapshot=args.snapshot)
+                print(_fp_source.render(result), end='')
+            return 1 if args.require_complete and not result['dependency_coverage_complete'] else 0
+        except (ValueError, OSError) as exc:
+            print(str(exc), file=sys.stderr)
+            return 2
 
     if args.cmd in {"search", "show", "status", "claim", "impact"}:
         from formalpedia_catalog import Catalogue

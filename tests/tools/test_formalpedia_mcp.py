@@ -28,7 +28,8 @@ def test_mcp_discovery_is_structured_and_read_only():
             'formalpedia_research_search', 'formalpedia_research_context', 'formalpedia_research_check',
             'formalpedia_lab_doctor', 'formalpedia_change_impact', 'formalpedia_verification_plan',
             'formalpedia_capabilities', 'formalpedia_semantic_status', 'formalpedia_semantic_show',
-            'formalpedia_type_search', 'formalpedia_dependencies', 'formalpedia_semantic_diff'}
+            'formalpedia_type_search', 'formalpedia_dependencies', 'formalpedia_semantic_diff',
+            'formalpedia_claim_dependencies'}
         for tool in tools:
             assert tool.annotations.readOnlyHint
             assert tool.annotations.destructiveHint is False
@@ -111,9 +112,14 @@ def test_real_stdio_client_searches_resolves_and_rejects_invalid_pagination(chec
                 assert 'formalpedia_type_search' in {t.name for t in advertised.tools}
                 capabilities = await session.call_tool('formalpedia_capabilities', {})
                 assert not capabilities.isError
-                assert capabilities.structuredContent['protocol_version'] == 3
+                assert capabilities.structuredContent['protocol_version'] == 4
                 assert Path(capabilities.structuredContent['root']) == checkout
                 assert 'semantic' in capabilities.structuredContent['tool_groups']
+                claims = await session.call_tool('formalpedia_claim_dependencies',
+                    {'ledger_id': 'C-fixture', 'include_compiled': True})
+                assert not claims.isError
+                assert not claims.structuredContent['dependency_coverage_complete']
+                assert claims.structuredContent['summary']['incomplete_dependencies'] == ['C-fixture']
                 semantic = await session.call_tool('formalpedia_semantic_status', {})
                 assert not semantic.isError
                 assert semantic.structuredContent['status'] == 'current'

@@ -31,6 +31,8 @@ mcp = FastMCP('formalpedia', instructions=(
     'types, formalpedia_dependencies for proof/type edges, and formalpedia_semantic_diff '
     'for historical changes. Builds refresh compiled metadata; queries exclude stale '
     'modules and disclose coverage. formalpedia_show joins exact source and compiled identities. '
+    'Use formalpedia_claim_dependencies for written proof routes, open assumptions and '
+    'incomplete dependency coverage; compiled associations are a separate optional overlay. '
     'Structural matches are not proof applicability. '
     'All tools here are local and read-only.'))
 READ_ONLY = ToolAnnotations(readOnlyHint=True, destructiveHint=False,
@@ -80,6 +82,22 @@ def formalpedia_claim(ledger_id: str) -> dict[str, Any]:
 
 
 @mcp.tool(annotations=READ_ONLY)
+def formalpedia_claim_dependencies(ledger_id: str, choices: dict[str, str] | None = None,
+                                  include_compiled: bool = False, max_nodes: int = 100,
+                                  limit: int = 50, offset: int = 0,
+                                  snapshot: str | None = None) -> dict[str, Any]:
+    """Follow one written proof route per claim, exposing assumptions and unknown/stale coverage.
+
+    choices maps claim IDs to route IDs; a node with several routes is not traversed until
+    selected. Empty reviewed dependencies differ from absent annotations. Compiled edges
+    are optional, bounded declaration associations with snapshot provenance, not English
+    proof edges. A theorem with premises remains conditional. No tag is upgraded.
+    """
+    return catalogue.claim_dependencies(ledger_id, choices=choices, include_compiled=include_compiled,
+        max_nodes=max_nodes, limit=limit, offset=offset, snapshot=snapshot)
+
+
+@mcp.tool(annotations=READ_ONLY)
 def formalpedia_impact(target: str, limit: int = 50, offset: int = 0) -> dict[str, Any]:
     """Find imports, dependent modules and affected paper roots before editing a declaration.
 
@@ -102,9 +120,10 @@ def formalpedia_capabilities() -> dict[str, Any]:
     The code fingerprint identifies this running process's loaded entry point, not a
     security attestation. A fresh connection is required to load edited server code.
     """
-    return {'protocol_version': 3, 'server_fingerprint': SERVER_FINGERPRINT,
+    return {'protocol_version': 4, 'server_fingerprint': SERVER_FINGERPRINT,
             'root': str(fp_workspace.ROOT), 'tool_groups': {
                 'source': ['search', 'show', 'claim', 'impact', 'status', 'lint'],
+                'claims': ['claim_dependencies'],
                 'research': ['research_search', 'research_context', 'research_check'],
                 'maintenance': ['lab_doctor', 'change_impact', 'verification_plan'],
                 'semantic': ['semantic_status', 'semantic_show', 'type_search', 'dependencies', 'semantic_diff']},

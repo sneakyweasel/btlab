@@ -104,6 +104,13 @@ a theorem or discharges an assumption.
 
 ## Optional local reports
 
+For dependencies between English claims, use the [claim dependency guide](claim_dependencies.md):
+`python tools/formalpedia.py claim-graph J-paper-b-five-step-density-127 --format markdown`
+prints a review graph from the ledger. The read-only MCP equivalent is
+`formalpedia_claim_dependencies`. Written routes, open assumptions, incomplete
+annotations and optional compiler associations stay distinct. `dag` remains the
+module/import graph; neither view certifies English statement coverage.
+
 `build`, `dag`, `propose`, and `review` write reproducible exports under ignored
 `.cache/formalpedia/`. Reports read the current sources and ledger, never an older
 saved inventory. A fresh clone therefore needs no generated catalogue committed
