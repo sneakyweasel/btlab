@@ -1,0 +1,96 @@
+{
+  "schema": "btlab-output/v1",
+  "programme": "juggler",
+  "research_id": "juggler/winkler_phase_collapse",
+  "created_utc": "2026-09-23T09:31:02.261480+00:00",
+  "scope": "Exact survivor counts at depths 0..8000; exact binomial coefficient identity through 256; numerical jump diagnostics through order 5047.",
+  "artifact_root": ".",
+  "generator": {
+    "command": [
+      "python",
+      "tools/lab.py",
+      "run",
+      "research.juggler_sequence.beatty_phase_transfer",
+      "--depth",
+      "8000",
+      "--coefficient-depth",
+      "256"
+    ],
+    "parameters": {
+      "depth": 8000,
+      "coefficient_depth": 256
+    },
+    "python": "3.13.9"
+  },
+  "source": {
+    "revision": "d20cab375baa47dd207f8a677aec1c93d9046c6f",
+    "dirty": true,
+    "coverage": "loaded local Python, project configuration, and explicit sources at manifest creation; not an execution or dependency audit",
+    "files": [
+      {
+        "path": "pyproject.toml",
+        "sha256": "7442b296c0cafeba9b19a4c6a237f691bdd6d48ea9e1624dbdd0c80ab8ae1438",
+        "bytes": 3040
+      },
+      {
+        "path": "src/research/__init__.py",
+        "sha256": "2f57f06dcf8334c7d93eb76d768947fa8c70ac35d681dd7cdcb3f988a1d7b565",
+        "bytes": 58
+      },
+      {
+        "path": "src/research/experiments/__init__.py",
+        "sha256": "edbe56c7b50bc27f3658d78aabdc3ab5da9c6b35f9f21588cfeeb368d2830bab",
+        "bytes": 209
+      },
+      {
+        "path": "src/research/experiments/provenance.py",
+        "sha256": "da03e38a6272cb737bd48543e9bc2c44d44d093056e4a2303efb27e6c3c0a0cd",
+        "bytes": 12187
+      },
+      {
+        "path": "src/research/experiments/schema.py",
+        "sha256": "e7e5e2510862621b8d4bd60f9b38e29f7af05a6d2938ec71c0b60b60047632ed",
+        "bytes": 6595
+      },
+      {
+        "path": "src/research/experiments/table_io.py",
+        "sha256": "eccc3d72d3d375df7f4a346eff9b68b103395d568e46e45bfc75a018adbf5765",
+        "bytes": 3904
+      },
+      {
+        "path": "src/research/juggler_sequence/__init__.py",
+        "sha256": "aa88a5a3d4c50945996efdda77c4a653059d58e15bf88bfbb63bcdfd8507e574",
+        "bytes": 64
+      },
+      {
+        "path": "src/research/juggler_sequence/beatty_phase_transfer.py",
+        "sha256": "c039564ceb3761022b7376dcd8f5fdb0a224fdb9c205ff03d8706ffb5bb763f5",
+        "bytes": 5877
+      },
+      {
+        "path": "src/research/juggler_sequence/jump_spectrum.py",
+        "sha256": "a4ec3ec5d5d82b3dc4b2575c1e194931a437232d4bddd65334361535270a0401",
+        "bytes": 28709
+      },
+      {
+        "path": "src/research/juggler_sequence/lean_paths.py",
+        "sha256": "1a1208cfa3d552f695bcbf4f6a43fe25babbec5152970b3ac0ee019a45ab1263",
+        "bytes": 26144
+      },
+      {
+        "path": "tools/lab.py",
+        "sha256": "b860082d03e70f1da3e7462a545488898900e780b049828bf750888b6a2dc3fe",
+        "bytes": 3676
+      }
+    ]
+  },
+  "inputs": [],
+  "outputs": [
+    {
+      "path": "phase_transfer.json",
+      "sha256": "07c14a646459a99b10f1f2bbea1e9e022859ec6d4cb14684fd67c0c51785d96b",
+      "bytes": 3405
+    }
+  ],
+  "verification": "Hashes identify files only; no theorem or compilation status is asserted."
+}

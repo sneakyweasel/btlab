@@ -1,0 +1,137 @@
+{
+  "scope": "Exact counts and finite coefficient identities; floating-point phase diagnostics.",
+  "depth": 8000,
+  "max_order": 5047,
+  "coefficient_identity_checked_through": 256,
+  "constants": {
+    "alpha": 1.584962500721156,
+    "beta": 0.6309297535714575,
+    "q": 0.36907024642854247,
+    "v": 1.931813106466875,
+    "B": 2.839513730497752
+  },
+  "first_atoms": [
+    {
+      "order": 1,
+      "depth": 2,
+      "phase": 0.5849625007211561,
+      "count": 1,
+      "ratio": 1.0,
+      "weight": 0.6309297535714575
+    },
+    {
+      "order": 2,
+      "depth": 4,
+      "phase": 0.16992500144231215,
+      "count": 1,
+      "ratio": 1.0,
+      "weight": 0.14691666176566803
+    },
+    {
+      "order": 3,
+      "depth": 5,
+      "phase": 0.7548875021634682,
+      "count": 2,
+      "ratio": 2.0,
+      "weight": 0.1853881864067082
+    },
+    {
+      "order": 4,
+      "depth": 7,
+      "phase": 0.3398500028846243,
+      "count": 3,
+      "ratio": 1.2,
+      "weight": 0.0647535165131031
+    },
+    {
+      "order": 5,
+      "depth": 8,
+      "phase": 0.9248125036057804,
+      "count": 7,
+      "ratio": 2.3333333333333335,
+      "weight": 0.09532814717182735
+    },
+    {
+      "order": 6,
+      "depth": 10,
+      "phase": 0.5097750043269365,
+      "count": 12,
+      "ratio": 1.2857142857142858,
+      "weight": 0.03805348193477266
+    },
+    {
+      "order": 7,
+      "depth": 12,
+      "phase": 0.09473750504809253,
+      "count": 30,
+      "ratio": 1.0,
+      "weight": 0.02215258712546898
+    },
+    {
+      "order": 8,
+      "depth": 13,
+      "phase": 0.6797000057692486,
+      "count": 85,
+      "ratio": 2.0606060606060606,
+      "weight": 0.03960072461878676
+    },
+    {
+      "order": 9,
+      "depth": 15,
+      "phase": 0.2646625064904047,
+      "count": 173,
+      "ratio": 1.2097902097902098,
+      "weight": 0.018768101931361136
+    },
+    {
+      "order": 10,
+      "depth": 16,
+      "phase": 0.8496250072115608,
+      "count": 476,
+      "ratio": 2.3776223776223775,
+      "weight": 0.03258083508116449
+    },
+    {
+      "order": 11,
+      "depth": 18,
+      "phase": 0.4345875079327186,
+      "count": 961,
+      "ratio": 1.320054945054945,
+      "weight": 0.015316822861152973
+    },
+    {
+      "order": 12,
+      "depth": 20,
+      "phase": 0.019550008653872908,
+      "count": 2652,
+      "ratio": 1.0,
+      "weight": 0.009842577999461349
+    }
+  ],
+  "sample_orders": [
+    4548,
+    5047
+  ],
+  "head_comparisons": [
+    {
+      "head_orders": 1261,
+      "missing_mass_from_total_mass_identity": 0.040443833697075826,
+      "min_actual_ratio_minus_head": 3.119532989881435e-05,
+      "max_actual_ratio_minus_head": 0.040098634695723945
+    },
+    {
+      "head_orders": 2523,
+      "missing_mass_from_total_mass_identity": 0.028593858221811486,
+      "min_actual_ratio_minus_head": 1.800468498935892e-05,
+      "max_actual_ratio_minus_head": 0.028248659220458272
+    },
+    {
+      "head_orders": 5047,
+      "missing_mass_from_total_mass_identity": 0.020219196152933883,
+      "min_actual_ratio_minus_head": 1.1179786222337285e-05,
+      "max_actual_ratio_minus_head": 0.01987720976458096
+    }
+  ],
+  "total_atom_mass": 1.7095112913514552,
+  "total_mass_status": "Written centered-walk argument, not a finite computation."
+}

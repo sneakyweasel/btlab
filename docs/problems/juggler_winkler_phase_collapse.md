@@ -96,26 +96,65 @@ None found.
 
 ## Formalization
 
-None. The existence of `F` is the same missing local limit theorem as for `psi`
-(`J-paper-b-tilt-reduction-and-the-phase-factor`); nothing here is Lean-ready.
+The original numerical investigation supplied no formalization. The 23 September
+extension [BeattyPhaseTransfer.lean](../../formal/Problems/Juggler/BeattyPhaseTransfer.lean)
+checks the two phase coordinates, exact normalized count identity, cancellation of
+survivor jumps into certificate counts, and monotonicity, one-sided limits and jump
+sizes of a summable positive series. Its moving-kernel convergence theorem assumes
+uniform domination, fixed-index approximation and a vanishing far remainder.
+It does not prove those analytic inputs for these counts, the classical
+Spitzer identity, or the uniform Stirling expansion.
 
 ## Results
 
 `J-winkler-ratio-collapses-onto-the-phase`, computationally verified: the collapse, its
 convergence, the failing control, and the jumps on the orbit, as tabulated above.
 
+**23 September: explicit profile and written convergence argument.** With
+`beta = 1/alpha`, `q = 1-beta`, `B = alpha^alpha/(alpha-1)^(alpha-1)` and
+`w_r = c_r/(B^r q^delta_r) = c_r beta^r q^(m_r-r)`, the new
+[comparison note](../theory/juggler_beatty_phase_transfer_note.md) derives
+
+    F(delta) = 1 + sum_{delta_r < delta} w_r,
+    sum_r w_r = 1/(alpha-1),
+    R+_r = F(delta_r) + O(r^(-1/2)).
+
+The first jump is exactly `beta = 0.630929753571457...`. The written proof constructs
+the survivor profile from the binomial-tail Spitzer series; it obtains the necessary
+coefficient bound before passing to a limit, and handles the moving discontinuities
+without continuity assumptions. Independent review of that analytic argument remains
+the next step; it is not an end-to-end Lean theorem or a manuscript revision.
+
+New probe: [beatty_phase_transfer.py](../../src/research/juggler_sequence/beatty_phase_transfer.py).
+Test: [test_beatty_phase_transfer.py](../../tests/research/juggler_sequence/test_beatty_phase_transfer.py).
+Exact counts through depth 8000 give orders 1–5047; an independent binomial-coefficient
+recurrence is checked through depth 256. The first eight predicted jumps agree with
+the earlier window estimates at their resolution. Floating-point profile diagnostics
+are not interval certificates.
+
+Continuation triage: target the exact normalization and full jump formula; possible
+novelty is the positive cumulative series, not the classical counting identity.
+Falsifiers are a normalization mismatch, wrong jump signs or a nonvanishing
+uncontrolled remainder. Already killed by? Neither the closed recurrence-only route
+nor residue-class fitting applies: this uses the full generating-function identity.
+Existing machinery is the exact DP, certificate recurrence and ladder profile.
+Maximum scope: this comparison note, one bounded probe and one Lean transfer module.
+Promote a checked formula with an explicit proof boundary; park the limit if its
+tail interchange is unjustified. No next branch is opened.
+
 ## Open questions
 
-Is `F` determined by `psi` through `M_d = 2 N_(d-1) - N_d`, and are its jumps the images
-of `psi`'s?
+The algebraic relation and jump cancellation are now explicit. The remaining review
+question is whether the coefficient argument in Sections 3–5 of the comparison note
+fully establishes the claimed uniform remainder. The analytic specialization is not
+yet kernel-checked; existing paper claims retain their earlier evidence labels.
 
 ## Decision
 
-`PROMOTE` -- a stable collapse, three windows wide, with a control that fails as it
-must, on counts the laboratory already owns; it answers numerically what Corollary 12
-leaves open away from the record orders. Best next question: derive `F` from `psi` at
-the two phases the identity `M_d = 2 N_(d-1) - N_d` pairs, and check the jump sizes
-against `psi`'s spectrum.
+`PROMOTE` -- the numerical collapse now has an explicit positive jump series, a written
+convergence proof for review, and compiled deterministic/conditional transfer lemmas.
+Best next question: independently audit the uniform binomial estimate and the
+non-circular coefficient-tail argument before changing Paper B's claim status.
 
 ## Publication assessment
 

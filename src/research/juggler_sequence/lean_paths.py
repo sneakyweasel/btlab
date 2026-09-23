@@ -338,6 +338,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "PaperBFiveStepDensity": "Paper B Theorems 5.2-5.4: the certificate count assembly",
     "PaperBCertificateLengths": "Paper B Lemma 5.1 for every length: the odd-count window",
     "PaperBCertificateRecursion": "Paper B: survivors and minimal certificates, one recursion",
+    "BeattyPhaseTransfer": "Beatty phase coordinates, survivor jump cancellation, summable jump profiles, and conditional moving-kernel transfer",
     "PaperBLevelWindow": "The empty-window theorem at every level, not only Paper B's",
     "PaperBJumpTransposition": "Paper B: one barrier transposition costs the barrier mass",
     "CollatzBridgeLab": "Laboratory extensions of the Collatz bridge: the minimal-certificate count as a residue count (Paper B recursion) and the -17 cycle word inside CycleMinShape (IdealCycleMin)",

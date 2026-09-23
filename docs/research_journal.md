@@ -10,6 +10,19 @@ The earlier full-length journal is available at Git revision
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-23 -- Beatty phase profile as a positive jump series
+
+The exact normalization yields a jump weight
+`w_r = c_r beta^r (1-beta)^(m_r-r)` and first jump `beta = log_3 2`.
+A written coefficient proof derives `F(delta)=1+sum_{delta_r<delta}w_r`
+and `R+_r=F(delta_r)+O(r^(-1/2))`; the centered-walk interpretation gives
+the total jump mass `1/(alpha-1)`. Lean checks the algebra, summable-series
+traces and a conditional moving-kernel transfer, not the full analytic
+specialization. Exact depth-8000 counts and a separate binomial recurrence
+through 256 pass. **PROMOTE** for independent review of the analytic proof;
+paper claims remain unchanged. See the [comparison note](theory/juggler_beatty_phase_transfer_note.md)
+and [dossier](problems/juggler_winkler_phase_collapse.md).
+
 ## 2026-09-23 -- OEIS generator corrections and exact modified-map descent
 
 The bounded A325904 check found an empty-sum error at order two in the

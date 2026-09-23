@@ -1,5 +1,53 @@
 [
  {
+  "id": "J-beatty-phase-transfer-kernel",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The Beatty crossing hypotheses alpha>1, delta=alpha*r-m in (0,1) give the two exact fractional-part coordinates. For the existing survivor and minimal-certificate counts, consecutive scaled survivor jumps cancel to the certificate count; finite-depth normalization and additive error control are exact. For any nonnegative summable weights on distinct real phases, the strict cumulative series is monotone, has the stated one-sided traces and jumps exactly equal to the weights; its endpoint traces follow when all phases lie in (0,1). A moving-kernel limit follows under explicit summability, uniform domination, fixed-index approximation and vanishing-remainder hypotheses. These analytic hypotheses are not discharged for the concrete count sequence in Lean. The module compiles; an executed audit of eleven principal declarations uses only propext, Classical.choice and Quot.sound.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattyPhaseTransfer.lean",
+  "decl": [
+   "fract_crossing_pair",
+   "transferred_jump_eq",
+   "normalized_count_identity",
+   "profile_transfer_error_le",
+   "jumpProfile_monotone",
+   "jumpProfile_tendsto_left",
+   "jumpProfile_tendsto_right",
+   "jumpProfile_jump",
+   "jumpProfile_tendsto_zero",
+   "jumpProfile_tendsto_one",
+   "tendsto_weighted_moving_profile"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_phase_transfer.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-phase-profile-jump-series",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For fixed irrational 1<alpha<2, beta=1/alpha, q=1-beta, B=alpha^alpha/(alpha-1)^(alpha-1), m_r=floor(alpha*r), delta_r={alpha*r}, and the binary first-descent counts c_r=M_(m_r+1), the written proof gives R+_r=F(delta_r)+O(r^(-1/2)) with F(delta)=1+sum_{delta_j<delta} w_j and w_j=c_j/(B^j*q^delta_j)=c_j*beta^j*q^(m_j-j). The total weight is 1/(alpha-1), and the first jump is beta. The argument imports the classical positive-partial-sum generating identity, proves a non-circular n^(-3/2) coefficient bound, constructs the survivor profile by an absolutely convergent moving-phase convolution, and controls its remainder. The centered Bernoulli walk fixes the total mass. This is a new written proof for independent review, not an end-to-end Lean theorem; the published paper and older conjecture labels are not retagged. No priority or termination claim.",
+  "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_phase_transfer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-phase-transfer-finite-checks",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Exact survivor counts through depth 8000 give 5047 crossing orders. The independent binomial-tail identity n*N_n=sum_{k=1}^n T_k*N_(n-k) holds through depth 256. Numerical atom weights agree in entropy and centered-Bernoulli coordinates; the first eight are approximately 0.630929754, 0.146916662, 0.185388186, 0.064753517, 0.095328147, 0.038053482, 0.022152587, 0.039600725. Head comparisons and an actual-run provenance manifest are recorded. Floating-point phases, weights and residuals are diagnostics, not certified enclosures or a proof of convergence.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_phase_transfer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-oeis-generator-published-transform-fails",
   "tag": "REFUTED",
   "statement": "The A100982 transform attributed to Lombardo (18 October 2019), as printed in the OEIS export of 20 September 2026, has upper limit A020914(n-1)-n-2 and fails already at n=2: the sum is empty, giving 0, whereas the unique OOEE certificate gives A100982(2)=1. This refutes the displayed formula, not the counting sequence or Paper B's independent dynamic program.",
@@ -10929,6 +10977,27 @@
   "related_conjectures": []
  },
  {
+  "id": "C-negative-generation-uniform-affine-loss",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For the negative odd-return map S and its complete coefficient K_d=L_-^d 1_units, one absolute C>0 satisfies actual depth-d unit-ancestor reciprocal mass >= K_d(a)/(C*a), for every positive odd nonperiodic target a and every d>=0. Actual path-source reciprocal sums have one absolute bound B, the affine correction is at least exp(-B), and C=exp(B). The acceleration correspondence includes preperiodic targets. Consequently nonsummability of the unweighted coefficient series sum_d K_d(a) implies nonsummability of the ordinary reciprocal indicator series of all actual positive odd unit ancestors of a. Coefficient divergence remains OPEN. Kernel-checked; independent review and advisory statement coverage pending. No Juggler pressure estimate, termination or infinite escape is claimed.",
+  "source": "docs/theory/collatz_uniform_generation_mass_lean_note.md",
+  "lean": "Problems/Collatz/UniformFibreDistortion.lean",
+  "lean_trust": "kernel",
+  "decl": [
+   "Problems.Collatz.UniformFibreDistortion.distortionConstant",
+   "Problems.Collatz.UniformFibreDistortion.distortionConstant_pos",
+   "Problems.Collatz.UniformFibreDistortion.path_reciprocal_bound",
+   "Problems.Collatz.UniformFibreDistortion.pathLoss_lower",
+   "Problems.Collatz.UniformFibreDistortion.kernel_mass_le",
+   "Problems.Collatz.UniformFibreDistortion.ancestor_reciprocals_not_summable"
+  ],
+  "tests": [
+   "tests/research/collatz/test_signed_orbit_packing.py",
+   "tests/research/collatz/test_fibre_distortion.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "C-signed-finite-path-reciprocal-bound",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "For each signed Collatz shortcut map T_s, the complete binary-residue moment sum_(0<=n<2^k) 2^o_k(n) equals 3^k. For any finite nonrepeating path of length N, every subset A of its states in [0,32^m) satisfies 8^m*|A| <= 2*216^m+243^m+8^m*(5*m). Discarding the final 5*m states suffices for equal-time injectivity on the earlier segment; no hypothesis on future orbit behavior is required. Every positive subset of the path has reciprocal mass at most the same absolute B=sum_m[54*(27/32)^m+(243/8)*(243/256)^m+5*(m+1)*(1/32)^m], a convergent real series. Known packing method with the five-step constants attributed to M. Sharpe; signed moment and finite-path correction proved locally. Kernel-checked; independent review and advisory coverage pending. No Juggler source-count transfer is asserted.",
@@ -10948,27 +11017,6 @@
   ],
   "tests": [
    "tests/research/collatz/test_signed_orbit_packing.py"
-  ],
-  "related_conjectures": []
- },
- {
-  "id": "C-negative-generation-uniform-affine-loss",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "For the negative odd-return map S and its complete coefficient K_d=L_-^d 1_units, one absolute C>0 satisfies actual depth-d unit-ancestor reciprocal mass >= K_d(a)/(C*a), for every positive odd nonperiodic target a and every d>=0. Actual path-source reciprocal sums have one absolute bound B, the affine correction is at least exp(-B), and C=exp(B). The acceleration correspondence includes preperiodic targets. Consequently nonsummability of the unweighted coefficient series sum_d K_d(a) implies nonsummability of the ordinary reciprocal indicator series of all actual positive odd unit ancestors of a. Coefficient divergence remains OPEN. Kernel-checked; independent review and advisory statement coverage pending. No Juggler pressure estimate, termination or infinite escape is claimed.",
-  "source": "docs/theory/collatz_uniform_generation_mass_lean_note.md",
-  "lean": "Problems/Collatz/UniformFibreDistortion.lean",
-  "lean_trust": "kernel",
-  "decl": [
-   "Problems.Collatz.UniformFibreDistortion.distortionConstant",
-   "Problems.Collatz.UniformFibreDistortion.distortionConstant_pos",
-   "Problems.Collatz.UniformFibreDistortion.path_reciprocal_bound",
-   "Problems.Collatz.UniformFibreDistortion.pathLoss_lower",
-   "Problems.Collatz.UniformFibreDistortion.kernel_mass_le",
-   "Problems.Collatz.UniformFibreDistortion.ancestor_reciprocals_not_summable"
-  ],
-  "tests": [
-   "tests/research/collatz/test_signed_orbit_packing.py",
-   "tests/research/collatz/test_fibre_distortion.py"
   ],
   "related_conjectures": []
  },
