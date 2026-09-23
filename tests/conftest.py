@@ -1,7 +1,17 @@
 """Options for the Juggler/Collatz test suite."""
 from __future__ import annotations
 
+import os
+from pathlib import Path
+
+from hypothesis.configuration import set_hypothesis_home_dir
 import pytest
+
+
+def pytest_configure(config: pytest.Config) -> None:
+    """Keep generated test state with the checkout's other tool caches."""
+    if "HYPOTHESIS_STORAGE_DIRECTORY" not in os.environ:
+        set_hypothesis_home_dir(Path(config.rootpath) / ".cache" / "hypothesis")
 
 
 def pytest_addoption(parser: pytest.Parser) -> None:

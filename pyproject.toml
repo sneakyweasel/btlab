@@ -58,6 +58,7 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+cache_dir = ".cache/pytest"
 # `-n auto --dist loadfile` is deliberately NOT here. Forcing it on every
 # invocation spawned twelve execnet workers for a fifteen-test targeted run and
 # rolled the worker-startup dice each time (see environment.mdc on
@@ -70,6 +71,7 @@ markers = [
 ]
 
 [tool.ruff]
+cache-dir = ".cache/ruff"
 line-length = 100
 src = ["src", "tests", "tools"]
 target-version = "py311"
@@ -87,3 +89,6 @@ include = ["src/bt"]
 pythonVersion = "3.11"
 typeCheckingMode = "basic"
 reportMissingTypeStubs = false
+
+[tool.mypy]
+cache_dir = ".cache/mypy"

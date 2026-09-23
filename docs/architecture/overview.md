@@ -29,3 +29,14 @@ only retained imports. Build with
 Paper-pinned mathematical sources and the Lake package configuration remain stable.
 
 Earlier sources are recoverable from [Git history](../history.md).
+
+Local generated state belongs in the ignored `.cache/` (Formalpedia and Python
+tool caches) and `.build/` (paper builds and other disposable build output).
+Pytest, Hypothesis, Ruff, and mypy use subdirectories of `.cache/`; ordinary
+pytest temporary files use the system temporary directory.
+
+The hidden configuration directories remain part of the working laboratory:
+`.github/` holds CI, `.cursor/` holds research rules and skills, and `.claude/`
+holds research skills and the companion website launcher. Local Git worktrees
+can also live under `.claude/worktrees/`; manage them with Git rather than
+deleting that directory. `.vscode/` contains optional local Lean editor settings.

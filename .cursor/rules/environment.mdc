@@ -22,6 +22,10 @@ alwaysApply: true
 - Use `python tools/lab.py run <module>` for probes and
   `python tools/lab.py test -- <paths and options>` for tests in worktrees. These
   select the current checkout's imports and output directory.
+- Keep tool caches in `.cache/` and generated build output in `.build/`.
+  Use pytest's default temporary directory for ordinary runs. If a dedicated
+  `--basetemp` is necessary, use a disposable subdirectory of `.build/`, never
+  `.build/` itself or a new root `.pytest_tmp*` folder: pytest clears that path.
 - Fast suite ≈ 3.5 min under xdist. Targeted runs:
   `pytest tests/integration tests/unit/test_theorem_ledger.py -q` after
   docs/ledger edits; `pytest tests/research/juggler_sequence/test_<branch>.py -q`
