@@ -9,9 +9,8 @@ alwaysApply: false
 The project contains no `sorry` or `admit`. If a proof is not short, leave the ledger tag and say so in the journal.
 
 - Lake package name is `balanced-ternary-formal`.
-- `formal/Automata/` is a placeholder. Do not invent proofs there.
 - Generic theorems live in `BTCalculus/` or `Core/` / `Representation/` / `Operators/`. Collatz-only theorems live under `Problems/Collatz/`. Namespaces match those modules (`Core.Basic`, `Representation.Words`, `Operators.*`, `Problems.Collatz`). Do not add a `CollatzDual` re-export layer or namespace.
-- Prefer packaging lemmas that already compile (`newtonStratum_n2` wraps `depthDeficit_n2_visibility`) over rebuilding layer-by-layer.
+- Reuse existing general lemmas before introducing a new specialized proof; inspect their full hypotheses in formalpedia and Lean.
 - Empty `lean` in the ledger is allowed only when the tag is **not** `EXACT — LEAN VERIFIED`.
 - Retag to Lean verified only when the Lean statement covers the English statement.
 - If that covering statement is a halt or no-nontrivial-cycle theorem, name it. Do not keep the anti-overclaim disclaimer on a matching theorem.

@@ -17,31 +17,11 @@ alwaysApply: true
 - The host may auto-commit the working tree between turns. Run
   `git log -1 --stat` before assuming files are uncommitted; never
   `git add` regenerated `docs/research/*.json` (test churn).
-- **`[gw0] node down: Not properly terminated` is a worker STARTUP failure,
-  not a teardown race, and not a stdin read.** Corrected 18 September 2026;
-  the note here said the opposite for two days. The traceback shows
-  `sys.stdin.readline()` because the whole worker runs inside one `exec`
-  frame, so every death displays that outer `-c` line. The line that raises
-  is `File "<string>", line 5`, and line 5 of execnet's second-stage
-  bootstrap (`gateway_bootstrap.bootstrap_import`, eight lines joined by
-  `sendexec` with no prefix) is `sys.stdout.write('1')` -- the worker's
-  one-byte liveness handshake, before `init_popen_io` redirects anything.
-  `gateway_io.popen_args` appends `-u`, so that write reaches the OS
-  directly, which is why line 5 raises rather than the flush on line 6.
-  A worker that dies there costs one spurious `F` and no tests, because the
-  other workers cover the files -- the same observable that was read as
-  "ran everything, then died". If you see it, the results are still good;
-  rerun with `-n0` when you need the summary.
-  Not diagnosed: why the handshake write returns `EINVAL` intermittently.
-  Reproducing execnet's exact spawn (`stdout=PIPE, stdin=PIPE`, stderr
-  inherited, `-u`) in isolation gives `fd0/1/2=ok` and a clean handshake, so
-  a broken inherited handle is ruled out. Live candidates: twelve
-  near-simultaneous spawns, the `main_thread_only` execmodel, and the
-  version pairing -- xdist 3.8.0 declares only `pytest>=7.0.0` against
-  pytest 9.0.2, a major version of untested headroom.
-  Capping `-n auto` was previously ruled out here on the strength of the
-  teardown diagnosis. That reasoning is void; worker count is now a live
-  candidate rather than an excluded one. `-n auto` resolves to 12 here.
+- If an xdist worker reports a startup failure, do not infer that all tests ran.
+  Recheck the affected scope serially (`python tools/lab.py test -- -n 0 ...`).
+- Use `python tools/lab.py run <module>` for probes and
+  `python tools/lab.py test -- <paths and options>` for tests in worktrees. These
+  select the current checkout's imports and output directory.
 - Fast suite ≈ 3.5 min under xdist. Targeted runs:
   `pytest tests/integration tests/unit/test_theorem_ledger.py -q` after
   docs/ledger edits; `pytest tests/research/juggler_sequence/test_<branch>.py -q`

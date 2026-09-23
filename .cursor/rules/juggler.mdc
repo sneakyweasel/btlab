@@ -17,7 +17,7 @@ restate the state of the problem here.
   `DOCS_RESEARCH`, `BRANCHES_ROOT`, `FORMAL_DIR`).
 - New Lean module → barrel, `LAYERS` (and `PAPER_MODULES` if Paper A),
   no `sorry` / `admit` / `axiom` even in comments, `lake env lean` first.
-- New probe → `foo.py`, `test_foo.py`, `docs/problems/juggler_foo.md`
+- New probe → `<id>.py`, `test_<id>.py`, `docs/problems/juggler_<id>.md`
   with `PROMOTE | PARK | CLOSE`, ledger if named (via
   `.cursor/skills/add-ledger-row/SKILL.md`), rebuild the index,
   CLOSE/REFUTED into `docs/negative_knowledge.md`.

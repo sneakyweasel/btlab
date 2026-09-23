@@ -1,41 +1,28 @@
 # Formalization architecture
 
-Lean 4 + Mathlib lives under `formal/`. The Lake package name is
-`balanced-ternary-formal`.
+Lean 4 and Mathlib live under `formal/`; the Lake package is
+`balanced-ternary-formal`. The retained source consists of Juggler, signed
+Collatz and shared mathematics reached by their imports or current ledger claims.
 
-`formal/Automata/` is still a placeholder only; do not invent proofs there.
+| Source | Role |
+|---|---|
+| `formal/Problems/Juggler/` | Juggler dynamics, words, cycles, certificates and production |
+| `formal/Problems/Collatz/` | Signed maps, cylinders, cycles, ancestor counts and fibre mass |
+| `formal/BTCalculus/` | Shared algebra, analysis, counting and dynamical results |
+| `formal/Core/`, `Representation/`, `Operators/` | Retained exact arithmetic and representation dependencies |
+| `formal/Problems/Engine/` | Shared formal dependencies still used by the applications |
 
-Build:
+Use the [Juggler registration guide](../../attacks/juggler/AGENT.md),
+[Collatz module map](../../formal/Problems/Collatz/README.md), and
+[naming/discovery policy](lean_discovery.md). The full local source catalogue
+is queried through formalpedia; avoid maintaining another declaration inventory here.
 
-```powershell
-cd formal
-lake build
-```
+`python tools/lab.py build` builds all retained application modules,
+ledger-cited results, their dependencies and library barrels. Direct `lake build`
+inside `formal/` also builds the library's default targets. Use a targeted
+`lake env lean <file>` while developing a proof.
 
-The project contains no `sorry` or `admit`.
-
-## Namespace map
-
-| Path | Role | Lean namespace |
-|----------|------|----------------|
-| `Core/Basic.lean` | eventually-constant / bounded | `Core.Basic` |
-| `Representation/Words.lean` | BT digit-list algebra | `Representation.Words` |
-| `Operators/Shift.lean` | `S`, `N`, `W∘S=W` | `Operators.Shift` |
-| `Operators/DigitDerivative.lean` | `D∘S=id` | `Operators.DigitDerivative` |
-| `Operators/Algebra.lean` | composed identities, `W(3)=1` | `Operators.Algebra` |
-| `Operators/Polynomial.lean` | `P(3)=evalMSD` | `Operators.Polynomial` |
-| `Problems/Engine/PiecewiseCensus.lean` | hidden congruence identities | `Problems.Engine` |
-| `Problems/Engine/ParameterDomain.lean` | padic valuation iff | `Problems.Engine` |
-| `Problems/Engine/ControlWord.lean` | cleared affine composition / cycle constraint | `Problems.Engine` |
-| `Problems/Engine/ControlObstruction.lean` | integer cycle-constraint obstructions | `Problems.Engine` |
-| `Problems/Collatz/*` | lift, cylinders, endpoint, center, cycles, … | `Problems.Collatz` |
-| `Problems/Juggler/*` | one-way Juggler layers: dynamics, words, envelope, `AboveAnchor`, first-passage, certificates, leaves. Spine: [juggler_lean_spine.md](juggler_lean_spine.md) | `Problems.Juggler` |
-| `BTCalculus/` | trit algebra, `D`/`I_a`, product/sum rules, `cmp3`/`select3`, rewrite soundness, coefficient normalization, section derivative, jets, residual `≡_k`, cascade composition, polynomial function congruence modulo `3^k`, cubic residual Newton image, fibres, deepest-layer criteria, the first intermediate layer `m=k-2`, the depth-deficit `N2` visibility law, the general `N1` valuation stratification, the two-regime `N0` scaling, the mismatched-width cubic quotient, and the `Q` one-family obstruction | `BTCalculus` |
-| `Automata/` | placeholder only | no invented proofs |
-
-Default Lake targets are `BTCalculus` and `Problems`. Namespaces match their modules.
-
-Generic theorems stay out of problem namespaces. Collatz-only theorems
-stay under `Problems/Collatz`.
-
-See [formal/README.md](../../formal/README.md) for the theorem inventory.
+No `sorry` or `admit` is allowed. Exact claim coverage, source-level trust markers,
+successful compilation and executable axiom audits are distinct evidence.
+Keep the English hypotheses aligned with the Lean statements and update relevant
+paper audits when their theorem surface changes.

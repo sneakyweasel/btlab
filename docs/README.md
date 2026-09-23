@@ -1,7 +1,7 @@
 # Juggler–Collatz research map
 
-The lab is dedicated to Juggler and the signed Collatz maps, with shared exact
-mathematics and only the shared mathematics they use.
+The lab is dedicated to Juggler and the signed Collatz maps, with the shared exact
+mathematics and tools they use.
 
 ## Papers and live research
 
@@ -13,7 +13,8 @@ mathematics and only the shared mathematics they use.
 
 Use the [publication record](theory/paper_deposits.md) for deposited versions,
 the paper sources for their current statements, and the
-[Juggler agent guide](../attacks/juggler/AGENT.md) for current frontiers. This map
+[Juggler](../attacks/juggler/AGENT.md) and [Collatz](../attacks/collatz/AGENT.md)
+agent guides for current frontiers. This map
 does not duplicate numerical thresholds that can become stale.
 
 The [Collatz mathematics map](collatz_mathematics.md),
@@ -45,6 +46,6 @@ its quantifiers. See the [research method](methodology.md).
 - [Research modules](architecture/research_modules.md)
 - [Git history and recovery](history.md)
 
-Default commands are `pytest` and `python tools/lab.py build`. Earlier projects are available
+Default commands are `python tools/lab.py test` and `python tools/lab.py build`. Earlier projects are available
 through Git history. Shared dependencies
 stay in the active scope even when they have an older balanced-ternary name.

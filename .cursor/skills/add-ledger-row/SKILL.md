@@ -25,11 +25,13 @@ Do not write `PROVED` or `VERIFIED COMPUTATIONALLY` in the JSON or in docs. `too
 `KNOWN`, `PROJECT-SPECIFIC`, and `OPEN` are novelty annotations for prose, never ledger tags.
 
 Empty `lean` is allowed only when the tag is **not** `EXACT — LEAN VERIFIED`.
-Every `source`, `tests[]`, and nonempty `lean` path must exist (Lean paths are relative to `formal/`).
+Every `source`, `tests[]`, and nonempty `lean` path must exist. Use the current
+schema's repository-relative paths, including `formal/` for Lean files.
 
 ## Steps
 
-1. Choose a stable id (`BTA-…`, `BTJ-…`, `C-…`). Ids must be unique.
+1. Choose a stable unique id: `J-…` for Juggler, `C-…` for Collatz, or an
+   existing shared-mathematics prefix when that is the actual scope.
 2. Append an object with `id`, `tag`, `statement`, `source`, `lean`, `tests`, `related_conjectures`.
 3. Point `tests` at files that actually exist (`tests/unit/…` or `tests/research/…`).
 4. From the repo root:
@@ -37,12 +39,16 @@ Every `source`, `tests[]`, and nonempty `lean` path must exist (Lean paths are r
 ```powershell
 python tools/render_theorem_ledger.py
 python tools/render_theorem_ledger.py --check
-python -m pytest tests/unit/test_theorem_ledger.py
+python tools/lab.py test tests/unit/test_theorem_ledger.py
 ```
 
 5. Retag to `EXACT — LEAN VERIFIED` only when the Lean theorem covers the English statement.
    Set `decl` to every declaration the statement needs, then ask Jev about that row before
-   ruling; the answer is advisory and the ruling is yours:
+   ruling; the answer is advisory and the ruling is yours. This sends statements
+   to an external service: use existing session authorization, or obtain it before
+   the request. The skill does not grant that authorization. If unavailable, record
+   the pending review without inventing a verdict:
+
 
 ```powershell
 python tools/formalpedia.py jev-coverage --rows <id>

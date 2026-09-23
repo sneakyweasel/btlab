@@ -1,19 +1,19 @@
 ---
-description: Collatz is one application — no solution claims, ledger tags only
-globs: src/research/collatz/**/*.py,docs/collatz_*.md,docs/problems/collatz.md
+description: Active signed Collatz research, exact objects and registration
+globs: src/research/collatz/**/*.py,src/research/syracuse/**/*.py,src/research/collatz_finite_descent/**/*.py,formal/Problems/Collatz/**/*.lean,docs/collatz_*.md,docs/problems/collatz*.md,docs/theory/collatz*.md,attacks/collatz/**
 alwaysApply: false
 ---
 
-# Collatz application
+# Collatz
 
-`research.collatz` is a **STRUCTURAL** application of `bt`, not the laboratory frontier.
+Start with `attacks/collatz/AGENT.md` and the relevant proof map.
+Collatz is an active laboratory programme alongside Juggler.
 
-- Do not claim a solution of the Collatz conjecture unless a matching
-  `EXACT` statement exists; then state the theorem (quantifiers, Lean
-  name, ledger tag), not the slogan.
-- Use the seven ledger tags from `docs/README.md`. Do not write `PROVED` or `VERIFIED COMPUTATIONALLY`.
-- New exact facts get a ledger row and a targeted note or test. Do not append a new numbered milestone by default.
-- `C-T-welldefined` is Lean-verified in `formal/Problems/Collatz/Accelerated.lean` (`acceleratedT`).
-- Import Collatz code from `research.collatz`, never a top-level `collatz` package.
-
-Finite certificates, cycle searches, and range tables are `COMPUTATIONALLY VERIFIED` or `REFUTED`, never proofs of the conjecture.
+- Specify sign, shortcut/accelerated map, domain and hypotheses.
+- Distinguish codes, formal words and actual integer orbits.
+- Use the seven evidence labels from `docs/README.md`. Finite checks do not
+  prove termination. A compiled implication may still have an open premise.
+- Register named results in the claim ledger and their proof map; do not
+  generate a new numbered milestone by default.
+- Import from `research.collatz`, `research.syracuse` or
+  `research.collatz_finite_descent`, never a top-level compatibility package.

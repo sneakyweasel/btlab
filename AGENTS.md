@@ -1,129 +1,78 @@
 # Agent guide
 
-This is the **Juggler–Collatz Mathematical Laboratory**. Active research is
-Juggler and the signed Collatz maps, supported by exact arithmetic (`bt`) and
-shared experimental machinery. Independent earlier projects and the Python UI are removed; recover them
-from [Git history](docs/history.md) when explicitly needed.
-The **Juggler map** is
-\(T(n)=\lfloor\sqrt n\rfloor\) (\(n\) even), \(\lfloor n\sqrt n\rfloor\)
-(\(n\) odd).
+This is the **Juggler–Collatz Mathematical Laboratory**. Keep the two research
+programmes, their shared mathematics, and reproducible publication/discovery tools.
+The old UI and independent applications are removed; [Git recovery](docs/history.md)
+is their home. Do not recreate compatibility packages or a parallel research area.
 
-```text
-cli                         command-line application edge
-research.*                  problem-specific mathematics
-research_engine             problem-independent experimental dynamics
-bt.*                        problem-independent BT mathematics
-```
+## Start with the relevant map
 
-`bt.*` must never import `research.*` or `research_engine`. Architecture:
-[docs/architecture/overview.md](docs/architecture/overview.md).
+| Task | Read first |
+|---|---|
+| Juggler research or a new branch | [Juggler guide](attacks/juggler/AGENT.md), then the selected dossier |
+| Signed Collatz research | [Collatz guide](attacks/collatz/AGENT.md), then its proof map |
+| Papers and evidence labels | [Research map](docs/README.md) and [publication record](docs/theory/paper_deposits.md) |
+| Lean discovery and names | [Lean guide](docs/architecture/lean_discovery.md); use formalpedia before adding a theorem |
+| Sequences and prior art | [OEIS guide](docs/architecture/oeis_discovery.md); use the local OEIS MCP |
+| Shared Python code | [Architecture](docs/architecture/overview.md) |
 
-## Juggler (live application)
+Do not read entire generated indexes, theorem ledgers or journals to find one item.
+Use formalpedia's `search`, `claim`, `show`, and `impact`; use the branch CLI for
+Juggler. Search [negative knowledge](docs/negative_knowledge.md) before proposing
+a direction. Current mathematical thresholds belong in the application guide and
+its canonical proof sources, not in duplicated instructions.
 
-Full reading path, state of the problem, file map, and registration:
-[attacks/juggler/AGENT.md](attacks/juggler/AGENT.md). Branch lookup:
-[attacks/juggler/index.json](attacks/juggler/index.json).
+## Working rules
 
-**Floors.** No nontrivial cycle of period \(<780239\) at
-\(N_0=350000000\). Do not raise \(N_0\). Next useful floor
-\(5.54\cdot 10^8\) is PARK.
+- `bt.*` must never import `research.*` or `research_engine`. Application imports
+  are `research.juggler_sequence`, `research.collatz`, `research.syracuse`, and
+  `research.collatz_finite_descent`. Shared machinery lives in `research_engine`.
+- Preserve concurrent work. Inspect Git status and the latest commit before
+  editing or staging. Commit bounded changes; do not stage unrelated files.
+- Use the seven evidence labels in `docs/README.md`. A Lean statement must cover
+  the English claim before retagging it; finite checks do not prove termination.
+- For a new mathematical direction, emit the triage block in
+  [.cursor/rules/methodology.mdc](.cursor/rules/methodology.mdc), including
+  `Already killed by?`, and end with `PROMOTE | PARK | CLOSE`. Do not auto-open
+  the next branch. This research protocol does not prevent authorized maintenance.
+- Keep durable results in dossiers, proof maps and the claim ledger. Journal
+  entries are short recent decisions; earlier chronology is recoverable from Git.
+- Lean names and documentation follow the [Lean guide](docs/architecture/lean_discovery.md).
+  No `sorry` or `admit`. Search existing results, compile changes, and check their
+  public interfaces. Do not expand the style baseline to excuse new violations.
 
-**Live frontiers.** Cycles: Diophantine near-convergents (Paper D;
-laboratory-kill CLOSE); the closure threshold is a minimum lower bound
-\(n\gg L^{5.1163051}\), never below \(L^{2}\)
-(`J-cyclemin-closure-threshold`). Termination: exported exponent-pair leftover,
-not a Juggler construction. Fates: contagion is now unconditional at
-\(\lambda=5/8\), with the actual OOEE production and source cutoff
-proved in Lean (`J-ooee-contagion-five-eighths`);
-Tao reduction is still conditional on a rate, now at \(e>3/8\).
-Flights: descriptively terminal.
-
-**Do not reopen.** Local attacks (Collision Factorization); Baker/SdW;
-Paper A×B merge; DK-arch free-kill; floor-Hardy reformulations; kernel
-localize; harvest counting; slogan halt theorems. Search
-[docs/negative_knowledge.md](docs/negative_knowledge.md) first.
-
-Claim labels: [docs/README.md](docs/README.md).
-Research method: [docs/methodology.md](docs/methodology.md).
-Retain shared mathematics only when the active applications use it. Historical
-results and citations remain recoverable from Git; do not reintroduce independent programmes.
-
-## How a direction runs
-
-`explore → distill → prove/refute → decide`. Emit the triage block from
-`.cursor/rules/methodology.mdc` (including `Already killed by?`). Do not
-reprint it here. Then stop; do not auto-open the next branch.
-
-## Shared mathematics and Collatz
-
-Generic exact arithmetic belongs in `src/bt/`; shared experimental machinery
-in `src/research_engine/`; Collatz research in `src/research/collatz/`; generic
-Lean dependencies in `formal/BTCalculus/`. No compatibility shims.
-New applications outside Juggler/Collatz require an explicit scope change.
-Within scope, use [docs/problems/TEMPLATE.md](docs/problems/TEMPLATE.md).
-
-## Commands
+## Commands from the checkout root
 
 ```powershell
-python -m pip install -e ".[dev]"
-pytest                                              # fast suite
-pytest tests/research/juggler_sequence -q           # Juggler only
-pytest --runslow
-python -m research.juggler_sequence.<branch>        # run a probe
-python -m research.juggler_sequence.branch_index --check
-python -m research.juggler_sequence.branch_index show <id>
-python -m research.juggler_sequence.branch_index search <query>
-python -m research.juggler_sequence.branch_index new <id>
+python -m pip install -e ".[dev]" -r tools/requirements-formalpedia.txt
+python tools/lab.py test                                  # fast suite
+python tools/lab.py test -- -n 8 --dist loadfile           # parallel fast suite
+python tools/lab.py test -- --runslow                     # long checks, when needed
+python tools/lab.py run research.juggler_sequence.branch_index search "contagion"
+python tools/lab.py run research.juggler_sequence.branch_index --check
+python tools/lab.py run cli.main collatz --help
+python tools/formalpedia.py search "preimage mass" --limit 10
+python tools/oeis_catalog.py get A094683
 python tools/render_theorem_ledger.py --check
-python tools/branch_drift.py                        # results stranded on branches
-zgrep -m1 "^A094683 " data/external/oeis/names.gz    # local OEIS, no network
-$env:PATH = "$env:USERPROFILE\.elan\bin;$env:PATH"
-python tools/lab.py build                          # active Lean graph; no sorry / admit
+python tools/lean_style.py
+python tools/lab.py build
 ```
 
-All checked-in source is in the current research scope. Historical projects
-require a Git checkout; there is no UI or archive-mode CLI. The OEIS database
-remains global. Package names and Lean namespaces are stable.
+`lab.py run` and `lab.py test` bind imports and output paths to this checkout,
+even when Python has another worktree installed in editable mode. Use these
+commands in worktrees. `lab.py build` uses this checkout's `formal/` directory.
+Put `--` before pytest options. Target checks to the change before running wider gates.
+Windows commands use PowerShell; environment and registration details are in
+[.cursor/rules/environment.mdc](.cursor/rules/environment.mdc).
 
-## OEIS, locally
+## Local services and external publication
 
-`data/external/oeis/` holds `stripped.gz` (all terms) and `names.gz` (all
-names), gitignored, refetched with `curl -o <name> https://oeis.org/<name>`.
-The full internal-format records -- comments, links, formulas, programs --
-are a shallow clone of `oeis/oeisdata` outside the repository; its `files/`
-tree is Git LFS pointers, so b-files are not local. Some sessions have
-`oeis.org` refused by egress policy and this is the way in for them.
+Formalpedia and the local OEIS MCP are read-only discovery services. The OEIS
+corpus stays global; its published comments are available, but pending editorial
+discussion and most LFS b-file contents are not. Use `oeis_status` for current
+coverage. The [Juggler neighbourhood](docs/problems/juggler_oeis_neighbourhood.md)
+has already been swept; do not repeat that search without a new question.
 
-Before sweeping it, read
-[juggler_oeis_neighbourhood](docs/problems/juggler_oeis_neighbourhood.md): the
-Juggler corner is already swept, and a second session repeated the whole of it.
-
-Use the local `btlab-oeis` MCP for indexed full-text and exact term searches,
-published comments, cross-references and laboratory links. Its
-[operating guide](docs/architecture/oeis_discovery.md) covers offsets,
-subsequence matching and provenance. `python tools/oeis_index.py` rebuilds the
-ignored index from the local mirror's committed snapshot; MCP queries are
-read-only and never fetch files or submit edits. Use `oeis_status` for coverage
-and export freshness, and `oeis_bfile` to distinguish content from LFS pointers.
-
-## Adding a Lean module or a probe (checklist)
-
-Juggler Lean modules and probes: follow the registration sections in
-[attacks/juggler/AGENT.md](attacks/juggler/AGENT.md), then rebuild
-`attacks/juggler/index.json`. Lab-wide ledger and link gates stay in
-`.cursor/rules/environment.mdc`.
-
-## prove2.me
-
-External Lean 4 platform (https://prove2.me), distinct from the local
-`tools/formalpedia.py` index. Full guide:
-[`.claude/skills/prove2me/SKILL.md`](.claude/skills/prove2me/SKILL.md).
-Ask the human before any public submit or verify.
-
-## Remarks
-
-If you're Fable don't spend ages fixing tests - focus on the math.
-
-You have access to a Windows 11 machine with an AMD Ryzen 9 3900X (12C/24T), 64 GB RAM, and an RTX 5090 (32 GB VRAM, CUDA 13.3), so don't be afraid to use it.
-
-Persistent policy lives in [.cursor/rules/](.cursor/rules/).
+Use Lean LSP or Lean itself for elaboration and proof checking; a source catalogue
+is not an axiom audit. External [prove2.me](.claude/skills/prove2me/SKILL.md) is
+separate from formalpedia. Ask before public submit or verify.

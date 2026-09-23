@@ -6,7 +6,7 @@ the signed Collatz maps. Start with the [research map](docs/README.md),
 
 ```powershell
 python -m pip install -e ".[dev]" -r tools/requirements-formalpedia.txt
-pytest
+python tools/lab.py test
 python tools/lab.py build
 python tools/formalpedia.py search "preimage mass"
 python tools/oeis_catalog.py search "surviving Collatz residues"
@@ -15,9 +15,10 @@ btlab collatz --help
 juggler-atlas --help
 ```
 
-Juggler probes run as `python -m research.juggler_sequence.<branch>`.
-Use `pytest --runslow` for long checks and `pytest -n auto --dist loadfile` for
-parallel runs. Direct `lake build` in `formal/` also builds the retained library.
+Juggler probes run as `python tools/lab.py run research.juggler_sequence.<branch>`.
+Use `python tools/lab.py test -- --runslow` for long checks and
+`python tools/lab.py test -- -n 8 --dist loadfile` for parallel runs.
+These commands select this checkout even when another worktree is installed. Direct `lake build` in `formal/` also builds the retained library.
 
 | Location | Purpose |
 |---|---|

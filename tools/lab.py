@@ -1,4 +1,4 @@
-"""Build the active Juggler/Collatz Lean graph without changing paper-pinned Lake files."""
+"""Run research, tests and Lean builds against this checkout, including in worktrees."""
 from __future__ import annotations
 
 import argparse
@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 
 import formalpedia as fp
 from lab_scope import active_lean_modules
@@ -20,11 +21,30 @@ def build_targets() -> list[str]:
     return sorted(active)
 
 
+def run_python(arguments: list[str], root: Path | None = None) -> int:
+    """Prefer this checkout's sources over any other editable installation."""
+    root = fp.ROOT if root is None else root.resolve()
+    env = os.environ.copy()
+    inherited = env.get('PYTHONPATH')
+    env['PYTHONPATH'] = str(root / 'src') + (os.pathsep + inherited if inherited else '')
+    return subprocess.run([sys.executable, *arguments], cwd=root, env=env).returncode
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=['build'])
-    parser.add_argument('--list', action='store_true', help='show targets without building')
+    commands = parser.add_subparsers(dest='command', required=True)
+    build = commands.add_parser('build', help='build every retained Lean application and dependency')
+    build.add_argument('--list', action='store_true', help='show targets without building')
+    run = commands.add_parser('run', help='run a Python module from this checkout')
+    run.add_argument('module', help='for example research.juggler_sequence.branch_index')
+    run.add_argument('args', nargs=argparse.REMAINDER)
+    test = commands.add_parser('test', help='run pytest using this checkout\'s source tree')
+    test.add_argument('args', nargs=argparse.REMAINDER)
     args = parser.parse_args(argv)
+    if args.command in {'run', 'test'}:
+        forwarded = args.args[1:] if args.args[:1] == ['--'] else args.args
+        module = args.module if args.command == 'run' else 'pytest'
+        return run_python(['-m', module, *forwarded])
     targets = build_targets()
     if not targets:
         parser.error('No Juggler/Collatz modules found; check the source checkout')

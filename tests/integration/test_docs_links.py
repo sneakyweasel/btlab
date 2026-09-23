@@ -13,9 +13,11 @@ def _targets() -> list[Path]:
     files = [ROOT / "README.md", ROOT / "docs" / "README.md", ROOT / "AGENTS.md"]
     files.extend(sorted((ROOT / "docs").rglob("*.md")))
     files.append(ROOT / "formal" / "README.md")
-    capsule = ROOT / "attacks" / "juggler"
-    if capsule.is_dir():
-        files.extend(sorted(capsule.rglob("*.md")))
+    attacks = ROOT / "attacks"
+    if attacks.is_dir():
+        files.extend(sorted(attacks.rglob("*.md")))
+    for skills in (ROOT / '.cursor/skills', ROOT / '.claude/skills'):
+        files.extend(sorted(skills.rglob('*.md')))
     return files
 
 
