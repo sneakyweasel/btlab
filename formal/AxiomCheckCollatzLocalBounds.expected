@@ -1,0 +1,3 @@
+'Problems.Collatz.FibreLocalBounds.shifted_spike_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreLocalBounds.unit_unbounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreLocalBounds.coarse_unbounded' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -171,6 +171,12 @@ coarse depth-block sums bounded below by a positive constant on infinitely
 many disjoint dyadic blocks? Such a bound transfers to finite unit coefficients
 through (2). Neither that premise nor a Juggler source-weight transfer is proved.
 
+The [actual transported peaks](collatz_fibre_local_bounds.md) now exclude a
+depth-independent local Harnack comparison as a way of obtaining this bound
+from ternary neighborhood averages. They do not exclude the fixed-root count.
+Even a block allowance c(a)/(j+1) for every sufficiently large dyadic index j
+would suffice for divergence; that weaker arithmetic estimate is also open.
+
 ## Decision
 
 **PROMOTE** the relative comparison as a reduction of the fixed-root target.

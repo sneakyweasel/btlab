@@ -1,5 +1,21 @@
 # Negative knowledge
 
+## Actual signed coefficients admit no depth-independent local Harnack comparison
+
+The [transported-peak theorem](problems/collatz_fibre_local_bounds.md),
+23 September 2026, puts unbounded actual K and C coefficients in every fixed
+unit cylinder modulo a power of three, for both signs. A fixed exponent branch
+transports the one-halving spike, retaining a constant times (3/2)^d. Lean
+checks all unit cylinders, arbitrarily large depths and positive odd heights.
+Unlike the artificial mixing counterexample, this uses the actual recurrence.
+
+**CLOSE** a depth-independent comparison between all values in a fixed unit
+neighborhood: its average is bounded, so such a comparison would bound every
+peak. The local-average and Harnack deductions are written corollaries of the
+checked peak and existing mean identities. Targets vary with depth; this does
+not refute fixed-integer series divergence or a lower bound by itself.
+Ledger: C-fibre-local-unboundedness.
+
 ## Conditioned Fourier decay does not directly give the fixed-root lower count
 
 The [conditioned-Syracuse audit](problems/collatz_conditioned_syracuse.md),

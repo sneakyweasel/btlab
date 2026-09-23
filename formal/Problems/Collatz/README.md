@@ -97,3 +97,11 @@ The retained fraction lies between 5/21 and 20/21 for both signs and every
 positive depth. Their depth series, and the existing finite-budget series,
 are summable simultaneously. The fixed-root coarse-count lower bound remains
 open; see the [dossier](../../../docs/problems/collatz_fibre_unit_comparison.md).
+
+[FibreLocalBounds.lean](FibreLocalBounds.lean) transports actual one-halving
+peaks into every fixed ternary unit neighborhood, for both signs. Unit and
+all-source coefficients exceed every bound at arbitrarily large depths and
+positive odd targets in that neighborhood. The targets vary with depth;
+fixed-integer divergence remains open. The bounded local averages therefore
+cannot support a depth-independent local Harnack comparison. See the
+[dossier](../../../docs/problems/collatz_fibre_local_bounds.md).

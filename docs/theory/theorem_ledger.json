@@ -11045,5 +11045,22 @@
    "tests/research/collatz/test_fibre_unit_comparison.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "C-fibre-local-unboundedness",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For either signed complete Collatz inverse operator, every r>=0 and every unit residue a modulo 3^(r+1), and every real H and natural cutoffs D,B, there exist d>=D and a positive odd integer m>=B in that residue with K_d(m)>H. The same quantified assertion holds for the all-source coefficient C_d. The proof transports the actual one-halving coefficient spike through a fixed exponent branch, using powers-of-two coverage of all ternary units. The integer target may depend on depth; neither fixed-integer coefficient-series divergence nor an infinite integer escape trajectory is proved. Kernel-checked; independent review and advisory statement coverage pending.",
+  "source": "docs/problems/collatz_fibre_local_bounds.md",
+  "lean": "formal/Problems/Collatz/FibreLocalBounds.lean",
+  "lean_trust": "kernel",
+  "decl": [
+   "Problems.Collatz.FibreLocalBounds.shifted_spike_lower",
+   "Problems.Collatz.FibreLocalBounds.unit_unbounded",
+   "Problems.Collatz.FibreLocalBounds.coarse_unbounded"
+  ],
+  "tests": [
+   "tests/research/collatz/test_fibre_local_bounds.py"
+  ],
+  "related_conjectures": []
  }
 ]

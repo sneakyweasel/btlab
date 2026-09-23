@@ -10,6 +10,17 @@ The earlier full-length journal is available at Git revision
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-23 -- Actual coefficient peaks defeat local Harnack comparison
+
+A fixed exponent branch transports the actual one-halving spike into every
+ternary unit neighborhood, for both signs. Lean proves coefficient values
+above every bound at arbitrarily large depths and positive odd heights;
+four independent actual-word and mean controls pass. **CLOSE** uniform local
+Harnack comparison as a route from averages to a fixed-root lower bound.
+The peak's integer target varies with depth, so fixed-integer divergence and
+Juggler termination remain open. See the
+[dossier](problems/collatz_fibre_local_bounds.md).
+
 ## 2026-09-23 -- Complete halving averages control the final unit loss
 
 The actual signed operator retains between 5/21 and 20/21 of its all-source
