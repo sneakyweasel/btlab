@@ -27,7 +27,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 STEM = 'juggler_parity_discrepancy_note'
-KIT = 'juggler_review/zenodo_paper_b'
+KIT = 'preprints/zenodo_paper_b'
 PDF_NAME = 'Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf'
 RELEASE_CHECK = 'docs/theory/paper_b_release_check.json'
 SOURCE_ARCHIVE = f'{KIT}/paper_b_source_package.zip'
@@ -69,7 +69,7 @@ SOURCE_MEMBERS.update({f'validate_paper_b{s}.py': f'tools/validate_paper_b{s}.py
     '_oooee_transfer', '_repairs', '_signed_waves', '_wave_bearing')})
 
 BUNDLE_MEMBERS = {
-    PDF_NAME: f'juggler_review/{STEM}.pdf',
+    PDF_NAME: f'preprints/{STEM}.pdf',
     'PAPER_B_BUILD.md': 'docs/theory/PAPER_B_BUILD.md',
     'ZENODO_README.md': 'docs/theory/ZENODO_README.md',
     'paper_b_proof_review.md': 'docs/theory/paper_b_proof_review.md',
@@ -82,7 +82,7 @@ BUNDLE_MEMBERS = {
 # Kit files this tool regenerates from the repository; the rest are hand-written
 # and only listed in the checksums.
 KIT_GENERATED = {
-    PDF_NAME: f'juggler_review/{STEM}.pdf',
+    PDF_NAME: f'preprints/{STEM}.pdf',
     'paper_b_release_check.json': RELEASE_CHECK,
 }
 KIT_KEPT = ('AFTER_ZENODO.md', 'README.md', 'ZENODO_FIELDS.txt')
@@ -154,7 +154,7 @@ def agree(root: Path) -> None:
     which is how it came to carry a source digest eleven manuscript revisions old.
     """
     record = json.loads((root / RELEASE_CHECK).read_text(encoding='utf-8'))
-    pdf = root / f'juggler_review/{STEM}.pdf'
+    pdf = root / f'preprints/{STEM}.pdf'
     expected = {
         'pdf_sha256': sha256(pdf.read_bytes()),
         'pdf_bytes': pdf.stat().st_size,

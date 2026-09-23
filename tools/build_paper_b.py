@@ -30,15 +30,14 @@ HERE = Path(__file__).resolve().parent
 STEM = 'juggler_parity_discrepancy_note'
 METADATA = 'docs/theory/paper_b_zenodo.json'
 BUILD_MANIFEST = 'docs/theory/paper_b_build.json'
-PDF = f'juggler_review/{STEM}.pdf'
-ZENODO_DIR = 'juggler_review/zenodo_paper_b'
+PDF = f'preprints/{STEM}.pdf'
+ZENODO_DIR = 'preprints/zenodo_paper_b'
 ZENODO_PDF = f'{ZENODO_DIR}/Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf'
 ZENODO_FIELDS = f'{ZENODO_DIR}/ZENODO_FIELDS.txt'
-# The PDF is written straight into juggler_review/ now, so the only export
+# The PDF is written straight into preprints/ now, so the only export
 # left is the historical name the Zenodo deposit carries. The companion site
 # links the published DOI instead of serving a copy.
 EXPORTS = [
-    (f'docs/theory/{STEM}.md', f'juggler_review/{STEM}.md'),
     (PDF, ZENODO_PDF),
 ]
 
@@ -136,10 +135,10 @@ def check_manifest(root: Path) -> None:
     recorded inputs; this brings Paper B into line.
     """
     manifest = json.loads((root / BUILD_MANIFEST).read_text(encoding='utf-8'))
-    # `juggler_review` joins the search because the PDF lives there now; the .tex
+    # `preprints` joins the search because the PDF lives there now; the .tex
     # and the manifest stay in docs/theory. Names carry their extension, so the
     # two trees cannot shadow each other.
-    places = (root/'docs/theory', root/'juggler_review', root/'tools/paper_b',
+    places = (root/'docs/theory', root/'preprints', root/'tools/paper_b',
               root/'tools/build', root/'tools')
     for record in manifest.get('files', ()):
         built = next((d/record['name'] for d in places if (d/record['name']).is_file()), None)
@@ -213,11 +212,11 @@ def main() -> None:
             raise RuntimeError('Repository Paper B metadata not found')
         if args.check:
             check(root)
-            print('Paper B source, review copies, companion PDF, and Zenodo kit agree.')
+            print('Paper B source, PDF and Zenodo exports agree.')
         else:
             sync(root)
             check(root)
-            print('Synchronized Paper B review copies and Zenodo kit.')
+            print('Synchronized Paper B PDF alias and Zenodo metadata.')
         return
     source, assets = args.source.resolve(), args.assets.resolve()
     output = (args.output_dir or source.parent).resolve()
@@ -248,7 +247,7 @@ def main() -> None:
         if warning in log:
             raise RuntimeError(f'Layout check failed: {warning}; inspect {work}')
     # The .tex stays beside the manuscript it was generated from; the PDF has
-    # exactly one home now, juggler_review/, so it is written there instead of
+    # exactly one home now, preprints/, so it is written there instead of
     # into docs/theory and copied out afterwards.
     shutil.copyfile(work/f'{STEM}.tex',output/f'{STEM}.tex')
     pdf_out=(root/PDF) if root is not None else output/f'{STEM}.pdf'

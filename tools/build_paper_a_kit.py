@@ -19,7 +19,7 @@ spec = importlib.util.spec_from_file_location('paper_a_builder_for_kit', Path(__
 A = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(A)
 SOURCE, EDITORIAL, input_files = A.SOURCE, A.EDITORIAL, A.input_files
-KIT = 'juggler_review/zenodo_paper_a'
+KIT = 'preprints/zenodo_paper_a'
 SOURCE_ZIP = f'{KIT}/paper_a_source_and_verification.zip'
 BUNDLE = f'{KIT}/paper_a_zenodo_package.zip'
 QA = 'docs/theory/paper_a_publication_check.json'

@@ -42,7 +42,7 @@ def _pin_build_date() -> None:
 ROOT = Path(__file__).resolve().parents[1]
 STEM = "collatz_3n_minus_1_m_cycles_note"
 SOURCE = f"docs/theory/{STEM}.md"
-PDF = f"juggler_review/{STEM}.pdf"
+PDF = f"preprints/{STEM}.pdf"
 TEX = "docs/theory/cochin-3n-minus-1-m-cycles.tex"
 MANIFEST = "docs/theory/paper_d_release.json"
 METADATA = "docs/theory/paper_d_zenodo.json"
@@ -62,9 +62,9 @@ BUILD_INPUTS = [
     "data/research/juggler/negative_floor_3x1/verify_3x1_gpu.cu",
     "formal/Problems/Collatz/NegativeMCycles.lean",
 ]
-KIT = "juggler_review/zenodo_paper_d"
+KIT = "preprints/zenodo_paper_d"
 #: the deposit carries the PDF under a readable name; the repository keeps one copy, in
-#: juggler_review/, and this is a byte-identical alias of it.
+#: preprints/, and this is a byte-identical alias of it.
 DEPOSIT_PDF = f"{KIT}/No_m_cycles_of_the_3n_minus_1_map.pdf"
 PDF_EXPORTS = [DEPOSIT_PDF]
 VERSION = "1.1.0"
@@ -109,9 +109,7 @@ def read_release(root: Path) -> dict:
 
 
 def export_pairs(root: Path):
-    pairs = [(name, "juggler_review/" + Path(name).name) for name in EDITORIAL]
-    pairs.extend((PDF, name) for name in PDF_EXPORTS)
-    return pairs
+    return [(PDF, name) for name in PDF_EXPORTS]
 
 
 def zenodo_fields(meta: dict) -> str:

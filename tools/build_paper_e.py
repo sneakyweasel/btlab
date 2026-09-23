@@ -45,7 +45,7 @@ def _pin_build_date() -> None:
 ROOT = Path(__file__).resolve().parents[1]
 STEM = "juggler_signed_collatz_note"
 SOURCE = f"docs/theory/{STEM}.md"
-PDF = f"juggler_review/{STEM}.pdf"
+PDF = f"preprints/{STEM}.pdf"
 TEX = "docs/theory/cochin-juggler-signed-collatz.tex"
 MANIFEST = "docs/theory/paper_e_release.json"
 METADATA = "docs/theory/paper_e_zenodo.json"
@@ -89,11 +89,11 @@ BUILD_INPUTS = [
     "formal/AxiomCheckPaperEExamples.lean", "formal/AxiomCheckPaperEExamples.expected",
     "LICENSE", "pyproject.toml", REPORT,
     "tests/unit/test_paper_e_release.py",
-    "juggler_review/zenodo_paper_e/README.md",
+    "preprints/zenodo_paper_e/README.md",
 ]
-KIT = "juggler_review/zenodo_paper_e"
+KIT = "preprints/zenodo_paper_e"
 #: the deposit carries the PDF under a readable name; the repository keeps one copy, in
-#: juggler_review/, and this is a byte-identical alias of it.
+#: preprints/, and this is a byte-identical alias of it.
 DEPOSIT_PDF = f"{KIT}/Juggler_and_signed_Collatz.pdf"
 SOURCE_ZIP = f"{KIT}/Sources_and_certificate.zip"
 PDF_EXPORTS = [DEPOSIT_PDF]
@@ -139,9 +139,7 @@ def read_release(root: Path) -> dict:
 
 
 def export_pairs(root: Path):
-    pairs = [(name, "juggler_review/" + Path(name).name) for name in EDITORIAL]
-    pairs.extend((PDF, name) for name in PDF_EXPORTS)
-    return pairs
+    return [(PDF, name) for name in PDF_EXPORTS]
 
 
 def zenodo_fields(meta: dict) -> str:

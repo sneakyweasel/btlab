@@ -33,7 +33,7 @@ def _pin_build_date() -> None:
 ROOT = Path(__file__).resolve().parents[1]
 STEM = "juggler_fate_almost_all_note"
 SOURCE = f"docs/theory/{STEM}.md"
-PDF = f"juggler_review/{STEM}.pdf"
+PDF = f"preprints/{STEM}.pdf"
 TEX = "docs/theory/cochin-juggler-fates.tex"
 MANIFEST = "docs/theory/paper_c_release.json"
 METADATA = "docs/theory/paper_c_zenodo.json"
@@ -53,13 +53,13 @@ BUILD_INPUTS = ["docs/theory/juggler_ooee_poor_fibre_tail_note.md",
                 "docs/theory/figures/render_paper_c_figures.py",
                 "data/research/juggler/paper_c_publication_review/validation.json"]
 FIGURES = ["paper_c_productions.png", "paper_c_decomposition.png", "paper_c_dependencies.png"]
-# The PDF lives in `juggler_review/` now, and is exported only under the
+# The PDF lives in `preprints/` now, and is exported only under the
 # historical name the Zenodo deposit carries. The companion site links the
 # published DOIs instead of serving its own copy, so `public/papers/` and
 # `dist/papers/` are gone.
 #: Zenodo takes the bare identifier, not the URL, beside the creator's name.
 ORCID = "0009-0004-1939-3382"
-PDF_EXPORTS = ["juggler_review/zenodo_paper_c/Fate_Contagion_Juggler_Map.pdf"]
+PDF_EXPORTS = ["preprints/zenodo_paper_c/Fate_Contagion_Juggler_Map.pdf"]
 
 
 def digest(path: Path, mode: str = "binary") -> str:
@@ -119,10 +119,7 @@ def read_release(root: Path) -> dict:
 
 
 def export_pairs(root: Path):
-    pairs = [(name, "juggler_review/" + Path(name).name) for name in EDITORIAL]
-    pairs.extend((PDF, name) for name in PDF_EXPORTS)
-    pairs.extend(("docs/theory/figures/" + name, "juggler_review/figures/" + name) for name in FIGURES)
-    return pairs
+    return [(PDF, name) for name in PDF_EXPORTS]
 
 
 def sync(root: Path) -> None:
@@ -132,7 +129,7 @@ def sync(root: Path) -> None:
         p.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(root / source, p)
     fields = zenodo_fields(json.loads((root / METADATA).read_text(encoding="utf-8")))
-    (root / "juggler_review/zenodo_paper_c/ZENODO_FIELDS.txt").write_text(fields, encoding="utf-8", newline="")
+    (root / "preprints/zenodo_paper_c/ZENODO_FIELDS.txt").write_text(fields, encoding="utf-8", newline="")
 
 
 def check(root: Path, exports: bool = True) -> None:
@@ -142,7 +139,7 @@ def check(root: Path, exports: bool = True) -> None:
             mode = "text" if target.endswith(".md") else "binary"
             if not (root / target).is_file() or digest(root / source, mode) != digest(root / target, mode):
                 raise ValueError(f"Stale generated copy: {target}; run --sync")
-        fields = (root / "juggler_review/zenodo_paper_c/ZENODO_FIELDS.txt").read_text(encoding="utf-8")
+        fields = (root / "preprints/zenodo_paper_c/ZENODO_FIELDS.txt").read_text(encoding="utf-8")
         if fields != zenodo_fields(json.loads((root / METADATA).read_text(encoding="utf-8"))):
             raise ValueError("Stale Zenodo fields; run --sync")
 
