@@ -96,6 +96,14 @@ and manifests, and [Lean discovery](lean_discovery.md) for names and proof reuse
 
 ## Test output isolation
 
+Formalpedia tests are divided into `test_formalpedia_source.py`, `graph`,
+`matching`, `reports`, and `advisory` in `tests/tools/`. Paper trust assertions
+remain in `test_formalpedia.py`, the path cited by the claim ledger. The scoped
+`conftest.py` builds a corpus snapshot once per worker and gives each test an
+independent copy; it never caches the production source reader. Cache mutation
+and CLI writer tests use temporary catalogues. Run the module matching a change
+first, then the full affected verification gates.
+
 For independent concurrent tasks, prefer separate Git worktrees. Inspect the
 latest commit and status before editing or staging in a shared checkout; commit
 only the files belonging to the task. Build outputs, semantic snapshots and test
