@@ -360,6 +360,35 @@ Stop criterion          The conditional premise is silently assumed at log_2 3.
 PROMOTE
 ```
 
+**23 September: Diophantine bounds without exponent loss.** A uniform
+bound `|q*xi-p|>=c*q^(-tau)` gives phase hitting with constant
+`H=4^tau/c+1` and the same exponent `tau`. Dirichlet approximation forces
+a large reduced denominator; its rational grid supplies a strictly positive
+orbit index inside every open interval. Specializing to `xi=1/beta` gives
+positive Hausdorff measure at `2/(3*tau)` and the same dimension lower bound.
+Bounds for every `tau>1`, with constants allowed to depend on `tau`, already
+give dimension exactly `2/3`. A bound at `tau=1` also gives positive finite
+critical measure. Both are conditional for the logarithmic slope: no
+Diophantine constant is supplied. See Section 20 and
+[BeattyDiophantineGeometry.lean](../../formal/Problems/Juggler/BeattyDiophantineGeometry.lean).
+
+```text
+Mathematical target     Convert Diophantine lower bounds into phase hitting
+                        and certificate Hausdorff lower bounds.
+Novelty hypothesis      Replace the geometric premise by a standard,
+                        explicit arithmetic inequality for the actual slope.
+Falsifier               Rational-grid approximation loses the claimed exponent.
+Already killed by?      The Denjoy–Koksma obstruction concerns a different
+                        counting bound and termination claim.
+Existing machinery      Dirichlet approximation, coprime rational grids,
+                        gap decay and the proved Holder/Hausdorff transfer.
+Maximum Phase-0 scope   Rational-grid covering, polynomial hitting,
+                        and the resulting conditional geometry.
+Promotion criterion     Lean checks the exponent and original-count interfaces.
+Stop criterion          A Diophantine bound for log_2 3 must be assumed silently.
+PROMOTE
+```
+
 ## Open questions
 
 The qualitative logarithmic-slope phase theorem and normalization are complete
@@ -368,7 +397,8 @@ empirical limiting law. Its tube-volume order and Minkowski dimension `2/3`
 and its exact positive Minkowski content are now checked too, together with
 the whole local content measure and the normalized geometric limiting law. Remaining
 mathematical extensions are exact Hausdorff dimension and critical-measure
-positivity, quantitative phase hitting, a quantitative phase remainder,
+positivity, supplying a Diophantine bound for the quantitative hitting theorem,
+a quantitative phase remainder,
 effective numerical constants, and generalization from the concrete
 logarithmic slope to arbitrary irrational `1<alpha<2`. Literature comparison
 is separate from proof checking; existing paper claims and releases retain
@@ -385,7 +415,10 @@ with dimension `2/3` and exact content given by the two-thirds law moment.
 The whole geometric limiting measure is the explicitly scaled
 `y^(2/3)` reweighting of the empirical law, with its probability normalization.
 The Hausdorff upper bound and finite critical measure are unconditional;
-matching lower bounds are proved under an explicit phase-hitting estimate.
+matching lower bounds are proved under an explicit phase-hitting estimate,
+now derived from a standard uniform Diophantine lower bound without exponent
+loss. Bounds for every exponent above one suffice for dimension equality;
+the stronger exponent-one bound supplies positive critical measure.
 No new branch, publication, priority claim or
 trajectory-termination claim is opened.
 

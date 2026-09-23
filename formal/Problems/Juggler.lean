@@ -116,6 +116,9 @@ import Problems.Juggler.BeattyGeometricLaw
 import Problems.Juggler.BeattyCertificateLocalContent
 import Problems.Juggler.BeattyHausdorffUpper
 import Problems.Juggler.BeattyPhaseHolder
+import Problems.Juggler.BeattyRotationCover
+import Problems.Juggler.BeattyDiophantineHitting
+import Problems.Juggler.BeattyDiophantineGeometry
 import Problems.Juggler.PaperBLevelWindow
 import Problems.Juggler.PaperBJumpTransposition
 import Problems.Juggler.PaperBPaperCBridge

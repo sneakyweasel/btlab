@@ -50,6 +50,9 @@ identify its exact content with a moment of the limiting law, and determine
 the whole geometric limiting measure by a two-thirds-power reweighting.
 Section 19 proves finite two-thirds Hausdorff measure and isolates a
 quantitative phase-hitting condition for matching lower bounds.
+Section 20 derives that condition from uniform Diophantine lower bounds,
+with no loss in the exponent, and separates the arithmetic premises for
+dimension equality and critical-measure positivity.
 Sections 12–13 establish their counting and asymptotic inputs.
 
 **Evidence boundary.** The preceding conclusions are **EXACT — LEAN VERIFIED**
@@ -1395,6 +1398,78 @@ theorem catalogue is refreshed. The executed consumer audit checks twelve
 named dependency records with only `propext`, `Classical.choice`, and
 `Quot.sound`. Its conditional consumers retain (38) as an explicit argument;
 the axiom check does not assert that this argument has been constructed.
+
+## 20. Diophantine approximation supplies the hitting bound
+
+**EXACT — LEAN VERIFIED, with the arithmetic premise explicit.** Let
+\(\xi\in\mathbb R\), \(c>0\), and \(\tau>0\). Suppose
+\[
+ |q\xi-p|\ge c q^{-\tau}
+ \qquad(q\in\mathbb N_{>0},\ p\in\mathbb Z).                  \tag{42}
+\]
+Then every \(0\le a<b\le1\) contains a positive rotation phase
+\(\{m\xi\}\), with
+\[
+ m(b-a)^\tau\le \frac{4^\tau}{c}+1.                           \tag{43}
+\]
+Thus the arithmetic and hitting exponents agree. This is a classical
+rational-approximation argument, formalized here to supply the precise
+input needed by the certificate geometry.
+
+**Proof and constants.** Put \(h=b-a\) and
+\(N=\lceil (4/h)^\tau/c\rceil\). Dirichlet approximation gives a
+reduced rational \(p/q\), \(1\le q\le N\), with
+\[
+ |\xi-p/q|\le\frac1{(N+1)q}.
+\]
+Combining this with (42) gives \(q^\tau\ge c(N+1)>(4/h)^\tau\),
+so \(qh>4\). The approximation error is at most \(q^{-2}\).
+The reduced rational orbit visits every grid point \(j/q\);
+choose \(j=\lfloor qa\rfloor+2\). Then \(0<j<q\) and
+\(a+1/q<j/q<b-1/q\). Its corresponding index \(1\le m<q\)
+moves by less than \(1/q\) when \(p/q\) is replaced by \(\xi\).
+It therefore remains strictly inside \((a,b)\), without wrapping across
+an endpoint. Finally
+\(m h^\tau\le N h^\tau\le4^\tau/c+h^\tau\le4^\tau/c+1\).
+The exclusion of index zero and the open interval convention are checked
+in the Lean proof.
+
+For the actual certificate slope \(\xi=1/\beta=\log_2 3\), (42)
+therefore implies all the conclusions of Section 19:
+\[
+ \mathcal H^{2/(3\tau)}(K)>0,\qquad
+ \frac{2}{3\tau}\le\dim_H K\le\frac23.                        \tag{44}
+\]
+The same input gives the global CDF exponent \(2/(3\tau)\).
+No pair \((c,\tau)\) satisfying (42) for this slope is constructed here.
+
+There is a useful distinction at the endpoint. The weaker family premise
+\[
+ \forall\tau>1\ \exists c_\tau>0\ \forall q\ge1\ \forall p\in\mathbb Z:
+ \quad |q/\beta-p|\ge c_\tau q^{-\tau}                         \tag{45}
+\]
+already gives \(\dim_H K=2/3\), by letting \(\tau\downarrow1\)
+in (44). The constants may depend on \(\tau\); no uniform bound is needed.
+In contrast, a single bound at \(\tau=1\), the bad-approximability
+condition, gives \(0<\mathcal H^{2/3}(K)<\infty\).
+We do not obtain critical-measure positivity from (45), and neither
+arithmetic premise is established for \(\log_2 3\) here.
+
+The rational-grid lemma is in
+[BeattyRotationCover.lean](../../formal/Problems/Juggler/BeattyRotationCover.lean),
+the Dirichlet transfer in
+[BeattyDiophantineHitting.lean](../../formal/Problems/Juggler/BeattyDiophantineHitting.lean),
+and the concrete geometric implications in
+[BeattyDiophantineGeometry.lean](../../formal/Problems/Juggler/BeattyDiophantineGeometry.lean).
+The original-count consumer
+[InterfaceCheckBeattyDiophantine.lean](../../formal/InterfaceCheckBeattyDiophantine.lean)
+writes out every arithmetic quantifier, including the exponent-dependent
+constants in (45). Its
+[executable audit](../../tests/research/juggler_sequence/test_beatty_diophantine_interface.py)
+checks ten dependency records and permits only `propext`, `Classical.choice`,
+and `Quot.sound`.
+**PROMOTE** the arithmetic-to-geometry implication; obtaining a usable
+arithmetic bound for the concrete logarithmic slope remains a separate target.
 
 ## References
 

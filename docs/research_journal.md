@@ -40,11 +40,14 @@ Finite two-thirds Hausdorff measure and `dim_H K<=2/3` are now unconditional.
 A uniform phase-hitting bound with exponent `tau` gives a checked Hölder
 CDF and positive Hausdorff measure at exponent `2/(3*tau)`; `tau=1` gives
 exact dimension `2/3` and positive finite critical measure. The hitting
-premise is explicit and unproved for the logarithmic slope. Exact Hausdorff
+premise now follows from a uniform Diophantine lower bound with the same
+exponent and explicit constant `4^tau/c+1`. Bounds for every `tau>1`
+already suffice for dimension `2/3`, whereas `tau=1` also supplies positive
+critical measure. No such arithmetic bound is supplied for the logarithmic slope. Exact Hausdorff
 dimension, quantitative rates, effective constants and general slopes remain open.
 **PROMOTE** the completed qualitative
 specialization; no paper/release, priority or trajectory-termination claim is
-changed. Canonical proof boundary: Sections 13–19 of the
+changed. Canonical proof boundary: Sections 13–20 of the
 [comparison note](theory/juggler_beatty_first_passage_note.md) and the
 [dossier](problems/juggler_winkler_phase_collapse.md).
 

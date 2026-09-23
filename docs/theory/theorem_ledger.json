@@ -1,5 +1,38 @@
 [
  {
+  "id": "J-beatty-rational-rotation-cover",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For any real xi and reduced rational r with |xi-r|<=1/r.den^2, every phase interval 0<=a<b<=1 with r.den*(b-a)>4 contains frac(n*xi) at an index 0<n<r.den. The proof uses coprimality to enumerate the rational grid and explicitly keeps the perturbed point away from both endpoints. This is a classical rational-grid argument, formalized as the input to quantitative certificate phase hitting.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyRotationCover.lean",
+  "decl": ["rotation_hits_interval_of_rat_approx"],
+  "lean_trust": "kernel",
+  "tests": ["tests/research/juggler_sequence/test_beatty_diophantine_interface.py", "tests/research/juggler_sequence/test_layer_completeness.py"],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-diophantine-phase-hitting",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For c>0 and tau>0, if c<=q^tau*|q*xi-p| for every positive natural q and integer p, then the positive rotation phases frac((n+1)*xi) satisfy PhaseHittingBound with the same exponent tau and explicit constant H=4^tau/c+1. Dirichlet approximation and the lower bound force a reduced denominator large enough for rational-grid coverage. No such arithmetic constants are supplied for the logarithmic certificate slope.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyDiophantineHitting.lean",
+  "decl": ["DiophantineLowerBound", "phaseHittingBound_of_diophantineLowerBound"],
+  "lean_trust": "kernel",
+  "tests": ["tests/research/juggler_sequence/test_beatty_diophantine_interface.py", "tests/research/juggler_sequence/test_layer_completeness.py"],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-diophantine-hausdorff-geometry",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "A uniform Diophantine lower bound with c>0 and tau>0 for the actual slope 1/beta gives positive Hausdorff measure at exponent 2/(3*tau) and dim_H K>=2/(3*tau) for the original certificate cluster set. A family of such bounds for every tau>1, with constants depending on tau, suffices for dim_H K=2/3. The stronger exponent-one bound gives positive finite two-thirds Hausdorff measure. These are checked conditional implications; neither arithmetic premise is discharged for log_2 3. Dimension equality under the family premise does not assert critical-measure positivity. The consumer expands the original integer counts and every arithmetic quantifier.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyDiophantineGeometry.lean",
+  "decl": ["certificatePhase_hitting_of_diophantineLowerBound", "certificateClusterSet_dimH_lower_of_diophantineLowerBound", "certificateClusterSet_hausdorffMeasure_ne_zero_of_diophantineLowerBound", "certificateClusterSet_hausdorffMeasure_pos_finite_of_badApprox", "certificateClusterSet_dimH_eq_of_diophantine_family"],
+  "lean_trust": "kernel",
+  "tests": ["tests/research/juggler_sequence/test_beatty_diophantine_interface.py", "tests/research/juggler_sequence/test_layer_completeness.py"],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-certificate-hausdorff-upper",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "Any compact real set with an upper metric-tube bound lambda(K_epsilon)<=C*epsilon^(1/3) for 0<epsilon<=1/2 has finite two-thirds Hausdorff measure in the diameter-power convention. In particular the cluster set K of the original binomial-normalized certificate counts at alpha=log_2 3 satisfies H^(2/3)(K)<infinity and dim_H K<=2/3 unconditionally. Maximal separated finite nets give the covering estimate. Positivity of the critical Hausdorff measure and equality of Hausdorff dimension are not asserted without further input.",
