@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "arb-local": {
+      "command": "/absolute/path/to/python",
+      "args": ["-B", "/absolute/path/to/checkout/tools/arb_mcp.py"],
+      "env": {"PYTHONUTF8": "1"}
+    }
+  }
+}

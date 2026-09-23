@@ -103,6 +103,8 @@ verification scope, and the corresponding read-only Formalpedia MCP tools.
 [Certified numerics](docs/architecture/certified_numerics.md) uses FLINT/Arb for
 rigorous numerical bounds. Run `python tools/check_paper_c_intervals.py` to
 certify Paper C's production roots and rate thresholds with explicit error bounds.
+The [local Arb MCP](docs/architecture/arb_mcp.md) exposes exact-input expression
+enclosures, adaptive comparisons and production-root certificates directly to agents.
 
 ## Find the mathematics
 

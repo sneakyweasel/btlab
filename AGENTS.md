@@ -16,7 +16,7 @@ is their home. Do not recreate compatibility packages or a parallel research are
 | Papers and evidence labels | [Research map](docs/README.md) and [publication record](docs/theory/paper_deposits.md) |
 | Lean discovery and names | [Lean guide](docs/architecture/lean_discovery.md); use formalpedia before adding a theorem |
 | Sequences and prior art | [OEIS guide](docs/architecture/oeis_discovery.md); use the local OEIS MCP |
-| Certified numerical bounds | [FLINT/Arb guide](docs/architecture/certified_numerics.md); use `research_engine.intervals` and the paper-specific audit |
+| Certified numerical bounds | [FLINT/Arb guide](docs/architecture/certified_numerics.md) and [Arb MCP](docs/architecture/arb_mcp.md); start with `arb_capabilities`, or use `research_engine.intervals` and the paper-specific audit |
 | Shared Python code | [Architecture](docs/architecture/overview.md) |
 
 Do not read entire generated indexes, theorem ledgers or journals to find one item.
@@ -97,6 +97,12 @@ corpus stays global; its published comments are available, but pending editorial
 discussion and most LFS b-file contents are not. Use `oeis_status` for current
 coverage. The [Juggler neighbourhood](docs/problems/juggler_oeis_neighbourhood.md)
 has already been swept; do not repeat that search without a new question.
+
+The local Arb MCP performs bounded numerical computations in isolated workers.
+Use `arb_compare` for tri-state decisions, `arb_production_root` for positive
+production sums, and `arb_paper_c_models` / `arb_paper_c_rate` for canonical
+paper formulas. Keep exact endpoints and scope; `holds=null` is unresolved.
+It writes no research artifacts and never upgrades a claim or Lean proof.
 
 Use Lean LSP or Lean itself for elaboration and proof checking; a source catalogue
 is not an axiom audit. External [prove2.me](.claude/skills/prove2me/SKILL.md) is

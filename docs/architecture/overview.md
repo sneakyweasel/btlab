@@ -34,6 +34,11 @@ and positive-production root brackets. The Paper C audit records exact rational
 endpoints and run provenance; its finite numerical guarantees do not establish
 the open analytic hypotheses.
 
+The [Arb MCP](arb_mcp.md) separates the bounded AST language in
+`research_engine.arb_expressions`, one-request computation in `tools/arb_worker.py`,
+and stdio transport / worker deadlines in `tools/arb_mcp.py`. Workers bind this
+checkout, isolate global FLINT precision, and reuse the canonical Paper C formulas.
+
 `research.knowledge` reads the canonical obstruction records in
 `docs/negative_knowledge/` for the catalogue and branch discovery. The compact
 Markdown directory is derived with `tools/research_memory.py`; full arguments

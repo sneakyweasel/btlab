@@ -94,9 +94,11 @@ Use separate processes when parallel calculations change FLINT's global context.
 without writing files. Add `--output <path>` only when deliberately producing a
 new report and its provenance sidecar. The existing `formalpedia_claim` tool can
 read ledger ID `J-paper-c-arb-certificates`; the recorded evidence does not rerun
-the audit. There is no dedicated Arb MCP evaluator: run computations through
-Python, and keep Formalpedia's discovery tools read-only. The guide records which
-expressions are covered and which analytic hypotheses remain open.
+the audit. The dedicated [Arb MCP](arb_mcp.md) exposes bounded expression
+evaluation, adaptive comparisons, production roots and canonical Paper C
+models/rates. Start with `arb_capabilities`; preserve exact endpoints and never
+treat an unresolved comparison as false. Formalpedia remains read-only discovery.
+The guides record which expressions are covered and which hypotheses remain open.
 
 A server started before a tooling update may retain its earlier Python code;
 restart that server to pick up new dependency checks. The CLI doctor reads the

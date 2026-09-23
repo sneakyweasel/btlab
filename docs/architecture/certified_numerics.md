@@ -12,6 +12,10 @@ It has no application imports. The
 [Paper C audit](../../tools/check_paper_c_intervals.py) supplies the actual
 production equations and rate formulas.
 
+Agents can also use the dedicated [local Arb MCP](arb_mcp.md) for bounded
+expression enclosures, adaptive comparisons, production roots and canonical
+Paper C models/rates. It uses the same interval primitives with isolated workers.
+
 ## Use and trust boundary
 
 ```python

@@ -1,4 +1,4 @@
-# Optional local discovery server; keep publication-pinned core dependencies separate.
+# Optional local MCP services (Formalpedia, OEIS, Arb); keep core dependencies separate.
 # Official SDK v1 is also compatible with the existing Lean LSP MCP tooling.
 mcp>=1.30,<2
 uv>=0.12,<0.13
