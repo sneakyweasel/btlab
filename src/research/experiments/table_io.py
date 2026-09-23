@@ -30,7 +30,7 @@ def _write_rows(
     raw.mkdir(parents=True, exist_ok=True)
     stamp = timestamp()
     jsonl_path = raw / f"{stem}_{stamp}.jsonl"
-    with jsonl_path.open("w", encoding="utf-8") as fh:
+    with jsonl_path.open("w", encoding="utf-8", newline="\n") as fh:
         for row in rows:
             fh.write(json.dumps(row, separators=(",", ":")) + "\n")
     paths = {"jsonl": str(jsonl_path)}
@@ -91,6 +91,7 @@ def write_experiment(
     manifest_path.write_text(
         json.dumps(manifest_payload, indent=2, sort_keys=True),
         encoding="utf-8",
+        newline="\n",
     )
     paths["manifest"] = str(manifest_path)
     provenance = jsonl_path.with_suffix(".research.json")

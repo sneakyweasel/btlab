@@ -7,7 +7,7 @@ import subprocess
 import pytest
 
 from research.experiments.provenance import (
-    check_manifest, recording_run, schema_errors, write_manifest,
+    check_manifest, descriptor, recording_run, schema_errors, text_identity, write_manifest,
 )
 from research.experiments.table_io import write_rows
 
@@ -94,7 +94,7 @@ def test_repeated_table_runs_preserve_data_and_record_provenance(tmp_path):
 def test_schema_document_matches_writer_and_rejects_unsafe_paths(tmp_path):
     jsonschema = pytest.importorskip("jsonschema")
     schema = json.loads((Path(__file__).resolve().parents[2] /
-                         "data/schemas/research-output-v1.schema.json").read_text())
+                         "data/schemas/research-output-v2.schema.json").read_text())
     jsonschema.Draft202012Validator.check_schema(schema)
     validator = jsonschema.Draft202012Validator(schema, format_checker=jsonschema.FormatChecker())
     manifest, _, _ = make_run(tmp_path)
@@ -118,6 +118,59 @@ def test_input_integrity_and_invalid_stems(tmp_path):
     assert any("Changed inputs" in e for e in check_manifest(manifest, tmp_path, hashes=True)["errors"])
     with pytest.raises(ValueError, match="filename component"):
         write_rows([{"n": 1}], tmp_path, "../escape")
+
+
+def test_text_inputs_accept_only_explicit_newline_equivalence(tmp_path):
+    manifest, source, _ = make_run(tmp_path)
+    source.write_bytes(b'print(42)\r\n')
+    payload = json.loads(manifest.read_text())
+    payload['inputs'] = [descriptor(source, tmp_path, text=True)]
+    manifest.write_text(json.dumps(payload))
+    source.write_bytes(b'print(42)\n')
+    result = check_manifest(manifest, tmp_path, hashes=True)
+    assert not result['errors']
+    assert any('Text representation changed for inputs' in w for w in result['warnings'])
+    source.write_bytes(b'print(43)\n')
+    assert any('Changed inputs' in e for e in check_manifest(manifest, tmp_path, hashes=True)['errors'])
+
+
+def test_legacy_manifests_and_outputs_remain_byte_exact(tmp_path):
+    manifest, source, output = make_run(tmp_path)
+    payload = json.loads(manifest.read_text())
+    payload['schema'] = 'btlab-output/v1'
+    for entry in payload['source']['files']:
+        entry.pop('text', None)
+    source.write_bytes(b'print(42)\r\n')
+    payload['inputs'] = [descriptor(source, tmp_path)]
+    manifest.write_text(json.dumps(payload))
+    source.write_bytes(b'print(42)\n')
+    assert any('Changed inputs' in e for e in check_manifest(manifest, tmp_path, hashes=True)['errors'])
+    payload['schema'] = 'btlab-output/v2'
+    payload['outputs'][0]['text'] = text_identity(output)
+    assert any('only allowed' in e for e in schema_errors(payload))
+    payload['outputs'][0].pop('text')
+    output.write_bytes(output.read_bytes().replace(b'\r\n', b'\n') + b'\r\n')
+    manifest.write_text(json.dumps(payload))
+    assert any('Changed outputs' in e for e in check_manifest(manifest, tmp_path, hashes=True)['errors'])
+
+
+def test_text_metadata_cannot_mask_corruption(tmp_path):
+    manifest, source, _ = make_run(tmp_path)
+    payload = json.loads(manifest.read_text())
+    payload['source']['files'][0]['text']['sha256'] = '0' * 64
+    manifest.write_text(json.dumps(payload))
+    assert any('Inconsistent text fingerprint' in e for e in check_manifest(manifest, tmp_path, hashes=True)['errors'])
+    source.write_bytes(b'\xff\0')
+    assert 'text' not in descriptor(source, tmp_path, text=True)
+
+
+@pytest.mark.parametrize('changed', [b'\xef\xbb\xbfx\n', b'x \n', b'x\r'])
+def test_text_identity_preserves_bom_whitespace_and_lone_cr(tmp_path, changed):
+    source = tmp_path / 'text.md'
+    source.write_bytes(b'x\n')
+    original = text_identity(source)
+    source.write_bytes(changed)
+    assert text_identity(source) != original
 
 
 @pytest.mark.parametrize("via_lab", [False, True])

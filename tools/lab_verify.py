@@ -13,7 +13,7 @@ import uuid
 import xml.etree.ElementTree as ET
 
 from lab_environment import ROOT, doctor, environment, executable
-from lab_impact import analyze, fingerprint, impact, inventory
+from lab_impact import analyze, fingerprint, impact, inventory, git
 
 LIMITATIONS = ('Checks apply to the selected checkout and recorded inputs. Static impact is '
                'incomplete for dynamic imports and file reads, so executable or unknown changes '
@@ -49,7 +49,8 @@ def plan(root: Path = ROOT, *, since: str = 'HEAD', paths: list[str] | None = No
                     else ['tests'])
         add('python_tests', ['python', '-m', 'pytest', '-m', 'not slow', *selected],
             'Documentation links and evidence labels.' if docs_only else
-            'Full fast suite: static imports cannot account for dynamic and file-read dependencies.')
+            'Full fast suite: static imports cannot account for dynamic and file-read dependencies.',
+            needs=['lake', 'lean_packages'] if not docs_only and (root / 'formal/lake-manifest.json').is_file() else [])
         python_files = [p for p in changed if p.endswith('.py') and (root / p).is_file()]
         if python_files or any(Path(p).name in {'pyproject.toml', 'ruff.toml', '.ruff.toml'} for p in changed):
             # Whole-tree lint avoids OS argument limits for a large mechanical refactor.
@@ -80,6 +81,7 @@ def plan(root: Path = ROOT, *, since: str = 'HEAD', paths: list[str] | None = No
                 'Compile public Juggler consumers and validate their exact allowed axiom sets.',
                 needs=['lake', 'lean_packages'], no_skips=True)
     return {'status': 'planned' if checks else 'no_changes', 'snapshot': change['snapshot'],
+            'checkout_head': git(root, 'rev-parse', 'HEAD').decode().strip(),
             'extra_watch_paths': change['extra_watch_paths'],
             'base_commit': change['base_commit'], 'comparison': change['comparison'],
             'changed_file_count': len(changed), 'affected_test_count': len(change['affected_tests']),
@@ -114,10 +116,13 @@ def prerequisites(check: dict, root: Path) -> list[str]:
             if not lock.is_file():
                 missing.append('Lean package lock is missing; install prerequisites explicitly.')
             else:
-                packages = json.loads(lock.read_text(encoding='utf-8')).get('packages', [])
-                absent = [p['name'] for p in packages if not (root / 'formal/.lake/packages' / p['name']).is_dir()]
-                if absent:
-                    missing.append('Missing local Lean packages: ' + ', '.join(absent))
+                from lab_dependencies import package_state
+                try:
+                    absent = [p['name'] + ':' + p['status'] for p in package_state(root, probe=True) if p['status'] != 'ready']
+                    if absent:
+                        missing.append('Lean dependencies not ready: ' + ', '.join(absent) + '; run lab.py prepare --apply.')
+                except (ValueError, OSError, subprocess.SubprocessError) as exc:
+                    missing.append(str(exc))
         elif not executable(name, root):
             missing.append(f'{name}: pinned local executable is unavailable.')
     return missing
@@ -149,6 +154,17 @@ def content_state(root: Path, files: set[str]) -> dict:
 def execute(report: dict, root: Path = ROOT, *, timeout: float = 1200, workers: int = 0) -> dict:
     """Only execute plans generated in this process, never a plan loaded from a file/MCP."""
     root = root.resolve()
+    from lab_prepare import runtime_python, python_inventory, managed_python, readiness
+    python = runtime_python(root)
+    if Path(python).absolute() == managed_python(root).absolute():
+        prepared = readiness(root, probe=True, lean=False)
+        if prepared['status'] != 'ready':
+            return report | {'status': 'incomplete', 'reason': 'Managed Python drifted; run lab.py prepare --apply.',
+                             'preparation': prepared}
+    runtime_before = python_inventory(Path(python))
+    head_before = git(root, 'rev-parse', 'HEAD').decode().strip()
+    if report.get('checkout_head', head_before) != head_before:
+        return report | {'status': 'stale', 'reason': 'Checkout HEAD changed after planning.'}
     watched = set(report.get('extra_watch_paths', []))
     if fingerprint(root, inventory(root) | watched) != report['snapshot']:
         return report | {'status': 'stale', 'reason': 'Checkout changed before execution; regenerate the plan.'}
@@ -168,7 +184,7 @@ def execute(report: dict, root: Path = ROOT, *, timeout: float = 1200, workers: 
             check.update(status='not_checked', reason=' '.join(missing))
             continue
         argv = list(check['argv'])
-        argv[0] = sys.executable if argv[0] == 'python' else executable(argv[0], root) or argv[0]
+        argv[0] = python if argv[0] == 'python' else executable(argv[0], root) or argv[0]
         junit = None
         if argv[1:3] == ['-m', 'pytest']:
             junit = run / (check['id'] + '.xml')
@@ -208,7 +224,11 @@ def execute(report: dict, root: Path = ROOT, *, timeout: float = 1200, workers: 
     final = content_state(root, inventory(root) | watched)
     changed = sorted(p for p in initial.keys() | final.keys()
                      if p not in initial or p not in final or initial[p] != final[p])
-    report['checkout_changed'] = bool(changed)
+    report['head_changed'] = head_before != git(root, 'rev-parse', 'HEAD').decode().strip()
+    report['runtime_changed'] = runtime_before != python_inventory(Path(python))
+    report['runtime'] = {'interpreter': python, 'version': runtime_before['version'],
+                         'package_inventory_sha256': hashlib.sha256(json.dumps(runtime_before, sort_keys=True).encode()).hexdigest()}
+    report['checkout_changed'] = bool(changed) or report['head_changed'] or report['runtime_changed']
     report['changed_during_checks_count'] = len(changed)
     report['changed_during_checks'] = changed[:30]
     report['changed_during_checks_truncated'] = len(changed) > 30

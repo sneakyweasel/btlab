@@ -64,3 +64,18 @@ def test_build_refreshes_selected_modules_and_propagates_failure(monkeypatch):
         raise ValueError('compilation failed; previous snapshot preserved')
     monkeypatch.setattr(sem_build, 'build', failed)
     assert lab.main(['build']) == 1
+
+
+def test_test_runner_uses_unique_checkout_scratch_and_preserves_explicit_path(tmp_path, monkeypatch):
+    calls = []
+    def run(argv, **kwargs):
+        calls.append(argv)
+        return type('Result', (), {'returncode': 0})()
+    monkeypatch.setattr(lab.subprocess, 'run', run)
+    assert lab.run_python(['-m', 'pytest'], tmp_path) == 0
+    assert lab.run_python(['-m', 'pytest'], tmp_path) == 0
+    first, second = Path(calls[0][-1]), Path(calls[1][-1])
+    assert first != second and first.is_relative_to(tmp_path / '.build/tests')
+    explicit = tmp_path / 'chosen-scratch'
+    lab.run_python(['-m', 'pytest', '--basetemp', str(explicit)], tmp_path)
+    assert calls[-1].count('--basetemp') == 1 and calls[-1][-1] == str(explicit)

@@ -59,7 +59,9 @@ its canonical proof sources, not in duplicated instructions.
 ## Commands from the checkout root
 
 ```powershell
-python -m pip install -e ".[dev]" -r tools/requirements-formalpedia.txt
+python tools/lab.py prepare                              # plan checkout-local setup
+python tools/lab.py prepare --apply                       # pinned Python + Lean setup
+python tools/lab.py prepare --check                       # verify readiness receipt
 python tools/lab.py test                                  # fast suite
 python tools/lab.py test -- -n 8 --dist loadfile           # parallel fast suite
 python tools/lab.py test -- --runslow                     # long checks, when needed
@@ -82,6 +84,10 @@ python tools/lab.py verify --changed --workers 8          # execute them
 even when Python has another worktree installed in editable mode. Use these
 commands in worktrees. `lab.py build` uses this checkout's `formal/` directory.
 Put `--` before pytest options. Target checks to the change before running wider gates.
+Fresh worktrees use `prepare --apply --from <ready-checkout>` to copy compatible
+caches as independent files. Install Python, uv, Git and the pinned Lean compiler
+first; details and the Python-only profile are in the agent workflow. Refresh the
+Python lock explicitly after dependency edits; do not share writable build trees.
 Windows commands use PowerShell; environment and registration details are in
 [.cursor/rules/environment.mdc](.cursor/rules/environment.mdc).
 

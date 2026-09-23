@@ -1,0 +1,10 @@
+{
+  "schema": "btlab-python-lock/v1",
+  "inputs": {
+    "pyproject.toml": "e99a8deaad3e42c12db855ee4f72dac9b190db67b5a088bea8377c8f94055ef7",
+    "tools/requirements-formalpedia.txt": "7b96548f51952428a1a242076ab6f6bf93d718da5d0c53c7d823af6bd3d6a1be"
+  },
+  "sha256": "b634d10f3149eac2f8195fabd17d4c7aafbdeff7f7bb38e393214698e5095ab7",
+  "profile": "project dependencies, dev extra and local MCP requirements",
+  "resolution": "universal, Python >=3.11; package archives verified by SHA-256 during sync"
+}

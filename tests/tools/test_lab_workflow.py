@@ -176,9 +176,42 @@ def test_identical_generated_report_rewrites_do_not_invalidate_execution(repo):
     assert result['changed_during_checks_count'] == 0
 
 
+def test_head_change_with_identical_files_invalidates_verification(repo):
+    root, git = repo
+    pending = verify.plan(root, paths=['src/pkg/core.py'])
+    git('commit', '--allow-empty', '-m', 'same files, new revision')
+    assert verify.execute(pending, root)['status'] == 'stale'
+    result = verify.execute(runnable(root, [check('commit', ['git', '-c',
+        f'safe.directory={root.as_posix()}', 'commit', '--allow-empty', '-m', 'during run'])]), root)
+    assert result['status'] == 'stale' and result['head_changed']
+
+
+def test_python_inventory_drift_invalidates_verification(repo, monkeypatch):
+    import lab_prepare
+    root, _ = repo
+    inventories = iter([{'version': '3.13', 'packages': [['example', '1']]},
+                        {'version': '3.13', 'packages': [['example', '2']]}])
+    monkeypatch.setattr(lab_prepare, 'python_inventory', lambda _: next(inventories))
+    result = verify.execute(runnable(root, [check('pass')]), root)
+    assert result['status'] == 'stale' and result['runtime_changed']
+
+
+def test_full_python_suite_checks_lean_dependencies_before_starting(repo):
+    root, _ = repo
+    write(root, 'formal/lake-manifest.json', json.dumps({'packagesDir': '.lake/packages', 'packages': [
+        {'name': 'mathlib', 'type': 'git', 'rev': 'a'*40, 'url': 'https://example.invalid/mathlib'}]}))
+    checks = verify.plan(root, paths=['src/pkg/core.py'])['checks']
+    suite = next(c for c in checks if c['id'] == 'python_tests')
+    assert 'lean_packages' in suite['needs']
+    assert any('not ready' in reason for reason in verify.prerequisites(suite, root))
+
+
 def test_required_skipped_consumers_are_incomplete(repo, monkeypatch):
     root, _ = repo
+    original_run = subprocess.run
     def fake_run(argv, **kwargs):
+        if '--junitxml' not in argv:
+            return original_run(argv, **kwargs)
         path = Path(argv[argv.index('--junitxml') + 1])
         path.write_text('<testsuites><testsuite><testcase name="consumer"><skipped message="missing"/>'
                         '</testcase></testsuite></testsuites>')
@@ -202,7 +235,10 @@ def test_scoped_environment_preserves_caller_config(repo, monkeypatch):
     result = env.environment(root)
     assert result['PYTHONPATH'].split(os.pathsep)[0] == str(root / 'src')
     assert result['GIT_CONFIG_KEY_0'] == 'test.value'
-    assert result['GIT_CONFIG_VALUE_1'] == root.as_posix()
+    settings = [(result[f'GIT_CONFIG_KEY_{i}'], result[f'GIT_CONFIG_VALUE_{i}'])
+                for i in range(int(result['GIT_CONFIG_COUNT']))]
+    assert ('safe.directory', root.as_posix()) in settings
+    assert ('core.longpaths', 'true') in settings
     assert os.environ['GIT_CONFIG_COUNT'] == '1'
 
 

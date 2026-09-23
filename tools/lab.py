@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+import uuid
 
 from formalpedia_core import source as fp_source, workspace as fp_workspace
 from lab_scope import active_lean_modules
@@ -29,11 +30,20 @@ def run_python(arguments: list[str], root: Path | None = None) -> int:
         env['BTLAB_RUN_COMMAND'] = json.dumps(['python', 'tools/lab.py', 'run', *arguments[1:]])
     else:
         env.pop('BTLAB_RUN_COMMAND', None)
-    return subprocess.run([sys.executable, *arguments], cwd=root, env=env).returncode
+    if arguments[:2] == ['-m', 'pytest'] and not any(a == '--basetemp' or a.startswith('--basetemp=') for a in arguments):
+        from lab_dependencies import inside
+        scratch = inside(root, root / '.build/tests' / uuid.uuid4().hex)
+        scratch.parent.mkdir(parents=True, exist_ok=True)
+        arguments = [*arguments, '--basetemp', str(scratch)]
+    from lab_prepare import runtime_python
+    return subprocess.run([runtime_python(root), *arguments], cwd=root, env=env).returncode
 
 
 def main(argv=None) -> int:
     arguments = list(sys.argv[1:] if argv is None else argv)
+    if arguments and arguments[0] == 'prepare':
+        from lab_prepare import main as prepare_main
+        return prepare_main(arguments[1:])
     if arguments and arguments[0] in {'doctor', 'impact', 'verify'}:
         from lab_verify import main as workflow_main
         return workflow_main(arguments)
@@ -42,6 +52,7 @@ def main(argv=None) -> int:
         return research_main(arguments)
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='command', required=True)
+    commands.add_parser('prepare', add_help=False, help='plan, apply or check checkout-local pinned dependencies')
     build = commands.add_parser('build', help='build every retained Lean application and dependency')
     build.add_argument('--list', action='store_true', help='show targets without building')
     build.add_argument('--module', action='append', dest='modules', help='build and refresh selected modules')
@@ -87,4 +98,15 @@ def main(argv=None) -> int:
 
 
 if __name__ == '__main__':
+    if sys.argv[1:2] != ['prepare']:
+        from lab_prepare import managed_python, runtime_python
+        try:
+            selected = (sys.executable if Path(sys.executable).absolute() == managed_python(fp_workspace.ROOT).absolute()
+                        else runtime_python(fp_workspace.ROOT))
+        except ValueError as exc:
+            print(str(exc), file=sys.stderr)
+            raise SystemExit(1)
+        if Path(selected).absolute() != Path(sys.executable).absolute():
+            raise SystemExit(subprocess.run([selected, str(Path(__file__).resolve()), *sys.argv[1:]],
+                cwd=fp_workspace.ROOT, env=environment(fp_workspace.ROOT)).returncode)
     raise SystemExit(main())

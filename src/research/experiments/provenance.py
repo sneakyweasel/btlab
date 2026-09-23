@@ -14,7 +14,9 @@ import subprocess
 import sys
 import tempfile
 
-SCHEMA = "btlab-output/v1"
+SCHEMA = "btlab-output/v2"
+SCHEMAS = {"btlab-output/v1", SCHEMA}
+TEXT_SUFFIXES = {'.py', '.lean', '.md', '.json', '.jsonl', '.toml', '.yaml', '.yml', '.txt', '.csv', '.tsv'}
 ROOT = Path(__file__).resolve().parents[3]
 _COMMAND = ContextVar("research_command", default=None)
 
@@ -46,12 +48,28 @@ def _git(root: Path, *args: str) -> str | None:
         return None
 
 
-def descriptor(path: Path, base: Path) -> dict:
+def text_identity(path: Path) -> dict:
+    raw = path.read_bytes()
+    raw.decode('utf-8')  # Strict: no replacement decoding, BOM removal or whitespace changes.
+    if b'\0' in raw:
+        raise ValueError('Text fingerprint cannot cover NUL-containing data')
+    normalized = raw.replace(b'\r\n', b'\n')
+    return {'normalization': 'utf8-crlf-to-lf', 'sha256': hashlib.sha256(normalized).hexdigest(),
+            'bytes': len(normalized)}
+
+
+def descriptor(path: Path, base: Path, *, text: bool = False) -> dict:
     path, base = path.resolve(), base.resolve()
     if not path.is_relative_to(base) or not path.is_file():
         raise ValueError(f"Artifact must be an existing file beneath {base}: {path}")
-    return {"path": path.relative_to(base).as_posix(), "sha256": sha256(path),
-            "bytes": path.stat().st_size}
+    result = {"path": path.relative_to(base).as_posix(), "sha256": sha256(path),
+              "bytes": path.stat().st_size}
+    if text and path.suffix in TEXT_SUFFIXES:
+        try:
+            result['text'] = text_identity(path)
+        except (UnicodeError, ValueError):
+            pass  # Nontext inputs retain exact-byte verification.
+    return result
 
 
 def source_state(root: Path, sources=()) -> dict:
@@ -64,14 +82,14 @@ def source_state(root: Path, sources=()) -> dict:
             path = Path(name).resolve()
             if path.suffix == ".py" and path.is_relative_to(root / "src"):
                 paths.add(path)
-    for name in ("pyproject.toml", "tools/lab.py"):
+    for name in ("pyproject.toml", "tools/lab.py", "tools/requirements-lab.lock", "tools/requirements-lab.json"):
         if (root / name).is_file():
             paths.add(root / name)
     revision = _git(root, "rev-parse", "HEAD") if (root / ".git").exists() else None
     state = _git(root, "status", "--porcelain=v1", "--untracked-files=normal") if revision else None
     return {"revision": revision, "dirty": bool(state) if state is not None else None,
             "coverage": "loaded local Python, project configuration, and explicit sources at manifest creation; not an execution or dependency audit",
-            "files": [descriptor(p, root) for p in sorted(paths)]}
+            "files": [descriptor(p, root, text=True) for p in sorted(paths)]}
 
 
 def write_manifest(path: Path, *, programme: str, scope: str, outputs,
@@ -102,9 +120,9 @@ def write_manifest(path: Path, *, programme: str, scope: str, outputs,
         "generator": {"command": invocation,
                       "parameters": parameters or {}, "python": platform.python_version()},
         "source": source_state(root, sources),
-        "inputs": [descriptor(Path(p), root) for p in inputs],
+        "inputs": [descriptor(Path(p), root, text=True) for p in inputs],
         "outputs": [descriptor(Path(p), artifact_root) for p in outputs],
-        "verification": "Hashes identify files only; no theorem or compilation status is asserted.",
+        "verification": "Outputs are byte-exact. Explicit text fingerprints on inputs/sources accept only UTF-8 CRLF-to-LF representation changes, which are reported. No theorem or compilation status is asserted.",
     }
     errors = schema_errors(payload)
     if errors:
@@ -112,7 +130,7 @@ def write_manifest(path: Path, *, programme: str, scope: str, outputs,
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = None
     try:
-        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=path.parent,
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", newline="\n", dir=path.parent,
                                          prefix=".manifest-", suffix=".tmp", delete=False) as stream:
             temporary = Path(stream.name)
             json.dump(payload, stream, indent=2, ensure_ascii=False)
@@ -131,7 +149,7 @@ def _relative(value) -> bool:
 
 
 def schema_errors(data) -> list[str]:
-    """Validate the v1 envelope, including types, duplicate paths, and safe references."""
+    """Validate v1/v2 envelopes; v1 stays byte-exact and v2 text identity is explicit."""
     if not isinstance(data, dict):
         return ["Manifest must be an object"]
     errors = []
@@ -139,7 +157,7 @@ def schema_errors(data) -> list[str]:
                 "generator", "source", "inputs", "outputs", "verification"):
         if key not in data:
             errors.append(f"Missing {key}")
-    if data.get("schema") != SCHEMA:
+    if not isinstance(data.get('schema'), str) or data.get("schema") not in SCHEMAS:
         errors.append("Unsupported manifest schema")
     app = data.get("programme")
     if not isinstance(app, str) or app not in {"juggler", "collatz"}:
@@ -202,6 +220,15 @@ def schema_errors(data) -> list[str]:
                 errors.append(f"Invalid {name} SHA-256: {entry['path']}")
             if type(entry.get("bytes")) is not int or entry["bytes"] < 0:
                 errors.append(f"Invalid {name} size: {entry['path']}")
+            if 'text' in entry:
+                value = entry['text']
+                if data.get('schema') != SCHEMA or name == 'outputs':
+                    errors.append(f'Text identity is only allowed on v2 inputs and sources: {entry["path"]}')
+                if (not isinstance(value, dict) or value.get('normalization') != 'utf8-crlf-to-lf'
+                        or set(value) != {'normalization', 'sha256', 'bytes'}
+                        or not isinstance(value.get('sha256'), str) or not re.fullmatch(r'[0-9a-f]{64}', value['sha256'])
+                        or type(value.get('bytes')) is not int or value['bytes'] < 0):
+                    errors.append(f'Invalid text identity: {entry["path"]}')
     return errors
 
 
@@ -231,10 +258,28 @@ def check_manifest(path: Path, root: Path = ROOT, *, hashes: bool = False) -> di
                 errors.append(f"{name} path escapes its root: {entry['path']}")
             elif not file.is_file():
                 (warnings if name == "source" else errors).append(f"Missing {name}: {entry['path']}")
-            elif hashes and sha256(file) != entry["sha256"]:
-                (warnings if name == "source" else errors).append(f"Changed {name}: {entry['path']}")
-            elif name != "source" and file.stat().st_size != entry["bytes"]:
-                errors.append(f"Changed {name} size: {entry['path']}")
+            else:
+                changed_size = file.stat().st_size != entry['bytes']
+                if hashes:
+                    raw_matches = sha256(file) == entry['sha256'] and not changed_size
+                    text_matches = False
+                    if 'text' in entry:
+                        try:
+                            text_matches = text_identity(file) == entry['text']
+                        except (UnicodeError, ValueError):
+                            pass
+                        if raw_matches and not text_matches:
+                            errors.append(f'Inconsistent text fingerprint for {name}: {entry["path"]}')
+                    if not raw_matches:
+                        if text_matches:
+                            warnings.append(f'Text representation changed for {name}; declared UTF-8/LF content matches: {entry["path"]}')
+                        else:
+                            (warnings if name == 'source' else errors).append(f'Changed {name}: {entry["path"]}')
+                elif changed_size:
+                    if 'text' in entry:
+                        warnings.append(f'Changed {name} byte size; use --hashes to check declared text identity: {entry["path"]}')
+                    elif name != 'source':
+                        errors.append(f'Changed {name} size: {entry["path"]}')
     if data["generator"]["command"] is None:
         warnings.append("Reproduction command was not recorded")
     if data["source"]["revision"] is None:

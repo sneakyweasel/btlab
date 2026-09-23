@@ -215,7 +215,7 @@ def analyze(root: Path = ROOT, *, since: str = 'HEAD', paths: list[str] | None =
         data = json.loads((root / name).read_text(encoding='utf-8'))
         if not isinstance(data, dict):
             raise ValueError(f'Malformed research manifest: {name}')
-        if data.get('schema') != 'btlab-output/v1':
+        if data.get('schema') not in {'btlab-output/v1', 'btlab-output/v2'}:
             continue
         inputs = descriptors(data.get('inputs', []), name) | descriptors(data.get('source', {}).get('files', []), name)
         artifact_root = (root / name).parent / data.get('artifact_root', '.')

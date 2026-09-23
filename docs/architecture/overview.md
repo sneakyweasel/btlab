@@ -28,6 +28,12 @@ programmes. It is a live derived view, not another manually maintained ledger.
 New outputs use versioned provenance sidecars; `python tools/lab.py check`
 validates references and metadata without running mathematical computations.
 
+The [agent workflow](agent_workflow.md) prepares each checkout independently.
+`tools/lab_prepare.py` owns the Python lock and readiness receipt;
+`tools/lab_dependencies.py` materializes pinned Lean packages and copies caches.
+`tools/lab_verify.py` runs checks against recorded source, Git and runtime state.
+Managed environments, build outputs and scratch files remain in `.build/`.
+
 [Certified numerics](certified_numerics.md) uses FLINT/Arb through
 `research_engine.intervals` for rigorous real enclosures, definite comparisons,
 and positive-production root brackets. The Paper C audit records exact rational

@@ -19,11 +19,14 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install
-        run: python -m pip install -e ".[dev]" -r tools/requirements-formalpedia.txt
+        run: |
+          python -m pip install "uv>=0.12,<0.13"
+          python tools/lab.py prepare --apply --profile python
+          echo "$PWD/.build/python/bin" >> "$GITHUB_PATH"
       - name: Ledger is generated
         run: python tools/render_theorem_ledger.py --check
       - name: Research references and output manifests
-        run: python tools/lab.py check
+        run: python tools/lab.py check --hashes
       - name: Preprints and publication kits
         run: python tools/preprints.py --check
       - name: Public Lean naming and documentation
@@ -38,7 +41,7 @@ jobs:
         # targeted runs too. This job IS the full suite, so it is the case that comment
         # describes. loadfile keeps one file on one worker, which matters where a module
         # builds shared state at import.
-        run: pytest --runslow -n auto --dist loadfile
+        run: python tools/lab.py test -- --runslow -n auto --dist loadfile
 
   lean:
     runs-on: ubuntu-latest
@@ -56,12 +59,15 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install
-        run: python -m pip install -e ".[dev]"
-      - name: Build active Juggler and Collatz graph
-        run: python tools/lab.py build
+        run: |
+          python -m pip install "uv>=0.12,<0.13"
+          python tools/lab.py prepare --apply --profile python
+          echo "$PWD/.build/python/bin" >> "$GITHUB_PATH"
+      - name: Prepare pinned Lean packages and build active graph
+        run: python tools/lab.py prepare --apply
       - name: Lean-dependent gates
         run: >
-          pytest --runslow -q
+          python tools/lab.py test -- --runslow -q
           tests/tools/test_lean_hygiene.py
           tests/research/juggler_sequence/test_paper_a_trust_boundary.py
           tests/research/juggler_sequence/test_manuscript_self_audit.py

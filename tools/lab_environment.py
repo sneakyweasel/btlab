@@ -69,6 +69,9 @@ def environment(root: Path = ROOT) -> dict[str, str]:
     # Subprocess Git commands need the same narrow exception as our own Git reads.
     # Preserve caller configuration and never set safe.directory=* or edit global config.
     count = int(env.get('GIT_CONFIG_COUNT', '0'))
+    env[f'GIT_CONFIG_KEY_{count}'] = 'core.longpaths'
+    env[f'GIT_CONFIG_VALUE_{count}'] = 'true'
+    count += 1
     paths = [root]
     packages = root / 'formal/.lake/packages'
     if packages.is_dir():
@@ -138,6 +141,9 @@ def doctor(root: Path = ROOT, *, probe: bool = False) -> dict:
     else:
         row['reason'] = 'Optional local OEIS index is absent; see docs/architecture/oeis_discovery.md.'
     checks.append(row)
-    return {'status': 'failed' if any(c['status'] == 'failed' for c in checks) else 'passed',
+    from lab_prepare import readiness
+    prepared = readiness(root, probe=probe)
+    return {'status': 'failed' if any(c['status'] == 'failed' and c['required'] for c in checks) else 'passed',
             'root': str(root), 'checks': checks,
+            'preparation': prepared,
             'limitations': 'Local prerequisite discovery, not a successful build or proof audit. No secrets or client configuration are inspected; no packages are installed.'}

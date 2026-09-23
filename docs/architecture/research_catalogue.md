@@ -70,7 +70,7 @@ the added tools; its configuration and interpreter remain the same.
 
 ## New output manifests
 
-The [v1 JSON schema](../../data/schemas/research-output-v1.schema.json) defines
+The [v2 JSON schema](../../data/schemas/research-output-v2.schema.json) defines
 `*.research.json` sidecars. New shared Collatz table writers, report writers,
 and finite-descent/Syracuse record writers emit them automatically. New Juggler
 probe scaffolds include a `record_outputs` helper; call it after closing files.
@@ -86,7 +86,16 @@ This is not a complete dependency or environment audit. An empty input list mean
 files were declared; it does not establish that there are no dependencies.
 
 Paths are portable and relative to the recorded artifact root or repository.
-Hashes identify exact bytes. They do not establish a theorem, a successful
+Raw hashes identify exact bytes. V2 additionally records an explicit UTF-8 text
+identity for supported text inputs and sources: only CRLF becomes LF; whitespace,
+BOMs, and lone CR bytes are preserved. A representation change is reported, and a
+changed text identity still fails input integrity. Outputs always remain byte-exact.
+The [v1 schema](../../data/schemas/research-output-v1.schema.json) remains supported
+with its original strict byte semantics. Existing hashes are never repinned just
+because a checkout uses different line endings. Reproduce an affected computation
+deliberately before replacing its record. New shared text writers emit LF.
+
+Neither kind of hash establishes a theorem, a successful
 test, or a Lean trust boundary. Missing invocation or Git information is null,
 never guessed from the latest commit. CLI runs supply argv; library callers can
 use `recording_run` or pass `command` explicitly. Never store secrets in argv.

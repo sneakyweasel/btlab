@@ -12,6 +12,49 @@ python tools/lab.py verify --changed --plan
 python tools/lab.py verify --changed --workers 8
 ```
 
+## Prepare an isolated checkout
+
+Python 3.11 or newer, `uv`, Git, and the compiler named in
+`formal/lean-toolchain` must already be installed. Preparation does not select a
+different compiler or modify global Python packages. Start inside the checkout:
+
+```powershell
+python tools/lab.py prepare                            # read-only plan
+python tools/lab.py prepare --apply --from C:/path/to/another/checkout
+python tools/lab.py prepare --check                     # probe readiness
+```
+
+`--apply` creates `.build/python`, installs the hash-pinned
+`tools/requirements-lab.lock`, checks out exact Lake package revisions, builds
+the active Lean graph and refreshes compiled Formalpedia records. Later
+`lab.py` commands select that environment and bind imports to this checkout.
+Use `--profile python` for Python-only setup; it does not certify Lean readiness.
+`--offline` forbids package downloads; cached Python archives and compatible
+local Lean dependencies must already be available. Without `--from`, full
+preparation fetches the repositories recorded in the Lake lock.
+
+A donor must have the same Lean toolchain and Lake lock. Compatible caches are
+copied as ordinary independent files; neither build trees nor Git object stores
+are shared through writable links. Lake still validates/rebuilds local targets.
+Dirty or incorrectly pinned destination packages cause a failure, never a reset.
+Cache copies can require several GB. A failed copy remains unpromoted in the
+selected checkout's `.build/preparation/`; logs explain the failure.
+
+The readiness receipt records the Python package inventory, lock digest, Lean
+source inventory and local object hashes. `prepare --check` probes actual package
+revisions and Python inventory, and rejects changed sources or objects. `doctor`
+includes the same preparation report (`--probe` checks installed state). The
+reported MCP command uses this environment and an explicit checkout root; setup
+does not change app configuration. Readiness is separate from tests and theorem
+axiom audits. It never upgrades mathematical evidence.
+
+Dependency changes require an explicit `python tools/lab.py prepare --refresh-lock`,
+review of both lock files, and another `prepare --apply`. Ordinary preparation
+never updates dependency versions. CI uses this lock too. Per-run logs and
+receipts stay in `.build/preparation/`, with download archives in `.cache/uv/`.
+
+## Inspect and verify changes
+
 `doctor` discovers this interpreter's packages, the locally installed pinned
 Lean toolchain, publication executables, and the optional OEIS database. `--probe`
 also tries bounded version commands. Neither installs anything or changes global
@@ -25,7 +68,7 @@ include committed work since a base revision. Repeat `--path` to inspect an
 explicit file or directory scope instead. Static imports include both old and
 new edges, so deleting a dependency still identifies its consumers. The report
 links affected modules to recorded claims, candidate tests, release inventories,
-and v1 research manifests. It does not infer theorem-level proof dependencies.
+and v1/v2 research manifests. It does not infer theorem-level proof dependencies.
 Ignored files are outside Git-based impact; select a specific ignored artifact
 with `--path` when investigating it.
 
@@ -34,7 +77,9 @@ previous snapshot rejects pagination across source changes. File lists inside
 an item have labelled bounded previews. Snapshots use paths, sizes, and change
 times to detect ordinary concurrent edits. Executed verification additionally
 compares SHA-256 contents before and after running checks, allowing identical
-test-generated report rewrites. It lists changed paths when a run is stale.
+test-generated report rewrites. It also records Git HEAD and the Python package
+inventory, and marks changes to either as stale. A drifted prepared environment
+is rejected before gates run. It lists changed paths when a run is stale.
 Neither comparison is an atomic execution certificate.
 
 `verify --changed --plan` constructs commands but does not execute them.
@@ -58,12 +103,14 @@ not every theorem in the library. Paper-specific audits remain authoritative
 for each paper's trust boundary.
 
 Each executed check records `passed`, `failed`, or `not_checked`. Missing
-prerequisites never pass. Pytest results include skipped counts and reasons;
+prerequisites never pass. The full Python suite also preflights the pinned Lean
+compiler and exact, clean dependency revisions because it includes Lean consumers.
+Pytest results include skipped counts and reasons;
 skipped required consumer checks make verification incomplete. `doctor` uses
 `skipped` for absent optional prerequisites. Overall `passed` means the selected
 gates completed successfully within their documented scope. `no_changes` means
 there was nothing to check. `failed`, `incomplete`, and `stale` exit nonzero;
-`stale` means source files changed while checks were running. Details and logs
+`stale` means inputs, Git HEAD or the Python environment changed during checks. Details and logs
 remain available after failure. Reports and per-run pytest scratch/cache files
 live in ignored `.build/lab/<run>/`;
 `--timeout` sets the limit for each check.
@@ -130,7 +177,7 @@ For independent concurrent tasks, prefer separate Git worktrees. Inspect the
 latest commit and status before editing or staging in a shared checkout; commit
 only the files belonging to the task. Build outputs, semantic snapshots and test
 scratch directories belong to the selected checkout. A worktree must set up its
-own pinned dependencies before compiling; do not assume another checkout's build
+own pinned dependencies using `prepare --apply` before compiling; do not assume another checkout's build
 results establish freshness here.
 
 Formalpedia accepts `python tools/formalpedia_mcp.py --root <checkout>` to bind
@@ -154,6 +201,10 @@ even with identical bytes, fails immediately. Child processes do not inherit
 Python audit hooks; any subprocess test that generates artifacts must also use
 an explicit temporary destination. Regeneration belongs in a deliberate probe
 command, outside pytest.
+
+`lab.py test` allocates a unique `.build/tests/<run>/` scratch directory unless
+`--basetemp` is supplied explicitly. It does not depend on shared system-temp
+ownership or reuse another test run's temporary directory.
 
 Atlas query connections use `read_only=True`, which opens an existing SQLite
 store in read-only mode without schema initialization. Atlas builders retain

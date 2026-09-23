@@ -66,7 +66,8 @@ failed and what would be needed to revisit it.
 From the repository root, with **Python 3.11 or later**:
 
 ```powershell
-python -m pip install -e ".[dev]" -r tools/requirements-formalpedia.txt
+python -m pip install "uv>=0.12,<0.13"          # bootstrap installer
+python tools/lab.py prepare --apply --profile python
 python tools/lab.py run cli.main status
 python tools/lab.py run cli.main collatz --help
 python tools/lab.py run research.juggler_sequence.branch_index search "contagion"
@@ -84,6 +85,8 @@ python tools/lab.py build                      # retained Lean library
 python tools/lean_style.py                     # public Lean names and documentation
 python tools/render_theorem_ledger.py --check  # claim ledger consistency
 python tools/lab.py doctor                     # local prerequisites
+python tools/lab.py prepare --apply            # pinned Lean packages + build (compiler required)
+python tools/lab.py prepare --check            # environment and build readiness
 python tools/lab.py verify --changed --plan    # inspect change-aware checks
 python tools/lab.py verify --changed           # execute the selected gates
 ```
