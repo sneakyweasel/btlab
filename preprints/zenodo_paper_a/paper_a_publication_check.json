@@ -4,11 +4,11 @@
   "title": "Lower Bounds for Cycle Lengths in the Juggler Map",
   "version": "1.2.1",
   "source_edition": "2026-09-23-preprint",
-  "changes": "Correct metadata section extraction, synchronize publication documents, add deterministic source and verification supplement with checksums, and update the provenance pin. Mathematical statements and proofs are unchanged from 1.2.0.",
-  "pdf_sha256": "8e2d1c14c7404a91803d07baf121d6c8adc9d1a710272a221a00fd1b3b40a7e9",
-  "source_sha256": "ccbed5eec07121861e370593d9823c67e5cac569b1c0c85420914efc12204ad5",
-  "tex_sha256": "74729188add49f873d5b836bb3b5473d9e7fc334bf9e8f871f15a693739e6c7e",
-  "source_zip_sha256": "ecd06fa3fc9a19abc8468b4e7ecfff0ca0802b913d6956a4e2d98339042990f2",
+  "changes": "Correct metadata section extraction, synchronize publication documents, add deterministic source and verification supplement with checksums, and update the provenance pin. Mathematical statements and proofs are unchanged from 1.2.0. Separate stable paths from module registration; refresh the import-dependent finance input and provenance pin without changing computations or mathematical statements.",
+  "pdf_sha256": "4d135483447d47a59f6f2bbcb24d902cc82e7857e78261f5ec3ab8ba98ce6066",
+  "source_sha256": "721b3b28945ae99827f74849edff0f53e1d5b7121e1463a72c66303e7d4f4919",
+  "tex_sha256": "a16d9a798dc343cc1809b0f004d203d2879b1b850e3f7afd77304dcdc9312ab9",
+  "source_zip_sha256": "48f11922d5162fccc54ed063c004cd6c5c3501618a1b78185b6c511121949b06",
   "digest_convention": "Text uses normalized LF; PDF and ZIP use raw bytes.",
   "pdf_pages": 113,
   "pdf_bytes": 609451,
@@ -29,11 +29,11 @@
     350000000
   ],
   "lean_evidence": "The earlier 23 September readiness review recorded a successful full Paper A build. The live cited-declaration axiom audit was rerun successfully during the preprints migration. No Lean proof source changed in this maintenance; included sources remain digest-bound in the supplement.",
-  "provenance_commit": "d20cab375baa47dd207f8a677aec1c93d9046c6f",
+  "provenance_commit": "38cf9b93f57d06b6a83c81280fac65d7210e56c2",
   "pinned_non_editorial_inputs": 128,
   "metadata_description": "PASS: abstract and AI disclosure only; version history is excluded.",
   "visual_review": {
-    "method": "All 113 rebuilt pages rendered with Poppler and inspected in contact sheets; changed export-path and provenance pages 10 and 11 inspected individually at 120 dpi.",
+    "method": "All 113 pages rendered and compared pixel-for-pixel with the preceding validated PDF. Only page 11 changed (repository commit reference); that page was visually inspected at 120 dpi. Page count, page bounds, and embedded fonts were rechecked.",
     "agent_layout_review": "PASS",
     "human_review": "Outstanding for this local revision."
   },
@@ -53,11 +53,30 @@
       11
     ]
   },
-  "final_test_run": {
+  "registry_consolidation": {
+    "date": "2026-09-23",
+    "render_changed_pages": [
+      11
+    ],
+    "standalone_rebuild": "PASS: extracted source archive reproduces the PDF bytes and normalized LaTeX exactly.",
+    "numeric_recheck": "PASS: standalone checker reproduces all four supplied-floor cutoffs; descent-floor searches were not rerun."
+  },
+  "previous_test_run": {
     "total_tests": 252,
     "passed": 248,
     "skipped": 4,
     "failures": 0,
-    "scope": "All integration tests; Paper A release/archive, numerical audit and trust-boundary tests; Paper B and E release tests; manuscript consistency and notation; publication-path tests. Includes the live Paper A Lean axiom audit."
+    "scope": "All integration tests; Paper A release/archive, numerical audit and trust-boundary tests; Paper B and E release tests; manuscript consistency and notation; publication-path tests. Includes the live Paper A Lean axiom audit.",
+    "context": "Preceding preprints migration; retained as historical evidence, not a test run of this revision."
+  },
+  "final_test_run": {
+    "total_tests": 5321,
+    "passed": 5317,
+    "skipped": 4,
+    "failures": 0,
+    "errors": 0,
+    "scope": "Complete fast repository suite via lab.py verify --changed --path tools/lab.py --workers 8. Slow tests excluded; optional skips remain explicit. Includes real MCP transport, publication provenance/archive gates and the existing Lean-backed tests. No global termination or full-paper formalization claim is inferred.",
+    "checkout_snapshot_status": "stale",
+    "snapshot_limitation": "The shared checkout changed during testing; test counts do not certify a frozen latest checkout. A subsequent content-aware run passed 49 integration/ledger tests with 4 declared skips and identified BeattyCounting.lean as the sole concurrently changed file. That unfinished research module is outside Paper A and E release inputs."
   }
 }

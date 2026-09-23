@@ -707,7 +707,7 @@ whole is formally verified.
 
 ```text
 Repository:  https://github.com/sneakyweasel/btlab
-Commit:      d20cab375baa47dd207f8a677aec1c93d9046c6f
+Commit:      38cf9b93f57d06b6a83c81280fac65d7210e56c2
 Lean:        leanprover/lean4:v4.33.1
 Mathlib:     v4.33.1 (lake-manifest rev 0df444a360eaa60ab8c11dca51a86af692955474)
 Build:       lake build Problems.JugglerPaper   (from formal/)

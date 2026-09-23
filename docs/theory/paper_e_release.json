@@ -5,7 +5,7 @@
   "verification_scope": "File provenance only. The mathematical trust boundaries are in the manuscript and in PAPER_E_BUILD.md.",
   "pages": 18,
   "tools": {
-    "pandoc": "pandoc.EXE 3.6.3",
+    "pandoc": "pandoc.exe 3.6.3",
     "xelatex": "MiKTeX-XeTeX 4.18 (MiKTeX 26.5)"
   },
   "inputs": [
@@ -697,7 +697,7 @@
     {
       "path": "src/research/juggler_sequence/lean_paths.py",
       "mode": "text",
-      "sha256": "368e5f554c6e3f8e7cc7653257c6f8c724344da4d1b7bcefbd877a19d4dd3c25"
+      "sha256": "cc436f070f282ffc1ca3b6c493a0c9a99b9b3f2dc7b8f28a61c9c0314e76b251"
     },
     {
       "path": "src/research/juggler_sequence/negative_preimage_density.py",
