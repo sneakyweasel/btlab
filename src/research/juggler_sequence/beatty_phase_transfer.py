@@ -3,7 +3,7 @@
 Integer survivor counts are exact. Logarithms, phases and profile comparisons
 are floating-point diagnostics, not certified enclosures or a proof of a limit.
 The analytic argument and its formalization boundary are recorded in
-docs/theory/juggler_beatty_phase_transfer_note.md.
+docs/theory/juggler_beatty_first_passage_note.md.
 """
 
 from __future__ import annotations

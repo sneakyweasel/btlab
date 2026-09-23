@@ -3,7 +3,7 @@
  "id": "J-beatty-empirical-weak-transfer",
  "tag": "EXACT — LEAN VERIFIED",
  "statement": "For sequences of Borel probability measures on metric spaces, weak convergence passes through a measurable map continuous almost everywhere for the limiting measure. Empirical laws are preserved under vanishing real sample errors, and converge on measurable sets with null limiting boundary. These are generic measure-theoretic tools, not a novelty claim.",
- "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+ "source": "docs/theory/juggler_beatty_first_passage_note.md",
  "lean": "Problems/Juggler/BeattyWeakConvergence.lean",
  "decl": [
   "tendsto_probability_map_of_ae_continuous",
@@ -24,7 +24,7 @@
  "id": "J-beatty-certificate-phase-equidistribution",
  "tag": "EXACT — LEAN VERIFIED",
  "statement": "Every irrational linear exponential phase has zero limiting Fourier average. For beta=log 2/log 3 this proves that the empirical laws of the exact certificate phases delta_r={r/beta} converge weakly to uniform probability on (0,1]. No equidistribution or Fourier-cancellation premise remains in the concrete theorem.",
- "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+ "source": "docs/theory/juggler_beatty_first_passage_note.md",
  "lean": "Problems/Juggler/BeattyPhaseEquidistribution.lean",
  "decl": [
   "tendsto_irrational_phase_average",
@@ -41,7 +41,7 @@
  "id": "J-beatty-certificate-singular-continuous-law",
  "tag": "EXACT — LEAN VERIFIED",
  "statement": "For alpha=log_2 3 the empirical probability measures of the actual normalized certificate counts R_r converge weakly to mu=F_*(uniform(0,1]). The same result is proved for averages of every bounded continuous real test function. This probability law is atomless, has a continuous CDF G, gives full mass to the explicit null accumulation set K, and is mutually singular with Lebesgue measure. G(F(t))=t for t in [0,1], and G equals delta_j throughout each closed jump interval [F(delta_j),F(delta_j)+w_j], which has zero mass including its endpoints. Frequencies below every real threshold converge to G, with limit t at F(t). No empirical frequency of exact membership in K, quantitative discrepancy rate or arbitrary-slope certificate theorem is asserted.",
- "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+ "source": "docs/theory/juggler_beatty_first_passage_note.md",
  "lean": "Problems/Juggler/BeattyCertificateDistribution.lean",
  "decl": [
   "certificateRatio_empiricalLaw_tendsto",
@@ -68,7 +68,7 @@
  "id": "J-beatty-jump-range-geometry",
  "tag": "EXACT — LEAN VERIFIED",
  "statement": "For distinct atoms in (0,1) with summable nonnegative weights, the closure of the cumulative jump profile range is its envelope minus the pairwise disjoint open jump intervals, and this complement has zero Lebesgue measure. Dense strictly positive atoms make the profile strictly increasing and the range closure perfect. Recurrent phase sampling has exactly that range closure as its real subsequential limit set; an additive error tending to zero preserves all such limits. These are generic pure-jump consequences, not a novelty claim.",
- "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+ "source": "docs/theory/juggler_beatty_first_passage_note.md",
  "lean": "Problems/Juggler/BeattyProfileGeometry.lean",
  "decl": [
   "closure_range_jumpProfile",
@@ -90,7 +90,7 @@
  "id": "J-beatty-certificate-accumulation-set",
  "tag": "EXACT — LEAN VERIFIED",
  "statement": "For alpha=log_2 3, the actual normalized certificate counts R_r=r*c_r/binom(m_r-1,r-1) have exactly K=[1,alpha/(alpha-1)] minus the union over j>=1 of (F(delta_j),F(delta_j)+w_j) as their real subsequential limit set. K is nonempty, compact, perfect, Lebesgue-null and has empty interior. Both endpoints of every listed gap are subsequential limits. Every closed interval strictly inside a gap is eventually avoided. Exact phase recurrence is proved; no unproved density or asymptotic input remains. The empirical limiting law is recorded separately. No convergence rate, arbitrary-slope theorem or novelty claim is asserted.",
- "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+ "source": "docs/theory/juggler_beatty_first_passage_note.md",
  "lean": "Problems/Juggler/BeattyCertificateCluster.lean",
  "decl": [
   "certificatePhase_recurrent",
@@ -116,7 +116,7 @@
  "id": "J-beatty-fine-terminal-survivor-phase",
  "tag": "EXACT — LEAN VERIFIED",
  "statement": "At beta=log 2/log 3 the strict binomial tail satisfies sqrt(n) T_n/v^n-Phi(n beta)->0 with the exact fractional-part correction. Stirling and a vanishing entropy remainder give the first-term limit; dominated convergence gives the geometric-tail ratio. The actual survivor counts therefore have the explicit convolution phase asymptotic and satisfy the existing MeanderShape predicate unconditionally. The limit is additive o(1), not a quantitative rate.",
- "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+ "source": "docs/theory/juggler_beatty_first_passage_note.md",
  "lean": "Problems/Juggler/BeattyEndpointAsymptotic.lean",
  "decl": [
   "endpoint_first_term_phase_limit",
@@ -136,7 +136,7 @@
  "id": "J-beatty-critical-first-passage-mass",
  "tag": "EXACT — LEAN VERIFIED",
  "statement": "The critical Bernoulli probability of surviving tends to zero and the actual first-descent masses sum to one. Finite last-letter probability and centered-first-moment identities bound surviving endpoint moments by beta. Splitting at a fixed height and using proved normalized survivor decay removes the escape mass. No optional-stopping or first-passage premise is assumed.",
- "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+ "source": "docs/theory/juggler_beatty_first_passage_note.md",
  "lean": "Problems/Juggler/BeattyCertificateMass.lean",
  "decl": [
   "survivorCriticalMass_tendsto_zero",
@@ -153,7 +153,7 @@
  "id": "J-beatty-certificate-jump-mass-traces",
  "tag": "EXACT — LEAN VERIFIED",
  "statement": "For m_r=floor(r/beta), the actual certificate weights w_r=M_(m_r+1) beta^r (1-beta)^(m_r-r), r>=1, are positive and sum to 1/terminalRatio. Distinct indices have distinct interior phases and w_1=beta. Their strict cumulative profile is nondecreasing, lies between 1 and 1+1/terminalRatio, has those endpoint traces, and is left-continuous with each right-minus-left jump equal to the corresponding weight.",
- "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+ "source": "docs/theory/juggler_beatty_first_passage_note.md",
  "lean": "Problems/Juggler/BeattyCertificateSeries.lean",
  "decl": [
   "certificateWeight_eq",
@@ -179,7 +179,7 @@
  "id": "J-beatty-certificate-series-identification",
  "tag": "EXACT — LEAN VERIFIED",
  "statement": "At the logarithmic slope and every 0<delta<1, including each atom, the full consecutive-survivor transfer (2/a0) s^(-beta delta) [psi(1-beta delta)-(v/2)psi(1-beta delta+beta)] equals the actual cumulative certificate profile 1+sum_{delta_r<delta}w_r. The equality follows by absolutely convergent reindexing and exact total-mass cancellation, so it leaves no undetermined continuous component or additive constant.",
- "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+ "source": "docs/theory/juggler_beatty_first_passage_note.md",
  "lean": "Problems/Juggler/BeattyCertificateIdentification.lean",
  "decl": [
   "certificateProfile_eq_transfer"
@@ -195,7 +195,7 @@
  "id": "J-beatty-certificate-phase-asymptotic",
  "tag": "EXACT — LEAN VERIFIED",
  "statement": "At beta=log 2/log 3, for m_r=floor(r/beta), c_r=minimalCertCount(m_r+1), C_r=binom(m_r-1,r-1), delta_r=r/beta-m_r and F(delta)=1+sum_{delta_j<delta} c_j beta^j (1-beta)^(m_j-j), r*c_r/C_r-F(delta_r) tends to zero as r tends to infinity. No counting, binomial, survivor-phase, first-passage-mass or profile-identification hypothesis remains. The original normalization is checked by an exact binomial identity and a moving quotient estimate. This is qualitative o(1); neither O(r^(-1/2)), arbitrary irrational slopes, numerical tail constants nor integer-trajectory termination is asserted.",
- "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+ "source": "docs/theory/juggler_beatty_first_passage_note.md",
  "lean": "Problems/Juggler/BeattyCertificateAsymptotic.lean",
  "decl": [
   "certificate_phase_asymptotic"
@@ -211,7 +211,7 @@
   "id": "J-beatty-survivor-counting-identity",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For the existing natural-number survivor counts N_n=neverNegCount n and strict positive-endpoint binomial counts T_n=endpointCount n, n*N_n=sum_{j<n} T_(n-j)*N_j for every n>=0, with no counting or asymptotic premise. Consequently SurvivorExponentialIdentity holds for the actual normalized counts. The proof retains the odd-letter polynomial variable, uses the exact last-letter survivor/first-descent partition, preserves endpoint support under formal inversion and Euler differentiation, and separates the logarithmic derivatives. The strict threshold is checked using the inequality between positive powers of two and powers of three. This is a formalization of the classical counting identity, with no priority or trajectory-termination claim.",
-  "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
   "lean": "Problems/Juggler/BeattyCounting.lean",
   "decl": ["survivor_count_recurrence", "survivor_exponential_identity"],
   "lean_trust": "kernel",
@@ -222,7 +222,7 @@
   "id": "J-beatty-survivor-unconditional-sharp-order",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "At beta=log 2/log 3 and v=2*rateBase, the actual strict endpoint count T_n lies between binom(n,floor(n*beta)+1) and 5/2 times that first term for every n>0. Global Stirling bounds, a bounded entropy correction and the finite initial segment prove positive two-sided square-root bounds on T_n/v^n. Together with the proved actual counting identity, there exist a,U>0 such that a/(n*sqrt(n))<=N_n/v^n<=U/(n*sqrt(n)) for every n>0. Equivalently the existing survivorDensity is Theta[atTop] of the existing model rateBase^n*n^(-3/2), unconditionally. The normalized survivor sequence is also summable, discharging the premises of the existing profile-bound and uniform-truncation theorems. No phase-limit, counting or terminal-bound hypothesis remains in the sharp-order theorem. The constants are existential. The finer phase and certificate identification are proved in subsequent ledger entries; the quantitative rate remains separate. This counts parity words, not integer trajectories.",
-  "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
   "lean": "Problems/Juggler/BeattyBinomialBounds.lean",
   "decl": ["endpointCount_first_term_bounds", "endpointNormalized_sqrt_bounds", "survivor_three_halves_bounds", "summable_survivorNormalized_unconditional", "survivorDensity_isTheta_model"],
   "lean_trust": "kernel",
@@ -233,7 +233,7 @@
   "id": "J-beatty-renewal-coarse-coefficient-bounds",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For nonnegative terminal A and u the coefficients of exp(sum_{n>=1} A_n X^n/n), Lean proves A_n/n<=u_n without a summability premise. A terminal bound A_n<=K/sqrt(n) for n>0 gives u_n<=U/(n sqrt(n)) for some finite U>=0. If also a/sqrt(n)<=A_n, the matching bound a/(n sqrt(n))<=u_n follows, so positive a gives sharp three-halves order without any phase-limit assumption. The recurrence with u_0=1 uniquely characterizes the formal exponential coefficients even without positivity. These are theorems about formal coefficients; the actual survivor-count identity and coarse terminal estimates are not proved here.",
-  "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
   "lean": "Problems/Juggler/BeattyRenewalSeries.lean",
   "decl": [
    "eq_renewalCoeff_of_recurrence",
@@ -250,7 +250,7 @@
   "id": "J-beatty-survivor-partial-theorems",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For the existing survivor counts and strict terminal binomial counts, SurvivorExponentialIdentity is equivalent to the natural-number recurrence n*N_n=sum_{j<n} T_(n-j)*N_j at every degree. This proves an equivalence, not the recurrence. Assuming that identity and coarse two-sided square-root bounds on normalized T_n yields two-sided three-halves bounds on normalized N_n, without the terminal phase-asymptotic hypothesis. Separately, assuming summability of normalized N_n, the explicit survivor profile differs from its first N summands by at most a0/(1-s) times the remaining normalized coefficient mass, uniformly over every real phase including jumps. Finite truncations therefore converge uniformly; no explicit numerical cutoff or tail constant is supplied.",
-  "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
   "lean": "Problems/Juggler/BeattySurvivorProfile.lean",
   "decl": [
    "survivorExponentialIdentity_iff_count_recurrence",
@@ -266,7 +266,7 @@
   "id": "J-beatty-renewal-convolution-limit",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For a nonnegative summable real sequence u satisfying n*u_n=sum_{j<n} A_(n-j)*u_j, a square-root bound on A implies a three-halves bound on u by strong induction; coefficient decay is not an input. If sqrt(n)*A_n-Phi(n*beta) tends to zero for bounded Phi, then n*sqrt(n)*u_n-sum_j u_j*Phi((n-j)*beta) tends to zero. Lean proves fixed-lag passage, uniform near-half domination and a concrete far-half Cesaro bound. No continuity of Phi or quantitative error rate is asserted; the concrete counting recurrence is not established by this module.",
-  "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
   "lean": "Problems/Juggler/BeattyRenewalLimit.lean",
   "decl": [
    "renewalFar_abs_le",
@@ -283,7 +283,7 @@
   "id": "J-beatty-renewal-exponential-limit",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For nonnegative A, let u be the coefficients of the formal exponential exp(sum_{n>=1} (A_n/n) X^n). If Phi is bounded and sqrt(n)*A_n-Phi(n*beta) tends to zero, then n*sqrt(n)*u_n-sum_j u_j*Phi((n-j)*beta) tends to zero. The formal chain rule proves the recurrence, factorial-weighted convolution powers prove summability, and the renewal theorem supplies coefficient decay and the moving limit. Neither summability nor a vanishing remainder is assumed in the final theorem. This is an analytic theorem about formal exponential coefficients, not an identification of those coefficients with survivor counts or a quantitative error estimate.",
-  "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
   "lean": "Problems/Juggler/BeattyRenewalSeries.lean",
   "decl": [
    "renewalCoeff_eq_tsum",
@@ -300,7 +300,7 @@
   "id": "J-beatty-survivor-profile-conditional-shape",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "At the existing logarithmic slope beta, define the strict terminal binomial count, normalize it and the actual neverNegCount by v=2*rateBase, and define survivorPhase(x)=sum_j (N_j/v^j)*terminalPhase(x-j*beta), with terminalPhase(x)=a0*s^(1-fract(x))/(1-s). Under the two named hypotheses SurvivorExponentialIdentity and EndpointPhaseAsymptotic, Lean proves summability, the additive survivor phase limit, profile periodicity and positive lower and finite upper bounds, and the existing PaperBSurvivorAsymptotic.MeanderShape predicate for this explicit profile. The two hypotheses are propositions passed as arguments, not axioms or proved inputs. The actual counting identity, terminal asymptotic, full certificate jump-series identification, total mass and quantitative O(r^(-1/2)) estimate are not discharged by this conditional theorem; existing unconditional paper claims are unchanged.",
-  "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
   "lean": "Problems/Juggler/BeattySurvivorProfile.lean",
   "decl": [
    "SurvivorExponentialIdentity",
@@ -345,7 +345,7 @@
   "id": "J-beatty-phase-profile-jump-series",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "For fixed irrational 1<alpha<2, beta=1/alpha, q=1-beta, B=alpha^alpha/(alpha-1)^(alpha-1), m_r=floor(alpha*r), delta_r={alpha*r}, and the binary first-descent counts c_r=M_(m_r+1), the written proof gives R+_r=F(delta_r)+O(r^(-1/2)) with F(delta)=1+sum_{delta_j<delta} w_j and w_j=c_j/(B^j*q^delta_j)=c_j*beta^j*q^(m_j-j). The total weight is 1/(alpha-1), and the first jump is beta. The argument imports the classical positive-partial-sum generating identity, proves a non-circular n^(-3/2) coefficient bound, constructs the survivor profile by an absolutely convergent moving-phase convolution, and controls its remainder. The centered Bernoulli walk fixes the total mass. This is a new written proof for independent review, not an end-to-end Lean theorem; the published paper and older conjecture labels are not retagged. No priority or termination claim.",
-  "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
   "lean": "",
   "tests": [
    "tests/research/juggler_sequence/test_beatty_phase_transfer.py"

@@ -1,20 +1,57 @@
-# A jump-series formula for the Beatty first-passage profile
+# Phase Profiles and a Singular Continuous Law for Beatty First-Passage Counts
 
-23 September 2026. Working mathematical note; not a paper revision.
+Philippe Cochin. 23 September 2026. Unpublished working note.
 
-**Evidence boundary.** At the concrete slope `beta=log 2/log 3`, the
-qualitative theorem is now **EXACT — LEAN VERIFIED**: the explicit survivor
-phase asymptotic, the complete certificate jump-series identification,
-total jump mass, and `R+_r-F(delta_r) -> 0` all hold without an unproved
-counting, binomial or first-passage premise. Sections 1–7 retain the broader
-written calculation for irrational `1<alpha<2`; that generalization and the
-quantitative `O(r^(-1/2))` rate in (3) are not asserted by the Lean theorem.
-Sections 12–13 describe the checked specialization and its proof boundary.
-Section 14 identifies all accumulation values of the normalized certificate
-counts as an explicit compact perfect set of Lebesgue measure zero.
-No trajectory-termination or priority claim is made.
+**Abstract.** We study binary survivor and first-passage counts at a Beatty
+boundary. At the slope `alpha=log_2 3`, the normalized first-passage counts
+admit an explicit positive cumulative jump profile, with exact weights and
+total mass. Their complete set of accumulation values is the profile's
+envelope with its open jump intervals removed: a nonempty compact perfect
+set of Lebesgue measure zero. Their empirical probability measures converge
+to the image of uniform phase measure under the profile. This limiting law
+is singular continuous. Its continuous distribution function inverts the
+profile and has explicit plateaus at the Beatty phases. All these qualitative
+results, including the survivor asymptotic supplying the profile, are proved
+in Lean for the actual integer counts.
 
-The new end-to-end interface is
+**Main conclusions.** With the notation of Section 1 and `alpha=log_2 3`,
+write `E=alpha/(alpha-1)`. The checked statements are
+
+\[
+\begin{gathered}
+F(t)=1+\sum_{\delta_j<t}w_j,\qquad
+R_r^+-F(\delta_r)\longrightarrow0,\qquad
+\sum_{j\ge1}w_j=E-1,\\[3pt]
+\operatorname{Clust}(R_r^+)
+=K=[1,E]\setminus\bigcup_{j\ge1}(F(\delta_j),F(\delta_j)+w_j),\\[3pt]
+\frac1N\sum_{0\le r<N}\delta_{R_r^+}
+\Longrightarrow\mu=F_*\bigl(\lambda\!\restriction_{(0,1]}\bigr),
+\qquad \mu(K)=1,\quad \lambda(K)=0,\quad \mu(\{y\})=0.
+\end{gathered}
+\]
+
+For the continuous CDF `G(y)=mu((-infinity,y])`,
+
+\[
+G(F(t))=t\quad(0\le t\le1),\qquad
+G(y)=\delta_j\quad\bigl(F(\delta_j)\le y\le F(\delta_j)+w_j\bigr).
+\]
+
+Thus the phase profile has dense jumps, while the distribution of its
+values is continuous and singular. Sections 14–15 give the limit-set and
+frequency proofs; Sections 12–13 establish their counting and asymptotic
+inputs.
+
+**Evidence boundary.** The preceding conclusions are **EXACT — LEAN VERIFIED**
+at the concrete logarithmic slope, without unproved counting, binomial,
+first-passage or equidistribution inputs. Sections 1–7 also retain a broader
+written argument for irrational `1<alpha<2`, including a quantitative
+`O(r^(-1/2))` rate. Those stronger statements are explicitly distinguished
+from the checked qualitative specialization. This is a standalone working
+note supporting Paper B; it does not revise a deposited paper or establish
+literature priority or trajectory termination.
+
+The phase-asymptotic interface is
 [certificate_phase_asymptotic](../../formal/Problems/Juggler/BeattyCertificateAsymptotic.lean).
 The exact series equality is in
 [BeattyCertificateIdentification.lean](../../formal/Problems/Juggler/BeattyCertificateIdentification.lean),
@@ -24,10 +61,17 @@ and [BeattyCertificateSeries.lean](../../formal/Problems/Juggler/BeattyCertifica
 [BeattyEndpointAsymptotic.lean](../../formal/Problems/Juggler/BeattyEndpointAsymptotic.lean)
 discharges the finer terminal input and yields the unconditional survivor
 `MeanderShape`. These build on the counting, coarse bounds and renewal modules
-recorded below.
+recorded below. The complete limit-set interface is
+[certificateRatio_cluster_iff](../../formal/Problems/Juggler/BeattyCertificateCluster.lean),
+and the empirical-law interface is
+[certificateRatio_empiricalLaw_tendsto](../../formal/Problems/Juggler/BeattyCertificateDistribution.lean).
+The latter module also proves continuity of the CDF, singularity and the
+exact threshold and plateau formulas.
 
 ## 1. Statement and notation
 
+This section and Sections 2–7 present the broader written argument. The
+formal theorem summarized above specializes to \(\alpha=\log_2 3\).
 Fix an irrational \(1<\alpha<2\), and put
 \[
 \beta=\alpha^{-1},\quad q=1-\beta,\quad s=\alpha-1=q/\beta,\quad
@@ -52,19 +96,22 @@ w_r=\frac{c_r}{B^r q^{\delta_r}}
     =c_r\beta^r q^{m_r-r},\qquad r\ge1.
 \quad}                                                     \tag{1}
 \]
-The proposed answer, justified below by the written argument, is the
+The cumulative profile, identified in Lean at the logarithmic slope, is the
 left-continuous function
 \[
 \boxed{\quad
 F(\delta)=1+\sum_{\substack{r\ge1\\\delta_r<\delta}}w_r,
-\qquad 0\le\delta<1.
+\qquad 0\le\delta\le1.
 \quad}                                                     \tag{2}
 \]
-It satisfies
+The written argument gives the stronger rate
 \[
 R_r^+=F(\delta_r)+O(r^{-1/2}),\qquad
 \sum_{r\ge1}w_r=\frac1{\alpha-1}.                           \tag{3}
 \]
+At \(\alpha=\log_2 3\), the total mass and the qualitative error
+\(R_r^+-F(\delta_r)=o(1)\) are Lean-checked; the displayed quantitative
+rate is a separate written claim.
 In particular
 \[
 F(0+)=1,\qquad F(1-)=\frac{\alpha}{\alpha-1},\qquad
@@ -78,7 +125,8 @@ first crossing. On the circle there is additionally a downward wrap at zero.
 
 For the first atom, \(m_1=c_1=1\); hence
 \[
-\boxed{\Delta F(\{\alpha\})=\beta=\log_3 2
+\boxed{\Delta F(\{\alpha\})=\beta\quad\text{and, at }\alpha=\log_2 3,\quad
+\beta=\log_3 2
        =0.630929753571457\ldots.}                           \tag{5}
 \]
 No fitted amplitude occurs in these formulas.
@@ -384,11 +432,13 @@ and
 ## 9. Review boundary and relation to the existing programme
 
 The exact change of normalization alone is a reparameterization. The added
-content is the explicit cumulative series and a written proof of its limit,
-including a non-circular coefficient bound and the treatment of dense jumps.
+content is the explicit cumulative series, its phase asymptotic, the complete
+accumulation set and the singular continuous empirical law. The proof includes
+a non-circular coefficient bound and treatment of the dense jumps.
 No priority claim is made; the coefficient method uses classical fluctuation
 theory. The public Beatty manuscript supplies the same normalization and
-envelopes, while this note proposes the whole profile.
+envelopes, while this note identifies the whole profile and the distribution
+of its values along the actual count sequence.
 
 Before incorporating the conclusion into Paper B, independent review should
 check especially: the positive-partial-sum specialization of (9); the uniform
@@ -484,6 +534,8 @@ bounded phase kernel.
 | Actual sharp three-halves order, without a phase profile | Lean proved in `BeattyBinomialBounds.lean` |
 | Uniform terminal binomial asymptotic | Lean proved at the logarithmic slope in Section 13 |
 | Survivor-to-certificate series identification and total mass | Lean proved in Section 13 |
+| Complete compact perfect null accumulation set and exact gaps | Lean proved in Section 14 |
+| Uniform phase law, singular continuous empirical law and exact threshold frequencies | Lean proved in Section 15 |
 | Quantitative `O(r^(-1/2))` error | Written proof; this continuation proves `o(1)` only |
 
 These distinctions must be preserved in any communication about the result.
@@ -917,3 +969,15 @@ and `Quot.sound`, with no proof placeholders or added axioms. Lean style
 has zero new violations. The targeted Beatty, layer, ledger and documentation
 link tests pass, along with registry lint, ledger rendering, branch-index
 validation and research metadata checks (zero errors and warnings).
+
+## References
+
+1. G. Baxter, *An analytic problem whose solution follows from a simple
+   algebraic identity*, Pacific Journal of Mathematics **10** (1960),
+   731–742, Example 3. [doi:10.2140/pjm.1960.10.731](https://doi.org/10.2140/pjm.1960.10.731).
+2. M. Winkler, *Marked Rotations and Factorization Heights for Dual Beatty
+   Passage Counts*, preprint, v21, 13 September 2026, Proposition 34.
+   [doi:10.13140/RG.2.2.22015.57761](https://doi.org/10.13140/RG.2.2.22015.57761).
+3. M. Winkler, *Admissible qx+1 Sequences, Semiconvergents, and Rational
+   Catalan Numbers*, preprint, 14 September 2026, Corollary 12.
+   [arXiv:2609.22303v1](https://arxiv.org/abs/2609.22303v1).

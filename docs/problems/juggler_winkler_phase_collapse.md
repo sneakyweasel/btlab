@@ -126,7 +126,7 @@ order without a phase limit; and summability yields a uniform finite-profile
 error bound at every phase, including jumps. These compile in the same
 modules. Section 12 discharges the counting, coarse-bound and summability
 premises at the logarithmic slope. See the
-[comparison note](../theory/juggler_beatty_phase_transfer_note.md).
+[comparison note](../theory/juggler_beatty_first_passage_note.md).
 
 ## Results
 
@@ -136,7 +136,7 @@ convergence, the failing control, and the jumps on the orbit, as tabulated above
 **23 September: explicit profile and written convergence argument.** With
 `beta = 1/alpha`, `q = 1-beta`, `B = alpha^alpha/(alpha-1)^(alpha-1)` and
 `w_r = c_r/(B^r q^delta_r) = c_r beta^r q^(m_r-r)`, the new
-[comparison note](../theory/juggler_beatty_phase_transfer_note.md) derives
+[comparison note](../theory/juggler_beatty_first_passage_note.md) derives
 
     F(delta) = 1 + sum_{delta_r < delta} w_r,
     sum_r w_r = 1/(alpha-1),
@@ -187,7 +187,7 @@ one-sided traces. The identification module proves equality of the full
 transferred profile with `1+sum_{delta_r<delta}w_r` on `(0,1)`, including at
 atoms. Finally `certificate_phase_asymptotic` proves the original
 `r c_r/binom(m_r-1,r-1)-F(delta_r) -> 0` without unproved inputs. See Section 13
-of the [comparison note](../theory/juggler_beatty_phase_transfer_note.md).
+of the [comparison note](../theory/juggler_beatty_first_passage_note.md).
 
 **23 September: complete accumulation set.** The new
 [certificate cluster module](../../formal/Problems/Juggler/BeattyCertificateCluster.lean)
@@ -227,7 +227,7 @@ increase makes the law atomless; concentration on the null accumulation
 set makes it singular. Its CDF is continuous, satisfies `G(F(t))=t` on
 `[0,1]`, and equals `delta_j` throughout each closed jump interval. Empirical
 frequencies converge at every real threshold. Section 15 of the
-[comparison note](../theory/juggler_beatty_phase_transfer_note.md) records
+[comparison note](../theory/juggler_beatty_first_passage_note.md) records
 the exact formulas and the distinction between limiting concentration and
 finite-depth membership in the accumulation set.
 
@@ -268,5 +268,10 @@ trajectory-termination claim is opened.
 
 ## Publication assessment
 
-Status: `PAPER_CANDIDATE`, as a remark in Paper B, Section 6, not as a paper of its own:
-a nontrivial computation with a clear distinction from Corollary 12, the envelope.
+Status: `PAPER_CANDIDATE`. The completed profile, accumulation-set and
+empirical-law theorems are presented together in the standalone working note
+*Phase Profiles and a Singular Continuous Law for Beatty First-Passage Counts*.
+It supports Paper B, Section 6, and goes beyond the extremal envelopes by
+specifying the full phase profile and limiting frequencies. Whether to publish
+it separately or incorporate it into Paper B remains an editorial decision
+after literature comparison and review. The working note is not a new deposit.

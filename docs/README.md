@@ -11,6 +11,11 @@ mathematics and tools they use.
 4. [Paper D — negative Collatz m-cycles](theory/collatz_3n_minus_1_m_cycles_note.md)
 5. [Paper E — Juggler and the signed Collatz maps](theory/juggler_signed_collatz_note.md)
 
+Supporting working note:
+[Phase Profiles and a Singular Continuous Law for Beatty First-Passage Counts](theory/juggler_beatty_first_passage_note.md).
+This records the completed qualitative Lean theorems and their proof boundary;
+it is not a deposited paper revision.
+
 Use the [publication record](theory/paper_deposits.md) for deposited versions,
 the paper sources for their current statements, and the
 [Juggler](../attacks/juggler/AGENT.md) and [Collatz](../attacks/collatz/AGENT.md)

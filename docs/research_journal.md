@@ -29,7 +29,7 @@ constants and arbitrary irrational slope remain separate extensions.
 **PROMOTE** the completed qualitative
 specialization; no paper/release, priority or trajectory-termination claim is
 changed. Canonical proof boundary: Sections 13–15 of the
-[comparison note](theory/juggler_beatty_phase_transfer_note.md) and the
+[comparison note](theory/juggler_beatty_first_passage_note.md) and the
 [dossier](problems/juggler_winkler_phase_collapse.md).
 
 ## 2026-09-23 -- OEIS generator corrections and exact modified-map descent
