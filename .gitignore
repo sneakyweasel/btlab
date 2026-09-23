@@ -95,5 +95,8 @@ literature/sources/
 literature/sources/correspondence-*.txt
 literature/*.private.json
 
+# Private discussions, correspondence and reply drafts (local only).
+/discussions/
+
 # Private recovery archives must never be published.
 *.bundle

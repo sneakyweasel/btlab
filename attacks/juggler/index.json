@@ -7270,6 +7270,7 @@
       "conjecture": [],
       "decision": null,
       "ledger_ids": [
+        "J-beatty-survivor-counting-identity",
         "J-beatty-phase-transfer-kernel",
         "J-beatty-phase-profile-jump-series",
         "J-beatty-phase-transfer-finite-checks"

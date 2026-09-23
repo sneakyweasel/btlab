@@ -12,16 +12,19 @@ decision, and canonical record. Keep the journal brief.
 
 ## 2026-09-23 -- Beatty phase profile as a positive jump series
 
-The exact normalization yields a jump weight
-`w_r = c_r beta^r (1-beta)^(m_r-r)` and first jump `beta = log_3 2`.
-A written coefficient proof derives `F(delta)=1+sum_{delta_r<delta}w_r`
-and `R+_r=F(delta_r)+O(r^(-1/2))`; the centered-walk interpretation gives
-the total jump mass `1/(alpha-1)`. Lean checks the algebra, summable-series
-traces and a conditional moving-kernel transfer, not the full analytic
-specialization. Exact depth-8000 counts and a separate binomial recurrence
-through 256 pass. **PROMOTE** for independent review of the analytic proof;
-paper claims remain unchanged. See the [comparison note](theory/juggler_beatty_phase_transfer_note.md)
-and [dossier](problems/juggler_winkler_phase_collapse.md).
+The qualitative logarithmic-slope theorem is now **EXACT — LEAN VERIFIED**:
+`r c_r/binom(m_r-1,r-1)-F(delta_r) -> 0`, with
+`F(delta)=1+sum_{delta_r<delta} c_r beta^r (1-beta)^(m_r-r)`.
+The finer binomial phase limit discharges the survivor asymptotic input;
+finite first moments prove critical first-passage mass one; exact reindexing
+identifies the whole jump series, with total mass `1/(alpha-1)` and first
+jump `beta`. The strict atom convention and one-sided traces are checked.
+The quantitative rate, effective numerical constants and arbitrary irrational
+slope remain separate extensions. **PROMOTE** the completed qualitative
+specialization; no paper/release, priority or trajectory-termination claim is
+changed. Canonical proof boundary: Section 13 of the
+[comparison note](theory/juggler_beatty_phase_transfer_note.md) and the
+[dossier](problems/juggler_winkler_phase_collapse.md).
 
 ## 2026-09-23 -- OEIS generator corrections and exact modified-map descent
 

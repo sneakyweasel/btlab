@@ -86,6 +86,16 @@ import Problems.Juggler.PaperBFiveStepDensity
 import Problems.Juggler.PaperBCertificateLengths
 import Problems.Juggler.PaperBCertificateRecursion
 import Problems.Juggler.BeattyPhaseTransfer
+import Problems.Juggler.BeattyRenewalLimit
+import Problems.Juggler.BeattyRenewalSeries
+import Problems.Juggler.BeattySurvivorProfile
+import Problems.Juggler.BeattyCounting
+import Problems.Juggler.BeattyBinomialBounds
+import Problems.Juggler.BeattyEndpointAsymptotic
+import Problems.Juggler.BeattyCertificateMass
+import Problems.Juggler.BeattyCertificateSeries
+import Problems.Juggler.BeattyCertificateIdentification
+import Problems.Juggler.BeattyCertificateAsymptotic
 import Problems.Juggler.PaperBLevelWindow
 import Problems.Juggler.PaperBJumpTransposition
 import Problems.Juggler.PaperBPaperCBridge

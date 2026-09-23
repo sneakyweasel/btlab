@@ -22,7 +22,7 @@ With `alpha = log2 3`, `m_r = floor(r alpha)`, `c_r = A100982(r) = M_(m_r + 1)` 
 - `winkler-2026-admissible-qx1-sequences`, Corollary 12: `liminf R+_r = 1` and
   `limsup R+_r = alpha/(alpha - 1)`, attained exactly on the lower and upper record
   orders of `{r alpha}`. An envelope on two sparse sets of orders, with nothing said
-  about a general `r`. **Extended** here, numerically, to the whole profile.
+  about a general `r`. The whole profile was first measured here; the qualitative specialization is now Lean-checked (Section 13 of the comparison note).
 - `winkler-2026-marked-rotations`, Proposition 34: the asymptotic scale
   `C_r = kappa rho_alpha^(delta_r) B^r r^(-1/2) (1 + O(1/r))`, so the explicit part of
   the phase dependence sits in `C_r`, and `R+_r` carries the rest, bounded but unknown.
@@ -102,8 +102,31 @@ checks the two phase coordinates, exact normalized count identity, cancellation 
 survivor jumps into certificate counts, and monotonicity, one-sided limits and jump
 sizes of a summable positive series. Its moving-kernel convergence theorem assumes
 uniform domination, fixed-index approximation and a vanishing far remainder.
-It does not prove those analytic inputs for these counts, the classical
-Spitzer identity, or the uniform Stirling expansion.
+The continuation in
+[BeattyRenewalLimit.lean](../../formal/Problems/Juggler/BeattyRenewalLimit.lean)
+and [BeattyRenewalSeries.lean](../../formal/Problems/Juggler/BeattyRenewalSeries.lean)
+now proves the analytic inputs for coefficients of the formal exponential:
+recurrence, summability, three-halves decay, the near/far split and moving limit.
+[BeattySurvivorProfile.lean](../../formal/Problems/Juggler/BeattySurvivorProfile.lean)
+reaches the existing `MeanderShape` for an explicit positive profile using the
+actual survivor counts, conditional on the exact counting exponential identity
+and the terminal binomial asymptotic. The new
+[BeattyCounting.lean](../../formal/Problems/Juggler/BeattyCounting.lean)
+discharges the actual counting input, and
+[BeattyBinomialBounds.lean](../../formal/Problems/Juggler/BeattyBinomialBounds.lean)
+proves coarse terminal bounds and unconditional sharp three-halves order.
+The subsequent endpoint and certificate modules discharge the fine terminal
+input and identify the complete jump series. The formal limit is `o(1)`;
+the quantitative error remains written mathematics.
+
+Extracted corollaries: the actual exponential identity is equivalent to the
+purely integer recurrence `n N_n = sum_{j<n} T_(n-j) N_j`; coarse two-sided
+square-root terminal bounds already imply sharp three-halves coefficient
+order without a phase limit; and summability yields a uniform finite-profile
+error bound at every phase, including jumps. These compile in the same
+modules. Section 12 discharges the counting, coarse-bound and summability
+premises at the logarithmic slope. See the
+[comparison note](../theory/juggler_beatty_phase_transfer_note.md).
 
 ## Results
 
@@ -122,8 +145,9 @@ convergence, the failing control, and the jumps on the orbit, as tabulated above
 The first jump is exactly `beta = 0.630929753571457...`. The written proof constructs
 the survivor profile from the binomial-tail Spitzer series; it obtains the necessary
 coefficient bound before passing to a limit, and handles the moving discontinuities
-without continuity assumptions. Independent review of that analytic argument remains
-the next step; it is not an end-to-end Lean theorem or a manuscript revision.
+without continuity assumptions. The qualitative logarithmic-slope specialization is now an end-to-end Lean
+theorem. The general irrational-slope statement and the quantitative rate
+remain written mathematics; no manuscript revision is made.
 
 New probe: [beatty_phase_transfer.py](../../src/research/juggler_sequence/beatty_phase_transfer.py).
 Test: [test_beatty_phase_transfer.py](../../tests/research/juggler_sequence/test_beatty_phase_transfer.py).
@@ -131,6 +155,18 @@ Exact counts through depth 8000 give orders 1–5047; an independent binomial-co
 recurrence is checked through depth 256. The first eight predicted jumps agree with
 the earlier window estimates at their resolution. Floating-point profile diagnostics
 are not interval certificates.
+
+**23 September: unconditional sharp order in Lean.** The exact integer
+recurrence now holds for every degree, not merely through the finite check.
+The first-term comparison `binom(n,k) <= T_n <= (5/2) binom(n,k)`, with
+`k=floor(n*beta)+1`, and coarse global Stirling estimates imply square-root
+terminal bounds. The compiled conclusion is `N_n=Theta(v^n/(n sqrt(n)))`,
+with positive constants uniform at every positive depth. The existing
+`survivorDensity =Theta[atTop] model` is therefore unconditional.
+Summability of `N_n/v^n` is unconditional too; it makes the existing profile
+bounds and uniform finite approximation applicable. The next continuation, recorded below, completes the fine phase limit
+and the full certificate profile. No priority or
+integer-trajectory termination claim is attached to this formalization.
 
 Continuation triage: target the exact normalization and full jump formula; possible
 novelty is the positive cumulative series, not the classical counting identity.
@@ -142,19 +178,33 @@ Maximum scope: this comparison note, one bounded probe and one Lean transfer mod
 Promote a checked formula with an explicit proof boundary; park the limit if its
 tail interchange is unjustified. No next branch is opened.
 
+**23 September: completed qualitative phase theorem.** The new endpoint module
+proves the exact fractional-part Stirling correction and geometric-tail limit.
+The critical mass module uses finite first moments and survivor decay to prove
+first-passage mass one. The certificate series module proves positive weights,
+total jump mass `1/(alpha-1)`, first jump `beta`, phase injectivity and exact
+one-sided traces. The identification module proves equality of the full
+transferred profile with `1+sum_{delta_r<delta}w_r` on `(0,1)`, including at
+atoms. Finally `certificate_phase_asymptotic` proves the original
+`r c_r/binom(m_r-1,r-1)-F(delta_r) -> 0` without unproved inputs. See Section 13
+of the [comparison note](../theory/juggler_beatty_phase_transfer_note.md).
+
 ## Open questions
 
-The algebraic relation and jump cancellation are now explicit. The remaining review
-question is whether the coefficient argument in Sections 3–5 of the comparison note
-fully establishes the claimed uniform remainder. The analytic specialization is not
-yet kernel-checked; existing paper claims retain their earlier evidence labels.
+The qualitative logarithmic-slope phase theorem and normalization are complete
+in Lean. The remaining mathematical extensions are a quantitative remainder,
+effective numerical truncation bounds, and generalization from the concrete
+logarithmic slope to arbitrary irrational `1<alpha<2`. Literature comparison
+is separate from proof checking; existing paper claims and releases retain
+their earlier evidence labels.
 
 ## Decision
 
-`PROMOTE` -- the numerical collapse now has an explicit positive jump series, a written
-convergence proof for review, and compiled deterministic/conditional transfer lemmas.
-Best next question: independently audit the uniform binomial estimate and the
-non-circular coefficient-tail argument before changing Paper B's claim status.
+`PROMOTE` -- the actual normalized certificate counts have the explicit positive
+jump-series asymptotic, with its full normalization and strict atom convention
+proved. The requested continuation adds five analytic/certificate modules
+within the existing branch. No new branch, publication, priority claim or
+trajectory-termination claim is opened.
 
 ## Publication assessment
 
