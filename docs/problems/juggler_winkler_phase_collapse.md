@@ -435,8 +435,14 @@ trajectory-termination claim is opened.
 
 Status: `PAPER_CANDIDATE`. The completed profile, accumulation-set and
 empirical-law theorems are presented together in the standalone working note
-*Phase Profiles and a Singular Continuous Law for Beatty First-Passage Counts*.
-It supports Paper B, Section 6, and goes beyond the extremal envelopes by
-specifying the full phase profile and limiting frequencies. Whether to publish
-it separately or incorporate it into Paper B remains an editorial decision
-after literature comparison and review. The working note is not a new deposit.
+*A Jump Profile and Singular Geometry for Beatty First-Passage Counts*.
+It supports Paper B, Section 6. The comparison with Bauer, Godrèche and Luck
+(1999) identifies their crossing counts and survivor-amplitude series exactly;
+the profile realizes their proposed irrational first-passage amplitude as
+`q^t F(t)` at the logarithmic slope. The exposition focuses on the cumulative
+profile, complete cluster set, singular law and explicit local geometric
+measure. The global gap-to-content criterion is attributed to
+Lapidus–Pomerance (1993). The dictionary and spectral corollary are written
+deductions, not new formal interfaces. Whether to publish separately or
+incorporate this into Paper B remains an editorial decision; literature
+priority requires a wider search. The working note is not a new deposit.

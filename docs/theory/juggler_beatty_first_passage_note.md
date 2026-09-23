@@ -1,11 +1,12 @@
-# Phase Profiles and a Singular Continuous Law for Beatty First-Passage Counts
+# A Jump Profile and Singular Geometry for Beatty First-Passage Counts
 
 Philippe Cochin. 23 September 2026. Unpublished working note.
 
-**Abstract.** We study binary survivor and first-passage counts at a Beatty
-boundary. At the slope `alpha=log_2 3`, the normalized first-passage counts
-admit an explicit positive cumulative jump profile, with exact weights and
-total mass. Their complete set of accumulation values is the profile's
+**Abstract.** Binary first-passage counts at a Beatty boundary belong to the
+binomial random-walk framework of Bauer, Godrèche and Luck. At the slope
+`alpha=log_2 3`, we identify an explicit positive cumulative jump profile
+for Winkler's normalized counts and determine the geometry and distribution
+of its values. Their complete set of accumulation values is the profile's
 envelope with its open jump intervals removed: a nonempty compact perfect
 set of Lebesgue measure zero. Its gap lengths have order `r^(-3/2)` and
 its neighbourhood volume has an exact positive `epsilon^(1/3)` asymptotic,
@@ -16,9 +17,11 @@ two-thirds power, with the same geometric scale factor.
 Their empirical probability measures converge
 to the image of uniform phase measure under the profile. This limiting law
 is singular continuous. Its continuous distribution function inverts the
-profile and has explicit plateaus at the Beatty phases. All these qualitative
-results, including the survivor asymptotic supplying the profile, are proved
-in Lean for the actual integer counts.
+profile and has explicit plateaus at the Beatty phases. The underlying
+periodic survivor amplitude has a classical precursor; the focus here is
+its explicit transfer to the cumulative profile and the resulting singular
+geometry. The profile and these qualitative geometric and distributional
+results are proved in Lean for the actual integer counts.
 
 **Main conclusions.** With the notation of Section 1 and `alpha=log_2 3`,
 write `E=alpha/(alpha-1)`. The checked statements are
@@ -28,8 +31,8 @@ write `E=alpha/(alpha-1)`. The checked statements are
 F(t)=1+\sum_{\delta_j<t}w_j,\qquad
 R_r^+-F(\delta_r)\longrightarrow0,\qquad
 \sum_{j\ge1}w_j=E-1,\\[3pt]
-\operatorname{Clust}(R_r^+)
-=K=[1,E]\setminus\bigcup_{j\ge1}(F(\delta_j),F(\delta_j)+w_j),\\[3pt]
+\operatorname{Clust}(R_r^+)=K=\operatorname{cl}(F([0,1])),\qquad
+K=[1,E]\setminus\bigcup_{j\ge1}(F(\delta_j),F(\delta_j)+w_j),\\[3pt]
 \frac1N\sum_{0\le r<N}\delta_{R_r^+}
 \Longrightarrow\mu=F_*\bigl(\lambda\!\restriction_{(0,1]}\bigr),
 \qquad \mu(K)=1,\quad \lambda(K)=0,\quad \mu(\{y\})=0.
@@ -55,12 +58,42 @@ with no loss in the exponent, and separates the arithmetic premises for
 dimension equality and critical-measure positivity.
 Sections 12–13 establish their counting and asymptotic inputs.
 
-**Evidence boundary.** The preceding conclusions are **EXACT — LEAN VERIFIED**
+The central spatial conclusion is, with
+`kappa=(2 pi alpha (alpha-1))^(-1/2)`,
+\[
+ \varepsilon^{-1/3}\lambda\!\restriction_{K_\varepsilon}
+ \Longrightarrow 3\,2^{1/3}\kappa^{2/3}y^{2/3}\,\mu(dy).
+\]
+It distinguishes the distribution of the original normalized counts from
+geometric sampling in shrinking neighbourhoods of their accumulation set.
+
+**Relation to earlier work.** Bauer, Godrèche and Luck [8] study the same
+survival paths after a change of coordinates. Their crossing-edge counts
+are exactly the `c_r` here, and their survivor-amplitude series becomes
+`psi` term by term; Section 1.1 gives the dictionary. Their Section 6.1
+also proposes a periodic first-passage amplitude at irrational slopes.
+The profile theorem gives the explicit realization `q^t F(t)` at the
+logarithmic slope, with the present trace convention. We claim no priority
+for periodic survivor modulation, its series or Fourier representation,
+the crossing recurrence, or the critical probability-flow identity.
+
+The global gap criterion for Minkowski measurability is due to
+Lapidus and Pomerance [9, Theorem 2.2]. The phase-dependent gap count supplies
+its constant here; Section 17 makes this application explicit. The complete
+normalized-count cluster set, its singular empirical law and the explicit
+local content measure are the focus of this note. General jump-profile
+geometry and local Minkowski content are established constructions, and
+comparison with these sources alone does not establish literature priority.
+
+**Evidence boundary.** The profile, cluster-set, empirical-law and tube-measure
+conclusions displayed above are **EXACT — LEAN VERIFIED**
 at the concrete logarithmic slope, without unproved counting, binomial,
 first-passage or equidistribution inputs. Sections 1–7 also retain a broader
 written argument for irrational `1<alpha<2`, including a quantitative
 `O(r^(-1/2))` rate. Those stronger statements are explicitly distinguished
-from the checked qualitative specialization. This is a standalone working
+from the checked qualitative specialization. The BGL comparison and spectral
+corollary in Section 17 are written deductions, not additional Lean-checked
+interfaces. This is a standalone working
 note supporting Paper B; it does not revise a deposited paper or establish
 literature priority or trajectory termination.
 
@@ -145,6 +178,60 @@ For the first atom, \(m_1=c_1=1\); hence
        =0.630929753571457\ldots.}                           \tag{5}
 \]
 No fitted amplitude occurs in these formulas.
+
+### 1.1. The binomial random-walk dictionary
+
+**REPARAMETERIZATION.** Use `v_B` for BGL's wall velocity, distinct from our
+growth factor `v`. Encode a binary one as a left step and a zero as a right
+step. With `k_j` ones in a prefix, its position is `x_j=j-2k_j`. Setting
+`p_c=beta` and `v_B=1-2 beta` gives
+\[
+ x_j<v_Bj\quad\Longleftrightarrow\quad k_j>\beta j.
+\]
+Irrationality excludes equality at positive integer times. At fair bias
+BGL's survival probability is `N_n/2^n`. Their crossing edge
+`n_r=1+floor(r/p_c)` is `m_r+1`; their integer `A_r` counts surviving
+length-`m_r` prefixes with `r` ones. Appending a zero identifies these with
+our first-descent words, so `A_r=c_r` exactly. Their (4.1) becomes
+\[
+ \binom{m_r}{r-1}=c_r+
+ \sum_{\ell=1}^{r-1}c_\ell\binom{m_r-m_\ell}{r-\ell}.
+\]
+The binomial on the left differs from `C_r=binom(m_r-1,r-1)`.
+
+At fair bias their large-deviation exponent satisfies `exp(-S)=v/2`.
+Their kernel `a^-`, using fractional parts in `[0,1)`, is our `Phi`.
+Substitution in [8, (2.25)] gives
+\[
+ b^-(x)=\sum_{j\ge0}(N_j/2^j)e^{jS}a^-(x-j\beta)
+       =\sum_{j\ge0}u_j\Phi(\{x-j\beta\})=\psi(x).
+\]
+Their (2.22) similarly specializes to the Fourier identity (15).
+Kernel point values matter even though strict and weak finite survival
+events agree at this irrational slope.
+
+Changing the bias to `p=beta` retains the counts but gives crossing
+probabilities `q w_r`. The critical flow identity [8, (3.15)] becomes
+`0=beta-q sum_r w_r`, exactly our mass identity. Section 7 and the concrete
+formalization prove the vanishing critical survival probability.
+
+**First-passage amplitude: written consequence of the concrete theorem.**
+For BGL's normalization [8, (4.11)], put
+\[
+ D_r=\frac{\Gamma(r/\beta)}{r!\,\Gamma(rq/\beta+1)},\qquad
+ \mathcal B_r=c_r/D_r.
+\]
+Stirling gives `D_r=kappa B^r r^(-3/2)(1+O(r^(-1)))`. The identity
+`c_r=B^r q^(delta_r) w_r` and the checked gap asymptotic of Section 17 imply
+\[
+ \mathcal B_r-q^{\delta_r}F(\delta_r)\longrightarrow0.
+\]
+Thus `mathcal B(t)=q^t F(t)` on `[0,1)`, extended periodically, realizes
+the irrational-slope form proposed in [8, Section 6.1, (6.8)–(6.9)] at
+`alpha=log_2 3`. Its endpoint traces agree since `q F(1)=F(0)=1`.
+This gamma-normalized translation is a written deduction; the concrete
+Lean theorem uses the integer binomial normalization. It asserts neither
+an arbitrary-slope formalization nor priority over subsequent literature.
 
 ## 2. Exact comparison of normalizations
 
@@ -446,14 +533,16 @@ and
 
 ## 9. Review boundary and relation to the existing programme
 
-The exact change of normalization alone is a reparameterization. The added
-content is the explicit cumulative series, its phase asymptotic, the complete
-accumulation set and the singular continuous empirical law. The proof includes
-a non-circular coefficient bound and treatment of the dense jumps.
-No priority claim is made; the coefficient method uses classical fluctuation
-theory. The public Beatty manuscript [3, Corollary 12] supplies the same normalization and
-envelopes, while this note identifies the whole profile and the distribution
-of its values along the actual count sequence.
+The exact change of normalization is a reparameterization of the BGL
+random-walk problem [8]. Periodic survivor modulation and its explicit
+series already occur there. The contribution developed here is the
+cumulative first-passage profile, its complete accumulation set, singular
+continuous empirical law, phase-dependent gap count and explicit local
+content measure. The proof includes a non-circular coefficient bound and
+treatment of dense jumps. The general gap-to-content implication is
+classical [9]; Section 17 identifies its constant for this profile.
+The public Beatty manuscript [3, Corollary 12] supplies the same normalization
+and envelopes. These comparisons do not establish literature priority.
 
 Before incorporating the conclusion into Paper B, independent review should
 check especially: the positive-partial-sum specialization of (9); the uniform
@@ -835,6 +924,13 @@ statement. For the reverse inclusion, a supremum cut locates any omitted
 value between the two traces at one phase. If the traces differ, that phase
 is an atom, and the omitted value lies in its listed gap. This rules out
 unlisted gaps as well as an unaccounted continuous component.
+In particular,
+\[
+ K=\operatorname{cl}(F([0,1])).
+\]
+The closure is essential: the right endpoint `F(delta_j)+w_j` is a
+right-hand limit and need not be an attained value of the left-continuous
+profile. Both traces belong to the cluster set.
 
 Monotonicity makes the open gaps pairwise disjoint. Each has Lebesgue measure
 equal to its weight, and their total measure equals `sum w_j=E-1`. Subtracting
@@ -1172,11 +1268,35 @@ contribute `2 epsilon=o(epsilon^(1/3))`. The public theorem
 `certificateClusterSet_minkowski_content` and the law-moment identity are in
 [BeattyCertificateContent.lean](../../formal/Problems/Juggler/BeattyCertificateContent.lean).
 
-**Scope and review.** Gap-length criteria for Minkowski measurability are
-classical; see de Santiago, Lapidus, Roby and Rock [5], Theorem 3.8 and its
-preceding attribution to Lapidus–Pomerance. Here the result identifies the
-exact constant for these certificate counts and connects it to their
-singular empirical law. No quantitative equidistribution bound,
+**Classical criterion and the constant.** Let `ell_j` be the decreasing
+rearrangement of the gap lengths. Equation (28) implies
+`ell_j ~ A^(3/2) j^(-3/2)`. Lapidus and Pomerance [9, Theorem 2.2], with
+`D=2/3` and `L=A^(3/2)`, gives
+\[
+ \mathcal M^D(K)=\frac{2^{1-D}}{1-D}L^D=3\,2^{1/3}A.
+\]
+Their inner tube in the gap union differs from the full tube here by
+`2 epsilon`, which does not affect this limit. See also [5, Theorem 3.8].
+The chronological gaps are not decreasing; the phase-dependent cutoff
+argument establishes their rearrangement asymptotic and its moment
+constant. The subsequent passage to global content is classical.
+
+**Spectral corollary — EXACT — HUMAN PROOF.** For the open gap union
+`Omega=(1,E)\\K`, impose Dirichlet conditions on each component interval.
+Its eigenvalue counting function is
+`N_Omega(Lambda)=sum_j floor(ell_j sqrt(Lambda)/pi)`. Applying
+[9, Theorem 2.1] gives
+\[
+ N_\Omega(\Lambda)=\frac{E-1}{\pi}\sqrt\Lambda
+ +\frac{\zeta(2/3)A}{\pi^{2/3}}\Lambda^{1/3}
+ +o(\Lambda^{1/3}).
+\]
+Here `sum_j ell_j=E-1`, and the second coefficient is negative. This is
+a written application of the classical spectral theorem, not a new Lean
+interface or a new general spectral result.
+
+**Scope and review.** The exact constant connects these certificate counts
+to their singular empirical law. No quantitative equidistribution bound,
 bounded-partial-quotient hypothesis or self-similarity assumption is used.
 Hausdorff dimension, effective error bounds and arbitrary irrational slopes
 remain separate questions. **PROMOTE** the completed exact-content theorem
@@ -1496,3 +1616,14 @@ arithmetic bound for the concrete logarithmic slope remains a separate target.
    Acta Arithmetica **105** (2002), 323–340.
    [Author manuscript](https://www.math.northwestern.edu/~kra/papers/denjoy.pdf),
    [doi:10.4064/aa105-4-2](https://doi.org/10.4064/aa105-4-2).
+8. M. Bauer, C. Godrèche and J.-M. Luck, *Statistics of Persistent Events
+   in the Binomial Random Walk: Will the Drunken Sailor Hit the Sober Man?*,
+   Journal of Statistical Physics **96** (1999), 963–1019.
+   [arXiv:cond-mat/9905252v1](https://arxiv.org/abs/cond-mat/9905252v1),
+   [doi:10.1023/A:1004636216365](https://doi.org/10.1023/A:1004636216365).
+9. M. L. Lapidus and C. Pomerance, *The Riemann Zeta-Function and the
+   One-Dimensional Weyl-Berry Conjecture for Fractal Drums*,
+   Proceedings of the London Mathematical Society (3) **66** (1993), 41–69,
+   Theorems 2.1–2.2.
+   [Author copy](https://math.dartmouth.edu/~carlp/fractal.pdf),
+   [doi:10.1112/plms/s3-66.1.41](https://doi.org/10.1112/plms/s3-66.1.41).
