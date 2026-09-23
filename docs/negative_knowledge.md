@@ -4452,6 +4452,25 @@ falling like \(m^{-1/3}\) is a convergent sum, and a convergent sum cannot be
 concentrated on. Before building machinery to bound a set's weight somewhere,
 integrate the density and see whether the somewhere has any room in it.
 
+## A325904 does not add a new count bound, and its dated formulas need correction
+
+The [bounded generator audit](problems/juggler_oeis_generator_check.md) is
+**CLOSE** as a new counting/asymptotic method. Its useful result is an exact
+independent check, with two source discrepancies recorded permanently.
+`J-oeis-generator-published-transform-fails` refutes the A100982 summation
+limit printed in the 20 September 2026 export: at n=2 the sum is empty
+but the OOEE certificate count is one. `J-oeis-generator-repaired-finite-comparison`
+checks the repaired upper limit through order 256 and recovers survivor
+counts through depth 406; it does not prove an all-orders identity.
+
+The A325904 stored terms first disagree with its exact recurrence at index
+21, by one, and also disagree at indices 22..26. Feeding them into the
+repaired transform first corrupts the certificate count at order 37.
+Use exact integer binomials and independently check the transform's offsets.
+Do not treat either the printed formula or stored coefficient list as an
+unquestioned oracle, and do not replace the paper's working path DP on this
+evidence. No stronger density estimate or phase-profile result follows.
+
 ## The Juggler corner of OEIS is swept, and three of its four sequences were already ours
 
 OEIS names 30 sequences after the Juggler. This laboratory cited five ---
@@ -4477,6 +4496,11 @@ again, and do not write a manuscript sentence claiming any of them.
 2025--26 additions A380891, A381246, A389383, A396851 are uncited and
 untouched. The variant family is a real test --- it moves the exponent pair
 while keeping the shape --- and it is open, not killed.
+
+Update, 23 September 2026: the bounded A095396 mixed-pair question is now
+settled in [modified-map descent](problems/juggler_modified_juggler_descent.md).
+Actual OE pairs drop by exactly one; formal equalities at squares do not
+realize OE. This does not settle the other variants or longer trajectories.
 
 **The lesson, and it cost a second sweep to learn.** The whole of this was
 sitting in `juggler_oeis_neighbourhood.md` on an unmerged branch while a second

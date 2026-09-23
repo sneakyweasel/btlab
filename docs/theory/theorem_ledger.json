@@ -1,5 +1,38 @@
 [
  {
+  "id": "J-oeis-generator-published-transform-fails",
+  "tag": "REFUTED",
+  "statement": "The A100982 transform attributed to Lombardo (18 October 2019), as printed in the OEIS export of 20 September 2026, has upper limit A020914(n-1)-n-2 and fails already at n=2: the sum is empty, giving 0, whereas the unique OOEE certificate gives A100982(2)=1. This refutes the displayed formula, not the counting sequence or Paper B's independent dynamic program.",
+  "source": "docs/problems/juggler_oeis_generator_check.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_oeis_generator_check.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-oeis-generator-repaired-finite-comparison",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Using exact integer A325913 boundary indices and the A325904 recurrence, replacing the printed A100982 upper limit by A020914(n-1)-n reproduces every minimal-certificate count at orders 1..256 and every survivor count at depths 0..406 after reinserting the length-one certificate. Independent inversion from the prefix DP recovers more than 50 generator coefficients. The dated A325904 stored terms first disagree with their recurrence at index 21 (-517564939540551 versus -517564939540550), with further disagreements through stored index 26. Using those stored coefficients makes even the repaired transform fail at order 37 by one. Finite agreement is not an all-orders proof, an asymptotic estimate, or a termination result.",
+  "source": "docs/problems/juggler_oeis_generator_check.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_oeis_generator_check.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-modified-juggler-mixed-pair-descent",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For unrestricted integer branches O(n)=floor(n^(3/2)) and E(n)=floor(n^(2/3)) on n>=0, E(O(n)) equals n at perfect squares and n-1 otherwise; O(E(n))<=n with equality exactly at perfect cubes. For the parity-selected modified Juggler map A095396, every actual OE pair has F(F(n))=n-1, and every actual EO pair from n>0 has F(F(n))<n, since parity excludes the respective equality cases. There is no positive two-cycle with two distinct elements. Written proof and exact regressions through n=10000 and at large perfect-power boundaries; no Lean coverage, originality claim, longer-cycle exclusion, or termination theorem.",
+  "source": "docs/problems/juggler_modified_juggler_descent.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_modified_juggler_descent.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-pressure-scale-average-contagion-transfer",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Parametric scale-average reduction and conditional OOEE corollary. For 0<lambda<=1 assume FailureMassLowerBound lambda: every positive nonterminating start supplies constants c>0 and x0 with c*(log x)^lambda <= logMass of failures for every natural x>=x0. Under the same actual stopped odd-pressure Bound and verified-floor hypotheses as J-pressure-scale-average-suffices, r-eta>1-lambda implies every positive integer reaches 1. conjecture_of_bound_of_contagion proves this for general positive normalization a and nonnegative theta. The existing unconditional interface specializes lambda=100/203. pressure_average_conjecture_of_ooee specializes lambda=5/8 and a=1-q+q*exp(theta), with C>1, theta>0, 0<q<1, eta>=0 and r-eta>3/8, assuming both the actual OOEEProductionBound on failures and the cumulative pressure Bound. Neither arithmetic hypothesis is discharged. This composes existing results; it is not a new pressure estimate or unconditional termination theorem. The listed Lean declarations compile with only standard logical dependencies; ledger promotion awaits the external advisory statement-coverage review.",

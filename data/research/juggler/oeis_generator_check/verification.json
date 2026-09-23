@@ -1,0 +1,56 @@
+{
+  "oeis_revision": "9cee00061c60192aafbc74726ce4a83ca7040d81",
+  "generator_table_mismatches": [
+    {
+      "index": 21,
+      "stored": -517564939540551,
+      "exact_recurrence": -517564939540550
+    },
+    {
+      "index": 22,
+      "stored": 1890772860334557,
+      "exact_recurrence": 1890772860334508
+    },
+    {
+      "index": 23,
+      "stored": 3323588929061820,
+      "exact_recurrence": 3323588929063104
+    },
+    {
+      "index": 24,
+      "stored": -104547561696315008,
+      "exact_recurrence": -104547561696337925
+    },
+    {
+      "index": 25,
+      "stored": 907385094824827328,
+      "exact_recurrence": 907385094825133652
+    },
+    {
+      "index": 26,
+      "stored": -6313246535826877248,
+      "exact_recurrence": -6313246535830021678
+    }
+  ],
+  "published_formula_counterexample": {
+    "order": 2,
+    "published": 0,
+    "dynamic_program": 1
+  },
+  "certificate_orders_checked": [
+    1,
+    256
+  ],
+  "repaired_transform_mismatches": [],
+  "survivor_depths_checked": [
+    0,
+    406
+  ],
+  "reconstructed_survivor_mismatches": [],
+  "stored_generator_transform_first_mismatch": {
+    "order": 37,
+    "stored_transform": 123110229387833,
+    "dynamic_program": 123110229387834
+  },
+  "scope": "finite exact comparison; repaired transform not proved for all orders"
+}

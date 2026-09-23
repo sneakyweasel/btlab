@@ -10,6 +10,21 @@ The earlier full-length journal is available at Git revision
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-23 -- OEIS generator corrections and exact modified-map descent
+
+The bounded A325904 check found an empty-sum error at order two in the
+printed A100982 transform, plus six stored generator terms inconsistent
+with their recurrence. Exact coefficients and the repaired upper limit
+reproduce 256 certificate counts and survivor depths 0..406.
+**CLOSE** as a new counting method; the all-orders repaired identity
+remains unproved here. See the [audit](problems/juggler_oeis_generator_check.md).
+
+For A095396, a written floor-equality proof gives exactly one unit of
+descent at every actual OE pair; actual EO pairs also strictly descend.
+**PROMOTE** the bounded structural identity, with regressions through
+10000 and at large perfect powers. No Lean or novelty claim, no termination
+result, and no manuscript change. See [modified-map descent](problems/juggler_modified_juggler_descent.md).
+
 ## 2026-09-23 -- Cross-sign pairing has an actual two-generation deficit
 
 Pairing the signed inverse coefficients gives a one-step lower bound 9/7,

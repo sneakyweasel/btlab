@@ -1,0 +1,35 @@
+{
+  "map": "A095396: even exponent 2/3, odd exponent 3/2",
+  "starts_checked": [
+    0,
+    10000
+  ],
+  "failures": [],
+  "realized_pair_counts": {
+    "OE": 2495,
+    "EO": 2494
+  },
+  "first_examples": {
+    "EO": [
+      2,
+      1,
+      1
+    ],
+    "OE": [
+      7,
+      18,
+      6
+    ]
+  },
+  "formal_OE_equality_example_not_realized": [
+    9,
+    27,
+    9
+  ],
+  "formal_EO_equality_example_not_realized": [
+    8,
+    4,
+    8
+  ],
+  "scope": "finite regression for a written proof; no termination or novelty claim"
+}

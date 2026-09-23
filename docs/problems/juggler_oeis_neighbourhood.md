@@ -379,16 +379,29 @@ time bounded by 12?* (hal-03294829, 2021), surfaced from the link fields of
 time \(ft\), the least \(k\) with \(jp^k(n) < n\)), both carrying b-files to
 \(n = 10^4\).
 
-Falling time is this laboratory's **dropping time**. Paper B's census counts
-the words whose dropping time exceeds the word length, and A094778 is the
-Juggler analogue registered the same day. A paper asking whether the falling
-time is bounded by 12 asks, in the laboratory's vocabulary, whether the
-non-contracting prefix length is bounded — the sharpest form of what the
-survivor census measures. It is registered NOT CONSULTED; `hal.science` is
-blocked here, and whether its answer is a theorem, a conditional or an open
-question is not established. The laboratory already cites this author twice,
-in `eliahou-1993-collatz-cycle-lengths` and `eliahou-verger-gaugry-2025`,
-without carrying it.
+**Convention corrected, 23 September 2026.** This falling time counts
+iterations of the variable-length jump map, not individual shortcut Collatz
+steps. At a current state n, one jump applies the shortcut map exactly
+bit_length(n) times. Thus a bound on the number of jumps is not the same
+statement as a bound on Paper B's non-contracting prefix length. A094778,
+by contrast, counts ordinary Juggler steps to first descent.
+
+The [arXiv abstract](https://arxiv.org/abs/2107.11160), consulted on
+23 September, is accessible and explicitly describes computational and
+heuristic evidence for conjectures. It does not establish a universal
+falling-time bound. The full paper was not read in this bounded check;
+the earlier blanket retrieval obstruction should not be reused.
+
+### Bounded follow-ups, 23 September 2026
+
+The [A325904 audit](juggler_oeis_generator_check.md) records a faulty printed
+summation limit, six generator-table discrepancies, and a repaired transform
+checked at 256 orders. CLOSE as a new counting method; retain the regressions.
+
+The [modified-map check](juggler_modified_juggler_descent.md) now covers the
+previously untested A095396 two-step case: every actual OE pair drops by
+exactly one. PROMOTE this written structural identity only. The remaining
+variant families and longer-word questions are untouched.
 
 
 ## What this does not say
