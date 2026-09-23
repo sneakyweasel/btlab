@@ -10,6 +10,18 @@ The earlier full-length journal is available at Git revision
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-23 -- Mixing alone does not force fixed-integer coefficient divergence
+
+The fixed-root recommendation produced no arithmetic lower bound. An explicit
+coherent ternary density now shows why positivity and even uniform exponential
+refinement control cannot supply one: at any selected ordinary unit integer,
+its density series sums to 3/2. A second normalization matches the initial
+Syracuse row (0,1,2). Lean checks both models and a constraint separating the
+unit model from the actual signed operator; seven rational controls pass.
+**CLOSE** the inference from mixing alone. Exact signed recurrence, the
+fixed-root lower bound and Juggler growing-depth pressure remain open. See the
+[dossier](problems/collatz_fibre_mixing.md).
+
 ## 2026-09-23 -- Finite height budgets retain the full coefficient-divergence target
 
 The preceding recommendation supplied no new lower bound. The next phase

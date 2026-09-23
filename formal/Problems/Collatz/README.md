@@ -82,3 +82,11 @@ targets, all retained sources are actual depth-d ancestors below m*256^d.
 The conditional reciprocal-ancestor consequence is checked for both signs;
 the required coefficient lower bound remains open. See the
 [height-budget dossier](../../../docs/problems/collatz_fibre_height_budget.md).
+
+[FibreMixing.lean](FibreMixing.lean) constructs artificial coherent ternary
+densities with positive unit cells and uniform exponential refinement control,
+but a summable density series at any prescribed ordinary unit integer. Both the
+unit row `(0,1,1)` and Syracuse row `(0,1,2)` are covered. An explicit checked
+inequality distinguishes the model from the actual signed coefficient operator.
+This closes inference from mixing and coherence alone, not the fixed-root
+Collatz lower bound; see the [dossier](../../../docs/problems/collatz_fibre_mixing.md).

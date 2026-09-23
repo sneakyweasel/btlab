@@ -10984,5 +10984,45 @@
    "tests/research/collatz/test_fibre_height_budget.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "C-fibre-mixing-pointwise-obstruction",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For any prescribed positive integer a coprime to three, an explicit artificial unit-supported ternary density U has initial row (0,1,1), positive values exactly on unit cylinders, mean one over unit cylinders, exact parent/child coherence, and uniform refinement error at most 3^(1-l) after level l>=1, but its values along a at levels d+1 are 3^(-d) and have sum 3/2. The normalization V obtained by multiplying by the initial digit has row (0,1,2), mean one over all cylinders, coherent refinement with error at most 2*3^(1-l), and selected-path series sum (a mod 3)*3/2. This refutes deduction of fixed-root divergence from these general properties alone. These are not the actual Collatz densities: Lean checks U<=4/3 while the actual signed unit coefficient at depth one is >=3/2 at plus target 17 and minus target 1. No actual coefficient divergence, Juggler estimate or termination result follows. Kernel-checked; independent review and advisory statement coverage pending.",
+  "source": "docs/problems/collatz_fibre_mixing.md",
+  "lean": "formal/Problems/Collatz/FibreMixing.lean",
+  "lean_trust": "kernel",
+  "decl": [
+   "Problems.Collatz.FibreMixing.unitDensity",
+   "Problems.Collatz.FibreMixing.syracuseDensity",
+   "Problems.Collatz.FibreMixing.rootPrefix",
+   "Problems.Collatz.FibreMixing.integerDigits",
+   "Problems.Collatz.FibreMixing.levelSum",
+   "Problems.Collatz.FibreMixing.density_pos",
+   "Problems.Collatz.FibreMixing.density_le",
+   "Problems.Collatz.FibreMixing.density_children",
+   "Problems.Collatz.FibreMixing.density_rootPrefix",
+   "Problems.Collatz.FibreMixing.density_append_error",
+   "Problems.Collatz.FibreMixing.unitDensity_singleton",
+   "Problems.Collatz.FibreMixing.unitDensity_pos_iff",
+   "Problems.Collatz.FibreMixing.unitDensity_children",
+   "Problems.Collatz.FibreMixing.unitDensity_levelSum",
+   "Problems.Collatz.FibreMixing.unitDensity_append_error",
+   "Problems.Collatz.FibreMixing.unitDensity_rootPrefix",
+   "Problems.Collatz.FibreMixing.root_series_hasSum",
+   "Problems.Collatz.FibreMixing.integer_root_hasSum",
+   "Problems.Collatz.FibreMixing.unitDensity_le",
+   "Problems.Collatz.FibreMixing.signed_kernel_spike_lower",
+   "Problems.Collatz.FibreMixing.model_lt_signed_kernel",
+   "Problems.Collatz.FibreMixing.syracuseDensity_singleton",
+   "Problems.Collatz.FibreMixing.syracuseDensity_children",
+   "Problems.Collatz.FibreMixing.syracuseDensity_levelSum",
+   "Problems.Collatz.FibreMixing.syracuseDensity_append_error",
+   "Problems.Collatz.FibreMixing.syracuse_root_hasSum"
+  ],
+  "tests": [
+   "tests/research/collatz/test_fibre_mixing.py"
+  ],
+  "related_conjectures": []
  }
 ]
