@@ -288,6 +288,8 @@ class SemanticCatalogue:
                 changes = ['added' if a is None else 'removed']
             else:
                 changes = [key for key in fields if a[key] != b[key]]
+                if len(a.get('universe_parameters', [])) != len(b.get('universe_parameters', [])):
+                    changes.append('universe_arity')
             if changes:
                 row = b or a
                 items.append({'id': identifier, 'name': row['name'], 'changes': changes})

@@ -97,7 +97,7 @@ are trusted as Lean normally trusts imports; the exporter is not an independent
 kernel replay audit.
 
 Snapshot differences report alpha-normalized type SHA-256, value hash64,
-dependency, kind, and axiom changes. The value hash is Lean's noncryptographic
+universe arity, dependency, kind, and axiom changes. The value hash is Lean's noncryptographic
 expression hash: a change hint, not proof equivalence or a collision-free digest.
 Users of changed local definitions are flagged transitively even when their own
 types are unchanged. Coverage changes are explicit, since entries can disappear

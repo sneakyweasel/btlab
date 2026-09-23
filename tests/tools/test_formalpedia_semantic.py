@@ -155,6 +155,18 @@ def test_historical_diff_allowed_when_current_sources_are_stale(cat):
     assert result['current_status'] == 'stale'
 
 
+def test_diff_distinguishes_universe_arity_from_parameter_renaming(cat):
+    row = declaration('f')
+    row['universe_parameters'] = ['u']
+    before = save(cat, [row])
+    renamed = deepcopy(row)
+    renamed['universe_parameters'] = ['v']
+    assert cat.diff(before, save(cat, [renamed]))['total'] == 0
+    renamed['universe_parameters'] = ['v', 'w']
+    result = cat.diff(before, save(cat, [renamed]))
+    assert result['items'][0]['changes'] == ['universe_arity']
+
+
 def test_snapshot_paths_and_corruption_rejected(cat):
     save(cat, [declaration('f')])
     with pytest.raises(ValueError, match='Invalid'):
