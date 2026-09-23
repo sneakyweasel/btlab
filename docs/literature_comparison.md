@@ -235,7 +235,7 @@ Cerdá Bennassar's preprints contain useful one-step 2-adic formulas that
 match the valuation-cylinder framework. Their global non-reuse and
 convergence reductions are not adopted as established here because the
 posted versions contain apparent proof defects and version conflicts.
-See [cerda_comparison.md](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/cerda_comparison.md) for formulas and a precise
+See [cerda_comparison.md](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/cerda_comparison.md) for formulas and a precise
 audit.
 
 ## Repository status

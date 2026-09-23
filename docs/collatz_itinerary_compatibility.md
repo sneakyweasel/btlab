@@ -297,7 +297,7 @@ lossy features may nevertheless remain useful computationally.
 
 See [literature_comparison.md](literature_comparison.md) for the
 primary-source formulas and theorem/computation/conjecture boundaries, and
-[cerda_comparison.md](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/cerda_comparison.md) for why Cerdá's local affine
+[cerda_comparison.md](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/cerda_comparison.md) for why Cerdá's local affine
 branch formulas are comparable but the posted global non-reuse and
 convergence reductions are not adopted. The exact statements above remain
 on the Milestone 6 verified baseline.

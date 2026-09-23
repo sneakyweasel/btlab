@@ -36,6 +36,7 @@ A paper that prints one must print a `Commit:` line that verifies.
 from __future__ import annotations
 
 import hashlib
+import json
 from pathlib import Path
 import re
 import subprocess
@@ -43,6 +44,31 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY_RE = re.compile(r"^Repository:\s+(\S+)\s*$", re.M)
 COMMIT_RE = re.compile(r"^Commit:\s+([0-9a-f]{7,40})\s*$", re.M)
+HISTORY_MAP = "docs/history/2026-09-23-commit-map.json"
+
+
+def resolve_revision(root: Path, revision: str) -> str:
+    """Translate a pre-cleanup identifier without changing a deposited paper.
+
+    The subsequent ancestry and input-digest checks still apply to the mapped
+    commit. The map is an explicit alias, never a substitute for those checks.
+    """
+    if not re.fullmatch(r"[0-9a-f]{7,40}", revision):
+        raise ValueError("revision must be a hexadecimal commit ID (7 to 40 digits)")
+    path = root / HISTORY_MAP
+    if not path.exists():
+        return revision
+    record = json.loads(path.read_text(encoding="utf-8"))
+    if record.get("schema_version") != 1:
+        raise ValueError("unsupported history-map version")
+    matches = [new for old, new in record["commits"].items() if old.startswith(revision)]
+    if len(matches) > 1:
+        raise ValueError(f"ambiguous historical revision: {revision}; use its full ID")
+    if not matches:
+        return revision
+    if not re.fullmatch(r"[0-9a-f]{40}", matches[0]) or matches[0] == "0" * 40:
+        raise ValueError(f"invalid replacement for historical revision {revision}")
+    return matches[0]
 
 
 class PinUnavailable(RuntimeError):
@@ -155,7 +181,8 @@ def verify(root: Path, module) -> str:
     rather than only that nothing complained.
     """
     source = manuscript_of(module)
-    _, pin = read_pin(root, source)
+    _, printed_pin = read_pin(root, source)
+    pin = resolve_revision(root, printed_pin)
     shallow = _shallow(root)
     resolved = _git(root, "rev-parse", "--verify", "--quiet", f"{pin}^{{commit}}")
     if resolved.returncode:
@@ -203,7 +230,8 @@ def verify(root: Path, module) -> str:
             + "\nPin a commit that carries them, or rebuild and commit the inputs "
               "first.  The pin must name a commit that PRECEDES the editorial commit "
               "writing the line, so commit the inputs, then the manuscript.")
-    return f"{source}: {len(paths)} inputs byte-identical at {full[:12]}"
+    alias = f" (printed pre-cleanup ID {printed_pin[:12]})" if pin != printed_pin else ""
+    return f"{source}: {len(paths)} inputs byte-identical at {full[:12]}{alias}"
 
 
 def main() -> int:
@@ -213,7 +241,15 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("papers", nargs="*", help="paper letters; default is all of them")
     ap.add_argument("--root", type=Path, default=ROOT, help=argparse.SUPPRESS)
+    ap.add_argument("--resolve", metavar="COMMIT", help="translate an older commit ID")
     args = ap.parse_args()
+
+    if args.resolve:
+        try:
+            print(resolve_revision(args.root, args.resolve))
+        except (ValueError, OSError) as exc:
+            ap.error(str(exc))
+        return 0
 
     import importlib.util
 
