@@ -116,7 +116,7 @@ kernel-only and its layer modules import only `Problems.Juggler.*`
 (`test_imports_are_one_way`); `CollatzBridge` restates `shortcutC` locally
 because `Problems.Collatz.Shortcut` carries `native_decide` (`shortcutC_one`,
 `shortcutC_two`). Every file in `formal/Problems/Juggler/` must be in
-`LAYERS` or `AUXILIARY_MODULES` of `lean_paths.py`
+`LAYERS` or `AUXILIARY_MODULES` of `lean_registry.py`
 (`test_every_juggler_source_has_an_explicit_inventory_role`). Declaration
 names at most 33 characters (the Paper C axiom probe). The words `sorry`,
 `admit`, `axiom` may not appear in a registered file, not even in comments.

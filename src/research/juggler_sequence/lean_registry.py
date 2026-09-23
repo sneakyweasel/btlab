@@ -1,0 +1,545 @@
+"""Juggler Lean module registry, layer order and source-inspection helpers.
+
+Stable directory constants belong in lean_paths. Research registration
+changes this module; numerical probes that only need directories do not import it.
+"""
+from __future__ import annotations
+
+import re
+from pathlib import Path
+
+from research.juggler_sequence.lean_paths import (
+    ENGINE_DIR,
+    JUGGLER_BARREL,
+    JUGGLER_DIR,
+    JUGGLER_PAPER_BARREL,
+)
+
+
+PAPER_MODULES: tuple[str, ...] = (
+    "Dynamics",
+    "RootCells",
+    "NumericBridge",
+    "LogCells",
+    "Iteration",
+    "Termination",
+    "Itinerary",
+    "ItineraryStats",
+    "Envelope",
+    "Equality",
+    "Defect",
+    "GlobalDefect",
+    "Preimages",
+    "Certificates",
+    "Progress",
+    "Cycles",
+    "LeftoverEval",
+    "LeftoverPreimage",
+    "LeftoverShort",
+    "LeftoverFamilies",
+    "O7EEEEGap",
+    "EvenCountThree",
+    "CycleRunForm",
+    "SmallCycleCensus",
+    "NormalizedDefect",
+    "ExpansionSlack",
+    "NearTightScale",
+    "CycleFinance",
+    "CycleFinanceLeftovers",
+    "GapTransfer",
+    "GapTransferWW",
+    "RunSurvivorLattice",
+    "WalkChargeItineraries",
+    "OstrowskiSandwich",
+    "OddCountMonotone",
+    "RunTypePacking",
+    "EvenCountEight",
+    "DenjoyKoksma",
+    "DenjoyKoksmaOrbit",
+    "JumpVariation",
+    "OstrowskiNumeration",
+    "OstrowskiBlocks",
+    "HugRotation",
+    "HugChargeEnvelope",
+    "RotationAverage",
+    "FanLaw",
+    "WalkTransport",
+    "WalkChargeMax",
+    "DefectFinance",
+    "FinanceTransfer",
+    "CubicBand",
+    "CubicRotation",
+    "CubicGrid",
+    "CubicLogGrid",
+    "CubicUpperCells",
+    "CubicRounding",
+    "CubicInterlacing",
+    "CubicConsequences",
+    "ReturnInduction",
+    "ReturnCells",
+    "FamilyChains",
+    "CubicReturnHeight",
+    "RemainderCarry",
+    "CubicReturn",
+    "CubicReturnStrip",
+    "GuardResidueFamily",
+    "ReturnWordLoss",
+    "ReturnWordData",
+    "ReturnWordBounds",
+    "ReturnWordFactorization",
+    "ReturnSeams",
+    "ReturnRankedCycle",
+    "CubicOrbitCharge",
+    "CubicChargeMonotonicity",
+    "ReturnQuotients",
+    "ReturnCycleTransfers",
+    "ReturnGapHeight",
+    "ReturnTransferHeight",
+    "ReturnTerminal",
+    "ReturnOrbitStrips",
+    "UpperSquareGap",
+    "CollatzBridge",
+)
+
+LAYERS: dict[str, Path] = {
+    "Dynamics": JUGGLER_DIR / "Dynamics.lean",
+    "RootCells": JUGGLER_DIR / "RootCells.lean",
+    "NumericBridge": JUGGLER_DIR / "NumericBridge.lean",
+    "LogCells": JUGGLER_DIR / "LogCells.lean",
+    "FateLandingWindow": JUGGLER_DIR / "FateLandingWindow.lean",
+    "FateNumerics": JUGGLER_DIR / "FateNumerics.lean",
+    "FateWindowCount": JUGGLER_DIR / "FateWindowCount.lean",
+    "Iteration": JUGGLER_DIR / "Iteration.lean",
+    "Termination": JUGGLER_DIR / "Termination.lean",
+    "TerminationFloor257": JUGGLER_DIR / "TerminationFloor257.lean",
+    "Itinerary": JUGGLER_DIR / "Itinerary.lean",
+    "ItineraryStats": JUGGLER_DIR / "ItineraryStats.lean",
+    "Envelope": JUGGLER_DIR / "Envelope.lean",
+    "Corridor": JUGGLER_DIR / "Corridor.lean",
+    "CubeCorridor": JUGGLER_DIR / "CubeCorridor.lean",
+    "Equality": JUGGLER_DIR / "Equality.lean",
+    "Defect": JUGGLER_DIR / "Defect.lean",
+    "GlobalDefect": JUGGLER_DIR / "GlobalDefect.lean",
+    "DefectLowerBound": JUGGLER_DIR / "DefectLowerBound.lean",
+    "Preimages": JUGGLER_DIR / "Preimages.lean",
+    "Collapse": JUGGLER_DIR / "Collapse.lean",
+    "Drift": JUGGLER_DIR / "Drift.lean",
+    "FirstPassage": JUGGLER_DIR / "FirstPassage.lean",
+    "Certificates": JUGGLER_DIR / "Certificates.lean",
+    "Progress": JUGGLER_DIR / "Progress.lean",
+    "RateFreeDensity": JUGGLER_DIR / "RateFreeDensity.lean",
+    "FateCylinderEnergy": JUGGLER_DIR / "FateCylinderEnergy.lean",
+    "FirstInternalOO": JUGGLER_DIR / "FirstInternalOO.lean",
+    "MinimumRelative": JUGGLER_DIR / "MinimumRelative.lean",
+    "Minimal": JUGGLER_DIR / "Minimal.lean",
+    "MinimalClosure": JUGGLER_DIR / "MinimalClosure.lean",
+    "Scale": JUGGLER_DIR / "Scale.lean",
+    "Residuals": JUGGLER_DIR / "Residuals.lean",
+    "NormalizedDefect": JUGGLER_DIR / "NormalizedDefect.lean",
+    "ExpansionBlocks": JUGGLER_DIR / "ExpansionBlocks.lean",
+    "ExpansionSlack": JUGGLER_DIR / "ExpansionSlack.lean",
+    "NearTightScale": JUGGLER_DIR / "NearTightScale.lean",
+    "ExpandingGrammar": JUGGLER_DIR / "ExpandingGrammar.lean",
+    "LandingParity": JUGGLER_DIR / "LandingParity.lean",
+    "CycleCore": JUGGLER_DIR / "CycleCore.lean",
+    "CycleObstructions": JUGGLER_DIR / "CycleObstructions.lean",
+    "CycleExtrema": JUGGLER_DIR / "CycleExtrema.lean",
+    "Cycles": JUGGLER_DIR / "Cycles.lean",
+    "LeftoverEval": JUGGLER_DIR / "LeftoverEval.lean",
+    "LeftoverPreimage": JUGGLER_DIR / "LeftoverPreimage.lean",
+    "LeftoverShort": JUGGLER_DIR / "LeftoverShort.lean",
+    "FirstETransportEval": JUGGLER_DIR / "FirstETransportEval.lean",
+    "BunchedTight": JUGGLER_DIR / "BunchedTight.lean",
+    "LeftoverFamilies": JUGGLER_DIR / "LeftoverFamilies.lean",
+    "PrefixTwoEvenEval": JUGGLER_DIR / "PrefixTwoEvenEval.lean",
+    "PrefixTwoEven": JUGGLER_DIR / "PrefixTwoEven.lean",
+    "PrefixBunchedEval": JUGGLER_DIR / "PrefixBunchedEval.lean",
+    "PrefixBunched": JUGGLER_DIR / "PrefixBunched.lean",
+    "SmallCycleCensus": JUGGLER_DIR / "SmallCycleCensus.lean",
+    "LengthEightCensus": JUGGLER_DIR / "LengthEightCensus.lean",
+    "CycleDiophantine": JUGGLER_DIR / "CycleDiophantine.lean",
+    "EvenCountThree": JUGGLER_DIR / "EvenCountThree.lean",
+    "CycleRunForm": JUGGLER_DIR / "CycleRunForm.lean",
+    "CycleMinObstruction": JUGGLER_DIR / "CycleMinObstruction.lean",
+    "O7EEEEGap": JUGGLER_DIR / "O7EEEEGap.lean",
+    "CycleMinFudge": JUGGLER_DIR / "CycleMinFudge.lean",
+    "SequentialMordell": JUGGLER_DIR / "SequentialMordell.lean",
+    "LandingValuation": JUGGLER_DIR / "LandingValuation.lean",
+    "PreimageCylinders": JUGGLER_DIR / "PreimageCylinders.lean",
+    "OddLandingSets": JUGGLER_DIR / "OddLandingSets.lean",
+    "ItineraryLanguage": JUGGLER_DIR / "ItineraryLanguage.lean",
+    "GapCells": JUGGLER_DIR / "GapCells.lean",
+    "Escape": JUGGLER_DIR / "Escape.lean",
+    "CycleFinance": JUGGLER_DIR / "CycleFinance.lean",
+    "CycleFinanceLeftovers": JUGGLER_DIR / "CycleFinanceLeftovers.lean",
+    "RunSurvivorLattice": JUGGLER_DIR / "RunSurvivorLattice.lean",
+    "CycleHeightFinance": JUGGLER_DIR / "CycleHeightFinance.lean",
+    "WalkChargeItineraries": JUGGLER_DIR / "WalkChargeItineraries.lean",
+    "OstrowskiSandwich": JUGGLER_DIR / "OstrowskiSandwich.lean",
+    "OddCountMonotone": JUGGLER_DIR / "OddCountMonotone.lean",
+    "RunTypePacking": JUGGLER_DIR / "RunTypePacking.lean",
+    "EvenCountEight": JUGGLER_DIR / "EvenCountEight.lean",
+    "DenjoyKoksma": JUGGLER_DIR / "DenjoyKoksma.lean",
+    "DenjoyKoksmaOrbit": JUGGLER_DIR / "DenjoyKoksmaOrbit.lean",
+    "JumpVariation": JUGGLER_DIR / "JumpVariation.lean",
+    "OstrowskiNumeration": JUGGLER_DIR / "OstrowskiNumeration.lean",
+    "OstrowskiBlocks": JUGGLER_DIR / "OstrowskiBlocks.lean",
+    "HugRotation": JUGGLER_DIR / "HugRotation.lean",
+    "FanLaw": JUGGLER_DIR / "FanLaw.lean",
+    "WalkTransport": JUGGLER_DIR / "WalkTransport.lean",
+    "WalkChargeMax": JUGGLER_DIR / "WalkChargeMax.lean",
+    "HugChargeEnvelope": JUGGLER_DIR / "HugChargeEnvelope.lean",
+    "RotationAverage": JUGGLER_DIR / "RotationAverage.lean",
+    "DefectFinance": JUGGLER_DIR / "DefectFinance.lean",
+    "FinanceTransfer": JUGGLER_DIR / "FinanceTransfer.lean",
+    "AboveAnchorWalk": JUGGLER_DIR / "AboveAnchorWalk.lean",
+    "GapTransfer": JUGGLER_DIR / "GapTransfer.lean",
+    "FunctionalGraph": JUGGLER_DIR / "FunctionalGraph.lean",
+    "FateContagion": JUGGLER_DIR / "FateContagion.lean",
+    "LogLogClock": JUGGLER_DIR / "LogLogClock.lean",
+    "TowerAbsorption": JUGGLER_DIR / "TowerAbsorption.lean",
+    "TiltedShare": JUGGLER_DIR / "TiltedShare.lean",
+    "LiveCountWeight": JUGGLER_DIR / "LiveCountWeight.lean",
+    "DepthOneMainTerm": JUGGLER_DIR / "DepthOneMainTerm.lean",
+    "CycleRunAlphabet": JUGGLER_DIR / "CycleRunAlphabet.lean",
+    "ParityComplexity": JUGGLER_DIR / "ParityComplexity.lean",
+    "LocalizedKernel": JUGGLER_DIR / "LocalizedKernel.lean",
+    "CubeFiber": JUGGLER_DIR / "CubeFiber.lean",
+    "FateRecursion": JUGGLER_DIR / "FateRecursion.lean",
+    "FateFirstLetter": JUGGLER_DIR / "FateFirstLetter.lean",
+    "FateBlockLock": JUGGLER_DIR / "FateBlockLock.lean",
+    "FateSweep": JUGGLER_DIR / "FateSweep.lean",
+    "FateSweepMonotone": JUGGLER_DIR / "FateSweepMonotone.lean",
+    "FateChernoff": JUGGLER_DIR / "FateChernoff.lean",
+    "FatePressure": JUGGLER_DIR / "FatePressure.lean",
+    "FateTaoReduction": JUGGLER_DIR / "FateTaoReduction.lean",
+    "FateSeed": JUGGLER_DIR / "FateSeed.lean",
+    "CubicBand": JUGGLER_DIR / "CubicBand.lean",
+    "CubicRotation": JUGGLER_DIR / "CubicRotation.lean",
+    "CubicGrid": JUGGLER_DIR / "CubicGrid.lean",
+    "CubicLogGrid": JUGGLER_DIR / "CubicLogGrid.lean",
+    "CubicUpperCells": JUGGLER_DIR / "CubicUpperCells.lean",
+    "CubicRounding": JUGGLER_DIR / "CubicRounding.lean",
+    "CubicInterlacing": JUGGLER_DIR / "CubicInterlacing.lean",
+    "CubicConsequences": JUGGLER_DIR / "CubicConsequences.lean",
+    "ReturnInduction": JUGGLER_DIR / "ReturnInduction.lean",
+    "ReturnCells": JUGGLER_DIR / "ReturnCells.lean",
+    "FamilyChains": JUGGLER_DIR / "FamilyChains.lean",
+    "CubicReturnHeight": JUGGLER_DIR / "CubicReturnHeight.lean",
+    "RemainderCarry": JUGGLER_DIR / "RemainderCarry.lean",
+    "CubicReturn": JUGGLER_DIR / "CubicReturn.lean",
+    "CubicReturnStrip": JUGGLER_DIR / "CubicReturnStrip.lean",
+    "GuardResidueFamily": JUGGLER_DIR / "GuardResidueFamily.lean",
+    "ReturnWordLoss": JUGGLER_DIR / "ReturnWordLoss.lean",
+    "ReturnWordData": JUGGLER_DIR / "ReturnWordData.lean",
+    "ReturnWordBounds": JUGGLER_DIR / "ReturnWordBounds.lean",
+    "ReturnWordFactorization": JUGGLER_DIR / "ReturnWordFactorization.lean",
+    "ReturnSeams": JUGGLER_DIR / "ReturnSeams.lean",
+    "ReturnRankedCycle": JUGGLER_DIR / "ReturnRankedCycle.lean",
+    "CubicOrbitCharge": JUGGLER_DIR / "CubicOrbitCharge.lean",
+    "CubicChargeMonotonicity": JUGGLER_DIR / "CubicChargeMonotonicity.lean",
+    "ReturnQuotients": JUGGLER_DIR / "ReturnQuotients.lean",
+    "ReturnCycleTransfers": JUGGLER_DIR / "ReturnCycleTransfers.lean",
+    "ReturnGapHeight": JUGGLER_DIR / "ReturnGapHeight.lean",
+    "ReturnTransferHeight": JUGGLER_DIR / "ReturnTransferHeight.lean",
+    "ReturnTerminal": JUGGLER_DIR / "ReturnTerminal.lean",
+    "ReturnOrbitStrips": JUGGLER_DIR / "ReturnOrbitStrips.lean",
+    "QuarticBand": JUGGLER_DIR / "QuarticBand.lean",
+    "QuarticCells": JUGGLER_DIR / "QuarticCells.lean",
+    "QuarticProjection": JUGGLER_DIR / "QuarticProjection.lean",
+    "QuarticLossBudget": JUGGLER_DIR / "QuarticLossBudget.lean",
+    "QuarticDefect": JUGGLER_DIR / "QuarticDefect.lean",
+    "QuarticGapSeparation": JUGGLER_DIR / "QuarticGapSeparation.lean",
+    "UpperSquareGap": JUGGLER_DIR / "UpperSquareGap.lean",
+    "CubicRemainderVariation": JUGGLER_DIR / "CubicRemainderVariation.lean",
+    "CubicConstraintFusion": JUGGLER_DIR / "CubicConstraintFusion.lean",
+    "CubicCriticalLocation": JUGGLER_DIR / "CubicCriticalLocation.lean",
+    "CriticalCostKernel": JUGGLER_DIR / "CriticalCostKernel.lean",
+    "CubicRemainderAssembly": JUGGLER_DIR / "CubicRemainderAssembly.lean",
+    "FateCylinderCorollary": JUGGLER_DIR / "FateCylinderCorollary.lean",
+    "FateFiberParity": JUGGLER_DIR / "FateFiberParity.lean",
+    "FateFiberLock": JUGGLER_DIR / "FateFiberLock.lean",
+    "FateThinFibers": JUGGLER_DIR / "FateThinFibers.lean",
+    "FateResonanceCount": JUGGLER_DIR / "FateResonanceCount.lean",
+    "FatePoorTail": JUGGLER_DIR / "FatePoorTail.lean",
+    "FateBlockAverage": JUGGLER_DIR / "FateBlockAverage.lean",
+    "FateShareLaw": JUGGLER_DIR / "FateShareLaw.lean",
+    "FateContagionBound": JUGGLER_DIR / "FateContagionBound.lean",
+    "FateProduction": JUGGLER_DIR / "FateProduction.lean",
+    "FateProductionWords": JUGGLER_DIR / "FateProductionWords.lean",
+    "FatePoorProduction": JUGGLER_DIR / "FatePoorProduction.lean",
+    "FateDyadicDensity": JUGGLER_DIR / "FateDyadicDensity.lean",
+    "FateOneSided": JUGGLER_DIR / "FateOneSided.lean",
+    "FateOneSidedCorollary": JUGGLER_DIR / "FateOneSidedCorollary.lean",
+    "FatePressureCorollary": JUGGLER_DIR / "FatePressureCorollary.lean",
+    "OddCubicPhase": JUGGLER_DIR / "OddCubicPhase.lean",
+    "CubicInverseCell": JUGGLER_DIR / "CubicInverseCell.lean",
+    "FateOneSidedAtoms": JUGGLER_DIR / "FateOneSidedAtoms.lean",
+    "FateEnergyAtoms": JUGGLER_DIR / "FateEnergyAtoms.lean",
+    "FateCollapse": JUGGLER_DIR / "FateCollapse.lean",
+    "FateCertified": JUGGLER_DIR / "FateCertified.lean",
+    "GapTransferWW": JUGGLER_DIR / "GapTransferWW.lean",
+    "CollatzBridge": JUGGLER_DIR / "CollatzBridge.lean",
+    "CollatzRational": JUGGLER_DIR / "CollatzRational.lean",
+    "PolynomialDual": JUGGLER_DIR / "PolynomialDual.lean",
+    "OddPredecessorTransport": JUGGLER_DIR / "OddPredecessorTransport.lean",
+    "CollatzPadic": JUGGLER_DIR / "CollatzPadic.lean",
+    "CodeMassTransport": JUGGLER_DIR / "CodeMassTransport.lean",
+    "FateOOEEAssembly": JUGGLER_DIR / "FateOOEEAssembly.lean",
+    "FateOEWeighted": JUGGLER_DIR / "FateOEWeighted.lean",
+    "FateScaleAverage": JUGGLER_DIR / "FateScaleAverage.lean",
+    "OOEECurvature": JUGGLER_DIR / "OOEECurvature.lean",
+    "OOEECarryCells": JUGGLER_DIR / "OOEECarryCells.lean",
+    "OOEEFourierModes": JUGGLER_DIR / "OOEEFourierModes.lean",
+    "OOEECarryFourier": JUGGLER_DIR / "OOEECarryFourier.lean",
+    "OOEEPhaseComparison": JUGGLER_DIR / "OOEEPhaseComparison.lean",
+    "OOEESmoothModes": JUGGLER_DIR / "OOEESmoothModes.lean",
+    "OOEEMixedModes": JUGGLER_DIR / "OOEEMixedModes.lean",
+    "OOEERootPhase": JUGGLER_DIR / "OOEERootPhase.lean",
+    "OOEESlowModes": JUGGLER_DIR / "OOEESlowModes.lean",
+    "OOEEParity": JUGGLER_DIR / "OOEEParity.lean",
+    "OOEEFibreGeometry": JUGGLER_DIR / "OOEEFibreGeometry.lean",
+    "OOEEFibreParity": JUGGLER_DIR / "OOEEFibreParity.lean",
+    "OOEEFibreResonance": JUGGLER_DIR / "OOEEFibreResonance.lean",
+    "OOEEResonanceTail": JUGGLER_DIR / "OOEEResonanceTail.lean",
+    "FateOOEEWeighted": JUGGLER_DIR / "FateOOEEWeighted.lean",
+}
+
+# Sources belonging to other targets or historical model interfaces. Keeping
+# them explicit makes the disk inventory complete without implying that they
+# belong to Paper A's ordered publication layers.
+AUXILIARY_MODULES: dict[str, str] = {
+    "PaperEModularReturn": "Paper E Theorem 4.1: exact floor construction and denominator growth; infinitude conditional on explicit BoxRecurrence",
+    "PaperERecurrence": "Paper E Theorem 4.1: proved simultaneous-box recurrence and unconditional modular-return theorem",
+    "PaperECorollaries": "Paper E Corollaries 4.2-4.3: exact sparse-start counts, fixed relative intervals, and prescribed even-run residues",
+    "OOEEffectiveModes": "Effective OOE supplement: actual signed third/fifth derivatives, dyadic mode bound 32, and uniform all-length normalized bound 128",
+    "OOEEffectiveReturn": "Paper E Theorem 4.4: exact floor-residue count, both uniform errors, positive count and bounded actual OOE modular witness",
+    "PaperECompletion": "Paper E: series identification, frequency and exponent statements, direct stopping-word sums, and finite complete prefix trees",
+    "CollatzMoments": "Paper B/C word-moment bridge: coefficient shift and complete first-descent stopping counterexample",
+    "BranchFreeze": "Paper B review target",
+    "MasterIdentity": "Paper B review target",
+    "MeanValues": "Paper B review target",
+    "MonomialSplitting": "Paper B review target",
+    "PaperBAssembly": "Paper B review target",
+    "PaperBCertificates": "Paper B Lemma 5.1: minimal certificates through length five",
+    "PaperBFiveStepDensity": "Paper B Theorems 5.2-5.4: the certificate count assembly",
+    "PaperBCertificateLengths": "Paper B Lemma 5.1 for every length: the odd-count window",
+    "PaperBCertificateRecursion": "Paper B: survivors and minimal certificates, one recursion",
+    "BeattyPhaseTransfer": "Beatty phase coordinates, survivor jump cancellation, summable jump profiles, and conditional moving-kernel transfer",
+    "PaperBLevelWindow": "The empty-window theorem at every level, not only Paper B's",
+    "PaperBJumpTransposition": "Paper B: one barrier transposition costs the barrier mass",
+    "CollatzBridgeLab": "Laboratory extensions of the Collatz bridge: the minimal-certificate count as a residue count (Paper B recursion) and the -17 cycle word inside CycleMinShape (IdealCycleMin)",
+    "PaperBChainRule": "Paper B review target",
+    "PaperBAmplitudeCocycle": "Paper B profile: the amplitude cocycle",
+    "PaperBDensity": "Paper B: Hypothesis FD to density one, conditionally",
+    "PaperBChernoff": "Paper B estimate: the Chernoff factor is below one",
+    "PaperBMarkov": "Paper B estimate: the exponential Markov step",
+    "PaperBSurvivorDecay": "Paper B Theorem 6.1 count: survivor density decays, conditional density one",
+    "PaperBSurvivorAsymptotic": "Paper B exact-rate skeleton: meander shape and sharpness up to d^(3/2)",
+    "PaperBBackwardWord": "Paper B barrier word: the arc form",
+    "PaperBBarrierStep": "Paper B barrier word: one update step",
+    "PaperBPaperCBridge": "Paper B/C bridge: one rate function",
+    "PaperBSlopeRate": "Paper B rate: double root and slope derivative",
+    "PaperBSturmianBarrier": "Paper B barrier word: uniformity across slopes",
+    "PaperBTailSpectrum": "Paper B tail: the double root and the gap law",
+    "PaperBThreshold": "Paper B review target",
+    "PaperBTilt": "Paper B tilt: the psi reduction",
+    "PaperBWeightGap": "Paper B spectrum: no weight restores the gap",
+    "PeriodFamily": "Cycle period family arithmetic",
+    "ThresholdCertificate": "Paper B review target",
+    "DepthFourFive": "Independent historical parity support",
+    "DividedBounds": "Independent historical parity support",
+    "CyclePosition": "Laboratory ideal-cycle model",
+    "IdealCycleMin": "Laboratory ideal-cycle model",
+    "IdealLollipop": "Laboratory ideal-cycle model",
+    "InverseBranches": "Laboratory inverse-branch interface",
+    "Seam": "Laboratory cycle-seam interface",
+}
+
+DYNAMICS = LAYERS["Dynamics"]
+ITERATION = LAYERS["Iteration"]
+TERMINATION = LAYERS["Termination"]
+ITINERARY = LAYERS["Itinerary"]
+WORD_STATS = LAYERS["ItineraryStats"]
+ENVELOPE = LAYERS["Envelope"]
+EQUALITY = LAYERS["Equality"]
+DEFECT = LAYERS["Defect"]
+GLOBAL_DEFECT = LAYERS["GlobalDefect"]
+DEFECT_LOWER_BOUND = LAYERS["DefectLowerBound"]
+PREIMAGES = LAYERS["Preimages"]
+CELLS = PREIMAGES
+COLLAPSE = LAYERS["Collapse"]
+DRIFT = LAYERS["Drift"]
+FIRST_PASSAGE = LAYERS["FirstPassage"]
+CERTIFICATES = LAYERS["Certificates"]
+PROGRESS = LAYERS["Progress"]
+RATE_FREE_DENSITY = LAYERS["RateFreeDensity"]
+MINIMAL = LAYERS["Minimal"]
+MINIMAL_CLOSURE = LAYERS["MinimalClosure"]
+SCALE = LAYERS["Scale"]
+MINIMUM_RELATIVE = LAYERS["MinimumRelative"]
+RESIDUALS = LAYERS["Residuals"]
+NORMALIZED_DEFECT = LAYERS["NormalizedDefect"]
+EXPANSION_BLOCKS = LAYERS["ExpansionBlocks"]
+EXPANSION_SLACK = LAYERS["ExpansionSlack"]
+NEAR_TIGHT_SCALE = LAYERS["NearTightScale"]
+EXPANDING_GRAMMAR = LAYERS["ExpandingGrammar"]
+LANDING_PARITY = LAYERS["LandingParity"]
+CYCLE_CORE = LAYERS["CycleCore"]
+CYCLE_OBSTRUCTIONS = LAYERS["CycleObstructions"]
+CYCLE_EXTREMA = LAYERS["CycleExtrema"]
+CYCLES_BARREL = LAYERS["Cycles"]
+
+
+class _CycleKernel:
+    """`Cycles.lean` is a barrel. Probes that read `CYCLES` still see the kernel."""
+
+    def read_text(self, encoding: str = "utf-8") -> str:
+        return cycle_kernel_text()
+
+    def is_file(self) -> bool:
+        return (
+            CYCLE_CORE.is_file()
+            and CYCLE_OBSTRUCTIONS.is_file()
+            and CYCLE_EXTREMA.is_file()
+        )
+
+
+CYCLES = _CycleKernel()
+LEFTOVER_EVAL = LAYERS["LeftoverEval"]
+LEFTOVER_PREIMAGE = LAYERS["LeftoverPreimage"]
+LEFTOVER_CELL = LEFTOVER_PREIMAGE
+LEFTOVER_SHORT = LAYERS["LeftoverShort"]
+LEFTOVER_FAMILIES = LAYERS["LeftoverFamilies"]
+PREFIX_TWO_EVEN_EVAL = LAYERS["PrefixTwoEvenEval"]
+PREFIX_TWO_EVEN = LAYERS["PrefixTwoEven"]
+PREFIX_BUNCHED_EVAL = LAYERS["PrefixBunchedEval"]
+PREFIX_BUNCHED = LAYERS["PrefixBunched"]
+# Historical names: leftover proofs now live in Short / Families.
+LEFTOVER_CYCLES = LEFTOVER_SHORT
+LEFTOVER_TWO_EVEN = LEFTOVER_FAMILIES
+FIRST_E_TRANSPORT_EVAL = LAYERS["FirstETransportEval"]
+FIRST_E_TRANSPORT = LEFTOVER_FAMILIES
+GAPPED_CYCLE_WORD = LEFTOVER_FAMILIES
+BUNCHED_EEE = LEFTOVER_FAMILIES
+# Historical names: the isolated Bunched*Eval tables were merged
+# into LeftoverEval.lean (one maxHeartbeats header, same theorems).
+BUNCHED_EOEE_EVAL = LEFTOVER_EVAL
+BUNCHED_EOEE = LEFTOVER_FAMILIES
+BUNCHED_EOOEE_EVAL = LEFTOVER_EVAL
+BUNCHED_EOOEE = LEFTOVER_FAMILIES
+BUNCHED_EEOE_EVAL = LEFTOVER_EVAL
+BUNCHED_EEOE = LEFTOVER_FAMILIES
+BUNCHED_EOEOE_EVAL = LEFTOVER_EVAL
+BUNCHED_EOEOE = LEFTOVER_FAMILIES
+BUNCHED_EOOOEE_EVAL = LEFTOVER_EVAL
+BUNCHED_TIGHT = LAYERS["BunchedTight"]
+BUNCHED_EOOOEE = LEFTOVER_FAMILIES
+BUNCHED_EOOEOE_EVAL = LEFTOVER_EVAL
+BUNCHED_EOOEOE = LEFTOVER_FAMILIES
+SMALL_CYCLE_CENSUS = LAYERS["SmallCycleCensus"]
+LENGTH_EIGHT_CENSUS = LAYERS["LengthEightCensus"]
+EVEN_COUNT_THREE = LAYERS["EvenCountThree"]
+CYCLEMIN_OBSTRUCTION = LAYERS["CycleMinObstruction"]
+FIRST_INTERNAL_OO = LAYERS["FirstInternalOO"]
+O7EEEE_GAP = LAYERS["O7EEEEGap"]
+CYCLEMIN_FUDGE = LAYERS["CycleMinFudge"]
+CYCLE_DIOPHANTINE = LAYERS["CycleDiophantine"]
+SEQUENTIAL_MORDELL = LAYERS["SequentialMordell"]
+LANDING_VALUATION = LAYERS["LandingValuation"]
+PREIMAGE_CYLINDERS = LAYERS["PreimageCylinders"]
+ODD_LANDING_SETS = LAYERS["OddLandingSets"]
+WORD_LANGUAGE = LAYERS["ItineraryLanguage"]
+GAP_CELLS = LAYERS["GapCells"]
+ESCAPE = LAYERS["Escape"]
+CYCLE_FINANCE = LAYERS["CycleFinance"]
+CYCLE_FINANCE_LEFTOVERS = LAYERS["CycleFinanceLeftovers"]
+RUN_SURVIVOR_LATTICE = LAYERS["RunSurvivorLattice"]
+CYCLE_HEIGHT_FINANCE = LAYERS["CycleHeightFinance"]
+WALK_CHARGE_WORDS = LAYERS["WalkChargeItineraries"]
+WALK_TRANSPORT = LAYERS["WalkTransport"]
+ABOVE_ANCHOR_WALK = LAYERS["AboveAnchorWalk"]
+# Historical name: the open-flight transport envelope was re-rooted on
+# AboveAnchor and merged into WalkTransport.lean.
+FLIGHT_ENVELOPE = LAYERS["WalkTransport"]
+
+DELETED_ENGINE = (
+    ENGINE_DIR / "FloorPower.lean",
+    ENGINE_DIR / "Progress.lean",
+    ENGINE_DIR / "MinimalNonTerm.lean",
+    ENGINE_DIR / "RepeatedOE.lean",
+    ENGINE_DIR / "OddRunFinancing.lean",
+    ENGINE_DIR / "OddOddFrontier.lean",
+    ENGINE_DIR / "ResidualChain.lean",
+    ENGINE_DIR / "ResidualPath.lean",
+    ENGINE_DIR / "RepeatedBlock.lean",
+    ENGINE_DIR / "CycleItinerary.lean",
+    ENGINE_DIR / "CycleDiophantine.lean",
+)
+
+
+def juggler_sources(*, exclude: tuple[str, ...] = ()) -> list[Path]:
+    skip = set(exclude)
+    return [
+        JUGGLER_BARREL,
+        JUGGLER_PAPER_BARREL,
+        *[path for name, path in LAYERS.items() if name not in skip],
+    ]
+
+
+def juggler_text(*, exclude: tuple[str, ...] = ()) -> str:
+    return "\n".join(
+        path.read_text(encoding="utf-8") for path in juggler_sources(exclude=exclude)
+    )
+
+
+def pre_finance_text() -> str:
+    """Laboratory corpus without CycleFinance.lean.
+
+    Older leftover/census probes treat length-9/10 absence as “this
+    branch did not add a census.” Finance later proved those lengths
+    by a different inequality; they must not flip those probes.
+    """
+    return juggler_text(
+        exclude=("CycleFinance", "CycleFinanceLeftovers", "CycleHeightFinance")
+    )
+
+
+def cycle_kernel_text() -> str:
+    """`Cycles.lean` is a barrel. Kernel declarations live in Core + named words + Extrema."""
+    return (
+        CYCLE_CORE.read_text(encoding="utf-8")
+        + "\n"
+        + CYCLE_OBSTRUCTIONS.read_text(encoding="utf-8")
+        + "\n"
+        + CYCLE_EXTREMA.read_text(encoding="utf-8")
+    )
+
+
+def engine_juggler_gone() -> bool:
+    return not any(path.is_file() for path in DELETED_ENGINE)
+
+
+def engine_floor_text() -> str:
+    """Body of the deleted Engine FloorPower file. Empty after the rewrite."""
+    path = ENGINE_DIR / "FloorPower.lean"
+    return path.read_text(encoding="utf-8") if path.is_file() else ""
+
+
+def has_named(text: str, name: str) -> bool:
+    return any(
+        f"{kind} {name}" in text
+        for kind in ("theorem", "def", "inductive", "abbrev", "structure")
+    )
+
+
+def declares_name(text: str, name: str, kinds: tuple[str, ...] = ("def", "structure")) -> bool:
+    """Does ``text`` declare exactly ``name`` under one of ``kinds``?
+
+    ``has_named`` matches on a bare substring, so ``"def Energy"`` also
+    fires on ``def EnergyBound``. A forbidden-engine guard must not be
+    tripped by an unrelated declaration that merely shares a prefix, so
+    the name has to end where the match ends.
+    """
+    pattern = rf"\b(?:{'|'.join(re.escape(kind) for kind in kinds)})\s+{re.escape(name)}\b"
+    return re.search(pattern, text) is not None

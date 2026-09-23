@@ -14,8 +14,8 @@ from research.juggler_sequence.length8_bootstrap import (
     length_eight_even_expanding,
     named_length8_filter,
 )
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import (
     LENGTH_EIGHT_CENSUS,
     SMALL_CYCLE_CENSUS,
     has_named,

@@ -24,10 +24,8 @@ from research.juggler_sequence.first_lift_eighth import (
     WITNESS_5791,
     first_lift_row,
 )
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
-    JUGGLER_BARREL,
-    JUGGLER_PAPER_BARREL,
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_BARREL, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import (
     MINIMAL,
     MINIMUM_RELATIVE,
     engine_floor_text,

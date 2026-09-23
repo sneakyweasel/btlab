@@ -21,13 +21,8 @@ from typing import Any, Callable
 
 from bt.representation import encode
 from research.juggler_sequence.landing_valuation import v2
-from research.juggler_sequence.lean_paths import (
-    CELLS,
-    DATA_ROOT,
-    DOCS_RESEARCH,
-    ENVELOPE,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import DATA_ROOT, DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import CELLS, ENVELOPE, juggler_text
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, itinerary, word_of
 from research.juggler_sequence.residual_state import collect_landings
 

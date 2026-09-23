@@ -22,16 +22,8 @@ from typing import Any, Iterable
 
 from research.juggler_sequence.compensated_contraction import follows_itinerary
 from research.juggler_sequence.global_defect import local_defect
-from research.juggler_sequence.lean_paths import (
-    BRANCHES_ROOT,
-    CELLS,
-    COLLAPSE,
-    DATA_ROOT,
-    DEFECT,
-    DOCS_RESEARCH,
-    has_named,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import BRANCHES_ROOT, DATA_ROOT, DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import CELLS, COLLAPSE, DEFECT, has_named, juggler_text
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, itinerary, word_of
 from research.juggler_sequence.realization_geometry import even_tower
 

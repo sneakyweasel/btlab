@@ -13,10 +13,8 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.lean_paths import (
-    DATA_ROOT,
-    DOCS_RESEARCH,
-    JUGGLER_DIR,
+from research.juggler_sequence.lean_paths import DATA_ROOT, DOCS_RESEARCH, JUGGLER_DIR
+from research.juggler_sequence.lean_registry import (
     RESIDUALS,
     declares_name,
     engine_floor_text,

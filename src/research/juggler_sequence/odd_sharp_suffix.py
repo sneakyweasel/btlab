@@ -20,11 +20,8 @@ from research.juggler_sequence.power_itineraries import (
     floor_power,
 )
 from research.juggler_sequence.saturation_budget import has_pow_two_depth, square_depth
-from research.juggler_sequence.lean_paths import (
-    DATA_ROOT,
-    DOCS_RESEARCH,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import DATA_ROOT, DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import juggler_text
 
 JSON_PATH = DOCS_RESEARCH / "juggler_odd_sharp_suffix.json"
 DOC_PATH = DOCS_RESEARCH / "juggler_odd_sharp_suffix.md"

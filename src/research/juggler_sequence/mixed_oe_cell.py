@@ -20,10 +20,8 @@ from research.juggler_sequence.cube_odd_return import (
     WITNESS_501_LATER,
     leftover_first_lifts,
 )
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
-    JUGGLER_BARREL,
-    JUGGLER_PAPER_BARREL,
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_BARREL, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import (
     MINIMAL,
     MINIMUM_RELATIVE,
     engine_floor_text,

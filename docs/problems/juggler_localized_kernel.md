@@ -131,7 +131,7 @@ per-window absolute costs are not bounded by \(P^{7/16}\) but reach
 ## Formalization
 
 `formal/Problems/Juggler/LocalizedKernel.lean`, registered in the laboratory
-barrel `Problems.Juggler` and in `lean_paths.LAYERS`. It is deliberately **not**
+barrel `Problems.Juggler` and in `lean_registry.LAYERS`. It is deliberately **not**
 in Paper B's barrel: that barrel's contract is identities, constants and
 thresholds, and while this file meets it, the manuscript's certified corpus and
 its axiom check are another session's in-flight area, so nothing here is cited

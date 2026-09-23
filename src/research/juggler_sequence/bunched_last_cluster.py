@@ -31,7 +31,8 @@ from research.juggler_sequence.cycle_length_nine import (
     tail_fires,
     z_upper,
 )
-from research.juggler_sequence.lean_paths import (
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import (
     BUNCHED_EEE,
     BUNCHED_EEOE,
     BUNCHED_EOEE,
@@ -41,7 +42,6 @@ from research.juggler_sequence.lean_paths import (
     BUNCHED_EOOOEE,
     BUNCHED_TIGHT,
     CYCLES,
-    DOCS_RESEARCH,
     FIRST_E_TRANSPORT,
     LEFTOVER_CYCLES,
     MINIMAL,

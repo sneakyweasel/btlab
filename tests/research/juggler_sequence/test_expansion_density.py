@@ -12,7 +12,7 @@ from research.juggler_sequence.expansion_density import (
     lean_api_present,
     walk_pe_run,
 )
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_registry import juggler_text
 from research.juggler_sequence.two_block_residual import exponent_expanding
 
 

@@ -22,12 +22,8 @@ from research.juggler_sequence.cyclemin_obstruction import (
     word_from_runs,
     write_artifacts,
 )
-from research.juggler_sequence.lean_paths import (
-    CELLS,
-    CYCLEMIN_OBSTRUCTION,
-    JUGGLER_PAPER_BARREL,
-    SMALL_CYCLE_CENSUS,
-)
+from research.juggler_sequence.lean_paths import JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import CELLS, CYCLEMIN_OBSTRUCTION, SMALL_CYCLE_CENSUS
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 

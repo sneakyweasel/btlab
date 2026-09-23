@@ -13,7 +13,7 @@ from research.juggler_sequence.expanding_grammar import (
     max_expanding_evens,
 )
 from research.juggler_sequence.expansion_slack import walk_pe_run
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_registry import juggler_text
 from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 from research.juggler_sequence.two_block_residual import (

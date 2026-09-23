@@ -25,7 +25,7 @@ def test_the_constant_is_exactly_root_six_over_nine() -> None:
 
 def test_the_lean_layer_carries_the_named_arithmetic_theorems() -> None:
     """The ledger row J-depth-one-arithmetic-layer names these; keep the file honest."""
-    from research.juggler_sequence.lean_paths import LAYERS
+    from research.juggler_sequence.lean_registry import LAYERS
 
     src = LAYERS["DepthOneMainTerm"].read_text(encoding="utf-8")
     for name in ("stationary_point", "dual_phase", "dual_phase_half",

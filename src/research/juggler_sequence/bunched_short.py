@@ -27,9 +27,8 @@ from research.juggler_sequence.cyclemin_obstruction import (
     expanding_odds_evens,
     word_from_runs,
 )
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
-    JUGGLER_PAPER_BARREL,
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import (
     PREFIX_BUNCHED,
     SMALL_CYCLE_CENSUS,
     engine_floor_text,

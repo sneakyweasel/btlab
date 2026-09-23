@@ -41,10 +41,8 @@ from research.juggler_sequence.lean_paths import (
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
     REPO_ROOT,
-    engine_floor_text,
-    has_named,
-    juggler_text,
 )
+from research.juggler_sequence.lean_registry import engine_floor_text, has_named, juggler_text
 from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 

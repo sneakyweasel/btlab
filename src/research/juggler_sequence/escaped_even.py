@@ -15,10 +15,9 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import (
     ESCAPE,
-    JUGGLER_PAPER_BARREL,
     engine_floor_text,
     has_named,
     juggler_text,

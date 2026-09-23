@@ -38,13 +38,15 @@ from research.juggler_sequence.cycle_position_finance import (
     position_rhs,
 )
 from research.juggler_sequence.lean_paths import (
-    CYCLE_CORE,
-    CYCLE_FINANCE,
     DATA_ROOT,
     DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
     REPO_ROOT,
+)
+from research.juggler_sequence.lean_registry import (
+    CYCLE_CORE,
+    CYCLE_FINANCE,
     has_named,
     juggler_text,
 )

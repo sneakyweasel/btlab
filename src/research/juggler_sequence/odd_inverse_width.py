@@ -18,12 +18,8 @@ from typing import Any
 
 from research.juggler_sequence.empty_odd_preimage import criterion_scan, odd_preimage_kind
 from research.juggler_sequence.floor_preimages import odd_preimage_integers
-from research.juggler_sequence.lean_paths import (
-    DATA_ROOT,
-    JUGGLER_DIR,
-    has_named,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import DATA_ROOT, JUGGLER_DIR
+from research.juggler_sequence.lean_registry import has_named, juggler_text
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 DATA_DIR = DATA_ROOT / "odd_inverse_width"

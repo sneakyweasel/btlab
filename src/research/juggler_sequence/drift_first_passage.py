@@ -28,13 +28,11 @@ from research.juggler_sequence.near_extremal_prefixes import (
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, odd_count
 from research.juggler_sequence.prefix_nc_admissibility import Ival, pullback_word
-from research.juggler_sequence.lean_paths import (
+from research.juggler_sequence.lean_paths import DATA_ROOT, DOCS_RESEARCH, REPO_ROOT
+from research.juggler_sequence.lean_registry import (
     CYCLE_DIOPHANTINE,
-    DATA_ROOT,
-    DOCS_RESEARCH,
     ENVELOPE,
     MINIMAL,
-    REPO_ROOT,
     RESIDUALS,
     juggler_text,
 )

@@ -4,11 +4,10 @@ from __future__ import annotations
 
 import re
 
-from research.juggler_sequence.lean_paths import (
+from research.juggler_sequence.lean_paths import JUGGLER_DIR, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import (
     AUXILIARY_MODULES,
     DELETED_ENGINE,
-    JUGGLER_DIR,
-    JUGGLER_PAPER_BARREL,
     LAYERS,
     PAPER_MODULES,
     engine_juggler_gone,

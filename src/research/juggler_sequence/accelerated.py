@@ -23,15 +23,12 @@ from research.juggler_sequence.global_defect import (
     image_after,
     local_defect,
 )
-from research.juggler_sequence.lean_paths import (
-    BRANCHES_ROOT,
+from research.juggler_sequence.lean_paths import BRANCHES_ROOT, DATA_ROOT, DOCS_RESEARCH, REPO_ROOT
+from research.juggler_sequence.lean_registry import (
     CELLS,
-    DATA_ROOT,
-    DOCS_RESEARCH,
     ENVELOPE,
     GLOBAL_DEFECT,
     ITINERARY,
-    REPO_ROOT,
     RESIDUALS,
     has_named,
     juggler_text,

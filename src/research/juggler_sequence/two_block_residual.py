@@ -13,7 +13,7 @@ from typing import Any
 
 from research.juggler_sequence.defect_lower_bound import first_defect
 from research.juggler_sequence.global_defect import local_defect
-from research.juggler_sequence.lean_paths import has_named, juggler_text
+from research.juggler_sequence.lean_registry import has_named, juggler_text
 from research.juggler_sequence.normalized_defect import odd_even_word
 from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd

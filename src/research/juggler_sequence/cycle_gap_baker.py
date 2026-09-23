@@ -26,15 +26,13 @@ from typing import Any
 
 from research.juggler_sequence.cycle_finance import EPS_CONST, n_max_from_bound
 from research.juggler_sequence.lean_paths import (
-    CYCLE_FINANCE,
     DATA_ROOT,
     DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
     REPO_ROOT,
-    has_named,
-    juggler_text,
 )
+from research.juggler_sequence.lean_registry import CYCLE_FINANCE, has_named, juggler_text
 
 JSON_PATH = DOCS_RESEARCH / "juggler_cycle_gap_baker.json"
 DOC_PATH = DOCS_RESEARCH / "juggler_cycle_gap_baker.md"

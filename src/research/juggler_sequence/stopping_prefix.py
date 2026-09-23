@@ -13,13 +13,8 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.lean_paths import (
-    BRANCHES_ROOT,
-    DATA_ROOT,
-    DOCS_RESEARCH,
-    MINIMAL_CLOSURE,
-    has_named,
-)
+from research.juggler_sequence.lean_paths import BRANCHES_ROOT, DATA_ROOT, DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import MINIMAL_CLOSURE, has_named
 from research.juggler_sequence.minimal_counterexample import stopping_times
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 

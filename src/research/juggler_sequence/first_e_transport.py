@@ -19,9 +19,9 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
-from research.juggler_sequence.lean_paths import (
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import (
     CYCLES,
-    DOCS_RESEARCH,
     FIRST_E_TRANSPORT,
     FIRST_E_TRANSPORT_EVAL,
     LEFTOVER_TWO_EVEN,

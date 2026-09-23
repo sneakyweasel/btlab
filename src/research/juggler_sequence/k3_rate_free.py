@@ -60,11 +60,8 @@ from math import isqrt
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.lean_paths import (
-    DATA_ROOT,
-    LAYERS,
-    has_named,
-)
+from research.juggler_sequence.lean_paths import DATA_ROOT
+from research.juggler_sequence.lean_registry import LAYERS, has_named
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 DATA_DIR = DATA_ROOT / "k3_rate_free"

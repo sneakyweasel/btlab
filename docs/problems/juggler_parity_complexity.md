@@ -123,7 +123,7 @@ open and immaterial to the verdict.
 ## Formalization
 
 `formal/Problems/Juggler/ParityComplexity.lean` (registered in `Problems.Juggler` and in
-`lean_paths.LAYERS`): `oddCubeParity`, `oddCubeParity_eq_floorPower` (the sequence is
+`lean_registry.LAYERS`): `oddCubeParity`, `oddCubeParity_eq_floorPower` (the sequence is
 `floorPower (2k+1) % 2`), `parityPrefix`, `windows`, `factorCount`, and the kernel-checked
 `parityPrefix_eight`, `factorCount_three_saturates` (18), `factorCount_four_saturates`
 (48), `factorCount_five_saturates` (169), `factorCount_six_saturates` (574),

@@ -113,7 +113,7 @@ def test_the_lean_module_exists_states_the_theorem_and_is_registered() -> None:
     assert "theorem Vword_oddCount" in body
     assert "import Problems.Juggler.FateProductionWords" in read(UMBRELLA)
 
-    from research.juggler_sequence.lean_paths import AUXILIARY_MODULES, LAYERS
+    from research.juggler_sequence.lean_registry import AUXILIARY_MODULES, LAYERS
 
     # Wired into Paper C on 19 September 2026.  The module was deliberately parked in
     # AUXILIARY_MODULES when it landed, because wiring a new module into the barrel and into

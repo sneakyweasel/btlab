@@ -13,7 +13,7 @@ from research.juggler_sequence.landing_parity import (
     pe_theta_census,
     theta,
 )
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_registry import juggler_text
 from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 

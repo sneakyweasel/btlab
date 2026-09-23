@@ -19,13 +19,8 @@ from math import isqrt
 from pathlib import Path
 from typing import Any, Iterable
 
-from research.juggler_sequence.lean_paths import (
-    BRANCHES_ROOT,
-    DATA_ROOT,
-    DOCS_RESEARCH,
-    has_named,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import BRANCHES_ROOT, DATA_ROOT, DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import has_named, juggler_text
 from research.juggler_sequence.odd_image_discrepancy import (
     analytic_majorant,
     odd_image,

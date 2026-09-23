@@ -17,12 +17,8 @@ from research.juggler_sequence.atlas.packed import pack_word, split_word_id, unp
 from research.juggler_sequence.atlas.storage import DEFAULT_DATA_DIR, connect, sqlite_path
 from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.floor_preimages import even_preimage, odd_preimage_integers
-from research.juggler_sequence.lean_paths import (
-    CELLS,
-    COLLAPSE,
-    DATA_ROOT,
-    DOCS_RESEARCH,
-)
+from research.juggler_sequence.lean_paths import DATA_ROOT, DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import CELLS, COLLAPSE
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 JSON_PATH = DOCS_RESEARCH / "juggler_realization_geometry.json"

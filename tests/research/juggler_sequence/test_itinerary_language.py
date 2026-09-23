@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from research.juggler_sequence.compensated_contraction import follows_itinerary
 from research.juggler_sequence.expansion_slack import walk_pe_run
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_registry import juggler_text
 from research.juggler_sequence.itinerary_language import (
     EXAMPLES,
     LATE_PE_FACTORS,

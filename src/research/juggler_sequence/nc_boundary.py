@@ -17,14 +17,8 @@ from typing import Any
 from research.juggler_sequence.compensated_contraction import image_after
 from research.juggler_sequence.envelope_defect import first_nonexact_index, local_defect
 from research.juggler_sequence.floor_preimages import even_preimage
-from research.juggler_sequence.lean_paths import (
-    CELLS,
-    DATA_ROOT,
-    DOCS_RESEARCH,
-    ENVELOPE,
-    ITINERARY,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import DATA_ROOT, DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import CELLS, ENVELOPE, ITINERARY, juggler_text
 from research.juggler_sequence.near_extremal_prefixes import exponent_gap
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, itinerary
 

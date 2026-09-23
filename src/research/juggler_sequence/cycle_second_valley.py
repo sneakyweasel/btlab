@@ -48,15 +48,17 @@ from research.juggler_sequence.cycle_position_finance import (
     odd_run_heights,
 )
 from research.juggler_sequence.lean_paths import (
-    CYCLE_CORE,
-    CYCLE_EXTREMA,
-    CYCLE_FINANCE,
-    CYCLE_HEIGHT_FINANCE,
     DATA_ROOT,
     DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
     REPO_ROOT,
+)
+from research.juggler_sequence.lean_registry import (
+    CYCLE_CORE,
+    CYCLE_EXTREMA,
+    CYCLE_FINANCE,
+    CYCLE_HEIGHT_FINANCE,
     has_named,
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM

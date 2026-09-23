@@ -13,7 +13,7 @@ from typing import Any
 from research.juggler_sequence.expansion_slack import walk_pe_run
 from research.juggler_sequence.global_defect import follows_itinerary, image_after
 from research.juggler_sequence.landing_parity import theta
-from research.juggler_sequence.lean_paths import has_named, juggler_text
+from research.juggler_sequence.lean_registry import has_named, juggler_text
 from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 from research.juggler_sequence.residual_chain import residual_excursion

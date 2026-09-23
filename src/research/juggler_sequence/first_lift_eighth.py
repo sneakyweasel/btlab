@@ -22,10 +22,8 @@ from research.juggler_sequence.cube_odd_return import (
     cube_odd_landing,
     first_odd_cube_on_anchor,
 )
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
-    JUGGLER_BARREL,
-    JUGGLER_PAPER_BARREL,
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_BARREL, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import (
     MINIMAL,
     MINIMUM_RELATIVE,
     engine_floor_text,

@@ -24,13 +24,11 @@ from research.juggler_sequence.envelope_defect import (
 from research.juggler_sequence.equality_language import is_monochrome
 from research.juggler_sequence.excursions import first_return_below
 from research.juggler_sequence.near_extremal_prefixes import exponent_gap
-from research.juggler_sequence.lean_paths import (
+from research.juggler_sequence.lean_paths import DATA_ROOT, DOCS_RESEARCH, REPO_ROOT
+from research.juggler_sequence.lean_registry import (
     CYCLE_DIOPHANTINE,
-    DATA_ROOT,
-    DOCS_RESEARCH,
     ENVELOPE,
     MINIMAL,
-    REPO_ROOT,
     RESIDUALS,
     juggler_text,
 )

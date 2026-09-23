@@ -108,7 +108,7 @@ def test_the_density_is_at_the_predicted_scale_and_the_mean_is_a_half() -> None:
 
 
 def test_the_lean_layer_carries_the_cube_theorems() -> None:
-    from research.juggler_sequence.lean_paths import LAYERS
+    from research.juggler_sequence.lean_registry import LAYERS
 
     src = LAYERS["CubeFiber"].read_text(encoding="utf-8")
     for name in ("cube_fiber_range", "cube_fiber_sqrt_even", "cube_fiber_even_image",

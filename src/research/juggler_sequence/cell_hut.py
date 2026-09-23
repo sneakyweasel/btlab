@@ -35,15 +35,8 @@ from research.juggler_sequence.backward_geometry import (
 )
 from research.juggler_sequence.excursions import HARD_STARTS
 from research.juggler_sequence.landing_valuation import v2
-from research.juggler_sequence.lean_paths import (
-    BRANCHES_ROOT,
-    CELLS,
-    DATA_ROOT,
-    DOCS_RESEARCH,
-    DYNAMICS,
-    REPO_ROOT,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import BRANCHES_ROOT, DATA_ROOT, DOCS_RESEARCH, REPO_ROOT
+from research.juggler_sequence.lean_registry import CELLS, DYNAMICS, juggler_text
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.realization_geometry import FIRST_HOLES
 

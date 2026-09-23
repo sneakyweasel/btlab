@@ -18,9 +18,8 @@ from typing import Any
 
 from research.juggler_sequence.bunched_last_cluster import FAMILIES, family_word
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
-    JUGGLER_PAPER_BARREL,
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import (
     LEFTOVER_FAMILIES,
     PREFIX_BUNCHED,
     PREFIX_BUNCHED_EVAL,

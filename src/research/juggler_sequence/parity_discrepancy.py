@@ -17,13 +17,8 @@ from math import isqrt, log
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.lean_paths import (
-    BRANCHES_ROOT,
-    DATA_ROOT,
-    DOCS_RESEARCH,
-    has_named,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import BRANCHES_ROOT, DATA_ROOT, DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import has_named, juggler_text
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 JSON_PATH = DOCS_RESEARCH / "juggler_parity_discrepancy.json"

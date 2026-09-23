@@ -11,7 +11,7 @@ from __future__ import annotations
 import pytest
 
 from research.juggler_sequence.future_quotient import lean_api_present as fq_lean
-from research.juggler_sequence.lean_paths import declares_name, juggler_text
+from research.juggler_sequence.lean_registry import declares_name, juggler_text
 from research.juggler_sequence.residual_minimize import lean_api_present as rm_lean
 from research.juggler_sequence.residual_state import lean_api_present as rs_lean
 

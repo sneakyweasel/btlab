@@ -18,11 +18,9 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.first_internal_oo import isolated_oe_exponent_ok
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_DIR, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import (
     FIRST_INTERNAL_OO,
-    JUGGLER_DIR,
-    JUGGLER_PAPER_BARREL,
     MINIMUM_RELATIVE,
     engine_floor_text,
     has_named,

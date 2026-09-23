@@ -31,13 +31,11 @@ from research.juggler_sequence.power_itineraries import (
     word_of,
 )
 from research.juggler_sequence.saturation_budget import square_depth
-from research.juggler_sequence.lean_paths import (
+from research.juggler_sequence.lean_paths import DATA_ROOT, DOCS_RESEARCH, REPO_ROOT
+from research.juggler_sequence.lean_registry import (
     CYCLE_DIOPHANTINE,
-    DATA_ROOT,
-    DOCS_RESEARCH,
     ENVELOPE,
     MINIMAL,
-    REPO_ROOT,
     RESIDUALS,
     juggler_text,
 )

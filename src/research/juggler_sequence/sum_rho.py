@@ -18,13 +18,8 @@ from research.juggler_sequence.global_defect import (
     local_defect,
     odd_count,
 )
-from research.juggler_sequence.lean_paths import (
-    CYCLES,
-    DATA_ROOT,
-    DOCS_RESEARCH,
-    engine_floor_text,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import DATA_ROOT, DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import CYCLES, engine_floor_text, juggler_text
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.residual_chain import HARD_PROBES
 

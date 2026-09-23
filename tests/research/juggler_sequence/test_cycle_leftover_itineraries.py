@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from research.juggler_sequence.lean_paths import (
+from research.juggler_sequence.lean_registry import (
     LEFTOVER_CELL,
     LEFTOVER_EVAL,
     LEFTOVER_FAMILIES,

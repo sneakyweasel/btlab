@@ -19,12 +19,11 @@ from typing import Any
 
 from research.juggler_sequence.envelope_defect import local_defect_odd
 from research.juggler_sequence.floor_preimages import odd_preimage_integers
-from research.juggler_sequence.lean_paths import (
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import (
     CYCLE_CORE,
     DEFECT,
     DEFECT_LOWER_BOUND,
-    DOCS_RESEARCH,
-    JUGGLER_PAPER_BARREL,
     SEQUENTIAL_MORDELL,
     SMALL_CYCLE_CENSUS,
     engine_floor_text,

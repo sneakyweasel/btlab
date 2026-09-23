@@ -38,9 +38,8 @@ from research.juggler_sequence.lean_paths import (
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
     REPO_ROOT,
-    has_named,
-    juggler_text,
 )
+from research.juggler_sequence.lean_registry import has_named, juggler_text
 from research.juggler_sequence.near_tight_scale import q_exact
 from research.juggler_sequence.normalized_defect import (
     bits_ok,

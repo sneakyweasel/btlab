@@ -25,14 +25,8 @@ from research.juggler_sequence.block_map_q import (
     q_blocks,
 )
 from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
-    JUGGLER_DIR,
-    JUGGLER_PAPER_BARREL,
-    engine_floor_text,
-    has_named,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_DIR, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import engine_floor_text, has_named, juggler_text
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 JSON_PATH = DOCS_RESEARCH / "juggler_q_return_section.json"

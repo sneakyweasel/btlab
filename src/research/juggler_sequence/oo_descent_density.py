@@ -11,14 +11,8 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.lean_paths import (
-    BRANCHES_ROOT,
-    DOCS_RESEARCH,
-    ENVELOPE,
-    PROGRESS,
-    has_named,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import BRANCHES_ROOT, DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import ENVELOPE, PROGRESS, has_named, juggler_text
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 JSON_PATH = DOCS_RESEARCH / "juggler_oo_descent_density.json"

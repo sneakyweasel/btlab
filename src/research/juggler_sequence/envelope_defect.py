@@ -24,10 +24,8 @@ from research.juggler_sequence.power_itineraries import (
     word_of,
 )
 from research.juggler_sequence.saturation_budget import saturation_prefix
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import juggler_text
 
 JSON_PATH = DOCS_RESEARCH / "juggler_envelope_defect.json"
 DOC_PATH = DOCS_RESEARCH / "juggler_envelope_defect.md"

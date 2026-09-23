@@ -15,7 +15,7 @@ from research.juggler_sequence.defect_lower_bound import (
     remainder_residue_census,
 )
 from research.juggler_sequence.global_defect import pow_gap
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_registry import juggler_text
 
 
 def test_odd_lift_is_the_cubic_expansion():

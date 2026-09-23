@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from research.juggler_sequence.expansion_slack import NEAR_TIGHT
 from research.juggler_sequence.global_defect import follows_itinerary
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_registry import juggler_text
 from research.juggler_sequence.near_tight_scale import (
     LEAN_THEOREMS,
     OOE_PRED_START,

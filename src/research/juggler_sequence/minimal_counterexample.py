@@ -22,14 +22,8 @@ from typing import Any
 
 from bt.calculus.derivative import D, lsd
 from bt.representation import encode
-from research.juggler_sequence.lean_paths import (
-    BRANCHES_ROOT,
-    DATA_ROOT,
-    DOCS_RESEARCH,
-    MINIMAL,
-    MINIMAL_CLOSURE,
-    has_named,
-)
+from research.juggler_sequence.lean_paths import BRANCHES_ROOT, DATA_ROOT, DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import MINIMAL, MINIMAL_CLOSURE, has_named
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 JSON_PATH = DOCS_RESEARCH / "juggler_minimal_counterexample.json"

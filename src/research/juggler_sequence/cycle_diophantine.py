@@ -19,10 +19,10 @@ from research.juggler_sequence.cycle_top_pred import (
     pred_of_orbit,
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
-from research.juggler_sequence.lean_paths import (
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import (
     CYCLES,
     CYCLE_DIOPHANTINE,
-    DOCS_RESEARCH,
     ENVELOPE,
     PROGRESS,
     engine_floor_text,

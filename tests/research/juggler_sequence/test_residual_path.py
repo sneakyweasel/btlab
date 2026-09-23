@@ -67,7 +67,7 @@ def test_lean_api_no_cycle_engine_or_halt():
     assert lean["no_infinite_path_type"] is True
     assert lean["no_global_termination_theorem"] is True
     assert lean["FloorPower_not_rewritten"] is True
-    from research.juggler_sequence.lean_paths import juggler_text
+    from research.juggler_sequence.lean_registry import juggler_text
     from research.juggler_sequence.residual_path import LEAN_PATH
 
     src = LEAN_PATH.read_text(encoding="utf-8")

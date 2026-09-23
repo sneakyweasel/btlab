@@ -25,9 +25,8 @@ from research.juggler_sequence.lean_paths import (
     DATA_ROOT,
     DOCS_RESEARCH,
     JUGGLER_DIR,
-    has_named,
-    juggler_text,
 )
+from research.juggler_sequence.lean_registry import has_named, juggler_text
 from research.juggler_sequence.power_algebra import is_square, local_tight
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.residual_chain import residual_excursion

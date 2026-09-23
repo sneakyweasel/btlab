@@ -24,10 +24,10 @@ from research.juggler_sequence.four_even_short_gap import (
     first_n0,
     tail_holds_log,
 )
-from research.juggler_sequence.lean_paths import (
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import (
     BUNCHED_EEE,
     CYCLES,
-    DOCS_RESEARCH,
     MINIMAL,
     SMALL_CYCLE_CENSUS,
     engine_floor_text,

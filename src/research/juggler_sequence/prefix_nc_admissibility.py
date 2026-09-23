@@ -33,14 +33,8 @@ from research.juggler_sequence.near_extremal_prefixes import (
     prefix_noncontracting,
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, itinerary, odd_count, word_of
-from research.juggler_sequence.lean_paths import (
-    DATA_ROOT,
-    DOCS_RESEARCH,
-    ENVELOPE,
-    REPO_ROOT,
-    RESIDUALS,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import DATA_ROOT, DOCS_RESEARCH, REPO_ROOT
+from research.juggler_sequence.lean_registry import ENVELOPE, RESIDUALS, juggler_text
 
 JSON_PATH = DOCS_RESEARCH / "juggler_prefix_nc_admissibility.json"
 DOC_PATH = DOCS_RESEARCH / "juggler_prefix_nc_admissibility.md"

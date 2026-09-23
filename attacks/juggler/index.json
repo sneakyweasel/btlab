@@ -6773,6 +6773,20 @@
       "test": null,
       "dossier": null,
       "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_cluster": null
+    },
+    {
+      "id": "lean_registry",
+      "kind": "infrastructure",
+      "probe": "src/research/juggler_sequence/lean_registry.py",
+      "test": "tests/research/juggler_sequence/test_lean_registry.py",
+      "dossier": null,
+      "data_dir": null,
       "lean": [
         "formal/Problems/Juggler/Dynamics.lean",
         "formal/Problems/Juggler/RootCells.lean",

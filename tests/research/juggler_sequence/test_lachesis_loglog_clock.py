@@ -198,7 +198,7 @@ def test_flight_gate_passages_shape_and_high_flyer_speed() -> None:
 
 
 def test_lean_layer_is_registered_and_names_its_theorems() -> None:
-    from research.juggler_sequence.lean_paths import LAYERS, has_named
+    from research.juggler_sequence.lean_registry import LAYERS, has_named
 
     path = LAYERS["LogLogClock"]
     assert path.is_file()

@@ -19,11 +19,8 @@ from research.juggler_sequence.even_count_three import (
     run_probe,
     write_artifacts,
 )
-from research.juggler_sequence.lean_paths import (
-    EVEN_COUNT_THREE,
-    JUGGLER_PAPER_BARREL,
-    SMALL_CYCLE_CENSUS,
-)
+from research.juggler_sequence.lean_paths import JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import EVEN_COUNT_THREE, SMALL_CYCLE_CENSUS
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 

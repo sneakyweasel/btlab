@@ -25,14 +25,8 @@ from research.juggler_sequence.empty_odd_preimage import (
     pe_landings,
 )
 from research.juggler_sequence.floor_preimages import odd_preimage_integers
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
-    JUGGLER_DIR,
-    JUGGLER_PAPER_BARREL,
-    engine_floor_text,
-    has_named,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_DIR, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import engine_floor_text, has_named, juggler_text
 from research.juggler_sequence.minimal_anchor_closure import trajectory_until_drop
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 

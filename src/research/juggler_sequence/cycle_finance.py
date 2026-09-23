@@ -48,13 +48,15 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.lean_paths import (
-    CYCLE_FINANCE,
-    CYCLE_HEIGHT_FINANCE,
     DATA_ROOT,
     DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
     REPO_ROOT,
+)
+from research.juggler_sequence.lean_registry import (
+    CYCLE_FINANCE,
+    CYCLE_HEIGHT_FINANCE,
     has_named,
     juggler_text,
 )

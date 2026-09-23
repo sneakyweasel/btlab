@@ -37,15 +37,13 @@ from research.juggler_sequence.first_e_e4 import (
     word_e4,
 )
 from research.juggler_sequence.lean_paths import (
-    CYCLE_FINANCE,
     DATA_ROOT,
     DOCS_RESEARCH,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
     REPO_ROOT,
-    has_named,
-    juggler_text,
 )
+from research.juggler_sequence.lean_registry import CYCLE_FINANCE, has_named, juggler_text
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 JSON_PATH = DOCS_RESEARCH / "juggler_cycle_christoffel.json"

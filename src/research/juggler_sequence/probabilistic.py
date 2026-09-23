@@ -28,13 +28,8 @@ from research.juggler_sequence.excursions import (
     STATUS_RETURNED,
     _walk_returns,
 )
-from research.juggler_sequence.lean_paths import (
-    BRANCHES_ROOT,
-    DATA_ROOT,
-    DOCS_RESEARCH,
-    ENVELOPE,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import BRANCHES_ROOT, DATA_ROOT, DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import ENVELOPE, juggler_text
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power, word_of
 
 JSON_PATH = DOCS_RESEARCH / "juggler_probabilistic.json"

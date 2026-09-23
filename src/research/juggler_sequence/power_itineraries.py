@@ -15,11 +15,8 @@ from fractions import Fraction
 from math import gcd, isqrt
 from pathlib import Path
 from typing import Any, Iterable
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
-    ENVELOPE,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import ENVELOPE, juggler_text
 
 JSON_PATH = DOCS_RESEARCH / "juggler_power_itineraries.json"
 DOC_PATH = DOCS_RESEARCH / "juggler_power_itineraries.md"

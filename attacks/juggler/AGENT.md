@@ -59,7 +59,8 @@ Phase-0 branch or treat a density/period bound as a solution.
 | Dossier and decision | `docs/problems/juggler_<branch>.md` |
 | Durable claim | `docs/theory/theorem_ledger.json`, then render its Markdown sibling |
 | Lean module | `formal/Problems/Juggler/`; barrel `formal/Problems/Juggler.lean` |
-| Path constants and layer order | `src/research/juggler_sequence/lean_paths.py` |
+| Stable path constants | `src/research/juggler_sequence/lean_paths.py` |
+| Module registry and layer order | `src/research/juggler_sequence/lean_registry.py` |
 | Probe data | `data/research/juggler/<branch>/` |
 | Reproducible reports | `docs/research/`; regenerate only reports needed by the task |
 | Publications | `preprints/`; canonical sources under `docs/theory/` |
@@ -75,7 +76,7 @@ calculations. The shared engine must not import this application.
 2. Add the module under `formal/Problems/Juggler/`, in its mathematical namespace.
    `Seam.lean` owns `OnCycle`. Document public declarations.
 3. Add its import to `formal/Problems/Juggler.lean` and register it in `LAYERS`
-   in `lean_paths.py`; imports must be lower-ranked. A Paper A review module also
+   in `lean_registry.py`; imports must be lower-ranked. A Paper A review module also
    belongs in `PAPER_MODULES` and `formal/Problems/JugglerPaper.lean`.
 4. Compile the individual module, then run `python tools/lab.py build`.
    The layer architecture gate forbids `sorry`, `admit` and `axiom` even in comments.

@@ -18,9 +18,8 @@ from typing import Any
 
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.first_e_transport import transport_contradiction
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
-    JUGGLER_PAPER_BARREL,
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import (
     LEFTOVER_FAMILIES,
     PREFIX_TWO_EVEN,
     PREFIX_TWO_EVEN_EVAL,

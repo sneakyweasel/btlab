@@ -22,14 +22,8 @@ from research.juggler_sequence.global_defect import (
     image_after,
     local_defect,
 )
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
-    JUGGLER_DIR,
-    JUGGLER_PAPER_BARREL,
-    engine_floor_text,
-    has_named,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_DIR, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import engine_floor_text, has_named, juggler_text
 from research.juggler_sequence.normalized_defect import (
     BIT_LIMIT,
     bits_ok,

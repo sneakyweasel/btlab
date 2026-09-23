@@ -120,7 +120,7 @@ def test_the_probe_agrees_with_a_direct_orbit_computation() -> None:
 
 
 def test_the_lean_layer_carries_the_named_theorems() -> None:
-    from research.juggler_sequence.lean_paths import LAYERS
+    from research.juggler_sequence.lean_registry import LAYERS
 
     src = LAYERS["CycleRunAlphabet"].read_text(encoding="utf-8")
     for name in ("odd_step_sq_le", "odd_step_le_sq_add", "cube_shift_le_two",
@@ -279,7 +279,7 @@ def test_the_forced_opening_matches_the_walk_argument() -> None:
 
 
 def test_the_lean_layer_carries_the_forced_opening() -> None:
-    from research.juggler_sequence.lean_paths import LAYERS
+    from research.juggler_sequence.lean_registry import LAYERS
 
     src = LAYERS["CycleRunAlphabet"].read_text(encoding="utf-8")
     for name in ("climbRun_append_oe_exponentGap", "band_min_needs_three_climbs",

@@ -30,10 +30,10 @@ import math
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.lean_paths import (
+from research.juggler_sequence.lean_paths import DATA_ROOT
+from research.juggler_sequence.lean_registry import (
     ABOVE_ANCHOR_WALK,
     CYCLE_CORE,
-    DATA_ROOT,
     MINIMUM_RELATIVE,
     WALK_CHARGE_WORDS,
     has_named,

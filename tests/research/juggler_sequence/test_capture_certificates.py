@@ -15,7 +15,7 @@ from research.juggler_sequence.capture_certificates import (
     run_probe,
 )
 from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_registry import juggler_text
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 

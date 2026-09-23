@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_registry import juggler_text
 
 from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.first_even_thresholds import (

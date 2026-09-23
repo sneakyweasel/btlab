@@ -29,13 +29,8 @@ from research.juggler_sequence.global_defect import (
     local_defect,
     odd_count,
 )
-from research.juggler_sequence.lean_paths import (
-    DATA_ROOT,
-    JUGGLER_DIR,
-    JUGGLER_PAPER_BARREL,
-    has_named,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import DATA_ROOT, JUGGLER_DIR, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import has_named, juggler_text
 from research.juggler_sequence.power_itineraries import floor_power
 
 DATA_DIR = DATA_ROOT / "cycle_padic_coupling"

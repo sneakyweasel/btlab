@@ -10,7 +10,7 @@ from __future__ import annotations
 from collections import Counter
 from typing import Any
 
-from research.juggler_sequence.lean_paths import has_named, juggler_text
+from research.juggler_sequence.lean_registry import has_named, juggler_text
 from research.juggler_sequence.progress_coverage import is_odd_odd
 from research.juggler_sequence.residual_chain import residual_excursion
 from research.juggler_sequence.two_block_residual import (

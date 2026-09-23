@@ -26,9 +26,9 @@ from research.juggler_sequence.first_e_e4 import (
     word_e4,
 )
 from research.juggler_sequence.global_defect import follows_itinerary
-from research.juggler_sequence.lean_paths import (
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import (
     DEFECT_LOWER_BOUND,
-    DOCS_RESEARCH,
     SMALL_CYCLE_CENSUS,
     has_named,
     pre_finance_text,

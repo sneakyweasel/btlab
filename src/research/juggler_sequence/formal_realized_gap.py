@@ -36,10 +36,8 @@ from research.juggler_sequence.lean_paths import (
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
     REPO_ROOT,
-    engine_floor_text,
-    has_named,
-    juggler_text,
 )
+from research.juggler_sequence.lean_registry import engine_floor_text, has_named, juggler_text
 from research.juggler_sequence.minimum_relative import above_anchor
 from research.juggler_sequence.near_extremal_prefixes import (
     prefix_nc_words,

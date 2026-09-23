@@ -21,13 +21,11 @@ from research.juggler_sequence.envelope_defect import tiny_deficit
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 from research.juggler_sequence.residual_chain import residual_chain, residual_excursion
-from research.juggler_sequence.lean_paths import (
+from research.juggler_sequence.lean_paths import DATA_ROOT, DOCS_RESEARCH, REPO_ROOT
+from research.juggler_sequence.lean_registry import (
     CYCLES,
     CYCLE_DIOPHANTINE,
-    DATA_ROOT,
-    DOCS_RESEARCH,
     ENVELOPE,
-    REPO_ROOT,
     RESIDUALS,
     engine_floor_text,
     juggler_text,

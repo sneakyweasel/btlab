@@ -51,11 +51,8 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.flight_walk_divergence import hug_odds
-from research.juggler_sequence.lean_paths import (
-    DATA_ROOT,
-    LAYERS,
-    has_named,
-)
+from research.juggler_sequence.lean_paths import DATA_ROOT
+from research.juggler_sequence.lean_registry import LAYERS, has_named
 
 try:
     from gmpy2 import isqrt as _isqrt  # type: ignore

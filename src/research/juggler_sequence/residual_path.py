@@ -13,8 +13,8 @@ from typing import Any
 
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import (
     ENVELOPE,
     MINIMAL,
     PROGRESS,

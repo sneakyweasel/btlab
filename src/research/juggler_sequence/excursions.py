@@ -32,14 +32,8 @@ from research.juggler_sequence.envelope_defect import (
 from research.juggler_sequence.equality_language import is_monochrome
 from research.juggler_sequence.near_extremal_prefixes import exponent_gap
 from research.juggler_sequence.power_algebra import local_tight
-from research.juggler_sequence.lean_paths import (
-    DATA_ROOT,
-    DOCS_RESEARCH,
-    ENVELOPE,
-    REPO_ROOT,
-    RESIDUALS,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import DATA_ROOT, DOCS_RESEARCH, REPO_ROOT
+from research.juggler_sequence.lean_registry import ENVELOPE, RESIDUALS, juggler_text
 from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     EXACT_POW_BITS,

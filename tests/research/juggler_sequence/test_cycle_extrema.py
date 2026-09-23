@@ -64,7 +64,7 @@ def test_lean_api_extrema_without_census():
     assert "def CycleMax" in src
     assert "theorem square_scale_superquadratic" in src
     assert "theorem cycleMin_to_max_superquadratic" in src
-    from research.juggler_sequence.lean_paths import EVEN_COUNT_THREE
+    from research.juggler_sequence.lean_registry import EVEN_COUNT_THREE
 
     even = EVEN_COUNT_THREE.read_text(encoding="utf-8")
     assert "theorem cycleMin_max_ge_succ_sq" in even

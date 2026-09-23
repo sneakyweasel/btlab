@@ -12,12 +12,8 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
-from research.juggler_sequence.lean_paths import (
-    CERTIFICATES,
-    DOCS_RESEARCH,
-    has_named,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import CERTIFICATES, has_named, juggler_text
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
 JSON_PATH = DOCS_RESEARCH / "juggler_capture_certificates.json"

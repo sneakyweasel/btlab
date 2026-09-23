@@ -17,13 +17,11 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.lean_paths import (
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_DIR, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import (
     COLLAPSE,
-    DOCS_RESEARCH,
     DRIFT,
     FIRST_PASSAGE,
-    JUGGLER_DIR,
-    JUGGLER_PAPER_BARREL,
     MINIMUM_RELATIVE,
     PROGRESS,
     RESIDUALS,

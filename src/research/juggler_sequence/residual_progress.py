@@ -18,10 +18,8 @@ from research.juggler_sequence.no_progress_paths import (
     even_collapses,
     realized_prefix,
 )
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import juggler_text
 from research.juggler_sequence.power_itineraries import (
     ANTI_OVERCLAIM,
     LEAN_PATH,

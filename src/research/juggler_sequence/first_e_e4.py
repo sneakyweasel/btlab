@@ -26,10 +26,10 @@ from research.juggler_sequence.bunched_last_cluster import (
     tail_word,
 )
 from research.juggler_sequence.cycle_length_nine import z_upper
-from research.juggler_sequence.lean_paths import (
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import (
     BUNCHED_EEE,
     CYCLES,
-    DOCS_RESEARCH,
     FIRST_E_TRANSPORT,
     GAPPED_CYCLE_WORD,
     MINIMAL,

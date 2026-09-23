@@ -17,14 +17,8 @@ from typing import Any
 
 from research.juggler_sequence.backward_geometry import pred_odd
 from research.juggler_sequence.cube_crossing import generic_odd_odd_delta_mod8
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
-    JUGGLER_DIR,
-    JUGGLER_PAPER_BARREL,
-    engine_floor_text,
-    has_named,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_DIR, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import engine_floor_text, has_named, juggler_text
 from research.juggler_sequence.minimal_anchor_closure import WORD_L, trajectory_until_drop
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 

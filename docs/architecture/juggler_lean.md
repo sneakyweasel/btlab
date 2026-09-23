@@ -3,7 +3,7 @@
 The canonical sources are in `formal/Problems/Juggler/`. The publication target
 is `Problems.JugglerPaper`; `Problems.Juggler` also builds laboratory work.
 The ordered source inventory and the publication module list live in
-`src/research/juggler_sequence/lean_paths.py`. Other historical or paper-specific
+`src/research/juggler_sequence/lean_registry.py`. Other historical or paper-specific
 sources have explicit auxiliary roles there. The barrel imports are checked
 against that inventory.
 

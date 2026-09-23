@@ -27,9 +27,8 @@ from research.juggler_sequence.cyclemin_fudge import (
     trailing_even_run,
 )
 from research.juggler_sequence.first_e_e4 import remainder_shapes, word_e4
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
-    JUGGLER_PAPER_BARREL,
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import (
     SMALL_CYCLE_CENSUS,
     engine_floor_text,
     has_named,

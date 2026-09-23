@@ -6,11 +6,8 @@ from pathlib import Path
 
 from research.juggler_sequence.cycle_finance import o_min_and_theta, sha256_int_list
 from research.juggler_sequence.cycle_run_extremum import survivor_lengths
-from research.juggler_sequence.lean_paths import (
-    JUGGLER_PAPER_BARREL,
-    RUN_SURVIVOR_LATTICE,
-    has_named,
-)
+from research.juggler_sequence.lean_paths import JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import RUN_SURVIVOR_LATTICE, has_named
 
 REPO = Path(__file__).resolve().parents[3]
 NOTE = REPO / "docs" / "theory" / "juggler_finite_dynamics_note.md"

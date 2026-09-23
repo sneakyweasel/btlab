@@ -27,13 +27,8 @@ from research.juggler_sequence.excursions import (
     STATUS_HORIZON,
     STATUS_RETURNED,
 )
-from research.juggler_sequence.lean_paths import (
-    BRANCHES_ROOT,
-    DATA_ROOT,
-    DOCS_RESEARCH,
-    ENVELOPE,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import BRANCHES_ROOT, DATA_ROOT, DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import ENVELOPE, juggler_text
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.probabilistic import (
     LOG_1_2,

@@ -20,7 +20,7 @@ from research.juggler_sequence.cycle_entry_corridor import (
     verify_21,
 )
 from research.juggler_sequence.cycle_entry_excursion import run_layer
-from research.juggler_sequence.lean_paths import EVEN_COUNT_THREE, has_named
+from research.juggler_sequence.lean_registry import EVEN_COUNT_THREE, has_named
 from research.juggler_sequence.power_itineraries import floor_power
 
 REPO = Path(__file__).resolve().parents[3]

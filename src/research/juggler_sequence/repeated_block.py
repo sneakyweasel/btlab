@@ -15,8 +15,8 @@ from typing import Any
 from research.juggler_sequence.capture_certificates import classify_block
 from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, cmp_pow, floor_power, word_of
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import (
     ENVELOPE,
     MINIMAL,
     SCALE,

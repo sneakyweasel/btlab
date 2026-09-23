@@ -17,7 +17,7 @@ from research.juggler_sequence.global_defect import (
     image_after,
     odd_count,
 )
-from research.juggler_sequence.lean_paths import has_named, juggler_text
+from research.juggler_sequence.lean_registry import has_named, juggler_text
 from research.juggler_sequence.normalized_defect import (
     bits_ok,
     eta_pair,

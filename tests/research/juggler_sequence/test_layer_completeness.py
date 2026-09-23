@@ -14,7 +14,7 @@ import io
 import re
 from pathlib import Path
 
-from research.juggler_sequence.lean_paths import AUXILIARY_MODULES, LAYERS
+from research.juggler_sequence.lean_registry import AUXILIARY_MODULES, LAYERS
 
 ROOT = Path(__file__).resolve().parents[3]
 JUGGLER = ROOT / "formal" / "Problems" / "Juggler"

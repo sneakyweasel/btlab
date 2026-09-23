@@ -5,7 +5,7 @@ from __future__ import annotations
 from research.juggler_sequence.expansion_slack import walk_pe_run
 from research.juggler_sequence.global_defect import follows_itinerary, image_after
 from research.juggler_sequence.landing_parity import theta
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_registry import juggler_text
 from research.juggler_sequence.power_itineraries import floor_power
 from research.juggler_sequence.preimage_cylinders import (
     CHAIN_365,

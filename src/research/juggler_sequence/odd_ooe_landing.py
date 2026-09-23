@@ -16,12 +16,11 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.lean_paths import (
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import (
     CYCLE_CORE,
-    DOCS_RESEARCH,
     ENVELOPE,
     FIRST_INTERNAL_OO,
-    JUGGLER_PAPER_BARREL,
     SMALL_CYCLE_CENSUS,
     engine_floor_text,
     has_named,

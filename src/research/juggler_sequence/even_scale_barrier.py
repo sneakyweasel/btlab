@@ -16,13 +16,8 @@ from research.juggler_sequence.capture_certificates import classify_block
 from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.no_progress_paths import even_collapses, realized_prefix
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
-    ENVELOPE,
-    MINIMAL,
-    has_named,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import ENVELOPE, MINIMAL, has_named, juggler_text
 
 JSON_PATH = DOCS_RESEARCH / "juggler_even_scale_barrier.json"
 DOC_PATH = DOCS_RESEARCH / "juggler_even_scale_barrier.md"

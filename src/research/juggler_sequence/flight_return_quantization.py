@@ -55,11 +55,8 @@ from research.juggler_sequence.flight_divergent_structure import (
     _log2_big,
     trajectory,
 )
-from research.juggler_sequence.lean_paths import (
-    DATA_ROOT,
-    LAYERS,
-    has_named,
-)
+from research.juggler_sequence.lean_paths import DATA_ROOT
+from research.juggler_sequence.lean_registry import LAYERS, has_named
 
 DATA_DIR = DATA_ROOT / "flight_return_quantization"
 JSON_PATH = DATA_DIR / "summary.json"

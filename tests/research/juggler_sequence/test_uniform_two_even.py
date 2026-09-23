@@ -87,7 +87,7 @@ def test_lean_api_without_length_eight_census():
     assert lean["no_length_eight_theorem"] is True
     assert lean["length_eight_open_in_census"] is True
     assert lean["no_all_cycles_impossible"] is True
-    from research.juggler_sequence.lean_paths import SMALL_CYCLE_CENSUS
+    from research.juggler_sequence.lean_registry import SMALL_CYCLE_CENSUS
 
     census = SMALL_CYCLE_CENSUS.read_text(encoding="utf-8")
     assert "theorem no_cycle_itinerary_length_eight" not in census

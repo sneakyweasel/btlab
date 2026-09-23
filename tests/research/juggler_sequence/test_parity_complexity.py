@@ -90,7 +90,7 @@ def test_the_joint_phase_is_close_to_uniform() -> None:
 
 
 def test_the_lean_layer_carries_the_exhaustion_theorems() -> None:
-    from research.juggler_sequence.lean_paths import LAYERS
+    from research.juggler_sequence.lean_registry import LAYERS
 
     src = LAYERS["ParityComplexity"].read_text(encoding="utf-8")
     for name in ("oddCubeParity_eq_floorPower", "parityPrefix_eight",

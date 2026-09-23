@@ -29,13 +29,8 @@ from typing import Any, Iterable
 
 from research.juggler_sequence.compensated_contraction import follows_itinerary, image_after
 from research.juggler_sequence.floor_preimages import odd_preimage_integers
-from research.juggler_sequence.lean_paths import (
-    BRANCHES_ROOT,
-    DATA_ROOT,
-    DOCS_RESEARCH,
-    has_named,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import BRANCHES_ROOT, DATA_ROOT, DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import has_named, juggler_text
 from research.juggler_sequence.parity_discrepancy import odd_start_count
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 

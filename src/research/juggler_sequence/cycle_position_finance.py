@@ -24,17 +24,19 @@ from typing import Any
 from research.juggler_sequence.cycle_finance import EPS_CONST, finance_rows
 from research.juggler_sequence.cycle_m_finance import first_odd_image, steiner_rhs
 from research.juggler_sequence.lean_paths import (
+    DATA_ROOT,
+    DOCS_RESEARCH,
+    JUGGLER_DIR,
+    JUGGLER_PAPER_BARREL,
+    REPO_ROOT,
+)
+from research.juggler_sequence.lean_registry import (
     CYCLE_CORE,
     CYCLE_EXTREMA,
     CYCLE_FINANCE,
     CYCLE_FINANCE_LEFTOVERS,
     CYCLE_HEIGHT_FINANCE,
-    DATA_ROOT,
-    DOCS_RESEARCH,
     DYNAMICS,
-    JUGGLER_DIR,
-    JUGGLER_PAPER_BARREL,
-    REPO_ROOT,
     has_named,
 )
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM

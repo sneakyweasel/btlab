@@ -25,11 +25,10 @@ from bt.representation import encode
 from research.juggler_sequence.compensated_contraction import follows_itinerary
 from research.juggler_sequence.information_complexity import DOCUMENTED_MOD16_PAIR
 from research.juggler_sequence.landing_valuation import landing_row, v2
-from research.juggler_sequence.lean_paths import (
-    BRANCHES_ROOT,
+from research.juggler_sequence.lean_paths import BRANCHES_ROOT, DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import (
     CELLS,
     COLLAPSE,
-    DOCS_RESEARCH,
     ITINERARY,
     LANDING_VALUATION,
     has_named,

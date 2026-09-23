@@ -24,10 +24,8 @@ from research.juggler_sequence.residual_chain import (
     residual_class,
     residual_excursion,
 )
-from research.juggler_sequence.lean_paths import (
-    DATA_ROOT,
-    DOCS_RESEARCH,
-    JUGGLER_DIR,
+from research.juggler_sequence.lean_paths import DATA_ROOT, DOCS_RESEARCH, JUGGLER_DIR
+from research.juggler_sequence.lean_registry import (
     RESIDUALS,
     declares_name,
     engine_floor_text,

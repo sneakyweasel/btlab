@@ -23,9 +23,9 @@ from research.juggler_sequence.first_e_transport import (
     word_gapped_ee,
     word_gapped_eoe,
 )
-from research.juggler_sequence.lean_paths import (
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import (
     CYCLES,
-    DOCS_RESEARCH,
     FIRST_E_TRANSPORT,
     GAPPED_CYCLE_WORD,
     MINIMAL,

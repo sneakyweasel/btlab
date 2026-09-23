@@ -19,9 +19,9 @@ from research.juggler_sequence.lean_paths import (
     DOCS_ROOT,
     INDEX_PATH,
     JUGGLER_DIR,
-    LAYERS,
     REPO_ROOT,
 )
+from research.juggler_sequence.lean_registry import LAYERS
 
 PACKAGE = REPO_ROOT / "src" / "research" / "juggler_sequence"
 TESTS = REPO_ROOT / "tests" / "research" / "juggler_sequence"
@@ -35,6 +35,7 @@ INFRASTRUCTURE = frozenset(
         "discovery",
         "lean_export",
         "lean_paths",
+        "lean_registry",
         "notation_audit",
         "p0_certificate",
         "paper_a_audit",

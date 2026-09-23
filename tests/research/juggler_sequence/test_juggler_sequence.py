@@ -92,7 +92,7 @@ def test_blind_strategy_selects_termination_chain_without_memory():
 
 
 def test_lean_identities_are_known_and_sorry_free():
-    from research.juggler_sequence.lean_paths import juggler_text
+    from research.juggler_sequence.lean_registry import juggler_text
 
     text = juggler_text()
     assert "sorry" not in text

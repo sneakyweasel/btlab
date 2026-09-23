@@ -24,7 +24,7 @@ from research.juggler_sequence.expanding_grammar import (
 )
 from research.juggler_sequence.floor_preimages import even_preimage, odd_preimage_integers
 from research.juggler_sequence.expansion_slack import walk_pe_run
-from research.juggler_sequence.lean_paths import has_named, juggler_text
+from research.juggler_sequence.lean_registry import has_named, juggler_text
 from research.juggler_sequence.normalized_defect import odd_even_word
 from research.juggler_sequence.power_itineraries import itinerary, word_of
 from research.juggler_sequence.residual_chain import residual_excursion

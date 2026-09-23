@@ -109,7 +109,7 @@ It is not required.
 
 - Formalization only. No new computational hunt.
 - Existing probes keep their recorded windows. They are retargeted at
-  `research.juggler_sequence.lean_paths`.
+  `research.juggler_sequence.lean_registry` for registered module names.
 - Tests: `tests/research/juggler_sequence/test_layer_architecture.py`
 - The Research Engine control layer is not modified.
 
@@ -143,7 +143,7 @@ No `sorry`. No halt theorem. No ledger row.
 - `HasFiniteCoeffStop n → HasFiniteStop n` is proved; `∀ n ≥ 2, HasFiniteCoeffStop n` is the unproved `FiniteCoeffStopConjecture`.
 - `DescentCertificate` is the only certificate type. `FiniteProgress n` is that type. Capture and Descent are not standalone defs.
 - `HasFiniteCoeffStop n → ¬MinimalNonTerm n` is proved. `MinimalNonTerm n → HasFiniteCoeffStop n` is the unproved `MinimalImpliesCoeffStop`.
-- Python probes resolve Lean names through `research.juggler_sequence.lean_paths`. No new hunt. No ledger row.
+- Python probes resolve Lean names through `research.juggler_sequence.lean_registry`. Stable directories remain in `lean_paths`. No new hunt. No ledger row.
 
 ## Open questions
 

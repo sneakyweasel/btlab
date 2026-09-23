@@ -16,10 +16,7 @@ from research.juggler_sequence.cycle_length_eight import (
     run_probe,
     write_artifacts,
 )
-from research.juggler_sequence.lean_paths import (
-    LENGTH_EIGHT_CENSUS,
-    SMALL_CYCLE_CENSUS,
-)
+from research.juggler_sequence.lean_registry import LENGTH_EIGHT_CENSUS, SMALL_CYCLE_CENSUS
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM
 
 

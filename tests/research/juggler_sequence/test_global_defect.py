@@ -15,7 +15,7 @@ from research.juggler_sequence.global_defect import (
     lean_api_present,
     local_defect,
 )
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_registry import juggler_text
 
 
 def test_identity_matches_slack_on_short_words():

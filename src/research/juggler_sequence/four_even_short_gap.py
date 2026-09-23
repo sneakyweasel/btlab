@@ -32,10 +32,10 @@ from research.juggler_sequence.first_e_e4 import (
     word_e4,
 )
 from research.juggler_sequence.cycle_length_nine import odd_log2_C
-from research.juggler_sequence.lean_paths import (
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import (
     BUNCHED_EEE,
     CYCLES,
-    DOCS_RESEARCH,
     FIRST_E_TRANSPORT,
     MINIMAL,
     SMALL_CYCLE_CENSUS,

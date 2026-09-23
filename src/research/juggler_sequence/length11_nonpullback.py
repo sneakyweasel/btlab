@@ -21,10 +21,10 @@ from typing import Any
 
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
 from research.juggler_sequence.first_e_e4 import remainder_shapes, word_e4
-from research.juggler_sequence.lean_paths import (
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import (
     CELLS,
     CYCLES,
-    DOCS_RESEARCH,
     MINIMAL,
     SMALL_CYCLE_CENSUS,
     engine_floor_text,

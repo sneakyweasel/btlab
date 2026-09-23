@@ -27,9 +27,9 @@ from research.juggler_sequence.cycle_length_seven import (
     y_succ_cube_lt_two_a4,
 )
 from research.juggler_sequence.cycle_length_nine import odd_log2_C
-from research.juggler_sequence.lean_paths import (
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import (
     CYCLES,
-    DOCS_RESEARCH,
     LEFTOVER_CYCLES,
     MINIMAL,
     SMALL_CYCLE_CENSUS,

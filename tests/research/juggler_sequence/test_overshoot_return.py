@@ -4,7 +4,8 @@ from __future__ import annotations
 
 import json
 
-from research.juggler_sequence.lean_paths import EVEN_COUNT_THREE, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_paths import JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import EVEN_COUNT_THREE
 from research.juggler_sequence.odd_odd_frontier import first_even_residual
 from research.juggler_sequence.overshoot_return import (
     CLASS_SCATTER,

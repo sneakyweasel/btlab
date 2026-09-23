@@ -26,13 +26,8 @@ from research.juggler_sequence.first_return_excursions import (
     run_signature,
     slack_profile,
 )
-from research.juggler_sequence.lean_paths import (
-    CELLS,
-    DATA_ROOT,
-    DOCS_RESEARCH,
-    ENVELOPE,
-    juggler_text,
-)
+from research.juggler_sequence.lean_paths import DATA_ROOT, DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import CELLS, ENVELOPE, juggler_text
 from research.juggler_sequence.near_extremal_prefixes import exponent_gap
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, word_of
 

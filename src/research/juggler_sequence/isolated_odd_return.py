@@ -16,9 +16,8 @@ from typing import Any, Iterator
 
 from research.juggler_sequence.bunched_short_return import SHORT_PAIRS, short_tail
 from research.juggler_sequence.cycle_itinerary import follows_itinerary, image_after
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
-    JUGGLER_PAPER_BARREL,
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import (
     SCALE,
     SMALL_CYCLE_CENSUS,
     engine_floor_text,

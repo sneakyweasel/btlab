@@ -19,9 +19,8 @@ from math import log
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
-    JUGGLER_PAPER_BARREL,
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import (
     LEFTOVER_CELL,
     SMALL_CYCLE_CENSUS,
     engine_floor_text,

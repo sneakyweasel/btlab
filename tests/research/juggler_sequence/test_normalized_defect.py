@@ -8,7 +8,7 @@ from research.juggler_sequence.global_defect import (
     image_after,
     itinerary_word,
 )
-from research.juggler_sequence.lean_paths import juggler_text
+from research.juggler_sequence.lean_registry import juggler_text
 from research.juggler_sequence.normalized_defect import (
     LEAN_THEOREMS,
     concat_product_holds,

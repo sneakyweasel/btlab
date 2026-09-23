@@ -16,10 +16,8 @@ from pathlib import Path
 from typing import Any, Callable
 
 from research.juggler_sequence.landing_valuation import v2
-from research.juggler_sequence.lean_paths import (
-    DATA_ROOT,
-    DOCS_RESEARCH,
-    JUGGLER_DIR,
+from research.juggler_sequence.lean_paths import DATA_ROOT, DOCS_RESEARCH, JUGGLER_DIR
+from research.juggler_sequence.lean_registry import (
     RESIDUALS,
     declares_name,
     engine_floor_text,

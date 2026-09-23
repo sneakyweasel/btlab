@@ -118,7 +118,7 @@ is a full fiber and for every odd \(k\) an alternating one, deterministically.
 ## Formalization
 
 `formal/Problems/Juggler/CubeFiber.lean`, registered in `Problems.Juggler` and in
-`lean_paths.LAYERS`: `cube_fiber_range` (\(3t\le4k\) on the fiber, by contradiction from
+`lean_registry.LAYERS`: `cube_fiber_range` (\(3t\le4k\) on the fiber, by contradiction from
 \((3k^4+4k+1)^3\ge27(k^3+1)^4\)), `cube_fiber_sqrt_even` and `cube_fiber_sqrt_odd` (the
 identity by `Nat.eq_sqrt` and `nlinarith`), `cube_fiber_even_image`,
 `cube_fiber_alternating`, and the fiber-level `even_cube_fiber_full` and

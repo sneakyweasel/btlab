@@ -23,9 +23,8 @@ from research.juggler_sequence.first_e_e4 import (
     word_e4,
 )
 from research.juggler_sequence.four_even_short_gap import tail_holds_log
-from research.juggler_sequence.lean_paths import (
-    DOCS_RESEARCH,
-    JUGGLER_PAPER_BARREL,
+from research.juggler_sequence.lean_paths import DOCS_RESEARCH, JUGGLER_PAPER_BARREL
+from research.juggler_sequence.lean_registry import (
     SMALL_CYCLE_CENSUS,
     engine_floor_text,
     has_named,

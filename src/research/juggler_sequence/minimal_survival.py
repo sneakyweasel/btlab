@@ -15,15 +15,8 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.lean_paths import (
-    BRANCHES_ROOT,
-    DATA_ROOT,
-    DOCS_RESEARCH,
-    MINIMAL,
-    MINIMAL_CLOSURE,
-    PROGRESS,
-    has_named,
-)
+from research.juggler_sequence.lean_paths import BRANCHES_ROOT, DATA_ROOT, DOCS_RESEARCH
+from research.juggler_sequence.lean_registry import MINIMAL, MINIMAL_CLOSURE, PROGRESS, has_named
 from research.juggler_sequence.minimal_counterexample import barrier_walk, two_step
 from research.juggler_sequence.power_itineraries import ANTI_OVERCLAIM, floor_power
 
