@@ -78,6 +78,29 @@ New internal consumers should import the module that owns their calculation:
 These numerical checks retain their original evidence limits. Importing the
 public API does not run the aggregate probe or regenerate research artifacts.
 
+The prefix-count companion keeps its public API and CLI at
+`research.juggler_sequence.paper_b_prefix_count`. Its implementation lives in
+`paper_b_prefix_count_core/`, with one-way imports between these responsibilities:
+
+| Prefix-count modules | Responsibility |
+|---|---|
+| `rates`, `counting` | Rates, exact integer counts, biased measures and density ceilings |
+| `barrier_profiles`, `barrier_operators` | Finite profiles, rational barriers and update operators |
+| `killed_walk`, `quasi_stationary` | Harmonic transforms, relaxation, tail spectra and prefactors |
+| `staircase` | Least-peak staircase and its jumps |
+| `word_geometry`, `screening` | Exact defect exponents, branching and screening conditions |
+| `analytic_bounds`, `carry` | Differencing budgets, composite phases and exact carry identities |
+
+The corresponding regression suite is in
+`tests/research/juggler_sequence/paper_b_prefix_count/`, split by mathematical
+topic. `test_publication.py` checks the historical manuscript and ledger links;
+the numerical and exact-identity checks live beside their topic. Individual
+expensive experiments retain `slow` markers and run in CI with `--runslow`.
+Small identities and metadata checks run in the default fast suite. No experiment
+range or evidence label changes as a result of this split.
+The branch index accepts an owned test directory and follows its individual
+test files when associating claims, so splitting a suite retains discovery links.
+
 Collatz outputs live in `data/research/collatz/`, including finite-descent and
 Syracuse records. CLI writers resolve this location from their source checkout,
 so running a command elsewhere does not create another output tree. Generated

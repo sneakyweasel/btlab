@@ -54,10 +54,13 @@ def test_every_branch_row_has_the_triad():
         for key in ("probe", "test", "dossier", "decision"):
             if not row.get(key):
                 missing.append(f"{row['id']}:{key}")
-        for rel in (row["probe"], row["test"], row["dossier"]):
+        for rel in (row["probe"], row["dossier"]):
             path = REPO_ROOT / rel
             if not path.is_file():
                 missing.append(f"missing {rel}")
+        test = REPO_ROOT / row["test"]
+        if not (test.is_file() or any(p.is_file() for p in test.rglob("test_*.py"))):
+            missing.append(f"missing tests {row['test']}")
         if "aliases" not in row or "nk_clusters" not in row:
             missing.append(f"{row['id']}: missing lookup fields")
     assert missing == [], missing[:20]
@@ -101,6 +104,27 @@ def test_modular_probe_keeps_its_lean_associations():
 
     row = show_row("paper_b_audit")
     assert "formal/Problems/Juggler/MasterIdentity.lean" in row["lean"]
+
+
+def test_split_suite_keeps_its_claim_associations():
+    from research.juggler_sequence.branch_index import show_row
+
+    row = show_row("paper_b_prefix_count")
+    assert row["test"] == "tests/research/juggler_sequence/paper_b_prefix_count"
+    assert {"J-rate-free-density-one", "J-psi-reconstructed-from-its-jump-measure"} <= set(row["ledger_ids"])
+
+
+def test_empty_or_helper_only_folder_is_not_a_test_suite(tmp_path, monkeypatch):
+    from research.juggler_sequence import branch_index
+
+    monkeypatch.setattr(branch_index, "TESTS", tmp_path)
+    suite = tmp_path / "example"
+    suite.mkdir()
+    assert branch_index._test_for("example") is None
+    (suite / "helpers.py").write_text("", encoding="utf-8")
+    assert branch_index._test_for("example") is None
+    (suite / "test_example.py").write_text("", encoding="utf-8")
+    assert branch_index._test_for("example") == suite
 
 
 def test_render_new_branch_uses_template_and_path_constants():

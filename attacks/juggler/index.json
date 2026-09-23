@@ -7464,7 +7464,7 @@
       "id": "paper_b_prefix_count",
       "kind": "infrastructure",
       "probe": "src/research/juggler_sequence/paper_b_prefix_count.py",
-      "test": "tests/research/juggler_sequence/test_paper_b_prefix_count.py",
+      "test": "tests/research/juggler_sequence/paper_b_prefix_count",
       "dossier": null,
       "data_dir": null,
       "lean": [],

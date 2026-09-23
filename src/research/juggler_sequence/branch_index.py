@@ -185,8 +185,12 @@ def _dossier_for(stem: str) -> Path | None:
 
 
 def _test_for(stem: str) -> Path | None:
+    """A single regression file or a nonempty suite owned by the probe."""
     path = TESTS / f"test_{stem}.py"
-    return path if path.is_file() else None
+    if path.is_file():
+        return path
+    suite = TESTS / stem
+    return suite if any(p.is_file() for p in suite.rglob("test_*.py")) else None
 
 
 def _data_for(*stems: str) -> Path | None:
@@ -273,7 +277,10 @@ def _row(
     if dossier is not None:
         dossier_stem = dossier.stem.removeprefix("juggler_")
     decision = _decision(dossier.read_text(encoding="utf-8")) if dossier else None
-    sources = [p for p in (_rel(probe), _rel(test), _rel(dossier)) if p]
+    # Associate claims through the actual test files, not a directory substring
+    # that could also match a neighbouring suite with a longer name.
+    tests = sorted(test.rglob("test_*.py")) if test and test.is_dir() else [test]
+    sources = [p for p in map(_rel, [probe, dossier, *tests]) if p]
     return {
         "id": stem,
         "kind": _kind(stem, probe, test, dossier),

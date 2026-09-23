@@ -90,7 +90,7 @@ the Pascal recurrence of the binomial tail.
 
 No probe. The dynamic-program values \(N_d\) (4 at \(d=5\), 2114 at
 \(d=16\)) were recomputed in Python during exploration and match
-`tests/research/juggler_sequence/test_paper_b_prefix_count.py`; the
+`tests/research/juggler_sequence/paper_b_prefix_count/test_counting.py`; the
 kernel-checked values cover \(d \le 8\).
 
 ## Conjectures

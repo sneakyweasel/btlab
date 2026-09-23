@@ -14,7 +14,7 @@ from typing import Any
 
 import mpmath as mp
 
-from research.juggler_sequence import paper_b_prefix_count
+from research.juggler_sequence.paper_b_prefix_count_core.word_geometry import iterate_exponents
 from research.juggler_sequence.lean_paths import (
     DOCS_THEORY,
     JUGGLER_DIR,
@@ -240,7 +240,7 @@ def proposition_7_1_word_count(max_d: int = 14) -> dict[str, Any]:
         count = 0
         for bits in itertools.product("OE", repeat=d):
             word = "".join(bits)
-            if all(e >= 1 for e in paper_b_prefix_count.iterate_exponents(word)):
+            if all(e >= 1 for e in iterate_exponents(word)):
                 count += 1
         bound = 2**d * math.exp(-c * d)
         rows.append({"d": d, "N_d": count, "printed_bound": bound, "ratio": count / bound,

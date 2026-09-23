@@ -896,8 +896,10 @@ with it. Checked numerically: the worst of 120 random instances of
 \(|\int_0^1e(A\{x+\lambda\}-B\{y+\lambda\})d\lambda|\cdot|A-B|\) is \(0.612\), against
 \(2/\pi=0.6366\) and the old \(3/\pi=0.9549\).
 
-Regression: `test_paper_b_prefix_count.py`, 14 tests, including the two consistency
-checks above and the \(d^{-3/2}\) exponent.
+The original 14-test regression now lives in
+`tests/research/juggler_sequence/paper_b_prefix_count/test_counting.py`,
+`test_analytic_bounds.py`, and `test_publication.py` in the same directory. It
+includes the two consistency checks above and the \(d^{-3/2}\) exponent.
 
 ## The development log, moved out of the manuscript (referee item 14)
 
