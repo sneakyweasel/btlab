@@ -1,0 +1,14 @@
+title = "Juggler-Collatz publication scan"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "generic-api-key"
+
+[[rules.allowlists]]
+description = "Historical formalpedia cache IDs: sha256(...).hexdigest()[:16]"
+condition = "AND"
+paths = ['''^data/research/formalpedia/jev_verdicts\.json$''']
+regexTarget = "secret"
+regexes = ['''^[0-9a-f]{16}$''']

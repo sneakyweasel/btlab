@@ -89,11 +89,13 @@ data/external/
 
 # Retrieved source texts are local-only: this remote is public and most of these
 # are copyrighted articles. literature/*.json carries the provenance; the files
-# themselves stay on disk. The tracked .jpg excerpt predates this rule.
-literature/sources/*.pdf
-literature/sources/*.html
+# themselves stay on disk. Citations and original summaries belong in the JSON.
+literature/sources/
 
 # Private correspondence and unpublished manuscripts received from other authors.
 # The repository is public; keep these local.
 literature/sources/correspondence-*.txt
 literature/*.private.json
+
+# Private recovery archives must never be published.
+*.bundle

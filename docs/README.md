@@ -45,6 +45,7 @@ its quantifiers. See the [research method](methodology.md).
 - [OEIS discovery](architecture/oeis_discovery.md)
 - [Research modules](architecture/research_modules.md)
 - [Git history and recovery](history.md)
+- [Publication privacy and source permissions](publication_safety.md)
 
 Default commands are `python tools/lab.py test` and `python tools/lab.py build`. Earlier projects are available
 through Git history. Shared dependencies
