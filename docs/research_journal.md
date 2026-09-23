@@ -13,46 +13,24 @@ decision, and canonical record. Keep the journal brief.
 
 ## 2026-09-23 -- Beatty phase profile as a positive jump series
 
-The qualitative logarithmic-slope theorem is now **EXACT — LEAN VERIFIED**:
-`r c_r/binom(m_r-1,r-1)-F(delta_r) -> 0`, with
-`F(delta)=1+sum_{delta_r<delta} c_r beta^r (1-beta)^(m_r-r)`.
-The finer binomial phase limit discharges the survivor asymptotic input;
-finite first moments prove critical first-passage mass one; exact reindexing
-identifies the whole jump series, with total mass `1/(alpha-1)` and first
-jump `beta`. The complete accumulation set is now also Lean-checked: the
-envelope minus the explicit open jumps is compact, perfect and Lebesgue-null.
-Every gap endpoint is a subsequential limit, and closed intervals strictly
-inside gaps are eventually avoided. The empirical law is now proved to be
-`F_*(uniform[0,1])`, atomless and singular with respect to Lebesgue measure,
-with continuous CDF `G`, exact identity `G(F(t))=t` and plateau height `delta_j`
-on the j-th closed jump interval. The gap weights now have checked sharp
-order `r^(-3/2)`; the exact tube formula gives `lambda(K_epsilon)` of order
-`epsilon^(1/3)` and Minkowski dimension `2/3`. The exact content is now
-`3*2^(1/3)*kappa^(2/3) integral_0^1 F(t)^(2/3) dt`, equivalently the
-two-thirds moment of the singular law times the explicit scale factor.
-The whole geometric law is now checked too: cube-root-rescaled tube measures
-converge weakly to `3*2^(1/3)*kappa^(2/3)*y^(2/3) dmu(y)`; uniform tube
-probabilities converge to its normalization. Localized gap counts and a
-`4*epsilon` geometric comparison give every bounded continuous spatial
-average. Nineteen consumer dependency records check the new interfaces,
-including statements directly over the original integer certificate counts.
-Finite two-thirds Hausdorff measure and `dim_H K<=2/3` are now unconditional.
-A uniform phase-hitting bound with exponent `tau` gives a checked Hölder
-CDF and positive Hausdorff measure at exponent `2/(3*tau)`; `tau=1` gives
-exact dimension `2/3` and positive finite critical measure. The hitting
-premise now follows from a uniform Diophantine lower bound with the same
-exponent and explicit constant `4^tau/c+1`. Bounds for every `tau>1`
-already suffice for dimension `2/3`, whereas `tau=1` also supplies positive
-critical measure. No such arithmetic bound is supplied for the logarithmic slope. Exact Hausdorff
-dimension, quantitative rates, effective constants and general slopes remain open.
-The exact BGL Gamma-normalized first-passage amplitude is now also checked:
-`c_r/D_r-q^(delta_r) F(delta_r) -> 0`, with the actual Gamma quotient and
-integer counts exposed in the consumer audit. Uniform log-convex Gamma
-interpolation handles the moving phases. The path dictionary remains a
-written comparison; no novelty for classical Gamma estimates is claimed.
-**PROMOTE** the completed qualitative
-specialization; no paper/release, priority or trajectory-termination claim is
-changed. Canonical proof boundary: Sections 13–20 of the
+**EXACT — LEAN VERIFIED** at the logarithmic slope: the actual integer ratios
+approach the explicit positive jump profile, including its critical total
+mass and strict atom convention. Its complete cluster set is null and
+perfect; the empirical law is singular continuous with exact CDF plateaus.
+The set has Minkowski dimension `2/3`, exact positive content, and local
+content measure `3*2^(1/3)*kappa^(2/3)*y^(2/3) dmu(y)`.
+Finite two-thirds Hausdorff measure is unconditional; matching lower bounds
+retain explicit Diophantine premises. The exact BGL Gamma quotient gives
+amplitude `q^t F(t)` and an absolutely continuous empirical law, mutually
+singular with the original law. Thirteen new consumer dependency records
+check the original-count limit and the regularity and frequency statements.
+The explicit occupation density, logarithmic normalization and moment series
+have a separate **EXACT — HUMAN PROOF**, including the finite-cutoff endpoint
+term; these identities remain to be formalized. Quantitative rates, general
+slopes and the concrete Hausdorff lower bound remain open. **PROMOTE** the
+checked specialization and separately labelled written density. No new
+deposit, priority or trajectory-termination claim. Canonical proof boundary:
+Sections 13–21 of the
 [comparison note](theory/juggler_beatty_first_passage_note.md) and the
 [dossier](problems/juggler_winkler_phase_collapse.md).
 

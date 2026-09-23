@@ -497,6 +497,40 @@
   "related_conjectures": []
  },
  {
+  "id": "J-beatty-gamma-first-passage-law",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "At beta=log 2/log 3 and q=1-beta, the empirical measures of the actual Gamma-normalized first-passage counts c_r/D_r converge weakly to eta, the image of uniform phase measure under B(t)=q^t F(t). This probability law is absolutely continuous with respect to Lebesgue measure and mutually singular with the original singular continuous law of F(U). In particular eta(K)=0, its CDF is continuous, and the normalized counts have the prescribed limiting frequency at every real threshold and limiting average for every bounded continuous observable. The proof establishes F'=0 almost everywhere from the null monotone range, then B'=log(q) B nonzero almost everywhere, and proves a null-preimage criterion without global injectivity. No analytic or arithmetic premise remains. The explicit density series is a separate written claim, not certified by this interface; no rate or arbitrary-slope extension is asserted.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyPassageDistribution.lean",
+  "decl": [
+   "certificateProfile_ae_hasDerivAt_zero",
+   "certificatePhaseAmplitude_ae_nonzero_deriv",
+   "certificatePhaseAmplitude_bounds",
+   "certificatePassageLaw_absolutelyContinuous_volume",
+   "certificateLaw_mutuallySingular_passageLaw",
+   "certificatePassageLaw_clusterSet",
+   "certificatePassageLaw_cdf_continuous",
+   "certificateGammaRatio_empiricalLaw_tendsto",
+   "certificateGammaRatio_threshold_frequency",
+   "certificateGammaRatio_average_tendsto"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_passage_law_interface.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-gamma-occupation-density",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "At the logarithmic slope, write a=-log(q), L_r=q^delta_r F(delta_r) and U_r=q^delta_r (F(delta_r)+w_r). The law eta of q^U F(U) for uniform phase U has density h(y)=(a*y)^(-1) sum_r 1_(L_r,U_r)(y) for y>0 and zero otherwise. The rescaled intervals may overlap and must be counted with multiplicity. The density is finite almost everywhere, integrates to one and is supported in [q,1/q]. Uniform finite-jump truncation, its explicit vanishing endpoint term and domination by summable weights prove the occupation identity against every continuous test function on this envelope. Consequences include sum_r log(1+w_r/F(delta_r))=-log(q) and, for each real p nonzero, integral y^p d eta=(a*p)^(-1) sum_r q^(p*delta_r) ((F(delta_r)+w_r)^p-F(delta_r)^p). These identities are written proofs in Section 21; the independently formalized absolute continuity result does not yet formalize this explicit density or its moment series. No bounded density, exact support interval, convergence rate or literature priority is claimed.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": null,
+  "tests": ["tests/research/juggler_sequence/test_beatty_passage_law_interface.py"],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-survivor-counting-identity",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For the existing natural-number survivor counts N_n=neverNegCount n and strict positive-endpoint binomial counts T_n=endpointCount n, n*N_n=sum_{j<n} T_(n-j)*N_j for every n>=0, with no counting or asymptotic premise. Consequently SurvivorExponentialIdentity holds for the actual normalized counts. The proof retains the odd-letter polynomial variable, uses the exact last-letter survivor/first-descent partition, preserves endpoint support under formal inversion and Euler differentiation, and separates the logarithmic derivatives. The strict threshold is checked using the inequality between positive powers of two and powers of three. This is a formalization of the classical counting identity, with no priority or trajectory-termination claim.",

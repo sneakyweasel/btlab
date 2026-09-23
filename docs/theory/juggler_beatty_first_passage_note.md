@@ -17,7 +17,12 @@ two-thirds power, with the same geometric scale factor.
 Their empirical probability measures converge
 to the image of uniform phase measure under the profile. This limiting law
 is singular continuous. Its continuous distribution function inverts the
-profile and has explicit plateaus at the Beatty phases. The underlying
+profile and has explicit plateaus at the Beatty phases. In contrast, the
+same integer counts in BGL's exact Gamma normalization have an absolutely
+continuous limiting law, mutually singular with the first. We give its
+density as a convergent sum over the exponentially rescaled jump intervals.
+The classification of this second law is also Lean-checked; its explicit
+density is a written deduction. The underlying
 periodic survivor amplitude has a classical precursor; the focus here is
 its explicit transfer to the cumulative profile and the resulting singular
 geometry. The profile and these qualitative geometric and distributional
@@ -57,6 +62,8 @@ Section 20 derives that condition from uniform Diophantine lower bounds,
 with no loss in the exponent, and separates the arithmetic premises for
 dimension equality and critical-measure positivity.
 Sections 12–13 establish their counting and asymptotic inputs.
+Section 21 identifies the empirical law in BGL's Gamma normalization and
+explains why changing the normalization changes the type of limiting measure.
 
 The central spatial conclusion is, with
 `kappa=(2 pi alpha (alpha-1))^(-1/2)`,
@@ -92,8 +99,10 @@ first-passage or equidistribution inputs. Sections 1–7 also retain a broader
 written argument for irrational `1<alpha<2`, including a quantitative
 `O(r^(-1/2))` rate. Those stronger statements are explicitly distinguished
 from the checked qualitative specialization. The exact Gamma-normalized
-first-passage amplitude in Section 1.1 is also Lean-checked. The path dictionary
-with BGL and the spectral corollary in Section 17 remain written deductions.
+first-passage amplitude in Section 1.1 and its absolutely continuous empirical
+law in Section 21 are also Lean-checked. The path dictionary with BGL, the
+spectral corollary in Section 17 and the explicit density identity in
+Section 21 remain written deductions.
 This is a standalone working
 note supporting Paper B; it does not revise a deposited paper or establish
 literature priority or trajectory termination.
@@ -1616,6 +1625,148 @@ and `Quot.sound`.
 **PROMOTE** the arithmetic-to-geometry implication; obtaining a usable
 arithmetic bound for the concrete logarithmic slope remains a separate target.
 
+## 21. The law in the BGL normalization
+
+Changing the normalization of the same integers gives a different type of
+limiting measure. Retain the exact Gamma quotient `D_r` of Section 1.1 and put
+\[
+ a=-\log q>0,\qquad \mathcal B(t)=q^tF(t)\quad(0\le t\le1),\qquad
+ \eta=\mathcal B_*\bigl(\lambda\!\restriction_{(0,1]}\bigr).
+\]
+The symbol `eta` distinguishes this law from the local content measure `nu`
+in Section 18. Recall that `E=1/q` and `qF(1)=F(0)=1`.
+
+**EXACT — LEAN VERIFIED.** For the actual first-passage integers,
+\[
+ \frac1N\sum_{1\le r\le N}\delta_{c_r/D_r}\Longrightarrow\eta,
+ \qquad \eta\ll\lambda,\qquad \mu\perp\eta.                 \tag{46}
+\]
+In particular `eta(K)=0`, whereas `mu(K)=1`. The limiting law has no atoms
+and its CDF is continuous at every threshold. For every real `y` and every
+bounded continuous function `g`,
+\[
+ \begin{split}
+ \frac1N\#\{1\le r\le N:c_r/D_r\le y\}&\longrightarrow
+     \eta(( -\infty,y]),\\
+ \frac1N\sum_{1\le r\le N}g(c_r/D_r)&\longrightarrow
+     \int_0^1g(q^tF(t))\,dt.                              \tag{47}
+ \end{split}
+\]
+The formal empirical measures include the harmless index zero instead of
+the final index; this changes bounded averages and frequencies by `O(1/N)`.
+
+**Formal proof mechanism.** A monotone function is differentiable almost
+everywhere. Since the complete range of `F` lies in the null set `K`, its
+derivative must be zero almost everywhere. Thus
+\[
+ \mathcal B'(t)=(\log q)\mathcal B(t)\ne0
+ \quad\text{for almost every }t.
+\]
+A measurable real function with a nonzero derivative almost everywhere
+has a null preimage for every Lebesgue-null set, after discarding the null
+exceptional domain set. The formal proof obtains a countable local linear
+approximation cover from the one-dimensional Jacobian lemmas; global
+injectivity is unnecessary. This gives `eta << lambda`. Equidistribution,
+almost-everywhere continuity and the checked Gamma-normalized phase limit
+give (46)–(47). Since `mu` is concentrated on `K`, the two laws are mutually
+singular. The compact positive envelope `q<=mathcal B(t)<=E` will also be
+useful below.
+
+### 21.1. An explicit density from the rescaled jumps
+
+**EXACT — HUMAN PROOF.** Define the rescaled jump endpoints
+\[
+ L_r=q^{\delta_r}F(\delta_r),\qquad
+ U_r=q^{\delta_r}\bigl(F(\delta_r)+w_r\bigr).
+\]
+Then the entire limiting law has density
+\[
+ \boxed{\quad
+ \eta(dy)=h(y)\,dy,\qquad
+ h(y)=\frac1{a y}\sum_{r\ge1}{\bf1}_{(L_r,U_r)}(y)
+ \quad(y>0),\quad h(y)=0\quad(y\le0).
+ \quad}                                                   \tag{48}
+\]
+The intervals in (48) can overlap: the sum counts their multiplicity.
+It is finite almost everywhere, but no everywhere-finiteness, boundedness
+or continuity of the density is asserted. Its support is contained in
+`[q,E]`; an exact support description is not needed for (48).
+
+**Proof.** Let `F_N(t)=1+sum_{1<=r<=N,delta_r<t} w_r` and
+`mathcal B_N(t)=q^tF_N(t)`. For a continuous `g` on `[q,E]`, choose a
+primitive `H` of `g(y)/y` on this positive interval. Between the finitely
+many retained jump phases,
+\[
+ \frac{d}{dt}H(\mathcal B_N(t))=-a\,g(\mathcal B_N(t)).
+\]
+Summing the fundamental theorem of calculus on those intervals and
+including each jump gives the exact finite identity
+\[
+ a\int_0^1g(\mathcal B_N(t))\,dt
+  =\sum_{r=1}^N\int_{L_{r,N}}^{U_{r,N}}\frac{g(y)}y\,dy
+     +\int_{qF_N(1)}^1\frac{g(y)}y\,dy,                    \tag{49}
+\]
+where `L_{r,N}=q^(delta_r)F_N(delta_r)` and
+`U_{r,N}=L_{r,N}+q^(delta_r)w_r`. The last integral is the endpoint term;
+it is generally nonzero at finite cutoff.
+
+Summability of the weights gives uniform convergence `F_N -> F`, hence
+`mathcal B_N -> mathcal B` on `[0,1]`. The endpoint term tends to zero
+because `qF_N(1) -> qF(1)=1`. For fixed `r`, both rescaled jump endpoints
+converge, and, for `N>=r`,
+\[
+ \left|\int_{L_{r,N}}^{U_{r,N}}\frac{g(y)}y\,dy\right|
+ \le\|g\|_\infty\log\!\left(1+\frac{w_r}{F_N(\delta_r)}\right)
+ \le\|g\|_\infty w_r.
+\]
+This summable bound justifies passage to the infinite series. Consequently
+\[
+ \int_0^1g(\mathcal B(t))\,dt
+  =\frac1a\sum_{r\ge1}\int_{L_r}^{U_r}\frac{g(y)}y\,dy.      \tag{50}
+\]
+Taking `g=1` proves that (48) has total mass one. Tonelli's theorem and
+(50), first for nonnegative `g` and then for signed `g`, identify the two
+finite measures by their continuous test functions on `[q,E]`. This proves
+(48) despite the dense jump phases.
+
+Finite piecewise-smooth level-crossing formulas are classical; see
+Biermé and Desolneux [10, Proposition 1]. Their finite-piece hypothesis
+does not directly cover the present dense jumps. The uniform cutoff and
+summable domination in (49)–(50) provide that passage here; the general
+calculus should not be presented as a new first-passage mechanism.
+
+### 21.2. Normalization, moments and the proof boundary
+
+Putting `g=1` in (50) yields the exact identity
+\[
+ \sum_{r\ge1}\log\!\left(1+\frac{w_r}{F(\delta_r)}\right)
+       =-\log q.                                          \tag{51}
+\]
+Equivalently, `eta` is a mixture of the log-uniform probability measures
+on `(L_r,U_r)`, with mixing weights `log(U_r/L_r)/a`. For every real
+`p != 0`, its moments are
+\[
+ \int y^p\,d\eta(y)=\frac1{ap}\sum_{r\ge1}q^{p\delta_r}
+       \left[(F(\delta_r)+w_r)^p-F(\delta_r)^p\right].       \tag{52}
+\]
+Positive compact support makes this valid for negative powers as well.
+The series is absolutely convergent by the same bound as in (50).
+
+The formal sources are
+[BeattyAmplitudeRegularity.lean](../../formal/Problems/Juggler/BeattyAmplitudeRegularity.lean)
+and [BeattyPassageDistribution.lean](../../formal/Problems/Juggler/BeattyPassageDistribution.lean).
+The original-count weak limit and explicit pushforward absolute continuity
+are checked by
+[InterfaceCheckBeattyPassageLaw.lean](../../formal/InterfaceCheckBeattyPassageLaw.lean)
+and its [executable audit](../../tests/research/juggler_sequence/test_beatty_passage_law_interface.py).
+The thirteen dependency records allow only `propext`, `Classical.choice`
+and `Quot.sound`. The occupation identity (50), density (48), logarithmic
+normalization (51) and moment series (52) have the written proof above;
+they are not yet Lean theorem interfaces. No quantitative convergence rate
+or arbitrary-slope formalization follows from this addition.
+**PROMOTE** the checked classification and the explicitly separated written
+density; formalizing the occupation identity is the next proof boundary.
+
 ## References
 
 1. G. Baxter, *An analytic problem whose solution follows from a simple
@@ -1652,3 +1803,7 @@ arithmetic bound for the concrete logarithmic slope remains a separate target.
    Theorems 2.1–2.2.
    [Author copy](https://math.dartmouth.edu/~carlp/fractal.pdf),
    [doi:10.1112/plms/s3-66.1.41](https://doi.org/10.1112/plms/s3-66.1.41).
+10. H. Biermé and A. Desolneux, *A Fourier Approach for the Level Crossings
+    of Shot Noise Processes with Jumps*, Journal of Applied Probability
+    **49** (2012), 100–113, Proposition 1.
+    [doi:10.1239/jap/1331216836](https://doi.org/10.1239/jap/1331216836).

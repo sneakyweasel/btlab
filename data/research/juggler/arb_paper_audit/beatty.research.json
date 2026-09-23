@@ -2,7 +2,7 @@
   "schema": "btlab-output/v1",
   "programme": "juggler",
   "research_id": null,
-  "created_utc": "2026-09-23T19:32:33.204964+00:00",
+  "created_utc": "2026-09-23T20:13:00.090336+00:00",
   "scope": "Paper Beatty: First explicit interval for the full profile's two-thirds moment and Minkowski content, with a certified entire omitted tail; no asymptotic tail estimate is guessed.",
   "artifact_root": ".",
   "generator": {
@@ -22,7 +22,7 @@
     "python": "3.13.9"
   },
   "source": {
-    "revision": "7c47e346532e3bbc9f18ffeea52871131fcaa719",
+    "revision": "8fd3b63f16c895e136000f136598621a7f6a2de9",
     "dirty": true,
     "coverage": "loaded local Python, project configuration, and explicit sources at manifest creation; not an execution or dependency audit",
     "files": [
@@ -121,14 +121,14 @@
   "inputs": [
     {
       "path": "docs/theory/juggler_beatty_first_passage_note.md",
-      "sha256": "abd9d8e6f5a488838600ed8768bcc86a6ae1d44cad630860ce838f2db5390b7f",
-      "bytes": 80326
+      "sha256": "643834f142741efaee0e11f1fc7c5a0ef18e75f1ddae21249725ea3c729809da",
+      "bytes": 87627
     }
   ],
   "outputs": [
     {
       "path": "beatty.json",
-      "sha256": "cd5fd4d4369cc7021a9d9676bc6dcd84e4dc914b77da189ea566cc928d9dda17",
+      "sha256": "96d4d234c99deb2137c0bf6be5a0b627c1bbc4c7976fa67c579c6403628997b2",
       "bytes": 1855880
     }
   ],

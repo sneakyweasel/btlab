@@ -425,13 +425,54 @@ Stop criterion          Record any remaining analytic premise explicitly.
 PROMOTE
 ```
 
+**23 September: the BGL normalization has an absolutely continuous law.**
+The exact Gamma-normalized integers converge in distribution to
+`eta=Law(q^U F(U))`. Lean proves `eta << Lebesgue`, continuity of its CDF,
+every threshold frequency, and every bounded continuous observable limit.
+Thus `eta(K)=0` and `eta` is mutually singular with the original law
+`mu=Law(F(U))`, which has `mu(K)=1`. The key regularity fact is
+`F'=0` almost everywhere, obtained from its null monotone range; multiplying
+by `q^t` gives a nonzero derivative almost everywhere. A general checked
+null-preimage criterion supplies absolute continuity without global
+injectivity. The thirteen consumer dependency records use only standard
+Lean axioms. See
+[BeattyPassageDistribution.lean](../../formal/Problems/Juggler/BeattyPassageDistribution.lean)
+and [its consumer](../../formal/InterfaceCheckBeattyPassageLaw.lean).
+
+The written proof in Section 21 identifies the entire density as
+`h(y)=sum_r 1_(L_r,U_r)(y)/(-y log q)`, with
+`L_r=q^delta_r F(delta_r)` and `U_r=q^delta_r(F(delta_r)+w_r)`.
+The intervals may overlap. A finite-jump occupation identity has an
+endpoint term, vanishing only in the limit because `qF(1)=1`.
+Uniform truncation and summable domination justify the dense-jump limit.
+This gives the logarithmic normalization and every real-power moment.
+These explicit identities are **EXACT — HUMAN PROOF**, still outside the
+formal interface; only the law and its measure type are Lean-checked.
+The finite-piece calculus has classical level-crossing precedents; no
+priority is inferred from the BGL comparison.
+
+```text
+Mathematical target     Identify the limiting law of the Gamma-normalized counts.
+Novelty hypothesis      An explicit law for this amplitude; the calculus is classical.
+Falsifier               A missing continuous term or endpoint flux in the density.
+Already killed by?      No matching obstruction; the harvest-counting obstruction is unrelated.
+Existing machinery      Exact jump profile, total mass, phase equidistribution, Gamma limit.
+Maximum Phase-0 scope   Prove the occupation identity and formalize its consequences.
+Promotion criterion     A checked original-count limit with an explicit proof boundary.
+Stop criterion          An analytic premise remains unproved or the density formula fails.
+PROMOTE
+```
+
 ## Open questions
 
 The qualitative logarithmic-slope phase theorem and normalization are complete
 in Lean, as are the complete accumulation set and its singular continuous
 empirical limiting law. Its tube-volume order and Minkowski dimension `2/3`
 and its exact positive Minkowski content are now checked too, together with
-the whole local content measure and the normalized geometric limiting law. Remaining
+the whole local content measure and the normalized geometric limiting law.
+The Gamma-normalized empirical law and its absolute continuity are also
+checked. Its explicit occupation density and moment identities have a
+written proof; formalizing this identity is the next proof boundary. Remaining
 mathematical extensions are exact Hausdorff dimension and critical-measure
 positivity, supplying a Diophantine bound for the quantitative hitting theorem,
 a quantitative phase remainder,
@@ -455,6 +496,9 @@ matching lower bounds are proved under an explicit phase-hitting estimate,
 now derived from a standard uniform Diophantine lower bound without exponent
 loss. Bounds for every exponent above one suffice for dimension equality;
 the stronger exponent-one bound supplies positive critical measure.
+The Gamma normalization gives an absolutely continuous limiting law,
+mutually singular with the original law. The explicit density series and
+its moments remain written deductions, with a complete finite-cutoff proof.
 No new branch, publication, priority claim or
 trajectory-termination claim is opened.
 
@@ -470,7 +514,9 @@ the profile realizes their proposed irrational first-passage amplitude as
 profile, complete cluster set, singular law and explicit local geometric
 measure. The global gap-to-content criterion is attributed to
 Lapidus–Pomerance (1993). The exact Gamma-normalized amplitude is now
-Lean-checked; the path dictionary and spectral corollary remain written
-deductions. Whether to publish separately or
+Lean-checked, as is its absolutely continuous empirical law. The resulting
+contrast between two measure types belongs with the geometric results;
+the explicit occupation density, path dictionary and spectral corollary
+remain written deductions. Whether to publish separately or
 incorporate this into Paper B remains an editorial decision; literature
 priority requires a wider search. The working note is not a new deposit.

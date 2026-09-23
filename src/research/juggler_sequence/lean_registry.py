@@ -344,6 +344,8 @@ AUXILIARY_MODULES: dict[str, str] = {
     "BeattyCertificateWeights": "Moving phase asymptotic and uniform two-sided three-halves bounds for actual certificate gap weights",
     "BeattyGammaNormalization": "Uniform Gamma interpolation for arbitrary moving fractional parts from log-convexity",
     "BeattyFirstPassageAmplitude": "Exact BGL Gamma normalization and explicit periodic amplitude for original integer certificate counts",
+    "BeattyAmplitudeRegularity": "Null-image derivative criterion and absolute continuity of real pushforward measures without global injectivity",
+    "BeattyPassageDistribution": "Absolutely continuous empirical law of the Gamma-normalized first-passage counts and singular contrast with the original law",
     "BeattyGapVolume": "Exact metric neighbourhood volume of an interval complement from its disjoint exhaustive gaps",
     "BeattyGapDecay": "Integral-test tail bound and cube-root truncated-sum bounds for three-halves gap lengths",
     "BeattyCertificateCantor": "Exact certificate tube formula, positive finite cube-root volume bounds and Minkowski dimension two thirds",

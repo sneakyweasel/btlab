@@ -104,6 +104,8 @@ import Problems.Juggler.BeattyCertificateDistribution
 import Problems.Juggler.BeattyCertificateWeights
 import Problems.Juggler.BeattyGammaNormalization
 import Problems.Juggler.BeattyFirstPassageAmplitude
+import Problems.Juggler.BeattyAmplitudeRegularity
+import Problems.Juggler.BeattyPassageDistribution
 import Problems.Juggler.BeattyGapVolume
 import Problems.Juggler.BeattyGapDecay
 import Problems.Juggler.BeattyCertificateCantor
