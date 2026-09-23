@@ -98,7 +98,7 @@ normalization, finds the same kind of structure here.
   (alias `collatz_finite_descent`). `--remaining` is the short-block
   bound `L`, default 4 in the CLI, 12 in the mathematical bound.
 - Adapter tests: `tests/research/collatz_finite_descent/test_finite_descent.py`
-- Records: `experiments/collatz/finite_descent/`
+- Records: `data/research/collatz/finite_descent/`
 - Perturbation: `C_{5,1}` via `plan_perturbation_5_1`. The `O^L` word of
   `2^L-1` is `(3,1)`-specific for `L≥2`; uniform `L`-descent on
   `n mod 2^L` still fails because odd residues expand on the first step.

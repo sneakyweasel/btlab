@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from pathlib import Path
+from research.experiments.paths import collatz_data_dir
 
 
 def _itinerary(ks: str) -> int:
@@ -27,7 +27,7 @@ def _realizer(ks: str) -> int:
 def _enumerate_itineraries(length: int, max_k: int, write: bool) -> int:
     from research.collatz.experiments.itinerary_enumeration import run_itinerary_enumeration
 
-    out = Path("experiments") / "collatz" if write else None
+    out = collatz_data_dir() if write else None
     result = run_itinerary_enumeration(length, max_k, output_dir=out)
     print(result.format(), end="")
     if result.rows:
@@ -41,7 +41,7 @@ def _enumerate_itineraries(length: int, max_k: int, write: bool) -> int:
 def _fixed_budget(length: int, sum_k: int, write: bool) -> int:
     from research.collatz.experiments.fixed_budget import run_fixed_budget
 
-    out = Path("experiments") / "collatz" if write else None
+    out = collatz_data_dir() if write else None
     result = run_fixed_budget(length, sum_k, output_dir=out)
     print(result.format(), end="")
     return 0
@@ -50,7 +50,7 @@ def _fixed_budget(length: int, sum_k: int, write: bool) -> int:
 def _permutations(ks: str, write: bool) -> int:
     from research.collatz.experiments.permutation_analysis import run_permutation_analysis
 
-    out = Path("experiments") / "collatz" if write else None
+    out = collatz_data_dir() if write else None
     payload = run_permutation_analysis(ks, output_dir=out)
     summary = payload["summary"]
     print("Permutation analysis  [EXACT C; R compared computationally on this multiset]")
@@ -263,7 +263,7 @@ def _dual_dataset(length: int, max_k: int, write: bool) -> int:
         "[EXACT finite rows]"
     )
     if write:
-        output = Path("experiments") / "collatz"
+        output = collatz_data_dir()
         manifest = ExperimentManifest(
             experiment_name="dual_code",
             parameters={"length": length, "max_k": max_k},

@@ -2,9 +2,8 @@
 
 from __future__ import annotations
 
-from pathlib import Path
-
 from research.collatz.cylinders import parse_ks
+from research.experiments.paths import collatz_data_dir
 
 
 def _format_fraction(value) -> str:
@@ -49,7 +48,7 @@ def _fixed_integer_census(
 ) -> int:
     from research.collatz.asymptotic import run_fixed_integer_census
 
-    output = Path("experiments") / "collatz" if write else None
+    output = collatz_data_dir() if write else None
     result = run_fixed_integer_census(
         limit,
         max_steps,

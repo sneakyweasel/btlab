@@ -111,7 +111,7 @@ Do not re-test REFUTED ids `W_commutes_T`, `H_BT_independence`,
 
 - `btlab research analyze|attack|reproduce|report syracuse`
 - Adapter tests: `tests/research/syracuse/test_syracuse.py`
-- Records: `experiments/syracuse/`
+- Records: `data/research/collatz/syracuse/`
 - Seed 27, state cap 16: closure **INCONCLUSIVE** by design (the seed
   trajectory is longer than the cap). Seed 1 is a finite fixed point and
   is not the benchmark seed.

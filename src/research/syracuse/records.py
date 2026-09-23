@@ -5,12 +5,13 @@ from __future__ import annotations
 from collections.abc import Sequence
 from pathlib import Path
 
+from research.experiments.paths import collatz_data_dir
 from research_engine.planner.hypothesis import PriorArtStatus
 from research_engine.planner.orchestrator import PlannerReport
 from research_engine.planner.records import write_records as write_engine_records
 from research_engine.verification.targets import TheoremTarget
 
-RECORD_DIR = Path(__file__).resolve().parents[3] / "experiments" / "syracuse"
+RECORD_DIR = collatz_data_dir() / "syracuse"
 
 
 def write_records(

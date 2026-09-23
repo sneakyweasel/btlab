@@ -22,6 +22,12 @@ are removed. The Juggler companion website remains in `web/juggler-companion/`.
 and `research.literature` read their supporting registries. These are infrastructure,
 not additional research programmes.
 
+Collatz outputs live in `data/research/collatz/`, including finite-descent and
+Syracuse records. CLI writers resolve this location from their source checkout,
+so running a command elsewhere does not create another output tree. Generated
+`raw/`, `derived/`, and `reports/` subdirectories are ignored; curated evidence
+and archived YAML records remain tracked.
+
 Lean modules are retained through Juggler/Collatz imports and current ledger
 citations, including their transitive dependencies. The library barrels contain
 only retained imports. Build with

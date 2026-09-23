@@ -2,9 +2,8 @@
 
 from __future__ import annotations
 
-from pathlib import Path
-
 from bt.representation import encode
+from research.experiments.paths import collatz_data_dir
 
 
 def _compatibility(ks: str) -> int:
@@ -83,7 +82,7 @@ def _information_test(
 
     if precision_max < 1:
         raise ValueError("precision_max must be >= 1")
-    output = Path("experiments") / "collatz" if write else None
+    output = collatz_data_dir() if write else None
     result = run_information_content(
         max_length,
         max_k,
@@ -126,7 +125,7 @@ def _near_critical(
 ) -> int:
     from research.collatz.experiments.near_critical import run_near_critical
 
-    output = Path("experiments") / "collatz" if write else None
+    output = collatz_data_dir() if write else None
     result = run_near_critical(
         exhaustive_max_length=max_length,
         exhaustive_max_k=max_k,
@@ -195,7 +194,7 @@ def _affine_center_census(
 ) -> int:
     from research.collatz.experiments.affine_center import run_affine_center_census
 
-    output = Path("experiments") / "collatz" if write else None
+    output = collatz_data_dir() if write else None
     result = run_affine_center_census(
         max_length,
         max_k,

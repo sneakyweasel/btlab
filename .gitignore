@@ -45,12 +45,10 @@ web/juggler-companion/dist/
 credentials.json
 prove2me_workspace/
 
-# Experiment outputs (keep directory structure)
-experiments/**/*.json
-experiments/**/*.jsonl
-experiments/**/*.parquet
-experiments/**/*.csv
-experiments/**/*.txt
+# Generated Collatz tables and reports; curated research records remain tracked.
+/data/research/collatz/raw/
+/data/research/collatz/derived/
+/data/research/collatz/reports/
 
 # Local research databases and range caches
 data/research/**/*.sqlite

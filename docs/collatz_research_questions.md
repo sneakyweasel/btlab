@@ -7,7 +7,7 @@ not pursued.
 
 This file is the active claim register. Separate placeholder result and
 hypothesis logs were retired; experimental tables live under
-`experiments/` when a runner writes them.
+`data/research/collatz/` when a runner writes them.
 
 ## Answered in Milestone 2 (with the stated status)
 

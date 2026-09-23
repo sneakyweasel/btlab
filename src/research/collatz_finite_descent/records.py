@@ -5,14 +5,13 @@ from __future__ import annotations
 from collections.abc import Sequence
 from pathlib import Path
 
+from research.experiments.paths import collatz_data_dir
 from research_engine.attacks.result import AttackResult, AttackStatus
 from research_engine.core.semantics import SearchScope
 from research_engine.planner.orchestrator import PlannerReport
 from research_engine.verification.targets import TheoremTarget
 
-RECORD_DIR = (
-    Path(__file__).resolve().parents[3] / "experiments" / "collatz" / "finite_descent"
-)
+RECORD_DIR = collatz_data_dir() / "finite_descent"
 
 
 def record_status(result: AttackResult, *, lean_theorem: str = "") -> str:

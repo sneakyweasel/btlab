@@ -3,11 +3,16 @@
 from __future__ import annotations
 
 import io
+import json
 from contextlib import redirect_stdout
+from pathlib import Path
+
+import pytest
 
 from cli.main import main
 from bt.representation import encode
 from research.collatz.core import collatz_step
+from research.experiments import paths
 
 
 def _run(*args: str) -> str:
@@ -16,6 +21,37 @@ def _run(*args: str) -> str:
         code = main(list(args))
     assert code == 0
     return buf.getvalue()
+
+
+@pytest.mark.parametrize("arguments, subdirectory", [
+    (("dual-dataset", "--length", "1", "--max-k", "2"), "raw"),
+    (("complexity", "--k-max", "1"), "reports"),
+])
+def test_write_uses_source_checkout_from_another_directory(
+    tmp_path, monkeypatch, arguments, subdirectory
+):
+    checkout = tmp_path / "selected checkout"
+    source = checkout / "src/research/experiments/paths.py"
+    source.parent.mkdir(parents=True)
+    source.touch()
+    monkeypatch.setattr(paths, "__file__", str(source))
+    elsewhere = tmp_path / "unrelated directory"
+    elsewhere.mkdir()
+    monkeypatch.chdir(elsewhere)
+
+    output = checkout / "data/research/collatz"
+    _run("collatz", *arguments)
+    assert not output.exists()
+    _run("collatz", *arguments, "--write")
+    assert list((output / subdirectory).glob("*.json"))
+    assert not list(elsewhere.iterdir())
+    assert not (checkout / "experiments").exists()
+    for manifest in output.glob("raw/*_manifest.json"):
+        payload = json.loads(manifest.read_text(encoding="utf-8"))
+        for artifact in payload["artifacts"].values():
+            if artifact:
+                assert Path(artifact).is_relative_to(output)
+                assert Path(artifact).is_file()
 
 
 def test_collatz_analyze_27():

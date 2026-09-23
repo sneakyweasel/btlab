@@ -50,7 +50,7 @@ def add_collatz_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_exp.add_argument(
         "--write",
         action="store_true",
-        help="write JSONL/JSON under experiments/collatz/",
+        help="write JSONL/JSON under this checkout's data/research/collatz/",
     )
 
     p_th = c.add_parser("theorems", help="Layer A: BT(3n+1) = BT(n)+")
@@ -105,7 +105,7 @@ def add_collatz_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_cx.add_argument(
         "--write",
         action="store_true",
-        help="write JSON under experiments/collatz/reports/",
+        help="write JSON under this checkout's data/research/collatz/reports/",
     )
 
     p_sg = c.add_parser(

@@ -26,6 +26,7 @@ from bt.transducers.divide_by_two_power import DivideByTwoPowerTransducer
 from research.collatz.transducers.odd_part import odd_part_word
 from research.collatz.transitions import NUMERIC_FEATURE_NAMES, feature_transition
 from research.collatz.valuation import v2
+from research.experiments.paths import collatz_data_dir
 
 
 def _analyze(n: int) -> int:
@@ -143,7 +144,7 @@ def _automaton(precision: int, word: str | None) -> int:
 def _experiment(limit: int, write: bool) -> int:
     out_dir: Path | None = None
     if write:
-        out_dir = Path("experiments") / "collatz"
+        out_dir = collatz_data_dir()
     result = run_exhaustive_experiment(limit, output_dir=out_dir)
     print(f"experiment: {result.experiment_name}")
     print(f"range: {result.integer_range}")
@@ -288,7 +289,7 @@ def _entropy(ks: str, length: int, leftover: int) -> int:
 
 
 def _complexity(k_max: int, write: bool) -> int:
-    out_dir = Path("experiments") / "collatz" if write else None
+    out_dir = collatz_data_dir() if write else None
     result = run_complexity_spectrum(k_max, output_dir=out_dir)
     print(result.format(), end="")
     if result.output_path:

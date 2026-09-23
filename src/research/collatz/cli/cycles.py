@@ -2,9 +2,8 @@
 
 from __future__ import annotations
 
-from pathlib import Path
-
 from research.collatz.cylinders import parse_ks
+from research.experiments.paths import collatz_data_dir
 
 
 def _cycle(ks: str) -> int:
@@ -32,7 +31,7 @@ def _cycle(ks: str) -> int:
 def _cycle_census(max_p: int, k_max: int, additive_bound: int | None, write: bool) -> int:
     from research.collatz.experiments.cycle_census import run_cycle_census
 
-    output = Path("experiments") / "collatz" if write else None
+    output = collatz_data_dir() if write else None
     result = run_cycle_census(
         max_p,
         k_max,

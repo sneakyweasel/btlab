@@ -2,14 +2,13 @@
 
 from __future__ import annotations
 
-from pathlib import Path
-
 from research.collatz.warp import (
     palindrome_along_trajectory,
     preserved_counterexamples,
     warp_state,
     warped_trajectory,
 )
+from research.experiments.paths import collatz_data_dir
 
 
 def _warp(n: int) -> int:
@@ -38,7 +37,7 @@ def _warp(n: int) -> int:
 def _warp_census(limit: int, write: bool, identity_length: int) -> int:
     from research.collatz.experiments.bt_warp import run_bt_warp_census
 
-    output = Path("experiments") / "collatz" if write else None
+    output = collatz_data_dir() if write else None
     result = run_bt_warp_census(
         limit, identity_length=identity_length, output_dir=output
     )
@@ -91,7 +90,7 @@ def _warp_realizer(ks: str) -> int:
 def _warp_realizer_census(max_length: int, max_k: int, write: bool) -> int:
     from research.collatz.experiments.bt_warp import run_bt_warp_realizer
 
-    output = Path("experiments") / "collatz" if write else None
+    output = collatz_data_dir() if write else None
     result = run_bt_warp_realizer(max_length, max_k, output_dir=output)
     report = result.report
     print("Canonical-realizer warp census  [BOUNDED COMPUTATION]")
