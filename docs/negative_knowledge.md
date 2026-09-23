@@ -2591,24 +2591,24 @@ companion-shift order 6).
 Kind: `KNOWN` / `REPARAMETERIZATION`.
 Do not reopen: these as Juggler or BT-core frontiers.
 
-Dossiers: [cerny_bt](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/cerny_bt.md),
-[kabelian_complexity](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/kabelian_complexity.md),
-[erdos_distinct_subset_sums](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/erdos_distinct_subset_sums.md),
-[balanced_ternary_digit_sum_dynamics](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/balanced_ternary_digit_sum_dynamics.md),
-[balanced_ternary_weight_dynamics](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/balanced_ternary_weight_dynamics.md),
-[balanced_ternary_weight_drift](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/balanced_ternary_weight_drift.md),
-[balanced_digit_sum_polynomials](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/balanced_digit_sum_polynomials.md),
-[skolem_lrs](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/skolem_lrs.md),
-[skolem_order2_known_zero](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/skolem_order2_known_zero.md),
-[skolem_order5_unconditional](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/skolem_order5_unconditional.md),
-[home_prime_49](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/home_prime_49.md),
-[matthews_prize_mod3_avoider](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/matthews_prize_mod3_avoider.md),
-[cyclic_tag_bit](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/cyclic_tag_bit.md),
-[reverse_and_add_base3](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/reverse_and_add_base3.md),
-[mx_plus_r_7x1_class_obstruction](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/mx_plus_r_7x1_class_obstruction.md),
-[switching_affine_z2_origin](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/switching_affine_z2_origin.md),
-[companion_shift_order6_zero_class](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/companion_shift_order6_zero_class.md),
-[misere_quotients](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/misere_quotients.md).
+Dossiers: [cerny_bt](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/problems/cerny_bt.md),
+[kabelian_complexity](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/problems/kabelian_complexity.md),
+[erdos_distinct_subset_sums](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/problems/erdos_distinct_subset_sums.md),
+[balanced_ternary_digit_sum_dynamics](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/problems/balanced_ternary_digit_sum_dynamics.md),
+[balanced_ternary_weight_dynamics](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/problems/balanced_ternary_weight_dynamics.md),
+[balanced_ternary_weight_drift](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/problems/balanced_ternary_weight_drift.md),
+[balanced_digit_sum_polynomials](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/problems/balanced_digit_sum_polynomials.md),
+[skolem_lrs](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/problems/skolem_lrs.md),
+[skolem_order2_known_zero](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/problems/skolem_order2_known_zero.md),
+[skolem_order5_unconditional](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/problems/skolem_order5_unconditional.md),
+[home_prime_49](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/problems/home_prime_49.md),
+[matthews_prize_mod3_avoider](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/problems/matthews_prize_mod3_avoider.md),
+[cyclic_tag_bit](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/problems/cyclic_tag_bit.md),
+[reverse_and_add_base3](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/problems/reverse_and_add_base3.md),
+[mx_plus_r_7x1_class_obstruction](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/problems/mx_plus_r_7x1_class_obstruction.md),
+[switching_affine_z2_origin](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/problems/switching_affine_z2_origin.md),
+[companion_shift_order6_zero_class](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/problems/companion_shift_order6_zero_class.md),
+[misere_quotients](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/problems/misere_quotients.md).
 
 ---
 
@@ -2749,7 +2749,7 @@ CLOSE) are included so the completeness gate cannot hide them.
 [juggler_transfer_weight_invariant](problems/juggler_transfer_weight_invariant.md),
 [juggler_twin_flight](problems/juggler_twin_flight.md),
 [juggler_two_step_parity](problems/juggler_two_step_parity.md),
-[research_engine_v24](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/research_engine_v24.md).
+[research_engine_v24](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/problems/research_engine_v24.md).
 
 **Length-only charges are exhausted (added after pricing the family).** A
 charge seeing only \((n,L,o)\) must bound every configuration those
