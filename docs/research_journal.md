@@ -15,8 +15,10 @@ decision, and canonical record. Keep the journal brief.
 Pairing the signed inverse coefficients gives a one-step lower bound 9/7,
 but keeping each sign fixed for two steps gives joint coefficient
 20064/29127 < 1 on the class 4 modulo 27. Lean checks both identities,
-the exact complete sums and a scalar affine bound. The written proof
-extends the deficit to actual reciprocal masses on a=31+54t, below 3/4.
+the exact complete sums, the affine bound and now the complete actual
+reciprocal sums. Inverse-exponent pairs enumerate ordinary ancestors
+without duplication, and the normalized paired mass on a=31+54t is below
+3/4. Real summability is checked; signed positivity and oddness are shared.
 **CLOSE** automatic compensation: iterating the one-step gain counts
 mixed-sign paths; Juggler's two signed codes are negatives of one another,
 not independent filters. The 3/8 pressure target is unchanged. See the

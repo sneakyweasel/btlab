@@ -94,28 +94,10 @@ theorem distinct_odd_loss (s : Finset ℕ) (hn : ∀ n ∈ s, 5 ≤ n)
   · intro n hn'
     exact loss_six_lower (hn n hn') (ho n hn')
 
-private theorem return_pos {n : ℕ} (hn : 1 ≤ n) : 0 < oddReturn false n := by
-  have h := numerator_pos false hn
-  rw [← oddReturn_mul false n] at h
-  exact Nat.pos_of_mul_pos_right h
-
-private theorem return_odd {n : ℕ} (hn : 1 ≤ n) : Odd (oddReturn false n) := by
-  have hne : numerator false n ≠ 0 := (numerator_pos false hn).ne'
-  by_contra he
-  have hd : 2 ∣ oddReturn false n := even_iff_two_dvd.mp (Nat.not_odd_iff_even.mp he)
-  have hdiv : 2 * 2 ^ padicValNat 2 (numerator false n) ∣
-      oddReturn false n * 2 ^ padicValNat 2 (numerator false n) :=
-    mul_dvd_mul_right hd _
-  have hp : 2 ^ (padicValNat 2 (numerator false n) + 1) ∣ numerator false n := by
-    convert hdiv using 1
-    · rw [pow_succ, Nat.mul_comm]
-    · exact (oddReturn_mul false n).symm
-  exact (pow_succ_padicValNat_not_dvd hne) hp
-
 /-- The actual negative odd-return map on positive odd integers. -/
 def syracuse (n : OddPositive) : OddPositive :=
-  ⟨oddReturn false n.val, Nat.succ_le_iff.mpr (return_pos n.property.1),
-    return_odd n.property.1⟩
+  ⟨oddReturn false n.val, Nat.succ_le_iff.mpr (oddReturn_pos false n.property.1),
+    oddReturn_odd false n.property.1⟩
 
 /-- Subtype iterates agree with the existing signed natural-number map. -/
 theorem syracuse_iterate_val (d : ℕ) (n : OddPositive) :

@@ -32,8 +32,11 @@ for every a congruent to 4 modulo 27,
  K_2^+(a)+K_2^-(a)=\frac{20064}{29127}<1.
 \]
 
-These are full infinite exponent sums, not cutoff values. The scalar
-affine bound below further gives, for every a=31+54t with t>=0,
+These are full infinite exponent sums, not cutoff values. Let M_2^s(a)
+be the reciprocal mass of actual odd ancestors prime to three at exactly
+two returns under the fixed sign s. For every odd a>=2, Lean also proves
+M_2^s(a)<=K_2^s(a)/(a-5/4), including finiteness of that mass and convergence
+of its ordinary real series. Consequently, for every a=31+54t with t>=0,
 
 \[
  a\sum_{s\in\{+1,-1\}}\sum_{\substack{n\ge1\text{ odd},\ 3\nmid n\\S_s^2(n)=a}}
@@ -78,10 +81,10 @@ notation does not make the two signs independent.
 
 ## Candidate operations / invariants
 
-**EXACT — HUMAN PROOF**, with the pairing, coefficient bounds and scalar
-inequality compiled in Lean: the statements above. The complete actual-mass
-summation consequence below is a written proof; it is not claimed as an
-additional compiled theorem. Independent review remains outstanding.
+**EXACT — HUMAN PROOF**, with the pairing, coefficient bounds, scalar
+inequality and complete actual-mass summation now compiled in Lean.
+The ledger retains this label pending independent and advisory statement
+review; the local proof no longer has an unformalized summation step.
 
 The paired one-step operator is L_++L_-. Its square contains L_+L_- and
 L_-L_+ as well as L_+^2 and L_-^2. These cross terms describe trajectories
@@ -120,7 +123,16 @@ a conjugacy of the subsequent fixed-sign dynamics.
 [FibreSignCoupling.lean](../../formal/Problems/Collatz/FibreSignCoupling.lean)
 proves both cross-sign identities, the uniform one-step lower bound, the
 two exact depth-two coefficients for every natural target in the specified
-class, and the scalar two-step reciprocal estimate. The general finite
+class, and the scalar two-step reciprocal estimate. `twoStepMass` is a
+literal sum over ordinary integer ancestors. A bijection with pairs of
+admissible inverse exponents proves that the sum counts each source once.
+`twoStepMass_le` controls the complete sum; `twoStepMass_lt_top` and
+`two_step_reciprocals_summable` prove its finiteness and real summability.
+`paired_twoStepMass_lt` proves the joint deficit on the whole odd residue
+class, and `paired_twoStepMass_progression` specializes to 31+54t.
+The positivity and oddness proofs for both signs are shared in
+[FibreActual.lean](../../formal/Problems/Collatz/FibreActual.lean), replacing
+the duplicated private negative-map proofs. The general finite
 period formula in [FibreMass.lean](../../formal/Problems/Collatz/FibreMass.lean)
 certifies the full geometric sums rather than truncating them.
 
@@ -128,7 +140,7 @@ The [axiom audit](../../formal/AxiomCheckFibreSignCoupling.lean) records the
 public interfaces. Ledger tag: written proof with local kernel evidence;
 external advisory coverage is pending and no statement was sent externally.
 
-Validation: the active Lean build passes all 9,033 jobs. The six-interface
+Validation: the active Lean build passes all 9,033 jobs. The thirteen-interface
 axiom audit contains only propext, Classical.choice and Quot.sound. The
 four new regression checks, existing fibre checks, ledger checks and
 documentation links pass; the Lean style gate reports no new violations.
@@ -182,6 +194,7 @@ For a=31+54t,
  \le \frac{124}{119}\frac{20064}{29127}<\frac34.
 \]
 
+The complete summation and this specialization are now kernel-checked.
 This proves an infinite progression of actual joint deficits, with no
 periodicity hypothesis and no extrapolation from the finite controls.
 

@@ -128,6 +128,26 @@ theorem oddReturn_mul (plus : Bool) (n : ℕ) :
   rw [oddReturn, Nat.mul_comm]
   exact Nat.mul_div_cancel' pow_padicValNat_dvd
 
+/-- Removing powers of two from either signed numerator preserves positivity. -/
+theorem oddReturn_pos (plus : Bool) {n : ℕ} (hn : 1 ≤ n) : 0 < oddReturn plus n := by
+  have h := numerator_pos plus hn
+  rw [← oddReturn_mul plus n] at h
+  exact Nat.pos_of_mul_pos_right h
+
+/-- At every positive input, the signed odd return has removed all factors of two. -/
+theorem oddReturn_odd (plus : Bool) {n : ℕ} (hn : 1 ≤ n) : Odd (oddReturn plus n) := by
+  have hne : numerator plus n ≠ 0 := (numerator_pos plus hn).ne'
+  by_contra he
+  have hd : 2 ∣ oddReturn plus n := even_iff_two_dvd.mp (Nat.not_odd_iff_even.mp he)
+  have hdiv : 2 * 2 ^ padicValNat 2 (numerator plus n) ∣
+      oddReturn plus n * 2 ^ padicValNat 2 (numerator plus n) :=
+    mul_dvd_mul_right hd _
+  have hp : 2 ^ (padicValNat 2 (numerator plus n) + 1) ∣ numerator plus n := by
+    convert hdiv using 1
+    · rw [pow_succ, Nat.mul_comm]
+    · exact (oddReturn_mul plus n).symm
+  exact (pow_succ_padicValNat_not_dvd hne) hp
+
 /-- An actual positive solution of the affine equation is exactly its admissible candidate. -/
 theorem child_of_equation (plus : Bool) (k : ℕ) {m n : ℕ} (hm : 1 ≤ m) (hn : 1 ≤ n)
     (he : numerator plus n = 2^(k+1)*m) :
