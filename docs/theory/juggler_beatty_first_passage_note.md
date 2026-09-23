@@ -161,7 +161,7 @@ C_r=\kappa q^{\delta_r}B^r r^{-1/2}(1+O(r^{-1})),
 \qquad \kappa=(2\pi\alpha(\alpha-1))^{-1/2}.
 \]
 This is Proposition 34 of the public v21 manuscript *Marked Rotations and
-Factorization Heights for Dual Beatty Passage Counts*, where the lower
+Factorization Heights for Dual Beatty Passage Counts* [2], where the lower
 normalized family is denoted \(R_r^G\). The earlier \(R_r^+\) notation is
 retained in this laboratory.
 
@@ -440,7 +440,7 @@ content is the explicit cumulative series, its phase asymptotic, the complete
 accumulation set and the singular continuous empirical law. The proof includes
 a non-circular coefficient bound and treatment of the dense jumps.
 No priority claim is made; the coefficient method uses classical fluctuation
-theory. The public Beatty manuscript supplies the same normalization and
+theory. The public Beatty manuscript [3, Corollary 12] supplies the same normalization and
 envelopes, while this note identifies the whole profile and the distribution
 of its values along the actual count sequence.
 
