@@ -10,6 +10,18 @@ The earlier full-length journal is available at Git revision
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-23 -- Near-critical periodic weights already require the global cell rate
+
+Lean now transports any nonzero subsolution coordinate to a global
+geometric lower bound at the same rate, with cost 3/2^(2*3^r) and one
+depth shift. Therefore nonzero periodic tables at rates tending to one
+already imply uniform subexponential cell lower decay. **CLOSE** treating
+the capped family as an easier local shortcut; its root-prefactor bound
+is additional. This downgrades the proposed 1-1/r scale, without refuting
+it. The next target is a direct actual-word lower count at one ordinary
+integer. No coefficient divergence or Juggler input follows. See the
+[dossier](problems/collatz_fibre_rate_barrier.md).
+
 ## 2026-09-23 -- Capped weights improve fixed-root constants; the near-critical bound remains open
 
 Lean constructs the greatest bounded periodic subsolution at each rate and

@@ -11213,5 +11213,25 @@
    "tests/research/collatz/test_fibre_subsolutions.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "C-fibre-nearcritical-global-rate-barrier",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For either signed complete inverse coefficient operator, a bounded unit-supported periodic subsolution h at nonnegative rate q and ternary level r gives C_(d+1)(a)>=(3/2^(2*3^r))*h(b)*q^d for every coordinate b, depth d and positive odd unit root a. A positive h(b) therefore gives a positive constant uniform in a,d. Any sequence of nonzero such tables with nonnegative rates tending to one implies: for every 0<t<1 there exists c_t>0 such that C_(d+1)(a)>=c_t*t^d at every depth and positive odd unit root. In particular this necessity holds for greatest capped tables positive at one fixed root. No root-to-deficit estimate is needed for this implication. Neither the family, the global floor nor coefficient divergence is proved. Kernel-checked; independent review and advisory statement coverage pending.",
+  "source": "docs/problems/collatz_fibre_rate_barrier.md",
+  "lean": "formal/Problems/Collatz/FibreRateBarrier.lean",
+  "lean_trust": "kernel",
+  "decl": [
+   "Problems.Collatz.FibreRateBarrier.global_lower_of_subsolution",
+   "Problems.Collatz.FibreRateBarrier.exists_global_lower",
+   "Problems.Collatz.FibreRateBarrier.UniformSubcriticalLower",
+   "Problems.Collatz.FibreRateBarrier.uniform_lower_of_nearcritical_weights",
+   "Problems.Collatz.FibreRateBarrier.uniform_lower_of_maximal_weights"
+  ],
+  "tests": [
+   "tests/research/collatz/test_fibre_lower_transfer.py",
+   "tests/research/collatz/test_fibre_critical_minorants.py"
+  ],
+  "related_conjectures": []
  }
 ]

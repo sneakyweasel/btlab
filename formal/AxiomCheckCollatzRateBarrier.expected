@@ -1,0 +1,10 @@
+'Problems.Collatz.FibreRateBarrier.global_lower_of_subsolution' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Collatz.FibreRateBarrier.exists_global_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreRateBarrier.uniform_lower_of_nearcritical_weights' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Collatz.FibreRateBarrier.uniform_lower_of_maximal_weights' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

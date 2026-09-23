@@ -153,3 +153,11 @@ capped lower iteration; exact Python lower/upper iterations bracket the
 greatest table at four stated subcritical rates. The all-level estimate
 `maximalWeight(a) >= c*(1-q)` as `q -> 1` remains open. See the
 [capped-weight dossier](../../../docs/problems/collatz_fibre_subsolutions.md).
+
+[FibreRateBarrier.lean](FibreRateBarrier.lean) shows that any nonzero
+periodic subsolution gives a global geometric lower bound at its rate,
+with one depth shift and the explicit residue-access cost. Thus even
+existence of nonzero tables at rates tending to one requires uniform
+subexponential lower decay. The root-prefactor condition is additional;
+capping does not avoid the global minimum-cell problem. See the
+[rate-barrier dossier](../../../docs/problems/collatz_fibre_rate_barrier.md).

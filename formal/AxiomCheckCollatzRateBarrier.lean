@@ -1,0 +1,6 @@
+import Problems.Collatz.FibreRateBarrier
+
+#print axioms Problems.Collatz.FibreRateBarrier.global_lower_of_subsolution
+#print axioms Problems.Collatz.FibreRateBarrier.exists_global_lower
+#print axioms Problems.Collatz.FibreRateBarrier.uniform_lower_of_nearcritical_weights
+#print axioms Problems.Collatz.FibreRateBarrier.uniform_lower_of_maximal_weights

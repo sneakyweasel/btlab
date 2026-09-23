@@ -207,6 +207,13 @@ feasibility at those rates for arbitrarily large r nor this lower bound is
 known. Failure of this specific scale would not refute the general family
 question (4).
 
+The subsequent [rate-barrier audit](collatz_fibre_rate_barrier.md) shows
+that even strict positivity of such tables at rates tending to one already
+forces the uniform subexponential minimum-cell bound. The proposed scale
+is therefore downgraded as an easier local attack: it requires that global
+arithmetic input as well as the fixed-root prefactor. The finite brackets
+and conditional statements remain valid.
+
 ## Decision
 
 **PARK** further finite computation after the stated four-level test.
