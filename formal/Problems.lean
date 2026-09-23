@@ -42,6 +42,7 @@ import Problems.Collatz.FibreLowerTransfer
 import Problems.Collatz.FibreMinorants
 import Problems.Collatz.FibreRootBounds
 import Problems.Collatz.FibreBlockWeights
+import Problems.Collatz.FibreSubsolutions
 import Problems.Engine.ParameterDomain
 import Problems.Engine.ControlWord
 import Problems.Engine.ControlObstruction

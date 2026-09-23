@@ -1,0 +1,12 @@
+import Problems.Collatz.FibreSubsolutions
+
+#print axioms Problems.Collatz.FibreActual.transfer_le_of_residue_le
+#print axioms Problems.Collatz.FibreSubsolutions.subsolution_of_between
+#print axioms Problems.Collatz.FibreSubsolutions.le_maximalWeight
+#print axioms Problems.Collatz.FibreSubsolutions.maximalWeight_bounds
+#print axioms Problems.Collatz.FibreSubsolutions.maximalWeight_subsolution
+#print axioms Problems.Collatz.FibreSubsolutions.maximalWeight_antitone_rate
+#print axioms Problems.Collatz.FibreSubsolutions.subsolution_lift
+#print axioms Problems.Collatz.FibreSubsolutions.maximalWeight_mono_level
+#print axioms Problems.Collatz.FibreSubsolutions.maximalWeight_geometric_lower
+#print axioms Problems.Collatz.FibreSubsolutions.coarse_not_summable_of_maximalWeight

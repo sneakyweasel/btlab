@@ -283,4 +283,22 @@ theorem project_residue (r d m : ℕ) : project r d (residue (r+d) m) = residue 
   apply Fin.ext
   exact Nat.mod_mod_of_dvd m (Nat.pow_dvd_pow 3 (by omega))
 
+/-- Pointwise comparison on positive integer representatives passes through
+the complete signed inverse operator, even for different ternary levels. -/
+theorem transfer_le_of_residue_le (plus : Bool) {r t : ℕ}
+    {h : Level r → ℝ} {g : Level t → ℝ}
+    (hh : ∀ b, 0 ≤ h b) (hg : ∀ b, 0 ≤ g b)
+    (hle : ∀ n, 1 ≤ n → h (residue r n) ≤ g (residue t n))
+    {m : ℕ} (hm : 1 ≤ m) :
+    transfer plus r h (residue (r+1) m) ≤
+      transfer plus t g (residue (t+1) m) := by
+  apply Summable.tsum_le_tsum _ (row_summable plus r hh _) (row_summable plus t hg _)
+  intro k
+  rw [row_eq_branchWeight plus r k h hm, row_eq_branchWeight plus t k g hm]
+  apply mul_le_mul_of_nonneg_left _ (by unfold coefficient; positivity)
+  unfold branchWeight
+  split_ifs with ha
+  · exact hle _ (child_pos plus k hm ha)
+  · exact le_rfl
+
 end Problems.Collatz.FibreActual

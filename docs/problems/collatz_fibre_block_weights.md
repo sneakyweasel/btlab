@@ -232,6 +232,11 @@ useful constraints on further constructions. The next question is the
 root-anchored construction in the preceding paragraph; this phase stops
 without trying another family or expanding the residue census.
 
+The subsequent [capped-subsolution phase](collatz_fibre_subsolutions.md)
+constructs the greatest feasible bounded table at any fixed level and rate.
+Finite exact brackets improve root values at four stated rates; the required
+all-level root-to-deficit bound remains open.
+
 ## Publication assessment
 
 Status: `STRUCTURAL`. A formal synthesis of actual endpoint bounds and a

@@ -48,22 +48,6 @@ private theorem envelope_zero (plus : Bool) {r : ℕ} (hr : 1 ≤ r)
   | succ d => simp only [envelope, hz _ (project_nonunit hr _ a ha),
       transfer_zero plus (r+d) _ a ha, max_self]
 
-private theorem transfer_compare (plus : Bool) {r t : ℕ}
-    {h : Level r → ℝ} {g : Level t → ℝ}
-    (hh : ∀ b, 0 ≤ h b) (hg : ∀ b, 0 ≤ g b)
-    (hle : ∀ n, 1 ≤ n → h (residue r n) ≤ g (residue t n))
-    {m : ℕ} (hm : 1 ≤ m) :
-    transfer plus r h (residue (r+1) m) ≤
-      transfer plus t g (residue (t+1) m) := by
-  apply Summable.tsum_le_tsum _ (row_summable plus r hh _) (row_summable plus t hg _)
-  intro k
-  rw [row_eq_branchWeight plus r k h hm, row_eq_branchWeight plus t k g hm]
-  apply mul_le_mul_of_nonneg_left _ (by unfold coefficient; positivity)
-  unfold branchWeight
-  split_ifs with ha
-  · exact hle _ (child_pos plus k hm ha)
-  · exact le_rfl
-
 private theorem envelope_mono (plus : Bool) (r : ℕ) {h : Level r → ℝ}
     (hh : ∀ b, 0 ≤ h b) (d m : ℕ) (hm : 1 ≤ m) :
     envelope plus r h d (residue (r+d) m) ≤
@@ -73,7 +57,7 @@ private theorem envelope_mono (plus : Bool) (r : ℕ) {h : Level r → ℝ}
   | succ d ih =>
       simp only [envelope, project_residue]
       apply max_le_max le_rfl
-      exact transfer_compare plus (envelope_nonneg plus r hh d)
+      exact transfer_le_of_residue_le plus (envelope_nonneg plus r hh d)
         (envelope_nonneg plus r hh (d+1)) (fun n hn => ih n hn) hm
 
 private theorem residue_representative (r : ℕ) (a : Level r) :
@@ -118,7 +102,7 @@ theorem bounded_stopping_deficit (plus : Bool) {r : ℕ} (hr : 1 ≤ r)
   cases d with
   | zero => exact hdef
   | succ d =>
-      have hmono := transfer_compare plus (envelope_nonneg plus r hh d)
+      have hmono := transfer_le_of_residue_le plus (envelope_nonneg plus r hh d)
         (envelope_nonneg plus r hh (d+1))
         (fun n hn => envelope_mono plus r hh d n hn) hm
       simp only [envelope, project_residue] at hdef

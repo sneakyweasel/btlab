@@ -144,3 +144,12 @@ divided by `1-q` is at most a constant times N^3*(2/3)^(N-1), and tends to zero.
 This closes that particular construction of the preceding minorant family,
 not other periodic weights or fixed-root divergence. See the
 [block-weight dossier](../../../docs/problems/collatz_fibre_block_weights.md).
+
+[FibreSubsolutions.lean](FibreSubsolutions.lean) constructs the greatest
+bounded unit-supported periodic subsolution at each nonnegative rate.
+It simultaneously maximizes every root coordinate and increases under
+ternary refinement at a fixed rate. A safe increasing-update lemma supports
+capped lower iteration; exact Python lower/upper iterations bracket the
+greatest table at four stated subcritical rates. The all-level estimate
+`maximalWeight(a) >= c*(1-q)` as `q -> 1` remains open. See the
+[capped-weight dossier](../../../docs/problems/collatz_fibre_subsolutions.md).
