@@ -1,0 +1,136 @@
+{
+  "schema": "btlab-output/v1",
+  "programme": "collatz",
+  "research_id": null,
+  "created_utc": "2026-09-23T18:06:22.085182+00:00",
+  "scope": "Paper E: The existing growth certificate supports the stronger eventual lower exponent 423/500 = 0.846.",
+  "artifact_root": ".",
+  "generator": {
+    "command": [
+      "python",
+      "tools/check_papers_arb.py",
+      "--paper",
+      "E",
+      "--output-root",
+      "."
+    ],
+    "parameters": {
+      "paper": "E",
+      "transport": "MCP stdio",
+      "default_precision_bits": 256
+    },
+    "python": "3.13.9"
+  },
+  "source": {
+    "revision": "911f41ab7af5e96fb362023b3ec6f047a9e1b500",
+    "dirty": true,
+    "coverage": "loaded local Python, project configuration, and explicit sources at manifest creation; not an execution or dependency audit",
+    "files": [
+      {
+        "path": "pyproject.toml",
+        "sha256": "e99a8deaad3e42c12db855ee4f72dac9b190db67b5a088bea8377c8f94055ef7",
+        "bytes": 2746
+      },
+      {
+        "path": "src/research/__init__.py",
+        "sha256": "2f57f06dcf8334c7d93eb76d768947fa8c70ac35d681dd7cdcb3f988a1d7b565",
+        "bytes": 58
+      },
+      {
+        "path": "src/research/experiments/__init__.py",
+        "sha256": "edbe56c7b50bc27f3658d78aabdc3ab5da9c6b35f9f21588cfeeb368d2830bab",
+        "bytes": 209
+      },
+      {
+        "path": "src/research/experiments/provenance.py",
+        "sha256": "da03e38a6272cb737bd48543e9bc2c44d44d093056e4a2303efb27e6c3c0a0cd",
+        "bytes": 12187
+      },
+      {
+        "path": "src/research/experiments/schema.py",
+        "sha256": "e7e5e2510862621b8d4bd60f9b38e29f7af05a6d2938ec71c0b60b60047632ed",
+        "bytes": 6595
+      },
+      {
+        "path": "src/research/experiments/table_io.py",
+        "sha256": "eccc3d72d3d375df7f4a346eff9b68b103395d568e46e45bfc75a018adbf5765",
+        "bytes": 3904
+      },
+      {
+        "path": "src/research_engine/arb_expressions.py",
+        "sha256": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+        "bytes": 10151
+      },
+      {
+        "path": "src/research_engine/intervals.py",
+        "sha256": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+        "bytes": 5630
+      },
+      {
+        "path": "tools/arb_mcp.py",
+        "sha256": "ff5f1aad04c0bc953e03997bdbb466f385bd0e04db217e8d09d52fc57925ecfe",
+        "bytes": 8865
+      },
+      {
+        "path": "tools/arb_paper_audit_core/__init__.py",
+        "sha256": "60a13e62761a04350a519ddd376be7a977202f294fa7eb654e12db1c05ca9511",
+        "bytes": 73
+      },
+      {
+        "path": "tools/arb_paper_audit_core/beatty.py",
+        "sha256": "b85bd7f41f7c8e2cfebe75811444675ea3a274f83b8ecf7a6035cc26f07aedc5",
+        "bytes": 4519
+      },
+      {
+        "path": "tools/arb_paper_audit_core/client.py",
+        "sha256": "797695762c4aec729c18819b67ea2f47e5905308e35a9e0d6d93e304d4c5a2b3",
+        "bytes": 3568
+      },
+      {
+        "path": "tools/arb_paper_audit_core/paper_a.py",
+        "sha256": "7b478c1637b6a523f6b467c9e73c764ff43387516f2f1890e6e9dbee91873339",
+        "bytes": 5648
+      },
+      {
+        "path": "tools/arb_paper_audit_core/paper_d.py",
+        "sha256": "bc218fa20dadac13ef3f95dcd3de8b57000d9dac1fa2553704095e0bd1d9d46f",
+        "bytes": 10029
+      },
+      {
+        "path": "tools/arb_paper_audit_core/scalars.py",
+        "sha256": "3e7a28b047f5c21cafd983b4ce6e4490054c036cf1277d5fc1861f2c7cabbc45",
+        "bytes": 5463
+      },
+      {
+        "path": "tools/arb_worker.py",
+        "sha256": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+        "bytes": 6252
+      },
+      {
+        "path": "tools/check_papers_arb.py",
+        "sha256": "bafe29b4ab8987cbef3b4e56703433be1c69348dbd7c97474c87fee43817b387",
+        "bytes": 6421
+      },
+      {
+        "path": "tools/lab.py",
+        "sha256": "d29778fdff81b9c9ad5f464d7cbc0ce22a52c500451c872371f3c7b25e2c4822",
+        "bytes": 4370
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "path": "docs/theory/juggler_signed_collatz_note.md",
+      "sha256": "3072661949d4a98790d77d607e936d1ceed6015984cf2053df0946bf3a2b3c25",
+      "bytes": 55406
+    }
+  ],
+  "outputs": [
+    {
+      "path": "e.json",
+      "sha256": "04c268f0d5153cadffcfa4814fc864c92f7def437e2c9549557a8f2c1cda2716",
+      "bytes": 21055
+    }
+  ],
+  "verification": "Hashes identify files only; no theorem or compilation status is asserted."
+}

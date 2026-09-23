@@ -389,6 +389,15 @@ Stop criterion          A Diophantine bound for log_2 3 must be assumed silently
 PROMOTE
 ```
 
+The [all-paper Arb MCP audit](../research/arb_paper_audit.md) computes the
+first 256 exact atoms and bounds the entire remaining mass by subtracting
+their mass from the proved total `1/(alpha-1)`. Positivity and
+`0 <= F^(2/3)-F_256^(2/3) <= (2/3)*tail` give the full moment interval
+`[1.40531077, 1.46506386]` and the Minkowski content interval
+`[2.95207917, 3.07760004]`, rounded outward. These finite enclosures are
+**COMPUTATIONALLY VERIFIED** consequences of the established identities.
+They give no effective convergence rate or new Hausdorff lower bound.
+
 ## Open questions
 
 The qualitative logarithmic-slope phase theorem and normalization are complete

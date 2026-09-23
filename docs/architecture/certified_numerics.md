@@ -16,6 +16,13 @@ Agents can also use the dedicated [local Arb MCP](arb_mcp.md) for bounded
 expression enclosures, adaptive comparisons, production roots and canonical
 Paper C models/rates. It uses the same interval primitives with isolated workers.
 
+The [all-paper MCP audit](../research/arb_paper_audit.md) covers Papers A–E
+and the Beatty companion. It records sharper numerical consequences for A
+and E, certified full-profile moment bounds for Beatty, and a complete
+enclosure audit of D's existing exclusions. Reproduce it with
+`python tools/check_papers_arb.py`; this deliberately writes reports and
+provenance. Use `--output-root .build/arb-review` for a separate review run.
+
 ## Use and trust boundary
 
 ```python

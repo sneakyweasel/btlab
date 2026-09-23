@@ -1,0 +1,2436 @@
+{
+  "schema": "btlab.paper-arb-audit.v1",
+  "paper": "C",
+  "transport": "MCP stdio via tools/arb_mcp.py",
+  "scope": "Finite expression certificates and explicitly stated derived consequences; no new Lean proof or termination result.",
+  "paper_source_sha256": {
+    "before": "ff0f8e6bbea766896f0d70b5526f2d48227ea5971a2a345f51b32c512795688d",
+    "after": "ff0f8e6bbea766896f0d70b5526f2d48227ea5971a2a345f51b32c512795688d"
+  },
+  "paper_unchanged_during_run": true,
+  "input_source_sha256": {
+    "tools/check_papers_arb.py": "bafe29b4ab8987cbef3b4e56703433be1c69348dbd7c97474c87fee43817b387",
+    "tools/arb_paper_audit_core/__init__.py": "60a13e62761a04350a519ddd376be7a977202f294fa7eb654e12db1c05ca9511",
+    "tools/arb_paper_audit_core/beatty.py": "b85bd7f41f7c8e2cfebe75811444675ea3a274f83b8ecf7a6035cc26f07aedc5",
+    "tools/arb_paper_audit_core/client.py": "797695762c4aec729c18819b67ea2f47e5905308e35a9e0d6d93e304d4c5a2b3",
+    "tools/arb_paper_audit_core/paper_a.py": "7b478c1637b6a523f6b467c9e73c764ff43387516f2f1890e6e9dbee91873339",
+    "tools/arb_paper_audit_core/paper_d.py": "bc218fa20dadac13ef3f95dcd3de8b57000d9dac1fa2553704095e0bd1d9d46f",
+    "tools/arb_paper_audit_core/scalars.py": "3e7a28b047f5c21cafd983b4ce6e4490054c036cf1277d5fc1861f2c7cabbc45",
+    "tools/arb_mcp.py": "ff5f1aad04c0bc953e03997bdbb466f385bd0e04db217e8d09d52fc57925ecfe",
+    "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+    "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+    "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+    "tools/check_paper_c_intervals.py": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b",
+    "docs/theory/juggler_fate_almost_all_note.md": "ff0f8e6bbea766896f0d70b5526f2d48227ea5971a2a345f51b32c512795688d"
+  },
+  "summary": {
+    "roots": {
+      "pairing": {
+        "lower": "270809660205004340292763/604462909807314587353088",
+        "upper": "541619320410008680585527/1208925819614629174706176",
+        "display": "[0.448017001227305544763828 +/- 4.75e-25]",
+        "lower_residual": {
+          "lower": "21953114343714051302277/45671926166590716193865151022383844364247891968",
+          "upper": "21953114343715637845115/45671926166590716193865151022383844364247891968",
+          "display": "[4.806697721405e-25 +/- 6.00e-38]",
+          "precision_bits": 128
+        },
+        "upper_residual": {
+          "lower": "-2019048696902071114875/45671926166590716193865151022383844364247891968",
+          "upper": "-2019048696901289878405/45671926166590716193865151022383844364247891968",
+          "display": "[-4.42076537245e-26 +/- 5.00e-38]",
+          "precision_bits": 128
+        }
+      },
+      "V2": {
+        "lower": "145105725570576300931047/302231454903657293676544",
+        "upper": "580422902282305203724189/1208925819614629174706176",
+        "display": "[0.480114571849683343278657 +/- 4.37e-25]",
+        "lower_residual": {
+          "lower": "2276516994838285173779/22835963083295358096932575511191922182123945984",
+          "upper": "2276516994839232723949/22835963083295358096932575511191922182123945984",
+          "display": "[9.96899927774e-26 +/- 2.39e-38]",
+          "precision_bits": 128
+        },
+        "upper_residual": {
+          "lower": "-9930185341487009315821/22835963083295358096932575511191922182123945984",
+          "upper": "-9930185341486330201107/22835963083295358096932575511191922182123945984",
+          "display": "[-4.348485459214e-25 +/- 5.49e-38]",
+          "precision_bits": 128
+        }
+      },
+      "V3": {
+        "lower": "295623393541635209328171/604462909807314587353088",
+        "upper": "591246787083270418656343/1208925819614629174706176",
+        "display": "[0.489067879509549155801501 +/- 8.94e-25]",
+        "lower_residual": {
+          "lower": "644547479580076662411/11417981541647679048466287755595961091061972992",
+          "upper": "644547479580619841909/11417981541647679048466287755595961091061972992",
+          "display": "[5.64502120825e-26 +/- 4.72e-38]",
+          "precision_bits": 128
+        },
+        "upper_residual": {
+          "lower": "-22019349874517349533139/45671926166590716193865151022383844364247891968",
+          "upper": "-22019349874515713686061/45671926166590716193865151022383844364247891968",
+          "display": "[-4.821200181967e-25 +/- 5.03e-38]",
+          "precision_bits": 128
+        }
+      },
+      "V4": {
+        "lower": "594336141315405874178799/1208925819614629174706176",
+        "upper": "37146008832212867136175/75557863725914323419136",
+        "display": "[0.491623333435680250355318 +/- 6.72e-25]",
+        "lower_residual": {
+          "lower": "11655202813823704188627/45671926166590716193865151022383844364247891968",
+          "upper": "11655202813825611381037/45671926166590716193865151022383844364247891968",
+          "display": "[2.551940281939e-25 +/- 6.50e-38]",
+          "precision_bits": 128
+        },
+        "upper_residual": {
+          "lower": "-6506378639731954769047/22835963083295358096932575511191922182123945984",
+          "upper": "-6506378639730866955113/22835963083295358096932575511191922182123945984",
+          "display": "[-2.849180748804e-25 +/- 6.70e-38]",
+          "precision_bits": 128
+        }
+      },
+      "V5": {
+        "lower": "297612790373062284927145/604462909807314587353088",
+        "upper": "595225580746124569854291/1208925819614629174706176",
+        "display": "[0.492359060488810957264322 +/- 4.47e-25]",
+        "lower_residual": {
+          "lower": "3084851751883272104829/5708990770823839524233143877797980545530986496",
+          "upper": "3084851751883611296899/5708990770823839524233143877797980545530986496",
+          "display": "[5.403497528230e-25 +/- 3.12e-38]",
+          "precision_bits": 128
+        },
+        "upper_residual": {
+          "lower": "-1827170056939492483/5708990770823839524233143877797980545530986496",
+          "upper": "-1827170056633854845/5708990770823839524233143877797980545530986496",
+          "display": "[-3.200513243e-28 +/- 5.62e-38]",
+          "precision_bits": 128
+        }
+      },
+      "V6": {
+        "lower": "9304413412905395117217/18889465931478580854784",
+        "upper": "595482458425945287501889/1208925819614629174706176",
+        "display": "[0.492571544725356259004339 +/- 5.20e-25]",
+        "lower_residual": {
+          "lower": "11021694657706685592273/22835963083295358096932575511191922182123945984",
+          "upper": "11021694657708176739631/22835963083295358096932575511191922182123945984",
+          "display": "[4.826463686907e-25 +/- 3.47e-38]",
+          "precision_bits": 128
+        },
+        "upper_residual": {
+          "lower": "-1329452655838416112943/22835963083295358096932575511191922182123945984",
+          "upper": "-1329452655837059183313/22835963083295358096932575511191922182123945984",
+          "display": "[-5.82174989068e-26 +/- 4.14e-38]",
+          "precision_bits": 128
+        }
+      },
+      "conditional_Appendix_C": {
+        "lower": "325914121890781041457807/604462909807314587353088",
+        "upper": "651828243781562082915615/1208925819614629174706176",
+        "display": "[0.539179685970596776136164 +/- 6.27e-25]",
+        "lower_residual": {
+          "lower": "3072370889082365584361/45671926166590716193865151022383844364247891968",
+          "upper": "3072370889084329483287/45671926166590716193865151022383844364247891968",
+          "display": "[6.72704470111e-26 +/- 4.71e-38]",
+          "precision_bits": 128
+        },
+        "upper_residual": {
+          "lower": "-22129431160595222584343/45671926166590716193865151022383844364247891968",
+          "upper": "-22129431160593527120873/45671926166590716193865151022383844364247891968",
+          "display": "[-4.845302797144e-25 +/- 3.50e-38]",
+          "precision_bits": 128
+        }
+      },
+      "depth_two_ideal": {
+        "lower": "595586952400682709263605/1208925819614629174706176",
+        "upper": "297793476200341354631803/604462909807314587353088",
+        "display": "[0.492657980115387660136385 +/- 6.03e-25]",
+        "lower_residual": {
+          "lower": "4103666856969241016265/22835963083295358096932575511191922182123945984",
+          "upper": "4103666856969665857591/22835963083295358096932575511191922182123945984",
+          "display": "[1.797019395241e-25 +/- 3.26e-38]",
+          "precision_bits": 128
+        },
+        "upper_residual": {
+          "lower": "-6773869884150930556983/22835963083295358096932575511191922182123945984",
+          "upper": "-6773869884150371497929/22835963083295358096932575511191922182123945984",
+          "display": "[-2.966316708186e-25 +/- 5.08e-38]",
+          "precision_bits": 128
+        }
+      },
+      "OOEE_fixed": {
+        "lower": "757454595637556934149271/1208925819614629174706176",
+        "upper": "94681824454694616768659/151115727451828646838272",
+        "display": "[0.626551756400580228820539 +/- 6.90e-25]",
+        "lower_residual": {
+          "lower": "4923751307507727372323/45671926166590716193865151022383844364247891968",
+          "upper": "4923751307509498343389/45671926166590716193865151022383844364247891968",
+          "display": "[1.078069554051e-25 +/- 6.21e-38]",
+          "precision_bits": 128
+        },
+        "upper_residual": {
+          "lower": "-16700081359020653768669/45671926166590716193865151022383844364247891968",
+          "upper": "-16700081359019151233059/45671926166590716193865151022383844364247891968",
+          "display": "[-3.656530994140e-25 +/- 4.63e-38]",
+          "precision_bits": 128
+        }
+      },
+      "OOEE_limiting_model": {
+        "lower": "764968535528754616902431/1208925819614629174706176",
+        "upper": "23905266735273581778201/37778931862957161709568",
+        "display": "[0.632767141802467758160433 +/- 8.25e-25]",
+        "lower_residual": {
+          "lower": "4360392110656237218813/11417981541647679048466287755595961091061972992",
+          "upper": "4360392110656613372931/11417981541647679048466287755595961091061972992",
+          "display": "[3.818881730323e-25 +/- 2.26e-38]",
+          "precision_bits": 128
+        },
+        "upper_residual": {
+          "lower": "-1036256498809482630147/11417981541647679048466287755595961091061972992",
+          "upper": "-1036256498809173584893/11417981541647679048466287755595961091061972992",
+          "display": "[-9.07565400268e-26 +/- 5.59e-38]",
+          "precision_bits": 128
+        }
+      },
+      "sweep": {
+        "lower": "167401668982142789671227/1208925819614629174706176",
+        "upper": "41850417245535697417807/302231454903657293676544",
+        "display": "[0.138471415091048045598421 +/- 5.28e-25]",
+        "lower_residual": {
+          "lower": "18093789095174944265687/45671926166590716193865151022383844364247891968",
+          "upper": "18093789095175913794089/45671926166590716193865151022383844364247891968",
+          "display": "[3.961687323889e-25 +/- 5.99e-38]",
+          "precision_bits": 128
+        },
+        "upper_residual": {
+          "lower": "-6690682683522181032489/45671926166590716193865151022383844364247891968",
+          "upper": "-6690682683521479939543/45671926166590716193865151022383844364247891968",
+          "display": "[-1.4649442765162e-25 +/- 9.35e-39]",
+          "precision_bits": 128
+        }
+      },
+      "worst_case_share": {
+        "lower": "394256051418018580073377/1208925819614629174706176",
+        "upper": "197128025709009290036689/604462909807314587353088",
+        "display": "[0.326120962114694584312157 +/- 6.42e-25]",
+        "lower_residual": {
+          "lower": "10122644481225092617323/45671926166590716193865151022383844364247891968",
+          "upper": "10122644481226234801045/45671926166590716193865151022383844364247891968",
+          "display": "[2.216382213507e-25 +/- 5.64e-38]",
+          "precision_bits": 128
+        },
+        "upper_residual": {
+          "lower": "-12964544853481139874709/45671926166590716193865151022383844364247891968",
+          "upper": "-12964544853480266126443/45671926166590716193865151022383844364247891968",
+          "display": "[-2.838624499039e-25 +/- 5.84e-38]",
+          "precision_bits": 128
+        }
+      }
+    },
+    "rate_boundaries": {
+      "Chernoff": {
+        "1/2": 16,
+        "11/20": 34,
+        "3/5": 168,
+        "31/50": 1135
+      },
+      "Azuma": {
+        "1/2": 16,
+        "11/20": 34,
+        "3/5": 175,
+        "31/50": 1201
+      }
+    },
+    "progress": "Confirms sharper conditional constants already recorded by the Paper C audit.",
+    "not_certified": "Production, cylinder, pressure hypotheses and global termination"
+  },
+  "mcp_call_count": 30,
+  "checks": {
+    "Azuma_1/2_15": {
+      "tool": "arb_paper_c_rate",
+      "arguments": {
+        "C": 15,
+        "q": "1/2",
+        "kind": "Azuma",
+        "exponent": "5/8"
+      },
+      "result": {
+        "status": "certified",
+        "holds": false,
+        "relation": "rate > 1 - exponent",
+        "rate": {
+          "lower": "7269487945325531364342647950461046475/21267647932558653966460912964485513216",
+          "upper": "29077951781302125457370591801844185913/85070591730234615865843651857942052864",
+          "display": "[0.341809680524035206252123047935 +/- 7.12e-33]"
+        },
+        "difference": {
+          "lower": "-90352643761147375754264884636290685567/2722258935367507707706996859454145691648",
+          "upper": "-90352643761147375754264884636290685153/2722258935367507707706996859454145691648",
+          "display": "[-0.0331903194759647937478769520650 +/- 7.11e-33]"
+        },
+        "precision_bits": 128,
+        "attempted_bits": [
+          128
+        ],
+        "source": "tools/check_paper_c_intervals.py:rate",
+        "caution": "A single C is tested; minimality and the paper's cylinder/pressure and contagion hypotheses are not certified.",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "paper_c_rate",
+          "arguments": {
+            "C": 15,
+            "q": "1/2",
+            "kind": "Azuma",
+            "exponent": "5/8",
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+          "tools/check_paper_c_intervals.py": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "Azuma_1/2_16": {
+      "tool": "arb_paper_c_rate",
+      "arguments": {
+        "C": 16,
+        "q": "1/2",
+        "kind": "Azuma",
+        "exponent": "5/8"
+      },
+      "result": {
+        "status": "certified",
+        "holds": true,
+        "relation": "rate > 1 - exponent",
+        "rate": {
+          "lower": "16439337241961976098832135042768252517/42535295865117307932921825928971026432",
+          "upper": "131514697935695808790657080342146020189/340282366920938463463374607431768211456",
+          "display": "[0.386486961183774949447255441806 +/- 4.06e-31]"
+        },
+        "difference": {
+          "lower": "125081930891004319740531281767454106887/10889035741470030830827987437816582766592",
+          "upper": "125081930891004319740531281767454108569/10889035741470030830827987437816582766592",
+          "display": "[0.0114869611837749494472554418064 +/- 5.98e-33]"
+        },
+        "precision_bits": 128,
+        "attempted_bits": [
+          128
+        ],
+        "source": "tools/check_paper_c_intervals.py:rate",
+        "caution": "A single C is tested; minimality and the paper's cylinder/pressure and contagion hypotheses are not certified.",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "paper_c_rate",
+          "arguments": {
+            "C": 16,
+            "q": "1/2",
+            "kind": "Azuma",
+            "exponent": "5/8",
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+          "tools/check_paper_c_intervals.py": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "Azuma_11/20_33": {
+      "tool": "arb_paper_c_rate",
+      "arguments": {
+        "C": 33,
+        "q": "11/20",
+        "kind": "Azuma",
+        "exponent": "5/8"
+      },
+      "result": {
+        "status": "certified",
+        "holds": false,
+        "relation": "rate > 1 - exponent",
+        "rate": {
+          "lower": "61894894639655687976177708231831520155/170141183460469231731687303715884105728",
+          "upper": "123789789279311375952355416463663040427/340282366920938463463374607431768211456",
+          "display": "[0.363785494968279729152949077659 +/- 3.84e-31]"
+        },
+        "difference": {
+          "lower": "-122115146113297531085121962344001247539/10889035741470030830827987437816582766592",
+          "upper": "-122115146113297531085121962344001243821/10889035741470030830827987437816582766592",
+          "display": "[-0.0112145050317202708470509223414 +/- 1.64e-32]"
+        },
+        "precision_bits": 128,
+        "attempted_bits": [
+          128
+        ],
+        "source": "tools/check_paper_c_intervals.py:rate",
+        "caution": "A single C is tested; minimality and the paper's cylinder/pressure and contagion hypotheses are not certified.",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "paper_c_rate",
+          "arguments": {
+            "C": 33,
+            "q": "11/20",
+            "kind": "Azuma",
+            "exponent": "5/8",
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+          "tools/check_paper_c_intervals.py": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "Azuma_11/20_34": {
+      "tool": "arb_paper_c_rate",
+      "arguments": {
+        "C": 34,
+        "q": "11/20",
+        "kind": "Azuma",
+        "exponent": "5/8"
+      },
+      "result": {
+        "status": "certified",
+        "holds": true,
+        "relation": "rate > 1 - exponent",
+        "rate": {
+          "lower": "259744346991895094885508844781622775337/680564733841876926926749214863536422912",
+          "upper": "259744346991895094885508844781622775571/680564733841876926926749214863536422912",
+          "display": "[0.381660015683745889534452187453 +/- 4.25e-31]"
+        },
+        "difference": {
+          "lower": "290084595276239826430584909298983471683/43556142965880123323311949751266331066368",
+          "upper": "290084595276239826430584909298983486653/43556142965880123323311949751266331066368",
+          "display": "[0.00666001568374588953445218745342 +/- 4.95e-33]"
+        },
+        "precision_bits": 128,
+        "attempted_bits": [
+          128
+        ],
+        "source": "tools/check_paper_c_intervals.py:rate",
+        "caution": "A single C is tested; minimality and the paper's cylinder/pressure and contagion hypotheses are not certified.",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "paper_c_rate",
+          "arguments": {
+            "C": 34,
+            "q": "11/20",
+            "kind": "Azuma",
+            "exponent": "5/8",
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+          "tools/check_paper_c_intervals.py": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "Azuma_3/5_174": {
+      "tool": "arb_paper_c_rate",
+      "arguments": {
+        "C": 174,
+        "q": "3/5",
+        "kind": "Azuma",
+        "exponent": "5/8"
+      },
+      "result": {
+        "status": "certified",
+        "holds": false,
+        "relation": "rate > 1 - exponent",
+        "rate": {
+          "lower": "254722250323430589978433375062625646281/680564733841876926926749214863536422912",
+          "upper": "254722250323430589978433375062625646803/680564733841876926926749214863536422912",
+          "display": "[0.374280707854916569474321860613 +/- 2.12e-31]"
+        },
+        "difference": {
+          "lower": "-250636732043907900977961221734662303159/348449143727040986586495598010130648530944",
+          "upper": "-250636732043907900977961221734662036041/348449143727040986586495598010130648530944",
+          "display": "[-0.000719292145083430525678139387212 +/- 3.84e-34]"
+        },
+        "precision_bits": 128,
+        "attempted_bits": [
+          128
+        ],
+        "source": "tools/check_paper_c_intervals.py:rate",
+        "caution": "A single C is tested; minimality and the paper's cylinder/pressure and contagion hypotheses are not certified.",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "paper_c_rate",
+          "arguments": {
+            "C": 174,
+            "q": "3/5",
+            "kind": "Azuma",
+            "exponent": "5/8",
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+          "tools/check_paper_c_intervals.py": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "Azuma_3/5_175": {
+      "tool": "arb_paper_c_rate",
+      "arguments": {
+        "C": 175,
+        "q": "3/5",
+        "kind": "Azuma",
+        "exponent": "5/8"
+      },
+      "result": {
+        "status": "certified",
+        "holds": true,
+        "relation": "rate > 1 - exponent",
+        "rate": {
+          "lower": "128287573432502806524041261847300934889/340282366920938463463374607431768211456",
+          "upper": "8017973339531425407752578865456308447/21267647932558653966460912964485513216",
+          "display": "[0.377003294626516061223306669178 +/- 5.67e-32]"
+        },
+        "difference": {
+          "lower": "174511574310625977670600719459291031869/87112285931760246646623899502532662132736",
+          "upper": "174511574310625977670600719459291099075/87112285931760246646623899502532662132736",
+          "display": "[0.00200329462651606122330666917794 +/- 3.42e-33]"
+        },
+        "precision_bits": 128,
+        "attempted_bits": [
+          128
+        ],
+        "source": "tools/check_paper_c_intervals.py:rate",
+        "caution": "A single C is tested; minimality and the paper's cylinder/pressure and contagion hypotheses are not certified.",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "paper_c_rate",
+          "arguments": {
+            "C": 175,
+            "q": "3/5",
+            "kind": "Azuma",
+            "exponent": "5/8",
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+          "tools/check_paper_c_intervals.py": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "Azuma_31/50_1200": {
+      "tool": "arb_paper_c_rate",
+      "arguments": {
+        "C": 1200,
+        "q": "31/50",
+        "kind": "Azuma",
+        "exponent": "5/8"
+      },
+      "result": {
+        "status": "certified",
+        "holds": false,
+        "relation": "rate > 1 - exponent",
+        "rate": {
+          "lower": "255066919146758593184043939809480417197/680564733841876926926749214863536422912",
+          "upper": "255066919146758593184043939809480418537/680564733841876926926749214863536422912",
+          "display": "[0.374787153173324860515304370165 +/- 1.21e-31]"
+        },
+        "difference": {
+          "lower": "-148332588999940519410704142690039187787/696898287454081973172991196020261297061888",
+          "upper": "-148332588999940519410704142690037817013/696898287454081973172991196020261297061888",
+          "display": "[-0.000212846826675139484695629834879 +/- 4.69e-34]"
+        },
+        "precision_bits": 128,
+        "attempted_bits": [
+          128
+        ],
+        "source": "tools/check_paper_c_intervals.py:rate",
+        "caution": "A single C is tested; minimality and the paper's cylinder/pressure and contagion hypotheses are not certified.",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "paper_c_rate",
+          "arguments": {
+            "C": 1200,
+            "q": "31/50",
+            "kind": "Azuma",
+            "exponent": "5/8",
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+          "tools/check_paper_c_intervals.py": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "Azuma_31/50_1201": {
+      "tool": "arb_paper_c_rate",
+      "arguments": {
+        "C": 1201,
+        "q": "31/50",
+        "kind": "Azuma",
+        "exponent": "5/8"
+      },
+      "result": {
+        "status": "certified",
+        "holds": true,
+        "relation": "rate > 1 - exponent",
+        "rate": {
+          "lower": "255300958773427348717100269691242067721/680564733841876926926749214863536422912",
+          "upper": "255300958773427348717100269691242069067/680564733841876926926749214863536422912",
+          "display": "[0.375131043497096959655327293224 +/- 2.81e-31]"
+        },
+        "difference": {
+          "lower": "182647977417730292877955312467781897565/1393796574908163946345982392040522594123776",
+          "upper": "182647977417730292877955312467784651427/1393796574908163946345982392040522594123776",
+          "display": "[0.000131043497096959655327293224281 +/- 2.05e-34]"
+        },
+        "precision_bits": 128,
+        "attempted_bits": [
+          128
+        ],
+        "source": "tools/check_paper_c_intervals.py:rate",
+        "caution": "A single C is tested; minimality and the paper's cylinder/pressure and contagion hypotheses are not certified.",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "paper_c_rate",
+          "arguments": {
+            "C": 1201,
+            "q": "31/50",
+            "kind": "Azuma",
+            "exponent": "5/8",
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+          "tools/check_paper_c_intervals.py": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "Chernoff_1/2_15": {
+      "tool": "arb_paper_c_rate",
+      "arguments": {
+        "C": 15,
+        "q": "1/2",
+        "kind": "Chernoff",
+        "exponent": "5/8"
+      },
+      "result": {
+        "status": "certified",
+        "holds": false,
+        "relation": "rate > 1 - exponent",
+        "rate": {
+          "lower": "58466029440121489559928698220752265413/170141183460469231731687303715884105728",
+          "upper": "29233014720060744779964349110376132811/85070591730234615865843651857942052864",
+          "display": "[0.343632436609361799702122277468 +/- 3.35e-31]"
+        },
+        "difference": {
+          "lower": "-170781259441743114862529301526536775517/5444517870735015415413993718908291383296",
+          "upper": "-170781259441743114862529301526536768835/5444517870735015415413993718908291383296",
+          "display": "[-0.0313675633906382002978777225317 +/- 3.41e-32]"
+        },
+        "precision_bits": 128,
+        "attempted_bits": [
+          128
+        ],
+        "source": "tools/check_paper_c_intervals.py:rate",
+        "caution": "A single C is tested; minimality and the paper's cylinder/pressure and contagion hypotheses are not certified.",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "paper_c_rate",
+          "arguments": {
+            "C": 15,
+            "q": "1/2",
+            "kind": "Chernoff",
+            "exponent": "5/8",
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+          "tools/check_paper_c_intervals.py": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "Chernoff_1/2_16": {
+      "tool": "arb_paper_c_rate",
+      "arguments": {
+        "C": 16,
+        "q": "1/2",
+        "kind": "Chernoff",
+        "exponent": "5/8"
+      },
+      "result": {
+        "status": "certified",
+        "holds": true,
+        "relation": "rate > 1 - exponent",
+        "rate": {
+          "lower": "264517410192863096157848765195312648897/680564733841876926926749214863536422912",
+          "upper": "264517410192863096157848765195312649777/680564733841876926926749214863536422912",
+          "display": "[0.388673401719815427373614245198 +/- 4.20e-31]"
+        },
+        "difference": {
+          "lower": "37222540008636994241271238485945961221/2722258935367507707706996859454145691648",
+          "upper": "37222540008636994241271238485945964739/2722258935367507707706996859454145691648",
+          "display": "[0.0136734017198154273736142451984 +/- 2.00e-32]"
+        },
+        "precision_bits": 128,
+        "attempted_bits": [
+          128
+        ],
+        "source": "tools/check_paper_c_intervals.py:rate",
+        "caution": "A single C is tested; minimality and the paper's cylinder/pressure and contagion hypotheses are not certified.",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "paper_c_rate",
+          "arguments": {
+            "C": 16,
+            "q": "1/2",
+            "kind": "Chernoff",
+            "exponent": "5/8",
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+          "tools/check_paper_c_intervals.py": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "Chernoff_11/20_33": {
+      "tool": "arb_paper_c_rate",
+      "arguments": {
+        "C": 33,
+        "q": "11/20",
+        "kind": "Chernoff",
+        "exponent": "5/8"
+      },
+      "result": {
+        "status": "certified",
+        "holds": false,
+        "relation": "rate > 1 - exponent",
+        "rate": {
+          "lower": "126428007056072929177584477262288656415/340282366920938463463374607431768211456",
+          "upper": "126428007056072929177584477262288657761/340282366920938463463374607431768211456",
+          "display": "[0.371538520200335080739481868941 +/- 3.93e-31]"
+        },
+        "difference": {
+          "lower": "-301537418055422623022336134303852257531/87112285931760246646623899502532662132736",
+          "upper": "-301537418055422623022336134303851912965/87112285931760246646623899502532662132736",
+          "display": "[-0.00346147979966491926051813105861 +/- 2.55e-33]"
+        },
+        "precision_bits": 128,
+        "attempted_bits": [
+          128
+        ],
+        "source": "tools/check_paper_c_intervals.py:rate",
+        "caution": "A single C is tested; minimality and the paper's cylinder/pressure and contagion hypotheses are not certified.",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "paper_c_rate",
+          "arguments": {
+            "C": 33,
+            "q": "11/20",
+            "kind": "Chernoff",
+            "exponent": "5/8",
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+          "tools/check_paper_c_intervals.py": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "Chernoff_11/20_34": {
+      "tool": "arb_paper_c_rate",
+      "arguments": {
+        "C": 34,
+        "q": "11/20",
+        "kind": "Chernoff",
+        "exponent": "5/8"
+      },
+      "result": {
+        "status": "certified",
+        "holds": true,
+        "relation": "rate > 1 - exponent",
+        "rate": {
+          "lower": "8291046879059156320192048773098757241/21267647932558653966460912964485513216",
+          "upper": "132656750064946501123072780369580117245/340282366920938463463374607431768211456",
+          "display": "[0.389843150749471833871442737893 +/- 7.57e-32]"
+        },
+        "difference": {
+          "lower": "161627599027026474377833682645345169931/10889035741470030830827987437816582766592",
+          "upper": "161627599027026474377833682645345214357/10889035741470030830827987437816582766592",
+          "display": "[0.0148431507494718338714427378929 +/- 2.44e-32]"
+        },
+        "precision_bits": 128,
+        "attempted_bits": [
+          128
+        ],
+        "source": "tools/check_paper_c_intervals.py:rate",
+        "caution": "A single C is tested; minimality and the paper's cylinder/pressure and contagion hypotheses are not certified.",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "paper_c_rate",
+          "arguments": {
+            "C": 34,
+            "q": "11/20",
+            "kind": "Chernoff",
+            "exponent": "5/8",
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+          "tools/check_paper_c_intervals.py": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "Chernoff_3/5_167": {
+      "tool": "arb_paper_c_rate",
+      "arguments": {
+        "C": 167,
+        "q": "3/5",
+        "kind": "Chernoff",
+        "exponent": "5/8"
+      },
+      "result": {
+        "status": "certified",
+        "holds": false,
+        "relation": "rate > 1 - exponent",
+        "rate": {
+          "lower": "253887769490683622754290330285180571743/680564733841876926926749214863536422912",
+          "upper": "253887769490683622754290330285180584689/680564733841876926926749214863536422912",
+          "display": "[0.373054548473962146829293720062 +/- 1.28e-31]"
+        },
+        "difference": {
+          "lower": "-84736364801294389967400018473317558323/43556142965880123323311949751266331066368",
+          "upper": "-84736364801294389967400018473316729805/43556142965880123323311949751266331066368",
+          "display": "[-0.00194545152603785317070627993787 +/- 2.40e-33]"
+        },
+        "precision_bits": 128,
+        "attempted_bits": [
+          128
+        ],
+        "source": "tools/check_paper_c_intervals.py:rate",
+        "caution": "A single C is tested; minimality and the paper's cylinder/pressure and contagion hypotheses are not certified.",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "paper_c_rate",
+          "arguments": {
+            "C": 167,
+            "q": "3/5",
+            "kind": "Chernoff",
+            "exponent": "5/8",
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+          "tools/check_paper_c_intervals.py": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "Chernoff_3/5_168": {
+      "tool": "arb_paper_c_rate",
+      "arguments": {
+        "C": 168,
+        "q": "3/5",
+        "kind": "Chernoff",
+        "exponent": "5/8"
+      },
+      "result": {
+        "status": "certified",
+        "holds": true,
+        "relation": "rate > 1 - exponent",
+        "rate": {
+          "lower": "255833157277744537962068464895511076607/680564733841876926926749214863536422912",
+          "upper": "255833157277744537962068464895511089629/680564733841876926926749214863536422912",
+          "display": "[0.375913038916273118089327980487 +/- 2.27e-31]"
+        },
+        "difference": {
+          "lower": "318147628564833466643204772702678023981/348449143727040986586495598010130648530944",
+          "upper": "318147628564833466643204772702684690643/348449143727040986586495598010130648530944",
+          "display": "[0.000913038916273118089327980486774 +/- 5.78e-35]"
+        },
+        "precision_bits": 128,
+        "attempted_bits": [
+          128
+        ],
+        "source": "tools/check_paper_c_intervals.py:rate",
+        "caution": "A single C is tested; minimality and the paper's cylinder/pressure and contagion hypotheses are not certified.",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "paper_c_rate",
+          "arguments": {
+            "C": 168,
+            "q": "3/5",
+            "kind": "Chernoff",
+            "exponent": "5/8",
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+          "tools/check_paper_c_intervals.py": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "Chernoff_31/50_1134": {
+      "tool": "arb_paper_c_rate",
+      "arguments": {
+        "C": 1134,
+        "q": "31/50",
+        "kind": "Chernoff",
+        "exponent": "5/8"
+      },
+      "result": {
+        "status": "certified",
+        "holds": false,
+        "relation": "rate > 1 - exponent",
+        "rate": {
+          "lower": "63797066900840347425055938341611313833/170141183460469231731687303715884105728",
+          "upper": "15949266725210086856263984585402833805/42535295865117307932921825928971026432",
+          "display": "[0.374965458704846849038985395591 +/- 3.42e-31]"
+        },
+        "difference": {
+          "lower": "-192574155509415094740600482864359503431/5575186299632655785383929568162090376495104",
+          "upper": "-192574155509415094740600482863658699193/5575186299632655785383929568162090376495104",
+          "display": "[-3.45412951531509610146044093419e-5 +/- 7.13e-35]"
+        },
+        "precision_bits": 128,
+        "attempted_bits": [
+          128
+        ],
+        "source": "tools/check_paper_c_intervals.py:rate",
+        "caution": "A single C is tested; minimality and the paper's cylinder/pressure and contagion hypotheses are not certified.",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "paper_c_rate",
+          "arguments": {
+            "C": 1134,
+            "q": "31/50",
+            "kind": "Chernoff",
+            "exponent": "5/8",
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+          "tools/check_paper_c_intervals.py": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "Chernoff_31/50_1135": {
+      "tool": "arb_paper_c_rate",
+      "arguments": {
+        "C": 1135,
+        "q": "31/50",
+        "kind": "Chernoff",
+        "exponent": "5/8"
+      },
+      "result": {
+        "status": "certified",
+        "holds": true,
+        "relation": "rate > 1 - exponent",
+        "rate": {
+          "lower": "15964842871437175144633001728776281439/42535295865117307932921825928971026432",
+          "upper": "31929685742874350289266003457552573581/85070591730234615865843651857942052864",
+          "display": "[0.375331652142797332446860984262 +/- 1.47e-31]"
+        },
+        "difference": {
+          "lower": "115563905172968814897700908336304349461/348449143727040986586495598010130648530944",
+          "upper": "115563905172968814897700908336348188395/348449143727040986586495598010130648530944",
+          "display": "[0.000331652142797332446860984261854 +/- 2.15e-34]"
+        },
+        "precision_bits": 128,
+        "attempted_bits": [
+          128
+        ],
+        "source": "tools/check_paper_c_intervals.py:rate",
+        "caution": "A single C is tested; minimality and the paper's cylinder/pressure and contagion hypotheses are not certified.",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "paper_c_rate",
+          "arguments": {
+            "C": 1135,
+            "q": "31/50",
+            "kind": "Chernoff",
+            "exponent": "5/8",
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+          "tools/check_paper_c_intervals.py": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "OOEE_slack": {
+      "tool": "arb_compare",
+      "arguments": {
+        "left": "(1/2)**(5/8)+(33/100)*(3/4)**(5/8)+(11/100)*(9/16)**(5/8)",
+        "right": "1",
+        "relation": ">",
+        "variables": null,
+        "bits": 256,
+        "max_bits": 1024
+      },
+      "result": {
+        "status": "certified",
+        "holds": true,
+        "difference": {
+          "lower": "105365149812681764228059485937726957966922307454839012959445068327292172562567/118571099379011784113736688648896417641748464297615937576404566024103044751294464",
+          "upper": "105365149812681764228059485937726957966922307454839012959445068327292172574585/118571099379011784113736688648896417641748464297615937576404566024103044751294464",
+          "display": "[0.000888624212514743715381959719234 +/- 4.66e-34]"
+        },
+        "precision_bits": 256,
+        "attempted_bits": [
+          256
+        ],
+        "relation": ">",
+        "quantifier": "Decision and its negation are uniform over the input box",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "compare",
+          "arguments": {
+            "left": "(1/2)**(5/8)+(33/100)*(3/4)**(5/8)+(11/100)*(9/16)**(5/8)",
+            "right": "1",
+            "relation": ">",
+            "variables": null,
+            "bits": 256,
+            "max_bits": 1024
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "models": {
+      "tool": "arb_paper_c_models",
+      "arguments": {},
+      "result": {
+        "models": {
+          "pairing": [
+            [
+              "1",
+              "1/2"
+            ],
+            [
+              "1/9",
+              "3/8"
+            ],
+            [
+              "2/9",
+              "3/4"
+            ]
+          ],
+          "V2": [
+            [
+              "1",
+              "1/2"
+            ],
+            [
+              "1/9",
+              "3/8"
+            ],
+            [
+              "2/9",
+              "3/4"
+            ],
+            [
+              "1/27",
+              "9/32"
+            ]
+          ],
+          "V3": [
+            [
+              "1",
+              "1/2"
+            ],
+            [
+              "1/9",
+              "3/8"
+            ],
+            [
+              "2/9",
+              "3/4"
+            ],
+            [
+              "1/27",
+              "9/32"
+            ],
+            [
+              "1/81",
+              "27/128"
+            ]
+          ],
+          "V4": [
+            [
+              "1",
+              "1/2"
+            ],
+            [
+              "1/9",
+              "3/8"
+            ],
+            [
+              "2/9",
+              "3/4"
+            ],
+            [
+              "1/27",
+              "9/32"
+            ],
+            [
+              "1/81",
+              "27/128"
+            ],
+            [
+              "1/243",
+              "81/512"
+            ]
+          ],
+          "V5": [
+            [
+              "1",
+              "1/2"
+            ],
+            [
+              "1/9",
+              "3/8"
+            ],
+            [
+              "2/9",
+              "3/4"
+            ],
+            [
+              "1/27",
+              "9/32"
+            ],
+            [
+              "1/81",
+              "27/128"
+            ],
+            [
+              "1/243",
+              "81/512"
+            ],
+            [
+              "1/729",
+              "243/2048"
+            ]
+          ],
+          "V6": [
+            [
+              "1",
+              "1/2"
+            ],
+            [
+              "1/9",
+              "3/8"
+            ],
+            [
+              "2/9",
+              "3/4"
+            ],
+            [
+              "1/27",
+              "9/32"
+            ],
+            [
+              "1/81",
+              "27/128"
+            ],
+            [
+              "1/243",
+              "81/512"
+            ],
+            [
+              "1/729",
+              "243/2048"
+            ],
+            [
+              "1/2187",
+              "729/8192"
+            ]
+          ],
+          "conditional_Appendix_C": [
+            [
+              "1",
+              "1/2"
+            ],
+            [
+              "1/9",
+              "3/8"
+            ],
+            [
+              "2/9",
+              "3/4"
+            ],
+            [
+              "1/9",
+              "9/32"
+            ]
+          ],
+          "depth_two_ideal": [
+            [
+              "1",
+              "1/2"
+            ],
+            [
+              "1/3",
+              "3/4"
+            ]
+          ],
+          "OOEE_fixed": [
+            [
+              "1",
+              "1/2"
+            ],
+            [
+              "33/100",
+              "3/4"
+            ],
+            [
+              "11/100",
+              "9/16"
+            ]
+          ],
+          "OOEE_limiting_model": [
+            [
+              "1",
+              "1/2"
+            ],
+            [
+              "1/3",
+              "3/4"
+            ],
+            [
+              "1/9",
+              "9/16"
+            ]
+          ],
+          "sweep": [
+            [
+              "1",
+              "1/2"
+            ],
+            [
+              "2/21",
+              "3/4"
+            ]
+          ],
+          "worst_case_share": [
+            [
+              "1",
+              "1/2"
+            ],
+            [
+              "2/9",
+              "3/4"
+            ]
+          ]
+        },
+        "usage": "Pass one model's terms to arb_production_root",
+        "source": "tools/check_paper_c_intervals.py:production_models",
+        "caution": "Model names do not establish production hypotheses or attained exponents",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "paper_c_models",
+          "arguments": {}
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+          "tools/check_paper_c_intervals.py": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "root_OOEE_fixed": {
+      "tool": "arb_production_root",
+      "arguments": {
+        "terms": [
+          [
+            "1",
+            "1/2"
+          ],
+          [
+            "33/100",
+            "3/4"
+          ],
+          [
+            "11/100",
+            "9/16"
+          ]
+        ]
+      },
+      "result": {
+        "status": "certified",
+        "root": {
+          "lower": "757454595637556934149271/1208925819614629174706176",
+          "upper": "94681824454694616768659/151115727451828646838272",
+          "display": "[0.626551756400580228820539 +/- 6.90e-25]",
+          "lower_residual": {
+            "lower": "4923751307507727372323/45671926166590716193865151022383844364247891968",
+            "upper": "4923751307509498343389/45671926166590716193865151022383844364247891968",
+            "display": "[1.078069554051e-25 +/- 6.21e-38]",
+            "precision_bits": 128
+          },
+          "upper_residual": {
+            "lower": "-16700081359020653768669/45671926166590716193865151022383844364247891968",
+            "upper": "-16700081359019151233059/45671926166590716193865151022383844364247891968",
+            "display": "[-3.656530994140e-25 +/- 4.63e-38]",
+            "precision_bits": 128
+          }
+        },
+        "unique": true,
+        "equation": "sum(coefficient * base**lambda) = 1",
+        "justification": "Positive coefficients and bases in (0,1) give continuity and strict decrease; endpoint signs bracket the unique root.",
+        "width_at_most": "1e-24",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "production_root",
+          "arguments": {
+            "terms": [
+              [
+                "1",
+                "1/2"
+              ],
+              [
+                "33/100",
+                "3/4"
+              ],
+              [
+                "11/100",
+                "9/16"
+              ]
+            ],
+            "lower": "0",
+            "upper": "1",
+            "digits": 24,
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "root_OOEE_limiting_model": {
+      "tool": "arb_production_root",
+      "arguments": {
+        "terms": [
+          [
+            "1",
+            "1/2"
+          ],
+          [
+            "1/3",
+            "3/4"
+          ],
+          [
+            "1/9",
+            "9/16"
+          ]
+        ]
+      },
+      "result": {
+        "status": "certified",
+        "root": {
+          "lower": "764968535528754616902431/1208925819614629174706176",
+          "upper": "23905266735273581778201/37778931862957161709568",
+          "display": "[0.632767141802467758160433 +/- 8.25e-25]",
+          "lower_residual": {
+            "lower": "4360392110656237218813/11417981541647679048466287755595961091061972992",
+            "upper": "4360392110656613372931/11417981541647679048466287755595961091061972992",
+            "display": "[3.818881730323e-25 +/- 2.26e-38]",
+            "precision_bits": 128
+          },
+          "upper_residual": {
+            "lower": "-1036256498809482630147/11417981541647679048466287755595961091061972992",
+            "upper": "-1036256498809173584893/11417981541647679048466287755595961091061972992",
+            "display": "[-9.07565400268e-26 +/- 5.59e-38]",
+            "precision_bits": 128
+          }
+        },
+        "unique": true,
+        "equation": "sum(coefficient * base**lambda) = 1",
+        "justification": "Positive coefficients and bases in (0,1) give continuity and strict decrease; endpoint signs bracket the unique root.",
+        "width_at_most": "1e-24",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "production_root",
+          "arguments": {
+            "terms": [
+              [
+                "1",
+                "1/2"
+              ],
+              [
+                "1/3",
+                "3/4"
+              ],
+              [
+                "1/9",
+                "9/16"
+              ]
+            ],
+            "lower": "0",
+            "upper": "1",
+            "digits": 24,
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "root_V2": {
+      "tool": "arb_production_root",
+      "arguments": {
+        "terms": [
+          [
+            "1",
+            "1/2"
+          ],
+          [
+            "1/9",
+            "3/8"
+          ],
+          [
+            "2/9",
+            "3/4"
+          ],
+          [
+            "1/27",
+            "9/32"
+          ]
+        ]
+      },
+      "result": {
+        "status": "certified",
+        "root": {
+          "lower": "145105725570576300931047/302231454903657293676544",
+          "upper": "580422902282305203724189/1208925819614629174706176",
+          "display": "[0.480114571849683343278657 +/- 4.37e-25]",
+          "lower_residual": {
+            "lower": "2276516994838285173779/22835963083295358096932575511191922182123945984",
+            "upper": "2276516994839232723949/22835963083295358096932575511191922182123945984",
+            "display": "[9.96899927774e-26 +/- 2.39e-38]",
+            "precision_bits": 128
+          },
+          "upper_residual": {
+            "lower": "-9930185341487009315821/22835963083295358096932575511191922182123945984",
+            "upper": "-9930185341486330201107/22835963083295358096932575511191922182123945984",
+            "display": "[-4.348485459214e-25 +/- 5.49e-38]",
+            "precision_bits": 128
+          }
+        },
+        "unique": true,
+        "equation": "sum(coefficient * base**lambda) = 1",
+        "justification": "Positive coefficients and bases in (0,1) give continuity and strict decrease; endpoint signs bracket the unique root.",
+        "width_at_most": "1e-24",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "production_root",
+          "arguments": {
+            "terms": [
+              [
+                "1",
+                "1/2"
+              ],
+              [
+                "1/9",
+                "3/8"
+              ],
+              [
+                "2/9",
+                "3/4"
+              ],
+              [
+                "1/27",
+                "9/32"
+              ]
+            ],
+            "lower": "0",
+            "upper": "1",
+            "digits": 24,
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "root_V3": {
+      "tool": "arb_production_root",
+      "arguments": {
+        "terms": [
+          [
+            "1",
+            "1/2"
+          ],
+          [
+            "1/9",
+            "3/8"
+          ],
+          [
+            "2/9",
+            "3/4"
+          ],
+          [
+            "1/27",
+            "9/32"
+          ],
+          [
+            "1/81",
+            "27/128"
+          ]
+        ]
+      },
+      "result": {
+        "status": "certified",
+        "root": {
+          "lower": "295623393541635209328171/604462909807314587353088",
+          "upper": "591246787083270418656343/1208925819614629174706176",
+          "display": "[0.489067879509549155801501 +/- 8.94e-25]",
+          "lower_residual": {
+            "lower": "644547479580076662411/11417981541647679048466287755595961091061972992",
+            "upper": "644547479580619841909/11417981541647679048466287755595961091061972992",
+            "display": "[5.64502120825e-26 +/- 4.72e-38]",
+            "precision_bits": 128
+          },
+          "upper_residual": {
+            "lower": "-22019349874517349533139/45671926166590716193865151022383844364247891968",
+            "upper": "-22019349874515713686061/45671926166590716193865151022383844364247891968",
+            "display": "[-4.821200181967e-25 +/- 5.03e-38]",
+            "precision_bits": 128
+          }
+        },
+        "unique": true,
+        "equation": "sum(coefficient * base**lambda) = 1",
+        "justification": "Positive coefficients and bases in (0,1) give continuity and strict decrease; endpoint signs bracket the unique root.",
+        "width_at_most": "1e-24",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "production_root",
+          "arguments": {
+            "terms": [
+              [
+                "1",
+                "1/2"
+              ],
+              [
+                "1/9",
+                "3/8"
+              ],
+              [
+                "2/9",
+                "3/4"
+              ],
+              [
+                "1/27",
+                "9/32"
+              ],
+              [
+                "1/81",
+                "27/128"
+              ]
+            ],
+            "lower": "0",
+            "upper": "1",
+            "digits": 24,
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "root_V4": {
+      "tool": "arb_production_root",
+      "arguments": {
+        "terms": [
+          [
+            "1",
+            "1/2"
+          ],
+          [
+            "1/9",
+            "3/8"
+          ],
+          [
+            "2/9",
+            "3/4"
+          ],
+          [
+            "1/27",
+            "9/32"
+          ],
+          [
+            "1/81",
+            "27/128"
+          ],
+          [
+            "1/243",
+            "81/512"
+          ]
+        ]
+      },
+      "result": {
+        "status": "certified",
+        "root": {
+          "lower": "594336141315405874178799/1208925819614629174706176",
+          "upper": "37146008832212867136175/75557863725914323419136",
+          "display": "[0.491623333435680250355318 +/- 6.72e-25]",
+          "lower_residual": {
+            "lower": "11655202813823704188627/45671926166590716193865151022383844364247891968",
+            "upper": "11655202813825611381037/45671926166590716193865151022383844364247891968",
+            "display": "[2.551940281939e-25 +/- 6.50e-38]",
+            "precision_bits": 128
+          },
+          "upper_residual": {
+            "lower": "-6506378639731954769047/22835963083295358096932575511191922182123945984",
+            "upper": "-6506378639730866955113/22835963083295358096932575511191922182123945984",
+            "display": "[-2.849180748804e-25 +/- 6.70e-38]",
+            "precision_bits": 128
+          }
+        },
+        "unique": true,
+        "equation": "sum(coefficient * base**lambda) = 1",
+        "justification": "Positive coefficients and bases in (0,1) give continuity and strict decrease; endpoint signs bracket the unique root.",
+        "width_at_most": "1e-24",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "production_root",
+          "arguments": {
+            "terms": [
+              [
+                "1",
+                "1/2"
+              ],
+              [
+                "1/9",
+                "3/8"
+              ],
+              [
+                "2/9",
+                "3/4"
+              ],
+              [
+                "1/27",
+                "9/32"
+              ],
+              [
+                "1/81",
+                "27/128"
+              ],
+              [
+                "1/243",
+                "81/512"
+              ]
+            ],
+            "lower": "0",
+            "upper": "1",
+            "digits": 24,
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "root_V5": {
+      "tool": "arb_production_root",
+      "arguments": {
+        "terms": [
+          [
+            "1",
+            "1/2"
+          ],
+          [
+            "1/9",
+            "3/8"
+          ],
+          [
+            "2/9",
+            "3/4"
+          ],
+          [
+            "1/27",
+            "9/32"
+          ],
+          [
+            "1/81",
+            "27/128"
+          ],
+          [
+            "1/243",
+            "81/512"
+          ],
+          [
+            "1/729",
+            "243/2048"
+          ]
+        ]
+      },
+      "result": {
+        "status": "certified",
+        "root": {
+          "lower": "297612790373062284927145/604462909807314587353088",
+          "upper": "595225580746124569854291/1208925819614629174706176",
+          "display": "[0.492359060488810957264322 +/- 4.47e-25]",
+          "lower_residual": {
+            "lower": "3084851751883272104829/5708990770823839524233143877797980545530986496",
+            "upper": "3084851751883611296899/5708990770823839524233143877797980545530986496",
+            "display": "[5.403497528230e-25 +/- 3.12e-38]",
+            "precision_bits": 128
+          },
+          "upper_residual": {
+            "lower": "-1827170056939492483/5708990770823839524233143877797980545530986496",
+            "upper": "-1827170056633854845/5708990770823839524233143877797980545530986496",
+            "display": "[-3.200513243e-28 +/- 5.62e-38]",
+            "precision_bits": 128
+          }
+        },
+        "unique": true,
+        "equation": "sum(coefficient * base**lambda) = 1",
+        "justification": "Positive coefficients and bases in (0,1) give continuity and strict decrease; endpoint signs bracket the unique root.",
+        "width_at_most": "1e-24",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "production_root",
+          "arguments": {
+            "terms": [
+              [
+                "1",
+                "1/2"
+              ],
+              [
+                "1/9",
+                "3/8"
+              ],
+              [
+                "2/9",
+                "3/4"
+              ],
+              [
+                "1/27",
+                "9/32"
+              ],
+              [
+                "1/81",
+                "27/128"
+              ],
+              [
+                "1/243",
+                "81/512"
+              ],
+              [
+                "1/729",
+                "243/2048"
+              ]
+            ],
+            "lower": "0",
+            "upper": "1",
+            "digits": 24,
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "root_V6": {
+      "tool": "arb_production_root",
+      "arguments": {
+        "terms": [
+          [
+            "1",
+            "1/2"
+          ],
+          [
+            "1/9",
+            "3/8"
+          ],
+          [
+            "2/9",
+            "3/4"
+          ],
+          [
+            "1/27",
+            "9/32"
+          ],
+          [
+            "1/81",
+            "27/128"
+          ],
+          [
+            "1/243",
+            "81/512"
+          ],
+          [
+            "1/729",
+            "243/2048"
+          ],
+          [
+            "1/2187",
+            "729/8192"
+          ]
+        ]
+      },
+      "result": {
+        "status": "certified",
+        "root": {
+          "lower": "9304413412905395117217/18889465931478580854784",
+          "upper": "595482458425945287501889/1208925819614629174706176",
+          "display": "[0.492571544725356259004339 +/- 5.20e-25]",
+          "lower_residual": {
+            "lower": "11021694657706685592273/22835963083295358096932575511191922182123945984",
+            "upper": "11021694657708176739631/22835963083295358096932575511191922182123945984",
+            "display": "[4.826463686907e-25 +/- 3.47e-38]",
+            "precision_bits": 128
+          },
+          "upper_residual": {
+            "lower": "-1329452655838416112943/22835963083295358096932575511191922182123945984",
+            "upper": "-1329452655837059183313/22835963083295358096932575511191922182123945984",
+            "display": "[-5.82174989068e-26 +/- 4.14e-38]",
+            "precision_bits": 128
+          }
+        },
+        "unique": true,
+        "equation": "sum(coefficient * base**lambda) = 1",
+        "justification": "Positive coefficients and bases in (0,1) give continuity and strict decrease; endpoint signs bracket the unique root.",
+        "width_at_most": "1e-24",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "production_root",
+          "arguments": {
+            "terms": [
+              [
+                "1",
+                "1/2"
+              ],
+              [
+                "1/9",
+                "3/8"
+              ],
+              [
+                "2/9",
+                "3/4"
+              ],
+              [
+                "1/27",
+                "9/32"
+              ],
+              [
+                "1/81",
+                "27/128"
+              ],
+              [
+                "1/243",
+                "81/512"
+              ],
+              [
+                "1/729",
+                "243/2048"
+              ],
+              [
+                "1/2187",
+                "729/8192"
+              ]
+            ],
+            "lower": "0",
+            "upper": "1",
+            "digits": 24,
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "root_conditional_Appendix_C": {
+      "tool": "arb_production_root",
+      "arguments": {
+        "terms": [
+          [
+            "1",
+            "1/2"
+          ],
+          [
+            "1/9",
+            "3/8"
+          ],
+          [
+            "2/9",
+            "3/4"
+          ],
+          [
+            "1/9",
+            "9/32"
+          ]
+        ]
+      },
+      "result": {
+        "status": "certified",
+        "root": {
+          "lower": "325914121890781041457807/604462909807314587353088",
+          "upper": "651828243781562082915615/1208925819614629174706176",
+          "display": "[0.539179685970596776136164 +/- 6.27e-25]",
+          "lower_residual": {
+            "lower": "3072370889082365584361/45671926166590716193865151022383844364247891968",
+            "upper": "3072370889084329483287/45671926166590716193865151022383844364247891968",
+            "display": "[6.72704470111e-26 +/- 4.71e-38]",
+            "precision_bits": 128
+          },
+          "upper_residual": {
+            "lower": "-22129431160595222584343/45671926166590716193865151022383844364247891968",
+            "upper": "-22129431160593527120873/45671926166590716193865151022383844364247891968",
+            "display": "[-4.845302797144e-25 +/- 3.50e-38]",
+            "precision_bits": 128
+          }
+        },
+        "unique": true,
+        "equation": "sum(coefficient * base**lambda) = 1",
+        "justification": "Positive coefficients and bases in (0,1) give continuity and strict decrease; endpoint signs bracket the unique root.",
+        "width_at_most": "1e-24",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "production_root",
+          "arguments": {
+            "terms": [
+              [
+                "1",
+                "1/2"
+              ],
+              [
+                "1/9",
+                "3/8"
+              ],
+              [
+                "2/9",
+                "3/4"
+              ],
+              [
+                "1/9",
+                "9/32"
+              ]
+            ],
+            "lower": "0",
+            "upper": "1",
+            "digits": 24,
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "root_depth_two_ideal": {
+      "tool": "arb_production_root",
+      "arguments": {
+        "terms": [
+          [
+            "1",
+            "1/2"
+          ],
+          [
+            "1/3",
+            "3/4"
+          ]
+        ]
+      },
+      "result": {
+        "status": "certified",
+        "root": {
+          "lower": "595586952400682709263605/1208925819614629174706176",
+          "upper": "297793476200341354631803/604462909807314587353088",
+          "display": "[0.492657980115387660136385 +/- 6.03e-25]",
+          "lower_residual": {
+            "lower": "4103666856969241016265/22835963083295358096932575511191922182123945984",
+            "upper": "4103666856969665857591/22835963083295358096932575511191922182123945984",
+            "display": "[1.797019395241e-25 +/- 3.26e-38]",
+            "precision_bits": 128
+          },
+          "upper_residual": {
+            "lower": "-6773869884150930556983/22835963083295358096932575511191922182123945984",
+            "upper": "-6773869884150371497929/22835963083295358096932575511191922182123945984",
+            "display": "[-2.966316708186e-25 +/- 5.08e-38]",
+            "precision_bits": 128
+          }
+        },
+        "unique": true,
+        "equation": "sum(coefficient * base**lambda) = 1",
+        "justification": "Positive coefficients and bases in (0,1) give continuity and strict decrease; endpoint signs bracket the unique root.",
+        "width_at_most": "1e-24",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "production_root",
+          "arguments": {
+            "terms": [
+              [
+                "1",
+                "1/2"
+              ],
+              [
+                "1/3",
+                "3/4"
+              ]
+            ],
+            "lower": "0",
+            "upper": "1",
+            "digits": 24,
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "root_pairing": {
+      "tool": "arb_production_root",
+      "arguments": {
+        "terms": [
+          [
+            "1",
+            "1/2"
+          ],
+          [
+            "1/9",
+            "3/8"
+          ],
+          [
+            "2/9",
+            "3/4"
+          ]
+        ]
+      },
+      "result": {
+        "status": "certified",
+        "root": {
+          "lower": "270809660205004340292763/604462909807314587353088",
+          "upper": "541619320410008680585527/1208925819614629174706176",
+          "display": "[0.448017001227305544763828 +/- 4.75e-25]",
+          "lower_residual": {
+            "lower": "21953114343714051302277/45671926166590716193865151022383844364247891968",
+            "upper": "21953114343715637845115/45671926166590716193865151022383844364247891968",
+            "display": "[4.806697721405e-25 +/- 6.00e-38]",
+            "precision_bits": 128
+          },
+          "upper_residual": {
+            "lower": "-2019048696902071114875/45671926166590716193865151022383844364247891968",
+            "upper": "-2019048696901289878405/45671926166590716193865151022383844364247891968",
+            "display": "[-4.42076537245e-26 +/- 5.00e-38]",
+            "precision_bits": 128
+          }
+        },
+        "unique": true,
+        "equation": "sum(coefficient * base**lambda) = 1",
+        "justification": "Positive coefficients and bases in (0,1) give continuity and strict decrease; endpoint signs bracket the unique root.",
+        "width_at_most": "1e-24",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "production_root",
+          "arguments": {
+            "terms": [
+              [
+                "1",
+                "1/2"
+              ],
+              [
+                "1/9",
+                "3/8"
+              ],
+              [
+                "2/9",
+                "3/4"
+              ]
+            ],
+            "lower": "0",
+            "upper": "1",
+            "digits": 24,
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "root_sweep": {
+      "tool": "arb_production_root",
+      "arguments": {
+        "terms": [
+          [
+            "1",
+            "1/2"
+          ],
+          [
+            "2/21",
+            "3/4"
+          ]
+        ]
+      },
+      "result": {
+        "status": "certified",
+        "root": {
+          "lower": "167401668982142789671227/1208925819614629174706176",
+          "upper": "41850417245535697417807/302231454903657293676544",
+          "display": "[0.138471415091048045598421 +/- 5.28e-25]",
+          "lower_residual": {
+            "lower": "18093789095174944265687/45671926166590716193865151022383844364247891968",
+            "upper": "18093789095175913794089/45671926166590716193865151022383844364247891968",
+            "display": "[3.961687323889e-25 +/- 5.99e-38]",
+            "precision_bits": 128
+          },
+          "upper_residual": {
+            "lower": "-6690682683522181032489/45671926166590716193865151022383844364247891968",
+            "upper": "-6690682683521479939543/45671926166590716193865151022383844364247891968",
+            "display": "[-1.4649442765162e-25 +/- 9.35e-39]",
+            "precision_bits": 128
+          }
+        },
+        "unique": true,
+        "equation": "sum(coefficient * base**lambda) = 1",
+        "justification": "Positive coefficients and bases in (0,1) give continuity and strict decrease; endpoint signs bracket the unique root.",
+        "width_at_most": "1e-24",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "production_root",
+          "arguments": {
+            "terms": [
+              [
+                "1",
+                "1/2"
+              ],
+              [
+                "2/21",
+                "3/4"
+              ]
+            ],
+            "lower": "0",
+            "upper": "1",
+            "digits": 24,
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "root_worst_case_share": {
+      "tool": "arb_production_root",
+      "arguments": {
+        "terms": [
+          [
+            "1",
+            "1/2"
+          ],
+          [
+            "2/9",
+            "3/4"
+          ]
+        ]
+      },
+      "result": {
+        "status": "certified",
+        "root": {
+          "lower": "394256051418018580073377/1208925819614629174706176",
+          "upper": "197128025709009290036689/604462909807314587353088",
+          "display": "[0.326120962114694584312157 +/- 6.42e-25]",
+          "lower_residual": {
+            "lower": "10122644481225092617323/45671926166590716193865151022383844364247891968",
+            "upper": "10122644481226234801045/45671926166590716193865151022383844364247891968",
+            "display": "[2.216382213507e-25 +/- 5.64e-38]",
+            "precision_bits": 128
+          },
+          "upper_residual": {
+            "lower": "-12964544853481139874709/45671926166590716193865151022383844364247891968",
+            "upper": "-12964544853480266126443/45671926166590716193865151022383844364247891968",
+            "display": "[-2.838624499039e-25 +/- 5.84e-38]",
+            "precision_bits": 128
+          }
+        },
+        "unique": true,
+        "equation": "sum(coefficient * base**lambda) = 1",
+        "justification": "Positive coefficients and bases in (0,1) give continuity and strict decrease; endpoint signs bracket the unique root.",
+        "width_at_most": "1e-24",
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "production_root",
+          "arguments": {
+            "terms": [
+              [
+                "1",
+                "1/2"
+              ],
+              [
+                "2/9",
+                "3/4"
+              ]
+            ],
+            "lower": "0",
+            "upper": "1",
+            "digits": 24,
+            "bits": 128,
+            "max_bits": 4096
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    }
+  }
+}

@@ -64,6 +64,14 @@ return `status="enclosed"` when finite and `unresolved` otherwise.
 
 ## Paper examples
 
+The [all-paper audit](../research/arb_paper_audit.md) exercises the actual
+stdio service against Papers A–E and the Beatty companion, preserves full
+responses and records the mathematical consequences and their boundaries.
+Run `python tools/check_papers_arb.py --paper A E Beatty` to regenerate
+selected reports, or supply `--output-root .build/arb-review` for a separate
+run. The audit performs exact enumeration outside the MCP and all
+certified transcendental evaluations through it.
+
 Call `arb_paper_c_models`, select `models.OOEE_fixed`, and pass those terms to
 `arb_production_root`. The equivalent explicit request is:
 

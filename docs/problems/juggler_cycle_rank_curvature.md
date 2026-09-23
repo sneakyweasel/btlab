@@ -639,6 +639,14 @@ The forbidden literal endpoint m_0 from earlier controls is not restored
 as a candidate. No assertion about taller cycles or other count pairs is
 made, and these inequalities do not exclude the stated period.
 
+The later [all-paper Arb MCP audit](../research/arb_paper_audit.md)
+certifies the sharper cutoff **m < 487011720** using this same scalar
+bound and monotonicity. Its value is below Lambda at 487011720 and above
+Lambda at 487011719. This is **COMPUTATIONALLY VERIFIED**, with the same
+primitive cubic-band and fixed-count hypotheses; it is not a new Lean
+numerical proof or a period exclusion. RC25 remains the historical cutoff
+recorded in the manuscript and its original control report.
+
 ### 10. A local upper-square gap on every odd-to-odd edge
 
 Let x and y be odd natural numbers with x^3<(y+1)^2. Then

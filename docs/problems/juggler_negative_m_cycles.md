@@ -358,6 +358,17 @@ not an input of Paper D's release manifest);
 `test_herchers_corollary_29_transposes_but_improves_the_wrong_constant` and
 `test_the_window_witnesses_sit_on_the_residue_trees_ceiling`.
 
+## Arb enclosure audit
+
+The [all-paper Arb MCP audit](../research/arb_paper_audit.md) independently
+certifies all 62 Rhin ceilings and enumerates the full admissible-length
+set at floor 2^51 using a widened rational rotation window and exact floor
+sums. Every candidate through m=61 has a certified negative witness; at
+m=62 the same length 83130157078217 survives all optimized valley
+branches. The recorded table agrees throughout. This strengthens the
+**COMPUTATIONALLY VERIFIED** numerical evidence without extending the
+exclusion or rerunning the assumed descent campaign.
+
 ## Open questions
 
 - The floor stands at \(2^{51}\) since the GPU sweep of 21 September 2026. With Lemma 6 in

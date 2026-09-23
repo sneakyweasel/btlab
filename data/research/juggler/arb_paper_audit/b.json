@@ -1,0 +1,755 @@
+{
+  "schema": "btlab.paper-arb-audit.v1",
+  "paper": "B",
+  "transport": "MCP stdio via tools/arb_mcp.py",
+  "scope": "Finite expression certificates and explicitly stated derived consequences; no new Lean proof or termination result.",
+  "paper_source_sha256": {
+    "before": "a695439420a6d2ca01390ce30ed391b10135cc482fbdd0f096dbe39c99412e8a",
+    "after": "a695439420a6d2ca01390ce30ed391b10135cc482fbdd0f096dbe39c99412e8a"
+  },
+  "paper_unchanged_during_run": true,
+  "input_source_sha256": {
+    "tools/check_papers_arb.py": "bafe29b4ab8987cbef3b4e56703433be1c69348dbd7c97474c87fee43817b387",
+    "tools/arb_paper_audit_core/__init__.py": "60a13e62761a04350a519ddd376be7a977202f294fa7eb654e12db1c05ca9511",
+    "tools/arb_paper_audit_core/beatty.py": "b85bd7f41f7c8e2cfebe75811444675ea3a274f83b8ecf7a6035cc26f07aedc5",
+    "tools/arb_paper_audit_core/client.py": "797695762c4aec729c18819b67ea2f47e5905308e35a9e0d6d93e304d4c5a2b3",
+    "tools/arb_paper_audit_core/paper_a.py": "7b478c1637b6a523f6b467c9e73c764ff43387516f2f1890e6e9dbee91873339",
+    "tools/arb_paper_audit_core/paper_d.py": "bc218fa20dadac13ef3f95dcd3de8b57000d9dac1fa2553704095e0bd1d9d46f",
+    "tools/arb_paper_audit_core/scalars.py": "3e7a28b047f5c21cafd983b4ce6e4490054c036cf1277d5fc1861f2c7cabbc45",
+    "tools/arb_mcp.py": "ff5f1aad04c0bc953e03997bdbb466f385bd0e04db217e8d09d52fc57925ecfe",
+    "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+    "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+    "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+    "docs/theory/juggler_parity_discrepancy_note.md": "a695439420a6d2ca01390ce30ed391b10135cc482fbdd0f096dbe39c99412e8a"
+  },
+  "summary": {
+    "constants": {
+      "kl_sharp": {
+        "enclosure": {
+          "lower": "1004154359966579862997445553127666905508545222373210407594303464478157480567/28948022309329048855892746252171976963317496166410141009864396001978282409984",
+          "upper": "1004154359966579862997445553127666905508545222473293246638283296937018827383/28948022309329048855892746252171976963317496166410141009864396001978282409984"
+        },
+        "printed": "0.0346881852",
+        "rounding_agrees": true
+      },
+      "kl_convenient": {
+        "enclosure": {
+          "lower": "497672010095708838595096270907628621091089091174271462146671164724145293863/57896044618658097711785492504343953926634992332820282019728792003956564819968",
+          "upper": "497672010095708838595096270907628621091089091272798535261743903328524044839/57896044618658097711785492504343953926634992332820282019728792003956564819968"
+        },
+        "printed": "0.0085959587",
+        "rounding_agrees": true
+      },
+      "rho": {
+        "enclosure": {
+          "lower": "189471678172593102458033525516501649844893150318405467053/196159429230833773869868419475239575503198607639501078528",
+          "upper": "94735839086296551229016762758250824922446575159530266499/98079714615416886934934209737619787751599303819750539264"
+        },
+        "printed": "0.9659065532",
+        "rounding_agrees": true
+      },
+      "eta": {
+        "enclosure": {
+          "lower": "1227086902861880216517925689687082468663054658771512507/24519928653854221733733552434404946937899825954937634816",
+          "upper": "4908347611447520866071702758748329874652218635575266509/98079714615416886934934209737619787751599303819750539264"
+        },
+        "printed": "0.0500444728",
+        "rounding_agrees": true
+      },
+      "oscillation_envelope": {
+        "enclosure": {
+          "lower": "16609255887687522628020272130934618061428649537593003999/6129982163463555433433388108601236734474956488734408704",
+          "upper": "265748094203000362048324354094953888982858392602208122441/98079714615416886934934209737619787751599303819750539264"
+        },
+        "printed": "2.7095112914",
+        "rounding_agrees": true
+      },
+      "ladder_mean": {
+        "enclosure": {
+          "lower": "151220728176817529250126415331538735288390726813452070411/98079714615416886934934209737619787751599303819750539264",
+          "upper": "151220728176817529250126415331538735288390726814987947369/98079714615416886934934209737619787751599303819750539264"
+        },
+        "printed": "1.541814521",
+        "rounding_agrees": true
+      },
+      "first_jump": {
+        "enclosure": {
+          "lower": "167895524977556348649966753340358666638767598649142979627/392318858461667547739736838950479151006397215279002157056",
+          "upper": "83947762488778174324983376670179333319383799325041990527/196159429230833773869868419475239575503198607639501078528"
+        },
+        "printed": "0.427956804",
+        "rounding_agrees": true
+      }
+    },
+    "conditional_density_examples": {
+      "100": {
+        "log_density_upper_bound": {
+          "lower": "-14229145394953280395564464718966908522343915095208678765504727310776889907111/3618502788666131106986593281521497120414687020801267626233049500247285301248",
+          "upper": "-14229145394953280395564464718966908522343915092734583255060743751295961536423/3618502788666131106986593281521497120414687020801267626233049500247285301248"
+        },
+        "conditional_on": "FD at this depth"
+      },
+      "1000": {
+        "log_density_upper_bound": {
+          "lower": "-31796723651143806860020371501715332609931472411553337371601197871043709211745/904625697166532776746648320380374280103671755200316906558262375061821325312",
+          "upper": "-31796723651143806860020371501715332609931472405305164767270273789337071228001/904625697166532776746648320380374280103671755200316906558262375061821325312"
+        },
+        "conditional_on": "FD at this depth"
+      }
+    },
+    "progress": "Certified finite constants; 7/8, 127/128 and the open FD premise are unchanged."
+  },
+  "mcp_call_count": 15,
+  "checks": {
+    "beta": {
+      "tool": "arb_evaluate",
+      "arguments": {
+        "expression": "log(2)/log(3)",
+        "variables": null,
+        "bits": 256
+      },
+      "result": {
+        "status": "enclosed",
+        "enclosure": {
+          "lower": "73056674328024116113449822250352706500664988921963475669774779940781482775335/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "upper": "73056674328024116113449822250352706500664988921963475669774779940781482775341/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "display": "[0.630929753571457437099527114343 +/- 2.40e-31]"
+        },
+        "precision_bits": 256,
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "evaluate",
+          "arguments": {
+            "source": "log(2)/log(3)",
+            "variables": null,
+            "bits": 256
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "delta": {
+      "tool": "arb_evaluate",
+      "arguments": {
+        "expression": "log(3)/log(2)",
+        "variables": null,
+        "bits": 256
+      },
+      "result": {
+        "status": "enclosed",
+        "enclosure": {
+          "lower": "91763059660651975652982578897997908756676252439905634028385155448639766470903/57896044618658097711785492504343953926634992332820282019728792003956564819968",
+          "upper": "91763059660651975652982578897997908756676252439905634028385155448639766470909/57896044618658097711785492504343953926634992332820282019728792003956564819968",
+          "display": "[1.58496250072115618145373894395 +/- 2.19e-30]"
+        },
+        "precision_bits": 256,
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "evaluate",
+          "arguments": {
+            "source": "log(3)/log(2)",
+            "variables": null,
+            "bits": 256
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "eta": {
+      "tool": "arb_evaluate",
+      "arguments": {
+        "expression": "1+(p*log(p)+(1-p)*log(1-p))/log(2)",
+        "variables": {
+          "p": [
+            "0.630929753571457437099527114342760854299585640131",
+            "0.630929753571457437099527114342760854299585640132"
+          ]
+        },
+        "bits": 256
+      },
+      "result": {
+        "status": "enclosed",
+        "enclosure": {
+          "lower": "1227086902861880216517925689687082468663054658771512507/24519928653854221733733552434404946937899825954937634816",
+          "upper": "4908347611447520866071702758748329874652218635575266509/98079714615416886934934209737619787751599303819750539264",
+          "display": "[0.0500444728116693651860994204613 +/- 1.77e-32]"
+        },
+        "precision_bits": 256,
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "evaluate",
+          "arguments": {
+            "source": "1+(p*log(p)+(1-p)*log(1-p))/log(2)",
+            "variables": {
+              "p": [
+                "0.630929753571457437099527114342760854299585640131",
+                "0.630929753571457437099527114342760854299585640132"
+              ]
+            },
+            "bits": 256
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "first_jump": {
+      "tool": "arb_evaluate",
+      "arguments": {
+        "expression": "1/(2*exp(-log(2)-p*log(p)-(1-p)*log(1-p))*sqrt(2*pi*p*(1-p)))",
+        "variables": {
+          "p": [
+            "0.630929753571457437099527114342760854299585640131",
+            "0.630929753571457437099527114342760854299585640132"
+          ]
+        },
+        "bits": 256
+      },
+      "result": {
+        "status": "enclosed",
+        "enclosure": {
+          "lower": "167895524977556348649966753340358666638767598649142979627/392318858461667547739736838950479151006397215279002157056",
+          "upper": "83947762488778174324983376670179333319383799325041990527/196159429230833773869868419475239575503198607639501078528",
+          "display": "[0.427956804411330592267511051176 +/- 4.45e-31]"
+        },
+        "precision_bits": 256,
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "evaluate",
+          "arguments": {
+            "source": "1/(2*exp(-log(2)-p*log(p)-(1-p)*log(1-p))*sqrt(2*pi*p*(1-p)))",
+            "variables": {
+              "p": [
+                "0.630929753571457437099527114342760854299585640131",
+                "0.630929753571457437099527114342760854299585640132"
+              ]
+            },
+            "bits": 256
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "kl_convenient": {
+      "tool": "arb_evaluate",
+      "arguments": {
+        "expression": "log(2)+((p+1/2)/2)*log((p+1/2)/2)+(1-(p+1/2)/2)*log(1-(p+1/2)/2)",
+        "variables": {
+          "p": [
+            "0.630929753571457437099527114342760854299585640131",
+            "0.630929753571457437099527114342760854299585640132"
+          ]
+        },
+        "bits": 256
+      },
+      "result": {
+        "status": "enclosed",
+        "enclosure": {
+          "lower": "497672010095708838595096270907628621091089091174271462146671164724145293863/57896044618658097711785492504343953926634992332820282019728792003956564819968",
+          "upper": "497672010095708838595096270907628621091089091272798535261743903328524044839/57896044618658097711785492504343953926634992332820282019728792003956564819968",
+          "display": "[0.00859595872867841131773860547109 +/- 7.64e-34]"
+        },
+        "precision_bits": 256,
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "evaluate",
+          "arguments": {
+            "source": "log(2)+((p+1/2)/2)*log((p+1/2)/2)+(1-(p+1/2)/2)*log(1-(p+1/2)/2)",
+            "variables": {
+              "p": [
+                "0.630929753571457437099527114342760854299585640131",
+                "0.630929753571457437099527114342760854299585640132"
+              ]
+            },
+            "bits": 256
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "kl_sharp": {
+      "tool": "arb_evaluate",
+      "arguments": {
+        "expression": "log(2)+p*log(p)+(1-p)*log(1-p)",
+        "variables": {
+          "p": [
+            "0.630929753571457437099527114342760854299585640131",
+            "0.630929753571457437099527114342760854299585640132"
+          ]
+        },
+        "bits": 256
+      },
+      "result": {
+        "status": "enclosed",
+        "enclosure": {
+          "lower": "1004154359966579862997445553127666905508545222373210407594303464478157480567/28948022309329048855892746252171976963317496166410141009864396001978282409984",
+          "upper": "1004154359966579862997445553127666905508545222473293246638283296937018827383/28948022309329048855892746252171976963317496166410141009864396001978282409984",
+          "display": "[0.0346881852320174593842874515458 +/- 5.27e-33]"
+        },
+        "precision_bits": 256,
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "evaluate",
+          "arguments": {
+            "source": "log(2)+p*log(p)+(1-p)*log(1-p)",
+            "variables": {
+              "p": [
+                "0.630929753571457437099527114342760854299585640131",
+                "0.630929753571457437099527114342760854299585640132"
+              ]
+            },
+            "bits": 256
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "ladder_mean": {
+      "tool": "arb_evaluate",
+      "arguments": {
+        "expression": "1/(log(p/(1-p))*sqrt(2*pi*p*(1-p)))",
+        "variables": {
+          "p": [
+            "0.630929753571457437099527114342760854299585640131",
+            "0.630929753571457437099527114342760854299585640132"
+          ]
+        },
+        "bits": 256
+      },
+      "result": {
+        "status": "enclosed",
+        "enclosure": {
+          "lower": "151220728176817529250126415331538735288390726813452070411/98079714615416886934934209737619787751599303819750539264",
+          "upper": "151220728176817529250126415331538735288390726814987947369/98079714615416886934934209737619787751599303819750539264",
+          "display": "[1.54181452066590280545514971607 +/- 4.32e-30]"
+        },
+        "precision_bits": 256,
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "evaluate",
+          "arguments": {
+            "source": "1/(log(p/(1-p))*sqrt(2*pi*p*(1-p)))",
+            "variables": {
+              "p": [
+                "0.630929753571457437099527114342760854299585640131",
+                "0.630929753571457437099527114342760854299585640132"
+              ]
+            },
+            "bits": 256
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "ln2": {
+      "tool": "arb_evaluate",
+      "arguments": {
+        "expression": "log(2)",
+        "variables": null,
+        "bits": 256
+      },
+      "result": {
+        "status": "enclosed",
+        "enclosure": {
+          "lower": "80260960185991308862233904206310070533990667611589946606122867505419956976171/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "upper": "80260960185991308862233904206310070533990667611589946606122867505419956976173/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "display": "[0.693147180559945309417232121458 +/- 1.77e-31]"
+        },
+        "precision_bits": 256,
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "evaluate",
+          "arguments": {
+            "source": "log(2)",
+            "variables": null,
+            "bits": 256
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "ln3": {
+      "tool": "arb_evaluate",
+      "arguments": {
+        "expression": "log(3)",
+        "variables": null,
+        "bits": 256
+      },
+      "result": {
+        "status": "enclosed",
+        "enclosure": {
+          "lower": "15901326520833742180012308713612903202300735150562892457950701165754362439345/14474011154664524427946373126085988481658748083205070504932198000989141204992",
+          "upper": "7950663260416871090006154356806451601150367575281446228975350582877181219673/7237005577332262213973186563042994240829374041602535252466099000494570602496",
+          "display": "[1.09861228866810969139524523692 +/- 2.53e-30]"
+        },
+        "precision_bits": 256,
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "evaluate",
+          "arguments": {
+            "source": "log(3)",
+            "variables": null,
+            "bits": 256
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "log_density_100": {
+      "tool": "arb_evaluate",
+      "arguments": {
+        "expression": "-log(2)+(100-1)*(-log(2)-q*log(q)-(1-q)*log(1-q))",
+        "variables": {
+          "q": [
+            "0.627201771284300441514673852871475610403621858718",
+            "0.627201771284300441514673852871475610403621858720"
+          ]
+        },
+        "bits": 256
+      },
+      "result": {
+        "status": "enclosed",
+        "enclosure": {
+          "lower": "-14229145394953280395564464718966908522343915095208678765504727310776889907111/3618502788666131106986593281521497120414687020801267626233049500247285301248",
+          "upper": "-14229145394953280395564464718966908522343915092734583255060743751295961536423/3618502788666131106986593281521497120414687020801267626233049500247285301248",
+          "display": "[-3.93232953682439814888531481505 +/- 2.78e-30]"
+        },
+        "precision_bits": 256,
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "evaluate",
+          "arguments": {
+            "source": "-log(2)+(100-1)*(-log(2)-q*log(q)-(1-q)*log(1-q))",
+            "variables": {
+              "q": [
+                "0.627201771284300441514673852871475610403621858718",
+                "0.627201771284300441514673852871475610403621858720"
+              ]
+            },
+            "bits": 256
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "log_density_1000": {
+      "tool": "arb_evaluate",
+      "arguments": {
+        "expression": "-log(2)+(1000-1)*(-log(2)-q*log(q)-(1-q)*log(1-q))",
+        "variables": {
+          "q": [
+            "0.630560313885342779879406520863624478778364004135",
+            "0.630560313885342779879406520863624478778364004137"
+          ]
+        },
+        "bits": 256
+      },
+      "result": {
+        "status": "enclosed",
+        "enclosure": {
+          "lower": "-31796723651143806860020371501715332609931472411553337371601197871043709211745/904625697166532776746648320380374280103671755200316906558262375061821325312",
+          "upper": "-31796723651143806860020371501715332609931472405305164767270273789337071228001/904625697166532776746648320380374280103671755200316906558262375061821325312",
+          "display": "[-35.1490387137326034228795968123 +/- 3.29e-30]"
+        },
+        "precision_bits": 256,
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "evaluate",
+          "arguments": {
+            "source": "-log(2)+(1000-1)*(-log(2)-q*log(q)-(1-q)*log(1-q))",
+            "variables": {
+              "q": [
+                "0.630560313885342779879406520863624478778364004135",
+                "0.630560313885342779879406520863624478778364004137"
+              ]
+            },
+            "bits": 256
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "oscillation_envelope": {
+      "tool": "arb_evaluate",
+      "arguments": {
+        "expression": "1/(1-p)",
+        "variables": {
+          "p": [
+            "0.630929753571457437099527114342760854299585640131",
+            "0.630929753571457437099527114342760854299585640132"
+          ]
+        },
+        "bits": 256
+      },
+      "result": {
+        "status": "enclosed",
+        "enclosure": {
+          "lower": "16609255887687522628020272130934618061428649537593003999/6129982163463555433433388108601236734474956488734408704",
+          "upper": "265748094203000362048324354094953888982858392602208122441/98079714615416886934934209737619787751599303819750539264",
+          "display": "[2.70951129135145477697619026217 +/- 4.02e-30]"
+        },
+        "precision_bits": 256,
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "evaluate",
+          "arguments": {
+            "source": "1/(1-p)",
+            "variables": {
+              "p": [
+                "0.630929753571457437099527114342760854299585640131",
+                "0.630929753571457437099527114342760854299585640132"
+              ]
+            },
+            "bits": 256
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "q_100": {
+      "tool": "arb_evaluate",
+      "arguments": {
+        "expression": "p-(1-p)/(100-1)",
+        "variables": {
+          "p": [
+            "0.630929753571457437099527114342760854299585640131",
+            "0.630929753571457437099527114342760854299585640132"
+          ]
+        },
+        "bits": 256
+      },
+      "result": {
+        "status": "enclosed",
+        "enclosure": {
+          "lower": "18156250867588624787680331414208542278316234614950788749129633018525748374487/28948022309329048855892746252171976963317496166410141009864396001978282409984",
+          "upper": "18156250867588624787680331414208542278316234614980029175836510749426974534615/28948022309329048855892746252171976963317496166410141009864396001978282409984",
+          "display": "[0.627201771284300441514673852871 +/- 4.76e-31]"
+        },
+        "precision_bits": 256,
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "evaluate",
+          "arguments": {
+            "source": "p-(1-p)/(100-1)",
+            "variables": {
+              "p": [
+                "0.630929753571457437099527114342760854299585640131",
+                "0.630929753571457437099527114342760854299585640132"
+              ]
+            },
+            "bits": 256
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "q_1000": {
+      "tool": "arb_evaluate",
+      "arguments": {
+        "expression": "p-(1-p)/(1000-1)",
+        "variables": {
+          "p": [
+            "0.630929753571457437099527114342760854299585640131",
+            "0.630929753571457437099527114342760854299585640132"
+          ]
+        },
+        "bits": 256
+      },
+      "result": {
+        "status": "enclosed",
+        "enclosure": {
+          "lower": "73013896134921721639665917182526545137949668605801690213092337704524950750719/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "upper": "73013896134921721639665917182526545137949668605917598210907828294709502756351/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "display": "[0.630560313885342779879406520864 +/- 3.76e-31]"
+        },
+        "precision_bits": 256,
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "evaluate",
+          "arguments": {
+            "source": "p-(1-p)/(1000-1)",
+            "variables": {
+              "p": [
+                "0.630929753571457437099527114342760854299585640131",
+                "0.630929753571457437099527114342760854299585640132"
+              ]
+            },
+            "bits": 256
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    },
+    "rho": {
+      "tool": "arb_evaluate",
+      "arguments": {
+        "expression": "exp(-log(2)-p*log(p)-(1-p)*log(1-p))",
+        "variables": {
+          "p": [
+            "0.630929753571457437099527114342760854299585640131",
+            "0.630929753571457437099527114342760854299585640132"
+          ]
+        },
+        "bits": 256
+      },
+      "result": {
+        "status": "enclosed",
+        "enclosure": {
+          "lower": "189471678172593102458033525516501649844893150318405467053/196159429230833773869868419475239575503198607639501078528",
+          "upper": "94735839086296551229016762758250824922446575159530266499/98079714615416886934934209737619787751599303819750539264",
+          "display": "[0.965906553233437723605537917803 +/- 3.67e-31]"
+        },
+        "precision_bits": 256,
+        "schema": "btlab.arb-mcp.v1",
+        "request": {
+          "operation": "evaluate",
+          "arguments": {
+            "source": "exp(-log(2)-p*log(p)-(1-p)*log(1-p))",
+            "variables": {
+              "p": [
+                "0.630929753571457437099527114342760854299585640131",
+                "0.630929753571457437099527114342760854299585640132"
+              ]
+            },
+            "bits": 256
+          }
+        },
+        "backend": {
+          "python_flint": "0.9.0",
+          "flint": "3.6.0"
+        },
+        "source_sha256": {
+          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
+        },
+        "scope": "Finite numerical enclosure of the supplied expressions and input box. Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. Only a certified decision establishes the requested comparison; unresolved is not false."
+      }
+    }
+  }
+}
