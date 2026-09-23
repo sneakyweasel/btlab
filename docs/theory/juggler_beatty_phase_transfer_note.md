@@ -748,7 +748,7 @@ and empty interior. Thus the envelope contains a Cantor set of accumulation
 values with explicitly identified complementary gaps. Both endpoints of
 every listed gap are actual subsequential limits. The first gap has length
 `w_1=beta`. This is a qualitative description of the complete limit set;
-it does not assert a rate of approach or a limiting frequency law.
+it does not assert a rate of approach. Section 15 proves the limiting frequency law.
 
 The public interface
 [certificateRatio_cluster_iff](../../formal/Problems/Juggler/BeattyCertificateCluster.lean)
@@ -797,9 +797,9 @@ all sufficiently large values lie exactly in `K`.
 **Boundary and decision.** The geometry of a positive pure jump series is
 a general consequence, not a novelty claim. The application here specifies
 every certificate accumulation value and every interior gap beyond the
-earlier extremal envelopes. Empirical weak convergence to the law of `F(U)`
-for uniform `U`, and singular continuity of that law, are separate proposed
-corollaries and are not asserted by these Lean modules. Quantitative errors,
+earlier extremal envelopes. Section 15 now proves empirical weak convergence
+to the law of `F(U)` for uniform `U`, and singular continuity of that law.
+Those results use additional modules beyond the cluster-set proof. Quantitative errors,
 effective constants and arbitrary irrational slopes remain separate as well.
 **PROMOTE** this completed accumulation-set theorem within the existing dossier.
 
@@ -812,3 +812,108 @@ There are no proof placeholders or added assumptions. Lean style reports zero
 new violations; the targeted Beatty, layer, ledger and documentation-link tests
 pass. Registry lint, ledger rendering, branch-index validation and research
 metadata checks pass, with zero metadata errors or warnings.
+
+## 15. The singular continuous empirical certificate law
+
+**EXACT — LEAN VERIFIED, at `alpha=log_2 3`.** Let `U` be uniform on
+`(0,1]`, and let `mu` be the probability law of `F(U)`. For the actual
+normalized integer counts, the empirical measures converge weakly:
+
+\[
+\boxed{\qquad
+\frac1N\sum_{0\le r<N}\delta_{R_r^+}\ \Longrightarrow\
+\mu=F_*\bigl(\lambda\!\restriction_{(0,1]}\bigr).
+\qquad}                                                     \tag{19}
+\]
+
+Equivalently, for every bounded continuous real function `g`,
+
+\[
+\frac1N\sum_{0\le r<N}g(R_r^+)
+\longrightarrow \int_0^1 g(F(t))\,dt.                         \tag{20}
+\]
+
+Lean defines the harmless zeroth ratio by its total natural-number formula.
+The empirical probability object uses `N+1` samples to avoid an empty
+probability measure; the test-function theorem (20) uses the first `N`
+samples. Changing finitely many initial samples leaves the limit unchanged.
+
+The public declarations are
+`certificateRatio_empiricalLaw_tendsto` and `certificateRatio_average_tendsto`
+in [BeattyCertificateDistribution.lean](../../formal/Problems/Juggler/BeattyCertificateDistribution.lean).
+The limit uses the exact profile from Section 13, with the actual integer
+certificate counts in its weights. No phase distribution hypothesis remains.
+
+**Proof of convergence.** The reciprocal slope `1/beta` is irrational.
+For each nonzero integer frequency, the associated geometric exponential
+sum is uniformly bounded in its length. The existing Weyl criterion
+therefore proves Haar equidistribution on the circle. Choosing the `(0,1]`
+representative preserves measure and is continuous except at one point.
+[BeattyPhaseEquidistribution.lean](../../formal/Problems/Juggler/BeattyPhaseEquidistribution.lean)
+concludes that the exact certificate phases have uniform empirical law;
+the exceptional zeroth representative does not affect the limit.
+
+The profile is monotone, so its discontinuity set is countable. A proved
+almost-everywhere continuous mapping theorem passes phase equidistribution
+through `F`, even though every positive sample phase is itself a jump point.
+Finally `R_r^+-F(delta_r)->0` transfers the same law to the actual counts.
+The generic tools in
+[BeattyWeakConvergence.lean](../../formal/Problems/Juggler/BeattyWeakConvergence.lean)
+prove the mapping step by the open-set Portmanteau criterion, and the error
+transfer using bounded Lipschitz tests and Cesaro convergence.
+
+**Singular continuity.** Lean proves all of the following:
+
+- `mu({y})=0` for every real `y`, since strict increase of `F` on `[0,1]`
+  makes each restricted level set contain at most one phase.
+- `mu(K)=1` and `mu(K^c)=0`, where `K` is the explicit compact perfect
+  accumulation set of Section 14.
+- `mu` and Lebesgue measure are mutually singular, since `lambda(K)=0`.
+- The distribution function `G(y)=mu((-infinity,y])` is continuous everywhere.
+
+Thus a discontinuous pure jump phase profile produces a **singular continuous
+probability law** for the normalized counts. The statement concerns the
+limiting measure; it does not assert that the finite-depth ratios lie in `K`
+or that their frequency of exact membership in `K` tends to one. Weak
+convergence alone would not justify that assertion, because `K` has full
+limiting boundary mass.
+
+**Exact frequency and plateau corollaries.** For every `t` in `[0,1]`,
+
+\[
+G(F(t))=t,\qquad
+\frac{\#\{0\le r<N:R_r^+\le F(t)\}}{N}\longrightarrow t.       \tag{21}
+\]
+
+More generally the frequency below every real threshold `y` tends to `G(y)`;
+there are no exceptional thresholds because the limiting law has no atoms.
+Each jump interval gives an exactly identified flat segment:
+
+\[
+G(y)=\delta_j\quad\text{for every}\quad
+y\in[F(\delta_j),F(\delta_j)+w_j],\qquad j\ge1.                \tag{22}
+\]
+
+Every such closed interval has zero limiting mass, including its endpoints,
+although both endpoints are subsequential limits of the counts. The exact
+interfaces are `certificateLaw_Iic_profile`, `certificateRatio_threshold_frequency`,
+`certificateRatio_profile_threshold_frequency`, `certificateLaw_closed_gap`
+and `certificateLaw_Iic_gap`.
+
+**Boundary and decision.** These are qualitative frequency results for the
+concrete logarithmic slope. No discrepancy rate, effective truncation error,
+arbitrary-slope certificate theorem, or literature priority claim is added.
+The generic measure arguments are standard; the specialization identifies
+the empirical law of the original certificate counts explicitly.
+**PROMOTE** this completed empirical-law theorem within the existing dossier.
+
+Validation: the complete retained Lean graph passes (9049 jobs). The executed
+consumer audit in `.build/beatty-distribution/Audit.lean` expands the averages
+into the original integer counts, natural floors and Bernoulli jump weights.
+It also checks weak convergence, atomlessness, continuous CDF, singularity,
+full limiting mass on `K` and exact threshold frequencies. All seventeen
+audited principal declarations depend only on `propext`, `Classical.choice`
+and `Quot.sound`, with no proof placeholders or added axioms. Lean style
+has zero new violations. The targeted Beatty, layer, ledger and documentation
+link tests pass, along with registry lint, ledger rendering, branch-index
+validation and research metadata checks (zero errors and warnings).

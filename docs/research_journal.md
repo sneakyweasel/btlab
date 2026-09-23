@@ -21,11 +21,14 @@ identifies the whole jump series, with total mass `1/(alpha-1)` and first
 jump `beta`. The complete accumulation set is now also Lean-checked: the
 envelope minus the explicit open jumps is compact, perfect and Lebesgue-null.
 Every gap endpoint is a subsequential limit, and closed intervals strictly
-inside gaps are eventually avoided. An empirical limiting law, quantitative
-rate, effective numerical constants and arbitrary irrational slope remain
-separate extensions. **PROMOTE** the completed qualitative
+inside gaps are eventually avoided. The empirical law is now proved to be
+`F_*(uniform[0,1])`, atomless and singular with respect to Lebesgue measure,
+with continuous CDF `G`, exact identity `G(F(t))=t` and plateau height `delta_j`
+on the j-th closed jump interval. Quantitative rates, effective numerical
+constants and arbitrary irrational slope remain separate extensions.
+**PROMOTE** the completed qualitative
 specialization; no paper/release, priority or trajectory-termination claim is
-changed. Canonical proof boundary: Sections 13–14 of the
+changed. Canonical proof boundary: Sections 13–15 of the
 [comparison note](theory/juggler_beatty_phase_transfer_note.md) and the
 [dossier](problems/juggler_winkler_phase_collapse.md).
 

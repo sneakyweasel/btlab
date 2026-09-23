@@ -1,5 +1,70 @@
 [
  {
+ "id": "J-beatty-empirical-weak-transfer",
+ "tag": "EXACT — LEAN VERIFIED",
+ "statement": "For sequences of Borel probability measures on metric spaces, weak convergence passes through a measurable map continuous almost everywhere for the limiting measure. Empirical laws are preserved under vanishing real sample errors, and converge on measurable sets with null limiting boundary. These are generic measure-theoretic tools, not a novelty claim.",
+ "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+ "lean": "Problems/Juggler/BeattyWeakConvergence.lean",
+ "decl": [
+  "tendsto_probability_map_of_ae_continuous",
+  "empiricalLaw_map",
+  "empiricalLaw_apply",
+  "empiricalLaw_tendsto_count",
+  "integral_empiricalLaw",
+  "empiricalLaw_tendsto_of_sub_tendsto_zero"
+ ],
+ "lean_trust": "kernel",
+ "tests": [
+  "tests/research/juggler_sequence/test_layer_architecture.py",
+  "tests/research/juggler_sequence/test_layer_completeness.py"
+ ],
+ "related_conjectures": []
+ },
+ {
+ "id": "J-beatty-certificate-phase-equidistribution",
+ "tag": "EXACT — LEAN VERIFIED",
+ "statement": "Every irrational linear exponential phase has zero limiting Fourier average. For beta=log 2/log 3 this proves that the empirical laws of the exact certificate phases delta_r={r/beta} converge weakly to uniform probability on (0,1]. No equidistribution or Fourier-cancellation premise remains in the concrete theorem.",
+ "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+ "lean": "Problems/Juggler/BeattyPhaseEquidistribution.lean",
+ "decl": [
+  "tendsto_irrational_phase_average",
+  "certificatePhase_equidistributed"
+ ],
+ "lean_trust": "kernel",
+ "tests": [
+  "tests/research/juggler_sequence/test_layer_architecture.py",
+  "tests/research/juggler_sequence/test_layer_completeness.py"
+ ],
+ "related_conjectures": []
+ },
+ {
+ "id": "J-beatty-certificate-singular-continuous-law",
+ "tag": "EXACT — LEAN VERIFIED",
+ "statement": "For alpha=log_2 3 the empirical probability measures of the actual normalized certificate counts R_r converge weakly to mu=F_*(uniform(0,1]). The same result is proved for averages of every bounded continuous real test function. This probability law is atomless, has a continuous CDF G, gives full mass to the explicit null accumulation set K, and is mutually singular with Lebesgue measure. G(F(t))=t for t in [0,1], and G equals delta_j throughout each closed jump interval [F(delta_j),F(delta_j)+w_j], which has zero mass including its endpoints. Frequencies below every real threshold converge to G, with limit t at F(t). No empirical frequency of exact membership in K, quantitative discrepancy rate or arbitrary-slope certificate theorem is asserted.",
+ "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
+ "lean": "Problems/Juggler/BeattyCertificateDistribution.lean",
+ "decl": [
+  "certificateRatio_empiricalLaw_tendsto",
+  "certificateRatio_average_tendsto",
+  "certificateLaw_singleton",
+  "certificateLaw_cdf_continuous",
+  "certificateLaw_compl_clusterSet",
+  "certificateLaw_clusterSet",
+  "certificateLaw_mutuallySingular_volume",
+  "certificateLaw_Iic_profile",
+  "certificateLaw_closed_gap",
+  "certificateLaw_Iic_gap",
+  "certificateRatio_threshold_frequency",
+  "certificateRatio_profile_threshold_frequency"
+ ],
+ "lean_trust": "kernel",
+ "tests": [
+  "tests/research/juggler_sequence/test_layer_architecture.py",
+  "tests/research/juggler_sequence/test_layer_completeness.py"
+ ],
+ "related_conjectures": []
+ },
+ {
  "id": "J-beatty-jump-range-geometry",
  "tag": "EXACT — LEAN VERIFIED",
  "statement": "For distinct atoms in (0,1) with summable nonnegative weights, the closure of the cumulative jump profile range is its envelope minus the pairwise disjoint open jump intervals, and this complement has zero Lebesgue measure. Dense strictly positive atoms make the profile strictly increasing and the range closure perfect. Recurrent phase sampling has exactly that range closure as its real subsequential limit set; an additive error tending to zero preserves all such limits. These are generic pure-jump consequences, not a novelty claim.",
@@ -24,7 +89,7 @@
  {
  "id": "J-beatty-certificate-accumulation-set",
  "tag": "EXACT — LEAN VERIFIED",
- "statement": "For alpha=log_2 3, the actual normalized certificate counts R_r=r*c_r/binom(m_r-1,r-1) have exactly K=[1,alpha/(alpha-1)] minus the union over j>=1 of (F(delta_j),F(delta_j)+w_j) as their real subsequential limit set. K is nonempty, compact, perfect, Lebesgue-null and has empty interior. Both endpoints of every listed gap are subsequential limits. Every closed interval strictly inside a gap is eventually avoided. Exact phase recurrence is proved; no unproved density or asymptotic input remains. No empirical limiting law, convergence rate, arbitrary-slope theorem or novelty claim is asserted.",
+ "statement": "For alpha=log_2 3, the actual normalized certificate counts R_r=r*c_r/binom(m_r-1,r-1) have exactly K=[1,alpha/(alpha-1)] minus the union over j>=1 of (F(delta_j),F(delta_j)+w_j) as their real subsequential limit set. K is nonempty, compact, perfect, Lebesgue-null and has empty interior. Both endpoints of every listed gap are subsequential limits. Every closed interval strictly inside a gap is eventually avoided. Exact phase recurrence is proved; no unproved density or asymptotic input remains. The empirical limiting law is recorded separately. No convergence rate, arbitrary-slope theorem or novelty claim is asserted.",
  "source": "docs/theory/juggler_beatty_phase_transfer_note.md",
  "lean": "Problems/Juggler/BeattyCertificateCluster.lean",
  "decl": [

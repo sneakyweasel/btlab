@@ -98,6 +98,9 @@ import Problems.Juggler.BeattyCertificateIdentification
 import Problems.Juggler.BeattyCertificateAsymptotic
 import Problems.Juggler.BeattyProfileGeometry
 import Problems.Juggler.BeattyCertificateCluster
+import Problems.Juggler.BeattyWeakConvergence
+import Problems.Juggler.BeattyPhaseEquidistribution
+import Problems.Juggler.BeattyCertificateDistribution
 import Problems.Juggler.PaperBLevelWindow
 import Problems.Juggler.PaperBJumpTransposition
 import Problems.Juggler.PaperBPaperCBridge

@@ -217,11 +217,41 @@ Stop criterion          A new unproved analytic premise is needed.
 PROMOTE
 ```
 
+**23 September: singular continuous empirical law.**
+[BeattyCertificateDistribution.lean](../../formal/Problems/Juggler/BeattyCertificateDistribution.lean)
+proves weak convergence of the actual normalized counts to the law of `F(U)`
+for uniform `U`. Irrational Fourier cancellation proves equidistribution of
+the exact phases. Almost-everywhere continuity of the monotone profile and
+the existing vanishing count error then give the empirical limit. Strict
+increase makes the law atomless; concentration on the null accumulation
+set makes it singular. Its CDF is continuous, satisfies `G(F(t))=t` on
+`[0,1]`, and equals `delta_j` throughout each closed jump interval. Empirical
+frequencies converge at every real threshold. Section 15 of the
+[comparison note](../theory/juggler_beatty_phase_transfer_note.md) records
+the exact formulas and the distinction between limiting concentration and
+finite-depth membership in the accumulation set.
+
+Continuation triage:
+
+```text
+Mathematical target     Prove the empirical singular continuous certificate law.
+Novelty hypothesis      Its explicit application to the original certificate counts;
+                        the generic measure arguments are standard.
+Falsifier               A positive-measure discontinuity obstruction.
+Already killed by?      No matching obstruction; recurrence alone is insufficient,
+                        so Fourier cancellation must establish equidistribution.
+Existing machinery      Weyl criterion, exact phase asymptotic, null perfect limit set.
+Maximum Phase-0 scope   Phase equidistribution, passage through F, and law properties.
+Promotion criterion     Kernel-checked empirical convergence with all inputs discharged.
+Stop criterion          An additional unproved analytic premise remains.
+PROMOTE
+```
+
 ## Open questions
 
 The qualitative logarithmic-slope phase theorem and normalization are complete
-in Lean, as is the complete accumulation set. An empirical limiting distribution
-is not yet formalized. Other remaining mathematical extensions are a quantitative remainder,
+in Lean, as are the complete accumulation set and its singular continuous
+empirical limiting law. Remaining mathematical extensions are a quantitative remainder,
 effective numerical truncation bounds, and generalization from the concrete
 logarithmic slope to arbitrary irrational `1<alpha<2`. Literature comparison
 is separate from proof checking; existing paper claims and releases retain
@@ -231,8 +261,9 @@ their earlier evidence labels.
 
 `PROMOTE` -- the actual normalized certificate counts have the explicit positive
 jump-series asymptotic, with its full normalization and strict atom convention
-proved. The continuation also identifies the full null perfect accumulation set
-and its exact gaps. No new branch, publication, priority claim or
+proved. The continuation identifies the full null perfect accumulation set,
+its exact gaps, and the singular continuous empirical law with exact threshold
+frequencies and plateau levels. No new branch, publication, priority claim or
 trajectory-termination claim is opened.
 
 ## Publication assessment
