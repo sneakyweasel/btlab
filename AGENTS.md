@@ -16,6 +16,7 @@ is their home. Do not recreate compatibility packages or a parallel research are
 | Papers and evidence labels | [Research map](docs/README.md) and [publication record](docs/theory/paper_deposits.md) |
 | Lean discovery and names | [Lean guide](docs/architecture/lean_discovery.md); use formalpedia before adding a theorem |
 | Sequences and prior art | [OEIS guide](docs/architecture/oeis_discovery.md); use the local OEIS MCP |
+| Certified numerical bounds | [FLINT/Arb guide](docs/architecture/certified_numerics.md); use `research_engine.intervals` and the paper-specific audit |
 | Shared Python code | [Architecture](docs/architecture/overview.md) |
 
 Do not read entire generated indexes, theorem ledgers or journals to find one item.
@@ -37,6 +38,11 @@ its canonical proof sources, not in duplicated instructions.
   must use explicit `tmp_path` destinations; pytest rejects canonical output writes.
 - Use the seven evidence labels in `docs/README.md`. A Lean statement must cover
   the English claim before retagging it; finite checks do not prove termination.
+- For certified real bounds, use FLINT/Arb with exact integer, rational or string
+  inputs; retain exact integer/rational checks where available. Preserve outward
+  bounds, treat unresolved comparisons as failures, and scope precision locally.
+  High-precision point values are not interval certificates. Numerical bounds
+  do not discharge analytic hypotheses or become Lean proofs.
 - For a new mathematical direction, emit the triage block in
   [.cursor/rules/methodology.mdc](.cursor/rules/methodology.mdc), including
   `Already killed by?`, and end with `PROMOTE | PARK | CLOSE`. Do not auto-open
@@ -61,6 +67,7 @@ python tools/lab.py run research.juggler_sequence.branch_index --check
 python tools/lab.py run cli.main collatz --help
 python tools/formalpedia.py search "preimage mass" --limit 10
 python tools/oeis_catalog.py get A094683
+python tools/check_paper_c_intervals.py                   # certified numerics; prints only
 python tools/render_theorem_ledger.py --check
 python tools/lean_style.py
 python tools/lab.py build

@@ -82,6 +82,26 @@ every check starts `not_checked`, and long command previews are explicitly
 truncated. Obtain and execute complete plans through the CLI. The existing
 theorem `formalpedia_impact` remains the Lean import graph API.
 
+## Certified numerical work
+
+`python-flint` is a required dependency reported by `lab.py doctor` and the
+existing `formalpedia_lab_doctor` MCP tool. Use
+[the FLINT/Arb guide](certified_numerics.md) for `research_engine.intervals`,
+exact inputs, scoped precision, certified comparisons and outward root brackets.
+Use separate processes when parallel calculations change FLINT's global context.
+
+`python tools/check_paper_c_intervals.py` runs the current Paper C certificate
+without writing files. Add `--output <path>` only when deliberately producing a
+new report and its provenance sidecar. The existing `formalpedia_claim` tool can
+read ledger ID `J-paper-c-arb-certificates`; the recorded evidence does not rerun
+the audit. There is no dedicated Arb MCP evaluator: run computations through
+Python, and keep Formalpedia's discovery tools read-only. The guide records which
+expressions are covered and which analytic hypotheses remain open.
+
+A server started before a tooling update may retain its earlier Python code;
+restart that server to pick up new dependency checks. The CLI doctor reads the
+current checkout immediately. Recorded claims are read from the current ledger.
+
 ## Stable paths and changing registries
 
 `research.juggler_sequence.lean_paths` contains repository directory constants.
