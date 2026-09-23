@@ -37,6 +37,7 @@ import Problems.Collatz.FibreHeightBudget
 import Problems.Collatz.FibreMixing
 import Problems.Collatz.FibreUnitComparison
 import Problems.Collatz.FibreLocalBounds
+import Problems.Collatz.FibreRunTail
 import Problems.Engine.ParameterDomain
 import Problems.Engine.ControlWord
 import Problems.Engine.ControlObstruction

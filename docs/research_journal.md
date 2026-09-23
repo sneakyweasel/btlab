@@ -10,6 +10,17 @@ The earlier full-length journal is available at Git revision
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-23 -- One-halving runs have summable fixed-root weight
+
+At a fixed positive root a, all actual words with one arbitrary first
+exponent followed by d one-halving steps contribute at most 3a/2^(d+1),
+with total allowance 3a. Lean checks both signs, actual returns and the
+necessary divisor; the negative fixed point a=1 is retained as a growing
+exception. **PROMOTE** this summable-family reduction. Five exact controls
+pass. Transported peaks cannot themselves supply fixed-root divergence;
+the remaining word count and Juggler pressure stay open. See the
+[dossier](problems/collatz_fibre_run_tail.md).
+
 ## 2026-09-23 -- Actual coefficient peaks defeat local Harnack comparison
 
 A fixed exponent branch transports the actual one-halving spike into every

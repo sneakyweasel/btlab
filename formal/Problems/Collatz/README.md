@@ -105,3 +105,11 @@ positive odd targets in that neighborhood. The targets vary with depth;
 fixed-integer divergence remains open. The bounded local averages therefore
 cannot support a depth-independent local Harnack comparison. See the
 [dossier](../../../docs/problems/collatz_fibre_local_bounds.md).
+
+[FibreRunTail.lean](FibreRunTail.lean) bounds the complete coefficient of
+one arbitrary first exponent followed by d one-halving steps at a fixed
+positive root a. It is at most 3a/2^(d+1), with total allowance 3a across
+all run lengths, for both signs except the negative fixed point one.
+Exact integer words, actual returns and that growing exception are checked.
+This family can be discarded with a summable loss; the remaining word count
+is open. See the [dossier](../../../docs/problems/collatz_fibre_run_tail.md).

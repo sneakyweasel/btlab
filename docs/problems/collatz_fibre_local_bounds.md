@@ -161,6 +161,13 @@ This does not exclude a local lower bound by itself, a comparison with
 constants depending on depth, or an arithmetic argument specific to a fixed
 ordinary integer. Nor does it refute pointwise divergence at that integer.
 
+The [fixed-root run estimate](collatz_fibre_run_tail.md) now proves a
+complementary bound: after fixing a positive ordinary root, all words with
+one free exponent followed by a one-halving run have total coefficient at
+most 3a, except at the negative fixed point a=1. This includes the transported
+peak family. Thus those changing-root peaks do not themselves supply the
+required fixed-root divergence.
+
 ## Open questions
 
 Can exact affine-word counts at one fixed nonperiodic ordinary integer give
