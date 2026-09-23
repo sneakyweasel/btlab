@@ -1,0 +1,13 @@
+'Problems.Collatz.FibreHeightBudget.budget_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreHeightBudget.unitBudget_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreHeightBudget.kernel_le_unitBudget_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreHeightBudget.budget_congr_height' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreHeightBudget.budget_congr_ancestors' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreHeightBudget.linear_budget_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreHeightBudget.summable_kernel_iff_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Collatz.FibreHeightBudget.cumulative_error_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreHeightBudget.ancestor_reciprocals_not_summable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

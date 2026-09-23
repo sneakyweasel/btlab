@@ -10960,5 +10960,29 @@
    "tests/research/collatz/test_fibre_stopping.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "C-fibre-finite-height-budget",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For either signed Collatz coefficient operator, every positive odd target a and depths d,b>=0, the finite inverse coefficient B_(d,b), defined by spending each positive halving exponent from the remaining total budget b, satisfies 0<=K_d(a)-B_(d,b)(a)<=6^d*(3/4)^b. Its terminal weights depend only on actual positive odd depth-d ancestors at most a*2^b. Thus B_(d,8d) loses at most (19683/32768)^d, its depth series is summable exactly when the complete coefficient series is, and partial sums differ by at most 32768/13085. At a nonperiodic target, nonsummability of the finite-budget series implies nonsummability of the ordinary reciprocal series of actual positive odd unit ancestors, for both signs. Neither divergence premise, a quantitative Juggler estimate, nor termination is proved. Kernel-checked; independent review and advisory statement coverage pending.",
+  "source": "docs/problems/collatz_fibre_height_budget.md",
+  "lean": "formal/Problems/Collatz/FibreHeightBudget.lean",
+  "lean_trust": "kernel",
+  "decl": [
+   "Problems.Collatz.FibreHeightBudget.kernel",
+   "Problems.Collatz.FibreHeightBudget.budget",
+   "Problems.Collatz.FibreHeightBudget.unitBudget",
+   "Problems.Collatz.FibreHeightBudget.unitBudget_bounds",
+   "Problems.Collatz.FibreHeightBudget.kernel_le_unitBudget_add",
+   "Problems.Collatz.FibreHeightBudget.budget_congr_ancestors",
+   "Problems.Collatz.FibreHeightBudget.linear_budget_error",
+   "Problems.Collatz.FibreHeightBudget.summable_kernel_iff_budget",
+   "Problems.Collatz.FibreHeightBudget.cumulative_error_le",
+   "Problems.Collatz.FibreHeightBudget.ancestor_reciprocals_not_summable"
+  ],
+  "tests": [
+   "tests/research/collatz/test_fibre_height_budget.py"
+  ],
+  "related_conjectures": []
  }
 ]

@@ -73,3 +73,12 @@ attained and bounds every history-dependent policy, for both signs and every
 finite periodic terminal weight positive at the one-halving residue. Unbounded
 stopping and fixed-integer series divergence remain open; see the
 [dossier](../../../docs/problems/collatz_bounded_fibre_stopping.md).
+
+[FibreHeightBudget.lean](FibreHeightBudget.lean) approximates either complete
+generation coefficient by finite actual inverse paths with total halving
+exponent at most B, losing at most 6^d*(3/4)^B. Budgets B=8d lose at most
+(19683/32768)^d and preserve coefficient-series divergence. At positive odd
+targets, all retained sources are actual depth-d ancestors below m*256^d.
+The conditional reciprocal-ancestor consequence is checked for both signs;
+the required coefficient lower bound remains open. See the
+[height-budget dossier](../../../docs/problems/collatz_fibre_height_budget.md).

@@ -1,0 +1,11 @@
+import Problems.Collatz.FibreHeightBudget
+
+#print axioms Problems.Collatz.FibreHeightBudget.budget_nonneg
+#print axioms Problems.Collatz.FibreHeightBudget.unitBudget_bounds
+#print axioms Problems.Collatz.FibreHeightBudget.kernel_le_unitBudget_add
+#print axioms Problems.Collatz.FibreHeightBudget.budget_congr_height
+#print axioms Problems.Collatz.FibreHeightBudget.budget_congr_ancestors
+#print axioms Problems.Collatz.FibreHeightBudget.linear_budget_error
+#print axioms Problems.Collatz.FibreHeightBudget.summable_kernel_iff_budget
+#print axioms Problems.Collatz.FibreHeightBudget.cumulative_error_le
+#print axioms Problems.Collatz.FibreHeightBudget.ancestor_reciprocals_not_summable

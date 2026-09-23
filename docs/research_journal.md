@@ -10,6 +10,18 @@ The earlier full-length journal is available at Git revision
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-23 -- Finite height budgets retain the full coefficient-divergence target
+
+The preceding recommendation supplied no new lower bound. The next phase
+removes a separate obstacle: at either signed Collatz map, restricting a
+depth-d inverse family to total halving exponent at most 8d loses at most
+(19683/32768)^d of its homogeneous coefficient. Lean checks the complete
+error, actual ancestor support below a*256^d, summability equivalence, total
+error allowance, and conditional actual reciprocal divergence. Seven exact
+controls include independent forward source enumeration. **PROMOTE** this
+cutoff reduction; the fixed-root depth-block lower bound and Juggler pressure
+remain open. See the [dossier](problems/collatz_fibre_height_budget.md).
+
 ## 2026-09-23 -- Bounded branch-specific stopping still leaves poor fibres
 
 The previous turn recommended coefficient-series divergence but proved no new
