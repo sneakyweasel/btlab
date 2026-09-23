@@ -1,8 +1,0 @@
-problem: balanced_ternary
-attack: carry_gain_family
-claim: T_λ(c,d)=λ DZ(c+2d) is finite for λ=1,2 and unbounded for λ=3 along the all-+1 word c_n=3n. λ≠1 is synthetic and not value-preserving.
-status: LEAN_VERIFIED
-scope: EXACT
-evidence: lambda_1={-1,0,1}; lambda_2={-2,0,2}; lambda_3=c_n=3n
-counterexamples: ()
-lean_theorem: Problems.BalancedTernary.FiniteStateDynamics.carryGain3_unbounded

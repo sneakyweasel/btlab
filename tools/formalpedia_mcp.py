@@ -33,8 +33,8 @@ def formalpedia_search(query: str, namespace: str | None = None, module: str | N
     Results carry qualified identities and compact statements. Use formalpedia_show for
     full hypotheses. Namespace is a prefix; module is an exact import name. Pagination
     is deterministic within a snapshot; restart at offset 0 if the snapshot changes.
-    Default scope is Juggler, Collatz and their imported shared mathematics. Use archive
-    for historical projects or all for an exhaustive library search. Exact show remains global.
+    Searches the current Juggler/Collatz checkout and its shared mathematics. The scope
+    filter does not read Git history; removed projects have no archive entries here.
     """
     return catalogue.search(query, namespace=namespace, module=module, kind=kind,
         ledger_id=ledger_id, include_private=include_private,

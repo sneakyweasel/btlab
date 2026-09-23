@@ -1,8 +1,0 @@
-problem: prime_residual_complexity
-attack: spectral
-claim: characteristic polynomial of A is not a monic cubic; companion classification is not a Pisot certificate. This is a map law, not live infinitude
-status: OBSERVED
-scope: EXACT
-evidence: 
-counterexamples: ()
-lean_theorem: 

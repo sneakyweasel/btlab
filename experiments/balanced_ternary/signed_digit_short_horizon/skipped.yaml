@@ -1,8 +1,0 @@
-problem: signed_digit_short_horizon
-attack: skipped
-claim: inapplicable or deferred
-status: OBSERVED
-scope: BOUNDED
-evidence: piecewise_affine=inapplicable; parameter_domain=inapplicable; control_word=inapplicable; control_obstruction=inapplicable; vector_affine=inapplicable; matrix_word_invariant=inapplicable; modular=inapplicable; block=inapplicable; spectral=inapplicable; separation=inapplicable; symmetry=inapplicable; symbolic=not implemented in this phase
-counterexamples: ()
-lean_theorem: 

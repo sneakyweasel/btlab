@@ -1,11 +1,8 @@
-"""Integer jets, function jets, locality, CLI."""
+"""Shared integer and function jets used by the active applications."""
 
 from __future__ import annotations
 
-import io
-from contextlib import redirect_stdout
 
-from cli.main import main
 from bt.calculus.jets import (
     function_jet_of_integer,
     integer_jet,
@@ -14,7 +11,6 @@ from bt.calculus.jets import (
     reconstruction_holds,
     residual_argument,
 )
-from bt.calculus.jet_locality import profile_jet, profile_standard, same_index_locality
 from bt.calculus.section import parse_poly
 
 
@@ -44,47 +40,3 @@ def test_prefix_locality_polynomials():
         for m in range(-15, 16):
             for k in (1, 2, 3):
                 assert output_prefix_depends_on_input_prefix(f, n, m, k)
-
-
-def test_same_index_locality_fails_for_square():
-    f = parse_poly("x^2")
-    found = False
-    for n in range(-30, 31):
-        if not same_index_locality(f, n, 2):
-            found = True
-            break
-    assert found
-
-
-def test_state_profiles_finite_at_fixed_k():
-    rows = profile_standard(3)
-    assert len(rows) == 8
-    lin = profile_jet(parse_poly("x"), 4)
-    assert lin.raw_states == 1
-    sq = profile_jet(parse_poly("x^2"), 3)
-    assert sq.raw_states >= 1
-    assert sq.max_degree == 2
-    assert sq.lc_abs >= 1
-
-
-def test_calculus_jet_cli():
-    def _run(*args: str) -> str:
-        buf = io.StringIO()
-        with redirect_stdout(buf):
-            code = main(["--include-archive", "calculus", *args])
-        assert code == 0
-        return buf.getvalue()
-
-    sd = _run("section-deriv", "x^2", "--section", "1")
-    assert "D_a f" in sd
-    nd = _run("normalized-deriv", "2")
-    assert "hatD" in nd
-    assert "D_coeff" in nd
-    j = _run("jet", "5", "--depth", "3")
-    assert "J_3" in j
-    fj = _run("function-jet", "x^2", "5", "--depth", "2")
-    assert "reconstruction = True" in fj
-    st = _run("states", "x", "--depth", "3")
-    assert "raw =" in st
-    cj = _run("compare-jets", "x", "x^2", "--depth", "2", "--n", "4")
-    assert "f output" in cj

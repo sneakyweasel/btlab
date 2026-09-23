@@ -1,8 +1,0 @@
-problem: signed_digit_constrained_controls
-attack: closure
-claim: exact residual closure has size 10; queue exhaustion at the frozen initial phase, not a countdown DAG
-status: LEAN_VERIFIED
-scope: EXACT
-evidence: union_size=10; complete=True; state_cap=256
-counterexamples: ()
-lean_theorem: Problems.BalancedTernary.SignedDigitConstrainedControls.any_word_separation

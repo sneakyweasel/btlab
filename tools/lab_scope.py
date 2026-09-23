@@ -1,7 +1,6 @@
-"""Active Juggler/Collatz scope and explicitly searchable historical mathematics.
+"""Juggler/Collatz applications, ledger-cited results and their shared dependencies.
 
-Historical paths are retained because proof imports, ledger references and paper
-provenance use them. Scope controls discovery and default gates, not truth tags.
+Scope filters describe the checkout, not Git history or mathematical truth tags.
 """
 from __future__ import annotations
 
@@ -40,6 +39,13 @@ def policy(root: Path = ROOT) -> dict:
 def active_lean_modules(index: dict) -> set[str]:
     modules = index['modules']
     roots = {name for name in modules if name.startswith(('Problems.Juggler', 'Problems.Collatz.'))}
+    roots.update(set(modules) & {'Core', 'Representation', 'Operators', 'BTCalculus', 'Problems'})
+    ledger = ROOT / 'docs/theory/theorem_ledger.json'
+    if roots and ledger.is_file():
+        for row in json.loads(ledger.read_text(encoding='utf-8')):
+            name = str(row.get('lean') or '').removeprefix('formal/').removesuffix('.lean').replace('/', '.')
+            if name in modules:
+                roots.add(name)
     # Small standalone catalogues and tests have no laboratory roots.
     if not roots:
         return set(modules)
@@ -60,7 +66,7 @@ def validate_scope(scope: str) -> None:
 
 def path_scope(file: str, root: Path = ROOT, rules: dict | None = None) -> str:
     rules = policy(root) if rules is None else rules
-    if not rules:
+    if not rules or rules.get('physical_cleanup'):
         return 'active'
     parts = file.replace('\\', '/').split('/')
     if len(parts) > 2 and parts[:2] in (['src', 'research'], ['tests', 'research']):

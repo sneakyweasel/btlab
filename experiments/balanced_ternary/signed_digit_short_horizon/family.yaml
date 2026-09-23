@@ -1,8 +1,0 @@
-problem: signed_digit_short_horizon
-attack: short_horizon_family
-claim: lsd streams agree on w iff |w|≤v_3(s-t) when 3 does not divide λ; a finite language merges iff every legal word is shorter than that
-status: EXACT
-scope: EXACT
-evidence: complete trees, rays, and drop-last subsets match the max-length criterion; v2 EXACT_CLOSURE at horizon 1 for (0,3); EXACT_COUNTEREXAMPLE at length 2
-counterexamples: ("shorter word always separates", "only deadlock merges", "proper subset hides separators")
-lean_theorem: Problems.BalancedTernary.SignedDigitShortHorizon.traces_eq_iff_len_le_val

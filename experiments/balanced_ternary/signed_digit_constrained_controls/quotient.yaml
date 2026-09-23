@@ -1,8 +1,0 @@
-problem: signed_digit_constrained_controls
-attack: quotient
-claim: exact Mealy quotient has 11 classes from 10 reachable states
-status: EXACT
-scope: EXACT
-evidence: 
-counterexamples: ()
-lean_theorem: 

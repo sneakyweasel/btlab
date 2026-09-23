@@ -389,8 +389,3 @@ def add_collatz_subparser(subparsers: argparse._SubParsersAction) -> None:
         "warp-counterexamples",
         help="Milestone 9: preserved counterexamples to naive W identities",
     )
-
-    c.add_parser(
-        "ui",
-        help="open the Streamlit laboratory (balanced ternary calculator + Collatz)",
-    )

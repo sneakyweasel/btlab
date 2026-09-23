@@ -1,57 +1,12 @@
-"""Suite options: skip exhaustive census / UI / million-range tests by default."""
-
+"""Options for the Juggler/Collatz test suite."""
 from __future__ import annotations
 
 import pytest
-import json
-import os
-from pathlib import Path
-
-ROOT = Path(__file__).resolve().parents[1]
-SCOPE = json.loads((ROOT / 'data/lab_scope.json').read_text(encoding='utf-8'))
 
 
 def pytest_addoption(parser: pytest.Parser) -> None:
-    parser.addoption('--include-archive', action='store_true', default=False,
-                     help='also collect frozen projects outside the Juggler/Collatz lab')
-    parser.addoption(
-        "--runslow",
-        action="store_true",
-        default=False,
-        help="run exhaustive census, million-range, and Streamlit AppTests",
-    )
-
-
-def pytest_ignore_collect(collection_path: Path, config: pytest.Config) -> bool | None:
-    if config.getoption('--include-archive'):
-        return None
-    relative = collection_path.relative_to(ROOT).as_posix()
-    if relative in SCOPE['archived_test_files']:
-        return True
-    parts = relative.split('/')
-    if len(parts) >= 3 and parts[:2] == ['tests', 'research']:
-        if parts[2] in SCOPE['archived_research']:
-            return True
-    return None
-
-
-def pytest_report_header(config: pytest.Config) -> str:
-    return ('scope: full historical library' if config.getoption('--include-archive') else
-            'scope: Juggler/Collatz and shared dependencies; --include-archive restores historical tests')
-
-
-def pytest_configure(config: pytest.Config) -> None:
-    config._lab_archive_previous = os.environ.get('BTLAB_INCLUDE_ARCHIVE')
-    if config.getoption('--include-archive'):
-        os.environ['BTLAB_INCLUDE_ARCHIVE'] = '1'
-
-
-def pytest_unconfigure(config: pytest.Config) -> None:
-    previous = getattr(config, '_lab_archive_previous', None)
-    if previous is None:
-        os.environ.pop('BTLAB_INCLUDE_ARCHIVE', None)
-    else:
-        os.environ['BTLAB_INCLUDE_ARCHIVE'] = previous
+    parser.addoption('--runslow', action='store_true', default=False,
+                     help='include exhaustive censuses and long numerical checks')
 
 
 def pytest_collection_modifyitems(

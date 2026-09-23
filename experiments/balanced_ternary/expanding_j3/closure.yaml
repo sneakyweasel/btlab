@@ -1,8 +1,0 @@
-problem: expanding_j3
-attack: closure
-claim: exact residual closure has size 27; queue exhaustion at the frozen initial phase, not a countdown DAG
-status: LEAN_VERIFIED
-scope: EXACT
-evidence: union_size=27; complete=True; state_cap=256
-counterexamples: ()
-lean_theorem: Problems.BalancedTernary.ExpandingD.jet3_residue_closure

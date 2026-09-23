@@ -2,10 +2,10 @@
 
 Rows where one candidate leads its file clearly.  Each entry is the ledger row's own
 statement beside the candidate's docstring; the question is only whether they say the
-same thing.  Measured against all 117 single-declaration rows the scorer gets
-42 of the 49 it fires on right, 86% precise, so roughly one in
-7 below is wrong.
-46 rows below, of 131 unresolved.
+same thing.  Measured against all 46 single-declaration rows the scorer gets
+8 of the 9 it fires on right, 89% precise, so roughly one in
+9 below is wrong.
+29 rows below, of 87 unresolved.
 
 
 Two failure modes are not scored at all, and both record a part as the whole.
@@ -20,10 +20,10 @@ Or the candidate may be narrower than the row, with nothing in the prose to say 
 its `n : ℕ` is the tell, and a sibling proves the rest.  That is why the statement is
 printed below every candidate, docstring or not.
 
-Jev (jev-1.13.0, last asked 2026-09-21) answered 129 of
-the unresolved rows: 55 picks and 43 "none of these".
-19 of the picks are the scorer's own first candidate, and
-30 are at or above 0.7 confidence.  A confident pick lists
+Jev (jev-1.13.0, last asked 2026-09-21) answered 85 of
+the unresolved rows: 29 picks and 26 "none of these".
+10 of the picks are the scorer's own first candidate, and
+14 are at or above 0.7 confidence.  A confident pick lists
 a row here whatever the scorer thought, and every entry shows Jev's answer beside
 the scorer's.  Jev returns a probability, not a reading: a second opinion for the
 reviewer, never a ledger write.
@@ -106,464 +106,7 @@ theorem neverNegCount_add_minimalCertCount (d : ℕ) :
 
 *If this row describes a definition rather than a theorem: `onBarrierWords`, `minimalCertCount`*
 
-## 3. `BTC-P-band`
-
-**Row.** P_a ∘ P_b = P_a
-
-**Candidate.** `trit_toInt_is_trit` &mdash; kernel-checked, `BTCalculus/Integral.lean:14`
-
-```lean
-theorem trit_toInt_is_trit (a : Trit) :
-    a.toInt = -1 ∨ a.toInt = 0 ∨ a.toInt = 1
-```
-
-**Jev.** picks `P_left_zero` at 0.86, not the scorer's candidate.
-
-**Jev's candidate.** `P_left_zero` &mdash; kernel-checked, `BTCalculus/Integral.lean:49`
-
-```lean
-theorem P_left_zero (a b : Trit) (n : ℤ) : PZ a (PZ b n) = PZ a n
-```
-
-*The scorer rated this row low; it is listed on Jev's confidence.*
-
-*Runners-up: `IZ_mod` (0.0), `lsdZ_IZ` (0.0)*
-
-*If this row describes a definition rather than a theorem: `IZ`, `PZ`*
-
-## 4. `BTC-select3`
-
-**Row.** select3 represents every Trit→ℤ map; abs/min/max
-
-**Candidate.** `select3_represents` &mdash; kernel-checked, `BTCalculus/Select.lean:33`
-
-> Every function ``Trit → ℤ`` is ``select3`` of its three values.
-
-```lean
-theorem select3_represents (f : Trit → ℤ) (c : Trit) :
-    f c = select3 c (f Trit.minus) (f Trit.zero) (f Trit.plus)
-```
-
-**Jev.** picks `select3_represents` as well, at 0.96.
-
-*Runners-up: `select3_minus` (0.182), `select3_zero` (0.182)*
-
-*If this row describes a definition rather than a theorem: `select3`, `absZ`*
-
-## 5. `BTN-lex`
-
-**Row.** LSD step strictly decreases the abs-lex rank
-
-**Candidate.** `step_lex_zero` &mdash; kernel-checked, `BTCalculus/Normalization.lean:123`
-
-> The step at index `0` strictly decreases the abs-lex rank.
-
-```lean
-theorem step_lex_zero {c : ℤ} (cs : List ℤ) (h : ¬ isTrit c) :
-    List.Lex (· < ·) (absList (step (c :: cs) 0)) (absList (c :: cs))
-```
-
-**Jev.** picks `step_lex_zero` as well, at 0.42.
-
-*Runners-up: `stepZero_lex` (0.417), `lsdZ_natAbs_le_one` (0.25)*
-
-*If this row describes a definition rather than a theorem: `stepZero`, `absList`*
-
-## 6. `BTA-equiv`
-
-**Row.** finite-horizon equiv_k is an equivalence; recursive iff output words
-
-**Candidate.** `equivK_succ_iff` &mdash; kernel-checked, `BTCalculus/Residual.lean:66`
-
-```lean
-theorem equivK_succ_iff (k : ℕ) (f g : ℤ[X]) :
-    equivK (k + 1) f g ↔
-      ∀ a : ℤ, isTrit a →
-        lsdZ (eval a f) = lsdZ (eval a g) ∧
-          equivK k (sectionDeriv a f) (sectionDeriv a g)
-```
-
-**Jev.** picks `equivK_iff_outputs` at 0.71, not the scorer's candidate.
-
-**Jev's candidate.** `equivK_iff_outputs` &mdash; kernel-checked, `BTCalculus/Residual.lean:79`
-
-```lean
-theorem equivK_iff_outputs :
-    ∀ (k : ℕ) (f g : ℤ[X]),
-      equivK k f g ↔
-        ∀ w : List ℤ, w.length = k → isTritList w →
-          outputAlong w f = outputAlong w g
-```
-
-*The scorer rated this row low; it is listed on Jev's confidence.*
-
-*Runners-up: `equivK_iff_outputs` (0.222), `equivK_zero` (0.111)*
-
-*If this row describes a definition rather than a theorem: `equivK`, `isTritList`*
-
-## 7. `BTA-x2-quad-form`
-
-**Row.** residual of x^2 along w is 3^|w| x^2 + 2 p(w) x + DZ^|w|(p(w)^2)
-
-**Candidate.** `residualAlong_family` &mdash; kernel-checked, `BTCalculus/Quadratic.lean:355`
-
-```lean
-theorem residualAlong_family (m : ℕ) (p : ℤ) :
-    ∀ {w : List ℤ}, isTritList w →
-      residualAlong w (quad ((3 : ℤ) ^ m) (2 * p) (iterDZ m (p ^ 2))) =
-        quad ((3 : ℤ) ^ (m + w.length))
-          (2 * (p + (3 : ℤ) ^ m * packWord w))
-          (iterDZ (m + w.length) ((p + (3 : ℤ) ^ m * packWord w) ^ 2))
-```
-
-**Jev.** picks `residualAlong_Xsq` at 0.99, not the scorer's candidate.
-
-**Jev's candidate.** `residualAlong_Xsq` &mdash; kernel-checked, `BTCalculus/Quadratic.lean:384`
-
-```lean
-theorem residualAlong_Xsq {w : List ℤ} (hw : isTritList w) :
-    residualAlong w ((X : ℤ[X]) ^ 2) =
-      quad ((3 : ℤ) ^ w.length) (2 * packWord w) (iterDZ w.length (packWord w ^ 2))
-```
-
-*The scorer rated this row low; it is listed on Jev's confidence.*
-
-*Runners-up: `residualAlong_Xsq` (0.667), `residualAlong_Xsq_injective` (0.5)*
-
-*If this row describes a definition rather than a theorem: `quad`, `packWord`*
-
-## 8. `BTA-quad-mod`
-
-**Row.** degree <= 2 polynomials are equiv_k iff coefficients agree mod 3^k
-
-**Candidate.** `equivK_quad` &mdash; kernel-checked, `BTCalculus/Quadratic.lean:479`
-
-> Finite-horizon equivalence of degree-``≤ 2`` polynomials is coefficient congruence modulo ``3^k``. Canonical probes: ``0^k``, ``10^{k-1}``, ``(-1)0^{k-1}``.
-
-```lean
-theorem equivK_quad (k : ℕ) (A B c0 A' B' c0' : ℤ) :
-    equivK k (quad A B c0) (quad A' B' c0') ↔
-      (3 : ℤ) ^ k ∣ A - A' ∧ (3 : ℤ) ^ k ∣ B - B' ∧ (3 : ℤ) ^ k ∣ c0 - c0'
-```
-
-**Jev.** picks `equivK_quad` as well, at 1.0.
-
-*The scorer rated this row low; it is listed on Jev's confidence.*
-
-*Runners-up: `xsq_equivK_iff_eq` (0.167), `integerJet_eq_iff_dvd` (0.1)*
-
-*If this row describes a definition rather than a theorem: `quad`, `packWord`*
-
-## 9. `BTA-x3-newton`
-
-**Row.** Newton coordinates of a cubic and of the residual family of x^3
-
-**Candidate.** `newton_cubicResid` &mdash; kernel-checked, `BTCalculus/CubicResidual.lean:269`
-
-> Newton coordinates of the residual family, written in terms of `m` and `p`.
-
-```lean
-theorem newton_cubicResid (m : ℕ) (p : ℤ) :
-    newtonCoords ((3 : ℤ) ^ (2 * m)) ((3 : ℤ) ^ (m + 1) * p)
-        (3 * p ^ 2) (iterDZ m (p ^ 3)) =
-      (iterDZ m (p ^ 3),
-        (3 : ℤ) ^ (2 * m) + (3 : ℤ) ^ (m + 1) * p + 3 * p ^ 2,
-        2 * (3 : ℤ) ^ (m + 1) * (p + (3 : ℤ) ^ m),
-        2 * (3 : ℤ) ^ (2 * m + 1))
-```
-
-**Jev.** picks `newton_cubicResid` as well, at 0.71.
-
-*Runners-up: `eval_cubicResid_iter` (0.3), `residualAlong_cubic_family` (0.25)*
-
-*If this row describes a definition rather than a theorem: `cubicResid`, `newtonCoords`*
-
-## 10. `BTA-x3-n2`
-
-**Row.** same-depth N2 is 3^{k-m-1}|(p-q); injective on P_m if 2m+1<=k
-
-**Candidate.** `sameDepth_n2` &mdash; kernel-checked, `BTCalculus/CubicFibres.lean:62`
-
-> At one depth, `3^k` divides the `N2` difference exactly when it divides `3^(m+1)(p - q)`.
-
-```lean
-theorem sameDepth_n2 (k m : ℕ) (p q : ℤ) :
-    (3 : ℤ) ^ k ∣ n2Resid m p - n2Resid m q ↔
-      (3 : ℤ) ^ k ∣ (3 : ℤ) ^ (m + 1) * (p - q)
-```
-
-**Jev.** picks `sameDepth_n2_injective` at 0.72, not the scorer's candidate.
-
-**Jev's candidate.** `sameDepth_n2_injective` &mdash; kernel-checked, `BTCalculus/CubicFibres.lean:110`
-
-> `N2` separates points of `P_m` once `2m + 1 <= k`: agreement to that order forces `p = q`. The width bound is what closes it -- the difference cannot reach `3^(k-m-1)`.
-
-```lean
-theorem sameDepth_n2_injective {k m : ℕ} {p q : ℤ}
-    (hp : balWidth m p) (hq : balWidth m q)
-    (hmk : 2 * m + 1 ≤ k)
-    (hN2 : (3 : ℤ) ^ k ∣ n2Resid m p - n2Resid m q) :
-    p = q
-```
-
-*The scorer rated this row low; it is listed on Jev's confidence.*
-
-*Runners-up: `sameDepth_n2_of_le` (0.167), `sameDepth_n2_succ` (0.167)*
-
-*If this row describes a definition rather than a theorem: `balWidth`, `n2Resid`*
-
-## 11. `BTA-x3-inter-crit`
-
-**Row.** m=k-2 fibres iff p≡q (mod 3) and 3^{k-1}|(p-q)(p+q+3^{k-2}) and N0 agrees
-
-**Candidate.** `inter_n2_mod` &mdash; kernel-checked, `BTCalculus/CubicIntermediateLayer.lean:33`
-
-```lean
-theorem inter_n2_mod {k : ℕ} (hk : 3 ≤ k) (p : ℤ) :
-    (3 : ℤ) ^ k ∣ n2Resid (k - 2) p - interN2 k p
-```
-
-**Jev.** picks `inter_equiv_iff` at 0.73, not the scorer's candidate.
-
-**Jev's candidate.** `inter_equiv_iff` &mdash; kernel-checked, `BTCalculus/CubicIntermediateLayer.lean:126`
-
-```lean
-theorem inter_equiv_iff {k : ℕ} (hk : 2 ≤ k) (p q : ℤ) :
-    ((3 : ℤ) ^ k ∣ n2Resid (k - 2) p - n2Resid (k - 2) q) ∧
-        ((3 : ℤ) ^ k ∣ n1Resid (k - 2) p - n1Resid (k - 2) q) ∧
-          ((3 : ℤ) ^ k ∣ n0Resid (k - 2) p - n0Resid (k - 2) q) ↔
-      ((3 : ℤ) ∣ p - q) ∧
-        ((3 : ℤ) ^ (k - 1) ∣ (p - q) * (p + q + (3 : ℤ) ^ (k - 2))) ∧
-          ((3 : ℤ) ^ k ∣ n0Resid (k - 2) p - n0Resid (k - 2) q)
-```
-
-*The scorer rated this row low; it is listed on Jev's confidence.*
-
-*Runners-up: `inter_n2_iff` (0.2), `inter_n1_mod` (0.2)*
-
-*If this row describes a definition rather than a theorem: `interN2`, `interN1`*
-
-## 12. `BTA-x3-n0-vis`
-
-**Row.** D^t(u^3) mod 3^k is determined by u mod 3^{max(1,t+k-1)}
-
-**Candidate.** `n0_of_cube_mod` &mdash; kernel-checked, `BTCalculus/CubicN0Reduction.lean:148`
-
-```lean
-theorem n0_of_cube_mod {t k : Nat} {u v : Int}
-    (h : (3 : Int) ^ (t + k) ∣ u ^ 3 - v ^ 3) :
-    (3 : Int) ^ k ∣ n0Resid t u - n0Resid t v
-```
-
-**Jev.** picks `n0_visible_mod` at 0.81, not the scorer's candidate.
-
-**Jev's candidate.** `n0_visible_mod` &mdash; kernel-checked, `BTCalculus/CubicN0Reduction.lean:167`
-
-> `N0` modulo a power of three sees only the input modulo a power of three.
-
-```lean
-theorem n0_visible_mod {t k s : Nat}
-    (hs : t + k - 1 ≤ s) (hs1 : 1 ≤ s) {u v : Int}
-    (h : (3 : Int) ^ s ∣ u - v) :
-    (3 : Int) ^ k ∣ n0Resid t u - n0Resid t v
-```
-
-*Runners-up: `n0_visible_mod` (0.111), `DZ_mul_three` (0.0)*
-
-## 13. `BTA-x3-C-core`
-
-**Row.** 3^r u in P_m iff u in P_{m-r} when r<=m; r>m forces u=0
-
-**Candidate.** `balWidth_pow_iff` &mdash; kernel-checked, `BTCalculus/XCubeStateComplexity.lean:61`
-
-> The two directions together: `balWidth m (3^r u)` iff `balWidth (m-r) u`, for `r <= m`.
-
-```lean
-theorem balWidth_pow_iff {m r : Nat} (hr : r ≤ m) (u : Int) :
-    balWidth m ((3 : Int) ^ r * u) ↔ balWidth (m - r) u
-```
-
-**Jev.** picks `balWidth_pow_iff` as well, at 0.72.
-
-*The scorer rated this row low; it is listed on Jev's confidence.*
-
-*Runners-up: `x3_crossDepth_n3` (0.091), `n1_core_square_iff` (0.067)*
-
-## 14. `BTA-x3-H-A`
-
-**Row.** on the core, N1 agrees iff u^2 agrees modulo 3^{k-2r-1}, and that exponent equals the core width W
-
-**Candidate.** `n1_on_core_mod` &mdash; kernel-checked, `BTCalculus/XCubeStateComplexity.lean:104`
-
-> The core `N1` residual modulo `3^k`, under `r + 1 <= k` and `2r + 2 <= k`.
-
-```lean
-theorem n1_on_core_mod {k r : Nat} (hr : r + 1 ≤ k)
-    (h2 : 2 * r + 2 ≤ k) (u : Int) :
-    (3 : Int) ^ k ∣ n1Resid (k - 1 - r) ((3 : Int) ^ r * u) -
-      (3 : Int) ^ (2 * r + 1) * u ^ 2
-```
-
-**Jev.** picks `n1_core_square_iff` at 0.94, not the scorer's candidate.
-
-**Jev's candidate.** `n1_core_square_iff` &mdash; kernel-checked, `BTCalculus/XCubeStateComplexity.lean:265`
-
-> Agreement of the core `N1` residuals modulo `3^k`, stated as a condition on `u` and `v`; the square factorisation is what the depth argument uses.
-
-```lean
-theorem n1_core_square_iff {k r : Nat} (h2 : 2 * r + 2 ≤ k) (u v : Int) :
-    (3 : Int) ^ k ∣ n1Resid (k - 1 - r) ((3 : Int) ^ r * u) -
-        n1Resid (k - 1 - r) ((3 : Int) ^ r * v) ↔
-      (3 : Int) ^ (k - 2 * r - 1) ∣ u ^ 2 - v ^ 2
-```
-
-*The scorer rated this row low; it is listed on Jev's confidence.*
-
-*Runners-up: `balWidth_pow_iff` (0.182), `n1_core_square_iff` (0.176)*
-
-## 15. `BTL-block-shift`
-
-**Row.** block shift law: for a word w of length j the section operators send the state (3^j d, 3^{j+i}) to (d + 3^i packWord(w), 3^{j+i}), every such word survives, and at i = 0, j = e the 3^e words of length e reach exactly the states d + t for t in the balanced window W_e = [-(3^e-1)/2, (3^e-1)/2]; the shift is the balanced value packWord(w) an
-
-**Candidate.** `residualAlong_linState_pow` &mdash; kernel-checked, `BTCalculus/PadicLiftingState.lean:302`
-
-> **Target 4.** The block shift law. A singular branch with derivative valuation at least `w.length` is fully ternary along `w`, and the state it reaches is shifted by the *balanced value* of the word, scaled by the excess `3 ^ i`: 𝔇_w (3^j d + 3^(j+i) x) = (d + 3^i · packWord w) + 3^(j+i) x, j = |w|. At `i = 0` this is the leaf law: the `3 ^ e` words of length `e` reach the states `d + packWord w`, and `packWord` is injective on words of a fixed length, so those shifts run over a complete residue system modulo `3 ^ e`. That is what makes the shifted family separate residues; note the shift is the balanced value of the word and not its digit sum.
-
-```lean
-theorem residualAlong_linState_pow :
-    ∀ (w : List ℤ) (i : ℕ) (d : ℤ),
-      residualAlong w (linState (3 ^ w.length * d) (3 ^ (w.length + i)))
-        = linState (d + 3 ^ i * packWord w) (3 ^ (w.length + i))
-```
-
-**Jev.** picks `residualAlong_linState_pow` as well, at 0.81.
-
-*Runners-up: `outputAlong_linState_pow` (0.109), `linState_root_iff` (0.083)*
-
-*If this row describes a definition rather than a theorem: `linState`, `henselTrit`*
-
-## 16. `BTM-x3-depth`
-
-**Row.** for every balanced-Monna endpoint pair u=zeta+2*3^n, v=zeta-2*3^n one has u^3-v^3=4*3^n(3 zeta^2+4*3^{2n}) and therefore t=v_3(u^3-v^3)=n+min(1+2 v_3(zeta), 2n), or t=3n when zeta=0; the two arguments of the minimum have opposite parity whenever zeta is nonzero
-
-**Candidate.** `monnaEndpoint_val_parity` &mdash; kernel-checked, `BTCalculus/MonnaEndpointCube.lean:93`
-
-> The two arguments of the depth minimum have opposite parity when `ζ ≠ 0`.
-
-```lean
-theorem monnaEndpoint_val_parity (n : ℕ) {ζ : ℚ} (_hζ : ζ ≠ 0) :
-    Odd (1 + 2 * padicValRat 3 ζ) ∧ Even (2 * (n : ℤ))
-```
-
-**Jev.** picks `monnaEndpoint_cube_val` at 0.92, not the scorer's candidate.
-
-**Jev's candidate.** `monnaEndpoint_cube_val` &mdash; kernel-checked, `BTCalculus/MonnaEndpointCube.lean:163`
-
-> Combined 3-adic valuation law of `BTM-x3-depth`.
-
-```lean
-theorem monnaEndpoint_cube_val (n : ℕ) (ζ : ℚ) :
-    padicValRat 3 (monnaEndpointU n ζ ^ 3 - monnaEndpointV n ζ ^ 3)
-      = if ζ = 0 then 3 * (n : ℤ)
-        else (n : ℤ) + min (1 + 2 * padicValRat 3 ζ) (2 * (n : ℤ))
-```
-
-*Runners-up: `monnaEndpoint_cube_val_of_ne` (0.143), `monnaEndpoint_factor_ne` (0.133)*
-
-*If this row describes a definition rather than a theorem: `monnaEndpointU`, `monnaEndpointV`*
-
-## 17. `BTM-x3-no-preserve`
-
-**Row.** cubing never sends a balanced-Monna endpoint pair to an endpoint pair: 3 zeta^2+4*3^{2n} is never +/- 3^k, so u^3-v^3 is never +/- 4*3^k and B(u^3)=B(v^3) never holds
-
-**Candidate.** `monnaEndpoint_cube_diff_ne_four_three_pow` &mdash; kernel-checked, `BTCalculus/MonnaEndpointCube.lean:277`
-
-> Cubing an endpoint pair never produces difference `4·3^k`.
-
-```lean
-theorem monnaEndpoint_cube_diff_ne_four_three_pow (n k : ℕ) (ζ : ℚ) :
-    monnaEndpointU n ζ ^ 3 - monnaEndpointV n ζ ^ 3 ≠ 4 * (3 : ℚ) ^ k
-```
-
-**Jev.** picks `monnaEndpoint_cube_diff_ne_pm_four_three_pow` at 0.94, not the scorer's candidate.
-
-**Jev's candidate.** `monnaEndpoint_cube_diff_ne_pm_four_three_pow` &mdash; kernel-checked, `BTCalculus/MonnaEndpointCube.lean:311`
-
-> Arithmetic obstruction of `BTM-x3-no-preserve`: `u³−v³` is never `±4·3^k`. Endpoint collisions of the balanced Monna map are pairs whose difference is `±4·3^k` (with the named tails). The difference obstruction is therefore enough for non-preservation; `B` is not defined in this module.
-
-```lean
-theorem monnaEndpoint_cube_diff_ne_pm_four_three_pow (n k : ℕ) (ζ : ℚ) :
-    monnaEndpointU n ζ ^ 3 - monnaEndpointV n ζ ^ 3 ≠ 4 * (3 : ℚ) ^ k ∧
-      monnaEndpointU n ζ ^ 3 - monnaEndpointV n ζ ^ 3 ≠ -(4 * (3 : ℚ) ^ k)
-```
-
-*The scorer rated this row low; it is listed on Jev's confidence.*
-
-*Runners-up: `monnaEndpoint_cube_diff_ne_neg_four_three_pow` (0.294), `monnaEndpoint_factor_ne` (0.2)*
-
-*If this row describes a definition rather than a theorem: `monnaEndpointU`, `monnaEndpointV`*
-
-## 18. `BTC-constructor-sum-class`
-
-**Row.** for U,V,W in {S,I+,I-,N}, the identity U(x)+V(y)=W(x+y) holds for all integers iff it is one of the eight concrete triples (S,S,S), (N,N,N), (I+,S,I+), (S,I+,I+), (I-,S,I-), (S,I-,I-), (I+,I-,S), (I-,I+,S); same-sign I+ or I- and mixed N+S are not constructor identities
-
-**Candidate.** `exactTriple_characterization` &mdash; kernel-checked, `BTCalculus/RewriteAddBoundary.lean:108`
-
-> The six parameterized rows, written as the eight concrete triples (`I_a` is a parameter in the informal statement).
-
-```lean
-theorem exactTriple_characterization (U V W : AffineCtor) :
-    exactTriple U V W ↔
-      (U = S ∧ V = S ∧ W = S) ∨
-      (U = N ∧ V = N ∧ W = N) ∨
-      (U = Ip ∧ V = S ∧ W = Ip) ∨
-      (U = S ∧ V = Ip ∧ W = Ip) ∨
-      (U = Im ∧ V = S ∧ W = Im) ∨
-      (U = S ∧ V = Im ∧ W = Im) ∨
-      (U = Ip ∧ V = Im ∧ W = S) ∨
-      (U = Im ∧ V = Ip ∧ W = S)
-```
-
-**Jev.** picks `apply_add_eq_iff` at 0.79, not the scorer's candidate.
-
-**Jev's candidate.** `apply_add_eq_iff` &mdash; kernel-checked, `BTCalculus/RewriteAddBoundary.lean:89`
-
-```lean
-theorem apply_add_eq_iff (U V W : AffineCtor) :
-    (∀ x y : ℤ, U.apply x + V.apply y = W.apply (x + y)) ↔
-      exactTriple U V W
-```
-
-*Runners-up: `apply_add_eq_iff` (0.077), `carry_of_add` (0.0)*
-
-*If this row describes a definition rather than a theorem: `exactTriple`, `DLocal`*
-
-## 19. `BTN-sdrm-lambda3-translate`
-
-**Row.** At λ=3, translation by 3k preserves every output stream: signedTrace 3 (s+3k) w = signedTrace 3 s w. This symmetry is not origin-reachable when max|u|≤1.
-
-**Candidate.** `signedTrace_nil` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitResidualMinimality.lean:17`
-
-```lean
-theorem signedTrace_nil (gain s : ℤ) : signedTrace gain s [] = []
-```
-
-**Jev.** picks `lambda3_trace_translate` at 0.81, not the scorer's candidate.
-
-**Jev's candidate.** `lambda3_trace_translate` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitResidualMinimality.lean:212`
-
-```lean
-theorem lambda3_trace_translate (s k : ℤ) :
-    ∀ w, signedTrace 3 (s + 3 * k) w = signedTrace 3 s w
-```
-
-*The scorer rated this row low; it is listed on Jev's confidence.*
-
-*Runners-up: `signedTrace_cons` (0.167), `signedOut_ne_of_not_cong` (0.077)*
-
-*If this row describes a definition rather than a theorem: `signedTrace`, `natVal3`*
-
-## 20. `J-near-tight-scale-bounds`
+## 3. `J-near-tight-scale-bounds`
 
 **Row.** The local Juggler remainder satisfies 0≤ρ<2T+1, hence η=ρ/T^2 < 2/T + 1/T^2 and 1+η < ((T+1)/T)^2. For the mixed itinerary OOE, 1+q = (1+η0)^3 (1+η1)^2 (1+η2)^4, and 1+q is strictly below the successor-ratio product ((T0+1)/T0)^6 ((T1+1)/T1)^4 ((T2+1)/T2)^8. The same bound at a successor start y depends only on the itinerary of y.
 
@@ -605,7 +148,7 @@ theorem ooe_one_plus_slack_lt_succ_ratio {n : ℕ}
 
 *Runners-up: `ooe_one_plus_slack_lt_succ_ratio` (0.15), `even_remainder_bound` (0.118)*
 
-## 21. `J-persistent-implies-expanding`
+## 4. `J-persistent-implies-expanding`
 
 **Row.** For n≥2, PersistentOddResidual x y if and only if PersistentExpandingResidual x y. A contracting residual cannot overshoot, and 2^k=3^o is impossible for a nonempty residual. The expanding qualifier of a persistent residual is therefore redundant.
 
@@ -636,7 +179,7 @@ theorem persistent_expanding_iff_odd {x y : ℕ} (hx : 2 ≤ x) :
 
 *If this row describes a definition rather than a theorem: `expandingItinerary`, `maxExpandingEvens`*
 
-## 22. `J-inverse-preimage-asymmetry`
+## 5. `J-inverse-preimage-asymmetry`
 
 **Row.** The even fiber J(n)=m is the parity-restricted square interval m² ≤ n < (m+1)², while the odd fiber is the parity-restricted cube-to-square interval m² ≤ n³ < (m+1)²; any odd fiber contains at most one integer.
 
@@ -667,7 +210,7 @@ theorem odd_preimage_unique {m a b : ℕ}
 
 *If this row describes a definition rather than a theorem: `itineraryEOO`, `itineraryOOE`*
 
-## 23. `J-finite-progress-boundary`
+## 6. `J-finite-progress-boundary`
 
 **Row.** Universal FiniteProgress for starts above one implies universal reachability of one. Every even start n ≥ 2 and every odd start n ≥ 2 whose first image is even has FiniteProgress; consequently, any start without FiniteProgress is odd and has an odd first image. This isolates the automatic odd-to-odd frontier without proving universal prog
 
@@ -697,7 +240,7 @@ theorem reachesOne_of_all_finiteProgress
 
 *If this row describes a definition rather than a theorem: `FiniteProgress`*
 
-## 24. `J-o7eeee-gap`
+## 7. `J-o7eeee-gap`
 
 **Row.** If n ≥ 2 follows the Juggler word O^7, then T^7(n) ≥ (n+1)^16. In particular the EEEE inverse cell [n^16, (n+1)^16) is empty of seven-odd images, so O^7 EEEE is not a cycle itinerary. Lean theorems o7_image_ge_succ_pow16 and no_cycle_itinerary_oooooooeeee in O7EEEEGap.lean. Proof: no_follows_seven_odds_of_lt256 excludes n < 256; on an O^7
 
@@ -725,7 +268,7 @@ theorem o7_image_ge_succ_pow16 {n : ℕ} (hn : 2 ≤ n)
 
 *If this row describes a definition rather than a theorem: `itineraryO7EEEE`*
 
-## 25. `J-first-even-overshoots`
+## 8. `J-first-even-overshoots`
 
 **Row.** On a MinimalNonTerm or CycleMin start, the first even residual always overshoots: T(O^a E)(n) > n and the even residual sits at or above (n+1)^2. The return-to-n cell of the first-even dichotomy is an even-count-1 cycle itinerary, now excluded by no_cycle_itinerary_even_count_le_three. Lean theorems minimal_first_even_overshoots and cycle
 
@@ -746,7 +289,7 @@ theorem minimal_first_even_overshoots {n a : ℕ}
 
 *Runners-up: `cycleMin_first_even_overshoots` (0.3), `cycleMin_max_ge_succ_sq` (0.278)*
 
-## 26. `J-survivor-count-decay`
+## 9. `J-survivor-count-decay`
 
 **Row.** The never-contracting word count N_d of the rate-free density-one reduction (rows J-equidistribution-implies-density-one, J-rate-free-density-one) is identified with a binomial tail and provably decays, closing the link PaperBMarkov's header listed as written mathematics. (i) count_oddCount_ge: length-d parity words with at least a odd le
 
@@ -770,7 +313,7 @@ theorem neverCertified_density_zero (h : FairClasses) :
 
 *If this row describes a definition rather than a theorem: `FairClasses`*
 
-## 27. `J-cyclemax-succ-sq`
+## 10. `J-cyclemax-succ-sq`
 
 **Row.** On a CycleMin start n ≥ 2 the cycle maximum satisfies (n+1)^2 ≤ M. Equivalently, on a CycleMax the rotated minimum m satisfies (m+1)^2 ≤ M, so T(M) > m. The first-cell family m^2 < M < (m+1)^2 is impossible. cycle_distinguished_order_succ_sq is the distinguished-order package with that scale. Corollary of cycleMin_first_even_overshoots: t
 
@@ -793,7 +336,7 @@ theorem cycleMin_max_ge_succ_sq {n : ℕ} {w : List Branch}
 
 *Runners-up: `cycleMax_min_succ_sq_le` (0.222), `minimal_first_even_overshoots` (0.214)*
 
-## 28. `J-cyclemin-transport-oo`
+## 11. `J-cyclemin-transport-oo`
 
 **Row.** On a CycleMin, after the first O^a E with a ≥ 2, an immediate odd run of length at least two overshoots the landing y = T_{O^a E}(n) > n: the next two-odd residual is at least (y+1)^2, hence at least (n+2)^2. Lean: cycleMin_transport_second_oo, cycleMin_transport_second_oo_ge in CycleMinObstruction.lean. The second residual lies outside t
 
@@ -816,7 +359,7 @@ theorem cycleMin_transport_second_oo {n a b : ℕ} {v : List Branch}
 
 *Runners-up: `cycleMin_transport_second_oo_ge` (0.27), `follows_replicate_odd_of_le` (0.029)*
 
-## 29. `J-cyclemin-first-oo-r-bound`
+## 12. `J-cyclemin-first-oo-r-bound`
 
 **Row.** Let x1 = T_{O^{a0} E}(n) and B = T_OE. If O^{a0} E follows at n, (OE)^r follows at x1, and B^r(x1) ≥ n, then 2^{2r+a0+1} ≤ 3^{a0+r}. Write R(a0) for the largest such r. Then R(2)=0, R(3)=1, R(4)=3. This is an AboveAnchor / isolated-prefix theorem, not a cycle-return theorem. On a CycleMin-shaped prefix this bounds isolated-OE transport be
 
@@ -852,7 +395,7 @@ theorem isolated_oe_ge_implies_exponent {n a r : ℕ} (hn : 2 ≤ n)
 
 *If this row describes a definition rather than a theorem: `FirstInternalOO`, `isolatedPrefix`*
 
-## 30. `J-ce-third-residual-preimages`
+## 13. `J-ce-third-residual-preimages`
 
 **Row.** If n ≥ 2 follows OOEOOEOO, then T_OOEOOEOO(n) < n^3 because x^{256} ≤ n^{729} forbids n^3 ≤ x (768 > 729). If n follows OOEOOEOOE, then T_OOEOOEOOE(n) < n^2 because y^{512} ≤ n^{729} forbids n^2 ≤ y (1024 > 729). A CE that follows OOEOOE follows OOEOOEOO. On MinimalNonTerm a completed third OOE cannot land even: an even landing below n^2 
 
@@ -872,7 +415,7 @@ theorem minimal_ooeooeooe_not_even_landing {n : ℕ}
 
 *If this row describes a definition rather than a theorem: `itineraryOOEOOEOO`, `itineraryOOEOOEOOE`*
 
-## 31. `J-cube-odd-even-reset`
+## 14. `J-cube-odd-even-reset`
 
 **Row.** If n ≥ 2 and n^2 ≤ x < n^3 with x odd, then n^3 ≤ T(x) < n^5 and T(x)^2 < n^9. If T(x) is even, the first return satisfies n ≤ T^2(x) < x < n^3 and T^2(x)^4 < n^9. If T(x) is odd, then x < T^2(x) and n^4 ≤ T^2(x). An even reset that is itself even and already below n^2 is FiniteProgress; on MinimalNonTerm that case is impossible. This is 
 
@@ -891,7 +434,7 @@ theorem aboveAnchor_not_odd_even {n : ℕ} {v : List Branch}
 
 *If this row describes a definition rather than a theorem: `AboveAnchor`*
 
-## 32. `J-small-cycle-census-ten`
+## 15. `J-small-cycle-census-ten`
 
 **Row.** No itinerary of length at most ten is a Juggler cycle itinerary at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least eleven. Lengths ≤ 8 are the census J-small-cycle-census-eight; lengths 9 and 10 are excluded by the finance inequality at the residual floor 12 (no_cycle_itinerary_length_nine, no_cycle_
 
@@ -912,7 +455,7 @@ theorem no_cycle_itinerary_length_le_ten {n : ℕ} {w : List Branch}
 
 *If this row describes a definition rather than a theorem: `financeRows53`, `financeRows257`*
 
-## 33. `J-cyclemin-defect-finance-kill`
+## 16. `J-cyclemin-defect-finance-kill`
 
 **Row.** The defect-sum finance inequality (the certified identity of Paper A Theorem 4.6, previously human) and the walk-charge kill criterion (Theorem 5.9 mechanism), Lean end to end (DefectFinance.lean). Finance: on a CycleMin cycle with minimum n ≥ 400, 1 − 2^L/3^o ≤ (6/5)·Σ_k 1/(x_k·log x_k) (cycleMin_defect_finance). Ingredients all Lean: pe
 
@@ -949,7 +492,7 @@ theorem cycleMin_defect_finance {n : ℕ} {w : List Branch}
 
 *If this row describes a definition rather than a theorem: `prefixCharge`*
 
-## 34. `J-loglog-clock-even-chain-burst-lean`
+## 17. `J-loglog-clock-even-chain-burst-lean`
 
 **Row.** even_chain_mem_burst: if the first k states of the orbit of n are even and floorPower^[k] n = m, then m^(2^k) <= n < (m + 1)^(2^k); proved by induction from the one-step cell Nat.sqrt n ^ 2 <= n < (Nat.sqrt n + 1) ^ 2 (sqrt_cell) and floorPower_even_eq. Corollary even_chain_log_offset (1 <= m): 2^k log m <= log n < 2^k log (m + 1), i.e. i
 
@@ -973,7 +516,7 @@ theorem even_chain_mem_burst :
 
 *If this row describes a definition rather than a theorem: `alphaClock`, `WalkStep`*
 
-## 35. `J-loglog-clock-band-word-forced-lean`
+## 18. `J-loglog-clock-band-word-forced-lean`
 
 **Row.** Inside the hug band the parity letter is forced. band_step_forced_odd: from u < 1 a step staying in [0, 1 + alphaClock) must be the odd one, v = u + alphaClock (the even step goes negative). band_step_forced_even: from 1 <= u it must be the even one, v = u - 1 (the odd step exceeds the band). band_successor_unique: a band-confined walk ha
 
@@ -995,7 +538,7 @@ theorem band_successor_unique {u v w : ℝ} (_h0 : 0 ≤ u) (_h1 : u < 1 + alpha
 
 *If this row describes a definition rather than a theorem: `WalkStep`, `alphaClock`*
 
-## 36. `J-floor-stratifies-even-cylinders-lean`
+## 19. `J-floor-stratifies-even-cylinders-lean`
 
 **Row.** not_reachesOne_even_chain_ge: if n >= 1 does not reach 1 and its first k states are even, then 261^(2^k) <= n. Proof: the k-th iterate is again a failure (backwardClosed_iterate with reachesOne_backwardClosed), hence >= 261 by the Lean floor (reachesOne_of_lt_two_hundred_sixty_one via not_reachesOne_ge; positivity by floorPower_iterate_po
 
@@ -1018,7 +561,7 @@ theorem not_reachesOne_even_chain_ge {n k : ℕ} (hn : 1 ≤ n) (h : ¬ ReachesO
 
 *If this row describes a definition rather than a theorem: `WalkStep`, `walk`*
 
-## 37. `J-live-count-weight`
+## 20. `J-live-count-weight`
 
 **Row.** The live count liveCount N0 N w = #{n in [1,N] : itinerary n |w| = w and n, J n, ..., J^|w| n all exceed N0} is a WeightSplit weight (liveWeight_weightSplit: the two one-letter extensions have disjoint live classes inside the parent's), and juggler_count_le_of_noMomentum instantiates the chain on it: if NoMomentum (liveWeight N0 N) x q de
 
@@ -1045,7 +588,7 @@ theorem juggler_count_le_of_noMomentum (N0 N : ℕ) (x q δ : ℝ) (hx : 1 ≤ x
 
 *If this row describes a definition rather than a theorem: `liveCount`, `liveWeight`*
 
-## 38. `J-mean-share-exceptional-depths`
+## 21. `J-mean-share-exceptional-depths`
 
 **Row.** What the mean-share hypothesis does not need, machine-checked. Paper C section 9.3(a) and 9.3(b) were prose; these are the statements. (a) MeanShareOff mu x q d E := sum over t in [0,d) minus E of s_t <= q |[0,d) minus E|, with nothing whatever assumed on the exceptional set E. Then weightGen_le_of_meanShareOff gives Z_d <= Z_0 x^|[0,d) c
 
@@ -1081,7 +624,7 @@ theorem weightGen_le_of_meanShareOff (μ : List Branch → ℝ) (x q : ℝ)
 
 *If this row describes a definition rather than a theorem: `MeanShareOff`, `NoMomentum`*
 
-## 39. `J-localized-kernel-arithmetic`
+## 22. `J-localized-kernel-arithmetic`
 
 **Row.** Rational bookkeeping only, not an exponential-sum estimate. LocalizedKernel.lean proves absTail_eq: three nested half-averages give (7y+a)/8; threshold_iff and threshold_value: retaining saving 1/96 requires y>=29/48. Legacy companionY=23/32 is explicitly a reference scale, not a production scale; absTail_companion=533/768, target_compani
 
@@ -1102,7 +645,7 @@ theorem production_formal_effective_saving :
 
 *If this row describes a definition rather than a theorem: `absTail`, `absStep`*
 
-## 40. `J-cube-fiber-exact`
+## 23. `J-cube-fiber-exact`
 
 **Row.** The OE fiber of a perfect cube is full or exactly alternating. For every a >= 1 and every n with (2a)^4 <= n and n^3 < ((2a)^3+1)^4, floor(n^(3/2)) = Nat.sqrt (n^3) is even (even_cube_fiber_full); for every odd n with (2a+1)^4 <= n and n^3 < ((2a+1)^3+1)^4, Nat.sqrt (n^3) + (n - (2a+1)^4)/2 is odd (odd_cube_fiber_alternating), so consecut
 
@@ -1122,7 +665,7 @@ theorem odd_cube_fiber_alternating (a n : ℕ) (hodd : n % 2 = 1) (hlo : (2 * a 
 
 *Runners-up: `even_cube_fiber_full` (0.076), `cube_fiber_sqrt_odd` (0.067)*
 
-## 41. `J-paper-b-formal-layer-has-an-estimate`
+## 24. `J-paper-b-formal-layer-has-an-estimate`
 
 **Row.** Paper B's formal layer now contains an estimate, where before it contained none. THE STANDING POSITION, stated in the paper's own barrel JugglerParityPaper.lean: 'Building it does not corroborate the paper's analysis. Every declaration reachable from here is an identity, a constant, or a threshold; not one of them is an estimate.' That wa
 
@@ -1153,7 +696,7 @@ theorem theta_lt_one {q : ℝ} (hq0 : 0 < q) (hq1 : q < 1) (hq : q ≠ 1 / 2) : 
 
 *If this row describes a definition rather than a theorem: `klDiv`, `theta`*
 
-## 42. `J-oe-fiber-block-lock`
+## 25. `J-oe-fiber-block-lock`
 
 **Row.** An OE fiber can be unbalanced only by locking onto a rational step of small denominator, and the quantitative form is elementary. For m >= 10^6 and every convergent denominator q of alpha_m = {(3/2) m^(2/3)}, |G_m/H_m - 1/2| <= 4||q alpha_m|| + 5/(2q) + 3.77 q/H_m. PROOF: cut the fiber into blocks of q consecutive members; by Lemma 4.2's 
 
@@ -1189,7 +732,7 @@ theorem block_lock (x : ℕ → ℝ) (H q : ℕ) (a η ρ : ℝ) (p : ℤ)
 
 *If this row describes a definition rather than a theorem: `Unstable`, `gridRes`*
 
-## 43. `J-oe-poor-fiber-tail`
+## 26. `J-oe-poor-fiber-tail`
 
 **Row.** The OE fibers whose parity share is bounded away from 1/2 have finite total logarithmic mass, so no set can concentrate on them. For eta_0 in (0,1/2], with P_eta0 = {m : |G_m/H_m - 1/2| >= eta_0} and u_0(eta_0) = max(10^6, (1950/eta_0^2)^3): #(P_eta0 cap (u,2u]) <= 430 u^(2/3)/eta_0^2 for u >= u_0, and sum over m in P_eta0, m > U of 1/m <
 
@@ -1212,7 +755,7 @@ theorem poor_count_le' {u : ℕ} (hu : 10 ^ 6 ≤ u) {η₀ : ℝ} (hη0 : 0 < �
 
 *If this row describes a definition rather than a theorem: `Poor`*
 
-## 44. `J-oe-averaged-two-productions-reach-the-depth-two-ceiling`
+## 27. `J-oe-averaged-two-productions-reach-the-depth-two-ceiling`
 
 **Row.** With the poor-fiber tail, Paper C's contagion recursion needs only two productions, and they reach the depth-two ceiling. Taking the OE family over all of A cap (x^(3/8), x^(3/4)] rather than over the rest -- legitimate because the E-images are even and the OE-images odd, which is the only disjointness ever used -- Corollary of J-oe-poor-
 
@@ -1245,7 +788,7 @@ theorem logMass_contagion_averaged {A : ℕ → Prop} (hA : BackwardClosed A) {a
 
 *If this row describes a definition rather than a theorem: `errAddAvg`, `errOEavg`*
 
-## 45. `J-survivor-count-is-the-certificate-tail`
+## 28. `J-survivor-count-is-the-certificate-tail`
 
 **Row.** PROVED IN LEAN, for every pair d <= K, over the naturals: 2^(K-d) * N_d = sum_{j=d+1}^{K} 2^(K-j) * M_j + N_K, where N_d = neverNegCount d counts the length-d words with no contracting prefix and M_j = minimalCertCount j counts those contracting for the first time at j. Divided by 2^K it reads N_d/2^d = sum_{j=d+1}^{K} M_j/2^j + N_K/2^K, 
 
@@ -1270,7 +813,7 @@ theorem neverNegCount_telescope {d K : ℕ} (h : d ≤ K) :
 
 *If this row describes a definition rather than a theorem: `minimalCertCount`, `minimalCertWords`*
 
-## 46. `J-free-lengths-are-never-adjacent`
+## 29. `J-free-lengths-are-never-adjacent`
 
 **Row.** PROVED IN LEAN, at every level: above the bottom edge, no two adjacent lengths are both free. carrying_in_adjacent_pair says that for floor(Lambda) + 1 <= L, at least one of L and L+1 carries a window at level 2^Lambda. MECHANISM. The carrying lengths are floor(o log2 3 + Lambda) + 1 (certWindowAt_iff_floor). Since 1 < log2 3 < 2, one ste
 

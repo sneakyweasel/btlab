@@ -11,20 +11,16 @@ Claim vocabulary lives in `docs/README.md`. Do not invent a parallel scheme.
 Two axes. Evidence strength is the ledger tag. Novelty — `KNOWN`, `REPARAMETERIZATION`, `PROJECT-SPECIFIC`, `OPEN` — is prose annotation and never a ledger tag.
 
 Live publication work is the Juggler–Collatz programme (Papers A–E).
-Rewrite calculus and cubic Newton-stratum research are frozen historical work;
-use the archive reading path rather than promoting them as active frontiers.
+Earlier independent research is available through `docs/history.md`.
 
 1. `docs/theory/juggler_finite_dynamics_note.md`
 2. `docs/theory/juggler_parity_discrepancy_note.md`
 3. `docs/juggler_branch_ledger.md`
-4. `docs/theory/rewrite_calculus_note.md` (ready to send)
-5. `docs/theory/balanced_ternary_calculus.md`
-6. `docs/theory/cubic_newton_stratum.md`
-7. `docs/theory/theorem_ledger.md`
+4. `docs/theory/juggler_fate_almost_all_note.md`
+5. `docs/theory/juggler_signed_collatz_note.md`
+6. `docs/theory/theorem_ledger.md`
 
 Collatz is one application: `docs/collatz_mathematics.md`. Use the seven ledger tags; do not write `PROVED`. Do not write “we solved Collatz” or “we solved Juggler”: if a matching `EXACT` statement exists, state the theorem, not the slogan.
-
-`docs/theory/cubic_*.md` and `mismatched_cubic_quotient.md` are **stubs** that point at the Newton-stratum monograph. Put new cubic mathematics there, not in a new milestone note.
 
 `docs/theory/theorem_ledger.md` is generated. Edit the JSON, then render.
 

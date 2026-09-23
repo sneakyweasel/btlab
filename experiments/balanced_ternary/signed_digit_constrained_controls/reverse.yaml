@@ -1,8 +1,0 @@
-problem: signed_digit_constrained_controls
-attack: reverse
-claim: co-reachability of 10 seed(s), union size 10, scope EXACT; this is not the adder live set
-status: EXACT
-scope: EXACT
-evidence: union_size=10; complete=True; horizon=0
-counterexamples: ()
-lean_theorem: 

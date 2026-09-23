@@ -1,8 +1,0 @@
-problem: expanding_j3
-attack: reconnaissance
-claim: finite-horizon LIVE_SLICE census at horizon 8; union is not L_n and terminal_image is not live infinitude
-status: OBSERVED
-scope: BOUNDED
-evidence: union_size=27; complete=True; horizon=8
-counterexamples: ()
-lean_theorem: 

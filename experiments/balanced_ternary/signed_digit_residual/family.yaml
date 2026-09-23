@@ -1,8 +1,0 @@
-problem: signed_digit_residual
-attack: distinguishing_family
-claim: origin-reachable F_{λ,U} is finite iff λ≤2 or max|u|≤1; for U_m this is λ≤2 or m≤1
-status: EXACT
-scope: EXACT
-evidence: Level A box iff λ≤2 or m≤1; λ=3 increment s'=s+u-lsd; λ≥4 expansion; geometry of U changes closure/Mealy not the phase
-counterexamples: ("holes change the phase", "M determined by (λ, max|u|)")
-lean_theorem: Problems.BalancedTernary.SignedDigitResidual.origin_residual_box_iff

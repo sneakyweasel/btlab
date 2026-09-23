@@ -1,8 +1,0 @@
-problem: prime_residual_complexity
-attack: closure
-claim: exact residual closure has size 210; queue exhaustion at the frozen initial phase, not a countdown DAG
-status: EXACT
-scope: EXACT
-evidence: union_size=210; complete=True; state_cap=256
-counterexamples: ()
-lean_theorem: 

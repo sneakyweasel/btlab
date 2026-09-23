@@ -722,7 +722,7 @@ scope is in
 [balanced_ternary_vs_collatz_literature.md](balanced_ternary_vs_collatz_literature.md).
 Cerdá's local formulas and the apparent defects in the preprints' global
 non-reuse/convergence arguments are audited in
-[cerda_comparison.md](cerda_comparison.md). All repository claims retain
+[cerda_comparison.md](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/cerda_comparison.md). All repository claims retain
 the Milestone 6 verified baseline and do not depend on those global claims.
 
 ## 26. Affine-center geometry

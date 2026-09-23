@@ -1,8 +1,0 @@
-problem: d_add
-attack: affine
-claim: no live one-step leak of the candidate region at the tested phases; this is not an invariant theorem
-status: OBSERVED
-scope: BOUNDED
-evidence: leak_count=0
-counterexamples: ()
-lean_theorem: 

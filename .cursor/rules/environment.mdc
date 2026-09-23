@@ -78,9 +78,9 @@ Python, not the shell.
 
 Use `python tools/lab.py build` for the active Juggler/Collatz graph. It includes
 every application module and follows its shared imports, including paper barrels.
-`--include-archive` invokes the original Lake defaults. The paper-pinned
+Direct `lake build` also builds the retained library. The paper-pinned
 `formal/lakefile.toml` is intentionally unchanged; direct `lake build` remains
-the historical full-library command.
+a complete build of the retained library.
 Mathlib names used here: `Nat.eq_sqrt`, `Nat.le_sqrt`,
 `Nat.sqrt_lt`, `Nat.pow_le_pow_iff_left`, `Function.iterate_fixed`,
 `Function.iterate_mul`, `Function.iterate_add_apply`.

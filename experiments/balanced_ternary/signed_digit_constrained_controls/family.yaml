@@ -1,8 +1,0 @@
-problem: signed_digit_constrained_controls
-attack: constrained_family
-claim: every word of length v_3(s-t)+1 separates when 3 does not divide λ; no-repeat U_2 is a 10-state minimal product
-status: EXACT
-scope: EXACT
-evidence: Models A–D have no same-control residual merge; equal-parity D collapses controls only
-counterexamples: ("need a cyclic letter", "A–D residual merge")
-lean_theorem: Problems.BalancedTernary.SignedDigitConstrainedControls.any_word_separation

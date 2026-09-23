@@ -1209,26 +1209,6 @@ Three tests, same wording as `.cursor/rules/methodology.mdc`:
 `none` only with a reason. Leftover-killer slogans with no new identity
 are `REPARAMETERIZATION` (`CLOSE`).
 
-## Kinds
-
-| Kind | Meaning |
-|---|---|
-| `REFUTED` | A named hypothesis has a counterexample or a dominance proof |
-| `REPARAMETERIZATION` / `KNOWN` | The attack is an existing identity under a new name |
-| `METHOD_OBSTRUCTION` | The toolkit dies; the mathematical question may remain open |
-| `PARK_STOP` | Payoff too low or blocked; not a kill |
-
-Exclude from this page as failures: PROMOTE theorems, active
-conjectures, and the still-open densities \(57/64\) and \(29/32\)
-(`CONJECTURE`). Journal **Refuted ideas** lines are pointers into the
-same identifiers; they are not a third unique source.
-
-Each cluster names the killed claim, the kill, what not to reopen, and
-the source identifiers. The [source inventory](#source-inventory) lists
-every required id so a later `REFUTED` row cannot hide.
-
----
-
 ## BT operators and rewrite
 
 Standing methodology examples live here: sample minimization is not
@@ -1297,80 +1277,6 @@ CLOSE dossiers: [collatz](problems/collatz.md) (application PARK as a
 whole; exact layer recorded),
 [collatz_finite_descent](problems/collatz_finite_descent.md),
 [weak_collatz_floor_5x4_rplus](problems/weak_collatz_floor_5x4_rplus.md).
-
----
-
-## Residuals, Newton, \(Q\), lifting
-
-Killed claim: LSD sample minimization equals Myhill–Nerode \(M_k\);
-prefix locality implies a small automaton; Newton classes of \(x^3\)
-are packed-prefix congruence classes; \(M_{k+1}=3M_k+1\);
-\(N_2\Rightarrow N_1\Rightarrow N_0\); every collision is a sign pair;
-deepest fibres are full residue classes; \(Q\) is an ordinary residual
-with a bounded \(\Psi\) / \(B_t\) classifier; \(v_3(f)\) and \(v_3(f')\)
-determine lifting; \(\Phi_r\) is a minimal state.
-Kill: sample \(\neq M_k\); locality does not give a small automaton;
-coefficientwise vanishing and \(\tau=1+\min v_3(c_j)\) fail;
-the \(x^3\) prefix / lift / \(N_2+N_1\Rightarrow N_0\) / deep-coset /
-intermediate-renormalization / deficit-2 / \(Q\)-visibility /
-\(\Psi\)-inverse slogans all have named witnesses (including
-\(\{720,738\}\) at \(k=8\)); valuations agree at the level-1 node \(0\)
-of \(x^2\pm 9\) with six surviving grandchildren versus none;
-\(\Phi_r(x)\neq\Phi_r(-x)\) with identical futures.
-Kind: `REFUTED` / `REPARAMETERIZATION`.
-Do not reopen: \(Q\) as a residue class; valuation-only lifting;
-recursive copy of the deficit-\(r\) problem as the remaining locus.
-
-Members: `BTA-coeffwise-nec`, `BTA-tau-minc`, `BTA-sample`,
-`BTA-locality-small`, `BTA-x3-prefix`, `BTA-x3-lift`, `BTA-x3-n2n1`,
-`BTA-x3-n21n0`, `BTA-x3-allsign`, `BTA-x3-deep-coset`,
-`BTA-x3-inter-n21n0`, `BTA-x3-inter-eqprev`, `BTA-x3-inter-renorm`,
-`BTA-x3-def2-n21n0`, `BTA-x3-def2-nextdigit`, `BTA-x3-n0-recur`,
-`BTA-x3-Q-vis`, `BTA-x3-Q-inv-psi`, `BTL-valuations-insufficient`,
-`BTL-phi-not-minimal`.
-
-CLOSE / mixed dossiers: [residuals](problems/residuals.md)
-(counting line CLOSE; structural PROMOTE),
-[lifting](problems/lifting.md) (dossier PARK; multivariate /
-minimal-state / unordered-shape CLOSE),
-[stabilization](problems/stabilization.md),
-[padic_dynamics](problems/padic_dynamics.md),
-[prime_residual_complexity](problems/prime_residual_complexity.md)
-(`PRC-jet-equals-prime`).
-
----
-
-## Signed-digit residual, multiplicative residual, Ostrowski
-
-Killed claim: a scalar / geometry / Mealy / merge / short-horizon /
-factor-count classifier organizes signed-digit residual; expanding
-magnitude / \(J_2\)-third / \(J_3=J_1\) / `lsd`-sum slogans hold;
-Ostrowski zero-monoid is NP-complete in the claimed reading;
-unnormalized mode is bounded; long words force infinite \(L_0\);
-an extra terminal congruence remains.
-Kill: named `BTN-sdr*`, `BTN-sdrm*`, `BTN-sdrc*`, `BTN-sdsh*`,
-`BTN-mr*` counterexamples; expanding-magnitude and jet-third fail;
-`D(\mathrm{lsd}\,x+\mathrm{lsd}\,y)\) is not the residual of the sum;
-Ostrowski slogans die as `KNOWN` / false completeness.
-Kind: `REFUTED` / `REPARAMETERIZATION`.
-Do not reopen: a bounded Mealy for unbounded residual coefficients;
-Ostrowski \(L_0\) emptiness by a new congruence.
-
-Members: `BTN-expanding-magnitude`, `BTN-expanding-j2-third`,
-`BTN-expanding-j3-j1`, `BTN-dadd-lsd-sum`, `BTN-sdr-scalar-lambda3`,
-`BTN-sdr-geometry-phase`, `BTN-sdr-maxabs-mealy`,
-`BTN-sdrg-lattice-all-U`, `BTN-sdrg-sign-mealy`,
-`BTN-sdrm-merge-exists`, `BTN-sdrm-mod3-merges`,
-`BTN-sdrc-need-constant`, `BTN-sdrc-residual-merge`,
-`BTN-sdsh-short-separator`, `BTN-sdsh-only-deadlock`,
-`BTN-sdsh-subset-merge`, `BTN-mr-factor-count`, `BTN-mr-three-states`,
-`OST-np-complete-zero-monoid`, `OST-np-unnormalized-mode-bound`,
-`OST-np-long-words-infinite-L0`, `OST-np-extra-terminal-congruence`.
-
-CLOSE dossiers: [ostrowski_order_m_adder](problems/ostrowski_order_m_adder.md)
-(\(L_0\) PARK; Myhill–Nerode / Hankel CLOSE),
-[operator_dynamics](problems/operator_dynamics.md),
-[operator_dynamics_benchmark](problems/operator_dynamics_benchmark.md).
 
 ---
 
@@ -2505,24 +2411,24 @@ companion-shift order 6).
 Kind: `KNOWN` / `REPARAMETERIZATION`.
 Do not reopen: these as Juggler or BT-core frontiers.
 
-Dossiers: [cerny_bt](problems/cerny_bt.md),
-[kabelian_complexity](problems/kabelian_complexity.md),
-[erdos_distinct_subset_sums](problems/erdos_distinct_subset_sums.md),
-[balanced_ternary_digit_sum_dynamics](problems/balanced_ternary_digit_sum_dynamics.md),
-[balanced_ternary_weight_dynamics](problems/balanced_ternary_weight_dynamics.md),
-[balanced_ternary_weight_drift](problems/balanced_ternary_weight_drift.md),
-[balanced_digit_sum_polynomials](problems/balanced_digit_sum_polynomials.md),
-[skolem_lrs](problems/skolem_lrs.md),
-[skolem_order2_known_zero](problems/skolem_order2_known_zero.md),
-[skolem_order5_unconditional](problems/skolem_order5_unconditional.md),
-[home_prime_49](problems/home_prime_49.md),
-[matthews_prize_mod3_avoider](problems/matthews_prize_mod3_avoider.md),
-[cyclic_tag_bit](problems/cyclic_tag_bit.md),
-[reverse_and_add_base3](problems/reverse_and_add_base3.md),
-[mx_plus_r_7x1_class_obstruction](problems/mx_plus_r_7x1_class_obstruction.md),
-[switching_affine_z2_origin](problems/switching_affine_z2_origin.md),
-[companion_shift_order6_zero_class](problems/companion_shift_order6_zero_class.md),
-[misere_quotients](problems/misere_quotients.md).
+Dossiers: [cerny_bt](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/cerny_bt.md),
+[kabelian_complexity](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/kabelian_complexity.md),
+[erdos_distinct_subset_sums](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/erdos_distinct_subset_sums.md),
+[balanced_ternary_digit_sum_dynamics](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/balanced_ternary_digit_sum_dynamics.md),
+[balanced_ternary_weight_dynamics](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/balanced_ternary_weight_dynamics.md),
+[balanced_ternary_weight_drift](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/balanced_ternary_weight_drift.md),
+[balanced_digit_sum_polynomials](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/balanced_digit_sum_polynomials.md),
+[skolem_lrs](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/skolem_lrs.md),
+[skolem_order2_known_zero](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/skolem_order2_known_zero.md),
+[skolem_order5_unconditional](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/skolem_order5_unconditional.md),
+[home_prime_49](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/home_prime_49.md),
+[matthews_prize_mod3_avoider](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/matthews_prize_mod3_avoider.md),
+[cyclic_tag_bit](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/cyclic_tag_bit.md),
+[reverse_and_add_base3](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/reverse_and_add_base3.md),
+[mx_plus_r_7x1_class_obstruction](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/mx_plus_r_7x1_class_obstruction.md),
+[switching_affine_z2_origin](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/switching_affine_z2_origin.md),
+[companion_shift_order6_zero_class](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/companion_shift_order6_zero_class.md),
+[misere_quotients](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/misere_quotients.md).
 
 ---
 
@@ -2663,7 +2569,7 @@ CLOSE) are included so the completeness gate cannot hide them.
 [juggler_transfer_weight_invariant](problems/juggler_transfer_weight_invariant.md),
 [juggler_twin_flight](problems/juggler_twin_flight.md),
 [juggler_two_step_parity](problems/juggler_two_step_parity.md),
-[research_engine_v24](problems/research_engine_v24.md).
+[research_engine_v24](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/problems/research_engine_v24.md).
 
 **Length-only charges are exhausted (added after pricing the family).** A
 charge seeing only \((n,L,o)\) must bound every configuration those

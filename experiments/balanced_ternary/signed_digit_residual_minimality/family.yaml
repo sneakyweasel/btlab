@@ -1,8 +1,0 @@
-problem: signed_digit_residual_minimality
-attack: minimality_family
-claim: if λ is not divisible by 3 then distinct residuals are separated by a constant word of length v_3(s-t)+1; listed alphabets have M=|R|
-status: EXACT
-scope: EXACT
-evidence: search alphabets are singleton Mealy classes; 0 vs 3 at λ=1 separated by (0,0); 0 ~ 3 at λ=3
-counterexamples: ("M<|R| on listed U", "identical 1-letter lsd signatures merge")
-lean_theorem: Problems.BalancedTernary.SignedDigitResidualMinimality.residual_separation

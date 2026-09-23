@@ -5,16 +5,12 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
-from research.engine_campaign.analysis import SessionSummary, summarize_session
-from research.engine_campaign.corpus import seed_baseline_corpus
+from research_engine.diagnosis.session_summary import SessionSummary, summarize_session
 from research.juggler_sequence.discovery import evidence_state, falsify_claims
 from research.juggler_sequence.planner import plan_map_session, plan_strategy
-from research.juggler_sequence.scout import BASELINE
 from research.juggler_sequence.spec import FloorPowerSpec, map_spec
 from research_engine.diagnosis.corpus import ResearchCorpus
-from research_engine.memory.board import assemble_board
 from research_engine.memory.ingest import experiment_from_session
-from research_engine.memory.seed_records import historical_experiments
 from research_engine.memory.store import ResearchMemory
 from research_engine.memory.types import (
     FailureClass,
@@ -146,8 +142,8 @@ class CampaignReport:
 
 
 def run_campaign(corpus: ResearchCorpus | None = None) -> tuple[ResearchCorpus, CampaignReport]:
-    memory_corpus = corpus if corpus is not None else seed_baseline_corpus()
-    store = ResearchMemory(historical_experiments())
+    memory_corpus = corpus if corpus is not None else ResearchCorpus()
+    store = ResearchMemory()
     spec = map_spec()
     plain = plan_map_session(spec, corpus=memory_corpus, record=False)
     probe = ResearchMemory()
@@ -236,7 +232,6 @@ def run_campaign(corpus: ResearchCorpus | None = None) -> tuple[ResearchCorpus, 
         "role": "flagship",
         "attack_table": _attack_table(session),
         "layer": "ENGINE REDISCOVERY",
-        "baseline": tuple(item[0] for item in BASELINE),
         "failure_classes": tuple(item.failure_class.value for item in experiment.failures),
         "planner_unchanged_with_memory": unchanged,
         "strategy_chain": blind_strategy.plan.chain.id,
@@ -251,22 +246,11 @@ def run_campaign(corpus: ResearchCorpus | None = None) -> tuple[ResearchCorpus, 
     summary.extra["piecewise_affine_structure"] = fp.piecewise_affine_structure
     summary.extra["affine_control_type"] = fp.affine_control_type
     summary.extra["yield"] = _yield_report(summary, spec)
-    board = assemble_board(store, memory_corpus)
-    leftovers = [
-        item
-        for item in board.targets
-        if not item.already_run and item.name != CURRENT
-    ]
-    leftovers.sort(key=lambda item: (-item.expected_research_value.value, item.name))
-    pick = leftovers[0] if leftovers else None
     report = CampaignReport(
         summaries=[summary],
         memory=store,
         planner_unchanged_with_memory=unchanged,
-        next_target_name=pick.name if pick is not None else "",
         next_target_overridden=False,
-        next_ev=tuple((item.name, item.expected_research_value.value) for item in leftovers[:5]),
-        failure_learning_note=pick.expected_research_value.reason if pick is not None else "",
         strategy_chain=blind_strategy.plan.chain.id,
     )
     report.notes.append(

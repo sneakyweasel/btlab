@@ -1,8 +1,0 @@
-problem: signed_digit_residual
-attack: skipped
-claim: inapplicable or deferred
-status: OBSERVED
-scope: BOUNDED
-evidence: modular=inapplicable; block=inapplicable; spectral=inapplicable; symbolic=not implemented in this phase
-counterexamples: ()
-lean_theorem: 

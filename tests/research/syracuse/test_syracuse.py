@@ -6,12 +6,6 @@ from pathlib import Path
 
 from research.literature import get_reference
 from research.open_problems import get_problem
-from research.operator_dynamics.signed_p0.planner import plan_signed_p0
-from research.operator_dynamics.signed_p0.spec import signed_p0_spec
-from research.balanced_ternary_digit_sum_dynamics.planner import plan_digit_sum_dynamics
-from research.balanced_ternary_digit_sum_dynamics.spec import digit_sum_spec
-from research.balanced_ternary_weight_dynamics.planner import plan_weight_dynamics
-from research.balanced_ternary_weight_dynamics.spec import weight_dynamics_spec
 from research.syracuse.discovery import (
     idempotent_counterexample,
     interval_leak_witness,
@@ -207,22 +201,8 @@ def test_spec_planner_and_hypotheses():
 
 
 def test_diagnosis_is_not_finite_contracting():
-    corpus = ResearchCorpus()
-    for spec, report in (
-        (signed_p0_spec(), plan_signed_p0()),
-        (digit_sum_spec(), plan_digit_sum_dynamics()),
-        (weight_dynamics_spec(), plan_weight_dynamics()),
-    ):
-        diagnosis = diagnose(spec, report, spec.attack_context(), corpus)
-        corpus.add(
-            record_from_session(
-                spec,
-                diagnosis,
-                report,
-                ResearchDecision.CLOSE,
-                "seeded",
-            )
-        )
+    from research.juggler_sequence.planner import plan_map_session
+    corpus = ResearchCorpus((plan_map_session().record,))
     session = plan_syracuse_session(corpus=corpus)
     assert session.diagnosis.fingerprint.numerical_contraction != "FINITE_CONTRACTING"
     assert session.diagnosis.fingerprint.eventual_region == "UNBOUNDED_SAMPLE"

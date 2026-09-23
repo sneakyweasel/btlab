@@ -146,7 +146,7 @@ difficult it is. The abstract form of this ordering — a priority ratio,
 its division-free comparison, and the fact that mining in decreasing
 ratio order minimises the value-weighted waiting cost of a schedule —
 is formalised in
-[InformationField.lean](../../formal/Problems/Engine/InformationField.lean)
+[InformationField.lean](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/formal/Problems/Engine/InformationField.lean)
 as `Prospect.priority`, `Prospect.Before` and
 `waitingCost_insertionSort_le`. That file is generic mathematics about
 ordering candidates; it says nothing about the Juggler map, and it does

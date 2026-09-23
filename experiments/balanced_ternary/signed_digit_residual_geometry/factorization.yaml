@@ -1,8 +1,0 @@
-problem: signed_digit_residual_geometry
-attack: factorization
-claim: transition and observation factor through 5 raw contributions from 5 controls
-status: EXACT
-scope: EXACT
-evidence: 
-counterexamples: ()
-lean_theorem: 

@@ -1,8 +1,0 @@
-problem: signed_digit_short_horizon
-attack: quotient
-claim: exact Mealy quotient has 5 classes from 7 reachable states
-status: EXACT
-scope: EXACT
-evidence: 
-counterexamples: ()
-lean_theorem: 

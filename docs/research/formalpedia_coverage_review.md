@@ -22,9 +22,9 @@ which is what the ledger's list-valued `decl` exists to record.  `REFUTED` rows 
 asked: their declaration is the refutation.
 
 Jev (jev-1.13.0, last asked 2026-09-22) has answered
-253 of the 306 resolved rows: 122 covered,
-57 doubtful, 40 not covered; 97 are
-listed below, and 34 answered an earlier version of their row and need a rerun.
+154 of the 207 resolved rows: 50 covered,
+40 doubtful, 37 not covered; 77 are
+listed below, and 27 answered an earlier version of their row and need a rerun.
 
 ## 1. `J-paper-b-screen-is-a-walk-condition` &mdash; covers 0.03
 
@@ -992,46 +992,7 @@ theorem rankResidue_upper_card {L e g r : ℕ} (he : e ≤ L) (hg : 0 < g)
       e / g
 ```
 
-## 9. `OST-np-adjoint-window-det` &mdash; covers 0.09
-
-*Reads as: the claim asserts more than the declarations state (0.91).*
-
-*Claim broader 0.91; declaration narrower 0.52; different result 0.71.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** for Γ_NP and n≥2, the determinant of consecutive adjoints (u_n, u_{n-1}, u_{n-2}) equals 3^{n-2}, so neighboring energies invert s over Q; this is not a bound on L_0
-
-**Declarations.** `adjointDet_eq` &mdash; kernel-checked, `Problems/Ostrowski/NP/Energy.lean:335`
-
-> Consecutive adjoints are independent: `det = 3^{n-2}` for `n ≥ 2`. Neighboring energies invert `s` over `ℚ`. Not a bound on `L₀`.
-
-```lean
-theorem adjointDet_eq (n : ℕ) (hn : 2 ≤ n) :
-    adjointDet n = (3 : ℤ) ^ (n - 2)
-```
-
-**And.** `adjointDet` &mdash; kernel-checked, `Problems/Ostrowski/NP/Energy.lean:248`
-
-> `det(u_n, u_{n-1}, u_{n-2})`.
-
-```lean
-def adjointDet (n : ℕ) : ℤ
-```
-
-**And.** `adjointDet_ne_zero` &mdash; kernel-checked, `Problems/Ostrowski/NP/Energy.lean:350`
-
-```lean
-theorem adjointDet_ne_zero (n : ℕ) (hn : 2 ≤ n) : adjointDet n ≠ 0
-```
-
-**And.** `energy_eq_dot` &mdash; kernel-checked, `Problems/Ostrowski/NP/Energy.lean:101`
-
-```lean
-theorem energy_eq_dot (i : ℕ) (s1 s2 s3 : ℤ) :
-    energy i (s1, s2, s3) =
-      (adjointU i).1 * s1 + (adjointU i).2.1 * s2 + (adjointU i).2.2 * s3
-```
-
-## 10. `J-cycle-direction-change-batches` &mdash; covers 0.12
+## 9. `J-cycle-direction-change-batches` &mdash; covers 0.12
 
 *Reads as: the claim asserts more than the declarations state (0.91).*
 
@@ -1080,7 +1041,7 @@ theorem force_two_right (ha : 0 < a) (hab : a < b) (hm : m ≤ y 0)
       RankedReturn a (b - 2 * a) y ((U ++ V) ++ V) V
 ```
 
-## 11. `J-cycle-later-return-height` &mdash; covers 0.13
+## 10. `J-cycle-later-return-height` &mdash; covers 0.13
 
 *Reads as: the claim asserts more than the declarations state (0.9).*
 
@@ -1126,7 +1087,7 @@ theorem periodicOrbit_lr_height {m M k : ℕ} (hk : 0<k)
       m^127 < (2*(m^3-M))^64
 ```
 
-## 12. `J-fate-one-sided-conjecture` &mdash; covers 0.13
+## 11. `J-fate-one-sided-conjecture` &mdash; covers 0.13
 
 *Reads as: the claim asserts more than the declarations state (0.68).*
 
@@ -1235,34 +1196,7 @@ theorem exact_share_implies_conjecture {N₀ : ℕ} (hN : 2 ≤ N₀)
     ∀ n, 1 ≤ n → ReachesOne n
 ```
 
-## 13. `BTC-op-fragment-nd-nf` &mdash; covers 0.14
-
-*Reads as: the claim asserts more than the declarations state (0.94).*
-
-*Claim broader 0.94; declaration narrower 0.23; different result 0.07.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** the operator-fragment tree TRS {D, I_a, S, N} including N(D(x))→D(N(x)) is terminating and locally confluent; every term has a unique syntactic normal form
-
-**Declarations.** `unique_normal_form` &mdash; kernel-checked, `BTCalculus/OpFragNewman.lean:381`
-
-> Unique syntactic normal form of an operator-fragment term.
-
-```lean
-theorem unique_normal_form (t : OpFrag) :
-    ∃ n, Normal n ∧ ReflTransGen Step t n ∧
-      ∀ n', Normal n' → ReflTransGen Step t n' → n' = n
-```
-
-**And.** `locally_confluent` &mdash; kernel-checked, `BTCalculus/OpFragNewman.lean:198`
-
-> Local confluence by induction on the peak term.
-
-```lean
-theorem locally_confluent {a b c : OpFrag} (hb : Step a b) (hc : Step a c) :
-    Join (ReflTransGen Step) b c
-```
-
-## 14. `J-cycle-finance-inequality` &mdash; covers 0.14
+## 12. `J-cycle-finance-inequality` &mdash; covers 0.14
 
 *Reads as: the claim asserts more than the declarations state (0.91).*
 
@@ -1305,7 +1239,7 @@ theorem cycleMin_log_envelope {n : ℕ} {w : List Branch}
           (k : ℝ) * (3 : ℝ) ^ oddCount (w.take k) / n
 ```
 
-## 15. `J-cycle-subtractive-return-step` &mdash; covers 0.14
+## 13. `J-cycle-subtractive-return-step` &mdash; covers 0.14
 
 *Reads as: the claim asserts more than the declarations state (0.89).*
 
@@ -1376,7 +1310,7 @@ theorem right_word_statistics {a b : ℕ} (hab : a ≤ b) (A B : List Branch) :
         a * evenCount A + b * evenCount B
 ```
 
-## 16. `J-cycle-unit-perturbation` &mdash; covers 0.14
+## 14. `J-cycle-unit-perturbation` &mdash; covers 0.14
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -1475,7 +1409,7 @@ theorem cubicRounding_iterate_mem {b x : ℕ} (hb : 3 ≤ b) (ho : b % 2 = 1)
     cubicParityDomain b ((cubicRounding b)^[k] x)
 ```
 
-## 17. `J-cycle-ooe-exact-remainder-repair` &mdash; covers 0.15
+## 15. `J-cycle-ooe-exact-remainder-repair` &mdash; covers 0.15
 
 *Reads as: the claim asserts more than the declarations state (0.82).*
 
@@ -1601,7 +1535,7 @@ theorem recoverPeak_eq {x u z R : ℕ}
     recoverPeak x z R = (u ^ 3).sqrt
 ```
 
-## 18. `J-fate-contagion-elementary` &mdash; covers 0.15
+## 16. `J-fate-contagion-elementary` &mdash; covers 0.15
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -1732,7 +1666,7 @@ theorem conjecture_of_cylinder_bound {N₀ : ℕ} (hN : 2 ≤ N₀)
     ∀ n, 1 ≤ n → ReachesOne n
 ```
 
-## 19. `J-cubic-critical-localization-kernels` &mdash; covers 0.16
+## 17. `J-cubic-critical-localization-kernels` &mdash; covers 0.16
 
 *Reads as: the claim asserts more than the declarations state (0.77).*
 
@@ -1935,7 +1869,7 @@ theorem r_arc_deviation_count {α : Type*} [DecidableEq α]
     14380 ≤ D.card
 ```
 
-## 20. `J-cycle-later-return-certificate` &mdash; covers 0.16
+## 18. `J-cycle-later-return-certificate` &mdash; covers 0.16
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -1975,7 +1909,7 @@ theorem loss_exact (w : List Branch) (x : ℕ) :
     (x : ℝ) ^ exponent w - (eval w x : ℝ) = transportedLoss x w
 ```
 
-## 21. `J-cycle-quartic-formal-cells` &mdash; covers 0.16
+## 19. `J-cycle-quartic-formal-cells` &mdash; covers 0.16
 
 *Reads as: the claim asserts more than the declarations state (0.87).*
 
@@ -2093,7 +2027,7 @@ theorem logEta_lt_inv {v : ℝ} (hv : 1 < v) :
     logEta v < 1 / (v * Real.log v)
 ```
 
-## 22. `J-cycle-threshold-relaxation` &mdash; covers 0.16
+## 20. `J-cycle-threshold-relaxation` &mdash; covers 0.16
 
 *Reads as: the claim asserts more than the declarations state (0.89).*
 
@@ -2181,7 +2115,7 @@ theorem threshold_iterates_eq_of_compatible {b x : ℕ} (hb : 3 ≤ b)
     ∀ k, (thresholdMap b)^[k] x = floorPower^[k] x
 ```
 
-## 23. `J-fate-one-sided-moments` &mdash; covers 0.16
+## 21. `J-fate-one-sided-moments` &mdash; covers 0.16
 
 *Reads as: the claim asserts more than the declarations state (0.84).*
 
@@ -2291,7 +2225,7 @@ theorem one_sided_bound_kl {N₀ : ℕ} (hN : 2 ≤ N₀)
           / tilt (pC C) q ^ (pC C * d)
 ```
 
-## 24. `J-cycle-itinerary-length-ge-fourteen` &mdash; covers 0.17
+## 22. `J-cycle-itinerary-length-ge-fourteen` &mdash; covers 0.17
 
 *Reads as: the claim asserts more than the declarations state (0.92).*
 
@@ -2308,7 +2242,7 @@ theorem cycle_itinerary_length_ge_fourteen {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleItinerary n w) : 14 ≤ w.length
 ```
 
-## 25. `J-small-cycle-census-eighteen` &mdash; covers 0.17
+## 23. `J-small-cycle-census-eighteen` &mdash; covers 0.17
 
 *Reads as: the claim asserts more than the declarations state (0.86).*
 
@@ -2356,7 +2290,7 @@ theorem cycle_finance_min_thirteen {n : ℕ} {w : List Branch}
       (w.length : ℝ) * (3 : ℝ) ^ oddCount w
 ```
 
-## 26. `J-small-cycle-census-eleven` &mdash; covers 0.17
+## 24. `J-small-cycle-census-eleven` &mdash; covers 0.17
 
 *Reads as: the claim asserts more than the declarations state (0.92).*
 
@@ -2392,7 +2326,7 @@ theorem cycleItinerary_iterate_not_lt_fifty_three {n : ℕ} {w : List Branch} {i
     53 ≤ floorPower^[i] n
 ```
 
-## 27. `J-cycle-short-return-cells` &mdash; covers 0.18
+## 25. `J-cycle-short-return-cells` &mdash; covers 0.18
 
 *Reads as: the claim asserts more than the declarations state (0.85).*
 
@@ -2497,7 +2431,7 @@ theorem oe_perfect_power_hidden_odd {s : ℕ} (hs : s % 2 = 1) :
       oe (s ^ 4) % 2 = 1
 ```
 
-## 28. `C-no-uniform-L-descent` &mdash; covers 0.19
+## 26. `C-no-uniform-L-descent` &mdash; covers 0.19
 
 *Reads as: the claim asserts more than the declarations state (0.93).*
 
@@ -2521,7 +2455,7 @@ theorem shortcutC_all_odd_iter {L k : ℕ} (hk : k ≤ L) :
     shortcutCIter k (2 ^ L - 1) = 3 ^ k * 2 ^ (L - k) - 1
 ```
 
-## 29. `J-above-anchor-hug-domination` &mdash; covers 0.19
+## 27. `J-above-anchor-hug-domination` &mdash; covers 0.19
 
 *Reads as: the claim asserts more than the declarations state (0.89).*
 
@@ -2549,7 +2483,7 @@ theorem aboveAnchor_odds_ge_hug {n : ℕ} {w : List Branch}
     hugOdds w.length ≤ oddCount w
 ```
 
-## 30. `J-cycle-itinerary-length-eleven-or-ge-fourteen` &mdash; covers 0.19
+## 28. `J-cycle-itinerary-length-eleven-or-ge-fourteen` &mdash; covers 0.19
 
 *Reads as: the claim asserts more than the declarations state (0.87).*
 
@@ -2594,7 +2528,7 @@ theorem no_cycle_itinerary_length_sixteen {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (hlen : w.length = 16) : ¬CycleItinerary n w
 ```
 
-## 31. `J-cycle-itinerary-length-thirty-eight-or-ge-thirty-nine` &mdash; covers 0.19
+## 29. `J-cycle-itinerary-length-thirty-eight-or-ge-thirty-nine` &mdash; covers 0.19
 
 *Reads as: the claim asserts more than the declarations state (0.81).*
 
@@ -2643,7 +2577,7 @@ theorem no_cycle_itinerary_length_lt_thirty_ne_nineteen {n : ℕ} {w : List Bran
     ¬CycleItinerary n w
 ```
 
-## 32. `J-cycle-ooe-family-chain-bound` &mdash; covers 0.19
+## 30. `J-cycle-ooe-family-chain-bound` &mdash; covers 0.19
 
 *Reads as: the claim asserts more than the declarations state (0.83).*
 
@@ -2700,7 +2634,7 @@ theorem ooeFamily_no_infinite_juggler_chain (r : ℕ → ℕ)
       ooeFamilySource (r (i+1))
 ```
 
-## 33. `J-fate-pressure-conjecture` &mdash; covers 0.19
+## 31. `J-fate-pressure-conjecture` &mdash; covers 0.19
 
 *Reads as: the claim asserts more than the declarations state (0.77).*
 
@@ -2830,41 +2764,7 @@ theorem noMomentum_implies_conjecture {N₀ : ℕ} (hN : 2 ≤ N₀)
     ∀ n, 1 ≤ n → ReachesOne n
 ```
 
-## 34. `BTN-sdsh-truncated-mod` &mdash; covers 0.2
-
-*Reads as: the claim asserts more than the declarations state (0.87).*
-
-*Claim broader 0.87; declaration narrower 0.29; different result 0.07.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** If 3^L divides s-t and |w|≤L, then the lsd streams of F_{λ,U} from s and t agree on w. A remaining-horizon L controller therefore merges (s,q_L) and (t,q_L) whenever that congruence holds.
-
-**Declarations.** `truncated_3adic_agree` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitShortHorizon.lean:28`
-
-> A short horizon cannot see a deep congruence: if `3^L | s - t`, the signed traces from `s` and `t` agree on every word of length at most `L`.
-
-```lean
-theorem truncated_3adic_agree {gain s t : ℤ} {L : ℕ} {w : List ℤ}
-    (hdvd : (3 : ℤ) ^ L ∣ s - t) (hw : w.length ≤ L) :
-    signedTrace gain s w = signedTrace gain t w
-```
-
-**And.** `truncated_3adic_equiv` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitShortHorizon.lean:71`
-
-```lean
-theorem truncated_3adic_equiv {gain s t : ℤ} {L : ℕ} {w : List ℤ}
-    (hdvd : (3 : ℤ) ^ L ∣ s - t) (hw : w.length ≤ L) :
-    signedTrace gain s w = signedTrace gain t w
-```
-
-**And.** `short_horizon_equiv` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitShortHorizon.lean:76`
-
-```lean
-theorem short_horizon_equiv {gain s t : ℤ} {L : ℕ} {w : List ℤ}
-    (hdvd : (3 : ℤ) ^ L ∣ s - t) (hw : w.length ≤ L) :
-    signedTrace gain s w = signedTrace gain t w
-```
-
-## 35. `J-mixed-oe-eighth` &mdash; covers 0.21
+## 32. `J-mixed-oe-eighth` &mdash; covers 0.21
 
 *Reads as: the claim asserts more than the declarations state (0.85).*
 
@@ -2892,7 +2792,7 @@ theorem cube_lift_even_reset_fourth {x n : ℕ}
     floorPower (floorPower x) ^ 4 < n ^ 9
 ```
 
-## 36. `J-fate-contagion-conditional` &mdash; covers 0.22
+## 33. `J-fate-contagion-conditional` &mdash; covers 0.22
 
 *Reads as: the claim asserts more than the declarations state (0.81).*
 
@@ -3003,7 +2903,7 @@ theorem conjecture_of_cylinder_bound_of_production {N₀ : ℕ} (hN : 2 ≤ N₀
     ∀ n, 1 ≤ n → ReachesOne n
 ```
 
-## 37. `J-fate-one-sided-atoms` &mdash; covers 0.22
+## 34. `J-fate-one-sided-atoms` &mdash; covers 0.22
 
 *Reads as: the claim asserts more than the declarations state (0.67).*
 
@@ -3159,7 +3059,7 @@ theorem exc_conj_of_contagion {N₀ : ℕ} (hN : 2 ≤ N₀)
     ∀ n, 1 ≤ n → ReachesOne n
 ```
 
-## 38. `J-fate-certified-thirty` &mdash; covers 0.24
+## 35. `J-fate-certified-thirty` &mdash; covers 0.24
 
 *Reads as: the claim asserts more than the declarations state (0.86).*
 
@@ -3408,7 +3308,7 @@ theorem one_sided_thirty {N₀ : ℕ} (hN : 2 ≤ N₀)
     ∀ n, 1 ≤ n → ReachesOne n
 ```
 
-## 39. `J-fate-classes-density-averaged` &mdash; covers 0.24
+## 36. `J-fate-classes-density-averaged` &mdash; covers 0.24
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -3492,7 +3392,7 @@ theorem escapes_natDensity_averaged {a : ℕ} (ha : 1 ≤ a) (hesc : EscapesToIn
       c * y * Real.log y ^ (lam - 1) ≤ (blockCount EscapesToInfinity y : ℝ)
 ```
 
-## 40. `J-tao-rate-implies-conjecture` &mdash; covers 0.24
+## 37. `J-tao-rate-implies-conjecture` &mdash; covers 0.24
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -3572,7 +3472,7 @@ theorem tao_rate_implies_empty {A : ℕ → Prop} (hF : ForwardClosed A) (h1 : �
 
 **Doubtful from here: coverage between 0.25 and 0.5.**
 
-## 41. `J-cubic-remainder-assembly` &mdash; covers 0.25
+## 38. `J-cubic-remainder-assembly` &mdash; covers 0.25
 
 *Reads as: the claim asserts more than the declarations state (0.74).*
 
@@ -3695,7 +3595,7 @@ theorem leftover_run_deviation_of_blocks {C S : ℕ}
     (hC : 14569 ≤ C) (hcover : C ≤ 1 + 2 * S) : 7284 ≤ S
 ```
 
-## 42. `J-cycle-cubic-band-order` &mdash; covers 0.25
+## 39. `J-cycle-cubic-band-order` &mdash; covers 0.25
 
 *Reads as: the claim asserts more than the declarations state (0.9).*
 
@@ -3721,25 +3621,7 @@ theorem cubicBand_mechanical_itinerary {m L : ℕ} (hL : 0 < L)
           (k * o + L - 1) / L
 ```
 
-## 43. `BTL-zero-output` &mdash; covers 0.26
-
-*Reads as: the claim asserts more than the declarations state (0.81).*
-
-*Claim broader 0.81; declaration narrower 0.34; different result 0.09.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** 3^k divides f(n_w) iff every output trit of the residual machine along w is 0, so the solution tree of f(x) = 0 mod 3^k is the zero-output subtree; balanced digits are what force the partial sum below the modulus
-
-**Declaration.** `lift_iff_outputs_zero` &mdash; kernel-checked, `BTCalculus/PadicLifting.lean:82`
-
-> `3^k` divides `f(n_w)` exactly when every output trit along `w` is `0`. The word itself need not consist of trits: the outputs are trits whatever the sections are, and that is all the packing bound needs.
-
-```lean
-theorem lift_iff_outputs_zero (w : List ℤ) (f : ℤ[X]) :
-    IsRootMod w.length f (packWord w) ↔
-      outputAlong w f = List.replicate w.length (0 : ℤ)
-```
-
-## 44. `J-cycle-itinerary-eliahou-leftover` &mdash; covers 0.26
+## 40. `J-cycle-itinerary-eliahou-leftover` &mdash; covers 0.26
 
 *Reads as: the claim asserts more than the declarations state (0.67).*
 
@@ -3782,7 +3664,7 @@ def EliahouLeftover (L : ℕ) (exceptions : List ℕ) : Prop
 def eliahouTableCutoff : ℕ
 ```
 
-## 45. `J-cycle-itinerary-length-eighty-four-or-ge-eighty-five` &mdash; covers 0.26
+## 41. `J-cycle-itinerary-length-eighty-four-or-ge-eighty-five` &mdash; covers 0.26
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -3839,7 +3721,7 @@ theorem no_cycle_itinerary_length_lt_eighty_four {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (hLt : w.length < 84) : ¬CycleItinerary n w
 ```
 
-## 46. `J-cyclemin-walk-transport-envelope` &mdash; covers 0.26
+## 42. `J-cyclemin-walk-transport-envelope` &mdash; covers 0.26
 
 *Reads as: the claim asserts more than the declarations state (0.81).*
 
@@ -3896,7 +3778,7 @@ theorem one_le_walkWeight {n : ℕ} {w : List Branch} (hn : 2 ≤ n)
     1 ≤ walkWeight w k
 ```
 
-## 47. `J-small-cycle-census-seven` &mdash; covers 0.26
+## 43. `J-small-cycle-census-seven` &mdash; covers 0.26
 
 *Reads as: the claim asserts more than the declarations state (0.91).*
 
@@ -3913,39 +3795,7 @@ theorem no_cycle_itinerary_length_le_seven {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (hlen : w.length ≤ 7) : ¬CycleItinerary n w
 ```
 
-## 48. `BTA-x3-Q-def` &mdash; covers 0.27
-
-*Reads as: the claim asserts more than the declarations state (0.65).*
-
-*Claim broader 0.65; declaration narrower 0.33; different result 0.11.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** Q_t(u)=D^t(u^3), the integer cubic quotient (qCubic). The paper's Q_{t,K,W} is its residue modulo 3^K on u∈P_W; that reduction is stated in the congruence rows BTA-x3-Q-eq and BTA-x3-Q-visible, not here.
-
-**Declaration.** `qCubic_def` &mdash; kernel-checked, `BTCalculus/MismatchedCubicQuotient.lean:23`
-
-```lean
-theorem qCubic_def (t : Nat) (u : Int) :
-    qCubic t u = iterDZ t (u ^ 3)
-```
-
-## 49. `OST-np-particular-s3` &mdash; covers 0.27
-
-*Reads as: the claim asserts more than the declarations state (0.88).*
-
-*Claim broader 0.88; declaration narrower 0.44; different result 0.18.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** for Γ_NP, from the origin the third coordinate of the control particular equals minus the MSD consumed valuation: (particularSum ws)_3 = -consumedSum |ws| ws, so val(B)=0 iff c_B lies on F={s_3=0}; this is energy_telescope at n=0, not a bound on L_0
-
-**Declaration.** `particular_s3` &mdash; kernel-checked, `Problems/Ostrowski/NP/Energy.lean:556`
-
-> From the origin, `(c_B)₃ = -val(B)`. KNOWN energy at `n=0`, not `L₀`.
-
-```lean
-theorem particular_s3 (ws : List ℤ) :
-    (particularSum ws).2.2 = -consumedSum ws.length ws
-```
-
-## 50. `J-fate-tao-union-bound` &mdash; covers 0.28
+## 44. `J-fate-tao-union-bound` &mdash; covers 0.28
 
 *Reads as: the claim asserts more than the declarations state (0.61).*
 
@@ -4034,36 +3884,7 @@ theorem cylinder_even_root_empty (y d : ℕ) (w : List Branch) (hd : 1 ≤ d)
     (hw : w.head? = some .even) : cylinder y d w = ∅
 ```
 
-## 51. `BTC-op-fragment-nd-semantic` &mdash; covers 0.29
-
-*Reads as: the claim asserts more than the declarations state (0.77).*
-
-*Claim broader 0.77; declaration narrower 0.41; different result 0.2.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** irreducibles of the enlarged operator-fragment TRS (tree rules plus N(D(x))→D(N(x))) are unique representatives of integer operator functions on {D, I_a, S, N}
-
-**Declarations.** `eval_eq_unique_nf` &mdash; kernel-checked, `BTCalculus/OpFragSemantic.lean:497`
-
-> Semantically equal terms share the same irreducible.
-
-```lean
-theorem eval_eq_unique_nf {t u n₁ n₂ : OpFrag}
-    (h : ∀ n, eval t n = eval u n)
-    (hn₁ : Normal n₁) (hn₂ : Normal n₂)
-    (ht : ReflTransGen Step t n₁) (hu : ReflTransGen Step u n₂) : n₁ = n₂
-```
-
-**And.** `irreducible_eval_injective` &mdash; kernel-checked, `BTCalculus/OpFragSemantic.lean:481`
-
-> Distinct irreducibles denote distinct maps `ℤ → ℤ`.
-
-```lean
-theorem irreducible_eval_injective {t u : OpFrag}
-    (ht : Normal t) (hu : Normal u)
-    (h : ∀ n : ℤ, eval t n = eval u n) : t = u
-```
-
-## 52. `J-cycle-quartic-formal-return` &mdash; covers 0.29
+## 45. `J-cycle-quartic-formal-return` &mdash; covers 0.29
 
 *Reads as: the claim asserts more than the declarations state (0.78).*
 
@@ -4134,7 +3955,7 @@ theorem guarded_return_cases (D : PeriodicExtrema C m M) (hm : 5 ≤ m)
     (follows x [.odd, .even] ∧ returnMap m x = ReturnCells.oe x)
 ```
 
-## 53. `J-log-two-hundred-fifty-seven-gt-sixty-one-elevenths` &mdash; covers 0.29
+## 46. `J-log-two-hundred-fifty-seven-gt-sixty-one-elevenths` &mdash; covers 0.29
 
 *Reads as: the claim asserts more than the declarations state (0.83).*
 
@@ -4170,7 +3991,7 @@ theorem finance_excludes_length_thirtyeight {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (hlen : w.length = 38) : ¬CycleItinerary n w
 ```
 
-## 54. `J-cycle-quartic-formal-gap-separation` &mdash; covers 0.3
+## 47. `J-cycle-quartic-formal-gap-separation` &mdash; covers 0.3
 
 *Reads as: the claim asserts more than the declarations state (0.57).*
 
@@ -4238,7 +4059,7 @@ theorem section_B_injective_of_cocycle {L m : ℕ} [NeZero L]
     Function.Injective (fun i => B (c i))
 ```
 
-## 55. `J-cycle-itinerary-length-nineteen-or-ge-thirty` &mdash; covers 0.31
+## 48. `J-cycle-itinerary-length-nineteen-or-ge-thirty` &mdash; covers 0.31
 
 *Reads as: the claim asserts more than the declarations state (0.87).*
 
@@ -4266,7 +4087,7 @@ theorem cycle_itinerary_length_nineteen_or_ge_twenty {n : ℕ} {w : List Branch}
     w.length = 19 ∨ 20 ≤ w.length
 ```
 
-## 56. `J-cyclemin-prefix-bunched-eoee` &mdash; covers 0.31
+## 49. `J-cyclemin-prefix-bunched-eoee` &mdash; covers 0.31
 
 *Reads as: the claim asserts more than the declarations state (0.71).*
 
@@ -4284,7 +4105,7 @@ theorem no_cycleMin_prefix_eoee {n a : ℕ} {u : List Branch}
     ¬CycleMin n (u ++ threeEvenEOEE a)
 ```
 
-## 57. `J-fate-first-letter-split` &mdash; covers 0.31
+## 50. `J-fate-first-letter-split` &mdash; covers 0.31
 
 *Reads as: the claim asserts more than the declarations state (0.67).*
 
@@ -4347,7 +4168,7 @@ theorem sum_image_ooPiece {A : ℕ → Prop} (y x : ℕ) (f : ℕ → ℝ) :
     ∑ m ∈ (ooPiece A y x).image floorPower, f m = ∑ n ∈ ooPiece A y x, f (floorPower n)
 ```
 
-## 58. `J-residual-floor-fifty-three` &mdash; covers 0.31
+## 51. `J-residual-floor-fifty-three` &mdash; covers 0.31
 
 *Reads as: the claim asserts more than the declarations state (0.87).*
 
@@ -4502,7 +4323,7 @@ theorem fortynine_reachesOne : ReachesOne 49
 theorem fiftyone_reachesOne : ReachesOne 51
 ```
 
-## 59. `J-residual-floor-two-hundred-sixty-one` &mdash; covers 0.31
+## 52. `J-residual-floor-two-hundred-sixty-one` &mdash; covers 0.31
 
 *Reads as: the claim asserts more than the declarations state (0.82).*
 
@@ -4531,101 +4352,7 @@ theorem reachesOne_n257 : ReachesOne 257
 theorem reachesOne_n259 : ReachesOne 259
 ```
 
-## 60. `BTC-add-requires-carry-state` &mdash; covers 0.32
-
-*Reads as: a declaration is narrower than the claim (0.73).*
-
-*Claim broader 0.52; declaration narrower 0.73; different result 0.49.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** the packaged Add boundary combines three exact statements: D(x+y) is not D-local, same-sign I_a is not a constructor identity, and the named carry-free S-through-Add push-in extension fails local confluence
-
-**Declaration.** `add_requires_carry_state` &mdash; kernel-checked, `BTCalculus/RewriteAddBoundary.lean:237`
-
-> Packaged Add boundary: `D ∘ Add` is not D-local, same-sign `I_a` is not a constructor identity, and the named carry-free push-in extension fails local confluence.
-
-```lean
-theorem add_requires_carry_state :
-    ¬ DLocal (fun x y => DZ (x + y)) ∧
-      (∀ W, ¬ AffineCtor.exactTriple .Ip .Ip W) ∧
-      (∀ W, ¬ AffineCtor.exactTriple .Im .Im W) ∧
-      PushInStep pushInPeak (.add .X .Y) ∧
-      PushInStep pushInPeak (.D (.add (.S .X) (.S .Y))) ∧
-      (∀ u, ¬ PushInStep (.add .X .Y) u) ∧
-      (∀ u, ¬ PushInStep (.D (.add (.S .X) (.S .Y))) u)
-```
-
-## 61. `BTN-dadd-closure` &mdash; covers 0.32
-
-*Reads as: the claim asserts more than the declarations state (0.76).*
-
-*Claim broader 0.76; declaration narrower 0.61; different result 0.24.  Tag EXACT — LEAN VERIFIED, trust compiler.*
-
-**Row.** If s,a,b are trits then D(s+a+b) is a trit. The streaming residual of trit addition is exactly {-1,0,1}. Three values occur on D(x)=D(y)=0, so the residual is minimal.
-
-**Declarations.** `dAdd_minimal_residual` &mdash; compiler-checked, `Problems/BalancedTernary/DAddResidual.lean:53`
-
-> On the slice ``D(x)=D(y)=0``, the observable ``D(x+y)`` takes three values, so no 1-state or 2-state residual can repair locality.
-
-```lean
-theorem dAdd_minimal_residual :
-    DZ 0 = DZ 1 ∧ DZ 1 = DZ (-1) ∧
-      DZ (0 + 0) ≠ DZ (1 + 1) ∧
-      DZ (1 + 1) ≠ DZ ((-1 : ℤ) + (-1)) ∧
-      DZ (0 + 0) ≠ DZ ((-1 : ℤ) + (-1))
-```
-
-**And.** `dAdd_residual_closure` &mdash; compiler-checked, `Problems/BalancedTernary/DAddResidual.lean:85`
-
-> Closure: if `s`, `a`, `b` are trits then `dAddNext s a b` is a trit.
-
-```lean
-theorem dAdd_residual_closure {s a b : ℤ}
-    (hs : isTrit s) (ha : isTrit a) (hb : isTrit b) :
-    isTrit (dAddNext s a b)
-```
-
-**And.** `dAdd_fiber_three` &mdash; compiler-checked, `Problems/BalancedTernary/DAddResidual.lean:42`
-
-> The three fibre values `D(0+0) = 0`, `D(1+1) = 1`, `D(-1 + -1) = -1`.
-
-```lean
-theorem dAdd_fiber_three :
-    DZ (0 + 0) = 0 ∧
-      DZ (1 + 1) = 1 ∧
-      DZ ((-1 : ℤ) + (-1)) = -1 ∧
-      DZ (0 : ℤ) = 0 ∧
-      DZ (1 : ℤ) = 0 ∧
-      DZ (-1) = 0
-```
-
-## 62. `BTN-sdrg-lambda2-evens` &mdash; covers 0.32
-
-*Reads as: the claim asserts more than the declarations state (0.7).*
-
-*Claim broader 0.7; declaration narrower 0.5; different result 0.11.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** For λ=2 and U_m, every even 2n with 0≤n≤(m-1)_+ is reached from 0 by an admissible word; the explicit word uses letters k+2 at step k (lambda2_step_up). The negative half -2n is not claimed by this row.
-
-**Declarations.** `lambda2_step_up` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitResidualGeometry.lean:111`
-
-> One even ``λ=2`` step: from ``2k`` the letter ``k+2`` reaches ``2(k+1)``.
-
-```lean
-theorem lambda2_step_up (k : ℕ) :
-    signedNext 2 (2 * (k : ℤ)) ((k : ℤ) + 2) = 2 * ((k : ℤ) + 1)
-```
-
-**And.** `lambda2_even_reachable` &mdash; kernel-checked, `Problems/BalancedTernary/SignedDigitResidualGeometry.lean:161`
-
-> Every nonnegative even point of the sharp ``λ=2`` box is reached.
-
-```lean
-theorem lambda2_even_reachable (m n : ℕ) (h : n ≤ m.pred) :
-    ∃ word : List ℤ, (∀ u ∈ word, u.natAbs ≤ m) ∧
-      foldSigned 2 word 0 = 2 * (n : ℤ)
-```
-
-## 63. `J-flight-height-law` &mdash; covers 0.32
+## 53. `J-flight-height-law` &mdash; covers 0.32
 
 *Reads as: the claim asserts more than the declarations state (0.87).*
 
@@ -4666,24 +4393,7 @@ theorem aboveAnchor_transport {n : ℕ} {w : List Branch}
       Real.log (floorPower^[k] n)
 ```
 
-## 64. `BTN-doubled-minimality` &mdash; covers 0.33
-
-*Reads as: the claim asserts more than the declarations state (0.89).*
-
-*Claim broader 0.89; declaration narrower 0.34; different result 0.08.  Tag EXACT — LEAN VERIFIED, trust compiler.*
-
-**Row.** The three carries -1,0,1 have pairwise distinct Mealy output signatures, so the 3-state machine is minimal.
-
-**Declaration.** `doubledTrit_outputSignatures_distinct` &mdash; compiler-checked, `Problems/BalancedTernary/FiniteStateDynamics.lean:160`
-
-> The three carries `-1`, `0` and `1` have pairwise distinct Mealy output signatures, so the three-state machine is minimal.
-
-```lean
-theorem doubledTrit_outputSignatures_distinct :
-    outSig 0 ≠ outSig 1 ∧ outSig 0 ≠ outSig (-1) ∧ outSig 1 ≠ outSig (-1)
-```
-
-## 65. `J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight` &mdash; covers 0.33
+## 54. `J-cycle-itinerary-length-fifty-seven-or-ge-fifty-eight` &mdash; covers 0.33
 
 *Reads as: the claim asserts more than the declarations state (0.78).*
 
@@ -4702,7 +4412,7 @@ theorem cycle_itinerary_length_fifty_seven_or_ge_fifty_eight
     w.length = 57 ∨ 58 ≤ w.length
 ```
 
-## 66. `J-cyclemin-prefix-two-even-eoe` &mdash; covers 0.33
+## 55. `J-cyclemin-prefix-two-even-eoe` &mdash; covers 0.33
 
 *Reads as: the claim asserts more than the declarations state (0.82).*
 
@@ -4720,7 +4430,7 @@ theorem no_cycleMin_prefix_two_even_eoe {n k : ℕ} {u : List Branch}
     ¬CycleMin n (u ++ twoEvenEOE k)
 ```
 
-## 67. `J-cyclemin-fudge` &mdash; covers 0.34
+## 56. `J-cyclemin-fudge` &mdash; covers 0.34
 
 *Reads as: the claim asserts more than the declarations state (0.72).*
 
@@ -4939,7 +4649,7 @@ theorem no_cycle_itinerary_ooooeoeoeoe {n : ℕ} (hn : 2 ≤ n) :
     ¬CycleItinerary n (fourEvenWord 4 1 1 1)
 ```
 
-## 68. `J-fate-cylinder-corollary` &mdash; covers 0.34
+## 57. `J-fate-cylinder-corollary` &mdash; covers 0.34
 
 *Reads as: the claim asserts more than the declarations state (0.66).*
 
@@ -4991,7 +4701,7 @@ theorem oddFailures_eventually_le {N₀ : ℕ} (hN : 2 ≤ N₀)
     ∃ y₀ : ℕ, ∀ y, y₀ ≤ y → ((oddFailures y).card : ℝ) ≤ y * Real.log y ^ (-e)
 ```
 
-## 69. `J-cycle-ooe-polynomial-block` &mdash; covers 0.35
+## 58. `J-cycle-ooe-polynomial-block` &mdash; covers 0.35
 
 *Reads as: the claim asserts more than the declarations state (0.71).*
 
@@ -5059,7 +4769,7 @@ theorem ooeFamily_iterate_three {r : ℕ} (hr : 3 ≤ r) (ho : r % 2 = 1) :
     (floorPower^[3]) (ooeFamilySource r) = ooeFamilyExit r
 ```
 
-## 70. `J-fate-minimal-failure-oo` &mdash; covers 0.35
+## 59. `J-fate-minimal-failure-oo` &mdash; covers 0.35
 
 *Reads as: the claim asserts more than the declarations state (0.61).*
 
@@ -5126,24 +4836,7 @@ theorem first_letter_pieces_disjoint (n : ℕ) :
       ¬ (n % 2 = 1 ∧ floorPower n % 2 = 0 ∧ floorPower n % 2 = 1)
 ```
 
-## 71. `OST-np-origin-particular` &mdash; covers 0.35
-
-*Reads as: the claim asserts more than the declarations state (0.87).*
-
-*Claim broader 0.87; declaration narrower 0.26; different result 0.14.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** for Γ_NP, from the origin an MSD word ws unfolds by variation of constants: foldSteps ws origin equals the particular sum −∑ A^{k-1-j} e3 w_j; this is not a bound on L_0
-
-**Declaration.** `origin_particular` &mdash; kernel-checked, `Problems/Ostrowski/NP/Energy.lean:537`
-
-> From the origin, an MSD word unfolds by variation of constants: `foldSteps ws origin = particularSum ws`.
-
-```lean
-theorem origin_particular (ws : List ℤ) :
-    foldSteps ws origin = particularSum ws
-```
-
-## 72. `C-shortcut-welldefined` &mdash; covers 0.36
+## 60. `C-shortcut-welldefined` &mdash; covers 0.36
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -5182,7 +4875,7 @@ theorem shortcutC_terminal_cycle :
     shortcutC 1 = 2 ∧ shortcutC 2 = 1
 ```
 
-## 73. `J-even-count-le-three` &mdash; covers 0.36
+## 61. `J-even-count-le-three` &mdash; covers 0.36
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 
@@ -5267,7 +4960,7 @@ theorem cycle_itinerary_length_ge_eleven {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleItinerary n w) : 11 ≤ w.length
 ```
 
-## 74. `J-fate-cylinder-energy` &mdash; covers 0.37
+## 62. `J-fate-cylinder-energy` &mdash; covers 0.37
 
 *No failure mode above the line; coverage itself is doubtful.*
 
@@ -5302,7 +4995,7 @@ theorem itinerary_succ_append (n d : ℕ) :
     itinerary n (d + 1) = itinerary n d ++ [bit (floorPower^[d] n)]
 ```
 
-## 75. `J-global-defect-identity` &mdash; covers 0.37
+## 63. `J-global-defect-identity` &mdash; covers 0.37
 
 *Reads as: the claim asserts more than the declarations state (0.57).*
 
@@ -5367,7 +5060,7 @@ theorem global_defect_append {n : ℕ} {u v : List Branch}
         (globalDefect (image n u) v) (2 ^ u.length)
 ```
 
-## 76. `J-cyclemin-prefix-bunched-eeoe` &mdash; covers 0.39
+## 64. `J-cyclemin-prefix-bunched-eeoe` &mdash; covers 0.39
 
 *Reads as: the claim asserts more than the declarations state (0.74).*
 
@@ -5385,23 +5078,7 @@ theorem no_cycleMin_prefix_eeoe {n a : ℕ} {u : List Branch}
     ¬CycleMin n (u ++ threeEvenEEOE a)
 ```
 
-## 77. `OST-np-impulse-place` &mdash; covers 0.39
-
-*Reads as: the claim asserts more than the declarations state (0.56).*
-
-*Claim broader 0.56; declaration narrower 0.33; different result 0.09.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** for Γ_NP, the origin impulse A^r e3 equals (3 q_{r-1}, 3 q_{r-2}+q_{r-1}, q_r) with q_j=0 for j<0; this is the place-value dictionary for origin_particular, not a bound on L_0
-
-**Declaration.** `iterateA_e3` &mdash; kernel-checked, `Problems/Ostrowski/NP/Energy.lean:776`
-
-> `A^r e₃ = (3 q_{r-1}, 3 q_{r-2}+q_{r-1}, q_r)`. KNOWN place-value dictionary for `origin_particular`, not `L₀`.
-
-```lean
-theorem iterateA_e3 (r : ℕ) : iterateA r e3 = impulsePlace r
-```
-
-## 78. `J-cubic-critical-run-kernels` &mdash; covers 0.4
+## 65. `J-cubic-critical-run-kernels` &mdash; covers 0.4
 
 *Reads as: a declaration is narrower than the claim (0.56).*
 
@@ -5587,7 +5264,7 @@ theorem fixed_nonzero_lower {C T : ℕ} (hC : 14569 ≤ C)
     (hfilter : C + 2 ≤ T) : 14571 ≤ T
 ```
 
-## 79. `J-cyclemin-closure-threshold` &mdash; covers 0.4
+## 66. `J-cyclemin-closure-threshold` &mdash; covers 0.4
 
 *Reads as: a declaration is narrower than the claim (0.74).*
 
@@ -5611,7 +5288,7 @@ theorem no_cycleMin_of_gap_and_minimum {C p : ℝ}
     w.length = 0
 ```
 
-## 80. `J-cyclemin-period-lower-bound` &mdash; covers 0.4
+## 67. `J-cyclemin-period-lower-bound` &mdash; covers 0.4
 
 *Reads as: a declaration is narrower than the claim (0.72).*
 
@@ -5645,7 +5322,7 @@ theorem cycleMin_period_ge_wuWang {n : ℕ} {w : List Branch} {C : ℝ}
     (C / 2 * ((n : ℝ) * Real.log n)) ^ (1 / (5.1163051 : ℝ)) ≤ (w.length : ℝ)
 ```
 
-## 81. `J-cycle-direction-change-contraction` &mdash; covers 0.42
+## 68. `J-cycle-direction-change-contraction` &mdash; covers 0.42
 
 *Reads as: the claim asserts more than the declarations state (0.77).*
 
@@ -5702,7 +5379,7 @@ theorem c_pair_from_floor {m : ℝ} (hm : (2 : ℝ) ^ 24 ≤ m) {x y : ℕ}
       ((243 : ℝ) / 256) * m ^ ((-13 : ℝ) / 256) * ((y : ℝ) - x) + 9 / 8
 ```
 
-## 82. `J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five` &mdash; covers 0.42
+## 69. `J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five` &mdash; covers 0.42
 
 *Reads as: the claim asserts more than the declarations state (0.62).*
 
@@ -5784,32 +5461,7 @@ theorem floorPower_four_thousand_two_hundred_seventeen :
     floorPower 4217 = 273845
 ```
 
-## 83. `BTN-expanding-right-inverse` &mdash; covers 0.43
-
-*Reads as: the claim asserts more than the declarations state (0.64).*
-
-*Claim broader 0.64; declaration narrower 0.26; different result 0.23.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** Laboratory DZ is a left inverse of T: DZ(T(n))=n. Canonical T is the section I_{-lsd(n)}(n), not a constant-section I_a.
-
-**Declarations.** `expandingD_eq_IZ_shape` &mdash; kernel-checked, `Problems/BalancedTernary/ExpandingD.lean:26`
-
-> The expanding map in section shape: `T n = -lsdZ n + 3 * n`, i.e. the section `I_a` taken at the varying digit `a = -lsdZ n` rather than at a constant one.
-
-```lean
-theorem expandingD_eq_IZ_shape (n : ℤ) :
-    expandingD n = -lsdZ n + 3 * n
-```
-
-**And.** `DZ_expandingD` &mdash; kernel-checked, `Problems/BalancedTernary/ExpandingD.lean:53`
-
-> Laboratory `DZ` is a left inverse of `T`: `DZ (T n) = n`.
-
-```lean
-theorem DZ_expandingD (n : ℤ) : DZ (expandingD n) = n
-```
-
-## 84. `J-cycle-quartic-formal-defect` &mdash; covers 0.43
+## 70. `J-cycle-quartic-formal-defect` &mdash; covers 0.43
 
 *Reads as: the claim asserts more than the declarations state (0.6).*
 
@@ -5881,7 +5533,7 @@ theorem actual_sorted_positive_surplus {C : Set ℕ} {m M : ℕ}
         ((upperIndices m c).card : ℝ) * Real.log ((3 : ℝ) / 2)
 ```
 
-## 85. `J-effective-ooe-fourier-modes` &mdash; covers 0.44
+## 71. `J-effective-ooe-fourier-modes` &mdash; covers 0.44
 
 *Reads as: the claim asserts more than the declarations state (0.62).*
 
@@ -5923,43 +5575,7 @@ theorem normalized_mode_bound {M H : ℝ} (u v : ℤ) (hM : 1 ≤ M) (hH : 1 ≤
       128*M^(1/4:ℝ)*H^(1/30:ℝ)*(T:ℝ)^(-1/60:ℝ)
 ```
 
-## 86. `BTA-fn-congr` &mdash; covers 0.45
-
-*Reads as: the claim asserts more than the declarations state (0.56).*
-
-*Claim broader 0.56; declaration narrower 0.27; different result 0.16.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** f equiv_k g iff 3^k divides (f-g)(n) for every integer n
-
-**Declaration.** `equivK_iff_functionCongr` &mdash; kernel-checked, `BTCalculus/PolynomialFunctionsMod.lean:64`
-
-> Prefix locality plus congruence preservation: ``≡_k`` is function congruence on all of ``ℤ``. Packed length-``k`` prefixes are a complete residue system modulo ``3^k``.
-
-```lean
-theorem equivK_iff_functionCongr (k : ℕ) (f g : ℤ[X]) :
-    equivK k f g ↔ functionCongr k f g
-```
-
-## 87. `BTA-x3-Q-visible` &mdash; covers 0.45
-
-*Reads as: the claim asserts more than the declarations state (0.66).*
-
-*Claim broader 0.66; declaration narrower 0.57; different result 0.39.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** D^t(u^3) mod 3^K is determined by u mod 3^{max(1,t+K-1)}
-
-**Declaration.** `q_visible_mod` &mdash; kernel-checked, `BTCalculus/MismatchedCubicQuotient.lean:66`
-
-> `qCubic t u` modulo `3^K` sees only `u` modulo `3^s` once `t + K - 1 <= s`: congruent inputs give congruent cubic quotients.
-
-```lean
-theorem q_visible_mod {t K s : Nat}
-    (hs : t + K - 1 ≤ s) (hs1 : 1 ≤ s) {u v : Int}
-    (h : (3 : Int) ^ s ∣ u - v) :
-    (3 : Int) ^ K ∣ qCubic t u - qCubic t v
-```
-
-## 88. `J-cyclemin-prefix-bunched-eooee` &mdash; covers 0.45
+## 72. `J-cyclemin-prefix-bunched-eooee` &mdash; covers 0.45
 
 *Reads as: the claim asserts more than the declarations state (0.55).*
 
@@ -5977,7 +5593,7 @@ theorem no_cycleMin_prefix_eooee {n a : ℕ} {u : List Branch}
     ¬CycleMin n (u ++ threeEvenEOOEE a)
 ```
 
-## 89. `J-fate-seed` &mdash; covers 0.45
+## 73. `J-fate-seed` &mdash; covers 0.45
 
 *Reads as: the claim asserts more than the declarations state (0.74).*
 
@@ -6060,7 +5676,7 @@ theorem blockTree_logMass_ge {m : ℕ} (hm : 3 ≤ m) (k : ℕ) :
     3 / 8 / ((m : ℝ) + 1) ≤ ∑ n ∈ blockTree m (k + 1), (1 : ℝ) / n
 ```
 
-## 90. `J-four-block-persistent-expanding` &mdash; covers 0.45
+## 74. `J-four-block-persistent-expanding` &mdash; covers 0.45
 
 *No failure mode above the line; coverage itself is doubtful.*
 
@@ -6093,7 +5709,7 @@ theorem four_block_pe_1999 :
       PersistentExpandingResidual 193753 887471
 ```
 
-## 91. `J-period-family-arithmetic-in-lean` &mdash; covers 0.45
+## 75. `J-period-family-arithmetic-in-lean` &mdash; covers 0.45
 
 *Reads as: the claim asserts more than the declarations state (0.6).*
 
@@ -6210,76 +5826,7 @@ theorem lastMember : fanMember 55 = betaDenoms.getD 15 0
 theorem member_strictMono : StrictMono fanMember
 ```
 
-## 92. `OST-np-reset-prefix` &mdash; covers 0.45
-
-*Reads as: the claim asserts more than the declarations state (0.65).*
-
-*Claim broader 0.65; declaration narrower 0.31; different result 0.15.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** for Γ_NP, if T_R(0)=0 then T_{RU}(0)=T_U(0); origin-reset prefixes do not create new terminals. This is particular_concat at c_R=0, not a bound on L_0
-
-**Declaration.** `reset_prefix` &mdash; kernel-checked, `Problems/Ostrowski/NP/Energy.lean:609`
-
-> Origin reset prefixes do not change the particular of a suffix. KNOWN `particular_concat` at `c_R=0`, not `L₀`.
-
-```lean
-theorem reset_prefix (r u : List ℤ) (hr : particularSum r = origin) :
-    particularSum (r ++ u) = particularSum u
-```
-
-## 93. `BTA-x3-x` &mdash; covers 0.46
-
-*Reads as: the claim asserts more than the declarations state (0.64).*
-
-*Claim broader 0.64; declaration narrower 0.48; different result 0.55.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** x^3-x vanishes modulo 3 and its leading coefficient is not divisible by 3
-
-**Declarations.** `X_pow_three_sub_X_vanishes_one` &mdash; kernel-checked, `BTCalculus/PolynomialFunctionsMod.lean:240`
-
-> The first invisible cubic: ``X^3 - X`` vanishes modulo ``3``, but its leading coefficient is a unit.
-
-```lean
-theorem X_pow_three_sub_X_vanishes_one :
-    vanishesMod 1 ((X : ℤ[X]) ^ 3 - X)
-```
-
-**And.** `not_three_dvd_coeff_X_pow_three_sub_X` &mdash; kernel-checked, `BTCalculus/PolynomialFunctionsMod.lean:246`
-
-> `X^3 - X` vanishes as a function mod `3` while its degree-3 coefficient does not: vanishing is not coefficientwise.
-
-```lean
-theorem not_three_dvd_coeff_X_pow_three_sub_X :
-    ¬ (3 : ℤ) ∣ coeff ((X : ℤ[X]) ^ 3 - X) 3
-```
-
-## 94. `BTN-expanding-lambda` &mdash; covers 0.46
-
-*Reads as: the claim asserts more than the declarations state (0.88).*
-
-*Claim broader 0.88; declaration narrower 0.25; different result 0.1.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** For T_λ(n)=3n-λ lsd(n), lsd(T_2(n))=lsd(n) and lsd(T_3(n))=0. The observational residual remains a trit; λ changes the residue map, not the need for the full integer.
-
-**Declarations.** `lsdZ_expandingDGain_two` &mdash; kernel-checked, `Problems/BalancedTernary/ExpandingD.lean:141`
-
-> Gain `2` fixes the digit rather than flipping it: `lsdZ (T_2 n) = lsdZ n`.
-
-```lean
-theorem lsdZ_expandingDGain_two (n : ℤ) :
-    lsdZ (expandingDGain 2 n) = lsdZ n
-```
-
-**And.** `lsdZ_expandingDGain_three` &mdash; kernel-checked, `Problems/BalancedTernary/ExpandingD.lean:152`
-
-> Gain `3` annihilates the digit: `lsdZ (T_3 n) = 0`.
-
-```lean
-theorem lsdZ_expandingDGain_three (n : ℤ) :
-    lsdZ (expandingDGain 3 n) = 0
-```
-
-## 95. `J-paper-b-linearisation-E-lt-2` &mdash; covers 0.46
+## 76. `J-paper-b-linearisation-E-lt-2` &mdash; covers 0.46
 
 *Reads as: the claim asserts more than the declarations state (0.84).*
 
@@ -6330,32 +5877,7 @@ theorem two_odd_not_safe : ¬ (iter [O, O] < 2)
 theorem odd_even_safe : iter [O, E] < 2
 ```
 
-## 96. `BTN-carry-gain-3` &mdash; covers 0.47
-
-*Reads as: the claim asserts more than the declarations state (0.85).*
-
-*Claim broader 0.85; declaration narrower 0.56; different result 0.1.  Tag EXACT — LEAN VERIFIED, trust kernel.*
-
-**Row.** The synthetic map T_3(c,d)=3 DZ(c+2d) satisfies c_n=3n along the all-+1 word, so the residual set is unbounded. This is not value-preserving normalization.
-
-**Declarations.** `carryGain3_eq` &mdash; kernel-checked, `Problems/BalancedTernary/FiniteStateDynamics.lean:143`
-
-> `carryGain3 n = 3n` along the all-`+1` word.
-
-```lean
-theorem carryGain3_eq (n : ℕ) : carryGain3 n = 3 * (n : ℤ)
-```
-
-**And.** `carryGain3_unbounded` &mdash; kernel-checked, `Problems/BalancedTernary/FiniteStateDynamics.lean:150`
-
-> `carryGain3` is unbounded: no `B` bounds every `|carryGain3 n|`.
-
-```lean
-theorem carryGain3_unbounded (B : ℕ) :
-    ∃ n : ℕ, B < (carryGain3 n).natAbs
-```
-
-## 97. `J-cycle-induced-count-determinant` &mdash; covers 0.48
+## 77. `J-cycle-induced-count-determinant` &mdash; covers 0.48
 
 *Reads as: the claim asserts more than the declarations state (0.88).*
 

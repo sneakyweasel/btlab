@@ -1,8 +1,0 @@
-problem: signed_digit_short_horizon
-attack: functional
-claim: |ℓ| on the start layer is not nonincreasing under one live step
-status: REFUTED
-scope: BOUNDED
-evidence: union_size=7; horizon=2; observed_bound=0
-counterexamples: (((0, 2), -2, (-1, 1), -1), ((0, 2), 2, (1, 1), 1))
-lean_theorem: 

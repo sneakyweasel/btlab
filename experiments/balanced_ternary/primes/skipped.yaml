@@ -1,8 +1,0 @@
-problem: prime_residual_complexity
-attack: skipped
-claim: inapplicable or deferred
-status: OBSERVED
-scope: BOUNDED
-evidence: block=inapplicable; symbolic=not implemented in this phase
-counterexamples: ()
-lean_theorem: 

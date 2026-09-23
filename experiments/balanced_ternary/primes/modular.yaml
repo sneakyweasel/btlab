@@ -1,8 +1,0 @@
-problem: prime_residual_complexity
-attack: modular
-claim: no coordinate of Ax+b_u is forced to a nontrivial residue class
-status: OBSERVED
-scope: EXACT
-evidence: forcing_gcds=(1,)
-counterexamples: ()
-lean_theorem: 

@@ -1,8 +1,0 @@
-problem: signed_digit_residual
-attack: reverse
-claim: co-reachability of 3 seed(s), union size 3, scope EXACT; this is not the adder live set
-status: EXACT
-scope: EXACT
-evidence: union_size=3; complete=True; horizon=0
-counterexamples: ()
-lean_theorem: 

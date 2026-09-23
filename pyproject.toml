@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "balanced-ternary"
 version = "0.2.2"
-description = "Balanced Ternary Mathematical Laboratory: core BT mathematics and independent research modules"
+description = "Juggler and Collatz mathematics, formal proofs, and reproducible research"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
@@ -14,7 +14,7 @@ keywords = [
     "balanced-ternary",
     "exact-arithmetic",
     "lean4",
-    "rewrite-calculus",
+    "juggler",
     "collatz",
 ]
 classifiers = [
@@ -45,7 +45,6 @@ dev = [
     "pyright>=1.1",
     "sympy>=1.12",  # tools/derive_paper_b_review.py imports it unguarded
 ]
-ui = ["streamlit>=1.62", "pandas>=2"]
 experiments = ["pyarrow>=14"]
 atlas = ["pyarrow>=14", "duckdb>=1", "polars>=1"]
 jev = ["typesafe-sdk>=0.7"]  # tools/formalpedia.py jev-propose / jev-calibrate; imported lazily
@@ -57,9 +56,6 @@ juggler-atlas = "research.juggler_sequence.atlas.cli:main"
 [tool.setuptools.packages.find]
 where = ["src"]
 
-[tool.setuptools.package-data]
-research_engine = ["memory/seed/*.json"]
-
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 # `-n auto --dist loadfile` is deliberately NOT here. Forcing it on every
@@ -70,7 +66,7 @@ testpaths = ["tests"]
 # and leave targeted runs serial, where they are faster anyway.
 addopts = "-q --import-mode=importlib"
 markers = [
-    "slow: exhaustive census, million-range identity, or Streamlit AppTest",
+    "slow: exhaustive census or million-range identity",
 ]
 
 [tool.ruff]
@@ -84,7 +80,7 @@ target-version = "py311"
 select = ["E9", "F63", "F7", "F82", "F601", "F602", "F811", "F841", "B006"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["bt", "research", "research_engine", "cli", "visualization"]
+known-first-party = ["bt", "research", "research_engine", "cli"]
 
 [tool.pyright]
 include = ["src/bt"]

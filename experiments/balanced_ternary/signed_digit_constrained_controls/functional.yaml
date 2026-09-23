@@ -1,8 +1,0 @@
-problem: signed_digit_constrained_controls
-attack: functional
-claim: |ℓ| on the start layer is not nonincreasing under one live step
-status: REFUTED
-scope: BOUNDED
-evidence: union_size=10; horizon=4; observed_bound=0
-counterexamples: (((0, 3), -2, (-1, -2), -1), ((0, 3), 2, (1, 2), 1))
-lean_theorem: 

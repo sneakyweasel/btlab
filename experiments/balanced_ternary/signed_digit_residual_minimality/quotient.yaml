@@ -1,8 +1,0 @@
-problem: signed_digit_residual_minimality
-attack: quotient
-claim: exact Mealy quotient has 3 classes from 3 reachable states
-status: EXACT
-scope: EXACT
-evidence: 
-counterexamples: ()
-lean_theorem: 

@@ -1,8 +1,0 @@
-problem: signed_digit_residual_geometry
-attack: geometry_family
-claim: R_{1,U_m} is the full interval; R_{2,U_m} is the even lattice in the sharp box; lattice-in-box fails for U={2}
-status: EXACT
-scope: EXACT
-evidence: climb words fill U_m; U={2} misses -1; M=|R| on U_m and probes
-counterexamples: ("lattice-in-box for every U", "sign halves Mealy")
-lean_theorem: Problems.BalancedTernary.SignedDigitResidualGeometry.lambda1_interval_reachable

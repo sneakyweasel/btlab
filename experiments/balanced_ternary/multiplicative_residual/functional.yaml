@@ -1,8 +1,0 @@
-problem: multiplicative_residual
-attack: functional
-claim: max |ℓ| on the start-layer sample is 0; this is not an invariant and not an asymptotic bound
-status: OBSERVED
-scope: BOUNDED
-evidence: union_size=1; horizon=8; observed_bound=0
-counterexamples: ()
-lean_theorem: 

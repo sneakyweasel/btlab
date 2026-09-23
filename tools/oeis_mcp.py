@@ -117,8 +117,8 @@ def oeis_lab_links(identifier: str, limit: int = 30, offset: int = 0,
     ledger, bibliography, laboratory_reference. Papers are prioritized. Supplementary Lean
     declaration and ledger summaries remain unfiltered. Lean matches provide qualified names
     and modules for formalpedia_show. References are not proofs.
-    Defaults to the active Juggler/Collatz lab; scope=archive searches historical projects,
-    scope=all includes both. OEIS-wide search itself always retains the entire OEIS corpus.
+    Searches the current Juggler/Collatz checkout. Scope filters do not read Git history;
+    removed projects have no archive entries. OEIS search retains the entire OEIS corpus.
     """
     return lab_links(identifier, limit=limit, offset=offset, kinds=kinds, scope=scope)
 

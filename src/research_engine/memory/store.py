@@ -32,8 +32,6 @@ if TYPE_CHECKING:
     from research_engine.core.problem_spec import ProblemSpec
     from research_engine.diagnosis.loop import ResearchSession
 
-SEED_PATH = Path(__file__).resolve().parent / "seed" / "historical.json"
-BOARD_PATH = Path(__file__).resolve().parent / "seed" / "target_board.json"
 
 
 class FinalizedError(RuntimeError):
@@ -225,13 +223,3 @@ class ResearchMemory:
     def from_json_path(cls, path: Path) -> ResearchMemory:
         data = json.loads(path.read_text(encoding="utf-8"))
         return cls.from_dict(data)
-
-    @classmethod
-    def load_historical(cls) -> ResearchMemory:
-        return cls.from_json_path(SEED_PATH)
-
-    @classmethod
-    def load_board(cls, path: Path | None = None):
-        from research_engine.memory.seed_targets import load_board
-
-        return load_board(path)

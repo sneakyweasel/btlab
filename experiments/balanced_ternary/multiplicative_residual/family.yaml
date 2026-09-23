@@ -1,8 +1,0 @@
-problem: multiplicative_residual
-attack: universality_family
-claim: two-trit and three-trit products factor through U_1; doubled product 2 d1 d2 follows U={-2,0,2}
-status: EXACT
-scope: EXACT
-evidence: 9 controls → 3 raw values → 1 residual; 27 controls same residual {0}; λ=3 doubled product s_n=3n
-counterexamples: ("3-state origin residual", "factor count changes residual")
-lean_theorem: Problems.BalancedTernary.MultiplicativeResidual.product_factor_through_raw

@@ -3,7 +3,7 @@
 These tests do not discover theorems. They sample the same exact
 identities already proved or exhaustively checked in the unit suite
 (BT-encode-unique, BT-D-S, BTC-decomp, BTC-D-I, BTC-P-band, BTC-D-add,
-BTC-D-mul, BTC-cmp3, BTC-select3, BT-Pn3, BTA-fn-congr, rewrite
+BTC-D-mul, BTC-cmp3, BTC-select3, BT-Pn3, rewrite
 soundness). Candidates are never auto-promoted.
 """
 
@@ -16,9 +16,7 @@ from bt.calculus.differential import D_of_product, D_of_sum, lsd_of_product, lsd
 from bt.calculus.expressions import ED, EI0, EIm, EInt, EIp, ENeg, EShift3
 from bt.calculus.integral import I, P, section_holds
 from bt.calculus.order import cmp3
-from bt.calculus.poly_congruence import function_equiv
 from bt.calculus.rewrite import WORD_SIMP_RULES
-from bt.calculus.section import IntPoly
 from bt.calculus.select import abs_z, max_z, min_z, select3
 from bt.calculus.semantics import evaluate
 from bt.calculus.trit import Trit, as_trit, neg, sign_trit, trit_max, trit_min
@@ -29,7 +27,6 @@ from bt.representation import decode, encode
 IDENTITY = settings(max_examples=80, deadline=None)
 Z = st.integers(min_value=-(10**9), max_value=10**9)
 TRIT = st.sampled_from((-1, 0, 1))
-HORIZON = st.integers(min_value=1, max_value=6)
 
 
 def _apply_math_word(factors: tuple[str, ...], n: int) -> int:
@@ -168,17 +165,6 @@ def test_trit_lattice_associativity(a: int, b: int, c: int) -> None:
 def test_pn_evaluates_to_n_at_three(n: int) -> None:
     """BT-Pn3: P_n(3) = n."""
     assert polynomial(n).evaluate(3) == n
-
-
-@IDENTITY
-@given(n=Z, k=HORIZON)
-def test_function_equiv_mod_3k(n: int, k: int) -> None:
-    """BTA-fn-congr: f ≡_k f and f ≡_k f + 3^k as functions."""
-    f = IntPoly.X().add(IntPoly.C(n))
-    assert function_equiv(f, f, k)
-    shifted = f.add(IntPoly.C(3**k))
-    assert function_equiv(f, shifted, k)
-    assert f.eval(n) % (3**k) == shifted.eval(n) % (3**k)
 
 
 @IDENTITY

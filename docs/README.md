@@ -1,7 +1,7 @@
 # Juggler–Collatz research map
 
 The lab is dedicated to Juggler and the signed Collatz maps, with shared exact
-mathematics and a frozen archive of independent projects.
+mathematics and only the shared mathematics they use.
 
 ## Papers and live research
 
@@ -42,10 +42,9 @@ its quantifiers. See the [research method](methodology.md).
 - [Architecture and active scope](architecture/overview.md)
 - [Lean naming and discovery](architecture/lean_discovery.md)
 - [OEIS discovery](architecture/oeis_discovery.md)
-- [Active and archived modules](architecture/research_modules.md)
-- [Archive and restoration](../archive/README.md)
-- [Historical documentation map](archive/legacy_documentation.md)
+- [Research modules](architecture/research_modules.md)
+- [Git history and recovery](history.md)
 
-Default commands are `pytest` and `python tools/lab.py build`. The full historical
-library remains available through explicit archive options. Shared dependencies
+Default commands are `pytest` and `python tools/lab.py build`. Earlier projects are available
+through Git history. Shared dependencies
 stay in the active scope even when they have an older balanced-ternary name.

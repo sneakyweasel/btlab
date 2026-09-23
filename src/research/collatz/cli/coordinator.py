@@ -196,8 +196,4 @@ def run_collatz(args: argparse.Namespace) -> int:
         return _warp_trajectory(args.n, args.max_steps)
     if cmd == "warp-counterexamples":
         return _warp_counterexamples()
-    if cmd == "ui":
-        from visualization.app import launch
-
-        return launch()
     raise SystemExit(f"unknown collatz command {cmd!r}")

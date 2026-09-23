@@ -1,8 +1,0 @@
-problem: d_add
-attack: functional
-claim: |ℓ| on the start layer is not nonincreasing under one live step
-status: REFUTED
-scope: BOUNDED
-evidence: union_size=3; horizon=4; observed_bound=0
-counterexamples: (((0,), (-1, -1), (-1,), -1), ((0,), (1, 1), (1,), 1))
-lean_theorem: 

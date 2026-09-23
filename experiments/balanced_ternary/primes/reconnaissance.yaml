@@ -1,8 +1,0 @@
-problem: prime_residual_complexity
-attack: reconnaissance
-claim: finite-horizon REACHABLE census at horizon 4; union is not L_n and terminal_image is not live infinitude
-status: OBSERVED
-scope: BOUNDED
-evidence: union_size=81; complete=True; horizon=4
-counterexamples: ()
-lean_theorem: 

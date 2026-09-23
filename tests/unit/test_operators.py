@@ -5,7 +5,6 @@ from __future__ import annotations
 import pytest
 
 from bt.metrics import bt_weight, carry_defect, d_bt
-from research.operator_dynamics.algebra import classify_pair, parse_composition
 from bt.operators import (
     DERIVATIVE,
     DOUBLE,
@@ -167,36 +166,6 @@ def test_integrals_are_sections_of_d():
         assert DERIVATIVE.apply(im.apply(n)) == n
         assert ip.consistent_on(n)
         assert im.consistent_on(n)
-
-
-def test_rewrite_w_w_is_k3():
-    ww, reasons = parse_composition("W W").simplify()
-    assert str(ww) == "K3"
-    assert any("K3" in r for r in reasons)
-    ds, _ = parse_composition("D S").simplify()
-    assert str(ds) == "id"
-    ws, _ = parse_composition("W S").simplify()
-    assert str(ws) == "W"
-
-
-def test_composition_application_order():
-    # W D N S means S then N then D then W
-    c = parse_composition("W D N S")
-    n = 5
-    y = SHIFT.apply(n)
-    y = NEGATION.apply(y)
-    y = DERIVATIVE.apply(y)
-    y = REVERSAL.apply(y)
-    assert c.apply(n) == y
-
-
-def test_classified_commutators():
-    dn = classify_pair("D", "N")
-    assert dn.classification == "exact_commutation"
-    ws = classify_pair("W", "S")
-    assert ws.classification == "unbounded_defect"
-    sm = classify_pair("S", "M2")
-    assert sm.classification == "exact_commutation"
 
 
 def test_d_bt_symmetry_and_definiteness():

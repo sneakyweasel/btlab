@@ -16,21 +16,20 @@ def build_targets() -> list[str]:
     known = {fp.module_of(p) for p in paths}
     graph = {'modules': {fp.module_of(p): {'imports': fp.imports(p, known)} for p in paths}}
     active = active_lean_modules(graph)
-    # Build every application module, including modules not imported by the paper barrels.
-    return sorted(n for n in active if n.startswith(('Problems.Juggler', 'Problems.Collatz.')))
+    # Include standalone application and ledger-cited modules, not only paper barrels.
+    return sorted(active)
 
 
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('command', choices=['build'])
-    parser.add_argument('--include-archive', action='store_true')
     parser.add_argument('--list', action='store_true', help='show targets without building')
     args = parser.parse_args(argv)
-    targets = [] if args.include_archive else build_targets()
-    if not args.include_archive and not targets:
-        parser.error('No Juggler/Collatz modules found; refusing a historical default build')
+    targets = build_targets()
+    if not targets:
+        parser.error('No Juggler/Collatz modules found; check the source checkout')
     if args.list:
-        print('\n'.join(targets) if targets else 'Lake historical default targets')
+        print('\n'.join(targets))
         return 0
     lake = shutil.which('lake')
     if not lake:

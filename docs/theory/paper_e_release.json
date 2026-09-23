@@ -682,7 +682,7 @@
     {
       "path": "pyproject.toml",
       "mode": "text",
-      "sha256": "2a17f68ff25c5ecf83455ab324de5a2d7b255029ef3f5c402723920469ecc176"
+      "sha256": "657abd46811afd10adb2d9118f11a7286083224a711741121e0caf30fc46bd3c"
     },
     {
       "path": "src/research/__init__.py",

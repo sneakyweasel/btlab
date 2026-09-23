@@ -309,6 +309,6 @@ useful finite partitions; any benefit of that kind is
 
 See [literature_comparison.md](literature_comparison.md),
 [balanced_ternary_vs_collatz_literature.md](balanced_ternary_vs_collatz_literature.md),
-and [cerda_comparison.md](cerda_comparison.md). These comparisons use the
+and [cerda_comparison.md](https://github.com/sneakyweasel/btlab/blob/f038c8526134cdaabd10857b23a87520c7cebc4f/docs/cerda_comparison.md). These comparisons use the
 Milestone 6 verified baseline and do not adopt unproved global
 non-reuse/convergence claims from preprints.

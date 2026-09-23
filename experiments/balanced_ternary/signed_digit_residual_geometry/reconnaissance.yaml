@@ -1,8 +1,0 @@
-problem: signed_digit_residual_geometry
-attack: reconnaissance
-claim: finite-horizon LIVE_SLICE census at horizon 4; union is not L_n and terminal_image is not live infinitude
-status: OBSERVED
-scope: BOUNDED
-evidence: union_size=3; complete=True; horizon=4
-counterexamples: ()
-lean_theorem: 

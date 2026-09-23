@@ -271,9 +271,8 @@ def test_the_index_holds_the_declarations_written_with_an_attribute() -> None:
     """
     decls = {(d["file"], d["name"]) for d in fp.build()["declarations"]}
     for rel, name in (
-        ("formal/BTCalculus/OpFragSemantic.lean", "signFactor_true"),
-        ("formal/BTCalculus/OpFragSemantic.lean", "signFactor_false"),
-        ("formal/Problems/Engine/InformationField.lean", "informationCost_id"),
+        ("formal/Problems/Collatz/NegativeMCycles.lean", "negTIter_zero"),
+        ("formal/Problems/Collatz/NegativeMCycles.lean", "negTIter_succ"),
     ):
         source = (fp.ROOT / rel).read_text(encoding="utf-8")
         assert f"@[simp] theorem {name}" in source, f"{name} is no longer written this way"
@@ -730,6 +729,9 @@ def test_jev_coverage_asks_every_resolved_row_with_all_the_declarations_it_names
     verdicts and the calibration already in the record survive the run untouched."""
     index = fp.build()
     ledger = json.load(io.open(fp.LEDGER, encoding="utf-8"))
+    # Exercise exclusion independently of which historical claims remain in the lab.
+    ledger.append(dict(next(r for r in ledger if fp.row_decls(r)),
+                       id='test-refuted-row', tag='REFUTED'))
     offers = fp.jev_propose(index, ledger, _fake_ask(), workers=1)
     offers["calibration"] = {"asked": "2026-09-21", "model": "jev-test", "sampled": 1,
                              "top1": 1, "top3": 1, "confident": 1, "confident_correct": 1,

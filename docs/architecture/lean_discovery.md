@@ -6,10 +6,10 @@ The catalogue and MCP serve the same local discovery API; Lean remains the
 authority for elaboration, applicability and proof checking.
 
 Search defaults to Juggler, Collatz and the transitive shared import graph.
-Use `--scope archive` on the CLI, or `scope="archive"` on the MCP, to search
-historical mathematics; `all` includes both. Exact `show`, claim lookup and
-dependency inspection remain global. Archived status never changes a proof's
-evidence label. Build the active graph with `python tools/lab.py build`.
+Discovery reads only files present in the current checkout; the scope parameter
+does not search Git history. Removed mathematics requires a
+[historical checkout](../history.md). Exact `show`, claim lookup and dependency
+inspection cover the retained library. Build with `python tools/lab.py build`.
 
 ## Names and namespaces
 

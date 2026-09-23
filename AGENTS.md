@@ -2,14 +2,14 @@
 
 This is the **Juggler–Collatz Mathematical Laboratory**. Active research is
 Juggler and the signed Collatz maps, supported by exact arithmetic (`bt`) and
-shared experimental machinery. Independent earlier projects are frozen in the
-[archive](archive/README.md), outside the default research scope.
+shared experimental machinery. Independent earlier projects and the Python UI are removed; recover them
+from [Git history](docs/history.md) when explicitly needed.
 The **Juggler map** is
 \(T(n)=\lfloor\sqrt n\rfloor\) (\(n\) even), \(\lfloor n\sqrt n\rfloor\)
 (\(n\) odd).
 
 ```text
-cli, visualization          application edges
+cli                         command-line application edge
 research.*                  problem-specific mathematics
 research_engine             problem-independent experimental dynamics
 bt.*                        problem-independent BT mathematics
@@ -45,9 +45,8 @@ localize; harvest counting; slogan halt theorems. Search
 
 Claim labels: [docs/README.md](docs/README.md).
 Research method: [docs/methodology.md](docs/methodology.md).
-Earlier BT-core, cubic-stratum and rewrite research is archived. Retain its
-sources and negative knowledge for citations; do not develop it as a parallel
-frontier without an explicit user request.
+Retain shared mathematics only when the active applications use it. Historical
+results and citations remain recoverable from Git; do not reintroduce independent programmes.
 
 ## How a direction runs
 
@@ -57,18 +56,16 @@ reprint it here. Then stop; do not auto-open the next branch.
 
 ## Shared mathematics and Collatz
 
-Trit / `D` / jets / `≡_k` → `src/bt/calculus/`; cubic strata →
-`src/research/residuals/`; Collatz → `src/research/collatz/`; generic Lean
-→ `formal/BTCalculus/`. No `bt.calculus` shims, no compatibility packages.
+Generic exact arithmetic belongs in `src/bt/`; shared experimental machinery
+in `src/research_engine/`; Collatz research in `src/research/collatz/`; generic
+Lean dependencies in `formal/BTCalculus/`. No compatibility shims.
 New applications outside Juggler/Collatz require an explicit scope change.
 Within scope, use [docs/problems/TEMPLATE.md](docs/problems/TEMPLATE.md).
-The [scope policy](data/lab_scope.json) preserves imported dependencies even
-when their historical names refer to balanced ternary.
 
 ## Commands
 
 ```powershell
-python -m pip install -e ".[dev,ui]"
+python -m pip install -e ".[dev]"
 pytest                                              # fast suite
 pytest tests/research/juggler_sequence -q           # Juggler only
 pytest --runslow
@@ -84,11 +81,9 @@ $env:PATH = "$env:USERPROFILE\.elan\bin;$env:PATH"
 python tools/lab.py build                          # active Lean graph; no sorry / admit
 ```
 
-`pytest --include-archive` and `python tools/lab.py build --include-archive`
-check the historical library. Formalpedia search and OEIS laboratory links
-default to active scope; request `scope=archive` or `scope=all` for old projects.
-Exact theorem/claim lookups and the global OEIS database remain unrestricted.
-Package names and the paper-pinned Lake file retain their historical names.
+All checked-in source is in the current research scope. Historical projects
+require a Git checkout; there is no UI or archive-mode CLI. The OEIS database
+remains global. Package names and Lean namespaces are stable.
 
 ## OEIS, locally
 
@@ -131,10 +126,4 @@ If you're Fable don't spend ages fixing tests - focus on the math.
 
 You have access to a Windows 11 machine with an AMD Ryzen 9 3900X (12C/24T), 64 GB RAM, and an RTX 5090 (32 GB VRAM, CUDA 13.3), so don't be afraid to use it.
 
-Persistent policy lives in [.cursor/rules/](.cursor/rules/). Streamlit work uses
-the `developing-with-streamlit` skill, which ships with the `streamlit`
-dependency rather than living in this repository: after
-`pip install -e ".[dev,ui]"` it is at
-`<site-packages>/streamlit/.agents/skills/developing-with-streamlit/SKILL.md`.
-`.agents/` is a gitignored convenience symlink to it and is absent from a
-fresh clone, so do not link it as a repository path.
+Persistent policy lives in [.cursor/rules/](.cursor/rules/).
