@@ -23,7 +23,9 @@ def test_mcp_discovery_is_structured_and_read_only():
             'formalpedia_search', 'formalpedia_show', 'formalpedia_claim',
             'formalpedia_impact', 'formalpedia_status', 'formalpedia_lint',
             'formalpedia_research_search', 'formalpedia_research_context', 'formalpedia_research_check',
-            'formalpedia_lab_doctor', 'formalpedia_change_impact', 'formalpedia_verification_plan'}
+            'formalpedia_lab_doctor', 'formalpedia_change_impact', 'formalpedia_verification_plan',
+            'formalpedia_capabilities', 'formalpedia_semantic_status', 'formalpedia_semantic_show',
+            'formalpedia_type_search', 'formalpedia_dependencies', 'formalpedia_semantic_diff'}
         for tool in tools:
             assert tool.annotations.readOnlyHint
             assert tool.annotations.destructiveHint is False
@@ -45,6 +47,15 @@ def test_real_stdio_client_searches_resolves_and_rejects_invalid_pagination():
         async with stdio_client(params) as (read, write):
             async with ClientSession(read, write) as session:
                 await session.initialize()
+                advertised = await session.list_tools()
+                assert 'formalpedia_type_search' in {t.name for t in advertised.tools}
+                capabilities = await session.call_tool('formalpedia_capabilities', {})
+                assert not capabilities.isError
+                assert capabilities.structuredContent['protocol_version'] == 2
+                assert 'semantic' in capabilities.structuredContent['tool_groups']
+                semantic = await session.call_tool('formalpedia_semantic_status', {})
+                assert not semantic.isError
+                assert semantic.structuredContent['status'] in {'missing', 'current', 'stale', 'unreadable'}
                 result = await session.call_tool('formalpedia_search',
                     {'query': 'cycleMin_finance', 'limit': 3})
                 assert not result.isError

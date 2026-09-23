@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import json
+import hashlib
+from pathlib import Path
 from typing import Any, Literal
 
 from mcp.server.fastmcp import FastMCP
@@ -11,9 +13,11 @@ import formalpedia as fp
 from formalpedia_catalog import Catalogue
 import lean_style
 from research_catalog import ResearchCatalogue
+from formalpedia_semantic import SemanticCatalogue
 
 catalogue = Catalogue()
 research = ResearchCatalogue()
+semantic = SemanticCatalogue()
 mcp = FastMCP('formalpedia', instructions=(
     'Search the local Lean library before proving a result. Resolve a fully qualified name, '
     'read its complete statement and hypotheses, and inspect exact claim links. '
@@ -23,6 +27,10 @@ mcp = FastMCP('formalpedia', instructions=(
     'inspect Juggler/Collatz dossiers, decisions, known obstructions and data provenance. '
     'Use formalpedia_change_impact and formalpedia_verification_plan before maintenance; '
     'formalpedia_lab_doctor discovers local prerequisites. Execute checks through tools/lab.py. '
+    'Use formalpedia_type_search and formalpedia_semantic_show for compiler-derived local '
+    'types, formalpedia_dependencies for proof/type edges, and formalpedia_semantic_diff '
+    'for historical changes. These require an explicit CLI semantic build and reject '
+    'stale exports. Structural matches are not proof applicability. '
     'All tools here are local and read-only.'))
 READ_ONLY = ToolAnnotations(readOnlyHint=True, destructiveHint=False,
                             idempotentHint=True, openWorldHint=False)
@@ -82,6 +90,90 @@ def formalpedia_impact(target: str, limit: int = 50, offset: int = 0) -> dict[st
 def formalpedia_status() -> dict[str, Any]:
     """Check live index freshness, documentation coverage and naming ambiguities."""
     return catalogue.status()
+
+
+@mcp.tool(annotations=READ_ONLY)
+def formalpedia_capabilities() -> dict[str, Any]:
+    """Identify this server version and tool groups; diagnose stale client discovery.
+
+    The code fingerprint identifies this running process's loaded entry point, not a
+    security attestation. A fresh connection is required to load edited server code.
+    """
+    return {'protocol_version': 2, 'server_fingerprint': SERVER_FINGERPRINT,
+            'root': str(fp.ROOT), 'tool_groups': {
+                'source': ['search', 'show', 'claim', 'impact', 'status', 'lint'],
+                'research': ['research_search', 'research_context', 'research_check'],
+                'maintenance': ['lab_doctor', 'change_impact', 'verification_plan'],
+                'semantic': ['semantic_status', 'semantic_show', 'type_search', 'dependencies', 'semantic_diff']},
+            'semantic': semantic.status(), 'read_only': True}
+
+
+# Captured at import: editing the file does not pretend to update a running server.
+SERVER_FINGERPRINT = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+
+
+@mcp.tool(annotations=READ_ONLY)
+def formalpedia_semantic_status() -> dict[str, Any]:
+    """Check compiler snapshot coverage, source/object freshness and rebuild instructions."""
+    return semantic.status()
+
+
+@mcp.tool(annotations=READ_ONLY)
+def formalpedia_semantic_show(name: str, include_ast: bool = False) -> dict[str, Any]:
+    """Inspect a compiled declaration's full type, binders, direct dependencies and axioms.
+
+    Use module::fully.qualified.name when ambiguous. Private and generated names are
+    real compiler identities. AST is alpha-normalized syntax, with de Bruijn indices.
+    Does not infer English claim coverage or prove the type in a new environment.
+    """
+    return semantic.show(name, include_ast)
+
+
+@mcp.tool(annotations=READ_ONLY)
+def formalpedia_type_search(constants: list[str] | None = None, like: str | None = None,
+                           pattern: list[Any] | dict[str, Any] | None = None,
+                           part: Literal['type', 'conclusion'] = 'type', kind: str | None = None,
+                           module: str | None = None, include_private: bool = False,
+                           limit: int = 20, offset: int = 0,
+                           snapshot: str | None = None) -> dict[str, Any]:
+    """Search elaborated local types by constants, an existing type, or a structural pattern.
+
+    Constants are exact Lean names and all must occur in the type. `like` compares
+    alpha-normalized syntax; it does not unfold definitions or unify universes.
+    Patterns use the AST from semantic_show(include_ast=True); {"hole":"x"} matches
+    a subtree, and repeating a hole requires the identical subtree. Conclusion-only
+    matching omits hypotheses: ALWAYS inspect binders and use Lean LSP to check reuse.
+    Stale exports and changed pagination snapshots are rejected, never rebuilt here.
+    """
+    return semantic.search(constants, like, pattern, part, kind, module, include_private,
+                           limit, offset, snapshot)
+
+
+@mcp.tool(annotations=READ_ONLY)
+def formalpedia_dependencies(name: str, direction: Literal['uses', 'used_by'] = 'uses',
+                            edge: Literal['type', 'value', 'all'] = 'all', depth: int = 1,
+                            limit: int = 30, offset: int = 0,
+                            snapshot: str | None = None) -> dict[str, Any]:
+    """Traverse direct compiler type/proof edges or reverse users (depth 1..5).
+
+    Includes private/generated local declarations. External constants are leaves;
+    an unindexed external constant can still depend on other local declarations.
+    Axiom questions use semantic_show's transitive Lean-collected axioms.
+    """
+    return semantic.dependencies(name, direction, edge, depth, limit, offset, snapshot)
+
+
+@mcp.tool(annotations=READ_ONLY)
+def formalpedia_semantic_diff(before: str, after: str | None = None,
+                             limit: int = 20, offset: int = 0) -> dict[str, Any]:
+    """Compare saved compiler snapshots and flag users of changed local definitions.
+
+    Reports type, proof-hash, dependency and axiom changes, plus coverage differences.
+    Proof hashes are noncryptographic change hints. Does not classify a statement as
+    stronger/weaker, or certify that unchanged entries remain valid after source edits.
+    `after` defaults to the current saved export, whose freshness is reported separately.
+    """
+    return semantic.diff(before, after, limit, offset)
 
 
 @mcp.tool(annotations=READ_ONLY)

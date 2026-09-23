@@ -1610,8 +1610,13 @@ def _write_jev_artifacts(index: dict[str, Any], ledger: list[dict[str, Any]],
 
 
 def main(argv: list[str] | None = None) -> int:
+    arguments = list(sys.argv[1:] if argv is None else argv)
+    if arguments[:1] == ['semantic']:
+        from formalpedia_semantic import main as semantic_main
+        return semantic_main(arguments[1:])
     ap = argparse.ArgumentParser(description="A theorem index over the Lean sources.")
     sub = ap.add_subparsers(dest="cmd", required=True)
+    sub.add_parser('semantic', help='compiled types, structural search, dependencies and snapshot differences')
     p = sub.add_parser("build", help="rebuild the index")
     p.add_argument("--check", action="store_true", help="check freshness without writing")
     sub.add_parser("status", help="live catalogue health and saved-index freshness")

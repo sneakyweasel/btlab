@@ -119,6 +119,12 @@ evidence. Original verdicts and the reviewed style baseline remain versioned in
 
 ## MCP
 
+For compiler-derived types, structural type search, proof dependencies and
+snapshot comparisons, use the [semantic discovery guide](lean_semantics.md).
+Run `python tools/formalpedia.py semantic build` explicitly to create that optional
+index. Semantic queries reject stale exports; the live source catalogue below
+does not require an export.
+
 Maintenance also uses the [agent workflow](agent_workflow.md): the same MCP
 offers `formalpedia_lab_doctor`, `formalpedia_change_impact`, and
 `formalpedia_verification_plan`. These are read-only; execute tests and builds
@@ -148,8 +154,9 @@ the [research catalogue guide](research_catalogue.md). The existing server
 configuration is shared; reconnect once to discover newly added tools.
 
 All server tools are local and read-only. They neither edit proofs nor invoke
-external advisory services. Source changes invalidate the in-memory snapshot;
-the server does not depend on a manually refreshed index. Use `lean-lsp` to
+external advisory services. Source-catalogue queries refresh their in-memory
+snapshot when files change. Semantic queries require a fresh, explicitly built
+compiler snapshot. Use `lean-lsp` to
 inspect goals, check a candidate in context, and verify a proof. Reconnect an
 MCP client after changing its server configuration.
 
@@ -162,4 +169,4 @@ register it with `codex mcp add btlab-lean-lsp -- <absolute-python>
 <absolute-launcher-script>`. It provides goals, hover information, diagnostics,
 proof checking, references and Mathlib search alongside formalpedia's local
 claim catalogue. Search providers exposed by Lean LSP can be external services;
-formalpedia's six discovery tools remain local.
+formalpedia's discovery tools remain local.
