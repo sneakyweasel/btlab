@@ -323,7 +323,7 @@ def test_decl_when_present_names_a_declaration_in_the_rows_own_file():
             continue
         lean = str(row.get("lean") or "").strip()
         assert lean.endswith(".lean"), f"{row['id']}: decl needs a file, not {lean!r}"
-        text = (ROOT / "formal" / lean).read_text(encoding="utf-8")
+        text = (ROOT / fp.lean_key(lean)).read_text(encoding="utf-8")
         assert len(decls) == len(set(decls)), f"{row['id']}: repeats a declaration"
         for decl in decls:
             assert _declares(text, decl), f"{row['id']}: {decl} not in {lean}"

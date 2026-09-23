@@ -364,6 +364,11 @@ premise remains open, and the finite periodic weight obstruction is unchanged.
 
 ## Open questions
 
+The [bounded stopping follow-up](collatz_bounded_fibre_stopping.md) now excludes
+uniform reproduction even when each inverse branch chooses its own stopping
+depth under a common finite horizon. This is kernel-checked for both signs;
+unbounded horizons and the fixed-integer coefficient series below remain open.
+
 Can the series in Result 4 be shown to diverge at at least one actual
 nonperiodic odd unit in every full fate class? Tao's averaged residue
 mixing does not by itself control these prescribed integer targets.

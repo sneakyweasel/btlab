@@ -10,6 +10,18 @@ The earlier full-length journal is available at Git revision
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-23 -- Bounded branch-specific stopping still leaves poor fibres
+
+The previous turn recommended coefficient-series divergence but proved no new
+estimate. The proposed variable-depth repair now has a precise limitation:
+for either sign, every common finite stopping budget has a unit residue where
+even the attained optimal branch-specific policy fails to reproduce its
+periodic terminal weight. Lean checks the envelope, arbitrary policy domination
+and actual integer representatives. **CLOSE** this bounded-stopping repair.
+The poor target may depend on depth; unbounded stopping and fixed-integer
+coefficient divergence remain open. See the
+[canonical dossier](problems/collatz_bounded_fibre_stopping.md) for proof and validation.
+
 ## 2026-09-23 -- Finite-path packing removes the negative affine depth loss
 
 - **Previous-turn audit:** The polynomial generation proof was completed and

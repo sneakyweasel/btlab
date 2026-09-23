@@ -65,3 +65,11 @@ absolute constant, uniformly over all depths and nonperiodic targets.
 Unweighted coefficient-series divergence suffices for both signs; that
 premise remains open. See the
 [proof map](../../../docs/theory/collatz_uniform_generation_mass_lean_note.md).
+
+[FibreStopping.lean](FibreStopping.lean) proves that allowing a different
+stopping depth on every inverse branch does not repair uniform coefficient
+reproduction when all branches share one finite horizon. Its envelope is
+attained and bounds every history-dependent policy, for both signs and every
+finite periodic terminal weight positive at the one-halving residue. Unbounded
+stopping and fixed-integer series divergence remain open; see the
+[dossier](../../../docs/problems/collatz_bounded_fibre_stopping.md).

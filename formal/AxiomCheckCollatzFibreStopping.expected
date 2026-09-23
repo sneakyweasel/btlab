@@ -1,0 +1,5 @@
+'Problems.Collatz.FibreStopping.bounded_stopping_deficit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreStopping.payoff_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreStopping.envelope_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreStopping.forced_payoff_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreStopping.bounded_policy_deficit' depends on axioms: [propext, Classical.choice, Quot.sound]

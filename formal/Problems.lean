@@ -32,6 +32,7 @@ import Problems.Collatz.FibreGeneration
 import Problems.Collatz.FibreDistortion
 import Problems.Collatz.SignedOrbitPacking
 import Problems.Collatz.UniformFibreDistortion
+import Problems.Collatz.FibreStopping
 import Problems.Engine.ParameterDomain
 import Problems.Engine.ControlWord
 import Problems.Engine.ControlObstruction
