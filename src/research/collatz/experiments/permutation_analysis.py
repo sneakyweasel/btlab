@@ -18,7 +18,7 @@ def run_permutation_analysis(
     summary = extremal_orders(ks)
     paths: dict[str, str] = {}
     if output_dir is not None:
-        paths = write_rows(list(rows), output_dir, "permutations")
+        paths = write_rows(list(rows), output_dir, "permutations", parameters={"ks": list(ks)})
     return {
         "summary": summary,
         "rows": list(rows),

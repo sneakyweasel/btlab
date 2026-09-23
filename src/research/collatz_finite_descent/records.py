@@ -6,6 +6,7 @@ from collections.abc import Sequence
 from pathlib import Path
 
 from research.experiments.paths import collatz_data_dir
+from research.experiments.provenance import write_manifest
 from research_engine.attacks.result import AttackResult, AttackStatus
 from research_engine.core.semantics import SearchScope
 from research_engine.planner.orchestrator import PlannerReport
@@ -99,4 +100,8 @@ def write_records(
     skip_path = folder / "skipped.yaml"
     skip_path.write_text("\n".join(skipped_lines) + "\n", encoding="utf-8")
     written.append(skip_path)
+    write_manifest(folder / "records.research.json", programme="collatz",
+                   research_id="collatz/finite_descent", outputs=written,
+                   scope="Planner records; each YAML retains its own scope. No termination claim.",
+                   parameters={"problem": problem}, sources=[Path(__file__)])
     return tuple(written)

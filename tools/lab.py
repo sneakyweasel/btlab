@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import os
 from pathlib import Path
 import shutil
@@ -27,10 +28,18 @@ def run_python(arguments: list[str], root: Path | None = None) -> int:
     env = os.environ.copy()
     inherited = env.get('PYTHONPATH')
     env['PYTHONPATH'] = str(root / 'src') + (os.pathsep + inherited if inherited else '')
+    if len(arguments) >= 2 and arguments[0] == '-m' and arguments[1] != 'pytest':
+        env['BTLAB_RUN_COMMAND'] = json.dumps(['python', 'tools/lab.py', 'run', *arguments[1:]])
+    else:
+        env.pop('BTLAB_RUN_COMMAND', None)
     return subprocess.run([sys.executable, *arguments], cwd=root, env=env).returncode
 
 
 def main(argv=None) -> int:
+    arguments = list(sys.argv[1:] if argv is None else argv)
+    if arguments and arguments[0] in {'search', 'context', 'check', 'manifest'}:
+        from research_catalog import main as research_main
+        return research_main(arguments)
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='command', required=True)
     build = commands.add_parser('build', help='build every retained Lean application and dependency')
@@ -40,6 +49,14 @@ def main(argv=None) -> int:
     run.add_argument('args', nargs=argparse.REMAINDER)
     test = commands.add_parser('test', help='run pytest using this checkout\'s source tree')
     test.add_argument('args', nargs=argparse.REMAINDER)
+    for name in ('search', 'context', 'check', 'manifest'):
+        command = commands.add_parser(name, add_help=False, help={
+            'search': 'search Juggler and Collatz research dossiers',
+            'context': 'read one bounded research context section',
+            'check': 'validate research references and output manifests',
+            'manifest': 'record provenance for a newly completed experiment',
+        }[name])
+        command.add_argument('args', nargs=argparse.REMAINDER)
     args = parser.parse_args(argv)
     if args.command in {'run', 'test'}:
         forwarded = args.args[1:] if args.args[:1] == ['--'] else args.args

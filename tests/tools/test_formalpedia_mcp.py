@@ -21,14 +21,16 @@ def test_mcp_discovery_is_structured_and_read_only():
         tools = await server.mcp.list_tools()
         assert {t.name for t in tools} == {
             'formalpedia_search', 'formalpedia_show', 'formalpedia_claim',
-            'formalpedia_impact', 'formalpedia_status', 'formalpedia_lint'}
+            'formalpedia_impact', 'formalpedia_status', 'formalpedia_lint',
+            'formalpedia_research_search', 'formalpedia_research_context', 'formalpedia_research_check'}
         for tool in tools:
             assert tool.annotations.readOnlyHint
             assert tool.annotations.destructiveHint is False
             assert tool.annotations.openWorldHint is False
             assert tool.outputSchema
         resources = await server.mcp.list_resources()
-        assert {str(r.uri) for r in resources} == {'formalpedia://guide', 'formalpedia://status'}
+        assert {str(r.uri) for r in resources} == {
+            'formalpedia://guide', 'formalpedia://status', 'formalpedia://research-guide'}
         prompts = await server.mcp.list_prompts()
         assert [p.name for p in prompts] == ['find_existing_result']
     asyncio.run(check())
@@ -56,4 +58,17 @@ def test_real_stdio_client_searches_resolves_and_rejects_invalid_pagination():
                 assert bad.isError
                 guide = await session.read_resource('formalpedia://guide')
                 assert 'fully qualified' in guide.contents[0].text
+                branches = await session.call_tool('formalpedia_research_search',
+                    {'query': 'fibre sign coupling', 'programme': 'collatz', 'limit': 2})
+                assert not branches.isError
+                branch = branches.structuredContent['items'][0]
+                assert branch['id'] == 'collatz/fibre_sign_coupling'
+                context = await session.call_tool('formalpedia_research_context',
+                    {'identifier': branch['id'], 'section': 'obstructions', 'limit': 2,
+                     'snapshot': branches.structuredContent['snapshot']})
+                assert not context.isError and context.structuredContent['items']
+                assert 'not' in context.structuredContent['limitations'].lower() or 'no tests' in context.structuredContent['limitations'].lower()
+                stale = await session.call_tool('formalpedia_research_search',
+                    {'query': 'coupling', 'snapshot': 'outdated'})
+                assert stale.isError
     asyncio.run(asyncio.wait_for(check(), timeout=120))

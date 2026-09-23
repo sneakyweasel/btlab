@@ -15,6 +15,8 @@ from typing import Any
 
 from research.collatz.invariants import check_odd_weight, check_three_n_plus_one_even_weight
 from research.collatz.transitions import ROW_COLUMNS, feature_transition
+from research.experiments.provenance import write_manifest
+from research.experiments.table_io import timestamp as output_timestamp
 
 
 def code_version() -> str | None:
@@ -79,7 +81,7 @@ def run_exhaustive_experiment(
     if isinstance(limit, bool) or not isinstance(limit, int) or limit < 1:
         raise ValueError(f"limit must be an integer >= 1, got {limit!r}")
 
-    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    timestamp = output_timestamp()
     result = ExhaustiveExperimentResult(
         experiment_name="exhaustive_feature_transitions",
         parameters={"limit": limit, "sample_size": sample_size},
@@ -133,6 +135,11 @@ def run_exhaustive_experiment(
         meta_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
         result.output_metadata = str(meta_path)
         result.output_rows = str(rows_path) if rows_path is not None else None
+        write_manifest(meta_path.with_suffix(".research.json"), programme="collatz",
+                       research_id="collatz/overview",
+                       scope=f"Feature transitions for odd n in [1, {limit}]; finite computation only.",
+                       parameters=result.parameters, outputs=[meta_path, rows_path],
+                       artifact_root=Path(output_dir))
 
     return result
 

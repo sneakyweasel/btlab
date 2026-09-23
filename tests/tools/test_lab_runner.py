@@ -17,9 +17,10 @@ def test_run_uses_selected_checkout_even_with_other_source_on_path(tmp_path, mon
         package.mkdir(parents=True)
         (package / '__init__.py').write_text('')
         (package / 'probe.py').write_text(
-            'import json, pathlib, sys\n'
+            'import json, os, pathlib, sys\n'
             'pathlib.Path("result.json").write_text(json.dumps({\n'
-            '    "source": __file__, "cwd": str(pathlib.Path.cwd()), "args": sys.argv[1:]\n'
+            '    "source": __file__, "cwd": str(pathlib.Path.cwd()), "args": sys.argv[1:],\n'
+            '    "command": json.loads(os.environ["BTLAB_RUN_COMMAND"])\n'
             '}))\n', encoding='utf-8')
     monkeypatch.setenv('PYTHONPATH', str(other / 'src'))
     assert lab.run_python(['-m', 'research.probe', '--output', 'name with spaces'], root) == 0
@@ -27,6 +28,7 @@ def test_run_uses_selected_checkout_even_with_other_source_on_path(tmp_path, mon
     assert Path(result['source']).is_relative_to(root)
     assert Path(result['cwd']) == root
     assert result['args'] == ['--output', 'name with spaces']
+    assert result['command'] == ['python', 'tools/lab.py', 'run', 'research.probe', '--output', 'name with spaces']
     assert not (other / 'result.json').exists()
 
 

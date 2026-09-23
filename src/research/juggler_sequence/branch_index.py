@@ -438,9 +438,21 @@ Fill the mathematical question. Not a halt theorem.
 
 from __future__ import annotations
 
+from pathlib import Path
+
+from research.experiments.provenance import write_manifest
 from research.juggler_sequence.lean_paths import DATA_ROOT
 
 DATA_DIR = DATA_ROOT / "{stem}"
+
+
+def record_outputs(outputs: list[Path], *, scope: str, parameters: dict) -> Path:
+    """Call after generating outputs; supply the actual finite scope and parameters."""
+    return write_manifest(
+        DATA_DIR / "run.research.json", programme="juggler",
+        research_id="juggler/{stem}", scope=scope, parameters=parameters,
+        outputs=outputs, sources=[Path(__file__)],
+    )
 '''
 
 _TEST_STUB = '''"""Tests for ``{stem}``."""

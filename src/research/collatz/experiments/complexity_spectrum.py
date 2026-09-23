@@ -23,6 +23,8 @@ from typing import Any
 from research.collatz.experiments.exhaustive import code_version
 from research.collatz.languages.cylinder_dfa import valuation_class_minimized_size
 from bt.transducers.divide_by_two_power import DivideByTwoPowerTransducer
+from research.experiments.provenance import write_manifest
+from research.experiments.table_io import timestamp as output_timestamp
 
 
 @dataclass
@@ -104,7 +106,7 @@ def run_complexity_spectrum(
         base = Path(output_dir)
         reports = base / "reports"
         reports.mkdir(parents=True, exist_ok=True)
-        stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        stamp = output_timestamp()
         path = reports / f"complexity_spectrum_kmax{k_max}_{stamp}.json"
         payload = {
             "experiment_name": "complexity_spectrum",
@@ -125,4 +127,8 @@ def run_complexity_spectrum(
         }
         path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
         result.output_path = str(path)
+        write_manifest(path.with_suffix(".research.json"), programme="collatz",
+                       research_id="collatz/overview",
+                       scope=f"Transducer complexity for k=1..{k_max}; finite computation only.",
+                       parameters={"k_max": k_max}, outputs=[path])
     return result

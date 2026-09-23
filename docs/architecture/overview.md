@@ -22,6 +22,12 @@ are removed. The Juggler companion website remains in `web/juggler-companion/`.
 and `research.literature` read their supporting registries. These are infrastructure,
 not additional research programmes.
 
+The [research catalogue](research_catalogue.md) connects canonical dossiers,
+claims, source files, data, obstructions, and verification commands across both
+programmes. It is a live derived view, not another manually maintained ledger.
+New outputs use versioned provenance sidecars; `python tools/lab.py check`
+validates references and metadata without running mathematical computations.
+
 Collatz outputs live in `data/research/collatz/`, including finite-descent and
 Syracuse records. CLI writers resolve this location from their source checkout,
 so running a command elsewhere does not create another output tree. Generated

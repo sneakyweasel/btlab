@@ -95,6 +95,18 @@ worktree is installed in editable mode. To parallelize tests, use
 
 ## Find the mathematics
 
+Start with a bounded research lookup across Juggler and Collatz:
+
+```powershell
+python tools/lab.py search "mixed descent"
+python tools/lab.py context collatz/fibre_sign_coupling --section obstructions
+python tools/lab.py check
+```
+
+The [research catalogue](docs/architecture/research_catalogue.md) connects
+dossiers, claims, source files and output provenance. Its read-only tools are
+also available through the existing Formalpedia MCP.
+
 **Formalpedia** searches the current Lean sources by names, statements,
 documentation, and linked claims. It also exposes exact declaration lookup
 and module dependency inspection through a CLI and a local read-only MCP:

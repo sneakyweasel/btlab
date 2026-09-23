@@ -10,14 +10,18 @@ from mcp.types import ToolAnnotations
 import formalpedia as fp
 from formalpedia_catalog import Catalogue
 import lean_style
+from research_catalog import ResearchCatalogue
 
 catalogue = Catalogue()
+research = ResearchCatalogue()
 mcp = FastMCP('formalpedia', instructions=(
     'Search the local Lean library before proving a result. Resolve a fully qualified name, '
     'read its complete statement and hypotheses, and inspect exact claim links. '
     'Ambiguous names return candidates, never an arbitrary theorem. Source trust markers '
     'are not compilation or axiom-audit evidence. Use lean-lsp for goals, elaboration and '
-    'proof checking. All tools here are local and read-only.'))
+    'proof checking. Use formalpedia_research_search and formalpedia_research_context to '
+    'inspect Juggler/Collatz dossiers, decisions, known obstructions and data provenance. '
+    'All tools here are local and read-only.'))
 READ_ONLY = ToolAnnotations(readOnlyHint=True, destructiveHint=False,
                             idempotentHint=True, openWorldHint=False)
 
@@ -100,6 +104,53 @@ def formalpedia_lint(limit: int = 30, offset: int = 0) -> dict[str, Any]:
 def discovery_guide() -> str:
     """The repository's Lean naming and theorem-discovery policy."""
     return (fp.ROOT / 'docs/architecture/lean_discovery.md').read_text(encoding='utf-8')
+
+
+@mcp.tool(annotations=READ_ONLY)
+def formalpedia_research_search(query: str, programme: Literal['juggler', 'collatz'] | None = None,
+                               decision: Literal['PROMOTE', 'PARK', 'CLOSE'] | None = None,
+                               limit: int = 10, offset: int = 0, snapshot: str | None = None) -> dict[str, Any]:
+    """Search canonical research dossiers and associated claims across both programmes.
+
+    Results use programme-qualified dossier IDs. Existing Juggler aliases are reused.
+    Pass the returned snapshot on later pages to reject source changes. A search miss
+    does not establish novelty. No catalogue files or research outputs are written.
+    """
+    return research.search(query, programme, decision, limit, offset, snapshot)
+
+
+@mcp.tool(annotations=READ_ONLY)
+def formalpedia_research_context(identifier: str,
+                                section: Literal['overview', 'claims', 'sources', 'data', 'obstructions',
+                                                 'questions', 'commands', 'papers'] = 'overview',
+                                limit: int = 10, offset: int = 0,
+                                snapshot: str | None = None) -> dict[str, Any]:
+    """Read a bounded research context section with source paths and excerpt truncation.
+
+    Start with overview, then inspect obstructions, questions and claims. Commands are
+    suggestions, never executed. Lean references are recorded associations, not fresh
+    compilation or coverage evidence. Use formalpedia_claim/show for exact statements.
+    Ambiguous aliases return candidates. Unknown decisions remain null.
+    """
+    return research.context(identifier, section, limit, offset, snapshot)
+
+
+@mcp.tool(annotations=READ_ONLY)
+def formalpedia_research_check(limit: int = 20, offset: int = 0,
+                              snapshot: str | None = None) -> dict[str, Any]:
+    """Inspect structural errors, missing metadata and manifest coverage without mutations.
+
+    Validates references and manifest schemas/sizes. Does not hash large datasets or run
+    tests. Use the explicit CLI `python tools/lab.py check --hashes` for hash verification.
+    Legacy results remain unverified rather than receiving invented provenance.
+    """
+    return research.check(limit=limit, offset=offset, snapshot=snapshot)
+
+
+@mcp.resource('formalpedia://research-guide')
+def research_guide() -> str:
+    """Research catalogue, output manifest and validation workflow."""
+    return (fp.ROOT / 'docs/architecture/research_catalogue.md').read_text(encoding='utf-8')
 
 
 @mcp.resource('formalpedia://status')

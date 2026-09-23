@@ -6,6 +6,7 @@ from collections.abc import Sequence
 from pathlib import Path
 
 from research.experiments.paths import collatz_data_dir
+from research.experiments.provenance import write_manifest
 from research_engine.planner.hypothesis import PriorArtStatus
 from research_engine.planner.orchestrator import PlannerReport
 from research_engine.planner.records import write_records as write_engine_records
@@ -22,7 +23,7 @@ def write_records(
     problem: str = "syracuse",
 ) -> tuple[Path, ...]:
     folder = directory if directory is not None else RECORD_DIR
-    return write_engine_records(
+    written = write_engine_records(
         report,
         targets,
         directory=folder,
@@ -31,3 +32,8 @@ def write_records(
         novelty_note="engine diagnosis of accelerated odd-only map; not a Collatz proof",
         branch_status="PARK",
     )
+    write_manifest(folder / "records.research.json", programme="collatz",
+                   research_id="collatz/syracuse", outputs=written,
+                   scope="Planner records; each YAML retains its own scope. No Collatz proof.",
+                   parameters={"problem": problem}, sources=[Path(__file__)])
+    return written

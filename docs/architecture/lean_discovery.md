@@ -130,11 +130,17 @@ PYTHONUTF8=1 -- <absolute-python> <absolute-server-script>`; this is a separate
 client configuration from `.mcp.json`. See the
 [official Codex MCP guide](https://developers.openai.com/codex/mcp).
 
-The six tools are `formalpedia_search`, `formalpedia_show`, `formalpedia_claim`,
+The six Lean tools are `formalpedia_search`, `formalpedia_show`, `formalpedia_claim`,
 `formalpedia_impact`, `formalpedia_status`, and `formalpedia_lint`. They return
 structured objects, bounded search pages, full statements on demand, explicit
 ambiguities, and snapshot identifiers. Guide and status resources and the
 `find_existing_result` prompt provide the discovery workflow.
+
+Three additional tools, `formalpedia_research_search`,
+`formalpedia_research_context`, and `formalpedia_research_check`, connect both
+research programmes to dossiers, data, decisions, and known obstructions. See
+the [research catalogue guide](research_catalogue.md). The existing server
+configuration is shared; reconnect once to discover newly added tools.
 
 All server tools are local and read-only. They neither edit proofs nor invoke
 external advisory services. Source changes invalidate the in-memory snapshot;

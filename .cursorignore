@@ -14,8 +14,11 @@ __pycache__/
 .ruff_cache/
 htmlcov/
 
-# Experiment dumps (keep source; skip generated tables)
-experiments/**/*.json
-experiments/**/*.jsonl
-experiments/**/*.parquet
-experiments/**/*.csv
+# Generated Collatz tables and reports
+data/research/collatz/raw/
+data/research/collatz/derived/
+data/research/collatz/reports/
+
+# Local scratch, private recovery backups, and editor environment
+tmp/
+.venv-seed/

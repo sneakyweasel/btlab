@@ -93,7 +93,8 @@ def run_fixed_budget(
     }
     paths: dict[str, str] = {}
     if output_dir is not None:
-        paths = write_rows(rows, output_dir, f"fixed_budget_m{m}_K{sum_k}")
+        paths = write_rows(rows, output_dir, f"fixed_budget_m{m}_K{sum_k}",
+                           parameters={"m": m, "sum_k": sum_k})
     return FixedBudgetResult(m=m, K=sum_k, rows=rows, summary=summary, paths=paths)
 
 

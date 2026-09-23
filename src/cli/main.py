@@ -2,10 +2,14 @@
 from __future__ import annotations
 
 import argparse
+import json
+import os
 from pathlib import Path
+import sys
 
 from research.collatz.cli import add_collatz_subparser, run_collatz
 from research.open_problems import list_problems
+from research.experiments.provenance import recording_run
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -16,7 +20,11 @@ def main(argv: list[str] | None = None) -> int:
     commands.add_parser('formal', help='show the Lean toolchain and build command')
     args = parser.parse_args(argv)
     if args.command == 'collatz':
-        return run_collatz(args)
+        runner_command = os.environ.get('BTLAB_RUN_COMMAND')
+        invocation = (json.loads(runner_command) if runner_command else
+                      ['python', '-m', 'cli.main', *(sys.argv[1:] if argv is None else argv)])
+        with recording_run(invocation):
+            return run_collatz(args)
     if args.command == 'status':
         print('Active applications: ' + ', '.join(p.id for p in list_problems()))
         print('Python checks: pytest')

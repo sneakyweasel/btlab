@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:btlab:research-output:v1",
+  "title": "Laboratory research output provenance",
+  "type": "object",
+  "required": ["schema", "programme", "research_id", "created_utc", "scope", "artifact_root", "generator", "source", "inputs", "outputs", "verification"],
+  "properties": {
+    "schema": {"const": "btlab-output/v1"},
+    "programme": {"enum": ["juggler", "collatz"]},
+    "research_id": {"type": ["string", "null"], "pattern": "^(juggler|collatz)/[a-z0-9_]+$"},
+    "created_utc": {"type": "string", "format": "date-time", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$"},
+    "scope": {"type": "string", "minLength": 1},
+    "artifact_root": {"type": "string", "minLength": 1, "pattern": "^(?!/)[^:\\\\]+$"},
+    "verification": {"type": "string", "minLength": 1},
+    "generator": {
+      "type": "object",
+      "required": ["command", "parameters", "python"],
+      "properties": {
+        "command": {"type": ["array", "null"], "minItems": 1, "items": {"type": "string"}},
+        "parameters": {"type": "object"},
+        "python": {"type": "string", "minLength": 1}
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": ["revision", "dirty", "coverage", "files"],
+      "properties": {
+        "revision": {"type": ["string", "null"], "pattern": "^([0-9a-f]{40}|[0-9a-f]{64})$"},
+        "dirty": {"type": ["boolean", "null"]},
+        "coverage": {"type": "string", "minLength": 1},
+        "files": {"$ref": "#/$defs/files"}
+      }
+    },
+    "inputs": {"$ref": "#/$defs/files"},
+    "outputs": {"allOf": [{"$ref": "#/$defs/files"}], "minItems": 1}
+  },
+  "allOf": [
+    {"if": {"properties": {"programme": {"const": "juggler"}}}, "then": {"properties": {"research_id": {"pattern": "^juggler/"}}}},
+    {"if": {"properties": {"programme": {"const": "collatz"}}}, "then": {"properties": {"research_id": {"pattern": "^collatz/"}}}}
+  ],
+  "$defs": {
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "sha256", "bytes"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1, "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^:\\\\]+$"},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "bytes": {"type": "integer", "minimum": 0}
+        }
+      }
+    }
+  }
+}

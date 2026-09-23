@@ -50,7 +50,8 @@ def run_itinerary_enumeration(
     rows = enumerate_itineraries(m, k_max)
     paths: dict[str, str] = {}
     if output_dir is not None:
-        paths = write_rows(rows, output_dir, f"itineraries_m{m}_kmax{k_max}")
+        paths = write_rows(rows, output_dir, f"itineraries_m{m}_kmax{k_max}",
+                           parameters={"m": m, "k_max": k_max})
     return EnumerationResult(
         m=m,
         k_max=k_max,
