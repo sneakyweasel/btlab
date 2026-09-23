@@ -1,0 +1,13 @@
+{
+  "authors": ["Yuan Si"],
+  "id": "si-2026-microcanonical-affine",
+  "identifiers": {"doi": "10.5281/zenodo.20027097"},
+  "notes": "Partially read 23 September 2026, version 1 dated 4 May 2026. Inspected the statements and proofs of Theorem 5.1 and Lemma 6.1/Theorem 6.2 on pages 9-11, and the stated exceptional-frequency boundary on pages 18-22. Source PDF MD5 f59b2b147590fc66d3153d34ad497390; local copy literature/sources/si-2026-microcanonical-affine.pdf is not tracked. Theorem 5.1 states conditional primitive Fourier decay O_A(n^-A) at effective depth n+h with 1<=h<=K log n and |s-2n|<=L sqrt(n log n). Thus h=1 reaches the modulus used by the laboratory's fixed-root unit-ancestor count. The remaining direct-transfer problem is relative precision for two specified cells, not the paper's conjectural larger-h supremum. The bridge representation is a standard composition encoding. This is a reading and applicability audit, not independent validation of the complete preprint, a formal proof of its analysis, or adoption of its claims as new laboratory theorems. See docs/problems/collatz_conditioned_syracuse.md.",
+  "problem_area": "collatz",
+  "project_relationship": "known",
+  "relevant_concepts": ["Syracuse offset", "conditioned halving sum", "primitive Fourier decay", "Bernoulli bridge", "fixed-root inverse count"],
+  "status": "partially reviewed preprint",
+  "title": "A microcanonical phase transition for the Collatz affine random model",
+  "url": {"doi": "https://doi.org/10.5281/zenodo.20027097", "pdf": "https://zenodo.org/records/20027097/files/main.pdf"},
+  "year": 2026
+}

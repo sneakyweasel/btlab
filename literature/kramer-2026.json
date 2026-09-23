@@ -6,7 +6,7 @@
   "identifiers": {
     "arxiv": "2607.10041"
   },
-  "notes": "docs/literature_comparison.md. Kramer B_m=C, r=R mod 2^K.",
+  "notes": "Re-read arXiv version 1, dated 10 July 2026, on 23 September 2026. Corrected the earlier registry title and normalized the arXiv URL. Theorem 1 and Corollary 2 give necessary residue-rate conditions for a code realized by one fixed positive odd integer: the binary start representative eventually equals that integer, and the ternary endpoint representative eventually equals the actual endpoint. The paper does not prove a fixed-root inverse-count lower bound or termination; its finite evolutionary search is explicitly diagnostic. The existing comparison is docs/literature_comparison.md: its affine numerator B_m is the laboratory's word offset C, and its r is the start residue R modulo 2^K. Applicability audit: docs/problems/collatz_conditioned_syracuse.md.",
   "problem_area": "collatz",
   "project_relationship": "reproduced",
   "relevant_concepts": [
@@ -16,9 +16,9 @@
     "endpoint M"
   ],
   "status": "compared",
-  "title": "Adaptive Search for Collatz Cycles under 2-adic/3-adic Constraints",
+  "title": "Adaptive Search in Collatz Exponent-Code Space via 2-adic and 3-adic Constraints",
   "url": {
-    "arxiv": "2607.10041"
+    "arxiv": "https://arxiv.org/abs/2607.10041"
   },
   "year": 2026
 }

@@ -1,10 +1,49 @@
 """Check finite inverse budgets against independent forward integer enumeration."""
 
 from fractions import Fraction as Q
+from itertools import combinations
 
 import pytest
 
 from research.collatz.fibre_height_budget import budget_coefficient, diagnostic, error_bound
+
+
+@pytest.mark.parametrize("sign,target", [(1, 1), (1, 7), (-1, 1), (-1, 47)])
+def test_conditioned_compositions_select_exactly_two_ternary_cells(sign, target):
+    # Enumerate global affine offsets independently of the inverse recurrence.
+    # The source-unit guard removes one of the three lifts modulo 3**(depth+1).
+    for depth in range(1, 5):
+        modulus = 3 ** (depth + 1)
+        cells = {(sign * target + t * 3**depth) % modulus for t in (1, 2)}
+        for total in range(depth, 11):
+            count = 0
+            for cuts in combinations(range(1, total), depth - 1):
+                boundaries = (0, *cuts, total)
+                word = tuple(b - a for a, b in zip(boundaries, boundaries[1:]))
+                offset, prefix = 0, 0
+                for exponent in word:
+                    offset = 3 * offset + 2**prefix
+                    prefix += exponent
+                residue = offset * pow(2**total, -1, modulus) % modulus
+                selected = residue in cells
+
+                # Separately reconstruct the actual positive odd predecessors.
+                n = target
+                actual = True
+                for exponent in reversed(word):
+                    numerator = 2**exponent * n - sign
+                    if numerator % 3:
+                        actual = False
+                        break
+                    n = numerator // 3
+                    assert n > 0 and n % 2 == 1
+                actual = actual and n % 3 != 0
+                assert selected == actual
+                count += selected
+
+            exact_layer = (budget_coefficient(target, depth, total, sign)
+                           - budget_coefficient(target, depth, total - 1, sign))
+            assert exact_layer == Q(3**depth * count, 2**total)
 
 
 @pytest.mark.parametrize("sign,target", [(1, 1), (1, 7), (-1, 1), (-1, 47)])

@@ -206,6 +206,12 @@ is not an additional obstacle to this fixed-root series target. The next
 question is the arithmetic lower bound for these finite depth blocks.
 This phase stops without a new counting campaign or a termination claim.
 
+The later [conditioned-Syracuse reading audit](collatz_conditioned_syracuse.md)
+identifies the finite-budget coefficient with two selected ternary cells in
+each total-exponent slice. The available conditional Fourier estimate reaches
+the required modulus but, after direct absolute-value inversion, has insufficient
+relative precision. It supplies no fixed-root block lower bound.
+
 ## Publication assessment
 
 Status: `STRUCTURAL`. This is an exact reduction of the remaining arithmetic

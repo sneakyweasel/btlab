@@ -10,6 +10,18 @@ The earlier full-length journal is available at Git revision
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-23 -- Conditioned Syracuse decay reaches the modulus but not fixed-root precision
+
+The new reading audit checks Si's 2026 conditioned affine preprint against the
+actual signed finite-height quantity. A total-exponent slice selects exactly
+two cells modulo 3^(d+1); four independent composition controls agree with
+actual inverse paths and budget increments. Theorem 5.1 reaches that modulus,
+but absolute-value Fourier inversion leaves an error multiplied by 3^d and
+supplies no relative lower bound. **CLOSE** this direct transfer. The signed
+frequency sum and the actual fixed-root count remain open. No new Lean theorem
+or analytic lower bound is claimed. The Kramer record's title and arXiv URL
+are also corrected. See the [reading audit](problems/collatz_conditioned_syracuse.md).
+
 ## 2026-09-23 -- Mixing alone does not force fixed-integer coefficient divergence
 
 The fixed-root recommendation produced no arithmetic lower bound. An explicit
