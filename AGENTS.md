@@ -14,6 +14,7 @@ is their home. Do not recreate compatibility packages or a parallel research are
 | Juggler research or a new branch | [Juggler guide](attacks/juggler/AGENT.md), then the selected dossier |
 | Signed Collatz research | [Collatz guide](attacks/collatz/AGENT.md), then its proof map |
 | Papers and evidence labels | [Research map](docs/README.md) and [publication record](docs/theory/paper_deposits.md) |
+| English-proof dependencies | [Claim graph](docs/architecture/claim_dependencies.md); use `formalpedia.py claim-graph` |
 | Lean discovery and names | [Lean guide](docs/architecture/lean_discovery.md); use formalpedia before adding a theorem |
 | Sequences and prior art | [OEIS guide](docs/architecture/oeis_discovery.md); use the local OEIS MCP |
 | Certified numerical bounds | [FLINT/Arb guide](docs/architecture/certified_numerics.md) and [Arb MCP](docs/architecture/arb_mcp.md); start with `arb_capabilities`, or use `research_engine.intervals` and the paper-specific audit |

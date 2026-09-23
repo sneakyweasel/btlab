@@ -1,5 +1,260 @@
 [
  {
+  "id": "J-paper-b-hypothesis-fd",
+  "tag": "CONJECTURE",
+  "statement": "Open Hypothesis FD, Paper B Section 6: for every fixed d>=1 and every odd-rooted length-d itinerary w, the number of n<=N with word_d(n)=w is 2^(-d)*N+o_w(N). No error uniform in d is assumed. This is a premise of the density-one theorem, not a premise of the finite five-step 7/8 result.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_trust_boundary.py"
+  ],
+  "related_conjectures": [],
+  "claim_kind": "hypothesis"
+ },
+ {
+  "id": "J-paper-b-density-one-under-fd",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Theorem 6.1: assuming Hypothesis FD, the union C_infinity of all finite power-envelope descent certificate classes has natural density one. The proof takes the counting limit at each fixed depth before letting depth increase. This proves neither Hypothesis FD nor universal termination.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_trust_boundary.py"
+  ],
+  "related_conjectures": [],
+  "conditions": [
+   "Hypothesis FD at each fixed depth; no uniform error in depth."
+  ],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "partial",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Theorem 6.1 (conditional density-one certificate theorem).** Under",
+     "end": "**Remark 6.2 (the threshold, and what it leaves).** The threshold",
+     "sha256": "2823dae7d74ec8b98fb24d4e311da71a262e2c351f4875a29afa6c054eb9124c"
+    },
+    "uses": [
+     {
+      "claim": "J-paper-b-hypothesis-fd",
+      "kind": "assumption"
+     },
+     {
+      "claim": "J-power-envelope-contraction",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-b-chernoff-chain-is-formal",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-fd-step-is-formal-and-theorem-six-one-stays-conditional",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-theorem-six-one-threshold-is-slack",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Named hypothesis and main formal/combinatorial inputs are recorded. Identification of actual survivor classes with the finite word union and the monotonic threshold argument need finer claim-level annotation. No density-one or termination conclusion is unconditional."
+   }
+  ]
+ },
+ {
+  "id": "J-paper-b-minimal-prefixes-five",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Lemma 5.1: the minimal power-envelope contracting prefixes through length five are exactly E, OE, OOEE, OOEOE and OOOEE. They give disjoint prefix classes whose union is the five-step certificate class; accidental earlier descent outside this certificate class is not included.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "complete",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Lemma 5.1 (minimal certificates through length five).** The contracting",
+     "end": "**Theorem 5.2 (unconditional four-step density).** One has",
+     "sha256": "a113f7ce50584964b17c32ec8e39cad084ff16caa23397c08a539c7302a6f7bf"
+    },
+    "uses": [
+     {
+      "claim": "J-power-envelope-contraction",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Immediate dependencies in the selected written proof; this is not an independent proof audit."
+   }
+  ]
+ },
+ {
+  "id": "J-paper-b-fourier-parity-transfer",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Paper B Proposition 4.2: for fixed d>=2, w and 0<eta,sigma<1, a uniform O_w(N^(1-sigma)) bound for every nonzero mixed frequency vector of sup norm at most floor(N^eta) implies H(w;delta) for every 0<delta<min(eta,sigma). Every zero-coordinate and mixed-sign case must be covered.",
+  "source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": [],
+  "conditions": [
+   "Uniform mixed exponential-sum bound for all indicated nonzero vectors, including zero coordinates and mixed signs."
+  ],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "partial",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Proposition 4.2 (conditional Fourier-to-parity transfer).** Fix",
+     "end": "### 4.2 A nested estimate sufficient for four-step descent",
+     "sha256": "71b47b9819e4334621eb783c082d498d1c56972f7eb9b54ff6c0e65244aad2dc"
+    },
+    "uses": [],
+    "notes": "The explicit external input is Erdos-Turan-Koksma, cited as reference [3], Chapter 2, p.116. It is not yet a theorem-level ledger node. The Fourier bound is a local premise, discharged separately in each application."
+   }
+  ]
+ },
+ {
+  "id": "J-paper-c-hypothesis-tao-rate",
+  "tag": "CONJECTURE",
+  "statement": "Open rate input: there exist a real e>3/8 and a natural y0 such that, for every natural y>=y0, the actual odd nonterminating starts in (y,2y] number at most y*(log y)^(-e). Contagion at 5/8 supplies no proof of this rate.",
+  "source": "docs/theory/juggler_ooee_weighted_production_note.md",
+  "lean": "",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_ooee_poor_fibres.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": [],
+  "claim_kind": "hypothesis"
+ },
+ {
+  "id": "J-paper-c-hypothesis-stopped-pressure",
+  "tag": "CONJECTURE",
+  "statement": "Open arithmetic input to the pressure implication: ScaleAverage.Bound N0 k0 C theta (1-q+q*exp(theta)) eta holds for parameters satisfying the certified-target and gap conditions recorded in J-ooee-pressure-rate-termination. No such bound is established by the contagion theorem.",
+  "source": "docs/theory/juggler_ooee_weighted_production_note.md",
+  "lean": "",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_ooee_poor_fibres.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": [],
+  "claim_kind": "hypothesis"
+ },
+ {
+  "id": "J-ooee-tao-rate-termination",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked conditional implication; advisory statement coverage and independent review pending. For every e>3/8, an eventual actual odd-failure count bound card(oddFailures y)<=y*(log y)^(-e) implies that every positive start reaches one. Actual OE and OOEE production are discharged; the failure-rate premise remains open.",
+  "source": "docs/theory/juggler_ooee_weighted_production_note.md",
+  "lean": "Problems/Juggler/FateOOEEWeighted.lean",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_ooee_poor_fibres.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "conjecture_of_tao_rate"
+  ],
+  "lean_trust": "kernel",
+  "conditions": [
+   "e>3/8 and the eventual actual dyadic odd-failure estimate at that e."
+  ],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "complete",
+    "source": {
+     "path": "docs/theory/juggler_ooee_weighted_production_note.md",
+     "start": "## Exact statement",
+     "end": "## Proof map and validation",
+     "sha256": "71b8bda6b5b8d5b05227c4c284de126b73d3a145a60e768120d4bb0c2505f037"
+    },
+    "uses": [
+     {
+      "claim": "J-ooee-contagion-five-eighths",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-ooee-contagion-assembly",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-c-hypothesis-tao-rate",
+      "kind": "assumption"
+     }
+    ],
+    "notes": "Immediate dependencies in the selected written proof; this is not an independent proof audit."
+   }
+  ]
+ },
+ {
+  "id": "J-ooee-pressure-rate-termination",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked conditional implication; advisory statement coverage and independent review pending. The existing ScaleAverage.Bound implies universal termination when C*(theta*pC(C)-log(1-q+q*exp(theta)))/log(2)-eta>3/8 and the certified-target and parameter conditions below hold. Actual OOEE production is discharged. The arithmetic stopped-pressure bound remains open.",
+  "source": "docs/theory/juggler_ooee_weighted_production_note.md",
+  "lean": "Problems/Juggler/FateOOEEWeighted.lean",
+  "tests": [
+   "tests/unit/test_theorem_ledger.py",
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_ooee_poor_fibres.py",
+   "tests/tools/test_formalpedia.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "pressure_average_conjecture"
+  ],
+  "lean_trust": "kernel",
+  "conditions": [
+   "Natural N0>=2 and k0 with N0<2^(k0+1); every positive m<=N0 reaches one.",
+   "C>1, theta>0, 0<q<1 and eta>=0.",
+   "C*(theta*pC(C)-log(1-q+q*exp(theta)))/log(2)-eta>3/8.",
+   "ScaleAverage.Bound N0 k0 C theta (1-q+q*exp(theta)) eta."
+  ],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "partial",
+    "source": {
+     "path": "docs/theory/juggler_ooee_weighted_production_note.md",
+     "start": "## Exact statement",
+     "end": "## Proof map and validation",
+     "sha256": "71b8bda6b5b8d5b05227c4c284de126b73d3a145a60e768120d4bb0c2505f037"
+    },
+    "uses": [
+     {
+      "claim": "J-ooee-actual-weighted-production",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-pressure-scale-average-contagion-transfer",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-c-hypothesis-stopped-pressure",
+      "kind": "assumption"
+     }
+    ],
+    "notes": "The named open pressure input and generic reduction are explicit. The finite target is a local parameter condition, not a newly certified computational floor. Lower-level pressure proof dependencies remain unexpanded."
+   }
+  ]
+ },
+ {
   "id": "J-paper-a-arb-minimum-cutoff",
   "tag": "COMPUTATIONALLY VERIFIED",
   "statement": "The actual Arb MCP certifies U(487011720)<Lambda<U(487011719) for Paper A's final UC2 scalar bound at (L,o,e)=(780239,492276,287963). The existing monotonicity argument and assumed descent floor imply 350000000<m<487011720 for a primitive actual Juggler cycle with these counts and maximum M<m^3. All lengths below the existing frontiers 25781,176251,478245,780239 are independently screened at their respective assumed floors. No descent campaign, new Lean numerical proof, period-780239 exclusion or assertion outside the cubic band is supplied.",
@@ -1562,7 +1817,22 @@
    "tools/validate_paper_b_oooee_transfer.py",
    "tools/validate_paper_b_consolidated.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "partial",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Theorem 4.11 (OOOEE mixed modes).** For every fixed  \\(C\\ge1\\)",
+     "end": "**Corollary 4.12 (the OOOE split).** Every formal parity-sign class",
+     "sha256": "bd039c705a3df82f70a8dc06811a9f2be96897b8e51ba76200bd521f1fba5b46"
+    },
+    "uses": [],
+    "notes": "The proof explicitly delegates to Appendix C using Lemmas A.1-A.4 and Theorem B.1. Their full internal dependency inventory is not yet mapped. This is an unexpanded analytic proof boundary, not an assumption FD."
+   }
+  ]
  },
  {
   "id": "J-paper-b-oooee-count",
@@ -1574,7 +1844,31 @@
    "tools/validate_paper_b_oooee_transfer.py",
    "tools/validate_paper_b_consolidated.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "complete",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Corollary 4.12 (the OOOE split).** Every formal parity-sign class",
+     "end": "## 5. Finite-depth descent densities",
+     "sha256": "29d072231d02fbdf0a85b6b483115c05ab60c9bb7f00f349dab0c8512f14d63e"
+    },
+    "uses": [
+     {
+      "claim": "J-paper-b-oooee-mixed-127",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-b-fourier-parity-transfer",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Immediate dependencies in the selected written proof; this is not an independent proof audit."
+   }
+  ]
  },
  {
   "id": "J-paper-b-five-step-density-127",
@@ -1586,7 +1880,35 @@
    "tools/validate_paper_b_oooee_transfer.py",
    "tools/validate_paper_b_consolidated.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "complete",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Theorem 5.4 (full five-step certificate density).** For every",
+     "end": "The partition behind Theorem 5.4 --- at depth five the cylinders of the",
+     "sha256": "2b1110886159a7731627d470e75364b493fdee21ec3768389cbbf682564e782d"
+    },
+    "uses": [
+     {
+      "claim": "J-five-step-certificate-subfamily",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-b-oooee-count",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-b-minimal-prefixes-five",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Immediate dependencies in the selected written proof; this is not an independent proof audit."
+   }
+  ]
  },
  {
   "id": "J-paper-b-lemma-5-1-minimal-certificates",
@@ -2903,7 +3225,22 @@
    "tests/research/juggler_sequence/test_odd_image_discrepancy.py",
    "tests/research/juggler_sequence/test_progress_coverage.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "partial",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Theorem 3.1 (single-floor parity).** One has",
+     "end": "**Proposition 3.2 (the OE third letter).** One has",
+     "sha256": "1e05e7371f23e2be874c13d5518bcfe0e0bdf62a563cec94604999d89ffe096e"
+    },
+    "uses": [],
+    "notes": "The elementary count uses the classical second-derivative/discrepancy input in this proof. Those external theorem instances are not yet separate ledger nodes."
+   }
+  ]
  },
  {
   "id": "J-finite-progress-boundary",
@@ -3308,7 +3645,31 @@
    "tools/validate_paper_b.py",
    "tools/validate_paper_b_repairs.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "complete",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Corollary 4.6 (three formal signs).** Put",
+     "end": "### 4.3 The fifth-letter split of OOEO",
+     "sha256": "6da4f2f5541195b0dd30f91b6cb9c3e79435dc051513b95eb62b0c79c26627cb"
+    },
+    "uses": [
+     {
+      "claim": "J-paper-b-restricted-mixed-sums",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-b-fourier-parity-transfer",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Immediate dependencies in the selected written proof; this is not an independent proof audit."
+   }
+  ]
  },
  {
   "id": "J-four-step-descent-density",
@@ -3320,7 +3681,35 @@
    "tools/validate_paper_b.py",
    "tools/validate_paper_b_repairs.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "complete",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Theorem 5.2 (unconditional four-step density).** One has",
+     "end": "**Theorem 5.3 (a five-step subfamily of density  \\(27/32\\) ).** Let",
+     "sha256": "cb55ccdfcf1f19e547d150fe0a87cc9a60cf35c9274a6a5eeeeaf8d0663a785e"
+    },
+    "uses": [
+     {
+      "claim": "J-automatic-descent-density",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-triple-parity-discrepancy",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-b-minimal-prefixes-five",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Immediate dependencies in the selected written proof; this is not an independent proof audit."
+   }
+  ]
  },
  {
   "id": "J-second-order-linearization",
@@ -3569,7 +3958,27 @@
    "tools/validate_paper_b_ooeoe.py",
    "tools/validate_paper_b_consolidated.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "complete",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Theorem 5.4 (full five-step certificate density).** For every",
+     "end": "The partition behind Theorem 5.4 --- at depth five the cylinders of the",
+     "sha256": "2b1110886159a7731627d470e75364b493fdee21ec3768389cbbf682564e782d"
+    },
+    "uses": [
+     {
+      "claim": "J-paper-b-five-step-density-127",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Historical ledger alias of the same full five-step theorem; follow the canonical dependency entry."
+   }
+  ]
  },
  {
   "id": "J-level3-inner-linearization",
@@ -7923,7 +8332,22 @@
    "tools/validate_paper_b.py",
    "tools/validate_paper_b_repairs.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "partial",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Theorem 4.5 (restricted mixed exponential sums).** For every fixed",
+     "end": "**Corollary 4.6 (three formal signs).** Put",
+     "sha256": "b44acda415bf7c424f509cece55cc00898d446db91b2dc87d9af6fa99f23f7a2"
+    },
+    "uses": [],
+    "notes": "Lemma 4.4, van der Corput differencing and the smooth second-derivative cases are the remaining unexpanded proof boundary; no FD hypothesis is invoked."
+   }
+  ]
  },
  {
   "id": "J-paper-b-partition-curvature",
@@ -7958,7 +8382,22 @@
   "tests": [
    "tools/validate_paper_b_ooeoe.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "partial",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Lemma 4.8 (mixed sums over the frequency intervals).** Set",
+     "end": "**Theorem 4.9 (four formal coordinates).** Uniformly over nonzero",
+     "sha256": "b8e59d84908314a9b0775d1494331da5c571c96e71507995072fe3e57077185b"
+    },
+    "uses": [],
+    "notes": "This summed analytic estimate remains a written-proof leaf; its local collision/cell arguments have not been enumerated as ledger edges."
+   }
+  ]
  },
  {
   "id": "J-paper-b-four-coordinate-sums",
@@ -7969,7 +8408,31 @@
   "tests": [
    "tools/validate_paper_b_ooeoe.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "partial",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Theorem 4.9 (four formal coordinates).** Uniformly over nonzero",
+     "end": "**Corollary 4.10 (the OOEO split).** Each of the sixteen formal",
+     "sha256": "74e32663cc89d3e6dd31092d1f2cc95177dd3d969a337b9c49349d905abd9245"
+    },
+    "uses": [
+     {
+      "claim": "J-paper-b-frequency-interval-sums",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-b-restricted-mixed-sums",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Recorded frequency-interval and lower-coordinate inputs. Centered Fourier expansion, positive truncation errors and endpoint steps still need separate dependency records."
+   }
+  ]
  },
  {
   "id": "J-paper-b-ooeoe-split",
@@ -7980,7 +8443,31 @@
   "tests": [
    "tools/validate_paper_b_ooeoe.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "complete",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Corollary 4.10 (the OOEO split).** Each of the sixteen formal",
+     "end": "### 4.4 The OOOEE mixed-mode estimate",
+     "sha256": "c3b031fbf0a12d2de43101297eb4f44b97c0646772ede9b4eb2a490d7f5369c7"
+    },
+    "uses": [
+     {
+      "claim": "J-paper-b-four-coordinate-sums",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-b-fourier-parity-transfer",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Immediate dependencies in the selected written proof; this is not an independent proof audit."
+   }
+  ]
  },
  {
   "id": "J-five-step-certificate-subfamily",
@@ -7991,7 +8478,35 @@
   "tests": [
    "tools/validate_paper_b_ooeoe.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "complete",
+    "source": {
+     "path": "docs/theory/juggler_parity_discrepancy_note.md",
+     "start": "**Theorem 5.3 (a five-step subfamily of density  \\(27/32\\) ).** Let",
+     "end": "**Theorem 5.4 (full five-step certificate density).** For every",
+     "sha256": "2bb989955a8fa6df903b0f6beab4821a2749b2078f38619189795c701220de4b"
+    },
+    "uses": [
+     {
+      "claim": "J-four-step-descent-density",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-b-ooeoe-split",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-paper-b-minimal-prefixes-five",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Immediate dependencies in the selected written proof; this is not an independent proof audit."
+   }
+  ]
  },
  {
   "id": "J-cycle-terminal-even-distortion",
@@ -10800,7 +11315,7 @@
  {
   "id": "J-ooee-contagion-five-eighths",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "Kernel-checked unconditional contagion at 5/8; advisory statement coverage and independent mathematical review pending. For every natural predicate A closed under actual Juggler preimages and every positive member a of A, there exist K>0 and a natural N such that for every natural X>=N, logMass A X>=K*(log X)^(5/8). Both actual odd-production inequalities, including the OOEE conserved-weight coefficient 11/100 and its physical cutoff, are proved and are not hypotheses. Consequently, for every real e>3/8, an eventual dyadic bound card(oddFailures y)<=y*(log y)^(-e) implies every positive start reaches one. The existing ScaleAverage.Bound also implies termination at C*(theta*pC(C)-log(1-q+q*exp(theta)))/log(2)-eta>3/8, under its stated certified-floor and parameter conditions, with no OOEE production premise. The actual failure-rate and cumulative stopped-pressure bounds remain explicit unproved hypotheses; universal termination and infinite escape are not asserted.",
+  "statement": "Kernel-checked unconditional contagion at 5/8; advisory statement coverage and independent mathematical review pending. For every natural predicate A closed under actual Juggler preimages and every positive member a of A, there exist K>0 and a natural N such that for every natural X>=N, logMass A X>=K*(log X)^(5/8). Both actual odd-production inequalities, including the OOEE coefficient 11/100 and its physical cutoff, are proved and are not additional analytic hypotheses. The separate conditional consequences are J-ooee-tao-rate-termination and J-ooee-pressure-rate-termination. No fate is excluded by this mass-growth theorem alone.",
   "source": "docs/problems/juggler_ooee_poor_fibres.md",
   "lean": "Problems/Juggler/FateOOEEWeighted.lean",
   "tests": [
@@ -10812,9 +11327,38 @@
   "related_conjectures": [],
   "lean_trust": "kernel",
   "decl": [
-   "logMass_growth",
-   "conjecture_of_tao_rate",
-   "pressure_average_conjecture"
+   "logMass_growth"
+  ],
+  "conditions": [
+   "A is closed under actual Juggler preimages and contains a positive integer."
+  ],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "complete",
+    "source": {
+     "path": "docs/theory/juggler_ooee_weighted_production_note.md",
+     "start": "## Count-to-weight proof",
+     "end": "## Proof map and validation",
+     "sha256": "76e9f9e675365de747f59b43190b689f805131c232206426ef7151e8e67a7f5f"
+    },
+    "uses": [
+     {
+      "claim": "J-ooee-actual-weighted-production",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-oe-conserved-weight-production",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-ooee-contagion-assembly",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Immediate dependencies in the selected written proof; this is not an independent proof audit."
+   }
   ]
  },
  {
@@ -10856,7 +11400,27 @@
    "tests/research/juggler_sequence/test_layer_architecture.py",
    "tests/research/juggler_sequence/test_lean_paths_declares_name.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "partial",
+    "source": {
+     "path": "docs/theory/juggler_ooee_contagion_note.md",
+     "start": "## 5. The exact exponent certificate",
+     "end": "## 7. OE is now unconditional in the conserved weight",
+     "sha256": "d39f80a50ce3e39197f35ea1fa468e0986a01d40512ff2d099a8629e412fdea2"
+    },
+    "uses": [
+     {
+      "claim": "J-fate-recursion-lemma",
+      "kind": "proof"
+     }
+    ],
+    "notes": "This older, multi-part assembly row retains formal production premises. The current root supplies OE/OOEE separately. Weight/source geometry, seed and Tao-reduction details remain unexpanded; the old source passage is not evidence that current OOEE production is still open."
+   }
+  ]
  },
  {
   "id": "J-oe-conserved-weight-production",
@@ -11538,7 +12102,27 @@
    "tests/research/juggler_sequence/test_ooee_poor_fibres.py",
    "tests/tools/test_formalpedia.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "partial",
+    "source": {
+     "path": "docs/theory/juggler_ooee_count_poor_tail_note.md",
+     "start": "## Fixed cutoffs and inclusion",
+     "end": "## Counting the resonance family",
+     "sha256": "a796b609c3ee7f4b2c983bf36bd84776dc5182766c8f286fd7b684822e679376"
+    },
+    "uses": [
+     {
+      "claim": "J-ooee-exact-fibre-parity",
+      "kind": "proof"
+     }
+    ],
+    "notes": "The actual fibre-count estimate supplies the contraposition input. Parameter selection and elementary limit lemmas are not separately mapped."
+   }
+  ]
  },
  {
   "id": "J-ooee-count-poor-reciprocal-tail",
@@ -11562,7 +12146,27 @@
    "tests/research/juggler_sequence/test_ooee_poor_fibres.py",
    "tests/tools/test_formalpedia.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "partial",
+    "source": {
+     "path": "docs/theory/juggler_ooee_count_poor_tail_note.md",
+     "start": "## Counting the resonance family",
+     "end": "## Verification and decision",
+     "sha256": "249e4595e4b781666655f6e0d9a7bfead5c7452a92b54d30aeaf6b3ff1dff745"
+    },
+    "uses": [
+     {
+      "claim": "J-ooee-count-poor-resonance",
+      "kind": "proof"
+     }
+    ],
+    "notes": "The resonance inclusion is explicit. Monotone arc counting and the dyadic-to-infinite-series lemmas remain unexpanded, though kernel evidence is already recorded."
+   }
+  ]
  },
  {
   "tag": "EXACT — HUMAN PROOF",
@@ -11587,6 +12191,34 @@
    "reciprocal_ooee_production",
    "ooee_production_uniform",
    "ooee_production"
+  ],
+  "proof_routes": [
+   {
+    "id": "written",
+    "method": "written",
+    "coverage": "complete",
+    "source": {
+     "path": "docs/theory/juggler_ooee_weighted_production_note.md",
+     "start": "## Count-to-weight proof",
+     "end": "## Proof map and validation",
+     "sha256": "76e9f9e675365de747f59b43190b689f805131c232206426ef7151e8e67a7f5f"
+    },
+    "uses": [
+     {
+      "claim": "J-ooee-exact-fibre-geometry",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-ooee-count-poor-reciprocal-tail",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-oe-conserved-weight-production",
+      "kind": "proof"
+     }
+    ],
+    "notes": "Immediate dependencies in the selected written proof; this is not an independent proof audit."
+   }
   ]
  },
  {

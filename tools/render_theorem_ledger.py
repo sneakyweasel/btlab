@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+from formalpedia_core.claim_graph import validate as validate_dependencies
 
 ROOT = Path(__file__).resolve().parents[1]
 JSON_PATH = ROOT / "docs" / "theory" / "theorem_ledger.json"
@@ -78,11 +79,11 @@ def check_tags(entries: list[dict]) -> list[str]:
     ]
 
 
-def render(entries: list[dict]) -> str:
-    bad = check_tags(entries)
+def render(entries: list[dict], *, root: Path = ROOT) -> str:
+    bad = check_tags(entries) + validate_dependencies(entries, root)
     if bad:
         raise ValueError(
-            "theorem_ledger.json uses tags outside docs/README.md:\n  " + "\n  ".join(bad)
+            "theorem_ledger.json has invalid evidence tags or proof dependencies:\n  " + "\n  ".join(bad)
         )
     lines = [HEADER]
     for row in entries:
@@ -94,6 +95,20 @@ def render(entries: list[dict]) -> str:
         lines.append(
             f"| {row['id']} | {row['tag']} | {statement} | {source} | {lean} | {tests} |\n"
         )
+    annotated = [row for row in entries if row.get('proof_routes')]
+    if annotated:
+        lines += ['\n## Recorded proof routes\n\n',
+                  'These are written-proof annotations, not additional proof certificates. '
+                  'Rows absent from this table have unknown dependency coverage. '
+                  'Use `python tools/formalpedia.py claim-graph <ID>` for the selected route and review boundary.\n\n',
+                  '| Claim | Route | Immediate coverage | Uses (kind) |\n',
+                  '|---|---|---|---|\n']
+        for row in annotated:
+            for route in row['proof_routes']:
+                uses = ', '.join(f"{e['claim']} ({e['kind']})" for e in route['uses'])
+                if not uses:
+                    uses = 'reviewed empty list' if route['coverage'] == 'complete' else 'none recorded'
+                lines.append(f"| {row['id']} | {route['id']} | {route['coverage']} | {uses} |\n")
     return "".join(lines)
 
 

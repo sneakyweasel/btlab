@@ -156,11 +156,11 @@ def paper_surface(index: dict[str, Any]) -> dict[str, Any]:
 def dag(index: dict[str, Any], ledger: list[dict[str, Any]]) -> dict[str, Any]:
     """The claim graph: modules that carry a ledger row, reduced to its essential edges.
 
-    Edges are kept at module granularity on purpose.  Only 27 of 263 verified rows name
-    their declaration, so a row-to-row edge would assert a dependency nobody has checked --
-    file A importing file B says some theorem there may rest on some theorem here, not which.
-    Transitive reduction is what makes the result readable: 894 edges carry the same
-    information as 119, and the 119 are the ones a person can follow.
+    Imports describe module use, not which English claim uses another claim.
+    This navigation graph intentionally stays at module granularity. Recorded
+    written proof routes and separately projected compiled declaration edges live
+    in claim_graph/claim_query. Transitive reduction keeps this view readable;
+    current counts are computed below, never embedded in the documentation.
     """
     file_to_mod = {m["file"]: name for name, m in index["modules"].items()}
     rows: dict[str, list[str]] = defaultdict(list)

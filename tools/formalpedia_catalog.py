@@ -213,6 +213,12 @@ class Catalogue:
         return {'status': 'found', 'snapshot': snapshot, 'claim': row,
                 'declarations': declarations, 'trust_notice': TRUST_NOTICE}
 
+    def claim_dependencies(self, ledger_id: str, **options) -> dict:
+        """Inspect selected written proof routes and optional compiled associations."""
+        from formalpedia_core.claim_query import query
+        with self._lock:
+            return query(self, ledger_id, **options)
+
     def impact(self, target: str, *, limit: int = 50, offset: int = 0) -> dict:
         page_bounds(limit, offset)
         index, _, snapshot = self.snapshot()

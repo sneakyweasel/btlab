@@ -4913,6 +4913,10 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
+        "J-paper-c-hypothesis-tao-rate",
+        "J-paper-c-hypothesis-stopped-pressure",
+        "J-ooee-tao-rate-termination",
+        "J-ooee-pressure-rate-termination",
         "J-ooee-short-mixed-modes",
         "J-ooee-poor-fibre-tail",
         "J-ooee-contagion-five-eighths",

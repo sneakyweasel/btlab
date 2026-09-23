@@ -156,10 +156,14 @@ classified as stronger or weaker.
 
 ## MCP connection checks
 
-Protocol version 3 advertises 18 read-only tools. The compiler tools are
+Protocol version 4 advertises 19 read-only tools. The compiler tools are
 `formalpedia_capabilities`, `formalpedia_semantic_status`,
 `formalpedia_semantic_show`, `formalpedia_type_search`,
 `formalpedia_dependencies`, and `formalpedia_semantic_diff`.
+
+`formalpedia_claim_dependencies` adds the [written-proof graph](claim_dependencies.md)
+and an optional, separately labelled projection of compiled declaration dependencies.
+Compiler associations never fill gaps in the written-proof annotations.
 
 `capabilities` reports the loaded server entry-point fingerprint, checkout path,
 tool groups, and semantic status. Use it to detect clients still connected to an
