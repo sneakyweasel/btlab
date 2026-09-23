@@ -25,5 +25,3 @@ A useful further deficit must constrain the number of actual F
 sources failing to precede a G in their own cell, while retaining
 the common cyclic equations. No next gate is launched.
 Members: cycle_quartic_band, J-cycle-quartic-return-order.
-
-

@@ -25,4 +25,3 @@ assembly remains a written AI-assisted proof; Lean verifies its
 conditional arithmetic/counting kernels. Independent human review is
 outstanding.
 Members: cycle_rank_curvature.
-

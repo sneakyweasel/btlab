@@ -23,5 +23,3 @@ family and stop local-prefix stacking; deleting this one parameterization
 would not prove the general obstruction.
 Members: cycle_cut_predecessors, J-cycle-cut-predecessor-alignment,
 J-cycle-cut-predecessor-two-signs.
-
-

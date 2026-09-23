@@ -28,4 +28,3 @@ entry above keeps its conclusion and gains a number: the door delivers the cycle
 starting line and stops before the first leftover.
 
 Dossier: [negative_lemma_eight_window](../problems/juggler_negative_lemma_eight_window.md).
-

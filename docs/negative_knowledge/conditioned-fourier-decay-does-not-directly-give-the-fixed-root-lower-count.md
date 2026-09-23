@@ -21,4 +21,3 @@ does control the final unit loss after averaging over every H: its retained
 fraction is between 5/21 and 20/21 of the coarse coefficient, uniformly in
 positive depth. This uses the actual geometric fibres. The fixed-root coarse
 lower count remains open; the direct Fourier-transfer closure above is unchanged.
-

@@ -21,4 +21,3 @@ The actual selected-pair theorem is a positive localization result.
 A signed estimate using the complete simultaneous cycle constraints
 remains open. No count pair is excluded and no PDF was rebuilt.
 Members: cycle_rank_curvature.
-

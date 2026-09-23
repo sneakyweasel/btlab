@@ -99,4 +99,3 @@ which Theorem 4.4 is derived. The \((n+1)\) against \(n\) is the
 granularity of the return. Do not open it as a third mechanism.
 
 ---
-

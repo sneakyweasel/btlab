@@ -22,4 +22,3 @@ polynomial-sign classifiers but has a mod4 rule and gives no complexity
 bound on cycle-selected ranks. Do not promote either narrow obstruction
 to a no-cycle theorem. Members: J-cycle-oe-quotient-parity-carry,
 J-cycle-ooe-carry-substitution-obstruction, cycle_cubic_induction.
-

@@ -16,5 +16,3 @@ omits the O-prefix equations and is not a cycle. Product identities
 remain existing floor-defect composition. A future propagation result
 must use the joint absolute cells or multiple ordered boundaries;
 carry bookkeeping or another single strip is not a global proof.
-
-

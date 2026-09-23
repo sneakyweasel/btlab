@@ -25,4 +25,3 @@ Sources: [Paper A](../theory/juggler_finite_dynamics_note.md),
 [Paper B](../theory/juggler_parity_discrepancy_note.md),
 [Paper C](../theory/juggler_fate_almost_all_note.md), and the corrected
 [cycle-run dossier](../problems/juggler_cycle_run_alphabet.md).
-

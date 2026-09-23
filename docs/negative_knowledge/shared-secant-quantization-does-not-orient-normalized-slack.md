@@ -26,4 +26,3 @@ wrap positions. No new period, height, or minimum restriction is obtained.
 The conditional lattice test and written family are retained without a
 new production Lean module, source census, or PDF work.
 Members: cycle_rank_curvature.
-

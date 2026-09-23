@@ -25,4 +25,3 @@ words, switching equations, right side other than 1, or general escape.
 Allowing arbitrary new D is vacuous since every n>=2 solves
 \(n^2-(n^2-1)\cdot1^2=1\). No invariant nonsquare seed was constructed.
 Member: J-pell-ooe-interlacing-obstruction.
-

@@ -32,4 +32,3 @@ Dossiers: [cerny_bt](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392
 [misere_quotients](https://github.com/sneakyweasel/btlab/blob/2deed21498fe0392fbb8ebb8c9e57df18164f471/docs/problems/misere_quotients.md).
 
 ---
-

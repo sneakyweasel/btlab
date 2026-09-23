@@ -25,5 +25,3 @@ gap excludes every repeated B cell under Q43. That new restriction still
 allows all F valleys to be unselected. A further attack must use absolute
 shared integer endpoints beyond the already satisfied real cocycle.
 Members: cycle_quartic_band, J-cycle-quartic-separated-cells.
-
-

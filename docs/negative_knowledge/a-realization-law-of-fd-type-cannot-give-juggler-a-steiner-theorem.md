@@ -29,4 +29,3 @@ statement as a route to bounded-`m` cycle exclusion. The Juggler twin of
 Lemma 8 is the pointwise odd-run bound `run(n) <= C log n` -- the odd-tower
 fragment -- and that is the door, if there is one. Dossier:
 [collatz_finance_mirror](../problems/juggler_collatz_finance_mirror.md).
-

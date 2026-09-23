@@ -26,4 +26,3 @@ required interval population exceeds exact guard-compatible preimage
 capacity beyond the existing spacing and grid bounds. Restating the
 global matching requirement alone is not a new obstruction.
 Members: cycle_return_seam, J-cycle-return-seam-family.
-

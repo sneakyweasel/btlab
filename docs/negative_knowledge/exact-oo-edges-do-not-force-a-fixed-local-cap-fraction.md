@@ -28,4 +28,3 @@ human review outstanding. Two fixed integer controls, found by bounded
 parameter searches and replayed exactly, illustrate rather than prove
 infinitude. No orbit census or certified-floor increase follows.
 Members: cycle_rank_curvature.
-

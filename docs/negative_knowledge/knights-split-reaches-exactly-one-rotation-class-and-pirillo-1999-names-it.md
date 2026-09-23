@@ -40,4 +40,3 @@ This closes the follow-up left open by `J-multiplicative-knight-residual-is-the-
 and by the REFUTED concentration half of `J-christoffel-one-parameter`. Do not
 reopen as: a Knight-style cancellation on the hug word, on a bunched word, on a
 CycleMin shape word, or on any reverse-closed non-Christoffel class.
-

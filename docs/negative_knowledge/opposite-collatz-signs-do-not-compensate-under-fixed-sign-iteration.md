@@ -17,4 +17,3 @@ codes H and -H are perfectly dependent, so their cylinder conditions
 cannot be multiplied as independent filters. No summability over all
 depths at a fixed root, new fate exclusion or improved Juggler rate is inferred.
 Ledger: C-fibre-cross-sign-compensation-obstruction.
-

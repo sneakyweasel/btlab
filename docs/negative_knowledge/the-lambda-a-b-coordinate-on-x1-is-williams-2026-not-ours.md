@@ -32,4 +32,3 @@ period bound, and the negative-side window are the laboratory's.
 
 Dossiers: [exponent_valuation_mirror](../problems/juggler_exponent_valuation_mirror.md),
 [mersenne_floor_power](../problems/juggler_mersenne_floor_power.md).
-

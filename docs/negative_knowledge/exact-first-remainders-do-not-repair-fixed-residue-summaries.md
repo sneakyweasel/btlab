@@ -21,4 +21,3 @@ The residual XOR energy counts changes in mismatch status; an actual
 mismatch sum still evaluates all constituent guards. Enlarging a fixed
 modulus, packing the checks, or naming that sum an energy is not a new
 uniform arithmetic update. Member: J-cycle-ooe-fixed-residue-obstruction.
-

@@ -31,4 +31,3 @@ Dossiers: [juggler_cycle_walk_mechanical](../problems/juggler_cycle_walk_mechani
 [juggler_cycle_walk_exchange](../problems/juggler_cycle_walk_exchange.md).
 
 ---
-

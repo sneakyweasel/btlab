@@ -38,4 +38,3 @@ branches already say --- `python tools/branch_drift.py` names them.
 
 Kind: `CLOSE`. Dossier:
 [oeis_neighbourhood](../problems/juggler_oeis_neighbourhood.md).
-

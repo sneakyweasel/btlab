@@ -29,5 +29,3 @@ global existence conclusion, but is excluded by the new component
 condition at the stated small-product hypothesis. It is abstract,
 not a floor-realized cycle. No global no-cycle conclusion follows.
 Members: cycle_quartic_band, J-cycle-quartic-component-gap-witness.
-
-

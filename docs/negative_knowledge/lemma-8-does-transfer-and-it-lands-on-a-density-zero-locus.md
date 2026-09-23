@@ -35,4 +35,3 @@ digit of `sqrt 2`. That is a placement and not a Mahler transfer; the
 `{(3/2)^n}` cluster below is untouched.
 
 Dossier: [exponent_valuation_mirror](../problems/juggler_exponent_valuation_mirror.md).
-

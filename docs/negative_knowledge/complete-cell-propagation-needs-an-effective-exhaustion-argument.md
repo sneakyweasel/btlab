@@ -25,4 +25,3 @@ may accelerate the complete algorithm but are unnecessary for correctness.
 Neither larger generic machinery nor extra unfinished sweeps establish
 the missing efficient arithmetic obstruction. PDFs are unchanged.
 Members: cycle_rank_curvature.
-

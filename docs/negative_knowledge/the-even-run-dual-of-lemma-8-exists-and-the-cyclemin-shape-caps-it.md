@@ -66,4 +66,3 @@ the Mersenne reduction transports the Juggler's no-cycle count as anything stron
 than a congruence.
 
 Dossier: [even_run_mersenne_floor](../problems/juggler_even_run_mersenne_floor.md).
-

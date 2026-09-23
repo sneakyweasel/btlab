@@ -33,4 +33,3 @@ clause is no longer bounded by what was readable; it is bounded only by the
 sources themselves. The prior-art clock splits: the counting objects start in
 January 2026, the asymptotic layer not until July. Source-by-source reading:
 [jump spectrum](../problems/juggler_jump_spectrum.md).
-

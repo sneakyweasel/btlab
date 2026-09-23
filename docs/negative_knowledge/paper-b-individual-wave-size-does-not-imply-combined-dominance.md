@@ -45,4 +45,3 @@ lookup. Juggler paper-cut companions:
 [juggler_branch_ledger.md](../juggler_branch_ledger.md),
 [theory/juggler_cycle_itinerary_structure_note.md](../theory/juggler_cycle_itinerary_structure_note.md)
 §8.
-

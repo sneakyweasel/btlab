@@ -16,4 +16,3 @@ tail is O_eta(U^(-7/9)), in an AI-assisted written proof pending independent
 review and analytic Lean verification. The branch is now **PROMOTE**;
 uniform positivity remains unasserted. A larger midpoint scan still supplies
 none of this arithmetic proof, and the higher-depth localization remains closed.
-

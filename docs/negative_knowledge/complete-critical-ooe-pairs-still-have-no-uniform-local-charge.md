@@ -20,4 +20,3 @@ the fixed surplus is above 3*10^-6. A positive count is not the missing
 signed or aggregate loss estimate. That complete-cycle question is PARK.
 Members: cycle_rank_curvature, J-cubic-critical-ooe-pair-obstruction,
 J-cubic-ooe-square-start-packing.
-

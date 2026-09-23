@@ -36,5 +36,3 @@ bookkeeping does not impose convergent-quality approximation.
 No new count-pair theorem or further executable branch resulted.
 Members: cycle_period_upper_bound, J-cycle-loglog-surplus-window,
 J-cycle-period-surplus-word-obstruction.
-
-

@@ -472,4 +472,3 @@ that shortcut, not actual fifth-state balance or other analytic
 methods. Three reused finite blocks support all 1,209 two-to-one
 assignments at prefix four; no uniform capacity follows. Details:
 [neighbor-scale Results 6](../problems/juggler_parity_neighbor_scale.md).
-

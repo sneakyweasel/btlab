@@ -13,4 +13,3 @@ with the budget, so no fixed integer with a summable coefficient series
 is produced. The result concerns homogeneous terminal coefficients;
 unbounded stopping, nonperiodic terminal weights, fate-specific growth and
 actual Juggler pressure remain open. Ledger: C-fibre-bounded-stopping-obstruction.
-

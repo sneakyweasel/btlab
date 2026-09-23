@@ -23,5 +23,3 @@ remainder-parity pattern and odd minimum merely recodes all original guards.
 The fully arithmetic joint comparison remains open. A concrete next test
 must impose both exact odd O-predecessors of the terminal cut states.
 Members: cycle_weighted_remainders, J-cycle-real-cell-weight-obstruction.
-
-

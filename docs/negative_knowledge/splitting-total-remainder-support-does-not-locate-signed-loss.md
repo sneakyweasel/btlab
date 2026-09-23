@@ -23,4 +23,3 @@ must not be equated with the old universal compulsory-charge budget.
 Further amplitude, placement or coupling is required. No cycle class
 is excluded, and no PDF work was performed.
 Members: cycle_rank_curvature.
-

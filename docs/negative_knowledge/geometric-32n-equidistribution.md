@@ -21,4 +21,3 @@ progress.
 Dossiers: [juggler_three_halves_mod_one](../problems/juggler_three_halves_mod_one.md).
 
 ---
-

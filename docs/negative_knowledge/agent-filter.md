@@ -9,4 +9,3 @@ Three tests, same wording as `.cursor/rules/methodology.mdc`:
 `Already killed by?` names the index cluster or which test fails;
 `none` only with a reason. Leftover-killer slogans with no new identity
 are `REPARAMETERIZATION` (`CLOSE`).
-

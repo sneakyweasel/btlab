@@ -33,4 +33,3 @@ fourth cycle has `|2^K - 3^o| >= 5` (recorded in `literature/mihailescu-2004-cat
 Do not reopen as: a search for a prime avoiding the gap, a congruence obstruction
 on cycle lengths from a fixed prime, a Zsigmondy or Bang argument on `3^o - 2^K`,
 or a Mersenne/Fermat primality reading of the leftover lengths.
-

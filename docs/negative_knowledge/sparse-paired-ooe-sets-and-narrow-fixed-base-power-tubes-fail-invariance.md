@@ -28,4 +28,3 @@ compactness countermodel, not an actual OOE counterexample. The general
 sparse invariant-set construction remains PARK, with no escape proof.
 Members: ooe_escape_families, J-ooe-escape-sparse-pair-obstruction,
 J-ooe-escape-power-tube-obstruction.
-

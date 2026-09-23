@@ -33,4 +33,3 @@ and the ladder profile `Phi` behind the Spitzer identity is closed form, so
 (`J-paper-b-jump-amplitude-is-closed-form`). What is shut is this route, not the
 question. The lesson is narrow and worth keeping: a self-referential relation
 fixes shape, so an amplitude has to come from outside the function.
-

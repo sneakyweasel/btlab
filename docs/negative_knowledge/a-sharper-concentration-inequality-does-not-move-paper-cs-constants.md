@@ -54,4 +54,3 @@ equation (8); under Zudilin's there is no sharper statement in Paper A's
 citation at all. Nobody here has read Rhin p. 160. Wu-Wang's
 \(5.1163051\) is sharper still either way and is what the laboratory
 uses.
-

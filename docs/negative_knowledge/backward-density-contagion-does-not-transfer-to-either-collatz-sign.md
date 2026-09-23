@@ -18,4 +18,3 @@ targets and could not detect this error. Both target parities are
 now included. Collatz's finite normalized mean is also not exactly
 one: the optional odd predecessor contributes 3m/(2m-1), approaching
 3/2. No termination threshold changes.
-

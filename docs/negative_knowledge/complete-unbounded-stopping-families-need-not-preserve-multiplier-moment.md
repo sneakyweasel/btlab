@@ -13,4 +13,3 @@ The coefficient shift and fixed-depth identities remain valid.
 do not infer a stopped expectation from Kraft equality alone.
 The manuscript is corrected; Proposition 5.12 and the termination
 thresholds are unchanged. Ledger: `J-collatz-complete-stopping-loses-moment`.
-

@@ -32,5 +32,3 @@ mechanism. Retain its exact refinements; the full arithmetic carry
 bound remains open, and is not refuted by a real-cell or local witness.
 No period, height or floor update and no automatic next gate.
 Members: cycle_weighted_remainders, J-cycle-integer-weight-refinements.
-
-

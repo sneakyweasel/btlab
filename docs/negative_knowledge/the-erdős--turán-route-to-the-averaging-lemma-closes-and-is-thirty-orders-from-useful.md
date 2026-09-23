@@ -54,4 +54,3 @@ measurements that answer it were in hand from the first hour: a density
 falling like \(m^{-1/3}\) is a convergent sum, and a convergent sum cannot be
 concentrated on. Before building machinery to bound a set's weight somewhere,
 integrate the density and see whether the somewhere has any room in it.
-

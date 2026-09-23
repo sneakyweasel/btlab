@@ -58,4 +58,3 @@ makes \(n\gg L^{2}\) a hard floor no Diophantine input can go below
 `J-cyclemin-closure-threshold`).
 Kind: `REPARAMETERIZATION` / `PARK_STOP`.
 Branch: [juggler_cycle_method_ceilings](../problems/juggler_cycle_method_ceilings.md).
-

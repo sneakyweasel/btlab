@@ -19,4 +19,3 @@ Do not relabel the terminal full-word predicate, two named branches,
 or a larger source scan as a no-cycle obstruction. Members:
 cycle_cubic_induction, J-cycle-cubic-euclidean-induction,
 J-cycle-cubic-return-compression, J-cycle-cubic-hidden-parity.
-

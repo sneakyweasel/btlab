@@ -15,4 +15,3 @@ The altered cycle 3->5->10->3 satisfies the derived bounds and both
 extrema anchors while failing the remaining odd upper cell. This refutes
 the sufficiency of those consequences, not the universal wrong-parity
 statement. No new floor or cap campaign is justified by these findings.
-

@@ -25,4 +25,3 @@ lives, and the row should say so. This is the same failure as
 `J-paper-b-survivors-are-oeis-a076227` one level up: there a sequence was
 searchable and nobody searched; here the theorems are about an object under
 another name.
-

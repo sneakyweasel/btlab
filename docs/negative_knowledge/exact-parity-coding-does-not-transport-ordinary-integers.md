@@ -33,4 +33,3 @@ is supplied, the corresponding ordinary signed Collatz cycle has the
 same return times. The divisibility remains unproved for Juggler cycles;
 neither global code injectivity nor periodicity of a start from periodicity
 of its code follows. No new cycle is excluded.
-

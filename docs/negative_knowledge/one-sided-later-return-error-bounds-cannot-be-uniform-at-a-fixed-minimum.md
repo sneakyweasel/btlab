@@ -19,5 +19,3 @@ with the mixed block and suffix to give the original product3^o/2^L>1.
 An extra fictitious same-word terminal edge or an uncontrolled prefix
 does not prove no-cycle. A new joint cell or absolute-loss estimate is
 required; the terminal closure identity alone is a reformulation.
-
-

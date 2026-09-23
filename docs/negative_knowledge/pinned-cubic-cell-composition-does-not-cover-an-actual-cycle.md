@@ -43,4 +43,3 @@ so the open window is empty. Do not reopen (UC6) as a missing
 inequality on unused capacities; eliminating the complements
 recovers the existing transport, as already recorded in
 J-cycle-rank-curvature-window.
-

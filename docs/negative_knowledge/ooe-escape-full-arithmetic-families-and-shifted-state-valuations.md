@@ -19,4 +19,3 @@ with its original family hypotheses. Arbitrarily large finite blocks,
 bounded replay maxima, and family departure do not prove or refute one
 escaping trajectory. Rows J-ooe-escape-residue-obstruction,
 J-ooe-escape-polynomial-obstruction and J-ooe-escape-shifted-valuation.
-

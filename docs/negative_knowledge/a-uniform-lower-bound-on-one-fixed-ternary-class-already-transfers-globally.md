@@ -15,4 +15,3 @@ one fixed integer. It does not supply either bound. A depth-dependent class
 must account for the changing q_r. The global/local-minimum summability
 consequence is written; bounded access, block transport and qualitative
 divergence equivalence are kernel-checked. Ledger: C-fibre-local-lower-transfer.
-

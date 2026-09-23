@@ -15,4 +15,3 @@ is not a refutation of the finite certificates, that family, or actual
 fixed-root divergence. A direct lower count at one ordinary integer need
 not arise from a periodic weight. Four new implications are kernel-checked.
 Ledger: C-fibre-nearcritical-global-rate-barrier.
-

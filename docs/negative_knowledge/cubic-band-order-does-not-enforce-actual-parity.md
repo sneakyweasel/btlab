@@ -31,5 +31,3 @@ The parked question is uniform intersection of every threshold cycle
 with its wrong-parity set. Even that would leave actual cycles with
 M>=m^3 unresolved. Members: `cycle_cubic_band`,
 `J-cycle-cubic-band-order`, `J-cycle-threshold-relaxation`.
-
-

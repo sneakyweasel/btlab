@@ -29,4 +29,3 @@ at least e distinct wrong transients of the first form. This is conditional
 and supplies no compatible cycle. The full shared absolute-cell problem
 remains open; no new restriction, census, Lean module, or PDF work follows.
 Members: cycle_rank_curvature.
-

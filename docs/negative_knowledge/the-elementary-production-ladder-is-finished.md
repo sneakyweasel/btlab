@@ -29,4 +29,3 @@ bound. Anything that moves a constant must move \(\lambda\) by at least
 \(0.0174\), two hundred times more than the family contains, so it has to
 come from outside the family -- the \(r\ge2\) rungs, which need genuinely
 nested floors and are exported to Paper B. \(\lambda^{**}=0.4926\) stands.
-

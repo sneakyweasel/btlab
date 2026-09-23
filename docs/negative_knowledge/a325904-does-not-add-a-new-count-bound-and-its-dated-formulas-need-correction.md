@@ -16,4 +16,3 @@ Use exact integer binomials and independently check the transform's offsets.
 Do not treat either the printed formula or stored coefficient list as an
 unquestioned oracle, and do not replace the paper's working path DP on this
 evidence. No stronger density estimate or phase-profile result follows.
-

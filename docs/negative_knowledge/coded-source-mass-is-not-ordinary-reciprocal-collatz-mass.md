@@ -19,4 +19,3 @@ odd-production counterexample are now kernel-checked in
 nonnegative finite cutoffs. This verifies the distinction without adding
 an odd-production estimate. The sharp reciprocal comparison and uniqueness
 remain written proofs (`J-code-mass-kernel-foundation`).
-

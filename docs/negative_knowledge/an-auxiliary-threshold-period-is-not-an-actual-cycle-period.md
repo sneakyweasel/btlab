@@ -28,5 +28,3 @@ absent from its cell. Do not extend the positive replacement sign
 without checking that ordering and actual partner availability.
 No next gate is launched.
 Members: cycle_quartic_band, J-cycle-quartic-auxiliary-loss-budget.
-
-

@@ -35,4 +35,3 @@ The general lesson, which is not about this route: before preferring one basis t
 another, check which basis the available hypothesis is stated in. An L1 bound is
 cheap in whichever basis you like and useless in the one whose inputs you cannot
 estimate.
-

@@ -29,4 +29,3 @@ Unconditionally, a zero-density invariant subset remains unresolved;
 general nonsquare trajectories and unbounded variation of block types
 are not excluded. No escape or universal termination theorem.
 Member: J-power-family-square-reentry-obstruction.
-

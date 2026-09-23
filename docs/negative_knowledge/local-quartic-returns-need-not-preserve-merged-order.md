@@ -29,5 +29,3 @@ of a factor-free alphabet from an upper power envelope.
 Further restrictions would have to use shared cyclic integer cells.
 No next gate is launched.
 Members: cycle_quartic_band, J-cycle-quartic-return-order.
-
-

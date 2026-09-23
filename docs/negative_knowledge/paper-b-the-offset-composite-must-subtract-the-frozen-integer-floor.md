@@ -27,4 +27,3 @@ and short-interval localization remain unproved.
 Source: [branch dossier](../problems/juggler_paper_b_offset_anchor.md).
 Ledger: J-paper-b-offset-composite-729.
 Exact regression control: tools/validate_paper_b_offset_anchor.py.
-

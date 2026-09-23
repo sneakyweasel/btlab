@@ -37,5 +37,3 @@ control from the shared odd-cube predecessors. Naming that missing
 inequality, restoring full guards or increasing return depth is not
 itself a new attack. No next gate is launched.
 Members: cycle_weighted_remainders, J-cycle-integer-weight-refinements.
-
-

@@ -20,4 +20,3 @@ steps contribute at most 3a/2^(d+1) at a fixed positive root a, for both
 signs except the negative fixed point one. Their total is at most 3a.
 Thus the transported peaks cannot themselves witness fixed-root divergence.
 This is a summable-family reduction, not a bound for general exponent words.
-

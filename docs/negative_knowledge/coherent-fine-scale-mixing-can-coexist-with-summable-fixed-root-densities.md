@@ -12,4 +12,3 @@ Tao's affine stationarity; a checked one-step inequality separates the unit
 model from both signed operators. It refutes no actual Collatz coefficient
 lower bound. The arithmetic fixed-root and Juggler pressure questions remain
 open. Ledger: C-fibre-mixing-pointwise-obstruction.
-

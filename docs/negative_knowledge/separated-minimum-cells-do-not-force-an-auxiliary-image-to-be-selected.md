@@ -34,5 +34,3 @@ Re-grouping the known even-to-odd charges eta(v^2) by quartic tower type
 does not supply a new signed residual estimate. Absolute cycle exclusion
 remains PARK; no raised floor, full cycle, or divergent orbit is claimed.
 Members: cycle_quartic_band, J-cycle-quartic-absolute-reentry.
-
-

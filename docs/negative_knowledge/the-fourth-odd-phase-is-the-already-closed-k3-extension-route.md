@@ -19,4 +19,3 @@ Decision: **CLOSE** the direct Paper B extension, not the fourth-phase
 cancellation question. No new analytic saving or termination implication.
 Member: `J-fixed-first-gap-separation`; connects to
 `J-scale-invariant-R-extension` and `J-increment-first-K3` below.
-

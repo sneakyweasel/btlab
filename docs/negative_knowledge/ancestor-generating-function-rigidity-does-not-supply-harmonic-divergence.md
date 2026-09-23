@@ -16,4 +16,3 @@ nonunit example does not refute the unit-root lower target. The latter,
 and Juggler's required pressure estimate, remain open. No impossibility
 claim for a genuinely new analytic estimate is made.
 Ledger: C-ancestor-source-weighted-equivalence.
-

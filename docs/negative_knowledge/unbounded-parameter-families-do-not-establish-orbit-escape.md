@@ -17,4 +17,3 @@ constituent guard evaluations. The aggregate composition law already
 exists in GlobalDefect and its mod2 residue only reads endpoints.
 Members: cycle_remainder_transport, J-cycle-ooe-family-chain-bound,
 J-cycle-ooe-exact-remainder-repair.
-

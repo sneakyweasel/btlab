@@ -41,4 +41,3 @@ shifts. Cutoff interpolation gives
 the 25th power of the ordinary positive ancestor count for every positive
 target prime to 3. The original floating-point model supplied none of
 these missing proof steps. No Juggler termination estimate follows.
-

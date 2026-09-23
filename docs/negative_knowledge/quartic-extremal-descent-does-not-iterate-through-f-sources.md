@@ -32,5 +32,3 @@ obtained. An arithmetic constraint on auxiliary periodic components
 remains missing; finite closure and its sign are not that constraint.
 No next gate is launched.
 Members: cycle_quartic_band, J-cycle-quartic-return-order.
-
-

@@ -30,4 +30,3 @@ channel, not observations about the fact. Probe the host; look the identifier up
 in an index that is reachable; and when a channel-based rejection is recorded,
 record what would overturn it. Related: the four hosts recorded as egress-blocked
 that answered 200 on the first try, in the same day's reading.
-

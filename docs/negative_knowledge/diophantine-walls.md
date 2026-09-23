@@ -106,4 +106,3 @@ Dossiers: [juggler_cycle_gap_baker](../problems/juggler_cycle_gap_baker.md),
 [juggler_cycle_diophantine_survivors](../problems/juggler_cycle_diophantine_survivors.md).
 
 ---
-

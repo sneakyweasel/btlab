@@ -33,5 +33,3 @@ No strict joint-support deficit, numerical period/height improvement,
 full-AA density or no-cycle theorem is obtained. Exact joint support
 remains open; the certified floor and published period floor are unchanged.
 Members: cycle_preimage_capacity, J-cycle-joint-prefix-capacity.
-
-

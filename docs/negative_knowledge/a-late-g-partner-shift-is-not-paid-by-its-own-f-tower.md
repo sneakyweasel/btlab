@@ -24,5 +24,3 @@ can lie outside Y while the actual F tower still returns inside
 the cycle. Vacancy alone is not a no-cycle proof; the across-cell
 replacement question remains PARK. No next gate is launched.
 Members: cycle_quartic_band, J-cycle-quartic-covered-cell-budget.
-
-

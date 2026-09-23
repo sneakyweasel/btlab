@@ -12,4 +12,3 @@ The required exponent is below 2/3. See the exact calculation in
 pairs. These floors concern its upper-bound expression, not the actual
 sum. A different bilinear argument with extra structure is not excluded;
 no representation of growing-depth Juggler pressure is supplied here.
-

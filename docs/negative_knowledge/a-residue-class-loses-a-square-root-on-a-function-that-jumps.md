@@ -22,4 +22,3 @@ the withdrawn `b/a = 40.98` reading and the tension attached to it
 Before using a class to measure a `d`-dependence, check that the target is
 continuous in the coordinate. If it is not, the honest bound on what the class
 can resolve is `17 sqrt(|frac(q beta)|)`, not `|frac(q beta)|`.
-

@@ -35,4 +35,3 @@ of backward-path parity words at growing depth, Appendix C's question;
 do not reopen the construction as a refutation route, and do not open
 a branch for it without a new analytic idea.
 Members: cylinder_energy_measure.
-

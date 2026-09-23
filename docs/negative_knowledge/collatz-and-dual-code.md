@@ -24,4 +24,3 @@ whole; exact layer recorded),
 [weak_collatz_floor_5x4_rplus](../problems/weak_collatz_floor_5x4_rplus.md).
 
 ---
-

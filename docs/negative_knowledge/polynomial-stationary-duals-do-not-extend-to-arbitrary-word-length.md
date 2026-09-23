@@ -10,4 +10,3 @@ ninth-degree complete cancellation supplies no estimate for the actual
 OOE parity-selected sum. This does not close the existing perturbed
 cubic method, frequency averaging, or other nonpolynomial analytic
 methods. Member: `J-polynomial-dual-unit-gap`.
-

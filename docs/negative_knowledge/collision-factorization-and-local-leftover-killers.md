@@ -49,4 +49,3 @@ Lean packaging of Collision Factorization (`Seam.lean`,
 predecessor-type names, not a new local attack.
 
 ---
-

@@ -41,4 +41,3 @@ Members: `J-cyclemin-necklace`, `J-cyclemin-bunched-short-path`,
 `J-q-return-section-descent`, `J-shared-parity-balance-gap`.
 
 ---
-

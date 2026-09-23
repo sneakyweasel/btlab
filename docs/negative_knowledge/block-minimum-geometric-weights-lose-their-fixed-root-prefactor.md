@@ -18,4 +18,3 @@ or actual coefficient divergence. The negative fixed point one is excluded
 by the nonperiodicity hypothesis and retains its exponential peak. Fifteen
 exact controls cover the written block identity and actual finite endpoints.
 Ledger: C-fibre-fixed-root-linear-bound, C-fibre-block-prefactor-collapse.
-

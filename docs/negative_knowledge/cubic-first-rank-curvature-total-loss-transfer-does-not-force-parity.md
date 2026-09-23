@@ -89,4 +89,3 @@ propagation: adding the baseline again after shaving the cap would
 double count it. No false global counterexample is inferred from free
 local E cells or box endpoints; a stronger inequality from exact shared
 integer secants remains unproved.
-

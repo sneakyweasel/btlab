@@ -44,4 +44,3 @@ subsequently replaces the polynomial negative allowance by one absolute
 constant. The last-window correction handles preperiodic targets. Unweighted
 coefficient-series divergence suffices for either sign and remains open.
 This does not give uniform fixed-depth reproduction or a Juggler packing transfer.
-

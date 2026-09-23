@@ -138,4 +138,3 @@ Pinned: [tests/research/juggler_sequence/test_negative_m_cycles.py](../../tests/
 `test_herchers_corollary_29_transposes_but_improves_the_wrong_constant`,
 `test_herchers_lemma_26_transposes_and_its_window_bound_spares_the_real_cycles` and
 `test_a_stronger_run_factor_excludes_the_cycles_that_exist`.
-

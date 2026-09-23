@@ -39,5 +39,3 @@ results and scoped obstructions now have compiled Lean proofs, with canonical
 written proofs in Paper A Section 3.10. Earlier written-only status entries
 are historical. Formalization does not settle uniform absolute-cell
 wrong-parity intersection; the author authorized that next question.
-
-

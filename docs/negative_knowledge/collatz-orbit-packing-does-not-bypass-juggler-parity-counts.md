@@ -17,4 +17,3 @@ are (0,0,17,13,1,1), not the binomial (1,5,10,10,5,1); this only refutes
 the exact finite law. Growing-depth live-cell counts remain the open
 pressure input. No general impossibility theorem for orbit counting is
 claimed, and the earlier valley-composition closure is unchanged.
-

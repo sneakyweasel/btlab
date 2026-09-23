@@ -26,4 +26,3 @@ pruning claim follows. Further complete-cell elimination remains PARK,
 with no added sweep or minimum subdivision in this gate.
 Members: cycle_rank_curvature, J-cubic-critical-cost-compatibility,
 J-cubic-critical-cost-kernels.
-

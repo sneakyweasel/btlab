@@ -12,4 +12,3 @@ Paper B or a growing-depth result. The next unsupported next-odd-phase
 weight is at three predecessors. The earlier shrinking-target warning
 remains valid: qualitative equidistribution supplies no such rate.
 Members: `J-two-predecessor-paper-b-transfer`, `J-odd-predecessor-exact-transport`.
-

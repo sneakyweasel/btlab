@@ -25,5 +25,3 @@ The genuinely unresolved input is a mandatory rank population exceeding
 the exact shared support, beyond spacing and grid consequences; merely
 writing that inequality or pruning until closure is not a new theorem.
 Members: cycle_preimage_capacity, J-cycle-preimage-capacity-diagnostics.
-
-

@@ -26,4 +26,3 @@ Scope: these paths grow. The proof supplies no common start at all precisions an
 no assertion that the witnesses lie in a cycle's finance window.
 The route is **CLOSE**; a denominator restriction for true cycles remains
 unresolved. Do not repackage congruence precision alone as exact closure.
-

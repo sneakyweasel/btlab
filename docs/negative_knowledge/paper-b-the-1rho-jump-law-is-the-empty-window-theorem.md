@@ -25,4 +25,3 @@ the design goes rank-deficient and the high-`n` amplitudes are unconstrained by
 the data at any sample size. Free-amplitude fits are biased one-signed and the
 bias grows with `j` in both the resolution and the depth. Do not attempt a
 larger fit; the closed form is the route.
-

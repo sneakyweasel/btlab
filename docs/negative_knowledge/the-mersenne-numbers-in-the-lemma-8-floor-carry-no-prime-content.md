@@ -47,4 +47,3 @@ Bang, Carmichael -- does not reach the gap, where the laboratory previously had
 only the observation that it does not.
 
 Dossier: [mersenne_floor_power](../problems/juggler_mersenne_floor_power.md).
-

@@ -31,4 +31,3 @@ theorem. No-cycle orientation stays PARK; no floor or paper release
 changes and no new executable mechanism follows from this gate.
 Members: cycle_quartic_band, cycle_weighted_remainders,
 J-cycle-quartic-boundary-loss.
-

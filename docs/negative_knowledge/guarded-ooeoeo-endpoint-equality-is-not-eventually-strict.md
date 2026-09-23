@@ -29,5 +29,3 @@ assigned its entire correction without boundary accounting. No-cycle
 stays PARK; no floor or paper release changes.
 Members: cycle_quartic_band, J-cycle-quartic-coupled-remainder,
 J-cycle-quartic-unbounded-equality.
-
-

@@ -16,4 +16,3 @@ proof that a fate class has finite harmonic mass. A direct harmonic lower
 bound could be weaker than linear counting. The signed 21/25 theorem is
 unchanged. Fate-specific harmonic growth and Juggler's arithmetic pressure
 estimate remain open. Ledger: J-signed-grid-mean-ceiling.
-

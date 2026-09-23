@@ -17,5 +17,3 @@ signed remainders with their actual nonconstant cyclic weights.
 The identities p(P)=2p(V), p(Q)=2p(U)/3 do not prove p(V)<1.
 Applying the prescribed V word at m ends with the wrong E guard and
 cannot furnish an actual descent from the cycle minimum.
-
-

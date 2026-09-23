@@ -37,5 +37,3 @@ The next distinct target is a paired-error estimate uniform in return
 depth with complete cyclic boundary placement. No larger word list,
 carry census, new floor or automatic next gate is authorized here.
 Members: cycle_weighted_remainders, J-cycle-integer-weight-refinements.
-
-

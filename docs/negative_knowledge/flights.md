@@ -28,4 +28,3 @@ Dossiers: [juggler_flight_record_composition](../problems/juggler_flight_record_
 [juggler_hug_prefix_realization](../problems/juggler_hug_prefix_realization.md).
 
 ---
-
