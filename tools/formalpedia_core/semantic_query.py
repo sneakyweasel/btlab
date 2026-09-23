@@ -173,6 +173,33 @@ class SemanticCatalogue:
         selected = self._query_resolve(rows, name)
         if len(selected) != 1:
             raise ValueError('Target must resolve uniquely; use semantic show')
+        graph, external = self._dependency_graph(rows, direction, edge)
+        return self._dependency_result(graph, external, status, selected[0]['id'], direction, depth, limit, offset)
+
+    @locked
+    def dependencies_batch(self, names: list[str], *, depth: int = 3, limit: int = 100,
+                           snapshot: str | None = None) -> dict[str, dict]:
+        """Bounded forward queries sharing one current corpus and graph construction."""
+        page_bounds(limit, 0)
+        if not 1 <= depth <= 5 or not isinstance(names, list) or len(names) > 20 or any(not isinstance(n, str) or not n for n in names):
+            raise ValueError('Expected at most 20 nonempty declaration names and depth 1..5')
+        data, status = self._current(snapshot)
+        rows = data['declarations']
+        graph, external = self._dependency_graph(rows, 'uses', 'all')
+        results = {}
+        for name in dict.fromkeys(names):
+            try:
+                selected = self._query_resolve(rows, name)
+                if len(selected) != 1:
+                    raise ValueError('Target must resolve uniquely; use semantic show')
+                results[name] = self._dependency_result(graph, external, status, selected[0]['id'], 'uses', depth, limit, 0)
+            except (ValueError, OSError) as exc:
+                results[name] = {'error': str(exc)}
+        return results
+
+    @staticmethod
+    def _dependency_graph(rows: list[dict], direction: str, edge: str) -> tuple[dict, set]:
+        """Build once for a batch; retain the single-query edge and ambiguity semantics."""
         by_name: dict[str, list[dict]] = {}
         for row in rows:
             by_name.setdefault(row['name'], []).append(row)
@@ -189,7 +216,10 @@ class SemanticCatalogue:
                         external.add(target)
                     a, b = (row['id'], target) if direction == 'uses' else (target, row['id'])
                     graph.setdefault(a, set()).add((b, label))
-        start = selected[0]['id']
+        return graph, external
+
+    def _dependency_result(self, graph: dict, external: set, status: dict, start: str,
+                           direction: str, depth: int, limit: int, offset: int) -> dict:
         queue, seen, found = deque([(start, 0)]), {start}, []
         truncated = False
         while queue:

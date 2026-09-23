@@ -41,13 +41,14 @@ declaration associated with a claim is not a proof of that English claim.
                   'unmapped claims and local premises are not discharged. No axiom audit is run.'}
     if status['status'] not in {'current', 'partial'}:
         return result
+    queries = semantic.dependencies_batch([name for _, name in starts[:20]],
+        depth=3, limit=100, snapshot=status['query_snapshot']) if starts else {}
     seen = set()
     for claim, name in starts[:20]:
         result['queried_declarations'] += 1
-        try:
-            query = semantic.dependencies(name, depth=3, limit=100, snapshot=status['query_snapshot'])
-        except (ValueError, OSError) as exc:
-            result['unresolved'].append({'claim': claim, 'reference': name, 'reason': str(exc)})
+        query = queries[name]
+        if 'error' in query:
+            result['unresolved'].append({'claim': claim, 'reference': name, 'reason': query['error']})
             continue
         result['truncated'] |= query['truncated'] or query['next_offset'] is not None
         paths = {query['target']: [query['target']]}

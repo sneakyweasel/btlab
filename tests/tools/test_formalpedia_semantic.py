@@ -54,6 +54,32 @@ def test_missing_is_read_only_and_cannot_search(cat):
     assert not cat.cache.exists()
 
 
+def test_dependency_batch_reuses_one_corpus_and_preserves_query_results(cat, monkeypatch):
+    save(cat, [declaration('a', values=['b']), declaration('b', uses=['True'])])
+    expected = {name: cat.dependencies(name, depth=3, limit=100) for name in ('a', 'b')}
+    calls = {'corpus': 0, 'graph': 0}
+    current, build_graph = cat._current, cat._dependency_graph
+
+    def counted_current(*args, **kwargs):
+        calls['corpus'] += 1
+        return current(*args, **kwargs)
+
+    def counted_graph(*args, **kwargs):
+        calls['graph'] += 1
+        return build_graph(*args, **kwargs)
+
+    monkeypatch.setattr(cat, '_current', counted_current)
+    monkeypatch.setattr(cat, '_dependency_graph', counted_graph)
+    result = cat.dependencies_batch(['a', 'b', 'a', 'absent'])
+    assert calls == {'corpus': 1, 'graph': 1}
+    assert {name: result[name] for name in ('a', 'b')} == expected
+    assert 'error' in result['absent']
+    with pytest.raises(ValueError, match='20'):
+        cat.dependencies_batch(['a'] * 21)
+    with pytest.raises(ValueError, match='snapshot'):
+        cat.dependencies_batch(['a'], snapshot='obsolete')
+
+
 def test_content_changes_even_same_size_invalidate_queries(cat):
     save(cat, [declaration('demo')])
     assert cat.status()['status'] == 'current'

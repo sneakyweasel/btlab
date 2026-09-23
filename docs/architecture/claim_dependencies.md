@@ -118,7 +118,8 @@ associations do not replace the written edges or affect annotation completeness.
 The projection queries at most 20 declarations from the selected written graph,
 to depth 3 and at most 100 declaration edges per root. It reports missing or
 ambiguous declaration links, claims without declarations, unmapped helpers,
-truncation and semantic freshness. Missing or stale exports contribute no trusted
+truncation and semantic freshness. The roots share one corpus read and graph
+construction. Missing or stale exports contribute no trusted
 edges; current modules in a partial export remain usable. Targets can name claims
 outside the selected written graph. Use `formalpedia_claim` to inspect them.
 
