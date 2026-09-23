@@ -16,8 +16,8 @@ The editorial source is
 [the manuscript](juggler_finite_dynamics_note.md), with
 [the formalization map](juggler_finite_dynamics_formalization.md) and this
 packet as supporting inputs. Edit these files only in `docs/theory/`.
-The corresponding files in `juggler_review/` and all distributed PDFs are
-generated copies. The [build guide](PAPER_A_BUILD.md) gives the commands.
+The PDF in `preprints/` and its publication-kit alias are generated from
+these canonical sources; supporting Markdown files are not mirrored. The [build guide](PAPER_A_BUILD.md) gives the commands.
 
 The Lean review object is `formal/Problems/JugglerPaper.lean`:
 run `lake build Problems.JugglerPaper` from `formal/`.

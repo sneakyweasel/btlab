@@ -25,7 +25,7 @@ python tools/build_paper_c.py
 python tools/build_paper_c.py --check
 ```
 
-The build compiles three passes, rejects overfull boxes, missing glyphs and unresolved references, and then synchronizes the canonical PDF, review copies, figures and local companion PDF. It writes a hash manifest and prepared Zenodo metadata. It does not publish a website or upload a deposit. The generated LaTeX can also be compiled directly beside the `figures` directory. `--sync` only copies a build whose input and output hashes still match. Figure regeneration requires matplotlib and is run with `python docs/theory/figures/render_paper_c_figures.py` before rebuilding.
+The build compiles three passes, rejects overfull boxes, missing glyphs and unresolved references, and then synchronizes the canonical PDF in `preprints/` and its Zenodo PDF alias. It writes a hash manifest and prepared Zenodo metadata. It does not publish a website or upload a deposit. The generated LaTeX can also be compiled directly beside the `figures` directory. `--sync` only copies a build whose input and output hashes still match. Figure regeneration requires matplotlib and is run with `python docs/theory/figures/render_paper_c_figures.py` before rebuilding.
 
 ## Verification and scope
 

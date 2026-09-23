@@ -15,10 +15,10 @@ which is what the other habit costs.
 | Paper | Title | Repository | Latest deposit | Concept DOI |
 | --- | --- | --- | --- | --- |
 | A | Lower Bounds for Cycle Lengths in the Juggler Map | 1.2.1, not deposited | [1.0.2](https://doi.org/10.5281/zenodo.22865237) | [10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) |
-| B | Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers | 1.1.1, not deposited | [1.0.0](https://doi.org/10.5281/zenodo.22864934) | [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) |
+| B | Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers | 1.1.2, not deposited | [1.0.0](https://doi.org/10.5281/zenodo.22864934) | [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) |
 | C | Fate Contagion and Termination Criteria for the Juggler Map | 1.2.0, not deposited | [1.1.0](https://doi.org/10.5281/zenodo.22865705) | [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) |
 | D | No m-cycles of the 3n−1 map for m ≤ 61 | 1.1.0, not deposited | [1.0.0](https://doi.org/10.5281/zenodo.22876190) | [10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) |
-| E | The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions | 0.6.0, local preprint | None | Not assigned |
+| E | The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions | 0.7.1, local preprint | None | Not assigned |
 
 Every DOI in this file was resolved against doi.org on 21 September 2026, and each
 concept DOI was confirmed to return the version named beside it as the latest. All
@@ -67,12 +67,15 @@ the tables by content and both are byte-identical to the versions 1.0.0 reports.
 
 ### Paper B, Five-Step Descent Certificates for the Juggler Map
 
+Prepared 1.1.2, 23 September 2026; see the [release record](paper_b_release_check.json) for the current editorial revision.
+
 Prepared 1.1.1, 22 September 2026. Corrects the recursion attribution to Terras (1976) and Winkler's arXiv citation. Mathematical results are unchanged. No new deposit has been made.
 
 Record [zenodo.org/records/22864934](https://zenodo.org/records/22864934).
 
 | Version | DOI | Date |
 | --- | --- | --- |
+| 1.1.2 | not deposited | 23 September 2026 |
 | 1.1.1 | not deposited | 22 September 2026 |
 | 1.1.0 | not deposited | 21 September 2026 |
 | 1.0.0 | [10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934) | 21 September 2026 |
@@ -136,6 +139,10 @@ new-version operation, not a correction.
 
 ### Paper E, The Juggler Map and the 3n±1 Maps
 
+Current local version: 0.7.1. The [build guide](PAPER_E_BUILD.md) and
+[review record](paper_e_review.md) describe its quantitative formalization
+and provenance. No deposit has been made.
+
 Version 0.6.0, 22 September 2026: adds the written effective OOE theorem
 and complete quantitative appendix. The selected 49-declaration Lean
 audit still covers the qualitative results; full quantitative verification
@@ -167,4 +174,4 @@ fields, and checksums. A build does not submit or publish it.
 The companion site links these DOIs from the home and claims pages. It shipped its
 own copies under `web/juggler-companion/public/papers/` while Paper B had no
 deposit; with all four papers on Zenodo the record is the download, and the
-repository keeps one PDF per paper, in `juggler_review/`.
+repository keeps one PDF per paper, in `preprints/`.

@@ -26,7 +26,7 @@
     {
       "path": "docs/theory/PAPER_C_BUILD.md",
       "mode": "text",
-      "sha256": "6754e27a744ae591addba54dea60dc5827a5c05efc44d9804fd080cd24892c5e"
+      "sha256": "97bf65ab52c4addd8b3a924e5b2603316908c5c892ff1874a389e7e99b6a5d0d"
     },
     {
       "path": "docs/theory/figures/paper_c_decomposition.png",
@@ -46,12 +46,12 @@
     {
       "path": "docs/theory/figures/render_paper_c_figures.py",
       "mode": "text",
-      "sha256": "8d7c6d0eddafc6d64acde77583be1943ba400cff1189d23b2e3c15b62f1a2723"
+      "sha256": "955e5771d36ba103a5192cb28432244436a2ced78edf482d532d1fe6fe9afbd0"
     },
     {
       "path": "docs/theory/juggler_fate_almost_all_note.md",
       "mode": "text",
-      "sha256": "dbdac9ce7e2e908320ce2557737ab0c4d6fd4b977cc068a89516e519c6a8dd76"
+      "sha256": "ff0f8e6bbea766896f0d70b5526f2d48227ea5971a2a345f51b32c512795688d"
     },
     {
       "path": "docs/theory/juggler_ooee_contagion_note.md",
@@ -611,7 +611,7 @@
     {
       "path": "tools/build_paper_c.py",
       "mode": "text",
-      "sha256": "b23a7730346f8103369f1594ae14770ec87f4800294a6bfb2d4993de989b8203"
+      "sha256": "fd1a66e23cdc0fcbe223b27c29c0ab5fea4e9c7652e5a4e4b79279e7a13bbfb5"
     },
     {
       "path": "tools/check_paper_c_numeric.py",
@@ -631,14 +631,14 @@
   ],
   "outputs": [
     {
-      "path": "juggler_review/juggler_fate_almost_all_note.pdf",
+      "path": "preprints/juggler_fate_almost_all_note.pdf",
       "mode": "binary",
-      "sha256": "60a5df23a8a90afd38aca16daa5093a8c679580456a7be26ea16a43f2b6e415e"
+      "sha256": "a5ef0cc83d56f2dfe6ac032300d4b6c6619e04083566036de43d4ececc0784b3"
     },
     {
       "path": "docs/theory/cochin-juggler-fates.tex",
       "mode": "text",
-      "sha256": "b827056951d686d8db8ced6ebe1adbb8676992651fe4252436a46e5c398eb802"
+      "sha256": "d7f9c2644a04202306bfb39971ab50d81be59e92f0d21442fa23d01943bd9599"
     },
     {
       "path": "docs/theory/paper_c_zenodo.json",

@@ -51,7 +51,7 @@
     {
       "path": "docs/theory/PAPER_A_BUILD.md",
       "mode": "text",
-      "sha256": "995b08b4a5d98da2a14f08e4aecc6c2ed2e97e26aff82be5a96e90224e17cc4c"
+      "sha256": "4240fad08e8cc25568eaa39af9596006b782d59e124510df3cdd26549b56a569"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_formalization.md",
@@ -61,12 +61,12 @@
     {
       "path": "docs/theory/juggler_finite_dynamics_note.md",
       "mode": "text",
-      "sha256": "d3ff3784b8c66526afce0fde3092f37c25e09014d07f39062a4fb4e1024c7b26"
+      "sha256": "ccbed5eec07121861e370593d9823c67e5cac569b1c0c85420914efc12204ad5"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_reviewer_packet.md",
       "mode": "text",
-      "sha256": "3471db75608a7019d7c8fcd0fbee1811f0713f1eaef19f95380b62736fc68453"
+      "sha256": "d41ae7915dd170524974af54ed02fa6003664b51d58543349e1241f018e62b80"
     },
     {
       "path": "formal/AxiomCheckPaperA.expected",
@@ -641,12 +641,12 @@
     {
       "path": "tools/build_paper_a.py",
       "mode": "text",
-      "sha256": "043457280aa724a4900f629c6467b67741a5b77850c190306062a164e361a6bd"
+      "sha256": "4d1a8c5610f203b692178f06d723a8a60072c2999d5012974a20e9670a501d69"
     },
     {
       "path": "tools/build_paper_a_kit.py",
       "mode": "text",
-      "sha256": "e11ad5ad0040fec5c8ea62c24faee33cfd3639597de6677963d71fc6f585025e"
+      "sha256": "85aabdfab5d0caeecd17fa0ac5232e5b96091b8dc6f6e2ac637c47173c4b68b6"
     },
     {
       "path": "tools/check_paper_a_numeric.py",
@@ -671,14 +671,14 @@
   ],
   "outputs": [
     {
-      "path": "juggler_review/juggler_finite_dynamics_note.pdf",
+      "path": "preprints/juggler_finite_dynamics_note.pdf",
       "mode": "binary",
-      "sha256": "34be734dbc6750c1b5e2f38f14240459dd93b4e6b02d0f608edc52aed0ee5044"
+      "sha256": "8e2d1c14c7404a91803d07baf121d6c8adc9d1a710272a221a00fd1b3b40a7e9"
     },
     {
       "path": "docs/theory/cochin-juggler.tex",
       "mode": "text",
-      "sha256": "6b2a14bef5224db8be0b211f711d52bc15e23f25ccf0cecf06c54da0df7a1869"
+      "sha256": "74729188add49f873d5b836bb3b5473d9e7fc334bf9e8f871f15a693739e6c7e"
     },
     {
       "path": "docs/theory/paper_a_zenodo.json",

@@ -12,6 +12,7 @@ LINK = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 def _targets() -> list[Path]:
     files = [ROOT / "README.md", ROOT / "docs" / "README.md", ROOT / "AGENTS.md"]
     files.extend(sorted((ROOT / "docs").rglob("*.md")))
+    files.extend(sorted((ROOT / "preprints").rglob("*.md")))
     files.append(ROOT / "formal" / "README.md")
     attacks = ROOT / "attacks"
     if attacks.is_dir():

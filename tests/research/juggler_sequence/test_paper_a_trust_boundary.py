@@ -23,7 +23,6 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[3]
 PAPER = ROOT / "docs" / "theory" / "juggler_finite_dynamics_note.md"
-MIRROR = ROOT / "juggler_review" / "juggler_finite_dynamics_note.md"
 FORMAL = ROOT / "formal"
 CHECK = FORMAL / "AxiomCheckPaperA.lean"
 EXPECTED = FORMAL / "AxiomCheckPaperA.expected"
@@ -121,10 +120,6 @@ def test_the_axiom_check_actually_runs() -> None:
     TB.validate_dependency_records(out.stdout, set(TB.dependency_requests(CHECK.read_text(encoding="utf-8"))),
                                    NATIVE_EXCEPTIONS)
     assert out.stdout.strip() == io.open(EXPECTED, encoding="utf-8").read().strip()
-
-
-def test_mirror_carries_the_paper() -> None:
-    assert io.open(PAPER, encoding="utf-8").read() == io.open(MIRROR, encoding="utf-8").read()
 
 
 

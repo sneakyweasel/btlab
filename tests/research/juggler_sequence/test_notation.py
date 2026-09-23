@@ -18,7 +18,6 @@ from research.juggler_sequence.notation_audit import letter_sites
 
 ROOT = Path(__file__).resolve().parents[3]
 PAPER = ROOT / "docs" / "theory" / "juggler_finite_dynamics_note.md"
-MIRROR = ROOT / "juggler_review" / "juggler_finite_dynamics_note.md"
 
 MATH = re.compile(r"\\\(.*?\\\)|\\\[.*?\\\]", re.DOTALL)
 
@@ -158,9 +157,6 @@ def test_return_symbols_are_explicitly_defined_in_their_own_sections() -> None:
     assert r"UV=P\,OE\,Q,\qquad VU=P\,EO\,Q" in terminal
     assert r"e_W(x):=x^p-F_W(x)=" in loss
 
-
-def test_mirror_carries_the_renames() -> None:
-    assert text() == io.open(MIRROR, encoding="utf-8").read()
 
 
 # --- Paper B, Section 7: the model problem has its own letters ---

@@ -36,17 +36,9 @@ def test_stale_zenodo_pdf_is_rejected(tmp_path):
 
 
 def _paper_b_tree(dest: Path) -> Path:
-    """Copy just the files `B.check` reads into a throwaway root.
-
-    The scenario below has to edit a manuscript, and it used to edit the real one
-    under `docs/theory` and put it back in a `finally`.  Between that write and the
-    copy to the mirror -- and again between the two restores -- the two trees
-    disagree, and `tests/integration/test_review_bundle_mirrors.py` compares exactly
-    those two files.  Under `-n auto` that is a race, and it fired as soon as the
-    digest fix let this test past its first assertion and into the mutation.  A test
-    that pins one gate should not be able to fail a different one.
-    """
+    """Copy the release inputs into an isolated tree before testing mutations."""
     names = [B.METADATA, B.BUILD_MANIFEST, B.ZENODO_FIELDS,
+             "docs/theory/juggler_parity_discrepancy_note.md",
              "docs/theory/juggler_parity_discrepancy_note.tex",
              "tools/paper_b/article.tex", "tools/paper_b/layout.lua",
              "tools/build_paper_b.py"]
@@ -58,25 +50,10 @@ def _paper_b_tree(dest: Path) -> Path:
     return dest
 
 
-def test_an_edited_source_is_rejected_even_when_the_mirror_is_updated_too(tmp_path):
-    """The gap that let a Paper B edit ship without rebuilding the PDF.
-
-    `check` compared the EXPORTS pairs -- which are PDF-to-PDF copies plus the .md
-    mirror -- and the Zenodo fields, and printed "Paper B source, review copies,
-    companion PDF, and Zenodo kit agree".  It never consulted the digests that
-    paper_b_build.json already records for the source, the TeX and the PDF.
-
-    So editing docs/theory and copying to juggler_review satisfied every comparison
-    the gate made, and the published PDF stayed behind its source.  That is exactly
-    how the Theorem 6.1 sharpening shipped unbuilt.  Paper A and Paper C both verify
-    their recorded input digests; only Paper B did not.
-
-    This pins the scenario the mirror check cannot see: source and mirror both moved,
-    PDF untouched.
-    """
+def test_an_edited_source_is_rejected_even_when_pdf_alias_matches(tmp_path):
+    """Matching PDF aliases cannot hide a manuscript change made without rebuilding."""
     tree = _paper_b_tree(tmp_path)
     source = tree / "docs/theory/juggler_parity_discrepancy_note.md"
-    mirror = tree / "juggler_review/juggler_parity_discrepancy_note.md"
     manifest = tree / "docs/theory/paper_b_build.json"
 
     recorded = {r["name"]: r for r in json.loads(manifest.read_text(encoding="utf-8"))["files"]}
@@ -85,7 +62,6 @@ def test_an_edited_source_is_rejected_even_when_the_mirror_is_updated_too(tmp_pa
     B.check(tree)                                # the copy is sound to begin with
 
     source.write_bytes(source.read_bytes() + b'\n')
-    shutil.copyfile(source, mirror)              # the mirror check is now satisfied
     with pytest.raises(ValueError, match="Stale Paper B build"):
         B.check(tree)
 

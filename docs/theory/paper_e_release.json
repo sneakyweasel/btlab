@@ -42,7 +42,7 @@
     {
       "path": "docs/theory/PAPER_E_BUILD.md",
       "mode": "text",
-      "sha256": "0be93816c94053bdec97b9f1e69841fe14f062471ec8ccf0ed40d7484378cf06"
+      "sha256": "054eb0e383dbce7177696c58f71ce29d82f1387425e1bd6bc3151b01a752f581"
     },
     {
       "path": "docs/theory/finite_fejer_box_note.md",
@@ -645,11 +645,6 @@
       "sha256": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71"
     },
     {
-      "path": "juggler_review/zenodo_paper_e/README.md",
-      "mode": "text",
-      "sha256": "4995d657437555af4edbfad6b2ff825d78d3886fcebe0779de2f02d2598a6384"
-    },
-    {
       "path": "literature/arias-de-reyna-2024-explicit-derivative-estimate.json",
       "mode": "text",
       "sha256": "dc780e66427a5f4df5a43bb3f35a15d332b857d485c06fc7b28a60314027673c"
@@ -680,9 +675,14 @@
       "sha256": "58feb89f7540c1de68bead3bf60da9de093ca98dc647b8a9532db99c382ddfad"
     },
     {
+      "path": "preprints/zenodo_paper_e/README.md",
+      "mode": "text",
+      "sha256": "e3b723717ad9d3d9432dc11747964df3016c01d3232afa7e38c544602d05a71b"
+    },
+    {
       "path": "pyproject.toml",
       "mode": "text",
-      "sha256": "657abd46811afd10adb2d9118f11a7286083224a711741121e0caf30fc46bd3c"
+      "sha256": "8af947f8608150effc05e5bac113a92415f86603f5bbaeaf4a4bb13b8daf3322"
     },
     {
       "path": "src/research/__init__.py",
@@ -712,7 +712,7 @@
     {
       "path": "tools/build_paper_e.py",
       "mode": "text",
-      "sha256": "de6b4a3ef217f49711676b8e1bc3f70e7fdd22d4343a475886921f60845f15e4"
+      "sha256": "2b66b23deb8b2f64cf2bd7469ec5b400ca8558d0b373a86473929fb0664af12d"
     },
     {
       "path": "tools/check_paper_e.py",
@@ -742,7 +742,7 @@
   ],
   "outputs": [
     {
-      "path": "juggler_review/juggler_signed_collatz_note.pdf",
+      "path": "preprints/juggler_signed_collatz_note.pdf",
       "mode": "binary",
       "sha256": "ebb1211b03667d0fe62f64dfddacf0fa49a2c5289f95ef691147a57288f87978"
     },

@@ -44,7 +44,7 @@ export const PAPERS: readonly PaperRecord[] = [
 
 // The site used to ship a copy of each PDF under public/papers/. Every paper
 // is deposited on Zenodo now, so the record is the download and the repository
-// keeps exactly one copy, in juggler_review/.
+// keeps the canonical copies in preprints/.
 
 export function paperDoiHref(doi: string): string {
   return `https://doi.org/${doi}`;

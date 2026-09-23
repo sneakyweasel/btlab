@@ -1,0 +1,5 @@
+# sha256 of the files in this kit and of the PDF they alias.
+# Regenerate with `python tools/build_paper_e.py --sync`.
+ebb1211b03667d0fe62f64dfddacf0fa49a2c5289f95ef691147a57288f87978  preprints/zenodo_paper_e/Juggler_and_signed_Collatz.pdf
+ebb1211b03667d0fe62f64dfddacf0fa49a2c5289f95ef691147a57288f87978  preprints/juggler_signed_collatz_note.pdf
+4d837f296dff1638a467988da022a9b3575852515f03ba99def806baf4a35689  preprints/zenodo_paper_e/Sources_and_certificate.zip

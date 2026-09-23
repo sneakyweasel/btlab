@@ -625,8 +625,8 @@ The build command `python tools/build_paper_a.py` produces the canonical
 PDF and synchronized distribution copies from this source.
 `python tools/build_paper_a.py --check` checks their provenance and hashes.
 The manuscript source, formalization map, and reviewer packet in
-`docs/theory/` are the editorial inputs; files in `juggler_review/` and
-the companion's paper directories are generated exports. No external
+`docs/theory/` are the editorial inputs; the PDF in `preprints/` and its publication-kit alias are
+generated exports. No external
 submission or universal termination proof is implied by a successful build.
 
 **Proposition 1.3 (certified computational input).**
@@ -707,7 +707,7 @@ whole is formally verified.
 
 ```text
 Repository:  https://github.com/sneakyweasel/btlab
-Commit:      ec0560baaee38b8a902eaf63cb8b3343900ea67b
+Commit:      d20cab375baa47dd207f8a677aec1c93d9046c6f
 Lean:        leanprover/lean4:v4.33.1
 Mathlib:     v4.33.1 (lake-manifest rev 0df444a360eaa60ab8c11dca51a86af692955474)
 Build:       lake build Problems.JugglerPaper   (from formal/)
@@ -728,7 +728,7 @@ and axiom expectation — are byte-identical there to the
 versions this paper reports; the check is mechanical and is
 part of the release gate. Only this text and its two companion
 documents, the typeset LaTeX and the PDF they build, the
-copies of those in `juggler_review/`, the Zenodo metadata and
+PDF alias in `preprints/zenodo_paper_a/`, the Zenodo metadata and
 the manifest of digests move afterwards, in the editorial
 commit that writes the line above.
 

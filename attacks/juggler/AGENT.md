@@ -62,7 +62,7 @@ Phase-0 branch or treat a density/period bound as a solution.
 | Path constants and layer order | `src/research/juggler_sequence/lean_paths.py` |
 | Probe data | `data/research/juggler/<branch>/` |
 | Reproducible reports | `docs/research/`; regenerate only reports needed by the task |
-| Publications | `juggler_review/`; canonical sources under `docs/theory/` |
+| Publications | `preprints/`; canonical sources under `docs/theory/` |
 | Companion website | `web/juggler-companion/` |
 
 Imports remain `research.juggler_sequence` and `Problems.Juggler`. Use the

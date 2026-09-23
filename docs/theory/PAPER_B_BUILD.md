@@ -58,8 +58,8 @@ python -m research.juggler_sequence.branch_index --check
 ~~~
 
 The builder reads docs/theory/ and tools/paper_b/. A repository build
-synchronizes the review mirrors, companion PDF, and Zenodo PDF alias.
---sync repairs those mirrors without compiling, but it does not rebuild
+synchronizes the Zenodo PDF alias in `preprints/zenodo_paper_b/`.
+--sync repairs that alias and the metadata fields without compiling, but it does not rebuild
 the Zenodo archives: build_paper_b_kit.py does, and its --check verifies
 every archive member, both in-archive SHA256SUMS.txt files, and the kit
 checksums against the files beside them. Because the release check records

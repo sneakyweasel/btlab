@@ -275,9 +275,6 @@ def test_paper_companions_state_the_window_trust_boundary() -> None:
     canonical_map = (DOCS_THEORY / "juggler_finite_dynamics_formalization.md").read_text(
         encoding="utf-8"
     )
-    review_map = (
-        DOCS_THEORY.parents[1] / "juggler_review" / "juggler_finite_dynamics_formalization.md"
-    ).read_text(encoding="utf-8")
     barrel = (
         DOCS_THEORY.parents[1] / "formal" / "Problems" / "JugglerPaper.lean"
     ).read_text(encoding="utf-8")
@@ -292,14 +289,13 @@ def test_paper_companions_state_the_window_trust_boundary() -> None:
     assert "Only the classical\nvariation-versus-integral inequality itself remains prose" not in paper
     assert "change of variables identifying that circle\nintegral" in paper
     assert "not \\(L_{55}=q_{14}\\)" in packet
-    for formalization in (canonical_map, review_map):
-        assert "hugCharge_sub_circleMean_extended" in formalization
-        assert "circleMean_eq_rotationAverage" in formalization
-        assert "hugCharge_sub_rotationAverage_extended" in formalization
-        assert "hugCharge_sub_rotationAverage_le" in formalization
-        assert "cycleMin_length_of_rhin" in formalization
-        assert "hugCharge_eq_scaled_stateCharge" in formalization
-        assert "\\(L_0,\\ldots,L_{54}\\)" in formalization
+    assert "hugCharge_sub_circleMean_extended" in canonical_map
+    assert "circleMean_eq_rotationAverage" in canonical_map
+    assert "hugCharge_sub_rotationAverage_extended" in canonical_map
+    assert "hugCharge_sub_rotationAverage_le" in canonical_map
+    assert "cycleMin_length_of_rhin" in canonical_map
+    assert "hugCharge_eq_scaled_stateCharge" in canonical_map
+    assert "\\(L_0,\\ldots,L_{54}\\)" in canonical_map
     assert "named Lean instance" in barrel
     assert "scope `L < 301994`" in barrel
     assert "hugCharge_sub_circleMean_extended" in barrel

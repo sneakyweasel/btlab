@@ -17,10 +17,10 @@ The release gate `tests/integration/test_paper_release_gates.py` discovers this 
 calls `check()` on the live repository, so a source change that stales the PDF fails the
 suite rather than going quiet.
 
-Outputs: `juggler_review/collatz_3n_minus_1_m_cycles_note.pdf` (the one copy in the
+Outputs: `preprints/collatz_3n_minus_1_m_cycles_note.pdf` (the one copy in the
 repository), `docs/theory/cochin-3n-minus-1-m-cycles.tex`,
 `docs/theory/paper_d_zenodo.json`, the manifest `docs/theory/paper_d_release.json`, and the
-deposit kit `juggler_review/zenodo_paper_d/`. Logs and the working TeX go to
+deposit kit `preprints/zenodo_paper_d/`. Logs and the working TeX go to
 `.build/paper_d/`.
 
 ## The trust boundary
@@ -74,7 +74,7 @@ record, not a correction, and the build's `SOURCE_DATE_EPOCH` and the `VERSION` 
 
 ## Deposit
 
-The kit is `juggler_review/zenodo_paper_d/`: the PDF under its deposit name, the field sheet
+The kit is `preprints/zenodo_paper_d/`: the PDF under its deposit name, the field sheet
 `ZENODO_FIELDS.txt` generated from `paper_d_zenodo.json`, the checksums, and a README. A
 build prepares local metadata only; it never creates or updates an external record.
 

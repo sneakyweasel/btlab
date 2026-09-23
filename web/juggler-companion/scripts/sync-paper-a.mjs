@@ -2,7 +2,7 @@
 //
 // This script used to also copy the built PDF into public/papers/ so the site
 // could serve its own copy. Every paper is deposited on Zenodo now and the site
-// links the records, so the repository keeps exactly one PDF, in juggler_review/,
+// links the records, so the canonical PDF lives in preprints/,
 // and there is nothing left to copy. What remains is the part worth keeping: the
 // release manifest is checked against the files it names, so a stale or
 // hand-edited release cannot reach a deploy unnoticed.
@@ -13,12 +13,12 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const source = 'docs/theory/juggler_finite_dynamics_note.md';
-const canonical = 'juggler_review/juggler_finite_dynamics_note.pdf';
+const canonical = 'preprints/juggler_finite_dynamics_note.pdf';
 const manifest = resolve(root, 'docs/theory/paper_a_release.json');
 const hash = (data) => createHash('sha256').update(data).digest('hex');
 
 // Vercel uploads a website-only tree: .vercelignore drops /docs, /formal, /src
-// and /juggler_review, so neither the manifest nor the files it names are there
+// and /preprints, so neither the manifest nor the files it names are there
 // to check. Provenance is enforced on local builds and in CI instead.
 if (process.env.VERCEL) {
   console.log('Paper A: Vercel deploy; laboratory tree excluded, release check runs locally and in CI.');

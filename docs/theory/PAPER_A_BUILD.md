@@ -2,8 +2,8 @@
 
 The editorial source is `juggler_finite_dynamics_note.md` in this directory.
 The formalization map and reviewer packet beside it are supporting editorial
-inputs. Edit those three files here. Review-folder Markdown files and every
-distributed Paper A PDF are generated copies.
+inputs. Edit those three files here. The current PDF lives in `preprints/`; its publication kit carries a generated
+PDF alias. Supporting Markdown documents are kept only here.
 
 From the repository root, with Python 3.10+, Pandoc 3.6+, and XeLaTeX installed:
 
@@ -26,9 +26,8 @@ Lean imports, and cited-declaration axiom audit. Text hashes normalize line
 endings so that Windows and Linux checkouts agree. It is a provenance check,
 not a substitute for the mathematical verification described in the paper.
 
-The build writes Paper A's PDF into `juggler_review/`, which is now its only
-copy, and exports the historical-named alias in `juggler_review/zenodo_paper_a/`.
-The website carries no PDFs: all three papers are deposited on Zenodo and the
+The build writes Paper A's PDF into `preprints/`, and exports the historical-named alias in `preprints/zenodo_paper_a/`.
+The website carries no PDFs: Papers A–D have recorded deposits on Zenodo and the
 site links the records, so `public/papers/` and `dist/papers/` are gone. The
 website's prebuild still verifies the release manifest before Vite runs. On
 Vercel the laboratory tree is excluded, so that verification runs on local
@@ -85,7 +84,7 @@ pin includes the corrected metadata builder, archive packager and Lake
 configuration. The Zenodo description contains only the abstract and AI
 disclosure; availability and version history remain in their proper fields.
 
-The kit in `juggler_review/zenodo_paper_a/` contains the upload PDF,
+The kit in `preprints/zenodo_paper_a/` contains the upload PDF,
 `paper_a_source_and_verification.zip`, the generated field sheet, a
 publication-check record and `SHA256SUMS.txt`. The outer
 `paper_a_zenodo_package.zip` collects the upload and preparation materials.

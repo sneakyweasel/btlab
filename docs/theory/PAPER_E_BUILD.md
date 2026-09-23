@@ -4,7 +4,7 @@
 Version 0.7.1, 22 September 2026. Local preprint; no deposit or DOI assigned.
 
 Canonical source: [juggler_signed_collatz_note.md](juggler_signed_collatz_note.md).
-Edit that source, never its generated reviewer copy or TeX.
+Edit that source, never the generated PDF or TeX.
 
 ## Normal update
 
@@ -31,12 +31,12 @@ Lean is required when refreshing the proof audit.
 
 ## Outputs
 
-- PDF: juggler_review/juggler_signed_collatz_note.pdf.
+- PDF: preprints/juggler_signed_collatz_note.pdf.
 - TeX: docs/theory/cochin-juggler-signed-collatz.tex.
 - Metadata: docs/theory/paper_e_zenodo.json.
 - Manifest: docs/theory/paper_e_release.json.
 - Validation report: docs/theory/paper_e_validation.json.
-- Deposit kit: juggler_review/zenodo_paper_e/.
+- Deposit kit: preprints/zenodo_paper_e/.
 - Build and proof-audit logs: .build/paper_e/.
 
 The kit contains a byte-identical PDF, upload field sheet, checksums, and

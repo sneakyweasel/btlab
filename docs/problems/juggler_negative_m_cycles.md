@@ -130,7 +130,7 @@ at one hundred digits, the known cycles by iteration, the floor's printed counts
 certificate; it compares them with the note's tables and the summary, writes
 `manuscript_check.json` beside the summary, and fails on a copy of the note with two wrong
 cells (21 September 2026: two findings, nothing else). `python tools/build_paper_d.py`
-builds [collatz_3n_minus_1_m_cycles_note.pdf](../../juggler_review/collatz_3n_minus_1_m_cycles_note.pdf)
+builds [collatz_3n_minus_1_m_cycles_note.pdf](../../preprints/collatz_3n_minus_1_m_cycles_note.pdf)
 (eight pages) with the Paper C chain and a strict layout gate, writes the manifest
 `docs/theory/paper_d_release.json`, the Zenodo metadata and the deposit kit; `--check`
 verifies every generated copy, and the release gate calls it on the live repository.
@@ -402,7 +402,7 @@ against the record after deposit.
 Version 1.1.0, *No m-cycles of the 3n−1 map for m ≤ 61*, adds Lemma 6 and is built, gated and
 checked here; it goes up through the record's new-version operation, which keeps the concept
 DOI resolving to the latest. The kit at
-[juggler_review/zenodo_paper_d/](../../juggler_review/zenodo_paper_d/) now holds 1.1.0's
+[preprints/zenodo_paper_d/](../../preprints/zenodo_paper_d/) now holds 1.1.0's
 files, so the kit PDF is no longer the deposited bytes; 1.0.0's are recoverable from the
 record and from the commit that carried them.
 

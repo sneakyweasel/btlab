@@ -37,22 +37,18 @@ from research.juggler_sequence import paper_a_audit as A
 ROOT = Path(__file__).resolve().parents[3]
 
 PAPER = ROOT / "docs" / "theory" / "juggler_finite_dynamics_note.md"
-MIRROR = ROOT / "juggler_review" / "juggler_finite_dynamics_note.md"
-PACKET = ROOT / "juggler_review" / "juggler_finite_dynamics_reviewer_packet.md"
-README = ROOT / "juggler_review" / "README.md"
-FORMALIZATION = ROOT / "juggler_review" / "juggler_finite_dynamics_formalization.md"
+PACKET = ROOT / "docs/theory/juggler_finite_dynamics_reviewer_packet.md"
+FORMALIZATION = ROOT / "docs/theory/juggler_finite_dynamics_formalization.md"
 APP_CONSTANTS = ROOT / "web" / "juggler-companion" / "src" / "juggler" / "constants.ts"
 APP_CLAIMS = ROOT / "web" / "juggler-companion" / "src" / "content" / "claims.ts"
 APP_GLOSSARY = ROOT / "web" / "juggler-companion" / "src" / "content" / "glossary.ts"
 
 PAPER_B = ROOT / "docs" / "theory" / "juggler_parity_discrepancy_note_2026_09_04.md"
 LEDGER_B = ROOT / "docs" / "theory" / "paper_b_audit_ledger.md"
-LEDGER_B_MIRROR = ROOT / "juggler_review" / "paper_b_audit_ledger.md"
 
 PAPER_C = ROOT / "docs" / "theory" / "juggler_fate_almost_all_note.md"
-MIRROR_C = ROOT / "juggler_review" / "juggler_fate_almost_all_note.md"
 
-REVIEW_DOCS = [PACKET, README, FORMALIZATION]
+REVIEW_DOCS = [PACKET, FORMALIZATION]
 
 ITEM = r"^\*\*(?:Theorem|Lemma|Corollary|Proposition|Conjecture|Remark|Claim) "
 
@@ -64,14 +60,6 @@ class Manuscript:
     name: str
     path: Path
 
-    mirror: Path | None
-    """The juggler_review copy, or None where the bundle deliberately carries none.
-
-    Paper B is None: its entry here is the historical 4 September snapshot, whose
-    bundle copy was removed.  `tests/integration/test_review_bundle_mirrors.py`
-    states the bundle is tidier without mirrors, and the live Paper B mirror is
-    covered there, not here.
-    """
     ordered_sections: tuple[str, ...]
     """Sections whose items must appear in numeric order.
 
@@ -84,11 +72,10 @@ class Manuscript:
 
 
 MANUSCRIPTS = (
-    Manuscript("A", PAPER, MIRROR, ("5",), (PACKET, README, FORMALIZATION)),
-    Manuscript("B", PAPER_B, None, ("3", "4", "5", "6", "7"), (LEDGER_B,)),
-    Manuscript("C", PAPER_C, MIRROR_C, tuple(str(k) for k in range(2, 11))),
+    Manuscript("A", PAPER, ("5",), (PACKET, FORMALIZATION)),
+    Manuscript("B", PAPER_B, ("3", "4", "5", "6", "7"), (LEDGER_B,)),
+    Manuscript("C", PAPER_C, tuple(str(k) for k in range(2, 11))),
     Manuscript("E", ROOT / "docs/theory/juggler_signed_collatz_note.md",
-               ROOT / "juggler_review/juggler_signed_collatz_note.md",
                tuple(str(k) for k in range(2, 8)),
                (ROOT / "docs/theory/paper_e_review.md",)),
 )
@@ -153,13 +140,6 @@ def test_no_number_is_used_for_two_different_items(ms: Manuscript) -> None:
 
 
 @pytest.mark.parametrize("ms", MANUSCRIPTS, ids=IDS)
-def test_review_mirror_matches_the_manuscript(ms: Manuscript) -> None:
-    if ms.mirror is None:
-        pytest.skip(f"{ms.name} has no juggler_review mirror by design")
-    assert read(ms.path) == read(ms.mirror), f"{ms.name}: juggler_review mirror is stale"
-
-
-@pytest.mark.parametrize("ms", MANUSCRIPTS, ids=IDS)
 def test_no_mangled_latex_escapes(ms: Manuscript) -> None:
     """A tab in a manuscript is always a LaTeX escape eaten by a shell heredoc.
 
@@ -168,7 +148,7 @@ def test_no_mangled_latex_escapes(ms: Manuscript) -> None:
     tab plus the rest of the macro name.  No legitimate tab exists in these documents, so the
     check is exact rather than heuristic.
     """
-    for doc in (ms.path, *([ms.mirror] if ms.mirror is not None else []), *ms.satellites):
+    for doc in (ms.path, *ms.satellites):
         bad = [i for i, line in enumerate(read(doc).splitlines(), 1)
                if any(c in line for c in MANGLED_ESCAPES)]
         assert not bad, (ms.name, doc.name, bad[:5])
@@ -291,7 +271,7 @@ def test_window_endpoint_agrees_everywhere() -> None:
 def test_no_document_still_quotes_the_old_window_as_the_window() -> None:
     """301994 is legitimate as q_13 and in the fan arithmetic, but not as a window endpoint."""
     bad = re.compile(r"\[\s*50508\s*,\s*301994\s*\)")
-    for doc in [PAPER, MIRROR, PACKET, README, FORMALIZATION, APP_CLAIMS, APP_GLOSSARY]:
+    for doc in [PAPER, PACKET, FORMALIZATION, APP_CLAIMS, APP_GLOSSARY]:
         assert not bad.search(read(doc)), doc.name
 
 
@@ -450,10 +430,6 @@ def test_certificate_densities_agree_with_their_corollary_titles() -> None:
     assert r"**Corollary 6.4 (certified-descent density \(7/8\)).**" in text
     assert r"density \(13/16\) (Corollary 4.9)" in text
     assert r"density \(7/8\) (Corollary 6.4)" in text
-
-
-def test_audit_ledger_mirror_matches() -> None:
-    assert read(LEDGER_B) == read(LEDGER_B_MIRROR), "paper_b_audit_ledger mirror is stale"
 
 
 # --- referee item 14: the development log lives in the ledger, not the body ---
@@ -654,25 +630,15 @@ LEDGER_TAGS = {
 JUGGLER_PAPER = ROOT / "formal" / "Problems" / "JugglerPaper.lean"
 
 
-def test_packet_and_readme_name_theorem_3_31_and_lambda_star_star() -> None:
-    for doc in (PACKET, README):
-        text = read(doc)
-        assert "3.31" in text, doc.name
-        assert "0.4926" in text, doc.name
-
-
-def test_readme_does_not_quote_pairing_as_the_live_paper_c_exponent() -> None:
-    text = read(README)
+def test_packet_names_theorem_3_31_and_lambda_star_star() -> None:
+    text = read(PACKET)
+    assert "3.31" in text
     assert "0.4926" in text
-    assert "0.5074" in text
-    assert "0.4480" not in text
-    assert re.search(r"\(log x\)\^\{0\.448\}", text) is None
 
 
 def test_manuscript_does_not_put_survivors_beyond_the_window() -> None:
     """478245 and 780239 sit inside [50508, 16785921); the kill stays per-length."""
     assert "survivors beyond that window" not in read(PAPER)
-    assert "survivors beyond that window" not in read(MIRROR)
 
 
 def test_o7eeeegap_is_imported_by_the_paper_barrel() -> None:

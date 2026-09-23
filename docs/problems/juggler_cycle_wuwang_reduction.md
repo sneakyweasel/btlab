@@ -228,7 +228,7 @@ cited — OEIS A007320 and A094683 both carry a LINKS entry to it — so the
 sharpened exponent is a laboratory result standing beside the deposited
 manuscript, not inside it. Any propagation into Corollary 4.11's printed
 text is a Zenodo new-version operation
-(`juggler_review/zenodo_paper_a/AFTER_ZENODO.md`), not a local rebuild,
+(`preprints/zenodo_paper_a/AFTER_ZENODO.md`), not a local rebuild,
 and is a separate decision.
 
 ## Results

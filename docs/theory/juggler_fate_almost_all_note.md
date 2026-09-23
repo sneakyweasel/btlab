@@ -3532,7 +3532,7 @@ use the roots of the displayed defining equations.
 
 - `docs/theory/figures/render_paper_c_figures.py`
 
-  SHA-256: `8d7c6d0eddafc6d64acde77583be1943ba400cff1189d23b2e3c15b62f1a2723`
+  SHA-256: `955e5771d36ba103a5192cb28432244436a2ced78edf482d532d1fe6fe9afbd0`
 
 The archived records retain the parameter names and values of their
 original runs (including the older pairing-only threshold). Current

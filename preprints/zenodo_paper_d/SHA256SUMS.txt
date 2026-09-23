@@ -1,0 +1,4 @@
+# sha256 of the files in this kit and of the PDF they alias.
+# Regenerate with `python tools/build_paper_d.py --sync`.
+879119f5b06bb61d17e81635c5e6e6cd357f4da1736afe4a50e2e78b7621617c  preprints/zenodo_paper_d/No_m_cycles_of_the_3n_minus_1_map.pdf
+879119f5b06bb61d17e81635c5e6e6cd357f4da1736afe4a50e2e78b7621617c  preprints/collatz_3n_minus_1_m_cycles_note.pdf

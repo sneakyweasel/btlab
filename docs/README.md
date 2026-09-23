@@ -20,8 +20,9 @@ does not duplicate numerical thresholds that can become stale.
 The [Collatz mathematics map](collatz_mathematics.md),
 [branch ledger](juggler_branch_ledger.md), [theorem ledger](theory/theorem_ledger.md)
 and [negative knowledge](negative_knowledge.md) provide the supporting record.
-Reviewer exports live in [juggler_review](../juggler_review/); edit their
-canonical paper sources and rebuild, rather than editing those copies.
+Current PDFs and publication kits live in [preprints](../preprints/README.md).
+Edit canonical paper sources and rebuild; `python tools/preprints.py --check`
+verifies the inventory and all five releases.
 
 ## Evidence labels
 

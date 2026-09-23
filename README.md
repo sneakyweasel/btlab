@@ -53,7 +53,8 @@ their open assumptions; finite checks establish their stated range.
 These links point to the working manuscripts. The
 [publication record](docs/theory/paper_deposits.md) tracks deposited editions,
 DOIs, and local revisions separately. Paper sources live in `docs/theory/`;
-PDFs and publication kits live in `juggler_review/`.
+PDFs and publication kits live in [preprints](preprints/README.md).
+Run `python tools/preprints.py --check` to verify the full publication inventory.
 
 For the wider record, start with the [research map](docs/README.md).
 [Problem dossiers](docs/problems/) record individual investigations and their
@@ -145,7 +146,7 @@ guide, and search the existing results before opening a new direction. The
 | `tests/`, `data/research/` | Executable checks, certificates, and research data |
 | `docs/`, `attacks/` | Papers, proof maps, claims, decisions, and agent guides |
 | `tools/` | Verification, paper builders, formalpedia, and OEIS discovery |
-| `juggler_review/`, `web/juggler-companion/` | Publication kits, reviewer exports, and the Juggler companion website |
+| `preprints/`, `web/juggler-companion/` | Current PDFs, publication kits, and the Juggler companion website |
 
 See the [architecture guide](docs/architecture/overview.md) for dependency
 boundaries. The repository retains its historical `balanced_ternary` name and

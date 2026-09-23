@@ -1,4 +1,0 @@
-# sha256 of the files in this kit and of the PDF they alias.
-# Regenerate with `python tools/build_paper_d.py --sync`.
-04dce2db6412b68aaf1c9a2a16a048bf3199d4031150c9d9f6a81ef28bf3788c  juggler_review/zenodo_paper_d/No_m_cycles_of_the_3n_minus_1_map.pdf
-04dce2db6412b68aaf1c9a2a16a048bf3199d4031150c9d9f6a81ef28bf3788c  juggler_review/collatz_3n_minus_1_m_cycles_note.pdf
