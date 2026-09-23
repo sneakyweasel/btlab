@@ -10,6 +10,19 @@ The earlier full-length journal is available at Git revision
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-23 -- Every fixed repeated inverse block has summable mass off cycles
+
+Lean extends the one-halving tail to any fixed positive inverse block w:
+after one free exponent, D repetitions contribute at most
+6*D_w(a)/2^(D*sum(w)) at a nonperiodic root, for either sign. The complete
+first-exponent sum and total over all D are bounded. A zero affine anchor
+forces a periodic root; the negative 5,7 cycle supplies a growing exception.
+**PROMOTE** this family reduction. Finite unions of pure repeated-block
+families cannot supply divergence; arbitrary switching remains unbounded.
+The next signed-word target is a depth-averaged lower count for varying
+actual words at a fixed integer. Juggler pressure and termination remain
+open. See the [dossier](problems/collatz_fibre_word_tail.md).
+
 ## 2026-09-23 -- Near-critical periodic weights already require the global cell rate
 
 Lean now transports any nonzero subsolution coordinate to a global

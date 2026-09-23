@@ -11233,5 +11233,33 @@
    "tests/research/collatz/test_fibre_critical_minorants.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "C-fibre-fixed-word-summable-tail",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For either signed odd return, fix a nonempty block w of positive inverse exponents, L=len(w), H=sum(w), A=2^H, B=3^L, Q([])=0 and Q(e::v)=2^sum(v)+3Q(v). At each nonperiodic positive odd root a, the complete coefficient R_D of one arbitrary first exponent followed by D>=1 actual copies of w satisfies 0<=R_D<=6*D_w(a)/A^D and sum_D R_D<=6*D_w(a)/(A-1), where D_w(a)=|A-B|*a+|A-B+3Q(w)|. Actual words have the exact affine endpoint and return equations. Repetition forces B^D to divide (A-B)*2^e*a-s*(A-B+3Q(w)); its vanishing along an actual word forces S_s^L(a)=a. For the minus root 5 and w=(1,2), R_D>=(3/4)*(9/8)^D. The bound is for one fixed block, not arbitrary mixtures or all inverse words. No lower count, coefficient divergence or termination follows. Kernel-checked; independent review and advisory statement coverage pending.",
+  "source": "docs/problems/collatz_fibre_word_tail.md",
+  "lean": "formal/Problems/Collatz/FibreWordTail.lean",
+  "decl": [
+   "Problems.Collatz.FibreWordTail.RealizedWord",
+   "Problems.Collatz.FibreWordTail.wordOffset",
+   "Problems.Collatz.FibreWordTail.realizedWord_affine",
+   "Problems.Collatz.FibreWordTail.realizedWord_returns",
+   "Problems.Collatz.FibreWordTail.RealizedRepeat",
+   "Problems.Collatz.FibreWordTail.realizedRepeat_divisibility",
+   "Problems.Collatz.FibreWordTail.zero_anchor_implies_periodic",
+   "Problems.Collatz.FibreWordTail.wordAllowance",
+   "Problems.Collatz.FibreWordTail.repeatCoefficient",
+   "Problems.Collatz.FibreWordTail.repeatCoefficient_bounds",
+   "Problems.Collatz.FibreWordTail.repeatCoefficient_summable",
+   "Problems.Collatz.FibreWordTail.total_repeatCoefficient_le",
+   "Problems.Collatz.FibreWordTail.negative_five_cycle_lower"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/collatz/test_fibre_word_tail.py",
+   "tests/research/collatz/test_fibre_run_tail.py"
+  ],
+  "related_conjectures": []
  }
 ]

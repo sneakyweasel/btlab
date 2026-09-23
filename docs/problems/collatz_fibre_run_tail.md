@@ -194,3 +194,9 @@ at the estimate, without opening another branch.
 
 Status: `STRUCTURAL`. A checked fixed-root consequence of elementary signed
 affine arithmetic. No paper revision or termination claim.
+
+Continuation: the [fixed-block theorem](collatz_fibre_word_tail.md) extends
+the summable-family argument to any repeated positive inverse block at a
+nonperiodic root, retaining the exact cycle exception. The stronger
+one-halving constants above remain unchanged. Both modules now share the
+masked geometric-tail lemma in `BTCalculus.GeometricMask`.

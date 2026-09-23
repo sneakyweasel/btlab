@@ -161,3 +161,12 @@ existence of nonzero tables at rates tending to one requires uniform
 subexponential lower decay. The root-prefactor condition is additional;
 capping does not avoid the global minimum-cell problem. See the
 [rate-barrier dossier](../../../docs/problems/collatz_fibre_rate_barrier.md).
+
+[FibreWordTail.lean](FibreWordTail.lean) extends the summable run estimate
+to any fixed nonempty block of positive inverse exponents, preceded by one
+arbitrary exponent. At a nonperiodic root a, the complete mass of D copies
+is at most 6*wordAllowance(w,a)/2^(D*sum(w)); the total over D>=1 is finite.
+The vanishing affine anchor forces a periodic root, and the negative 5,7
+cycle supplies a growing two-step exception. Arbitrary mixtures of blocks
+remain outside this bound. Both tail modules reuse the shared geometric
+mask lemma. See the [dossier](../../../docs/problems/collatz_fibre_word_tail.md).

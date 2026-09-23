@@ -1,4 +1,5 @@
 import Problems.Collatz.FibreActual
+import BTCalculus.GeometricMask
 
 /-! # A summable fixed-root family of signed inverse words
 
@@ -101,11 +102,7 @@ private theorem term_nonneg (plus : Bool) (a d k : ℕ) :
 
 private theorem term_summable (plus : Bool) (a d : ℕ) :
     Summable (fun k => if RealizedRun plus a k d then weight d k else 0) := by
-  apply Summable.of_nonneg_of_le (term_nonneg plus a d)
-    (fun k => ?_) (summable_geometric_two.mul_left ((3/2:ℝ)^(d+1)))
-  split_ifs
-  · rfl
-  · positivity
+  exact BTCalculus.GeometricMask.summable_mask (fun k => RealizedRun plus a k d) (by positivity)
 
 private theorem first_weight_bound (plus : Bool) {a k d : ℕ}
     (h : RealizedRun plus a k d) (hex : plus = true ∨ a ≠ 1) :
@@ -147,34 +144,10 @@ theorem runCoefficient_bounds (plus : Bool) {a : ℕ}
     0 ≤ runCoefficient plus a d ∧
       runCoefficient plus a d ≤ 3*(a:ℝ)/(2:ℝ)^(d+1) := by
   refine ⟨tsum_nonneg (term_nonneg plus a d), ?_⟩
-  by_cases h : ∃ k, RealizedRun plus a k d
-  · let k₀ := Nat.find h
-    have hmin : ∀ k < k₀, ¬RealizedRun plus a k d := fun k hk => Nat.find_min h hk
-    have hs := (term_summable plus a d).sum_add_tsum_nat_add k₀
-    have hz : (∑ k ∈ range k₀, if RealizedRun plus a k d then weight d k else 0) = 0 := by
-      apply sum_eq_zero
-      intro k hk
-      simp [hmin k (mem_range.mp hk)]
-    rw [hz, zero_add] at hs
-    unfold runCoefficient
-    rw [← hs]
-    have hle : (∑' k, if RealizedRun plus a (k+k₀) d then weight d (k+k₀) else 0) ≤
-        ∑' k, weight d k₀*(1/2:ℝ)^k := by
-      apply Summable.tsum_le_tsum _ ((term_summable plus a d).comp_injective
-        (fun x y he => Nat.add_right_cancel he)) (summable_geometric_two.mul_left _)
-      intro k
-      dsimp only [Function.comp_def]
-      split_ifs
-      · apply le_of_eq
-        simp only [weight, pow_add]
-        ring
-      · dsimp [weight]; positivity
-    rw [tsum_mul_left, tsum_geometric_two] at hle
-    have hb := first_weight_bound plus (Nat.find_spec h) hex
-    nlinarith
-  · have hz : ∀ k, ¬RealizedRun plus a k d := by simpa using h
-    simp [runCoefficient, hz]
-    positivity
+  apply BTCalculus.GeometricMask.tsum_mask_le
+    (fun k => RealizedRun plus a k d) (by positivity) (by positivity)
+  intro k hk
+  exact first_weight_bound plus hk hex
 
 /-- Summing this entire realized word family over every run length is finite
 at each positive root other than the negative fixed point. -/
