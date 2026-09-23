@@ -28,6 +28,12 @@ programmes. It is a live derived view, not another manually maintained ledger.
 New outputs use versioned provenance sidecars; `python tools/lab.py check`
 validates references and metadata without running mathematical computations.
 
+`research.knowledge` reads the canonical obstruction records in
+`docs/negative_knowledge/` for the catalogue and branch discovery. The compact
+Markdown directory is derived with `tools/research_memory.py`; full arguments
+are stored once in those records. The journal contains at most twelve recent
+decisions, with older chronology recoverable from Git.
+
 The [agent workflow](agent_workflow.md) adds checkout-scoped diagnostics,
 static change impact, and explicit verification through the same lab CLI and
 read-only MCP. Juggler's stable directory constants live in `lean_paths.py`;

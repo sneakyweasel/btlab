@@ -6,6 +6,8 @@ import json
 import re
 from pathlib import Path
 
+from research.knowledge import negative_text
+
 ROOT = Path(__file__).resolve().parents[2]
 INDEX = ROOT / "docs" / "negative_knowledge.md"
 LEDGER = ROOT / "docs" / "theory" / "theorem_ledger.json"
@@ -14,7 +16,7 @@ PROBLEMS = ROOT / "docs" / "problems"
 
 
 def _index_text() -> str:
-    return INDEX.read_text(encoding="utf-8")
+    return negative_text(ROOT)
 
 
 def _refuted_conjecture_ids() -> set[str]:

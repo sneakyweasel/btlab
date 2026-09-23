@@ -12,6 +12,8 @@ import re
 from pathlib import Path
 from typing import Any
 
+from research.knowledge import negative_text
+
 from research.juggler_sequence.lean_paths import (
     BRANCHES_ROOT,
     CONJECTURES_ROOT,
@@ -115,34 +117,30 @@ _DECISIONS = ("PROMOTE", "PARK", "CLOSE")
 _LEAN_FILE = re.compile(r"\b([A-Za-z][A-Za-z0-9]*)\.lean\b")
 _JUGGLE_STEM = re.compile(r"(?:problems/)?juggler_([a-z0-9_]+)")
 _NK_SKIP = frozenset({"Kinds", "Source inventory", "Agent filter"})
-NK_PATH = DOCS_ROOT / "negative_knowledge.md"
 
 
 def _aliases_for(stem: str) -> list[str]:
     return sorted(slogan for slogan, target in SLOGAN_ALIASES.items() if target == stem)
 
 
-def parse_nk_clusters(text: str | None = None) -> dict[str, str]:
-    """Map dossier/probe stem -> ``##`` heading in ``negative_knowledge.md``."""
-    body = text if text is not None else (
-        NK_PATH.read_text(encoding="utf-8") if NK_PATH.is_file() else ""
-    )
-    mapping: dict[str, str] = {}
+def parse_nk_clusters(text: str | None = None) -> dict[str, list[str]]:
+    """Map dossier/probe stems to every linked obstruction, never an arbitrary first."""
+    body = text if text is not None else negative_text(REPO_ROOT)
+    mapping: dict[str, list[str]] = {}
     for part in re.split(r"^## ", body, flags=re.M)[1:]:
         heading, _, _rest = part.partition("\n")
         heading = heading.strip()
         if heading in _NK_SKIP:
             continue
         for stem in _JUGGLE_STEM.findall(part):
-            mapping.setdefault(stem, heading)
+            headings = mapping.setdefault(stem, [])
+            if heading not in headings:
+                headings.append(heading)
     return mapping
 
 
-def _nk_cluster_for(stem: str, dossier_stem: str, nk_map: dict[str, str]) -> str | None:
-    for key in (stem, dossier_stem):
-        if key and key in nk_map:
-            return nk_map[key]
-    return None
+def _nk_clusters_for(stem: str, dossier_stem: str, nk_map: dict[str, list[str]]) -> list[str]:
+    return sorted({heading for key in (stem, dossier_stem) for heading in nk_map.get(key, [])})
 
 
 def _rel(path: Path | None) -> str | None:
@@ -266,7 +264,7 @@ def _row(
     test: Path | None,
     dossier: Path | None,
     ledger_rows: list[dict[str, Any]],
-    nk_map: dict[str, str],
+    nk_map: dict[str, list[str]],
 ) -> dict[str, Any]:
     dossier_stem = ""
     if dossier is not None:
@@ -285,7 +283,7 @@ def _row(
         "decision": decision,
         "ledger_ids": _ledger_ids(sources, ledger_rows),
         "aliases": _aliases_for(stem),
-        "nk_cluster": _nk_cluster_for(stem, dossier_stem, nk_map),
+        "nk_clusters": _nk_clusters_for(stem, dossier_stem, nk_map),
     }
 
 
@@ -404,7 +402,7 @@ def format_show(row: dict[str, Any]) -> str:
         f"lean: {lean}",
         f"ledger_ids: {ledger}",
         f"aliases: {aliases}",
-        f"nk_cluster: {row.get('nk_cluster') or '—'}",
+        "nk_clusters: " + "; ".join(row.get("nk_clusters") or ["—"]),
     ]
     return "\n".join(lines)
 
@@ -422,7 +420,7 @@ def search_rows(query: str, index: dict[str, Any] | None = None) -> list[dict[st
                 row["id"],
                 dossier_stem,
                 " ".join(row.get("aliases") or []),
-                row.get("nk_cluster") or "",
+                " ".join(row.get("nk_clusters", [])),
             ]
         ).casefold()
         if needle in hay:
@@ -516,9 +514,9 @@ def write_new_branch(stem: str) -> list[Path]:
 def format_search(rows: list[dict[str, Any]]) -> str:
     if not rows:
         return "no matches"
-    lines = [f"{'id':<32} {'decision':<8} nk_cluster"]
+    lines = [f"{'id':<32} {'decision':<8} nk_clusters"]
     for row in rows:
-        cluster = row.get("nk_cluster") or "—"
+        cluster = "; ".join(row.get("nk_clusters") or ["—"])
         decision = row.get("decision") or "—"
         lines.append(f"{row['id']:<32} {decision:<8} {cluster}")
     return "\n".join(lines)
@@ -530,7 +528,7 @@ def main(argv: list[str] | None = None) -> int:
     sub = parser.add_subparsers(dest="cmd")
     show_p = sub.add_parser("show", help="print one branch row")
     show_p.add_argument("id")
-    search_p = sub.add_parser("search", help="match id, aliases, or nk_cluster")
+    search_p = sub.add_parser("search", help="match id, aliases, or obstruction headings")
     search_p.add_argument("query")
     new_p = sub.add_parser("new", help="write probe, test, and dossier stubs")
     new_p.add_argument("stem")
@@ -561,7 +559,7 @@ def main(argv: list[str] | None = None) -> int:
         for path in written:
             print(path.relative_to(REPO_ROOT).as_posix())
         print("remaining gates: fill Already killed by?; ledger only if named;")
-        print("CLOSE/REFUTED -> docs/negative_knowledge.md; rebuild is done")
+        print("CLOSE/REFUTED -> docs/negative_knowledge/; rebuild its index with tools/research_memory.py")
         return 0
     path = write_index()
     print(path.relative_to(REPO_ROOT).as_posix())

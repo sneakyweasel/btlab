@@ -170,3 +170,52 @@ def test_claim_statements_are_not_parsed_as_repository_links(repo):
     assert catalogue.check()["errors"] == 0 and catalogue.check()["warnings"] == 0
     (repo / "docs/theory/proof.md").unlink()
     assert catalogue.check()["errors"] == 1
+
+
+def test_obstruction_records_are_searchable_without_a_dossier_and_keep_scope(repo):
+    from research.knowledge import render_negative_index
+
+    file = "docs/negative_knowledge/finite-barrier.md"
+    write(repo, file, "# Finite barrier\n\nA zircon counterexample.\n### Scope\n"
+          "This does not refute termination.\n[Branch](../problems/juggler_example.md)\n")
+    write(repo, "docs/negative_knowledge/unlinked.md", "# Unlinked obstruction\n\nA cobalt boundary.\n")
+    write(repo, "docs/negative_knowledge.md", render_negative_index(repo))
+    catalogue = ResearchCatalogue(repo)
+    result = catalogue.search("cobalt", kind="obstruction")
+    assert [r["id"] for r in result["items"]] == ["obstruction/unlinked"]
+    assert catalogue.search("zircon")["items"][0]["id"] == "juggler/example"
+    assert catalogue.search("zircon", kind="obstruction", programme="collatz")["total"] == 0
+    detail = catalogue.context("obstruction/finite-barrier", "obstructions")["items"][0]
+    assert detail["file"] == file and detail["line"] == 1
+    assert "### Scope\nThis does not refute termination." in detail["text"]
+    assert catalogue.context("obstruction/finite-barrier", "sources")["items"][0]["path"] == "docs/problems/juggler_example.md"
+    assert catalogue.context("obstruction/unlinked")["items"][0]["decision"] is None
+    assert catalogue.check()["errors"] == 0
+    with pytest.raises(ValueError, match="Decision filters"):
+        catalogue.search("", kind="obstruction", decision="CLOSE")
+
+
+def test_obstruction_changes_invalidate_pages_and_directory(repo):
+    from research.knowledge import render_negative_index
+
+    path = write(repo, "docs/negative_knowledge/barrier.md", "# Barrier\n\nOne counterexample.\n")
+    write(repo, "docs/negative_knowledge.md", render_negative_index(repo))
+    catalogue = ResearchCatalogue(repo)
+    snapshot = catalogue.search("", kind="obstruction")["snapshot"]
+    path.write_text("# Barrier\n\nA changed counterexample.\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="snapshot changed"):
+        catalogue.search("", kind="obstruction", snapshot=snapshot)
+    write(repo, "docs/negative_knowledge/new.md", "# New barrier\n\nA new boundary.\n")
+    assert catalogue.search("", kind="obstruction")["total"] == 2
+    assert any("Stale obstruction index" in e["error"] for e in catalogue.check()["items"])
+    write(repo, "docs/negative_knowledge.md", render_negative_index(repo))
+    path.unlink()
+    assert catalogue.context("obstruction/barrier")["status"] == "not_found"
+    assert catalogue.check()["errors"] == 1
+    (repo / "docs/negative_knowledge/new.md").unlink()
+    assert catalogue.check()["errors"] == 1
+
+
+def test_research_check_rejects_unbounded_journal(repo):
+    write(repo, "docs/research_journal.md", "# Recent decisions\n" + "\n## Decision\nText\n" * 13)
+    assert any("twelve entries" in e["error"] for e in ResearchCatalogue(repo).check()["items"])

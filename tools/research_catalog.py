@@ -14,6 +14,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from research.experiments.provenance import check_manifest, write_manifest
+from research.knowledge import journal_errors, negative_entries, negative_errors, negative_paths
 from render_theorem_ledger import TAGS
 
 LINK = re.compile(r"\[[^\]]*\]\(([^)\s]+)(?:\s+[^)]*)?\)")
@@ -68,7 +69,7 @@ class ResearchCatalogue:
 
     def _files(self) -> list[Path]:
         root = self.root
-        files = [root / "docs/theory/theorem_ledger.json", root / "docs/negative_knowledge.md",
+        files = [root / "docs/theory/theorem_ledger.json", root / "docs/research_journal.md", *negative_paths(root),
                  root / "src/research/juggler_sequence/branch_index.py"]
         files += [p for p in (root / "docs/problems").glob("*.md") if programme(p)]
         files += [p for p in (root / "literature").glob("*.json") if not p.name.endswith(".private.json")]
@@ -161,10 +162,12 @@ class ResearchCatalogue:
                         aliases = ast.literal_eval(node.value)
                     elif node.target.id == "SLOGAN_ALIASES":
                         slogans = ast.literal_eval(node.value)
-        negative = sections(texts.get("docs/negative_knowledge.md", ""))
+        negative = negative_entries(root, texts)
+        errors.extend(negative_errors(root, texts))
+        errors.extend(journal_errors(texts.get("docs/research_journal.md", "")))
         negative_by_ref = defaultdict(list)
         for part in negative:
-            for ref in self._references(part["body"], root / "docs/negative_knowledge.md"):
+            for ref in self._references(part["body"], root / part["file"]):
                 negative_by_ref[ref].append(part)
         manifests = []
         for file, body in texts.items():
@@ -234,7 +237,7 @@ class ResearchCatalogue:
                         for p in parts if p["heading"].casefold() in headings and p["body"]]
             obstructions = selected({"counterexamples", "already killed by?", "decision"})
             for part in negative_by_ref.get(file, []):
-                obstructions.append({"file": "docs/negative_knowledge.md", "line": part["line"],
+                obstructions.append({"id": part["id"], "file": part["file"], "line": part["line"],
                                      "heading": part["heading"], **excerpt(part["body"])})
             sources = [{"path": ref, "kind": file_kind(ref), "basis": basis,
                         "exists": (root / ref).exists()} for ref, basis in sorted(refs.items())]
@@ -270,6 +273,7 @@ class ResearchCatalogue:
                             "questions": selected({"open questions", "conjectures", "exact statement"}),
                             "commands": commands, "papers": [s for s in sources if s["kind"] == "theory"],
                             "_search": " ".join([identifier, *names, body,
+                                                   *(p["heading"] + " " + p["body"] for p in negative_by_ref.get(file, [])),
                                                    *(str(r.get("statement", "")) for r in matches.values())]).casefold()})
         from research.literature import REQUIRED
         for file, body in texts.items():
@@ -283,7 +287,10 @@ class ResearchCatalogue:
                         errors.append({"path": file, "error": f"Missing literature fields: {missing}"})
                 except (ValueError, TypeError) as exc:
                     errors.append({"path": file, "error": f"Invalid literature record: {exc}"})
-        return {"records": records, "manifests": manifests, "ledger": ledger, "errors": errors,
+        for part in negative:
+            part["sources"] = sorted(self._references(part["body"], root / part["file"]))
+            part["programmes"] = sorted({app for ref in part["sources"] if (app := programme(Path(ref)))})
+        return {"records": records, "obstructions": negative, "manifests": manifests, "ledger": ledger, "errors": errors,
                 "source_hash": hashlib.sha256(json.dumps(texts, sort_keys=True).encode()).hexdigest()}
 
     def _current(self, snapshot: str | None) -> dict:
@@ -293,13 +300,26 @@ class ResearchCatalogue:
         return data
 
     def search(self, query: str, programme: str | None = None, decision: str | None = None,
-               limit: int = 10, offset: int = 0, snapshot: str | None = None) -> dict:
+               limit: int = 10, offset: int = 0, snapshot: str | None = None,
+               kind: str = "research") -> dict:
+        if kind not in {"research", "obstruction"}:
+            raise ValueError("kind must be research or obstruction")
         if programme not in {None, "juggler", "collatz"} or decision not in {None, "PROMOTE", "PARK", "CLOSE"}:
             raise ValueError("Invalid programme or decision filter")
         if len(query) > 500:
             raise ValueError("Query exceeds 500 characters")
         data = self._current(snapshot)
         terms = re.findall(r"[\w]+", query.casefold())
+        if kind == "obstruction":
+            if decision is not None:
+                raise ValueError("Decision filters apply to research dossiers, not obstruction records")
+            selected = [p for p in data["obstructions"]
+                        if (programme is None or programme in p["programmes"])
+                        and all(t in (p["heading"] + " " + p["body"]).casefold() for t in terms)]
+            selected.sort(key=lambda p: (-sum(t in p["heading"].casefold() for t in terms), p["id"]))
+            results = [{"id": "obstruction/" + p["id"], "title": p["heading"], "file": p["file"],
+                        "line": p["line"], "programmes": p["programmes"]} for p in selected]
+            return {"snapshot": data["snapshot"], **page(results, limit, offset), "limitations": LIMITATION}
         selected = [r for r in data["records"] if (programme is None or r["programme"] == programme)
                     and (decision is None or r["decision"] == decision)
                     and all(term in r["_search"] for term in terms)]
@@ -319,6 +339,23 @@ class ResearchCatalogue:
         if section not in SECTIONS:
             raise ValueError("Unknown section; use " + ", ".join(SECTIONS))
         data = self._current(snapshot)
+        if identifier.startswith("obstruction/"):
+            parts = [p for p in data["obstructions"] if "obstruction/" + p["id"] == identifier]
+            items = []
+            if parts:
+                part = parts[0]
+                if section == "overview":
+                    items = [{"id": identifier, "title": part["heading"], "file": part["file"],
+                              "programmes": part["programmes"], "decision": None,
+                              "sections": {"obstructions": 1, "sources": len(part["sources"])}}]
+                elif section == "obstructions":
+                    items = [{"id": identifier, "file": part["file"], "line": part["line"],
+                              "heading": part["heading"], **excerpt(part["body"])}]
+                elif section == "sources":
+                    items = [{"path": ref, "kind": file_kind(ref), "exists": (self.root / ref).exists(),
+                              "basis": "obstruction reference"} for ref in part["sources"]]
+            return {"status": "found" if parts else "not_found", "id": identifier,
+                    "snapshot": data["snapshot"], **page(items, limit, offset), "limitations": LIMITATION}
         exact = [r for r in data["records"] if r["id"] == identifier]
         candidates = exact or [r for r in data["records"] if identifier in r["aliases"]]
         result = {"snapshot": data["snapshot"], "limitations": LIMITATION}
@@ -370,6 +407,7 @@ class ResearchCatalogue:
         return {"status": "failed" if counts["error"] else "ok", "snapshot": data["snapshot"],
                 "errors": counts["error"], "warnings": counts["warning"], "hashes_checked": hashes,
                 "coverage": {"dossiers": len(data["records"]), "programmes": dict(Counter(r["programme"] for r in data["records"])),
+                             "obstruction_records": len(data["obstructions"]),
                              "standard_manifests": len(data["manifests"]),
                              "legacy_data": "Not retroactively certified; only *.research.json uses the new contract"},
                 **page(issues, limit, offset), "limitations": LIMITATION}
@@ -380,6 +418,7 @@ def main(argv=None) -> int:
     commands = parser.add_subparsers(dest="command", required=True)
     search = commands.add_parser("search", help="search live dossier text and linked claims")
     search.add_argument("query")
+    search.add_argument("--kind", choices=("research", "obstruction"), default="research")
     search.add_argument("--programme", choices=("juggler", "collatz"))
     search.add_argument("--decision", choices=("PROMOTE", "PARK", "CLOSE"))
     context = commands.add_parser("context", help="read one section of a research record")
@@ -419,7 +458,7 @@ def main(argv=None) -> int:
         kwargs = {"limit": args.limit, "offset": args.offset}
         if args.command == "search":
             result = catalogue.search(args.query, programme=args.programme, decision=args.decision,
-                                      snapshot=args.snapshot, **kwargs)
+                                      snapshot=args.snapshot, kind=args.kind, **kwargs)
         elif args.command == "context":
             result = catalogue.context(args.identifier, section=args.section, snapshot=args.snapshot, **kwargs)
         else:

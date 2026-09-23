@@ -58,7 +58,7 @@ def test_every_branch_row_has_the_triad():
             path = REPO_ROOT / rel
             if not path.is_file():
                 missing.append(f"missing {rel}")
-        if "aliases" not in row or "nk_cluster" not in row:
+        if "aliases" not in row or "nk_clusters" not in row:
             missing.append(f"{row['id']}: missing lookup fields")
     assert missing == [], missing[:20]
 
@@ -84,6 +84,16 @@ def test_search_hardy_hits_floor_hardy():
     hits = search_rows("hardy")
     ids = {row["id"] for row in hits}
     assert "rate_free_floor_hardy" in ids
+
+
+def test_multiple_obstructions_remain_searchable_for_one_branch():
+    from research.juggler_sequence.branch_index import parse_nk_clusters, search_rows
+
+    clusters = parse_nk_clusters("## First barrier\njuggler_example\n"
+                                 "## Separate boundary\njuggler_example\n")
+    assert clusters["example"] == ["First barrier", "Separate boundary"]
+    row = {"id": "example", "nk_clusters": clusters["example"]}
+    assert search_rows("separate boundary", {"branches": [row]}) == [row]
 
 
 def test_render_new_branch_uses_template_and_path_constants():

@@ -171,6 +171,7 @@ OTHER_LATEX_DOCS = (
     ROOT / "attacks" / "juggler" / "AGENT.md",
     ROOT / "docs" / "juggler_branch_ledger.md",
     ROOT / "docs" / "negative_knowledge.md",
+    *sorted((ROOT / "docs" / "negative_knowledge").glob("*.md")),
     ROOT / "docs" / "theory" / "juggler_fate_contagion_note.md",
     ROOT / "docs" / "theory" / "juggler_flight_note.md",
     ROOT / "docs" / "theory" / "juggler_tao_reduction_note.md",

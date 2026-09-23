@@ -7,7 +7,7 @@ from pathlib import Path
 from research.literature import get_reference
 
 DOSSIER = Path("docs/problems/juggler_three_halves_mod_one.md")
-NEGATIVE = Path("docs/negative_knowledge.md")
+NEGATIVE = Path("docs/negative_knowledge/geometric-32n-equidistribution.md")
 
 LIT_IDS = (
     "vijayaraghavan-1940-fractional-parts-powers",

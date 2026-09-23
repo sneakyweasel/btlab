@@ -275,13 +275,14 @@ def test_lab_links_include_and_prioritize_manuscripts_and_filter_before_paging(t
     monkeypatch.setattr('oeis_lab_links.shutil.which', lambda _: None)
     (tmp_path / 'docs/theory').mkdir(parents=True)
     (tmp_path / 'docs/problems').mkdir()
+    (tmp_path / 'docs/negative_knowledge').mkdir()
     for file, source in {
         'theory/manuscript.tex': 'A000002 first citation\nA000002 second citation\n',
         'theory/manuscript.md': 'A000002 manuscript source\n',
         'theory/references.bib': 'A000002 bibliography\n',
         'theory/note.md': 'A000002 theory\n',
         'problems/known.md': 'A000002 CLOSE\n',
-        'negative_knowledge.md': 'A000002 false identification\n',
+        'negative_knowledge/barrier.md': 'A000002 false identification\n',
     }.items():
         (tmp_path / 'docs' / file).write_text(source)
     result = lab_links('A000002', root=tmp_path, limit=1)

@@ -208,14 +208,17 @@ def discovery_guide() -> str:
 @mcp.tool(annotations=READ_ONLY)
 def formalpedia_research_search(query: str, programme: Literal['juggler', 'collatz'] | None = None,
                                decision: Literal['PROMOTE', 'PARK', 'CLOSE'] | None = None,
-                               limit: int = 10, offset: int = 0, snapshot: str | None = None) -> dict[str, Any]:
+                               limit: int = 10, offset: int = 0, snapshot: str | None = None,
+                               kind: Literal['research', 'obstruction'] = 'research') -> dict[str, Any]:
     """Search canonical research dossiers and associated claims across both programmes.
 
-    Results use programme-qualified dossier IDs. Existing Juggler aliases are reused.
+    Use kind='obstruction' to search every negative-knowledge record, including ones
+    without a linked dossier. Its obstruction/<id> works with research_context.
+    Research results use programme-qualified dossier IDs and existing Juggler aliases.
     Pass the returned snapshot on later pages to reject source changes. A search miss
     does not establish novelty. No catalogue files or research outputs are written.
     """
-    return research.search(query, programme, decision, limit, offset, snapshot)
+    return research.search(query, programme, decision, limit, offset, snapshot, kind)
 
 
 @mcp.tool(annotations=READ_ONLY)

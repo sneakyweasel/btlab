@@ -10,6 +10,7 @@ its more detailed source inventory, including support modules without dossiers.
 
 ```powershell
 python tools/lab.py search "mixed descent" --programme juggler
+python tools/lab.py search "harmonic divergence" --kind obstruction
 python tools/lab.py context collatz/fibre_sign_coupling
 python tools/lab.py context collatz/fibre_sign_coupling --section obstructions
 python tools/lab.py context collatz/fibre_sign_coupling --section claims
@@ -29,6 +30,24 @@ Search includes dossier text and associated claim statements, prioritizing
 IDs and titles. Follow `next_offset` and supply `--snapshot` on subsequent
 pages; a changed source snapshot is rejected. Limits are 1–30 items per page.
 Excerpts disclose truncation; read the cited file for the complete argument.
+
+Negative knowledge lives in individual records under `docs/negative_knowledge/`.
+The compact `docs/negative_knowledge.md` directory preserves the previous anchors;
+regenerate it with `python tools/research_memory.py` after adding or renaming a
+record. `lab.py check` rejects a stale directory and a journal longer than twelve
+entries. Keep durable results in their dossiers, proof maps and obstruction
+records; use Git for older journal chronology.
+
+`search --kind obstruction` searches every obstruction, including records without
+a dossier. Read its `obstruction/<id>` using `context`, with `--section obstructions`
+for the argument or `--section sources` for its references. Programme filtering
+uses explicit source links; an unclassified record stays visible without that
+filter. No decision is inferred from incidental CLOSE/PARK/PROMOTE words.
+Ordinary research search also includes the obstructions linked to each dossier.
+The MCP search tool exposes the same `kind="obstruction"` option. Both readers
+watch record additions, changes and removals when checking pagination snapshots.
+The branch index likewise stores every associated heading in `nk_clusters`;
+branch search no longer drops additional obstructions after its first match.
 
 Associations disclose their basis: dossier references, filename conventions,
 or claim-ledger source/test references. Theory links include both papers and

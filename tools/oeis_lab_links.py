@@ -26,7 +26,7 @@ def mention_kind(file: str, root: Path) -> str:
         return 'paper'
     if path.suffix == '.bib':
         return 'bibliography'
-    if file == 'docs/negative_knowledge.md':
+    if file == 'docs/negative_knowledge.md' or file.startswith('docs/negative_knowledge/'):
         return 'negative_knowledge'
     if path.name in {'theorem_ledger.md', 'theorem_ledger.json'}:
         return 'ledger'

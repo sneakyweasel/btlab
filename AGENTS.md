@@ -19,7 +19,8 @@ is their home. Do not recreate compatibility packages or a parallel research are
 | Shared Python code | [Architecture](docs/architecture/overview.md) |
 
 Do not read entire generated indexes, theorem ledgers or journals to find one item.
-Use `python tools/lab.py search` and `context` for either programme, formalpedia's
+Use `python tools/lab.py search` and `context` for either programme, `search --kind
+obstruction` for negative knowledge, formalpedia's
 `search`, `claim`, `show`, and `impact` for Lean, and the branch CLI for Juggler
 scaffolding. Search [negative knowledge](docs/negative_knowledge.md) before proposing
 a direction. Current mathematical thresholds belong in the application guide and
@@ -40,8 +41,10 @@ its canonical proof sources, not in duplicated instructions.
   [.cursor/rules/methodology.mdc](.cursor/rules/methodology.mdc), including
   `Already killed by?`, and end with `PROMOTE | PARK | CLOSE`. Do not auto-open
   the next branch. This research protocol does not prevent authorized maintenance.
-- Keep durable results in dossiers, proof maps and the claim ledger. Journal
-  entries are short recent decisions; earlier chronology is recoverable from Git.
+- Keep durable results in dossiers, proof maps, obstruction records and the claim
+  ledger. The journal holds at most twelve short decisions; earlier chronology is
+  recoverable from Git. Regenerate the obstruction directory with
+  `python tools/research_memory.py`; `lab.py check` validates both boundaries.
 - Lean names and documentation follow the [Lean guide](docs/architecture/lean_discovery.md).
   No `sorry` or `admit`. Search existing results, compile changes, and check their
   public interfaces. Do not expand the style baseline to excuse new violations.

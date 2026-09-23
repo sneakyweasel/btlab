@@ -24,7 +24,7 @@ DOSSIER = (
     / "problems"
     / "juggler_pressure_external_average.md"
 )
-NEGATIVE = Path(__file__).resolve().parents[3] / "docs" / "negative_knowledge.md"
+NEGATIVE = Path(__file__).resolve().parents[3] / "docs" / "negative_knowledge" / "paper-b-k_3-and-harvest-counting.md"
 
 
 def test_dossier_headings_and_arithmetic_estimate_park() -> None:
