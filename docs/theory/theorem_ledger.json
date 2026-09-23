@@ -11024,5 +11024,26 @@
    "tests/research/collatz/test_fibre_mixing.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "C-fibre-unit-coarse-comparison",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "For either signed complete Collatz inverse operator L_s, define the all-source coefficient C_d=L_s^d 1 and the unit-source coefficient K_d=L_s^d 1_units. At every natural target and every d>=1, (5/21)*C_d<=K_d<=(20/21)*C_d. The constants do not deteriorate with depth. At any fixed target the two depth series are summable simultaneously. At positive targets this is also equivalent to summability of the existing finite-budget series B_(d,8d), and (5/21)*C_d<=B_(d,8d)+(19683/32768)^d for d>=1. At a nonperiodic positive odd target, nonsummability of the coarse coefficient series implies nonsummability of actual positive odd unit-ancestor reciprocals for either sign. The proof uses the known geometric operator and one-step mod-9 table; no coarse-count lower bound, fixed-H relative bound, Juggler transfer or termination theorem is proved. Kernel-checked; independent review and advisory statement coverage pending.",
+  "source": "docs/problems/collatz_fibre_unit_comparison.md",
+  "lean": "formal/Problems/Collatz/FibreUnitComparison.lean",
+  "lean_trust": "kernel",
+  "decl": [
+   "Problems.Collatz.FibreUnitComparison.coarse",
+   "Problems.Collatz.FibreUnitComparison.coarse_nonneg",
+   "Problems.Collatz.FibreUnitComparison.kernel_bounds",
+   "Problems.Collatz.FibreUnitComparison.summable_kernel_iff_coarse",
+   "Problems.Collatz.FibreUnitComparison.summable_coarse_iff_budget",
+   "Problems.Collatz.FibreUnitComparison.coarse_le_budget_add",
+   "Problems.Collatz.FibreUnitComparison.ancestor_reciprocals_not_summable"
+  ],
+  "tests": [
+   "tests/research/collatz/test_fibre_unit_comparison.py"
+  ],
+  "related_conjectures": []
  }
 ]

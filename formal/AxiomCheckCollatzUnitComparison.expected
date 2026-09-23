@@ -1,0 +1,12 @@
+'Problems.Collatz.FibreUnitComparison.coarse_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreUnitComparison.kernel_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreUnitComparison.summable_kernel_iff_coarse' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Collatz.FibreUnitComparison.summable_coarse_iff_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Collatz.FibreUnitComparison.coarse_le_budget_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Collatz.FibreUnitComparison.ancestor_reciprocals_not_summable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

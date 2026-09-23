@@ -18,6 +18,12 @@ divergence; cancellation in the signed frequency sum and direct arithmetic
 counting remain open. Four exact composition controls verify the signed
 two-cell identification against actual inverse paths and budget increments.
 
+The later [complete-halving comparison](problems/collatz_fibre_unit_comparison.md)
+does control the final unit loss after averaging over every H: its retained
+fraction is between 5/21 and 20/21 of the coarse coefficient, uniformly in
+positive depth. This uses the actual geometric fibres. The fixed-root coarse
+lower count remains open; the direct Fourier-transfer closure above is unchanged.
+
 ## Coherent fine-scale mixing can coexist with summable fixed-root densities
 
 The [explicit ternary model](problems/collatz_fibre_mixing.md), 23 September

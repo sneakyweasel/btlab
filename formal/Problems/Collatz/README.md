@@ -90,3 +90,10 @@ unit row `(0,1,1)` and Syracuse row `(0,1,2)` are covered. An explicit checked
 inequality distinguishes the model from the actual signed coefficient operator.
 This closes inference from mixing and coherence alone, not the fixed-root
 Collatz lower bound; see the [dossier](../../../docs/problems/collatz_fibre_mixing.md).
+
+[FibreUnitComparison.lean](FibreUnitComparison.lean) compares the complete unit
+coefficient with the all-source coefficient at the same depth and root.
+The retained fraction lies between 5/21 and 20/21 for both signs and every
+positive depth. Their depth series, and the existing finite-budget series,
+are summable simultaneously. The fixed-root coarse-count lower bound remains
+open; see the [dossier](../../../docs/problems/collatz_fibre_unit_comparison.md).

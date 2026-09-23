@@ -212,6 +212,11 @@ each total-exponent slice. The available conditional Fourier estimate reaches
 the required modulus but, after direct absolute-value inversion, has insufficient
 relative precision. It supplies no fixed-root block lower bound.
 
+The [complete-halving comparison](collatz_fibre_unit_comparison.md) subsequently
+proves (5/21)*C_d<=K_d<=(20/21)*C_d at every positive depth, where C_d retains
+all odd sources. Thus the same divergence target can be studied through the
+coarse Syracuse cell, with no independent loss from its final unit restriction.
+
 ## Publication assessment
 
 Status: `STRUCTURAL`. This is an exact reduction of the remaining arithmetic

@@ -1,0 +1,8 @@
+import Problems.Collatz.FibreUnitComparison
+
+#print axioms Problems.Collatz.FibreUnitComparison.coarse_nonneg
+#print axioms Problems.Collatz.FibreUnitComparison.kernel_bounds
+#print axioms Problems.Collatz.FibreUnitComparison.summable_kernel_iff_coarse
+#print axioms Problems.Collatz.FibreUnitComparison.summable_coarse_iff_budget
+#print axioms Problems.Collatz.FibreUnitComparison.coarse_le_budget_add
+#print axioms Problems.Collatz.FibreUnitComparison.ancestor_reciprocals_not_summable

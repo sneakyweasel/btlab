@@ -168,6 +168,13 @@ not a refutation of the preprint or of the actual arithmetic target. Best
 next question: can the phases in (3), with the same integer a at every depth,
 be exploited instead of discarded? No new enumeration campaign is opened.
 
+The subsequent [complete-halving comparison](collatz_fibre_unit_comparison.md)
+answers the final-unit part of that question arithmetically: after averaging
+over every H, the two-cell probability lies between 5/21 and 20/21 of the
+coarse-cell probability at every positive depth. This does not validate the
+direct Fourier argument or apply with H fixed. It leaves the fixed-root
+coarse-cell lower bound as the remaining obligation.
+
 ## Publication assessment
 
 Status: `STRUCTURAL`. A reading audit and precise statement of the missing

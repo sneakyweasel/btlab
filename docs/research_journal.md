@@ -10,6 +10,16 @@ The earlier full-length journal is available at Git revision
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-23 -- Complete halving averages control the final unit loss
+
+The actual signed operator retains between 5/21 and 20/21 of its all-source
+coefficient when sterile sources are removed, at every positive depth. The
+factor is paid once. **PROMOTE** this relative comparison and its equivalence
+with the finite-budget series; the fixed-root coarse lower bound remains open.
+Lean checks the comparison and the conditional reciprocal-ancestor consequence.
+Eight independent affine-distribution controls pass. No termination or Juggler
+transfer is claimed. See the [dossier](problems/collatz_fibre_unit_comparison.md).
+
 ## 2026-09-23 -- Conditioned Syracuse decay reaches the modulus but not fixed-root precision
 
 The new reading audit checks Si's 2026 conditioned affine preprint against the
