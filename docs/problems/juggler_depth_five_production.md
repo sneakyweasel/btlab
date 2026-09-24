@@ -570,16 +570,100 @@ The consequence stands for bounded `k != 0`, subject to E3's claim that (A.12) i
 uniform under translations of size `P^(5/32)`. E2's `b = 0` part was audited in
 Result 9.
 
+**14. Lemma E5: the `k = 0` frequency cases of `T_d` at shifts up to `P^(5/32)`
+(written proof, 24 September 2026; AI-assisted, not independently reviewed).**
+
+*Statement.* Let `(i, j, l)` be a bounded, nonzero integer vector. Take `k = 0` and
+`1 <= d <= P^(5/32)`. By (C.4)-(C.6) the phase is
+`phi = iX/2 + jY/2 + l m^(9/8)/2`, up to a replacement costing `O(|l| P^(7/16))`
+at each endpoint. Then, for `T_d = sum_n e(phi(n+2d) - phi(n))` over the odd
+`n` in `(P, 2P]`:
+
+| Case | Bound on `\|T_d\|` |
+|---|---|
+| `j != 0` | `P^(7/8) d^(1/2) + d P^(3/4) + P^(5/6)`, which is `<< P^(61/64)` |
+| `j = 0`, `l != 0` | `P^(7/8) log P` |
+| `j = l = 0`, `i != 0` | `P^(1/2)/d + 1` |
+
+Paper B's C.2 treats the undifferenced sums. `T_d` is already differenced once, so
+no A-process is applied here.
+
+*Proof, `j != 0`.* `T_d` is Paper B's sum (4.4) at `h = d`, plus the term
+`(l/2) Delta_d(m^(9/8))`. Use E1 (Result 7), which is Lemma 4.4 for
+`|u| h <= c_0 P^(1/4)`. Here `|u| d << P^(5/32)`, so E1 applies. Add the `l`-term
+as C.2 does:
+
+- On a gap cell with `g = m(n+2d) - m(n)` fixed,
+  `Delta_d(m^(9/8)) = V_g(m)` with `V_g(z) = (z+g)^(9/8) - z^(9/8)`.
+- By (C.7), `|V_g'(X)| << d P^(-13/16)`. So replacing `V_g(m)` by `V_g(X)` costs
+  `|l| d P^(3/16) <= P^(11/32)` in total.
+- The identity (4.8) holds for any phase attached to each branch. So add
+  `(l/2) V_{G+epsilon}(X)` to `F_{G,epsilon}`. No new cell or carry is needed.
+- Its curvature is `O(d P^(-21/16))`. That is at most `P^(-9/16)` times E1's main
+  curvature `u d P^(-3/4)`, and at most `P^(-21/32)` times a carry mode's
+  `|r| P^(-1/2)`. Both ratios hold for every `d`.
+- The E1 bound therefore holds with the extra cost `P^(11/32)`.
+
+At `d = P^(5/32)` the bound is `P^(61/64) + P^(29/32) + P^(5/6)`.
+
+*Proof, `j = 0`, `l != 0`.* Expand each endpoint by (C.8). With
+`B = (9l/16) x^(3/16)`, `N_B = floor(B)` and cutoff `T = floor(P^(1/8))`, we have
+`e(phi(n)) = sum_{|r| <= T} a_r(B - N_B) e(f_r(n)) + O(E_T(X(n)))`, where
+`f_r = (l/2) x^(27/16) + (i/2 + r - N_B) X`.
+
+- *Errors.* The positive errors at `n` and `n + 2d` total `O(P^(7/8) log P)`,
+  as in C.2.
+- *Windows.* Put `N_1 = N_B(x + 2d)` and `N_2 = N_B(x)`. Since
+  `B(x+2d) - B(x) << d P^(-13/16) = o(1)`, the difference `N_1 - N_2` is 0 or
+  `sign(l)`. It is constant on the `O(1 + P^(3/16))` intersections of the two
+  families of windows.
+- *Phases.* For the pair `(r, r')` the phase is
+  `F = f_r(x + 2d) - f_{r'}(x) = (l/2) Delta_d(x^(27/16)) + c_1 X(x+2d) - c_2 X(x)`,
+  with `c_1 = i/2 + r - N_1` and `c_2 = i/2 + r' - N_2`.
+
+Put `Delta = c_1 - c_2`.
+
+- *`Delta != 0`.* The curvature is `Delta X''`, of size about `|Delta| P^(-1/2)`,
+  up to `O(d P^(-21/16))`, a factor `P^(-21/32)` smaller. Weighted by
+  `|a_r a_{r'}| << 1/((1+|r|)(1+|r'|))`, the second-derivative test gives
+  `(T^(1/2) P^(3/4) + P^(3/16) P^(1/4)) log^2 P << P^(13/16) log^2 P`.
+- *`Delta = 0`.* Then
+  `F'' = Delta_d[(l/2)(x^(27/16))''] + c Delta_d X''`, with `c = c_1 = c_2`.
+  Freeze `N_1` and write `N_1 = B(x) + O(1)`. The leading part is
+  `(243/4096) l d x^(-21/16)`, from
+  `2d [(1/2)(27/16)(11/16)(-5/16) + (9/16)(3/8)] = (243/4096) d`. (A
+  high-precision finite difference agrees to nine digits.) Relative to it, the
+  `(i/2 + r) Delta_d X''` part is `O((|i| + T) P^(-3/16)) = O(P^(-1/16))`, and the
+  `O(1)` in `N_1` contributes `O(P^(-3/16))`. So `F''` is one-signed, of size about
+  `|l| d P^(-21/16)`, which exceeds `P^(-2)`. The test gives
+  `d^(1/2) P^(11/32) + (1 + P^(3/16)) d^(-1/2) P^(21/32) << P^(27/32)`. The
+  diagonal weights sum to `O(1)`.
+
+The coefficient variation is `O(1/(1+|r|))` on each window, as in C.2. Hence
+`|T_d| << P^(7/8) log P`.
+
+*Proof, `j = l = 0`.* The phase `(i/2) Delta_d X` has derivative about
+`(3i/4) d x^(-1/2)`. It is monotone, and after the change to odd `n` its absolute value
+is below `1/4`. The Kusmin-Landau inequality gives `O(P^(1/2)/d + 1)`. `QED`
+
+*Consequence.* This case needs neither Proposition 7.6 nor a curvature collision.
+With E1-E4 (Results 7-13), every bounded nonzero frequency vector has
+`|T_d| << P^(127/128+eps)` for `1 <= d <= P^(5/32)`. The `k != 0` vectors give
+`P^(127/128)` and the `k = 0` vectors at most `P^(61/64)`. The only unwritten step
+of the `OOOEE` route is now the poor-tail reduction from sliding windows to the
+actual fibres, including the square-wave truncation. That is where the frequencies
+stop being bounded, and it decides whether this saving is enough.
+
 ## Open questions
 
-Lemmas E1, E2 and E4 and Theorem E3 (Results 7, 8, 10 and 12) write out every row
-of Paper B's Appendix C for `OOOEE` at first shifts up to `P^(5/32)`, bounded `k`
-and `Pi <= P^(19/96)`. The double correlation is `<< P^(63/64+eps)`, and
-`|T_d| << P^(127/128+eps)` for bounded `k != 0`. E1, E3 and E4 have been audited; E2 has been
-audited with its nonzero-`t` clause withdrawn. Still unwritten:
-the `k = 0` frequency cases of `T_d` (Appendix C.2, Lemma 4.4 and Proposition 7.6
-at `h = d`), and the poor-tail reduction from sliding windows to the actual fibres,
-including the square-wave truncation. `OOEOE` needs its own bookkeeping.
+Lemmas E1, E2, E4 and E5 and Theorem E3 (Results 7, 8, 10, 12 and 14) bound
+`T_d` for every bounded nonzero frequency vector at `1 <= d <= P^(5/32)`:
+`|T_d| << P^(127/128+eps)`. The `k != 0` vectors come from all rows of Paper B's
+Appendix C at bounded `k` and `Pi <= P^(19/96)`, and the `k = 0` vectors are E5.
+E1, E3 and E4 have been audited; E2 has been audited with its nonzero-`t` clause
+withdrawn; E5 is unreviewed. Still unwritten: the poor-tail reduction from sliding
+windows to the actual fibres, including the square-wave truncation and the passage
+from bounded to growing frequencies. `OOEOE` needs its own bookkeeping.
 
 ## Decision
 
@@ -591,8 +675,9 @@ for `OOOEE` up to `delta < 1/6`, or `delta < 3/16` at bounded frequencies, after
 three local repairs. That would be the averaged substitute, but it is a first-pass
 reading of a dense proof and does not meet the promotion criterion. The pricing
 stands: `OOOEE` alone would lift the ideal contagion from `0.633` to `0.6915`, both
-depth-five words to `0.7512`. Best next question: do the `k = 0` frequency cases of `T_d`
-(Appendix C.2) keep a power saving at `d = P^(5/32)`?
+depth-five words to `0.7512`. Best next question: does the poor-tail reduction, from
+sliding windows of length `P^(5/32)` to the actual fibres with the square-wave
+truncation, close with the saving `|T_d| << P^(127/128)` at bounded frequencies?
 
 ## Publication assessment
 

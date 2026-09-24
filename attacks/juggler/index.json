@@ -2620,7 +2620,8 @@
         "J-depth-five-nonzero-offset-zero-frequency",
         "J-depth-five-small-shift-extension",
         "J-depth-five-uncentered-zero-offset",
-        "J-depth-five-widened-wave-bearing"
+        "J-depth-five-widened-wave-bearing",
+        "J-depth-five-zero-kernel-frequency"
       ],
       "aliases": [],
       "nk_clusters": [

@@ -6297,6 +6297,17 @@
   "related_conjectures": []
  },
  {
+  "id": "J-depth-five-zero-kernel-frequency",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "The k = 0 frequency cases of the once-differenced depth-five sums T_d = sum e(phi(n+2d) - phi(n)) keep a power saving at shifts 1 <= d <= P^(5/32). Here phi = iX/2 + jY/2 + l m^(9/8)/2 and (i, j, l) is bounded and nonzero. For j != 0, |T_d| << P^(7/8) d^(1/2) + d P^(3/4) + P^(5/6) << P^(61/64): this is Lemma E1 (Paper B's Lemma 4.4 at h = d), with the l-term added to each branch of the exact carry interpolation (4.8) as in Paper B's C.2. For j = 0 and l != 0, |T_d| << P^(7/8) log P: both endpoints are expanded by (C.8) at cutoff P^(1/8), and the diagonal pairs have one-signed curvature (243/4096) l d x^(-21/16). For j = l = 0, Kusmin-Landau gives P^(1/2)/d. Together with Lemmas E1, E2 and E4 and Theorem E3, every bounded nonzero frequency vector has |T_d| << P^(127/128+eps) at these shifts. AI-assisted written proof in juggler_depth_five_production (Result 14); independent review outstanding. It proves no production; the poor-tail reduction to the actual fibres remains.",
+  "source": "docs/problems/juggler_depth_five_production.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_depth_five_production.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-depth-one-arithmetic-layer",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "The arithmetic tier beneath J-depth-one-main-term, machine-checked. (a) dual_phase: for the phase F(M) = alpha M^(3/2), at the stationary point M_nu = s^2 with s = 2 nu / (3 alpha) (stationary_point) the Legendre value alpha s^3 - nu s^2 equals -4 nu^3 / (27 alpha^2), a cubic whose coefficient is rational whenever alpha is; at alpha = 1/2 it is -16 nu^3 / 27 (dual_phase_half), so the dual modulus is 27. dual_phase_rpow states the same with the half-power written as a real power, alpha M^(3/2) - nu M at M = (2 nu/(3 alpha))^2, via rpow_three_halves_of_sq. This is where the exponent 3/2 enters: its dual exponent is the integer 3. (b) completeCubicSum_eq_nine: sum over r < 27 of e(-16 r^3 / 27) = 9 exactly, with e(theta) = exp(2 pi i theta). The proof is structural, not a numerical evaluation: every term is zeta^(11 r^3 mod 27) for zeta = e(1/27) (dual_term, zeta27_pow_mod), nine residues cube to 0, and the eighteen others fall into two triples in arithmetic progression of common difference 9, each killed by 1 + zeta^9 + zeta^18 = 0 (zeta27_nine_sum, since zeta^9 is a primitive cube root of unity). (c) depthOneConstant_eq_sqrt_six_div_nine: the constant (4 sqrt8 / 27)(3/4)^(3/2) that the note prints and measures to four digits is exactly sqrt6 / 9 = 0.2721655..., a closed form the note does not record; depthOneConstant_eq_printed ties the definition to the printed half-power form via rpow_three_halves. (d) sum_affine_reindex with two_isUnit: a complete sum over ZMod n is unchanged by x -> u x + c for a unit u, and 2 is a unit modulo 27 k^2 for every odd k, which is the step the note calls '2 nu + 1 runs over a complete residue system' and is the mechanism that cancels the two X^(3/4) terms over odd M. The character convention matches CircleMethod.e on prove2.me, so the statements port in both directions. Axioms propext, Classical.choice, Quot.sound only. The asymptotic itself (B-process remainders, Erdos-Turan) is not asserted here and stays with J-depth-one-main-term.",
