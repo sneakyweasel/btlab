@@ -1,0 +1,21 @@
+'Problems.Juggler.FateDepthFiveAssembly.source_partition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateDepthFiveAssembly.production_recurrence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.FateDepthFiveAssembly.rate_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateDepthFiveAssembly.coeff_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateDepthFiveAssembly.certificate_37_50' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateDepthFiveAssembly.shifted_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateDepthFiveAssembly.fullMass_growth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateDepthFiveAssembly.logMass_growth_of_depth_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.FateDepthFiveAssembly.conjecture_of_tao_rate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.FateDepthFiveAssembly.pressure_conjecture_depth_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.FateDepthFiveAssembly.noMomentum_conjecture_depth_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

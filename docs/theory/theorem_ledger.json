@@ -6416,6 +6416,36 @@
   ]
  },
  {
+  "id": "J-depth-five-five-production-assembly",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked conditional assembly; advisory statement coverage pending. OOEOEGuard n requires n, J n odd, J^2 n even, J^3 n odd and J^4 n even for the actual Juggler map. DepthFiveProductionBounds A asks for b, C >= 0 and T such that, for all t >= T, both (1/28) fullMass A (27t/32 - b) <= sourceMass A G (cutoff t) + C hold, for G = OOOEEGuard and G = OOEOEGuard. Assume this for a backward-closed A containing some a >= 1. With the unconditional E, OE and OOEE productions, there are then K > 0 and N with K (log x)^(37/50) <= logMass A x for all x >= N. The proof uses a five-way disjoint source partition, a shift 16 + 32b/5 and loss multiplier 8, and an exact rational certificate for sum c_i rate_i^(37/50) > 1 with coefficients 1, 33/100, 11/100, 1/14 and rates 1/2, 3/4, 9/16, 27/32. With the productions for the failure class, the Tao-rate hypothesis, or Paper C's pressure or no-momentum hypothesis, at any e > 13/50, implies that every positive integer reaches 1. The productions themselves are the written, AI-audited, unreviewed Lemmas E1-E8 of juggler_depth_five_production and are not proved in Lean. Neither the rate hypotheses nor termination is proved here.",
+  "source": "docs/problems/juggler_depth_five_production.md",
+  "lean": "Problems/Juggler/FateDepthFiveAssembly.lean",
+  "decl": [
+   "OOEOEGuard",
+   "DepthFiveProductionBounds",
+   "source_partition",
+   "production_recurrence",
+   "rate",
+   "coeff",
+   "rate_bounds",
+   "coeff_nonneg",
+   "certificate_37_50",
+   "shifted_recurrence",
+   "fullMass_growth",
+   "logMass_growth_of_depth_five",
+   "conjecture_of_tao_rate",
+   "pressure_conjecture_depth_five",
+   "noMomentum_conjecture_depth_five"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_lean_paths_declares_name.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-depth-five-four-production-assembly",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Kernel-checked conditional assembly; advisory statement coverage pending. OOOEEGuard n requires n, J n, J^2 n odd and J^3 n, J^4 n even for the actual Juggler map. OOOEEProductionBound A asks for b, C >= 0 and T with (1/30) fullMass A (27t/32 - b) <= sourceMass A OOOEEGuard (cutoff t) + C for all t >= T. Assuming it for a backward-closed A that contains some a >= 1, with the unconditional E, OE and OOEE productions of FateOOEEWeighted, gives K > 0 and N with K (log x)^(2/3) <= logMass A x for all x >= N. The proof uses a four-way disjoint source partition, a shift 16 + 32b/5 and loss multiplier 7 in the recurrence, a rational certificate for sum c_i rate_i^(2/3) > 1 with coefficients 1, 33/100, 11/100, 1/30 and rates 1/2, 3/4, 9/16, 27/32, and the generic recursion lemma. With the production for the failure class, the Tao-rate hypothesis at any e > 1/3, or Paper C's pressure or no-momentum hypothesis at e > 1/3, implies that every positive integer reaches 1. The OOOEE production itself is the written, AI-audited, unreviewed Lemmas E1-E6 of juggler_depth_five_production and is not proved in Lean; neither the production, the rate hypotheses, nor termination is proved here.",

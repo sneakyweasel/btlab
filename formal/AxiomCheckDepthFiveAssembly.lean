@@ -1,0 +1,13 @@
+import Problems.Juggler.FateDepthFiveAssembly
+
+#print axioms Problems.Juggler.FateDepthFiveAssembly.source_partition
+#print axioms Problems.Juggler.FateDepthFiveAssembly.production_recurrence
+#print axioms Problems.Juggler.FateDepthFiveAssembly.rate_bounds
+#print axioms Problems.Juggler.FateDepthFiveAssembly.coeff_nonneg
+#print axioms Problems.Juggler.FateDepthFiveAssembly.certificate_37_50
+#print axioms Problems.Juggler.FateDepthFiveAssembly.shifted_recurrence
+#print axioms Problems.Juggler.FateDepthFiveAssembly.fullMass_growth
+#print axioms Problems.Juggler.FateDepthFiveAssembly.logMass_growth_of_depth_five
+#print axioms Problems.Juggler.FateDepthFiveAssembly.conjecture_of_tao_rate
+#print axioms Problems.Juggler.FateDepthFiveAssembly.pressure_conjecture_depth_five
+#print axioms Problems.Juggler.FateDepthFiveAssembly.noMomentum_conjecture_depth_five

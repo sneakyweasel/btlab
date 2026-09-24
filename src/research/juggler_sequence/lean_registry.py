@@ -326,6 +326,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "FatePressureOOEE": "Paper C Section 9.2 corollaries at the OOEE threshold 3/8",
     "EscapeRate": "An escape rate above 3/8 excludes divergent orbits",
     "FateOOOEEAssembly": "Four-production assembly: an OOOEE production at 1/30 gives contagion 2/3 and thresholds 1/3",
+    "FateDepthFiveAssembly": "Five-production assembly: both depth-five productions at 1/28 give contagion 37/50 and thresholds 13/50",
     "OOEEffectiveReturn": "Paper E Theorem 4.4: exact floor-residue count, both uniform errors, positive count and bounded actual OOE modular witness",
     "PaperECompletion": "Paper E: series identification, frequency and exponent statements, direct stopping-word sums, and finite complete prefix trees",
     "CollatzMoments": "Paper B/C word-moment bridge: coefficient shift and complete first-descent stopping counterexample",

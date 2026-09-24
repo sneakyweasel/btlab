@@ -249,6 +249,7 @@ import Problems.Juggler.FatePressureAveraged
 import Problems.Juggler.FatePressureOOEE
 import Problems.Juggler.EscapeRate
 import Problems.Juggler.FateOOOEEAssembly
+import Problems.Juggler.FateDepthFiveAssembly
 import Problems.Juggler.ReturnWordLoss
 import Problems.Juggler.ReturnWordData
 import Problems.Juggler.ReturnWordBounds

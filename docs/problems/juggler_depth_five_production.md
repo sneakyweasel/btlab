@@ -97,7 +97,8 @@ None.
 ## Formalization
 
 `FateOOOEEAssembly.lean` (Result 18) is the four-production assembly, conditional on
-the `OOOEE` production. The depth-four chain is `FateOOEEWeighted.lean` and its imports.
+the `OOOEE` production. `FateDepthFiveAssembly.lean` (Result 22) is the five-production
+assembly at `37/50`, conditional on both depth-five productions. The depth-four chain is `FateOOEEWeighted.lean` and its imports.
 
 ## Results
 
@@ -1081,6 +1082,34 @@ It found five wording faults, now fixed:
 - "`0.968 * 28/27 > 1.0039`" was false. The product is `1.00385`, still above `1`;
 - the Open questions stated the `0.74` root without "if".
 
+**22. The five-production assembly at `37/50` (kernel-checked, conditional;
+24 September 2026).**
+[FateDepthFiveAssembly.lean](../../formal/Problems/Juggler/FateDepthFiveAssembly.lean)
+takes both depth-five productions as its one explicit input,
+`DepthFiveProductionBounds`. That input says that for some `b, C >= 0` and all
+large `t`, both
+
+`(1/28) fullMass A (27t/32 - b) <= sourceMass A OOOEEGuard (cutoff t) + C`
+
+and the same inequality for `OOEOEGuard` hold. The module proves:
+
+- the five-way disjoint source partition;
+- the recurrence with loss `4C`, the shift `16 + 32b/5`, and the loss multiplier
+  `8`, since `8 * 179/350 = 4.09 >= 4`;
+- the certificate at `37/50`, from exact lower bounds `59873/100000`,
+  `10103/12500`, `32663/50000` and `17637/20000` on the four powers, each checked by
+  `r^50 <= x^37` (weighted sum `1.000297`);
+- contagion `K (log X)^(37/50)`;
+- the Tao-rate, pressure and no-momentum implications at `e > 13/50`.
+
+It builds (3,659 jobs). All 11 theorems depend only on propext, Classical.choice
+and Quot.sound, and the Lean style check reports no new violations.
+
+With E1-E8, this is the reduction the promotion criterion asks for, and it
+certifies `lambda = 0.74`. The analytic lemmas remain AI-written, each audited
+once by an AI reviewer, not human-reviewed, and not in Lean. Whether to promote
+the branch on that basis is the owner's decision.
+
 ## Open questions
 
 Lemmas E1-E8 and Theorem E3 (Results 7-20) write out both depth-five productions:
@@ -1094,29 +1123,36 @@ E1 and E3-E8 have each had one AI audit; E2 was audited with its nonzero-`t`
 clause withdrawn. None has had human review. The four-production assembly for `OOOEE` alone is
 kernel-checked (Result 18). Still open:
 
-- a five-production assembly at `37/50`;
 - human review of E1-E8;
 - a Lean proof of either production.
 
 ## Decision
 
-**PARK, pending audit.** Phase-0's stop criterion fired on the estimates then
-available. Results 7-16 have since written out, for `OOOEE`, the averaged
-substitute that Phase-0 said was missing: Paper B's Appendices A-C at first shifts
-up to `P^(5/32)`, the `k = 0` cases, and the count-poor tail. Together they would
-give an `OOOEE` production at coefficient `1/30`. With the certified depth-four
-productions, the Arb-certified contagion root would be `0.6793 > 2/3`. The branch
-is not promoted, for three reasons:
+**PARK, pending human review; promotion criterion met on paper.** Phase-0's stop
+criterion fired on the estimates then available. Results 7-22 have since
+written, for both depth-five words, the averaged substitute that Phase-0 said was
+missing:
 
-- the proofs are AI-written and not human-reviewed;
-- the four-production assembly is kernel-checked (Result 18), but only with the
-  `OOOEE` production as a hypothesis; the production itself is not in Lean;
-- the promotion criterion `lambda > 0.74` needs `OOEOE`, which has not been
-  bookkept.
+- Paper B's Appendices A-C at first shifts up to `P^(5/32)`;
+- the `k = 0` cases;
+- the `OOEOE` differenced sums, through a new smooth-coefficient carry;
+- both count-poor tails;
+- a kernel-checked five-production assembly.
 
-Best next question: does a five-production Lean assembly at
-`lambda = 37/50`, conditional on both depth-five productions at `1/28`, certify
-contagion `0.74` and thresholds `13/50`?
+That assembly turns productions at `1/28` into contagion `37/50` and thresholds
+`13/50`. So the branch's promotion criterion, "a written reduction ... certifying
+`lambda > 0.74`", is met in writing, at `lambda = 0.74057` (Arb) and `37/50`
+(Lean). It is not promoted here, for two reasons:
+
+- the analytic lemmas E1-E8 are AI-written, each audited once by an AI reviewer,
+  and not human-reviewed;
+- the productions themselves are not in Lean.
+
+Promotion is the owner's decision after review.
+
+Best next question: which of E1-E8 carries the most risk for a human
+reviewer, and is there a structural test of it that does not rely on the
+reviewer's reading?
 
 ## Publication assessment
 
