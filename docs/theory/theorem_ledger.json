@@ -7005,6 +7005,17 @@
   ]
  },
  {
+  "id": "J-depth-five-curvature-certificates",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "The two new curvatures on the depth-five critical path are certified one-signed, and the path's exponent bookkeeping is checked in exact arithmetic. Lemma E7's zero-mode curvature ratio equals (297/256) g(-5/16) - (243/128) g(1/8) - (27/128) g(-7/8), and Lemma E5's diagonal ratio equals (297/256) g(-5/16) - (27/32) g(-1/2), where g(a, u) = ((1+u)^a - 1)/u. Their leading constants are -1701/4096 and 243/4096, derived independently by SymPy. With Lagrange enclosures of g and every charged correction bounded by an explicit power of x, Arb certifies at 256 bits the following, for all x >= X, d >= 1, 2d/x <= 10^-6. E7 is negative from X = 10^8 with frequencies up to 10, and from 10^11 with frequencies up to 100. E5 is positive only from X = 10^18 with frequencies up to 10, and from 10^20 with frequencies up to 100, because its cutoff error decays like x^(-1/16). An exact-fraction ledger at d = P^(1/48) confirms every claimed bound on the path: 63/64, 85/96, 7/8, 7/8, 15/16 and 85/96. It also confirms the tail exponents 1/54 and 2/81, the coefficient margin 3388/3375 and the loss margin 716/175. This checks constants, signs and exponent arithmetic, not the completeness of the cost lists or the exponential-sum steps.",
+  "source": "docs/problems/juggler_depth_five_production.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_curvature_certificates.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-depth-five-five-production-assembly",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Kernel-checked conditional assembly; advisory statement coverage pending. OOEOEGuard n requires n, J n odd, J^2 n even, J^3 n odd and J^4 n even for the actual Juggler map. DepthFiveProductionBounds A asks for b, C >= 0 and T such that, for all t >= T, both (1/28) fullMass A (27t/32 - b) <= sourceMass A G (cutoff t) + C hold, for G = OOOEEGuard and G = OOEOEGuard. Assume this for a backward-closed A containing some a >= 1. With the unconditional E, OE and OOEE productions, there are then K > 0 and N with K (log x)^(37/50) <= logMass A x for all x >= N. The proof uses a five-way disjoint source partition, a shift 16 + 32b/5 and loss multiplier 8, and an exact rational certificate for sum c_i rate_i^(37/50) > 1 with coefficients 1, 33/100, 11/100, 1/14 and rates 1/2, 3/4, 9/16, 27/32. With the productions for the failure class, the Tao-rate hypothesis, or Paper C's pressure or no-momentum hypothesis, at any e > 13/50, implies that every positive integer reaches 1. The productions themselves are the written, AI-audited, unreviewed Lemmas E1-E8 of juggler_depth_five_production and are not proved in Lean. Neither the rate hypotheses nor termination is proved here.",

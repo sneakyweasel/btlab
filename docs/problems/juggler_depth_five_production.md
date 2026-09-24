@@ -1528,6 +1528,67 @@ in `n` for the `R_5`-part. Neither is attempted here.
 - `OOOEOEE`, joint case: blocked at two subcases.
 - `OOEOOEE` and `OOOOEEE`: costlier (Result 27).
 
+**32. Precise checks of the critical path: SymPy, Arb and an exact exponent ledger
+(COMPUTATIONALLY VERIFIED; 24 September 2026).** Two probes, both tested in
+`tests/research/juggler_sequence/test_curvature_certificates.py`, including on
+known-bad inputs.
+
+*Curvature certificates* (`research.juggler_sequence.curvature_certificates`).
+Each new curvature is written exactly as `sum_j c_j g(a_j, u)`, where
+`g(a, u) = ((1+u)^a - 1)/u` and `u = 2d/x`.
+
+- *E7:* `(297/256) g(-5/16) - (243/128) g(1/8) - (27/128) g(-7/8)`.
+- *E5:* `(297/256) g(-5/16) - (27/32) g(-1/2)`.
+
+The leading constants come out as `-1701/4096` and `243/4096` in exact rational
+arithmetic. SymPy re-derives both independently, as limits of the exact second
+derivatives. Taylor's theorem with Lagrange remainder encloses each `g` rigorously.
+Arb (python-flint, 256 bits) adds every charged correction as an explicit
+decreasing power of `x`:
+
+- for E7, the frozen carry, the `i`-term and the `l`-term;
+- for E5, the `O(1)` error in the centre and the modes `|i/2 + r| <= C/2 + x^(1/8)`.
+
+Each enclosure then holds for all `x >= X`, `d >= 1` and `2d/x <= 10^-6`:
+
+| Curvature | Frequencies `<= 1` | `<= 10` | `<= 100` |
+|---|---|---|---|
+| E7 negative from | `x >= 10^8` | `10^8` | `10^11` |
+| E5 positive from | `x >= 10^18` | `10^18` | `10^20` |
+
+At `10^12` with frequency bound 1, E7's ratio lies in `[-0.4232, -0.4073]`. At
+`10^30`, E5's lies in `[0.0493, 0.0693]`. **The E5 threshold is new
+information.** Its cutoff `T = P^(1/8)` makes the error relative to `243/4096` of
+order `x^(-1/16)`, which decays so slowly that one-signedness is certified only
+from about `10^18`. The asymptotic lemma is unaffected, but it takes effect only
+at astronomically large `P`.
+
+*Exponent ledger* (`research.juggler_sequence.critical_path_ledger`). Every cost
+the critical-path lemmas list is entered as an exact fraction at the worst shift
+`d = P^(1/48)`. Every claimed bound equals its worst listed cost, so the
+bookkeeping is tight, with no slip and no hidden slack:
+
+| Claim | Bound | Largest cost |
+|---|---|---|
+| Paper B C.9, `OOOEE` with `k != 0` | `63/64` | the double correlation |
+| C.2 at `h = d` | `85/96` | |
+| E5 | `7/8` | the Fourier errors |
+| E7 at `j = 0` | `7/8` | the `U`-truncation |
+| E7 at `j != 0` | `15/16` | the `U`-truncation at `P^(1/16)` |
+| E7 at `k = 0` | `85/96` | |
+
+The derived numbers recompute exactly:
+
+- the savings are `1/64` for `OOOEE` and `1/16` for `OOEOE`;
+- the tail exponents are `1/54` and `2/81`, above the claimed `1/55` and `1/41`;
+- the coefficient margin is `3388/3375 > 1`;
+- the assembly loss margin is `716/175 >= 4`.
+
+*What remains for a human.* These tools cover the constants, their signs and
+the arithmetic of the exponents. Not covered: whether each lemma's list of costs
+is complete, and the application of the second-derivative test and of the carry
+identities.
+
 ## Open questions
 
 Result 23 (Lemma E9) shows that the productions need `T_d` only at shifts below an

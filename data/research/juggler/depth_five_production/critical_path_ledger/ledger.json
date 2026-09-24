@@ -1,0 +1,74 @@
+{
+ "delta": "1/48",
+ "bounds": [
+  {
+   "claim": "OOOEE k != 0: Paper B C.9 T_1(h_1)",
+   "claimed": "63/64",
+   "worst_cost": "63/64",
+   "worst_label": "double correlation P^(31/32) inside the square root",
+   "ok": true,
+   "saving": "1/64"
+  },
+  {
+   "claim": "OOOEE k = 0, j != 0: Paper B C.2 at h = d",
+   "claimed": "85/96",
+   "worst_cost": "85/96",
+   "worst_label": "P^(7/8)(1 + sqrt h)",
+   "ok": true,
+   "saving": "11/96"
+  },
+  {
+   "claim": "OOOEE k = 0, j = 0, l != 0: E5",
+   "claimed": "7/8",
+   "worst_cost": "7/8",
+   "worst_label": "positive Fourier errors P log T / T",
+   "ok": true,
+   "saving": "1/8"
+  },
+  {
+   "claim": "OOOEE k = l = j = 0: Kusmin-Landau",
+   "claimed": "1/2",
+   "worst_cost": "1/2",
+   "worst_label": "P^(1/2)/d",
+   "ok": true,
+   "saving": "1/2"
+  },
+  {
+   "claim": "OOEOE j = 0, k != 0: E7",
+   "claimed": "7/8",
+   "worst_cost": "7/8",
+   "worst_label": "U truncation P log R_U / R_U + P^(7/8)",
+   "ok": true,
+   "saving": "1/8"
+  },
+  {
+   "claim": "OOEOE j != 0: E7 (Lemma 4.4 rerun, U-cutoff P^(1/16))",
+   "claimed": "15/16",
+   "worst_cost": "15/16",
+   "worst_label": "U truncation at P^(1/16)",
+   "ok": true,
+   "saving": "1/16"
+  },
+  {
+   "claim": "OOEOE k = 0: E7 (E1 at small shift, or Kusmin-Landau)",
+   "claimed": "85/96",
+   "worst_cost": "85/96",
+   "worst_label": "Lemma 4.4 P^(7/8) d^(1/2)",
+   "ok": true,
+   "saving": "11/96"
+  }
+ ],
+ "derived": {
+  "sigma_OOOEE": "1/64",
+  "sigma_OOEOE": "1/16",
+  "poor_fraction_OOOEE": "1/64",
+  "poor_fraction_OOEOE": "1/48",
+  "tail_exponent_OOOEE": "1/54",
+  "tail_exponent_OOEOE": "2/81",
+  "tail_claims_ok": true,
+  "coefficient_margin": "3388/3375",
+  "coefficient_ok": true,
+  "assembly_loss_margin": "716/175",
+  "assembly_loss_ok": true
+ }
+}
