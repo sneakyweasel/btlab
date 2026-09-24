@@ -30,6 +30,14 @@ profile, exact-count samples, and certified deleted-gap interiors. Select an
 order, inspect a phase, zoom around the selection, change the sample window,
 or toggle the chart layers. It loads as a separate route chunk.
 
+The selected-index readout gives δ_r, w_r, an enclosure of F(δ_r), and the
+outward-rounded residual enclosure R_r^+ − F(δ_r). It never substitutes the
+finite truncated profile for the infinite value. The collapsed distribution
+view compares the selected sample range's empirical CDF with the limiting-law
+enclosure H_M(y − T) ≤ P(F(U) ≤ y) ≤ H_M(y). Plateau masses are phase-interval
+lengths, not equal weights per jump. Coordinates are rounded for display, and
+the band is not a finite-sample confidence interval or convergence-rate bound.
+
 The bundled `src/data/beatty_profile.json` is a display snapshot of
 `data/research/juggler/winkler_phase_collapse/beatty_profile.json`: 5,047 orders at depth 8,000, with
 256-bit Arb enclosures and omitted tail below 0.020220. It retains the source

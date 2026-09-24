@@ -17,6 +17,15 @@
 .beatty-tooltip { position: absolute; z-index: 1; width: 252px; max-width: 100%; pointer-events: none; background: var(--color-card); border: 1px solid var(--color-line); border-radius: .5rem; padding: .6rem .75rem; font-size: .8rem; font-variant-numeric: tabular-nums; box-shadow: 0 4px 14px #1d191414; }
 .beatty-detail, .beatty-notes { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; margin-top: .85rem; }
 .beatty-detail { font-variant-numeric: tabular-nums; }
+.beatty-quantities { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; }
+.beatty-quantities > div { border: 1px solid var(--color-line); border-radius: .5rem; padding: .7rem .8rem; min-width: 0; }
+.beatty-quantities dt { color: var(--color-muted); font-size: .8rem; }
+.beatty-quantities dd { margin-top: .25rem; color: var(--color-ink); font-size: .9rem; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.beatty-quantities small { display: block; margin-top: .3rem; color: var(--color-muted); font-size: .75rem; }
+.beatty-swatch-empirical { background: var(--color-odd); }
+.beatty-legend > span { font-size: .8rem; }
+@media (min-width: 1000px) { .beatty-quantities { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 440px) { .beatty-quantities { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 540px) {
   .beatty-controls { grid-template-columns: 1fr 1fr; }
   .beatty-controls label:last-child { grid-column: 1 / -1; }

@@ -85,7 +85,7 @@ export function BeattyProfile({ selection, focused, range, layers, onSelect }: P
         <rect x={g.left} y={g.top} width={g.right - g.left} height={g.bottom - g.top} fill="none" stroke={LINE} />
         {g.yTicks.map(tick => <g key={tick}>
           <line x1={g.left} x2={g.right} y1={g.y(tick)} y2={g.y(tick)} stroke={LINE} strokeWidth={0.6} />
-          <text x={g.left - 8} y={g.y(tick) + 4} textAnchor="end">{tick.toFixed(2)}</text>
+          <text x={g.left - 8} y={g.y(tick) + 4} textAnchor="end">{tick.toFixed(g.yTicks[1] - g.yTicks[0] < .01 ? 3 : 2)}</text>
         </g>)}
         {g.xTicks.map((tick, index) => <text key={tick} x={g.x(tick)} y={g.bottom + 20} textAnchor={index === 0 ? "start" : index === g.xTicks.length - 1 ? "end" : "middle"}>{tick.toFixed(focused ? 3 : 1)}</text>)}
         <text x={(g.left + g.right) / 2} y={g.height - 7} textAnchor="middle">Beatty phase t</text>

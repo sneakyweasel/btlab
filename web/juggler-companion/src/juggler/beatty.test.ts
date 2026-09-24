@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { BEATTY, BEATTY_ROWS, beattyBounds, beattyLevel, beattyRow, beattySamples, beattySegments } from "./beatty";
+import { BEATTY, BEATTY_ROWS, BEATTY_PROFILE_CDF, beattyBounds, beattyCDFAt, beattyEmpiricalCDF, beattyLevel, beattyLimitCDFBounds, beattyResidualBounds, beattyRow, beattySamples, beattySegments } from "./beatty";
 
 describe("Beatty figure numerical conventions", () => {
   it("excludes the atom at its exact phase, then includes it immediately to the right", () => {
@@ -63,5 +63,70 @@ describe("Beatty figure numerical conventions", () => {
     expect(segments.every(([a, b]) => a >= 0.15 && b <= 0.19 && a <= b)).toBe(true);
     for (const order of [0, 1.5, 5048, NaN]) expect(() => beattyRow(order)).toThrow(RangeError);
     for (const phase of [-0.1, 1.1, NaN]) expect(() => beattyLevel(phase)).toThrow(RangeError);
+  });
+});
+
+describe("Beatty residual and distribution displays", () => {
+  it("encloses every allowed tail contribution with the subtraction endpoints reversed", () => {
+    for (const order of [1, 2, 7, 665, 5047]) {
+      const row = beattyRow(order), [lower, upper] = beattyResidualBounds(order);
+      for (const fraction of [0, .25, .5, 1]) {
+        const possibleResidual = row.ratio - (row.left + fraction * BEATTY.tailUpper);
+        expect(lower).toBeLessThanOrEqual(possibleResidual);
+        expect(upper).toBeGreaterThanOrEqual(possibleResidual);
+      }
+    }
+    expect(beattyResidualBounds(1)[1]).toBeLessThan(0);
+    expect(beattyResidualBounds(5047)[0]).toBeLessThan(0);
+    expect(beattyResidualBounds(5047)[1]).toBeGreaterThan(0);
+  });
+
+  it("weights plateaus by phase length, rather than counting jumps equally", () => {
+    const first = BEATTY_ROWS[0];
+    expect(beattyCDFAt(BEATTY_PROFILE_CDF, 1)).toBe(first.phase);
+    expect(first.phase).not.toBeCloseTo(1 / BEATTY_ROWS.length, 6);
+    for (const value of [1.1, 1.5, 2, 2.5]) {
+      const mass = beattySegments(0, 1).reduce((sum, [left, right, height]) => sum + (height <= value ? right - left : 0), 0);
+      expect(beattyCDFAt(BEATTY_PROFILE_CDF, value)).toBeCloseTo(mass, 13);
+    }
+    expect(beattyCDFAt(BEATTY_PROFILE_CDF, .99)).toBe(0);
+    expect(beattyCDFAt(BEATTY_PROFILE_CDF, BEATTY.envelope)).toBe(1);
+  });
+
+  it("counts ties inclusively and independently for each empirical sample window", () => {
+    for (const range of ["early", "late", "all"] as const) {
+      const samples = beattySamples(range), cdf = beattyEmpiricalCDF(range);
+      for (const value of [1, 1.1, 1.5, 2.5, 3]) {
+        expect(beattyCDFAt(cdf, value)).toBe(samples.filter(row => row.ratio <= value).length / samples.length);
+      }
+      expect(cdf[cdf.length - 1].cumulative).toBe(1);
+    }
+    expect(beattyCDFAt(beattyEmpiricalCDF("early"), 1)).toBeGreaterThan(1 / 1000);
+  });
+
+  it("encloses distributions for intermediate positive tails, with the correct CDF direction", () => {
+    for (let index = 0; index <= 100; index++) {
+      const value = .98 + index * 1.76 / 100;
+      const [lower, upper] = beattyLimitCDFBounds(value);
+      expect(lower).toBeGreaterThanOrEqual(0);
+      expect(upper).toBeLessThanOrEqual(1);
+      expect(lower).toBeLessThanOrEqual(upper);
+      for (const fraction of [0, .25, .5, 1]) {
+        const possibleCDF = beattyCDFAt(BEATTY_PROFILE_CDF, value - fraction * BEATTY.tailUpper);
+        expect(lower).toBeLessThanOrEqual(possibleCDF);
+        expect(upper).toBeGreaterThanOrEqual(possibleCDF);
+      }
+    }
+  });
+
+  it("has monotone limiting-law bounds through shifted jump thresholds", () => {
+    const values = BEATTY_PROFILE_CDF.flatMap(point => [point.value - 1e-10, point.value, point.value + BEATTY.tailUpper, point.value + BEATTY.tailUpper + 1e-10]).sort((a, b) => a - b);
+    let previous = [0, 0];
+    for (const value of values) {
+      const current = beattyLimitCDFBounds(value);
+      expect(current[0]).toBeGreaterThanOrEqual(previous[0]);
+      expect(current[1]).toBeGreaterThanOrEqual(previous[1]);
+      previous = current;
+    }
   });
 });

@@ -37,6 +37,19 @@ export default function BeattyTab() {
             phases and plot coordinates are rounded. These finite pictures do
             not establish orbit termination.
           </p>
+          <p>
+            The selected-index panel shows the phase, jump size, profile enclosure,
+            and residual R⁺ᵣ − F(δᵣ). The residual enclosure subtracts the full
+            profile interval from the count ratio, reversing the interval endpoints.
+            Containing zero means the residual’s sign is unresolved at this cutoff.
+          </p>
+          <p>
+            The optional distribution view compares the empirical CDF with an
+            enclosure of the limiting law of F(U), where U is uniform on [0, 1].
+            The finite truncated profile has a step distribution; it is not the
+            exact continuous limiting law. Changing the sample range updates this
+            comparison without changing the limiting-law enclosure.
+          </p>
         </div>
       </details>
     </section>
