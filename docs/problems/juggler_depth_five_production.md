@@ -1127,6 +1127,8 @@ total size `< 2 L_1 <= eta H_t / 5`, so
 `sum_i |dev(B_i)| <= b L_1 + (k - b)(eta/2) L_1 <= b L_1 + 0.5 eta H_t`. Hence
 `b L_1 >= 0.3 eta H_t`. `QED`
 
+The combinatorial core is kernel-checked as `SubBlockAveraging.poor_fibre_bad_blocks` (row `J-depth-five-sub-block-averaging`).
+
 *Consequence.* Run E6's Vaaler and second-moment argument with blocks of length
 `L_1 = P^(delta')` for any fixed `delta' > 0`. Suppose that for some `sigma > 0`,
 every bounded nonzero frequency vector has `|T_d| << P^(1-sigma)` at

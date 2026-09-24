@@ -1,0 +1,2 @@
+'Problems.Juggler.SubBlockAveraging.bad_blocks_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.SubBlockAveraging.poor_fibre_bad_blocks' depends on axioms: [propext, Classical.choice, Quot.sound]

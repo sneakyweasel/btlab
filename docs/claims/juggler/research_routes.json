@@ -639,6 +639,22 @@
   "related_conjectures": []
  },
  {
+  "id": "J-depth-five-sub-block-averaging",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Combinatorial core of Lemma E9. Let s be a finite set of blocks with real deviations dev i, where |dev i| <= L for each i, card(s) L <= H, and L, eta >= 0. If the fibre deviation satisfies eta H <= |sum_i dev i + p| with a remainder |p| <= eta H / 5, then the blocks with |dev i| >= (eta/2) L have card * L >= (3/10) eta H. The same conclusion holds whenever sum_i |dev i| >= (4/5) eta H. Nothing here concerns the Juggler map; this is the averaging step that lets the depth-five poor tails use differenced sums only at small shifts.",
+  "source": "docs/problems/juggler_depth_five_production.md",
+  "lean": "Problems/Juggler/SubBlockAveraging.lean",
+  "decl": [
+   "bad_blocks_mass",
+   "poor_fibre_bad_blocks"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_lean_paths_declares_name.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-depth-five-ooeoe-carry-structural-check",
   "tag": "COMPUTATIONALLY VERIFIED",
   "statement": "Finite structural check of Lemma E7's U-carry decomposition for OOEOE at j = 0. On 2000 consecutive odd n from each P in {10^8, 10^10}, for d in {1, 30, 300} and (i, l, k) in {(0,0,1), (0,1,2), (3,-2,-1)}, the exact phase difference phi(n+2d) - phi(n) is computed on Paper B's Section 4.3 coordinates, with integer square roots for every floor and 50-digit arithmetic. Once the charged B(n+2d) -> B(n) term is restored, it differs from E7's model phase by at most k (d P^(-13/16) + P^(-9/16)) + |l| P^(-3/8) at every point. Without that term, the error is of order k d P^(-7/16). The floor(U) carry mismatches number 5, 7 and 6 per 20,000 points at P = 10^8. The check fails on known-bad models (a wrong B coefficient, a flipped l-term sign). It is a finite check of an identity and its error orders, not of the asymptotic sums.",
