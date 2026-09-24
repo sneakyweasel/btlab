@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
+import subprocess
 import sys
 
 
@@ -16,9 +17,14 @@ def main() -> None:
     os.environ.setdefault('ELAN_HOME', str(elan))
     os.environ['PATH'] = str(elan / 'bin') + os.pathsep + os.environ.get('PATH', '')
     os.environ.setdefault('LEAN_LOG_LEVEL', 'NONE')
-    os.execv(sys.executable, [sys.executable, '-m', 'uv', 'tool', 'run',
+    argv = [sys.executable, '-m', 'uv', 'tool', 'run',
         '--from', 'lean-lsp-mcp==0.30.0', 'lean-lsp-mcp',
-        '--lean-project-path', str(project), *sys.argv[1:]])
+        '--lean-project-path', str(project), *sys.argv[1:]]
+    if os.name == 'nt':
+        # Windows has no in-place exec: os.execv starts a new process and exits
+        # this one, and Node-based MCP clients then close the server's stdin.
+        raise SystemExit(subprocess.call(argv))
+    os.execv(sys.executable, argv)
 
 
 if __name__ == '__main__':
