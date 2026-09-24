@@ -1221,6 +1221,84 @@ They are now restated in Result 23 as E6' and E8', with exponents `1/55` and
 - E1-E4 are "off the path", not "correct";
 - "blocked" for depth seven is an assessment, not a proof.
 
+**25. Structural check of E7's `U`-carry (COMPUTATIONALLY VERIFIED, finite; 24
+September 2026).** The probe `research.juggler_sequence.depth_five_structural`
+evaluates Paper B's Section 4.3 chain on actual odd `n`, using integer square roots
+for every floor and 50-digit arithmetic. Its output is
+`data/research/juggler/depth_five_production/e7_structural/residuals.json`, with a
+manifest, and `tests/research/juggler_sequence/test_depth_five_structural.py`
+checks it. At each point it compares the exact phase difference
+`phi(n+2d) - phi(n)`, with `j = 0`, against E7's model `F_{G,kappa}`. The
+sample covers `P = 10^8, 10^10`, `d = 1, 30, 300` and `(i, l, k)` in
+`(0,0,1), (0,1,2), (3,-2,-1)`, with 2,000 consecutive odd `n` each. Results:
+
+- *The raw model.* The model's error is the `B(n+2d) -> B(n)` replacement, as E7
+  charges it. The maximum grows linearly in `d`: `2.3e-4` at `d = 1`, `P = 10^8`.
+  From `10^8` to `10^10` it falls by `0.16`; `P^(-7/16)` predicts `0.13`.
+- *With the replacement restored.* Every residual lies within E7's remaining
+  charged orders, `k (d P^(-13/16) + P^(-9/16)) + |l| P^(-3/8)`:
+  - `l = 0` at `d = 1`: `3.8e-6` at `P = 10^8` and `4.5e-7` at `P = 10^10`.
+  - `l = 0` at `d = 300`: `6.0e-5` at `P = 10^8`, the `theta`-cancellation
+    residual.
+  - `l != 0`: up to `8.1e-4` at `P = 10^8` and `1.3e-4` at `P = 10^10`, the
+    `l`-noise.
+- *Carry mismatches.* The actual gap of `floor(U)` differs from `G + kappa` at
+  5, 7 and 6 of 20,000 points (`P = 10^8`, `d = 1, 30, 300`). That rate, about
+  `3e-4`, is inside E7's `O(P^(-1/8))` budget.
+- *Known-bad inputs.* The check fails on known-bad models. The coefficient `3/5`
+  in `B` in place of `3/4` gives `0.50` against a budget of `4.6e-4`. Flipping
+  the sign of the `l`-term gives `0.042` against `6.1e-3`.
+
+This confirms E7's algebra pointwise: the value of `B`, the exact `theta`
+cancellation, the carry identity and the error orders. It is a finite check. It
+says nothing about the zero-mode curvature's effect on the sums. That was checked
+separately, by numerical differentiation (Results 19 and 21).
+
+**26. Depth-seven triage (desk, 24 September 2026; not opened as a branch).**
+
+```text
+Mathematical target     Do actual productions along OOEOOEE, OOOEOEE and
+                        OOOOEEE (rho = 81/128, ideal coefficient 1/81, windows
+                        P^(47/128)) hold with coefficients near 1/85?
+Novelty hypothesis      Nested-floor exponential sums in six coordinates, with a
+                        power saving at bounded frequencies and tiny shifts.
+Falsifier               Two growing-coefficient floor expansions whose modes
+                        collide in curvature with no saving; or a coordinate
+                        whose fractional part is not equidistributed at the
+                        needed scale.
+Already killed by?      None recorded. The elementary production ladder is a
+                        different family. The depth-five record's parking reason
+                        (window length) no longer applies, by Lemma E9. The
+                        length-7 integer-w block concerns cycles, not
+                        productions.
+Existing machinery      Paper B's C.4 kernel collapse, Lemma 4.7 centred or
+                        uncentred expansions, E7's smooth-coefficient carry,
+                        E9's sub-block averaging, and the recursion lemma with a
+                        seven-production assembly.
+Maximum Phase-0 scope   Desk bookkeeping of the six coordinates for OOOOEEE,
+                        whose levels are X, Y, Z, floor(Z)^(3/2),
+                        floor(.)^(1/2) and floor(.)^(1/2), with exponents 3/2,
+                        9/4, 27/8, 81/16, 81/32 and 81/64. Identify every
+                        growing coefficient and its size.
+Promotion criterion     A written reduction of one depth-seven word's poor tail
+                        to named estimates with a power saving.
+Stop criterion          A growing coefficient on a doubly nested fractional
+                        part that stays too large after the available
+                        differencing, with no carry or centering that keeps
+                        the curvature one-signed.
+```
+
+A first look at `OOOOEEE`: expanding `floor(Z)^(3/2)` puts a coefficient of size
+about `k n^(27/16)` on `{Z}`. Here `Z` is itself doubly nested, and its own
+expansion carries `n^(9/8)` on `{Y}`. So the chain would stack two growing
+floor factors, `P^(27/16)` and `P^(9/8)`. Paper B and E7 each handle one factor,
+at sizes `P^(9/8)` and `P^(9/16)`. Paper B tames its `P^(9/8)` by differencing
+twice, since `Delta_1 Delta_2 c` is of order `Pi P^(-7/8)`. With two stacked factors,
+the differences of one coefficient multiply the other's nested fractional part.
+Whether any differencing leaves both bounded is the likely wall; this has not
+been checked. Decision: **PARK**, not opened. The reopening condition is a
+bookkeeping of the two stacked factors that keeps both of them bounded.
+
 ## Open questions
 
 Result 23 (Lemma E9) shows that the productions need `T_d` only at shifts below an
@@ -1263,10 +1341,10 @@ That assembly turns productions at `1/28` into contagion `37/50` and thresholds
 
 Promotion is the owner's decision after review.
 
-Best next question: for human review, check the two new mechanisms on
-the critical path. The first is E7's smooth-coefficient `U`-carry, with zero-mode
-curvature `-1701/4096`. The second is E5's `j = 0` diagonal, with curvature
-`243/4096`. Everything else on the path is printed Paper B or standard.
+Best next question: E7's decomposition now has a pointwise
+structural check (Result 25). The remaining human-review targets are E7's
+zero-mode curvature sum and E5's `j = 0` diagonal. Beyond depth five, see the
+depth-seven triage (Result 26).
 
 ## Publication assessment
 
