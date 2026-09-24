@@ -11,6 +11,18 @@ consolidation is at `e9725762eaf028d1ace354ff20e0fc48f1a3d143`. See
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-24 -- Paper B Theorem 3.1, one dyadic block
+
+**EXACT — LEAN VERIFIED:** on an interval of length at most its left endpoint, the second-derivative test bounds the exponential sum of `h * g`. Remaining premise: sum the blocks and pass through discrepancy to get `S_O(N) = O(N^{5/6})`. Decision: PROMOTE the block. Record: [single-floor dossier](problems/juggler_paper_b_single_floor.md).
+
+## 2026-09-24 -- Paper B Theorem 3.1 exact bridge
+
+**EXACT — LEAN VERIFIED** for the counting identity only: on odd starts,
+`S_O = M - 2 · #OO`, and the two-step certificate count is the complement.
+The phase second derivative and the cutoff `H = Q^{1/6}` are checked.
+Remaining premise: the exponential-sum bound `S_O(N) = O(N^{5/6})`.
+Decision: PROMOTE the bridge. Record: [single-floor dossier](problems/juggler_paper_b_single_floor.md).
+
 ## 2026-09-24 -- Paper B 1.2.0 published with the depth-five fair-share theorem
 
 **EXACT — HUMAN PROOF (AI-written, AI-audited, not human-reviewed):** Paper B's
@@ -245,29 +257,3 @@ without duplication, and the normalized paired mass on a=31+54t is below
 mixed-sign paths; Juggler's two signed codes are negatives of one another,
 not independent filters. The 3/8 pressure target is unchanged. See the
 [dossier](problems/collatz_fibre_sign_coupling.md).
-
-## 2026-09-23 -- Ancestor generating functions retain the harmonic-mass problem
-
-The generating-function audit finds no lower estimate in the published
-Hardy fixed-point or natural-boundary results. A nonperiodic root has a
-single-source equation, not a fixed-point equation; harmonic mass uses
-the Bergman norm, where expansiveness fails. Lean checks the ancestor
-indicator's source equation, minimality, and the exact finite-energy
-equivalence for arbitrary nonnegative weights. The known ancestor ray of
-3 has finite harmonic mass and a natural boundary for both signs.
-**CLOSE** this automatic analytic transfer; the unit-root word-count
-target and Juggler pressure remain open. See the
-[dossier](problems/collatz_ancestor_generating_audit.md).
-
-## 2026-09-23 -- Every fixed repeated inverse block has summable mass off cycles
-
-Lean extends the one-halving tail to any fixed positive inverse block w:
-after one free exponent, D repetitions contribute at most
-6*D_w(a)/2^(D*sum(w)) at a nonperiodic root, for either sign. The complete
-first-exponent sum and total over all D are bounded. A zero affine anchor
-forces a periodic root; the negative 5,7 cycle supplies a growing exception.
-**PROMOTE** this family reduction. Finite unions of pure repeated-block
-families cannot supply divergence; arbitrary switching remains unbounded.
-The next signed-word target is a depth-averaged lower count for varying
-actual words at a fixed integer. Juggler pressure and termination remain
-open. See the [dossier](problems/collatz_fibre_word_tail.md).

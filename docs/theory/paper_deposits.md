@@ -16,7 +16,7 @@ which is what the other habit costs.
 | --- | --- | --- | --- | --- |
 | A | Lower Bounds for Cycle Lengths in the Juggler Map | 1.2.1, not deposited | [1.0.2](https://doi.org/10.5281/zenodo.22865237) | [10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) |
 | B | Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers | 1.2.0, deposited | [1.2.0](https://doi.org/10.5281/zenodo.22946276) | [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) |
-| C | Fate Contagion and Termination Criteria for the Juggler Map | 1.2.0, not deposited | [1.1.0](https://doi.org/10.5281/zenodo.22865705) | [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) |
+| C | Fate Contagion and Termination Criteria for the Juggler Map | 1.3.0, not deposited | [1.1.0](https://doi.org/10.5281/zenodo.22865705) | [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) |
 | D | No m-cycles of the 3n−1 map for m ≤ 61 | 1.1.0, not deposited | [1.0.0](https://doi.org/10.5281/zenodo.22876190) | [10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) |
 | E | The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions | 0.7.1, local preprint | None | Not assigned |
 
@@ -114,12 +114,15 @@ deposited file recovered from git. No page of the mathematical text moved.
 
 ### Paper C, Fate Contagion and Termination Criteria for the Juggler Map
 
-Prepared 1.2.0, 22 September 2026. Adds the full written OOEE proof, contagion at 5/8, rate threshold 3/8, and the scale-average pressure criterion. The fully machine-checked contagion baseline remains 100/203. No new deposit has been made.
+Prepared 1.3.0, 24 September 2026. Raises contagion to 37/50 and lowers the rate threshold to 13/50 through Paper B's Theorem 6.3 (Section 5.10), and records that the log-mass bound at 5/8, with the threshold 3/8, is now kernel-checked. No new deposit has been made.
+
+Prepared 1.2.0, 22 September 2026. Adds the full written OOEE proof, contagion at 5/8, rate threshold 3/8, and the scale-average pressure criterion. The fully machine-checked contagion baseline was then 100/203. Not deposited.
 
 Record [zenodo.org/records/22865705](https://zenodo.org/records/22865705).
 
 | Version | DOI | Date |
 | --- | --- | --- |
+| 1.3.0 | not deposited | 24 September 2026 |
 | 1.2.0 | not deposited | 22 September 2026 |
 | 1.1.1 | not deposited | 21 September 2026 |
 | 1.1.0 | [10.5281/zenodo.22865705](https://doi.org/10.5281/zenodo.22865705) | 21 September 2026 |

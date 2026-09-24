@@ -557,11 +557,15 @@ def test_cross_paper_section_citations_resolve() -> None:
     assert bad == [], bad
 
 
-def test_hypothesis_L_points_into_paper_B_section_three_five() -> None:
-    """Regression: Paper C cited "Section 4.5 there"; Theorem 4.12 sits in Paper B's 3.5."""
+def test_hypothesis_L_is_attributed_to_the_earlier_paper_B_draft() -> None:
+    """Regression: Paper C cited "Section 4.5 there", then "Theorem 4.12 of the working draft
+    [12] (Section 3.5 there)". Reference [12] is now Paper B 1.2.0, which has neither, so the
+    attribution names the earlier draft and cites no numbered result of it."""
     text = read(PAPER_C)
-    assert "(Section 3.5 there)" in text
+    assert "An earlier working draft of Paper B stated Hypothesis L" in text
+    assert "(Section 3.5 there)" not in text
     assert "(Section 4.5 there)" not in text
+    assert "Theorem 4.12 of the working draft" not in text
 
 
 def _offset_counts(text: str) -> tuple[int, int]:

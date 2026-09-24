@@ -340,6 +340,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "PaperBAssembly": "Paper B review target",
     "PaperBCertificates": "Paper B Lemma 5.1: minimal certificates through length five",
     "PaperBFiveStepDensity": "Paper B Theorems 5.2-5.4: the certificate count assembly",
+    "PaperBSingleFloor": "Paper B Theorem 3.1: exact bridge and one dyadic second-derivative block",
     "PaperBCertificateLengths": "Paper B Lemma 5.1 for every length: the odd-count window",
     "PaperBCertificateRecursion": "Paper B: survivors and minimal certificates, one recursion",
     "BeattyPhaseTransfer": "Beatty phase coordinates, survivor jump cancellation, summable jump profiles, and conditional moving-kernel transfer",

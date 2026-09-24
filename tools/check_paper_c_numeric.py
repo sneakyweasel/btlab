@@ -16,7 +16,7 @@ from research.juggler_sequence import paper_c_audit as audit
 from research.juggler_sequence import paper_c_formal_layer as formal
 paper=S/'docs/theory/juggler_fate_almost_all_note.md'
 audit.PAPER=paper;audit.REPO_ROOT=S;formal.PAPER=paper
-results={'review_date':'2026-09-09','scope':'Independent arithmetic and finite checks; not formal verification of the analytic proofs.'}
+results={'review_date':'2026-09-24','scope':'Independent arithmetic and finite checks; not formal verification of the analytic proofs.'}
 results['existing_audit']=audit.summary()
 results['formal_surface']=formal.audit()
 expected=(ROOT/'formal/AxiomCheckPaperC.expected').read_text(encoding='utf-8').strip()
@@ -38,6 +38,9 @@ for k in range(2,7):
  terms.append((F(1,3**(k+1)),F(1,2)*F(3,4)**k));roots[f'V{k}']=root(terms)
 roots['conditional_Appendix_C']=root(pair+[(F(1,9),F(9,32))])
 roots['depth_two_ideal']=root([(F(1),F(1,2)),(F(1,3),F(3,4))])
+three=[(F(1),F(1,2)),(F(33,100),F(3,4)),(F(11,100),F(9,16))]
+roots['three_actual_productions']=root(three)
+roots['five_actual_productions']=root(three+[(F(1,14),F(27,32))])
 results['independent_roots']={k:mp.nstr(v,60) for k,v in roots.items()}
 results['net_gains']=[{'k':k,'rho':str(F(1,2)*F(3,4)**k),'gain':str(F(1,3**k)-F(2,9)*F(1,3**(k-1)))} for k in range(2,7)]
 L3=mp.log(3,2)
@@ -47,7 +50,7 @@ def rate(C,q,kind):
  if p<=q:return mp.mpf(0)
  return C*kl(p,q)/mp.log(2) if kind=='Chernoff' else 2*(C*(1-q*L3)-1)**2/(C*L3**2*mp.log(2))
 depths={}
-for regime,lam in [('V6',roots['V6']),('pairing',roots['pairing']),('Appendix_C',roots['conditional_Appendix_C'])]:
+for regime,lam in [('Theorem_5_20',mp.mpf(37)/50),('Theorem_5_19',mp.mpf(5)/8),('V6',roots['V6']),('pairing',roots['pairing']),('Appendix_C',roots['conditional_Appendix_C'])]:
  depths[regime]={}
  for kind in ['Chernoff','Azuma']:
   depths[regime][kind]={}
@@ -114,7 +117,7 @@ for tag in ['fate_contagion','tao_reduction','oe_fiber_share']:
 results['archival_observation_checks']=arch
 results['all_checks_passed']=bool(results['existing_audit']['classification']['failures']==0 and not results['formal_surface']['problems'] and actual==expected and all(x['ok'] for x in endpoint_tests+counts))
 dest=args.output;dest.parent.mkdir(parents=True,exist_ok=True)
-dest.write_text(json.dumps(results,indent=2,ensure_ascii=False),encoding='utf-8')
+dest.write_text(json.dumps(results,indent=2,ensure_ascii=False),encoding='utf-8',newline='\n')
 print(json.dumps({'all_checks_passed':results['all_checks_passed'],'original_audit':results['existing_audit']['classification'],'formal_problems':results['formal_surface']['problems'],'axioms':results['fresh_lean_axiom_audit'],'independent_roots':results['independent_roots'],'observations':arch},indent=2))
 
 if not results['all_checks_passed']:raise SystemExit(1)

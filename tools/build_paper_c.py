@@ -22,7 +22,7 @@ import subprocess
 # without this a no-op rebuild changes the bytes and therefore the sha256 in the manifest.
 # The epoch is fixed to the version the build guide records rather than taken from git,
 # because a git-derived date lags one build behind an edit and merely relocates the churn.
-_SOURCE_DATE_EPOCH = "1790035200"  # Local revision, 22 September 2026
+_SOURCE_DATE_EPOCH = "1790208000"  # Local revision, 24 September 2026
 
 
 def _pin_build_date() -> None:
@@ -46,6 +46,14 @@ BUILD_INPUTS = ["docs/theory/juggler_ooee_poor_fibre_tail_note.md",
                 "formal/AxiomCheckOOEEMixedModes.expected",
                 "formal/AxiomCheckScaleAverage.lean",
                 "formal/AxiomCheckScaleAverage.expected",
+                "formal/AxiomCheckOOEEWeighted.lean",
+                "formal/AxiomCheckOOEEWeighted.expected",
+                "formal/AxiomCheckOOEECountPoorTail.lean",
+                "formal/AxiomCheckOOEECountPoorTail.expected",
+                "formal/AxiomCheckDepthFiveAssembly.lean",
+                "formal/AxiomCheckDepthFiveAssembly.expected",
+                "formal/AxiomCheckDepthFiveWeighted.lean",
+                "formal/AxiomCheckDepthFiveWeighted.expected",
                 "tools/build_paper_c.py", "tools/paper_c/article.tex",
                 "tools/paper_c/layout.lua", "tools/check_paper_c_numeric.py",
                 "src/research/juggler_sequence/paper_c_audit.py",
@@ -78,7 +86,10 @@ def input_files(root: Path) -> list[str]:
                "formal/Problems/Juggler/FateOOEEAssembly.lean",
                "formal/Problems/Juggler/FateOEWeighted.lean",
                "formal/Problems/Juggler/OOEEMixedModes.lean",
-               "formal/Problems/Juggler/FateScaleAverage.lean"]
+               "formal/Problems/Juggler/FateScaleAverage.lean",
+               "formal/Problems/Juggler/FateOOEEWeighted.lean",
+               "formal/Problems/Juggler/FateDepthFiveWeighted.lean",
+               "formal/Problems/Juggler/FatePressureOOEE.lean"]
     while pending:
         name = pending.pop()
         if name in names:

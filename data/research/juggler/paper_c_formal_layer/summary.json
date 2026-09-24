@@ -52,13 +52,13 @@
   "appendix_a_names": 513,
   "surface": {
     "modules": 69,
-    "declarations": 1922,
+    "declarations": 1925,
     "compiler_trusted": [],
     "compiler_dependent": [],
     "open": []
   },
   "table": {
-    "rows": 49,
+    "rows": 50,
     "lean": [
       "Fate classes closed; trichotomy; exclusion (Lemma 2.1)",
       "Even block is an interval (Lemma 3.1)",
@@ -100,18 +100,19 @@
       "The bias energy of the \\(L(y)\\)-bad words supplies the exceptional atoms (Section 10(d)): \\(\\sum_{w\\ \\text{bad}}D(w)^2\\le(q-\\tfrac12)^2y^2(\\log y)^{-2B}/2^t\\) at the depths below \\(\\lceil CL(y)\\rceil\\), at all large scales, gives the conjecture with nothing else assumed",
       "Collapsed-component bias (Section 10(d), after the measurement): the next-letter bias of the starts whose iterate lands in a window of values is an alternating sum of fiber sizes, bounded by the variation of the fiber profile, the even branch smooths it, \\((v+1)(M_v-m_v)+2M_v\\) per value, and a sandwich on the profile propagates through even steps without amplification",
       "Cylinder-splitting identity for the first-letter bias (Section 10(d), second equality)",
-      "Exact landing windows of the nested productions ((D.1), (D.2))"
+      "Exact landing windows of the nested productions ((D.1), (D.2))",
+      "Theorem 5.19, the log-mass bound at 5/8, and Theorems 7.2 and 9.4 and the corollaries of Theorem 9.2 and Proposition 9.3 at the threshold 3/8",
+      "OOEE mixed modes on the actual short source interval"
     ],
     "human": [
       "Block average (Proposition 4.4), asymptotic",
       "Share law and its three corollaries (Lemma 4.5, Corollary 4.6)",
       "Production inequality (5.2) with the \\(V\\)-ladder terms of Section 5.7",
-      "Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.1, Theorem 9.2 and Proposition 9.3 in their exact forms)"
+      "Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.1, Theorem 9.2 and Proposition 9.3 in their exact forms)",
+      "Theorem 5.20, the log-mass bound at 37/50, and Theorem 7.2 and the corollaries of Theorem 9.2 and Proposition 9.3 at the threshold 13/50"
     ],
     "other": [
       "Localized triple discrepancy (Appendix C)",
-      "Theorem 5.19, Theorem 1 at 5/8, and Theorems 3 and 7.2--7.3 at e > 3/8",
-      "OOEE mixed modes on the actual short source interval",
       "Numerical experiments (Section 11)"
     ]
   },
@@ -121,5 +122,5 @@
     "label": "PAPER_C_LEAN_SURFACE_CONSISTENT",
     "problems": 0
   },
-  "git_commit": "unknown"
+  "git_commit": "bfb70ff95f906a7d06396cf934e25d5168fc00d6"
 }

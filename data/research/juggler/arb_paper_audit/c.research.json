@@ -1,9 +1,9 @@
 {
-  "schema": "btlab-output/v1",
+  "schema": "btlab-output/v2",
   "programme": "juggler",
   "research_id": null,
-  "created_utc": "2026-09-23T18:06:18.907460+00:00",
-  "scope": "Paper C: Confirms sharper conditional constants already recorded by the Paper C audit.",
+  "created_utc": "2026-09-24T22:06:50.339368+00:00",
+  "scope": "Paper C: Certifies the depth constants of Paper C 1.3.0 at 3/8 and 13/50 and the 37/50 slack.",
   "artifact_root": ".",
   "generator": {
     "command": [
@@ -12,7 +12,7 @@
       "--paper",
       "C",
       "--output-root",
-      "."
+      ".build\\artifacts\\066d6cce2a744111b653bdce6700d2af\\work"
     ],
     "parameters": {
       "paper": "C",
@@ -22,120 +22,245 @@
     "python": "3.13.9"
   },
   "source": {
-    "revision": "911f41ab7af5e96fb362023b3ec6f047a9e1b500",
+    "revision": "11467a388651dfd902dcff4b9042cb76df5d3b45",
     "dirty": true,
     "coverage": "loaded local Python, project configuration, and explicit sources at manifest creation; not an execution or dependency audit",
     "files": [
       {
         "path": "pyproject.toml",
         "sha256": "e99a8deaad3e42c12db855ee4f72dac9b190db67b5a088bea8377c8f94055ef7",
-        "bytes": 2746
+        "bytes": 2746,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "e99a8deaad3e42c12db855ee4f72dac9b190db67b5a088bea8377c8f94055ef7",
+          "bytes": 2746
+        }
       },
       {
         "path": "src/research/__init__.py",
         "sha256": "2f57f06dcf8334c7d93eb76d768947fa8c70ac35d681dd7cdcb3f988a1d7b565",
-        "bytes": 58
+        "bytes": 58,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "2f57f06dcf8334c7d93eb76d768947fa8c70ac35d681dd7cdcb3f988a1d7b565",
+          "bytes": 58
+        }
       },
       {
         "path": "src/research/experiments/__init__.py",
         "sha256": "edbe56c7b50bc27f3658d78aabdc3ab5da9c6b35f9f21588cfeeb368d2830bab",
-        "bytes": 209
+        "bytes": 209,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "edbe56c7b50bc27f3658d78aabdc3ab5da9c6b35f9f21588cfeeb368d2830bab",
+          "bytes": 209
+        }
       },
       {
         "path": "src/research/experiments/provenance.py",
-        "sha256": "da03e38a6272cb737bd48543e9bc2c44d44d093056e4a2303efb27e6c3c0a0cd",
-        "bytes": 12187
+        "sha256": "aa58341fe373981b76c61a56bf429e002c43f56c2c653f3a05ddff95ad3b812c",
+        "bytes": 14904,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "aa58341fe373981b76c61a56bf429e002c43f56c2c653f3a05ddff95ad3b812c",
+          "bytes": 14904
+        }
       },
       {
         "path": "src/research/experiments/schema.py",
         "sha256": "e7e5e2510862621b8d4bd60f9b38e29f7af05a6d2938ec71c0b60b60047632ed",
-        "bytes": 6595
+        "bytes": 6595,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "e7e5e2510862621b8d4bd60f9b38e29f7af05a6d2938ec71c0b60b60047632ed",
+          "bytes": 6595
+        }
       },
       {
         "path": "src/research/experiments/table_io.py",
-        "sha256": "eccc3d72d3d375df7f4a346eff9b68b103395d568e46e45bfc75a018adbf5765",
-        "bytes": 3904
+        "sha256": "dcc6e0d412f9e605cf68d9da9ee47d7d2e1d372c9165f90672e9b03fe2a4585a",
+        "bytes": 3940,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "dcc6e0d412f9e605cf68d9da9ee47d7d2e1d372c9165f90672e9b03fe2a4585a",
+          "bytes": 3940
+        }
+      },
+      {
+        "path": "src/research/repository.py",
+        "sha256": "bbb7ed01d513b2eb340b714720e9199b9c26ca323138224cf31c588e4a19cb9e",
+        "bytes": 6331,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "bbb7ed01d513b2eb340b714720e9199b9c26ca323138224cf31c588e4a19cb9e",
+          "bytes": 6331
+        }
       },
       {
         "path": "src/research_engine/arb_expressions.py",
         "sha256": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
-        "bytes": 10151
+        "bytes": 10151,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
+          "bytes": 10151
+        }
       },
       {
         "path": "src/research_engine/intervals.py",
         "sha256": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
-        "bytes": 5630
+        "bytes": 5630,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+          "bytes": 5630
+        }
       },
       {
         "path": "tools/arb_mcp.py",
-        "sha256": "ff5f1aad04c0bc953e03997bdbb466f385bd0e04db217e8d09d52fc57925ecfe",
-        "bytes": 8865
+        "sha256": "4f1b8ed558147af355ca7247667a95b755f9069252d0765254b470084aef490a",
+        "bytes": 11952,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "4f1b8ed558147af355ca7247667a95b755f9069252d0765254b470084aef490a",
+          "bytes": 11952
+        }
       },
       {
         "path": "tools/arb_paper_audit_core/__init__.py",
         "sha256": "60a13e62761a04350a519ddd376be7a977202f294fa7eb654e12db1c05ca9511",
-        "bytes": 73
+        "bytes": 73,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "60a13e62761a04350a519ddd376be7a977202f294fa7eb654e12db1c05ca9511",
+          "bytes": 73
+        }
       },
       {
         "path": "tools/arb_paper_audit_core/beatty.py",
         "sha256": "b85bd7f41f7c8e2cfebe75811444675ea3a274f83b8ecf7a6035cc26f07aedc5",
-        "bytes": 4519
+        "bytes": 4519,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "b85bd7f41f7c8e2cfebe75811444675ea3a274f83b8ecf7a6035cc26f07aedc5",
+          "bytes": 4519
+        }
       },
       {
         "path": "tools/arb_paper_audit_core/client.py",
         "sha256": "797695762c4aec729c18819b67ea2f47e5905308e35a9e0d6d93e304d4c5a2b3",
-        "bytes": 3568
+        "bytes": 3568,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "797695762c4aec729c18819b67ea2f47e5905308e35a9e0d6d93e304d4c5a2b3",
+          "bytes": 3568
+        }
       },
       {
         "path": "tools/arb_paper_audit_core/paper_a.py",
         "sha256": "7b478c1637b6a523f6b467c9e73c764ff43387516f2f1890e6e9dbee91873339",
-        "bytes": 5648
+        "bytes": 5648,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "7b478c1637b6a523f6b467c9e73c764ff43387516f2f1890e6e9dbee91873339",
+          "bytes": 5648
+        }
       },
       {
         "path": "tools/arb_paper_audit_core/paper_d.py",
         "sha256": "bc218fa20dadac13ef3f95dcd3de8b57000d9dac1fa2553704095e0bd1d9d46f",
-        "bytes": 10029
+        "bytes": 10029,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "bc218fa20dadac13ef3f95dcd3de8b57000d9dac1fa2553704095e0bd1d9d46f",
+          "bytes": 10029
+        }
       },
       {
         "path": "tools/arb_paper_audit_core/scalars.py",
-        "sha256": "3e7a28b047f5c21cafd983b4ce6e4490054c036cf1277d5fc1861f2c7cabbc45",
-        "bytes": 5463
+        "sha256": "7baacd8e55a15149d727fe69a138e8e6ef10828602cf638011f83811df334917",
+        "bytes": 6261,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "7baacd8e55a15149d727fe69a138e8e6ef10828602cf638011f83811df334917",
+          "bytes": 6261
+        }
       },
       {
         "path": "tools/arb_worker.py",
-        "sha256": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
-        "bytes": 6252
+        "sha256": "23fbcca91b3e442e178d1025a79546ba309ea0eb5f24f3d1619e13c9c5392386",
+        "bytes": 9247,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "23fbcca91b3e442e178d1025a79546ba309ea0eb5f24f3d1619e13c9c5392386",
+          "bytes": 9247
+        }
       },
       {
         "path": "tools/check_paper_c_intervals.py",
-        "sha256": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b",
-        "bytes": 7131
+        "sha256": "493ffffc689127886b5ccc033545b11d55296d93215420b868d28ec88e571574",
+        "bytes": 7937,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "493ffffc689127886b5ccc033545b11d55296d93215420b868d28ec88e571574",
+          "bytes": 7937
+        }
       },
       {
         "path": "tools/check_papers_arb.py",
-        "sha256": "bafe29b4ab8987cbef3b4e56703433be1c69348dbd7c97474c87fee43817b387",
-        "bytes": 6421
+        "sha256": "1ddf156621f5cf0eaf93286c4499f724b34f0b89846c75b43d908d78f30eaf9c",
+        "bytes": 6628,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "1ddf156621f5cf0eaf93286c4499f724b34f0b89846c75b43d908d78f30eaf9c",
+          "bytes": 6628
+        }
       },
       {
         "path": "tools/lab.py",
-        "sha256": "d29778fdff81b9c9ad5f464d7cbc0ce22a52c500451c872371f3c7b25e2c4822",
-        "bytes": 4370
+        "sha256": "949f0778e44f74580a475d63b63287d2ca9f3918aaf13c1487d494fafc8cede5",
+        "bytes": 5992,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "949f0778e44f74580a475d63b63287d2ca9f3918aaf13c1487d494fafc8cede5",
+          "bytes": 5992
+        }
+      },
+      {
+        "path": "tools/requirements-lab.json",
+        "sha256": "26a79648b55b86be204da0f35c280aada68f358bfae3eb1289e016f6009c10be",
+        "bytes": 506,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "26a79648b55b86be204da0f35c280aada68f358bfae3eb1289e016f6009c10be",
+          "bytes": 506
+        }
+      },
+      {
+        "path": "tools/requirements-lab.lock",
+        "sha256": "b634d10f3149eac2f8195fabd17d4c7aafbdeff7f7bb38e393214698e5095ab7",
+        "bytes": 68419
       }
     ]
   },
   "inputs": [
     {
       "path": "docs/theory/juggler_fate_almost_all_note.md",
-      "sha256": "ff0f8e6bbea766896f0d70b5526f2d48227ea5971a2a345f51b32c512795688d",
-      "bytes": 244571
+      "sha256": "f769b6f5e12d22cdc2229aed84195e2aa8fabf13279c05fb3e5a8433d5085d0c",
+      "bytes": 255921,
+      "text": {
+        "normalization": "utf8-crlf-to-lf",
+        "sha256": "f769b6f5e12d22cdc2229aed84195e2aa8fabf13279c05fb3e5a8433d5085d0c",
+        "bytes": 255921
+      }
     }
   ],
   "outputs": [
     {
       "path": "c.json",
-      "sha256": "4e5934cf3ba8dc41f432fd78312be27e4856dea553bf7c001b65f5d276379bea",
-      "bytes": 93468
+      "sha256": "350a979f4a8debf21a04fbffa9f841441894fc83b2f52f7e80fd6a20bcb5a590",
+      "bytes": 137571
     }
   ],
-  "verification": "Hashes identify files only; no theorem or compilation status is asserted."
+  "verification": "Outputs are byte-exact. Explicit text fingerprints on inputs/sources accept only UTF-8 CRLF-to-LF representation changes, which are reported. No theorem or compilation status is asserted."
 }

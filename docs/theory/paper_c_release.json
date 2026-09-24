@@ -16,7 +16,7 @@
     {
       "path": "data/research/juggler/paper_c_publication_review/validation.json",
       "mode": "text",
-      "sha256": "cefc2110c2bf76e0ea88a4c9c24e93b14ef8373f22626afbb5e3aeeae0b1703b"
+      "sha256": "44d648a8882f2802642460fa591615844de0b47d15f6ae60b96dc23e14bac963"
     },
     {
       "path": "data/research/juggler/tao_reduction/summary.json",
@@ -26,7 +26,7 @@
     {
       "path": "docs/theory/PAPER_C_BUILD.md",
       "mode": "text",
-      "sha256": "97bf65ab52c4addd8b3a924e5b2603316908c5c892ff1874a389e7e99b6a5d0d"
+      "sha256": "63ceabb10409dca0e41198d387027f00918c45ed62a4c9578c936c2d57a2db25"
     },
     {
       "path": "docs/theory/figures/paper_c_decomposition.png",
@@ -36,7 +36,7 @@
     {
       "path": "docs/theory/figures/paper_c_dependencies.png",
       "mode": "binary",
-      "sha256": "3811292a8b6a3e602e68e47b8cfcb0d9ea66e04220ca9ca4fc459c6354025df3"
+      "sha256": "b47f0dfef3b16de7e2fba3c1c71314b453e5cb01cc763cbfd59dcb2896e4e201"
     },
     {
       "path": "docs/theory/figures/paper_c_productions.png",
@@ -46,12 +46,12 @@
     {
       "path": "docs/theory/figures/render_paper_c_figures.py",
       "mode": "text",
-      "sha256": "955e5771d36ba103a5192cb28432244436a2ced78edf482d532d1fe6fe9afbd0"
+      "sha256": "bf0e053dfa143c903900ca81410502a1ba3b29b9d79d8ba067eb93d0598d00a0"
     },
     {
       "path": "docs/theory/juggler_fate_almost_all_note.md",
       "mode": "text",
-      "sha256": "ff0f8e6bbea766896f0d70b5526f2d48227ea5971a2a345f51b32c512795688d"
+      "sha256": "f769b6f5e12d22cdc2229aed84195e2aa8fabf13279c05fb3e5a8433d5085d0c"
     },
     {
       "path": "docs/theory/juggler_ooee_contagion_note.md",
@@ -69,6 +69,36 @@
       "sha256": "df7a735b0b8e3fd7c251c7aa6708b698199393fd4d5eb3cf8969306809e93f28"
     },
     {
+      "path": "formal/AxiomCheckDepthFiveAssembly.expected",
+      "mode": "text",
+      "sha256": "68aa35a04fe0751dd38ddd6971a296355878a79027d9aa382a72a54432149e84"
+    },
+    {
+      "path": "formal/AxiomCheckDepthFiveAssembly.lean",
+      "mode": "text",
+      "sha256": "3855705f8b8216743be88dff3c464767d2b89eb9237b07c2596e5f30abd52d71"
+    },
+    {
+      "path": "formal/AxiomCheckDepthFiveWeighted.expected",
+      "mode": "text",
+      "sha256": "ad535e6c610de18c146eb5a7c8c6e57331bff5e75b657f35e610f75d6d75cf43"
+    },
+    {
+      "path": "formal/AxiomCheckDepthFiveWeighted.lean",
+      "mode": "text",
+      "sha256": "cdcd7bbc2923f5458b3af64eebc8ae68e5a513a3529781efc0211bd9bbc7f348"
+    },
+    {
+      "path": "formal/AxiomCheckOOEECountPoorTail.expected",
+      "mode": "text",
+      "sha256": "55b8c5fea2b2402592db3571fa03b38e6cac96e4b0725381ca279c8cbcf88425"
+    },
+    {
+      "path": "formal/AxiomCheckOOEECountPoorTail.lean",
+      "mode": "text",
+      "sha256": "96486d8bc17d86fb91437d08913f0967d27b531e0d5444fb52668fda9b6325de"
+    },
+    {
       "path": "formal/AxiomCheckOOEEMixedModes.expected",
       "mode": "text",
       "sha256": "e72f93a12a1f8544e0b539486e01f0f9923777315f8fab36f112e6613b9becdd"
@@ -77,6 +107,16 @@
       "path": "formal/AxiomCheckOOEEMixedModes.lean",
       "mode": "text",
       "sha256": "e596c4a49e8a8ca0156173e9935495f61a3b079773ec0c76e092b3aab04ce935"
+    },
+    {
+      "path": "formal/AxiomCheckOOEEWeighted.expected",
+      "mode": "text",
+      "sha256": "c30d1835d60fd19d264a2ef54a7388e55be90049635dc64e1e7fb73cb61377d2"
+    },
+    {
+      "path": "formal/AxiomCheckOOEEWeighted.lean",
+      "mode": "text",
+      "sha256": "ce9cb5d5488aac60cf3703f2b018821367f99b5d9e9a64b98f51fdfa00bf8153"
     },
     {
       "path": "formal/AxiomCheckPaperC.expected",
@@ -107,6 +147,11 @@
       "path": "formal/BTCalculus/FejerBox.lean",
       "mode": "text",
       "sha256": "4af51030ee09edbabd3d68861fd96b80aed9272523107f1174580547e2612193"
+    },
+    {
+      "path": "formal/BTCalculus/FejerBox3.lean",
+      "mode": "text",
+      "sha256": "700913a7248f0a2e8857e406b02477f5d85d5bc1a9d3fdac3f8b4915ab85ec0f"
     },
     {
       "path": "formal/BTCalculus/FejerKernel.lean",
@@ -224,6 +269,11 @@
       "sha256": "2a4b3b3b36f90b680c66e3751c058120601a810132f6c0f9f9102424e21df321"
     },
     {
+      "path": "formal/Problems/Juggler/DepthFiveFibreGeometry.lean",
+      "mode": "text",
+      "sha256": "c48565c4157c37d126115821889cf16cf1f6f2db6143f3b14447ec8072a47682"
+    },
+    {
       "path": "formal/Problems/Juggler/Drift.lean",
       "mode": "text",
       "sha256": "4e372e621dc134c5da7c43019734d96182e0f264f6b765d78cabaf47be35ce20"
@@ -294,6 +344,16 @@
       "sha256": "274cd6b960bdd1de8c1b637bd2dee86c8cbe67e883e25937812dadcbe98d6a0b"
     },
     {
+      "path": "formal/Problems/Juggler/FateDepthFiveAssembly.lean",
+      "mode": "text",
+      "sha256": "fc850f109a466eb0f9c5bd1931b49e94689f3fd8dfcdb55cdd5754f2a137400f"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateDepthFiveWeighted.lean",
+      "mode": "text",
+      "sha256": "1ef085cbfbb9299c9b9874efa351c73b415616b014e366b99a9912bbea549639"
+    },
+    {
       "path": "formal/Problems/Juggler/FateDyadicDensity.lean",
       "mode": "text",
       "sha256": "f5065c952302de36981e147f5ae95804eaa16d34a38459025a65e10b5a24e4fe"
@@ -339,6 +399,16 @@
       "sha256": "876ea8ce09f1ada03c9beacd87f326a062ffdd23b6a993ccbbc41267ca0ba5c3"
     },
     {
+      "path": "formal/Problems/Juggler/FateOOEEWeighted.lean",
+      "mode": "text",
+      "sha256": "0a9b56d1cf263491b58b4b6af3ca8181770fe50f81593311249e2c38f2cdde23"
+    },
+    {
+      "path": "formal/Problems/Juggler/FateOOOEEAssembly.lean",
+      "mode": "text",
+      "sha256": "40869c2138f4f84510b1a08e0e12d0a9e9a13afbba6a8e3ffeadf06cd784783c"
+    },
+    {
       "path": "formal/Problems/Juggler/FateOneSided.lean",
       "mode": "text",
       "sha256": "7ae0aa4cab061a24ef51eff381a0f4bbd4e4569ae2578f04e4c3677b5999bddc"
@@ -372,6 +442,11 @@
       "path": "formal/Problems/Juggler/FatePressureCorollary.lean",
       "mode": "text",
       "sha256": "cdd1ca9cbb59c4bb0a5fb24702f12bb8e27c21365f9b28e515819f874e9b437e"
+    },
+    {
+      "path": "formal/Problems/Juggler/FatePressureOOEE.lean",
+      "mode": "text",
+      "sha256": "2c09cf702d83844178987b4a0df1dbb9298075106962f2aa324e4b2c3ac3f9ef"
     },
     {
       "path": "formal/Problems/Juggler/FateProduction.lean",
@@ -509,6 +584,21 @@
       "sha256": "bfee1d8dc6077d4ae5be645a13fa028ae61558cb5bd5257cb6e6bdd7c385e8ba"
     },
     {
+      "path": "formal/Problems/Juggler/OOEEFibreGeometry.lean",
+      "mode": "text",
+      "sha256": "2aa36612d432d45ff47b333e67bc6c5e8b36701a6af741a46dcd1f45db2e7ae9"
+    },
+    {
+      "path": "formal/Problems/Juggler/OOEEFibreParity.lean",
+      "mode": "text",
+      "sha256": "c84d7e26855f15b2bcad18e2000d5f59ae61709305593d25c7dbad0093452195"
+    },
+    {
+      "path": "formal/Problems/Juggler/OOEEFibreResonance.lean",
+      "mode": "text",
+      "sha256": "ea4c64cf145716567bdaae8f1d04e473c49634f04afc6f9f0c23949b298ff73b"
+    },
+    {
       "path": "formal/Problems/Juggler/OOEEFourierModes.lean",
       "mode": "text",
       "sha256": "5625d29873bc98d999f07550e474aacd600402efb7efd5407e145c16077b6ed6"
@@ -519,14 +609,39 @@
       "sha256": "8f2b5859c03e09c1d3a69c7b48bba5ffae99ad2028143711ce8508d04e578ec2"
     },
     {
+      "path": "formal/Problems/Juggler/OOEEParity.lean",
+      "mode": "text",
+      "sha256": "0cebf878dbe578313f227e2235e2adbc9f19b99d9a6a6f6b1ef11137a787d3cc"
+    },
+    {
       "path": "formal/Problems/Juggler/OOEEPhaseComparison.lean",
       "mode": "text",
       "sha256": "cf34030448ec99bda3c88a00cdcd914bcf2f21101c97096be2f571c5f17392a9"
     },
     {
+      "path": "formal/Problems/Juggler/OOEEResonanceTail.lean",
+      "mode": "text",
+      "sha256": "e3732ecf0310255b411c45e0d744bf7ed3d4e0b6aeba7d1f5902174a1a63df60"
+    },
+    {
+      "path": "formal/Problems/Juggler/OOEERootPhase.lean",
+      "mode": "text",
+      "sha256": "70551f0db91940fd26009d5ae934341581e9863cac29d2c3890fc68a5aea63dd"
+    },
+    {
+      "path": "formal/Problems/Juggler/OOEESlowModes.lean",
+      "mode": "text",
+      "sha256": "8b9bbabf49ae0e57bbddf823609ba4d211e33d3d25f632fd26bb453c8c541fa2"
+    },
+    {
       "path": "formal/Problems/Juggler/OOEESmoothModes.lean",
       "mode": "text",
       "sha256": "73c0223feb915469742f892b0dd501260e85d790c122bf1f6e937b2fb67e85db"
+    },
+    {
+      "path": "formal/Problems/Juggler/OddPredecessorTransport.lean",
+      "mode": "text",
+      "sha256": "3f6fd5345b076b3aa6074b55a6c2515cf2070e6e931808496813e7aa3135735d"
     },
     {
       "path": "formal/Problems/Juggler/Preimages.lean",
@@ -596,7 +711,7 @@
     {
       "path": "src/research/juggler_sequence/paper_c_audit.py",
       "mode": "text",
-      "sha256": "d46015c817123d0f8badeb1fdeabdfc6548e008c46305f32f6c4a4e445a446a3"
+      "sha256": "361e7150beda88638152e79f84b621a5ad604c7bd96bd80c1069b90b735956fa"
     },
     {
       "path": "src/research/juggler_sequence/paper_c_formal_layer.py",
@@ -611,12 +726,12 @@
     {
       "path": "tools/build_paper_c.py",
       "mode": "text",
-      "sha256": "fd1a66e23cdc0fcbe223b27c29c0ab5fea4e9c7652e5a4e4b79279e7a13bbfb5"
+      "sha256": "b14e96ca137eaecc2cca81abaece1f18b09d66a55cc418699ba87114de06cdf8"
     },
     {
       "path": "tools/check_paper_c_numeric.py",
       "mode": "text",
-      "sha256": "4dc08f704541f32e1d6f339eef8494f03a1257760d36560477e35e664e2d023e"
+      "sha256": "ef40996b3e193786595f38b8f5ba6813207c28e98a34eaf99f24a326e881f633"
     },
     {
       "path": "tools/paper_c/article.tex",
@@ -633,17 +748,17 @@
     {
       "path": "preprints/juggler_fate_almost_all_note.pdf",
       "mode": "binary",
-      "sha256": "a5ef0cc83d56f2dfe6ac032300d4b6c6619e04083566036de43d4ececc0784b3"
+      "sha256": "3b969e59fc33f5b5aa499557bf02a316a09735a9ed0b7b628804c871309d48cb"
     },
     {
       "path": "docs/theory/cochin-juggler-fates.tex",
       "mode": "text",
-      "sha256": "d7f9c2644a04202306bfb39971ab50d81be59e92f0d21442fa23d01943bd9599"
+      "sha256": "9931cc8938677789a2c20545d0988ae5551efb7ff4b7a65040da4d2a7ef7d5e5"
     },
     {
       "path": "docs/theory/paper_c_zenodo.json",
       "mode": "text",
-      "sha256": "c96a75d42245a5b4e75da793db5b8a00ce8b6bdc8b3c0fdb7cc5962e16540a86"
+      "sha256": "93b1355fd74a39ab3ad6eb3f58fa0adf238de38e13a227f7cafc9c7606267009"
     }
   ],
   "publication": {

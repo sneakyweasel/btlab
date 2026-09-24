@@ -108,11 +108,18 @@ def least_depth(q: F, kind: str, exponent: F | RootBracket, *, max_C=10000) -> d
     raise UnresolvedInterval(f"No crossing through C={max_C}")
 
 
+#: Theorem 5.20's five actual productions. Kept out of production_models(), whose twelve
+#: canonical models the Arb MCP serves; certified here alongside them.
+FIVE_ACTUAL_PRODUCTIONS = [(F(1), F(1, 2)), (F(33, 100), F(3, 4)),
+                           (F(11, 100), F(9, 16)), (F(1, 14), F(27, 32))]
+
+
 def certificate() -> dict:
-    models = production_models()
+    models = {**production_models(), "five_actual_productions": FIVE_ACTUAL_PRODUCTIONS}
     roots = {name: production_root(terms) for name, terms in models.items()}
     regimes = {key: roots[key] for key in ("pairing", "V6", "conditional_Appendix_C")}
-    regimes.update({"Lean_baseline_100_203": F(100, 203), "written_OOEE_5_8": F(5, 8)})
+    regimes.update({"Lean_baseline_100_203": F(100, 203), "written_OOEE_5_8": F(5, 8),
+                    "Theorem_5_20_37_50": F(37, 50)})
     depths = {name: {
         kind: {str(q): least_depth(q, kind, exponent)
                for q in (F(1, 2), F(11, 20), F(3, 5), F(31, 50))}
@@ -122,6 +129,10 @@ def certificate() -> dict:
         lambda: production_residual(models["OOEE_fixed"], F(5, 8)))
     if positive != 1:
         raise ArithmeticError("The OOEE recurrence does not have positive slack at 5/8")
+    positive5, slack5 = signed_evaluation(
+        lambda: production_residual(models["five_actual_productions"], F(37, 50)))
+    if positive5 != 1:
+        raise ArithmeticError("The five-production recurrence does not have positive slack at 37/50")
     return {
         "schema": "btlab.paper-c-intervals.v1", "scope": SCOPE,
         "arithmetic": {"backend": "python-flint/Arb", "version": flint.__version__,
@@ -130,10 +141,12 @@ def certificate() -> dict:
         "roots": {name: {**root.as_dict(),
                          "terms": [[str(c), str(b)] for c, b in models[name]]}
                   for name, root in roots.items()},
-        "OOEE_slack_at_5_8": slack, "rate_crossings": depths,
+        "OOEE_slack_at_5_8": slack, "five_production_slack_at_37_50": slack5,
+        "rate_crossings": depths,
         "not_certified": ["run-model transfer-matrix eigenvalues",
                           "infinite tails and asymptotic error constants",
                           "OOEE production theorem or its independent analytic review",
+                          "Paper B's Theorem 6.3 or the depth-five production inequalities",
                           "open cylinder, pressure, and Tao-rate hypotheses"],
         "all_checks_passed": True,
     }

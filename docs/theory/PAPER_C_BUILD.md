@@ -47,7 +47,7 @@ Development notes are historical. Where their statements differ, the corrected m
 
 ## Zenodo
 
-This repository holds version 1.2.0, which is prepared and not deposited. The record is at [zenodo.org/records/22865705](https://zenodo.org/records/22865705); its current version is 1.1.0, [doi:10.5281/zenodo.22865705](https://doi.org/10.5281/zenodo.22865705), of 21 September 2026, after 1.0.0 [doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165) of 9 September 2026. The concept DOI [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) resolves to the latest version. Resource type Publication / Preprint, English, open access, CC BY 4.0, with the author's ORCID [0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382). A rebuild writes local metadata only; it does not upload a new version. Later revisions should use that record's new-version operation. The manuscript includes an AI-assistance disclosure and the author's responsibility statement.
+This repository holds version 1.3.0, which is prepared and not deposited. The record is at [zenodo.org/records/22865705](https://zenodo.org/records/22865705); its current version is 1.1.0, [doi:10.5281/zenodo.22865705](https://doi.org/10.5281/zenodo.22865705), of 21 September 2026, after 1.0.0 [doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165) of 9 September 2026. The concept DOI [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) resolves to the latest version. Resource type Publication / Preprint, English, open access, CC BY 4.0, with the author's ORCID [0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382). A rebuild writes local metadata only; it does not upload a new version. Later revisions should use that record's new-version operation. The manuscript includes an AI-assistance disclosure and the author's responsibility statement.
 
 ## Revision of 22 September 2026: three productions
 
@@ -69,3 +69,34 @@ proof notes are included in the release provenance. A conditional Lean
 assembly does not certify the complete analytic input. Earlier numerical
 depth tables remain labelled comparisons at their original thresholds.
 The dependency diagram and metadata now describe this edition.
+
+## Revision of 24 September 2026: five productions
+
+Version 1.3.0 adds Section 5.10. Theorem 5.20 feeds the two five-letter
+words OOOEE and OOEOE into the recursion through Theorem 6.3 of Paper B
+(version 1.2.0, doi:10.5281/zenodo.22946276), and raises Theorem 1 to
+37/50 and lowers the sufficient rate threshold of Theorems 3, 7.2--7.3
+and 9.4 to 13/50. Paper B's Theorem 6.3 is an AI-assisted written proof that has
+not been independently reviewed. The deduction from it
+(FateDepthFiveWeighted, with the fibre geometry of DepthFiveFibreGeometry)
+and the five-production recursion (FateDepthFiveAssembly) are
+kernel-checked.
+
+The same revision records that the log-mass bound of Theorem 5.19 is now
+kernel-checked. FateOOEEWeighted proves the actual OOEE production from a
+count form of the poor-fiber tail (OOEEResonanceTail), so contagion 5/8
+and the threshold 3/8 hold in Lean with no contagion-side hypothesis; the
+dyadic clause of Theorem 1 and Corollary 7.1 remain written. The least depth constants
+are recomputed for both thresholds in Appendix B. Arb certifies each
+value and the failure of the integer below it, and
+`check_paper_c_numeric.py` recomputes them at 90 digits; the historical
+lambda** constants remain as comparisons. Appendix B limits "closed" to
+the localized route of the depth-five words and corrects that model's
+root to 0.6066; the value 0.5561 printed before matched no recursion of
+its form. The dependency figure is redrawn, reference [12] cites Paper B
+1.2.0, and the citations of numbered results from an earlier Paper B
+draft are replaced by the results Paper B 1.2.0 contains. A three-lens
+AI review of this revision found no mathematical error in Section 5.10;
+its findings on status wording and stale sentences are repaired. The historical 37-module barrel and
+its 473 reports are unchanged; the supplementary modules and their audits
+are pinned in the release manifest. No deposit is performed.

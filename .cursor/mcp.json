@@ -1,0 +1,48 @@
+{
+  "mcpServers": {
+    "formalpedia": {
+      "type": "stdio",
+      "command": "C:\\Users\\phili\\miniconda3\\python.exe",
+      "args": [
+        "C:\\Users\\phili\\Desktop\\balanced_ternary\\tools\\formalpedia_mcp.py",
+        "--root",
+        "C:\\Users\\phili\\Desktop\\balanced_ternary"
+      ],
+      "env": {
+        "PYTHONUTF8": "1"
+      }
+    },
+    "oeis-local": {
+      "type": "stdio",
+      "command": "C:\\Users\\phili\\miniconda3\\python.exe",
+      "args": [
+        "C:\\Users\\phili\\Desktop\\balanced_ternary\\tools\\oeis_mcp.py"
+      ],
+      "env": {
+        "PYTHONUTF8": "1"
+      }
+    },
+    "arb-local": {
+      "type": "stdio",
+      "command": "C:\\Users\\phili\\miniconda3\\python.exe",
+      "args": [
+        "-B",
+        "C:\\Users\\phili\\Desktop\\balanced_ternary\\tools\\arb_mcp.py"
+      ],
+      "env": {
+        "PYTHONUTF8": "1"
+      }
+    },
+    "lean-lsp": {
+      "type": "stdio",
+      "command": "C:\\Users\\phili\\miniconda3\\python.exe",
+      "args": [
+        "C:\\Users\\phili\\Desktop\\balanced_ternary\\tools\\lean_lsp_launcher.py"
+      ],
+      "env": {
+        "PYTHONUTF8": "1",
+        "LEAN_LOG_LEVEL": "NONE"
+      }
+    }
+  }
+}

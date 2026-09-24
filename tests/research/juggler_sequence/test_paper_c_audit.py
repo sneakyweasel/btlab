@@ -114,6 +114,22 @@ def test_all_current_azuma_and_optimized_pressure_depths_are_guarded() -> None:
     assert [by_name[f"pressure C({q}), lambda** regime"] for q in qs] == [19, 41, 214, 1496]
 
 
+def test_the_current_thresholds_have_their_least_depths() -> None:
+    """Theorem 5.20's rate 13/50 and Theorem 5.19's machine-checked 3/8, each guarded.
+
+    These are the constants the 1.3.0 statements quote; the lambda** table above is kept as
+    the historical comparison it has become."""
+
+    by_name = {c["name"]: c["computed"] for c in tao_checks()}
+    qs = (0.5, 0.55, 0.6, 0.62)
+    assert by_name["least depth, Theorem 5.20 regime"] == 14
+    assert by_name["least depth, Theorem 5.19 regime"] == 16
+    assert [by_name[f"C({q}), Theorem 5.20 regime"] for q in qs] == [14, 28, 132, 866]
+    assert [by_name[f"pressure C({q}), Theorem 5.20 regime"] for q in qs] == [14, 27, 128, 820]
+    assert [by_name[f"C({q}), Theorem 5.19 regime"] for q in qs] == [16, 34, 175, 1201]
+    assert [by_name[f"pressure C({q}), Theorem 5.19 regime"] for q in qs] == [16, 34, 168, 1135]
+
+
 def test_1015_falsifies_only_the_collapsed_OEOEE_fiber() -> None:
     """Exact arithmetic separates the false 9/32 collapse from the nested identity in use."""
 
@@ -148,7 +164,8 @@ def test_paper_quotes_the_constants_the_audit_checks() -> None:
     text = PAPER.read_text(encoding="utf-8")
     for token in ("0.4480", "0.4801", "0.4891", "0.4916", "0.4924", "0.4926", "0.5392", "0.4927", "0.5520",
                   "0.5199", "0.5109", "0.5084", "0.5076", "0.5074", "0.4608", "0.574", "0.480", "0.6247",
-                  "0.7180", "0.7095", "0.8414", "0.7516", "0.9121"):
+                  "0.7180", "0.7095", "0.8414", "0.7516", "0.9121", "0.6266", "0.7406", "0.299",
+                  "0.344", "0.389"):
         assert token in text, token
     assert "C(0.55)=39" in text.replace(" ", "").replace("\\(", "").replace("\\)", "")
     assert r"1-\lambda^{**}=0.552" not in text

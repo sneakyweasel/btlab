@@ -1,5 +1,5 @@
 GENERATED FROM docs/theory/; do not edit this export.
-Version 1.2.0 is prepared and is not deposited. The record exists: concept doi:10.5281/zenodo.22678164 resolves to the latest version, which is 1.1.0 at doi:10.5281/zenodo.22865705 of 2026-09-21. A new version goes up through the new-version operation of that record, which keeps the concept DOI.
+Version 1.3.0 is prepared and is not deposited. The record exists: concept doi:10.5281/zenodo.22678164 resolves to the latest version, which is 1.1.0 at doi:10.5281/zenodo.22865705 of 2026-09-21. A new version goes up through the new-version operation of that record, which keeps the concept DOI.
 
 TITLE
 Fate Contagion and Termination Criteria for the Juggler Map
@@ -13,7 +13,7 @@ RESOURCE TYPE
 Publication / Preprint
 
 VERSION
-1.2.0
+1.3.0
 
 LICENSE
 cc-by-4.0
@@ -32,9 +32,9 @@ parity cylinders
 integer dynamics
 
 DESCRIPTION (HTML)
-<p>The Juggler map sends an even positive integer to the integer part of its square root and an odd positive integer to the integer part of its three-halves power. We prove that every nonempty set A of positive integers closed under taking preimages satisfies ∑_(n ∈ A, n ≤ x)1/n ≥ c(log x)^(5/8) for all sufficiently large x. Thus any realized cycle basin or nonempty class of unbounded orbits must have this divergent logarithmic mass. Three disjoint actual predecessor families, with initial words E, OE and OOEE, supply the recursion. The OOEE input is an AI-assisted written analytic proof, included in Appendix E, pending independent review and complete Lean verification.</p>
-<p>The earlier two-production argument remains a separate, fully machine-checked baseline for every 0 &lt; λ ≤ 100/203. Its poor-fiber tail needs no exponential sums. For the stronger exponent 5/8, Lean checks the recurrence assembly with the actual OOEE production bound explicit; OE and the main mixed-frequency estimates are proved separately. We distinguish that conditional formal result from the complete written argument.</p>
-<p>For a fixed verified target [1, N₀], universal termination is equivalent to an eventual-entry statement: all but O(y(log y)^(−e)) odd starts in (y, 2y] enter that target, for some e &gt; 3/8. The rate itself remains unproved. Parity-cylinder, live-pressure and scale-averaged pressure bounds are sufficient arithmetic inputs; none is established here. The unconditional Lean baseline gives the rate threshold 103/203. Earlier finite-production and localized-discrepancy arguments are retained with their original scope, and the numerical experiments remain observations. Neither universal termination nor exclusion of every nontrivial cycle or unbounded orbit is established.</p>
+<p>The Juggler map sends an even positive integer to the integer part of its square root and an odd positive integer to the integer part of its three-halves power. We prove that every nonempty set A of positive integers closed under taking preimages satisfies ∑_(n ∈ A, n ≤ x)1/n ≥ c(log x)^(37/50) for all sufficiently large x. Thus any realized cycle basin or nonempty class of unbounded orbits must have this divergent logarithmic mass. Five disjoint actual predecessor families, with initial words E, OE, OOEE, OOOEE and OOEOE, supply the recursion. The two five-letter families enter through the averaged fair-share theorem of the companion Paper B (its Theorem 6.3), an AI-assisted written proof that has not been independently reviewed; the deduction from that theorem, and the recursion, are kernel-checked in Lean.</p>
+<p>Without the two five-letter families the exponent is 5/8, and that result is now machine-checked end to end: Lean proves the actual OOEE production from its summable poor-fiber tail, and Appendix E gives the written argument. The earlier two-production route remains an elementary Lean baseline at 100/203.</p>
+<p>For a fixed verified target [1, N₀], universal termination is equivalent to an eventual-entry statement: all but O(y(log y)^(−e)) odd starts in (y, 2y] enter that target, for some e &gt; 13/50; the machine-checked threshold, which does not use Paper B, is 3/8. The rate itself remains unproved. Parity-cylinder, live-pressure and scale-averaged pressure bounds are sufficient arithmetic inputs; none is established here. Earlier finite-production and localized-discrepancy arguments are retained with their original scope, and the numerical experiments remain observations. Neither universal termination nor exclusion of every nontrivial cycle or unbounded orbit is established.</p>
 <p>Large language models assisted the development of this work, including the prose, proposed proof arguments, the Lean formalizations, and the computations. AI assistance is not independent mathematical validation. The formalization covers only the results identified in Section 1.4 and Appendix A. The author is responsible for the statements, proofs, code, and the decision to make this version public.</p>
 
 RELATED WORKS

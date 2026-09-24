@@ -36,6 +36,7 @@ def test_models_match_the_lean_table_and_current_ooee_certificate():
     ("V4", "0.4916"), ("V5", "0.4924"), ("V6", "0.4926"),
     ("conditional_Appendix_C", "0.5392"), ("depth_two_ideal", "0.4927"),
     ("sweep", "0.138"), ("OOEE_limiting_model", "0.6327671418"),
+    ("OOEE_fixed", "0.6266"), ("five_actual_productions", "0.7406"),
 ])
 def test_entire_root_bracket_rounds_to_the_printed_decimal(report, name, printed):
     text = (audit.PAPER if name != "OOEE_limiting_model" else audit.OOEE_NOTE).read_text(encoding="utf-8")
@@ -54,6 +55,7 @@ def test_certified_current_and_historical_rate_crossings(report):
         "V6": ([19, 41, 214, 1496], [19, 41, 223, 1586]),
         "Lean_baseline_100_203": ([19, 41, 214, 1496], [19, 41, 223, 1586]),
         "written_OOEE_5_8": ([16, 34, 168, 1135], [16, 34, 175, 1201]),
+        "Theorem_5_20_37_50": ([14, 27, 128, 820], [14, 28, 132, 866]),
     }
     for regime, kinds in expected.items():
         for kind, values in zip(("Chernoff", "Azuma"), kinds):
@@ -68,6 +70,8 @@ def test_certified_current_and_historical_rate_crossings(report):
 
 def test_ooee_slack_does_not_retag_the_theorem(report):
     assert F(report["OOEE_slack_at_5_8"]["lower"]) > F(11, 50000)
+    assert F(report["five_production_slack_at_37_50"]["lower"]) > F(1, 10000)
+    assert "Paper B's Theorem 6.3 or the depth-five production inequalities" in report["not_certified"]
     assert "No Lean proof" in report["scope"]
     assert "OOEE production theorem or its independent analytic review" in report["not_certified"]
     assert report["all_checks_passed"]

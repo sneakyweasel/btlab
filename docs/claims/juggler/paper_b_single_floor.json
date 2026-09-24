@@ -1,0 +1,13 @@
+[
+ {
+  "id": "J-paper-b-theorem-3-1-bridge",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper B Theorem 3.1, exact bridge and one dyadic block. On odd starts in {1,...,N}, the sign sum S_O equals M - 2 times the number of starts with word_2 = OO, and the two-step certificate count is N minus that number. A bound |S_O| <= E is a bound of E on |2 #OO - M|. The phase g(r) = (1/2)(2r+1)^{3/2} has second derivative (3/2)(2r+1)^{-1/2}. On one interval of length at most its left endpoint, the second-derivative test bounds the exponential sum of h*g. At H = Q^{1/6} the classical block majorant is at most 3 Q^{5/6}. Lean: PaperBSingleFloor.singleFloor_bridge, block_exponential_sum, dyadic_cutoff, sum_inv_sqrt. sum_inv_sqrt is the comparison sum_{h=1}^H h^{-1/2} <= 2 H^{1/2}. This does not sum the dyadic blocks or prove S_O(N) = O(N^{5/6}): the repository Fejer discrepancy has main term N/sqrt(H), and the printed exponent needs an Erdős–Turán inequality with main term N/H.",
+  "source": "docs/problems/juggler_paper_b_single_floor.md",
+  "lean": "Problems/Juggler/PaperBSingleFloor.lean",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ }
+]

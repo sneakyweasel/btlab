@@ -47,19 +47,28 @@ async def paper_c(a):
     for name, terms in models.items():
         roots[name] = await a.call(f"root_{name}", "arb_production_root", {"terms": terms})
     await a.compare("OOEE_slack", "(1/2)**(5/8)+(33/100)*(3/4)**(5/8)+(11/100)*(9/16)**(5/8)", "1")
+    await a.compare("depth_five_slack", "(1/2)**(37/50)+(33/100)*(3/4)**(37/50)+(11/100)*(9/16)**(37/50)"
+                    "+(1/14)*(27/32)**(37/50)", "1")
+    five = await a.call("root_five_actual_productions", "arb_production_root",
+                        {"terms": [["1", "1/2"], ["33/100", "3/4"], ["11/100", "9/16"], ["1/14", "27/32"]]})
     # All earlier depths are covered by the existing canonical audit. Here certify both sides
     # of each reported boundary through MCP, without claiming this alone proves minimality.
     thresholds = {"Chernoff": {"1/2": 16, "11/20": 34, "3/5": 168, "31/50": 1135},
                   "Azuma": {"1/2": 16, "11/20": 34, "3/5": 175, "31/50": 1201}}
-    for kind, table in thresholds.items():
-        for q, depth in table.items():
-            for C, holds in ((depth-1, False), (depth, True)):
-                item = await a.call(f"{kind}_{q}_{C}", "arb_paper_c_rate",
-                                    {"C": C, "q": q, "kind": kind, "exponent": "5/8"})
-                if item["holds"] is not holds:
-                    raise ArithmeticError("Paper C rate boundary changed")
+    thresholds_37_50 = {"Chernoff": {"1/2": 14, "11/20": 27, "3/5": 128, "31/50": 820},
+                        "Azuma": {"1/2": 14, "11/20": 28, "3/5": 132, "31/50": 866}}
+    for exponent, tables in (("5/8", thresholds), ("37/50", thresholds_37_50)):
+        suffix = "" if exponent == "5/8" else "_37_50"
+        for kind, table in tables.items():
+            for q, depth in table.items():
+                for C, holds in ((depth-1, False), (depth, True)):
+                    item = await a.call(f"{kind}_{q}_{C}{suffix}", "arb_paper_c_rate",
+                                        {"C": C, "q": q, "kind": kind, "exponent": exponent})
+                    if item["holds"] is not holds:
+                        raise ArithmeticError("Paper C rate boundary changed")
     return {"roots": {k: v["root"] for k, v in roots.items()}, "rate_boundaries": thresholds,
-            "progress": "Confirms sharper conditional constants already recorded by the Paper C audit.",
+            "five_actual_productions_root": five["root"], "rate_boundaries_37_50": thresholds_37_50,
+            "progress": "Certifies the depth constants of Paper C 1.3.0 at 3/8 and 13/50 and the 37/50 slack.",
             "not_certified": "Production, cylinder, pressure hypotheses and global termination"}
 
 

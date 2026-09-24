@@ -70,6 +70,13 @@ PAPER = DOCS_THEORY / "juggler_fate_almost_all_note.md"
 #: absolute tolerance for a printed four-decimal exponent
 EXP_TOL = 5e-5
 
+#: Theorem 5.19's three actual productions and Theorem 5.20's five (Sections 5.9, 5.10).
+THREE_PRODUCTIONS = [(1.0, 0.5), (0.33, 0.75), (0.11, 9.0 / 16.0)]
+FIVE_PRODUCTIONS = THREE_PRODUCTIONS + [(1.0 / 14.0, 27.0 / 32.0)]
+#: the rate thresholds 1 - 5/8 and 1 - 37/50 of those theorems
+RATE_5_19 = 3.0 / 8.0
+RATE_5_20 = 13.0 / 50.0
+
 
 def _bisect(f: Callable[[float], float], lo: float = 1e-9, hi: float = 1.0, iters: int = 200) -> float:
     """Root of a strictly decreasing ``f`` on ``[lo, hi]``; the lower end is kept off zero
@@ -286,6 +293,8 @@ def contagion_checks() -> list[dict[str, Any]]:
         _check("lambda** (block_third_plus_oeoee_v6)", 0.4926, lambda_root(RECURSIONS["block_third_plus_oeoee_v6"]), EXP_TOL),
         _check("lambda*** (block_third_plus_ooeee)", 0.5392, lambda_root(RECURSIONS["block_third_plus_ooeee"]), EXP_TOL),
         _check("conditional depth-two ideal-share model", 0.4927, lambda_root(RECURSIONS["depth_two_ideal"]), EXP_TOL),
+        _check("three actual productions (Theorem 5.19)", 0.6266, lambda_root(THREE_PRODUCTIONS), EXP_TOL),
+        _check("five actual productions (Theorem 5.20)", 0.7406, lambda_root(FIVE_PRODUCTIONS), EXP_TOL),
         # the same pairing/ideal constants through the residual, which is how Section 5.7 derives them
         _check("lambda_star via residual", 0.3774, exponent(0.0, 0.0, 1.0), EXP_TOL),
         _check("pairing via residual", 0.4480, exponent(0.0, 2 / 3, 1.0), EXP_TOL),
@@ -324,6 +333,11 @@ def tao_checks() -> list[dict[str, Any]]:
         _check("e(20)", 0.574, chernoff_exponent(20), 1e-3),
         _check("e(19)", 0.527, chernoff_exponent(19), 1e-3),
         _check("e(18)", 0.480, chernoff_exponent(18), 1e-3),
+        _check("e(16)", 0.389, chernoff_exponent(16), 1e-3),
+        _check("e(15)", 0.344, chernoff_exponent(15), 1e-3),
+        _check("e(14)", 0.299, chernoff_exponent(14), 1e-3),
+        _check("least depth, Theorem 5.19 regime", 16, least_C(RATE_5_19), 0),
+        _check("least depth, Theorem 5.20 regime", 14, least_C(RATE_5_20), 0),
         _check("least depth, pairing regime", 20, least_C(1.0 - pairing), 0),
         _check("least depth, oeoee regime", 19, least_C(1.0 - oeoee), 0),
         _check("least depth, v3 regime", 19, least_C(1.0 - v3), 0),
@@ -333,6 +347,14 @@ def tao_checks() -> list[dict[str, Any]]:
         _check("least depth, lambda*** regime", 18, least_C(REQUIRED_RATE_STAR3), 0),
         _check("least depth, ideal regime", 19, least_C(1.0 - ideal), 0),
         # One-sided Azuma C(q), with every row kept in its explicit contagion regime.
+        _check("C(0.5), Theorem 5.20 regime", 14, least_C_biased(0.5, RATE_5_20), 0),
+        _check("C(0.55), Theorem 5.20 regime", 28, least_C_biased(0.55, RATE_5_20), 0),
+        _check("C(0.6), Theorem 5.20 regime", 132, least_C_biased(0.6, RATE_5_20), 0),
+        _check("C(0.62), Theorem 5.20 regime", 866, least_C_biased(0.62, RATE_5_20), 0),
+        _check("C(0.5), Theorem 5.19 regime", 16, least_C_biased(0.5, RATE_5_19), 0),
+        _check("C(0.55), Theorem 5.19 regime", 34, least_C_biased(0.55, RATE_5_19), 0),
+        _check("C(0.6), Theorem 5.19 regime", 175, least_C_biased(0.6, RATE_5_19), 0),
+        _check("C(0.62), Theorem 5.19 regime", 1201, least_C_biased(0.62, RATE_5_19), 0),
         _check("C(0.5), lambda*** regime", 18, least_C_biased(0.5, REQUIRED_RATE_STAR3), 0),
         _check("C(0.55), lambda*** regime", 39, least_C_biased(0.55, REQUIRED_RATE_STAR3), 0),
         _check("C(0.6), lambda*** regime", 206, least_C_biased(0.6, REQUIRED_RATE_STAR3), 0),
@@ -346,6 +368,14 @@ def tao_checks() -> list[dict[str, Any]]:
         _check("C(0.6), pairing regime", 240, least_C_biased(0.6, 1.0 - pairing), 0),
         _check("C(0.62), pairing regime", 1715, least_C_biased(0.62, 1.0 - pairing), 0),
         # Biased Chernoff/no-momentum C(q), valid at theta = theta_{C,q}.
+        _check("pressure C(0.5), Theorem 5.20 regime", 14, least_C_pressure(0.5, RATE_5_20), 0),
+        _check("pressure C(0.55), Theorem 5.20 regime", 27, least_C_pressure(0.55, RATE_5_20), 0),
+        _check("pressure C(0.6), Theorem 5.20 regime", 128, least_C_pressure(0.6, RATE_5_20), 0),
+        _check("pressure C(0.62), Theorem 5.20 regime", 820, least_C_pressure(0.62, RATE_5_20), 0),
+        _check("pressure C(0.5), Theorem 5.19 regime", 16, least_C_pressure(0.5, RATE_5_19), 0),
+        _check("pressure C(0.55), Theorem 5.19 regime", 34, least_C_pressure(0.55, RATE_5_19), 0),
+        _check("pressure C(0.6), Theorem 5.19 regime", 168, least_C_pressure(0.6, RATE_5_19), 0),
+        _check("pressure C(0.62), Theorem 5.19 regime", 1135, least_C_pressure(0.62, RATE_5_19), 0),
         _check("pressure C(0.5), lambda*** regime", 18, least_C_pressure(0.5, REQUIRED_RATE_STAR3), 0),
         _check("pressure C(0.55), lambda*** regime", 38, least_C_pressure(0.55, REQUIRED_RATE_STAR3), 0),
         _check("pressure C(0.6), lambda*** regime", 198, least_C_pressure(0.6, REQUIRED_RATE_STAR3), 0),

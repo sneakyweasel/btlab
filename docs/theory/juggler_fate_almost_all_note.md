@@ -1,7 +1,7 @@
 ---
 title: "Fate Contagion and Termination Criteria for the Juggler Map"
 author: Philippe Cochin
-date: 22 September 2026
+date: 24 September 2026
 keywords:
   - Juggler map
   - Juggler sequence
@@ -23,29 +23,29 @@ The Juggler map sends an even positive integer to the integer part of
 its square root and an odd positive integer to the integer part of
 its three-halves power. We prove that every nonempty set \(A\) of
 positive integers closed under taking preimages satisfies
-\(\sum_{n\in A,\,n\le x}1/n\ge c(\log x)^{5/8}\) for all sufficiently
+\(\sum_{n\in A,\,n\le x}1/n\ge c(\log x)^{37/50}\) for all sufficiently
 large \(x\). Thus any realized cycle basin or nonempty class of
-unbounded orbits must have this divergent logarithmic mass. Three
-disjoint actual predecessor families, with initial words E, OE and
-OOEE, supply the recursion. The OOEE input is an AI-assisted written
-analytic proof, included in Appendix E, pending independent review
-and complete Lean verification.
+unbounded orbits must have this divergent logarithmic mass. Five
+disjoint actual predecessor families, with initial words E, OE, OOEE,
+OOOEE and OOEOE, supply the recursion. The two five-letter families
+enter through the averaged fair-share theorem of the companion Paper B
+(its Theorem 6.3), an AI-assisted written proof that has not been
+independently reviewed; the deduction from that theorem, and the
+recursion, are kernel-checked in Lean.
 
-The earlier two-production argument remains a separate, fully
-machine-checked baseline for every \(0<\lambda\le100/203\). Its
-poor-fiber tail needs no exponential sums. For the stronger exponent
-\(5/8\), Lean checks the recurrence assembly with the actual OOEE
-production bound explicit; OE and the main mixed-frequency estimates
-are proved separately. We distinguish that conditional formal result
-from the complete written argument.
+Without the two five-letter families the exponent is \(5/8\), and that
+result is now machine-checked end to end: Lean proves the actual OOEE
+production from its summable poor-fiber tail, and Appendix E gives the
+written argument. The earlier two-production route remains an
+elementary Lean baseline at \(100/203\).
 
 For a fixed verified target \([1,N_0]\), universal termination is
 equivalent to an eventual-entry statement: all but
 \(O(y(\log y)^{-e})\) odd starts in \((y,2y]\) enter that target,
-for some \(e>3/8\). The rate itself remains unproved. Parity-cylinder,
+for some \(e>13/50\); the machine-checked threshold, which does not use
+Paper B, is \(3/8\). The rate itself remains unproved. Parity-cylinder,
 live-pressure and scale-averaged pressure bounds are sufficient
-arithmetic inputs; none is established here. The unconditional Lean
-baseline gives the rate threshold \(103/203\). Earlier finite-production
+arithmetic inputs; none is established here. Earlier finite-production
 and localized-discrepancy arguments are retained with their original
 scope, and the numerical experiments remain observations. Neither
 universal termination nor exclusion of every nontrivial cycle or
@@ -88,13 +88,16 @@ its complement, \(B(C)\) the basin of a nontrivial cycle \(C\), and
 \(D\) the set of divergent starts. Each is *backward-closed*: if
 \(J(n)\) belongs to it, so does \(n\). Theorem 1 proves that every
 nonempty backward-closed set is large in logarithmic density, with an
-explicit exponent, by a downward recursion over the three actual
-productions E, OE and OOEE (Section 5.9 and Appendix E). The
-two-production proof of Section 5.8 supplies the fully formal baseline. Applied to the fate classes: if a single start fails to
+explicit exponent, by a downward recursion over five actual
+productions: E, OE and OOEE (Sections 5.8--5.9 and Appendix E), which
+are machine-checked and give the exponent \(5/8\), and the two
+five-letter words OOOEE and OOEOE, which enter through Paper B's
+averaged fair-share theorem and raise it to \(37/50\) (Section 5.10).
+Applied to the fate classes: if a single start fails to
 reach \(1\), the failures have logarithmic count
 \(\gg(\log x)^\lambda\) and, on infinitely many dyadic blocks,
 natural density \(\gg(\log y)^{\lambda-1}\), for every
-\(0<\lambda\le5/8\). This excludes no fate; it fixes the
+\(0<\lambda\le37/50\). This excludes no fate; it fixes the
 quantitative shape of the trichotomy.
 
 *Odd generation.* A set that is closed both forwards and backwards
@@ -111,7 +114,7 @@ target \(f(N)\to\infty\) arbitrarily slowly. For the Juggler map,
 contagion and odd generation together turn a bounded-target statement
 into the conjecture: every positive integer reaches \(1\) if and only
 if all but \(O(y(\log y)^{-e})\) odd starts in \((y,2y]\) enter
-\([1,N_0]\), for some \(e>3/8\) (Theorem 3). The
+\([1,N_0]\), for some \(e>13/50\) (Theorem 3). The
 threshold is the complement of the contagion exponent. The Collatz preimage lower bound of Krasikov--Lagarias [7],
 discussed with its target restriction in Section 1.3, does not
 by itself yield this implication.
@@ -142,7 +145,7 @@ value is \(260\); the certified computational value is
 \(3.5\cdot 10^8\) [11]).
 
 **Theorem 1 (fate contagion).** Let \(A\subseteq\mathbb N\) be nonempty
-and backward-closed, and let \(0<\lambda\le5/8\).
+and backward-closed, and let \(0<\lambda\le37/50\).
 There are \(c>0\) and \(x_0\), depending on \(A\) and \(\lambda\), with
 \[
 \sum_{\substack{n\in A\\ n\le x}}\frac1n\ \ge\ c\,(\log x)^{\lambda}
@@ -151,11 +154,15 @@ There are \(c>0\) and \(x_0\), depending on \(A\) and \(\lambda\), with
 Consequently each fate class realized by at least one start — \(R\),
 the basin of any existing nontrivial cycle, the divergent set —
 satisfies this bound, and on infinitely many dyadic blocks has natural
-density \(\gg(\log y)^{\lambda-1}\). (Theorem 5.19 and its dyadic consequence.)
+density \(\gg(\log y)^{\lambda-1}\). (Theorems 5.19 and 5.20 and their dyadic consequences.)
 
-The new endpoint uses Appendix E's written OOEE estimate. Its complete
-analytic formalization and independent review remain outstanding. The
-fully machine-checked baseline remains 100/203. The two earlier routes
+For \(\lambda\le5/8\) its log-mass bound is kernel-checked in Lean with
+no hypothesis (Theorem 5.19), and Appendix E gives a written argument for
+its analytic input. The range \(5/8<\lambda\le37/50\) (Theorem 5.20)
+uses one further input, Theorem 6.3 of Paper B [12], an AI-assisted
+written proof that has not been independently reviewed; the deduction of
+the log-mass bound from it is kernel-checked. At both exponents the
+dyadic clause is written. The two earlier routes
 are retained with their original exponents, as follows. The route of Sections 4--5 and Appendix D
 --- the block average of Proposition 4.4, the monotone sweep and the
 six finite productions of Section 5.7 --- gives every
@@ -193,10 +200,10 @@ odd image fails to. (Theorem 6.1; Lean.)
 
 **Theorem 3 (the conjecture as an almost-all statement).** The
 following are equivalent: (i) every positive integer reaches \(1\);
-(ii) for some \(0<\lambda\le5/8\), the starts \(n\le x\) whose
+(ii) for some \(0<\lambda\le37/50\), the starts \(n\le x\) whose
 orbit never enters \([1,N_0]\) have logarithmic count
-\(o((\log x)^{\lambda})\); (iii) for some \(e>3/8\)
-(the unconditional Lean baseline is \(103/203\)) and all large \(y\), \(\#\{n\ \text{odd}\in(y,2y]:\ n\notin R\}\le y(\log y)^{-e}\).
+\(o((\log x)^{\lambda})\); (iii) for some \(e>13/50\)
+(\(e>3/8\) using only the machine-checked Theorem 5.19) and all large \(y\), \(\#\{n\ \text{odd}\in(y,2y]:\ n\notin R\}\le y(\log y)^{-e}\).
 (Corollary 7.1, Theorems 7.2, 7.3.)
 
 **Theorem 4 (the frontier reduction).** Let
@@ -205,17 +212,17 @@ orbit never enters \([1,N_0]\) have logarithmic count
 \(e_q^{\rm Az}(C)=2(C(1-q\log_2 3)-1)^2/
 (C(\log_2 3)^2\ln2)\). Assume \(C\ge5\). The following hypotheses give
 the indicated, case-dependent bounds. Each implies (iii) of Theorem 3
-whenever its displayed rate exceeds \(3/8\), using the written
-Theorem 5.19. The constants \(C\) below are retained sufficient
-choices from the earlier threshold \(1-\lambda^{**}\); they are
-not asserted to be optimal for the stronger theorem:
+whenever its displayed rate exceeds \(13/50\), using Theorem 1, or
+\(3/8\), using only the machine-checked Theorem 5.19. The constants
+\(C\) below are the least integers for the threshold \(13/50\), with
+those for \(3/8\) in parentheses (Appendix B):
 
 (a) *cylinder form* \(\mathrm H(C,A)\): no \(O\)-rooted,
 \(L(y)\)-bad itinerary cylinder of depth \(d(y)\) exceeds its fair
 share \(2^{-(d-1)}y/2\) among odd starts by more than
 \(y(\log y)^{-A}\), \(A>C+e(C)\)
 (Theorem 8.3), giving \(e(C)-\varepsilon\) and hence the conjecture for
-\(C\ge19\) using Theorem 1 (or \(C\ge18\) under Appendix C);
+\(C\ge14\) (\(C\ge16\));
 
 (b) *one-sided form* \(\mathrm H_q(C,A)\), with
 \(0<q<\log 2/\log 3\) and \(C>1/(1-q\log_2 3)\): every
@@ -223,7 +230,7 @@ share \(2^{-(d-1)}y/2\) among odd starts by more than
 \(q\) of its members, plus \(y(\log y)^{-A}\), to an odd next state
 (Theorem 9.1;
 \(A>C+e_q^{\rm Az}(C)\)), giving \(e_q^{\rm Az}(C)-\varepsilon\);
-at \(q=0.55\), \(C\ge41\) crosses Theorem 1's threshold;
+at \(q=0.55\), \(C\ge28\) (\(C\ge34\)) crosses the threshold;
 
 (c) *pressure form* \(\mathrm P_\theta(C)\):
 \(\frac1N\sum_{n\ \mathrm{odd}\in(y,2y],\ \tau(n)>d}e^{\theta o_d(n)}\le(\tfrac12(1+e^{\theta}))^{d}e^{o(d)}\)
@@ -266,10 +273,10 @@ majorant, not a lower bound on the actual discrepancy.
 Under a localization of the triple parity discrepancy of nested floor
 powers to sub-dyadic intervals — stated as an explicit hypothesis in
 Appendix C; Paper B [12] lists the short-interval localization it
-needs among its open questions — the earlier two-production exponent improves to
-\(\lambda^{***}\approx0.5392\), the rate threshold of Theorem 3 to
-\(0.4608\), and the least depth constant of Theorem 4 to \(C\ge 18\).
-This conditional comparison is now weaker than the written Theorem 5.19.
+needs among its open questions — the earlier two-production exponent improved to
+\(\lambda^{***}\approx0.5392\), with rate threshold \(0.4608\) and least
+depth constant \(C\ge 18\). This conditional comparison is now weaker
+than Theorems 5.19 and 5.20.
 Nothing in Sections 2--12 depends on Appendix C.
 
 ### 1.2 The three fates as currently constrained
@@ -295,7 +302,8 @@ each, all from outside this paper:
 
 Theorem 1 adds one sentence to each: whichever of the three acts at
 all acts on a set of logarithmic count \(\gg(\log x)^\lambda\)
-for every \(0<\lambda\le5/8\), with the review boundary of Appendix E.
+for every \(0<\lambda\le37/50\): machine-checked up to \(5/8\), and
+beyond it with the review boundary of Paper B's Theorem 6.3.
 
 ### 1.3 Related work
 
@@ -336,20 +344,24 @@ Deeper nesting is Paper B's subject.
 hypothetical cycle from a certified descent floor (cycle financing,
 walk-charge envelope); Paper B [12] proves that the five-step
 power-envelope certificates have density \(7/8\), with a power saving,
-from the parity equidistribution of nested floor powers. Neither is
-reproved here; both enter as citations, and one statement of the
-type Paper B proves enters Appendix C as an explicit hypothesis.
+from the parity equidistribution of nested floor powers; its Theorem
+6.3 gives the fair share on almost every depth-five fiber, the input of
+Section 5.10. Neither paper is reproved here; both enter as citations,
+and one statement of the type Paper B proves enters Appendix C as an
+explicit hypothesis.
 
 ### 1.4 Verification
 
 Statements carry one of four roles. *Lean*: the exact combinatorial
 layer is formalized in Lean 4; the root `formal/Problems/JugglerFatePaper.lean`
-imports exactly the thirty-seven modules this paper cites and builds with
-`lake build Problems.JugglerFatePaper`, without `sorry` and without
-`native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
-dependencies of every cited name and `AxiomCheckPaperC.expected`
+imports exactly the thirty-seven modules of its historical barrel and
+builds with `lake build Problems.JugglerFatePaper`, without `sorry` and
+without `native_decide`; `formal/AxiomCheckPaperC.lean` prints the axiom
+dependencies of every name in that barrel and `AxiomCheckPaperC.expected`
 records them — Mathlib's `propext`, `Classical.choice`, `Quot.sound`
-and nothing else (names in Appendix A). *Human proof*: the analytic and
+and nothing else (names in Appendix A). The supplementary modules of
+Theorems 5.19 and 5.20 have their own axiom checks, with the same three
+axioms (Appendix A). *Human proof*: the analytic and
 probabilistic counting. *Verified computation*: exact integer
 computations (the descent floor is Paper A's; the closure of
 \([1,260]\) under the two productions up to \(10^9\) is computed
@@ -380,7 +392,7 @@ constants; they prove nothing and are labelled wherever they appear.
 | Corollary 5.4 (natural density, infinitely often): the dyadic pigeonhole, from the shell bound of Theorem 5.18 | Lean, for every \(0<\lambda\le100/203\) with no hypothesis and with the constant \(K/12\); the range \(100/203<\lambda<\lambda_{\mathrm{ideal}}\) is human, as for Theorem 5.18 |
 | Corollary 5.5 at the three fate classes: the reach-one class, the failures, the basin of a cycle state and the divergent starts, each in log-mass form and in dyadic-block form | Lean, at exponent \(100/203\), by instantiating Theorem 5.18 and Corollary 5.4 through Lemma 2.1 |
 | Production words \(V_k=(OE)^{k-1}OEE\) are prefix-free (Section 5.7, Appendix D) | Lean, for the whole family and not only the six; the disjointness of source sets it feeds needs Appendix D's analytic layer, which is human |
-| The side condition \(e(C)>\tfrac{27}{40}\) of the unconditional criteria, at \(C=30\), by rational bounds on \(e\), \(\log 2\) and \(\log_2 3\) | Lean; the least such \(C\) (\(23\)) and the paper's own threshold through \(\lambda^{**}\) stay with the audit |
+| The side condition \(e(C)>\tfrac{27}{40}\) of the unconditional criteria, at \(C=30\), by rational bounds on \(e\), \(\log 2\) and \(\log_2 3\) | Lean; the least such \(C\) (\(23\)) and the paper's own thresholds \(13/50\) and \(3/8\) stay with the audit |
 | Cube fibers full or alternating (Lemma 4.7) | Lean |
 | Recursion lemma (Lemma 5.1) | Lean |
 | Seed (Lemma 5.2) | Lean |
@@ -404,8 +416,9 @@ constants; they prove nothing and are labelled wherever they appear.
 | Cylinder-splitting identity for the first-letter bias (Section 10(d), second equality) | Lean; the Parseval form in Walsh sums, and the exceptional-atom estimate it is meant to supply, are human |
 | Exact landing windows of the nested productions ((D.1), (D.2)) | Lean; the smooth comparison (D.3), the multiplicities and the production inequality they feed are human |
 | Localized triple discrepancy (Appendix C) | hypothesis, conditional |
-| Theorem 5.19, Theorem 1 at 5/8, and Theorems 3 and 7.2--7.3 at e > 3/8 | written proof using Appendix E; Lean assembly conditional on the actual OOEE production bound; independent analytic review outstanding |
-| OOEE mixed modes on the actual short source interval | separate Lean proof in OOEEMixedModes; pure slow modes and final poor-target assembly are outside that result |
+| Theorem 5.19, the log-mass bound at 5/8, and Theorems 7.2 and 9.4 and the corollaries of Theorem 9.2 and Proposition 9.3 at the threshold 3/8 | Lean, with no contagion-side hypothesis: `FateOOEEWeighted` proves the actual OOEE production from a count form of its poor-fiber tail (`OOEEResonanceTail`), and `FatePressureOOEE` gives the corollaries; Appendix E is the written argument; the dyadic clause of Theorem 1 and Corollary 7.1 are human proofs |
+| Theorem 5.20, the log-mass bound at 37/50, and Theorem 7.2 and the corollaries of Theorem 9.2 and Proposition 9.3 at the threshold 13/50 | human proof for its one analytic input, Theorem 6.3 of Paper B [12], which is AI-assisted and not independently reviewed; Lean from the finiteness of the two reciprocal sums it bounds (`FateDepthFiveWeighted`, `FateDepthFiveAssembly`); Theorem 9.4 at 13/50, the dyadic clause and Corollary 7.1 are human proofs |
+| OOEE mixed modes on the actual short source interval | Lean, in OOEEMixedModes; the poor-fiber tail and the production built on it are Lean in `OOEEResonanceTail` and `FateOOEEWeighted` |
 | Numerical experiments (Section 11) | observation |
 
 ![Logical dependencies. The arithmetic lemmas feed the contagion theorem. Each unproved parity hypothesis is a sufficient route to a time-bounded live count, which implies eventual termination only at the stated rate. No converse time bound is asserted.](figures/paper_c_dependencies.png){ width=88% }
@@ -1547,10 +1560,12 @@ at the stated share, the transfer matrix gives:
 The table is a price list of hypothetical inputs, not an attained
 ladder. Appendix C establishes one \(r=2\) word conditionally and prints
 \(0.5392\); nothing here supplies the other words needed for \(0.6247\)
-or \(0.7180\). Row \(r=4\) would also meet the parked \(K_3\) kernel,
+or \(0.7180\). Theorems 5.19 and 5.20 reach \(5/8\) and \(37/50\) by a
+different route, the actual productions of Sections 5.9--5.10, not
+through these run models. Row \(r=4\) would also meet the parked \(K_3\) kernel,
 but the model does not prove that this is the only obstruction.
 
-**The finite productions used in Theorem 1.** Put
+**The finite productions of the first route to Theorem 1.** Put
 \(V_k=(OE)^{k-1}OEE\), for \(1\le k\le6\), and
 \(\rho_k=\tfrac12(3/4)^k\). These six words are prefix-free.
 The exact landing windows have iterated ceiling endpoints; they
@@ -1715,8 +1730,8 @@ with the seed of Lemma 5.2 finishes as in Theorem 5.3. \(\square\)
 
 Corollaries 5.4 and 5.5 use Theorem 5.3 only through its conclusion,
 so by Theorem 5.18 each holds for every \(\lambda<\lambda_{\mathrm{ideal}}\);
-so do Corollary 7.1 and Theorems 7.2 and 7.3, which are stated in that
-form. Both corollaries are Lean at \(100/203\) (Section 5.5).
+so do Corollary 7.1 and Theorems 7.2 and 7.3 at the matching
+thresholds. Sections 5.9 and 5.10 raise the exponent further. Both corollaries are Lean at \(100/203\) (Section 5.5).
 
 Lean: the whole chain. `BlockLock.block_lock` in
 `formal/Problems/Juggler/FateBlockLock.lean` is Lemma 5.14 before
@@ -1758,7 +1773,7 @@ and \(33/67\) falls short of \(\lambda^{**}\). The break-even is
 the choice of \(\eta_0\) in Theorem 5.18 and is not separately
 certified.
 
-What changes is the critical path of Theorem 1, not its number:
+What Section 5.8 changed is the critical path of Theorem 1:
 Proposition 4.4 with its two exponential-sum bounds, the ladder of
 Section 5.7 with Appendix D, and the statements of Lemmas 4.1, 4.1' and
 4.2 are no longer needed for the exponent; one step of Lemma 4.2's
@@ -1772,11 +1787,11 @@ shown to reach \(1\).
 
 ### 5.9 Three actual productions and exponent 5/8
 
-This section gives the strongest written contagion result. The
-analytic poor-fiber estimate used here is proved in Appendix E;
-independent review and complete formal verification of that estimate
-remain outstanding. The earlier Section 5.8 supplies the unconditional
-Lean baseline and the positive seed needed below.
+This section proves Theorem 1 at the exponent \(5/8\). Its analytic
+input is the OOEE poor-fiber estimate of Appendix E. Lean proves a count
+form of that estimate and the production (5.12) from it, so (5.11) is
+kernel-checked (Formal boundary, below); Theorem E.1 itself is not
+formalized. Section 5.8 supplies the positive seed needed below.
 
 **Theorem 5.19 (three-production contagion).** Every nonempty
 backward-closed set \(A\) of positive integers satisfies
@@ -1786,8 +1801,8 @@ backward-closed set \(A\) of positive integers satisfies
 \tag{5.11}
 \]
 for some \(K>0,X_0\). The same conclusion holds for each realized
-fate class. The theorem is a written proof; its formal assembly
-retains the actual OOEE production inequality as a hypothesis.
+fate class. The bound (5.11) is kernel-checked in Lean with no
+hypothesis; each fate class is backward-closed by Lemma 2.1.
 
 *Proof.* Put
 \[
@@ -1872,13 +1887,120 @@ consequence at this new exponent is written, not separately audited in Lean.
 even cutoff, the shifted recursion, the rational certificate and the
 contagion and Tao implications. `FateOEWeighted` proves the OE input,
 including a uniform error at most 6 when converting its finite
-weighted sums to twice reciprocal mass. The strengthened implication
-still assumes `OOEEProductionBound`. The original mixed-mode
-cancellation is proved in `OOEEMixedModes`; a fixed finite frequency
-family has uniform constants. The remaining analytic assembly in
-Appendix E is not thereby certified. These supplementary modules have
-their own audits; the historical Paper C barrel and its 473 recorded
-reports retain their earlier scope.
+weighted sums to twice reciprocal mass. `FateOOEEWeighted` proves the
+OOEE input, `OOEEProductionBound`, for every backward-closed class,
+from the summable count-poor tail of `OOEEResonanceTail`; the
+mixed-mode cancellation is `OOEEMixedModes`. So
+`FateOOEEWeighted.logMass_growth` is (5.11), and
+`FateOOEEWeighted.conjecture_of_tao_rate` and
+`FateOOEEWeighted.pressure_average_conjecture` are Theorems 7.2 and
+9.4 at the threshold \(3/8\), with no contagion-side hypothesis. These
+supplementary modules have their own audits, among them
+`formal/AxiomCheckOOEEWeighted.lean` and
+`formal/AxiomCheckOOEECountPoorTail.lean`, with only `propext`,
+`Classical.choice` and `Quot.sound`; the historical Paper C barrel
+and its 473 recorded reports retain their earlier scope.
+
+### 5.10 Five actual productions and exponent 37/50
+
+The two five-letter words \(OOOEE\) and \(OOEOE\) are the next
+productions. For each of them, the odd starts whose fifth iterate along
+the word is a given target \(y\) lie in a window of about
+\(\tfrac{32}{27}y^{5/27}\) consecutive integers near \(y^{32/27}\): a
+fiber of length about \(P^{5/32}\) at source scale \(P\). That is too
+short for the localized estimates of Appendix C, and the comparisons of
+Appendix B record the localized route as closed. Paper B [12, Theorem 6.3]
+proves an averaged substitute: almost every fiber receives its fair share
+of both words. This section feeds that theorem into the recursion of
+Section 5.9.
+
+**Theorem 5.20 (five-production contagion).** Every nonempty
+backward-closed set \(A\) of positive integers satisfies
+\[
+\sum_{n\le X,\ n\in A}\frac1n\ge K(\log X)^{37/50}
+\qquad(X\ge X_0)
+\tag{5.14}
+\]
+for some \(K>0,X_0\). The same conclusion holds for each realized
+fate class. The proof has one input that is not formalized,
+[12, Theorem 6.3], an AI-assisted written proof that has not been
+independently reviewed; the rest is kernel-checked.
+
+*Proof.* For \(a\in\{OOOEE,OOEOE\}\) and an integer \(y\ge1\), let
+\(H_a(y)\) be the number of odd integers whose fifth iterate along
+\(a\), with each letter applied regardless of parity, equals \(y\), and
+let \(\mathcal F_a(y)\) be the set of those whose actual five-letter
+word is \(a\). Call \(y\) poor for \(a\) if
+\(|\#\mathcal F_a(y)-H_a(y)/16|\ge H_a(y)/1000\). By [12, Theorem 6.3]
+with \(\eta=1/1000\), the poor targets of each word have a finite
+reciprocal sum.
+
+Keep the weight \(w\) and the mass \(F\) of Section 5.9, and let
+\(S_{OOOEE}(t)\) and \(S_{OOEOE}(t)\) be the weighted masses of the
+starts in \(A\) below \(\lfloor e^t\rfloor\) with the indicated actual
+initial words. The candidates of a target \(y\) lie in
+\([y^{32/27},\,y^{32/27}+\tfrac{32}{27}y^{5/27}+6]\), and
+\(|H_a(y)-\tfrac{16}{27}y^{5/27}|\le4\) [12, Appendix D.1]. So when
+\(y\in A\), \(y\ge10^{15}\) and \(y\) is not poor, its at least
+\((\tfrac1{16}-\tfrac1{1000})H_a(y)\) actual sources, all in \(A\) by
+backward closure, carry reciprocal mass at least \(\tfrac1{28}\cdot\tfrac1y\).
+The windows of distinct targets are disjoint, the poor targets have
+bounded reciprocal mass, and a fixed shift \(b\ge0\) of the target cutoff
+places every source below \(e^t\). Converting reciprocal mass to the
+weight \(w\) as in Section 5.9 gives constants \(b,C,T\) with
+\[
+\frac1{28}F\Bigl(\frac{27t}{32}-b\Bigr)\le S_a(t)+C
+\qquad(t\ge T,\ a\in\{OOOEE,OOEOE\}).
+\tag{5.15}
+\]
+
+The five families \(E\), \(OE\), \(OOEE\), \(OOOEE\) and \(OOEOE\) are
+disjoint, so (5.12) and (5.15) give, for large \(t\),
+\[
+F(t)\ge F(t/2-4)+\frac{33}{100}F(3t/4-4)
++\frac{11}{100}F(9t/16-4)+\frac1{14}F\Bigl(\frac{27t}{32}-b\Bigr)-4C .
+\]
+Shift as in Section 5.9, now by \(s=16+32b/5\): let
+\(G(t)=F(t-s)-8C\). Each \(r\in\{1/2,3/4,9/16\}\) satisfies
+\(rt-s\le r(t-s)-4\), and
+\(\tfrac{27}{32}t-s\le\tfrac{27}{32}(t-s)-b\). The coefficient sum is
+\(1+\tfrac{33}{100}+\tfrac{11}{100}+\tfrac1{14}>\tfrac32\), so the
+constant remainder \(8C(\sum_ic_i-1)-4C\) is nonnegative, and \(G\)
+satisfies the recursion with zero errors. As in Section 5.9, \(G\) has a
+positive seed on a sufficiently late compact interval. Exact rational
+comparisons give
+\[
+2^{-37/50}\ge\frac{59873}{100000},\quad
+(3/4)^{37/50}\ge\frac{10103}{12500},\quad
+(9/16)^{37/50}\ge\frac{32663}{50000},\quad
+(27/32)^{37/50}\ge\frac{17637}{20000}.
+\]
+Their weighted sum is at least \(17505199/17500000>1\). The recursion
+lemma gives \(G(t)\ge Kt^{37/50}\). Evaluate at \(t=\log X\) and use the
+weight comparison to obtain (5.14). \(\square\)
+
+**Dyadic consequence.** As in Section 5.9, infinitely many dyadic
+intervals \((y,2y]\) contain at least \(cy(\log y)^{-13/50}\) members
+of \(A\), for some \(c>0\). This proves all clauses of Theorem 1; the
+dyadic consequence at \(37/50\) is written, not separately audited in
+Lean.
+
+**Formal boundary.** `FateDepthFiveWeighted.depth_five_productions`
+proves (5.15) for every backward-closed class from the finiteness of the
+two reciprocal sums at \(\eta=1/1000\). It uses the fiber geometry of
+`DepthFiveFibreGeometry`: the exact windows, the bounds above, and the
+identification of \(\mathcal F_a(y)\) with the actual fibers.
+`FateDepthFiveAssembly` proves the five-way disjointness, the shifted
+recursion, the certificate `certificate_37_50`, and, given (5.15),
+Theorem 7.2 and the corollaries of Theorem 9.2 and Proposition 9.3 at
+the threshold \(13/50\). Composed,
+`FateDepthFiveWeighted.logMass_growth_of_tails` is Theorem 5.20 with the
+finiteness of the two reciprocal sums as its only hypothesis. The audits
+`formal/AxiomCheckDepthFiveWeighted.lean` and
+`formal/AxiomCheckDepthFiveAssembly.lean` show only `propext`,
+`Classical.choice` and `Quot.sound`. Paper B's Theorem 6.3 supplies the
+hypothesis in writing; of its proof, only Lemma D.3 and the fibre
+geometry (D.2) are formalized.
 
 ## 6. Odd generation and the exact first-letter decomposition
 
@@ -2030,12 +2152,14 @@ the walk charge bound the *states* of a hypothetical cycle (minimum
 \(>3.5\cdot 10^8\), period \(\ge 780239\)). Theorem 1 constrains the
 basin: if the cycle exists, its basin is a two-way closed class with
 the cycle's states as seeds and log-count \(\gg(\log x)^\lambda\) for every
-\(0<\lambda\le5/8\), using the written Theorem 5.19. In the present argument the
+\(0<\lambda\le37/50\) (Theorems 5.19 and 5.20). In the present argument the
 two estimates do not meet: finance bounds the seed, contagion the growth from
 the seed, and no inequality bounds a basin from above. Paper B [12]
 controls the descending branches of (6.1) — the fairness of the
 landing distributions of \(E\), \(OE\) and, with its depth-4 and
-depth-5 theorems, of deeper contracting words — on dyadic blocks;
+depth-5 theorems, of deeper contracting words — on dyadic blocks, and
+for the two depth-five words on almost every fiber (its Theorem 6.3,
+used in Section 5.10);
 Appendix C uses one statement of that type on sub-dyadic intervals as
 an explicit hypothesis. Neither touches \(\psi_F\): the ascending
 branch \(OO\) sends mass to \(x^{3/2}\), and its return is the
@@ -2052,18 +2176,18 @@ and closes like \(1/C\).
 
 **Corollary 7.1 (logarithmic form).** The following are equivalent:
 (1) every \(n\ge 1\) reaches \(1\); (2) for some
-\(0<\lambda\le5/8\), \(\sum_{n\le x,\ n\notin R}1/n=o((\log x)^{\lambda})\);
-(3) for some \(0<\lambda\le5/8\), the starts \(n\le x\) whose orbit
+\(0<\lambda\le37/50\), \(\sum_{n\le x,\ n\notin R}1/n=o((\log x)^{\lambda})\);
+(3) for some \(0<\lambda\le37/50\), the starts \(n\le x\) whose orbit
 never enters \([1,N_0]\) have logarithmic count \(o((\log x)^{\lambda})\).
 
 *Proof.* (1)\(\Rightarrow\)(3): the set is empty. (3)\(\Rightarrow\)(2):
 an orbit that enters \([1,N_0]\) reaches \(1\), so \(F\) is contained
 in the set of (3). (2)\(\Rightarrow\)(1): \(F\) is backward-closed; if
-it were nonempty, Theorem 5.19
+it were nonempty, Theorem 5.20
 would contradict (2). \(\square\)
 
 **Theorem 7.2 (a Tao-type bound with rate implies the conjecture).**
-Suppose that for some \(e>3/8\) and all
+Suppose that for some \(e>13/50\) and all
 sufficiently large \(y\),
 \[
 \#\{n\ \text{odd},\ y<n\le 2y:\ n\notin R\}\ \le\ \frac{y}{(\log y)^{e}} .
@@ -2071,7 +2195,7 @@ sufficiently large \(y\),
 Then \(R=\mathbb N\).
 
 *Proof.* By decreasing \(e\) if necessary, assume
-\(3/8<e<1\); the hypothesis is preserved for large
+\(13/50<e<1\); the hypothesis is preserved for large
 \(y\). Suppose \(F\ne\emptyset\). By Theorem 6.1 every \(n\in F\)
 lies in the \(E\)-tree of an odd member of \(F\). For an odd
 \(n_0\in F\) the level-\(j\) set \(S_j(n_0)\) of its \(E\)-tree has
@@ -2089,13 +2213,15 @@ Hence
 &\ll(\log x)^{1-e}\log\log x.
 \end{aligned}
 \]
-By Theorem 5.19 the left side is
-\(\ge K(\log x)^{\lambda}\) for every \(\lambda<5/8\)
-and all large \(x\). Choosing \(\lambda\in(1-e,5/8)\)
-gives a contradiction. \(\square\)
+By Theorem 5.20 the left side is
+\(\ge K(\log x)^{\lambda}\) for every \(\lambda\le37/50\)
+and all large \(x\). Choosing \(\lambda\in(1-e,37/50)\)
+gives a contradiction. With Theorem 5.19 in place of Theorem 5.20 the
+same proof needs \(e>3/8\), and its contagion input is machine-checked.
+\(\square\)
 
 **Theorem 7.3 (equivalence).** Every positive integer reaches \(1\) if
-and only if there is \(e>3/8\) such that
+and only if there is \(e>13/50\) such that
 \(\#\{n\ \text{odd}\in(y,2y]:\ n\notin R\}\le y(\log y)^{-e}\) for all
 large \(y\).
 
@@ -2103,8 +2229,8 @@ large \(y\).
 Conversely Theorem 7.2. \(\square\)
 
 Lean: `tao_rate_iff_conjecture` in
-`formal/Problems/Juggler/FateContagionBound.lean`, with the contagion
-bound of Theorem 5.19 as a hypothesis, as for Theorem 7.2; and
+`formal/Problems/Juggler/FateContagionBound.lean`, with a contagion
+bound as a hypothesis, as for Theorem 7.2; and
 `conjecture_of_cylinder_bound_of_production`, Corollary 8.4 with
 the earlier Theorem 5.3 replaced by the production inequality (5.2), so that the
 chain from \(\mathrm H(C,A)\) to the conjecture has (5.2) as its only
@@ -2114,11 +2240,18 @@ contagion hypothesis discharged by Theorem 5.18,
 `Production.conjecture_of_tao_rate_averaged` is Theorem 7.2 at
 \(e>103/203\) and `Production.conjecture_of_cylinder_averaged`
 is Corollary 8.4 at \(e(C)>103/203\), with no hypothesis on the
-contagion side (Section 5.8).
+contagion side (Section 5.8). At the current thresholds,
+`FateOOEEWeighted.conjecture_of_tao_rate` is Theorem 7.2 at
+\(e>3/8\) with no contagion-side hypothesis, and
+`FateDepthFiveAssembly.conjecture_of_tao_rate` is Theorem 7.2 at
+\(e>13/50\) given the depth-five productions (5.15) for the failure set,
+which `FateDepthFiveWeighted.depth_five_productions` derives from the
+finiteness of the two reciprocal sums of Section 5.10.
 
-The threshold \(3/8\) is the complement of the contagion
-exponent. Appendix C's earlier conditional exponent gives the weaker
-threshold \(0.4608\).
+The threshold \(13/50\) is the complement of the contagion exponent
+\(37/50\), and \(3/8\) that of the machine-checked exponent \(5/8\).
+Appendix C's earlier conditional exponent gives the weaker threshold
+\(0.4608\).
 Any improvement of the contagion exponent lowers the rate required of
 the almost-all statement, and \(\lambda\to 1\) would make any positive
 rate suffice — but that improvement requires all descent certificates
@@ -2171,10 +2304,10 @@ that rate remains open. No part of Tao's renewal argument is claimed
 to have been supplied for Juggler.
 
 
-The strengthened conclusions of this section use Appendix E's written
-analytic proof. The unconditional Lean specialization remains at
-100/203 for contagion and at rates greater than 103/203; the 5/8
-assembly retains its actual OOEE production hypothesis.
+At the threshold \(13/50\) the conclusions of this section use Paper B's
+Theorem 6.3 through Theorem 5.20. At \(3/8\), Theorem 7.2 is
+kernel-checked with no contagion-side hypothesis; Corollary 7.1 is
+written.
 
 ## 8. From parity control to the almost-all bound
 
@@ -2251,7 +2384,7 @@ Lean: the first statement, in the exact form
 from \(\log_2 3\le 8/5\) (`half_le_pC`, `pC_lt_one`). The \(O\)-rooted
 statement with \(\varepsilon\) stays a human proof.
 
-Numerically \(e(18)\approx0.480\), \(e(19)\approx0.527\), \(e(20)\approx0.574\),
+Numerically \(e(14)\approx0.299\), \(e(16)\approx0.389\), \(e(18)\approx0.480\), \(e(19)\approx0.527\), \(e(20)\approx0.574\),
 \(e(21)=0.621\), \(e(25)=0.812\), \(e(30)=1.054\); \(e(C)\) grows
 linearly in \(C\) with slope
 \(D(1/\log_2 3\,\|\,\tfrac12)/\ln 2=0.050\).
@@ -2328,16 +2461,16 @@ and the second term into the first for \(A>C+e(C)\); that absorption
 is not formalized. Corollary 8.4 uses only the exponent.
 
 **Corollary 8.4 (the conjecture from a cylinder bound).** If
-\(\mathrm H(C,A)\) holds for some \(C\ge 19\) and \(A>C+e(C)\), then
-every positive integer reaches \(1\). Under the conditional exponent
-\(\lambda^{***}\) of Appendix C the same conclusion holds for
-\(C\ge 18\).
+\(\mathrm H(C,A)\) holds for some \(C\ge 14\) and \(A>C+e(C)\), then
+every positive integer reaches \(1\). Using only the machine-checked
+Theorem 5.19, \(C\ge 16\) suffices.
 
 *Proof.* Theorem 8.3 gives the hypothesis of Theorem 7.2 with
-\(e=e(C)-\varepsilon\ge e(19)-\varepsilon>1-\lambda^{**}\);
-with \(\lambda^{***}\) the threshold is \(0.4608<e(18)\approx0.480\).
-The pairing-only intermediate still needed \(C\ge 20\)
-(\(e(20)=0.574>0.5520\)).
+\(e=e(C)-\varepsilon\ge e(14)-\varepsilon>13/50\), since
+\(e(14)\approx0.299\); with Theorem 5.19 alone the threshold is
+\(3/8<e(16)\approx0.389\), while \(e(15)\approx0.344\). The earlier
+routes needed \(C\ge19\) (\(\lambda^{**}\), \(e(19)\approx0.527\)), and
+the pairing-only intermediate \(C\ge 20\) (\(e(20)=0.574>0.5520\)).
 \(\square\)
 
 Lean: `cylinder_bound_implies_conjecture` in
@@ -2353,12 +2486,12 @@ satisfying \(1-\lambda<e(C)\), then every positive integer reaches
 first term into \((\log N_0)^{e(C)}y(\log y)^{-e(C)}\),
 \(\Lambda\le 2\log y/\log N_0\) turns the second into
 \(2(2/\log N_0)^Cy(\log y)^{C-A}\), and both exponent gaps are
-positive. The numerical threshold \(C\ge 19\) is a statement about
-the root \(\lambda^{**}\) and stays with the audit.
+positive. The numerical thresholds \(C\ge14\) and \(C\ge16\) are
+statements about \(e(C)\) at \(13/50\) and \(3/8\) and stay with the audit.
 
 ### 8.4 Constants
 
-The least integer depth constant in this sufficient criterion is \(C=19\) (\(e(19)\approx0.527>1-\lambda^{**}\)).
+The least integer depth constant in this sufficient criterion is \(C=14\) (\(e(14)\approx0.299>13/50\)), and \(C=16\) (\(e(16)\approx0.389>3/8\)) using only Theorem 5.19; the earlier route \(\lambda^{**}\) needed \(C=19\).
 With the certified floor \(N_0=3.5\cdot 10^8\), the table below keeps
 \(C=20\) as a conservative a-fortiori display:
 
@@ -2375,8 +2508,9 @@ the walk (unconditioned first letter; conditioning on
 the exponent unchanged); the last column is the least depth at which
 it drops below \((\log y)^{-0.6}\) — about \(17\,L(y)\). With the Lean
 floor \(N_0=260\) the depths grow by about \(38\) letters. For
-comparison, Paper B controls depth \(4\) (all words) and two words of
-depth \(5\), with relative error \(y^{-1/96}\) on dyadic blocks; the
+comparison, Paper B controls depth \(4\) (all words) and the two words
+of depth \(5\) on dyadic blocks with power savings, relative errors about
+\(y^{-1/24}\), \(y^{-1/48}\) and \(y^{-1/128}\); the
 hypothesis asks for the bad cylinders at depth \(d(y)\to\infty\) with
 relative error \(o(1)\) — weaker in rate than a power saving, unbounded
 in depth.
@@ -2406,9 +2540,9 @@ one, `Certified.oneSidedExponent_half`, and \(A\ge52\) suffices by
 `Certified.logb_tilt_thirty_le`). The least \(C\) with
 \(e(C)>\tfrac{27}{40}\) is \(23\), unchanged by the drop from
 \(\tfrac7{10}\): \(e(22)=0.668392\) misses the lower threshold too, and
-\(e(23)=0.716046\) clears both. The paper's own threshold
-\(e(C)>1-\lambda^{**}\) at \(C=19\) is a statement about
-\(\lambda^{**}\); both stay with the audit.
+\(e(23)=0.716046\) clears both. The paper's own thresholds
+\(e(C)>13/50\) at \(C=14\) and \(e(C)>3/8\) at \(C=16\) are statements
+about the contagion exponents; both stay with the audit.
 
 ## 9. Weaker forms of the hypothesis
 
@@ -2437,10 +2571,11 @@ all large \(y\),
 \[
 \#\{n\ \text{odd}\in(y,2y]:\ n\notin R\}\ \le\ \frac y2\Bigl(\frac{\log 2y}{\log N_0}\Bigr)^{-(e_q(C)-\varepsilon)} .
 \]
-Hence \(e_q(C)>1-\lambda^{**}\) implies the conjecture; the least
-\(C\) is \(19\) at \(q=\tfrac12\), \(41\) at \(0.55\), \(223\) at
-\(0.60\), \(1586\) at \(0.62\) (with \(\lambda^{***}\): \(18\), \(39\),
-\(206\), \(1451\)).
+Hence \(e_q(C)>13/50\) implies the conjecture, by Theorem 7.2; the
+least \(C\) is \(14\) at \(q=\tfrac12\), \(28\) at \(0.55\), \(132\) at
+\(0.60\), \(866\) at \(0.62\) (at the machine-checked threshold \(3/8\):
+\(16\), \(34\), \(175\), \(1201\); at the earlier \(1-\lambda^{**}\):
+\(19\), \(41\), \(223\), \(1586\)).
 
 *Proof.* Let \(n\) be uniform on the \(N_y=y/2+O(1)\) odd integers of
 \((y,2y]\). Bounded endpoint factors are absorbed using
@@ -2516,8 +2651,9 @@ are not formalized.
 
 So no lower bound on odd shares and no vanishing error are needed: if
 no \(L(y)\)-bad cylinder of depth below
-\(41\log_2(\log 2y/\log N_0)\) sends more than \(55\%\) of its members
-to an odd state, every positive integer reaches \(1\).
+\(28\log_2(\log 2y/\log N_0)\) sends more than \(55\%\) of its members
+to an odd state, every positive integer reaches \(1\) (depth
+\(34\log_2(\log 2y/\log N_0)\) using only Theorem 5.19).
 
 **The barrier word (observation; this hypothesis is doubtful).** Unlike
 \(\mathrm H(C,A)\), which is asked at the single depth \(d(y)\),
@@ -2603,8 +2739,8 @@ every \(\varepsilon>0\) and all large \(y\),
 \ \le\ \frac y2\Bigl(\frac{\log 2y}{\log N_0}\Bigr)^{-(e(C)-\varepsilon)},
 \]
 the bound of Theorem 8.3. Hence \(\mathrm P_{\theta_C}(C)\) with
-\(C\ge 19\) implies the conjecture using Theorem 1, and with
-\(C\ge 18\) under the conditional exponent of Appendix C.
+\(C\ge 14\) implies the conjecture using Theorem 1, and with
+\(C\ge 16\) using only Theorem 5.19.
 
 *Proof.* If \(\tau(n)>d\) then \(u_d>-L\), i.e. \(o_d\ge p_Cd\). Hence
 \[
@@ -2654,7 +2790,8 @@ If \(0<q<p_C<1\) and the hypothesis is assumed at the optimizing tilt
 \(N\exp(-dD(p_C\|q)(1-o(1)))\), with exponent
 \(e_q^{\rm Ch}(C)=C\,D(p_C\|q)/\ln 2\), at least the Azuma exponent of
 Theorem 9.1. Its least \(C\) at \(q=0.5,0.55,0.60,0.62\) is
-\(19,41,214,1496\) (with \(\lambda^{***}\): \(18,38,198,1369\)).
+\(14,27,128,820\) at the threshold \(13/50\) (\(16,34,168,1135\) at
+\(3/8\); \(19,41,214,1496\) at the earlier \(1-\lambda^{**}\)).
 
 *Proof.* Dropping the condition \(\tau>t+1\) in favour of \(\tau>t\)
 only enlarges the sum, so
@@ -2712,7 +2849,7 @@ formalized.
 contributes a factor at most \(e^\theta\) to the moment, so bias —
 however extreme — at any set of depths of size \(o(d(y))\) is absorbed
 by the \(e^{o(d)}\). In particular the depth-five split (Paper B's
-Conjecture 7.3) and every split to any fixed depth, or to depth
+Corollaries 4.10 and 4.12) and every split to any fixed depth, or to depth
 \(s_0(y)\) for any \(s_0=o(\log\log y)\), is irrelevant to the
 reduction.
 
@@ -2915,10 +3052,10 @@ Choose a fixed \(k_0\) above the verified target.
 \[
 \sum_{k=k_0}^{K}\rho_k\ll_\varepsilon K^{1+\eta+\varepsilon}.
 \]
-If \(r-\eta>3/8\), the written Theorem 5.19 implies universal
-termination. With the unconditional Lean baseline in its place,
-\(r-\eta>103/203\) suffices. The cumulative arithmetic bound
-itself remains open.
+If \(r-\eta>13/50\), Theorem 5.20 implies universal termination;
+with the machine-checked Theorem 5.19 in its place, \(r-\eta>3/8\)
+suffices, and with the elementary Lean baseline, \(r-\eta>103/203\).
+The cumulative arithmetic bound itself remains open.
 
 *Proof.* A nonterminating start remains live and has
 \(o_d>p_Cd\). Exponential Markov therefore bounds its odd
@@ -2932,18 +3069,22 @@ dyadic groups of indices gives
 The logarithmic boundary case is absorbed by the strict inequality.
 The even-tree argument of Theorem 7.2 bounds total failure mass by
 \(O((\log X)^\beta\log\log X)\). Choose
-\(\max(1+\eta-r,0)<\beta<5/8\) and use Theorem 5.19 to
-contradict a nonempty failure class. For the baseline replace 5/8
-by 100/203. \(\square\)
+\(\max(1+\eta-r,0)<\beta<37/50\) and use Theorem 5.20 to
+contradict a nonempty failure class. For the other two thresholds
+replace 37/50 by 5/8 and by 100/203. \(\square\)
 
 The baseline implication, with the actual stopped Juggler weights,
 is `ScaleAverage.pressure_average_conjecture` in
 `FateScaleAverage.lean`; its fourteen-theorem audit is separate from
 the historical Paper C audit. The formal corollary
-`ScaleAverage.pressure_average_conjecture_of_ooee` also proves the 3/8
-implication with `OOEEProductionBound` explicit. Its reusable proof accepts
-any supplied contagion exponent; the written OOEE proof supplies that premise
-here. No estimate of the actual cumulative pressure is asserted.
+`ScaleAverage.pressure_average_conjecture_of_ooee` proves the 3/8
+implication with `OOEEProductionBound` explicit, and
+`FateOOEEWeighted.pressure_average_conjecture` discharges that premise,
+so the 3/8 implication is kernel-checked with no contagion-side
+hypothesis. The
+reusable proof accepts any supplied contagion exponent; the 13/50
+implication, through Theorem 5.20, is written. No estimate of the actual
+cumulative pressure is asserted.
 
 ## 10. The free term and limits of the reductions
 
@@ -3069,11 +3210,14 @@ may still be much smaller. Without uniform control of the
 prefactor and the scale threshold, a bound at every fixed depth
 would not justify any conclusion at growing depth. \(\square\)
 
-At \(C=19\) this requires the saving exponent to lose less than a
-factor \(2^{1/19}=1.037\) per depth; at \(C=41\), \(2^{1/41}=1.017\).
+At \(C=14\), the least constant for Theorem 1's threshold, this
+requires the saving exponent to lose less than a factor
+\(2^{1/14}=1.051\) per depth; at \(C=28\), the one-sided constant at
+\(q=0.55\), \(2^{1/28}=1.025\).
 Weyl differencing loses a factor \(2^{c}\) with \(c\ge1\) per
-differencing (Paper B's chain \(\tfrac1{24}\to\tfrac1{96}\) from depth
-three to four is \(c=2\)), and with such a loss the cylinder-count
+differencing (Paper B's \(OOOEE\) estimate goes
+\(\tfrac{31}{32}\to\tfrac{63}{64}\to\tfrac{127}{128}\) through two
+differencings, \(c=1\) each), and with such a loss the cylinder-count
 route reaches depth \(\approx\log_2\log y\) — one unit of \(L(y)\),
 enough for the all-\(E\) word to reach the floor, not for the
 Chernoff tail, which needs \(C\ge 5\) units. The proposition is
@@ -3232,29 +3376,28 @@ about \(\mathrm H_q(C,A)\) at the scales where it is asserted.
 
 ## 12. Conclusions and open estimates
 
-The strongest written contagion exponent is now \(5/8\), from
-the three actual productions E, OE and OOEE. Appendix E contains the
-new analytic proof; Section 5.9 proves its weighted assembly and
-physical cutoffs. Independent review and complete analytic Lean
-verification remain outstanding. The two-production exponent
-\(100/203\) remains the fully machine-checked baseline.
+The contagion exponent is now \(37/50\), from five actual productions.
+The first three, E, OE and OOEE, give \(5/8\) and are machine-checked
+end to end. The two five-letter words enter through Paper B's
+Theorem 6.3, the only input that is not formalized, and one that has
+not been independently reviewed. The two-production exponent
+\(100/203\) remains the elementary Lean baseline.
 
 One sufficient remaining target is
 \[
 \#\{n\text{ odd in }(y,2y]:\tau(n)>\lceil CL(y)\rceil\}
- \ll y(\log y)^{-e},\qquad e>3/8,
+ \ll y(\log y)^{-e},\qquad e>13/50,
 \]
 for a fixed \(C\) and all sufficiently large \(y\). This would
-imply universal termination by Theorem 7.2. The unconditional Lean
-baseline gives the same implication for \(e>103/203\). No such
-arithmetic rate is proved. Universal termination alone gives no
+imply universal termination by Theorem 7.2; the machine-checked form
+of that implication needs \(e>3/8\). No such arithmetic rate is proved. Universal termination alone gives no
 uniform stopping-time bound here: Theorem 7.3 concerns eventual entry.
 
 Live pressure and its scale-averaged form are sufficient routes to
 the missing rate. The no-momentum hypothesis supplies a sufficient
 condition for the pressure bound. The earlier localized Appendix C
 and ideal-production models retain their stated hypotheses; they
-do not limit the new written exponent or establish further production
+do not limit the new exponent or establish further production
 inequalities. No nontrivial cycle or unbounded orbit is excluded.
 
 ## Appendix A. Lean names
@@ -3303,7 +3446,7 @@ abstract lemmas listed here, not the analytic density estimates.
 | Lemma 4.2 (fiber parity), in `Problems/Juggler/FateFiberParity.lean` | `FiberParity.xval`, `FiberParity.two_xval`, `FiberParity.floor_two_xval`, `FiberParity.cell_xval_even_iff`, `FiberParity.xval_step`, `FiberParity.xval_step_ge`, `FiberParity.xval_step_le`, `FiberParity.xval_step_mono`, `FiberParity.oeFiber`, `FiberParity.mem_oeFiber`, `FiberParity.oeFiber_eq_image`, `FiberParity.oeFiber_card`, `FiberParity.evenImageCount`, `FiberParity.fiber_ge_rpow`, `FiberParity.fiber_lt_rpow`, `FiberParity.rpow_four_thirds_succ_ge`, `FiberParity.rpow_four_thirds_succ_le`, `FiberParity.rpow_two_thirds_succ_le`, `FiberParity.oeFiber_card_ge`, `FiberParity.oeFiber_card_le`, `FiberParity.Am`, `FiberParity.alpha`, `FiberParity.eps`, `FiberParity.Good`, `FiberParity.eps_le`, `FiberParity.step_ge`, `FiberParity.step_le`, `FiberParity.fiber_parity_good` |
 | Lemma 4.3 (thin fibers), in `Problems/Juggler/FateThinFibers.lean` | `FiberParity.span_ge_of_step`, `FiberParity.arc_count_le`, `FiberParity.Am_step_le`, `FiberParity.Am_step_ge`, `FiberParity.eps_antitone`, `FiberParity.bad_mem_arc`, `FiberParity.two_rpow_third_le`, `FiberParity.two_rpow_two_thirds_le`, `FiberParity.rpow_two_thirds_ge`, `FiberParity.eps_div_eps_double`, `FiberParity.Am_double_sub_le`, `FiberParity.bad_count_le`, `FiberParity.bad_block_logMass_le`, `FiberParity.bad_sum_dyadic_le`, `FiberParity.eps_pow_two_mul`, `FiberParity.two_rpow_neg_third_le`, `FiberParity.bad_logMass_le` |
 | Theorem 5.3 given (5.2), Theorem 7.3, Corollary 8.4 through (5.2), in `Problems/Juggler/FateContagionBound.lean` | `productionRate`, `productionCoeff`, `productionRate_pos`, `productionRate_ge`, `productionRate_le`, `productionRate_le_one`, `productionCoeff_ge`, `productionCoeff_nonneg`, `zeta`, `zeta_antitone`, `le_rpow_div_of_pow_le`, `zeta_pos_49`, `seedConst`, `gA`, `gA_seed`, `logMass_ge_gA`, `contagion_of_production_inequality`, `logMass_contagion_of_production`, `oddFailures_eq_empty`, `tao_rate_iff_conjecture`, `conjecture_of_cylinder_bound_of_production` |
-| Proposition 4.4 (its two exponential-sum bounds, the fast sum and the product sum; the exact layer, the slow sum, the block count and the deduction of (4.1) and of the asymptotic form from those two bounds are Lean), the share law 4.5 and Corollary 4.6 (the phase expansion, the range of the quadratic phase and the integral 25/108 are Lean, the equidistribution and the measure identifications are not), the production inequality (5.2) (its `E`-family and `OE`-fiber family are Lean with explicit errors and give Theorem 5.3 at exponent 13/40 unconditionally, and the averaged `OE` family of Section 5.8 gives it at 100/203; the block-average family and the ladder are not Lean and are no longer needed for the exponent), Corollaries 5.4 and 5.5 in the range \(100/203<\lambda<\lambda_{\mathrm{ideal}}\) (at \(100/203\) both are Lean, in `Problems/Juggler/FateDyadicDensity.lean`), Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C; Theorem 5.3 in the range \(100/203<\lambda<\lambda_{\mathrm{ideal}}\), and Theorems 7.2, 7.3 and Corollary 8.4 with the contagion bound as a hypothesis outside the exponents of Section 5.8 | human proofs |
+| Proposition 4.4 (its two exponential-sum bounds, the fast sum and the product sum; the exact layer, the slow sum, the block count and the deduction of (4.1) and of the asymptotic form from those two bounds are Lean), the share law 4.5 and Corollary 4.6 (the phase expansion, the range of the quadratic phase and the integral 25/108 are Lean, the equidistribution and the measure identifications are not), the production inequality (5.2) (its `E`-family and `OE`-fiber family are Lean with explicit errors and give Theorem 5.3 at exponent 13/40 unconditionally, and the averaged `OE` family of Section 5.8 gives it at 100/203; the block-average family and the ladder are not Lean and are no longer needed for the exponent), Corollaries 5.4 and 5.5 in the range \(100/203<\lambda\le37/50\) (at \(100/203\) both are Lean, in `Problems/Juggler/FateDyadicDensity.lean`), Sections 8--10 except Lemma 8.2, the explicit form of Theorem 8.3, Corollary 8.4, the exact form of Theorem 9.2 and Proposition 9.3, Appendix C; Theorem 5.3 in the range \(100/203<\lambda<\lambda_{\mathrm{ideal}}\), and Theorems 7.2, 7.3 and Corollary 8.4 with the contagion bound as a hypothesis outside the exponents of Sections 5.8--5.10 | human proofs |
 | Theorem 9.1 (one-sided form, exact, by exponential moments), in `Problems/Juggler/FateOneSided.lean` | `OneSided.cylinder_split`, `OneSided.LBad_of_LBad_append`, `OneSided.sum_allWords_succ`, `OneSided.sum_pow_oddCount_le`, `OneSided.badWeight`, `OneSided.badWeight_nonneg`, `OneSided.badWeight_le_card`, `OneSided.badMass`, `OneSided.OneSidedShare`, `OneSided.badMass_succ_le`, `OneSided.card_cylinder_zero_le`, `OneSided.badMass_one_le`, `OneSided.badMass_le`, `OneSided.oddFailures_card_le_badMass`, `OneSided.one_sided_bound`, `OneSided.klDiv`, `OneSided.tilt`, `OneSided.tilt_ge_one`, `OneSided.tilt_pow_ratio`, `OneSided.one_sided_bound_kl` |
 | Theorem 9.1's consequence (the conjecture from the one-sided hypothesis), in `Problems/Juggler/FateOneSidedCorollary.lean` | `OneSided.OneSidedBound`, `OneSided.OneSidedExact`, `OneSided.oneSidedExponent`, `OneSided.OneSidedShare.mono`, `OneSided.oneSidedBound_of_exact`, `OneSided.klDiv_nonneg`, `OneSided.exp_le_rpow_scale`, `OneSided.pow_le_rpow_scale`, `OneSided.oddFailures_le_of_one_sided`, `OneSided.implies_conjecture_of_contagion`, `OneSided.one_sided_implies_conjecture`, `OneSided.exact_share_implies_conjecture` |
 | Section 9.2's consequences (the conjecture from the pressure and no-momentum hypotheses), in `Problems/Juggler/FatePressureCorollary.lean` | `Pressure.oddFailures_subset_live`, `Pressure.PressureBound`, `Pressure.NoMomentumBound`, `Pressure.momentumExponent`, `Pressure.absorb`, `Pressure.oddFailures_le_of_pressure`, `Pressure.pressure_conj_of_contagion`, `Pressure.pressure_implies_conjecture`, `Pressure.oddFailures_le_of_noMomentum`, `Pressure.noMomentum_conj_of_contagion`, `Pressure.noMomentum_implies_conjecture` |
@@ -3317,6 +3460,20 @@ abstract lemmas listed here, not the analytic density estimates.
 | Theorem 5.16 (poor-fiber tail) and the non-poor fiber bound of Corollary 5.17, in `Problems/Juggler/FatePoorTail.lean` | `FiberParity.Poor`, `FiberParity.oeFiber_nonempty`, `FiberParity.resonant_mono`, `FiberParity.poor_resonant`, `FiberParity.poor_count_le`, `FiberParity.poor_count_le'`, `FiberParity.poor_block_logMass_le`, `FiberParity.poor_sum_dyadic_le`, `FiberParity.poor_logMass_le`, `FiberParity.nonpoor_fiber_logMass_ge` |
 | Theorem 5.18 and its consequences (Section 5.8), in `Problems/Juggler/FatePoorProduction.lean` | `Production.family_OE_averaged`, `Production.errOEavg`, `Production.errAddAvg`, `Production.production_two_averaged`, `Production.coef2avg`, `Production.err2avg`, `Production.coef2avg_ge`, `Production.coef2avg_nonneg`, `Production.err2avg_nonneg`, `Production.err2avg_le`, `Production.production_two_averaged_sum`, `Production.errorsAvg_le`, `Production.errorsAvg_vanish`, `Production.zeta2avg_antitone`, `Production.contagion_averaged`, `Production.zeta2avg_pos`, `Production.logMass_contagion_averaged`, `Production.failures_logMass_averaged`, `Production.conjecture_of_tao_rate_averaged`, `Production.conjecture_of_cylinder_averaged` |
 | Corollary 5.4 and Corollary 5.5 at the fate classes (Section 5.5), in `Problems/Juggler/FateDyadicDensity.lean` | `Density.blockCount`, `Density.block_logMass_le`, `Density.block_index`, `Density.halfLogMass_le_blocks`, `Density.exists_block_of_shell`, `Density.natDensity_of_shell_bound`, `Density.natDensity_averaged`, `Density.reachesOne_logMass_averaged`, `Density.reachesOne_natDensity_averaged`, `Density.failures_natDensity_averaged`, `Density.basin_logMass_averaged`, `Density.basin_natDensity_averaged`, `Density.escapes_logMass_averaged`, `Density.escapes_natDensity_averaged` |
+
+The supplementary modules of Theorems 5.19 and 5.20 lie outside this
+barrel: `FateOEWeighted`, `FateOOEEAssembly`, `OOEEMixedModes`,
+`OOEEResonanceTail` and `FateOOEEWeighted` for Theorem 5.19, and
+`DepthFiveFibreGeometry`, `FateOOOEEAssembly`, `FateDepthFiveAssembly`
+and `FateDepthFiveWeighted` for Theorem 5.20. The axiom checks
+`formal/AxiomCheckOOEEWeighted.lean`,
+`formal/AxiomCheckOOEECountPoorTail.lean`,
+`formal/AxiomCheckDepthFiveAssembly.lean` and
+`formal/AxiomCheckDepthFiveWeighted.lean` print the axioms of the cited
+theorems, whose dependencies include the other modules; only the three
+axioms above occur. Each is run with `lake env lean <file>` in `formal`.
+Their sources and audits are pinned in the release manifest,
+`docs/theory/paper_c_release.json`.
 
 ## Appendix B. Constants and artifacts
 
@@ -3336,7 +3493,9 @@ abstract lemmas listed here, not the analytic density estimates.
 | pairing + \(OOEEE\) (\(\lambda^{***}\), Appendix C, conditional) | pairing terms and \((\tfrac19,\tfrac9{32})\) | \(0.5392\) |
 | depth-two ideal-share model | \((\tfrac13,\tfrac34)\) | \(0.4927\) |
 | two productions at the averaged coefficient, \(\eta_0\downarrow0\) (\(\lambda_{\mathrm{ideal}}\), Theorem 5.18; Lean to \(100/203\)) | \((\tfrac13-\tfrac23\eta_0,\tfrac34)\) | \(0.4927\) |
-| + \(OOOEE\), \(OOEOE\) (closed: fibers \(P^{5/32}\); Lemma 3.9 leftover \(P^{89/96}\)) | \(\ldots,(\tfrac2{27},\tfrac{27}{64})\) | \(0.5561\) |
+| pairing + \(OOEEE\) + \(OOOEE\), \(OOEOE\) on even blocks, localized (closed: fibers \(P^{5/32}\); the averaged route is Theorem 5.20) | pairing terms, \((\tfrac19,\tfrac9{32})\) and \((\tfrac2{27},\tfrac{27}{64})\) | \(0.6066\) |
+| three actual productions (Theorem 5.19; Lean) | \((\tfrac{33}{100},\tfrac34),(\tfrac{11}{100},\tfrac9{16})\) | \(0.6266\) |
+| five actual productions (Theorem 5.20; Paper B's Theorem 6.3) | \(\ldots,(\tfrac1{14},\tfrac{27}{32})\) | \(0.7406\) |
 | pairing + \(OEOEE\) + \(OOEEE\) (model comparison) | pairing terms and \((\tfrac4{27},\tfrac9{32})\) | \(0.5665\) |
 | conditional infinite \(V_k=(OE)^{k-1}OEE\) model | \(\ldots,(3^{-(k+2)},(\tfrac34)^k\tfrac38)_{k\ge1}\) | \(0.4927\) |
 | conditional infinite \(V_k\) model and \(OOEEE\) | | \(0.5769\) |
@@ -3346,12 +3505,24 @@ abstract lemmas listed here, not the analytic density estimates.
 | conditional \(O\)-runs \(\le3\), ideal-share model | transfer matrix | \(0.8414\) |
 | abstract ceiling, all \(O\)-runs at the ideal share (Proposition 5.12) | \(2^{-\lambda}+\tfrac13(\tfrac32)^{\lambda}=1\) | \(1\) |
 
-Theorem 5.19 additionally attains the written exponent 5/8, from
-coefficients 1, 33/100 and 11/100 at scales 1/2, 3/4 and 9/16.
-Its exact certificate is in Section 5.9; the OOEE analytic input is
-not yet completely formalized.
+Theorem 5.19 attains \(5/8\), below the root \(0.6266\) of the three
+actual productions, and Theorem 5.20 attains \(37/50\), below the root
+\(0.7406\) of the five; their exact certificates are in Sections 5.9 and
+5.10 and in Lean. Arb encloses the two roots as
+\([0.62655175640058022882\pm6.4\cdot10^{-21}]\) and
+\([0.74057159102112395859\pm5.0\cdot10^{-21}]\).
 
-*Depth constants.* The historical least integer values below use the three
+*Depth constants.* At the current thresholds, \(13/50\) from Theorem 5.20
+and \(3/8\) from Theorem 5.19, the least integer values are these; Arb
+certifies each value and the failure of the integer below it.
+
+| criterion | Theorem 5.20, rate \(13/50\) | Theorem 5.19, rate \(3/8\) |
+|---|---|---|
+| fair Chernoff | 14 | 16 |
+| one-sided Azuma, \(q=0.5,0.55,0.60,0.62\) | 14, 28, 132, 866 | 16, 34, 175, 1201 |
+| optimized pressure, same \(q\) | 14, 27, 128, 820 | 16, 34, 168, 1135 |
+
+The historical least integer values below use the three
 explicitly named rate thresholds; the threshold \(1-\lambda_{\mathrm{ideal}}=0.5073\)
 of the second route gives the same integers as \(0.5074\) in every
 column; intermediate \(V_2\) through
@@ -3532,7 +3703,7 @@ use the roots of the displayed defining equations.
 
 - `docs/theory/figures/render_paper_c_figures.py`
 
-  SHA-256: `955e5771d36ba103a5192cb28432244436a2ced78edf482d532d1fe6fe9afbd0`
+  SHA-256: `bf0e053dfa143c903900ca81410502a1ba3b29b9d79d8ba067eb93d0598d00a0`
 
 The archived records retain the parameter names and values of their
 original runs (including the older pairing-only threshold). Current
@@ -3548,8 +3719,9 @@ in the supplied JSON. The figures are regenerated by
 ## Appendix C. An earlier conditional strengthening
 
 This appendix depends on one analytic hypothesis beyond the main text.
-No statement of Sections 1--12 uses it; it improves the constants of
-Theorems 1, 3 and 4 and nothing else.
+No statement of Sections 1--12 uses it. It improved the constants of
+Theorems 1, 3 and 4 over the earlier route \(\lambda^{**}\) and nothing
+else; Theorems 5.19 and 5.20 now supersede it.
 
 ### C.1 The hypothesis
 
@@ -3572,19 +3744,19 @@ every integer \(\ell\) with \(|\ell|\le P^{1/24}\),
 \ \le\ Y\,P^{-1/24+\varepsilon}.
 \]
 
-*Status.* Hypothesis L is Theorem 4.12 of the working draft [12]
-(Section 3.5 there), whose Lemma 4.10 removes the twist by partial
-summation after the Weyl differencing and whose proof runs the
-seven-step argument of its Theorems 4.4 and 4.7 (exact linearization
-of the nested floors, differencing with \(H=P^{1/12}\), a cell
+*Status.* An earlier working draft of Paper B stated Hypothesis L as a
+theorem. Its argument removed the twist by partial summation after the
+Weyl differencing and ran a seven-step argument (exact linearization of
+the nested floors, differencing with \(H=P^{1/12}\), a cell
 decomposition, second-derivative tests per cell) over a sub-dyadic
 interval, exhibiting the three absolute terms — two partial end cells
 \(5.2P^{3/8}\), the pure passenger \(3.8P^{7/16}\), the majorant end
 cells \(17P^{1/4}\) — that do not scale with the number of summands.
-Because [12] is an unrefereed working draft, we keep the statement as
-a hypothesis here and rely on nothing but the statement; what *is*
-proved in this appendix is everything that follows from it. (The
-derivation below coincides with Corollary 4.13 of [12].)
+Paper B's published version [12] does not prove it and lists
+localization to a prescribed short interval as open, so we keep the
+statement as a hypothesis here and rely on nothing but the statement;
+what *is* proved in this appendix is everything that follows from it.
+(The derivation below followed that draft.)
 
 ### C.2 The \(OOEEE\) production on even blocks
 
@@ -3739,18 +3911,26 @@ log-mass at least
 additional pair \((e_4,c_4)=(\tfrac9{32},\tfrac19)\) and the new root.
 \(\square\)
 
-Downstream, every constant of Sections 7--10 improves: the rate
-threshold of Theorems 7.2--7.3 becomes \(e>1-\lambda^{***}\approx0.4608\);
-the least depth constant of Corollary 8.4 and Theorem 9.2 is
-\(C=18\) (\(e(18)\approx0.480\)); in the one-sided form \(C(0.5)=18\),
-\(C(0.55)=39\). Pairing plus \(OOEEE\) sits at \(0.5392\), above the
+Relative to the route \(\lambda^{**}\), every constant of Sections 7--10
+improved: the rate threshold of Theorems 7.2--7.3 became
+\(e>1-\lambda^{***}\approx0.4608\); the least depth constant of
+Corollary 8.4 and Theorem 9.2 was \(C=18\) (\(e(18)\approx0.480\)); in
+the one-sided form \(C(0.5)=18\), \(C(0.55)=39\). Theorems 5.19 and 5.20
+now give stronger constants without Hypothesis L (Appendix B). Pairing plus \(OOEEE\) sits at \(0.5392\), above the
 depth-two ceiling \(0.4927\), because \(OOEEE\) is an extra
 production. A further production from the words \(OOOEE\) and \(OOEOE\)
-on even blocks would give \(\lambda=0.5561\) and \(C=18\); those
-fibers have length \(P^{5/32}\), below the threshold of the localized
-triple, and Lemma 3.9's trivial bound on the kernel proof is the
-whole interval, so the analogue of Hypothesis L for the kernel
-estimate of [12] is not available (fate-contagion note §7.4).
+on even blocks, at coefficient \(\tfrac2{27}\) and scale \(\tfrac{27}{64}\),
+would give \(\lambda\approx0.6066\) and \(C=17\) in this model (earlier
+versions printed \(0.5561\), which no recursion of this form gives).
+Those fibers have length \(P^{5/32}\), below the threshold of the
+localized triple, and the trivial bound on the kernel proof of an
+earlier draft of Paper B covers the whole interval, so no analogue of
+Hypothesis L for that kernel estimate is available (fate-contagion note
+§7.4). That
+concerns this appendix's localized route only. The averaged route of
+Section 5.10 needs no analogue of Hypothesis L: Paper B's Theorem 6.3
+gives the fair share on almost every such fiber, and Theorem 5.20 uses
+both words at exponent \(37/50\).
 Hypothesis L concerns consecutive odd starts in an
 interval and says nothing about the odd images \(S_{\rm odd}\); the
 free term \(\psi_F\) is untouched by this appendix.
@@ -4110,8 +4290,10 @@ and explicit floor conditions. The [proof mapping](juggler_ooee_curvature_note.m
 retains the extra endpoint required by the derivative test. The
 [mixed-mode proof](juggler_ooee_mixed_modes_note.md) now supplies the carry
 partition, weighted sums, Fourier errors, original phase comparison and
-differencing. Pure slow modes and three-coordinate discrepancy remain
-separate Lean obligations.
+differencing. Pure slow modes and three-coordinate discrepancy are not
+formalized as such; the Lean route to the production
+(`OOEEResonanceTail`, `FateOOEEWeighted`) proves a count form of the
+tail by its own argument.
 
 ### E.3 The short mixed estimate
 
@@ -4438,10 +4620,11 @@ Juggler map, every source in these fibres also belongs to A.
 
 
 The physical source cutoffs and three-production recursion are proved
-in Section 5.9. This analytic input is a written proof pending independent
-review. The main mixed-mode estimate has a separate Lean proof; the
-complete poor-target and production conclusions are not yet certified
-by that formalization.
+in Section 5.9. This appendix is the written argument, pending
+independent review. The production it feeds is also kernel-checked, by
+its own formal route: `OOEEMixedModes` for the mixed modes,
+`OOEEResonanceTail` for the summable count-poor tail and
+`FateOOEEWeighted` for the production at coefficient \(11/100\).
 
 ## Acknowledgments and use of AI
 
@@ -4454,21 +4637,26 @@ version public.
 
 ## Availability and version
 
-This is version 1.2.0 of Paper C, of 22 September 2026. It is a preprint,
-has not been refereed, and is not deposited. It adds the written OOEE
-poor-fiber proof, contagion at 5/8, the sufficient rate threshold 3/8,
-and an updated proof-status map. The fully machine-checked baseline
-remains 100/203. It also retains the corrected distinction between
-finite and unbounded stopping-word moments in Section 5.7. The current
-Zenodo version is 1.1.0
+This is version 1.3.0 of Paper C, of 24 September 2026. It is a preprint
+and has not been refereed. It raises the contagion exponent to 37/50
+(Section 5.10), using Theorem 6.3 of Paper B, and lowers the sufficient
+rate threshold to 13/50. It records that the log-mass bound of Theorem
+5.19, at 5/8 with the threshold 3/8, is now kernel-checked, and it
+updates the depth constants, the proof-status map, the comparisons of
+Appendix B and the citations of Paper B. Version 1.2.0, prepared on 22
+September 2026 and not deposited, added the written OOEE poor-fiber
+proof, contagion at 5/8, the scale-average criterion of Section 9.5, and
+the corrected distinction between finite and unbounded stopping-word
+moments in Section 5.7. Earlier Zenodo versions are 1.1.0
 ([doi:10.5281/zenodo.22865705](https://doi.org/10.5281/zenodo.22865705)) of
 21 September 2026, which added Section 5.8 with its Lean layer, the corresponding
 rows of Section 1.4 and Appendices A and B, the remarks of Sections 5.7, 6.3 and
-7.1, and the exponent \(\lambda_{\mathrm{ideal}}\) in the statements; version
-1.0.0 ([doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165)) is
-of 9 September 2026. The concept DOI
+7.1, and the exponent \(\lambda_{\mathrm{ideal}}\) in the statements, and
+1.0.0 ([doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165)) of
+9 September 2026. The concept DOI
 [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) resolves to the
-latest version, and the record is at <https://zenodo.org/records/22865705>.
+latest version; the record of version 1.1.0 is at
+<https://zenodo.org/records/22865705>.
 The author's ORCID is
 [0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382).
 A later revision goes up through the record's new-version operation, which
@@ -4522,11 +4710,11 @@ in this version of Paper C govern this preprint.
     `docs/theory/juggler_finite_dynamics_note.md` in the repository
     https://github.com/sneakyweasel/btlab/.
 12. P. Cochin, "Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers" (Paper B), Zenodo version
-    1.0.0, 21 September 2026,
-    [doi:10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934); concept DOI
+    1.2.0, 24 September 2026,
+    [doi:10.5281/zenodo.22946276](https://doi.org/10.5281/zenodo.22946276); concept DOI
     [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) for all versions;
-    revision of 20 September 2026 at
-    `docs/theory/juggler_parity_discrepancy_note.md`, same repository.
+    `docs/theory/juggler_parity_discrepancy_note.md`, same repository. Its
+    Theorem 6.3 and Appendix D are the input of Section 5.10.
 13. S. W. Graham and G. Kolesnik, *Van der Corput's Method of
     Exponential Sums*, London Mathematical Society Lecture Note
     Series 126, Cambridge University Press, Cambridge, 1991. [doi:10.1017/CBO9780511661976](https://doi.org/10.1017/CBO9780511661976).

@@ -1,8 +1,8 @@
 {
-  "review_date": "2026-09-09",
+  "review_date": "2026-09-24",
   "scope": "Independent arithmetic and finite checks; not formal verification of the analytic proofs.",
   "existing_audit": {
-    "git_commit": "7b5308c18582f9f4818cc5911c9a143b922026c3",
+    "git_commit": "8304766d5c27382e0936ae6875202bc4c7fad963",
     "paper": "docs/theory/juggler_fate_almost_all_note.md",
     "N0": 350000000,
     "checks": {
@@ -68,6 +68,20 @@
           "printed": 0.4927,
           "computed": 0.4926579801153874,
           "abs_error": 4.201988461260964e-05,
+          "ok": true
+        },
+        {
+          "name": "three actual productions (Theorem 5.19)",
+          "printed": 0.6266,
+          "computed": 0.62655175640058,
+          "abs_error": 4.824359942001699e-05,
+          "ok": true
+        },
+        {
+          "name": "five actual productions (Theorem 5.20)",
+          "printed": 0.7406,
+          "computed": 0.7405715910211237,
+          "abs_error": 2.8408978876348634e-05,
           "ok": true
         },
         {
@@ -227,6 +241,41 @@
           "ok": true
         },
         {
+          "name": "e(16)",
+          "printed": 0.389,
+          "computed": 0.3886734017198159,
+          "abs_error": 0.0003265982801841094,
+          "ok": true
+        },
+        {
+          "name": "e(15)",
+          "printed": 0.344,
+          "computed": 0.3436324366093621,
+          "abs_error": 0.0003675633906378706,
+          "ok": true
+        },
+        {
+          "name": "e(14)",
+          "printed": 0.299,
+          "computed": 0.2992974000885622,
+          "abs_error": 0.00029740008856221634,
+          "ok": true
+        },
+        {
+          "name": "least depth, Theorem 5.19 regime",
+          "printed": 16,
+          "computed": 16,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "least depth, Theorem 5.20 regime",
+          "printed": 14,
+          "computed": 14,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
           "name": "least depth, pairing regime",
           "printed": 20,
           "computed": 20,
@@ -279,6 +328,62 @@
           "name": "least depth, ideal regime",
           "printed": 19,
           "computed": 19,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "C(0.5), Theorem 5.20 regime",
+          "printed": 14,
+          "computed": 14,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "C(0.55), Theorem 5.20 regime",
+          "printed": 28,
+          "computed": 28,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "C(0.6), Theorem 5.20 regime",
+          "printed": 132,
+          "computed": 132,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "C(0.62), Theorem 5.20 regime",
+          "printed": 866,
+          "computed": 866,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "C(0.5), Theorem 5.19 regime",
+          "printed": 16,
+          "computed": 16,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "C(0.55), Theorem 5.19 regime",
+          "printed": 34,
+          "computed": 34,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "C(0.6), Theorem 5.19 regime",
+          "printed": 175,
+          "computed": 175,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "C(0.62), Theorem 5.19 regime",
+          "printed": 1201,
+          "computed": 1201,
           "abs_error": 0,
           "ok": true
         },
@@ -363,6 +468,62 @@
           "name": "C(0.62), pairing regime",
           "printed": 1715,
           "computed": 1715,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "pressure C(0.5), Theorem 5.20 regime",
+          "printed": 14,
+          "computed": 14,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "pressure C(0.55), Theorem 5.20 regime",
+          "printed": 27,
+          "computed": 27,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "pressure C(0.6), Theorem 5.20 regime",
+          "printed": 128,
+          "computed": 128,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "pressure C(0.62), Theorem 5.20 regime",
+          "printed": 820,
+          "computed": 820,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "pressure C(0.5), Theorem 5.19 regime",
+          "printed": 16,
+          "computed": 16,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "pressure C(0.55), Theorem 5.19 regime",
+          "printed": 34,
+          "computed": 34,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "pressure C(0.6), Theorem 5.19 regime",
+          "printed": 168,
+          "computed": 168,
+          "abs_error": 0,
+          "ok": true
+        },
+        {
+          "name": "pressure C(0.62), Theorem 5.19 regime",
+          "printed": 1135,
+          "computed": 1135,
           "abs_error": 0,
           "ok": true
         },
@@ -678,7 +839,7 @@
       ]
     },
     "classification": {
-      "total_checks": 83,
+      "total_checks": 106,
       "failures": 0,
       "failing_names": [],
       "all_printed_constants_reproduce": true
@@ -738,13 +899,13 @@
     "appendix_a_names": 513,
     "surface": {
       "modules": 69,
-      "declarations": 1910,
+      "declarations": 1925,
       "compiler_trusted": [],
       "compiler_dependent": [],
       "open": []
     },
     "table": {
-      "rows": 47,
+      "rows": 50,
       "lean": [
         "Fate classes closed; trichotomy; exclusion (Lemma 2.1)",
         "Even block is an interval (Lemma 3.1)",
@@ -786,13 +947,16 @@
         "The bias energy of the \\(L(y)\\)-bad words supplies the exceptional atoms (Section 10(d)): \\(\\sum_{w\\ \\text{bad}}D(w)^2\\le(q-\\tfrac12)^2y^2(\\log y)^{-2B}/2^t\\) at the depths below \\(\\lceil CL(y)\\rceil\\), at all large scales, gives the conjecture with nothing else assumed",
         "Collapsed-component bias (Section 10(d), after the measurement): the next-letter bias of the starts whose iterate lands in a window of values is an alternating sum of fiber sizes, bounded by the variation of the fiber profile, the even branch smooths it, \\((v+1)(M_v-m_v)+2M_v\\) per value, and a sandwich on the profile propagates through even steps without amplification",
         "Cylinder-splitting identity for the first-letter bias (Section 10(d), second equality)",
-        "Exact landing windows of the nested productions ((D.1), (D.2))"
+        "Exact landing windows of the nested productions ((D.1), (D.2))",
+        "Theorem 5.19, the log-mass bound at 5/8, and Theorems 7.2 and 9.4 and the corollaries of Theorem 9.2 and Proposition 9.3 at the threshold 3/8",
+        "OOEE mixed modes on the actual short source interval"
       ],
       "human": [
         "Block average (Proposition 4.4), asymptotic",
         "Share law and its three corollaries (Lemma 4.5, Corollary 4.6)",
         "Production inequality (5.2) with the \\(V\\)-ladder terms of Section 5.7",
-        "Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.1, Theorem 9.2 and Proposition 9.3 in their exact forms)"
+        "Azuma and exponential-moment arguments (Sections 8--10, except Lemma 8.2, Theorem 8.3, Theorem 9.1, Theorem 9.2 and Proposition 9.3 in their exact forms)",
+        "Theorem 5.20, the log-mass bound at 37/50, and Theorem 7.2 and the corollaries of Theorem 9.2 and Proposition 9.3 at the threshold 13/50"
       ],
       "other": [
         "Localized triple discrepancy (Appendix C)",
@@ -815,7 +979,9 @@
     "V5": "0.492359060488810957264322379901773177187469252219055237562441",
     "V6": "0.492571544725356259004339218986000473053376884060362592748331",
     "conditional_Appendix_C": "0.539179685970596776136163473887355764818517614951681645073578",
-    "depth_two_ideal": "0.492657980115387660136385087210460386631895844260818211488946"
+    "depth_two_ideal": "0.492657980115387660136385087210460386631895844260818211488946",
+    "three_actual_productions": "0.626551756400580228820539050305102389252317972070065163076485",
+    "five_actual_productions": "0.740571591021123958586098155289581177343858230761965737794544"
   },
   "net_gains": [
     {
@@ -845,6 +1011,98 @@
     }
   ],
   "independent_depths": {
+    "Theorem_5_20": {
+      "Chernoff": {
+        "0.5": {
+          "least_integer_C": 14,
+          "rate": "0.29929740008856221762676354667919667",
+          "previous_rate": "0.25582930568426977155823515461239559"
+        },
+        "0.55": {
+          "least_integer_C": 27,
+          "rate": "0.26338506937967663047105801526622026",
+          "previous_rate": "0.2457237737015666364842776167823271"
+        },
+        "0.60": {
+          "least_integer_C": 128,
+          "rate": "0.26210664986321810099186508292557125",
+          "previous_rate": "0.25927991053903580325841434162732999"
+        },
+        "0.62": {
+          "least_integer_C": 820,
+          "rate": "0.26009620495675134876250068031480113",
+          "previous_rate": "0.25973088896261017155731560763061525"
+        }
+      },
+      "Azuma": {
+        "0.5": {
+          "least_integer_C": 14,
+          "rate": "0.29781608678208920652784758794576165",
+          "previous_rate": "0.25466395386204319876770373888839733"
+        },
+        "0.55": {
+          "least_integer_C": 28,
+          "rate": "0.27550971532323835527354625683776075",
+          "previous_rate": "0.25813079653273260311215334272698494"
+        },
+        "0.60": {
+          "least_integer_C": 132,
+          "rate": "0.26044815062580918068085441397603408",
+          "previous_rate": "0.25775426663074364149223887495077829"
+        },
+        "0.62": {
+          "least_integer_C": 866,
+          "rate": "0.26003075621116200672326678420334346",
+          "previous_rate": "0.25968760223591770490089859191445129"
+        }
+      }
+    },
+    "Theorem_5_19": {
+      "Chernoff": {
+        "0.5": {
+          "least_integer_C": 16,
+          "rate": "0.38867340171981542737361424519841994",
+          "previous_rate": "0.343632436609361799702122277468334"
+        },
+        "0.55": {
+          "least_integer_C": 34,
+          "rate": "0.38984315074947183387144273789292436",
+          "previous_rate": "0.37153852020033508073948186894139254"
+        },
+        "0.60": {
+          "least_integer_C": 168,
+          "rate": "0.37591303891627311808932798048677395",
+          "previous_rate": "0.37305454847396214682929372006212762"
+        },
+        "0.62": {
+          "least_integer_C": 1135,
+          "rate": "0.37533165214279733244686098426185385",
+          "previous_rate": "0.37496545870484684903898539559065812"
+        }
+      },
+      "Azuma": {
+        "0.5": {
+          "least_integer_C": 16,
+          "rate": "0.38648696118377494944725544180640597",
+          "previous_rate": "0.3418096805240352062521230479350071"
+        },
+        "0.55": {
+          "least_integer_C": 34,
+          "rate": "0.38166001568374588953445218745342494",
+          "previous_rate": "0.36378549496827972915294907765861636"
+        },
+        "0.60": {
+          "least_integer_C": 175,
+          "rate": "0.37700329462651606122330666917794342",
+          "previous_rate": "0.37428070785491656947432186061278838"
+        },
+        "0.62": {
+          "least_integer_C": 1201,
+          "rate": "0.3751310434970969596553272932242808",
+          "previous_rate": "0.37478715317332486051530437016512053"
+        }
+      }
+    },
     "V6": {
       "Chernoff": {
         "0.5": {
