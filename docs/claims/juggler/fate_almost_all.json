@@ -337,7 +337,7 @@
  {
   "id": "J-fate-pressure-averaged",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "Paper C Theorem 9.2's corollary at the averaged exponent. Above a certified floor N_0 >= 2, if the pressure hypothesis P_theta(C) holds at all large scales with C >= 5 and a loss epsilon, and some e satisfies 103/203 < e < e(C) - epsilon, then every positive integer reaches 1. The threshold was 27/40 in pressure_implies_conjecture (J-fate-pressure-conjecture); the unconditional averaged contagion bound Production.failures_logMass_averaged at lambda = 100/203 lowers it to 1 - 100/203 = 103/203 = 0.5073891626. The pressure hypothesis itself is not proved; this is a conditional corollary, not a halt theorem.",
+  "statement": "Paper C Theorem 9.2's corollary at the averaged exponent. Above a certified floor N_0 >= 2, if the pressure hypothesis P_theta(C) holds at all large scales with C >= 5 and a loss epsilon, and some e satisfies 103/203 < e < e(C) - epsilon, then every positive integer reaches 1. The threshold was 27/40 in pressure_implies_conjecture (J-fate-pressure-conjecture); the unconditional averaged contagion bound Production.failures_logMass_averaged at lambda = 100/203 lowers it to 1 - 100/203 = 103/203 = 0.5073891626. The pressure hypothesis itself is not proved; this is a conditional corollary, not a halt theorem. Superseded on 24 September 2026 by J-fate-pressure-three-eighths, which uses the OOEE contagion at 5/8 and needs only e > 3/8; this row remains a valid weaker form.",
   "source": "docs/theory/juggler_fate_almost_all_note.md",
   "lean": "Problems/Juggler/FatePressureAveraged.lean",
   "decl": [
@@ -352,11 +352,41 @@
  {
   "id": "J-fate-no-momentum-averaged",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "Paper C Proposition 9.3's corollary at the averaged exponent. Above a certified floor N_0 >= 2, if the no-momentum hypothesis M_{theta,q}(C) holds at all large scales with C >= 5 and 0 < q < p_C, and some e satisfies 103/203 < e < C (D(p_C||q) - c_x delta)/log 2, then every positive integer reaches 1. The threshold was 27/40 in noMomentum_implies_conjecture (J-fate-pressure-conjecture); the unconditional averaged contagion bound Production.failures_logMass_averaged at lambda = 100/203 lowers it to 1 - 100/203 = 103/203 = 0.5073891626, the margin e* that J-failure-margin uses. The no-momentum hypothesis itself is not proved; this is a conditional corollary, not a halt theorem.",
+  "statement": "Paper C Proposition 9.3's corollary at the averaged exponent. Above a certified floor N_0 >= 2, if the no-momentum hypothesis M_{theta,q}(C) holds at all large scales with C >= 5 and 0 < q < p_C, and some e satisfies 103/203 < e < C (D(p_C||q) - c_x delta)/log 2, then every positive integer reaches 1. The threshold was 27/40 in noMomentum_implies_conjecture (J-fate-pressure-conjecture); the unconditional averaged contagion bound Production.failures_logMass_averaged at lambda = 100/203 lowers it to 1 - 100/203 = 103/203 = 0.5073891626, the margin e* that J-failure-margin uses. The no-momentum hypothesis itself is not proved; this is a conditional corollary, not a halt theorem. Superseded on 24 September 2026 by J-fate-no-momentum-three-eighths, which uses the OOEE contagion at 5/8 and needs only e > 3/8; this row remains a valid weaker form.",
   "source": "docs/theory/juggler_fate_almost_all_note.md",
   "lean": "Problems/Juggler/FatePressureAveraged.lean",
   "decl": [
    "noMomentum_conjecture_averaged"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-pressure-three-eighths",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper C Theorem 9.2's corollary at the OOEE threshold. Above a certified floor N_0 >= 2, if the pressure hypothesis P_theta(C) holds at all large scales with C >= 5 and a loss epsilon, and some e satisfies 3/8 < e < e(C) - epsilon, then every positive integer reaches 1. The unconditional OOEE contagion FateOOEEWeighted.logMass_growth at lambda = 5/8 (J-ooee-contagion-five-eighths) gives threshold 1 - 5/8 = 3/8, matching J-ooee-tao-rate-termination and J-ooee-pressure-rate-termination; this supersedes J-fate-pressure-averaged at 103/203. The pressure hypothesis itself is not proved; this is a conditional corollary, not a halt theorem.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "Problems/Juggler/FatePressureOOEE.lean",
+  "decl": [
+   "pressure_conjecture_ooee"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-fate-no-momentum-three-eighths",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper C Proposition 9.3's corollary at the OOEE threshold. Above a certified floor N_0 >= 2, if the no-momentum hypothesis M_{theta,q}(C) holds at all large scales with C >= 5 and 0 < q < p_C, and some e satisfies 3/8 < e < C (D(p_C||q) - c_x delta)/log 2, then every positive integer reaches 1. The unconditional OOEE contagion at lambda = 5/8 gives threshold 3/8; this supersedes J-fate-no-momentum-averaged at 103/203. The no-momentum hypothesis itself is not proved; this is a conditional corollary, not a halt theorem.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "Problems/Juggler/FatePressureOOEE.lean",
+  "decl": [
+   "noMomentum_conjecture_ooee"
   ],
   "lean_trust": "kernel",
   "tests": [

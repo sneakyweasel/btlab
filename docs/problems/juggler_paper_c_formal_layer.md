@@ -134,8 +134,12 @@ and `noMomentum_implies_conjecture` close the contagion step through
 `FatePressureAveraged.lean` (24 September 2026) take the contagion bound at
 \(\lambda=100/203\) and need only \(e>103/203\), the margin \(e^*\) of
 `J-failure-margin` (rows `J-fate-pressure-averaged`, `J-fate-no-momentum-averaged`).
-The pressure and no-momentum hypotheses stay unproved. The module is outside the
-Paper C build root, so the thirty-seven cited modules are unchanged.
+The OOEE contagion at \(\lambda=5/8\) (`FateOOEEWeighted.logMass_growth`) lowers
+them further: `pressure_conjecture_ooee` and `noMomentum_conjecture_ooee` in
+`FatePressureOOEE.lean` need only \(e>3/8\) (rows `J-fate-pressure-three-eighths`,
+`J-fate-no-momentum-three-eighths`), superseding the \(103/203\) forms.
+The pressure and no-momentum hypotheses stay unproved. Both modules are outside
+the Paper C build root, so the thirty-seven cited modules are unchanged.
 
 **The build root (COMPUTATIONALLY VERIFIED).**
 `formal/Problems/JugglerFatePaper.lean` imports exactly the thirty-seven

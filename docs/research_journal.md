@@ -27,9 +27,9 @@ orbit claim (reworded, counterexample `n = 6`), and two reviewer errors,
 on Rhin's measure and on `lambda**` against `100/203`, were caught at source.
 Later the same day, the averaged contagion bound lowered the Section 9.2
 corollaries: termination follows from the pressure or the no-momentum
-hypothesis at any failure exponent above `103/203` rather than `27/40`
-(`J-fate-pressure-averaged`, `J-fate-no-momentum-averaged`); both
-hypotheses stay open.
+hypothesis at any failure exponent above `3/8`, through the OOEE contagion
+at `5/8` (`J-fate-pressure-three-eighths`, `J-fate-no-momentum-three-eighths`);
+an intermediate `103/203` form is superseded. Both hypotheses stay open.
 **PROMOTE** the conversions. Remaining premise: rows that mix measurements
 with theorems stay written proofs pending a split. See the claim ledger and
 the dossiers for [hug flow](problems/juggler_hug_flow_depth_two.md),
