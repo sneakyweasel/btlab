@@ -181,6 +181,36 @@ not been bookkept. The pass rests on a first reading of Appendices A.1, B and C;
 the lemma statements' fixed-shift clauses (`O(P^(1/24))` translations) were
 checked only for their relative derivative comparisons.
 
+**6. Adversarial audit of Result 5 (24 September 2026).** An independent
+reviewer, instructed to break the chain, confirmed (a) the Theorem B.1 endpoint
+limit `delta < 1/6`, (c) the non-growth of Lemma A.1's D2 error, (d) the other
+B.1 budgets and (g) the C.7 curvature terms. It found three defects, checked here
+at source:
+
+- *C.8 at `b = 0` fails as written.* C.5 prints "For b=0 use N_*=0" and C.8 uses
+  `|B| << 1`; at `Pi >= P^(1/8)`, `B` is about `P^(1/32+gamma)`. Result 5's repair,
+  centering at the floor of the whole coefficient, is wrong: Lemma 7.5 needs one
+  continuous reference `Lambda`, and a frozen integer frequency jumps `f''` by
+  `(3/4) x^(-1/2)` at every window, forcing `rho >= P^(1/8)/Pi` and no saving near
+  `Pi = P^(1/8)`. The collision estimate also omitted the endpoint term
+  `P^(31/32) Pi^(-1/2) = P^(57/64)`, still below `P`.
+- *Repair (desk).* From `a_r(beta) = int_0^1 e(-(beta+r)t) dt`,
+  `|a_r(beta)| + |a_r'(beta)| << 1/(1+|r+beta|)` for every real `beta`, so on
+  stretches where `beta` varies by `O(1)` the coefficient masses are `O(log T)`
+  uniformly in the size of `beta`. The uncentered expansion then gives every mode a
+  fixed integer frequency and a continuous curvature, and Lemma 7.5 applies mode by
+  mode. This is sharper than the printed bounded-residual extension, whose constants
+  are stated only as depending on `B_0`.
+- *Claim (b)'s premise is false*: at bounded `(i,j,k,l)` the frequency `t` is still
+  `O(J)` by (C.12). The conclusion `delta < 3/16` survives; `5/32` never needed it.
+
+Unwritten pieces remain: Lemma 4.4 (printed for `h <= P^(1/12)`) is needed at
+`h = P^(5/32)` for (A.13), with a margin of only `P^(1/192)`; the `k = 0`
+frequency cases of `T_d` are not bookkept; and Result 4 still needs the passage
+from sliding windows to the actual fibres and a truncation of the parity square
+waves. No defect found is fatal, but the argument is not established and its
+margins are small powers of `P`.
+
 ## Open questions
 
 The first-pass bookkeeping (Result 5) finds no binding constraint for `OOOEE`
@@ -200,9 +230,9 @@ for `OOOEE` up to `delta < 1/6`, or `delta < 3/16` at bounded frequencies, after
 three local repairs. That would be the averaged substitute, but it is a first-pass
 reading of a dense proof and does not meet the promotion criterion. The pricing
 stands: `OOOEE` alone would lift the ideal contagion from `0.633` to `0.6915`, both
-depth-five words to `0.7512`. Best next question: does an adversarial line-by-line
-audit of Result 5 confirm that `OOOEE` differenced sums with shifts up to
-`P^(5/32)` keep a power saving at bounded frequencies?
+depth-five words to `0.7512`. Best next question: with the uncentered C.8 repair,
+does a written extension of Lemma 4.4 to `h = P^(5/32)` keep its `P^(1/192)`
+margin once every term is recomputed?
 
 ## Publication assessment
 
