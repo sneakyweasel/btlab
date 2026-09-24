@@ -1,0 +1,138 @@
+{
+ "max_length": 14,
+ "classes": [
+  {
+   "class": "no nested growing factor",
+   "root": 0.6327671418021055,
+   "word_count": 2,
+   "max_length": 4,
+   "first_words": [
+    "OE",
+    "OOEE"
+   ]
+  },
+  {
+   "class": "one factor <= 9/16",
+   "root": 0.6914683695176791,
+   "word_count": 3,
+   "max_length": 5,
+   "first_words": [
+    "OE",
+    "OOEE",
+    "OOEOE"
+   ]
+  },
+  {
+   "class": "one factor <= 9/8",
+   "root": 0.7511565778886506,
+   "word_count": 4,
+   "max_length": 5,
+   "first_words": [
+    "OE",
+    "OOEE",
+    "OOEOE",
+    "OOOEE"
+   ]
+  },
+  {
+   "class": "factors <= 9/8",
+   "root": 0.7785292712242153,
+   "word_count": 168,
+   "max_length": 14,
+   "first_words": [
+    "OEOE",
+    "OOEE",
+    "OOEOE",
+    "OOOEE",
+    "OEOOEOE",
+    "OOOEOEE",
+    "OEEEEEEE",
+    "OEEEEEOE",
+    "OEEEEOEE",
+    "OEEEOEEE",
+    "OEEEOEOE",
+    "OEEEOOEE"
+   ]
+  },
+  {
+   "class": "factors <= 27/16",
+   "root": 0.8054545259292354,
+   "word_count": 243,
+   "max_length": 14,
+   "first_words": [
+    "OOEOE",
+    "OOOEE",
+    "OEEEEEE",
+    "OEEEEOE",
+    "OEEEOEE",
+    "OEEOEEE",
+    "OEEOEOE",
+    "OEEOOEE",
+    "OEOEEEE",
+    "OEOEEOE",
+    "OEOEOEE",
+    "OEOOEEE"
+   ]
+  },
+  {
+   "class": "factors <= 45/16",
+   "root": 0.8635657812437785,
+   "word_count": 43,
+   "max_length": 13,
+   "first_words": [
+    "OE",
+    "OOEE",
+    "OOEOE",
+    "OOOEE",
+    "OOEOOEE",
+    "OOOEOEE",
+    "OOOOEEE",
+    "OOEOOEOE",
+    "OOEOOOEE",
+    "OOOEOEOE",
+    "OOOEOOEE",
+    "OOOOEEOE"
+   ]
+  },
+  {
+   "class": "unrestricted",
+   "root": 0.9106602439414928,
+   "word_count": 141,
+   "max_length": 13,
+   "first_words": [
+    "OE",
+    "OOEE",
+    "OOEOE",
+    "OOOEE",
+    "OOEOOEE",
+    "OOOEOEE",
+    "OOOOEEE",
+    "OOEOOEOE",
+    "OOEOOOEE",
+    "OOOEOEOE",
+    "OOOEOOEE",
+    "OOOOEEOE"
+   ]
+  }
+ ],
+ "depth_seven_factors": {
+  "OOEOOEE": [
+   "45/32",
+   "27/32",
+   "9/16",
+   "9/32",
+   "9/64"
+  ],
+  "OOOEOEE": [
+   "9/8",
+   "27/32",
+   "9/32"
+  ],
+  "OOOOEEE": [
+   "45/16",
+   "27/16",
+   "9/8",
+   "9/32"
+  ]
+ }
+}

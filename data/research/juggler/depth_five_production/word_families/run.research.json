@@ -1,0 +1,190 @@
+{
+  "schema": "btlab-output/v2",
+  "programme": "juggler",
+  "research_id": "juggler/depth_five_production",
+  "created_utc": "2026-09-24T16:38:46.584012+00:00",
+  "scope": "prefix-free families of admissible words of length <= 14",
+  "artifact_root": ".",
+  "generator": {
+    "command": [
+      "python",
+      "tools/lab.py",
+      "run",
+      "research.juggler_sequence.word_family_complexity"
+    ],
+    "parameters": {
+      "max_length": 14,
+      "classes": [
+        "no nested growing factor",
+        "one factor <= 9/16",
+        "one factor <= 9/8",
+        "factors <= 9/8",
+        "factors <= 27/16",
+        "factors <= 45/16",
+        "unrestricted"
+      ]
+    },
+    "python": "3.13.9"
+  },
+  "source": {
+    "revision": "56a540d9720ae4dce2a966ea63f62f3694581b12",
+    "dirty": true,
+    "coverage": "loaded local Python, project configuration, and explicit sources at manifest creation; not an execution or dependency audit",
+    "files": [
+      {
+        "path": "pyproject.toml",
+        "sha256": "e99a8deaad3e42c12db855ee4f72dac9b190db67b5a088bea8377c8f94055ef7",
+        "bytes": 2746,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "e99a8deaad3e42c12db855ee4f72dac9b190db67b5a088bea8377c8f94055ef7",
+          "bytes": 2746
+        }
+      },
+      {
+        "path": "src/research/__init__.py",
+        "sha256": "2f57f06dcf8334c7d93eb76d768947fa8c70ac35d681dd7cdcb3f988a1d7b565",
+        "bytes": 58,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "2f57f06dcf8334c7d93eb76d768947fa8c70ac35d681dd7cdcb3f988a1d7b565",
+          "bytes": 58
+        }
+      },
+      {
+        "path": "src/research/experiments/__init__.py",
+        "sha256": "edbe56c7b50bc27f3658d78aabdc3ab5da9c6b35f9f21588cfeeb368d2830bab",
+        "bytes": 209,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "edbe56c7b50bc27f3658d78aabdc3ab5da9c6b35f9f21588cfeeb368d2830bab",
+          "bytes": 209
+        }
+      },
+      {
+        "path": "src/research/experiments/outputs.py",
+        "sha256": "cef10922f980ce29aa7eda6fb475df8a2e3322fde0822251f52a9b3f75d3011d",
+        "bytes": 713,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "cef10922f980ce29aa7eda6fb475df8a2e3322fde0822251f52a9b3f75d3011d",
+          "bytes": 713
+        }
+      },
+      {
+        "path": "src/research/experiments/provenance.py",
+        "sha256": "aa58341fe373981b76c61a56bf429e002c43f56c2c653f3a05ddff95ad3b812c",
+        "bytes": 14904,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "aa58341fe373981b76c61a56bf429e002c43f56c2c653f3a05ddff95ad3b812c",
+          "bytes": 14904
+        }
+      },
+      {
+        "path": "src/research/experiments/schema.py",
+        "sha256": "e7e5e2510862621b8d4bd60f9b38e29f7af05a6d2938ec71c0b60b60047632ed",
+        "bytes": 6595,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "e7e5e2510862621b8d4bd60f9b38e29f7af05a6d2938ec71c0b60b60047632ed",
+          "bytes": 6595
+        }
+      },
+      {
+        "path": "src/research/experiments/table_io.py",
+        "sha256": "dcc6e0d412f9e605cf68d9da9ee47d7d2e1d372c9165f90672e9b03fe2a4585a",
+        "bytes": 3940,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "dcc6e0d412f9e605cf68d9da9ee47d7d2e1d372c9165f90672e9b03fe2a4585a",
+          "bytes": 3940
+        }
+      },
+      {
+        "path": "src/research/juggler_sequence/__init__.py",
+        "sha256": "aa88a5a3d4c50945996efdda77c4a653059d58e15bf88bfbb63bcdfd8507e574",
+        "bytes": 64,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "aa88a5a3d4c50945996efdda77c4a653059d58e15bf88bfbb63bcdfd8507e574",
+          "bytes": 64
+        }
+      },
+      {
+        "path": "src/research/juggler_sequence/depth_five_production.py",
+        "sha256": "ada15220f7c5b341e896918db71f56aaa945c376cefa0951caf474f538275484",
+        "bytes": 4807,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "ada15220f7c5b341e896918db71f56aaa945c376cefa0951caf474f538275484",
+          "bytes": 4807
+        }
+      },
+      {
+        "path": "src/research/juggler_sequence/lean_paths.py",
+        "sha256": "cc436f070f282ffc1ca3b6c493a0c9a99b9b3f2dc7b8f28a61c9c0314e76b251",
+        "bytes": 1212,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "cc436f070f282ffc1ca3b6c493a0c9a99b9b3f2dc7b8f28a61c9c0314e76b251",
+          "bytes": 1212
+        }
+      },
+      {
+        "path": "src/research/juggler_sequence/word_family_complexity.py",
+        "sha256": "46d3ca78370f0d041365457fc064efef8ae923d4f5458697667bad1a834248c5",
+        "bytes": 4901,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "46d3ca78370f0d041365457fc064efef8ae923d4f5458697667bad1a834248c5",
+          "bytes": 4901
+        }
+      },
+      {
+        "path": "src/research/repository.py",
+        "sha256": "bbb7ed01d513b2eb340b714720e9199b9c26ca323138224cf31c588e4a19cb9e",
+        "bytes": 6331,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "bbb7ed01d513b2eb340b714720e9199b9c26ca323138224cf31c588e4a19cb9e",
+          "bytes": 6331
+        }
+      },
+      {
+        "path": "tools/lab.py",
+        "sha256": "949f0778e44f74580a475d63b63287d2ca9f3918aaf13c1487d494fafc8cede5",
+        "bytes": 5992,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "949f0778e44f74580a475d63b63287d2ca9f3918aaf13c1487d494fafc8cede5",
+          "bytes": 5992
+        }
+      },
+      {
+        "path": "tools/requirements-lab.json",
+        "sha256": "26a79648b55b86be204da0f35c280aada68f358bfae3eb1289e016f6009c10be",
+        "bytes": 506,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "26a79648b55b86be204da0f35c280aada68f358bfae3eb1289e016f6009c10be",
+          "bytes": 506
+        }
+      },
+      {
+        "path": "tools/requirements-lab.lock",
+        "sha256": "b634d10f3149eac2f8195fabd17d4c7aafbdeff7f7bb38e393214698e5095ab7",
+        "bytes": 68419
+      }
+    ]
+  },
+  "inputs": [],
+  "outputs": [
+    {
+      "path": "classes.json",
+      "sha256": "d5427b17895cd54e60af870ae074e263a455fa59012c236a18abb84839eb81c8",
+      "bytes": 2031
+    }
+  ],
+  "verification": "Outputs are byte-exact. Explicit text fingerprints on inputs/sources accept only UTF-8 CRLF-to-LF representation changes, which are reported. No theorem or compilation status is asserted."
+}

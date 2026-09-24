@@ -1299,6 +1299,55 @@ Whether any differencing leaves both bounded is the likely wall; this has not
 been checked. Decision: **PARK**, not opened. The reopening condition is a
 bookkeeping of the two stacked factors that keeps both of them bounded.
 
+**27. Word families by nested-floor complexity (COMPUTATIONALLY VERIFIED pricing;
+24 September 2026).** The Juggler/3n-1 bridge shares the word combinatorics and
+Paper C's ideal coefficients `3^(-#O)`. It does not share the floor arithmetic. So
+it can guide the choice of words, but it cannot supply their productions. The
+probe `research.juggler_sequence.word_family_complexity` searches every
+prefix-free family of admissible words of length up to 14, maximizing the
+contagion root with ideal coefficients. Its output is
+`data/research/juggler/depth_five_production/word_families/classes.json`, and
+`tests/research/juggler_sequence/test_word_family_complexity.py` tests it.
+
+*Admissible words.* A word is admissible only when every nonempty suffix has
+`rho < 1`. Otherwise most targets have empty fibres, since a final `O` step is
+injective. A first search that allowed such words reported a spurious root of
+`0.94`.
+
+*Difficulty.* Difficulty is the list of nested growing factors. A floor taken at
+the chain's coordinate `R_j`, with `j >= 2`, reaches `R_i` with coefficient
+`n^(e_i - e_j)`; the factor counts as growing when that exponent is positive.
+First-level carries of `floor(X)` are excluded. This scale reproduces the known
+order: `OOEE` has none, `OOEOE` has `9/16` (E7), and `OOOEE` has `9/8` (Paper B).
+
+| Class | Best root | Best family |
+|---|---|---|
+| no nested growing factor | `0.6328` | `E, OE, OOEE` |
+| one factor `<= 9/16` | `0.6915` | adds `OOEOE` |
+| one factor `<= 9/8` | `0.7512` | adds `OOOEE` |
+| factors `<= 9/8` | `0.7785` | 168 words, e.g. `OEOE`, `OOOEOEE` |
+| factors `<= 27/16` | `0.8055` | 243 words |
+| factors `<= 45/16` | `0.8636` | 43 words, with all depth-seven words |
+| unrestricted | `0.9107` | 141 words up to length 13 |
+
+*Findings:*
+
+- **No cheaper family goes around the depth-five route.** With at most one
+  growing factor, the optimum is exactly the first-descent words already used.
+- **The depth-seven words differ sharply in cost.** Their growing factors are:
+  - `OOOEOEE`: `9/8, 27/32, 9/32`. Its largest is the size Paper B handles.
+  - `OOEOOEE`: `45/32, ...`
+  - `OOOOEEE`: `45/16, 27/16, ...`, the one Result 26 looked at.
+- **Adding one depth-seven word.** `OOOEOEE` at `1/85`, added to the current five
+  productions, lifts the root from `0.7406` to `0.7560`. With `OOEOOEE` as well
+  it reaches `0.7713`.
+- **Several small factors.** Allowing several factors below `9/8` reaches
+  `0.7785` through non-first-descent refinements of `OE`, such as `OEOE`, which
+  has one factor `3/8`. These words have more coordinates. Whether several small
+  factors are easier than one large one is not settled.
+
+This refines Result 26: the natural next target is `OOOEOEE`, not `OOOOEEE`.
+
 ## Open questions
 
 Result 23 (Lemma E9) shows that the productions need `T_d` only at shifts below an
@@ -1341,10 +1390,10 @@ That assembly turns productions at `1/28` into contagion `37/50` and thresholds
 
 Promotion is the owner's decision after review.
 
-Best next question: E7's decomposition now has a pointwise
-structural check (Result 25). The remaining human-review targets are E7's
-zero-mode curvature sum and E5's `j = 0` diagonal. Beyond depth five, see the
-depth-seven triage (Result 26).
+Best next question: does `OOOEOEE`, whose largest nested growing
+factor is Paper B's `9/8` and whose other factors are `27/32` and `9/32`, admit
+a Phase-0 bookkeeping that keeps each factor controlled? Result 27 shows it is
+the cheapest depth-seven word, worth `0.7406 -> 0.7560` alone.
 
 ## Publication assessment
 
