@@ -127,6 +127,16 @@ through Lemma 2.1: `reachesOne_logMass_averaged`, `reachesOne_natDensity_average
 `escapes_natDensity_averaged`. Every clause of Theorem 1 is now Lean at \(100/203\);
 what stays human is the range \(100/203<\lambda<\lambda_{\mathrm{ideal}}\).
 
+The same averaged bound lowers the Section 9.2 corollaries. `pressure_implies_conjecture`
+and `noMomentum_implies_conjecture` close the contagion step through
+`Production.conjecture_of_tao_rate` and need a failure exponent \(e>27/40\);
+`pressure_conjecture_averaged` and `noMomentum_conjecture_averaged` in
+`FatePressureAveraged.lean` (24 September 2026) take the contagion bound at
+\(\lambda=100/203\) and need only \(e>103/203\), the margin \(e^*\) of
+`J-failure-margin` (rows `J-fate-pressure-averaged`, `J-fate-no-momentum-averaged`).
+The pressure and no-momentum hypotheses stay unproved. The module is outside the
+Paper C build root, so the thirty-seven cited modules are unchanged.
+
 **The build root (COMPUTATIONALLY VERIFIED).**
 `formal/Problems/JugglerFatePaper.lean` imports exactly the thirty-seven
 modules Paper C cites (thirty-one until 21 September 2026, when the five
