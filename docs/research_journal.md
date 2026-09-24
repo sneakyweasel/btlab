@@ -123,10 +123,15 @@ survival mass and total first-passage probability one for the family.
 Beatty reindexing fixes the actual positive-index jump mass at `1/(alpha-1)`.
 The exact strict profile identity and original integer-count phase asymptotic
 are now checked for every irrational `alpha>1`, in both binomial normalizations.
-**PROMOTE** the full qualitative phase theorem: no counting or asymptotic
-premise remains. Rates and the family geometry remain next. The combined
-audit checks 30 expanded consumers and 77 public theorem records.
-The same dossier records the expanded audit and coverage map.
+**PROMOTE** the full qualitative phase theorem and its family cluster set
+and singular empirical law: positive dense atoms give a nonempty compact
+perfect null set, exact gaps and envelope extrema. Threshold frequencies
+and CDF plateaus are checked for every irrational slope above one. The
+original phase theorem now specializes the family proof through an exact
+profile bridge; irrational recurrence and equidistribution are shared.
+The family audit checks 120 public theorem records. Rates, the three-halves
+gap asymptotic and the Minkowski/local-measure family remain next. The same
+dossier and Section 25 of the note record the consumers and scope.
 
 ## 2026-09-23 -- OEIS generator corrections and exact modified-map descent
 

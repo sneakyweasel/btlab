@@ -2,7 +2,7 @@
   "schema": "btlab-output/v2",
   "programme": "juggler",
   "research_id": null,
-  "created_utc": "2026-09-24T10:32:26.373294+00:00",
+  "created_utc": "2026-09-24T12:37:46.811281+00:00",
   "scope": "Paper Beatty: First explicit interval for the full profile's two-thirds moment and Minkowski content, with a certified entire omitted tail; no asymptotic tail estimate is guessed.",
   "artifact_root": ".",
   "generator": {
@@ -12,7 +12,7 @@
       "--paper",
       "Beatty",
       "--output-root",
-      ".build\\artifacts\\bfc6116c191242c2a23b82178926ddd8\\work"
+      ".build\\artifacts\\7024b795f2184c61821b7961519a3929\\work"
     ],
     "parameters": {
       "paper": "Beatty",
@@ -22,7 +22,7 @@
     "python": "3.13.9"
   },
   "source": {
-    "revision": "7bd5bcc63b133cdea752dcf58234d2b2bcf9312a",
+    "revision": "6931235a4e5244fb35a97010df55f640c8ba006c",
     "dirty": true,
     "coverage": "loaded local Python, project configuration, and explicit sources at manifest creation; not an execution or dependency audit",
     "files": [
@@ -58,8 +58,8 @@
       },
       {
         "path": "src/research/experiments/provenance.py",
-        "sha256": "aeeb49555812bc5d2a1ae3eca14227d85aae2aa765c6f5a259b50e1c2cb7c9c9",
-        "bytes": 15191,
+        "sha256": "aa58341fe373981b76c61a56bf429e002c43f56c2c653f3a05ddff95ad3b812c",
+        "bytes": 14904,
         "text": {
           "normalization": "utf8-crlf-to-lf",
           "sha256": "aa58341fe373981b76c61a56bf429e002c43f56c2c653f3a05ddff95ad3b812c",
@@ -236,19 +236,19 @@
   "inputs": [
     {
       "path": "docs/theory/juggler_beatty_first_passage_note.md",
-      "sha256": "d9a06b70303c89cd1a00fa07bec362c0c1376ff193c03dad0e315075e2745c18",
-      "bytes": 102799,
+      "sha256": "d432d17b4e67df9a9576bd7865927b69d5ac7f01627695236ae9cf3848acca5f",
+      "bytes": 115567,
       "text": {
         "normalization": "utf8-crlf-to-lf",
-        "sha256": "d9a06b70303c89cd1a00fa07bec362c0c1376ff193c03dad0e315075e2745c18",
-        "bytes": 102799
+        "sha256": "5ea31607279270ecaca2460390b294bc21ba05a15fd4b93cb260053bed8d3a20",
+        "bytes": 113266
       }
     }
   ],
   "outputs": [
     {
       "path": "beatty.json",
-      "sha256": "311653a024450e848242253fbdec61618743b6278ece1e3cba626cdaf3be46d0",
+      "sha256": "58c982f18cd2b9ec49cca218c22cc74ffd9de086767a2bc0742ce25361c1fc9c",
       "bytes": 1855880
     }
   ],

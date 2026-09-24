@@ -2158,61 +2158,21 @@ The public theorem `passage_phase_asymptotic_reciprocal` quantifies over
 every irrational `alpha>1`.
 [InterfaceCheckBeattySlope.lean](../../formal/InterfaceCheckBeattySlope.lean)
 expands the actual counts, `floor(alpha*r)` and strict jump series, checking
-that no asymptotic premise is hidden behind a definition. The combined
-family audit checks 30 expanded consumers and 77 public theorem records,
+that no asymptotic premise is hidden behind a definition. The phase audit retains 30 expanded consumers; the public family audit
+now checks 120 theorem records, with the geometry consumers in Section 25,
 using only `propext`, `Classical.choice` and `Quot.sound`.
 
 This completes the qualitative phase theorem for the family. Section 25
 extends its cluster-set and singular empirical-law consequences. The
 Minkowski and Gamma-law packages, convergence rates and arithmetic lower
-bounds still require separate family arguments. The logarithmic atom formula `w_1=beta` in Section 13 is not asserted
+bounds still require separate family arguments. The logarithmic atom
+formula `w_1=beta` in Section 13 is not asserted
 for all slopes here. The classical BGL survival and probability-flow
 precursors remain acknowledged; the scope extension and formal proof do
 not by themselves settle literature priority. **PROMOTE** the family phase
 theorem; the positive dense atom structure and qualitative geometry are completed
 in Section 25. The three-halves gap asymptotic remains the next input for
 the Minkowski family theorem.
-
-## References
-
-1. G. Baxter, *An analytic problem whose solution follows from a simple
-   algebraic identity*, Pacific Journal of Mathematics **10** (1960),
-   731–742, Example 3. [doi:10.2140/pjm.1960.10.731](https://doi.org/10.2140/pjm.1960.10.731).
-2. M. Winkler, *Marked Rotations and Factorization Heights for Dual Beatty
-   Passage Counts*, preprint, v21, 13 September 2026, Proposition 34.
-   [doi:10.13140/RG.2.2.22015.57761](https://doi.org/10.13140/RG.2.2.22015.57761).
-3. M. Winkler, *Admissible qx+1 Sequences, Semiconvergents, and Rational
-   Catalan Numbers*, preprint, 14 September 2026, Corollary 12.
-   [arXiv:2609.22303v1](https://arxiv.org/abs/2609.22303v1).
-4. K. E. Hare, F. Mendivil and L. Zuberman, *The Sizes of Rearrangements
-   of Cantor Sets*, author-hosted manuscript, Sections 1–2.
-   [Manuscript](https://www.acadiau.ca/~fmendivi/Papers/rearranged_cantor_sets.pdf).
-5. R. de Santiago, M. L. Lapidus, S. A. Roby and J. A. Rock,
-   *Multifractal Analysis via Scaling Zeta Functions and Recursive Structure
-   of Lattice Strings*, author manuscript, Section 3.2, Theorem 3.8.
-   [IHES manuscript](https://preprints.ihes.fr/storage/MAZ.pdf).
-6. S. Winter, *Localization results for Minkowski contents*,
-   Journal of the London Mathematical Society **99** (2019), 553–582.
-   [arXiv:1610.03117](https://arxiv.org/abs/1610.03117).
-7. B. Kra and J. Schmeling, *Diophantine classes, dimension and Denjoy maps*,
-   Acta Arithmetica **105** (2002), 323–340.
-   [Author manuscript](https://www.math.northwestern.edu/~kra/papers/denjoy.pdf),
-   [doi:10.4064/aa105-4-2](https://doi.org/10.4064/aa105-4-2).
-8. M. Bauer, C. Godrèche and J.-M. Luck, *Statistics of Persistent Events
-   in the Binomial Random Walk: Will the Drunken Sailor Hit the Sober Man?*,
-   Journal of Statistical Physics **96** (1999), 963–1019.
-   [arXiv:cond-mat/9905252v1](https://arxiv.org/abs/cond-mat/9905252v1),
-   [doi:10.1023/A:1004636216365](https://doi.org/10.1023/A:1004636216365).
-9. M. L. Lapidus and C. Pomerance, *The Riemann Zeta-Function and the
-   One-Dimensional Weyl-Berry Conjecture for Fractal Drums*,
-   Proceedings of the London Mathematical Society (3) **66** (1993), 41–69,
-   Theorems 2.1–2.2.
-   [Author copy](https://math.dartmouth.edu/~carlp/fractal.pdf),
-   [doi:10.1112/plms/s3-66.1.41](https://doi.org/10.1112/plms/s3-66.1.41).
-10. H. Biermé and A. Desolneux, *A Fourier Approach for the Level Crossings
-    of Shot Noise Processes with Jumps*, Journal of Applied Probability
-    **49** (2012), 100–113, Proposition 1.
-    [doi:10.1239/jap/1331216836](https://doi.org/10.1239/jap/1331216836).
 
 ## 25. The complete cluster set and singular law for every irrational slope
 
@@ -2272,7 +2232,7 @@ points of discontinuity.
 The logarithmic bridge now identifies the general indices, phases, word
 masses, jump weights and strict profile with the original definitions.
 The original `certificate_phase_asymptotic` specializes the family theorem;
-its separate asymptotic proof has been removed. The original recurrence and
+its separate asymptotic proof has been removed. The original phase-recurrence and
 equidistribution proofs also reuse the extracted irrational-rotation result.
 The distinct tilted and fair-walk survivor profiles are not equated.
 
@@ -2287,8 +2247,8 @@ contains the complete set and envelope assertions; and
 contains the singular law, CDF and sampling statements.
 [InterfaceCheckBeattySlopeGeometry.lean](../../formal/InterfaceCheckBeattySlopeGeometry.lean)
 expands the original integer ratios and quantifies explicitly over every
-irrational `alpha>1`, including slopes greater than two. The public audit
-permits only `propext`, `Classical.choice` and `Quot.sound`.
+irrational `alpha>1`, including slopes greater than two. Its eleven
+expanded consumers and the public family audit permit only `propext`, `Classical.choice` and `Quot.sound`.
 
 **Remaining boundary.** This extends the qualitative Cantor-set geometry
 and empirical law, not yet the three-halves gap asymptotic, Minkowski
@@ -2298,3 +2258,44 @@ with classical random-walk and Denjoy results still governs novelty
 positioning; formalization alone is not a priority claim.
 **PROMOTE** the family cluster-set and singular-law theorem. The next bounded
 mathematical input is the general three-halves gap asymptotic.
+
+## References
+
+1. G. Baxter, *An analytic problem whose solution follows from a simple
+   algebraic identity*, Pacific Journal of Mathematics **10** (1960),
+   731–742, Example 3. [doi:10.2140/pjm.1960.10.731](https://doi.org/10.2140/pjm.1960.10.731).
+2. M. Winkler, *Marked Rotations and Factorization Heights for Dual Beatty
+   Passage Counts*, preprint, v21, 13 September 2026, Proposition 34.
+   [doi:10.13140/RG.2.2.22015.57761](https://doi.org/10.13140/RG.2.2.22015.57761).
+3. M. Winkler, *Admissible qx+1 Sequences, Semiconvergents, and Rational
+   Catalan Numbers*, preprint, 14 September 2026, Corollary 12.
+   [arXiv:2609.22303v1](https://arxiv.org/abs/2609.22303v1).
+4. K. E. Hare, F. Mendivil and L. Zuberman, *The Sizes of Rearrangements
+   of Cantor Sets*, author-hosted manuscript, Sections 1–2.
+   [Manuscript](https://www.acadiau.ca/~fmendivi/Papers/rearranged_cantor_sets.pdf).
+5. R. de Santiago, M. L. Lapidus, S. A. Roby and J. A. Rock,
+   *Multifractal Analysis via Scaling Zeta Functions and Recursive Structure
+   of Lattice Strings*, author manuscript, Section 3.2, Theorem 3.8.
+   [IHES manuscript](https://preprints.ihes.fr/storage/MAZ.pdf).
+6. S. Winter, *Localization results for Minkowski contents*,
+   Journal of the London Mathematical Society **99** (2019), 553–582.
+   [arXiv:1610.03117](https://arxiv.org/abs/1610.03117).
+7. B. Kra and J. Schmeling, *Diophantine classes, dimension and Denjoy maps*,
+   Acta Arithmetica **105** (2002), 323–340.
+   [Author manuscript](https://www.math.northwestern.edu/~kra/papers/denjoy.pdf),
+   [doi:10.4064/aa105-4-2](https://doi.org/10.4064/aa105-4-2).
+8. M. Bauer, C. Godrèche and J.-M. Luck, *Statistics of Persistent Events
+   in the Binomial Random Walk: Will the Drunken Sailor Hit the Sober Man?*,
+   Journal of Statistical Physics **96** (1999), 963–1019.
+   [arXiv:cond-mat/9905252v1](https://arxiv.org/abs/cond-mat/9905252v1),
+   [doi:10.1023/A:1004636216365](https://doi.org/10.1023/A:1004636216365).
+9. M. L. Lapidus and C. Pomerance, *The Riemann Zeta-Function and the
+   One-Dimensional Weyl-Berry Conjecture for Fractal Drums*,
+   Proceedings of the London Mathematical Society (3) **66** (1993), 41–69,
+   Theorems 2.1–2.2.
+   [Author copy](https://math.dartmouth.edu/~carlp/fractal.pdf),
+   [doi:10.1112/plms/s3-66.1.41](https://doi.org/10.1112/plms/s3-66.1.41).
+10. H. Biermé and A. Desolneux, *A Fourier Approach for the Level Crossings
+    of Shot Noise Processes with Jumps*, Journal of Applied Probability
+    **49** (2012), 100–113, Proposition 1.
+    [doi:10.1239/jap/1331216836](https://doi.org/10.1239/jap/1331216836).

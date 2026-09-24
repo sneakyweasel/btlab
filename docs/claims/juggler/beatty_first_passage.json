@@ -194,11 +194,10 @@
  {
   "id": "J-beatty-certificate-phase-equidistribution",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "Every irrational linear exponential phase has zero limiting Fourier average. For beta=log 2/log 3 this proves that the empirical laws of the exact certificate phases delta_r={r/beta} converge weakly to uniform probability on (0,1]. No equidistribution or Fourier-cancellation premise remains in the concrete theorem.",
+  "statement": "For beta=log 2/log 3, the empirical laws of the exact certificate phases delta_r={r/beta} converge weakly to uniform probability on (0,1]. The proof specializes the generic irrational-rotation theorem in J-beatty-irrational-rotation; no equidistribution or Fourier-cancellation premise remains in the concrete theorem.",
   "source": "docs/theory/juggler_beatty_first_passage_note.md",
   "lean": "Problems/Juggler/BeattyPhaseEquidistribution.lean",
   "decl": [
-   "tendsto_irrational_phase_average",
    "certificatePhase_equidistributed"
   ],
   "lean_trust": "kernel",
@@ -1448,6 +1447,26 @@
    "tests/research/juggler_sequence/test_beatty_slope_geometry_interface.py",
    "tests/tools/test_formalpedia_audits.py",
    "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-irrational-rotation",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational real angle a, the linear exponential phase exp(2*pi*i*n*a) has zero limiting average. Its fractional parts {n*a} visit every open subinterval of [0,1] arbitrarily late and their empirical probabilities converge weakly to uniform measure on (0,1]. These are classical irrational-rotation facts, extracted for reuse by both the logarithmic and arbitrary-slope first-passage theorems; no quantitative equidistribution rate is asserted.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyRotation.lean",
+  "decl": [
+   "phase_ne_one_of_irrational",
+   "tendsto_irrational_phase_average",
+   "irrational_rotation_fract_pos",
+   "irrational_rotation_recurrent",
+   "irrational_rotation_equidistributed"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_geometry_interface.py",
+   "tests/tools/test_formalpedia_audits.py"
   ],
   "related_conjectures": []
  }

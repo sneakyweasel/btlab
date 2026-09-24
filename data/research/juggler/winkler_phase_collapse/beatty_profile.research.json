@@ -2,15 +2,21 @@
   "schema": "btlab-output/v2",
   "programme": "juggler",
   "research_id": "juggler/winkler_phase_collapse",
-  "created_utc": "2026-09-24T10:36:00.801878+00:00",
+  "created_utc": "2026-09-24T12:47:15.590039+00:00",
   "scope": "Exact integer counts; Arb enclosures using the proved positive mass identity; rounded display coordinates. Not a finite-depth asymptotic-error certificate.",
   "artifact_root": ".",
   "generator": {
     "command": [
       "python",
       "tools/export_beatty_profile.py",
+      "--depth",
+      "8000",
+      "--sample-count",
+      "1000",
+      "--bits",
+      "256",
       "--output",
-      ".build/artifacts/e067761306f4406cbaae7582e6057c52/work/data/research/juggler/winkler_phase_collapse/beatty_profile.json"
+      ".build/artifacts/b6a3bc9ba7274b9093afb3241d506332/work/data/research/juggler/winkler_phase_collapse/beatty_profile.json"
     ],
     "parameters": {
       "depth": 8000,
@@ -21,7 +27,7 @@
     "python": "3.13.9"
   },
   "source": {
-    "revision": "96e7ed1e8202bc462ddedbd2f87223e580c8eff7",
+    "revision": "adf1d02303bae72c816c8de6165c0413f002affe",
     "dirty": true,
     "coverage": "loaded local Python, project configuration, and explicit sources at manifest creation; not an execution or dependency audit",
     "files": [
@@ -57,8 +63,8 @@
       },
       {
         "path": "src/research/experiments/provenance.py",
-        "sha256": "aeeb49555812bc5d2a1ae3eca14227d85aae2aa765c6f5a259b50e1c2cb7c9c9",
-        "bytes": 15191,
+        "sha256": "aa58341fe373981b76c61a56bf429e002c43f56c2c653f3a05ddff95ad3b812c",
+        "bytes": 14904,
         "text": {
           "normalization": "utf8-crlf-to-lf",
           "sha256": "aa58341fe373981b76c61a56bf429e002c43f56c2c653f3a05ddff95ad3b812c",
@@ -165,11 +171,11 @@
   "inputs": [
     {
       "path": "data/research/juggler/arb_paper_audit/beatty.json",
-      "sha256": "311653a024450e848242253fbdec61618743b6278ece1e3cba626cdaf3be46d0",
+      "sha256": "58c982f18cd2b9ec49cca218c22cc74ffd9de086767a2bc0742ce25361c1fc9c",
       "bytes": 1855880,
       "text": {
         "normalization": "utf8-crlf-to-lf",
-        "sha256": "311653a024450e848242253fbdec61618743b6278ece1e3cba626cdaf3be46d0",
+        "sha256": "58c982f18cd2b9ec49cca218c22cc74ffd9de086767a2bc0742ce25361c1fc9c",
         "bytes": 1855880
       }
     }

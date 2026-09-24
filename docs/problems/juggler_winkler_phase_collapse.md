@@ -861,7 +861,9 @@ The current coverage map is deliberately asymmetric:
 | Exact original logarithmic word sets | `beta=log(2)/log(3)` | Checked |
 | Original fair-weight survivor phase formula | Logarithmic boundary | Checked; the full-interval theorem uses the chosen bias instead |
 | Explicit jump profile and original integer first-passage asymptotic | Every irrational `alpha>1` | Checked with actual counts, strict atoms and additive `o(1)` error |
-| Complete cluster set, limiting laws and geometric measure | Logarithmic slope | Checked; assembling the geometric family theorem remains next |
+| Positive actual crossing counts | Every real `0<beta<=1` | Checked with an explicit odd-then-even word witness |
+| Complete null perfect cluster set and singular empirical law | Every irrational `alpha>1` | Checked with exact gaps, envelope extrema and CDF plateaus |
+| Three-halves gap asymptotic, Minkowski and Gamma-law packages | Logarithmic slope | Checked; family assembly remains next |
 | Matching Hausdorff lower bounds | Explicit Diophantine hypotheses | Conditional concrete results; arithmetic inputs and a family theorem still need assembly |
 
 The weighted version of `BeattyEndpointAsymptotic` is now proved below.
@@ -1326,23 +1328,70 @@ its absolute summability, positivity and periodicity now cover every such
 irrational slope. Critical survival now tends to zero and the actual
 first-passage probabilities sum to one; the actual positive-index Beatty
 weights sum to `1/(alpha-1)`. The explicit strict jump profile and the
-original integer-count asymptotic now cover that whole family too. The next
-family inputs are positive dense phase atoms and their three-halves gap
-asymptotic, followed by the geometric and distributional assembly. Literature comparison
+original integer-count asymptotic now cover that whole family too. The complete null perfect cluster set, singular empirical law, exact
+CDF plateaus and envelope extrema now cover the family as well. The next
+family input is the three-halves gap asymptotic, followed by Minkowski
+content and local measure; the Gamma-law extension also remains separate. Literature comparison
 is separate from proof checking; existing paper claims and releases retain
 their earlier evidence labels.
+
+### Family cluster set, empirical law and consolidation (24 September)
+
+```text
+Mathematical target     Complete cluster set and singular empirical law for every irrational alpha>1.
+Novelty hypothesis      Extend the explicit geometric consequences to the full slope family.
+Falsifier               A zero crossing count or a mismatch of phase and endpoint conventions.
+Already killed by?      No matching recorded obstruction; these are word counts, not a termination claim.
+Existing machinery      Family phase theorem, generic jump-range geometry and irrational rotation.
+Maximum Phase-0 scope   Exact logarithmic bridge, positive dense atoms, cluster set and empirical law.
+Promotion criterion     Compiled public statements and expanded actual-count consumers with standard axioms.
+Stop criterion          Keep any new analytic premise explicit; leave the gap asymptotic to the next stage.
+```
+
+**EXACT — LEAN VERIFIED.** The all-odd then all-even word proves every
+crossing count positive, even at rational boundaries in `(0,1]` with weak
+survival. The generic irrational-rotation proof is extracted once and reused
+by the original and general developments. Positive dense distinct atoms,
+the exact weight sum and the original-count phase theorem identify the full
+family cluster set with the gap complement. It is nonempty, compact,
+perfect and null, with actual subsequences at both traces of every gap and
+eventual avoidance of compact gap interiors. Its exact envelope values are
+`liminf=1` and `limsup=alpha/(alpha-1)`.
+
+The empirical law of the actual ratios converges weakly to `F_*Uniform`.
+It is atomless and concentrated on the null cluster set, so is singular
+continuous. Its CDF satisfies `G(F(t))=t`, with value `delta_r` across the
+closed r-th gap. Threshold frequencies converge at every real threshold,
+and bounded continuous observables have the explicit phase-integral limit.
+The family quantifies over every irrational slope greater than one, without
+a rate or Diophantine hypothesis.
+
+The exact specialization module identifies general and logarithmic indices,
+phases, critical masses, weights and strict profiles. The original phase
+asymptotic now follows from the family proof; duplicate asymptotic machinery
+has been removed. This does not identify the differently tilted survivor
+profiles. The new statements and precise remaining scope are in Section 25
+of the [working note](../theory/juggler_beatty_first_passage_note.md).
+
+**PROMOTE** this bounded family geometry and law continuation. The sharp
+three-halves gap asymptotic, family Minkowski content and local geometric
+measure remain next; the canonical rotation comparison and arithmetic
+Hausdorff classification are prospective, not proved corollaries.
 
 ## Decision
 
 `PROMOTE` -- for every irrational slope above one, the actual normalized
-first-passage counts approach the exact strict jump series, with its full
-normalization checked. The following geometric and distributional package
-remains specialized to the logarithmic slope: the actual normalized certificate counts have the explicit positive
-jump-series asymptotic, with its full normalization and strict atom convention
-proved. The continuation identifies the full null perfect accumulation set,
-its exact gaps, the singular continuous empirical law with exact threshold
-frequencies and plateau levels, and the cube-root neighbourhood-volume law
-with dimension `2/3` and exact content given by the two-thirds law moment.
+first-passage counts approach the exact strict jump series with its full
+normalization. The complete cluster set is nonempty, compact, perfect and
+null; both traces of every gap are actual cluster values, and the liminf
+and limsup are exactly `1` and `alpha/(alpha-1)`. The family empirical law
+is singular continuous, with exact threshold frequencies and CDF plateaus.
+The original logarithmic phase theorem now specializes the general proof
+through exact weight and profile equalities.
+
+The following geometric and distributional refinements remain specialized
+to the logarithmic slope: the three-halves gap law, cube-root neighbourhood
+volume, dimension `2/3` and exact content given by the two-thirds law moment.
 The whole geometric limiting measure is the explicitly scaled
 `y^(2/3)` reweighting of the empirical law, with its probability normalization.
 The Hausdorff upper bound and finite critical measure are unconditional;

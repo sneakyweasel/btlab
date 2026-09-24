@@ -46,7 +46,8 @@ theorem actual_family_cluster_reciprocal : ∀ α : ℝ, 1 < α → Irrational �
   have hβ0 := one_div_pos.mpr hα0
   have hβ1 := (div_lt_one hα0).mpr hα1
   have hh := passageRatio_cluster_iff hβ0 hβ1 (by simpa using hα.inv) y
-  simp only [passageRatio, passageClusterSet, passagePhase,
+  unfold passageRatio at hh
+  simp only [passageClusterSet, passagePhase,
     passageJumpWeight_eq hβ0 hβ1, passageIndex] at hh
   simpa only [one_div, div_inv_eq_mul, mul_comm] using hh
 
@@ -71,7 +72,19 @@ theorem actual_family_cantor : ∀ α : ℝ, 1 < α → Irrational α →
     rw [he]
     exact ⟨passageClusterSet_nonempty hβ0 hβ1 hβ, isCompact_passageClusterSet hβ0 hβ1 hβ,
       perfect_passageClusterSet hβ0 hβ1 hβ, volume_passageClusterSet hβ0 hβ1 hβ⟩
-  simpa only [passageRatio, passageIndex, one_div, div_inv_eq_mul, mul_comm] using hh
+  unfold passageRatio at hh
+  simpa only [passageIndex, one_div, div_inv_eq_mul, mul_comm] using hh
+
+/-- The exact envelope is explicitly checked for every irrational slope
+above one, in the usual `alpha/(alpha-1)` normalization. -/
+theorem actual_family_envelope : ∀ α : ℝ, 1 < α → Irrational α →
+    liminf (passageRatio (1/α)) atTop = 1 ∧
+      limsup (passageRatio (1/α)) atTop = α/(α-1) := by
+  intro α hα1 hα
+  have hα0 : 0 < α := by linarith
+  have he : 1/(1-1/α) = α/(α-1) := by field_simp
+  simpa only [he] using passageRatio_liminf_limsup (one_div_pos.mpr hα0)
+    ((div_lt_one hα0).mpr hα1) (by simpa using hα.inv)
 
 /-- Both one-sided profile traces are actual ratio cluster values. -/
 theorem actual_gap_endpoints (β : ℝ) (hβ0 : 0 < β) (hβ1 : β < 1)
@@ -123,6 +136,7 @@ theorem actual_average_limit (β : ℝ) (hβ0 : 0 < β) (hβ1 : β < 1)
 #print axioms actual_positive_jump_weights
 #print axioms actual_family_cluster_reciprocal
 #print axioms actual_family_cantor
+#print axioms actual_family_envelope
 #print axioms actual_gap_endpoints
 #print axioms actual_gap_avoidance
 #print axioms actual_singular_empirical_law

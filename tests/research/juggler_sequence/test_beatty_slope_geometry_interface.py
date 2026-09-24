@@ -11,7 +11,8 @@ STANDARD = {"propext", "Classical.choice", "Quot.sound"}
 EXPECTED = {
     f"Problems.Juggler.BeattySlopeGeometryChecks.{name}" for name in (
         "actual_logarithmic_profile", "actual_positive_crossings", "actual_positive_jump_weights",
-        "actual_family_cluster_reciprocal", "actual_family_cantor", "actual_gap_endpoints",
+        "actual_family_cluster_reciprocal", "actual_family_cantor", "actual_family_envelope",
+        "actual_gap_endpoints",
         "actual_gap_avoidance", "actual_singular_empirical_law",
         "actual_profile_threshold_frequency", "actual_average_limit",
     )
