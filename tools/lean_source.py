@@ -21,14 +21,29 @@ SCOPE = re.compile(
     rf'(?P<kind>namespace|section|end)(?:\s+(?P<name>{NAME}))?\s*$')
 TOP = re.compile(r'^(?:#|namespace\b|section\b|end\b|open\b|variable\b|include\b|'
                  r'omit\b|attribute\b|export\b|example\b|set_option\b|notation\b)')
+BINDER_CONTEXT = re.compile(r'^(?:variable|include|omit)\b')
+
+"""Commands that change a declaration's binders without appearing in its header.
+
+A theorem inside ``section`` with ``variable (σ : Equiv.Perm (Fin L))`` quantifies over ``σ``,
+but its own header never mentions the binder.  Reporting that header as the complete statement
+hides hypotheses, so these commands are carried with the declarations in their scope.
+"""
 
 
 def name_parts(name: str) -> list[str]:
     return re.findall(SEGMENT, name)
 
 
-def context_lines(text: str, masked_lines: list[str] | None = None) -> list[tuple[int, str, str, bool, int]]:
-    namespace, private = '', False
+def context_lines(text: str, masked_lines: list[str] | None = None
+                  ) -> list[tuple[int, str, str, bool, int, tuple[int, ...]]]:
+    """Top-level commands with their namespace, privacy, start line and binder context.
+
+    The last field lists the start lines of the ``variable``/``include``/``omit`` commands in
+    scope, innermost last; ``end`` drops those opened inside the closed scope, as Lean does,
+    and a ``... in`` form reaches only the command after it.
+    """
+    namespace, private, binders, once = '', False, (), ()
     stack = []
     pending, first = '', 0
     result = []
@@ -48,9 +63,9 @@ def context_lines(text: str, masked_lines: list[str] | None = None) -> list[tupl
             kind, name, mods = scope['kind'], scope['name'], scope['mods'].split()
             if kind == 'end':
                 if stack:
-                    namespace, private = stack.pop()
+                    namespace, private, binders = stack.pop()
             else:
-                stack.append((namespace, private))
+                stack.append((namespace, private, binders))
                 if 'private' in mods:
                     private = True
                 elif 'public' in mods:
@@ -61,7 +76,15 @@ def context_lines(text: str, masked_lines: list[str] | None = None) -> list[tupl
             continue
         if re.match(r'^(?:(?:noncomputable|public|private)\s+)*(namespace|section|end)\b', command):
             raise ValueError(f'Unsupported scope at line {number}: {command}')
-        result.append((number, command, namespace, private, start))
+        if BINDER_CONTEXT.match(command) and re.search(r'\sin$', command):
+            # ``variable ... in`` and friends reach only the next command.
+            result.append((number, command, namespace, private, start, binders + once))
+            once = once + (start,)
+            continue
+        if BINDER_CONTEXT.match(command):
+            binders = binders + (start,)
+        result.append((number, command, namespace, private, start, binders + once))
+        once = ()
     return result
 
 
@@ -123,17 +146,27 @@ def scan(text: str, module: str, file: str) -> list[dict]:
     lines = text.splitlines(keepends=True)
     masked_lines = tb.source_commands(text)
     contexts = context_lines(text, masked_lines)
-    heads = [(number, command, namespace, private, start, match)
-             for number, command, namespace, private, start in contexts
+    heads = [(number, command, namespace, private, start, binders, match)
+             for number, command, namespace, private, start, binders in contexts
              if (match := HEAD.match(command))]
-    boundaries = sorted({start for _, command, _, _, start in contexts
+    boundaries = sorted({start for _, command, _, _, start, _ in contexts
                          if HEAD.match(command) or TOP.match(command)} | {len(lines) + 1})
+
+    def command_text(first: int) -> str:
+        stop = next(n for n in boundaries if n > first)
+        # Trailing lines that are blank once comments are masked belong to what follows,
+        # such as the next declaration's docstring.
+        while stop - 1 > first and not masked_lines[stop - 2].strip():
+            stop -= 1
+        return ''.join(lines[first - 1:stop - 1]).strip()
+
     rows = []
-    for number, command, namespace, private, start, match in heads:
+    for number, command, namespace, private, start, binders, match in heads:
         stop = next(n for n in boundaries if n > number)
         source = ''.join(lines[start - 1:stop - 1])
         masked = '\n'.join(masked_lines[start - 1:stop - 1])
         sig, complete = header(source, masked)
+        context = [command_text(first) for first in binders]
         modifiers = match['modifiers'].split()
         private = 'private' in modifiers or (private and 'public' not in modifiers)
         name = match['name']
@@ -141,7 +174,7 @@ def scan(text: str, module: str, file: str) -> list[dict]:
                 else '.'.join(filter(None, (namespace, name))))
         body_tokens = set(tb.identifier_tokens(masked))
         trust = ('open' if match['kind'] == 'axiom' or body_tokens & {'sorry', 'admit'} else
-                 'compiler' if 'native_decide' in body_tokens else 'kernel')
+                 'compiler' if 'native_decide' in body_tokens else 'unmarked')
         attrs = re.findall(r'@\[([^\]]+)\]', source[:max(len(sig), len(command))])
         rows.append({
             'id': f'{module}::private::{full}@{number}' if private else full,
@@ -150,8 +183,11 @@ def scan(text: str, module: str, file: str) -> list[dict]:
             'visibility': 'private' if private else 'public',
             'kind': match['kind'], 'module': module, 'file': file, 'line': number,
             'end_line': stop - 1, 'doc': doc_before(lines, start),
-            'signature': sig, 'signature_complete': complete, 'signature_kind': 'source',
+            'signature': sig, 'signature_complete': complete and not context,
+            'signature_context': context, 'signature_kind': 'source',
             'attributes': attrs, 'deprecated': any('deprecated' in a for a in attrs),
-            'trust': trust, 'trust_basis': 'source markers only; not an axiom/dependency audit',
+            'trust': trust,
+            'trust_basis': ('source markers only: unmarked means no sorry, admit, axiom or '
+                            'native_decide in this text; not compilation or an axiom audit'),
         })
     return rows

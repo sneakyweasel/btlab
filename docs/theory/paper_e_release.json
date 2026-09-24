@@ -707,12 +707,12 @@
     {
       "path": "tests/unit/test_paper_e_release.py",
       "mode": "text",
-      "sha256": "b44ee00553de127827039eec594480cbff9418e9c0b04287d8f845dcc569af32"
+      "sha256": "89d29be1c7ffdb65c9a99a6aad2fd5f55c0bea37f108043681eaab922ae92650"
     },
     {
       "path": "tools/build_paper_e.py",
       "mode": "text",
-      "sha256": "2b66b23deb8b2f64cf2bd7469ec5b400ca8558d0b373a86473929fb0664af12d"
+      "sha256": "789f33103cca796c3080d87a89c7704cdcc4abbada7a3021a458cf4eba252082"
     },
     {
       "path": "tools/check_paper_e.py",

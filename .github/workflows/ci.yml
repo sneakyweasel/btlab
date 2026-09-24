@@ -7,6 +7,8 @@ on:
 jobs:
   python:
     runs-on: ubuntu-latest
+    # Every gate after Install runs even when an earlier one fails, so a single
+    # pre-existing failure cannot hide the state of the others; the job still fails.
     steps:
       - uses: actions/checkout@v4
         with:
@@ -19,23 +21,37 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install
+        id: install
         run: |
           python -m pip install "uv>=0.12,<0.13"
           python tools/lab.py prepare --apply --profile python
           echo "$PWD/.build/python/bin" >> "$GITHUB_PATH"
       - name: Ledger is generated
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: python tools/render_theorem_ledger.py --check
       - name: Research references and output manifests
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: python tools/lab.py check --hashes
       - name: Preprints and publication kits
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: python tools/preprints.py --check
       - name: Public Lean naming and documentation
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: python tools/lean_style.py
+      - name: Recorded axiom artifacts answer their checks
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: python tools/axiom_audit.py --check
+      - name: LEAN VERIFIED ledger rows name their declarations
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: python tools/formalpedia.py ledger-check
       - name: Ruff (runtime, unused, repeated keys)
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: python -m ruff check .
       - name: Pyright (bt core)
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: python -m pyright src/bt
       - name: Pytest
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         # `-n auto --dist loadfile` is what pyproject.toml's addopts comment says to use for
         # the full suite; it is deliberately not in addopts because it spawns workers for
         # targeted runs too. This job IS the full suite, so it is the case that comment
@@ -63,8 +79,24 @@ jobs:
           python -m pip install "uv>=0.12,<0.13"
           python tools/lab.py prepare --apply --profile python
           echo "$PWD/.build/python/bin" >> "$GITHUB_PATH"
+      # Keep pinned preparation and sample resources while its build log is captured.
+      # The build ran the 16 GB runner out of memory near its end (samples reached
+      # 15.8 GB) and the runner was killed. Swap on the free disk turns that peak into a
+      # slowdown; the samples name the largest Lean processes so the module can be found.
+      - name: Add swap for peak Lean memory
+        run: |
+          sudo swapoff -a || true
+          sudo fallocate -l 16G /mnt/btlab.swap
+          sudo chmod 600 /mnt/btlab.swap
+          sudo mkswap /mnt/btlab.swap
+          sudo swapon /mnt/btlab.swap
+          free -m
       - name: Prepare pinned Lean packages and build active graph
-        run: python tools/lab.py prepare --apply
+        run: |
+          (while true; do free -m; ps -eo rss=,args= --sort=-rss | sed -n '1,8p'; sleep 60; done) &
+          monitor=$!
+          trap 'kill "$monitor" 2>/dev/null || true' EXIT
+          python tools/lab.py prepare --apply
       - name: Lean-dependent gates
         run: >
           python tools/lab.py test -- --runslow -q
@@ -72,3 +104,38 @@ jobs:
           tests/research/juggler_sequence/test_paper_a_trust_boundary.py
           tests/research/juggler_sequence/test_manuscript_self_audit.py
           tests/research/juggler_sequence/test_lean_interface_contracts.py
+      # formalpedia quotes every AxiomCheck*.expected as a declaration's axiom audit; only
+      # rerunning the checks shows that the recorded answers still describe current proofs.
+      - name: Recorded axiom artifacts match fresh Lean output
+        run: python tools/axiom_audit.py --run --workers 2
+      # The compiled formalpedia layer (elaborated types, proof dependencies, collectAxioms)
+      # otherwise exists only where someone built it by hand. Building it here keeps the
+      # exporter working and publishes the snapshot for local and agent use.
+      - name: Formalpedia semantic export
+        if: ${{ !cancelled() }}
+        run: python tools/lab.py build
+      # The export records Lean's collectAxioms for every local declaration; every
+      # declaration a LEAN VERIFIED ledger row names must carry only the axioms its
+      # lean_trust allows.
+      - name: LEAN VERIFIED ledger rows carry kernel-checked axioms
+        run: python tools/formalpedia.py ledger-check --require-compiled
+      - name: Upload formalpedia semantic snapshot
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: formalpedia-semantic
+          path: .cache/formalpedia/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Upload build logs
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-build-logs
+          path: |
+            .build/formalpedia/
+            .build/preparation/
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 14

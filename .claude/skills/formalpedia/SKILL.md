@@ -34,6 +34,9 @@ python tools/formalpedia.py show Problems.Juggler.ScaleAverage.FailureMassLowerB
 python tools/formalpedia.py claim J-pressure-scale-average-contagion-transfer
 python tools/formalpedia.py impact Problems.Juggler.FateScaleAverage
 python tools/formalpedia.py status
+python tools/formalpedia.py audits
+python tools/formalpedia.py ledger-check
+python tools/formalpedia.py mathlib "Real.sqrt, _ * _"
 ```
 
 The MCP equivalents are `formalpedia_search`, `formalpedia_show`,
@@ -53,9 +56,33 @@ are bounded; `show` returns the full source header without the old line limit.
 that a declaration covers the entire English claim. Check statements together.
 
 The source `trust` marker detects direct `native_decide` or incomplete proof
-markers. It does not establish compilation, transitive trust, or kernel axiom
-dependencies. Use the executable Lean audits for those claims. Do not infer
-an unconditional result from a conditional theorem's name or documentation.
+markers; `unmarked` only means none was found in the declaration's text. It does
+not establish compilation, transitive trust, or kernel axiom dependencies.
+Use the executable Lean audits for those claims. Do not infer an unconditional
+result from a conditional theorem's name or documentation.
+
+When `signature_complete` is false, read `signature_context`: section `variable`,
+`include` and `omit` commands add binders the header does not show.
+
+`axiom_audits` on `show`, and `axiom_audit_coverage` on `claim`, quote committed
+`#print axioms` output from `formal/AxiomCheck*.expected`. That is executed Lean
+evidence as of the recording commit; an empty list means no check covers the
+declaration. `python tools/formalpedia.py audits` lists missing and stale
+artifacts.
+
+Before retagging a ledger row `EXACT — LEAN VERIFIED`, name its declarations in
+`decl` and run `python tools/formalpedia.py ledger-check`; with a semantic
+export present it also checks each declaration's compiled axioms against the
+row's `lean_trust`. The CLI keeps its index in `.cache/formalpedia/` and
+rebuilds it whenever a source, the ledger or an axiom artifact changes.
+
+Formalpedia's catalogue covers this repository only. Search Mathlib with
+`python tools/formalpedia.py mathlib "<Loogle query>"` (MCP
+`formalpedia_mathlib_search`), which queries the public Loogle service and marks
+each hit `declared` in the pinned Mathlib, `module_missing`,
+`not_declared_literally` or `unchecked`. Loogle tracks a newer Mathlib: confirm
+a hit with `#check` through lean-lsp. Inside Lean, `#loogle`, `#leansearch` and
+`exact?` work too.
 
 ## Public interface policy
 

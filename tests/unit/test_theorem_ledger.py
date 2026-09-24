@@ -507,7 +507,10 @@ def test_recorded_trust_matches_what_the_declarations_actually_are():
         for name in decls:
             matches = fp_identities.resolve_declarations(index, name, file=fp_identities.lean_key(row.get('lean')))
             assert len(matches) == 1, f"{row['id']}: {name} must resolve uniquely"
-            found[name] = matches[0]["trust"]
+            # The ledger records ``kernel`` for a declaration whose source carries no trust
+            # marker; the source scan calls that ``unmarked`` because it compiles nothing.
+            source_trust = matches[0]["trust"]
+            found[name] = "kernel" if source_trust == "unmarked" else source_trust
         levels = set(found.values())
         expected = levels.pop() if len(levels) == 1 else "mixed"
         assert recorded == expected, f"{row['id']}: says {recorded}, Lean says {expected} ({found})"

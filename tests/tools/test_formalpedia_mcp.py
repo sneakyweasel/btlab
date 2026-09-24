@@ -24,7 +24,8 @@ def test_mcp_discovery_is_structured_and_read_only():
         tools = await server.mcp.list_tools()
         assert {t.name for t in tools} == {
             'formalpedia_search', 'formalpedia_show', 'formalpedia_claim',
-            'formalpedia_impact', 'formalpedia_status', 'formalpedia_lint',
+            'formalpedia_impact', 'formalpedia_status', 'formalpedia_lint', 'formalpedia_axiom_audits',
+            'formalpedia_mathlib_search', 'formalpedia_ledger_check',
             'formalpedia_research_search', 'formalpedia_research_context', 'formalpedia_research_check',
             'formalpedia_lab_doctor', 'formalpedia_change_impact', 'formalpedia_verification_plan',
             'formalpedia_capabilities', 'formalpedia_semantic_status', 'formalpedia_semantic_show',
@@ -33,7 +34,8 @@ def test_mcp_discovery_is_structured_and_read_only():
         for tool in tools:
             assert tool.annotations.readOnlyHint
             assert tool.annotations.destructiveHint is False
-            assert tool.annotations.openWorldHint is False
+            # Only the Loogle search reaches outside the machine, and it says so.
+            assert tool.annotations.openWorldHint is (tool.name == 'formalpedia_mathlib_search')
             assert tool.outputSchema
         resources = await server.mcp.list_resources()
         assert {str(r.uri) for r in resources} == {

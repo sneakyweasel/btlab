@@ -98,6 +98,19 @@ class SemanticCatalogue:
         return exact or [r for r in rows if r['name'].split('.')[-1] == name]
 
     @locked
+    def axioms(self, identities: list[str]) -> dict:
+        """Kernel axiom lists for many ``Module::name`` identities after one freshness check.
+
+        An identity absent from the current export, or in a stale module, maps to None.
+        Raises ValueError when no current or partial export exists.
+        """
+        data, status = self._current()
+        rows = {r['id']: r for r in data['declarations']}
+        return dict(self._query_info(status), axioms={
+            identity: (list(rows[identity].get('axioms') or []) if identity in rows else None)
+            for identity in identities})
+
+    @locked
     def show(self, name: str, include_ast: bool = False) -> dict:
         data, status = self._current(module=name.split('::', 1)[0] if '::' in name else None)
         rows = self._query_resolve(data['declarations'], name)

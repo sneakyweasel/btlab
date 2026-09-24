@@ -74,6 +74,17 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--include-private", action="store_true")
     p = sub.add_parser("impact", help="modules rebuilt by a change to this module or file")
     p.add_argument("target")
+    p = sub.add_parser("mathlib", help="search Mathlib through Loogle; hits checked against the pinned Mathlib")
+    p.add_argument("query", help='a name, type pattern or subexpression, e.g. "Real.sqrt, _ * _"')
+    p.add_argument("--limit", type=int, default=20)
+    p.add_argument("--json", action="store_true")
+    p = sub.add_parser("ledger-check", help="LEAN VERIFIED ledger rows: named declarations and compiled axioms")
+    p.add_argument("--require-compiled", action="store_true",
+                   help="fail when no current semantic export can be read (CI's Lean job)")
+    p = sub.add_parser("audits", help="recorded #print axioms artifacts: consistency and coverage")
+    p.add_argument("--limit", type=int, default=50)
+    p.add_argument("--offset", type=int, default=0)
+    p.add_argument("--check", action="store_true", help="exit 1 when any artifact problem is found")
     sub.add_parser("dag", help="rebuild the module graph over ledger-carrying modules")
     sub.add_parser("propose", help="rank declarations for rows that name none")
     sub.add_parser("papers", help="each manuscript's reachable trust surface")
@@ -130,9 +141,40 @@ def main(argv: list[str] | None = None) -> int:
             print(str(exc), file=sys.stderr)
             return 2
 
-    if args.cmd in {"search", "show", "status", "claim", "impact"}:
+    if args.cmd == "mathlib":
+        from . import mathlib as _fp_mathlib
+        try:
+            result = _fp_mathlib.search(args.query, limit=args.limit)
+        except ValueError as exc:
+            print(str(exc), file=sys.stderr)
+            return 2
+        if args.json:
+            print(_fp_source.render(result), end="")
+        else:
+            print(f"Loogle ({result['status']}); pinned Mathlib {result['mathlib_pinned_rev']}")
+            for hit in result.get("hits", []):
+                print(f"{hit['name']}  [{hit['module']}; pinned: {hit['pinned']['status']}]")
+                print(f"    {hit['type']}")
+            for key in ("reason", "remedy"):
+                if result.get(key):
+                    print(f"{key}: {result[key]}")
+            if result.get("suggestions"):
+                print("suggestions: " + "; ".join(result["suggestions"]))
+            print(result["limitations"])
+        return 0 if result["status"] in {"found", "no_hits"} else 1
+
+    if args.cmd == "ledger-check":
         from formalpedia_catalog import Catalogue
-        catalogue = Catalogue()
+        from . import ledger_evidence as _fp_evidence
+        index, ledger, _ = Catalogue(persist=_fp_workspace.CACHE / 'live_catalogue.json').snapshot()
+        result = _fp_evidence.check(index, ledger, require_compiled=args.require_compiled)
+        print(_fp_source.render(result), end="")
+        return 1 if result["problems"] else 0
+
+    if args.cmd in {"search", "show", "status", "claim", "impact", "audits"}:
+        from formalpedia_catalog import Catalogue
+        # One CLI call per process: reuse the built index while nothing it reads changed.
+        catalogue = Catalogue(persist=_fp_workspace.CACHE / 'live_catalogue.json')
         try:
             if args.cmd == "search":
                 result = catalogue.search(args.text, namespace=args.namespace, module=args.module,
@@ -155,6 +197,10 @@ def main(argv: list[str] | None = None) -> int:
                 result = catalogue.claim(args.id)
             elif args.cmd == "impact":
                 result = catalogue.impact(args.target)
+            elif args.cmd == "audits":
+                result = catalogue.audits(limit=args.limit, offset=args.offset)
+                print(_fp_source.render(result), end="")
+                return 1 if args.check and result["problem_count"] else 0
             else:
                 result = catalogue.status()
             print(_fp_source.render(result), end="")

@@ -3,12 +3,12 @@
     "formalpedia": {
       "type": "stdio",
       "command": "python",
-      "args": ["/absolute/path/to/balanced_ternary/tools/formalpedia_mcp.py"]
+      "args": ["tools/formalpedia_mcp.py"]
     },
     "lean-lsp": {
       "type": "stdio",
       "command": "python",
-      "args": ["/absolute/path/to/balanced_ternary/tools/lean_lsp_launcher.py"]
+      "args": ["tools/lean_lsp_launcher.py"]
     }
   }
 }

@@ -99,10 +99,54 @@ file. The legacy `ledger` field is a file association, not evidence that every
 declaration proves that claim. Even an exact reference is not a new coverage
 review. Module import dependencies are likewise labelled as module-level.
 
-Source parsing is not elaboration: macro-generated names, implicit variables
-introduced by sections, resolved notation, and private compiler names require
-Lean or the Lean language server. The source `trust` field detects direct
-markers only. It does not certify compilation or transitive axiom dependencies.
+Source parsing is not elaboration: macro-generated names, resolved notation,
+which section variables a statement actually uses, and private compiler names
+require Lean or the Lean language server. A declaration with `variable`,
+`include` or `omit` commands in scope lists them in `signature_context` and has
+`signature_complete: false`; its header alone omits those binders. The source
+`trust` field detects direct markers only: `unmarked` means no `sorry`, `admit`,
+`axiom` or `native_decide` in the declaration's text, `compiler` means
+`native_decide`, and `open` means an incomplete marker or an axiom. It does not
+certify compilation or transitive axiom dependencies.
+
+Executed axiom evidence comes from the committed `formal/AxiomCheck*.lean`
+checks and their recorded `.expected` output. `show` attaches a declaration's
+recorded answers as `axiom_audits`, `claim` reports `axiom_audit_coverage` for
+its declarations, and `python tools/formalpedia.py audits` (MCP
+`formalpedia_axiom_audits`) lists missing or stale artifacts and how many exact
+ledger declarations no artifact covers. A recorded answer describes the commit
+that recorded it; `python tools/axiom_audit.py --check` verifies statically that
+each artifact still answers its check, and `--run` reruns every check with Lean
+(CI's Lean job does both). To audit a new cited result, add a `#print axioms`
+line to the relevant check and record its output with
+`python tools/axiom_audit.py --run --write --only <check>.lean`.
+
+`python tools/formalpedia.py ledger-check` (MCP `formalpedia_ledger_check`)
+tests the ledger's strongest label. Every `EXACT — LEAN VERIFIED` row must name
+its declarations in `decl`; rows that named none on 24 September 2026 are held
+in `data/research/formalpedia/lean_verified_without_declarations.json`, which
+may only shrink. When a current semantic export exists, each named
+declaration's recorded Lean axioms must be the ones the row's `lean_trust`
+allows: Mathlib's three for `kernel`, plus `Lean.ofReduceBool`,
+`Lean.trustCompiler` and per-use `native_decide` axioms only for declarations
+a `mixed` or `compiler` row permits,
+and never `sorryAx`. CI's Lean job builds the export and runs the check with
+`--require-compiled`. Neither part judges whether a declaration states the
+English claim.
+
+The source catalogue indexes this repository only, not Mathlib. Before proving
+a general lemma, search Mathlib too. `python tools/formalpedia.py mathlib
+"<query>"` (MCP `formalpedia_mathlib_search`) sends a Loogle query (a name, a
+type pattern such as `_ * (_ ^ _)`, or a conclusion `|- _`) to the public
+Loogle service and checks every hit against the Mathlib pinned in
+`formal/lake-manifest.json`: `declared` when the pinned source declares it,
+`module_missing` or `not_declared_literally` when it may be absent or generated
+at that revision, `unchecked` when the packages are not installed. Loogle
+indexes a recent Mathlib, so confirm a hit with `#check` before relying on it.
+Only the query text leaves the machine; the service must be reachable
+(`loogle.lean-lang.org`). Inside Lean, the pinned `LeanSearchClient` package
+provides `#loogle` and `#leansearch`, and `exact?` and `apply?` search the
+imported environment offline.
 Use the executable Lean audits for those claims. No metadata silently promotes
 a theorem or discharges an assumption.
 
@@ -148,16 +192,21 @@ Install `python -m pip install -r tools/requirements-formalpedia.txt` and run
 stdio transport. Use `--root <checkout>` to read another worktree explicitly;
 the root reported by `formalpedia_capabilities` identifies its data source.
 The SDK dependency stays on the supported v1 line. Configure a `formalpedia` entry alongside the
-existing `lean-lsp` entry; use absolute interpreter and script paths in a
-machine-local `.mcp.json`. An example is in
-[the server configuration template](../../tools/formalpedia_mcp.example.json).
+existing `lean-lsp` entry in a machine-local `.mcp.json` (it is gitignored).
+[The server configuration template](../../tools/formalpedia_mcp.example.json)
+uses repository-relative script paths, which work for clients that launch
+servers from the checkout root, such as Claude Code's project scope: copy it to
+`.mcp.json`. For clients that launch elsewhere, use absolute interpreter and
+script paths.
 For Codex, register the server using `codex mcp add btlab-formalpedia --env
 PYTHONUTF8=1 -- <absolute-python> <absolute-server-script>`; this is a separate
 client configuration from `.mcp.json`. See the
 [official Codex MCP guide](https://developers.openai.com/codex/mcp).
 
-The six Lean tools are `formalpedia_search`, `formalpedia_show`, `formalpedia_claim`,
-`formalpedia_impact`, `formalpedia_status`, and `formalpedia_lint`. They return
+The eight local Lean tools are `formalpedia_search`, `formalpedia_show`,
+`formalpedia_claim`, `formalpedia_impact`, `formalpedia_status`,
+`formalpedia_lint`, `formalpedia_axiom_audits` and `formalpedia_ledger_check`; `formalpedia_mathlib_search`
+queries Loogle. They return
 structured objects, bounded search pages, full statements on demand, explicit
 ambiguities, and snapshot identifiers. Guide and status resources and the
 `find_existing_result` prompt provide the discovery workflow.
@@ -168,8 +217,9 @@ research programmes to dossiers, data, decisions, and known obstructions. See
 the [research catalogue guide](research_catalogue.md). The existing server
 configuration is shared; reconnect once to discover newly added tools.
 
-All server tools are local and read-only. They neither edit proofs nor invoke
-external advisory services. Source-catalogue queries refresh their in-memory
+All server tools are read-only and none edits proofs or invokes an external
+advisory service. All are local except `formalpedia_mathlib_search`, which
+sends its query text to the public Loogle service and is annotated as such. Source-catalogue queries refresh their in-memory
 snapshot when files change. Semantic queries use fresh modules from explicitly built
 compiler snapshots and never start a build. Use `lean-lsp` to
 inspect goals, check a candidate in context, and verify a proof. Reconnect an

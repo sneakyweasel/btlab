@@ -116,6 +116,10 @@ discussion and most LFS b-file contents are not. Use `oeis_status` for current
 coverage. The [Juggler neighbourhood](docs/problems/juggler_oeis_neighbourhood.md)
 has already been swept; do not repeat that search without a new question.
 
+Formalpedia's `formalpedia_mathlib_search` sends the supplied query to public
+Loogle. Other discovery tools stay local. Its source matches are not Lean
+elaboration; confirm applicability against the installed pinned Mathlib.
+
 The local Arb MCP performs bounded numerical computations in isolated workers.
 Use `arb_compare` for tri-state decisions, `arb_production_root` for positive
 production sums, and `arb_paper_c_models` / `arb_paper_c_rate` for canonical

@@ -160,6 +160,23 @@ def test_complete_header_keeps_default_arguments_and_late_hypotheses():
     assert 'exact hLast' not in row['signature']
 
 
+def test_section_variables_travel_with_the_declarations_in_their_scope():
+    """Regression: a header under ``variable`` was reported as the complete statement."""
+    text = ('namespace A\nvariable {n : Nat}\n/-- Doc. -/\ntheorem t1 : n = n := rfl\n'
+            'section S\nvariable (m : Nat)\n  (h : m = m)\n\n/-- Next. -/\nomit h in\n'
+            'theorem t2 : m = m := rfl\ntheorem t3 : m = m := rfl\nend S\n'
+            'theorem t4 : True := trivial\nend A\ntheorem t5 : True := trivial\n')
+    rows = {d['name']: d for d in lean_source.scan(text, 'A', 'formal/A.lean')}
+    outer, inner = 'variable {n : Nat}', 'variable (m : Nat)\n  (h : m = m)'
+    assert rows['t1']['signature_context'] == [outer]
+    assert rows['t2']['signature_context'] == [outer, inner, 'omit h in']
+    assert rows['t3']['signature_context'] == [outer, inner]
+    assert rows['t4']['signature_context'] == [outer]
+    assert rows['t5']['signature_context'] == []
+    assert [rows[n]['signature_complete'] for n in ('t1', 't2', 't3', 't4', 't5')] == [
+        False, False, False, False, True]
+
+
 def test_comments_and_strings_are_not_declarations_or_trust_markers():
     text = ('namespace N\n/-- Mentions sorry and native_decide. -/\n'
             'def message : String := "native_decide\\n theorem fake : True"\n'
@@ -167,7 +184,7 @@ def test_comments_and_strings_are_not_declarations_or_trust_markers():
             'theorem good : True := by\n  /- sorry -/\n  trivial\nend N\n')
     rows = lean_source.scan(text, 'N', 'formal/N.lean')
     assert [d['name'] for d in rows] == ['message', 'good']
-    assert {d['trust'] for d in rows} == {'kernel'}
+    assert {d['trust'] for d in rows} == {'unmarked'}
 
 
 def test_headers_keep_boolean_and_pipe_operators_but_stop_at_equations():
@@ -319,3 +336,65 @@ def test_theorem_names_preserve_conventional_uppercase_object_tokens():
         '/-- An interval law. -/\ntheorem Icc_subset_Icc : True := trivial\nend N\n',
         'N', 'formal/N.lean')
     assert all(v['rule'] != 'theorem_case' for v in lean_style.violations({'declarations': rows}))
+
+
+def test_a_persisted_index_is_reused_only_while_its_inputs_are_unchanged(library, monkeypatch):
+    """The CLI's on-disk index must never answer for sources, ledger or code it did not read."""
+    import os
+    folder, ledger = library
+    cache = fp_workspace.ROOT / 'cache/live.json'
+    source = write(folder, 'A', 'namespace N\ntheorem first : True := trivial\nend N\n')
+    built = Catalogue(persist=cache)
+    first = built.show('N.first')
+    assert cache.is_file() and built.search('first')['total'] == 1
+
+    calls = []
+    real_build = fp_source.build
+    monkeypatch.setattr(fp_source, 'build', lambda *args: calls.append(1) or real_build(*args))
+    reused = Catalogue(persist=cache)
+    assert reused.show('N.first') == first and reused.search('first')['total'] == 1
+    assert calls == []
+
+    def bump(path):
+        stat = path.stat()
+        os.utime(path, ns=(stat.st_atime_ns, stat.st_mtime_ns + 1_000_000_000))
+
+    write(folder, 'A', 'namespace N\ntheorem second : True := trivial\nend N\n')
+    bump(source)
+    assert Catalogue(persist=cache).show('N.second')['status'] == 'found' and calls == [1]
+    ledger.write_text('[ ]', encoding='utf-8')
+    bump(ledger)
+    Catalogue(persist=cache).status()
+    assert calls == [1, 1]
+    monkeypatch.setattr(Catalogue, '_code', staticmethod(lambda: 'changed indexing code'))
+    Catalogue(persist=cache).status()
+    assert calls == [1, 1, 1]
+    cache.write_text('not json', encoding='utf-8')
+    assert Catalogue(persist=cache).show('N.second')['status'] == 'found' and len(calls) == 4
+
+
+def test_restored_cache_uses_topic_claims_locations_and_audit_snapshot(library):
+    folder, topic = library
+    write(folder, 'A', 'namespace N\ntheorem first : True := trivial\nend N\n')
+    row = {'id': 'J-cache', 'source': 'formal/Problems/A.lean', 'lean': 'Problems/A.lean',
+           'decl': 'N.first', 'tag': 'EXACT — HUMAN PROOF', 'statement': 'A claim.'}
+    topic.write_text(json.dumps([row]), encoding='utf-8')
+    cache = fp_workspace.ROOT / 'cache/live.json'
+    first = Catalogue(persist=cache).claim('J-cache')
+    assert Catalogue(persist=cache).claim('J-cache') == first
+    moved = topic.with_name('moved.json')
+    topic.rename(moved)
+    second = Catalogue(persist=cache).claim('J-cache')
+    assert second['claim_location']['path'].endswith('moved.json')
+    assert first['snapshot'] != second['snapshot']
+    check = fp_workspace.FORMAL / 'AxiomCheckTest.lean'
+    check.write_text('#print axioms N.first\n', encoding='utf-8')
+    check.with_suffix('.expected').write_text("'N.first' depends on axioms: [propext]\n", encoding='utf-8')
+    third = Catalogue(persist=cache).claim('J-cache')
+    assert third['snapshot'] != second['snapshot']
+    assert third['axiom_audit_coverage']['audited'] == 1
+    assert Catalogue(persist=cache).claim('J-cache') == third
+    saved = json.loads(cache.read_text(encoding='utf-8'))
+    del saved['documents']
+    cache.write_text(json.dumps(saved), encoding='utf-8')
+    assert Catalogue(persist=cache).claim('J-cache') == third

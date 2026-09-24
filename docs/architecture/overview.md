@@ -79,6 +79,8 @@ Formalpedia's entry point is `tools/formalpedia.py`. Its implementation lives in
 | `graph` | Lean imports and paper-root reachability |
 | `matching`, `verdicts`, `reports` | Local claim matching, recorded advisory evidence and reports |
 | `advisory` | Explicit optional external review clients and jobs |
+| `audits`, `ledger_evidence` | Recorded axiom artifacts and compiled claim trust checks |
+| `mathlib` | Explicit Loogle queries and local package source matches |
 | `semantic_common`, `semantic_store`, `semantic_query` | Freshness, immutable module storage and read-only compiled queries |
 | `semantic_build` | Explicit Lean compilation/export and atomic publication |
 | `cli` | Command dispatch and explicit artifact writers |

@@ -54,7 +54,7 @@ def _key(ref: str) -> str:
 def drifts() -> list[BD.Drift]:
     if not BD.refs_are_visible(REPO):
         pytest.skip("no remote refs at all (shallow or single-branch clone)")
-    return BD.report(REPO)
+    return BD.report(REPO, base='HEAD')
 
 
 def test_the_symbolic_head_alias_is_never_scanned_as_a_branch() -> None:
@@ -116,6 +116,31 @@ def test_acknowledgements_are_not_stale(drifts: list[BD.Drift]) -> None:
         "real outstanding work."
     )
 
+
+
+def test_the_checked_out_branch_is_not_scanned_but_others_are(tmp_path, monkeypatch) -> None:
+    """A branch under test cannot acknowledge itself; every other branch is still read."""
+    import subprocess
+
+    for name in ('GITHUB_HEAD_REF', 'GITHUB_REF_NAME'):
+        monkeypatch.delenv(name, raising=False)
+
+    def git(*args):
+        return subprocess.run(['git', '-c', f'safe.directory={tmp_path.as_posix()}',
+                               '-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid',
+                               '-c', 'commit.gpgsign=false', *args], cwd=tmp_path,
+                              check=True, capture_output=True, text=True).stdout.strip()
+
+    git('init', '-b', 'main')
+    git('commit', '--allow-empty', '-m', 'Base')
+    git('branch', 'other')
+    git('checkout', '-b', 'feature')
+    assert BD.branch_refs(tmp_path) == ['other']
+    git('checkout', 'main')
+    assert BD.branch_refs(tmp_path) == ['feature', 'other']
+    git('checkout', '--detach', 'feature')
+    assert set(BD.branch_refs(tmp_path)) == {'feature', 'other'}
+    assert BD.report(tmp_path, base='HEAD') == []
 
 
 def test_files_are_counted_against_the_merge_base_not_main(tmp_path) -> None:

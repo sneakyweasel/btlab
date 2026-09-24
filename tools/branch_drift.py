@@ -69,11 +69,19 @@ def branch_refs(repo: Path, base: str = "main") -> list[str]:
     origin/HEAD points at -- and the gate compared the base against an alias of itself
     while printing the same all-clear it prints when it has really checked branches.
     Symbolic refs are filtered on the FULL name here, which is the one that carries /HEAD.
+
+    The branch under test is skipped too. Its contents are this working tree, so they are
+    not stranded from it, and it cannot acknowledge itself: an entry pinned to its own
+    tip is invalidated by the commit that writes it. On main the gate still reads every
+    other branch. Tests compare against HEAD, so detached CI merges are supported too.
     """
 
     raw = _git(repo, "for-each-ref", "--format=%(refname)" + chr(9) + "%(refname:short)",
                "refs/heads", "refs/remotes")
     skip = {base, f"origin/{base}"}
+    current = _git(repo, 'rev-parse', '--abbrev-ref', 'HEAD').strip()
+    if current not in {base, 'HEAD'}:
+        skip |= {current, f'origin/{current}'}
     refs = []
     for line in raw.splitlines():
         if chr(9) not in line:

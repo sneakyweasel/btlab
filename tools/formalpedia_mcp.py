@@ -22,7 +22,8 @@ mcp = FastMCP('formalpedia', instructions=(
     'Search the local Lean library before proving a result. Resolve a fully qualified name, '
     'read its complete statement and hypotheses, and inspect exact claim links. '
     'Ambiguous names return candidates, never an arbitrary theorem. Source trust markers '
-    'are not compilation or axiom-audit evidence. Use lean-lsp for goals, elaboration and '
+    'are not compilation or axiom-audit evidence; axiom_audits quote committed Lean output. '
+    'When signature_complete is false, signature_context holds section binders. Use lean-lsp for goals, elaboration and '
     'proof checking. Use formalpedia_research_search and formalpedia_research_context to '
     'inspect Juggler/Collatz dossiers, decisions, known obstructions and data provenance. '
     'Use formalpedia_change_impact and formalpedia_verification_plan before maintenance; '
@@ -34,7 +35,8 @@ mcp = FastMCP('formalpedia', instructions=(
     'Use formalpedia_claim_dependencies for written proof routes, open assumptions and '
     'incomplete dependency coverage; compiled associations are a separate optional overlay. '
     'Structural matches are not proof applicability. '
-    'All tools here are local and read-only.'))
+    'formalpedia_mathlib_search queries the public Loogle service for Mathlib results and '
+    'checks each hit against the pinned Mathlib; every other tool is local. All are read-only.'))
 READ_ONLY = ToolAnnotations(readOnlyHint=True, destructiveHint=False,
                             idempotentHint=True, openWorldHint=False)
 
@@ -122,7 +124,9 @@ def formalpedia_capabilities() -> dict[str, Any]:
     """
     return {'protocol_version': 4, 'server_fingerprint': SERVER_FINGERPRINT,
             'root': str(fp_workspace.ROOT), 'tool_groups': {
-                'source': ['search', 'show', 'claim', 'impact', 'status', 'lint'],
+                'source': ['search', 'show', 'claim', 'impact', 'status', 'lint', 'axiom_audits',
+                           'ledger_check'],
+                'external': ['mathlib_search'],
                 'claims': ['claim_dependencies'],
                 'research': ['research_search', 'research_context', 'research_check'],
                 'maintenance': ['lab_doctor', 'change_impact', 'verification_plan'],
@@ -197,6 +201,47 @@ def formalpedia_semantic_diff(before: str, after: str | None = None,
     `after` defaults to the current saved export, whose freshness is reported separately.
     """
     return semantic.diff(before, after, limit, offset)
+
+
+@mcp.tool(annotations=READ_ONLY)
+def formalpedia_axiom_audits(limit: int = 50, offset: int = 0) -> dict[str, Any]:
+    """Recorded `#print axioms` artifacts: consistency problems and coverage of cited results.
+
+    Reads committed AxiomCheck*.expected output without running Lean. formalpedia_show and
+    formalpedia_claim already attach each declaration's recorded audits; use this to find
+    missing or stale artifacts and exact ledger declarations that no artifact covers.
+    """
+    return catalogue.audits(limit=limit, offset=offset)
+
+
+@mcp.tool(annotations=READ_ONLY)
+def formalpedia_ledger_check() -> dict[str, Any]:
+    """Check that every EXACT — LEAN VERIFIED ledger row carries the Lean evidence it claims.
+
+    Static part: each row must name its declarations (a shrinking baseline holds older rows
+    that do not). Compiled part, when a current semantic export exists: each named
+    declaration's recorded Lean axioms must be the ones its lean_trust allows. Neither part
+    judges whether a declaration states the English claim.
+    """
+    from formalpedia_core import ledger_evidence as fp_evidence
+    index, ledger, _ = catalogue.snapshot()
+    return fp_evidence.check(index, ledger, semantic=semantic)
+
+
+@mcp.tool(annotations=ToolAnnotations(readOnlyHint=True, destructiveHint=False,
+                                     idempotentHint=True, openWorldHint=True))
+def formalpedia_mathlib_search(query: str, limit: int = 20) -> dict[str, Any]:
+    """Search Mathlib through Loogle, the one formalpedia tool that contacts a public service.
+
+    The query is a Loogle query: a constant name (`Real.sqrt`), a type pattern
+    (`_ * (_ ^ _)`), a conclusion (`|- tsum _ = _`), or several, comma-separated. Only the
+    query text leaves the machine. Loogle indexes a recent Mathlib, so each hit carries
+    `pinned`: whether the repository's pinned Mathlib source declares it. Confirm a hit with
+    #check through lean-lsp before relying on it. Returns status `unreachable` when the
+    service cannot be reached.
+    """
+    from formalpedia_core import mathlib as fp_mathlib
+    return fp_mathlib.search(query, limit=limit)
 
 
 @mcp.tool(annotations=READ_ONLY)
