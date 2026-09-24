@@ -1747,6 +1747,23 @@
   "related_conjectures": []
  },
  {
+  "id": "J-beatty-slope-gamma-continuity",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "At every irrational boundary beta0 in (0,1), the Gamma amplitude (1-beta)^t*F_beta(t) converges to its value at beta0 at every non-atom phase t along irrational boundaries beta -> beta0, and every bounded continuous phase average int_(0,1] g((1-beta)^t F_beta(t)) dt converges: the absolutely continuous Gamma-normalized laws depend weakly continuously on the slope. Rational limit slopes are not treated.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeGammaContinuity.lean",
+  "decl": [
+   "passageGammaAmp_tendsto",
+   "passageGammaLaw_slope_cont"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-slope-gamma-amplitude",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For every irrational 0<beta<1, equivalently every irrational slope alpha=1/beta>1, with q=1-beta, a=-log q, the actual counts c_r and the exact Gamma quotient D_r=Gamma(r/beta)/(r!*Gamma(r*q/beta+1)): c_r/D_r-q^(delta_r)*F_beta(delta_r) -> 0, so the Gamma-normalized counts follow the unit-periodic amplitude q^(frac t)*F_beta(frac t). No rate is claimed. This extends the logarithmic-slope Gamma rows to the whole irrational family.",

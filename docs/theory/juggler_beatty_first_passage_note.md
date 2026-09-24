@@ -2615,15 +2615,22 @@ at every irrational slope `alpha_0>1`.
 contains the local-constancy lemmas, the series Scheffé lemma and the
 limits; [InterfaceCheckBeattySlopeContinuity.lean](../../formal/InterfaceCheckBeattySlopeContinuity.lean)
 writes the weights through the original integer counts and the content
-through its explicit amplitude and profile integral. The family audit now
-checks 195 records with only standard axioms.
+through its explicit amplitude and profile integral. The same argument, with
+the continuous factor `q^t`, shows that the Gamma-normalized laws of Section 29
+also depend weakly continuously on the slope
+([BeattySlopeGammaContinuity.lean](../../formal/Problems/Juggler/BeattySlopeGammaContinuity.lean)).
 
 **Rational slopes.** The argument does not reach a rational `alpha_0`. There
 the comparisons at multiples of the denominator become equalities, so the
 counts have separate one-sided limits, and many phases collapse onto finitely
 many rational points. We expect the laws to converge from each side to
-purely atomic laws with finitely many atoms; this needs a total-mass
-theorem at rational boundaries and is left open. **PROMOTE** the
+purely atomic laws with at most `b` atoms when `alpha_0=a/b`; this needs a
+total-mass theorem at rational boundaries and is left open. A floating-point
+diagnostic of the critical first-passage mass under the two one-sided
+conventions (strict survival with weak crossing from above, weak survival
+with strict crossing from below) at `beta_0=1/2,3/5,2/3` gives partial
+masses about `0.989` to `0.995` at depth `6000`, with deficits decreasing
+like `n^(-1/2)`. This supports conservation of mass; it is not a certificate. **PROMOTE** the
 irrational-slope continuity theorem.
 
 ## 29. The Gamma-normalized law for every irrational slope

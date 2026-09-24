@@ -3,6 +3,7 @@ import Problems.Juggler.BeattySlopeLocalContent
 import Problems.Juggler.BeattySlopeArithmetic
 import Problems.Juggler.BeattySlopeContinuity
 import Problems.Juggler.BeattySlopeLiouville
+import Problems.Juggler.BeattySlopeGammaContinuity
 import Problems.Juggler.BeattySlopeGammaHausdorff
 import Problems.Juggler.BeattySlopeGammaCDF
 import Problems.Juggler.BeattySlopeGammaLp
@@ -306,5 +307,7 @@ namespace Problems.Juggler
 #print axioms BeattySlope.tailMass_le
 #print axioms BeattySlope.liouville_cluster_hausdorff
 #print axioms BeattySlope.liouville_cluster_dimH
+#print axioms BeattySlope.passageGammaAmp_tendsto
+#print axioms BeattySlope.passageGammaLaw_slope_cont
 
 end Problems.Juggler

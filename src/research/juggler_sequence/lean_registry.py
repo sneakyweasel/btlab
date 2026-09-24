@@ -389,6 +389,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "BeattySlopeGammaHausdorff": "Infinite-density set of the family Gamma law has Hausdorff dimension at most two thirds",
     "BeattyJumpCover": "Generic finite cut covers of a jump-profile range, gap masses and a Hausdorff-zero criterion",
     "BeattySlopeLiouville": "Hausdorff dimension zero of the actual cluster set at every Liouville slope, by exact rotation chains",
+    "BeattySlopeGammaContinuity": "Weak continuity of the Gamma-normalized laws in the slope at irrational slopes",
     "BeattySlopeContinuity": "Local constancy of actual counts in the boundary, l1 continuity of jump weights, weak continuity of the laws and continuity of the Minkowski content at irrational slopes",
     "BeattySlopeArithmetic": "Hausdorff dimension two-thirds for almost every slope and positive finite two-thirds measure for every quadratic irrational slope",
     "BeattyCertificateWeights": "Moving phase asymptotic and uniform two-sided three-halves bounds for actual certificate gap weights",

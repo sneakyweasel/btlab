@@ -127,6 +127,7 @@ import Problems.Juggler.BeattySlopeArithmetic
 import Problems.Juggler.BeattySlopeContinuity
 import Problems.Juggler.BeattyJumpCover
 import Problems.Juggler.BeattySlopeLiouville
+import Problems.Juggler.BeattySlopeGammaContinuity
 import Problems.Juggler.BeattySlopeGammaAmplitude
 import Problems.Juggler.BeattySlopeGammaLaw
 import Problems.Juggler.BeattySlopeGammaDensity

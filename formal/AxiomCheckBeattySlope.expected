@@ -380,3 +380,5 @@
 'Problems.Juggler.BeattySlope.tailMass_le' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.BeattySlope.liouville_cluster_hausdorff' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.BeattySlope.liouville_cluster_dimH' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageGammaAmp_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageGammaLaw_slope_cont' depends on axioms: [propext, Classical.choice, Quot.sound]
