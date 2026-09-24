@@ -4,6 +4,7 @@ import Problems.Juggler.BeattySlopeArithmetic
 import Problems.Juggler.BeattySlopeContinuity
 import Problems.Juggler.BeattySlopeLiouville
 import Problems.Juggler.BeattySlopeDiophantineDim
+import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeGammaContinuity
 import Problems.Juggler.BeattySlopeGammaHausdorff
 import Problems.Juggler.BeattySlopeGammaCDF
@@ -319,5 +320,33 @@ namespace Problems.Juggler
 #print axioms BeattySlope.cluster_hausdorff_pos_iff
 #print axioms BeattySlope.dio_exponent_hausdorff
 #print axioms BeattySlope.dio_exponent_dimH_le
+#print axioms BeattySlope.sum_allWords_choose
+#print axioms BeattySlope.survivorWeight_le_weakTail
+#print axioms BeattySlope.tilted_boundary_term_le
+#print axioms BeattySlope.survivorWeight_le_endpoint
+#print axioms BeattySlope.tiltedEndpoint_tendsto_zero
+#print axioms BeattySlope.tiltedSurvivor_tendsto_zero
+#print axioms BeattySlope.critSurvival_tendsto_zero
+#print axioms BeattySlope.passageCritMass_hasSum_all
+#print axioms BeattySlope.passageJumpWeight_hasSum_all
+#print axioms BeattySlope.passage_jump_hasSum_all
+#print axioms BeattySlope.cmp_eventually_left
+#print axioms BeattySlope.firstPassage_eventually_left
+#print axioms BeattySlope.passageCount_eventually_left
+#print axioms BeattySlope.passageIndex_eventually_left
+#print axioms BeattySlope.passageJumpWeight_tendsto_left
+#print axioms BeattySlope.passageJumpWeight_l1_left
+#print axioms BeattySlope.passagePhase_tendsto_left
+#print axioms BeattySlope.passageProfile_monotone_all
+#print axioms BeattySlope.passageProfile_tendsto_left
+#print axioms BeattySlope.passageLaw_tendsto_left
+#print axioms BeattySlope.passagePhase_rational
+#print axioms BeattySlope.passageProfile_rational_step
+#print axioms BeattySlope.passageLaw_rational_eq
+#print axioms BeattySlope.passageLaw_rational_left
+#print axioms BeattySlope.inv_tendsto_left
+#print axioms BeattySlope.passageLaw_rational_slope
+#print axioms BeattySlope.passageProfile_lt_of_phase
+#print axioms BeattySlope.passageProfile_rational_lt
 
 end Problems.Juggler

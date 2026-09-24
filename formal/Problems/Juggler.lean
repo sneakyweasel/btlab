@@ -128,6 +128,8 @@ import Problems.Juggler.BeattySlopeContinuity
 import Problems.Juggler.BeattyJumpCover
 import Problems.Juggler.BeattySlopeLiouville
 import Problems.Juggler.BeattySlopeDiophantineDim
+import Problems.Juggler.BeattySlopeRationalMass
+import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeGammaContinuity
 import Problems.Juggler.BeattySlopeGammaAmplitude
 import Problems.Juggler.BeattySlopeGammaLaw

@@ -391,6 +391,8 @@ AUXILIARY_MODULES: dict[str, str] = {
     "BeattySlopeLiouville": "Hausdorff dimension zero of the actual cluster set at every Liouville slope, by exact rotation chains",
     "BeattySlopeGammaContinuity": "Weak continuity of the Gamma-normalized laws in the slope at irrational slopes",
     "BeattySlopeDiophantineDim": "Critical two-thirds Hausdorff measure is positive exactly at badly approximable slopes; Hausdorff dimension bounded by the irrationality exponent",
+    "BeattySlopeRationalMass": "Exact critical first-passage mass and total jump weight at every boundary in (0,1), rational included",
+    "BeattySlopeRationalLimit": "One-sided slope limits at rational slopes: l1 weights and convergence of the laws to uniform laws on b atoms",
     "BeattySlopeContinuity": "Local constancy of actual counts in the boundary, l1 continuity of jump weights, weak continuity of the laws and continuity of the Minkowski content at irrational slopes",
     "BeattySlopeArithmetic": "Hausdorff dimension two-thirds for almost every slope and positive finite two-thirds measure for every quadratic irrational slope",
     "BeattyCertificateWeights": "Moving phase asymptotic and uniform two-sided three-halves bounds for actual certificate gap weights",

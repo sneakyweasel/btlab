@@ -1514,6 +1514,16 @@ Ten family modules, four expanded consumers, 266 audit records. Section 29
 of the working note. **PROMOTE**. The written `p<62/41` improvement stays
 specific to `log_2 3`.
 
+### Rational slopes and the family map (24 September)
+
+**EXACT — LEAN VERIFIED.** Total critical first-passage mass is one and the
+jump weights sum to `beta/(1-beta)` at every boundary, rational included.
+As the slope decreases to `a/b`, counts freeze, weights converge in `l1`,
+and the singular laws converge to the uniform law on `b` distinct atoms
+`F_(a/b)((j+1)/b)`. Section 30 of the working note tabulates the family
+map. **PROMOTE**. Open: the other one-sided limit, the counts at a rational
+slope itself, exact dimensions for exponents in `(2,infinity)`, rates.
+
 ## Decision
 
 `PROMOTE` -- for every irrational slope above one, the actual normalized

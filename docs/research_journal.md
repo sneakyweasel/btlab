@@ -27,7 +27,9 @@ Continuation, also **EXACT — LEAN VERIFIED**: counts are locally constant
 at irrational boundaries, the weights converge in `l1` by a Scheffé argument,
 and the laws and Minkowski content are continuous at every irrational slope.
 The Gamma-normalized law, density and regularity package now covers the
-whole family as well. **PROMOTE**. See Sections 27–29 of the
+whole family as well. Total mass is exact at every boundary, and as the
+slope decreases to `a/b` the laws converge to the uniform law on `b` atoms.
+**PROMOTE**. See Sections 27–30 of the
 [Beatty note](theory/juggler_beatty_first_passage_note.md).
 
 ## 2026-09-24 -- Both depth-five productions written; contagion 0.74 conditional

@@ -745,6 +745,7 @@ bounded phase kernel.
 | Family Hausdorff upper bound; dimension `2/3` for almost every slope; positive finite measure for quadratic irrational slopes; dimension `0` at Liouville slopes; positive critical measure iff badly approximable; exponent bound `2/(2+sqrt nu)` | Lean proved in Section 27 |
 | `l1` continuity of the weights, weak continuity of the laws and continuity of the Minkowski content at irrational slopes | Lean proved in Section 28 |
 | Gamma-normalized law, density, moments, interval support and regularity for every irrational `alpha>1` | Lean proved in Section 29 |
+| Total mass at every boundary; one-sided limits at rational slopes (uniform `b`-atom laws) | Lean proved in Section 30 |
 | Quantitative `O(r^(-1/2))` error | Written proof; this continuation proves `o(1)` only |
 
 These distinctions must be preserved in any communication about the result.
@@ -2703,6 +2704,56 @@ writes out the integer counts and the Gamma quotient. The family audit
 now checks 288 records with only standard axioms. The written arithmetic
 improvement to `p<62/41` in the phase-collapse dossier uses Wu–Wang for
 `log_2 3` and is not extended here. **PROMOTE** the family Gamma package.
+
+## 30. Rational slopes and a map of the family
+
+**Mass at every boundary — EXACT — LEAN VERIFIED.** Irrationality is not
+needed for the total mass. A surviving word of length `n` has at least
+`beta n` odd letters, so the tilted survivor weight is at most five times
+the tilted strict endpoint weight, which is `O(n^(-1/2))` after
+normalization for every real `0<beta<1`. The height split of Section 13
+then sends critical survival to zero, and
+`sum_r w_r=beta/(1-beta)` at every boundary, rational ones included, in the
+laboratory's weak-survival, strict-crossing convention.
+
+**One-sided rational limits — EXACT — LEAN VERIFIED.** As `beta` increases
+to any `beta_0` (slope decreasing to `alpha_0`), every count and crossing
+index is eventually constant, so the weights converge in `l1`. At
+`alpha_0=a/b` all phases lie in `{j/b}`, the profile is a step function,
+and for every bounded continuous `g`
+\[
+ \int_0^1 g(F_\alpha(t))\,dt\longrightarrow
+ \frac1b\sum_{j<b}g\!\left(F_{a/b}\!\left(\tfrac{j+1}b\right)\right)
+ \qquad(\alpha\downarrow a/b).                                  \tag{65}
+\]
+The singular continuous laws collapse onto the uniform law on `b` distinct
+atoms. The floating-point diagnostic of Section 28 is superseded by this
+proof. Modules:
+[BeattySlopeRationalMass.lean](../../formal/Problems/Juggler/BeattySlopeRationalMass.lean)
+and [BeattySlopeRationalLimit.lean](../../formal/Problems/Juggler/BeattySlopeRationalLimit.lean).
+
+**Map of the family.** For the actual counts at slope `alpha>1`:
+
+| Question | Answer | Status |
+|---|---|---|
+| Phase theorem, profile, total mass | explicit jump profile `F_alpha`, mass `1/(alpha-1)` | Lean, every irrational `alpha` (mass: every `alpha`) |
+| Cluster set, empirical law | compact perfect null `K_alpha`; singular continuous `mu_alpha` | Lean, every irrational `alpha` |
+| Gaps and Minkowski geometry | `w_r` of order `r^(-3/2)`; `dim_M=2/3`; exact content and tube measure | Lean, every irrational `alpha` |
+| Hausdorff dimension | `2/3` if `mu(alpha)=2` (a.e.); `<=2/(2+sqrt(mu-1))` otherwise; `0` at Liouville slopes | Lean (exponent characterization of `2/3` is a written combination) |
+| Critical measure `H^(2/3)` | positive iff badly approximable | Lean |
+| Gamma normalization | absolutely continuous law with explicit density, interval support, `L^p` for `p<3/2` | Lean, every irrational `alpha` |
+| Dependence on the slope | weights, laws, content continuous at irrational slopes | Lean |
+| Rational slopes | laws from above tend to a uniform `b`-atom law | Lean, one side |
+| Logarithmic slope arithmetic | `dim_H K>=0.16195...` | Written (Wu–Wang) |
+| Rates | `O(r^(-1/2))` | Written, `1<alpha<2` only |
+
+**Open.** The limit from below at a rational slope (strict-survival
+convention); the counts at a rational slope itself; the exact Hausdorff
+dimension for irrationality exponents strictly between `2` and infinity;
+the value of the critical measure at badly approximable slopes; convergence
+rates for the family; and the Gamma-law `L^2` question. **PROMOTE** the
+rational-boundary mass and one-sided limit theorems; the qualitative map
+of the irrational family is complete.
 
 ## References
 

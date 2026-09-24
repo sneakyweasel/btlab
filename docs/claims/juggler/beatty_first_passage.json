@@ -1764,6 +1764,64 @@
   "related_conjectures": []
  },
  {
+  "id": "J-beatty-slope-mass-every-boundary",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every real boundary 0<beta<1, rational or irrational, with the laboratory's weak survival and strict crossing conventions: surviving words of length n have at least beta*n odd letters, so the tilted survivor weight is at most five times the tilted strict endpoint weight and tends to zero after normalization; the critical survival mass tends to zero, the actual first-passage words carry total critical Bernoulli mass one, and the positive-index jump weights sum to beta/(1-beta). The word identity sum over allWords n of f(oddCount w) = sum_k C(n,k) f(k) is proved for every f.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeRationalMass.lean",
+  "decl": [
+   "sum_allWords_choose",
+   "survivorWeight_le_weakTail",
+   "tilted_boundary_term_le",
+   "survivorWeight_le_endpoint",
+   "tiltedEndpoint_tendsto_zero",
+   "tiltedSurvivor_tendsto_zero",
+   "critSurvival_tendsto_zero",
+   "passageCritMass_hasSum_all",
+   "passageJumpWeight_hasSum_all",
+   "passage_jump_hasSum_all"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-rational-limits",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "At every boundary beta0 in (0,1), each actual count and crossing index is eventually constant as beta increases to beta0, so the jump weights converge in l1 (Scheffe with the exact masses) and the profile converges at every non-atom phase. At beta0=b/a with 0<b<a (slope a/b), every phase lies in {j/b}, the profile is constant on each (j/b,(j+1)/b], and as the slope alpha decreases to a/b the bounded continuous phase averages of F_(1/alpha) converge to (1/b)*sum_(j<b) g(F_(b/a)((j+1)/b)): the singular laws converge weakly to the uniform law on b atoms, which are strictly increasing in j when a and b are coprime. The limit from the other side (strict survival convention) and the behaviour of the counts at the rational slope itself are not asserted.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeRationalLimit.lean",
+  "decl": [
+   "cmp_eventually_left",
+   "firstPassage_eventually_left",
+   "passageCount_eventually_left",
+   "passageIndex_eventually_left",
+   "passageJumpWeight_tendsto_left",
+   "passageJumpWeight_l1_left",
+   "passagePhase_tendsto_left",
+   "passageProfile_monotone_all",
+   "passageProfile_tendsto_left",
+   "passageLaw_tendsto_left",
+   "passagePhase_rational",
+   "passageProfile_rational_step",
+   "passageLaw_rational_eq",
+   "passageLaw_rational_left",
+   "inv_tendsto_left",
+   "passageLaw_rational_slope",
+   "passageProfile_lt_of_phase",
+   "passageProfile_rational_lt"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-slope-gamma-amplitude",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For every irrational 0<beta<1, equivalently every irrational slope alpha=1/beta>1, with q=1-beta, a=-log q, the actual counts c_r and the exact Gamma quotient D_r=Gamma(r/beta)/(r!*Gamma(r*q/beta+1)): c_r/D_r-q^(delta_r)*F_beta(delta_r) -> 0, so the Gamma-normalized counts follow the unit-periodic amplitude q^(frac t)*F_beta(frac t). No rate is claimed. This extends the logarithmic-slope Gamma rows to the whole irrational family.",
