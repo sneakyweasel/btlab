@@ -1,0 +1,27 @@
+.beatty-explorer { min-width: 0; }
+.beatty-controls { display: grid; grid-template-columns: 1fr 1fr 1.4fr; gap: 1rem; }
+.beatty-controls label { display: grid; gap: .35rem; font-size: .875rem; min-width: 0; align-content: start; }
+.beatty-controls input, .beatty-controls select { width: 100%; min-width: 0; border: 1px solid var(--color-line); background: var(--color-card); border-radius: .4rem; padding: .45rem .55rem; color: var(--color-ink); }
+.beatty-controls input { font-variant-numeric: tabular-nums; }
+.beatty-legend { display: flex; flex-wrap: wrap; gap: .6rem 1.2rem; margin: 1rem 0; }
+.beatty-legend button { display: inline-flex; align-items: center; gap: .4rem; background: transparent; border: 0; padding: .2rem 0; color: var(--color-ink); font-size: .8rem; cursor: pointer; }
+.beatty-legend button[aria-pressed="false"] { opacity: .45; }
+.beatty-swatch { display: inline-block; flex: none; width: 18px; height: 3px; margin-right: .15rem; vertical-align: middle; background: var(--color-even); }
+.beatty-swatch-band { height: 12px; opacity: .2; }
+.beatty-swatch-sample { width: 7px; height: 7px; border-radius: 50%; background: var(--color-odd); }
+.beatty-swatch-gap { height: 12px; background: var(--color-warn); }
+.beatty-swatch-unresolved { height: 12px; background: var(--color-line); }
+.beatty-plot { position: relative; width: 100%; }
+.beatty-chart { display: block; width: 100%; overflow: visible; }
+.beatty-chart text { fill: var(--color-ink); font-size: 12px; }
+.beatty-tooltip { position: absolute; z-index: 1; width: 252px; max-width: 100%; pointer-events: none; background: var(--color-card); border: 1px solid var(--color-line); border-radius: .5rem; padding: .6rem .75rem; font-size: .8rem; font-variant-numeric: tabular-nums; box-shadow: 0 4px 14px #1d191414; }
+.beatty-detail, .beatty-notes { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; margin-top: .85rem; }
+.beatty-detail { font-variant-numeric: tabular-nums; }
+@media (max-width: 540px) {
+  .beatty-controls { grid-template-columns: 1fr 1fr; }
+  .beatty-controls label:last-child { grid-column: 1 / -1; }
+  .beatty-controls input, .beatty-controls select { font-size: 16px; }
+}
+@media (pointer: coarse) {
+  .beatty-controls input, .beatty-controls select, .beatty-legend button { min-height: 44px; }
+}

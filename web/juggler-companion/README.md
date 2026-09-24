@@ -23,6 +23,30 @@ npm run dev
 The dev server uses base `/`. Open the URL Vite prints (usually
 http://localhost:5173/).
 
+## Beatty profile
+
+The React playground at `/play/beatty-profile` links the left-continuous phase
+profile, exact-count samples, and certified deleted-gap interiors. Select an
+order, inspect a phase, zoom around the selection, change the sample window,
+or toggle the chart layers. It loads as a separate route chunk.
+
+The bundled `src/data/beatty_profile.json` is a display snapshot of
+`docs/theory/figures/beatty_profile.json`: 5,047 orders at depth 8,000, with
+256-bit Arb enclosures and omitted tail below 0.020220. It retains the source
+hash and the exact rational gap certificates. Gray strip regions remain
+unresolved; the tail band bounds the infinite profile, not finite-sample error.
+
+After deliberately regenerating the canonical figure, refresh the display data:
+
+```powershell
+npm run sync:beatty
+node scripts/export-beatty-profile.mjs --check
+```
+
+The exporter verifies the canonical output hash before copying drawing data.
+It does not regenerate counts, change evidence labels, or read private
+correspondence. Site-only builds use the bundled snapshot.
+
 ## Build
 
 ```powershell
