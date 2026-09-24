@@ -56,7 +56,9 @@ BOUNDS = [
         ("carry mismatches P^(7/8)", F(7, 8)),
         ("theta-noise in U-modes", F(3, 4)),
         ("B(n+2d) -> B(n) replacement d P^(9/16)", DELTA + F(9, 16)),
-        ("Taylor step (4.18) k P^(7/16)", F(7, 16))]),
+        ("Taylor step (4.18) k P^(7/16), incl. B times the nu remainder", F(7, 16)),
+        ("l-noise P^(5/8)", F(5, 8)),
+        ("theta-cancellation residual d P^(3/16)", DELTA + F(3, 16))]),
     ("OOEOE j != 0: E7 (Lemma 4.4 rerun, U-cutoff P^(1/16))", F(15, 16), [
         ("P^(7/8) d^(1/2)", F(7, 8) + DELTA / 2),
         ("d P^(3/4)", DELTA + F(3, 4)),

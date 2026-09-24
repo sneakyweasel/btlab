@@ -2,7 +2,7 @@
   "schema": "btlab-output/v2",
   "programme": "juggler",
   "research_id": "juggler/depth_five_production",
-  "created_utc": "2026-09-24T18:50:04.227289+00:00",
+  "created_utc": "2026-09-24T19:18:08.148042+00:00",
   "scope": "exponent bookkeeping of the depth-five 0.74 critical path at d = P^(1/48)",
   "artifact_root": ".",
   "generator": {
@@ -19,7 +19,7 @@
     "python": "3.13.9"
   },
   "source": {
-    "revision": "c5c5717aeee8da6c674ce2f42d8049fc348e7989",
+    "revision": "9ab55723abe5f42fcf3ddd78d682d8420591083e",
     "dirty": true,
     "coverage": "loaded local Python, project configuration, and explicit sources at manifest creation; not an execution or dependency audit",
     "files": [
@@ -105,12 +105,12 @@
       },
       {
         "path": "src/research/juggler_sequence/critical_path_ledger.py",
-        "sha256": "67ffc95d1590d666f0afdcfd1699d315f2f2be3c9013eaa8d776cad1f6162493",
-        "bytes": 6074,
+        "sha256": "2e0c976f4949e0b00b11efad544c756f003fa4468d7924ef95786c5b3924fcd2",
+        "bytes": 6214,
         "text": {
           "normalization": "utf8-crlf-to-lf",
-          "sha256": "67ffc95d1590d666f0afdcfd1699d315f2f2be3c9013eaa8d776cad1f6162493",
-          "bytes": 6074
+          "sha256": "2e0c976f4949e0b00b11efad544c756f003fa4468d7924ef95786c5b3924fcd2",
+          "bytes": 6214
         }
       },
       {

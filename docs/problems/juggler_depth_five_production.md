@@ -584,7 +584,7 @@ at each endpoint. Then, for `T_d = sum_n e(phi(n+2d) - phi(n))` over the odd
 | Case | Bound on `\|T_d\|` |
 |---|---|
 | `j != 0` | `P^(7/8) d^(1/2) + d P^(3/4) + P^(5/6)`, which is `<< P^(61/64)` |
-| `j = 0`, `l != 0` | `P^(7/8) log P` |
+| `j = 0`, `l != 0` | `P^(7/8) log P` at cutoff `T = P^(1/8)`; `P^(15/16) log P` at `T = P^(1/16)` (Result 34) |
 | `j = l = 0`, `i != 0` | `P^(1/2)/d + 1` |
 
 Paper B's C.2 treats the undifferenced sums. Its `j != 0` subcase applies an
@@ -593,8 +593,10 @@ that inner step with the range widened to `h = d`, so no A-process is applied he
 
 *Proof, `j != 0`.* `T_d` is Paper B's sum (4.4) at `h = d`, plus the term
 `(l/2) Delta_d(m^(9/8))`. Use E1 (Result 7), which is Lemma 4.4 for
-`|u| h <= c_0 P^(1/4)`. Here `|u| d << P^(5/32)`, so E1 applies. Add the `l`-term
-as C.2 does:
+`|u| h <= c_0 P^(1/4)`. Here `|u| d << P^(5/32)`, so E1 applies. For
+`d <= P^(1/12)`, which contains the critical-path range `d < P^(1/48)` (Result 23),
+Paper B's printed Lemma 4.4 suffices and E1 is not needed. Add the `l`-term as C.2
+does:
 
 - On a gap cell with `g = m(n+2d) - m(n)` fixed,
   `Delta_d(m^(9/8)) = V_g(m)` with `V_g(z) = (z+g)^(9/8) - z^(9/8)`.
@@ -611,9 +613,13 @@ as C.2 does:
 At `d = P^(5/32)` the bound is `P^(61/64) + P^(29/32) + P^(5/6)`.
 
 *Proof, `j = 0`, `l != 0`.* Expand each endpoint by (C.8). With
-`B = (9l/16) x^(3/16)`, `N_B = floor(B)` and cutoff `T = floor(P^(1/8))`, we have
-`e(phi(n)) = sum_{|r| <= T} a_r(B - N_B) e(f_r(n)) + O(E_T(X(n)))`, where
-`f_r = (l/2) x^(27/16) + (i/2 + r - N_B) X`.
+`B = (9l/16) x^(3/16)`, `N_B = floor(B)` and cutoff `T = floor(P^(1/8))` (or
+`floor(P^(1/16))`, Result 34), we have
+`e(phi(n)) = sum_{|r| <= T} a_r(B - N_B) e(f_r(n)) + O(E_T(X(n)) + |l| P^(-21/16))`,
+where `f_r = (l/2) x^(27/16) + (i/2 + r - N_B) X`. The truncated series is `O(1)`
+uniformly by (4.13), so the product of the two endpoint expansions has error
+`O(E_T(X(n)) + E_T(X(n+2d)) + |l| P^(-21/16))`. (4.3), applied to intervals inside
+`[P, 3P]`, sums both `E_T` terms.
 
 - *Errors.* The positive errors at `n` and `n + 2d` total `O(P^(7/8) log P)`,
   as in C.2.
@@ -647,8 +653,12 @@ Put `Delta = c_1 - c_2`.
   `d^(1/2) P^(11/32) + (1 + P^(3/16)) d^(-1/2) P^(21/32) << P^(27/32)`. The
   diagonal weights sum to `O(1)`.
 
-The coefficient variation is `O(1/(1+|r|))` on each window, as in C.2. Hence
-`|T_d| << P^(7/8) log P`.
+On each intersection window, `beta(x)` and `beta(x+2d)` are monotone and each
+varies by at most one. So the product weight `a_r(beta(n+2d)) conj(a_{r'}(beta(n)))`
+has sup norm plus variation `O(1/((1+|r|)(1+|r'|)))`, by (4.13). Hence
+`|T_d| << P^(7/8) log P` at `T = P^(1/8)`, and `P^(15/16) log P` at `T = P^(1/16)`.
+The off-diagonal sum is in fact `<< T^(1/2) log T`, one logarithm better than
+stated.
 
 *Proof, `j = l = 0`.* The phase `(i/2) Delta_d X` has derivative about
 `(3i/4) d x^(-1/2)`. It is monotone, and after the change to odd `n` its absolute value
@@ -944,8 +954,8 @@ treats the gap of `floor(X)`.
   `U(n) + z = U(n+2d) - nu - G`, that forces `||U(n+2d)|| << P^(-3/8)`. The
   discrepancy bound (4.17), on the shifted odd block, then gives `O(P^(5/8) + P^(7/8))`
   such points.
-- *Cell count.* `S` is about `(9/4) d x^(1/8)` with `S'` about `d P^(-7/8)`, so
-  there are `O(d P^(1/8))` `G`-cells.
+- *Cell count.* `S` is about `(9/4) d x^(1/8)` with `S' = (9/32) d x^(-7/8)(1 + o(1))`,
+  so there are `O(1 + d P^(1/8))` `G`-cells.
 - *Interpolation.* On a cell, the exact interpolation (4.8) gives
   `(1 - z) e(F_{G,0}) + z e(F_{G,1})` plus sawtooth terms
   `b(U(n)) - b(U(n) + z)`, with
@@ -954,9 +964,10 @@ treats the gap of `floor(X)`.
 - *Sawtooth terms.* Lemma 4.3 at cutoff `R_U` expands them into modes
   `e(s U(n))` and `e(s (U(n) + S))` with weights `1/|s|`. The truncation error is
   `P log R_U / R_U + P^(7/8)`, by (4.17). For the second argument,
-  `E_R(U(n) + z)` is comparable to `E_R(U(n+2d))`, because `R_U |nu| <= P^(-1/4)`;
-  points inside the strip are already counted as mismatches. The `theta`-noise in
-  `s U` costs `|s| P^(-3/8)` per point, which is `P^(3/4) log` in total at `R_U <= P^(1/8)`.
+  `R_U |nu| <= 1` gives `E_R(U(n) + z) <= 2 E_R(U(n+2d))` pointwise, and (4.17) on
+  the shifted odd block `(P+2d, 2P+2d]` bounds the sum. The `theta`-noise in `s U`
+  costs `|s| P^(-3/8)` per point. The weights `1/|s|` cancel the factor `|s|`, so
+  the total is `R_U P^(5/8)`: `P^(3/4)` at `R_U = P^(1/8)`.
 
 *Zero-mode curvature at `j = 0`.* The leading terms of `(k/2) Delta_d x^(27/16)` and
 `B S` are both `(27/16) k d x^(11/16)`, and they cancel exactly. With
@@ -979,9 +990,12 @@ A carry mode `s` adds curvature `s P^(-7/8)`, which dominates by at least
 
 - `P^(7/8) log P` from truncation;
 - `P^(7/8)` from the carry mismatches;
-- `P^(3/4) log P` from the `theta`-noise;
+- `P^(3/4)` from the `theta`-noise;
 - `l P^(5/8)` from the `l`-noise;
-- `k P^(7/16)` from the Taylor step (4.18).
+- `k P^(7/16)` from the Taylor step (4.18), which also absorbs `B` times the
+  `O(P^(-9/8))` part of `nu`;
+- `k d P^(9/16)` from the replacement `B(n+2d) -> B(n)`;
+- `k d P^(3/16)` from the `theta`-cancellation residual.
 
 *Case `j != 0`.* The `Y`-wave is Paper B's Lemma 4.4 at `h = d`, which E1
 (Result 7) extends to `|u| d <= c_0 P^(1/4)`. Take the product of the two exact
@@ -1004,12 +1018,16 @@ steps are as follows:
 - The cell count grows by `O(d P^(1/8))`, which is below E1's `d P^(1/2)`.
 
 E1's bound, `P^(7/8) d^(1/2) + d P^(3/4) + P^(5/6)`, therefore holds with doubled
-log masses. The `U`-truncation at `P^(1/16)` costs `P^(15/16) log P`.
+log masses. The `U`-truncation at `P^(1/16)` costs `P^(15/16) log P`. For
+`d <= P^(1/12)`, which contains the critical-path range, this is a rerun of Paper
+B's printed Lemma 4.4 proof, with its dominance ratio `P^(-1/8)`. E1 is needed only
+for larger `d`.
 
 *Case `k = 0`.*
 
-- If `j != 0`: E1 applies. The `l` term is smooth plus noise costing `P^(5/8)`,
-  with curvature `l d P^(-15/8)`, negligible.
+- If `j != 0`: after the `l`-noise, which costs `P^(5/8)`, this is Paper B's
+  Lemma 4.4 with its `k := l` (since `S = Delta_d(x^(9/8))`) and `h = d`. The
+  printed lemma covers `d <= P^(1/12)`, and E1 is needed only beyond that.
 - If `j = 0`: the phase is `(i/2) Delta_d X + (l/2) S` plus noise costing
   `P^(5/8)`. Its derivative is monotone, of size about `d P^(-1/2)` if `i != 0`
   and `d P^(-7/8)` if `i = 0`, and below `1/4` on the odd lattice. Kusmin-Landau
@@ -1175,8 +1193,10 @@ changes.
   P^(63/64+eps)`, which is Paper B's Appendix C.9 for `k != 0` and C.2 and E5 for
   `k = 0`.
 - *E8'.* The `OOEOE` poor targets above `U_0` have reciprocal mass
-  `<< U_0^(-1/41)`. The exact exponent is `(32/27)(1/48) = 2/81`, since E7's
-  largest term at `d < P^(1/48)` is its `U`-truncation `P^(15/16) log P`.
+  `<< U_0^(-1/41)`. The exact exponent is `(32/27)(1/48) = 2/81`, since
+  `min(delta', sigma) = delta' = 1/48`. E7 gives `sigma = 1/16 - eps` at
+  `d < P^(1/48)`, from its `U`-truncation `P^(15/16) log P`, so improving the
+  truncation would not change the exponent.
 
 *Revised dependency of the `0.74` route:*
 
@@ -1651,6 +1671,61 @@ Recommended form of E5: take `T = P^(1/16)`. The lemma's bound becomes
 `P^(15/16)`, which is still inside the chain, and its sign is certified from
 `10^11` to `10^12` rather than `10^18`. The ledger's coefficient margin now uses
 the kernel-checked `eta = 1/1000` of Result 33: `1148/1125 > 1`.
+
+**35. Second adversarial pass on E5's and E7's exponential-sum steps (24 September
+2026).** Five independent reviewers re-derived the exponential-sum steps from
+Paper B's text, each covering one part:
+
+- E5's two-endpoint expansion;
+- E5's second-derivative estimates;
+- E7's `U`-carry decomposition;
+- E7's `j = 0` sums;
+- E7's `j != 0` and `k = 0` cases.
+
+They checked each step against Graham-Kolesnik Theorem 2.2's two-sided
+curvature hypothesis, the weights' bounded variation, the exactness of each
+identity, the charging of errors, and the exhaustiveness of the cases. Several
+used 60-80-digit numerical checks on the actual nested-floor coordinates. For
+example, the product-expansion error was at most `0.48 (E_T + E_T)` at
+`P = 10^12`.
+
+**No step fails. There are no fatal findings and no gaps; all 15 findings are
+wording.** Before recording, I checked the three findings with consequences at
+the source.
+
+1. *E1 citations.* E5's and E7's `j != 0` cases cited E1 for every `d`. At the
+   critical-path shifts `d < P^(1/48) <= P^(1/12)`, Paper B's printed Lemma 4.4
+   suffices, with E7's `k = 0`, `j != 0` case being Lemma 4.4 with `k := l`. The
+   texts now say so. This makes Result 23's claim that E1-E4 are off the
+   critical path true of the lemma texts as well.
+2. *Missing costs.* E7's `j = 0` cost list omitted three charged costs:
+   - the `B` replacement, `k d P^(9/16)`;
+   - the `theta` residual, `k d P^(3/16)`;
+   - `B` times the remainder of `nu`, `k P^(7/16)`.
+
+   The ledger's E7 row also omitted the `l`-noise, `P^(5/8)`. All four are now
+   listed and entered in the ledger; all are below `P^(7/8)`. With them,
+   Result 32's statement that every listed cost is in the ledger holds.
+3. *E5's cutoff.* E5 now states both cutoffs:
+   - `P^(7/8) log P` at `T = P^(1/8)`;
+   - `P^(15/16) log P` at `T = P^(1/16)`, whose sign is certified from `10^11`.
+
+Also fixed:
+
+- E5's expansion now carries its `(C.8)` remainder and the uniform bound on the
+  truncated series that justifies the product step.
+- The weights sentence now names the product weight.
+- E7's cell count is `O(1 + d P^(1/8))`.
+- The `E_R` comparison is now the pointwise `E_R(U(n) + z) <= 2 E_R(U(n+2d))`.
+- The `theta`-noise total is `R_U P^(5/8)`, with no logarithm.
+- E8''s exponent is justified by `min(delta', sigma) = delta'`.
+
+With this pass, the steps a human reviewer must still read reduce to three:
+
+- the application of Graham-Kolesnik Theorem 2.2 on each cell;
+- the exact interpolation identities;
+- the completeness of each cost list, which two AI passes and the ledger now
+  agree on.
 
 ## Open questions
 
