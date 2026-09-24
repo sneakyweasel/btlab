@@ -237,12 +237,7 @@
    "tests/research/juggler_sequence/test_v5_audit.py",
    "tests/research/juggler_sequence/test_v6_audit.py"
   ],
-  "related_conjectures": [],
-  "decl": [
-   "logMass_contagion_averaged",
-   "contagion_averaged"
-  ],
-  "lean_trust": "kernel"
+  "related_conjectures": []
  },
  {
   "id": "J-fate-one-sided-atoms",
