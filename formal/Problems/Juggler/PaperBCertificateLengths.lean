@@ -172,9 +172,11 @@ theorem minimalCert_window {w : List Branch} (hw : IsMinimalCertificate w) :
 def blockWord (L o : ℕ) : List Branch :=
   List.replicate o Branch.odd ++ List.replicate (L - o) Branch.even
 
+/-- `O^o E^(L-o)` has length `L` when `o ≤ L`. -/
 @[simp] theorem blockWord_length {L o : ℕ} (h : o ≤ L) : (blockWord L o).length = L := by
   simp [blockWord]; omega
 
+/-- `O^o E^(L-o)` has exactly `o` odd letters. -/
 @[simp] theorem blockWord_oddCount {L o : ℕ} : oddCount (blockWord L o) = o := by
   simp [blockWord, oddCount_append, oddCount_replicate_odd, oddCount_replicate_even]
 
@@ -252,24 +254,28 @@ theorem window_empty_three : ∀ o, ¬ CertWindow 3 o := by
   obtain ⟨hlo, hhi⟩ := hw
   interval_cases o <;> omega
 
+/-- Length `6` has an empty window: no `o` has `2 ^ 5 ≤ 3 ^ o < 2 ^ 6`. -/
 theorem window_empty_six : ∀ o, ¬ CertWindow 6 o := by
   intro o hw
   have hle : o ≤ 6 := certWindow_le hw
   obtain ⟨hlo, hhi⟩ := hw
   interval_cases o <;> omega
 
+/-- Length `9` has an empty window: no `o` has `2 ^ 8 ≤ 3 ^ o < 2 ^ 9`. -/
 theorem window_empty_nine : ∀ o, ¬ CertWindow 9 o := by
   intro o hw
   have hle : o ≤ 9 := certWindow_le hw
   obtain ⟨hlo, hhi⟩ := hw
   interval_cases o <;> omega
 
+/-- Length `11` has an empty window: no `o` has `2 ^ 10 ≤ 3 ^ o < 2 ^ 11`. -/
 theorem window_empty_eleven : ∀ o, ¬ CertWindow 11 o := by
   intro o hw
   have hle : o ≤ 11 := certWindow_le hw
   obtain ⟨hlo, hhi⟩ := hw
   interval_cases o <;> omega
 
+/-- Length `14` has an empty window: no `o` has `2 ^ 13 ≤ 3 ^ o < 2 ^ 14`. -/
 theorem window_empty_fourteen : ∀ o, ¬ CertWindow 14 o := by
   intro o hw
   have hle : o ≤ 14 := certWindow_le hw
@@ -279,9 +285,13 @@ theorem window_empty_fourteen : ∀ o, ¬ CertWindow 14 o := by
 /-- The first five carrying lengths give the manuscript's list back: `L = 1, 2, 4, 5`
 have windows, `L = 3` does not. -/
 theorem window_one : CertWindow 1 0 := by constructor <;> norm_num
+/-- Length `2` has odd count `1` in its window: `2 ≤ 3 < 4`. -/
 theorem window_two : CertWindow 2 1 := by constructor <;> norm_num
+/-- Length `4` has odd count `2` in its window: `8 ≤ 9 < 16`. -/
 theorem window_four : CertWindow 4 2 := by constructor <;> norm_num
+/-- Length `5` has odd count `3` in its window: `16 ≤ 27 < 32`. -/
 theorem window_five : CertWindow 5 3 := by constructor <;> norm_num
+/-- Length `7` has odd count `4` in its window: `64 ≤ 81 < 128`. -/
 theorem window_seven : CertWindow 7 4 := by constructor <;> norm_num
 
 /-- The odd counts the manuscript's five certificates carry are the windows' values:

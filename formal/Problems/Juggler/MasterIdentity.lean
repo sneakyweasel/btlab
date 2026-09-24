@@ -76,9 +76,11 @@ section Carries
 noncomputable def carry (A B : ℝ) : ℝ :=
   if 1 ≤ Int.fract A + Int.fract B then 1 else 0
 
+/-- The carry is nonnegative: `0 ≤ [{A} + {B} ≥ 1]`. -/
 theorem carry_nonneg (A B : ℝ) : 0 ≤ carry A B := by
   unfold carry; split <;> norm_num
 
+/-- The carry is at most one: `[{A} + {B} ≥ 1] ≤ 1`. -/
 theorem carry_le_one (A B : ℝ) : carry A B ≤ 1 := by
   unfold carry; split <;> norm_num
 

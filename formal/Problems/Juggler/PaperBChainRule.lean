@@ -58,8 +58,10 @@ def step : Letter → ℚ
 the iterate exponent `e_t`, so that `J^t(n)` sits at scale `n^(e_t)`. -/
 def iter (w : List Letter) : ℚ := (w.map step).prod
 
+/-- The empty word has exponent `e_0 = 1`. -/
 @[simp] theorem iter_nil : iter [] = 1 := rfl
 
+/-- Prepending a letter multiplies the exponent by its step: `iter (c :: w) = p_c · iter w`. -/
 @[simp] theorem iter_cons (c : Letter) (w : List Letter) :
     iter (c :: w) = step c * iter w := rfl
 
@@ -76,6 +78,7 @@ theorem iter_pos (w : List Letter) : 0 < iter w := by
       rw [iter_cons]
       exact mul_pos (step_pos c) ih
 
+/-- Every iterate exponent is nonzero. -/
 theorem iter_ne_zero (w : List Letter) : iter w ≠ 0 := (iter_pos w).ne'
 
 /-- **Splitting.**  `e` over a concatenation is the product of the two pieces.
@@ -153,11 +156,14 @@ def oddCount : List Letter → ℕ
   | Letter.O :: w => oddCount w + 1
   | Letter.E :: w => oddCount w
 
+/-- The empty word has no odd letters. -/
 @[simp] theorem oddCount_nil : oddCount [] = 0 := rfl
 
+/-- A leading `O` adds one to the odd count. -/
 @[simp] theorem oddCount_cons_O (w : List Letter) :
     oddCount (Letter.O :: w) = oddCount w + 1 := rfl
 
+/-- A leading `E` leaves the odd count unchanged. -/
 @[simp] theorem oddCount_cons_E (w : List Letter) :
     oddCount (Letter.E :: w) = oddCount w := rfl
 

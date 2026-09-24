@@ -66,6 +66,8 @@ does not contract; `IsMinimalCertificate` quantifies over `0 < k < length`. On a
 the form `w ++ [b]` both reduce to a condition on `w` together with the fate of the whole.
 -/
 
+/-- Appending a letter does not change short prefixes: `(w ++ [b]).take k = w.take k`
+for `k ≤ w.length`. -/
 theorem take_concat_of_le {w : List Branch} {b : Branch} {k : ℕ} (hk : k ≤ w.length) :
     (w ++ [b]).take k = w.take k := List.take_append_of_le_length hk
 
@@ -116,6 +118,8 @@ theorem isMinimalCertificate_concat {w : List Branch} {b : Branch} :
 
 /-! ## 3. The recursion -/
 
+/-- No word of length `d + 1` is both a survivor and a minimal certificate: a minimal
+certificate contracts, and a survivor does not. -/
 theorem survivors_disjoint_certs (d : ℕ) :
     Disjoint (neverNegWords (d + 1)) (minimalCertWords (d + 1)) := by
   classical
@@ -223,6 +227,7 @@ barrier at a step where it rises.  This is `b_d M_d` of the boundary-mass row. -
 def onBarrierWords (d : ℕ) : Finset (List Branch) :=
   (neverNegWords d).filter (fun w => exponentGap (w ++ [Branch.even]))
 
+/-- `b_d M_d`, the number of survivors of length `d` whose `E`-extension contracts. -/
 def onBarrierCount (d : ℕ) : ℕ := (onBarrierWords d).card
 
 /-- **The minimal certificates of length `d+1` are exactly the `E`-extensions of the
@@ -331,10 +336,14 @@ theorem density_flat_five_to_six :
     (certifiedWordCount 6 : ℚ) / 2 ^ 6 = (certifiedWordCount 5 : ℚ) / 2 ^ 5 :=
   density_flat_of_window_empty (d := 5) window_empty_six
 
+/-- The certificate density at depth `9` equals that at depth `8`: length `9` has an empty
+window. -/
 theorem density_flat_eight_to_nine :
     (certifiedWordCount 9 : ℚ) / 2 ^ 9 = (certifiedWordCount 8 : ℚ) / 2 ^ 8 :=
   density_flat_of_window_empty (d := 8) window_empty_nine
 
+/-- The certificate density at depth `11` equals that at depth `10`: length `11` has an
+empty window. -/
 theorem density_flat_ten_to_eleven :
     (certifiedWordCount 11 : ℚ) / 2 ^ 11 = (certifiedWordCount 10 : ℚ) / 2 ^ 10 :=
   density_flat_of_window_empty (d := 10) window_empty_eleven

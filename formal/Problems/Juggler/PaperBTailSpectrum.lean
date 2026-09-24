@@ -47,6 +47,7 @@ noncomputable def h (s z : ℝ) : ℝ :=
 /-- The tail root `(1-s)/s`, at which the characteristic equation has its double root. -/
 noncomputable def tailRoot (s : ℝ) : ℝ := (1 - s) / s
 
+/-- The tail root `(1-s)/s` is positive for `0 < s < 1`. -/
 theorem tailRoot_pos (h0 : 0 < s) (h1 : s < 1) : 0 < tailRoot s := by
   have : 0 < 1 - s := by linarith
   exact div_pos this h0
@@ -57,6 +58,7 @@ theorem one_add_tailRoot (hs : s ≠ 0) : 1 + tailRoot s = 1 / s := by
   field_simp
   ring
 
+/-- For `z > 0` (and `1 + z > 0`), `h s` has derivative `1/(1+z) - (1-s)/z` at `z`. -/
 theorem h_hasDerivAt (hz : 0 < z) (hz1 : 0 < 1 + z) :
     HasDerivAt (h s) (1 / (1 + z) - (1 - s) / z) z := by
   have h1 : HasDerivAt (fun x : ℝ => Real.log (1 + x)) (1 / (1 + z)) z := by
@@ -88,6 +90,8 @@ theorem h_secondDeriv_at_tailRoot (h0 : 0 < s) (h1 : s < 1) :
   field_simp
   ring
 
+/-- For `0 < s < 1`, the second derivative `-(1+z)^(-2) + (1-s) z^(-2)` is positive at
+the tail root. -/
 theorem h_secondDeriv_pos (h0 : 0 < s) (h1 : s < 1) :
     0 < -(1 / (1 + tailRoot s) ^ 2) + (1 - s) / tailRoot s ^ 2 := by
   rw [h_secondDeriv_at_tailRoot h0 h1]

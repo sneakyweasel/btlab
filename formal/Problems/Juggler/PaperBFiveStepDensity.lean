@@ -66,6 +66,7 @@ def certifiedWords (d : ℕ) : Finset (List Branch) :=
 /-- `#C_d` as a count of words. -/
 def certifiedWordCount (d : ℕ) : ℕ := (certifiedWords d).card
 
+/-- The certified words of length `d` are words of length `d`. -/
 theorem certifiedWords_subset (d : ℕ) : certifiedWords d ⊆ allWords d :=
   filter_subset _ _
 
@@ -114,10 +115,13 @@ theorem certifiedWordCount_add_neverNegCount (d : ℕ) :
 paper has no reason to print: depth six adds no certificate, so the density does not move.
 -/
 
+/-- `#C_4 = 13`: thirteen of the `16` words of length four have a contracting prefix. -/
 theorem certifiedWordCount_four : certifiedWordCount 4 = 13 := by decide +kernel
 
+/-- `#C_5 = 28`: twenty-eight of the `32` words of length five have a contracting prefix. -/
 theorem certifiedWordCount_five : certifiedWordCount 5 = 28 := by decide +kernel
 
+/-- `#C_6 = 56`: fifty-six of the `64` words of length six have a contracting prefix. -/
 theorem certifiedWordCount_six : certifiedWordCount 6 = 56 := by decide +kernel
 
 /-- **Theorem 5.2's density, as a count.** -/
@@ -144,10 +148,15 @@ A set of **words**, unlike `FateChernoff.cylinder`, which is the set of odd star
 def wordCylinder (c : List Branch) (d : ℕ) : Finset (List Branch) :=
   (allWords d).filter (fun w => c <+: w)
 
+/-- The depth-five cylinder of `E` holds `16` words. -/
 theorem wordCylinder_card_E : (wordCylinder certE 5).card = 16 := by decide +kernel
+/-- The depth-five cylinder of `OE` holds `8` words. -/
 theorem wordCylinder_card_OE : (wordCylinder certOE 5).card = 8 := by decide +kernel
+/-- The depth-five cylinder of `OOEE` holds `2` words. -/
 theorem wordCylinder_card_OOEE : (wordCylinder certOOEE 5).card = 2 := by decide +kernel
+/-- The depth-five cylinder of `OOOEE` holds `1` word. -/
 theorem wordCylinder_card_OOOEE : (wordCylinder certOOOEE 5).card = 1 := by decide +kernel
+/-- The depth-five cylinder of `OOEOE` holds `1` word. -/
 theorem wordCylinder_card_OOEOE : (wordCylinder certOOEOE 5).card = 1 := by decide +kernel
 
 /-- **The five cylinders cover the certified words at depth five.** -/
@@ -190,6 +199,8 @@ condition the manuscript's estimates are stated for.
 def certifiedCount (d N : ℕ) : ℕ :=
   ((Icc 1 N).filter (fun n => ¬ prefixNoncontracting (itinerary n d))).card
 
+/-- Every start in `{1,…,N}` is either certified by depth `d` or not:
+`certifiedCount d N + uncertifiedCount d N = N`. -/
 theorem certifiedCount_add_uncertifiedCount (d N : ℕ) :
     certifiedCount d N + uncertifiedCount d N = N := by
   classical
@@ -200,6 +211,8 @@ theorem certifiedCount_add_uncertifiedCount (d N : ℕ) :
   rw [certifiedCount, uncertifiedCount, add_comm]
   omega
 
+/-- A word lies in the depth-`d` cylinder of `c` exactly when it has length `d` and
+extends `c`. -/
 theorem mem_wordCylinder_iff {c w : List Branch} {d : ℕ} :
     w ∈ wordCylinder c d ↔ w.length = d ∧ c <+: w := by
   simp [wordCylinder, mem_filter, mem_allWords]
@@ -294,8 +307,11 @@ in the manuscript; both are decidable, and neither supplies the mixed-mode estim
 new word would need.
 -/
 
+/-- `OOEOOEE`, one of the three minimal certificates of length seven. -/
 def certOOEOOEE : List Branch := [.odd, .odd, .even, .odd, .odd, .even, .even]
+/-- `OOOEOEE`, one of the three minimal certificates of length seven. -/
 def certOOOEOEE : List Branch := [.odd, .odd, .odd, .even, .odd, .even, .even]
+/-- `OOOOEEE`, one of the three minimal certificates of length seven. -/
 def certOOOOEEE : List Branch := [.odd, .odd, .odd, .odd, .even, .even, .even]
 
 /-- **Depth six contributes nothing.** -/
@@ -307,6 +323,7 @@ theorem minimal_certificates_seven :
     (allWords 7).filter IsMinimalCertificate
       = {certOOEOOEE, certOOOEOEE, certOOOOEEE} := by decide +kernel
 
+/-- `#C_7 = 115`: of the `128` words of length seven, `115` have a contracting prefix. -/
 theorem certifiedWordCount_seven : certifiedWordCount 7 = 115 := by decide +kernel
 
 /-- The next rung of the table: `115/128`, not `7/8`. -/

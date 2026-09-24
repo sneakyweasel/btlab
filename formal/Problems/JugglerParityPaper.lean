@@ -89,15 +89,30 @@ stays disjoint from Paper A's reachable modules.
   error (`gap_error_le_one`, `gap_error_one_attained`,
   `gap_error_not_halved_by_recentring`).
 
-## What is not here, and cannot be
+The lemma numbers in the module list above (Lemmas 3.8 and 3.9, Lemma 5.1 as the defect
+identity, Lemma 5.2b, and Appendix A's `P₀` certificate) are those of the 2026-09-04 snapshot that
+`AxiomCheckPaperB.lean` audits. They are not citations to the published edition.
 
-Lemma 5.2 — the level-2 wave estimate the whole paper rests on — has no machine check of any
-kind, in this barrel or anywhere else in the repository. Theorem 5.3 has two,
-`step5b_curvature_norm` and `sublevel_raised_threshold`, and both are constants inside Step 5b
-rather than any step of the assembly. Theorems 4.4, 4.7, 4.8, 4.11, 5.2--5.4, 6.1, 6.3 and
-Corollaries 4.9, 4.12, 6.4 have none of their analytic estimates. The combinatorial Lemma 5.1
-is formalised outside this barrel in `PaperBCertificates`; nothing here bounds an exponential
-sum.
+## The published edition, by current number
+
+The published 1.2.0 edition names its machine-checked declarations in Section 8 and Appendix
+D.8, audited by `AxiomCheckPaperBPublished.lean`, `AxiomCheckSubBlockAveraging.lean` and
+`AxiomCheckDepthFiveWeighted.lean`. Inside this barrel are the chain of Theorem 6.1, with
+Hypothesis FD carried as a hypothesis (`PaperBChernoff`, `PaperBMarkov`, `PaperBDensity`), and
+the threshold algebra of Remark 6.2 (`PaperBThreshold`). Outside it, because they reach the
+itinerary stack shared with Paper A, are Lemma 5.1 (`PaperBCertificates`), the count assembly
+of Theorems 5.2--5.4 (`PaperBFiveStepDensity`), the certificate lengths, recursion, survivor
+decay, tilt, barrier step and jump transposition, the exact bridge of Theorem 3.1
+(`PaperBSingleFloor`), Lemma D.3 (`SubBlockAveraging`) and the fibre geometry (D.2)
+(`DepthFiveFibreGeometry`).
+
+## What is not here
+
+No analytic estimate of Sections 4 and 7 or of Appendices A--D is machine-checked: not
+Theorems 4.5, 4.9, 4.11 or B.1, not Lemmas 4.4, 4.7 or 4.8, not Propositions 3.2, 7.4 or 7.6,
+and not the averaging argument of Theorem 6.3 beyond Lemma D.3 and (D.2). The densities
+`13/16`, `27/32` and `7/8` of Theorems 5.2--5.4 are therefore machine-checked only as count
+assemblies from their analytic inputs. Nothing in this barrel bounds an exponential sum.
 
 This barrel is not imported by `Problems.lean`; build it with
 `lake build Problems.JugglerParityPaper`. Paper A's barrel is `Problems.JugglerPaper`, and the

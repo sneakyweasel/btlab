@@ -114,6 +114,7 @@ theorem theta_lt_one {q : ℝ} (hq0 : 0 < q) (hq1 : q < 1) (hq : q ≠ 1 / 2) : 
         exact Real.exp_lt_exp.mpr (by linarith)
     _ = 1 := Real.exp_zero
 
+/-- The Chernoff factor is positive for `0 < q < 1`. -/
 theorem theta_pos {q : ℝ} (hq0 : 0 < q) (hq1 : q < 1) : 0 < theta q := by
   rw [theta_eq_exp_neg_klDiv hq0 hq1]; exact Real.exp_pos _
 

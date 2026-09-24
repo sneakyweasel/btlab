@@ -71,19 +71,26 @@ def barrierMass (v : Profile) : Profile
   | 0 => v 0
   | _ + 1 => 0
 
+/-- On the barrier, the barrier mass is the profile's value there. -/
 @[simp] theorem barrierMass_zero (v : Profile) : barrierMass v 0 = v 0 := rfl
 
+/-- Above the barrier, the barrier mass vanishes. -/
 @[simp] theorem barrierMass_succ (v : Profile) (h : ℕ) : barrierMass v (h + 1) = 0 := rfl
 
+/-- The barrier mass as a case split: `v 0` at height `0`, and `0` elsewhere. -/
 theorem barrierMass_eq_ite (v : Profile) (h : ℕ) :
     barrierMass v h = if h = 0 then v 0 else 0 := by
   cases h <;> simp
 
+/-- On the barrier, a flat step keeps only the walkers already there: `stepFlat v 0 = v 0`. -/
 @[simp] theorem stepFlat_zero (v : Profile) : stepFlat v 0 = v 0 := rfl
 
+/-- Above the barrier, a flat step adds stayers and climbers:
+`stepFlat v (h + 1) = v (h + 1) + v h`. -/
 @[simp] theorem stepFlat_succ (v : Profile) (h : ℕ) :
     stepFlat v (h + 1) = v (h + 1) + v h := rfl
 
+/-- A rising step at height `h` collects `v (h + 1) + v h`. -/
 @[simp] theorem stepRise_apply (v : Profile) (h : ℕ) : stepRise v h = v (h + 1) + v h := rfl
 
 /-- **The exchange cost.** Climbing before killing and killing before climbing agree at
@@ -104,20 +111,25 @@ def run : List Bool → Profile → Profile
   | [], v => v
   | b :: w, v => run w (if b then stepRise v else stepFlat v)
 
+/-- The empty barrier word leaves the profile unchanged. -/
 @[simp] theorem run_nil (v : Profile) : run [] v = v := rfl
 
+/-- A leading rise applies `stepRise`, then runs the rest of the word. -/
 @[simp] theorem run_cons_true (w : List Bool) (v : Profile) :
     run (true :: w) v = run w (stepRise v) := rfl
 
+/-- A leading flat letter applies `stepFlat`, then runs the rest of the word. -/
 @[simp] theorem run_cons_false (w : List Bool) (v : Profile) :
     run (false :: w) v = run w (stepFlat v) := rfl
 
+/-- A flat letter acts additively: `stepFlat (u + v) = stepFlat u + stepFlat v`. -/
 theorem stepFlat_add (u v : Profile) : stepFlat (u + v) = stepFlat u + stepFlat v := by
   funext h
   cases h with
   | zero => simp [Pi.add_apply]
   | succ k => simp [Pi.add_apply]; omega
 
+/-- A rising letter acts additively: `stepRise (u + v) = stepRise u + stepRise v`. -/
 theorem stepRise_add (u v : Profile) : stepRise (u + v) = stepRise u + stepRise v := by
   funext h; simp [Pi.add_apply]; omega
 
@@ -159,6 +171,7 @@ theorem stepRise_barrierMass (v : Profile) : stepRise (barrierMass v) = barrierM
 /-- Totals over a height window, the quantity the counts are read through. -/
 def total (H : ℕ) (v : Profile) : ℕ := ∑ h ∈ Finset.range H, v h
 
+/-- Window totals are additive in the profile: `total H (u + v) = total H u + total H v`. -/
 theorem total_add (H : ℕ) (u v : Profile) :
     total H (u + v) = total H u + total H v := by
   simp [total, Pi.add_apply, Finset.sum_add_distrib]
@@ -169,6 +182,8 @@ theorem total_run_stepRise_stepFlat (H : ℕ) (w : List Bool) (v : Profile) :
       = total H (run w (stepFlat (stepRise v))) + total H (run w (barrierMass v)) := by
   rw [run_stepRise_stepFlat, total_add]
 
+/-- Widening the window by one height adds the top value:
+`total (H + 1) v = total H v + v H`. -/
 theorem total_succ (H : ℕ) (v : Profile) : total (H + 1) v = total H v + v H :=
   Finset.sum_range_succ _ _
 

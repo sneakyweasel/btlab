@@ -123,6 +123,8 @@ def CertWindowAt (c : ℝ) (L o : ℕ) : Prop :=
 
 /-! ## 2. Level zero is Paper B -/
 
+/-- At level `c = 1` the real-valued gap is Paper B's `exponentGap`:
+`3 ^ o * 1 < 2 ^ L` over `ℝ` iff `3 ^ o < 2 ^ L` over `ℕ`. -/
 theorem exponentGapAt_one_iff (w : List Branch) :
     exponentGapAt 1 w ↔ exponentGap w := by
   unfold exponentGapAt exponentGap
@@ -137,6 +139,7 @@ theorem exponentGapAt_one_iff (w : List Branch) :
     push_cast at hc
     linarith
 
+/-- At level `c = 1` the shifted window is Paper B's `CertWindow`. -/
 theorem certWindowAt_one_iff (L o : ℕ) : CertWindowAt 1 L o ↔ CertWindow L o := by
   unfold CertWindowAt CertWindow
   constructor
@@ -190,6 +193,8 @@ theorem certWindowAt_two_iff {L : ℕ} (hL : 2 ≤ L) (o : ℕ) :
 
 /-! ## 3. The window still holds at most one power of three -/
 
+/-- `2 ^ L ≤ 2 * 2 ^ (L - 1)` for every natural `L`; at `L = 0` truncated subtraction
+makes it `1 ≤ 2`. -/
 theorem two_pow_le_two_mul (L : ℕ) : (2 : ℝ) ^ L ≤ 2 * 2 ^ (L - 1) := by
   rcases Nat.eq_zero_or_pos L with rfl | hL
   · norm_num
@@ -390,6 +395,8 @@ theorem not_exponentGapAt_nil {c : ℝ} (hc : 1 ≤ c) : ¬ exponentGapAt c [] :
   simp only [oddCount, List.length_nil, pow_zero, one_mul]
   exact not_lt.mpr hc
 
+/-- Appending a letter does not change short prefixes: `(w ++ [b]).take k = w.take k`
+for `k ≤ w.length`. -/
 theorem takeAt_concat_of_le {w : List Branch} {b : Branch} {k : ℕ} (hk : k ≤ w.length) :
     (w ++ [b]).take k = w.take k := List.take_append_of_le_length hk
 

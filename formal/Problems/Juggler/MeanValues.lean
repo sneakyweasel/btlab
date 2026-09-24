@@ -42,6 +42,7 @@ open Real
 /-- `x^(3/2)`, written without `rpow`. -/
 noncomputable def pow32 (x : ℝ) : ℝ := x * Real.sqrt x
 
+/-- `x^(3/2)` in root coordinates: for `a ≥ 0`, `pow32 (a²) = a³`. -/
 theorem pow32_sq (a : ℝ) (ha : 0 ≤ a) : pow32 (a ^ 2) = a ^ 3 := by
   unfold pow32
   rw [Real.sqrt_sq ha]; ring
@@ -97,6 +98,8 @@ theorem mvt_sqrt_diff_explicit (a b : ℝ) (_ha : 0 ≤ a) (hab : a ≤ b) :
 `g(t) = F(t + β₂) - F(t)`. -/
 noncomputable def gShift (β₂ t : ℝ) : ℝ := pow32 (t + β₂) - pow32 t
 
+/-- For `t > 0` and `β₂ ≥ 0`, `g(t) = F(t + β₂) - F(t)` has derivative
+`(3/2)√(t + β₂) - (3/2)√t` at `t`. -/
 theorem hasDerivAt_gShift {β₂ t : ℝ} (ht : 0 < t) (hβ : 0 ≤ β₂) :
     HasDerivAt (gShift β₂)
       ((3 / 2) * Real.sqrt (t + β₂) - (3 / 2) * Real.sqrt t) t := by

@@ -57,11 +57,13 @@ noncomputable def survivorDensity (d : ℕ) : ℝ := (neverNegCount d : ℝ) / 2
 /-- The rate base: `PaperBChernoff.theta` at `PaperBThreshold.beta`. -/
 noncomputable def rateBase : ℝ := PaperBChernoff.theta PaperBThreshold.beta
 
+/-- The rate base `θ(β)` is positive. -/
 theorem rateBase_pos : 0 < rateBase := by
   have h0 : (0 : ℝ) < PaperBThreshold.beta := by
     linarith [PaperBThreshold.beta_gt_five_eighths]
   exact PaperBChernoff.theta_pos h0 PaperBThreshold.beta_lt_one
 
+/-- The rate base `θ(β)` is below one, because `β ≠ 1/2`. -/
 theorem rateBase_lt_one : rateBase < 1 := by
   have h0 : (0 : ℝ) < PaperBThreshold.beta := by
     linarith [PaperBThreshold.beta_gt_five_eighths]
@@ -78,6 +80,7 @@ theorem theta_beta_eq_rho :
 /-- The measured model sequence: `θ(β)^d · d^(-3/2)`. -/
 noncomputable def model (d : ℕ) : ℝ := rateBase ^ d * (d : ℝ) ^ (-(3 : ℝ) / 2)
 
+/-- The model `θ(β)^d · d^(-3/2)` is positive for `d ≥ 1`. -/
 theorem model_pos {d : ℕ} (hd : 1 ≤ d) : 0 < model d := by
   have hd' : (0 : ℝ) < (d : ℝ) := by exact_mod_cast hd
   exact mul_pos (pow_pos rateBase_pos d) (Real.rpow_pos_of_pos hd' _)

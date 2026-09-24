@@ -273,6 +273,7 @@ theorem theta_beta_lt_one : PaperBChernoff.theta PaperBThreshold.beta < 1 := by
     linarith [PaperBThreshold.beta_gt_five_eighths]
   exact PaperBChernoff.theta_lt_one hβ0 PaperBThreshold.beta_lt_one hβhalf
 
+/-- The Chernoff factor at the endpoint `β = log 2 / log 3` is positive. -/
 theorem theta_beta_pos : 0 < PaperBChernoff.theta PaperBThreshold.beta := by
   have hβ0 : (0 : ℝ) < PaperBThreshold.beta := by
     linarith [PaperBThreshold.beta_gt_five_eighths]
@@ -360,15 +361,19 @@ theorem neverCertified_density_zero (h : FairClasses) :
 
 /-! ### Kernel-computed values at small depths -/
 
+/-- `N_1 = 1`: of the words of length one, only `O` survives. -/
 theorem neverNegCount_one : neverNegCount 1 = 1 := by
   decide +kernel
 
+/-- `N_2 = 1`: of the words of length two, only `OO` survives. -/
 theorem neverNegCount_two : neverNegCount 2 = 1 := by
   decide +kernel
 
+/-- `N_3 = 2`: of the words of length three, only `OOO` and `OOE` survive. -/
 theorem neverNegCount_three : neverNegCount 3 = 2 := by
   decide +kernel
 
+/-- `N_4 = 3` survivors of length four. -/
 theorem neverNegCount_four : neverNegCount 4 = 3 := by
   decide +kernel
 
@@ -390,9 +395,11 @@ theorem neverNegWords_five :
 theorem neverNegCount_six : neverNegCount 6 = 8 := by
   decide +kernel
 
+/-- `N_7 = 13` survivors of length seven. -/
 theorem neverNegCount_seven : neverNegCount 7 = 13 := by
   decide +kernel
 
+/-- `N_8 = 19` survivors of length eight. -/
 theorem neverNegCount_eight : neverNegCount 8 = 19 := by
   decide +kernel
 

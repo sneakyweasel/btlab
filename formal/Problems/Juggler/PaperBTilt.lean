@@ -112,10 +112,12 @@ theorem sturmian_step (t : ℕ) (h0 : 0 < b) (h1 : b < 1) :
 /-- `beta = log 2 / log 3`, the threshold of the whole construction. -/
 noncomputable def beta : ℝ := Real.log 2 / Real.log 3
 
+/-- `beta = log 2 / log 3` is positive. -/
 theorem beta_pos : 0 < beta := by
   have h3 : 0 < Real.log 3 := Real.log_pos (by norm_num)
   exact div_pos (Real.log_pos (by norm_num)) h3
 
+/-- `beta < 1`, because `log 2 < log 3`. -/
 theorem beta_lt_one : beta < 1 := by
   have h3 : 0 < Real.log 3 := Real.log_pos (by norm_num)
   rw [beta, div_lt_one h3]

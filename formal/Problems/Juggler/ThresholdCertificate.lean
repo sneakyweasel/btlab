@@ -188,6 +188,7 @@ theorem row_claimG_pref (t : ℝ) (ht : 2.5 ≤ t) : (96:ℝ) ≤ t ^ 5 := by
 `P = t^36`.  Holds for every `P ≥ 1`; the content is the exponent arithmetic. -/
 theorem row_claimG_P36 (t : ℝ) (ht : 1 ≤ t) : (1:ℝ) ≤ t ^ 1 := by simpa using ht
 
+/-- The exponent arithmetic of row `claimG-P36`: `1/72 - 1/24 = -(1/36)` in `ℚ`. -/
 theorem claimG_P36_exponent : (1:ℚ) / 72 - 1 / 24 = -(1 / 36) := by norm_num
 
 /-! ### Theorem 5.3: window hypotheses -/

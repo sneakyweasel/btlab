@@ -41,15 +41,27 @@ instance (w : List Branch) : Decidable (IsMinimalCertificate w) :=
 
 /-- The five words of Lemma 5.1. -/
 def certE : List Branch := [.even]
+/-- `OE`, the length-two minimal certificate of Lemma 5.1. -/
 def certOE : List Branch := [.odd, .even]
+/-- `OOEE`, the length-four minimal certificate of Lemma 5.1. -/
 def certOOEE : List Branch := [.odd, .odd, .even, .even]
+/-- `OOOEE`, one of the two length-five minimal certificates of Lemma 5.1. -/
 def certOOOEE : List Branch := [.odd, .odd, .odd, .even, .even]
+/-- `OOEOE`, the other length-five minimal certificate of Lemma 5.1. -/
 def certOOEOE : List Branch := [.odd, .odd, .even, .odd, .even]
 
+/-- `E` is a minimal certificate: `3 ^ 0 < 2 ^ 1`, and it has no proper nonempty prefix. -/
 theorem certE_is : IsMinimalCertificate certE := by decide
+/-- `OE` is a minimal certificate: `3 < 2 ^ 2`, and its prefix `O` does not contract. -/
 theorem certOE_is : IsMinimalCertificate certOE := by decide
+/-- `OOEE` is a minimal certificate: `3 ^ 2 < 2 ^ 4`, and no proper nonempty prefix
+contracts. -/
 theorem certOOEE_is : IsMinimalCertificate certOOEE := by decide
+/-- `OOOEE` is a minimal certificate: `3 ^ 3 < 2 ^ 5`, and no proper nonempty prefix
+contracts. -/
 theorem certOOOEE_is : IsMinimalCertificate certOOOEE := by decide
+/-- `OOEOE` is a minimal certificate: `3 ^ 3 < 2 ^ 5`, and no proper nonempty prefix
+contracts. -/
 theorem certOOEOE_is : IsMinimalCertificate certOOEOE := by decide
 
 /-- Formal cylinder measures of the five certificates sum to `7/8`. -/
@@ -57,10 +69,13 @@ theorem certificate_measures_sum :
     (1 : ℚ) / 2 + 1 / 4 + 1 / 16 + 1 / 32 + 1 / 32 = 7 / 8 := by
   norm_num
 
+/-- `1/2 + 1/4 + 1/16 = 13/16`: the cylinder measures of `E`, `OE`, `OOEE`, the minimal
+certificates of length at most four. -/
 theorem four_step_measures_sum :
     (1 : ℚ) / 2 + 1 / 4 + 1 / 16 = 13 / 16 := by
   norm_num
 
+/-- `13/16 + 1/32 = 27/32`: the length-at-most-four total plus one length-five cylinder. -/
 theorem twenty_seven_thirty_two_sum :
     (13 : ℚ) / 16 + 1 / 32 = 27 / 32 := by
   norm_num
