@@ -85,8 +85,9 @@ def trust_closure(index: dict[str, Any]) -> set[str]:
 
     ``_trust`` reads one proof body, so it answers "does this proof run the compiler" -- not
     "does this theorem depend on the compiler".  Those differ, and the gap is not academic:
-    ``shortcutC_terminal_cycle`` is the term ``<shortcutC_one, shortcutC_two>`` and both halves
-    are ``native_decide``, yet the body carries no such token and the label read ``kernel``.
+    ``shortcutC_terminal_cycle`` was the term ``<shortcutC_one, shortcutC_two>`` while both
+    halves were ``native_decide``, yet its body carried no such token and the label read
+    ``kernel`` (both halves are now kernel ``decide`` proofs).
     Inside Paper A, ``window_digit_cap`` cites ``window_digit_scan`` the same way.
 
     Edges are name occurrences in a comment-stripped proof body, which is why comments are

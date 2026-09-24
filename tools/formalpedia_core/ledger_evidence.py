@@ -7,8 +7,10 @@ named none when this gate was introduced are held in a baseline that may only sh
 The compiled one reads the formalpedia semantic export, which records Lean's own
 ``collectAxioms`` for every declaration of the local library. Each named declaration must
 be in the current export, and its axioms must be the ones its row's ``lean_trust`` allows:
-Mathlib's three for ``kernel``, those plus the compiler-trust axioms for declarations a
-``mixed`` or ``compiler`` row lists, and never ``sorryAx``. The export is produced by CI's
+Mathlib's three for ``kernel``, those plus compiler-trust axioms (``Lean.ofReduceBool`` or a
+per-use ``native_decide`` axiom) for declarations a ``mixed`` or ``compiler`` row lists, and
+never ``sorryAx``. Because the export records transitive axioms, a theorem that merely cites
+a ``native_decide`` lemma is compiler-trusted too, which the source markers cannot see. The export is produced by CI's
 Lean job (``python tools/lab.py build``). Neither check decides whether a declaration
 covers the English claim; that remains a reading of the statements.
 """
@@ -25,6 +27,15 @@ from .audits import STANDARD
 
 LABEL = 'EXACT — LEAN VERIFIED'
 COMPILER_AXIOMS = frozenset({'Lean.ofReduceBool', 'Lean.trustCompiler'})
+NATIVE_AXIOM_MARK = '._native.native_decide.ax_'
+
+"""Current Lean records each ``native_decide`` use as its own auxiliary axiom, named like
+``Problems.Collatz.shortcutC_one._native.native_decide.ax_1_1``, rather than as
+``Lean.ofReduceBool``; both forms are compiler trust."""
+
+
+def is_compiler_axiom(name: str) -> bool:
+    return name in COMPILER_AXIOMS or NATIVE_AXIOM_MARK in name
 BASELINE_NAME = 'data/research/formalpedia/lean_verified_without_declarations.json'
 
 
@@ -53,11 +64,11 @@ def static_problems(ledger: list[dict], allowed: list[str]) -> list[dict[str, An
     return problems
 
 
-def _allowed(row: dict, name: str) -> frozenset[str]:
+def _unexpected(row: dict, name: str, axioms: list[str]) -> list[str]:
     trust = row.get('lean_trust')
-    if trust == 'compiler' or (trust == 'mixed' and name in (row.get('compiler_decls') or [])):
-        return frozenset(STANDARD) | COMPILER_AXIOMS
-    return frozenset(STANDARD)
+    compiled = trust == 'compiler' or (trust == 'mixed' and name in (row.get('compiler_decls') or []))
+    return sorted(a for a in set(axioms)
+                  if a not in STANDARD and not (compiled and is_compiler_axiom(a)))
 
 
 def compiled_problems(index: dict, ledger: list[dict], axioms_of) -> dict[str, Any]:
@@ -80,7 +91,7 @@ def compiled_problems(index: dict, ledger: list[dict], axioms_of) -> dict[str, A
             problems.append({'kind': 'not_in_current_export', 'row': row['id'], 'identity': identity})
             continue
         checked += 1
-        extra = sorted(set(axioms) - _allowed(row, name))
+        extra = _unexpected(row, name, axioms)
         if extra:
             problems.append({'kind': 'axioms_exceed_label', 'row': row['id'], 'identity': identity,
                              'lean_trust': row.get('lean_trust'), 'unexpected_axioms': extra})

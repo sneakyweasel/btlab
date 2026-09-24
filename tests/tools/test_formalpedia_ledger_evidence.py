@@ -44,12 +44,14 @@ def test_compiled_axioms_must_match_each_rows_trust_label() -> None:
               _row('ghost', 'missing')]
     axioms = {'Problems.A::N.a': STANDARD, 'Problems.A::N.b': STANDARD + ['sorryAx'],
               'Problems.A::N.c': STANDARD + ['Lean.ofReduceBool'],
-              'Problems.A::N.d': STANDARD + ['Lean.ofReduceBool']}
+              'Problems.A::N.d': STANDARD + ['N.d._native.native_decide.ax_1_1']}
     result = fp_evidence.compiled_problems(index, ledger, lambda ids: {i: axioms.get(i) for i in ids})
     found = {(p['kind'], p['row']) for p in result['problems']}
     assert found == {('axioms_exceed_label', 'sorry'), ('axioms_exceed_label', 'mixed'),
                      ('declaration_unresolved', 'ghost')}
-    assert [p['unexpected_axioms'] for p in result['problems'] if p['row'] == 'mixed'] == [['Lean.ofReduceBool']]
+    # c cites no compiler lemma in its row's list, so its compiler axiom exceeds the label; d may.
+    assert [(p['identity'], p['unexpected_axioms']) for p in result['problems'] if p['row'] == 'mixed'] == [
+        ('Problems.A::N.c', ['Lean.ofReduceBool'])]
     assert result['declarations_checked'] == 4
 
 

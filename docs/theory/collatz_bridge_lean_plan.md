@@ -114,8 +114,8 @@ lemma for \(3^x-2^k=\pm1\). Convergent alternation is available as
 **Architecture constraints that bind every item.** Paper A's barrel is
 kernel-only and its layer modules import only `Problems.Juggler.*`
 (`test_imports_are_one_way`); `CollatzBridge` restates `shortcutC` locally
-because `Problems.Collatz.Shortcut` carries `native_decide` (`shortcutC_one`,
-`shortcutC_two`). Every file in `formal/Problems/Juggler/` must be in
+because `Problems.Collatz.Shortcut` carried `native_decide` (`shortcutC_one`,
+`shortcutC_two`, kernel `decide` proofs since 24 September 2026). Every file in `formal/Problems/Juggler/` must be in
 `LAYERS` or `AUXILIARY_MODULES` of `lean_registry.py`
 (`test_every_juggler_source_has_an_explicit_inventory_role`). Declaration
 names at most 33 characters (the Paper C axiom probe). The words `sorry`,
