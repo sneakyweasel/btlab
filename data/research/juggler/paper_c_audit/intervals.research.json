@@ -1,8 +1,8 @@
 {
-  "schema": "btlab-output/v1",
+  "schema": "btlab-output/v2",
   "programme": "juggler",
   "research_id": null,
-  "created_utc": "2026-09-23T16:25:30.617566+00:00",
+  "created_utc": "2026-09-24T22:09:58.072111+00:00",
   "scope": "COMPUTATIONALLY VERIFIED: finite Arb certificates for explicit Paper C production roots, recurrence slack, and integer rate crossings. No Lean proof, production estimate, asymptotic bound, or termination claim.",
   "artifact_root": ".",
   "generator": {
@@ -10,7 +10,7 @@
       "python",
       "tools/check_paper_c_intervals.py",
       "--output",
-      "data\\research\\juggler\\paper_c_audit\\intervals.json"
+      ".build\\artifacts\\4cab4c82fe2d4b77b6ae52c35a216160\\work\\data\\research\\juggler\\paper_c_audit\\intervals.json"
     ],
     "parameters": {
       "backend": "python-flint/Arb",
@@ -23,85 +23,175 @@
     "python": "3.13.9"
   },
   "source": {
-    "revision": "c507443e78df03b31587d967fd762eaf3d617be8",
-    "dirty": true,
+    "revision": "c43d7699ff45493b004f694501f1a900b8d04b63",
+    "dirty": false,
     "coverage": "loaded local Python, project configuration, and explicit sources at manifest creation; not an execution or dependency audit",
     "files": [
       {
         "path": "pyproject.toml",
         "sha256": "e99a8deaad3e42c12db855ee4f72dac9b190db67b5a088bea8377c8f94055ef7",
-        "bytes": 2746
+        "bytes": 2746,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "e99a8deaad3e42c12db855ee4f72dac9b190db67b5a088bea8377c8f94055ef7",
+          "bytes": 2746
+        }
       },
       {
         "path": "src/research/__init__.py",
         "sha256": "2f57f06dcf8334c7d93eb76d768947fa8c70ac35d681dd7cdcb3f988a1d7b565",
-        "bytes": 58
+        "bytes": 58,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "2f57f06dcf8334c7d93eb76d768947fa8c70ac35d681dd7cdcb3f988a1d7b565",
+          "bytes": 58
+        }
       },
       {
         "path": "src/research/experiments/__init__.py",
         "sha256": "edbe56c7b50bc27f3658d78aabdc3ab5da9c6b35f9f21588cfeeb368d2830bab",
-        "bytes": 209
+        "bytes": 209,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "edbe56c7b50bc27f3658d78aabdc3ab5da9c6b35f9f21588cfeeb368d2830bab",
+          "bytes": 209
+        }
       },
       {
         "path": "src/research/experiments/provenance.py",
-        "sha256": "da03e38a6272cb737bd48543e9bc2c44d44d093056e4a2303efb27e6c3c0a0cd",
-        "bytes": 12187
+        "sha256": "aa58341fe373981b76c61a56bf429e002c43f56c2c653f3a05ddff95ad3b812c",
+        "bytes": 14904,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "aa58341fe373981b76c61a56bf429e002c43f56c2c653f3a05ddff95ad3b812c",
+          "bytes": 14904
+        }
       },
       {
         "path": "src/research/experiments/schema.py",
         "sha256": "e7e5e2510862621b8d4bd60f9b38e29f7af05a6d2938ec71c0b60b60047632ed",
-        "bytes": 6595
+        "bytes": 6595,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "e7e5e2510862621b8d4bd60f9b38e29f7af05a6d2938ec71c0b60b60047632ed",
+          "bytes": 6595
+        }
       },
       {
         "path": "src/research/experiments/table_io.py",
-        "sha256": "eccc3d72d3d375df7f4a346eff9b68b103395d568e46e45bfc75a018adbf5765",
-        "bytes": 3904
+        "sha256": "dcc6e0d412f9e605cf68d9da9ee47d7d2e1d372c9165f90672e9b03fe2a4585a",
+        "bytes": 3940,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "dcc6e0d412f9e605cf68d9da9ee47d7d2e1d372c9165f90672e9b03fe2a4585a",
+          "bytes": 3940
+        }
+      },
+      {
+        "path": "src/research/repository.py",
+        "sha256": "bbb7ed01d513b2eb340b714720e9199b9c26ca323138224cf31c588e4a19cb9e",
+        "bytes": 6331,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "bbb7ed01d513b2eb340b714720e9199b9c26ca323138224cf31c588e4a19cb9e",
+          "bytes": 6331
+        }
       },
       {
         "path": "src/research_engine/__init__.py",
         "sha256": "9c2d16eda72eb3d74d58967d0c1a7117455c2aad15cf7ace61c81b99a7e48964",
-        "bytes": 94
+        "bytes": 94,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "9c2d16eda72eb3d74d58967d0c1a7117455c2aad15cf7ace61c81b99a7e48964",
+          "bytes": 94
+        }
       },
       {
         "path": "src/research_engine/intervals.py",
         "sha256": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
-        "bytes": 5630
+        "bytes": 5630,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
+          "bytes": 5630
+        }
       },
       {
         "path": "tools/check_paper_c_intervals.py",
-        "sha256": "e3c689cd9dd27f4abcf6eee35127214712319446dc8ff08179214de8edf7d13b",
-        "bytes": 7131
+        "sha256": "493ffffc689127886b5ccc033545b11d55296d93215420b868d28ec88e571574",
+        "bytes": 7937,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "493ffffc689127886b5ccc033545b11d55296d93215420b868d28ec88e571574",
+          "bytes": 7937
+        }
       },
       {
         "path": "tools/lab.py",
-        "sha256": "d29778fdff81b9c9ad5f464d7cbc0ce22a52c500451c872371f3c7b25e2c4822",
-        "bytes": 4370
+        "sha256": "949f0778e44f74580a475d63b63287d2ca9f3918aaf13c1487d494fafc8cede5",
+        "bytes": 5992,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "949f0778e44f74580a475d63b63287d2ca9f3918aaf13c1487d494fafc8cede5",
+          "bytes": 5992
+        }
+      },
+      {
+        "path": "tools/requirements-lab.json",
+        "sha256": "26a79648b55b86be204da0f35c280aada68f358bfae3eb1289e016f6009c10be",
+        "bytes": 506,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "26a79648b55b86be204da0f35c280aada68f358bfae3eb1289e016f6009c10be",
+          "bytes": 506
+        }
+      },
+      {
+        "path": "tools/requirements-lab.lock",
+        "sha256": "b634d10f3149eac2f8195fabd17d4c7aafbdeff7f7bb38e393214698e5095ab7",
+        "bytes": 68419
       }
     ]
   },
   "inputs": [
     {
       "path": "docs/theory/juggler_fate_almost_all_note.md",
-      "sha256": "ff0f8e6bbea766896f0d70b5526f2d48227ea5971a2a345f51b32c512795688d",
-      "bytes": 244571
+      "sha256": "f769b6f5e12d22cdc2229aed84195e2aa8fabf13279c05fb3e5a8433d5085d0c",
+      "bytes": 255921,
+      "text": {
+        "normalization": "utf8-crlf-to-lf",
+        "sha256": "f769b6f5e12d22cdc2229aed84195e2aa8fabf13279c05fb3e5a8433d5085d0c",
+        "bytes": 255921
+      }
     },
     {
       "path": "docs/theory/juggler_ooee_contagion_note.md",
       "sha256": "31187565168d74fe1cd2ee06c081daeaeea769ea99d5aa142a9b47c219604c37",
-      "bytes": 11245
+      "bytes": 11245,
+      "text": {
+        "normalization": "utf8-crlf-to-lf",
+        "sha256": "31187565168d74fe1cd2ee06c081daeaeea769ea99d5aa142a9b47c219604c37",
+        "bytes": 11245
+      }
     },
     {
       "path": "formal/Problems/Juggler/FateContagionBound.lean",
       "sha256": "d8991fd05c076875a0e8fd75692a10bb31930c289a3812de07212b620645acca",
-      "bytes": 20575
+      "bytes": 20575,
+      "text": {
+        "normalization": "utf8-crlf-to-lf",
+        "sha256": "d8991fd05c076875a0e8fd75692a10bb31930c289a3812de07212b620645acca",
+        "bytes": 20575
+      }
     }
   ],
   "outputs": [
     {
       "path": "intervals.json",
-      "sha256": "eca8645bb453a5ed96d06e0c54ba0bf838fd2fba93ff0dde1329f4119c82cd62",
-      "bytes": 47985
+      "sha256": "03ad6b920fe864dc6cfc21a13eef585a6a895524444567417faf9242cf783516",
+      "bytes": 56438
     }
   ],
-  "verification": "Hashes identify files only; no theorem or compilation status is asserted."
+  "verification": "Outputs are byte-exact. Explicit text fingerprints on inputs/sources accept only UTF-8 CRLF-to-LF representation changes, which are reported. No theorem or compilation status is asserted."
 }

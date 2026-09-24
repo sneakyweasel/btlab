@@ -1755,6 +1755,28 @@ Appendix D, and the Paper B Arb audit was re-staged for the new manuscript with
 unchanged constants. Paper C is not updated: its `0.74` contagion waits for human
 review of E5-E9.
 
+**37. Paper C 1.3.0 prepared: contagion 37/50 (24 September 2026; not
+deposited).** Paper C now states the five-production contagion as Theorem 5.20,
+with Paper B's published Theorem 6.3 as its one written input. It raises the
+headline exponent from 5/8 to 37/50 and lowers the sufficient rate threshold
+from 3/8 to 13/50. Owner decision, 24 September 2026: Paper C states 37/50 as
+its headline before human review of Paper B's Appendix D, with that dependency
+stated; the branch decision stays PARK. The same revision records a fact its
+1.2.0 text predated: since `2ae268d78` the OOEE production is proved in Lean
+(`FateOOEEWeighted`, from a count form of the poor-fiber tail), so the log-mass
+bound at 5/8, with the threshold 3/8, is kernel-checked; the dyadic clause stays
+written. The
+least depth constants at 13/50 are 14 for the fair criterion, 14, 28, 132, 866
+one-sided and 14, 27, 128, 820 optimized at `q = 0.5, 0.55, 0.60, 0.62` (at 3/8:
+16; 16, 34, 175, 1201; 16, 34, 168, 1135). Arb certifies each value and the
+failure of the integer below it, and the Paper C numeric checker recomputes them
+at 90 digits. The Arb audit now also certifies the 37/50 slack and the
+five-production root `0.74057159102112395859`. Paper C's comparison table now
+limits "closed" to the localized route and corrects that model's root to
+0.6066. A three-lens AI review found no mathematical error in Section 5.10 and
+two false status claims, both repaired: Theorem 9.4 at 13/50 is not in Lean,
+and Theorem 1's dyadic clause is written.
+
 ## Open questions
 
 Result 23 (Lemma E9) shows that the productions need `T_d` only at shifts below an
@@ -1805,4 +1827,5 @@ carry cells at density `P^(-5/16)`.
 
 Status: `EXPLORATORY`. Paper B's version 1.2.0, published 24 September 2026
 (doi:10.5281/zenodo.22946276), states E6' and E8' as Theorem 6.3, with the proof as
-Appendix D (Result 36). The contagion consequence `37/50` is in no paper.
+Appendix D (Result 36). The contagion consequence `37/50` is Theorem 5.20 of Paper C's
+prepared version 1.3.0 (Result 37), not yet deposited.

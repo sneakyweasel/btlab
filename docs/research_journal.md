@@ -11,6 +11,23 @@ consolidation is at `e9725762eaf028d1ace354ff20e0fc48f1a3d143`. See
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-24 -- Paper C 1.3.0 prepared with contagion 37/50
+
+**EXACT — HUMAN PROOF (one written input, not human-reviewed):** Paper C's new
+Theorem 5.20 feeds the two depth-five productions into the recursion through
+Paper B's published Theorem 6.3, raising contagion from `5/8` to `37/50` and
+lowering the sufficient rate threshold from `3/8` to `13/50`; the deduction and
+the recursion are kernel-checked. The owner chose this headline before human
+review, which supersedes the wait noted in the Paper B entry. The log-mass bound
+at `5/8`, with the threshold `3/8`, is now kernel-checked, since
+`FateOOEEWeighted` proves the OOEE production; Paper C's 1.2.0 text predated
+that, and the ledger keeps that row at EXACT — HUMAN PROOF until its statement
+coverage is audited. The least depth constants drop to 14 (fair) and 14, 28,
+132, 866 (one-sided) at `13/50`, each Arb-certified from `C = 5`. Remaining
+premise: human review of Paper B's Appendix D. Decision: prepared, not
+deposited. Record: [depth-five dossier](problems/juggler_depth_five_production.md),
+Result 37, and the [deposit record](theory/paper_deposits.md).
+
 ## 2026-09-24 -- Paper B Theorem 3.1, one dyadic block
 
 **EXACT — LEAN VERIFIED:** on an interval of length at most its left endpoint, the second-derivative test bounds the exponential sum of `h * g`. Remaining premise: sum the blocks and pass through discrepancy to get `S_O(N) = O(N^{5/6})`. Decision: PROMOTE the block. Record: [single-floor dossier](problems/juggler_paper_b_single_floor.md).
@@ -243,17 +260,3 @@ descent at every actual OE pair; actual EO pairs also strictly descend.
 **PROMOTE** the bounded structural identity, with regressions through
 10000 and at large perfect powers. No Lean or novelty claim, no termination
 result, and no manuscript change. See [modified-map descent](problems/juggler_modified_juggler_descent.md).
-
-## 2026-09-23 -- Cross-sign pairing has an actual two-generation deficit
-
-Pairing the signed inverse coefficients gives a one-step lower bound 9/7,
-but keeping each sign fixed for two steps gives joint coefficient
-20064/29127 < 1 on the class 4 modulo 27. Lean checks both identities,
-the exact complete sums, the affine bound and now the complete actual
-reciprocal sums. Inverse-exponent pairs enumerate ordinary ancestors
-without duplication, and the normalized paired mass on a=31+54t is below
-3/4. Real summability is checked; signed positivity and oddness are shared.
-**CLOSE** automatic compensation: iterating the one-step gain counts
-mixed-sign paths; Juggler's two signed codes are negatives of one another,
-not independent filters. The 3/8 pressure target is unchanged. See the
-[dossier](problems/collatz_fibre_sign_coupling.md).

@@ -6899,6 +6899,22 @@
       "nk_clusters": []
     },
     {
+      "id": "paper_b_single_floor",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_paper_b_single_floor.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-paper-b-theorem-3-1-bridge"
+      ],
+      "aliases": [],
+      "nk_clusters": []
+    },
+    {
       "id": "paper_b_small_shift_repair",
       "kind": "dossier_only",
       "probe": null,
