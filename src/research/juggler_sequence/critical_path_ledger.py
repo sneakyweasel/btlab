@@ -39,6 +39,13 @@ BOUNDS = [
         ("diagonal lengths d^(1/2) P^(11/32)", DELTA / 2 + F(11, 32)),
         ("diagonal endpoints P^(3/16) d^(-1/2) P^(21/32)", F(3, 16) + F(21, 32)),
         ("(C.6) replacement |l| P^(7/16)", F(7, 16))]),
+    ("OOOEE k = 0, j = 0, l != 0: E5 with cutoff P^(1/16) (Result 34)", F(15, 16), [
+        ("positive Fourier errors P log T / T", 1 - F(1, 16)),
+        ("off-diagonal T^(1/2) P^(3/4)", F(1, 32) + F(3, 4)),
+        ("off-diagonal endpoints P^(3/16) P^(1/4)", F(3, 16) + F(1, 4)),
+        ("diagonal lengths d^(1/2) P^(11/32)", DELTA / 2 + F(11, 32)),
+        ("diagonal endpoints P^(3/16) d^(-1/2) P^(21/32)", F(3, 16) + F(21, 32)),
+        ("(C.6) replacement |l| P^(7/16)", F(7, 16))]),
     ("OOOEE k = l = j = 0: Kusmin-Landau", F(1, 2), [("P^(1/2)/d", F(1, 2))]),
     ("OOEOE j = 0, k != 0: E7", F(7, 8), [
         ("zero-mode lengths P^(11/32) d^(1/2)", F(11, 32) + DELTA / 2),
@@ -79,7 +86,7 @@ def derived() -> dict:
     ooee = min(v for k, v in sigma.items() if k.startswith("OOOEE"))
     ooeoe = min(v for k, v in sigma.items() if k.startswith("OOEOE"))
     rho_inv = F(32, 27)
-    eta = F(1, 500)
+    eta = F(1, 1000)  # FateDepthFiveWeighted.eta, the kernel-checked choice
     return {
         "sigma_OOOEE": str(ooee), "sigma_OOEOE": str(ooeoe),
         "poor_fraction_OOOEE": str(min(DELTA, ooee)),

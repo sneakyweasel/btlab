@@ -26,6 +26,14 @@
    "saving": "1/8"
   },
   {
+   "claim": "OOOEE k = 0, j = 0, l != 0: E5 with cutoff P^(1/16) (Result 34)",
+   "claimed": "15/16",
+   "worst_cost": "15/16",
+   "worst_label": "positive Fourier errors P log T / T",
+   "ok": true,
+   "saving": "1/16"
+  },
+  {
    "claim": "OOOEE k = l = j = 0: Kusmin-Landau",
    "claimed": "1/2",
    "worst_cost": "1/2",
@@ -66,7 +74,7 @@
   "tail_exponent_OOOEE": "1/54",
   "tail_exponent_OOEOE": "2/81",
   "tail_claims_ok": true,
-  "coefficient_margin": "3388/3375",
+  "coefficient_margin": "1148/1125",
   "coefficient_ok": true,
   "assembly_loss_margin": "716/175",
   "assembly_loss_ok": true

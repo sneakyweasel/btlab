@@ -1626,6 +1626,32 @@ second-moment argument, whose combinatorial core (E9) is already kernel-checked,
 together with the exponential-sum bounds (Paper B's C.9 and C.2, E5 and E7). Fibre
 geometry, count-to-weight, the cutoffs and the assembly are all in Lean.
 
+**34. E5's effective range, improved by a smaller cutoff (COMPUTATIONALLY
+VERIFIED; 24 September 2026).** Result 32 found E5's diagonal curvature certified
+positive only from `x >= 10^18`. The bottleneck is the Fourier cutoff
+`T = P^(1/8)` of the (C.8) expansion: its modes contribute a relative error of
+order `T x^(-3/16) = x^(-1/16)`.
+
+Lowering the cutoff trades that error against the truncation error `P/T`. The
+exponent ledger shows the trade is free. The `OOOEE` chain is limited by Paper
+B's C.9 saving `1/64`, so E5 can afford `|T_d| << P^(15/16)` at `T = P^(1/16)`.
+Its costs then peak at the truncation, `15/16`, and the chain saving stays
+`1/64`, with tail exponent `1/54`.
+
+Arb then certifies the diagonal curvature positive from the following thresholds:
+
+| Cutoff `T` | Frequencies `<= 1` | `<= 10` | `<= 100` |
+|---|---|---|---|
+| `P^(1/8)`, as written | `10^18` | `10^18` | `10^20` |
+| `P^(1/12)` | `10^12` | `10^13` | `10^16` |
+| `P^(1/16)` | `10^11` | `10^12` | `10^16` |
+| `P^(1/24)` | `10^10` | `10^12` | `10^16` |
+
+Recommended form of E5: take `T = P^(1/16)`. The lemma's bound becomes
+`P^(15/16)`, which is still inside the chain, and its sign is certified from
+`10^11` to `10^12` rather than `10^18`. The ledger's coefficient margin now uses
+the kernel-checked `eta = 1/1000` of Result 33: `1148/1125 > 1`.
+
 ## Open questions
 
 Result 23 (Lemma E9) shows that the productions need `T_d` only at shifts below an

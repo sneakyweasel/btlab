@@ -2,7 +2,7 @@
   "schema": "btlab-output/v2",
   "programme": "juggler",
   "research_id": "juggler/depth_five_production",
-  "created_utc": "2026-09-24T18:02:47.947959+00:00",
+  "created_utc": "2026-09-24T18:49:48.635689+00:00",
   "scope": "E5 and E7 curvature ratios for x >= X, 2d/x <= 10^-6, frequencies <= C",
   "artifact_root": ".",
   "generator": {
@@ -24,7 +24,7 @@
     "python": "3.13.9"
   },
   "source": {
-    "revision": "100ccb8a750da19bfbb00c02bba0101683eb3759",
+    "revision": "c5c5717aeee8da6c674ce2f42d8049fc348e7989",
     "dirty": true,
     "coverage": "loaded local Python, project configuration, and explicit sources at manifest creation; not an execution or dependency audit",
     "files": [
@@ -110,12 +110,12 @@
       },
       {
         "path": "src/research/juggler_sequence/curvature_certificates.py",
-        "sha256": "0936818949ebc9c2cd4b616450ed93e79e3de0c1adff3940f08ce62f9f752a5e",
-        "bytes": 7155,
+        "sha256": "5a1a1b3708a8aad93ebc0a5d6c4a05bbce6f4c084753cb0453fe6f57f834f184",
+        "bytes": 7466,
         "text": {
           "normalization": "utf8-crlf-to-lf",
-          "sha256": "0936818949ebc9c2cd4b616450ed93e79e3de0c1adff3940f08ce62f9f752a5e",
-          "bytes": 7155
+          "sha256": "5a1a1b3708a8aad93ebc0a5d6c4a05bbce6f4c084753cb0453fe6f57f834f184",
+          "bytes": 7466
         }
       },
       {
@@ -169,8 +169,8 @@
   "outputs": [
     {
       "path": "certificates.json",
-      "sha256": "6c7195557bfafaab46c1bf800abcaf3e2fbaf7f9d724671dffb9f150eb6c14f6",
-      "bytes": 2110
+      "sha256": "ca08b20fb46bf08e924444aad315e9a7321e16eb791be4fca46169c06553f89d",
+      "bytes": 2260
     }
   ],
   "verification": "Outputs are byte-exact. Explicit text fingerprints on inputs/sources accept only UTF-8 CRLF-to-LF representation changes, which are reported. No theorem or compilation status is asserted."

@@ -2,7 +2,7 @@
   "schema": "btlab-output/v2",
   "programme": "juggler",
   "research_id": "juggler/depth_five_production",
-  "created_utc": "2026-09-24T18:03:29.026593+00:00",
+  "created_utc": "2026-09-24T18:50:04.227289+00:00",
   "scope": "exponent bookkeeping of the depth-five 0.74 critical path at d = P^(1/48)",
   "artifact_root": ".",
   "generator": {
@@ -19,7 +19,7 @@
     "python": "3.13.9"
   },
   "source": {
-    "revision": "100ccb8a750da19bfbb00c02bba0101683eb3759",
+    "revision": "c5c5717aeee8da6c674ce2f42d8049fc348e7989",
     "dirty": true,
     "coverage": "loaded local Python, project configuration, and explicit sources at manifest creation; not an execution or dependency audit",
     "files": [
@@ -105,12 +105,12 @@
       },
       {
         "path": "src/research/juggler_sequence/critical_path_ledger.py",
-        "sha256": "4474407741326869ab4583ce17be37ade9314277e171b90209cb89506b48d431",
-        "bytes": 5525,
+        "sha256": "67ffc95d1590d666f0afdcfd1699d315f2f2be3c9013eaa8d776cad1f6162493",
+        "bytes": 6074,
         "text": {
           "normalization": "utf8-crlf-to-lf",
-          "sha256": "4474407741326869ab4583ce17be37ade9314277e171b90209cb89506b48d431",
-          "bytes": 5525
+          "sha256": "67ffc95d1590d666f0afdcfd1699d315f2f2be3c9013eaa8d776cad1f6162493",
+          "bytes": 6074
         }
       },
       {
@@ -164,8 +164,8 @@
   "outputs": [
     {
       "path": "ledger.json",
-      "sha256": "c4b3c0948c7e351bd3e84132b7f148228c8e0acaf9e72939500fc48196339c4b",
-      "bytes": 1763
+      "sha256": "a32ee53750b1ee60225799490c74801e0bb35879200fca6f999807ca01e5bffe",
+      "bytes": 1992
     }
   ],
   "verification": "Outputs are byte-exact. Explicit text fingerprints on inputs/sources accept only UTF-8 CRLF-to-LF representation changes, which are reported. No theorem or compilation status is asserted."

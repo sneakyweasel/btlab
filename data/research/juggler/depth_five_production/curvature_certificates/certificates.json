@@ -84,5 +84,16 @@
     "positive": true
    }
   }
+ },
+ "e5_cutoff_1_16": {
+  "1": {
+   "threshold_log10_X": 11
+  },
+  "10": {
+   "threshold_log10_X": 12
+  },
+  "100": {
+   "threshold_log10_X": 16
+  }
  }
 }

@@ -24,6 +24,8 @@ def test_committed_certificates_agree_with_sympy_and_hold() -> None:
     assert data["e7"]["1"]["at_1e12"]["negative"] is True
     assert data["e5"]["1"]["threshold_log10_X"] == 18
     assert data["e5"]["1"]["at_1e30"]["positive"] is True
+    # A cutoff P^(1/16) (Result 34) lowers E5's certified range to 10^11.
+    assert data["e5_cutoff_1_16"]["1"]["threshold_log10_X"] == 11
 
 
 def test_e5_is_not_certified_below_its_threshold() -> None:
@@ -47,6 +49,7 @@ def test_committed_ledger_passes() -> None:
     derived = data["derived"]
     assert derived["tail_claims_ok"] and derived["coefficient_ok"] and derived["assembly_loss_ok"]
     assert derived["tail_exponent_OOOEE"] == "1/54"
+    assert derived["sigma_OOOEE"] == "1/64"  # E5 at cutoff P^(1/16) does not bind
     assert derived["tail_exponent_OOEOE"] == "2/81"
 
 

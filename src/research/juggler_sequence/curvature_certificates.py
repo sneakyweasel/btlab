@@ -107,15 +107,16 @@ def e7_certificate(X: int, C: int) -> dict:
                 "lower": total.lower().str(12), "upper": total.upper().str(12), "negative": holds}
 
 
-def e5_certificate(X: int, C: int) -> dict:
+def e5_certificate(X: int, C: int, cutoff: Fraction = Fraction(1, 8)) -> dict:
     """Enclose E5's diagonal curvature ratio for all ``x >= X`` in a block
-    ``[P, 3P]`` with cutoff ``T <= P^(1/8)``, ``1 <= d``, ``2d/x <= U0``,
+    ``[P, 3P]`` with Fourier cutoff ``T <= P^cutoff`` (E5 uses ``1/8``; ``1/16``
+    also fits the critical path, Result 34), ``1 <= d``, ``2d/x <= U0``,
     ``|l| >= 1`` and ``|i| <= C``."""
     with ctx.workprec(PREC):
         main = sum((_arb(c) * g_enclosure(a) for c, a in E5_TERMS), arb(0))
         gm = abs(g_enclosure(Fraction(-1, 2))).upper()
         err = (arb(3) * gm * _pow(X, Fraction(-3, 16))
-               + arb(3) / 2 * gm * (arb(C) / 2 * _pow(X, Fraction(-3, 16)) + _pow(X, Fraction(-1, 16))))
+               + arb(3) / 2 * gm * (arb(C) / 2 * _pow(X, Fraction(-3, 16)) + _pow(X, cutoff - Fraction(3, 16))))
         total = main + arb(0, err.upper())
         holds = True if total.lower() > 0 else (False if total.upper() < 0 else None)
         return {"X": X, "C": C, "main": main.str(12), "error_radius": err.upper().str(12),
@@ -138,6 +139,9 @@ def table() -> dict:
                         "at_1e12": e7_certificate(10 ** 12, C)} for C in FREQUENCY_BOUNDS},
         "e5": {str(C): {"threshold_log10_X": threshold(e5_certificate, "positive", C),
                         "at_1e30": e5_certificate(10 ** 30, C)} for C in FREQUENCY_BOUNDS},
+        "e5_cutoff_1_16": {str(C): {"threshold_log10_X": threshold(
+            lambda X, C: e5_certificate(X, C, Fraction(1, 16)), "positive", C)}
+            for C in FREQUENCY_BOUNDS},
     }
 
 
