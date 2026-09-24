@@ -1,4 +1,5 @@
 import Problems.Juggler.BeattySlopeGlobalLaw
+import Problems.Juggler.BeattySlopeLawContinuity
 
 /-! Expanded consumers of the global empirical-law theorem. The ratio is
 written through the original integer first-passage counts, the crossing
@@ -50,9 +51,19 @@ theorem actual_right_phase (β : ℝ) (hβ0 : 0 < β) (hβ1 : β < 1) :
   simpa only [passageRatio, passageIndex, passagePhase] using
     passageRatio_sub_right_tendsto hβ0 hβ1
 
+/-- The limit law of the actual ratios depends on the slope right-continuously
+everywhere and continuously exactly at irrational slopes; at `a/b` the limit
+from below differs from the value. -/
+theorem actual_law_slope_map (α₀ : ℝ) (h : 1 < α₀) :
+    Tendsto (empiricalLaw (passageRatio (1/α₀))) atTop (𝓝 (passageProfileLaw (1/α₀))) ∧
+    ContinuousWithinAt (fun α => passageProfileLaw (1/α)) (Set.Ici α₀) α₀ ∧
+    (ContinuousAt (fun α => passageProfileLaw (1/α)) α₀ ↔ Irrational α₀) :=
+  ⟨passageRatio_law_slope h, passageLaw_slope_rightCont h, passageLaw_slope_contAt_iff h⟩
+
 #print axioms actual_global_law
 #print axioms actual_global_law_explicit
 #print axioms actual_rational_law
 #print axioms actual_right_phase
+#print axioms actual_law_slope_map
 
 end Problems.Juggler.BeattySlopeGlobalChecks

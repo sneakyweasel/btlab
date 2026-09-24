@@ -31,7 +31,9 @@ whole family as well. Total mass is exact at every boundary, and as the
 slope decreases to `a/b` the laws converge to the uniform law on `b` atoms.
 Global theorem: for every real `alpha>1` the empirical law of the actual
 ratios converges; the rational phase theorem `R_r-F^+(delta_r)->0` comes from
-a weak counting identity transferred from nearby irrational boundaries.
+a weak counting identity transferred from nearby irrational boundaries. The
+slope map `alpha -> mu_alpha` is right-continuous and continuous exactly at
+irrational slopes.
 **PROMOTE**. See Sections 27–31 of the
 [Beatty note](theory/juggler_beatty_first_passage_note.md).
 

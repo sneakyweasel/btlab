@@ -11,7 +11,7 @@ STANDARD = {"propext", "Classical.choice", "Quot.sound"}
 EXPECTED = {
     f"Problems.Juggler.BeattySlopeGlobalChecks.{name}" for name in (
         "actual_global_law", "actual_global_law_explicit",
-        "actual_rational_law", "actual_right_phase",
+        "actual_rational_law", "actual_right_phase", "actual_law_slope_map",
     )
 }
 

@@ -134,6 +134,7 @@ import Problems.Juggler.BeattySlopeWeakCounting
 import Problems.Juggler.BeattySlopeWeakPhase
 import Problems.Juggler.BeattySlopeWeakIdentification
 import Problems.Juggler.BeattySlopeGlobalLaw
+import Problems.Juggler.BeattySlopeLawContinuity
 import Problems.Juggler.BeattySlopeGammaContinuity
 import Problems.Juggler.BeattySlopeGammaAmplitude
 import Problems.Juggler.BeattySlopeGammaLaw

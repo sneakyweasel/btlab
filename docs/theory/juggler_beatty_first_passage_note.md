@@ -2744,12 +2744,12 @@ and [BeattySlopeRationalLimit.lean](../../formal/Problems/Juggler/BeattySlopeRat
 | Critical measure `H^(2/3)` | positive iff badly approximable | Lean |
 | Gamma normalization | absolutely continuous law with explicit density, interval support, `L^p` for `p<3/2` | Lean, every irrational `alpha` |
 | Dependence on the slope | weights, laws, content continuous at irrational slopes | Lean |
-| Rational slopes | actual counts converge by residue class; law uniform on `b` atoms, equal to the limit from above | Lean (Section 31) |
+| Rational slopes | actual counts converge by residue class; law uniform on `b` atoms, equal to the limit from above; jump from below | Lean (Section 31) |
+| Slope map `alpha -> mu_alpha` | right-continuous, continuous exactly at irrationals | Lean (Section 31) |
 | Logarithmic slope arithmetic | `dim_H K>=0.16195...` | Written (Wu–Wang) |
 | Rates | `O(r^(-1/2))` | Written, `1<alpha<2` only |
 
-**Open.** The limit from below at a rational slope (strict-survival
-convention); the exact Hausdorff
+**Open.** The exact Hausdorff
 dimension for irrationality exponents strictly between `2` and infinity;
 the value of the critical measure at badly approximable slopes; convergence
 rates for the family; and the Gamma-law `L^2` question. **PROMOTE** the
@@ -2803,13 +2803,22 @@ and [BeattySlopeGlobalLaw.lean](../../formal/Problems/Juggler/BeattySlopeGlobalL
 states (66) and (67) for the original integer counts, floors and binomial
 normalization. The family audit has 354 records with only standard axioms.
 
-**Consequences for the slope map.** `alpha -> mu_alpha` is now defined at
-every real slope above one; it is weakly continuous along irrational
-slopes at irrational points (Section 28) and continuous from above at
-rational points by (65) and (66). The limit from below at rational points,
-and hence whether `alpha -> mu_alpha` jumps there, remains open. No rate or
-uniformity in the slope is claimed. **PROMOTE** the global empirical-law
-theorem.
+**The slope map — EXACT — LEAN VERIFIED.** Because the total mass is exact
+at every boundary, the Scheffé argument of Section 28 now runs along all
+nearby slopes, and
+\[
+ \boxed{\quad \alpha\mapsto\mu_\alpha\ \text{is right-continuous at every }\alpha_0>1,
+ \ \text{and continuous at }\alpha_0\iff\alpha_0\notin\mathbb Q. \quad}   \tag{68}
+\]
+As `alpha` increases to `a/b` the counts freeze to strict survival with weak
+crossing; survivors at `beta` are survivors at `b/a`, so the critical
+survival mass is squeezed to zero and the limiting weights keep full mass.
+The limit law is again a uniform law on `b` values, but the phases approach
+`j/b` from below and the residue-zero atoms move to phase `1`; the value `1`
+therefore carries mass at least `1/b`, while `mu_(a/b)` gives `{1}` mass zero.
+Module: [BeattySlopeLawContinuity.lean](../../formal/Problems/Juggler/BeattySlopeLawContinuity.lean).
+No rate or uniformity in the slope is claimed. **PROMOTE** the global
+empirical-law theorem and the slope-map theorem (68).
 
 ## References
 

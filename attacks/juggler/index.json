@@ -6157,6 +6157,7 @@
         "J-beatty-slope-hausdorff-conditional",
         "J-beatty-slope-hausdorff-upper",
         "J-beatty-slope-jump-weight-mass",
+        "J-beatty-slope-law-map",
         "J-beatty-slope-liouville-dimension-zero",
         "J-beatty-slope-local-gap-counting",
         "J-beatty-slope-local-minkowski-measure",
@@ -7772,6 +7773,36 @@
         "J-beatty-phase-transfer-finite-checks",
         "J-beatty-phase-transfer-kernel",
         "J-beatty-survivor-counting-identity"
+      ],
+      "aliases": [],
+      "nk_clusters": []
+    },
+    {
+      "id": "critical_path_ledger",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/critical_path_ledger.py",
+      "test": null,
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_clusters": []
+    },
+    {
+      "id": "curvature_certificates",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/curvature_certificates.py",
+      "test": "tests/research/juggler_sequence/test_curvature_certificates.py",
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": [
+        "J-depth-five-curvature-certificates"
       ],
       "aliases": [],
       "nk_clusters": []

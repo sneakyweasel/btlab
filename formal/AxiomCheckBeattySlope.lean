@@ -6,6 +6,7 @@ import Problems.Juggler.BeattySlopeLiouville
 import Problems.Juggler.BeattySlopeDiophantineDim
 import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeGlobalLaw
+import Problems.Juggler.BeattySlopeLawContinuity
 import Problems.Juggler.BeattySlopeGammaContinuity
 import Problems.Juggler.BeattySlopeGammaHausdorff
 import Problems.Juggler.BeattySlopeGammaCDF
@@ -376,5 +377,42 @@ namespace Problems.Juggler
 #print axioms BeattySlope.passageRatio_law_tendsto
 #print axioms BeattySlope.passageRatio_law_slope
 #print axioms BeattySlope.exists_passageRatio_law
+#print axioms BeattySlope.passageProfile_tendsto_of
+#print axioms BeattySlope.passageAvg_tendsto_of
+#print axioms BeattySlope.passageLaw_tendsto_of_avg
+#print axioms BeattySlope.passageProfileLaw_continuousAt
+#print axioms BeattySlope.passageProfileLaw_tendsto_left
+#print axioms BeattySlope.cmp_eventually_right
+#print axioms BeattySlope.firstPassage_eventually_right
+#print axioms BeattySlope.passageCount_eventually_right
+#print axioms BeattySlope.passageIndex_eventually_right
+#print axioms BeattySlope.passageWeight_tendsto_right
+#print axioms BeattySlope.passagePhase_tendsto_right
+#print axioms BeattySlope.passage_tail_le
+#print axioms BeattySlope.survivorWords_anti
+#print axioms BeattySlope.passageWeightUp_hasSum_all
+#print axioms BeattySlope.passageWeightUp_zero
+#print axioms BeattySlope.passageWeightUp_hasSum
+#print axioms BeattySlope.passageProfileUp_monotone
+#print axioms BeattySlope.integral_passageLawUp
+#print axioms BeattySlope.passageProfileLaw_tendsto_right
+#print axioms BeattySlope.passagePhaseUp_rational
+#print axioms BeattySlope.jumpProfile_step
+#print axioms BeattySlope.integral_step_eq
+#print axioms BeattySlope.passageProfileUp_rational_one
+#print axioms BeattySlope.integral_passageLawUp_rational
+#print axioms BeattySlope.passageProfileUp_rational_first
+#print axioms BeattySlope.passageLawUp_one
+#print axioms BeattySlope.passageProfileLaw_one
+#print axioms BeattySlope.passageLawUp_ne_rational
+#print axioms BeattySlope.passageProfileLaw_discont
+#print axioms BeattySlope.passageProfileLaw_contAt_iff
+#print axioms BeattySlope.inv_tendsto_right
+#print axioms BeattySlope.passageLaw_slope_right
+#print axioms BeattySlope.passageLaw_slope_rightCont
+#print axioms BeattySlope.passageLaw_slope_left
+#print axioms BeattySlope.passageLaw_slope_jump
+#print axioms BeattySlope.passageLaw_slope_contAt_iff
+#print axioms BeattySlope.passageLaw_slope_contAt
 
 end Problems.Juggler

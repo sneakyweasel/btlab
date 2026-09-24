@@ -1542,8 +1542,10 @@ boundary (transferred from irrational boundaries just below), the weak
 endpoint and survivor phases hold for every `0<beta<1`, the actual ratios
 satisfy `R_r-F^+(delta_r)->0` at every boundary, and the empirical law
 converges for every real `alpha>1`: to the singular law at irrational
-slopes and to the uniform law on `b` atoms at `alpha=a/b`. Section 31 of the
-working note. **PROMOTE**.
+slopes and to the uniform law on `b` atoms at `alpha=a/b`. The slope map
+`alpha -> mu_alpha` is right-continuous everywhere and continuous exactly at
+irrational slopes; the limit from below at `a/b` has an atom at `1`.
+Section 31 of the working note. **PROMOTE**.
 
 ## Decision
 
