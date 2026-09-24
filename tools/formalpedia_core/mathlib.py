@@ -40,8 +40,6 @@ PACKAGE_OF = {'Mathlib': 'mathlib', 'Batteries': 'batteries', 'Aesop': 'aesop', 
               'ImportGraph': 'importGraph', 'LeanSearchClient': 'LeanSearchClient'}
 CORE_ROOTS = {'Init', 'Std', 'Lean', 'Lake'}
 
-_DECL = r'(?:theorem|lemma|def|abbrev|instance|structure|class|inductive|opaque|axiom|alias)'
-
 
 def fetch_json(url: str, timeout: float) -> dict:
     request = Request(url, headers={'User-Agent': 'btlab-formalpedia/1 (+mathlib_search)',
@@ -103,16 +101,15 @@ def check_pinned(name: str, module: str, root: Path | None = None) -> dict[str, 
     if not path.is_file():
         return {'status': 'module_missing',
                 'reason': f'{module} does not exist at the pinned revision'}
-    from trust_boundary import source_commands
-    text = '\n'.join(source_commands(path.read_text(encoding='utf-8', errors='replace')))
-    parts = name.split('.')
-    # A declaration may be written fully qualified, relative to an open namespace, or bare.
-    suffixes = ['.'.join(parts[i:]) for i in range(len(parts))]
-    for suffix in suffixes:
-        pattern = rf'\b{_DECL}\s+(?:_root_\.)?{re.escape(suffix)}(?![\w.\'!?])'
-        if re.search(pattern, text):
-            return {'status': 'declared', 'file': (path.relative_to((root or _fp_workspace.ROOT).resolve()).as_posix()
-                    if path.is_relative_to((root or _fp_workspace.ROOT).resolve()) else str(path))}
+    from lean_source import scan
+    location = (path.relative_to((root or _fp_workspace.ROOT).resolve()).as_posix()
+                if path.is_relative_to((root or _fp_workspace.ROOT).resolve()) else str(path))
+    try:
+        rows = scan(path.read_text(encoding='utf-8'), module, location)
+    except (OSError, ValueError) as exc:
+        return {'status': 'unchecked', 'reason': f'source scan unavailable: {exc}'}
+    if any(row.get('qualified_name') == name and row.get('visibility') == 'public' for row in rows):
+        return {'status': 'declared', 'file': location}
     return {'status': 'not_declared_literally',
             'reason': 'module exists but the name is not declared literally; it may be generated '
                       '(to_additive, simps, fields) or renamed at the pinned revision'}

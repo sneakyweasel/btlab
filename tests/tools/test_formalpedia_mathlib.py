@@ -94,3 +94,9 @@ def test_commented_names_are_not_reported_as_declared(tmp_path):
     path = root / 'formal/.lake/packages/mathlib/Mathlib/Order/Basic.lean'
     path.write_text('/- theorem Nat.fake : True := trivial -/\n')
     assert fp_mathlib.check_pinned('Nat.fake', 'Mathlib.Order.Basic', root)['status'] == 'not_declared_literally'
+
+
+def test_short_name_in_a_different_namespace_is_not_a_match(tmp_path):
+    root = _pinned_tree(tmp_path)
+    assert fp_mathlib.check_pinned('Wrong.succ_le_iff', 'Mathlib.Order.Basic', root)['status'] == 'not_declared_literally'
+    assert fp_mathlib.check_pinned('Nat.succ_le_iff', 'Mathlib.Order.Basic', root)['status'] == 'declared'
