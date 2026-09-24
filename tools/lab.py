@@ -44,6 +44,9 @@ def main(argv=None) -> int:
     if arguments and arguments[0] == 'prepare':
         from lab_prepare import main as prepare_main
         return prepare_main(arguments[1:])
+    if arguments and arguments[0] == 'artifacts':
+        from lab_artifacts import main as artifacts_main
+        return artifacts_main(arguments[1:])
     if arguments and arguments[0] in {'doctor', 'impact', 'verify'}:
         from lab_verify import main as workflow_main
         return workflow_main(arguments)
@@ -53,6 +56,7 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='command', required=True)
     commands.add_parser('prepare', add_help=False, help='plan, apply or check checkout-local pinned dependencies')
+    commands.add_parser('artifacts', add_help=False, help='stage, inspect, promote or recover local research outputs')
     build = commands.add_parser('build', help='build every retained Lean application and dependency')
     build.add_argument('--list', action='store_true', help='show targets without building')
     build.add_argument('--module', action='append', dest='modules', help='build and refresh selected modules')

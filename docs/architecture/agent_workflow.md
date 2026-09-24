@@ -158,6 +158,12 @@ theorem `formalpedia_impact` remains the Lean import graph API.
 
 ## Certified numerical work
 
+For new reports, use [artifact staging](artifact_staging.md) to run a producer
+into scratch space, validate its manifests, and explicitly promote a sealed
+candidate. Source and destination changes block promotion; backups and a recovery
+journal protect interrupted writes. This local workflow does not change evidence
+labels or publish externally.
+
 `python-flint` is a required dependency reported by `lab.py doctor` and the
 existing `formalpedia_lab_doctor` MCP tool. Use
 [the FLINT/Arb guide](certified_numerics.md) for `research_engine.intervals`,

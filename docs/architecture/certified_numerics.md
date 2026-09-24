@@ -22,6 +22,9 @@ and E, certified full-profile moment bounds for Beatty, and a complete
 enclosure audit of D's existing exclusions. Reproduce it with
 `python tools/check_papers_arb.py`; this deliberately writes reports and
 provenance. Use `--output-root .build/arb-review` for a separate review run.
+For outputs intended to replace committed reports, prefer the
+[staging workflow](artifact_staging.md), which checks provenance and destination
+freshness before an explicit local promotion.
 
 ## Use and trust boundary
 

@@ -103,6 +103,10 @@ For new probe outputs, write a `*.research.json` manifest using
 Record the actual scope, parameters and input files after computation; never
 invent provenance for historical data. `lab.py check --hashes` verifies file
 integrity separately from tests or proof checking.
+For producers with explicit output destinations, prefer
+[artifact staging](docs/architecture/artifact_staging.md): `lab.py artifacts stage`,
+then `inspect` and explicit local `promote`. Source or destination drift blocks
+promotion; pending journals require `recover`. Promote before committing.
 
 ## Local services and external publication
 
