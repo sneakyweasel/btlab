@@ -431,6 +431,29 @@
   "related_conjectures": []
  },
  {
+  "id": "J-paper-b-barrier-mass-phase-count",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Three facts the Paper B barrier rows use, kernel-checked. (1) Mass: for a profile supported below N, the non-rising update preserves total mass exactly and the rising update loses exactly pi(0)/2, so no renormalisation enters a non-rising step. (2) Phase: for 0<b<=1 the barrier ceil(t b) does not rise at t iff fract(t b) != 0 and fract(t b) <= 1-b; at b = BETA = log 2/log 3 and t>=1, t BETA is never an integer (2^n != 3^k), so the barrier rises iff fract(t BETA) >= 1-BETA. (3) Count: prefixNoncontracting w iff o_t >= ceil(t BETA) at every prefix t <= |w|; the survivors whose E-extension contracts number b_d M_d, with b_d = ceil((d+1)BETA) - ceil(d BETA) and M_d the survivors with o_d = ceil(d BETA); hence N_(d+1) = 2 N_d - b_d M_d. These close the named Lean gaps of J-count-recursion-is-the-boundary-mass, J-non-rising-barrier-step-doubles-the-count, J-phase-shift-is-one-update-and-R-halves, J-psi-jumps-are-the-rotation-orbit-of-zero and J-r-jumps-halve-at-the-sturmian-zeros; their measurements and the amplitude recursion stay outside Lean, so those rows remain human proofs.",
+  "source": "docs/research_journal.md",
+  "lean": "Problems/Juggler/PaperBBarrierMass.lean",
+  "tests": [
+   "tests/research/juggler_sequence/paper_b_prefix_count/test_sturmian_recursion.py"
+  ],
+  "related_conjectures": [],
+  "decl": [
+   "update_false_mass",
+   "update_true_mass",
+   "barrierRise_eq_zero_iff_fract",
+   "barrierRise_eq_one_iff_fract",
+   "nat_mul_beta_ne_int",
+   "barrierRise_beta_eq_one_iff",
+   "prefixNoncontracting_iff_barrier",
+   "onBarrierCount_eq",
+   "neverNegCount_succ_eq_barrier"
+  ],
+  "lean_trust": "kernel"
+ },
+ {
   "id": "J-noncontracting-peak-supremum-log2-three",
   "tag": "COMPUTATIONALLY VERIFIED",
   "statement": "The cheapest non-contracting walk does not get arbitrarily high, and its ceiling is log2(3). Let P(k) be the least peak of the exponent walk over words whose walk stays at or above 0 for k steps. P is non-decreasing, P(2) = 2 log2(3) - 2 = 1.1699 exactly, and P(k) < log2(3) = 1.58496 for every k, approaching it: the gap is 7.5e-2 at k = 13, 1.65e-2 at 100, 7.5e-3 at 400 and 1.35e-3 at 3000, by a dynamic program over (steps, odd letters) rather than a search over words. The supremum has a reason: with c = log2(3) - 1, from a level u < 1 - c both E and OE are illegal, so the walk must take two odd steps and reach u + 2c; the levels a log2(3) - t come arbitrarily close below 1 - c, forcing a peak arbitrarily close to (1 - c) + 2c = log2(3), never equal to it since log2(3) is irrational. The measured gap to log2(3) agrees with the gap of the closest reachable level below 1 - c to three figures, which is the argument as a check. In exact terms the peak of e is in [9/4, 3). WHAT THIS CLOSES: the branch-run hypothesis of Paper B's screen fires at walk height 1, and P(k) > 1 for every k >= 2, so the threshold is always cleared -- that half is proved, `noncontracting_two_forces`. But the peak is bounded above by log2(3), so the emptiness of the screen at large depth CANNOT be proved by an argument of the form 'at depth d the walk must exceed T' for any T >= log2(3). Any route to that emptiness has to use where blocked defects sit relative to high points, not how high the walk goes. Measured to k = 3000; not a proof that P(k) < log2(3) for all k, and not a halt theorem.",

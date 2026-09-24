@@ -320,6 +320,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "CycleMinEnvelopes": "Power envelopes along the post-L corridor: L, M = L OOE and the W5 chain cells",
     "OddPreimageTypes": "Odd one-step preimage cell classified by the least cube root: Types 0, 1 and 2",
     "OOECarrySubstitution": "OOE carry family: quotient floors d and D differ by 36r^2+1; floor(x^(9/8)) = z+1",
+    "PaperBBarrierMass": "Paper B barrier: update mass, the fract(t beta) phase of the rise, and N_(d+1) = 2N_d - b_d M_d",
     "OOEEffectiveReturn": "Paper E Theorem 4.4: exact floor-residue count, both uniform errors, positive count and bounded actual OOE modular witness",
     "PaperECompletion": "Paper E: series identification, frequency and exponent statements, direct stopping-word sums, and finite complete prefix trees",
     "CollatzMoments": "Paper B/C word-moment bridge: coefficient shift and complete first-descent stopping counterexample",
