@@ -324,6 +324,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "CycleMinSecondPostL": "Second post-L OOE on a cycle minimum for every continuation, the empty one being a length-17 cycle",
     "FatePressureAveraged": "Paper C Proposition 9.3 corollary at the averaged exponent 103/203",
     "FatePressureOOEE": "Paper C Section 9.2 corollaries at the OOEE threshold 3/8",
+    "EscapeRate": "An escape rate above 3/8 excludes divergent orbits",
     "OOEEffectiveReturn": "Paper E Theorem 4.4: exact floor-residue count, both uniform errors, positive count and bounded actual OOE modular witness",
     "PaperECompletion": "Paper E: series identification, frequency and exponent statements, direct stopping-word sums, and finite complete prefix trees",
     "CollatzMoments": "Paper B/C word-moment bridge: coefficient shift and complete first-descent stopping counterexample",

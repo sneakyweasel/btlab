@@ -236,6 +236,7 @@ import Problems.Juggler.PaperBBarrierMass
 import Problems.Juggler.CycleMinSecondPostL
 import Problems.Juggler.FatePressureAveraged
 import Problems.Juggler.FatePressureOOEE
+import Problems.Juggler.EscapeRate
 import Problems.Juggler.ReturnWordLoss
 import Problems.Juggler.ReturnWordData
 import Problems.Juggler.ReturnWordBounds

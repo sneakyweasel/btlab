@@ -6440,6 +6440,23 @@
   "related_conjectures": []
  },
  {
+  "id": "J-escape-rate-excludes-divergence",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "An escape rate excludes divergent orbits. If for some e > 3/8 and all large y the odd starts in (y, 2y] whose orbit is unbounded number at most y (log y)^(-e), then no positive start escapes to infinity, and every orbit is eventually periodic. The escape set is forward-closed, does not contain 1, and grows at lambda = 5/8 by the OOEE contagion (J-ooee-contagion-five-eighths), so the generic Tao reduction applies. The premise is weaker than the failure rate of J-ooee-tao-rate-termination and the conclusion excludes escape only. The escape rate itself is not proved; counting escapes is a reparameterization of the all-depth equidistribution program (juggler_escape_rate).",
+  "source": "docs/problems/juggler_escape_rate.md",
+  "lean": "Problems/Juggler/EscapeRate.lean",
+  "decl": [
+   "one_not_escapes",
+   "no_escape_of_escape_rate",
+   "eventuallyCycles_of_escape_rate"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_escape_rate.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-escaped-even-always-drops",
   "tag": "REFUTED",
   "statement": "After a third OOE with even T(y) ≥ n^2, the following OE landing always drops below n. False. 429 follows OOEOOEOOEOE to even 646 and then E to 25, which is the even-landing trap. 1517 follows OOEOOEOOEOE to odd 2493 in [1517, 1517^2). The even intermediate of 1517 is 6217088 ≥ 1517^2. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",

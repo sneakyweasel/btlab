@@ -395,6 +395,23 @@
   "related_conjectures": []
  },
  {
+  "id": "J-escape-rate-excludes-divergence",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "An escape rate excludes divergent orbits. If for some e > 3/8 and all large y the odd starts in (y, 2y] whose orbit is unbounded number at most y (log y)^(-e), then no positive start escapes to infinity, and every orbit is eventually periodic. The escape set is forward-closed, does not contain 1, and grows at lambda = 5/8 by the OOEE contagion (J-ooee-contagion-five-eighths), so the generic Tao reduction applies. The premise is weaker than the failure rate of J-ooee-tao-rate-termination and the conclusion excludes escape only. The escape rate itself is not proved; counting escapes is a reparameterization of the all-depth equidistribution program (juggler_escape_rate).",
+  "source": "docs/problems/juggler_escape_rate.md",
+  "lean": "Problems/Juggler/EscapeRate.lean",
+  "decl": [
+   "one_not_escapes",
+   "no_escape_of_escape_rate",
+   "eventuallyCycles_of_escape_rate"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_escape_rate.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-fate-share-law-layer",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "The exact layer of Paper C Section 4.3, the share law (Lemma 4.5) and Corollary 4.6. The expansion: along a fiber n_j = n_1 + 2(j-1) the phase x_j = n_j^{3/2}/2 (xval) equals x_1 + (3/2) sqrt(n_1) (j-1) + (3/4) (j-1)^2 / sqrt(n_1) + E_j with |E_j| <= (1/4)(j-1)^3 n_1^{-3/2} (xval_expansion); the Taylor step is, after v = sqrt(1+u), the polynomial inequality 0 <= 1 + (3/2)(v^2-1) + (3/8)(v^2-1)^2 - v^3 <= (v^2-1)^3/16 (taylor_three_halves), no derivative taken; on a fiber Phi(m) the remainder is at most (2/27)(m+1)/m^2 (xval_expansion_fiber), the paper's O(1/m) with a constant. The range: phi_beta(s) = beta s + s^2/3 has on [0,1] the range beta + 1/3 for beta >= 0, -beta - 1/3 for beta <= -2/3, and max(0, beta + 1/3) + (3/4) beta^2 between (phiRange; never exceeded, phi_sub_le; attained, exists_phi_sub_eq), and that range is at most 1/2 exactly for beta in [-5/6, 1/6] (phiRange_le_half_iff), the arithmetic of Corollary 4.6(2). The integral: max(0, 1/2 - range) vanishes outside [-5/6, 1/6] (extremeMeasure_eq_zero) and its interval integral over [-5/6, 1/6] is 25/108, as 1/72 + 11/108 + 11/108 + 1/72 over four polynomial pieces (integral_extremeMeasure), the arithmetic of Corollary 4.6(3). NOT formalized: the reduction of x_j modulo 1 to theta_m + beta_m s + s^2/3 with its O(1/H_m) error, the inverse-image and grid-sampling estimates that give Lemma 4.5, the Fubini argument of Corollary 4.6(1), and the identification of the theta-measure of the extreme fibers with max(0, 1/2 - range) in (2) and (3); the share law stays a human proof in the paper's table. Nothing in Sections 5-10 of the paper depends on this subsection, nothing here bounds a density, and nothing here is a halt theorem.",

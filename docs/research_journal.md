@@ -11,6 +11,18 @@ consolidation is at `e9725762eaf028d1ace354ff20e0fc48f1a3d143`. See
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-24 -- Counting escapes reduces to the all-depth program
+
+Clotho Phase-0. **EXACT — LEAN VERIFIED:** an escape rate above `3/8`
+excludes divergent orbits and makes every orbit eventually periodic
+(`J-escape-rate-excludes-divergence`), by the generic Tao reduction and the
+OOEE contagion. The hope that escapes are easier to count than failures does
+not survive: escape can be arbitrarily slow, so at bounded depth an escaping
+start is a live start, and Ville's maximal inequality for the fair multiplier
+martingale (checked exactly on words to depth 60) needs fair parity at every
+depth. **CLOSE** as a reparameterization. See the
+[escape-rate dossier](problems/juggler_escape_rate.md).
+
 ## 2026-09-24 -- Depth-five productions priced and parked
 
 Atropos Phase-0. The first-descent words through length four are exactly
@@ -218,15 +230,3 @@ tables; the next target is the analytic family estimate. The newly located
 Nikpour–Rabbani preprint is registered as an unchecked abstract claim,
 not a verified input. No Juggler pressure or termination follows. See the
 [dossier](problems/collatz_fibre_critical_minorants.md).
-
-## 2026-09-23 -- One fixed ternary class already transports lower bounds globally
-
-The previous recommendation supplied no new fixed-root lower count. The
-proposed neighborhood shortcut now has an exact limitation: every positive
-odd unit root has an actual predecessor in any class modulo 3^r, with
-exponent at most 2*3^r. Lean checks simultaneous coefficient transport and
-finite-block bounds at cost 3/2^(2*3^r), plus equivalence of class-wide and
-global divergence at nonperiodic unit roots. **CLOSE** this route as a weaker
-uniform arithmetic target. Six exact controls pass. No lower-count premise,
-Juggler pressure or termination is proved. See the
-[dossier](problems/collatz_fibre_lower_transfer.md).

@@ -2830,6 +2830,24 @@
       "nk_clusters": []
     },
     {
+      "id": "escape_rate",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/escape_rate.py",
+      "test": "tests/research/juggler_sequence/test_escape_rate.py",
+      "dossier": "docs/problems/juggler_escape_rate.md",
+      "data_dir": "data/research/juggler/escape_rate",
+      "lean": [],
+      "conjecture": [],
+      "decision": "CLOSE",
+      "ledger_ids": [
+        "J-escape-rate-excludes-divergence"
+      ],
+      "aliases": [],
+      "nk_clusters": [
+        "Counting escapes is the all-depth program again"
+      ]
+    },
+    {
       "id": "escape_state",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/escape_state.py",

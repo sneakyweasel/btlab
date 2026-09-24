@@ -1,0 +1,114 @@
+[
+ {
+  "threshold": 2,
+  "depth": 10,
+  "hitting_fraction": 0.369140625,
+  "ville_bound": 0.5,
+  "within_bound": true
+ },
+ {
+  "threshold": 2,
+  "depth": 20,
+  "hitting_fraction": 0.40106201171875,
+  "ville_bound": 0.5,
+  "within_bound": true
+ },
+ {
+  "threshold": 2,
+  "depth": 40,
+  "hitting_fraction": 0.42166619211820944,
+  "ville_bound": 0.5,
+  "within_bound": true
+ },
+ {
+  "threshold": 2,
+  "depth": 60,
+  "hitting_fraction": 0.42542176917276114,
+  "ville_bound": 0.5,
+  "within_bound": true
+ },
+ {
+  "threshold": 4,
+  "depth": 10,
+  "hitting_fraction": 0.12890625,
+  "ville_bound": 0.25,
+  "within_bound": true
+ },
+ {
+  "threshold": 4,
+  "depth": 20,
+  "hitting_fraction": 0.17601871490478516,
+  "ville_bound": 0.25,
+  "within_bound": true
+ },
+ {
+  "threshold": 4,
+  "depth": 40,
+  "hitting_fraction": 0.19583800101827364,
+  "ville_bound": 0.25,
+  "within_bound": true
+ },
+ {
+  "threshold": 4,
+  "depth": 60,
+  "hitting_fraction": 0.20082848298439643,
+  "ville_bound": 0.25,
+  "within_bound": true
+ },
+ {
+  "threshold": 16,
+  "depth": 10,
+  "hitting_fraction": 0.0146484375,
+  "ville_bound": 0.0625,
+  "within_bound": true
+ },
+ {
+  "threshold": 16,
+  "depth": 20,
+  "hitting_fraction": 0.031764984130859375,
+  "ville_bound": 0.0625,
+  "within_bound": true
+ },
+ {
+  "threshold": 16,
+  "depth": 40,
+  "hitting_fraction": 0.04743423277977854,
+  "ville_bound": 0.0625,
+  "within_bound": true
+ },
+ {
+  "threshold": 16,
+  "depth": 60,
+  "hitting_fraction": 0.05114993449753172,
+  "ville_bound": 0.0625,
+  "within_bound": true
+ },
+ {
+  "threshold": 256,
+  "depth": 10,
+  "hitting_fraction": 0.0,
+  "ville_bound": 0.00390625,
+  "within_bound": true
+ },
+ {
+  "threshold": 256,
+  "depth": 20,
+  "hitting_fraction": 0.00029468536376953125,
+  "ville_bound": 0.00390625,
+  "within_bound": true
+ },
+ {
+  "threshold": 256,
+  "depth": 40,
+  "hitting_fraction": 0.0017224801958946045,
+  "ville_bound": 0.00390625,
+  "within_bound": true
+ },
+ {
+  "threshold": 256,
+  "depth": 60,
+  "hitting_fraction": 0.0026539228606654985,
+  "ville_bound": 0.00390625,
+  "within_bound": true
+ }
+]
