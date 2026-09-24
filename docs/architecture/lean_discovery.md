@@ -118,10 +118,18 @@ line to the relevant check and record its output with
 `python tools/axiom_audit.py --run --write --only <check>.lean`.
 
 The source catalogue indexes this repository only, not Mathlib. Before proving
-a general lemma, search Mathlib too: the pinned `LeanSearchClient` package
-provides `#loogle` (type patterns) and `#leansearch` (natural language) inside
-Lean files and through `lean-lsp`, when those services are reachable. `exact?`
-and `apply?` search the imported environment offline.
+a general lemma, search Mathlib too. `python tools/formalpedia.py mathlib
+"<query>"` (MCP `formalpedia_mathlib_search`) sends a Loogle query (a name, a
+type pattern such as `_ * (_ ^ _)`, or a conclusion `|- _`) to the public
+Loogle service and checks every hit against the Mathlib pinned in
+`formal/lake-manifest.json`: `declared` when the pinned source declares it,
+`module_missing` or `not_declared_literally` when it may be absent or generated
+at that revision, `unchecked` when the packages are not installed. Loogle
+indexes a recent Mathlib, so confirm a hit with `#check` before relying on it.
+Only the query text leaves the machine; the service must be reachable
+(`loogle.lean-lang.org`). Inside Lean, the pinned `LeanSearchClient` package
+provides `#loogle` and `#leansearch`, and `exact?` and `apply?` search the
+imported environment offline.
 Use the executable Lean audits for those claims. No metadata silently promotes
 a theorem or discharges an assumption.
 
@@ -171,9 +179,10 @@ PYTHONUTF8=1 -- <absolute-python> <absolute-server-script>`; this is a separate
 client configuration from `.mcp.json`. See the
 [official Codex MCP guide](https://developers.openai.com/codex/mcp).
 
-The seven Lean tools are `formalpedia_search`, `formalpedia_show`, `formalpedia_claim`,
-`formalpedia_impact`, `formalpedia_status`, `formalpedia_lint` and
-`formalpedia_axiom_audits`. They return
+The seven local Lean tools are `formalpedia_search`, `formalpedia_show`,
+`formalpedia_claim`, `formalpedia_impact`, `formalpedia_status`,
+`formalpedia_lint` and `formalpedia_axiom_audits`; `formalpedia_mathlib_search`
+queries Loogle. They return
 structured objects, bounded search pages, full statements on demand, explicit
 ambiguities, and snapshot identifiers. Guide and status resources and the
 `find_existing_result` prompt provide the discovery workflow.
@@ -184,8 +193,9 @@ research programmes to dossiers, data, decisions, and known obstructions. See
 the [research catalogue guide](research_catalogue.md). The existing server
 configuration is shared; reconnect once to discover newly added tools.
 
-All server tools are local and read-only. They neither edit proofs nor invoke
-external advisory services. Source-catalogue queries refresh their in-memory
+All server tools are read-only and none edits proofs or invokes an external
+advisory service. All are local except `formalpedia_mathlib_search`, which
+sends its query text to the public Loogle service and is annotated as such. Source-catalogue queries refresh their in-memory
 snapshot when files change. Semantic queries use fresh modules from explicitly built
 compiler snapshots and never start a build. Use `lean-lsp` to
 inspect goals, check a candidate in context, and verify a proof. Reconnect an

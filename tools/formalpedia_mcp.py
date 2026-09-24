@@ -33,7 +33,8 @@ mcp = FastMCP('formalpedia', instructions=(
     'for historical changes. Builds refresh compiled metadata; queries exclude stale '
     'modules and disclose coverage. formalpedia_show joins exact source and compiled identities. '
     'Structural matches are not proof applicability. '
-    'All tools here are local and read-only.'))
+    'formalpedia_mathlib_search queries the public Loogle service for Mathlib results and '
+    'checks each hit against the pinned Mathlib; every other tool is local. All are read-only.'))
 READ_ONLY = ToolAnnotations(readOnlyHint=True, destructiveHint=False,
                             idempotentHint=True, openWorldHint=False)
 
@@ -106,6 +107,7 @@ def formalpedia_capabilities() -> dict[str, Any]:
     return {'protocol_version': 3, 'server_fingerprint': SERVER_FINGERPRINT,
             'root': str(fp_workspace.ROOT), 'tool_groups': {
                 'source': ['search', 'show', 'claim', 'impact', 'status', 'lint', 'axiom_audits'],
+                'external': ['mathlib_search'],
                 'research': ['research_search', 'research_context', 'research_check'],
                 'maintenance': ['lab_doctor', 'change_impact', 'verification_plan'],
                 'semantic': ['semantic_status', 'semantic_show', 'type_search', 'dependencies', 'semantic_diff']},
@@ -190,6 +192,22 @@ def formalpedia_axiom_audits(limit: int = 50, offset: int = 0) -> dict[str, Any]
     missing or stale artifacts and exact ledger declarations that no artifact covers.
     """
     return catalogue.audits(limit=limit, offset=offset)
+
+
+@mcp.tool(annotations=ToolAnnotations(readOnlyHint=True, destructiveHint=False,
+                                     idempotentHint=True, openWorldHint=True))
+def formalpedia_mathlib_search(query: str, limit: int = 20) -> dict[str, Any]:
+    """Search Mathlib through Loogle, the one formalpedia tool that contacts a public service.
+
+    The query is a Loogle query: a constant name (`Real.sqrt`), a type pattern
+    (`_ * (_ ^ _)`), a conclusion (`|- tsum _ = _`), or several, comma-separated. Only the
+    query text leaves the machine. Loogle indexes a recent Mathlib, so each hit carries
+    `pinned`: whether the repository's pinned Mathlib source declares it. Confirm a hit with
+    #check through lean-lsp before relying on it. Returns status `unreachable` when the
+    service cannot be reached.
+    """
+    from formalpedia_core import mathlib as fp_mathlib
+    return fp_mathlib.search(query, limit=limit)
 
 
 @mcp.tool(annotations=READ_ONLY)

@@ -63,6 +63,10 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--include-private", action="store_true")
     p = sub.add_parser("impact", help="modules rebuilt by a change to this module or file")
     p.add_argument("target")
+    p = sub.add_parser("mathlib", help="search Mathlib through Loogle; hits checked against the pinned Mathlib")
+    p.add_argument("query", help='a name, type pattern or subexpression, e.g. "Real.sqrt, _ * _"')
+    p.add_argument("--limit", type=int, default=20)
+    p.add_argument("--json", action="store_true")
     p = sub.add_parser("audits", help="recorded #print axioms artifacts: consistency and coverage")
     p.add_argument("--limit", type=int, default=50)
     p.add_argument("--offset", type=int, default=0)
@@ -96,6 +100,28 @@ def main(argv: list[str] | None = None) -> int:
                    help="comma-separated ledger ids to ask about, e.g. the row being retagged")
     p.add_argument("--workers", type=int, default=4)
     args = ap.parse_args(argv)
+
+    if args.cmd == "mathlib":
+        from . import mathlib as _fp_mathlib
+        try:
+            result = _fp_mathlib.search(args.query, limit=args.limit)
+        except ValueError as exc:
+            print(str(exc), file=sys.stderr)
+            return 2
+        if args.json:
+            print(_fp_source.render(result), end="")
+        else:
+            print(f"Loogle ({result['status']}); pinned Mathlib {result['mathlib_pinned_rev']}")
+            for hit in result.get("hits", []):
+                print(f"{hit['name']}  [{hit['module']}; pinned: {hit['pinned']['status']}]")
+                print(f"    {hit['type']}")
+            for key in ("reason", "remedy"):
+                if result.get(key):
+                    print(f"{key}: {result[key]}")
+            if result.get("suggestions"):
+                print("suggestions: " + "; ".join(result["suggestions"]))
+            print(result["limitations"])
+        return 0 if result["status"] in {"found", "no_hits"} else 1
 
     if args.cmd in {"search", "show", "status", "claim", "impact", "audits"}:
         from formalpedia_catalog import Catalogue

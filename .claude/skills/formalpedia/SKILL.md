@@ -34,6 +34,8 @@ python tools/formalpedia.py show Problems.Juggler.ScaleAverage.FailureMassLowerB
 python tools/formalpedia.py claim J-pressure-scale-average-contagion-transfer
 python tools/formalpedia.py impact Problems.Juggler.FateScaleAverage
 python tools/formalpedia.py status
+python tools/formalpedia.py audits
+python tools/formalpedia.py mathlib "Real.sqrt, _ * _"
 ```
 
 The MCP equivalents are `formalpedia_search`, `formalpedia_show`,
@@ -65,8 +67,15 @@ When `signature_complete` is false, read `signature_context`: section `variable`
 `#print axioms` output from `formal/AxiomCheck*.expected`. That is executed Lean
 evidence as of the recording commit; an empty list means no check covers the
 declaration. `python tools/formalpedia.py audits` lists missing and stale
-artifacts. Formalpedia covers this repository only: search Mathlib with
-`#loogle`/`#leansearch` (LeanSearchClient) or `exact?` through Lean.
+artifacts.
+
+Formalpedia's catalogue covers this repository only. Search Mathlib with
+`python tools/formalpedia.py mathlib "<Loogle query>"` (MCP
+`formalpedia_mathlib_search`), which queries the public Loogle service and marks
+each hit `declared` in the pinned Mathlib, `module_missing`,
+`not_declared_literally` or `unchecked`. Loogle tracks a newer Mathlib: confirm
+a hit with `#check` through lean-lsp. Inside Lean, `#loogle`, `#leansearch` and
+`exact?` work too.
 
 ## Public interface policy
 
