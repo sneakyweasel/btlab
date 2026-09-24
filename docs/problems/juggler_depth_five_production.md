@@ -251,9 +251,9 @@ count (A.2) gives `P a_0 = P^(13/32+gamma)` on the zero branch and
 
 *Statement.* In Paper B's Appendix C with first shift `h_1 <= P^(5/32)`, second
 shift `h_2 <= P^(1/24)`, bounded `k` and `Pi = k h_1 h_2 <= P^(19/96)`, the
-`t = 0`, `b = 0` part of the double correlation is `<< P^(29/32+eps)`, and the
-`b = 0` part of the nonzero-`t` case still satisfies the hypotheses of
-Theorem B.1.
+`t = 0`, `b = 0` part of the double correlation is `<< P^(29/32+eps)`. (An
+earlier version also claimed that the `b = 0` part of the nonzero-`t` case meets
+Theorem B.1's hypotheses; that is false, see Result 9.)
 
 *Proof.* At `b = 0` the theta coefficient `B` of (C.20) is no longer bounded: it is
 `-(243/128) Pi x^(-1/8)` up to smaller terms, of size up to `P^(1/32+gamma)`, with
@@ -287,15 +287,44 @@ the larger of `Pi P^(-5/8)` and `|l| P^(-1/2)`. `M <= 1`, `MP^2 >= 1` and
 *Costs.* At a collision `M` is comparable to `Pi P^(-5/8)`, and (7.4) gives
 `Pi^(1/2) P^(11/16) + P^(31/32) Pi^(-1/2) + P^(7/8)`, at most `P^(29/32)` for
 `Pi` in `[P^(1/8), P^(19/96)]`. The colliding pairs `(r, s)` carry total weight
-`O(log P)`, because both the `r`-coefficients `1/(1+|r+B|)` and the carry weights
-`1/(1+|s|)` are small unless the other factor is. Non-colliding modes cost
-`R^(1/2) P^(3/4) + P^(21/32+1/4) = P^(29/32)`, as in (C.27). Applying (7.4) on each
+`O(log P)`: for fixed `l` the combined weight is `<< log P / (1 + |l + B|)`, at a
+collision `l + B` is about `-(2187/512) Pi x^(-1/8)`, and there are `O(1)` colliding
+`l` per stretch over `Pi P^(-1/8)` stretches, so the full (7.4) cost per stretch is
+paid with total weight `log P`. In the near-collision band `|Lambda|` is comparable
+to `|l - l_*| P^(-1/2)` with weights about `1/(Pi P^(-1/8))`, which costs
+`Pi^(1/2) P^(11/16) + P^(31/32) Pi^(-1/2)`; the heavy modes near `l = -B` have
+`M` comparable to `Pi P^(-5/8)` and cost at most `P^(29/32) log P`; the remaining
+modes cost `R^(1/2) P^(3/4) + P^(21/32+1/4) = P^(29/32)`, as in (C.27). The
+`(h_1 + h_2) P^(-3/4)` rounding term of (C.24) is comparable to `Pi P^(-3/4)/k`
+rather than smaller by a power of `P`, which still gives `rho << P^(-1/8)`. Applying (7.4) on each
 stretch adds `(P/M)^(1/3)` per stretch, in total `P^(5/12 + 2 pi/3)` with
 `Pi = P^pi`. Hence the `t = 0`, `b = 0` part is `<< P^(29/32+eps)`.
 
-*Nonzero `t` at `b = 0`.* The same uncentered expansion in C.5 shifts the mode
-range by `|B| << R`, so (C.18) keeps `|Phi'''| << P^(-13/12)` and Theorem B.1's twist
-budget holds. `QED`
+*Nonzero `t` at `b = 0`.* The uncentered expansion in C.5 shifts the mode range
+by `|B| << R`, so (C.18) keeps `|Phi'''| << P^(-13/12)`. This does not place the
+nonzero-`t` terms under Theorem B.1: see Result 9. `QED` for the `t = 0`, `b = 0`
+statement.
+
+**9. Audit of Lemmas E1 and E2 (24 September 2026).** An independent adversarial
+reviewer re-derived both. **E1 holds**: every step of Lemma 4.4 at large `h`, the
+mode dominance including opposite signs (ratio at most `(9/8) c_0`), the (A.13)
+margins `P^(1/192)` and `P^(1/96)`, and the `D` argument. **E2's `t = 0`, `b = 0`
+bound holds in substance**; the reviewer confirmed the formula
+`B = -(243/128) Pi x^(-1/8)`, that truncation to `|r + B_0| <= R` is the centred
+expansion at `round(B_0)` with its error charged once globally, Lemma 7.5's
+hypotheses, and the `O(log P)` colliding weight; the near-collision and heavy-mode
+bookkeeping and the (C.24) rounding term are now written into Result 8. Stretches
+must be cut by total variation, since `B` jumps by `P^(-3/32)` at `N_2` windows.
+
+**E2's nonzero-`t` clause was false** and has been withdrawn. In C.5 the terms
+`a_1 W_1` and `c_11 A` enter Theorem B.1 with `r_j = h_{l,1} = h_1 = P^(5/32)`,
+above its printed `C P^(1/24)`, and the partition density is `P^(-11/32)` rather than
+`P^(-11/24)`. With those hypotheses widened, `D_h` comparable to `P^(21/32)` makes
+the (B.16) endpoint term `P^(33/32) (|t| h)^(-1/2)`, above `P` for `h < P^(1/16)`;
+after averaging over `H = P^(1/12)` it gives `|U| << P^(191/192)`, not (B.3)'s
+`P^(31/32)`. This is the desk figure of Result 5, and it is not yet a written
+theorem. A widened Theorem B.1 is therefore an open piece, and it carries the
+thinnest margin of the route, `P^(1/192)`.
 
 ## Open questions
 
@@ -316,10 +345,9 @@ for `OOOEE` up to `delta < 1/6`, or `delta < 3/16` at bounded frequencies, after
 three local repairs. That would be the averaged substitute, but it is a first-pass
 reading of a dense proof and does not meet the promotion criterion. The pricing
 stands: `OOOEE` alone would lift the ideal contagion from `0.633` to `0.6915`, both
-depth-five words to `0.7512`. Best next question: with Lemmas E1 and E2, the remaining pieces
-of the `OOOEE` route are the `k = 0` frequency cases of `T_d` (Lemma 4.4 and
-Proposition 7.6 at `h = d`) and the poor-tail reduction from sliding windows to the
-actual fibres; do the `k = 0` cases keep a power saving at `h = P^(5/32)`?
+depth-five words to `0.7512`. Best next question: does a written Theorem B.1 for first-difference and D2
+shifts up to `P^(5/32)`, with partition density `P^(-11/32)` and Lemma A.1 at
+`h_{l,1} = P^(5/32)`, keep the `P^(1/192)` saving that its endpoint term leaves?
 
 ## Publication assessment
 
