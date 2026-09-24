@@ -1348,6 +1348,76 @@ order: `OOEE` has none, `OOEOE` has `9/16` (E7), and `OOOEE` has `9/8` (Paper B)
 
 This refines Result 26: the natural next target is `OOOEOEE`, not `OOOOEEE`.
 
+**28. `OOOEOEE` Phase-0 bookkeeping (desk, with numerical constant checks; 24
+September 2026; not a proof).**
+
+*Coordinates.* `OOOEOEE` shares the prefix `OOOE` with `OOOEE`. Its first four
+coordinates are therefore Paper B's `OOOEE` chain `X, Y, Z, U`, with
+`U = floor(Z)^(1/2)`. Two more follow:
+
+- `R_5 = floor(U)^(3/2)`, of size `n^(81/32)`: a Theorem-4.9-type "`W`" built on
+  `OOOEE`'s `U`;
+- `R_6 = floor(R_5)^(1/2)`. Its last floor is negligible, at `n^(-81/64)`.
+
+The difference from `OOEOE` is that this `U` is large and noisy.
+
+- `U = n^(27/16) - (9/8) theta n^(3/16) + O(P^(-9/16))`, where `theta = {X}`.
+  At `n = 10^8, 10^10`, 60-digit evaluations match this to `10^(-5)`, while the
+  `theta`-term reaches `P^(3/16)`.
+- By contrast, `OOEOE`'s `floor(Y)^(1/2)` has `theta`-noise of only
+  `n^(-3/8)`.
+
+*Two routes that fail as stated.*
+
+- *Paper B's centring (Theorem 4.9).* Centre the new coefficient
+  `B = (3 k_5 / 4) U^(1/2)`, of size `n^(27/32)`. The combined curvature is then
+  `(2187/2048) k_5 x^(17/32)`, far above `1`; numerically `1.0678711` against
+  `2187/2048`. The second-derivative test gives nothing, whereas Theorem 4.9's
+  analogous constant `(243/512) x^(-5/16)` is small (reproduced as a check).
+- *E7's smooth carry.* The gap of `floor(U)` is not determined by a smooth
+  function, because `U`'s `theta`-noise is `P^(3/16)`, far above `1`.
+
+*A route that works in the leading case.* Freeze the `X`-carries first, as
+Theorem B.1's D1 linearization does. On a branch where `m(n+2d) - m(n) = beta` is
+fixed:
+
+- `Delta_d U = (m+beta)^(9/8) - m^(9/8)` up to the `{Y}`-level noise
+  `O(P^(-9/16))`. Replacing `m` by `X` costs `theta d P^(-13/16)`. The large
+  `theta`-noise cancels between the endpoints.
+- E7's carry then applies to `floor(U)`. The leading terms of
+  `(k_5/2) Delta_d x^(81/32)` and `B S`, with `S = Delta_d x^(27/16)`, cancel
+  exactly.
+- The zero-mode curvature is `-(10935/32768) k_5 d x^(-15/32)`. Numerically
+  `-0.33370972` at `x = 10^12, 10^16, 10^20`, against `-10935/32768`.
+
+For `k_5 != 0` with the `Z`-frequency `k_3 = 0`:
+
+- The `G`-cells number about `d P^(11/16)`, with `d P^(1/2)` `X`-branches.
+- The zero modes cost `d^(1/2) P^(59/64)`. The carry modes, of curvature
+  `s P^(-5/16)`, dominate and cost `R^(1/2) P^(27/32) + d P^(27/32)`.
+- The truncation error at `R = P^(1/8)` is `P^(7/8)`.
+- The `Y`-wave, the `U` and `R_6` frequencies and `{Y}` are perturbations.
+
+So `|T_d| << d^(1/2) P^(59/64) + P^(29/32)` is the expected shape at
+`d < P^(1/48)`. It has not been written as a lemma.
+
+*The joint case `k_3 != 0`, `k_5 != 0`.* The `Z`-frequency's differenced
+curvature is about `d P^(3/8)`, which needs Paper B's kernel and the `h_2` Weyl
+step. The `R_5` carry then enters Paper B's double correlation. It brings about
+`d P^(11/16)` cells, denser than Theorem B.1's partition hypothesis
+(`P^(-11/24)`) allows. Its endpoint cost against the kernel's curvature looks
+affordable, about `P^(3/4)`, but that is unchecked. This joint case is the open
+core.
+
+*Decision.* **PARK.** The reopening condition is a written version of both
+pieces:
+
+- the frozen-branch carry for `k_3 = 0`;
+- Theorem B.1 extended to admit the `R_5` carry cells and weights, for
+  `k_3 != 0`.
+
+Worth: `0.7406 -> 0.7560` (Result 27).
+
 ## Open questions
 
 Result 23 (Lemma E9) shows that the productions need `T_d` only at shifts below an
@@ -1390,10 +1460,9 @@ That assembly turns productions at `1/28` into contagion `37/50` and thresholds
 
 Promotion is the owner's decision after review.
 
-Best next question: does `OOOEOEE`, whose largest nested growing
-factor is Paper B's `9/8` and whose other factors are `27/32` and `9/32`, admit
-a Phase-0 bookkeeping that keeps each factor controlled? Result 27 shows it is
-the cheapest depth-seven word, worth `0.7406 -> 0.7560` alone.
+Best next question: write `OOOEOEE`'s frozen-branch carry for
+`k_3 = 0` (Result 28), then decide whether Theorem B.1 can absorb the `R_5`
+carry cells at density `P^(-5/16)`.
 
 ## Publication assessment
 
