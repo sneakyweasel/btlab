@@ -1458,6 +1458,37 @@ and `test_depth_five_structural.py` tests it. It runs 3,000 odd `n` from each
 
 The joint case `k_3 != 0` remains the open core.
 
+**30. The O-lift: `OOOEOEE = O . OOEOE . E` (desk, with a numerical constant
+check; 24 September 2026).** From `m = J(n)`, the parities of `J(n)` through
+`J^5(n)` spell `OOEOE`. So on a frozen `X`-branch, where `beta = m(n+2d) - m(n)`,
+`OOOEOEE`'s differenced phase for `k_3 = 0` is exactly E7's `OOEOE` phase in the
+variable `m`, with `beta` in place of `2d`. Likewise `OOOOEEE = O . OOOEE . E`.
+
+*Transfer from `m` back to `n`.* One Lemma A.1-type centring handles this. Centre
+the `theta`-coefficient `G'(X)` at its floor. The effective curvature of the
+retained phase is then `G_mm X'^2`: the second derivative of E7's phase in `m`,
+times `X'^2`. With E7's constant this is
+`-(1701/4096)(27/8) k d x^(-15/32) = -(45927/32768) k d x^(-15/32)`. An 80-digit
+numerical differentiation of `G(X(x)) - N X(x)`, with `N = G'(X(x_0))` frozen,
+gives `-1.40158081` at `x = 10^12, 10^16, 10^20`, matching `-45927/32768` to
+ten digits. It is one-signed. Before centring, the constant is `-0.3337`
+(Result 28). The centring adds the `-N X''` term, just as C.7's table does for
+`N_*`.
+
+*What the lift says about the joint case.* In the variable `m`:
+
+- `OOOEOEE`'s `Z`-frequency `k_3` becomes `OOEOE`'s `Y`-wave frequency `j`;
+- the shift becomes `beta`, about `3 d M^(1/3)` on the scale `M = P^(3/2)`.
+
+E7's `j != 0` case rests on Lemma 4.4's carry dominance, which needs
+`|u| h <= c_0 M^(1/4)`. Since `M^(1/3) > M^(1/4)`, the lift cannot settle the
+joint case `k_3 != 0`. That case has to go through Paper B's `n`-variable route:
+Theorem B.1 admitting the `R_5` carry cells (Result 28).
+
+*Status.* The `OOOEOEE` production for `k_3 = 0` is now a transported version of
+E7, plus one A.1 centring with a verified curvature constant. It still needs to
+be written out. The joint case remains the open core.
+
 ## Open questions
 
 Result 23 (Lemma E9) shows that the productions need `T_d` only at shifts below an
