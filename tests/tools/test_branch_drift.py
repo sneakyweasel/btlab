@@ -118,6 +118,30 @@ def test_acknowledgements_are_not_stale(drifts: list[BD.Drift]) -> None:
 
 
 
+def test_the_checked_out_branch_is_not_scanned_but_others_are(tmp_path, monkeypatch) -> None:
+    """A branch under test cannot acknowledge itself; every other branch is still read."""
+    import subprocess
+
+    for name in ('GITHUB_HEAD_REF', 'GITHUB_REF_NAME'):
+        monkeypatch.delenv(name, raising=False)
+
+    def git(*args):
+        return subprocess.run(['git', '-c', f'safe.directory={tmp_path.as_posix()}',
+                               '-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid',
+                               '-c', 'commit.gpgsign=false', *args], cwd=tmp_path,
+                              check=True, capture_output=True, text=True).stdout.strip()
+
+    git('init', '-b', 'main')
+    git('commit', '--allow-empty', '-m', 'Base')
+    git('branch', 'other')
+    git('checkout', '-b', 'feature')
+    assert BD.branch_refs(tmp_path) == ['other']
+    git('checkout', 'main')
+    assert BD.branch_refs(tmp_path) == ['feature', 'other']
+    monkeypatch.setenv('GITHUB_HEAD_REF', 'feature')
+    assert BD.branch_refs(tmp_path) == ['other']
+
+
 def test_files_are_counted_against_the_merge_base_not_main(tmp_path) -> None:
     """Main's deletions are not branch work; actual branch additions still count.
 

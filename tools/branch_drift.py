@@ -26,6 +26,7 @@ here:
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -61,11 +62,20 @@ def branch_refs(repo: Path, base: str = "main") -> list[str]:
     origin/HEAD points at -- and the gate compared the base against an alias of itself
     while printing the same all-clear it prints when it has really checked branches.
     Symbolic refs are filtered on the FULL name here, which is the one that carries /HEAD.
+
+    The branch under test is skipped too. Its contents are this working tree, so they are
+    not stranded from it, and it cannot acknowledge itself: an entry pinned to its own
+    tip is invalidated by the commit that writes it. On main the gate still reads every
+    other branch; CI runs a pull request as a detached merge, named by GITHUB_HEAD_REF.
     """
 
     raw = _git(repo, "for-each-ref", "--format=%(refname)" + chr(9) + "%(refname:short)",
                "refs/heads", "refs/remotes")
     skip = {base, f"origin/{base}"}
+    for current in (_git(repo, "symbolic-ref", "--short", "-q", "HEAD").strip(),
+                    os.environ.get("GITHUB_HEAD_REF", ""), os.environ.get("GITHUB_REF_NAME", "")):
+        if current and current != base:
+            skip |= {current, f"origin/{current}"}
     refs = []
     for line in raw.splitlines():
         if chr(9) not in line:

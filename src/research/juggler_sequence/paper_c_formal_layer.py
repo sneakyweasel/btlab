@@ -251,10 +251,8 @@ def audit() -> dict[str, Any]:
         if mod not in reached:
             problems.append({"kind": "paper", "why": "declared but not reachable from the root",
                              "detail": f"{name} in {mod}"})
-        # Source trust: "unmarked" means no sorry, admit, axiom or native_decide in the text.
-        # The artifact's recorded axioms, checked separately, are the kernel evidence.
-        if chosen["trust"] != "unmarked":
-            problems.append({"kind": "paper", "why": "carries a source trust marker", "detail": name})
+        if chosen["trust"] != "kernel":
+            problems.append({"kind": "paper", "why": "not kernel-checked", "detail": name})
         is_def = chosen["kind"] in ("def", "abbrev", "structure", "noncomputable def")
         if not is_def and name not in asked:
             problems.append({"kind": "artifact", "why": "cited theorem the artifact does not ask about",
