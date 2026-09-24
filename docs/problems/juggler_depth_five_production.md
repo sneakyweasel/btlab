@@ -1,7 +1,8 @@
 # Juggler `depth_five_production`
 
-Status: **PARK** (24 September 2026). Phase-0 priced the depth-five productions
-and located the missing estimate; no production is proved.
+Status: **PARK** (24 September 2026), pending audit. Phase-0 priced the
+depth-five productions; a first-pass exponent bookkeeping (Result 5) suggests the
+`OOOEE` estimate is within reach of Paper B's machinery. No production is proved.
 
 ## Problem
 
@@ -146,25 +147,62 @@ coefficient. With the fibre shift as `h_1 = d`, bounded `k` and `h_2 = 1`,
 bound (7.5) keeps a power saving up to `h < P^(1/4)` when `u` is bounded, so the
 basic model is not what binds.
 
+**5. First-pass exponent bookkeeping: `OOOEE` shifts up to `P^(5/32)` look
+reachable (desk reading, 24 September 2026; not a proof, audit required).**
+Put the fibre shift `d = P^delta` into Paper B's chain for `T_d` with bounded
+frequencies, one internal Weyl shift `h_2 = P^gamma`, `Pi = k d h_2`.
+
+- *Theorem B.1 endpoint term.* (B.14) becomes `D_h << (h + P^delta) P^(1/2)`, so
+  (B.16) gains `P^(delta+7/8) h^(-1/2)`; after the Weyl average (B.8) it costs
+  `P^(15/8+delta) H^(-1/2)`, below `P^2` iff `delta < 1/8 + eta/2` for
+  `H = P^eta`. With Paper B's `H = P^(1/12)` this is `delta < 1/6`. The only
+  printed reason for `h <= P^(1/12)` in the Weyl step that this pass found is the
+  theta cost (B.11), `|t| h P^(3/4) <= P^(7/8)`, which allows `H = P^(1/8)` at
+  bounded `t`, hence `delta < 3/16`. At `delta = 5/32`: `|U| << P^(1-0.0052)` or
+  `P^(1-0.0156)` respectively.
+- *D2 error.* Lemma A.1 charges `D/(Qa) << ((h_1+h_2)/(h_1 h_2)) P^(15/16)`: the
+  derivative scale grows with `h_1 h_2` as fast as the run count, so a larger
+  shift does not raise it.
+- *Other B.1 budgets.* `|a| r <= P^(1/2)` holds at `P^(0.28+gamma)`; boundary
+  crossings `h P^(21/32) <= P^(0.78)`; (B.13), (B.17) and the D1 curvature ratio
+  are unaffected.
+- *Appendix C.* The (C.17) remainder `Pi P^(-1/8)` is no longer bounded, but
+  centering at the floor of the whole coefficient instead of its main term keeps
+  the residual in `[0,1)` with few extra windows, since the remainder's
+  derivative is `O(Pi P^(-9/8))`. The (C.26) frequency gap fails once
+  `Pi >= P^(1/8)`: the `l_F` and `Pi x^(-5/8)` curvatures can collide. The
+  reference function factors monotonically as in Proposition 7.6, and Lemma 7.5
+  then bounds the collision band by about `P^(0.78)`. (C.22), (C.23) and the
+  `l_F = 0` term stay within budget.
+
+With `OOOEE` alone the ideal contagion root is `0.6915` (about `0.685` at 99% of
+the ideal coefficient); `OOEOE` uses Theorem 4.9's different phase family and has
+not been bookkept. The pass rests on a first reading of Appendices A.1, B and C;
+the lemma statements' fixed-shift clauses (`O(P^(1/24))` translations) were
+checked only for their relative derivative comparisons.
+
 ## Open questions
 
-The missing input is a power saving for the once-differenced depth-five sums
-`T_d` with shifts `d <= P^(5/32)` and bounded frequencies. The binding step in
-Paper B's route is the bounded remainder of (C.17), which needs
-`k h_1 h_2 <= P^(1/8)`. Paper B's `P^(1/128)` saving is paid for uniformity over
-frequencies up to `P^(1/24)`; for bounded frequencies the margin of Appendix C
-may be larger, and C.5--C.9 have not been re-audited for other binding terms.
+The first-pass bookkeeping (Result 5) finds no binding constraint for `OOOEE`
+at `delta = 5/32`, with three local repairs: centering at the full coefficient
+floor in C.5 and C.8, a Lemma 7.5 collision estimate in C.8, and Theorem B.1 run
+with outer shifts `P^delta` and, at bounded frequencies, `H = P^(1/8)`. It needs an
+independent line-by-line audit before any proof is written. `OOEOE` needs its own
+bookkeeping.
 
 ## Decision
 
-**PARK.** The stop criterion fired: the production reduces to depth-five
-parity control on windows of length `P^(5/32)`, which neither the depth-four
-fibre machinery nor Paper B's global depth-five sums supply, and no averaged
-substitute is available on present estimates. The pricing stands: depth five
-would move contagion from `5/8` toward `0.75` and the required rate from `3/8`
-toward `1/4`. Best next question: rerun Appendix C's exponent bookkeeping
-with bounded frequencies and an outer shift `P^delta`; is the largest `delta`
-with a positive saving at least `5/32`?
+**PARK, pending audit.** Phase-0's stop criterion fired on present
+estimates: the production reduces to depth-five parity control on windows of
+length `P^(5/32)`. The later bookkeeping (Result 5) indicates that Paper B's
+Appendix B and C machinery, run with outer shifts `P^delta`, keeps a power saving
+for `OOOEE` up to `delta < 1/6`, or `delta < 3/16` at bounded frequencies, after
+three local repairs. That would be the averaged substitute, but it is a first-pass
+reading of a dense proof and does not meet the promotion criterion. The pricing
+stands: `OOOEE` alone would lift the ideal contagion from `0.633` to `0.6915`, both
+depth-five words to `0.7512`. Best next question: does an adversarial line-by-line
+audit of Result 5 confirm that `OOOEE` differenced sums with shifts up to
+`P^(5/32)` keep a power saving at bounded frequencies?
 
 ## Publication assessment
 

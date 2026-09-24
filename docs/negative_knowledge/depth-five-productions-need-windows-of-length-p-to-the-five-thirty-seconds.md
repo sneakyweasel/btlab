@@ -22,3 +22,10 @@ shifts up to `P^(5/32)` and a power saving. The binding step in Paper B's route
 is the bounded remainder of (C.17), `k h_1 h_2 <= P^(1/8)`; an exponent audit of
 Appendix C at bounded frequencies with an outer shift `P^delta` decides whether
 `delta = 5/32` is reachable.
+
+**Revised 24 September 2026.** A first-pass exponent bookkeeping of Paper B's
+Appendices A--C (dossier Result 5) finds that Theorem B.1's endpoint term allows
+outer shifts `P^delta` for `delta < 1/6`, or `delta < 3/16` at bounded frequencies,
+and that the `P^(1/8)` limits above are local and repairable. The parking reason is
+therefore provisional for `OOOEE`: an independent audit decides it. `OOEOE` has not
+been bookkept.
