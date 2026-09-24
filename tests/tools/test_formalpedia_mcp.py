@@ -25,7 +25,7 @@ def test_mcp_discovery_is_structured_and_read_only():
         assert {t.name for t in tools} == {
             'formalpedia_search', 'formalpedia_show', 'formalpedia_claim',
             'formalpedia_impact', 'formalpedia_status', 'formalpedia_lint', 'formalpedia_axiom_audits',
-            'formalpedia_mathlib_search',
+            'formalpedia_mathlib_search', 'formalpedia_ledger_check',
             'formalpedia_research_search', 'formalpedia_research_context', 'formalpedia_research_check',
             'formalpedia_lab_doctor', 'formalpedia_change_impact', 'formalpedia_verification_plan',
             'formalpedia_capabilities', 'formalpedia_semantic_status', 'formalpedia_semantic_show',

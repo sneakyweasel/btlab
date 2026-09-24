@@ -35,6 +35,7 @@ python tools/formalpedia.py claim J-pressure-scale-average-contagion-transfer
 python tools/formalpedia.py impact Problems.Juggler.FateScaleAverage
 python tools/formalpedia.py status
 python tools/formalpedia.py audits
+python tools/formalpedia.py ledger-check
 python tools/formalpedia.py mathlib "Real.sqrt, _ * _"
 ```
 
@@ -68,6 +69,12 @@ When `signature_complete` is false, read `signature_context`: section `variable`
 evidence as of the recording commit; an empty list means no check covers the
 declaration. `python tools/formalpedia.py audits` lists missing and stale
 artifacts.
+
+Before retagging a ledger row `EXACT — LEAN VERIFIED`, name its declarations in
+`decl` and run `python tools/formalpedia.py ledger-check`; with a semantic
+export present it also checks each declaration's compiled axioms against the
+row's `lean_trust`. The CLI keeps its index in `.cache/formalpedia/` and
+rebuilds it whenever a source, the ledger or an axiom artifact changes.
 
 Formalpedia's catalogue covers this repository only. Search Mathlib with
 `python tools/formalpedia.py mathlib "<Loogle query>"` (MCP

@@ -54,6 +54,21 @@ def test_missing_is_read_only_and_cannot_search(cat):
     assert not cat.cache.exists()
 
 
+def test_bulk_axioms_answer_current_identities_and_refuse_stale_exports(cat):
+    with pytest.raises(ValueError, match='missing'):
+        cat.axioms(['Problems.Demo::demo'])
+    row = dict(declaration('demo'), axioms=['propext', 'Quot.sound'])
+    save(cat, [row, declaration('bare')])
+    result = cat.axioms(['Problems.Demo::demo', 'Problems.Demo::bare', 'Problems.Demo::absent'])
+    assert result['axioms'] == {'Problems.Demo::demo': ['propext', 'Quot.sound'],
+                                'Problems.Demo::bare': [], 'Problems.Demo::absent': None}
+    assert result['freshness'] == 'current'
+    source = cat.root / 'formal/Problems/Demo.lean'
+    source.write_text(source.read_text().replace('demo', 'next'))
+    with pytest.raises(ValueError, match='stale'):
+        cat.axioms(['Problems.Demo::demo'])
+
+
 def test_content_changes_even_same_size_invalidate_queries(cat):
     save(cat, [declaration('demo')])
     assert cat.status()['status'] == 'current'

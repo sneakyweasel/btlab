@@ -38,6 +38,9 @@ jobs:
       - name: Recorded axiom artifacts answer their checks
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: python tools/axiom_audit.py --check
+      - name: LEAN VERIFIED ledger rows name their declarations
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: python tools/formalpedia.py ledger-check
       - name: Ruff (runtime, unused, repeated keys)
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: python -m ruff check .
@@ -106,6 +109,11 @@ jobs:
       - name: Formalpedia semantic export
         if: ${{ !cancelled() }}
         run: python tools/lab.py build
+      # The export records Lean's collectAxioms for every local declaration; every
+      # declaration a LEAN VERIFIED ledger row names must carry only the axioms its
+      # lean_trust allows.
+      - name: LEAN VERIFIED ledger rows carry kernel-checked axioms
+        run: python tools/formalpedia.py ledger-check --require-compiled
       - name: Upload formalpedia semantic snapshot
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4

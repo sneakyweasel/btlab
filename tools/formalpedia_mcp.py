@@ -106,7 +106,8 @@ def formalpedia_capabilities() -> dict[str, Any]:
     """
     return {'protocol_version': 3, 'server_fingerprint': SERVER_FINGERPRINT,
             'root': str(fp_workspace.ROOT), 'tool_groups': {
-                'source': ['search', 'show', 'claim', 'impact', 'status', 'lint', 'axiom_audits'],
+                'source': ['search', 'show', 'claim', 'impact', 'status', 'lint', 'axiom_audits',
+                           'ledger_check'],
                 'external': ['mathlib_search'],
                 'research': ['research_search', 'research_context', 'research_check'],
                 'maintenance': ['lab_doctor', 'change_impact', 'verification_plan'],
@@ -192,6 +193,20 @@ def formalpedia_axiom_audits(limit: int = 50, offset: int = 0) -> dict[str, Any]
     missing or stale artifacts and exact ledger declarations that no artifact covers.
     """
     return catalogue.audits(limit=limit, offset=offset)
+
+
+@mcp.tool(annotations=READ_ONLY)
+def formalpedia_ledger_check() -> dict[str, Any]:
+    """Check that every EXACT — LEAN VERIFIED ledger row carries the Lean evidence it claims.
+
+    Static part: each row must name its declarations (a shrinking baseline holds older rows
+    that do not). Compiled part, when a current semantic export exists: each named
+    declaration's recorded Lean axioms must be the ones its lean_trust allows. Neither part
+    judges whether a declaration states the English claim.
+    """
+    from formalpedia_core import ledger_evidence as fp_evidence
+    index, ledger, _ = catalogue.snapshot()
+    return fp_evidence.check(index, ledger, semantic=semantic)
 
 
 @mcp.tool(annotations=ToolAnnotations(readOnlyHint=True, destructiveHint=False,

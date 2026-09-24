@@ -67,6 +67,9 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("query", help='a name, type pattern or subexpression, e.g. "Real.sqrt, _ * _"')
     p.add_argument("--limit", type=int, default=20)
     p.add_argument("--json", action="store_true")
+    p = sub.add_parser("ledger-check", help="LEAN VERIFIED ledger rows: named declarations and compiled axioms")
+    p.add_argument("--require-compiled", action="store_true",
+                   help="fail when no current semantic export can be read (CI's Lean job)")
     p = sub.add_parser("audits", help="recorded #print axioms artifacts: consistency and coverage")
     p.add_argument("--limit", type=int, default=50)
     p.add_argument("--offset", type=int, default=0)
@@ -122,6 +125,14 @@ def main(argv: list[str] | None = None) -> int:
                 print("suggestions: " + "; ".join(result["suggestions"]))
             print(result["limitations"])
         return 0 if result["status"] in {"found", "no_hits"} else 1
+
+    if args.cmd == "ledger-check":
+        from formalpedia_catalog import Catalogue
+        from . import ledger_evidence as _fp_evidence
+        index, ledger, _ = Catalogue(persist=_fp_workspace.CACHE / 'live_catalogue.json').snapshot()
+        result = _fp_evidence.check(index, ledger, require_compiled=args.require_compiled)
+        print(_fp_source.render(result), end="")
+        return 1 if result["problems"] else 0
 
     if args.cmd in {"search", "show", "status", "claim", "impact", "audits"}:
         from formalpedia_catalog import Catalogue

@@ -117,6 +117,18 @@ each artifact still answers its check, and `--run` reruns every check with Lean
 line to the relevant check and record its output with
 `python tools/axiom_audit.py --run --write --only <check>.lean`.
 
+`python tools/formalpedia.py ledger-check` (MCP `formalpedia_ledger_check`)
+tests the ledger's strongest label. Every `EXACT — LEAN VERIFIED` row must name
+its declarations in `decl`; rows that named none on 24 September 2026 are held
+in `data/research/formalpedia/lean_verified_without_declarations.json`, which
+may only shrink. When a current semantic export exists, each named
+declaration's recorded Lean axioms must be the ones the row's `lean_trust`
+allows: Mathlib's three for `kernel`, plus `Lean.ofReduceBool` and
+`Lean.trustCompiler` only for declarations a `mixed` or `compiler` row lists,
+and never `sorryAx`. CI's Lean job builds the export and runs the check with
+`--require-compiled`. Neither part judges whether a declaration states the
+English claim.
+
 The source catalogue indexes this repository only, not Mathlib. Before proving
 a general lemma, search Mathlib too. `python tools/formalpedia.py mathlib
 "<query>"` (MCP `formalpedia_mathlib_search`) sends a Loogle query (a name, a
@@ -179,9 +191,9 @@ PYTHONUTF8=1 -- <absolute-python> <absolute-server-script>`; this is a separate
 client configuration from `.mcp.json`. See the
 [official Codex MCP guide](https://developers.openai.com/codex/mcp).
 
-The seven local Lean tools are `formalpedia_search`, `formalpedia_show`,
+The eight local Lean tools are `formalpedia_search`, `formalpedia_show`,
 `formalpedia_claim`, `formalpedia_impact`, `formalpedia_status`,
-`formalpedia_lint` and `formalpedia_axiom_audits`; `formalpedia_mathlib_search`
+`formalpedia_lint`, `formalpedia_axiom_audits` and `formalpedia_ledger_check`; `formalpedia_mathlib_search`
 queries Loogle. They return
 structured objects, bounded search pages, full statements on demand, explicit
 ambiguities, and snapshot identifiers. Guide and status resources and the
