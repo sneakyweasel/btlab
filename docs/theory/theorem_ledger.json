@@ -6531,6 +6531,17 @@
   "related_conjectures": []
  },
  {
+  "id": "J-depth-five-small-shift-poor-tail",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "The depth-five count-poor tails need differenced sums only at small shifts. Take blocks of L_1 <= eta min H_t / 10 consecutive odd integers inside fibres of H_t candidates. Every fibre whose count deviates by eta contains at least 0.3 eta H_t / L_1 blocks deviating by eta/2, not merely one. With blocks of length P^(delta') for any fixed delta' > 0, the poor fraction is therefore << P^(-min(delta', sigma)) whenever |T_d| << P^(1-sigma) for all 1 <= d < P^(delta') and bounded nonzero frequencies. At delta' = 1/48, Paper B's printed double correlation (h_1 < P^(1/48)), Lemma 4.4 (h <= P^(1/12)) and Lemmas E5 and E7 suffice for both OOOEE and OOEOE. The widened Lemmas E1-E4 are then off the critical path of the 0.74 route. Depth seven (windows P^(47/128), root about 0.787 at 1/85) is blocked by six-coordinate nested floors, not by shift range. AI-assisted written proof in juggler_depth_five_production (Result 23); independent review outstanding.",
+  "source": "docs/problems/juggler_depth_five_production.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_depth_five_production.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-depth-five-uncentered-zero-offset",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "The zero-offset case of Paper B's Appendix C survives first shifts up to P^(5/32): with h_2 <= P^(1/24), bounded k and Pi = k h_1 h_2 <= P^(19/96), the t = 0, b = 0 part of the double correlation is << P^(29/32+eps). Paper B's C.8 assumes |B| << 1, which fails once Pi >= P^(1/8), and centering at the floor of B fails because a frozen integer frequency jumps f'' by P^(-1/2) at each window. The repair keeps the Fourier expansion of e(-B{X}) uncentered, using |a_r(beta)| + |a_r'(beta)| << 1/(1+|r+beta|) for every real beta, so each mode has a fixed frequency and a continuous reference curvature with rho << P^(-1/8), and applies Paper B's Lemma 7.5 mode by mode; the colliding modes carry total weight O(log P). AI-assisted written proof in juggler_depth_five_production (Result 8); independent review outstanding. The nonzero-t case at b = 0 is not covered: it needs Theorem B.1 widened to shifts P^(5/32), now written as Theorem E3 (Results 9 and 10). It proves no production.",

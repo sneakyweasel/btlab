@@ -628,6 +628,17 @@
   "related_conjectures": []
  },
  {
+  "id": "J-depth-five-small-shift-poor-tail",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "The depth-five count-poor tails need differenced sums only at small shifts. Take blocks of L_1 <= eta min H_t / 10 consecutive odd integers inside fibres of H_t candidates. Every fibre whose count deviates by eta contains at least 0.3 eta H_t / L_1 blocks deviating by eta/2, not merely one. With blocks of length P^(delta') for any fixed delta' > 0, the poor fraction is therefore << P^(-min(delta', sigma)) whenever |T_d| << P^(1-sigma) for all 1 <= d < P^(delta') and bounded nonzero frequencies. At delta' = 1/48, Paper B's printed double correlation (h_1 < P^(1/48)), Lemma 4.4 (h <= P^(1/12)) and Lemmas E5 and E7 suffice for both OOOEE and OOEOE. The widened Lemmas E1-E4 are then off the critical path of the 0.74 route. Depth seven (windows P^(47/128), root about 0.787 at 1/85) is blocked by six-coordinate nested floors, not by shift range. AI-assisted written proof in juggler_depth_five_production (Result 23); independent review outstanding.",
+  "source": "docs/problems/juggler_depth_five_production.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_depth_five_production.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-noncontracting-peak-supremum-log2-three",
   "tag": "COMPUTATIONALLY VERIFIED",
   "statement": "The cheapest non-contracting walk does not get arbitrarily high, and its ceiling is log2(3). Let P(k) be the least peak of the exponent walk over words whose walk stays at or above 0 for k steps. P is non-decreasing, P(2) = 2 log2(3) - 2 = 1.1699 exactly, and P(k) < log2(3) = 1.58496 for every k, approaching it: the gap is 7.5e-2 at k = 13, 1.65e-2 at 100, 7.5e-3 at 400 and 1.35e-3 at 3000, by a dynamic program over (steps, odd letters) rather than a search over words. The supremum has a reason: with c = log2(3) - 1, from a level u < 1 - c both E and OE are illegal, so the walk must take two odd steps and reach u + 2c; the levels a log2(3) - t come arbitrarily close below 1 - c, forcing a peak arbitrarily close to (1 - c) + 2c = log2(3), never equal to it since log2(3) is irrational. The measured gap to log2(3) agrees with the gap of the closest reachable level below 1 - c to three figures, which is the argument as a check. In exact terms the peak of e is in [9/4, 3). WHAT THIS CLOSES: the branch-run hypothesis of Paper B's screen fires at walk height 1, and P(k) > 1 for every k >= 2, so the threshold is always cleared -- that half is proved, `noncontracting_two_forces`. But the peak is bounded above by log2(3), so the emptiness of the screen at large depth CANNOT be proved by an argument of the form 'at depth d the walk must exceed T' for any T >= log2(3). Any route to that emptiness has to use where blocked defects sit relative to high points, not how high the walk goes. Measured to k = 3000; not a proof that P(k) < log2(3) for all k, and not a halt theorem.",

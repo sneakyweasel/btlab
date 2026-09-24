@@ -1110,21 +1110,91 @@ certifies `lambda = 0.74`. The analytic lemmas remain AI-written, each audited
 once by an AI reviewer, not human-reviewed, and not in Lean. Whether to promote
 the branch on that basis is the owner's decision.
 
+**23. The poor tail needs only small shifts (written proof, 24 September 2026;
+AI-assisted, not independently reviewed).** Result 4 applied Chebyshev with blocks
+as long as the whole fibre window, `P^(5/32)`. That made the poor tail look as if
+it needed differenced sums at every shift up to the window length, and Results
+7-13 widened Paper B to that range. The requirement is weaker.
+
+*Lemma E9 (sub-block averaging).* Fix `eta > 0`, a word `w` with fibre windows of
+`H_t` odd candidates, and blocks of `L_1 <= eta min H_t / 10` consecutive odd
+integers. Call a block bad if `|dev(B)| >= (eta/2) L_1`. Then every poor fibre `I_t`
+contains at least `0.3 eta H_t / L_1` bad full blocks.
+
+*Proof.* `I_t` consists of `k` full blocks and at most two partial pieces, of
+total size `< 2 L_1 <= eta H_t / 5`, so
+`sum_i |dev(B_i)| >= eta H_t - 2 L_1 >= 0.8 eta H_t`. If `b` blocks are bad, then
+`sum_i |dev(B_i)| <= b L_1 + (k - b)(eta/2) L_1 <= b L_1 + 0.5 eta H_t`. Hence
+`b L_1 >= 0.3 eta H_t`. `QED`
+
+*Consequence.* Run E6's Vaaler and second-moment argument with blocks of length
+`L_1 = P^(delta')` for any fixed `delta' > 0`. Suppose that for some `sigma > 0`,
+every bounded nonzero frequency vector has `|T_d| << P^(1-sigma)` at
+`1 <= d < L_1`. Then:
+
+- the bad blocks number `<< P/L_1^2 + P^(1-sigma)/L_1`;
+- the fibres are disjoint, and each poor fibre contains at least a constant times
+  `eta H/L_1` bad blocks, so the poor targets number
+  `<< (P/H)(L_1^(-1) + P^(-sigma))`;
+- that is a fraction `<< P^(-min(delta', sigma))` of the targets in a dyadic
+  block, which has summable reciprocal mass.
+
+**So the productions need a power saving in `T_d` only at shifts up to an
+arbitrarily small power of `P`.**
+
+*What this removes.* Take `delta' = 1/48`.
+
+- *`OOOEE` with `k != 0`.* Paper B's own double correlation (C.9) holds for every
+  `h_1 < P^(1/48)` and `h_2 < P^(1/24)`, with bound `P^(31/32+eps)`. A van der
+  Corput step in `h_2` gives `|T_d| << P^(63/64+eps)` for `d < P^(1/48)`.
+- *`OOOEE` with `k = 0`.* These cases are E5 at `d < P^(1/48)`. Their `j != 0`
+  step is Paper B's printed Lemma 4.4 (range `h <= P^(1/12)`) with C.2's `l`-term;
+  the other cases are elementary.
+- *`OOEOE`.* E7 at `d < P^(1/48)`, where its `j != 0` step is again the printed
+  Lemma 4.4.
+
+Neither production then uses E1-E4. That means neither Theorem B.1 widened to
+`P^(5/32)` nor the uncentered C.8 repair is needed, and those are the lemmas
+where the audits found overclaims. E1-E4 remain correct extensions but are off the
+critical path. The poor fractions become `P^(-1/64+eps)` for `OOOEE`, since
+`min(1/48, 1/64) = 1/64`, and `P^(-1/48)` for `OOEOE`.
+
+*Revised dependency of the `0.74` route:*
+
+- Paper B's printed Appendices A-C and Lemma 4.4;
+- E5 and E7 at shifts below `P^(1/48)`;
+- E6 and E8, with E9's sub-blocks;
+- the kernel-checked `FateDepthFiveAssembly`.
+
+Result 4's desk reduction, "shifts up to `P^(5/32)`", was a sufficient condition
+that overstated what the poor tail needs.
+
+*What depth seven would need.* The three depth-seven words have `rho = 81/128`,
+coefficient `1/81` and windows `P^(47/128)`. At `1/85` each on top of the current
+five productions, the root would be `0.7865`, about thresholds `0.21`. By E9 the
+window length is harmless. The obstacle is that their parity words involve six
+nested floor coordinates, `J n` through `J^6 n`. Paper B's mixed-sum machinery
+stops at four formal coordinates. So depth seven needs new nested-floor
+exponential-sum estimates at nesting depth six. It does not need a wider shift
+range.
+
 ## Open questions
 
-Lemmas E1-E8 and Theorem E3 (Results 7-20) write out both depth-five productions:
+Result 23 (Lemma E9) shows that the productions need `T_d` only at shifts below an
+arbitrarily small power of `P`. The `0.74` route therefore rests on four pieces:
 
-- `OOOEE`, through E1-E6;
-- `OOEOE`, through E7 and E8.
+- Paper B's printed estimates;
+- E5 and E7 at `d < P^(1/48)`;
+- E6 and E8, with E9's sub-blocks;
+- the kernel-checked five-production assembly (Result 22).
 
-If both productions hold at coefficient `1/28`, the contagion root would be
-`0.74057 > 0.74`. Arb certifies the root of that equation, not the productions.
-E1 and E3-E8 have each had one AI audit; E2 was audited with its nonzero-`t`
-clause withdrawn. None has had human review. The four-production assembly for `OOOEE` alone is
-kernel-checked (Result 18). Still open:
+E1-E4 are off the critical path. E5-E8 have each had one AI audit, and E9 has not
+been audited. None has had human review. Still open:
 
-- human review of E1-E8;
-- a Lean proof of either production.
+- an audit of E9;
+- human review;
+- a Lean proof of either production;
+- depth seven, which needs nested-floor sums in six coordinates.
 
 ## Decision
 
@@ -1144,15 +1214,15 @@ That assembly turns productions at `1/28` into contagion `37/50` and thresholds
 `lambda > 0.74`", is met in writing, at `lambda = 0.74057` (Arb) and `37/50`
 (Lean). It is not promoted here, for two reasons:
 
-- the analytic lemmas E1-E8 are AI-written, each audited once by an AI reviewer,
-  and not human-reviewed;
+- the analytic lemmas on the critical path (E5-E9, which Result 23 shows is all
+  of them besides Paper B's printed estimates) are AI-written, and not
+  human-reviewed;
 - the productions themselves are not in Lean.
 
 Promotion is the owner's decision after review.
 
-Best next question: which of E1-E8 carries the most risk for a human
-reviewer, and is there a structural test of it that does not rely on the
-reviewer's reading?
+Best next question: does an independent audit confirm Lemma E9, and
+with it that the depth-five productions need only Paper B's printed ranges?
 
 ## Publication assessment
 
