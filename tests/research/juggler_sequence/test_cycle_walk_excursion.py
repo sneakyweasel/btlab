@@ -27,6 +27,14 @@ CONJECTURE = Path("conjectures/active/juggler_walk_excursion_optimum.json")
 ARTIFACT = Path("data/research/juggler/cycle_walk_excursion/summary.json")
 
 
+def test_semi_convergents_are_certified_past_the_float_horizon():
+    # A float expansion of MU goes wrong near denominator 5e7: up to 1e9 it produced
+    # 290141713 in place of the convergent denominator 397573379 of log2(3).
+    types = set(semi_convergents_alpha(10**9))
+    assert (397573379, 232565518) in types
+    assert (290141713, 169722022) not in types
+
+
 def test_named_pairs_are_semi_convergents_of_alpha():
     types = set(semi_convergents_alpha())
     for pair in NAMED_TYPES:
