@@ -7,11 +7,14 @@ import json
 import re
 import threading
 
-from formalpedia_core import graph as fp_graph, identities as fp_identities, source as fp_source, workspace as fp_workspace
+from formalpedia_core import (audits as fp_audits, graph as fp_graph, identities as fp_identities,
+                              source as fp_source, workspace as fp_workspace)
 from lab_scope import active_lean_modules, validate_scope
 
 TRUST_NOTICE = ('Source markers are navigation evidence, not an executed Lean check or a '
-                'transitive axiom audit. Read the complete hypotheses before using a result.')
+                'transitive axiom audit. axiom_audits quote committed #print axioms output, '
+                'current as of the commit that recorded it. Read the complete hypotheses, '
+                'including signature_context, before using a result.')
 STOP = {'a', 'an', 'the', 'of', 'and', 'or', 'for', 'with', 'from', 'that', 'is', 'in'}
 
 
@@ -26,7 +29,9 @@ def compact(decl: dict) -> dict:
     result = {key: decl.get(key) for key in fields}
     result.update(doc=decl.get('doc', '')[:400],
                   signature=decl.get('signature', '')[:1200],
-                  signature_truncated=len(decl.get('signature', '')) > 1200)
+                  signature_truncated=len(decl.get('signature', '')) > 1200,
+                  signature_complete=decl.get('signature_complete'),
+                  signature_context=decl.get('signature_context', []))
     return result
 
 
@@ -49,6 +54,7 @@ class Catalogue:
         self._ledger = []
         self._snapshot = ''
         self._documents = {}
+        self._audits = {'by_name': {}, 'artifacts': [], 'problems': []}
         self._semantic = semantic
 
     def compiled(self, name: str) -> dict:
@@ -65,6 +71,7 @@ class Catalogue:
 
     def _state(self):
         paths = fp_source.sources() + [fp_workspace.LEDGER]
+        paths += [p for check in fp_audits.checks() for p in (check, check.with_suffix('.expected'))]
         return tuple((p.relative_to(fp_workspace.ROOT).as_posix(), p.stat().st_mtime_ns, p.stat().st_size)
                      for p in paths if p.exists())
 
@@ -75,6 +82,7 @@ class Catalogue:
                 for _ in range(3):
                     index = fp_source.build()
                     ledger = json.loads(fp_workspace.LEDGER.read_text(encoding='utf-8'))
+                    audits = fp_audits.scan()
                     after = self._state()
                     if before == after:
                         break
@@ -89,6 +97,7 @@ class Catalogue:
                     self._documents[d['id']] = (' '.join(fields).casefold(),
                                                  set(tokens(' '.join(fields))))
                 self._index, self._ledger, self._stamp = index, ledger, after
+                self._audits = audits
                 self._snapshot = hashlib.sha256(fp_source.render(index).encode()).hexdigest()[:16]
             return self._index, self._ledger, self._snapshot
 
@@ -194,6 +203,7 @@ class Catalogue:
             'status': 'unmapped_private', 'reason': 'Source private names are not compiler identities.'}
         return {'status': 'found', 'snapshot': snapshot, 'scope': scope, 'declaration': d,
                 'canonical_id': canonical, 'source_status': 'found', 'compiled': compiled,
+                'axiom_audits': self.axiom_audits(d),
                 'exact_claims': [row for row in ledger if row['id'] in d['ledger_exact']],
                 'file_claim_ids': d['ledger'], 'reachable_from_paper_roots': papers,
                 'trust_notice': TRUST_NOTICE}
@@ -209,9 +219,43 @@ class Catalogue:
             declarations.append({'reference': name,
                                  'status': 'resolved' if len(matches) == 1 else
                                            'ambiguous' if matches else 'not_found',
-                                 'candidates': matches})
+                                 'candidates': matches,
+                                 'axiom_audits': self.axiom_audits(matches[0]) if len(matches) == 1 else []})
+        resolved = [d for d in declarations if d['status'] == 'resolved']
+        audited = [d for d in resolved if d['axiom_audits']]
         return {'status': 'found', 'snapshot': snapshot, 'claim': row,
-                'declarations': declarations, 'trust_notice': TRUST_NOTICE}
+                'declarations': declarations,
+                'axiom_audit_coverage': {
+                    'resolved_declarations': len(resolved), 'audited': len(audited),
+                    'all_standard': (all(a['standard'] for d in audited for a in d['axiom_audits'])
+                                     if audited else None),
+                    'unaudited': [d['reference'] for d in resolved if not d['axiom_audits']]},
+                'trust_notice': TRUST_NOTICE}
+
+    def axiom_audits(self, decl: dict) -> list[dict]:
+        """Recorded ``#print axioms`` answers for one source declaration, if any artifact asks."""
+        name = decl.get('qualified_name')
+        return list(self._audits['by_name'].get(name, [])) if name else []
+
+    def audits(self, *, limit: int = 50, offset: int = 0) -> dict:
+        """Artifact consistency problems and coverage, readable without a Lean toolchain."""
+        page_bounds(limit, offset)
+        index, ledger, snapshot = self.snapshot()
+        problems = self._audits['problems'] + fp_audits.unresolved(self._audits, index)
+        return {'snapshot': snapshot, 'artifacts': len(self._audits['artifacts']),
+                'problem_count': len(problems), 'problems': problems[offset:offset + limit],
+                'next_offset': offset + limit if offset + limit < len(problems) else None,
+                'coverage': self._audit_coverage(index, ledger),
+                'limitations': self._audits.get('limitations', '')}
+
+    def _audit_coverage(self, index: dict, ledger: list[dict]) -> dict:
+        by_name = self._audits['by_name']
+        exact = [d for d in index['declarations'] if d['ledger_exact'] and d.get('qualified_name')]
+        audited_exact = [d for d in exact if d['qualified_name'] in by_name]
+        return {'audited_declarations': len(by_name),
+                'declarations_with_exact_ledger_references': len(exact),
+                'of_which_audited': len(audited_exact),
+                'nonstandard_audits': sum(not a['standard'] for rows in by_name.values() for a in rows)}
 
     def impact(self, target: str, *, limit: int = 50, offset: int = 0) -> dict:
         page_bounds(limit, offset)
@@ -257,6 +301,16 @@ class Catalogue:
                 'source': 'live working tree', 'saved_index_current': disk == index,
                 'local_export': {'required': False, 'state': export_state},
                 'totals': index['totals'], 'public_declarations': len(public),
+                'ledger_links': {
+                    'declarations_with_exact_ledger_references':
+                        sum(bool(d['ledger_exact']) for d in index['declarations']),
+                    'declarations_in_a_ledger_file_only':
+                        sum(bool(d['ledger']) and not d['ledger_exact'] for d in index['declarations']),
+                    'note': ('totals.declarations_with_a_ledger_row counts file association; '
+                             'only exact references name the declaration')},
+                'axiom_audits': {'artifacts': len(self._audits['artifacts']),
+                                 'problems': len(self._audits['problems']),
+                                 **self._audit_coverage(index, self._ledger)},
                 'scope_modules': {'active': len(active), 'archive': len(index['modules']) - len(active)},
                 'documented_public_declarations': sum(bool(d['doc']) for d in public),
                 'ambiguous_short_spellings': sum(n > 1 for n in names.values()),

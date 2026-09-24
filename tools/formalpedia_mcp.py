@@ -22,7 +22,8 @@ mcp = FastMCP('formalpedia', instructions=(
     'Search the local Lean library before proving a result. Resolve a fully qualified name, '
     'read its complete statement and hypotheses, and inspect exact claim links. '
     'Ambiguous names return candidates, never an arbitrary theorem. Source trust markers '
-    'are not compilation or axiom-audit evidence. Use lean-lsp for goals, elaboration and '
+    'are not compilation or axiom-audit evidence; axiom_audits quote committed Lean output. '
+    'When signature_complete is false, signature_context holds section binders. Use lean-lsp for goals, elaboration and '
     'proof checking. Use formalpedia_research_search and formalpedia_research_context to '
     'inspect Juggler/Collatz dossiers, decisions, known obstructions and data provenance. '
     'Use formalpedia_change_impact and formalpedia_verification_plan before maintenance; '
@@ -104,7 +105,7 @@ def formalpedia_capabilities() -> dict[str, Any]:
     """
     return {'protocol_version': 3, 'server_fingerprint': SERVER_FINGERPRINT,
             'root': str(fp_workspace.ROOT), 'tool_groups': {
-                'source': ['search', 'show', 'claim', 'impact', 'status', 'lint'],
+                'source': ['search', 'show', 'claim', 'impact', 'status', 'lint', 'axiom_audits'],
                 'research': ['research_search', 'research_context', 'research_check'],
                 'maintenance': ['lab_doctor', 'change_impact', 'verification_plan'],
                 'semantic': ['semantic_status', 'semantic_show', 'type_search', 'dependencies', 'semantic_diff']},
@@ -178,6 +179,17 @@ def formalpedia_semantic_diff(before: str, after: str | None = None,
     `after` defaults to the current saved export, whose freshness is reported separately.
     """
     return semantic.diff(before, after, limit, offset)
+
+
+@mcp.tool(annotations=READ_ONLY)
+def formalpedia_axiom_audits(limit: int = 50, offset: int = 0) -> dict[str, Any]:
+    """Recorded `#print axioms` artifacts: consistency problems and coverage of cited results.
+
+    Reads committed AxiomCheck*.expected output without running Lean. formalpedia_show and
+    formalpedia_claim already attach each declaration's recorded audits; use this to find
+    missing or stale artifacts and exact ledger declarations that no artifact covers.
+    """
+    return catalogue.audits(limit=limit, offset=offset)
 
 
 @mcp.tool(annotations=READ_ONLY)

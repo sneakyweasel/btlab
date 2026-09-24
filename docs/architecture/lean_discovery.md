@@ -95,10 +95,33 @@ file. The legacy `ledger` field is a file association, not evidence that every
 declaration proves that claim. Even an exact reference is not a new coverage
 review. Module import dependencies are likewise labelled as module-level.
 
-Source parsing is not elaboration: macro-generated names, implicit variables
-introduced by sections, resolved notation, and private compiler names require
-Lean or the Lean language server. The source `trust` field detects direct
-markers only. It does not certify compilation or transitive axiom dependencies.
+Source parsing is not elaboration: macro-generated names, resolved notation,
+which section variables a statement actually uses, and private compiler names
+require Lean or the Lean language server. A declaration with `variable`,
+`include` or `omit` commands in scope lists them in `signature_context` and has
+`signature_complete: false`; its header alone omits those binders. The source
+`trust` field detects direct markers only: `unmarked` means no `sorry`, `admit`,
+`axiom` or `native_decide` in the declaration's text, `compiler` means
+`native_decide`, and `open` means an incomplete marker or an axiom. It does not
+certify compilation or transitive axiom dependencies.
+
+Executed axiom evidence comes from the committed `formal/AxiomCheck*.lean`
+checks and their recorded `.expected` output. `show` attaches a declaration's
+recorded answers as `axiom_audits`, `claim` reports `axiom_audit_coverage` for
+its declarations, and `python tools/formalpedia.py audits` (MCP
+`formalpedia_axiom_audits`) lists missing or stale artifacts and how many exact
+ledger declarations no artifact covers. A recorded answer describes the commit
+that recorded it; `python tools/axiom_audit.py --check` verifies statically that
+each artifact still answers its check, and `--run` reruns every check with Lean
+(CI's Lean job does both). To audit a new cited result, add a `#print axioms`
+line to the relevant check and record its output with
+`python tools/axiom_audit.py --run --write --only <check>.lean`.
+
+The source catalogue indexes this repository only, not Mathlib. Before proving
+a general lemma, search Mathlib too: the pinned `LeanSearchClient` package
+provides `#loogle` (type patterns) and `#leansearch` (natural language) inside
+Lean files and through `lean-lsp`, when those services are reachable. `exact?`
+and `apply?` search the imported environment offline.
 Use the executable Lean audits for those claims. No metadata silently promotes
 a theorem or discharges an assumption.
 
@@ -137,16 +160,20 @@ Install `python -m pip install -r tools/requirements-formalpedia.txt` and run
 stdio transport. Use `--root <checkout>` to read another worktree explicitly;
 the root reported by `formalpedia_capabilities` identifies its data source.
 The SDK dependency stays on the supported v1 line. Configure a `formalpedia` entry alongside the
-existing `lean-lsp` entry; use absolute interpreter and script paths in a
-machine-local `.mcp.json`. An example is in
-[the server configuration template](../../tools/formalpedia_mcp.example.json).
+existing `lean-lsp` entry in a machine-local `.mcp.json` (it is gitignored).
+[The server configuration template](../../tools/formalpedia_mcp.example.json)
+uses repository-relative script paths, which work for clients that launch
+servers from the checkout root, such as Claude Code's project scope: copy it to
+`.mcp.json`. For clients that launch elsewhere, use absolute interpreter and
+script paths.
 For Codex, register the server using `codex mcp add btlab-formalpedia --env
 PYTHONUTF8=1 -- <absolute-python> <absolute-server-script>`; this is a separate
 client configuration from `.mcp.json`. See the
 [official Codex MCP guide](https://developers.openai.com/codex/mcp).
 
-The six Lean tools are `formalpedia_search`, `formalpedia_show`, `formalpedia_claim`,
-`formalpedia_impact`, `formalpedia_status`, and `formalpedia_lint`. They return
+The seven Lean tools are `formalpedia_search`, `formalpedia_show`, `formalpedia_claim`,
+`formalpedia_impact`, `formalpedia_status`, `formalpedia_lint` and
+`formalpedia_axiom_audits`. They return
 structured objects, bounded search pages, full statements on demand, explicit
 ambiguities, and snapshot identifiers. Guide and status resources and the
 `find_existing_result` prompt provide the discovery workflow.

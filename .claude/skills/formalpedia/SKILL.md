@@ -53,8 +53,18 @@ are bounded; `show` returns the full source header without the old line limit.
 that a declaration covers the entire English claim. Check statements together.
 
 The source `trust` marker detects direct `native_decide` or incomplete proof
-markers. It does not establish compilation, transitive trust, or kernel axiom
-dependencies. Use the executable Lean audits for those claims. Do not infer
+markers; `unmarked` only means none was found in the declaration's text. It does
+not establish compilation, transitive trust, or kernel axiom dependencies.
+
+When `signature_complete` is false, read `signature_context`: section `variable`,
+`include` and `omit` commands add binders the header does not show.
+
+`axiom_audits` on `show`, and `axiom_audit_coverage` on `claim`, quote committed
+`#print axioms` output from `formal/AxiomCheck*.expected`. That is executed Lean
+evidence as of the recording commit; an empty list means no check covers the
+declaration. `python tools/formalpedia.py audits` lists missing and stale
+artifacts. Formalpedia covers this repository only: search Mathlib with
+`#loogle`/`#leansearch` (LeanSearchClient) or `exact?` through Lean. Use the executable Lean audits for those claims. Do not infer
 an unconditional result from a conditional theorem's name or documentation.
 
 ## Public interface policy

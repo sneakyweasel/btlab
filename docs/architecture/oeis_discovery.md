@@ -86,9 +86,13 @@ current page; `field_chunks` counts chunks in the selected fields.
 Follow the returned continuation rather than assuming the first page is all
 the evidence. Numerical continuations validate both the query and the snapshot.
 
-Register a stdio server using an absolute Python interpreter and an absolute
-path to `tools/oeis_mcp.py`. A portable template is provided in
-[oeis_mcp.example.json](../../tools/oeis_mcp.example.json). For Codex:
+Register a stdio server for `tools/oeis_mcp.py`. The template
+[oeis_mcp.example.json](../../tools/oeis_mcp.example.json) uses a
+repository-relative path, which works for clients that launch servers from the
+checkout root; otherwise use an absolute interpreter and script path. The
+database and mirror default to `data/external/oeis/catalog.sqlite3` and a
+sibling `oeisdata` checkout; `OEIS_DATABASE` and `OEIS_MIRROR` override them.
+For Codex:
 
 ```text
 codex mcp add btlab-oeis --env PYTHONUTF8=1 -- <absolute-python> <absolute-server-script>

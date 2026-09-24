@@ -63,6 +63,10 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--include-private", action="store_true")
     p = sub.add_parser("impact", help="modules rebuilt by a change to this module or file")
     p.add_argument("target")
+    p = sub.add_parser("audits", help="recorded #print axioms artifacts: consistency and coverage")
+    p.add_argument("--limit", type=int, default=50)
+    p.add_argument("--offset", type=int, default=0)
+    p.add_argument("--check", action="store_true", help="exit 1 when any artifact problem is found")
     sub.add_parser("dag", help="rebuild the claim graph over ledger-carrying modules")
     sub.add_parser("propose", help="rank declarations for rows that name none")
     sub.add_parser("papers", help="each manuscript's reachable trust surface")
@@ -93,7 +97,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--workers", type=int, default=4)
     args = ap.parse_args(argv)
 
-    if args.cmd in {"search", "show", "status", "claim", "impact"}:
+    if args.cmd in {"search", "show", "status", "claim", "impact", "audits"}:
         from formalpedia_catalog import Catalogue
         catalogue = Catalogue()
         try:
@@ -118,6 +122,10 @@ def main(argv: list[str] | None = None) -> int:
                 result = catalogue.claim(args.id)
             elif args.cmd == "impact":
                 result = catalogue.impact(args.target)
+            elif args.cmd == "audits":
+                result = catalogue.audits(limit=args.limit, offset=args.offset)
+                print(_fp_source.render(result), end="")
+                return 1 if args.check and result["problem_count"] else 0
             else:
                 result = catalogue.status()
             print(_fp_source.render(result), end="")
