@@ -129,7 +129,7 @@ windows of length `P^(7/16)`: a saving of `P^(1/32)`. At depth five:
 24 September 2026; not a proof).** By Chebyshev over windows of length
 `L = P^(5/32)`, the fraction of unfair windows is at most
 `(1/(eta^2 L)) (1 + P^(-1) sum_{0<|d|<L} |T_d|)` with
-`T_d = sum_{P<n<=2P} e(phi(n+2d) - phi(n))`. The diagonal gives `P^(-5/32)`, so
+`T_d = sum e(phi(n+2d) - phi(n))` over odd `n` in `(P, 2P]`. The diagonal gives `P^(-5/32)`, so
 the poor tail needs only some power saving in the once-differenced depth-five
 sums for shifts `d <= P^(5/32)` and **bounded** frequencies.
 
@@ -571,7 +571,7 @@ uniform under translations of size `P^(5/32)`. E2's `b = 0` part was audited in
 Result 9.
 
 **14. Lemma E5: the `k = 0` frequency cases of `T_d` at shifts up to `P^(5/32)`
-(written proof, 24 September 2026; AI-assisted, not independently reviewed).**
+(written proof, 24 September 2026; AI-assisted, audited in Result 15).**
 
 *Statement.* Let `(i, j, l)` be a bounded, nonzero integer vector. Take `k = 0` and
 `1 <= d <= P^(5/32)`. By (C.4)-(C.6) the phase is
@@ -585,8 +585,9 @@ at each endpoint. Then, for `T_d = sum_n e(phi(n+2d) - phi(n))` over the odd
 | `j = 0`, `l != 0` | `P^(7/8) log P` |
 | `j = l = 0`, `i != 0` | `P^(1/2)/d + 1` |
 
-Paper B's C.2 treats the undifferenced sums. `T_d` is already differenced once, so
-no A-process is applied here.
+Paper B's C.2 treats the undifferenced sums. Its `j != 0` subcase applies an
+A-process and then bounds exactly this differenced sum at `h <= P^(1/12)`. E5 is
+that inner step with the range widened to `h = d`, so no A-process is applied here.
 
 *Proof, `j != 0`.* `T_d` is Paper B's sum (4.4) at `h = d`, plus the term
 `(l/2) Delta_d(m^(9/8))`. Use E1 (Result 7), which is Lemma 4.4 for
@@ -601,7 +602,8 @@ as C.2 does:
   `(l/2) V_{G+epsilon}(X)` to `F_{G,epsilon}`. No new cell or carry is needed.
 - Its curvature is `O(d P^(-21/16))`. That is at most `P^(-9/16)` times E1's main
   curvature `u d P^(-3/4)`, and at most `P^(-21/32)` times a carry mode's
-  `|r| P^(-1/2)`. Both ratios hold for every `d`.
+  `|r| P^(-1/2)`. The first ratio holds for every `d`; the second is
+  `d P^(-13/16)`, so it needs `d <= P^(5/32)`.
 - The E1 bound therefore holds with the extra cost `P^(11/32)`.
 
 At `d = P^(5/32)` the bound is `P^(61/64) + P^(29/32) + P^(5/6)`.
@@ -623,8 +625,11 @@ At `d = P^(5/32)` the bound is `P^(61/64) + P^(29/32) + P^(5/6)`.
 
 Put `Delta = c_1 - c_2`.
 
-- *`Delta != 0`.* The curvature is `Delta X''`, of size about `|Delta| P^(-1/2)`,
-  up to `O(d P^(-21/16))`, a factor `P^(-21/32)` smaller. Weighted by
+- *`Delta != 0`.* Write
+  `F'' = Delta X''(x+2d) + c_2 Delta_d X'' + (l/2) Delta_d(x^(27/16))''`. The
+  integer `Delta` gives curvature about `|Delta| P^(-1/2)`. The other two terms are
+  `O(d P^(-21/16))`: `|c_2| <= |i| + T + |N_2| << P^(3/16)` and
+  `Delta_d X'' << d P^(-3/2)`. That is a factor `P^(-21/32)` smaller. Weighted by
   `|a_r a_{r'}| << 1/((1+|r|)(1+|r'|))`, the second-derivative test gives
   `(T^(1/2) P^(3/4) + P^(3/16) P^(1/4)) log^2 P << P^(13/16) log^2 P`.
 - *`Delta = 0`.* Then
@@ -632,7 +637,8 @@ Put `Delta = c_1 - c_2`.
   Freeze `N_1` and write `N_1 = B(x) + O(1)`. The leading part is
   `(243/4096) l d x^(-21/16)`, from
   `2d [(1/2)(27/16)(11/16)(-5/16) + (9/16)(3/8)] = (243/4096) d`. (A
-  high-precision finite difference agrees to nine digits.) Relative to it, the
+  50-digit finite difference at `x = 10^12`, `d = 1000`, `l = 1` gives
+  `0.0593261717`, against `243/4096 = 0.0593261719`.) Relative to it, the
   `(i/2 + r) Delta_d X''` part is `O((|i| + T) P^(-3/16)) = O(P^(-1/16))`, and the
   `O(1)` in `N_1` contributes `O(P^(-3/16))`. So `F''` is one-signed, of size about
   `|l| d P^(-21/16)`, which exceeds `P^(-2)`. The test gives
@@ -648,11 +654,49 @@ is below `1/4`. The Kusmin-Landau inequality gives `O(P^(1/2)/d + 1)`. `QED`
 
 *Consequence.* This case needs neither Proposition 7.6 nor a curvature collision.
 With E1-E4 (Results 7-13), every bounded nonzero frequency vector has
-`|T_d| << P^(127/128+eps)` for `1 <= d <= P^(5/32)`. The `k != 0` vectors give
+`|T_d| << P^(127/128+eps)` for `1 <= d <= P^(5/32)`. At small `d`, E2's cost line,
+written for `Pi` in `[P^(1/8), P^(19/96)]`, still applies: its formula
+`Pi^(1/2) P^(11/16) + P^(31/32) Pi^(-1/2)` stays below `P^(31/32)` for smaller `Pi`,
+where Paper B's own C.8 also applies. The `k != 0` vectors give
 `P^(127/128)` and the `k = 0` vectors at most `P^(61/64)`. The only unwritten step
 of the `OOOEE` route is now the poor-tail reduction from sliding windows to the
 actual fibres, including the square-wave truncation. That is where the frequencies
 stop being bounded, and it decides whether this saving is enough.
+
+**15. Audit of Lemma E5 (24 September 2026).** An independent adversarial
+reviewer re-derived all three cases from Paper B's text. **All three hold**, and no
+step fails. It confirmed:
+
+- **Coverage.** At `k = 0`, `T_d` is exactly (4.4) at `h = d` plus the `l`-term.
+  The `k = 0` vectors are exactly those that E1-E4 do not cover.
+- **Case `j != 0`.** The branchwise `l`-term leaves (4.8), the Lemma 4.3 errors and
+  both curvature comparisons intact. The exponent is `61/64`.
+- **Case `j = 0`, `l != 0`.**
+  - The constant `243/4096` checks out, both analytically and at `l = -3`.
+  - The product `a_r(beta(n+2d)) conj(a_{r'}(beta(n)))` is a legitimate
+    bounded-variation weight, so no cross term is missing.
+  - The sum is `P^(27/32)`, largest at `d = 1`.
+- **Case `j = l = 0`.** The Kusmin-Landau step is correct.
+- **Small `d`.** E1-E4 apply at small `d` too, since their hypotheses are upper
+  bounds.
+
+It found seven wording faults, now fixed:
+
+- "Both ratios hold for every `d`" was false. The carry ratio needs
+  `d <= P^(5/32)`.
+- The `Delta != 0` bound did not name the `c_2 Delta_d X''` term, which reaches the
+  bound's own order `d P^(-21/16)`.
+- The "nine digits" check was not recorded. It is now stated with its parameters
+  (about nine digits).
+- Result 4's `T_d` omitted "odd `n`".
+- The relation to C.2's inner step was unstated.
+- E2's cost line is written only for `Pi >= P^(1/8)`. It extends below that range
+  trivially, which is now said.
+- The ledger row omitted the `+1` in the Kusmin-Landau bound, the forced `i != 0`,
+  and the `O(P^(-1/16))` relative error of the diagonal curvature.
+
+With E1-E5, `|T_d| << P^(127/128+eps)` for every bounded nonzero frequency vector
+at `1 <= d <= P^(5/32)`. Each lemma has had one AI audit and no human review.
 
 ## Open questions
 
@@ -660,8 +704,8 @@ Lemmas E1, E2, E4 and E5 and Theorem E3 (Results 7, 8, 10, 12 and 14) bound
 `T_d` for every bounded nonzero frequency vector at `1 <= d <= P^(5/32)`:
 `|T_d| << P^(127/128+eps)`. The `k != 0` vectors come from all rows of Paper B's
 Appendix C at bounded `k` and `Pi <= P^(19/96)`, and the `k = 0` vectors are E5.
-E1, E3 and E4 have been audited; E2 has been audited with its nonzero-`t` clause
-withdrawn; E5 is unreviewed. Still unwritten: the poor-tail reduction from sliding
+E1, E3, E4 and E5 have been audited; E2 has been audited with its nonzero-`t`
+clause withdrawn. Still unwritten: the poor-tail reduction from sliding
 windows to the actual fibres, including the square-wave truncation and the passage
 from bounded to growing frequencies. `OOEOE` needs its own bookkeeping.
 
