@@ -1589,6 +1589,43 @@ the arithmetic of the exponents. Not covered: whether each lemma's list of costs
 is complete, and the application of the second-derivative test and of the carry
 identities.
 
+**33. Depth-five productions from summable tails, kernel-checked (24 September
+2026).** Two new modules move the Lean boundary down one level, as
+`FateOOEEWeighted` did at depth four.
+
+- [DepthFiveFibreGeometry.lean](../../formal/Problems/Juggler/DepthFiveFibreGeometry.lean)
+  proves the exact geometry, unconditionally:
+  - the fifth iterate along `OOOEE` is `sqrt(sqrt(oddMap^3 n))`, and along `OOEOE`
+    it is `sqrt(oddMap(sqrt(oddMap^2 n)))`;
+  - each target's source interval is exactly `[endpoint t, endpoint (t+1))`;
+  - the endpoints lie within `3` (`OOOEE`) and `4` (`OOEOE`) above
+    `t^(32/27)`;
+  - the odd candidate count is `(16/27) t^(5/27)` up to `4`, and every source
+    lies in the window.
+
+  Writing it caught one slip in the plan. For `OOEOE`, the error carried
+  through the squaring step is `2 c^(1/3) + 2`, not `(4/3) c^(1/3) + 5/3`, so
+  the endpoint constant is `4`, not `3`. That is harmless downstream.
+- [FateDepthFiveWeighted.lean](../../formal/Problems/Juggler/FateDepthFiveWeighted.lean)
+  proves `depth_five_productions`. If the count-poor targets of both words have
+  bounded reciprocal mass, at `eta = 1/1000`, then every backward-closed class
+  satisfies `DepthFiveProductionBounds` at coefficient `1/28` with loss `4`.
+  - The count-to-weight step needs targets above `10^15`, where the window scale
+    is at least `500`. There, `(1/16 - 1/1000)(16/27) * 28 = 1.0204`. With
+    `eta = 1/500` the margin would be only `1.0039`.
+  - A generic lemma `production_of_tail` serves both words.
+  - `logMass_growth_of_tails` then gives contagion `37/50`, conditional only on
+    the two tail bounds.
+
+Both modules build. All 29 audited theorems depend only on the standard axioms,
+and the Lean style check reports no new violations.
+
+*What this changes.* The unformalised part of the `0.74` route is now exactly the
+two tail bounds, E6' and E8'. They come from the Vaaler, sub-block and
+second-moment argument, whose combinatorial core (E9) is already kernel-checked,
+together with the exponential-sum bounds (Paper B's C.9 and C.2, E5 and E7). Fibre
+geometry, count-to-weight, the cutoffs and the assembly are all in Lean.
+
 ## Open questions
 
 Result 23 (Lemma E9) shows that the productions need `T_d` only at shifts below an

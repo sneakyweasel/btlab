@@ -328,6 +328,8 @@ AUXILIARY_MODULES: dict[str, str] = {
     "FateOOOEEAssembly": "Four-production assembly: an OOOEE production at 1/30 gives contagion 2/3 and thresholds 1/3",
     "FateDepthFiveAssembly": "Five-production assembly: both depth-five productions at 1/28 give contagion 37/50 and thresholds 13/50",
     "SubBlockAveraging": "Lemma E9 core: a poor fibre has bad sub-blocks of total size at least (3/10) eta H",
+    "DepthFiveFibreGeometry": "Exact OOOEE and OOEOE target fibres: endpoints within 4 of t^(32/27), about (16/27) t^(5/27) candidates",
+    "FateDepthFiveWeighted": "Bounded count-poor tails for OOOEE and OOEOE give both depth-five productions at 1/28 and contagion 37/50",
     "OOEEffectiveReturn": "Paper E Theorem 4.4: exact floor-residue count, both uniform errors, positive count and bounded actual OOE modular witness",
     "PaperECompletion": "Paper E: series identification, frequency and exponent statements, direct stopping-word sums, and finite complete prefix trees",
     "CollatzMoments": "Paper B/C word-moment bridge: coefficient shift and complete first-descent stopping counterexample",

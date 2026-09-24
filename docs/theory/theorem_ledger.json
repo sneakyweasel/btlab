@@ -7095,6 +7095,58 @@
   "related_conjectures": []
  },
  {
+  "id": "J-depth-five-fibre-geometry",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Exact depth-five target fibres for the actual Juggler map. For OOOEE, the fifth iterate of a guarded source n is formulaA n = sqrt(sqrt(oddMap^3 n)). For OOEOE it is formulaB n = sqrt(oddMap(sqrt(oddMap^2 n))). Each target t has the exact source interval [endpoint t, endpoint (t+1)), with endpointA t = inverse^3(t^4) and endpointB t = inverse(inverse(inverse(t^2)^2)), where inverse a = ceil(a^(2/3)). For t >= 1, base t <= endpointA t <= base t + 3 and base t <= endpointB t <= base t + 4, where base t = t^(32/27). The odd candidate count of each word is (16/27) t^(5/27) up to 4, and every candidate lies in [base t, base t + (32/27) t^(5/27) + 6]. The finite fibre sets are exactly the actual guarded fibres.",
+  "source": "docs/problems/juggler_depth_five_production.md",
+  "lean": "Problems/Juggler/DepthFiveFibreGeometry.lean",
+  "decl": [
+   "base",
+   "scale",
+   "endpointA",
+   "endpointB",
+   "formulaA",
+   "formulaB",
+   "endpointA_le",
+   "endpointB_le",
+   "endpointA_monotone",
+   "endpointB_monotone",
+   "formulaA_cell",
+   "formulaB_cell",
+   "actual_five_steps_A",
+   "actual_five_steps_B",
+   "inverse_bounds",
+   "rpow_two_thirds_add",
+   "rpow_mono_two_thirds",
+   "one_le_two_thirds",
+   "endpointA_bounds",
+   "endpointB_bounds",
+   "firstOdd",
+   "candidateCount",
+   "sample",
+   "candidates",
+   "sample_injective",
+   "mem_candidates",
+   "candidate_card",
+   "fibreA",
+   "fibreB",
+   "mem_fibreA",
+   "mem_fibreB",
+   "base_eq_mul_scale",
+   "power_increment",
+   "one_le_scale",
+   "candidate_rounding",
+   "window_of_bounds",
+   "windowA",
+   "windowB"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_lean_paths_declares_name.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-depth-five-five-production-assembly",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Kernel-checked conditional assembly; advisory statement coverage pending. OOEOEGuard n requires n, J n odd, J^2 n even, J^3 n odd and J^4 n even for the actual Juggler map. DepthFiveProductionBounds A asks for b, C >= 0 and T such that, for all t >= T, both (1/28) fullMass A (27t/32 - b) <= sourceMass A G (cutoff t) + C hold, for G = OOOEEGuard and G = OOEOEGuard. Assume this for a backward-closed A containing some a >= 1. With the unconditional E, OE and OOEE productions, there are then K > 0 and N with K (log x)^(37/50) <= logMass A x for all x >= N. The proof uses a five-way disjoint source partition, a shift 16 + 32b/5 and loss multiplier 8, and an exact rational certificate for sum c_i rate_i^(37/50) > 1 with coefficients 1, 33/100, 11/100, 1/14 and rates 1/2, 3/4, 9/16, 27/32. With the productions for the failure class, the Tao-rate hypothesis, or Paper C's pressure or no-momentum hypothesis, at any e > 13/50, implies that every positive integer reaches 1. The productions themselves are the written, AI-audited, unreviewed Lemmas E1-E8 of juggler_depth_five_production and are not proved in Lean. Neither the rate hypotheses nor termination is proved here.",
@@ -7206,6 +7258,32 @@
   "lean": "",
   "tests": [
    "tests/research/juggler_sequence/test_depth_five_production.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-depth-five-productions-from-tails",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked conditional production; advisory statement coverage pending. For each depth-five word, a target t is count-poor at eta = 1/1000 when its actual fibre's share of odd candidates differs from 1/16 by at least eta. Suppose the count-poor targets of OOOEE and of OOEOE each have bounded reciprocal mass (TailBounded). Then every backward-closed A satisfies DepthFiveProductionBounds A, with loss b = 4: fibres that are not poor above 10^15 carry reciprocal mass at least 1/(28 t), their sources lie below the physical cutoff, and the reciprocal production converts to conserved weight. With FateDepthFiveAssembly, any nonempty backward-closed class then has logMass >= K (log x)^(37/50). The tail bounds are the written, AI-audited Lemmas E6' and E8' and are not proved in Lean.",
+  "source": "docs/problems/juggler_depth_five_production.md",
+  "lean": "Problems/Juggler/FateDepthFiveWeighted.lean",
+  "decl": [
+   "eta",
+   "threshold",
+   "CountPoorA",
+   "CountPoorB",
+   "TailBounded",
+   "scale_large",
+   "scale_le_self",
+   "fibre_mass_lower",
+   "window_cutoff",
+   "production_of_tail",
+   "depth_five_productions",
+   "logMass_growth_of_tails"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_lean_paths_declares_name.py"
   ],
   "related_conjectures": []
  },

@@ -1,0 +1,31 @@
+import Problems.Juggler.FateDepthFiveWeighted
+
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.endpointA_le
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.endpointB_le
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.endpointA_monotone
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.endpointB_monotone
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.formulaA_cell
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.formulaB_cell
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.actual_five_steps_A
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.actual_five_steps_B
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.inverse_bounds
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.rpow_two_thirds_add
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.endpointA_bounds
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.endpointB_bounds
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.mem_candidates
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.candidate_card
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.mem_fibreA
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.mem_fibreB
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.base_eq_mul_scale
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.power_increment
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.candidate_rounding
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.window_of_bounds
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.windowA
+#print axioms Problems.Juggler.DepthFiveFibreGeometry.windowB
+#print axioms Problems.Juggler.FateDepthFiveWeighted.scale_large
+#print axioms Problems.Juggler.FateDepthFiveWeighted.scale_le_self
+#print axioms Problems.Juggler.FateDepthFiveWeighted.fibre_mass_lower
+#print axioms Problems.Juggler.FateDepthFiveWeighted.window_cutoff
+#print axioms Problems.Juggler.FateDepthFiveWeighted.production_of_tail
+#print axioms Problems.Juggler.FateDepthFiveWeighted.depth_five_productions
+#print axioms Problems.Juggler.FateDepthFiveWeighted.logMass_growth_of_tails

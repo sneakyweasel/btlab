@@ -276,6 +276,8 @@ import Problems.Juggler.EscapeRate
 import Problems.Juggler.FateOOOEEAssembly
 import Problems.Juggler.FateDepthFiveAssembly
 import Problems.Juggler.SubBlockAveraging
+import Problems.Juggler.DepthFiveFibreGeometry
+import Problems.Juggler.FateDepthFiveWeighted
 import Problems.Juggler.ReturnWordLoss
 import Problems.Juggler.ReturnWordData
 import Problems.Juggler.ReturnWordBounds
