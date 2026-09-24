@@ -335,6 +335,21 @@
   "related_conjectures": []
  },
  {
+  "id": "J-fate-pressure-averaged",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper C Theorem 9.2's corollary at the averaged exponent. Above a certified floor N_0 >= 2, if the pressure hypothesis P_theta(C) holds at all large scales with C >= 5 and a loss epsilon, and some e satisfies 103/203 < e < e(C) - epsilon, then every positive integer reaches 1. The threshold was 27/40 in pressure_implies_conjecture (J-fate-pressure-conjecture); the unconditional averaged contagion bound Production.failures_logMass_averaged at lambda = 100/203 lowers it to 1 - 100/203 = 103/203 = 0.5073891626. The pressure hypothesis itself is not proved; this is a conditional corollary, not a halt theorem.",
+  "source": "docs/theory/juggler_fate_almost_all_note.md",
+  "lean": "Problems/Juggler/FatePressureAveraged.lean",
+  "decl": [
+   "pressure_conjecture_averaged"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_paper_c_formal_layer.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-fate-no-momentum-averaged",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "Paper C Proposition 9.3's corollary at the averaged exponent. Above a certified floor N_0 >= 2, if the no-momentum hypothesis M_{theta,q}(C) holds at all large scales with C >= 5 and 0 < q < p_C, and some e satisfies 103/203 < e < C (D(p_C||q) - c_x delta)/log 2, then every positive integer reaches 1. The threshold was 27/40 in noMomentum_implies_conjecture (J-fate-pressure-conjecture); the unconditional averaged contagion bound Production.failures_logMass_averaged at lambda = 100/203 lowers it to 1 - 100/203 = 103/203 = 0.5073891626, the margin e* that J-failure-margin uses. The no-momentum hypothesis itself is not proved; this is a conditional corollary, not a halt theorem.",
