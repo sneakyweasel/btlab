@@ -15,17 +15,20 @@ which is what the other habit costs.
 | Paper | Title | Repository | Latest deposit | Concept DOI |
 | --- | --- | --- | --- | --- |
 | A | Lower Bounds for Cycle Lengths in the Juggler Map | 1.2.1, not deposited | [1.0.2](https://doi.org/10.5281/zenodo.22865237) | [10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) |
-| B | Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers | 1.1.2, not deposited | [1.0.0](https://doi.org/10.5281/zenodo.22864934) | [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) |
+| B | Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers | 1.2.0, deposited | [1.2.0](https://doi.org/10.5281/zenodo.22946276) | [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) |
 | C | Fate Contagion and Termination Criteria for the Juggler Map | 1.2.0, not deposited | [1.1.0](https://doi.org/10.5281/zenodo.22865705) | [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) |
 | D | No m-cycles of the 3n−1 map for m ≤ 61 | 1.1.0, not deposited | [1.0.0](https://doi.org/10.5281/zenodo.22876190) | [10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) |
 | E | The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions | 0.7.1, local preprint | None | Not assigned |
 
 Every DOI in this file was resolved against doi.org on 21 September 2026, and each
-concept DOI was confirmed to return the version named beside it as the latest. All
+concept DOI was confirmed to return the version named beside it as the latest. Paper
+B's rows for 1.1.2 and 1.2.0 were read from the Zenodo API on 24 September 2026,
+where its concept record returns 1.2.0. All
 four papers are resource type Publication / Preprint, CC BY 4.0, English, open
 access.
 
-The repository is ahead of every record. That is the normal state here: a revision
+The repository is ahead of every record except Paper B's, whose deposited 1.2.0 is
+the repository version. Being ahead is the normal state here: a revision
 is prepared, checked and committed, and deposited only when the author decides to.
 `tools/build_paper_*.py` prints which state a paper is in, and
 `ZENODO_FIELDS.txt` says so at the top of the generated export.
@@ -67,18 +70,18 @@ the tables by content and both are byte-identical to the versions 1.0.0 reports.
 
 ### Paper B, Five-Step Descent Certificates for the Juggler Map
 
-Prepared 1.2.0, 24 September 2026. Adds Section 6.1 and Appendix D: Theorem 6.3, the fair share on almost every depth-five target fibre, with an AI-assisted written proof that has not been independently reviewed. The earlier numbered results are unchanged. See the [release record](paper_b_release_check.json) for the current revision.
+Published 1.2.0, 24 September 2026. Adds Section 6.1 and Appendix D: Theorem 6.3, the fair share on almost every depth-five target fibre, with an AI-assisted written proof that has not been independently reviewed. The earlier numbered results are unchanged. See the [release record](paper_b_release_check.json).
 
-Prepared 1.1.2, 23 September 2026. Clarifies the conjectural status of Section 6's limiting profile and corrects three formulas there.
+Published 1.1.2, dated 22 September 2026 by Zenodo (the record was created at 22:32 UTC; the edition is dated 23 September). Clarifies the conjectural status of Section 6's limiting profile and corrects three formulas there. This register listed 1.1.2 as not deposited until 24 September 2026, when the Zenodo API showed the record.
 
-Prepared 1.1.1, 22 September 2026. Corrects the recursion attribution to Terras (1976) and Winkler's arXiv citation. Mathematical results are unchanged. No new deposit has been made.
+Prepared 1.1.1, 22 September 2026. Corrects the recursion attribution to Terras (1976) and Winkler's arXiv citation. Mathematical results are unchanged. Not deposited.
 
-Record [zenodo.org/records/22864934](https://zenodo.org/records/22864934).
+Record [zenodo.org/records/22946276](https://zenodo.org/records/22946276), the latest version.
 
 | Version | DOI | Date |
 | --- | --- | --- |
-| 1.2.0 | not deposited | 24 September 2026 |
-| 1.1.2 | not deposited | 23 September 2026 |
+| 1.2.0 | [10.5281/zenodo.22946276](https://doi.org/10.5281/zenodo.22946276) | 24 September 2026 |
+| 1.1.2 | [10.5281/zenodo.22906043](https://doi.org/10.5281/zenodo.22906043) | 22 September 2026 |
 | 1.1.1 | not deposited | 22 September 2026 |
 | 1.1.0 | not deposited | 21 September 2026 |
 | 1.0.0 | [10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934) | 21 September 2026 |
@@ -88,7 +91,18 @@ file, the PDF, sha256
 `4e61fcb717d51efbc3231c46117b8eded089dfd435fc91d71be22f0a36d3812d`. The record
 refused the session that first prepared this list; a second laboratory session with
 access to it read the title, version, file name and size and the concept DOI on
-21 September 2026. No byte comparison against the downloaded file has been made here.
+21 September 2026. On 24 September 2026 the Zenodo API reported the file's md5,
+`efe486d76486193182f0bab7aa8702fe` for 295,782 bytes. That is the md5 of the PDF at
+commit `8b5e596d7`, so the deposit is byte-identical to it.
+
+Each later version also carries the PDF alone, and the API's md5 matches the
+committed PDF: 1.1.2 is 298,056 bytes, md5 `ba39e6e4a7fba633616bbd5fcd81bb95`, the
+PDF of commit `7c6fc3be9` (sha256
+`9701a815c6082069633401c17ac2036881c8a6b7d4efd4fa3247f768d3b6030d`); 1.2.0 is
+335,234 bytes, md5 `ec6aa6e0c9428f42ce28fdc490e4ab45`, the PDF of commit `f1eb45f8f`
+(sha256 `e747a699ea5fbf76714cbc904afcea8fa8744c731b495af43fff57c5268dd93b`). The
+1.2.0 availability section, written before the upload, still says the paper is
+not deposited and names 1.0.0 as the current version.
 
 Until 1.1.0 the repository copy was byte-identical to that deposited PDF. It is not
 any more: 1.1.0 shortened the acknowledgments, added the availability section and

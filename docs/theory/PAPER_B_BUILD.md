@@ -15,8 +15,8 @@ prescribed short interval, and all-depth hypotheses remain open.
 
 ## Deposit files
 
-The record carries one file, `Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf`.
-`paper_b_source_package.zip` was not deposited. The source ZIP contains the complete manuscript, generated LaTeX,
+Each deposited version carries one file, `Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf`.
+`paper_b_source_package.zip` has not been deposited. The source ZIP contains the complete manuscript, generated LaTeX,
 build assets, all exact-control scripts, aggregate validation, fresh proof audit, metadata, and this guide. paper_b_zenodo_package.zip collects
 the prepared deposit materials for convenience.
 
@@ -24,9 +24,11 @@ Record fields: paper_b_zenodo.json, rendered as ZENODO_FIELDS.txt.
 The repository reviewer kit also contains the byte-identical PDF alias
 Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf and that generated
 export, which both archives ship as paper_b_zenodo_fields.txt.
-Submission instructions are in ZENODO_README.md. Paper B was published on
-21 September 2026: version DOI 10.5281/zenodo.22864934, concept DOI
-10.5281/zenodo.22864933 for all versions, recorded in paper_deposits.md.
+Submission instructions are in ZENODO_README.md. Paper B was first published
+on 21 September 2026 as version 1.0.0 (DOI 10.5281/zenodo.22864934). Version
+1.1.2 followed on 22 September (10.5281/zenodo.22906043), and this edition, version
+1.2.0, on 24 September 2026 (10.5281/zenodo.22946276). The concept DOI
+10.5281/zenodo.22864933 covers all versions; paper_deposits.md records them.
 A later revision goes up through the new-version operation of that record.
 
 ## Standalone rebuild
@@ -116,7 +118,7 @@ The prepared manuscript/documentation license is CC BY 4.0:
 <https://creativecommons.org/licenses/by/4.0/>. Original Python/Lua code
 uses the repository's MIT license, included as LICENSE-MIT.txt.
 
-Paper B was published on Zenodo on 21 September 2026. The author
+Version 1.2.0 was published on Zenodo on 24 September 2026. The author
 page-by-page review of this edition is still outstanding, as
 paper_b_release_check.json records. No independent peer-review
 certification or universal termination claim is made.
@@ -142,6 +144,8 @@ and the five-step density 7/8 are unchanged. No private correspondence
 or unpublished manuscript is cited, quoted, or included in the archives.
 The deposit instructions use the canonical metadata for the prepared
 version and distinguish the current package from the historical deposit.
+Version 1.1.2 was deposited as 10.5281/zenodo.22906043; Zenodo dates it
+22 September 2026.
 
 ## Revision of 24 September 2026
 
@@ -154,5 +158,5 @@ adversarial audits, the Lean modules that check Lemma D.3 and the fibre
 geometry, and the numerical controls. The 10 September proof audit does
 not cover the new material. The earlier numbered results, their proofs,
 and the five-step density 7/8 are unchanged. The release validator now
-also requires every cited (D.n) equation to exist. No deposit is
-performed.
+also requires every cited (D.n) equation to exist. Version 1.2.0 was
+deposited on 24 September 2026 as 10.5281/zenodo.22946276.

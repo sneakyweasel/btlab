@@ -1727,8 +1727,8 @@ With this pass, the steps a human reviewer must still read reduce to three:
 - the completeness of each cost list, which two AI passes and the ledger now
   agree on.
 
-**36. Paper B 1.2.0 prepared: Theorem 6.3 and Appendix D (24 September 2026; not
-deposited).** Paper B now states the restated poor tails E6' and E8' as Theorem
+**36. Paper B 1.2.0 published: Theorem 6.3 and Appendix D (24 September 2026;
+doi:10.5281/zenodo.22946276).** Paper B now states the restated poor tails E6' and E8' as Theorem
 6.3, averaged localization on depth-five fibres, and writes their proof as
 Appendix D: Lemma D.3 is E9's core, Proposition D.5 is Appendix C.9 and C.2 with
 Lemma D.6, which is E5's `j = 0` case, and Proposition D.7 is E7. A four-lens AI
@@ -1803,6 +1803,6 @@ carry cells at density `P^(-5/16)`.
 
 ## Publication assessment
 
-Status: `EXPLORATORY`. Paper B's prepared version 1.2.0 (24 September 2026, not
-deposited) states E6' and E8' as Theorem 6.3, with the proof as Appendix D
-(Result 36). The contagion consequence `37/50` is in no paper.
+Status: `EXPLORATORY`. Paper B's version 1.2.0, published 24 September 2026
+(doi:10.5281/zenodo.22946276), states E6' and E8' as Theorem 6.3, with the proof as
+Appendix D (Result 36). The contagion consequence `37/50` is in no paper.

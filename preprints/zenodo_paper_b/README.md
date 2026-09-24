@@ -1,9 +1,9 @@
 # Five-Step Descent Certificates for the Juggler Map
 
-Parity Statistics of Nested Floor Powers. The prepared version and deposit
-status are recorded in ZENODO_FIELDS.txt, generated from the canonical
-metadata. The local kit is ready for a preprint revision; publication is a
-separate action.
+Parity Statistics of Nested Floor Powers. The version and deposit status
+are recorded in ZENODO_FIELDS.txt, generated from the canonical metadata.
+This kit is the deposited version 1.2.0; a later revision is a separate
+action.
 
 This folder is generated from the canonical editorial inputs in
 `docs/theory/`. The deposit filename
@@ -21,10 +21,10 @@ archives. See
 
 `ZENODO_FIELDS.txt` is generated from `docs/theory/paper_b_zenodo.json`.
 Creator: Philippe Cochin, with no affiliation. License CC BY 4.0.
-Published 21 September 2026 as Zenodo record
-[22864934](https://zenodo.org/records/22864934), version 1.0.0, one file,
-the PDF; version DOI
-[10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934), concept DOI
+Published on Zenodo as version 1.0.0 on 21 September 2026, 1.1.2 on
+22 September and 1.2.0, this PDF, on 24 September 2026: record
+[22946276](https://zenodo.org/records/22946276), one file, the PDF; version DOI
+[10.5281/zenodo.22946276](https://doi.org/10.5281/zenodo.22946276), concept DOI
 [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) for all versions.
 The author's ORCID is
 [0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382).

@@ -1,11 +1,16 @@
 # Paper B Zenodo record
 
-Published 21 September 2026 as version 1.0.0, from the 2026-09-20-preprint
-edition of this kit at repository commit 8b5e596d; the record carries the
-PDF alone.
+Three versions are published. Each carries the PDF alone, and each PDF is
+byte-identical to the repository PDF of the commit named, by the md5 the Zenodo
+API reported on 24 September 2026.
 
-- Version DOI: [10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934)
-- Record: [zenodo.org/records/22864934](https://zenodo.org/records/22864934)
+| Version | Published | Version DOI | Commit |
+| --- | --- | --- | --- |
+| 1.2.0 | 24 September 2026 | [10.5281/zenodo.22946276](https://doi.org/10.5281/zenodo.22946276) | f1eb45f8f |
+| 1.1.2 | 22 September 2026 | [10.5281/zenodo.22906043](https://doi.org/10.5281/zenodo.22906043) | 7c6fc3be9 |
+| 1.0.0 | 21 September 2026 | [10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934) | 8b5e596d7 |
+
+- Record of the latest version: [zenodo.org/records/22946276](https://zenodo.org/records/22946276)
 - Concept DOI, all versions: [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933)
 
 A local `python tools/build_paper_b.py` run does not update this record.

@@ -21,7 +21,8 @@
       "parity correlations",
       "discrepancy",
       "exponential sums",
-      "finite-step descent"
+      "finite-step descent",
+      "Collatz map"
     ],
     "related_identifiers": [
       {
@@ -41,12 +42,14 @@
       }
     ],
     "notes": "AI-assisted preprint. Theorem 5.4 gives the five-step power-envelope certificate count 7N/8+O_epsilon(N^(127/128+epsilon)); Theorem 4.11 and Appendices A-C contain the OOOEE argument. The 10 September proof audit supplies the bounded signed-residual Fourier extension and its variation checks. Exact and symbolic scripts check algebra and exponent bookkeeping; they do not certify asymptotic cancellation. Independent mathematical review and complete Lean verification remain outstanding. The historical 95/96 target, arbitrary decorations, localization to a prescribed short interval, and all-depth fair-share hypotheses remain open. No universal termination claim is made. This edition sharpens Section 6: the threshold in Theorem 6.1 is now the largest the step admits, its Chernoff and density steps are machine-checked in formal/Problems/Juggler/PaperBMarkov.lean, PaperBChernoff.lean and PaperBDensity.lean, and Remark 6.2 identifies the resulting exponent with the Cramer rate of the underlying walk. Theorem 6.1 remains conditional on the fair-share hypothesis, which is not formalised. The 10 September proof-audit edition covers every section except the abstract and Sections 1, 5, 6 and 8, whose later paragraphs postdate it; Theorem 5.4 and its error exponent are unchanged, as are Appendices A-C. Version 1.1.2 clarifies that Section 6's phase-only profile, nonconvergence and limiting Fourier relations remain conjectural or conditional. It removes a broad priority claim, keeps the public literature attribution, and corrects the logarithm of the tail factor, the Fourier coefficient of log(psi), and the log(r) term in the ladder-profile Fourier denominator. Version 1.2.0 adds Section 6.1 and Appendix D. Theorem 6.3 proves that, for the words OOOEE and OOEOE, all but a power-saving proportion of the depth-five target fibres, windows of about n^(5/32) starts, carry the fair share 1/16; beyond Y the poor targets have reciprocal sums O(Y^(-1/55)) and O(Y^(-1/41)). Its proof is an AI-assisted written argument with AI adversarial audits and no independent review; Lemma D.3 and the fibre geometry are machine-checked in Lean. The earlier numbered results and their proofs are unchanged.",
+    "doi": "10.5281/zenodo.22946276",
+    "publication_date": "2026-09-24",
     "conceptdoi": "10.5281/zenodo.22864933",
-    "record_url": "https://zenodo.org/records/22864934",
+    "record_url": "https://zenodo.org/records/22946276",
     "latest_deposit": {
-      "version": "1.0.0",
-      "doi": "10.5281/zenodo.22864934",
-      "publication_date": "2026-09-21"
+      "version": "1.2.0",
+      "doi": "10.5281/zenodo.22946276",
+      "publication_date": "2026-09-24"
     }
   }
 }
