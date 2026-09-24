@@ -453,8 +453,8 @@ nonzero-`t` row is therefore `<< P^(63/64+eps)` at `h_1 <= P^(5/32)`,
 but did not re-audit.
 
 **12. Lemma E4: the `t = 0`, nonzero-`b` case of Appendix C at `Pi` up to
-`P^(19/96)` (written proof, 24 September 2026; AI-assisted, not independently
-reviewed).**
+`P^(19/96)` (written proof, 24 September 2026; AI-assisted, audited in
+Result 13).**
 
 *Statement.* In Paper B's Appendix C, take first shift `h_1 <= P^(5/32)`, second
 shift `h_2 <= P^(1/24)`, `1 <= k <= C P^(1/24)` and `Pi = k h_1 h_2 <= P^(19/96)`.
@@ -482,7 +482,9 @@ P^(21/32)`, and (C.13) becomes
 
   *Repair.* Center at `N = floor(B)` for the whole coefficient `B` of (C.20),
   instead of at `N_*`, as in Result 10's nonzero-`t` repair.
-  - `B` is monotone on each cell of the `N_1`, `N_2` partition. The leading part of
+  - `B` is monotone on each cell of the common partition (original runs, on which
+    `beta_a` and `b` are fixed, intersected with the `N_1`, `N_2` windows); it jumps
+    by about `k P^(3/8)` where `b` changes. The leading part of
     `B'` is `(81/256) k b x^(-5/8)`, of size at least a constant times `P^(-5/8)`
     because `b` is a nonzero integer. The other parts of `B'` are
     `Pi P^(-9/8) + J(h_1+h_2) P^(-5/4) + k h_1 P^(-13/8) << P^(-89/96)`.
@@ -512,7 +514,7 @@ P^(21/32)`, and (C.13) becomes
   `P^(-1/4)` at nonzero `b`. The other cuts are smaller:
   - original runs, `P^(21/32)`;
   - `N_1`, `N_2` windows, `O(k h_1 P^(1/8)) = O(P^(31/96))`;
-  - `N` windows, `O(k P^(3/8))`;
+  - `N` windows, `O(k P^(3/8))` plus `O(1)` per cell;
   - endpoint-order cuts, a fixed multiple of these.
 
   The total stays `O(P^(3/4))`.
@@ -528,16 +530,53 @@ P^(21/32)`, and (C.13) becomes
 master term grows from `P^(11/48)` to `P^(31/96)`, and the extra-power errors stay
 `P^(7/24)`. The double correlation is therefore `<< P^(63/64+eps)`. A van der Corput
 step in `h_2 < P^(1/24)` then gives `|T_d|^2 << P^(2-1/24) + P^(1+63/64+eps)`, so
-`|T_d| << P^(127/128+eps)` for the frequency vectors with `k != 0` at `d <= P^(5/32)`.
+`|T_d| << P^(127/128+eps)` for the frequency vectors with bounded `k != 0` at
+`d <= P^(5/32)`. E4's wider range `k <= C P^(1/24)` does not extend this: E2 and E3
+assume bounded `k`, and at `k = P^(1/24)` the product `Pi` would reach `P^(23/96)`.
 The `k = 0` vectors (C.2) are not covered.
+
+**13. Audit of Lemma E4 (24 September 2026).** An independent adversarial
+reviewer re-derived every exponent from Paper B's text. **E4's bound and its repair
+hold**, and no step fails.
+
+- It confirmed the constant `81/256 = (27/32)(3/8)`. It also confirmed that the
+  rest of `B'` is smaller than the leading term by `P^(-29/96)`.
+- It confirmed that re-centring at `floor(B)` is legitimate here. C.7 applies the
+  plain second-derivative test interval by interval, so Result 6's objection
+  (Lemma 7.5 at `b = 0`) does not apply. The only curvature change is
+  `P^(-41/96)`.
+- It recomputed the whole (C.22) error table, the floor-exception count, the
+  interval count and (C.23).
+- It checked the six rows of C.9 and the van der Corput step to
+  `|T_d| << P^(47/48) + P^(127/128)`.
+
+It also checked, and passed, uses of the old sizes that E4 had not written:
+
+- `-1 <= b <= 2`;
+- the value comparison for `beta_a`;
+- the (C.16) and (C.15) errors;
+- the dominance of `G'` at nonzero `b`.
+
+It found three wording faults, now fixed:
+
+- The ledger row stated `|T_d| << P^(127/128)` for `k != 0` without "bounded".
+  E2 and E3 assume bounded `k`, so that was an overclaim.
+- `B` is monotone on cells of original runs intersected with the `N_a` windows. It
+  is not monotone on the `N_a` cells alone, because `B` jumps by about `k P^(3/8)`
+  where `b` changes.
+- The `N`-window count omitted its `O(1)` per cell.
+
+The consequence stands for bounded `k != 0`, subject to E3's claim that (A.12) is
+uniform under translations of size `P^(5/32)`. E2's `b = 0` part was audited in
+Result 9.
 
 ## Open questions
 
 Lemmas E1, E2 and E4 and Theorem E3 (Results 7, 8, 10 and 12) write out every row
 of Paper B's Appendix C for `OOOEE` at first shifts up to `P^(5/32)`, bounded `k`
 and `Pi <= P^(19/96)`. The double correlation is `<< P^(63/64+eps)`, and
-`|T_d| << P^(127/128+eps)` for `k != 0`. E1 and E3 have been audited; E2 has been
-audited with its nonzero-`t` clause withdrawn; E4 is unreviewed. Still unwritten:
+`|T_d| << P^(127/128+eps)` for bounded `k != 0`. E1, E3 and E4 have been audited; E2 has been
+audited with its nonzero-`t` clause withdrawn. Still unwritten:
 the `k = 0` frequency cases of `T_d` (Appendix C.2, Lemma 4.4 and Proposition 7.6
 at `h = d`), and the poor-tail reduction from sliding windows to the actual fibres,
 including the square-wave truncation. `OOEOE` needs its own bookkeeping.
