@@ -6152,6 +6152,7 @@
         "J-beatty-slope-gamma-support",
         "J-beatty-slope-gap-counting",
         "J-beatty-slope-geometric-law",
+        "J-beatty-slope-global-law",
         "J-beatty-slope-hausdorff-conditional",
         "J-beatty-slope-hausdorff-upper",
         "J-beatty-slope-jump-weight-mass",
@@ -6163,6 +6164,7 @@
         "J-beatty-slope-mass-every-boundary",
         "J-beatty-slope-minkowski-content",
         "J-beatty-slope-minkowski-dimension",
+        "J-beatty-slope-phase-every-boundary",
         "J-beatty-slope-positive-crossings",
         "J-beatty-slope-profile-envelope",
         "J-beatty-slope-profile-identification",
@@ -6174,6 +6176,8 @@
         "J-beatty-slope-tilted-binomial-tail",
         "J-beatty-slope-tilted-endpoint-asymptotic",
         "J-beatty-slope-tilted-survivor-asymptotic",
+        "J-beatty-slope-weak-counting",
+        "J-beatty-slope-weak-survivor-phase",
         "J-beatty-slope-weighted-counting",
         "J-beatty-slope-weighted-renewal",
         "J-winkler-ratio-collapses-onto-the-phase"
@@ -8056,6 +8060,22 @@
       "conjecture": [],
       "decision": null,
       "ledger_ids": [],
+      "aliases": [],
+      "nk_clusters": []
+    },
+    {
+      "id": "word_family_complexity",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/word_family_complexity.py",
+      "test": "tests/research/juggler_sequence/test_word_family_complexity.py",
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": [
+        "J-depth-five-word-family-complexity"
+      ],
       "aliases": [],
       "nk_clusters": []
     }

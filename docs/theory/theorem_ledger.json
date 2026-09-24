@@ -2716,6 +2716,31 @@
   "related_conjectures": []
  },
  {
+  "id": "J-beatty-slope-global-law",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every real alpha>1, rational or irrational, the empirical law of the actual ratios r*c_r/choose(m_r-1,r-1), m_r=floor(alpha*r), converges weakly to the image of uniform phase measure on (0,1] under the cumulative profile F_(1/alpha). At irrational alpha this is the singular continuous law of Section 25; at alpha=a/b in lowest terms it is the uniform law on the b distinct values F^+(j/b)=F((j+1)/b). No rate or uniformity in alpha is asserted.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeGlobalLaw.lean",
+  "decl": [
+   "integral_passageProfileLaw",
+   "passageProfileLaw_irrational",
+   "empiricalLaw_periodic_tendsto",
+   "passageProfileRight_rational",
+   "passageRatio_law_rational",
+   "passageProfileLaw_rational",
+   "passageRatio_law_tendsto",
+   "passageRatio_law_slope",
+   "exists_passageRatio_law"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_global_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-slope-hausdorff-conditional",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For every irrational 0<beta<1, the continuous CDF G_beta of the limiting passage law satisfies G_beta(F_beta(t))=t on [0,1], is constant on every closed gap and maps K_beta onto [0,1]. If every interval (a,b) in [0,1] contains a phase delta_(n+1) with (n+1)*(b-a)^tau<=H, then G_beta is 2/(3*tau)-Holder and H^(2/(3*tau))(K_beta)>0, so dim_H K_beta>=2/(3*tau). A uniform Diophantine bound c<=q^tau*|q*alpha-p| supplies this hitting premise with H=4^tau/c+1. With tau=1 the two-thirds measure is positive and finite; bounds for every tau>1 give dim_H K_beta=2/3. The hitting and Diophantine premises are explicit arguments.",
@@ -2963,6 +2988,26 @@
   "related_conjectures": []
  },
  {
+  "id": "J-beatty-slope-phase-every-boundary",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every 0<beta<1, rational or irrational, the actual ratios r*c_r/choose(m_r-1,r-1) satisfy r*c_r/choose(m_r-1,r-1) - F_beta^+(delta_r) -> 0, where F^+ is the right trace 1+sum_(delta_s<=t) w_s of the cumulative jump profile. The weak survivor transfer identity (1+z)Psi_W(-beta*d)-V*Psi_W(-beta*d+beta)=A*2^(-beta*d)*F^+(d) holds for 0<=d<1, including phase 0 and colliding rational phases; the normalization uses the weak cutoff ceil(m_r*beta)=r.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeWeakIdentification.lean",
+  "decl": [
+   "passageProfileRight_transfer",
+   "weak_passage_phase_limit",
+   "weakCutoff_passageIndex",
+   "passageRatio_sub_right_tendsto"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_global_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-slope-positive-crossings",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For every real 0<beta<=1 and every natural r, the actual first-passage count at depth floor(r/beta)+1 is strictly positive. The witness consists of r odd letters followed by even letters up to the crossing. Rational boundaries are included under the weak-survival convention; this is an exact word-count statement, not an orbit-realization claim.",
@@ -3200,6 +3245,52 @@
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-weak-counting",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every real boundary beta and weight z, the actual weak-survival word sums satisfy n*S_n = sum_(j<n) W_(n-j)*S_j with the WEAK endpoint weight W_m = sum_k [m*beta<=k] C(m,k) z^k. For fixed n the survivor sets and strict endpoint sums at an irrational boundary just below beta coincide with those at beta up to depth n, so the identity transfers from the irrational recurrence. At irrational beta the weak and strict endpoint weights agree.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeWeakCounting.lean",
+  "decl": [
+   "weakEndpointWeight_nonneg",
+   "survivorWeight_weak_recurrence"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_global_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-weak-survivor-phase",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every 0<beta<1, rational included, the tilted weak endpoint satisfies sqrt(n)*W_n/V^n - A*2^(1-frac(-n*beta)) -> 0, and the normalized survivors equal the renewal coefficients of the weak endpoint, are summable, and satisfy n*sqrt(n)*u_n - Psi_W(n*beta) -> 0 with the bounded periodic kernel Psi_W(t)=sum_j u_j*A*2^(1-frac(-(t-j*beta))).",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeWeakPhase.lean",
+  "decl": [
+   "weak_first_term_phase_limit",
+   "weak_endpoint_phase_limit",
+   "weakTerminalPhase_bounds",
+   "weakTerminalPhase_abs_le",
+   "weakTerminalPhase_periodic",
+   "normalizedWeakEndpoint_nonneg",
+   "survivor_eq_weak_renewal",
+   "summable_weak_survivor",
+   "summable_weak_phase_terms",
+   "weakSurvivorPhase_bounds",
+   "weakSurvivorPhase_periodic",
+   "weak_survivor_phase_limit"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_global_interface.py",
    "tests/tools/test_formalpedia_audits.py",
    "tests/research/juggler_sequence/test_layer_completeness.py"
   ],

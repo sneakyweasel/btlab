@@ -29,7 +29,10 @@ and the laws and Minkowski content are continuous at every irrational slope.
 The Gamma-normalized law, density and regularity package now covers the
 whole family as well. Total mass is exact at every boundary, and as the
 slope decreases to `a/b` the laws converge to the uniform law on `b` atoms.
-**PROMOTE**. See Sections 27–30 of the
+Global theorem: for every real `alpha>1` the empirical law of the actual
+ratios converges; the rational phase theorem `R_r-F^+(delta_r)->0` comes from
+a weak counting identity transferred from nearby irrational boundaries.
+**PROMOTE**. See Sections 27–31 of the
 [Beatty note](theory/juggler_beatty_first_passage_note.md).
 
 ## 2026-09-24 -- Both depth-five productions written; contagion 0.74 conditional

@@ -130,6 +130,10 @@ import Problems.Juggler.BeattySlopeLiouville
 import Problems.Juggler.BeattySlopeDiophantineDim
 import Problems.Juggler.BeattySlopeRationalMass
 import Problems.Juggler.BeattySlopeRationalLimit
+import Problems.Juggler.BeattySlopeWeakCounting
+import Problems.Juggler.BeattySlopeWeakPhase
+import Problems.Juggler.BeattySlopeWeakIdentification
+import Problems.Juggler.BeattySlopeGlobalLaw
 import Problems.Juggler.BeattySlopeGammaContinuity
 import Problems.Juggler.BeattySlopeGammaAmplitude
 import Problems.Juggler.BeattySlopeGammaLaw

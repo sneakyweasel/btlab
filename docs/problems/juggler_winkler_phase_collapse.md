@@ -1521,8 +1521,29 @@ jump weights sum to `beta/(1-beta)` at every boundary, rational included.
 As the slope decreases to `a/b`, counts freeze, weights converge in `l1`,
 and the singular laws converge to the uniform law on `b` distinct atoms
 `F_(a/b)((j+1)/b)`. Section 30 of the working note tabulates the family
-map. **PROMOTE**. Open: the other one-sided limit, the counts at a rational
-slope itself, exact dimensions for exponents in `(2,infinity)`, rates.
+map. **PROMOTE**. Open: the other one-sided limit, exact dimensions for
+exponents in `(2,infinity)`, rates.
+
+### The empirical law for every real slope (24 September)
+
+```text
+Mathematical target     Convergence of the empirical law of the actual ratios for every real alpha>1.
+Novelty hypothesis      The only irrational step (tie exclusion in the counting identity) has a weak form.
+Falsifier               Rational-slope ratios not converging by residue class (checked exactly to depth 2400).
+Already killed by?      No; Section 30 had listed the rational counts as open.
+Existing machinery      Irrational recurrence, tilted Stirling for all beta, abstract renewal limit, exact mass.
+Maximum Phase-0 scope   Weak counting, weak phase, right-trace identification, global law.
+Promotion criterion     Lean theorem for every real alpha>1 with standard axioms.
+Stop criterion          A new analytic idea needed at the identification step.
+```
+
+**EXACT — LEAN VERIFIED.** The weak counting identity holds at every
+boundary (transferred from irrational boundaries just below), the weak
+endpoint and survivor phases hold for every `0<beta<1`, the actual ratios
+satisfy `R_r-F^+(delta_r)->0` at every boundary, and the empirical law
+converges for every real `alpha>1`: to the singular law at irrational
+slopes and to the uniform law on `b` atoms at `alpha=a/b`. Section 31 of the
+working note. **PROMOTE**.
 
 ## Decision
 

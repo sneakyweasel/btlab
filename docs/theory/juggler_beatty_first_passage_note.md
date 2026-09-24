@@ -746,6 +746,7 @@ bounded phase kernel.
 | `l1` continuity of the weights, weak continuity of the laws and continuity of the Minkowski content at irrational slopes | Lean proved in Section 28 |
 | Gamma-normalized law, density, moments, interval support and regularity for every irrational `alpha>1` | Lean proved in Section 29 |
 | Total mass at every boundary; one-sided limits at rational slopes (uniform `b`-atom laws) | Lean proved in Section 30 |
+| Empirical law of the actual ratios for every real slope; rational phase theorem with the right trace | Lean proved in Section 31 |
 | Quantitative `O(r^(-1/2))` error | Written proof; this continuation proves `o(1)` only |
 
 These distinctions must be preserved in any communication about the result.
@@ -2743,17 +2744,72 @@ and [BeattySlopeRationalLimit.lean](../../formal/Problems/Juggler/BeattySlopeRat
 | Critical measure `H^(2/3)` | positive iff badly approximable | Lean |
 | Gamma normalization | absolutely continuous law with explicit density, interval support, `L^p` for `p<3/2` | Lean, every irrational `alpha` |
 | Dependence on the slope | weights, laws, content continuous at irrational slopes | Lean |
-| Rational slopes | laws from above tend to a uniform `b`-atom law | Lean, one side |
+| Rational slopes | actual counts converge by residue class; law uniform on `b` atoms, equal to the limit from above | Lean (Section 31) |
 | Logarithmic slope arithmetic | `dim_H K>=0.16195...` | Written (Wu–Wang) |
 | Rates | `O(r^(-1/2))` | Written, `1<alpha<2` only |
 
 **Open.** The limit from below at a rational slope (strict-survival
-convention); the counts at a rational slope itself; the exact Hausdorff
+convention); the exact Hausdorff
 dimension for irrationality exponents strictly between `2` and infinity;
 the value of the critical measure at badly approximable slopes; convergence
 rates for the family; and the Gamma-law `L^2` question. **PROMOTE** the
 rational-boundary mass and one-sided limit theorems; the qualitative map
 of the irrational family is complete.
+
+## 31. The empirical law for every real slope
+
+**Global theorem — EXACT — LEAN VERIFIED.** For every real `alpha>1`,
+rational or irrational,
+\[
+ \boxed{\quad \frac1{N+1}\sum_{r\le N}\delta_{R_r^+}\Longrightarrow
+ \mu_\alpha=(F_\alpha)_*\bigl(\lambda\!\restriction_{(0,1]}\bigr). \quad}  \tag{66}
+\]
+At irrational `alpha`, `mu_alpha` is the singular continuous law of
+Section 25. At `alpha=a/b` in lowest terms it is the uniform law on the `b`
+distinct atoms `F^+(j/b)=F((j+1)/b)`, which by (65) is also the limit of
+`mu_alpha'` as `alpha'` decreases to `a/b`.
+
+**The rational phase theorem.** The irrational proof used irrationality
+once, to exclude ties `k=n beta` in the positive-partial-sum identity. With
+the laboratory's weak survival, the identity holds at every boundary with
+the weak endpoint count `sum_(k>=n beta) C(n,k) z^k`. For each fixed depth
+the survivor sets and strict endpoint sums at an irrational boundary just
+below `beta` coincide with the weak ones at `beta`, so the identity
+transfers from the irrational case without new algebra. The weak endpoint
+has the left-continuous tilted phase `A 2^(1-frac(-t))`, the abstract
+renewal limit needs no continuity, and the transfer identity becomes one
+for the right trace:
+\[
+ (1+z)\Psi_W(-\beta\delta)-V\Psi_W(-\beta\delta+\beta)
+ =A\,2^{-\beta\delta}F^+(\delta)\qquad(0\le\delta<1),
+\]
+including phase `0` and colliding phases. Normalizing by the weak cutoff
+`ceil(m_r beta)=r` gives
+\[
+ R_r^+-F_\beta^+(\delta_r)\longrightarrow0\qquad(0<\beta<1).        \tag{67}
+\]
+At irrational `beta` this agrees with Section 24 because the weights tend
+to zero. At rational `beta` the phases are periodic, so (67) gives
+convergence along each residue class and (66). An exact integer
+computation to depth `2400` at `alpha=3/2` and `5/3` showed this pattern
+before the proof.
+
+The modules are
+[BeattySlopeWeakCounting.lean](../../formal/Problems/Juggler/BeattySlopeWeakCounting.lean),
+[BeattySlopeWeakPhase.lean](../../formal/Problems/Juggler/BeattySlopeWeakPhase.lean),
+[BeattySlopeWeakIdentification.lean](../../formal/Problems/Juggler/BeattySlopeWeakIdentification.lean)
+and [BeattySlopeGlobalLaw.lean](../../formal/Problems/Juggler/BeattySlopeGlobalLaw.lean);
+[InterfaceCheckBeattySlopeGlobal.lean](../../formal/InterfaceCheckBeattySlopeGlobal.lean)
+states (66) and (67) for the original integer counts, floors and binomial
+normalization. The family audit has 354 records with only standard axioms.
+
+**Consequences for the slope map.** `alpha -> mu_alpha` is now defined at
+every real slope above one; it is weakly continuous along irrational
+slopes at irrational points (Section 28) and continuous from above at
+rational points by (65) and (66). The limit from below at rational points,
+and hence whether `alpha -> mu_alpha` jumps there, remains open. No rate or
+uniformity in the slope is claimed. **PROMOTE** the global empirical-law
+theorem.
 
 ## References
 

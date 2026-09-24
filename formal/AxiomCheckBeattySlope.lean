@@ -5,6 +5,7 @@ import Problems.Juggler.BeattySlopeContinuity
 import Problems.Juggler.BeattySlopeLiouville
 import Problems.Juggler.BeattySlopeDiophantineDim
 import Problems.Juggler.BeattySlopeRationalLimit
+import Problems.Juggler.BeattySlopeGlobalLaw
 import Problems.Juggler.BeattySlopeGammaContinuity
 import Problems.Juggler.BeattySlopeGammaHausdorff
 import Problems.Juggler.BeattySlopeGammaCDF
@@ -348,5 +349,32 @@ namespace Problems.Juggler
 #print axioms BeattySlope.passageLaw_rational_slope
 #print axioms BeattySlope.passageProfile_lt_of_phase
 #print axioms BeattySlope.passageProfile_rational_lt
+#print axioms BeattySlope.weakEndpointWeight_nonneg
+#print axioms BeattySlope.survivorWeight_weak_recurrence
+#print axioms BeattySlope.weak_first_term_phase_limit
+#print axioms BeattySlope.weak_endpoint_phase_limit
+#print axioms BeattySlope.weakTerminalPhase_bounds
+#print axioms BeattySlope.weakTerminalPhase_abs_le
+#print axioms BeattySlope.weakTerminalPhase_periodic
+#print axioms BeattySlope.normalizedWeakEndpoint_nonneg
+#print axioms BeattySlope.survivor_eq_weak_renewal
+#print axioms BeattySlope.summable_weak_survivor
+#print axioms BeattySlope.summable_weak_phase_terms
+#print axioms BeattySlope.weakSurvivorPhase_bounds
+#print axioms BeattySlope.weakSurvivorPhase_periodic
+#print axioms BeattySlope.weak_survivor_phase_limit
+#print axioms BeattySlope.passageProfileRight_transfer
+#print axioms BeattySlope.weak_passage_phase_limit
+#print axioms BeattySlope.weakCutoff_passageIndex
+#print axioms BeattySlope.passageRatio_sub_right_tendsto
+#print axioms BeattySlope.integral_passageProfileLaw
+#print axioms BeattySlope.passageProfileLaw_irrational
+#print axioms BeattySlope.empiricalLaw_periodic_tendsto
+#print axioms BeattySlope.passageProfileRight_rational
+#print axioms BeattySlope.passageRatio_law_rational
+#print axioms BeattySlope.passageProfileLaw_rational
+#print axioms BeattySlope.passageRatio_law_tendsto
+#print axioms BeattySlope.passageRatio_law_slope
+#print axioms BeattySlope.exists_passageRatio_law
 
 end Problems.Juggler

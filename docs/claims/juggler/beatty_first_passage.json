@@ -1822,6 +1822,97 @@
   "related_conjectures": []
  },
  {
+  "id": "J-beatty-slope-weak-counting",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every real boundary beta and weight z, the actual weak-survival word sums satisfy n*S_n = sum_(j<n) W_(n-j)*S_j with the WEAK endpoint weight W_m = sum_k [m*beta<=k] C(m,k) z^k. For fixed n the survivor sets and strict endpoint sums at an irrational boundary just below beta coincide with those at beta up to depth n, so the identity transfers from the irrational recurrence. At irrational beta the weak and strict endpoint weights agree.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeWeakCounting.lean",
+  "decl": [
+   "weakEndpointWeight_nonneg",
+   "survivorWeight_weak_recurrence"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_global_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-weak-survivor-phase",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every 0<beta<1, rational included, the tilted weak endpoint satisfies sqrt(n)*W_n/V^n - A*2^(1-frac(-n*beta)) -> 0, and the normalized survivors equal the renewal coefficients of the weak endpoint, are summable, and satisfy n*sqrt(n)*u_n - Psi_W(n*beta) -> 0 with the bounded periodic kernel Psi_W(t)=sum_j u_j*A*2^(1-frac(-(t-j*beta))).",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeWeakPhase.lean",
+  "decl": [
+   "weak_first_term_phase_limit",
+   "weak_endpoint_phase_limit",
+   "weakTerminalPhase_bounds",
+   "weakTerminalPhase_abs_le",
+   "weakTerminalPhase_periodic",
+   "normalizedWeakEndpoint_nonneg",
+   "survivor_eq_weak_renewal",
+   "summable_weak_survivor",
+   "summable_weak_phase_terms",
+   "weakSurvivorPhase_bounds",
+   "weakSurvivorPhase_periodic",
+   "weak_survivor_phase_limit"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_global_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-phase-every-boundary",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every 0<beta<1, rational or irrational, the actual ratios r*c_r/choose(m_r-1,r-1) satisfy r*c_r/choose(m_r-1,r-1) - F_beta^+(delta_r) -> 0, where F^+ is the right trace 1+sum_(delta_s<=t) w_s of the cumulative jump profile. The weak survivor transfer identity (1+z)Psi_W(-beta*d)-V*Psi_W(-beta*d+beta)=A*2^(-beta*d)*F^+(d) holds for 0<=d<1, including phase 0 and colliding rational phases; the normalization uses the weak cutoff ceil(m_r*beta)=r.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeWeakIdentification.lean",
+  "decl": [
+   "passageProfileRight_transfer",
+   "weak_passage_phase_limit",
+   "weakCutoff_passageIndex",
+   "passageRatio_sub_right_tendsto"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_global_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-global-law",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every real alpha>1, rational or irrational, the empirical law of the actual ratios r*c_r/choose(m_r-1,r-1), m_r=floor(alpha*r), converges weakly to the image of uniform phase measure on (0,1] under the cumulative profile F_(1/alpha). At irrational alpha this is the singular continuous law of Section 25; at alpha=a/b in lowest terms it is the uniform law on the b distinct values F^+(j/b)=F((j+1)/b). No rate or uniformity in alpha is asserted.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeGlobalLaw.lean",
+  "decl": [
+   "integral_passageProfileLaw",
+   "passageProfileLaw_irrational",
+   "empiricalLaw_periodic_tendsto",
+   "passageProfileRight_rational",
+   "passageRatio_law_rational",
+   "passageProfileLaw_rational",
+   "passageRatio_law_tendsto",
+   "passageRatio_law_slope",
+   "exists_passageRatio_law"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_global_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-slope-gamma-amplitude",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For every irrational 0<beta<1, equivalently every irrational slope alpha=1/beta>1, with q=1-beta, a=-log q, the actual counts c_r and the exact Gamma quotient D_r=Gamma(r/beta)/(r!*Gamma(r*q/beta+1)): c_r/D_r-q^(delta_r)*F_beta(delta_r) -> 0, so the Gamma-normalized counts follow the unit-periodic amplitude q^(frac t)*F_beta(frac t). No rate is claimed. This extends the logarithmic-slope Gamma rows to the whole irrational family.",
