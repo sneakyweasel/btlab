@@ -19,7 +19,8 @@ theorem syracuseS_odd {n : ℕ} (hn : Odd n) (hpos : 0 < n) :
 /-- Exact one-point identity. Not a Collatz convergence theorem. -/
 theorem syracuseS_one : syracuseS 1 = 1 := by
   have hmul := acceleratedT_mul 1
-  have hval : padicValNat 2 (3 * 1 + 1) = 2 := by native_decide
+  have hval : padicValNat 2 (3 * 1 + 1) = 2 := by
+    rw [show (3 * 1 + 1 : ℕ) = 2 ^ 2 by norm_num, padicValNat.prime_pow]
   have : syracuseS 1 * 2 ^ 2 = 4 := by
     simpa [hval] using hmul
   omega
