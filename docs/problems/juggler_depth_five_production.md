@@ -1777,6 +1777,16 @@ limits "closed" to the localized route and corrects that model's root to
 two false status claims, both repaired: Theorem 9.4 at 13/50 is not in Lean,
 and Theorem 1's dyadic clause is written.
 
+**38. Paper C 1.3.0 published (24 September 2026;
+doi:10.5281/zenodo.22947659).** Contagion `37/50` (Theorem 5.20) is now in a
+published paper, still with Paper B's Theorem 6.3 as its one written input. The
+record's one file is the PDF of `c43d7699f`, byte-identical by the md5 the
+Zenodo API reports, and its description omits the kit's closing use-of-AI
+paragraph, which the PDF carries. Paper B 1.2.0's Appendix D.8 says that no
+published companion text uses the depth-five productions; Paper C 1.3.0 now
+does. Owner decision, 25 September 2026: no Paper B 1.2.1 for that sentence or
+for Paper B's availability section.
+
 ## Open questions
 
 Result 23 (Lemma E9) shows that the productions need `T_d` only at shifts below an
@@ -1828,4 +1838,5 @@ carry cells at density `P^(-5/16)`.
 Status: `EXPLORATORY`. Paper B's version 1.2.0, published 24 September 2026
 (doi:10.5281/zenodo.22946276), states E6' and E8' as Theorem 6.3, with the proof as
 Appendix D (Result 36). The contagion consequence `37/50` is Theorem 5.20 of Paper C's
-prepared version 1.3.0 (Result 37), not yet deposited.
+version 1.3.0, published 24 September 2026 (doi:10.5281/zenodo.22947659; Results
+37 and 38).

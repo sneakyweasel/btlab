@@ -53,13 +53,17 @@ def test_published_artifact_hashes_match_the_reviewed_files() -> None:
         assert content_sha256(root / relative) == digest, relative
 
 
-def test_local_release_retains_the_registered_publication_identity() -> None:
+def test_local_release_records_the_latest_deposit() -> None:
+    """A rebuild carries the manifest's publication block forward; it must name the
+    deposit the Zenodo metadata records, not the one current when this test was written."""
     root = Path(__file__).resolve().parents[3]
     release = json.loads((root / "docs/theory/paper_c_release.json").read_text(encoding="utf-8"))
+    metadata = json.loads((root / "docs/theory/paper_c_zenodo.json").read_text(encoding="utf-8"))
+    latest = metadata["latest_deposit"]
     assert release["publication"] == {
-        "doi": "10.5281/zenodo.22678165",
-        "published_date": "2026-09-09",
-        "version": "1.0.0",
+        "doi": latest["doi"],
+        "published_date": latest["publication_date"],
+        "version": latest["version"],
     }
 
 

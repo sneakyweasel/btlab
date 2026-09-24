@@ -22,7 +22,7 @@ none for Theorem 3.1. Proposition 3.2 needs the two-dimensional lift.
 Decision: PROMOTE. This entry replaces the two 24 September Theorem 3.1
 entries. Record: [single-floor dossier](problems/juggler_paper_b_single_floor.md).
 
-## 2026-09-24 -- Paper C 1.3.0 prepared with contagion 37/50
+## 2026-09-24 -- Paper C 1.3.0 published with contagion 37/50
 
 **EXACT — HUMAN PROOF (one written input, not human-reviewed):** Paper C's new
 Theorem 5.20 feeds the two depth-five productions into the recursion through
@@ -35,9 +35,10 @@ at `5/8`, with the threshold `3/8`, is now kernel-checked, since
 that, and the ledger keeps that row at EXACT — HUMAN PROOF until its statement
 coverage is audited. The least depth constants drop to 14 (fair) and 14, 28,
 132, 866 (one-sided) at `13/50`, each Arb-certified from `C = 5`. Remaining
-premise: human review of Paper B's Appendix D. Decision: prepared, not
-deposited. Record: [depth-five dossier](problems/juggler_depth_five_production.md),
-Result 37, and the [deposit record](theory/paper_deposits.md).
+premise: human review of Paper B's Appendix D. Decision: published 24 September
+2026, doi:10.5281/zenodo.22947659; no Paper B 1.2.1 for its now-stale D.8
+sentence. Record: [depth-five dossier](problems/juggler_depth_five_production.md),
+Results 37 and 38, and the [deposit record](theory/paper_deposits.md).
 
 ## 2026-09-24 -- Paper B 1.2.0 published with the depth-five fair-share theorem
 

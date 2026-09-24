@@ -16,19 +16,20 @@ which is what the other habit costs.
 | --- | --- | --- | --- | --- |
 | A | Lower Bounds for Cycle Lengths in the Juggler Map | 1.2.1, not deposited | [1.0.2](https://doi.org/10.5281/zenodo.22865237) | [10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) |
 | B | Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers | 1.2.0, deposited | [1.2.0](https://doi.org/10.5281/zenodo.22946276) | [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) |
-| C | Fate Contagion and Termination Criteria for the Juggler Map | 1.3.0, not deposited | [1.1.0](https://doi.org/10.5281/zenodo.22865705) | [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) |
+| C | Fate Contagion and Termination Criteria for the Juggler Map | 1.3.0, deposited | [1.3.0](https://doi.org/10.5281/zenodo.22947659) | [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) |
 | D | No m-cycles of the 3n−1 map for m ≤ 61 | 1.1.0, not deposited | [1.0.0](https://doi.org/10.5281/zenodo.22876190) | [10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) |
 | E | The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions | 0.7.1, local preprint | None | Not assigned |
 
 Every DOI in this file was resolved against doi.org on 21 September 2026, and each
 concept DOI was confirmed to return the version named beside it as the latest. Paper
 B's rows for 1.1.2 and 1.2.0 were read from the Zenodo API on 24 September 2026,
-where its concept record returns 1.2.0. All
+where its concept record returns 1.2.0. Paper C's row for 1.3.0 was read from the
+Zenodo API on 25 September 2026, where its concept record returns 1.3.0. All
 four papers are resource type Publication / Preprint, CC BY 4.0, English, open
 access.
 
-The repository is ahead of every record except Paper B's, whose deposited 1.2.0 is
-the repository version. Being ahead is the normal state here: a revision
+The repository is ahead of every record except those of Papers B and C, whose
+deposited 1.2.0 and 1.3.0 are the repository versions. Being ahead is the normal state here: a revision
 is prepared, checked and committed, and deposited only when the author decides to.
 `tools/build_paper_*.py` prints which state a paper is in, and
 `ZENODO_FIELDS.txt` says so at the top of the generated export.
@@ -114,15 +115,15 @@ deposited file recovered from git. No page of the mathematical text moved.
 
 ### Paper C, Fate Contagion and Termination Criteria for the Juggler Map
 
-Prepared 1.3.0, 24 September 2026. Raises contagion to 37/50 and lowers the rate threshold to 13/50 through Paper B's Theorem 6.3 (Section 5.10), and records that the log-mass bound at 5/8, with the threshold 3/8, is now kernel-checked. No new deposit has been made.
+Published 1.3.0, 24 September 2026. Raises contagion to 37/50 and lowers the rate threshold to 13/50 through Paper B's Theorem 6.3 (Section 5.10), and records that the log-mass bound at 5/8, with the threshold 3/8, is now kernel-checked. See the [release manifest](paper_c_release.json).
 
 Prepared 1.2.0, 22 September 2026. Adds the full written OOEE proof, contagion at 5/8, rate threshold 3/8, and the scale-average pressure criterion. The fully machine-checked contagion baseline was then 100/203. Not deposited.
 
-Record [zenodo.org/records/22865705](https://zenodo.org/records/22865705).
+Record [zenodo.org/records/22947659](https://zenodo.org/records/22947659), the latest version.
 
 | Version | DOI | Date |
 | --- | --- | --- |
-| 1.3.0 | not deposited | 24 September 2026 |
+| 1.3.0 | [10.5281/zenodo.22947659](https://doi.org/10.5281/zenodo.22947659) | 24 September 2026 |
 | 1.2.0 | not deposited | 22 September 2026 |
 | 1.1.1 | not deposited | 21 September 2026 |
 | 1.1.0 | [10.5281/zenodo.22865705](https://doi.org/10.5281/zenodo.22865705) | 21 September 2026 |
@@ -134,6 +135,22 @@ the exponent \(\lambda_{\mathrm{ideal}}\) in the statements. 1.1.1 is editorial:
 generic acknowledgments, the availability section and two reference DOIs. It is a
 patch rather than a second 1.1.0 because 1.1.0 is published, and one published
 version number cannot name two different documents.
+
+Each version carries one file, `Fate_Contagion_Juggler_Map.pdf`, and the md5 the
+Zenodo API reported on 25 September 2026 is that of a committed PDF: 1.0.0 is
+606,411 bytes, md5 `1bd26c1a4ca2a7c13b6585cc84958f58`, the PDF of commit
+`1ed00a74d` (sha256
+`168c613509670e1a8f5c31b62e86606843294799ee4e119cdc67ea3db121bd13`); 1.1.0 is
+723,199 bytes, md5 `e3afd29244de03089be9bcc13b3a2597`, the PDF of commit
+`2cdc62495` (sha256
+`4d1d2f7f1f75e987cae98de02380f0d533607f414907b5a0e4e7a12a007298db`); 1.3.0 is
+787,194 bytes, md5 `ad66599493a9d78215aac4e1513d73ca`, the PDF of commit
+`c43d7699f` (sha256
+`3b969e59fc33f5b5aa499557bf02a316a09735a9ed0b7b628804c871309d48cb`). The 1.3.0
+availability section names 1.1.0 and 1.0.0 as the earlier versions and stays
+accurate after the deposit. The deposited 1.3.0 description omits the use-of-AI
+paragraph that closes `ZENODO_FIELDS.txt`, and the 1.1.0 description has none;
+the 1.3.0 PDF carries that statement in its acknowledgments.
 
 ### Paper D, No m-cycles of the 3n−1 map for m ≤ 61
 
