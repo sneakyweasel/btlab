@@ -7,6 +7,8 @@ on:
 jobs:
   python:
     runs-on: ubuntu-latest
+    # Every gate after Install runs even when an earlier one fails, so a single
+    # pre-existing failure cannot hide the state of the others; the job still fails.
     steps:
       - uses: actions/checkout@v4
         with:
@@ -19,22 +21,31 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install
+        id: install
         run: python -m pip install -e ".[dev]" -r tools/requirements-formalpedia.txt
       - name: Ledger is generated
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: python tools/render_theorem_ledger.py --check
       - name: Research references and output manifests
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: python tools/lab.py check
       - name: Preprints and publication kits
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: python tools/preprints.py --check
       - name: Public Lean naming and documentation
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: python tools/lean_style.py
       - name: Recorded axiom artifacts answer their checks
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: python tools/axiom_audit.py --check
       - name: Ruff (runtime, unused, repeated keys)
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: python -m ruff check .
       - name: Pyright (bt core)
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: python -m pyright src/bt
       - name: Pytest
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         # `-n auto --dist loadfile` is what pyproject.toml's addopts comment says to use for
         # the full suite; it is deliberately not in addopts because it spawns workers for
         # targeted runs too. This job IS the full suite, so it is the case that comment
