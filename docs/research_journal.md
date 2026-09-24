@@ -18,10 +18,14 @@ decision, and canonical record. Keep the journal brief.
 matching lower bounds through the family CDF. Mathlib's null set of
 `LiouvilleWith` numbers gives `dim_H K_alpha=2/3` for Lebesgue-almost every
 `alpha>1`; the quadratic norm form gives positive finite two-thirds measure
-for every quadratic irrational slope, including the golden ratio. Five
-expanded original-count consumers; 180 family audit records. Open: a slope
-with smaller dimension, and critical measure for almost every slope.
-**PROMOTE**. See Section 27 of the
+for every quadratic irrational slope, including the golden ratio. At every
+Liouville slope the dimension is `0`, so Hausdorff dimension depends on the
+arithmetic of the slope while Minkowski dimension stays `2/3`.
+Continuation, also **EXACT — LEAN VERIFIED**: counts are locally constant
+at irrational boundaries, the weights converge in `l1` by a Scheffé argument,
+and the laws and Minkowski content are continuous at every irrational slope.
+The Gamma-normalized law, density and regularity package now covers the
+whole family as well. **PROMOTE**. See Sections 27–29 of the
 [Beatty note](theory/juggler_beatty_first_passage_note.md).
 
 ## 2026-09-24 -- Both depth-five productions written; contagion 0.74 conditional

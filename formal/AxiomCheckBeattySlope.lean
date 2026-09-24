@@ -1,6 +1,12 @@
 import Problems.Juggler.BeattyCounting
 import Problems.Juggler.BeattySlopeLocalContent
 import Problems.Juggler.BeattySlopeArithmetic
+import Problems.Juggler.BeattySlopeContinuity
+import Problems.Juggler.BeattySlopeLiouville
+import Problems.Juggler.BeattySlopeGammaHausdorff
+import Problems.Juggler.BeattySlopeGammaCDF
+import Problems.Juggler.BeattySlopeGammaLp
+import Problems.Juggler.BeattySlopeGammaMoments
 import Problems.Juggler.BeattySlopeProfileSpecialization
 
 /-! Recorded dependencies of the public arbitrary-boundary counting results.
@@ -192,5 +198,113 @@ namespace Problems.Juggler
 #print axioms BeattySlope.dio_of_quadratic
 #print axioms BeattySlope.quadratic_cluster_hausdorff
 #print axioms BeattySlope.golden_passageCluster_hausdorff
+#print axioms BeattySlope.cmp_eventually
+#print axioms BeattySlope.cmp_eventually_all
+#print axioms BeattySlope.firstPassage_eventually
+#print axioms BeattySlope.passageCount_eventually
+#print axioms BeattySlope.passageIndex_eventually
+#print axioms BeattySlope.passageJumpWeight_tendsto
+#print axioms BeattySlope.scheffe_tsum
+#print axioms BeattySlope.passageJumpWeight_l1
+#print axioms BeattySlope.passagePhase_tendsto
+#print axioms BeattySlope.passageProfile_tendsto
+#print axioms BeattySlope.passageLaw_slope_tendsto
+#print axioms BeattySlope.passageContent_tendsto
+#print axioms BeattySlope.inv_tendsto_irrNhds
+#print axioms BeattySlope.passageContent_slope_tendsto
+#print axioms BeattySlope.passageLaw_slope_cont
+#print axioms BeattySlope.passageGammaScale_pos
+#print axioms BeattySlope.passageGamma_phase_asymptotic
+#print axioms BeattySlope.passageGammaProfile_periodic
+#print axioms BeattySlope.passageGamma_periodic_asymptotic
+#print axioms BeattySlope.passageGamma_asymptotic_recip
+#print axioms BeattySlope.passageGammaAmp_measurable
+#print axioms BeattySlope.passageGammaAmp_pos
+#print axioms BeattySlope.passageGammaAmp_bounds
+#print axioms BeattySlope.passageProfile_ae_deriv_zero
+#print axioms BeattySlope.passageGammaAmp_ae_deriv
+#print axioms BeattySlope.passageGammaLaw_absCont
+#print axioms BeattySlope.passageLaw_mutSingular_gamma
+#print axioms BeattySlope.passageGammaLaw_clusterSet
+#print axioms BeattySlope.passageGammaLaw_cdf_continuous
+#print axioms BeattySlope.passageGamma_empiricalLaw
+#print axioms BeattySlope.passageGamma_threshold_freq
+#print axioms BeattySlope.passageGamma_average_tendsto
+#print axioms BeattySlope.passageGammaDensity_measurable
+#print axioms BeattySlope.passageGammaJumpLeft_pos
+#print axioms BeattySlope.passageGammaJumpLeft_le_right
+#print axioms BeattySlope.passageGammaLaw_occupation
+#print axioms BeattySlope.passageGammaLaw_eq_sum_log
+#print axioms BeattySlope.passageGammaLaw_eq_withDensity
+#print axioms BeattySlope.passageGammaDensity_lintegral
+#print axioms BeattySlope.passageGammaDensity_ae_lt_top
+#print axioms BeattySlope.passageGammaDensity_nonpos
+#print axioms BeattySlope.passage_log_jump_normalization
+#print axioms BeattySlope.passageGammaJump_bounds
+#print axioms BeattySlope.passageGammaLaw_ae_envelope
+#print axioms BeattySlope.passageGammaLaw_integrable_rpow
+#print axioms BeattySlope.passageGamma_endpoint_moment
+#print axioms BeattySlope.passageGammaLaw_moment_hasSum
+#print axioms BeattySlope.passageGammaAmp_tendsto_left
+#print axioms BeattySlope.passageGammaAmp_lowerSemicont
+#print axioms BeattySlope.passageGammaAmp_endpoints
+#print axioms BeattySlope.passageGammaAmp_image_ordConn
+#print axioms BeattySlope.passageGammaLaw_support_image
+#print axioms BeattySlope.passageGammaLaw_support_jumps
+#print axioms BeattySlope.passageGammaLaw_support_ordConn
+#print axioms BeattySlope.passageGammaSupport_isCompact
+#print axioms BeattySlope.passageGamma_cluster_iff_support
+#print axioms BeattySlope.passageGammaJump_left_lt_right
+#print axioms BeattySlope.passageGammaJump_mem_support
+#print axioms BeattySlope.passageGamma_endpoints_mem
+#print axioms BeattySlope.passageGammaLaw_support_eq_Icc
+#print axioms BeattySlope.passageGamma_endpoints_bounds
+#print axioms BeattySlope.passageGamma_cluster_iff
+#print axioms BeattySlope.passageGammaLaw_Ioo_pos
+#print axioms BeattySlope.passageGammaLaw_cdf_strictMono
+#print axioms BeattySlope.passageGammaDensity_lsc
+#print axioms BeattySlope.passageGammaDensity_top_of_tails
+#print axioms BeattySlope.volume_passageGammaDensity_top
+#print axioms BeattySlope.isOpen_passageGammaTail
+#print axioms BeattySlope.isGδ_passageGammaBlowupSet
+#print axioms BeattySlope.passageGammaTail_inter_open
+#print axioms BeattySlope.closure_passageGammaBlowupSet
+#print axioms BeattySlope.passageGammaBlowup_subset_top
+#print axioms BeattySlope.volume_passageGammaBlowupSet
+#print axioms BeattySlope.passageGammaDensity_superlevel
+#print axioms BeattySlope.passageGammaDensity_no_ae_bound
+#print axioms BeattySlope.passageGammaJump_length_le
+#print axioms BeattySlope.passageGammaLaw_concentration
+#print axioms BeattySlope.passageGammaLaw_cdf_holder
+#print axioms BeattySlope.passageGammaDensity_weak_three
+#print axioms BeattySlope.passageGammaDensity_envelope
+#print axioms BeattySlope.passageGammaDensity_rpow_lt_top
+#print axioms BeattySlope.passageGammaDensity_memLp
+#print axioms BeattySlope.passageGammaCdf_not_lipschitzOn
+#print axioms BeattySlope.passageGammaBlowupSet_eq_top
+#print axioms BeattySlope.passageGammaDensity_top_hausdorff
+#print axioms BeattySlope.passageGammaDensity_top_dimH_le
+#print axioms BeattyPhase.jumpProfileRight_le_of_lt
+#print axioms BeattyPhase.jumpProfile_le_right
+#print axioms BeattyPhase.jumpRange_bracket
+#print axioms BeattyPhase.jumpRange_eq_of_bracket
+#print axioms BeattyPhase.mem_cutGaps
+#print axioms BeattyPhase.exists_cutGap
+#print axioms BeattyPhase.cutGap_eq_of_mem
+#print axioms BeattyPhase.cutGap_eq_of_no_cut
+#print axioms BeattyPhase.card_cutGaps_le
+#print axioms BeattyPhase.jumpRange_subset_cuts
+#print axioms BeattyPhase.jumpGap_mass_le
+#print axioms BeattyPhase.jumpRange_hausdorff_zero
+#print axioms BeattyPhase.dimH_eq_zero_of_hausdorff
+#print axioms BeattySlope.tailMass_nonneg
+#print axioms BeattySlope.chain_no_cut_between
+#print axioms BeattySlope.chain_label_mem
+#print axioms BeattySlope.card_earlyCuts_le
+#print axioms BeattySlope.mem_earlyCuts
+#print axioms BeattySlope.chain_cut_bound
+#print axioms BeattySlope.tailMass_le
+#print axioms BeattySlope.liouville_cluster_hausdorff
+#print axioms BeattySlope.liouville_cluster_dimH
 
 end Problems.Juggler

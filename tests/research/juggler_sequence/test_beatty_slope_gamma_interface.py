@@ -1,4 +1,4 @@
-"""Audit the actual-count Hausdorff theorems for the irrational slope family."""
+"""Audit the actual-count Gamma-normalized law for the irrational family."""
 from pathlib import Path
 import re
 import shutil
@@ -9,21 +9,20 @@ import pytest
 ROOT = Path(__file__).resolve().parents[3]
 STANDARD = {"propext", "Classical.choice", "Quot.sound"}
 EXPECTED = {
-    f"Problems.Juggler.BeattySlopeHausdorffChecks.{name}" for name in (
-        "actual_family_hausdorff_finite", "actual_ae_hausdorff_dim",
-        "actual_dio_hausdorff_pos", "actual_quadratic_hausdorff", "actual_golden_hausdorff",
-        "actual_liouville_hausdorff", "actual_liouville_dim",
+    f"Problems.Juggler.BeattySlopeGammaChecks.{name}" for name in (
+        "actual_gamma_phase", "actual_gamma_cluster",
+        "actual_gamma_law_type", "actual_gamma_regularity",
     )
 }
 
 
-def test_arbitrary_slope_hausdorff_consumers():
-    """Compile expanded Hausdorff consumers and reject any nonstandard proof premise."""
+def test_slope_gamma_consumers():
+    """Compile expanded Gamma-law consumers and reject any nonstandard proof premise."""
     lake = shutil.which("lake")
     if lake is None:
         pytest.skip("no lake on PATH")
     result = subprocess.run(
-        [lake, "env", "lean", "InterfaceCheckBeattySlopeHausdorff.lean"],
+        [lake, "env", "lean", "InterfaceCheckBeattySlopeGamma.lean"],
         cwd=ROOT / "formal", capture_output=True, text=True,
         encoding="utf-8", errors="replace", timeout=600,
     )

@@ -1716,5 +1716,319 @@
    "tests/research/juggler_sequence/test_layer_completeness.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-continuity",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "At every irrational boundary beta0 in (0,1), every actual first-passage count passageCount beta n and every crossing index floor(r/beta) is locally constant in beta, because each comparison of beta*k with an integer is strict. Hence each jump weight w_r(beta) is continuous at beta0. Along irrational beta tending to beta0, the exact total mass beta/(1-beta) converges, and a Scheffe argument gives sum_r |w_r(beta)-w_r(beta0)| -> 0 with no uniform constant. The profile F_beta(t) converges at every non-atom phase t, every bounded continuous phase average int_(0,1] g(F_beta(t)) dt converges (weak convergence of the singular laws), and the exact Minkowski content M(beta) converges. In slope coordinates the content and the laws are continuous along irrational slopes at every irrational alpha0>1. Behaviour at rational slopes is not asserted.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeContinuity.lean",
+  "decl": [
+   "cmp_eventually",
+   "firstPassage_eventually",
+   "passageCount_eventually",
+   "passageIndex_eventually",
+   "passageJumpWeight_tendsto",
+   "scheffe_tsum",
+   "passageJumpWeight_l1",
+   "passagePhase_tendsto",
+   "passageProfile_tendsto",
+   "passageLaw_slope_tendsto",
+   "passageContent_tendsto",
+   "passageContent_slope_tendsto",
+   "passageLaw_slope_cont"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_continuity_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-gamma-amplitude",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational 0<beta<1, equivalently every irrational slope alpha=1/beta>1, with q=1-beta, a=-log q, the actual counts c_r and the exact Gamma quotient D_r=Gamma(r/beta)/(r!*Gamma(r*q/beta+1)): c_r/D_r-q^(delta_r)*F_beta(delta_r) -> 0, so the Gamma-normalized counts follow the unit-periodic amplitude q^(frac t)*F_beta(frac t). No rate is claimed. This extends the logarithmic-slope Gamma rows to the whole irrational family.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeGammaAmplitude.lean",
+  "decl": [
+   "passageGammaScale_pos",
+   "passageGamma_phase_asymptotic",
+   "passageGammaProfile_periodic",
+   "passageGamma_periodic_asymptotic",
+   "passageGamma_asymptotic_recip"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_gamma_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-gamma-law",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational 0<beta<1, equivalently every irrational slope alpha=1/beta>1, with q=1-beta, a=-log q, the actual counts c_r and the exact Gamma quotient D_r=Gamma(r/beta)/(r!*Gamma(r*q/beta+1)): the empirical laws of c_r/D_r converge weakly to eta_beta, the image of uniform phase measure under q^t*F_beta(t); eta_beta is absolutely continuous, atomless, gives the binomial cluster set zero mass and is mutually singular with the binomial-normalized law; threshold frequencies and bounded continuous averages converge. This extends the logarithmic-slope Gamma rows to the whole irrational family.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeGammaLaw.lean",
+  "decl": [
+   "passageGammaAmp_measurable",
+   "passageGammaAmp_pos",
+   "passageGammaAmp_bounds",
+   "passageProfile_ae_deriv_zero",
+   "passageGammaAmp_ae_deriv",
+   "passageGammaLaw_absCont",
+   "passageLaw_mutSingular_gamma",
+   "passageGammaLaw_clusterSet",
+   "passageGammaLaw_cdf_continuous",
+   "passageGamma_empiricalLaw",
+   "passageGamma_threshold_freq",
+   "passageGamma_average_tendsto"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_gamma_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-gamma-density",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational 0<beta<1, equivalently every irrational slope alpha=1/beta>1, with q=1-beta, a=-log q, the actual counts c_r and the exact Gamma quotient D_r=Gamma(r/beta)/(r!*Gamma(r*q/beta+1)): eta_beta has density h(y)=(1/(a*y))*sum_r 1_(L_r,U_r)(y) with L_r=q^(delta_r)F(delta_r), U_r=q^(delta_r)(F(delta_r)+w_r); h integrates to one, is finite almost everywhere and sum_r log(1+w_r/F(delta_r))=a. This extends the logarithmic-slope Gamma rows to the whole irrational family.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeGammaDensity.lean",
+  "decl": [
+   "passageGammaDensity_measurable",
+   "passageGammaJumpLeft_pos",
+   "passageGammaJumpLeft_le_right",
+   "passageGammaLaw_occupation",
+   "passageGammaLaw_eq_sum_log",
+   "passageGammaLaw_eq_withDensity",
+   "passageGammaDensity_lintegral",
+   "passageGammaDensity_ae_lt_top",
+   "passageGammaDensity_nonpos",
+   "passage_log_jump_normalization"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_gamma_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-gamma-moments",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational 0<beta<1, equivalently every irrational slope alpha=1/beta>1, with q=1-beta, a=-log q, the actual counts c_r and the exact Gamma quotient D_r=Gamma(r/beta)/(r!*Gamma(r*q/beta+1)): eta_beta is concentrated on [1-beta,1/(1-beta)], every real power is integrable and each moment of order p!=0 equals (1/(a p)) sum_r q^(p delta_r)((F+w_r)^p-F^p). This extends the logarithmic-slope Gamma rows to the whole irrational family.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeGammaMoments.lean",
+  "decl": [
+   "passageGammaJump_bounds",
+   "passageGammaLaw_ae_envelope",
+   "passageGammaLaw_integrable_rpow",
+   "passageGamma_endpoint_moment",
+   "passageGammaLaw_moment_hasSum"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_gamma_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-gamma-support",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational 0<beta<1, equivalently every irrational slope alpha=1/beta>1, with q=1-beta, a=-log q, the actual counts c_r and the exact Gamma quotient D_r=Gamma(r/beta)/(r!*Gamma(r*q/beta+1)): the support of eta_beta and the complete set of subsequential limits of c_r/D_r are the same nondegenerate interval [l,u] with 1-beta<=l<u<=1/(1-beta); the CDF is strictly increasing there, h is lower semicontinuous and {h=infinity} is null. This extends the logarithmic-slope Gamma rows to the whole irrational family.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeGammaSupport.lean",
+  "decl": [
+   "passageGammaAmp_tendsto_left",
+   "passageGammaAmp_lowerSemicont",
+   "passageGammaAmp_endpoints",
+   "passageGammaAmp_image_ordConn",
+   "passageGammaLaw_support_image",
+   "passageGammaLaw_support_jumps",
+   "passageGammaLaw_support_ordConn",
+   "passageGammaSupport_isCompact",
+   "passageGamma_cluster_iff_support",
+   "passageGammaJump_left_lt_right",
+   "passageGammaJump_mem_support",
+   "passageGamma_endpoints_mem",
+   "passageGammaLaw_support_eq_Icc",
+   "passageGamma_endpoints_bounds",
+   "passageGamma_cluster_iff",
+   "passageGammaLaw_Ioo_pos",
+   "passageGammaLaw_cdf_strictMono",
+   "passageGammaDensity_lsc",
+   "passageGammaDensity_top_of_tails",
+   "volume_passageGammaDensity_top"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_gamma_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-gamma-blowup",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational 0<beta<1, equivalently every irrational slope alpha=1/beta>1, with q=1-beta, a=-log q, the actual counts c_r and the exact Gamma quotient D_r=Gamma(r/beta)/(r!*Gamma(r*q/beta+1)): the set of points in infinitely many jump intervals is a dense null G-delta in [l,u] where h is infinite, every superlevel set meets every open set in the support interior in positive measure, and no version of h is locally essentially bounded there. This extends the logarithmic-slope Gamma rows to the whole irrational family.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeGammaBlowup.lean",
+  "decl": [
+   "isOpen_passageGammaTail",
+   "isGδ_passageGammaBlowupSet",
+   "passageGammaTail_inter_open",
+   "closure_passageGammaBlowupSet",
+   "passageGammaBlowup_subset_top",
+   "volume_passageGammaBlowupSet",
+   "passageGammaDensity_superlevel",
+   "passageGammaDensity_no_ae_bound"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_gamma_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-gamma-concentration",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational 0<beta<1, equivalently every irrational slope alpha=1/beta>1, with q=1-beta, a=-log q, the actual counts c_r and the exact Gamma quotient D_r=Gamma(r/beta)/(r!*Gamma(r*q/beta+1)): eta_beta(A)<=C*lambda(A)^(1/3), the CDF is globally 1/3-Hoelder, and lambda{h>T}<=D*T^(-3/2) (weak L^(3/2)). This extends the logarithmic-slope Gamma rows to the whole irrational family.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeGammaConcentration.lean",
+  "decl": [
+   "passageGammaJump_length_le",
+   "passageGammaLaw_concentration",
+   "passageGammaLaw_cdf_holder",
+   "passageGammaDensity_weak_three"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_gamma_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-gamma-lp",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational 0<beta<1, equivalently every irrational slope alpha=1/beta>1, with q=1-beta, a=-log q, the actual counts c_r and the exact Gamma quotient D_r=Gamma(r/beta)/(r!*Gamma(r*q/beta+1)): h belongs to L^p for every 1<=p<3/2. This extends the logarithmic-slope Gamma rows to the whole irrational family.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeGammaLp.lean",
+  "decl": [
+   "passageGammaDensity_envelope",
+   "passageGammaDensity_rpow_lt_top",
+   "passageGammaDensity_memLp"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_gamma_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-gamma-cdf",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational 0<beta<1, equivalently every irrational slope alpha=1/beta>1, with q=1-beta, a=-log q, the actual counts c_r and the exact Gamma quotient D_r=Gamma(r/beta)/(r!*Gamma(r*q/beta+1)): the CDF of eta_beta is not Lipschitz on any open set meeting (l,u). This extends the logarithmic-slope Gamma rows to the whole irrational family.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeGammaCDF.lean",
+  "decl": [
+   "passageGammaCdf_not_lipschitzOn"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_gamma_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-gamma-hausdorff",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational 0<beta<1, equivalently every irrational slope alpha=1/beta>1, with q=1-beta, a=-log q, the actual counts c_r and the exact Gamma quotient D_r=Gamma(r/beta)/(r!*Gamma(r*q/beta+1)): {h=infinity} equals the limsup of the jump intervals, has H^s-measure zero for s>2/3 and Hausdorff dimension at most 2/3. This extends the logarithmic-slope Gamma rows to the whole irrational family.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeGammaHausdorff.lean",
+  "decl": [
+   "passageGammaBlowupSet_eq_top",
+   "passageGammaDensity_top_hausdorff",
+   "passageGammaDensity_top_dimH_le"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_gamma_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-jump-cover-hausdorff-zero",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For a cumulative jump profile F with summable nonnegative weights and injective phases in (0,1), and right trace R, every point y of the range closure satisfies F x <= y <= R x for some x in [0,1], and then y = F x or y = R x. For any finite cut set C containing 0 and 1, the range closure lies in the union of the singletons {F c},{R c} and the intervals [R c, F d] over consecutive cuts, whose lengths are the weights strictly between c and d. If for every eps>0 some such cover has all lengths <= eps and sum of s-th powers <= eps, the s-dimensional Hausdorff measure is zero; if this holds for every s>0 the Hausdorff dimension is zero.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattyJumpCover.lean",
+  "decl": [
+   "jumpProfileRight_le_of_lt",
+   "jumpProfile_le_right",
+   "jumpRange_bracket",
+   "jumpRange_eq_of_bracket",
+   "mem_cutGaps",
+   "exists_cutGap",
+   "cutGap_eq_of_mem",
+   "cutGap_eq_of_no_cut",
+   "card_cutGaps_le",
+   "jumpRange_subset_cuts",
+   "jumpGap_mass_le",
+   "jumpRange_hausdorff_zero",
+   "dimH_eq_zero_of_hausdorff"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_hausdorff_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-liouville-dimension-zero",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every Liouville number alpha>1, the complete set of real subsequential limits of the actual ratios r*c_r/choose(m_r-1,r-1), m_r=floor(alpha*r), has zero s-dimensional Hausdorff measure for every s>0, hence Hausdorff dimension 0, although its Minkowski dimension is 2/3. For a good approximation p/q with theta=q*alpha-p, the exact identity q*frac(r*alpha)=Z(r)+r*theta labels rotation chains by the integer Z(r) in [0,q]; no early phase separates two later phases of one chain, so the cut cover by the first E phases has sum of s-th powers at most (q+1)*T(E)^s+(E+2)*T(N)^s with N=floor(1/|theta|) and T(M)<=2b*M^(-1/2) from the proved three-halves weight bound. Liouville approximations make both terms small. Hausdorff dimension is therefore not constant on the family: it is 2/3 for almost every slope and 0 at every Liouville slope.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeLiouville.lean",
+  "decl": [
+   "tailMass_nonneg",
+   "chain_no_cut_between",
+   "chain_label_mem",
+   "card_earlyCuts_le",
+   "mem_earlyCuts",
+   "chain_cut_bound",
+   "tailMass_le",
+   "liouville_cluster_hausdorff",
+   "liouville_cluster_dimH"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_hausdorff_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
  }
 ]

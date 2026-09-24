@@ -18,10 +18,11 @@ weakly to the empirical law weighted by its value to the two-thirds power,
 with the same geometric scale factor. All of these statements hold for every
 irrational slope above one and are proved in Lean for the actual integer
 word counts. The Hausdorff dimension of the accumulation set is at most
-`2/3` for every such slope, and exactly `2/3` for Lebesgue-almost every
-slope; every quadratic irrational slope has positive finite two-thirds
-Hausdorff measure.
-At the logarithmic slope `alpha=log_2 3`, the
+`2/3` for every such slope, exactly `2/3` for Lebesgue-almost every
+slope, and `0` at every Liouville slope; every quadratic irrational slope
+has positive finite two-thirds Hausdorff measure. The weights, laws and Minkowski content depend
+continuously on the slope at every irrational slope.
+For every irrational slope above one, the
 same integer counts in BGL's exact Gamma normalization have an absolutely
 continuous limiting law, mutually singular with the first. We give its
 density as a nonnegative series over the exponentially rescaled jump intervals.
@@ -32,8 +33,8 @@ dense null set of infinite values. It is in weak `L^(3/2)` and every
 `L^p` with `1<=p<3/2`; its CDF is `1/3`-Holder but nowhere locally
 Lipschitz in the support interior. The entire infinite-density set has
 Hausdorff dimension at most `2/3`. These conclusions and all real-power
-moments are also Lean-checked; the Gamma-law family extension remains
-separate. At the same slope, classical irrationality measures for
+moments are also Lean-checked for the whole family. At the logarithmic
+slope `alpha=log_2 3`, classical irrationality measures for
 `log_2 3` give written positive lower bounds on the Hausdorff dimension of
 the first cluster set: `2/39.9` with Rhin's effective constant and
 `2/(3*4.1163051)=0.16195...` from Wu and Wang. The underlying
@@ -133,7 +134,8 @@ The exact Gamma-normalized
 first-passage amplitude in Section 1.1 and its absolutely continuous empirical
 law, density and real-power moment identities in Section 21, and the exact
 interval support and density topology in Section 22, are also Lean-checked.
-The path dictionary with BGL, the spectral corollary in
+Section 29 extends the Gamma-normalized package to every irrational
+slope above one. The path dictionary with BGL, the spectral corollary in
 Section 17 and the Hausdorff lower bounds from Rhin and from Wu and Wang
 in Section 20 remain written deductions (**EXACT — HUMAN PROOF**).
 This is a standalone working
@@ -740,7 +742,9 @@ bounded phase kernel.
 | Positive Hausdorff lower bounds at the logarithmic slope from the Rhin and Wu–Wang measures | Written proof in Section 20 (**EXACT — HUMAN PROOF**) |
 | Gamma-normalized law, density, support, moments and regularity | Lean proved at the logarithmic slope in Sections 21–23 |
 | Phase theorem, cluster set, singular law, sharp gaps, Minkowski content and geometric measure for every irrational `alpha>1` | Lean proved in Sections 24–26 |
-| Family Hausdorff upper bound; dimension `2/3` for almost every slope; positive finite measure for quadratic irrational slopes | Lean proved in Section 27 |
+| Family Hausdorff upper bound; dimension `2/3` for almost every slope; positive finite measure for quadratic irrational slopes; dimension `0` at Liouville slopes | Lean proved in Section 27 |
+| `l1` continuity of the weights, weak continuity of the laws and continuity of the Minkowski content at irrational slopes | Lean proved in Section 28 |
+| Gamma-normalized law, density, moments, interval support and regularity for every irrational `alpha>1` | Lean proved in Section 29 |
 | Quantitative `O(r^(-1/2))` error | Written proof; this continuation proves `o(1)` only |
 
 These distinctions must be preserved in any communication about the result.
@@ -1944,9 +1948,9 @@ converging to the probability measure defined by the explicit density.
 Only `propext`, `Classical.choice` and `Quot.sound` are permitted.
 No occupation, endpoint-mass or moment-integrability premise remains in
 these concrete statements. Section 22 completes the support description.
-Rates and the Gamma-law family extension remain separate questions. The
-qualitative first-passage theorem for every irrational slope is now checked
-in Section 24.
+Rates remain a separate question. The qualitative first-passage theorem
+for every irrational slope is checked in Section 24, and Section 29 extends
+this Gamma-law package to the whole family.
 **PROMOTE** the complete density and real-power moment identification.
 
 ## 22. Interval support and the density's dense null blowup
@@ -2253,9 +2257,9 @@ now checks 160 theorem records, with geometry consumers in Sections 25–26,
 using only `propext`, `Classical.choice` and `Quot.sound`.
 
 This completes the qualitative phase theorem for the family. Section 25
-extends its cluster-set and singular empirical-law consequences. The
-Gamma-law package, convergence rates and arithmetic lower bounds still
-require separate family arguments. Section 26 completes the Minkowski package.
+extends its cluster-set and singular empirical-law consequences. Section 26
+completes the Minkowski package, Section 27 the Hausdorff geometry and
+Section 29 the Gamma-law package. Convergence rates remain open.
 The first atom is explicit for every slope: the only first-passage word with
 one odd letter is `O E^(m_1)`, so `c_1=1` and `w_1=beta*q^(floor(alpha)-1)`.
 This equals the logarithmic value `w_1=beta` of Section 13 exactly when
@@ -2460,8 +2464,8 @@ family audit now checks 160 theorem records with only `propext`,
 **Boundary.** Every assertion is for each fixed irrational slope. No
 convergence rate or uniformity as the slope varies is supplied. The
 universal Minkowski dimension does not supply a matching Hausdorff lower
-bound. The Gamma-normalized law and its density regularity remain
-formalized at the logarithmic slope. The BGL, Lapidus–Pomerance and local
+bound. Section 29 extends the Gamma-normalized law and its density
+regularity to the whole family. The BGL, Lapidus–Pomerance and local
 content precedents retain the roles described earlier; extension and
 formal verification do not establish a literature-priority claim.
 **PROMOTE** the whole-family gap and geometric-measure theorem. Canonical
@@ -2530,13 +2534,139 @@ with only `propext`, `Classical.choice` and `Quot.sound`.
 The almost-every statement does not decide any particular transcendental
 slope. At `alpha=log_2 3` the Lean layer still gives only the conditional
 bounds of Section 20; the Rhin and Wu–Wang corollaries (44a)–(44b) remain
-written proofs. Whether some irrational slope, necessarily in the null
-exceptional set, has `dim_H K_alpha<2/3`, and whether the critical
-two-thirds measure is positive for almost every slope, remain open. For
-classical Denjoy sets such a Diophantine dependence occurs [7]; no
-identification with that model is claimed.
+written proofs.
+
+**Liouville slopes — EXACT — LEAN VERIFIED.** The dimension is not constant
+on the family. For every Liouville number `alpha>1`,
+\[
+ \boxed{\quad \mathcal H^s(K_\alpha)=0\ (s>0),\qquad \dim_H K_\alpha=0,
+ \qquad \dim_M K_\alpha=\frac23. \quad}                               \tag{62a}
+\]
+Let `p/q` be a very good approximation and `theta=q alpha-p`. The exact
+identity `q frac(r alpha)=Z(r)+r theta`, with the integer label
+`Z(r)=rp-q floor(r alpha)` in `[0,q]`, sorts the orbit into at most `q+1`
+chains that move by `theta` per step. No early phase separates two later
+phases of the same chain. Cut the phase interval at the first `E` phases.
+By Section 14 the cluster set lies in the finitely many value intervals
+`[R(c),F(d)]` between consecutive cuts, together with the cut traces; the
+length of each interval is the jump mass strictly inside it. Only chain
+continuations and indices beyond `N=floor(1/|theta|)` remain, so
+\[
+ \sum_{\text{pieces}}\operatorname{diam}^s\le
+ (q+1)\,T(E)^s+(E+2)\,T(N)^s,\qquad T(M)\le 2b\,M^{-1/2},
+\]
+where `T` is the tail mass and `b` comes from the three-halves weight bound.
+Taking `E=q^a` with `as>=4` and a Liouville approximation with exponent
+large enough in terms of `a` and `s` makes both terms, and every diameter,
+arbitrarily small. The generic cover is in
+[BeattyJumpCover.lean](../../formal/Problems/Juggler/BeattyJumpCover.lean)
+and the arithmetic in
+[BeattySlopeLiouville.lean](../../formal/Problems/Juggler/BeattySlopeLiouville.lean);
+both consumers in the Hausdorff interface file state (62a) for the set of
+subsequential limits of the original integer ratios.
+
+Thus Minkowski dimension is universal (`2/3` for every irrational slope),
+whereas Hausdorff dimension is `2/3` for almost every slope, for every
+quadratic irrational and for every slope satisfying (45), but `0` at every
+Liouville slope. This is the Diophantine dependence known for classical
+Denjoy sets [7]; no identification with that model is claimed. Open: the
+exact dimension as a function of the irrationality exponent, and positivity
+of the critical two-thirds measure beyond the badly approximable slopes.
 **PROMOTE** the family Hausdorff upper bound, the almost-every-slope
-dimension theorem and the quadratic-irrational positive-measure theorem.
+dimension theorem, the quadratic-irrational positive-measure theorem and the
+Liouville dimension-zero theorem.
+
+## 28. Continuity in the slope
+
+**EXACT — LEAN VERIFIED.** Fix an irrational boundary `beta_0` in `(0,1)`.
+Every comparison `beta k <= m` with `k>=1` is strict at `beta_0`, since
+equality would make `beta_0` rational. Finitely many comparisons decide
+each first-passage word of a fixed length, so every actual count
+`c_n(beta)` and every crossing index `floor(r/beta)` is locally constant
+in `beta` near `beta_0`, including at nearby rational boundaries. Each
+jump weight `w_r(beta)` is therefore continuous at `beta_0`.
+
+The total mass needs no uniform tail bound. Along irrational `beta`,
+`sum_r w_r(beta)=beta/(1-beta)` converges to the value at `beta_0`, and
+the weights are nonnegative. Scheffé's argument for series, written with
+`|a-b|=(a-b)+2 max(b-a,0)` and dominated convergence for the positive
+parts, gives
+\[
+ \sum_{r\ge1}|w_r(\beta)-w_r(\beta_0)|\longrightarrow0
+ \qquad(\beta\to\beta_0,\ \beta\notin\mathbb Q).                 \tag{63}
+\]
+Phases are continuous at `beta_0` too. At every phase `t` that is not an
+atom of `beta_0`, the profile `F_beta(t)` converges to `F_(beta_0)(t)`:
+frozen weights converge by dominated convergence, and (63) controls the
+rest. The atoms are countable, so for every bounded continuous `g`,
+\[
+ \int_0^1 g(F_\beta(t))\,dt\longrightarrow\int_0^1 g(F_{\beta_0}(t))\,dt,
+\]
+which is weak convergence of the singular laws `mu_beta`. The profiles are
+uniformly bounded near `beta_0` and the amplitude is continuous, so the
+exact Minkowski content of Section 26 is continuous as well:
+\[
+ \mathcal M_\alpha\longrightarrow\mathcal M_{\alpha_0}
+ \qquad(\alpha\to\alpha_0,\ \alpha\notin\mathbb Q)                \tag{64}
+\]
+at every irrational slope `alpha_0>1`.
+
+[BeattySlopeContinuity.lean](../../formal/Problems/Juggler/BeattySlopeContinuity.lean)
+contains the local-constancy lemmas, the series Scheffé lemma and the
+limits; [InterfaceCheckBeattySlopeContinuity.lean](../../formal/InterfaceCheckBeattySlopeContinuity.lean)
+writes the weights through the original integer counts and the content
+through its explicit amplitude and profile integral. The family audit now
+checks 195 records with only standard axioms.
+
+**Rational slopes.** The argument does not reach a rational `alpha_0`. There
+the comparisons at multiples of the denominator become equalities, so the
+counts have separate one-sided limits, and many phases collapse onto finitely
+many rational points. We expect the laws to converge from each side to
+purely atomic laws with finitely many atoms; this needs a total-mass
+theorem at rational boundaries and is left open. **PROMOTE** the
+irrational-slope continuity theorem.
+
+## 29. The Gamma-normalized law for every irrational slope
+
+**Family Gamma package — EXACT — LEAN VERIFIED.** Fix any irrational
+`alpha>1`, put `beta=1/alpha`, `q=1-beta`, `a=-log q`, and
+\[
+ D_r=\frac{\Gamma(r/\beta)}{r!\,\Gamma(rq/\beta+1)}.
+\]
+Every statement of Sections 1.1 and 21–23 holds for the actual counts at
+this slope, with the family profile `F_alpha` and weights `w_r` of
+Sections 24–26 in place of the logarithmic ones:
+
+- `c_r/D_r-q^(delta_r)F_alpha(delta_r) -> 0`, so the Gamma-normalized
+  amplitude is `q^t F_alpha(t)`, extended periodically;
+- the empirical laws of `c_r/D_r` converge weakly to an absolutely
+  continuous law `eta_alpha`, mutually singular with `mu_alpha`;
+- `eta_alpha` has the explicit density (48) with the family jump endpoints,
+  unit mass, the logarithmic normalization (51) and every real-power moment (52);
+- its support and the complete set of subsequential limits of `c_r/D_r` are
+  one nondegenerate interval `[l_alpha,u_alpha]` inside `[q,1/q]`, with a strictly
+  increasing CDF;
+- the density is lower semicontinuous, infinite on a dense null G-delta,
+  locally essentially unbounded in the support interior, in weak `L^(3/2)`
+  and in `L^p` for `1<=p<3/2`; the CDF is `1/3`-Hölder but nowhere locally
+  Lipschitz there; and the infinite-density set has Hausdorff dimension at
+  most `2/3`.
+
+The logarithmic proofs used the concrete slope only through `0<beta<1` and
+the generic occupation, support and regularity modules, so the port needs
+no additional hypothesis. The upper bound `1/q` replaces the logarithmic
+envelope constant, and the family three-halves weight bound supplies the
+concentration estimate.
+
+The ten modules `BeattySlopeGamma*.lean` in `formal/Problems/Juggler/` hold
+the family statements; for example
+[BeattySlopeGammaAmplitude.lean](../../formal/Problems/Juggler/BeattySlopeGammaAmplitude.lean)
+and [BeattySlopeGammaSupport.lean](../../formal/Problems/Juggler/BeattySlopeGammaSupport.lean).
+[InterfaceCheckBeattySlopeGamma.lean](../../formal/InterfaceCheckBeattySlopeGamma.lean)
+writes out the integer counts and the Gamma quotient. The family audit
+now checks 288 records with only standard axioms. The written arithmetic
+improvement to `p<62/41` in the phase-collapse dossier uses Wu–Wang for
+`log_2 3` and is not extended here. **PROMOTE** the family Gamma package.
 
 ## References
 

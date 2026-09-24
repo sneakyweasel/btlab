@@ -864,7 +864,7 @@ The current coverage map is deliberately asymmetric:
 | Positive actual crossing counts | Every real `0<beta<=1` | Checked with an explicit odd-then-even word witness |
 | Complete null perfect cluster set and singular empirical law | Every irrational `alpha>1` | Checked with exact gaps, envelope extrema and CDF plateaus |
 | Three-halves gaps, exact Minkowski content and local geometric measure | Every irrational `alpha>1` | Checked for actual counts and metric tubes |
-| Gamma-law and density regularity | Logarithmic slope | Checked; family extension remains separate |
+| Gamma-law and density regularity | Every irrational `alpha>1` | Checked for actual counts and the exact Gamma quotient |
 | Matching Hausdorff lower bounds | Explicit Diophantine hypotheses | Conditional concrete results; arithmetic inputs and a family theorem still need assembly |
 
 The weighted version of `BeattyEndpointAsymptotic` is now proved below.
@@ -1333,7 +1333,7 @@ weights sum to `1/(alpha-1)`. The explicit strict jump profile and the
 original integer-count asymptotic now cover that whole family too. The complete null perfect cluster set, singular empirical law, exact
 CDF plateaus and envelope extrema now cover the family as well. The sharp
 three-halves gap asymptotic, exact Minkowski content and whole local geometric
-measure now cover every irrational slope too. The Gamma-law extension remains separate. Literature comparison
+measure now cover every irrational slope too, and so does the Gamma-law package. Literature comparison
 is separate from proof checking; existing paper claims and releases retain
 their earlier evidence labels.
 
@@ -1465,8 +1465,50 @@ slope. Mathlib's null set of `LiouvilleWith` numbers gives
 form gives explicit bad approximability for every quadratic irrational, so
 those slopes, including the golden ratio, have positive finite two-thirds
 measure. Five expanded consumers and 20 new audit records use only standard
-axioms; see Section 27 of the working note. **PROMOTE**. Open: a slope with
-`dim_H K_alpha<2/3`, and critical-measure positivity for almost every slope.
+axioms; see Section 27 of the working note. **PROMOTE**.
+
+Continuation, **EXACT — LEAN VERIFIED**: at every Liouville slope the
+cluster set has zero Hausdorff measure in every positive dimension, so
+`dim_H K_alpha=0` while `dim_M K_alpha=2/3`. Exact rotation chains labelled
+by `Z(r)=rp-q floor(r alpha)` and a generic cut cover of the jump range give
+the covers. Hausdorff dimension therefore depends on the arithmetic of the
+slope. Open: the dimension as a function of the irrationality exponent, and
+critical-measure positivity beyond badly approximable slopes.
+
+### Continuity in the slope (24 September)
+
+```text
+Mathematical target     Dependence of weights, laws and Minkowski content on the slope.
+Novelty hypothesis      Continuity at every irrational slope without uniform constants.
+Falsifier               A count that is not locally constant, or mass escaping to infinity.
+Already killed by?      No; no obstruction record concerns slope dependence.
+Existing machinery      Exact total mass, strict comparisons at irrational boundaries, Tannery's theorem.
+Maximum Phase-0 scope   One continuity module and an interface consumer.
+Promotion criterion     Actual-count statements with standard axioms only.
+Stop criterion          Rational endpoints stay out of scope.
+```
+
+**EXACT — LEAN VERIFIED.** At an irrational boundary each actual count and
+crossing index is locally constant, so each weight is continuous. The exact
+total mass `beta/(1-beta)` and a Scheffé argument give `l1` convergence of
+the weights along irrational boundaries, with no uniform tail constant. The
+profiles converge at every non-atom phase, the singular laws converge weakly
+and the exact Minkowski content is continuous at every irrational slope.
+Section 28 of the working note. **PROMOTE**. Open: one-sided limits at
+rational slopes, expected to be finite atomic laws.
+
+### The Gamma-normalized law for the whole family (24 September)
+
+**EXACT — LEAN VERIFIED.** The logarithmic Gamma package ports to every
+irrational slope with no added hypothesis: the periodic amplitude
+`q^t F_alpha(t)`, the absolutely continuous law mutually singular with the
+binomial law, the explicit density series and its normalization, all real
+moments, interval support equal to the full Gamma-count cluster set, dense
+null blowup, weak `L^(3/2)`, `L^p` for `p<3/2`, the `1/3`-Hölder but
+nowhere Lipschitz CDF and the `2/3` dimension bound for infinite values.
+Ten family modules, four expanded consumers, 266 audit records. Section 29
+of the working note. **PROMOTE**. The written `p<62/41` improvement stays
+specific to `log_2 3`.
 
 ## Decision
 

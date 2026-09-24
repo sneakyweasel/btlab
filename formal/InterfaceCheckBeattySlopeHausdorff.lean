@@ -1,4 +1,5 @@
 import Problems.Juggler.BeattySlopeArithmetic
+import Problems.Juggler.BeattySlopeLiouville
 
 /-! Expanded consumers of the family Hausdorff theorems. Each statement
 concerns the set of real subsequential limits of the original integer
@@ -80,10 +81,38 @@ theorem actual_golden_hausdorff :
     (by push_cast; rw [Real.goldenRatio_sq]; ring) Real.goldenRatio_irrational
     Real.one_lt_goldenRatio
 
+/-- At every Liouville slope above one, the actual limit set of the original
+integer ratios has zero Hausdorff measure in every positive dimension. -/
+theorem actual_liouville_hausdorff (α : ℝ) (hα1 : 1 < α) (hL : Liouville α) (s : ℝ)
+    (hs : 0 < s) :
+    Measure.hausdorffMeasure s {y : ℝ | MapClusterPt y atTop (fun r : ℕ =>
+      let m := ⌊α*(r : ℝ)⌋₊;
+      (r : ℝ)*(passageCount (1/α) (m+1) : ℝ)/((m-1).choose (r-1) : ℝ))} = 0 := by
+  rw [cluster_eq α hα1 hL.irrational]
+  exact liouville_cluster_hausdorff hα1 hL hs
+
+/-- At every Liouville slope above one, the actual limit set of the original
+integer ratios has Hausdorff dimension zero, although its Minkowski dimension
+is two-thirds. -/
+theorem actual_liouville_dim (α : ℝ) (hα1 : 1 < α) (hL : Liouville α) :
+    let K := {y : ℝ | MapClusterPt y atTop (fun r : ℕ => let m := ⌊α*(r : ℝ)⌋₊;
+      (r : ℝ)*(passageCount (1/α) (m+1) : ℝ)/((m-1).choose (r-1) : ℝ))}
+    dimH K = 0 ∧
+      Tendsto (fun ε : ℝ => 1-Real.log (volume.real (Metric.thickening ε K))/Real.log ε)
+      (𝓝[>] 0) (𝓝 (2/3 : ℝ)) := by
+  intro K
+  have hK : K = passageClusterSet (1/α) := cluster_eq α hα1 hL.irrational
+  have hα0 : 0 < α := by linarith
+  rw [hK]
+  exact ⟨liouville_cluster_dimH hα1 hL, passageCluster_minkowski_dim (one_div_pos.mpr hα0)
+    ((div_lt_one hα0).mpr hα1) (by simpa using hL.irrational.inv)⟩
+
 #print axioms actual_family_hausdorff_finite
 #print axioms actual_ae_hausdorff_dim
 #print axioms actual_dio_hausdorff_pos
 #print axioms actual_quadratic_hausdorff
 #print axioms actual_golden_hausdorff
+#print axioms actual_liouville_hausdorff
+#print axioms actual_liouville_dim
 
 end Problems.Juggler.BeattySlopeHausdorffChecks
