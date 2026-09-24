@@ -1,6 +1,6 @@
 # A Jump Profile and Singular Geometry for Beatty First-Passage Counts
 
-Philippe Cochin. 23 September 2026. Unpublished working note.
+Philippe Cochin. 24 September 2026. Unpublished working note.
 
 **Abstract.** Binary first-passage counts at a Beatty boundary belong to the
 binomial random-walk framework of Bauer, Godrèche and Luck. At the slope
@@ -20,9 +20,15 @@ is singular continuous. Its continuous distribution function inverts the
 profile and has explicit plateaus at the Beatty phases. In contrast, the
 same integer counts in BGL's exact Gamma normalization have an absolutely
 continuous limiting law, mutually singular with the first. We give its
-density as a convergent sum over the exponentially rescaled jump intervals.
-The classification of this second law is also Lean-checked; its explicit
-density is a written deduction. The underlying
+density as a nonnegative series over the exponentially rescaled jump intervals.
+This second law has an interval as its exact support and full accumulation
+set. Its explicit density is finite almost everywhere, lower semicontinuous,
+and locally essentially unbounded throughout the support interior, with a
+dense null set of infinite values. It is in weak `L^(3/2)` and every
+`L^p` with `1<=p<3/2`; its CDF is `1/3`-Holder but nowhere locally
+Lipschitz in the support interior. The entire infinite-density set has
+Hausdorff dimension at most `2/3`. These conclusions and all real-power
+moments are also Lean-checked. The underlying
 periodic survivor amplitude has a classical precursor; the focus here is
 its explicit transfer to the cumulative profile and the resulting singular
 geometry. The profile and these qualitative geometric and distributional
@@ -64,6 +70,10 @@ dimension equality and critical-measure positivity.
 Sections 12–13 establish their counting and asymptotic inputs.
 Section 21 identifies the empirical law in BGL's Gamma normalization and
 explains why changing the normalization changes the type of limiting measure.
+Section 22 identifies its interval support and full cluster set, and proves
+the density's dense null blowup and local essential unboundedness.
+Section 23 quantifies this law by cube-root concentration, subcritical
+density integrability, CDF regularity and exceptional-set Hausdorff bounds.
 
 The central spatial conclusion is, with
 `kappa=(2 pi alpha (alpha-1))^(-1/2)`,
@@ -100,9 +110,10 @@ written argument for irrational `1<alpha<2`, including a quantitative
 `O(r^(-1/2))` rate. Those stronger statements are explicitly distinguished
 from the checked qualitative specialization. The exact Gamma-normalized
 first-passage amplitude in Section 1.1 and its absolutely continuous empirical
-law in Section 21 are also Lean-checked. The path dictionary with BGL, the
-spectral corollary in Section 17 and the explicit density identity in
-Section 21 remain written deductions.
+law, density and real-power moment identities in Section 21, and the exact
+interval support and density topology in Section 22, are also Lean-checked.
+The path dictionary with BGL and the spectral corollary in
+Section 17 remain written deductions.
 This is a standalone working
 note supporting Paper B; it does not revise a deposited paper or establish
 literature priority or trajectory termination.
@@ -565,6 +576,14 @@ The output and its actual-run provenance are
 and
 [phase_transfer.research.json](../../data/research/juggler/winkler_phase_collapse/phase_transfer.research.json).
 
+The profile figure in Section 14 is generated separately by
+`python tools/render_beatty_profile.py`. It uses exact integer barriers
+and survivor counts through depth 8000, checks the first 407 counts against
+the stored Arb audit, and encloses the phases, weights and entire omitted
+mass with 256-bit Arb arithmetic. The [drawing data](figures/beatty_profile.json)
+and [actual-run manifest](figures/beatty_profile.research.json) record the
+scope and source fingerprints; the numerical drawing is not a Lean proof.
+
 ## 9. Review boundary and relation to the existing programme
 
 The exact change of normalization is a reparameterization of the BGL
@@ -965,6 +984,25 @@ In particular,
 The closure is essential: the right endpoint `F(delta_j)+w_j` is a
 right-hand limit and need not be an attained value of the left-continuous
 profile. Both traces belong to the cluster set.
+
+![Left-continuous finite profile, exact normalized samples, and certified deleted-gap interiors on the same value scale.](figures/beatty_profile.png)
+
+**Figure 1. From phase to deleted value intervals.** The blue graph is
+`F_M(t)=1+sum_(j<=M,delta_j<t) w_j`, with `M=5047`. The pale band encloses
+the full profile: `F_M<=F<=F_M+T_M`, where the total-mass identity and
+256-bit Arb arithmetic give
+`T_M=1/(alpha-1)-sum_(j<=M) w_j<0.020220`. Filled and open circles mark
+the value and right trace of `F_M` at the first three atoms. Vertical jump
+segments are not part of the graph. The 1000 orange samples are exact
+rational ratios `R_r^+`, for `4048<=r<=5047`, displayed at rounded phases.
+The aligned value-axis strip marks nine certified open portions of deleted
+gaps in red: whenever nonempty,
+`(F_M(delta_j)+T_M,F_M(delta_j)+w_j)` lies inside the true `j`-th gap.
+Outward Arb enclosures give inward-rounded endpoints for these red portions.
+Gray is unresolved at this cutoff and contains `K`; it is not the full
+limiting set. The shaded tail band bounds truncation of the profile,
+not the finite-depth discrepancy of the orange samples. A vector version
+is available as [PDF](figures/beatty_profile.pdf) or [SVG](figures/beatty_profile.svg).
 
 Monotonicity makes the open gaps pairwise disjoint. Each has Lebesgue measure
 equal to its weight, and their total measure equals `sum w_j=E-1`. Subtracting
@@ -1674,7 +1712,7 @@ useful below.
 
 ### 21.1. An explicit density from the rescaled jumps
 
-**EXACT — HUMAN PROOF.** Define the rescaled jump endpoints
+**EXACT — LEAN VERIFIED.** Define the rescaled jump endpoints
 \[
  L_r=q^{\delta_r}F(\delta_r),\qquad
  U_r=q^{\delta_r}\bigl(F(\delta_r)+w_r\bigr).
@@ -1689,8 +1727,9 @@ Then the entire limiting law has density
 \]
 The intervals in (48) can overlap: the sum counts their multiplicity.
 It is finite almost everywhere, but no everywhere-finiteness, boundedness
-or continuity of the density is asserted. Its support is contained in
-`[q,E]`; an exact support description is not needed for (48).
+or continuity of the density is needed for this identification. Its support
+is contained in `[q,E]`; Section 22 identifies it exactly and proves local
+essential unboundedness.
 
 **Proof.** Let `F_N(t)=1+sum_{1<=r<=N,delta_r<t} w_r` and
 `mathcal B_N(t)=q^tF_N(t)`. For a continuous `g` on `[q,E]`, choose a
@@ -1735,9 +1774,9 @@ does not directly cover the present dense jumps. The uniform cutoff and
 summable domination in (49)–(50) provide that passage here; the general
 calculus should not be presented as a new first-passage mechanism.
 
-### 21.2. Normalization, moments and the proof boundary
+### 21.2. Normalization, moments and formal scope
 
-Putting `g=1` in (50) yields the exact identity
+**EXACT — LEAN VERIFIED.** Putting `g=1` in (50) yields the exact identity
 \[
  \sum_{r\ge1}\log\!\left(1+\frac{w_r}{F(\delta_r)}\right)
        =-\log q.                                          \tag{51}
@@ -1752,20 +1791,251 @@ on `(L_r,U_r)`, with mixing weights `log(U_r/L_r)/a`. For every real
 Positive compact support makes this valid for negative powers as well.
 The series is absolutely convergent by the same bound as in (50).
 
-The formal sources are
+The classification sources are
 [BeattyAmplitudeRegularity.lean](../../formal/Problems/Juggler/BeattyAmplitudeRegularity.lean)
 and [BeattyPassageDistribution.lean](../../formal/Problems/Juggler/BeattyPassageDistribution.lean).
 The original-count weak limit and explicit pushforward absolute continuity
 are checked by
 [InterfaceCheckBeattyPassageLaw.lean](../../formal/InterfaceCheckBeattyPassageLaw.lean)
 and its [executable audit](../../tests/research/juggler_sequence/test_beatty_passage_law_interface.py).
-The thirteen dependency records allow only `propext`, `Classical.choice`
-and `Quot.sound`. The occupation identity (50), density (48), logarithmic
-normalization (51) and moment series (52) have the written proof above;
-they are not yet Lean theorem interfaces. No quantitative convergence rate
-or arbitrary-slope formalization follows from this addition.
-**PROMOTE** the checked classification and the explicitly separated written
-density; formalizing the occupation identity is the next proof boundary.
+The thirteen classification dependency records allow only `propext`,
+`Classical.choice` and `Quot.sound`.
+
+The complete occupation and density proof is now formalized too.
+[BeattyFiniteOccupation.lean](../../formal/Problems/Juggler/BeattyFiniteOccupation.lean)
+proves finite jump calculus by splitting at the last retained phase;
+[BeattyOccupationPrimitive.lean](../../formal/Problems/Juggler/BeattyOccupationPrimitive.lean)
+specializes it to (49) and bounds primitive increments on positive intervals.
+[BeattyOccupationLimit.lean](../../formal/Problems/Juggler/BeattyOccupationLimit.lean)
+passes to the dense-jump limit by dominated convergence, using the mass
+identity to remove the endpoint term. This generic argument needs only
+distinct interior phases, nonnegative summable weights and
+`q(1+sum w)=1`; it makes no Diophantine or phase-density assumption.
+[BeattyOccupationMeasure.lean](../../formal/Problems/Juggler/BeattyOccupationMeasure.lean)
+identifies the full measure from all bounded continuous observables,
+retaining interval multiplicity.
+
+The concrete occupation identity (50), measure equality (48), unit integral,
+almost-everywhere finite density and logarithmic normalization (51) are in
+[BeattyPassageDensity.lean](../../formal/Problems/Juggler/BeattyPassageDensity.lean).
+The formal density takes values in the extended nonnegative reals so that
+exceptional infinite values are retained; the proof shows that these form
+a Lebesgue-null set. In
+[BeattyPassageMoments.lean](../../formal/Problems/Juggler/BeattyPassageMoments.lean),
+the compact positive envelope allows clipping each real power to a bounded
+continuous observable. Every real power is integrable, and for each
+`p != 0` the series in (52), including its normalization, has the stated
+integral as its sum. Thus negative powers need no additional moment premise.
+
+[InterfaceCheckBeattyDensity.lean](../../formal/InterfaceCheckBeattyDensity.lean)
+and [its executable audit](../../tests/research/juggler_sequence/test_beatty_density_interface.py)
+check twenty dependency records, including the original integer counts
+converging to the probability measure defined by the explicit density.
+Only `propext`, `Classical.choice` and `Quot.sound` are permitted.
+No occupation, endpoint-mass or moment-integrability premise remains in
+these concrete statements. Section 22 completes the support description.
+Rates and the arbitrary-slope first-passage theorem remain separate questions.
+**PROMOTE** the complete density and real-power moment identification.
+
+## 22. Interval support and the density's dense null blowup
+
+**EXACT — LEAN VERIFIED.** Retain `a=-log q`, `B(t)=q^t F(t)` and the
+rescaled jump endpoints `L_r,U_r` from Section 21, and define
+\[
+ \ell=\inf_{r\ge1}L_r,\qquad u=\sup_{r\ge1}U_r.
+\]
+The exact support and complete real accumulation set are
+\[
+ \boxed{\quad
+ \operatorname{Clust}(c_r/D_r)=\operatorname{supp}\eta
+ =\operatorname{cl}(B([0,1]))
+ =\operatorname{cl}\!\left(\bigcup_{r\ge1}(L_r,U_r)\right)
+ =[\ell,u],\qquad q\le\ell<u\le E.
+ \quad}                                                   \tag{53}
+\]
+Thus the Gamma-normalized counts have a single nondegenerate interval
+as their full cluster set. Every nonempty subinterval of this support
+has positive limiting probability; the CDF is continuous and strictly
+increasing on `[ell,u]`. The endpoint formulas are exact infimum and
+supremum specifications. No finite-index extremum or numerical endpoint
+value is asserted.
+
+To prove the interval assertion, `B` is left-continuous and lower
+semicontinuous: a continuous positive factor preserves the lower
+semicontinuity of the monotone left-continuous profile. Such a function
+has the downward intermediate-value property. If `B(b)<=y<=B(a)` for
+`a<=b`, the first point of the closed sublevel set `B<=y` in `[a,b]`
+has value exactly `y`, since left continuity precludes a downward gap.
+The matching endpoint identity `B(0)=B(1)=1` lets one use either the
+direct segment or a segment through those endpoints. Consequently
+`B([0,1])` is an interval.
+
+Left continuity provides a positive-length set of phases near each
+attained value; hence the law's support is exactly the closure of the
+image. Recurrent phase sampling and the additive Gamma-normalized
+asymptotic give the same set as the full cluster set of the integer
+ratios. Separately, each log-interval measure in the occupation formula
+has support `[L_r,U_r]`, so the support is the closure of their union.
+This identifies its endpoints. The positivity of a jump gives `ell<u`.
+
+The explicit density has stronger, less familiar topology. Put
+\[
+ O_N=\bigcup_{r\ge N}(L_r,U_r),\qquad
+ S=(\ell,u)\cap\bigcap_{N\ge1}O_N.
+\]
+Then the formal results give
+\[
+ \boxed{\quad S\text{ is }G_\delta,\quad
+ \operatorname{cl}S=[\ell,u],\quad \lambda(S)=0,\quad
+ h(y)=+\infty\ (y\in S).\quad}                            \tag{54}
+\]
+The canonical extended density `h` is lower semicontinuous. Indeed each
+summand is a positive continuous kernel on an open interval, extended
+by zero, and nonnegative sums preserve lower semicontinuity. Recurrence
+puts left jump traces of arbitrarily large indices in each open
+neighborhood of every support point. Such a trace is approached by the
+interior of its positive jump interval, so every `O_N` is open and dense
+relative to the support. Baire's theorem makes `S` dense there. Its points
+lie in infinitely many intervals, each contributing the same positive
+value `1/(a y)`, forcing infinite density. The unit integral of `h`
+shows that all infinite-density points, including `S`, form a null set.
+
+This phenomenon cannot be removed by choosing another version of the
+density. For every open `V` meeting `(ell,u)` and every finite real `M`,
+\[
+ \lambda\bigl(V\cap\{y:h(y)>M\}\bigr)>0.                 \tag{55}
+\]
+The superlevel set is open by lower semicontinuity and meets `V` at a
+point of `S`; hence it has positive measure. In particular, no density
+equal to `h` almost everywhere is essentially bounded on such a `V`.
+Unboundedness alone does not decide `L^p` integrability. Section 23 proves
+the unconditional range `1<=p<3/2` from the jump-length upper bound.
+
+The generic downward intermediate-value and interval-image lemmas are
+in [BeattyAmplitudeRange.lean](../../formal/Problems/Juggler/BeattyAmplitudeRange.lean).
+[BeattyAmplitudeSupport.lean](../../formal/Problems/Juggler/BeattyAmplitudeSupport.lean)
+identifies image closures with pushforward supports and recurrent-phase
+cluster sets.
+[BeattyOccupationSupport.lean](../../formal/Problems/Juggler/BeattyOccupationSupport.lean)
+identifies the supports of log-interval measures and their sums.
+The concrete support, exact endpoints, original-count cluster equivalence,
+positive interval probabilities and strict CDF are in
+[BeattyPassageSupport.lean](../../formal/Problems/Juggler/BeattyPassageSupport.lean).
+[BeattyPassageDensityTopology.lean](../../formal/Problems/Juggler/BeattyPassageDensityTopology.lean)
+proves lower semicontinuity and the null infinite-density set;
+[BeattyPassageDensityBlowup.lean](../../formal/Problems/Juggler/BeattyPassageDensityBlowup.lean)
+proves (54), (55) and the version-independent essential-unboundedness claim.
+
+[InterfaceCheckBeattySupport.lean](../../formal/InterfaceCheckBeattySupport.lean)
+and [its executable audit](../../tests/research/juggler_sequence/test_beatty_support_interface.py)
+check twenty-four dependency records, including the expanded original
+integer counts and exact extremal jump formulas. The only permitted axioms
+are `propext`, `Classical.choice` and `Quot.sound`; no recurrence or
+regularity premise remains in the concrete conclusions. The general
+topological tools are classical; no literature priority is inferred.
+**PROMOTE** the exact Gamma support and density topology. Endpoint
+evaluation, endpoint and supercritical density integrability, and effective convergence
+remain open, together with the arithmetic and arbitrary-slope boundaries
+already stated.
+
+## 23. Quantitative concentration and exceptional-set geometry
+
+**EXACT — LEAN VERIFIED.** There are constants `C,D>0`, independent of
+the measurable set and the density threshold, such that
+\[
+ \boxed{\quad \eta(A)\le C\lambda(A)^{1/3},\qquad
+ \lambda\{y:h(y)>T\}\le DT^{-3/2}\quad(T>0).\quad}         \tag{56}
+\]
+The first inequality is meaningful for finite Lebesgue measure; for
+infinite measure its extended-real version is immediate. The second uses
+the canonical extended density from (48), including its infinite values.
+Equivalently, the density is in weak `L^(3/2)`. In particular,
+\[
+ \boxed{\quad \int_{\mathbb R}h(y)^p\,dy<\infty
+          \quad(1\le p<3/2).\quad}                       \tag{57}
+\]
+These are powers of the density with respect to Lebesgue measure, distinct
+from the moments of the random variable in (52).
+
+Let `H(y)=eta((-infinity,y])`. The same constant in (56) gives
+\[
+ |H(y)-H(x)|\le C|y-x|^{1/3}\qquad(x,y\in\mathbb R).       \tag{58}
+\]
+Nevertheless `H` is not Lipschitz on any open set meeting `(ell,u)`.
+The exponent `1/3` is an unconditional bound, not a claim of optimality.
+
+**Proof of concentration and integrability.** Put `I_r=(L_r,U_r)` and
+`k=1/(a q)`. The positive envelope bounds the logarithmic kernel by `k`,
+and `|I_r|=q^(delta_r) w_r<=w_r`. If `s=lambda(A)`, Tonelli gives
+\[
+ \eta(A)\le k\sum_{r\ge1}\lambda(A\cap I_r)
+       \le k\sum_{r\ge1}\min(s,w_r).                     \tag{59}
+\]
+The already-proved bound `w_r<=b r^(-3/2)` yields a cube-root bound on
+the last sum: split at `r` of order `s^(-2/3)`, bounding the head by
+the number of terms times `s` and the tail by a convergent integral.
+This covers `0<s<=1`; zero measure follows from absolute continuity,
+and `s>=1` follows from the unit mass after enlarging `C`.
+
+For `A_T={h>T}` and `m=lambda(A_T)`, Markov's inequality first gives
+`m<infinity`. Then `Tm<=eta(A_T)<=C m^(1/3)`. If `m>0`, division and
+raising to the power `3/2` give `m<=(C/T)^(3/2)`, proving (56).
+Layer cake proves (57): the compact envelope controls thresholds
+`0<T<=1`, and the remaining integral is bounded by a constant times
+`integral_1^infinity T^(p-5/2) dT`, finite precisely in the asserted
+range. Applying (56) to `(x,y]` proves (58).
+
+To rule out a local Lipschitz constant `L`, choose a point where the
+lower semicontinuous density exceeds `L+1` inside the proposed open set;
+(55) guarantees one. On a sufficiently small interval `(x,y]` around
+that point the density remains at least `L+1`. Thus
+`H(y)-H(x)>L(y-x)`, contradicting that Lipschitz bound.
+
+**The entire infinite-density set.** The set `S` in (54) satisfies
+\[
+ \boxed{\quad S=\{y:h(y)=\infty\}=\limsup_{r\to\infty}I_r,
+ \qquad \mathcal H^s(S)=0\ (s>2/3),\qquad
+ \dim_{\mathrm H}S\le2/3.\quad}                          \tag{60}
+\]
+Indeed, membership in infinitely many intervals forces infinitely many
+equal positive kernel contributions. Conversely, finitely many intervals
+give a finite sum; outside their union the density is zero. All these
+intervals lie in the support interior. For every `s>2/3`,
+`sum_r |I_r|^s<=b^s sum_r r^(-3s/2)<infinity`. Every chronological tail
+covers `S`, with maximal diameter tending to zero and total `s`-power
+diameter tending to zero. The definition of Hausdorff measure gives (60).
+Thus the **entire** infinite-density set is residual in the support
+interval, Lebesgue-null, and has Hausdorff dimension at most `2/3`.
+Its pointwise description concerns the canonical density; the power
+integrability and local essential unboundedness are version-independent.
+
+**Formal scope and positioning.**
+[BeattyPassageConcentration.lean](../../formal/Problems/Juggler/BeattyPassageConcentration.lean)
+proves the finite-measure-set concentration bound, the global CDF bound
+and the weak density estimate.
+[BeattyPassageLp.lean](../../formal/Problems/Juggler/BeattyPassageLp.lean)
+proves both the finite extended density-power integral and `MemLp` for
+the almost-everywhere finite real representative.
+[BeattyPassageCDF.lean](../../formal/Problems/Juggler/BeattyPassageCDF.lean)
+rules out every Lipschitz constant on the stated open sets.
+[BeattyDensityHausdorff.lean](../../formal/Problems/Juggler/BeattyDensityHausdorff.lean)
+identifies all infinite values and proves (60).
+[InterfaceCheckBeattyRegularity.lean](../../formal/InterfaceCheckBeattyRegularity.lean)
+and [its executable audit](../../tests/research/juggler_sequence/test_beatty_regularity_interface.py)
+check fifteen dependency records, including the expanded density series,
+the complete exceptional-set geometry and both CDF assertions. A measurable-envelope
+consumer extends concentration to every set of finite Lebesgue outer measure,
+so no Borel restriction is hidden in the written measurable-set statement. Only
+`propext`, `Classical.choice` and `Quot.sound` are permitted.
+
+The estimates use classical truncation, layer-cake and Hausdorff covering
+arguments; their role here is to quantify the concrete Gamma limiting law.
+No new arithmetic hypothesis or literature-priority claim is added.
+**PROMOTE** this quantitative regularity package. Whether `h` belongs to
+`L^(3/2)` or larger `L^p` spaces, whether the Holder exponent can be improved,
+and whether `dim_H S=2/3` remain open. The latter concerns this exceptional
+set and is distinct from the Hausdorff question for the original cluster
+set `K` in Section 19.
 
 ## References
 

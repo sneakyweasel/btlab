@@ -11,7 +11,7 @@ consolidation is at `e9725762eaf028d1ace354ff20e0fc48f1a3d143`. See
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
-## 2026-09-23 -- Beatty phase profile as a positive jump series
+## 2026-09-24 -- Beatty phase geometry and quantitative Gamma-law regularity
 
 **EXACT — LEAN VERIFIED** at the logarithmic slope: the actual integer ratios
 approach the explicit positive jump profile, including its critical total
@@ -22,17 +22,36 @@ content measure `3*2^(1/3)*kappa^(2/3)*y^(2/3) dmu(y)`.
 Finite two-thirds Hausdorff measure is unconditional; matching lower bounds
 retain explicit Diophantine premises. The exact BGL Gamma quotient gives
 amplitude `q^t F(t)` and an absolutely continuous empirical law, mutually
-singular with the original law. Thirteen new consumer dependency records
-check the original-count limit and the regularity and frequency statements.
-The explicit occupation density, logarithmic normalization and moment series
-have a separate **EXACT — HUMAN PROOF**, including the finite-cutoff endpoint
-term; these identities remain to be formalized. Quantitative rates, general
-slopes and the concrete Hausdorff lower bound remain open. **PROMOTE** the
-checked specialization and separately labelled written density. No new
+singular with the original law. The explicit occupation density, logarithmic
+normalization and all real-power moment series are now Lean-checked too,
+including the finite-cutoff endpoint term and negative-power integrability.
+Its support and full Gamma-count cluster set are a nondegenerate interval.
+The density is lower semicontinuous, infinite on a dense null G-delta,
+and locally essentially unbounded throughout the support interior,
+independently of its almost-everywhere version. The density and support
+consumer audits check twenty and twenty-four dependency records with only
+standard Lean axioms. A further fifteen-record audit checks cube-root
+set concentration, weak three-halves density tails, `L^p` for `1<=p<3/2`,
+a Holder but nowhere locally Lipschitz CDF, and Hausdorff dimension at
+most `2/3` for the entire infinite-density set. Rates, general slopes,
+endpoint evaluation, endpoint/supercritical integrability and matching
+Hausdorff lower bounds remain open.
+**PROMOTE** the quantitative regularity and exceptional-set upper bounds. No new
 deposit, priority or trajectory-termination claim. Canonical proof boundary:
-Sections 13–21 of the
+Sections 13–23 of the
 [comparison note](theory/juggler_beatty_first_passage_note.md) and the
 [dossier](problems/juggler_winkler_phase_collapse.md).
+
+The bounded overlap continuation adds an **EXACT — LEAN VERIFIED** criterion:
+the density is in `L^2` exactly when the explicit ordered pair-overlap sum
+is finite. A separate **EXACT — HUMAN PROOF** combines Wu-Wang and
+Erdos-Turan with profile truncation to give `h in L^p` for `1<=p<62/41`,
+including the original three-halves endpoint, weak `L^(62/41)`, and a
+`21/62`-Holder CDF. **PROMOTE** that written arithmetic improvement;
+its discrepancy argument and classical inputs are not formalized in Lean.
+The 4096-atom Arb audit is finite evidence only. `L^2` remains unresolved.
+The complete proof and trust boundary are in the same dossier; the paper
+retains its previously audited formal range pending incorporation.
 
 ## 2026-09-23 -- OEIS generator corrections and exact modified-map descent
 

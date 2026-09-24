@@ -6070,6 +6070,9 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
+        "J-beatty-gamma-arithmetic-integrability",
+        "J-beatty-gamma-overlap-criterion",
+        "J-beatty-gamma-overlap-finite-audit",
         "J-beatty-phase-transfer-finite-checks",
         "J-beatty-phase-transfer-kernel",
         "J-winkler-ratio-collapses-onto-the-phase"

@@ -288,6 +288,24 @@
   "related_conjectures": []
  },
  {
+  "id": "J-beatty-dense-jump-occupation",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For injective phases in (0,1), nonnegative summable weights, 0<q<=1 and q*(1+sum w)=1, let F(t)=1+sum_(phase_i<t) w_i and let g be any bounded continuous real observable. The series of integrals from q^phase_i F(phase_i) to q^phase_i (F(phase_i)+w_i) of g(y)/y has sum (-log(q))*integral_0^1 g(q^t F(t)) dt. Finite cutoff convergence, dominated convergence, summable bounds for primitive increments and exact endpoint cancellation prove the identity. No density of phases or Diophantine condition is required. This formalizes classical occupation calculus for a summable jump profile; it is not an arbitrary-slope theorem for first-passage counts.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyOccupationLimit.lean",
+  "decl": [
+   "finiteJumpProfile_tendsto",
+   "jumpProfile_occupation_hasSum",
+   "jumpProfile_kernel_occupation_hasSum"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_density_interface.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-diophantine-hausdorff-geometry",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "A uniform Diophantine lower bound with c>0 and tau>0 for the actual slope 1/beta gives positive Hausdorff measure at exponent 2/(3*tau) and dim_H K>=2/(3*tau) for the original certificate cluster set. A family of such bounds for every tau>1, with constants depending on tau, suffices for dim_H K=2/3. The stronger exponent-one bound gives positive finite two-thirds Hausdorff measure. These are checked conditional implications; neither arithmetic premise is discharged for log_2 3. Dimension equality under the family premise does not assert critical-measure positivity. The consumer expands the original integer counts and every arithmetic quantifier.",
@@ -366,6 +384,46 @@
   "related_conjectures": []
  },
  {
+  "id": "J-beatty-gamma-density-blowup",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For the Gamma-normalized law at the logarithmic slope, every chronological tail of the rescaled open jump intervals meets every open neighborhood of every support point. The set S of support-interior values lying in such intervals of arbitrarily large indices is G-delta, has closure equal to the full support interval, has zero Lebesgue measure, and the canonical density is infinite at every point of S. On every open set meeting the support interior, every finite density threshold is exceeded on a positive-Lebesgue-measure subset. Consequently no almost-everywhere equal density version is essentially bounded on such an open set. The proof uses concrete phase recurrence, Baire's theorem, lower semicontinuity and the unit integral, without any additional arithmetic premise. This topology theorem alone gives no L^p classification; the separate concentration and density-integrability rows supply the subcritical range. No literature priority is claimed.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyPassageDensityBlowup.lean",
+  "decl": [
+   "certificateJumpTail_inter_open_nonempty",
+   "isGδ_certificateDensityBlowupSet",
+   "closure_certificateDensityBlowupSet",
+   "certificateDensityBlowupSet_subset_infinite",
+   "volume_certificateDensityBlowupSet",
+   "certificatePassageDensity_superlevel_pos",
+   "certificatePassageDensity_no_ae_bounded_version"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_support_interface.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-gamma-density-topology",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The canonical extended nonnegative occupation density of the concrete Gamma-normalized law is lower semicontinuous. At every positive value contained in rescaled jump intervals of arbitrarily large indices it is infinite, since each contributing interval has the same positive logarithmic kernel there. The full set of infinite-density values has zero Lebesgue measure. This describes the chosen exact density, not continuity or boundedness of a density version.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyPassageDensityTopology.lean",
+  "decl": [
+   "certificatePassageDensity_lowerSemicontinuous",
+   "certificatePassageDensity_eq_top_of_mem_jump_tails",
+   "volume_certificatePassageDensity_infinite"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_support_interface.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-gamma-first-passage-amplitude",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "At beta=log 2/log 3, q=1-beta, m_r=floor(r/beta), c_r=minimalCertCount(m_r+1), delta_r=fract(r/beta) and D_r=Gamma(r/beta)/(r! Gamma(r*q/beta+1)), the original integer counts satisfy c_r/D_r-q^delta_r F(delta_r) -> 0. Equivalently they approach the exactly unit-periodic amplitude B(r/beta), where B(t)=q^fract(t) F(fract(t)). Uniform Gamma interpolation from log-convexity and an exact binomial/Gamma identity discharge the normalization without a phase-convergence or real-variable Stirling premise. D_r is positive for r>0. This is the qualitative concrete specialization of BGL's proposed irrational first-passage amplitude, not a claim of priority, convergence rate or arbitrary-slope formalization.",
@@ -387,7 +445,7 @@
  {
   "id": "J-beatty-gamma-first-passage-law",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "At beta=log 2/log 3 and q=1-beta, the empirical measures of the actual Gamma-normalized first-passage counts c_r/D_r converge weakly to eta, the image of uniform phase measure under B(t)=q^t F(t). This probability law is absolutely continuous with respect to Lebesgue measure and mutually singular with the original singular continuous law of F(U). In particular eta(K)=0, its CDF is continuous, and the normalized counts have the prescribed limiting frequency at every real threshold and limiting average for every bounded continuous observable. The proof establishes F'=0 almost everywhere from the null monotone range, then B'=log(q) B nonzero almost everywhere, and proves a null-preimage criterion without global injectivity. No analytic or arithmetic premise remains. The explicit density series is a separate written claim, not certified by this interface; no rate or arbitrary-slope extension is asserted.",
+  "statement": "At beta=log 2/log 3 and q=1-beta, the empirical measures of the actual Gamma-normalized first-passage counts c_r/D_r converge weakly to eta, the image of uniform phase measure under B(t)=q^t F(t). This probability law is absolutely continuous with respect to Lebesgue measure and mutually singular with the original singular continuous law of F(U). In particular eta(K)=0, its CDF is continuous, and the normalized counts have the prescribed limiting frequency at every real threshold and limiting average for every bounded continuous observable. The proof establishes F'=0 almost everywhere from the null monotone range, then B'=log(q) B nonzero almost everywhere, and proves a null-preimage criterion without global injectivity. No analytic or arithmetic premise remains. The explicit density series is certified by the separate occupation interface; no rate or arbitrary-slope extension is asserted.",
   "source": "docs/theory/juggler_beatty_first_passage_note.md",
   "lean": "Problems/Juggler/BeattyPassageDistribution.lean",
   "decl": [
@@ -410,13 +468,66 @@
   "related_conjectures": []
  },
  {
-  "id": "J-beatty-gamma-occupation-density",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "At the logarithmic slope, write a=-log(q), L_r=q^delta_r F(delta_r) and U_r=q^delta_r (F(delta_r)+w_r). The law eta of q^U F(U) for uniform phase U has density h(y)=(a*y)^(-1) sum_r 1_(L_r,U_r)(y) for y>0 and zero otherwise. The rescaled intervals may overlap and must be counted with multiplicity. The density is finite almost everywhere, integrates to one and is supported in [q,1/q]. Uniform finite-jump truncation, its explicit vanishing endpoint term and domination by summable weights prove the occupation identity against every continuous test function on this envelope. Consequences include sum_r log(1+w_r/F(delta_r))=-log(q) and, for each real p nonzero, integral y^p d eta=(a*p)^(-1) sum_r q^(p*delta_r) ((F(delta_r)+w_r)^p-F(delta_r)^p). These identities are written proofs in Section 21; the independently formalized absolute continuity result does not yet formalize this explicit density or its moment series. No bounded density, exact support interval, convergence rate or literature priority is claimed.",
+  "id": "J-beatty-gamma-interval-support",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "At the concrete logarithmic slope, the complete real cluster set of the original Gamma-normalized integer counts equals the support of eta, the closure of the phase-amplitude image and the closure of the union of the rescaled open jump intervals. This is exactly the nondegenerate interval [ell,u], where ell=inf_(r>=1) L_r and u=sup_(r>=1) U_r, with q<=ell<u<=1/q. Every nonempty open interval with endpoints in this support has positive probability, and the CDF is strictly increasing on the support. No numerical endpoint value or finite-index extremum is assumed, and no recurrence or regularity premise remains in the concrete theorem. The consumer expands the original integer counts and both extremal jump formulas.",
   "source": "docs/theory/juggler_beatty_first_passage_note.md",
-  "lean": null,
+  "lean": "Problems/Juggler/BeattyPassageSupport.lean",
+  "decl": [
+   "certificatePassageLaw_support_eq_closure_image",
+   "certificatePassageLaw_support_eq_closure_jumps",
+   "certificatePassageLaw_support_eq_Icc",
+   "certificatePassage_endpoints_bounds",
+   "certificateGammaRatio_cluster_iff_mem_Icc",
+   "certificatePassageLaw_Ioo_pos",
+   "certificatePassageLaw_cdf_strictMonoOn"
+  ],
+  "lean_trust": "kernel",
   "tests": [
-   "tests/research/juggler_sequence/test_beatty_passage_law_interface.py"
+   "tests/research/juggler_sequence/test_beatty_support_interface.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-gamma-occupation-density",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "At the logarithmic slope, write a=-log(q), L_r=q^delta_r F(delta_r) and U_r=q^delta_r (F(delta_r)+w_r). The law eta of q^U F(U) for uniform phase U equals Lebesgue measure with density h(y)=(a*y)^(-1) sum_r 1_(L_r,U_r)(y) for y>0 and zero otherwise. The extended nonnegative density retains overlapping intervals with multiplicity, is finite almost everywhere and integrates to one. The occupation identity holds for every bounded continuous observable, with no analytic or endpoint-mass premise. Its constant-observable specialization proves the convergent series sum_r log(1+w_r/F(delta_r))=-log(q). The consumer also checks convergence of the original Gamma-normalized integer counts to the probability measure defined directly by this density. Exact support and density topology have separate interfaces below; no convergence rate or literature priority is claimed.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyPassageDensity.lean",
+  "decl": [
+   "certificatePassageLaw_occupation",
+   "certificatePassageLaw_eq_sum_logIntervalMeasure",
+   "certificatePassageLaw_eq_withDensity",
+   "certificatePassageDensity_lintegral",
+   "certificatePassageDensity_ae_lt_top",
+   "certificatePassageDensity_eq_zero_of_nonpos",
+   "certificate_log_jump_normalization"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_density_interface.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-gamma-real-power-moments",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The concrete Gamma-normalized limiting law eta is concentrated on the positive compact envelope [q,1/q], and every real power y^p is integrable. For every real p nonzero, the series with terms q^(p*delta_r) ((F(delta_r)+w_r)^p-F(delta_r)^p)/((-log(q))*p) has sum integral y^p d eta, using the actual certificate weights and strict profile values. This includes negative powers without any additional moment hypothesis. The rescaled jump intervals lie in the same envelope. The result is an identity for the limiting law, not an empirical unbounded-observable convergence rate. The exact support interval is identified by the separate support interface.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyPassageMoments.lean",
+  "decl": [
+   "certificateAmplitudeJump_bounds",
+   "certificatePassageLaw_ae_mem_envelope",
+   "certificatePassageLaw_integrable_rpow",
+   "certificatePassageLaw_endpoint_moment_hasSum",
+   "certificatePassageLaw_moment_hasSum"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_density_interface.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
   ],
   "related_conjectures": []
  },
@@ -795,6 +906,119 @@
   "tests": [
    "tests/research/juggler_sequence/test_beatty_cantor_interface.py",
    "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-gamma-concentration",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "At the logarithmic slope, the actual Gamma limiting law eta satisfies eta(A)<=C lambda(A)^(1/3) for every measurable set of finite Lebesgue measure, with one positive constant C. Its CDF is globally one-third Holder. The canonical extended density satisfies lambda{h>T}<=D T^(-3/2) for every positive threshold with one positive constant D, hence belongs to weak L^(3/2). These bounds use the explicit occupation formula, positive envelope and chronological three-halves jump-length bound, with no additional spacing hypothesis. No optimal exponent or convergence rate is claimed.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyPassageConcentration.lean",
+  "decl": [
+   "certificateAmplitudeJump_length_le",
+   "certificatePassageLaw_concentration",
+   "certificatePassageLaw_cdf_holder",
+   "certificatePassageDensity_weak_three_halves"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_regularity_interface.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-gamma-density-lp",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every real exponent 1<=p<3/2, the canonical Gamma-law density has finite integral of h^p against Lebesgue measure, retaining its exceptional infinite values. Its real representative h.toReal belongs to MemLp at exponent ofReal(p); assigning zero at infinite values changes only a null set. These are powers of the density, not moments of the random variable. The explicit density series and all exponent quantifiers are expanded in the consumer audit. Membership at p=3/2 or above is not established by this Lean statement; a separate written arithmetic argument extends the range to p<62/41.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyPassageLp.lean",
+  "decl": [
+   "certificatePassageDensity_eq_zero_of_not_mem_envelope",
+   "certificatePassageDensity_lintegral_rpow_lt_top",
+   "certificatePassageDensity_memLp"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_regularity_interface.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-gamma-cdf-nonlipschitz",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The actual Gamma-law CDF fails every finite Lipschitz bound on every open set meeting the interior of its exact support interval. This is compatible with the global one-third Holder estimate. The proof uses positive density superlevels and lower semicontinuity to force an interval with probability mass exceeding a proposed Lipschitz increment bound. No differentiability premise is assumed and optimality of the Holder exponent is not asserted.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyPassageCDF.lean",
+  "decl": [
+   "certificatePassageLaw_cdf_not_lipschitzOn"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_regularity_interface.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-gamma-blowup-hausdorff",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "The dense null G-delta constructed from chronological jump tails is the entire infinite-value set of the canonical Gamma-law density. It has zero s-dimensional Hausdorff measure for every real s>2/3 and Hausdorff dimension at most 2/3, without an arithmetic assumption. Tail covers and summable s-powers of the rescaled jump lengths prove the bound. Its closure is the full support interval. No matching lower dimension bound is claimed; this exceptional set is distinct from the original binomial-normalized cluster set K.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyDensityHausdorff.lean",
+  "decl": [
+   "certificateDensityBlowupSet_eq_infinite",
+   "certificatePassageDensity_infinite_hausdorffMeasure_zero",
+   "certificatePassageDensity_infinite_dimH_le"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_regularity_interface.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-gamma-overlap-criterion",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For the actual Gamma-law jump intervals I_r=(L_r,U_r), the extended integral of (sum_r 1_(I_r))^2 equals the ordered sum of all pair-intersection lengths, including infinite values. Since the density is this multiplicity times 1/(a*y) on a positive compact envelope, its extended square integral is finite if and only if the overlap energy is finite; equivalently its almost-everywhere real representative belongs to L2. The full min/max endpoint sum is expanded in a seven-record consumer audit allowing only standard Lean axioms. This is an exact criterion, not an assertion that either finiteness condition holds; the arithmetic strengthening is recorded separately as a written proof.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattyOverlapEnergy.lean",
+  "decl": [
+   "lintegral_tsum_indicator_sq",
+   "certificateJumpMultiplicity_lintegral_sq",
+   "certificatePassageDensity_eq_kernel_mul_multiplicity",
+   "certificatePassageDensity_lintegral_sq_lt_top_iff",
+   "certificatePassageDensity_memLp_two_iff"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_overlap_interface.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-gamma-overlap-finite-audit",
+  "tag": "COMPUTATIONALLY VERIFIED",
+  "statement": "Exact survivor counts through depth 6493 and 256-bit Arb enclosures certify Gamma jump-interval energies for every dyadic profile cutoff M=16,...,4096 and dyadic chronological head N<=M. At M=N=4096 the finite interval-density square integral lies in [3.43522123,3.43522124]. Separate total-mass tail bounds enclose the true finite-head multiplicity overlap energy through r,s<=4096 in [2.75903,12.54709]. The last dyadic block in each of the nine diagonal finite models has maximum multiplicity two. Finite-profile intervals move with M; these finite observations do not prove an infinite energy bound, L2 membership, endpoint integrability or any convergence rate. The dossier separates this finite audit from the written arithmetic endpoint proof; L2 remains unresolved.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "",
+  "tests": [
+   "tests/tools/test_beatty_overlap.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-gamma-arithmetic-integrability",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "At alpha=log_2(3), the written argument gives h in Lp for every 1<=p<62/41, including p=3/2, weak L^(62/41), eta(A)<=C lambda(A)^(21/62), and a globally 21/62-Holder CDF. Wu-Wang Theorem 1 supplies ||n alpha||>=c n^(-5); Erdos-Turan then gives consecutive-block phase discrepancy O(N^(-1/6)). Truncating the profile at M=floor(N^(1/7)) transfers this to uniform CDF discrepancy O(N^(-1/42)) for the exact amplitude samples B(delta_r). True dyadic interval multiplicity has supremum O(2^(41k/42)) and L1 mass O(2^(-k/2)), yielding the claimed density bounds. The arithmetic/discrepancy inputs and their assembly are external written mathematics, not an end-to-end Lean proof. The finite Arb audit is not used in the proof. No L2 membership, optimal exponent, membership at p=62/41, or rate for the actual integer-normalized counts is claimed.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "",
+  "tests": [
+   "tests/integration/test_docs_links.py"
   ],
   "related_conjectures": []
  }

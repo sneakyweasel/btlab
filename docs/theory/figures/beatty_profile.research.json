@@ -1,28 +1,26 @@
 {
   "schema": "btlab-output/v2",
   "programme": "juggler",
-  "research_id": null,
-  "created_utc": "2026-09-23T23:12:20.404134+00:00",
-  "scope": "Paper Beatty: First explicit interval for the full profile's two-thirds moment and Minkowski content, with a certified entire omitted tail; no asymptotic tail estimate is guessed.",
+  "research_id": "juggler/winkler_phase_collapse",
+  "created_utc": "2026-09-23T22:18:50.674387+00:00",
+  "scope": "Exact integer counts; Arb enclosures using the proved positive mass identity; rounded display coordinates. Not a finite-depth asymptotic-error certificate.",
   "artifact_root": ".",
   "generator": {
     "command": [
       "python",
-      "tools/check_papers_arb.py",
-      "--paper",
-      "Beatty",
-      "--output-root",
-      "."
+      "tools/render_beatty_profile.py"
     ],
     "parameters": {
-      "paper": "Beatty",
-      "transport": "MCP stdio",
-      "default_precision_bits": 256
+      "depth": 8000,
+      "sample_count": 1000,
+      "precision_bits": 256,
+      "python_flint": "0.9.0",
+      "matplotlib": "3.10.8"
     },
     "python": "3.13.9"
   },
   "source": {
-    "revision": "a646b0018053c91823b1a345c167875929f41734",
+    "revision": "61a48bc2d3b92996d97dfe748d69d86a3e041784",
     "dirty": true,
     "coverage": "loaded local Python, project configuration, and explicit sources at manifest creation; not an execution or dependency audit",
     "files": [
@@ -87,13 +85,13 @@
         }
       },
       {
-        "path": "src/research_engine/arb_expressions.py",
-        "sha256": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
-        "bytes": 10151,
+        "path": "src/research_engine/__init__.py",
+        "sha256": "9c2d16eda72eb3d74d58967d0c1a7117455c2aad15cf7ace61c81b99a7e48964",
+        "bytes": 94,
         "text": {
           "normalization": "utf8-crlf-to-lf",
-          "sha256": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
-          "bytes": 10151
+          "sha256": "9c2d16eda72eb3d74d58967d0c1a7117455c2aad15cf7ace61c81b99a7e48964",
+          "bytes": 94
         }
       },
       {
@@ -107,26 +105,6 @@
         }
       },
       {
-        "path": "tools/arb_mcp.py",
-        "sha256": "ff5f1aad04c0bc953e03997bdbb466f385bd0e04db217e8d09d52fc57925ecfe",
-        "bytes": 8865,
-        "text": {
-          "normalization": "utf8-crlf-to-lf",
-          "sha256": "ff5f1aad04c0bc953e03997bdbb466f385bd0e04db217e8d09d52fc57925ecfe",
-          "bytes": 8865
-        }
-      },
-      {
-        "path": "tools/arb_paper_audit_core/__init__.py",
-        "sha256": "60a13e62761a04350a519ddd376be7a977202f294fa7eb654e12db1c05ca9511",
-        "bytes": 73,
-        "text": {
-          "normalization": "utf8-crlf-to-lf",
-          "sha256": "60a13e62761a04350a519ddd376be7a977202f294fa7eb654e12db1c05ca9511",
-          "bytes": 73
-        }
-      },
-      {
         "path": "tools/arb_paper_audit_core/beatty.py",
         "sha256": "b85bd7f41f7c8e2cfebe75811444675ea3a274f83b8ecf7a6035cc26f07aedc5",
         "bytes": 4519,
@@ -137,66 +115,6 @@
         }
       },
       {
-        "path": "tools/arb_paper_audit_core/client.py",
-        "sha256": "797695762c4aec729c18819b67ea2f47e5905308e35a9e0d6d93e304d4c5a2b3",
-        "bytes": 3568,
-        "text": {
-          "normalization": "utf8-crlf-to-lf",
-          "sha256": "797695762c4aec729c18819b67ea2f47e5905308e35a9e0d6d93e304d4c5a2b3",
-          "bytes": 3568
-        }
-      },
-      {
-        "path": "tools/arb_paper_audit_core/paper_a.py",
-        "sha256": "7b478c1637b6a523f6b467c9e73c764ff43387516f2f1890e6e9dbee91873339",
-        "bytes": 5648,
-        "text": {
-          "normalization": "utf8-crlf-to-lf",
-          "sha256": "7b478c1637b6a523f6b467c9e73c764ff43387516f2f1890e6e9dbee91873339",
-          "bytes": 5648
-        }
-      },
-      {
-        "path": "tools/arb_paper_audit_core/paper_d.py",
-        "sha256": "bc218fa20dadac13ef3f95dcd3de8b57000d9dac1fa2553704095e0bd1d9d46f",
-        "bytes": 10029,
-        "text": {
-          "normalization": "utf8-crlf-to-lf",
-          "sha256": "bc218fa20dadac13ef3f95dcd3de8b57000d9dac1fa2553704095e0bd1d9d46f",
-          "bytes": 10029
-        }
-      },
-      {
-        "path": "tools/arb_paper_audit_core/scalars.py",
-        "sha256": "3e7a28b047f5c21cafd983b4ce6e4490054c036cf1277d5fc1861f2c7cabbc45",
-        "bytes": 5463,
-        "text": {
-          "normalization": "utf8-crlf-to-lf",
-          "sha256": "3e7a28b047f5c21cafd983b4ce6e4490054c036cf1277d5fc1861f2c7cabbc45",
-          "bytes": 5463
-        }
-      },
-      {
-        "path": "tools/arb_worker.py",
-        "sha256": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
-        "bytes": 6252,
-        "text": {
-          "normalization": "utf8-crlf-to-lf",
-          "sha256": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
-          "bytes": 6252
-        }
-      },
-      {
-        "path": "tools/check_papers_arb.py",
-        "sha256": "bafe29b4ab8987cbef3b4e56703433be1c69348dbd7c97474c87fee43817b387",
-        "bytes": 6421,
-        "text": {
-          "normalization": "utf8-crlf-to-lf",
-          "sha256": "bafe29b4ab8987cbef3b4e56703433be1c69348dbd7c97474c87fee43817b387",
-          "bytes": 6421
-        }
-      },
-      {
         "path": "tools/lab.py",
         "sha256": "3d551f4b01c91490c47d9093700d8eb6df3b93aec9cd6507c38974ac161e58e5",
         "bytes": 5721,
@@ -204,6 +122,16 @@
           "normalization": "utf8-crlf-to-lf",
           "sha256": "3d551f4b01c91490c47d9093700d8eb6df3b93aec9cd6507c38974ac161e58e5",
           "bytes": 5721
+        }
+      },
+      {
+        "path": "tools/render_beatty_profile.py",
+        "sha256": "ca964917349833d5da136ae21a78cca42e28c1026d9f68171be7023a42ec40e2",
+        "bytes": 12275,
+        "text": {
+          "normalization": "utf8-crlf-to-lf",
+          "sha256": "ca964917349833d5da136ae21a78cca42e28c1026d9f68171be7023a42ec40e2",
+          "bytes": 12275
         }
       },
       {
@@ -225,21 +153,36 @@
   },
   "inputs": [
     {
-      "path": "docs/theory/juggler_beatty_first_passage_note.md",
-      "sha256": "1edeafb530db6375dba72863d2a4b3ae60644e327e9b64494ae7ed79692625dd",
-      "bytes": 104492,
+      "path": "data/research/juggler/arb_paper_audit/beatty.json",
+      "sha256": "90f3a82b2fd64e12b354a0c21a51fc90101d2a83868c10aa120674d49f19859b",
+      "bytes": 1855880,
       "text": {
         "normalization": "utf8-crlf-to-lf",
-        "sha256": "1e3f2ccd60c71c911ad4281968a66f1ce66f0ade3e59b419ebcfd070b0db109e",
-        "bytes": 102413
+        "sha256": "90f3a82b2fd64e12b354a0c21a51fc90101d2a83868c10aa120674d49f19859b",
+        "bytes": 1855880
       }
     }
   ],
   "outputs": [
     {
-      "path": "beatty.json",
-      "sha256": "a287405b0378f2447c0c5908a6e9d423cb5af8242dcf8aee158be3223f362817",
-      "bytes": 1855880
+      "path": "beatty_profile.pdf",
+      "sha256": "2934a50b023a243cc800081f57398fbad1448377dd37f31fa3863550be8da3da",
+      "bytes": 179768
+    },
+    {
+      "path": "beatty_profile.svg",
+      "sha256": "7f0812df3afe48e289a597ba29ddb64a1e9ead53a68f4eb7adfbbeef087750fb",
+      "bytes": 1446980
+    },
+    {
+      "path": "beatty_profile.png",
+      "sha256": "bdfb44d2499b0974ea6f9335e61b716123289bb36398f46ade34b761ba0d35a9",
+      "bytes": 169147
+    },
+    {
+      "path": "beatty_profile.json",
+      "sha256": "00a6f8e54c0b2ee7a5d51de59480e17999b20c89c2595b849b18f15901ea63f1",
+      "bytes": 891898
     }
   ],
   "verification": "Outputs are byte-exact. Explicit text fingerprints on inputs/sources accept only UTF-8 CRLF-to-LF representation changes, which are reported. No theorem or compilation status is asserted."

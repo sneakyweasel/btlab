@@ -439,15 +439,26 @@ Lean axioms. See
 [BeattyPassageDistribution.lean](../../formal/Problems/Juggler/BeattyPassageDistribution.lean)
 and [its consumer](../../formal/InterfaceCheckBeattyPassageLaw.lean).
 
-The written proof in Section 21 identifies the entire density as
+**23 September: the entire occupation density and moments are now checked.**
+Section 21 identifies the entire density as
 `h(y)=sum_r 1_(L_r,U_r)(y)/(-y log q)`, with
 `L_r=q^delta_r F(delta_r)` and `U_r=q^delta_r(F(delta_r)+w_r)`.
 The intervals may overlap. A finite-jump occupation identity has an
 endpoint term, vanishing only in the limit because `qF(1)=1`.
 Uniform truncation and summable domination justify the dense-jump limit.
 This gives the logarithmic normalization and every real-power moment.
-These explicit identities are **EXACT — HUMAN PROOF**, still outside the
-formal interface; only the law and its measure type are Lean-checked.
+These explicit identities are now **EXACT — LEAN VERIFIED**, including
+all real exponents different from zero and negative-power integrability.
+The generic finite calculus, primitive bounds, dominated limit and measure
+identification are in the four `Beatty*Occupation*` modules. The concrete
+interfaces are
+[BeattyPassageDensity.lean](../../formal/Problems/Juggler/BeattyPassageDensity.lean)
+and [BeattyPassageMoments.lean](../../formal/Problems/Juggler/BeattyPassageMoments.lean).
+The [independent consumer](../../formal/InterfaceCheckBeattyDensity.lean)
+checks twenty dependency records with only standard Lean axioms, including
+the original integer counts converging to the explicit density law.
+The density is extended nonnegative, with finite values almost everywhere;
+overlapping intervals are counted with multiplicity.
 The finite-piece calculus has classical level-crossing precedents; no
 priority is inferred from the BGL comparison.
 
@@ -463,6 +474,310 @@ Stop criterion          An analytic premise remains unproved or the density form
 PROMOTE
 ```
 
+**23 September: exact interval support and dense null density blowup.**
+The Gamma-normalized counts have the single interval
+`[inf_r L_r, sup_r U_r]` as their full cluster set and limiting-law support.
+It is nondegenerate and lies in `[q,1/q]`; the CDF is continuous and strictly
+increasing on it. The canonical density is lower semicontinuous and infinite
+on a dense null G-delta in the support interior. Every finite threshold is
+exceeded on a positive-measure subset of every open set meeting that
+interior. Thus no almost-everywhere equal density version is locally
+essentially bounded there. These are **EXACT — LEAN VERIFIED**, with
+twenty-four consumer dependency records allowing only standard Lean axioms.
+The original integer ratios and exact endpoint formulas are expanded in
+[InterfaceCheckBeattySupport.lean](../../formal/InterfaceCheckBeattySupport.lean).
+Section 22 of the working note gives the proof and module map. No finite
+jump is asserted to supply either extremum; `L^p` integrability for `p>1`
+is not decided by the unboundedness theorem.
+
+```text
+Mathematical target     Determine the Gamma-law support and whether it has gaps.
+Novelty hypothesis      An exact specialization for these counts; the topology is classical.
+Falsifier               A genuine gap inside the amplitude's value envelope.
+Already killed by?      No matching obstruction; continuity of the dense-jump profile is not assumed.
+Existing machinery      Explicit density, summable jumps, endpoint identity, Gamma limit.
+Maximum Phase-0 scope   Support theorem and immediate distributional consequences.
+Promotion criterion     Compiled concrete theorem with audited dependencies.
+Stop criterion          An unproved regularity or arithmetic premise is needed.
+PROMOTE
+```
+
+**24 September: quantitative regularity and the full blowup set.**
+The concrete Gamma law satisfies `eta(A)<=C lambda(A)^(1/3)` for every
+measurable finite-measure set, and its canonical density has superlevel
+measure `O(T^(-3/2))`. It belongs to every `L^p`, `1<=p<3/2`.
+The CDF is globally one-third Holder and fails every local Lipschitz bound
+on open sets meeting the support interior. The whole infinite-density set
+equals the previously constructed dense null G-delta and has zero
+`s`-dimensional Hausdorff measure for every `s>2/3`, hence dimension at
+most `2/3`. These are **EXACT — LEAN VERIFIED**, with fifteen consumer
+dependency records allowing only standard Lean axioms. Section 23 of the
+working note records the proofs and the distinction from law moments.
+No endpoint integrability, optimal exponent or matching dimension is claimed.
+
+```text
+Mathematical target     Quantitative regularity and blowup-set upper dimension.
+Novelty hypothesis      Concrete consequences; the general estimates are classical.
+Falsifier               A mismatch between density intervals and proved decay bounds.
+Already killed by?      No matching recorded obstruction; the direct estimates close.
+Existing machinery      Density formula, positive envelope, three-halves truncated sums.
+Maximum Phase-0 scope   These inequalities and their concrete Lean interfaces.
+Promotion criterion     Unconditional statements for the actual limiting law, audited.
+Stop criterion          Do not claim sharpness without overlap estimates.
+PROMOTE
+```
+
+### Bounded overlap investigation (24 September)
+
+**EXACT — LEAN VERIFIED (criterion only).** Write `I_r=(L_r,U_r)` for the
+actual rescaled jump intervals, `M(y)=sum_r 1_(I_r)(y)`, and
+
+\[
+ \mathcal E=\sum_{r,s\ge1}|I_r\cap I_s|
+ =\sum_{r,s\ge1}(\min(U_r,U_s)-\max(L_r,L_s))_+.
+\]
+
+Tonelli gives `integral M^2 = E`, including the case of infinite values.
+Since `h(y)=M(y)/(a*y)` and all intervals lie in the positive compact
+envelope `[q,1/q]`, the actual density belongs to `L^2` if and only if
+`E<infinity`. [BeattyOverlapEnergy.lean](../../formal/Problems/Juggler/BeattyOverlapEnergy.lean)
+proves the general multiplicity identity, the concrete equality, the
+kernel factorization, and the equivalence for both the extended density
+integral and its almost-everywhere real representative. The
+[expanded consumer](../../formal/InterfaceCheckBeattyOverlap.lean) and
+[executable audit](../../tests/research/juggler_sequence/test_beatty_overlap_interface.py)
+check seven dependency records, allowing only `propext`, `Classical.choice`
+and `Quot.sound`. This formal criterion does **not** prove its finiteness side.
+The generic identities are classical; no novelty is claimed for Tonelli.
+
+**COMPUTATIONALLY VERIFIED (finite scope).** The
+[overlap audit](../../tools/check_beatty_overlap.py) uses exact survivor
+counts through depth 6493 and Arb at 256 bits for 4096 atoms. For each
+dyadic profile cutoff `M=16,...,4096`, it computes every dyadic chronological
+head `N<=M`. Here `I_(r,M)` uses the finite profile `F_M` in both endpoints,
+and `h_(N,M)(y)=(a*y)^(-1) sum_(r<=N) 1_(I_(r,M))(y)`.
+This finite interval sum is not asserted to be a probability density or
+the entire occupation law of the truncated amplitude; the finite-cutoff
+endpoint term is not included. Rational outward bounds and actual-run
+provenance are in the [report](../../data/research/juggler/winkler_phase_collapse/overlap_energy.json)
+and [manifest](../../data/research/juggler/winkler_phase_collapse/overlap_energy.research.json).
+
+| Profile and head cutoff `M=N` | `integral h_(N,N)^2` (rounded display) | Last-block overlap energy / sum of its interval lengths (rounded display) |
+|---|---:|---:|
+| 128 | 3.209585 | 1.015752 |
+| 512 | 3.357811 | 1.022268 |
+| 1024 | 3.397190 | 1.026024 |
+| 2048 | 3.409648 | 1.016919 |
+| 4096 | 3.435221 | 1.014959 |
+
+The last block contains indices `N/2<r<=N`; its finite-model maximum
+multiplicity is exactly two at all nine diagonal cutoffs in this run.
+This statement is a finite check, **not** an all-orders overlap bound.
+
+The audit also encloses true finite heads using
+`0<=F-F_M<=T_M=1/q-F_M(1)`. At `M=4096`,
+`0.02244448<T_M<0.02244449`, and the true ordered overlap sum through
+`r,s<=4096` lies in `[2.75903,12.54709]` (outward decimal rounding).
+That interval is for the multiplicity energy of the true finite head,
+not the density-square integral or the infinite sum. Position uncertainty
+does not enlarge a jump's known width: the code bounds the intersection by
+`max(0,min(width_i,width_j,U_i-L_j,U_j-L_i))`, keeping the diagonal widths
+exactly enclosed. All proposed phase/event orders are checked by Arb;
+an unresolved comparison fails the run. Independent interval examples,
+position-uncertainty checks and a two-precision small run pass in
+[the numerical tests](../../tests/tools/test_beatty_overlap.py).
+
+**EXACT — HUMAN PROOF (sufficient route only).** Put
+`D_k=integral (sum_(2^k<r<=2^(k+1)) 1_(I_r))^2`. Then
+
+\[
+ \sum_{k\ge0}\sqrt{D_k}<\infty \quad\Longrightarrow\quad h\in L^2.
+\]
+
+For every finite number of blocks, the `L^2` triangle inequality bounds
+the norm of their sum by `sqrt(|I_1|)+sum sqrt(D_k)`. Monotone convergence
+of its square then bounds the full energy. In particular,
+`D_k<=C*2^(-epsilon*k)` for some positive `C,epsilon` would suffice.
+The diagonal length sum has order `2^(-k/2)` by the proved weight bounds;
+the unresolved input is control of the off-diagonal overlaps. No such
+uniform estimate is established by the finite block table.
+
+There is another sufficient route: a uniform bound on the diagonal
+finite-profile energies `integral h_(M,M)^2` would imply `h in L^2`.
+For each fixed `r`, uniform convergence `F_M -> F` gives convergence of
+both endpoints. Outside the countable set of true endpoints, each fixed
+indicator converges. Finite heads therefore give
+`h<=liminf_M h_(M,M)` almost everywhere, and Fatou proves the implication.
+The displayed finite sequence does not supply the required uniform bound.
+These two sufficient-route arguments are written deductions, separate
+from the compiled exact overlap equivalence.
+
+### Arithmetic improvement across the endpoint (written proof)
+
+**EXACT — HUMAN PROOF; not yet an end-to-end Lean theorem.** For the
+concrete logarithmic slope, the canonical Gamma density satisfies
+
+\[
+ h\in L^p(\mathbb R)\qquad(1\le p<62/41).
+\]
+
+In particular `h in L^(3/2)`. More precisely, the law satisfies
+`eta(A)<=C lambda(A)^(21/62)` for every finite-measure measurable set,
+the density belongs to weak `L^(62/41)`, and the CDF is globally
+`21/62`-Holder. Constants are finite and uniform, but no numerical value
+is asserted. These exponents are conservative, not claimed optimal.
+The proof uses the classical Wu-Wang logarithmic-form theorem and the
+Erdos-Turan discrepancy inequality as external mathematics. Neither these
+inputs nor their analytic assembly below are added as axioms in Lean.
+
+**1. A weak but sufficient arithmetic input.** Wu and Wang,
+*On the irrationality measure of log 3*, J. Number Theory 142 (2014),
+264--273, [Theorem 1](https://doi.org/10.1016/j.jnt.2014.03.007), give a
+linear-form exponent `4.1163051+epsilon` for `1,log 2,log 3`.
+Use `epsilon=1/2` and coefficients `(0,-j,n)`, where `j` is a nearest
+integer to `n*alpha`. Then `max(|j|,n)<=2n`, and division by `log 2`,
+weakening the exponent to five, and absorbing finitely many small `n`
+give a constant `c>0` with
+
+\[
+ \|n\alpha\|_{\mathbb R/\mathbb Z}\ge c n^{-5}\quad(n\ge1).
+\]
+
+Irrationality ensures the finitely many absorbed distances are positive.
+This uses the linear-form theorem itself, not merely the irrationality
+measure of the different number `log 3`. The floor-finance obstruction in
+[Diophantine walls](../negative_knowledge/diophantine-walls.md) concerns
+cycle exclusion and does not apply to this rotation-discrepancy estimate.
+
+**2. Uniform discrepancy on every consecutive phase block.** The geometric
+sum for frequency `h` has absolute value at most `1/(2||h alpha||)`,
+uniformly in the initial index. The
+[Erdos-Turan inequality](https://www.renyi.hu/~p_erdos/1948-02.pdf)
+(1948, Theorem III) therefore gives normalized interval discrepancy
+
+\[
+ \mathscr D_N\ll K^{-1}+\frac1N\sum_{h=1}^K h^4
+ \ll K^{-1}+K^5/N\ll N^{-1/6},
+ \qquad K=\lfloor N^{1/6}\rfloor.
+\]
+
+The implicit constant is independent of the block's initial index and
+the phase interval. Changing endpoint conventions costs at most `2/N`,
+since the rotation phases are distinct; this is absorbed by the estimate.
+
+**3. Transfer the discrepancy to amplitude values.** Let `B(t)=q^t F(t)`,
+`B_M(t)=q^t F_M(t)`, and `H` be the CDF of `B(U)`. The proved weight
+bound yields
+`0<=B-B_M<=T_M<<M^(-1/2)` uniformly on `[0,1]`.
+On each of the `M+1` phase cells, `B_M` is a positive constant times
+`q^t` and strictly decreases. A sublevel set of `B_M` is therefore a
+union of at most `M+1` intervals, with at most `M+2` boundary points to
+handle separately. Rotation discrepancy controls its sampled frequency
+by its phase measure with error `O(M N^(-1/6))`.
+
+If `H_N` denotes the empirical CDF of `B(delta_r)` on any consecutive
+block of `N` indices, the inclusions
+`{B_M<=x-T_M} subset {B<=x} subset {B_M<=x}` and the reverse inclusions
+for their phase measures give
+
+\[
+ H(x-T_M)-O(MN^{-1/6})\le H_N(x)
+ \le H(x+T_M)+O(MN^{-1/6}).
+\]
+
+The already formalized one-third Holder bound for `H` implies
+`sup_x |H_N(x)-H(x)|<<M^(-1/6)+M N^(-1/6)`.
+Choose `M=max(1,floor(N^(1/7)))`; thus, uniformly over all such blocks,
+
+\[
+ \sup_x|H_N(x)-H(x)|\ll N^{-1/42}.                 \tag{O1}
+\]
+
+This is a rate for the exact amplitude samples `B(delta_r)`, not for
+the integer ratios `c_r/D_r`; transferring a rate to those ratios still
+requires a quantitative first-passage asymptotic. Taking left limits
+of the CDF bounds controls closed value intervals as well, because `H`
+is continuous; no distinctness of the amplitude values is assumed.
+
+**4. A uniform overlap bound at each dyadic scale.** For `n=2^k`, put
+`A_k(y)=sum_(n<r<=2n) 1_(I_r)(y)`.
+Each interval in this block has length at most `C n^(-3/2)` and left
+endpoint `B(delta_r)`. Consequently an interval covering `y` has its
+left endpoint in `[y-C n^(-3/2),y]`. By (O1) and the established
+concentration estimate for `eta`,
+
+\[
+ \|A_k\|_\infty\ll n\bigl((n^{-3/2})^{1/3}+n^{-1/42}\bigr)
+ \ll n^{41/42},\qquad
+ \|A_k\|_1=\sum_{n<r\le2n}|I_r|\ll n^{-1/2}.       \tag{O2}
+\]
+
+These are bounds for the **true** infinite-profile intervals, not their
+finite numerical approximations. In particular their block overlap
+energies satisfy `D_k=integral A_k^2<<2^(10k/21)`. This supplies a power
+saving over the length-only bound `O(2^(k/2))`, although it does not
+give the decay sufficient for `L^2`.
+
+**5. Integrability, concentration and CDF consequences.** For `1<=p<2`,
+`integral A_k^p <= ||A_k||_infinity^(p-1) ||A_k||_1`, so (O2) gives
+
+\[
+ \|A_k\|_p\ll_p
+ 2^{k(41p-62)/(42p)}.
+\]
+
+The block norms are summable precisely in the asserted range `p<62/41`.
+The triangle inequality for finite sums and monotone convergence prove
+`M in L^p`, hence `h in L^p` by the positive compact envelope. The
+single interval `I_1` contributes a finite norm. At `p=3/2` the displayed
+exponent is `-1/126`, so the endpoint is included without a logarithmic
+borderline argument.
+
+For the sharper set estimate, let `v=lambda(A)` with `0<v<=1` and split
+the dyadic blocks at `2^K` comparable to `v^(-21/31)`. Equations (O2)
+give
+
+\[
+ \int_A M\ll v+v\sum_{k\le K}2^{41k/42}
+                   +\sum_{k>K}2^{-k/2}
+ \ll v^{21/62}.
+\]
+
+The zero-measure case follows from absolute continuity; for `v>=1`,
+`eta(A)<=1` suffices. The bounded kernel transfers this bound to `eta`.
+Applying it to a density superlevel of measure `m` gives
+`T*m<=C*m^(21/62)`, hence `m<<T^(-62/41)`. Applying it to `(x,y]`
+gives global `21/62`-Holder continuity of `H`. No membership at the new
+endpoint `p=62/41`, no sharp exponent, and no `L^2` conclusion follows.
+
+**Proof boundary.** The overlap identity and `L^2` equivalence above are
+Lean-checked. Steps 1--5 here are a complete written argument using two
+named classical inputs; their additional arithmetic and discrepancy
+estimates have **not** been formalized. The numerical audit is independent
+of this argument and is not used to prove any infinite estimate. The
+working paper retains its previously audited formal range until this
+written strengthening is incorporated with its distinct evidence label.
+
+```text
+Mathematical target     Cross the Gamma-density three-halves endpoint using overlap control.
+Novelty hypothesis      Actual interval placement improves the length-only p<3/2 range.
+Falsifier               Failure of the uniform discrepancy or finite-sublevel-complexity bound.
+Already killed by?      No; the recorded Diophantine wall concerns cycle finance, not phase discrepancy.
+Existing machinery      Density, decay, concentration, exact counts, Arb, Wu-Wang and Erdos-Turan.
+Maximum Phase-0 scope   Cutoffs through 4096 and a written uniform block estimate; no larger campaign.
+Promotion criterion     A uniform analytic power saving sufficient for the actual density endpoint.
+Stop criterion          No optimality, L2 assertion or full Lean label without its missing proof.
+PROMOTE
+```
+
+**PROMOTE the written arithmetic improvement and the formal overlap
+criterion.** The `L^2` question remains unresolved: both the finite evidence
+and the analytic block bound stop short of proving it. The original
+`L^(3/2)` endpoint is now supplied by the written argument, with its
+external inputs explicit. Full Lean formalization of that improvement is
+a separate remaining task. No larger numerical campaign or new research
+branch is opened automatically.
+
 ## Open questions
 
 The qualitative logarithmic-slope phase theorem and normalization are complete
@@ -471,11 +786,16 @@ empirical limiting law. Its tube-volume order and Minkowski dimension `2/3`
 and its exact positive Minkowski content are now checked too, together with
 the whole local content measure and the normalized geometric limiting law.
 The Gamma-normalized empirical law and its absolute continuity are also
-checked. Its explicit occupation density and moment identities have a
-written proof; formalizing this identity is the next proof boundary. Remaining
+checked, together with its explicit occupation density, exact logarithmic
+normalization and all real-power moment identities. Its exact interval
+support, full cluster set, strict CDF, dense null density blowup and local
+essential unboundedness are now checked too. Remaining
 mathematical extensions are exact Hausdorff dimension and critical-measure
 positivity, supplying a Diophantine bound for the quantitative hitting theorem,
-a quantitative phase remainder,
+a quantitative phase remainder, evaluation of the support endpoints,
+full Lean formalization of the written `p<62/41` arithmetic improvement,
+`L^p` density integrability at `p=62/41` and above, optimal CDF Holder regularity,
+and a matching Hausdorff lower bound for the infinite-density set,
 effective numerical constants, and generalization from the concrete
 logarithmic slope to arbitrary irrational `1<alpha<2`. Literature comparison
 is separate from proof checking; existing paper claims and releases retain
@@ -497,8 +817,19 @@ now derived from a standard uniform Diophantine lower bound without exponent
 loss. Bounds for every exponent above one suffice for dimension equality;
 the stronger exponent-one bound supplies positive critical measure.
 The Gamma normalization gives an absolutely continuous limiting law,
-mutually singular with the original law. The explicit density series and
-its moments remain written deductions, with a complete finite-cutoff proof.
+mutually singular with the original law. Its explicit density series,
+logarithmic normalization and every real-power moment are formalized,
+with a complete finite-cutoff proof and no remaining occupation premise.
+Its exact support and full count cluster set are a nondegenerate interval;
+the density is lower semicontinuous with dense null blowup and unavoidable
+local essential unboundedness throughout the support interior. Quantitative
+concentration, weak three-halves tails, subcritical `L^p` integrability,
+Holder/non-Lipschitz CDF regularity and the full blowup-set Hausdorff upper
+bound are checked without further arithmetic assumptions.
+The subsequent written arithmetic argument gives density integrability for
+`1<=p<62/41`, weak `L^(62/41)` and `21/62`-Holder CDF regularity using
+Wu-Wang and Erdos-Turan. This strengthening is **EXACT — HUMAN PROOF**;
+its arithmetic inputs and discrepancy assembly are not Lean-checked.
 No new branch, publication, priority claim or
 trajectory-termination claim is opened.
 
@@ -514,9 +845,11 @@ the profile realizes their proposed irrational first-passage amplitude as
 profile, complete cluster set, singular law and explicit local geometric
 measure. The global gap-to-content criterion is attributed to
 Lapidus–Pomerance (1993). The exact Gamma-normalized amplitude is now
-Lean-checked, as is its absolutely continuous empirical law. The resulting
+Lean-checked, as are its absolutely continuous empirical law, explicit
+occupation density, real-power moments, interval support and density topology.
+The resulting
 contrast between two measure types belongs with the geometric results;
-the explicit occupation density, path dictionary and spectral corollary
-remain written deductions. Whether to publish separately or
+the path dictionary and spectral corollary remain written deductions.
+Whether to publish separately or
 incorporate this into Paper B remains an editorial decision; literature
 priority requires a wider search. The working note is not a new deposit.
