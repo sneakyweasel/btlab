@@ -51,11 +51,17 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "R(phi) is piecewise constant, changing exactly at the rotation orbit -- the same orbit psi jumps on -- and that explains why the single-jump model of f fails. THE ARGUMENT. The backward word has w_j(phi) = 1{frac(phi - (j+1)BETA) >= 1 - BETA}, and the set of phi satisfying that is an arc of length BETA with endpoints j BETA and (j+1) BETA. So a length-K word flips only at {k BETA : k = 0..K}, and is constant on every interval free of those points; Pi_phi, computed from the word alone, is therefore constant there too. R is a step function whose jump set is the orbit. VERIFIED. On a uniform grid of 8192 phases against a 1200-step word, R changes at 1100 grid steps, none of them strictly inside a gap, and no gap boundary without a change. Jump sizes decay: 0.1171 at k = 0, then 0.0358, 0.0179, 0.0089, 0.0068. WHY IT MATTERS. f = log(1 - b R / 2) - log rho inherits R's jumps on top of its own at 1 - BETA, so f is NOT a single-jump function. That is why measured |f_hat(q)| falls far below the pure-jump prediction |J|/(2 pi q), by a factor 37 at q = 84, and why the reading |psi_hat(q_j)| ~ |J| a_(j+1)/(4 pi^2) -- proportionality to the next partial quotient -- is NOT confirmed, its ratios running 0.03 to 4.7 across the convergents. That prediction is recorded as refuted in the form stated; a version accounting for R's own jumps is untested. NEW MACHINERY, WITH ITS LIMIT STATED. boundary_fraction_at_phases computes R at ARBITRARY phases rather than along the orbit, which removes the turn-count ceiling of J-psi-bounded-only-at-resolvable-resonances. But its convergence is slower than the d^(-2) of J-killed-walk-forgets-polynomially: against the exact forward profile the relative error runs 0.119, 0.037, 0.019, 0.008 at steps = 300, 900, 1500, 2500, about steps^(-1.5), so a few thousand steps buys about a percent. That is ample for locating structure and NOT ample for amplitudes, since the Fourier coefficients at deep resonances are smaller than the error. The deep resonance question therefore remains open, and the grid does not settle it. IN LEAN. The argument above is now machine-checked. `backWord_iff_fract_lt` is the whole of it: the letter, written against the anchor (j+1)*b, holds exactly when fract (phi - j*b) < b, so it is the indicator of an arc anchored at j*b. From that, `backWord_of_mem_arc` gives the letter on over [j*b, (j+1)*b) and `not_backWord_of_mem_gap` gives it off over [(j+1)*b, j*b + 1), which are the two arcs the orbit cuts; `backWord_congr` says the letter sees the phase only through its position relative to the anchor. All print [propext, Classical.choice, Quot.sound]. What is NOT formalised is the step from the word to R -- that needs the profile, hence the convergence that J-boundary-fraction-is-the-clean-coordinate still lacks -- so the Lean covers the exact half of this row and not the measured half.",
   "source": "docs/research_journal.md",
-  "lean": "formal/Problems/Juggler/PaperBBackwardWord.lean",
+  "lean": "Problems/Juggler/PaperBBackwardWord.lean",
   "tests": [
    "tests/research/juggler_sequence/paper_b_prefix_count/test_boundary_rotation.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "backWord_of_mem_arc",
+   "not_backWord_of_mem_gap",
+   "backWord_congr"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-boundary-fraction-is-the-clean-coordinate",
@@ -167,11 +173,18 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "PROVED, and it closes the amplitude question in both cases at once. Let N_d count the words of length d with o_t >= ceil(t BETA) at every t <= d, let M_d count those of them with o_d = ceil(d BETA) exactly -- sitting ON the barrier -- and let b_d = ceil((d+1)BETA) - ceil(d BETA). Then N_(d+1) = 2 N_d - b_d M_d, an exact integer identity, checked for d = 1..58 with no floating point in the recursion and agreeing with non_contracting at d = 10, 25, 40. Equivalently P_(d+1) = P_d - b_d Q_d / 2 with P_d = N_d/2^d and Q_d = M_d/2^d the mass on the barrier. PROOF. Every survivor of length d has two extensions. If b_d = 0 both survive, by PaperBBarrierStep.survives_succ_of_no_rise. If b_d = 1, a survivor strictly above the barrier still keeps both (survives_succ_of_above_barrier, since one more odd letter cannot be needed when the count already exceeds the old ceiling by at least one), and a survivor exactly on the barrier loses precisely the even extension and only that one (dies_iff_on_barrier). So exactly b_d M_d extensions are lost. All three are kernel-checked on propext, Classical.choice and Quot.sound alone; the cardinality bookkeeping is the sentence above and is not formalised. WHAT IT SETTLES. J-non-rising-barrier-step-doubles-the-count is the b_d = 0 case. The b_d = 1 case had NO rule -- J-psi-amplitude-rule-is-second-order-in-the-sturmian-word could only report that the ratio splits by position in the Sturmian run, 0.983 against 0.932. That split is now identified: since the two depths bracketing k BETA share b = s_k, the amplitude recursion is a_(k+1) - a_k = -s_k (Q_(d-) - Q_(d+)) / 2, a difference of BOUNDARY OCCUPATIONS. It was never a numerical pattern. WHY THIS IS THE RIGHT COORDINATE. Q_d is boundary local time for the killed walk, which is what a local limit theorem produces; the measured envelope a_k ~ 1.12 k^(-1.09) becomes a statement about how Q_d varies between bracketing depths. So psi's existence, still open, acquires a shape it did not have: instead of 'some limit exists' the target is the asymptotics of Q_d for a walk killed at a Sturmian barrier. Nothing here proves that, and no bound moves. THE CARDINALITY BOOKKEEPING IS NOW FORMALISED (18 September 2026). This row records the sentence joining the three branches as not formalised. PaperBCertificateRecursion.neverNegCount_add_minimalCertCount proves it as a Finset cardinality identity in Nat arithmetic, and minimalCertCount_succ identifies its minimalCertCount (d+1) with this row's b_d M_d via minimalCertWords_succ. Every declaration involved rests on subsets of Mathlib's three axioms.",
   "source": "docs/research_journal.md",
-  "lean": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+  "lean": "Problems/Juggler/PaperBCertificateRecursion.lean",
   "tests": [
    "tests/research/juggler_sequence/paper_b_prefix_count/test_sturmian_recursion.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "neverNegCount_add_minimalCertCount",
+   "minimalCertWords_succ",
+   "minimalCertCount_succ",
+   "neverNegCount_succ_sub_onBarrier"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cycle-period-bounds-are-one-semiconvergent-family",
@@ -415,20 +428,33 @@
    "tests/research/juggler_sequence/test_layer_architecture.py",
    "tests/research/juggler_sequence/paper_b_prefix_count/test_killed_walk.py"
   ],
-  "lean": "formal/Problems/Juggler/PaperBWeightGap.lean",
+  "lean": "Problems/Juggler/PaperBWeightGap.lean",
   "related_conjectures": [],
-  "statement": "The criticality of the killed walk is not a coordinate artifact: no exponential weight separates the decay rate from the essential spectrum, so a contraction argument in that whole class is impossible rather than merely missing. THE CLAUSE THIS PROVES. J-killed-walk-forgets-polynomially says the memory loss is not geometric, so a contraction argument does not describe the walk HOWEVER IT IS SET UP. The quantified clause was an observation; this proves it for the class it is usually meant against, exponential reweighting. THE SET-UP, which is modelling and is NOT proved. On the space weighted by r^m the two updates act on r^m by multiplication, by (1 + 1/r)/2 and (1 + r)/2, so the log essential spectral radius at weight r is the beta-average chi(r) = (1-beta) log((1+1/r)/2) + beta log((1+r)/2). Identifying exp(chi(r)) with the essential radius is the modelling step; the theorem is the inequality about chi. THE THEOREM. `no_weight_separates` gives logRho beta <= chi r for every r > 0, and `chi_tailRoot_eq` gives equality at r = tailRoot beta = (1-beta)/beta. Since logRho beta IS the decay rate, the Perron eigenvalue never drops below the essential radius at any weight; the best an exponential weight achieves is EQUALITY, and it achieves it at the tail base the profile already carries, so the weight buys nothing the profile did not already have. THE PROOF, short because the pieces existed. Substituting r = exp s collapses chi onto the Chernoff exponent at the COMPLEMENTARY slope, chi(exp s) = chernoffExp s (1-beta) (`chi_eq_chernoffExp`); logRho is symmetric under b -> 1-b (`logRho_symm`), so the target is its own minimum; and the gap between a Chernoff exponent and that minimum is a relative entropy, chernoffExp lam b - logRho b = klDiv b (e^lam/(1+e^lam)) (`chernoffExp_sub_logRho`), nonnegative by Gibbs -- `OneSided.klDiv_nonneg`, already in the fate layer. No new analysis; what is new is that the three fit. All six declarations print [propext, Classical.choice, Quot.sound]. SUPPORTING MEASUREMENT. The capped period operator's gap CLOSES as the cap grows, |lambda2/lambda1| = 0.1079, 0.5701, 0.8683, 0.9652, 0.9912 at caps 40 to 640, which is what an essential radius equal to the Perron eigenvalue looks like from inside a truncation. And chi(r*) - logRho(beta) = 5.6e-17 with the minimum over a 400000-point scan of r in (0,4] nonnegative to 2.1e-12. CONSEQUENCE, and the limit of it. This closes contraction in the exponentially weighted class for the quasi-stationary limit of J-boundary-fraction-is-the-clean-coordinate. EXTENDED, same day: the bound is POINTWISE in r, so it already covers non-exponential weights. A weight w has local ratios w(m+1)/w(m); the essential radius is an average of chi over those ratios, and no average of values bounded below by log rho falls below log rho. The exponential case is the constant-ratio one and is not special. What stays untouched is a change of space that is not multiplication by a function of m at all. Independently confirmed by J-killed-chain-is-rho-null. It moves no bound and excludes no fate. It is a statement about a class of proofs, not about the Juggler map."
+  "statement": "The criticality of the killed walk is not a coordinate artifact: no exponential weight separates the decay rate from the essential spectrum, so a contraction argument in that whole class is impossible rather than merely missing. THE CLAUSE THIS PROVES. J-killed-walk-forgets-polynomially says the memory loss is not geometric, so a contraction argument does not describe the walk HOWEVER IT IS SET UP. The quantified clause was an observation; this proves it for the class it is usually meant against, exponential reweighting. THE SET-UP, which is modelling and is NOT proved. On the space weighted by r^m the two updates act on r^m by multiplication, by (1 + 1/r)/2 and (1 + r)/2, so the log essential spectral radius at weight r is the beta-average chi(r) = (1-beta) log((1+1/r)/2) + beta log((1+r)/2). Identifying exp(chi(r)) with the essential radius is the modelling step; the theorem is the inequality about chi. THE THEOREM. `no_weight_separates` gives logRho beta <= chi r for every r > 0, and `chi_tailRoot_eq` gives equality at r = tailRoot beta = (1-beta)/beta. Since logRho beta IS the decay rate, the Perron eigenvalue never drops below the essential radius at any weight; the best an exponential weight achieves is EQUALITY, and it achieves it at the tail base the profile already carries, so the weight buys nothing the profile did not already have. THE PROOF, short because the pieces existed. Substituting r = exp s collapses chi onto the Chernoff exponent at the COMPLEMENTARY slope, chi(exp s) = chernoffExp s (1-beta) (`chi_eq_chernoffExp`); logRho is symmetric under b -> 1-b (`logRho_symm`), so the target is its own minimum; and the gap between a Chernoff exponent and that minimum is a relative entropy, chernoffExp lam b - logRho b = klDiv b (e^lam/(1+e^lam)) (`chernoffExp_sub_logRho`), nonnegative by Gibbs -- `OneSided.klDiv_nonneg`, already in the fate layer. No new analysis; what is new is that the three fit. All six declarations print [propext, Classical.choice, Quot.sound]. SUPPORTING MEASUREMENT. The capped period operator's gap CLOSES as the cap grows, |lambda2/lambda1| = 0.1079, 0.5701, 0.8683, 0.9652, 0.9912 at caps 40 to 640, which is what an essential radius equal to the Perron eigenvalue looks like from inside a truncation. And chi(r*) - logRho(beta) = 5.6e-17 with the minimum over a 400000-point scan of r in (0,4] nonnegative to 2.1e-12. CONSEQUENCE, and the limit of it. This closes contraction in the exponentially weighted class for the quasi-stationary limit of J-boundary-fraction-is-the-clean-coordinate. EXTENDED, same day: the bound is POINTWISE in r, so it already covers non-exponential weights. A weight w has local ratios w(m+1)/w(m); the essential radius is an average of chi over those ratios, and no average of values bounded below by log rho falls below log rho. The exponential case is the constant-ratio one and is not special. What stays untouched is a change of space that is not multiplication by a function of m at all. Independently confirmed by J-killed-chain-is-rho-null. It moves no bound and excludes no fate. It is a statement about a class of proofs, not about the Juggler map.",
+  "decl": [
+   "no_weight_separates",
+   "logRho_symm",
+   "chernoffExp_sub_logRho",
+   "logRho_le_chernoffExp"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-non-rising-barrier-step-doubles-the-count",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "PROVED, and elementary. Write N_d for the number of words of length d with o_t >= ceil(t BETA) at every t <= d, and P_d = N_d/2^d. If the barrier does not rise at step d, that is ceil((d+1)BETA) = ceil(d BETA), then N_(d+1) = 2 N_d and so P_(d+1) = P_d EXACTLY. Proof: let w be a surviving word of length d and x any letter. The odd count is monotone, so o_(d+1) = o_d + x >= o_d >= ceil(d BETA) = ceil((d+1)BETA), and w ++ [x] survives; conversely a survivor of length d+1 restricts to one of length d. So (w, x) -> w ++ [x] is a bijection from survivors of length d times two letters onto survivors of length d+1. THIS SETTLES J-sturmian-zero-step-leaves-the-raw-jump-invariant. When s_k = 0 both depths bracketing k BETA have a non-rising barrier, so P at each is individually unchanged under d -> d+1, hence so is any combination -- and the 1/rho of J-psi-amplitude-ratio-is-one-over-rho-at-the-sturmian-zeros is what the rho^d d^(-3/2) normalisation makes of one free step. CORRECTION. That row states that the two terms are NOT individually preserved and that a proof needs a bijection on their difference. Both are false, checked: at s_k = 0 each term is preserved on its own, to floating-point zero, and no bijection on a difference is needed or exists. The claim was asserted without testing it and is withdrawn. LEAN. The content is survives_succ_of_no_rise, with survives_of_survives_succ the converse restriction and noRise_iff_le_ceil characterising the non-rising step as ((t+1) b <= ceil(t b)), which for b = BETA is the Sturmian condition indexing s_k; barrier and barrierRise name the two quantities. Kernel-checked on propext, Classical.choice and Quot.sound alone. The cardinality bookkeeping N_(d+1) = 2 N_d is the bijection above and is not formalised; it is one line and is stated here rather than in Lean. SCOPE. This proves an identity about the counting function, not anything about psi's existence, which remains a local limit theorem for a killed walk against a Sturmian barrier and is untouched. It also explains the residual drift recorded in the earlier rows: the measured ratios approach 1/rho from above and slide because of the d^(-3/2) factor, not because the identity is approximate. It is not approximate.",
   "source": "docs/research_journal.md",
-  "lean": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+  "lean": "Problems/Juggler/PaperBBarrierStep.lean",
   "tests": [
    "tests/research/juggler_sequence/paper_b_prefix_count/test_sturmian_recursion.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "survives_succ_of_no_rise",
+   "survives_of_survives_succ",
+   "noRise_iff_le_ceil"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-paper-b-barrier-mass-phase-count",
@@ -633,11 +659,17 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "The two papers' large-deviation exponents are one rate function of one walk, evaluated at the level each needs. The bad-word condition at depth d = CL is u_d > -L, so the odd fraction must exceed p(C) = (1 - 1/C)/log2(3), and Paper C's e(C) is C KL(p(C) || 1/2)/log 2. Paper B sits at L = 0, which is C to infinity, where p(C) tends to 1/log2(3) = BETA = log2/log3, the threshold its own Hoeffding step uses. So e(C)/C converges to Paper B's rate in bits, 0.050044473: measured gaps 4.8e-3 at C = 100, 4.9e-4 at 1000, 4.9e-5 at 10000, 4.9e-6 at 100000, i.e. like 1/C. With J-paper-b-count-is-the-level-zero-bad-count this closes the correspondence: the conditions, the counts and now the exponents are the same objects at two levels. COROLLARY, and it corrects a reading recorded earlier the same day. Paper B's Hoeffding exponent is nearly sharp, not lossy: chernoff_rate() returns the minimised MGF rho, so the sharp rate is -log(rho), which equals kl_bernoulli(BETA) = 0.034688185 exactly, against HOEFFDING_C = 0.034285201 -- a slack of 1.0118 per letter, the module's own 'right to one part in eighty'. Over 24 letters that contributes 1.01x of a total loss of 25.7x. Essentially all of the loss is the polynomial d^(-3/2) that meander_constant names, whose constant converges to about 10.8. An earlier entry described the loss as splitting between the endpoint-versus-path gap and Hoeffding's own constant, which is true of those two ratios but invites the wrong conclusion: the exponent contributes essentially nothing. Not a bound and not an improvement to either paper. IN LEAN. The corollary is the load-bearing part and is now machine-checked: `neg_logRho_eq_klHalf` proves -logRho b = klHalf b for EVERY real b, with no positivity hypothesis, because both sides are the same arrangement of b log b, (1-b) log(1-b) and log 2. That is the bridge -- Paper B's rate was in PaperBSlopeRate and Paper C's relative entropy was already in FateChernoff as klHalf, proved for the Chernoff count, and neither layer knew about the other. The level-zero limits follow: `pC_tendsto_beta` sends Paper C's threshold (1 - 1/C)*beta to beta, and `eOverC_tendsto` sends e(C)/C to klHalf beta / log 2, which is 0.050044473. All kernel-clean. NOT formalised: the counting statements either side of the dictionary.",
   "source": "docs/research_journal.md",
-  "lean": "formal/Problems/Juggler/PaperBPaperCBridge.lean",
+  "lean": "Problems/Juggler/PaperBPaperCBridge.lean",
   "tests": [
    "tests/research/juggler_sequence/paper_b_prefix_count/test_meander.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "neg_logRho_eq_klHalf",
+   "pC_tendsto_beta",
+   "eOverC_tendsto"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-period-family-arithmetic-in-lean",
@@ -671,11 +703,15 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Advancing the phase by BETA is exactly one application of the update map, and the consequence is that R halves outright at every non-rising phase. THE RELATION. w_j(phi + BETA) = 1{frac(phi - j BETA) >= 1 - BETA} = w_(j-1)(phi), so shifting the phase shifts the backward word one place and prepends a letter -- that is, applies one more update at the end: Pi_(phi+BETA) = T_(b(phi)) Pi_phi / (1 - b(phi) Pi_phi(0) / 2). Verified at random phases with residual 0.0e+00, the mass lost being exactly Pi_phi(0)/2 when b = 1 and exactly zero when b = 0. THE COROLLARY. At b(phi) = 0 the update preserves mass, so the normaliser is 1, and PaperBBarrierStep.update_false_at_zero gives T_0 Pi(0) = Pi(0)/2. Hence R(phi + BETA) = R(phi)/2 whenever phi < 1 - BETA. Confirmed to 1.6e-16 at phases away from the switch point and to 1e-12 against the independent forward orbit profile; at b = 1 it fails as it must, the observed ratios being 2.63 and 3.26 rather than 1. THIS SUBSUMES J-r-jumps-halve-at-the-sturmian-zeros: if R itself halves under the shift then so does any difference of two of its values, which is what that row measured. It also explains why the jump recursion delta_(k+1) = T_(s_k) delta_k is exact at s_k = 0, with residuals at machine epsilon, and fails at s_k = 1 with relative errors 0.10 to 0.50 -- at a rising step the two sides of a jump lose DIFFERENT amounts of mass, so the normalisers differ and the map is no longer linear on differences. WHAT IT IS. A transfer-operator cocycle over the rotation: the quasi-stationary family is generated by iterating one of two explicit maps according to the Sturmian word, and every structural fact recorded about R and psi in this thread is a consequence of that single relation. What remains unproved is unchanged -- that the iteration converges, which is the quasi-stationary statement of J-boundary-fraction-is-the-clean-coordinate. IN LEAN. THE RELATION is `backWord_shift` of PaperBBackwardWord, which proves w_(j+1)(phi + b) = w_j(phi) and is kernel-clean; paired with `PaperBBarrierStep.update_false_at_zero` for the halving, both halves of this row's mechanism are now machine-checked. The cocycle statement itself is not, because it quantifies over the quasi-stationary profile, whose existence is the open obligation.",
   "source": "docs/research_journal.md",
-  "lean": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+  "lean": "Problems/Juggler/PaperBBarrierStep.lean",
   "tests": [
    "tests/research/juggler_sequence/paper_b_prefix_count/test_boundary_rotation.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "update_false_at_zero"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-profile-is-linear-times-geometric-in-the-line-coordinate",
@@ -761,11 +797,15 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "psi's discontinuity set is exactly the forward rotation orbit {k BETA mod 1 : k >= 0}, which identifies the unexplained second jump of J-psi-is-bounded-variation-with-an-ostrowski-spectrum and subsumes it into a cascade. THE MECHANISM IS EXACT. The Sturmian barrier increment is b_t = 1 iff fract(t BETA) >= 1 - BETA (PaperBTilt.sturmian_step), and fract((d-1-k)BETA) = fract(d BETA) - (k+1)BETA. The set {phi : phi - (k+1)BETA mod 1 >= 1 - BETA} is an arc of length BETA whose endpoints are k BETA and (k+1)BETA. So the barrier step k+1 from the end switches at k BETA, and taking the union over k the jump set is the whole orbit: countable, dense, with summable sizes. The k = 1 member is BETA = 0.6309, which is the jump at about 0.633 recorded as unexplained. MEASURED. At 512 bins over 20001 depths the nine largest jumps land on k BETA for k = 0 to 8 with no exception, each within 0.0006 of target against a bin width of 0.00195. Sizes from windows of width 0.02 either side: -0.07112, -0.03415, -0.01505, -0.01559, -0.01078, -0.00573, -0.00593, -0.00403, -0.00172 at k = 0 to 8, every one NEGATIVE. So psi drops crossing each k BETA upward and recovers smoothly between: a sawtooth on the orbit. The sizes pair up at k = (2,3), (5,6), (8,9), (10,11) -- differences of 3 = q_2 -- which is the three-distance structure of the orbit. From k = 8 the jumps fall to the level at which a window comparison also picks up psi's local slope (off-orbit controls read up to 0.0056), so they are not individually resolved and nothing is claimed for them. WHAT IT EXPLAINS. Both earlier readings, at once. Jumps give the k^(-0.79) Fourier decay, and a jump set which IS a rotation orbit gives the Ostrowski peaks, the transform of the jump measure being sum_k a_k e^(-2 pi i j k BETA). It also revises the attribution of the k = 0 jump: the explicit factor e^(-lamStar(1-phi)) jumps by e^(lamStar) = 1.7095 on the circle, but the measured net jump at 0 is only 7%, so h cancels most of it, consistent with the two-competing-effects reading. The jumps at k >= 1 come from h alone, the explicit factor being smooth away from 0. No bound moves; this is the structure of psi, not its existence, which remains open.",
   "source": "docs/research_journal.md",
-  "lean": "formal/Problems/Juggler/PaperBTilt.lean",
+  "lean": "Problems/Juggler/PaperBBackwardWord.lean",
   "tests": [
    "tests/research/juggler_sequence/paper_b_prefix_count/test_phase_profile.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "backWord_iff_fract_lt"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-psi-reconstructed-from-its-jump-measure",
@@ -816,11 +856,17 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "R's jump amplitudes halve exactly at every Sturmian zero, and the reason is one line. THE RULE. Crossing k BETA flips exactly two letters of the backward word, w_(k-1) from 1 to 0 and w_k from 0 to 1, so R's jump there is a difference of two word-driven runs and is directly computable. Measured at k = 0..21 the ratio a_(k+1)/a_k is 0.50000 to five decimals at k = 2, 5, 8, 10, 13, 16, 18 -- exactly the k with s_k = 0 -- and unsettled elsewhere, running 0.988, 0.773, 1.166, 0.895, 1.258, 1.415, 1.060, 1.388. THE MECHANISM. A non-rising step is m -> m + X, so m = 0 is reachable only from m = 0 and the update sends pi(0) to pi(0)/2; it also preserves total mass, so no renormalisation intervenes. A boundary PERTURBATION therefore halves, and R's jump with it. A rising step mixes in pi(1), which is why no rule of this kind holds at s_k = 1. Formalised as PaperBBarrierStep.update, update_false_at_zero, update_false_sub_at_zero and update_true_at_zero, kernel-checked on propext, Classical.choice and Quot.sound alone. This is the exact companion of J-non-rising-barrier-step-doubles-the-count: a non-rising step doubles the count and halves the boundary value, both for the same reason, that nothing can fall below a barrier that did not move. WHY THE RATIOS ARE TRUSTWORTHY WHERE THE AMPLITUDES ARE NOT. Doubling the word length from 1500 to 3000 moves every amplitude by 1.2 to 1.3 percent. That is a COMMON scale factor, since both sides of each jump are run identically and for the same length, so it cancels in the ratio and not in the value: the absolute amplitudes carry the convergence error of J-boundary-fraction-is-a-step-function-on-the-orbit, the ratios do not. That is the reverse of the usual situation in this thread, where ratios were the suspect quantity.",
   "source": "docs/research_journal.md",
-  "lean": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+  "lean": "Problems/Juggler/PaperBBarrierStep.lean",
   "tests": [
    "tests/research/juggler_sequence/paper_b_prefix_count/test_boundary_rotation.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "update",
+   "update_false_sub_at_zero",
+   "update_true_at_zero"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-rate-slope-derivative-is-the-tilt",
@@ -830,8 +876,15 @@
    "tests/research/juggler_sequence/paper_b_prefix_count/test_rational_barriers.py"
   ],
   "related_conjectures": [],
-  "lean": "formal/Problems/Juggler/PaperBSlopeRate.lean",
-  "statement": "d/ds log rho(s) = -log(s/(1-s)): the tilt that makes the walk drift-free is also the sensitivity of the rate to the barrier's slope. PROOF. Against a barrier of slope s the Chernoff rate is the Legendre transform of a fair coin, log rho(s) = -s log s + (s-1) log(1-s) - log 2. Differentiating, -log s - 1 + log(1-s) + (s-1) * (-1/(1-s)) = -log(s/(1-s)), the -1 cancelling against the last term. The second derivative is -1/(s(1-s)). CONSEQUENCE. lamStar = log(BETA/(1-BETA)) = 0.536207535136 already carried two roles that looked unrelated: the exponential tilt of the surviving profile, and through r* = (1-BETA)/BETA = e^(-lamStar) the base of its tail. This is a third that unifies them -- it is the derivative of the rate in the barrier slope -- and it is what converts a barrier error |BETA - p/q| into a rate error. MEASURED. Rational barriers realise it: the difference quotient between the 12/19 and 41/65 barriers agrees with -barrier_tilt at the midpoint slope to 1e-6, and the second-order term is confirmed too -- at 64/101, where |s - BETA| = 2.7e-3, the two-term Taylor matches the measured rate to 4e-5 relative. ONE FUNCTION, TWO DERIVATIVES. Write G(lam, s) = -lam s + log((1+e^lam)/2), so that log rho(s) = min_lam G. Stationarity in lam is the DOUBLE ROOT of J-rho-has-a-tail-variable-variational-formula: the minimiser is lamStar(s) and its exponential e^(-lamStar) = (1-s)/s is the tail base r*. The envelope in s is this row: d/ds min_lam G = -lamStar, and it is the vanishing lam-derivative that makes the envelope step legal. The double root and the slope derivative were recorded as separate facts; they are the two partial derivatives of G at one point. Verified at s = 0.579, BETA, 0.66: the minimiser matches barrier_tilt to 1e-7, e^(-lam) matches (1-s)/s to 1e-7, and the minimum matches log chernoff_rate_at to 1e-14. IN LEAN. `logRho_deriv` is this row and is kernel-clean; `chernoffExp_lam_deriv` is the vanishing lam-derivative that makes the envelope step legal rather than merely plausible; `chernoffExp_at_lamStar` is the identity that the exponent at the tilt IS the rate, at every slope; and `log_rho_eq` puts the closed form of PaperBTilt.rho into logs, over the definitions `logRho` and `chernoffExp`. All four print [propext, Classical.choice, Quot.sound] and nothing else. What is NOT in Lean is the measured content -- that a rational barrier of slope p/q really decays at rho(p/q) -- which stays in J-barrier-rate-is-the-chernoff-rate-at-its-slope as a measurement. Machinery: chernoff_exponent, barrier_tilt, chernoff_rate_at."
+  "lean": "Problems/Juggler/PaperBSlopeRate.lean",
+  "statement": "d/ds log rho(s) = -log(s/(1-s)): the tilt that makes the walk drift-free is also the sensitivity of the rate to the barrier's slope. PROOF. Against a barrier of slope s the Chernoff rate is the Legendre transform of a fair coin, log rho(s) = -s log s + (s-1) log(1-s) - log 2. Differentiating, -log s - 1 + log(1-s) + (s-1) * (-1/(1-s)) = -log(s/(1-s)), the -1 cancelling against the last term. The second derivative is -1/(s(1-s)). CONSEQUENCE. lamStar = log(BETA/(1-BETA)) = 0.536207535136 already carried two roles that looked unrelated: the exponential tilt of the surviving profile, and through r* = (1-BETA)/BETA = e^(-lamStar) the base of its tail. This is a third that unifies them -- it is the derivative of the rate in the barrier slope -- and it is what converts a barrier error |BETA - p/q| into a rate error. MEASURED. Rational barriers realise it: the difference quotient between the 12/19 and 41/65 barriers agrees with -barrier_tilt at the midpoint slope to 1e-6, and the second-order term is confirmed too -- at 64/101, where |s - BETA| = 2.7e-3, the two-term Taylor matches the measured rate to 4e-5 relative. ONE FUNCTION, TWO DERIVATIVES. Write G(lam, s) = -lam s + log((1+e^lam)/2), so that log rho(s) = min_lam G. Stationarity in lam is the DOUBLE ROOT of J-rho-has-a-tail-variable-variational-formula: the minimiser is lamStar(s) and its exponential e^(-lamStar) = (1-s)/s is the tail base r*. The envelope in s is this row: d/ds min_lam G = -lamStar, and it is the vanishing lam-derivative that makes the envelope step legal. The double root and the slope derivative were recorded as separate facts; they are the two partial derivatives of G at one point. Verified at s = 0.579, BETA, 0.66: the minimiser matches barrier_tilt to 1e-7, e^(-lam) matches (1-s)/s to 1e-7, and the minimum matches log chernoff_rate_at to 1e-14. IN LEAN. `logRho_deriv` is this row and is kernel-clean; `chernoffExp_lam_deriv` is the vanishing lam-derivative that makes the envelope step legal rather than merely plausible; `chernoffExp_at_lamStar` is the identity that the exponent at the tilt IS the rate, at every slope; and `log_rho_eq` puts the closed form of PaperBTilt.rho into logs, over the definitions `logRho` and `chernoffExp`. All four print [propext, Classical.choice, Quot.sound] and nothing else. What is NOT in Lean is the measured content -- that a rational barrier of slope p/q really decays at rho(p/q) -- which stays in J-barrier-rate-is-the-chernoff-rate-at-its-slope as a measurement. Machinery: chernoff_exponent, barrier_tilt, chernoff_rate_at.",
+  "decl": [
+   "logRho_deriv",
+   "chernoffExp_lam_deriv",
+   "chernoffExp_at_lamStar",
+   "log_rho_eq"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-rational-barriers-give-exact-profiles",
@@ -862,11 +915,17 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "rho has a second variational characterisation, in the TAIL variable, dual to the Cramer one in the tilt variable -- and the minimum is attained with a DOUBLE root, which is the structural reason a polynomial factor accompanies rho^d. THE SET-UP. In the m coordinate the conditional law updates by two maps: T_0 pi(m) = (pi(m) + pi(m-1))/2 when the barrier does not rise, and T_1 pi(m) = (pi(m) + pi(m+1))/2 when it does, the latter losing pi(0)/2. A geometric tail r^m keeps its SHAPE under both -- T_0 multiplies its mass by (1+1/r)/2 and T_1 by (1+r)/2 -- so along a word with density BETA of rises the tail reproduces with factor [(1+1/r)/2]^(1-BETA) [(1+r)/2]^BETA. Setting that equal to rho is the characteristic equation for the quasi-stationary tail. THE DOUBLE ROOT. The exponent is stationary exactly at r* = (1-BETA)/BETA = exp(-lamStar) = 0.584962501, and there 1 + 1/r* = 1/(1-BETA) and 1 + r* = 1/BETA, so its value collapses to -[log2 + BETA log BETA + (1-BETA) log(1-BETA)] = -KL(BETA || 1/2) = log rho. The minimum TOUCHES log rho rather than crossing it: verified to 5.55e-17, and g(r* +- delta) > log rho at delta = 0.2, 0.05, 0.01, 0.001. So rho = min over r of that expression, attained at the tilt. WHY IT MATTERS. A simple root would give a pure geometric tail and a pure exponential decay; a double root is the critical case and produces the polynomial correction, which is where d^(-3/2) comes from. The tail ratio of the quasi-stationary profile being exactly exp(-lamStar) also ties J-boundary-fraction-is-the-clean-coordinate to J-paper-b-tilt-reduction-and-the-phase-factor: the rate at which the conditional profile decays away from the barrier is the same number that makes the walk mean zero. LEAN. The substitutions are one_add_inv_tailRoot and one_add_tailRoot, the identification of the tail ratio with the tilt is tailRoot_mul_odds, and the first-order condition is stationary_iff_eq_tailRoot, with tailRoot naming the quantity; all kernel-checked on propext, Classical.choice and Quot.sound alone. MEASURED, WITH A CAVEAT. The conditional profile's ratio pi(m+1)/pi(m) falls through r* from above around m = 60 to 80 and then continues below it, reading 0.5940, 0.5819, 0.5699, 0.5498 at m = 40, 80, 150, 300. That is NOT a grid artefact -- the figures are identical on grids of width 600, 1200 and 2400 -- but a finite-depth cutoff at large m, and it is recorded rather than explained. Nothing here proves the quasi-stationary limit exists. The same stationarity read in the TILT variable rather than the tail variable is `chernoffExp_lam_deriv` of J-rate-slope-derivative-is-the-tilt, where it is paired with the envelope in the slope; the two are partial derivatives of one function at one point.",
   "source": "docs/research_journal.md",
-  "lean": "formal/Problems/Juggler/PaperBTilt.lean",
+  "lean": "Problems/Juggler/PaperBWeightGap.lean",
   "tests": [
    "tests/research/juggler_sequence/paper_b_prefix_count/test_boundary_fraction.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "chi",
+   "chi_eq_chernoffExp",
+   "chi_tailRoot_eq"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-staircase-and-cycle-records-split-betas-semiconvergents",
@@ -985,11 +1044,18 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Paper B's zero-drift tilt and Paper C's theta_C are one change of measure in two coordinate systems, and Paper B is the level-zero member. Paper C picks theta_C so the unconditioned tilted mean endpoint sits at the barrier -L; at L = 0, i.e. C to infinity, that is zero drift, which is the tilt meander_constant works under and the minimiser of the MGF chernoff_rate computes. The measures agree outright: the MGF minimiser gives tilted P(O) = 0.630929753 and p_C converges to BETA = 1/log2(3) = 0.630929754, with the tilted walk drift measured at -1.1e-9. The tilt PARAMETERS do not agree and should not, because the papers tilt by different statistics -- Paper C by the odd count o, Paper B by the walk value in nats. On words of fixed length t, e^{theta sum X} = e^{theta(o log 3 - t log 2)} = const(t) e^{(theta log 3) o}, so the coordinates differ by exactly log 3: theta_C = theta* log 3, verified to machine precision (0.536207535 against 0.488077132 times 1.098612289). Closed forms: theta* = log(log 2 / log(3/2))/log 3 and theta_C = log(log 2 / log(3/2)) = log(BETA/(1 - BETA)). This is the fourth and last level of the correspondence, after the conditions (J-paper-b-screen-is-a-walk-condition), the counts (J-paper-b-count-is-the-level-zero-bad-count) and the exponents (J-paper-c-exponent-is-paper-b-rate-at-level-zero): condition, count, exponent and measure are the same objects at two levels of one walk. Nothing here is a bound, and no result in either paper changes. IN LEAN. `beta_odds` proves beta/(1-beta) = log 2 / log(3/2), the identity behind both closed forms, and `lamStar_beta_closed` reads off Paper C's tilt as log(log 2 / log(3/2)). The coordinate change is `tilt_coordinate_change`: on words of length t with o odd letters the walk value is o log 3 - t log 2, so tilting by it with parameter theta equals tilting by the odd count alone with parameter theta * log 3, times a factor depending only on t -- which is why the parameters differ by exactly log 3 and should, recorded as `thetaStar_mul_log_three`. All kernel-clean. What is NOT formalised is that these tilts are the ones the two papers' arguments actually select; that is the content of the rows they come from, not of this dictionary.",
   "source": "docs/research_journal.md",
-  "lean": "formal/Problems/Juggler/PaperBPaperCBridge.lean",
+  "lean": "Problems/Juggler/PaperBPaperCBridge.lean",
   "tests": [
    "tests/research/juggler_sequence/paper_b_prefix_count/test_meander.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "beta_odds",
+   "lamStar_beta_closed",
+   "thetaStar_mul_log_three",
+   "tilt_coordinate_change"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-tilted-live-mass-is-expanding",

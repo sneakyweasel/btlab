@@ -470,11 +470,17 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "If n ≥ 2 follows OOEOOE and x = T_OOEOOE(n) is odd, then x^{64} ≤ n^{81} implies x^3 < n^4 (because 243 < 256), so z = ⌊x^{3/2}⌋ satisfies z < n^2. If z is even, T(z) ≤ n-1 (FiniteProgress). If z is odd, a CycleMin continuation after the forced O must begin with O, i.e. another OO. Empty continuation is excluded by cycleMin_not_end_odd. The itinerary OOEOOEO has the same square-cell gap 256 > 243. This is not an indefinite-odd-survival theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_odd_ooe_landing.md",
-  "lean": "",
+  "lean": "Problems/Juggler/Escape.lean",
   "tests": [
    "tests/research/juggler_sequence/test_odd_ooe_landing.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "follows_ooeooeo_image_lt_sq",
+   "follows_itineraryOOEOOEO_of_odd_landing",
+   "minimal_ooeooe_forces_oo"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cyclemin-ooeooe-next-o-always-drop",
@@ -492,11 +498,16 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "If n ≥ 2 follows OOEOOE, then T_OOEOOE(n) < n^2. Proof: power_bound_word gives x6^{64} ≤ n^{81}; n^2 ≤ x6 would imply n^{128} ≤ n^{81}, impossible for n ≥ 2. If that landing is even, the next even step is at most n-1, hence FiniteProgress. Therefore a CycleMin prefix OOEOOE v has v empty (already excluded by no_cycleMin_ooeooe) or beginning with O. The same square-cell gap holds for OOEOOOE (256 > 243) and fails for b ≥ 4. This is not a FiniteProgress theorem for every v, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_minimal_ooe_corridor.md",
-  "lean": "",
+  "lean": "Problems/Juggler/Escape.lean",
   "tests": [
    "tests/research/juggler_sequence/test_minimal_ooe_corridor.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "follows_ooeooe_image_lt_sq",
+   "finiteProgress_of_ooeooe_even_landing"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cyclemin-ooo-inevitable",
@@ -1213,13 +1224,18 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Coupled exponent-walk charge with reduced-base transport. On a CycleMin cycle with minimum n ≥ 400, word length L and o odd letters, set u_k = (1+μ)a_k − k with μ = log_2(3/2). The defect-free floors give the upper envelope x_k ≤ n^(2^{u_k}) and CycleMin forces u_k ≥ 0 at every step. For the lower side, writing ln x_k ≥ w_k ln n − E_k with w_k = 2^{u_k}, the floor-loss recursion E' ≤ (3/2)E + 1.05 x^{-3/2} (odd), E' ≤ (1/2)E + 1.05 x^{-1/2} (even) with amplification exactly w_k/w_{j+1} from injection j to state k, odd injections at x_j ≥ n and even injections at x_j ≥ n^2 (cycleMin_even_ge_sq), yields E_k ≤ w_k·D with D = 1.05e/n + 0.7o/n^{3/2}. Hence x_k ≥ (n e^{-D})^{w_k}: the cyclic sum Σ 1/(x_i ln x_i) is bounded above by the exact (step, odd-count)-lattice DP maximum over all nonnegative closed exponent walks evaluated at the reduced base n' = n e^{-D}. No free parameter remains; the DP value feeds the 6/5 unroll of Theorem 4.4 exactly as in the parity table. Not a halt theorem and not a cycle obstruction by itself.",
   "source": "docs/problems/juggler_cycle_walk_charge.md",
-  "lean": "",
+  "lean": "Problems/Juggler/WalkTransport.lean",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_walk_charge.py"
   ],
   "related_conjectures": [
    "juggler_cycle_walk_charge"
-  ]
+  ],
+  "decl": [
+   "follows_log_le_walkWeight",
+   "cycleMin_transport_prefix"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cyclemin-walk-transport-envelope",
@@ -1247,7 +1263,7 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Named Lean window and its printed-window instance (Paper A Theorem 5.8): `hugCharge_sub_circleMean_window` covers L < 301994; `hugCharge_sub_circleMean_extended` names the analytic window [50508, 16785921). The printed C_* forms are `hugCharge_sub_rotationAverage_window` and `hugCharge_sub_rotationAverage_extended`. Thus the half-open extended window includes fan members k = 0,...,54, but not k = 55 at L_55 = q_14 = 16785921. The comparison C_L < 1/(ln 3 ln n') on that window, with the ν-range 16.41 < ν < 17.084, remains human arithmetic. The following original uniform census-free envelope records the narrower window: for every L in [50508, 301994) at the certified floor, C_L <= C_*(n') + 2 s(L)/L < 1/(ln 3 ln n') for the budgeted hug itinerary. Two lemmas: (1) itinerary identity — for every L the budgeted hug at (L, o_min) equals the exact IET L-prefix, because the exact rule keeps u in [0, 1+α), forcing exactly o_min = ⌈L·log2/log3⌉ odds, and a first budget-forced divergence would make the exact prefix exceed its own letter total; (2) digit cap — greedy Ostrowski digits obey b_j ≤ a_{j+1}, so the certified quotients give s(L) ≤ 47 on the window, while the deficit keeps ln n' ≥ 17.07, hence 2s/L ≤ 94/50508 = 1.87e−3 < 0.00514 ≤ J-gap; conclude by J-cyclemin-walk-dk-envelope. Instance (exact scan of all 251486 lengths): every digit within cap (level 1054 hits 23 exactly), exact max s = 37 at L = 275632, worst 2s/L over gap 0.1823 at L = 74654 — uniform margin ≥ 5.48. Discharges the crude-envelope caveat on the window and retires the per-row word-identity check. Envelope only: no new kills, survivors unchanged (L = 176251), period bound unchanged. Not a halt theorem.",
   "source": "docs/problems/juggler_cycle_walk_window.md",
-  "lean": "",
+  "lean": "Problems/Juggler/RotationAverage.lean",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_walk_window.py"
   ],
@@ -1255,7 +1271,11 @@
    "juggler_walk_window_envelope",
    "juggler_walk_dk_envelope",
    "juggler_walk_crude_envelope"
-  ]
+  ],
+  "decl": [
+   "hugCharge_lt_invLog_add_extended"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cyclemin-walk-word-identity",

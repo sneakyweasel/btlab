@@ -369,7 +369,13 @@
   "tests": [
    "tests/research/juggler_sequence/test_two_step_parity.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "seq_floor_gap",
+   "floor_gap_eq_carry",
+   "gap_carry_mem"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-w-family-below-nine-eighths",

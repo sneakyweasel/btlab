@@ -26,11 +26,15 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "The Juggler conjecture as an almost-all statement (fate-contagion note, Corollary 4.5). Fix N_0 with [1, N_0] ⊆ R (Lean N_0 = 260, reachesOne_of_lt_two_hundred_sixty_one; certified N_0 = 3.5·10^8). The following are equivalent: (1) every n ≥ 1 reaches 1; (2) Σ_{n ≤ x, n ∉ R} 1/n = o((log x)^λ) for some λ < λ** = 0.4926…; (3) the starts n ≤ x whose orbit never enters [1, N_0] have logarithmic count o((log x)^λ) for some λ < λ**. In natural-density terms (3) asks that all but O(x (log x)^{−0.508}) starts below x eventually fall below N_0 — a Tao-type almost-bounded-values statement with a bounded target and a mild logarithmic rate. For Collatz the analogous implication is false, and by exhibit rather than by tree size: {3 * 2^k} is backward-closed under the accelerated map, because a multiple of three has no odd preimage, and its reciprocal sum is 2/3. The Krasikov–Lagarias exponent x^{0.84} is a LOWER bound on preimage counts and establishes no thinness -- an earlier wording of this row said it did, which had the direction backwards; the published manuscript never did. What separates the two maps is worst-case backward log-mass: the Juggler even block carries exactly 1/m for every m with no exceptional residues, while the accelerated Collatz step carries 1/m in the mean but exactly 1/(2m) on every multiple of three, and Theorem 1 quantifies over every backward-closed set. This is a reduction, not a proof of termination, and no almost-all statement of type (3) is proved.",
   "source": "docs/theory/juggler_fate_contagion_note.md",
-  "lean": "",
+  "lean": "Problems/Juggler/FatePoorProduction.lean",
   "tests": [
    "tests/research/juggler_sequence/test_fate_contagion.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "failures_logMass_averaged"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-fate-fiber-sweep",

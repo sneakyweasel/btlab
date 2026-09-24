@@ -37,10 +37,15 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "On a Juggler CycleMin start n ≥ 3 with m local minima and o odd letters, after j consecutive odd steps from a valley the state is at least τ_j, where τ_0=n and τ_{j+1} is the least odd integer ≥ T(τ_j). At most m climb interiors can sit at each height τ_j, so θ ≤ (6/5)(m/(n ln n)+Σ_j C_j/(τ_j ln τ_j)+(L−o)/(n² · 2 ln n)) with greedy C_j = min(m, remaining climbs). This is strictly stronger than charging every climb at T(n) whenever o−m > m. At floor 257 it excludes every length-84 1-cycle and 2-cycle (joint-minima misses both). The Lean leftover J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five packages the m≤2 exclusion at constant 1 and floor 261; the full 6/5 greedy packing is not Lean. Adversarial circuit-partition without a height law remains a reparameterization of cycleMin_finance. Not a halt theorem and not a new paper.",
   "source": "docs/problems/juggler_cycle_position_finance.md",
-  "lean": "",
+  "lean": "Problems/Juggler/CycleHeightFinance.lean",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_position_finance.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "cycleMin_first_odd_image_ge",
+   "cycleMin_later_odd_image_ge"
+  ],
+  "lean_trust": "kernel"
  }
 ]

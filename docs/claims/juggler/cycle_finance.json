@@ -114,11 +114,15 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "On a Juggler CycleMin start n ≥ 12 of length L with o odd letters and e = L − o even letters, the number of odd-run starts is at most e, every even state is at least n² (cycleMin_even_ge_sq), and every odd preceded by an odd is at least t = ⌊n^{3/2}⌋. Hence Σ 1/(x_i ln x_i) ≤ e/(n ln n) + (o−e)/(t ln t) + e/(2 n² ln n). Combined with the existing 6/5 unroll this is strictly stronger than charging all L states at 1/(n ln n). It is the joint-minima bound at the adversarial circuit count m = e, not a reparameterization of B(L) = (6/5) L / θ. Not Lean. Not a halt theorem.",
   "source": "docs/problems/juggler_cycle_finance.md",
-  "lean": "",
+  "lean": "Problems/Juggler/CycleCore.lean",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "cycleMin_even_ge_sq"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-log-two-hundred-fifty-seven-gt-sixty-one-elevenths",

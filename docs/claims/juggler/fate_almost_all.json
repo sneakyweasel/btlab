@@ -227,7 +227,7 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Logarithmic density of a fate class (fate-contagion note, Theorem 4.2 and Corollary 4.3; Paper C Theorem 1). Let λ** = 0.4925715447… be the root of 2^{−λ} + (1/9)(3/8)^λ + (2/9)(3/4)^λ + (1/27)(9/32)^λ + (1/81)(27/128)^λ + (1/243)(81/512)^λ + (1/729)(243/2048)^λ + (1/2187)(729/8192)^λ = 1 (V_5 truncation 0.4924 of the first seven terms; V_4 truncation 0.4916 of the first six terms; V_3 truncation 0.4891 of the first five terms; OEOEE truncation 0.4801 of the first four terms; pairing-only root 0.4480 of the first three; λ* ≈ 0.3774, root of 2^{−λ} + (1/3)(3/8)^λ = 1, without pairing; the adversarial sweep 1/7 gave 0.4050). For every nonempty backward-closed A ⊆ ℕ and every λ < λ** there are c, x_0 > 0 with Σ_{n ∈ A, n ≤ x} 1/n ≥ c (log x)^λ for x ≥ x_0. Proof: even blocks contribute g(t/2)(1 − o(1)), OE images of E-blocks contribute (1/3) g(3t/8)(1 − o(1)), OE images of the rest contribute (2/9)·(g(3t/4) − g(3t/8))·(1 − o(1)) by monotone pairing, the elementary OEOEE production contributes (1/27) g(9t/32)(1 − o(1)) (J-fate-oeoee-production), the V_3 = OEOEOEE production contributes (1/81) g(27t/128)(1 − o(1)) (J-fate-v3-production), the V_4 = OEOEOEOEE production contributes (1/243) g(81t/512)(1 − o(1)) (J-fate-v4-production), the V_5 = OEOEOEOEOEE production contributes (1/729) g(243t/2048)(1 − o(1)) (J-fate-v5-production), and the V_6 = OEOEOEOEOEOEE production contributes (1/2187) g(729t/8192)(1 − o(1)) (J-fate-v6-production), all in (√x, x] and pairwise disjoint after removing those shares from family 3. The formal ideal depth-two recursion has root 0.4927; this is a model ceiling, not an attained infinite-family theorem. Not a halt theorem; no fate is excluded. The 9 September publication revision supplies a self-contained finite-depth proof in Appendix D using exact nested inverse endpoints, smooth multiplicity weights and averaged cancellation; no unproved pointwise cancellation on each short fiber is assumed. The analytic production estimates remain outside Lean. The recursion-and-seed half of the proof is Lean given the production inequality (5.2), for every λ ≤ 0.49: row J-fate-contagion-conditional (contagion_of_production_inequality in FateContagionBound.lean); (5.2) itself and the root λ** stay human. UNCONDITIONAL ABOVE THIS, 20 September 2026: J-oe-averaged-two-productions-reach-the-depth-two-ceiling reaches lambda <= 100/203 = 0.4926108 with no hypothesis, Production.logMass_contagion_averaged in Problems/Juggler/FatePoorProduction.lean, so Proposition 4.4's exponential sums are off the critical path for this consequence.",
   "source": "docs/theory/juggler_fate_almost_all_note.md",
-  "lean": "",
+  "lean": "Problems/Juggler/FatePoorProduction.lean",
   "tests": [
    "tests/research/juggler_sequence/test_fate_contagion.py",
    "tests/research/juggler_sequence/test_oeoee_production.py",
@@ -237,7 +237,12 @@
    "tests/research/juggler_sequence/test_v5_audit.py",
    "tests/research/juggler_sequence/test_v6_audit.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "logMass_contagion_averaged",
+   "contagion_averaged"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-fate-one-sided-atoms",

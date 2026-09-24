@@ -2293,11 +2293,17 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "R(phi) is piecewise constant, changing exactly at the rotation orbit -- the same orbit psi jumps on -- and that explains why the single-jump model of f fails. THE ARGUMENT. The backward word has w_j(phi) = 1{frac(phi - (j+1)BETA) >= 1 - BETA}, and the set of phi satisfying that is an arc of length BETA with endpoints j BETA and (j+1) BETA. So a length-K word flips only at {k BETA : k = 0..K}, and is constant on every interval free of those points; Pi_phi, computed from the word alone, is therefore constant there too. R is a step function whose jump set is the orbit. VERIFIED. On a uniform grid of 8192 phases against a 1200-step word, R changes at 1100 grid steps, none of them strictly inside a gap, and no gap boundary without a change. Jump sizes decay: 0.1171 at k = 0, then 0.0358, 0.0179, 0.0089, 0.0068. WHY IT MATTERS. f = log(1 - b R / 2) - log rho inherits R's jumps on top of its own at 1 - BETA, so f is NOT a single-jump function. That is why measured |f_hat(q)| falls far below the pure-jump prediction |J|/(2 pi q), by a factor 37 at q = 84, and why the reading |psi_hat(q_j)| ~ |J| a_(j+1)/(4 pi^2) -- proportionality to the next partial quotient -- is NOT confirmed, its ratios running 0.03 to 4.7 across the convergents. That prediction is recorded as refuted in the form stated; a version accounting for R's own jumps is untested. NEW MACHINERY, WITH ITS LIMIT STATED. boundary_fraction_at_phases computes R at ARBITRARY phases rather than along the orbit, which removes the turn-count ceiling of J-psi-bounded-only-at-resolvable-resonances. But its convergence is slower than the d^(-2) of J-killed-walk-forgets-polynomially: against the exact forward profile the relative error runs 0.119, 0.037, 0.019, 0.008 at steps = 300, 900, 1500, 2500, about steps^(-1.5), so a few thousand steps buys about a percent. That is ample for locating structure and NOT ample for amplitudes, since the Fourier coefficients at deep resonances are smaller than the error. The deep resonance question therefore remains open, and the grid does not settle it. IN LEAN. The argument above is now machine-checked. `backWord_iff_fract_lt` is the whole of it: the letter, written against the anchor (j+1)*b, holds exactly when fract (phi - j*b) < b, so it is the indicator of an arc anchored at j*b. From that, `backWord_of_mem_arc` gives the letter on over [j*b, (j+1)*b) and `not_backWord_of_mem_gap` gives it off over [(j+1)*b, j*b + 1), which are the two arcs the orbit cuts; `backWord_congr` says the letter sees the phase only through its position relative to the anchor. All print [propext, Classical.choice, Quot.sound]. What is NOT formalised is the step from the word to R -- that needs the profile, hence the convergence that J-boundary-fraction-is-the-clean-coordinate still lacks -- so the Lean covers the exact half of this row and not the measured half.",
   "source": "docs/research_journal.md",
-  "lean": "formal/Problems/Juggler/PaperBBackwardWord.lean",
+  "lean": "Problems/Juggler/PaperBBackwardWord.lean",
   "tests": [
    "tests/research/juggler_sequence/paper_b_prefix_count/test_boundary_rotation.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "backWord_of_mem_arc",
+   "not_backWord_of_mem_gap",
+   "backWord_congr"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-boundary-fraction-is-the-clean-coordinate",
@@ -2662,11 +2668,18 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "PROVED, and it closes the amplitude question in both cases at once. Let N_d count the words of length d with o_t >= ceil(t BETA) at every t <= d, let M_d count those of them with o_d = ceil(d BETA) exactly -- sitting ON the barrier -- and let b_d = ceil((d+1)BETA) - ceil(d BETA). Then N_(d+1) = 2 N_d - b_d M_d, an exact integer identity, checked for d = 1..58 with no floating point in the recursion and agreeing with non_contracting at d = 10, 25, 40. Equivalently P_(d+1) = P_d - b_d Q_d / 2 with P_d = N_d/2^d and Q_d = M_d/2^d the mass on the barrier. PROOF. Every survivor of length d has two extensions. If b_d = 0 both survive, by PaperBBarrierStep.survives_succ_of_no_rise. If b_d = 1, a survivor strictly above the barrier still keeps both (survives_succ_of_above_barrier, since one more odd letter cannot be needed when the count already exceeds the old ceiling by at least one), and a survivor exactly on the barrier loses precisely the even extension and only that one (dies_iff_on_barrier). So exactly b_d M_d extensions are lost. All three are kernel-checked on propext, Classical.choice and Quot.sound alone; the cardinality bookkeeping is the sentence above and is not formalised. WHAT IT SETTLES. J-non-rising-barrier-step-doubles-the-count is the b_d = 0 case. The b_d = 1 case had NO rule -- J-psi-amplitude-rule-is-second-order-in-the-sturmian-word could only report that the ratio splits by position in the Sturmian run, 0.983 against 0.932. That split is now identified: since the two depths bracketing k BETA share b = s_k, the amplitude recursion is a_(k+1) - a_k = -s_k (Q_(d-) - Q_(d+)) / 2, a difference of BOUNDARY OCCUPATIONS. It was never a numerical pattern. WHY THIS IS THE RIGHT COORDINATE. Q_d is boundary local time for the killed walk, which is what a local limit theorem produces; the measured envelope a_k ~ 1.12 k^(-1.09) becomes a statement about how Q_d varies between bracketing depths. So psi's existence, still open, acquires a shape it did not have: instead of 'some limit exists' the target is the asymptotics of Q_d for a walk killed at a Sturmian barrier. Nothing here proves that, and no bound moves. THE CARDINALITY BOOKKEEPING IS NOW FORMALISED (18 September 2026). This row records the sentence joining the three branches as not formalised. PaperBCertificateRecursion.neverNegCount_add_minimalCertCount proves it as a Finset cardinality identity in Nat arithmetic, and minimalCertCount_succ identifies its minimalCertCount (d+1) with this row's b_d M_d via minimalCertWords_succ. Every declaration involved rests on subsets of Mathlib's three axioms.",
   "source": "docs/research_journal.md",
-  "lean": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+  "lean": "Problems/Juggler/PaperBCertificateRecursion.lean",
   "tests": [
    "tests/research/juggler_sequence/paper_b_prefix_count/test_sturmian_recursion.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "neverNegCount_add_minimalCertCount",
+   "minimalCertWords_succ",
+   "minimalCertCount_succ",
+   "neverNegCount_succ_sub_onBarrier"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cube-even-is-progress",
@@ -3767,11 +3780,15 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "On a Juggler CycleMin start n ≥ 12 of length L with o odd letters and e = L − o even letters, the number of odd-run starts is at most e, every even state is at least n² (cycleMin_even_ge_sq), and every odd preceded by an odd is at least t = ⌊n^{3/2}⌋. Hence Σ 1/(x_i ln x_i) ≤ e/(n ln n) + (o−e)/(t ln t) + e/(2 n² ln n). Combined with the existing 6/5 unroll this is strictly stronger than charging all L states at 1/(n ln n). It is the joint-minima bound at the adversarial circuit count m = e, not a reparameterization of B(L) = (6/5) L / θ. Not Lean. Not a halt theorem.",
   "source": "docs/problems/juggler_cycle_finance.md",
-  "lean": "",
+  "lean": "Problems/Juggler/CycleCore.lean",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_finance.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "cycleMin_even_ge_sq"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cycle-parity-finance-instance",
@@ -3869,11 +3886,16 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "On a Juggler CycleMin start n ≥ 3 with m local minima and o odd letters, after j consecutive odd steps from a valley the state is at least τ_j, where τ_0=n and τ_{j+1} is the least odd integer ≥ T(τ_j). At most m climb interiors can sit at each height τ_j, so θ ≤ (6/5)(m/(n ln n)+Σ_j C_j/(τ_j ln τ_j)+(L−o)/(n² · 2 ln n)) with greedy C_j = min(m, remaining climbs). This is strictly stronger than charging every climb at T(n) whenever o−m > m. At floor 257 it excludes every length-84 1-cycle and 2-cycle (joint-minima misses both). The Lean leftover J-cycle-itinerary-length-eighty-four-m-ge-three-or-ge-eighty-five packages the m≤2 exclusion at constant 1 and floor 261; the full 6/5 greedy packing is not Lean. Adversarial circuit-partition without a height law remains a reparameterization of cycleMin_finance. Not a halt theorem and not a new paper.",
   "source": "docs/problems/juggler_cycle_position_finance.md",
-  "lean": "",
+  "lean": "Problems/Juggler/CycleHeightFinance.lean",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_position_finance.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "cycleMin_first_odd_image_ge",
+   "cycleMin_later_odd_image_ge"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cycle-preimage-capacity-diagnostics",
@@ -4946,11 +4968,17 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "If n ≥ 2 follows OOEOOE and x = T_OOEOOE(n) is odd, then x^{64} ≤ n^{81} implies x^3 < n^4 (because 243 < 256), so z = ⌊x^{3/2}⌋ satisfies z < n^2. If z is even, T(z) ≤ n-1 (FiniteProgress). If z is odd, a CycleMin continuation after the forced O must begin with O, i.e. another OO. Empty continuation is excluded by cycleMin_not_end_odd. The itinerary OOEOOEO has the same square-cell gap 256 > 243. This is not an indefinite-odd-survival theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_odd_ooe_landing.md",
-  "lean": "",
+  "lean": "Problems/Juggler/Escape.lean",
   "tests": [
    "tests/research/juggler_sequence/test_odd_ooe_landing.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "follows_ooeooeo_image_lt_sq",
+   "follows_itineraryOOEOOEO_of_odd_landing",
+   "minimal_ooeooe_forces_oo"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cyclemin-ooeooe-next-o-always-drop",
@@ -4968,11 +4996,16 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "If n ≥ 2 follows OOEOOE, then T_OOEOOE(n) < n^2. Proof: power_bound_word gives x6^{64} ≤ n^{81}; n^2 ≤ x6 would imply n^{128} ≤ n^{81}, impossible for n ≥ 2. If that landing is even, the next even step is at most n-1, hence FiniteProgress. Therefore a CycleMin prefix OOEOOE v has v empty (already excluded by no_cycleMin_ooeooe) or beginning with O. The same square-cell gap holds for OOEOOOE (256 > 243) and fails for b ≥ 4. This is not a FiniteProgress theorem for every v, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_minimal_ooe_corridor.md",
-  "lean": "",
+  "lean": "Problems/Juggler/Escape.lean",
   "tests": [
    "tests/research/juggler_sequence/test_minimal_ooe_corridor.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "follows_ooeooe_image_lt_sq",
+   "finiteProgress_of_ooeooe_even_landing"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cyclemin-ooo-inevitable",
@@ -5689,13 +5722,18 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Coupled exponent-walk charge with reduced-base transport. On a CycleMin cycle with minimum n ≥ 400, word length L and o odd letters, set u_k = (1+μ)a_k − k with μ = log_2(3/2). The defect-free floors give the upper envelope x_k ≤ n^(2^{u_k}) and CycleMin forces u_k ≥ 0 at every step. For the lower side, writing ln x_k ≥ w_k ln n − E_k with w_k = 2^{u_k}, the floor-loss recursion E' ≤ (3/2)E + 1.05 x^{-3/2} (odd), E' ≤ (1/2)E + 1.05 x^{-1/2} (even) with amplification exactly w_k/w_{j+1} from injection j to state k, odd injections at x_j ≥ n and even injections at x_j ≥ n^2 (cycleMin_even_ge_sq), yields E_k ≤ w_k·D with D = 1.05e/n + 0.7o/n^{3/2}. Hence x_k ≥ (n e^{-D})^{w_k}: the cyclic sum Σ 1/(x_i ln x_i) is bounded above by the exact (step, odd-count)-lattice DP maximum over all nonnegative closed exponent walks evaluated at the reduced base n' = n e^{-D}. No free parameter remains; the DP value feeds the 6/5 unroll of Theorem 4.4 exactly as in the parity table. Not a halt theorem and not a cycle obstruction by itself.",
   "source": "docs/problems/juggler_cycle_walk_charge.md",
-  "lean": "",
+  "lean": "Problems/Juggler/WalkTransport.lean",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_walk_charge.py"
   ],
   "related_conjectures": [
    "juggler_cycle_walk_charge"
-  ]
+  ],
+  "decl": [
+   "follows_log_le_walkWeight",
+   "cycleMin_transport_prefix"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cyclemin-walk-transport-envelope",
@@ -5723,7 +5761,7 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Named Lean window and its printed-window instance (Paper A Theorem 5.8): `hugCharge_sub_circleMean_window` covers L < 301994; `hugCharge_sub_circleMean_extended` names the analytic window [50508, 16785921). The printed C_* forms are `hugCharge_sub_rotationAverage_window` and `hugCharge_sub_rotationAverage_extended`. Thus the half-open extended window includes fan members k = 0,...,54, but not k = 55 at L_55 = q_14 = 16785921. The comparison C_L < 1/(ln 3 ln n') on that window, with the ν-range 16.41 < ν < 17.084, remains human arithmetic. The following original uniform census-free envelope records the narrower window: for every L in [50508, 301994) at the certified floor, C_L <= C_*(n') + 2 s(L)/L < 1/(ln 3 ln n') for the budgeted hug itinerary. Two lemmas: (1) itinerary identity — for every L the budgeted hug at (L, o_min) equals the exact IET L-prefix, because the exact rule keeps u in [0, 1+α), forcing exactly o_min = ⌈L·log2/log3⌉ odds, and a first budget-forced divergence would make the exact prefix exceed its own letter total; (2) digit cap — greedy Ostrowski digits obey b_j ≤ a_{j+1}, so the certified quotients give s(L) ≤ 47 on the window, while the deficit keeps ln n' ≥ 17.07, hence 2s/L ≤ 94/50508 = 1.87e−3 < 0.00514 ≤ J-gap; conclude by J-cyclemin-walk-dk-envelope. Instance (exact scan of all 251486 lengths): every digit within cap (level 1054 hits 23 exactly), exact max s = 37 at L = 275632, worst 2s/L over gap 0.1823 at L = 74654 — uniform margin ≥ 5.48. Discharges the crude-envelope caveat on the window and retires the per-row word-identity check. Envelope only: no new kills, survivors unchanged (L = 176251), period bound unchanged. Not a halt theorem.",
   "source": "docs/problems/juggler_cycle_walk_window.md",
-  "lean": "",
+  "lean": "Problems/Juggler/RotationAverage.lean",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_walk_window.py"
   ],
@@ -5731,7 +5769,11 @@
    "juggler_walk_window_envelope",
    "juggler_walk_dk_envelope",
    "juggler_walk_crude_envelope"
-  ]
+  ],
+  "decl": [
+   "hugCharge_lt_invLog_add_extended"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cyclemin-walk-word-identity",
@@ -6137,12 +6179,18 @@
   "id": "J-even-run-dual-of-lemma-eight-is-capped-by-the-shape",
   "tag": "EXACT — HUMAN PROOF",
   "source": "docs/problems/juggler_even_run_mersenne_floor.md",
-  "lean": "",
+  "lean": "Problems/Juggler/CollatzBridge.lean",
   "tests": [
    "tests/research/juggler_sequence/test_even_run_mersenne_floor.py"
   ],
   "related_conjectures": [],
-  "statement": "Lemma 8 has a dual on the even runs, it is correct, and the CycleMin shape caps it below Lemma 8 by a proved exponential factor. THE DUAL (EXACT — HUMAN PROOF). On a cycle of the Z shortcut map with at least one even step, odd elements x_1..x_o in cyclic order and r_i halvings between the odd step at x_i and x_(i+1), so 2^(r_i+1) x_(i+1) = 3 x_i + 1: let R = gcd of the nonzero r_i and m any divisor of 2^R - 1 with gcd(m, 2^o - 3^o) = 1. Then x = -1 (mod m) for EVERY odd element, hence |x| >= m - 1. Proof: in u = x + 1 the passage is 2^(r_i+1) u_(i+1) = 3 u_i - 2 + 2^(r_i+1); ord_m(2) | R | r_i makes 2^(r_i+1) = 2 (mod m), the correction 2^(r_i+1) - 2 vanishes, and 2 u_(i+1) = 3 u_i; once around, u(2^o - 3^o) = 0, and coprimality forces m | u. Equivalently through the block expansion of the charge, valid for every word, evenCharge w = sum_j 3^j 2^(A_j) (2^(r_j) - 1) with A_j = (o - j) + sum_(l>j) r_l, so every term carries a Mersenne factor and (2^R - 1) | evenCharge w. PRIORITY, CORRECTED 20 SEPTEMBER 2026: THAT EXPANSION IS BROX'S, NOT THIS LABORATORY'S. brox-2000-collatz-cycles-few-descents (Acta Arithmetica 92 (2000) 181-188) has it at (3.1)/(3.2): his F~_i = M(x_i + 1) is the same u = x+1 conjugation applied to the cycle constant, and his 2 sum_l 3^(n-1-l) 2^(k_1+...+k_l) (2^(k_(l+1)-1) - 1) is term for term the display above, the Mersenne factor sitting on the EXTRA-halving exponent. Verified here against evenCharge on all 16382 words of length <= 14 beginning with O, 0 differences. What Brox does NOT do is take a gcd -- he uses the brackets only as a size bound, replacing them by 2^h to feed a Baker-Feldman argument for his Theorem 1.1 -- so the identity is his and the gcd step with its congruence is what is added here, and a sweep of Hercher 2023, Simons-de Weger 2005, Halbeisen-Hungerbuehler 1997 and Lagarias's two annotated bibliographies, all read in full, found no one taking it. The bookkeeping is not interchangeable: the same statement with the FULL halving counts k_i in place of the extra halvings r_i = k_i - 1 is FALSE -- OE has k = (2), gcd 2, u = 2 and 3 does not divide 2; 79 failures against 0 holds over words to length 12 -- so it is Brox's exponent that carries it and NOT Simons-de Weger's matrix equation, whose Mersenne factors use the full counts. Hercher's Lemma 8 uses no multiplicative order and no Mersenne number, now verified at source rather than inferred. Lemma 8 reads v_2 off the ODD runs and gives |x| >= 2^a - 1; this reads the multiplicative ORDER of 2 off the EVEN runs and gives |x| >= 2^R - 1 -- the same congruence x = -1, two different moduli, the two ways 2 acts on the odd part of Z. WHAT THE REDUCTION IS. Modulo 2^R - 1 the even steps become invisible and the orbit is the free recursion u -> 3u/2, which is this laboratory's Juggler exponent transport (J-lemma-eight-is-the-exponent-valuation): on the perfect-power locus n = a^e the exact step is e -> 3e/2 on an odd base and e -> e/2 on an even one, with no floor loss at all, and there the no-cycle argument is the pure exponent count 3^o != 2^o, needing neither Catalan nor Baker. The Mersenne modulus is precisely the reduction under which Collatz BECOMES the Juggler's exponent dynamics, and the price is exact: pulled back through the congruence, 3^o != 2^o degrades from a contradiction into m | u. An impossibility becomes a floor. THE CAP (EXACT — HUMAN PROOF). On a word all of whose proper prefixes are non-contracting -- Paper A's CycleMin shape, the shape of a negative Collatz cycle word at its minimum and of a Juggler cycle word by neg_cycle_word_is_juggler_shape, and of a positive one by prefix_bound_of_min -- the leading run of a odd letters is followed by an E-run of length r_1 >= 1, and non-contraction at its end is 3^a >= 2^(a + r_1); since R | r_1, R <= r_1 <= floor((log2 3 - 1) a) = floor(0.58496 a). So the dual floor 2^R sits below Lemma 8's 2^a by the factor 2^((2 - log2 3) a) = 2^(0.41504 a) and never binds. The only exception to the cap is the word whose first E-run is also its last, O^a E^r -- the circuit, whose nontrivial case Steiner 1977 excludes -- and there the dual still does not win. The two floors are anti-correlated by the condition that defines the family: prefix non-contraction forces the word to bunch its odd letters, which lengthens odd runs and shortens even runs. COMPUTATIONALLY VERIFIED: the block expansion on every word to length 12 and the Mersenne divisibility on every word to length 14 with R >= 2, 0 violations; the congruence at every odd element of the rational cycle of every word to length 13 starting with O, 0 violations (read at an EVEN element it genuinely fails, as EOE with m = 3 and u = 7/5 shows -- the statement is about odd elements); the coprimality hypothesis is needed, OOEEEE having R = 4 with 15 not dividing u and M(4,2) = 3 dividing it; all three known cycles of the Z map have an E-run of length 1, so R = 1 and the dual is vacuous at every one of them, the exact opposite of Lemma 8, which all three attain with equality; on the 198891 expanding and 81119 contracting shape words to length 22 the cap has 0 exceptions on the expanding side and 12 on the contracting side, ALL circuits, the cap is attained so it is sharp, and the dual beats Lemma 8 on 0 words of either family; sieved against the kernel-checked neg_cycle_finance ceiling the dual kills only words Lemma 8 had already killed -- 0 dual-only kills at length 22, and 0 again at length 26 over 2264815 shape words. NOVELTY, SETTLED: the block expansion is KNOWN (Brox, above); the gcd step and the congruence were searched hard and NOT FOUND, but they are one line from Brox's printed identity and that must be said rather than left implicit; what stands as this branch's own content is the SUBORDINATION, R <= floor((log2 3 - 1) a) with 0 dual-only kills over 2264815 words, and nothing resembling it was found. Post-2009 coverage rests on search snippets, so absence there is a failure to find and not a proof. Not a kill, not a period bound, not a floor raise, not a halt theorem; N_0 is untouched."
+  "statement": "Lemma 8 has a dual on the even runs, it is correct, and the CycleMin shape caps it below Lemma 8 by a proved exponential factor. THE DUAL (EXACT — HUMAN PROOF). On a cycle of the Z shortcut map with at least one even step, odd elements x_1..x_o in cyclic order and r_i halvings between the odd step at x_i and x_(i+1), so 2^(r_i+1) x_(i+1) = 3 x_i + 1: let R = gcd of the nonzero r_i and m any divisor of 2^R - 1 with gcd(m, 2^o - 3^o) = 1. Then x = -1 (mod m) for EVERY odd element, hence |x| >= m - 1. Proof: in u = x + 1 the passage is 2^(r_i+1) u_(i+1) = 3 u_i - 2 + 2^(r_i+1); ord_m(2) | R | r_i makes 2^(r_i+1) = 2 (mod m), the correction 2^(r_i+1) - 2 vanishes, and 2 u_(i+1) = 3 u_i; once around, u(2^o - 3^o) = 0, and coprimality forces m | u. Equivalently through the block expansion of the charge, valid for every word, evenCharge w = sum_j 3^j 2^(A_j) (2^(r_j) - 1) with A_j = (o - j) + sum_(l>j) r_l, so every term carries a Mersenne factor and (2^R - 1) | evenCharge w. PRIORITY, CORRECTED 20 SEPTEMBER 2026: THAT EXPANSION IS BROX'S, NOT THIS LABORATORY'S. brox-2000-collatz-cycles-few-descents (Acta Arithmetica 92 (2000) 181-188) has it at (3.1)/(3.2): his F~_i = M(x_i + 1) is the same u = x+1 conjugation applied to the cycle constant, and his 2 sum_l 3^(n-1-l) 2^(k_1+...+k_l) (2^(k_(l+1)-1) - 1) is term for term the display above, the Mersenne factor sitting on the EXTRA-halving exponent. Verified here against evenCharge on all 16382 words of length <= 14 beginning with O, 0 differences. What Brox does NOT do is take a gcd -- he uses the brackets only as a size bound, replacing them by 2^h to feed a Baker-Feldman argument for his Theorem 1.1 -- so the identity is his and the gcd step with its congruence is what is added here, and a sweep of Hercher 2023, Simons-de Weger 2005, Halbeisen-Hungerbuehler 1997 and Lagarias's two annotated bibliographies, all read in full, found no one taking it. The bookkeeping is not interchangeable: the same statement with the FULL halving counts k_i in place of the extra halvings r_i = k_i - 1 is FALSE -- OE has k = (2), gcd 2, u = 2 and 3 does not divide 2; 79 failures against 0 holds over words to length 12 -- so it is Brox's exponent that carries it and NOT Simons-de Weger's matrix equation, whose Mersenne factors use the full counts. Hercher's Lemma 8 uses no multiplicative order and no Mersenne number, now verified at source rather than inferred. Lemma 8 reads v_2 off the ODD runs and gives |x| >= 2^a - 1; this reads the multiplicative ORDER of 2 off the EVEN runs and gives |x| >= 2^R - 1 -- the same congruence x = -1, two different moduli, the two ways 2 acts on the odd part of Z. WHAT THE REDUCTION IS. Modulo 2^R - 1 the even steps become invisible and the orbit is the free recursion u -> 3u/2, which is this laboratory's Juggler exponent transport (J-lemma-eight-is-the-exponent-valuation): on the perfect-power locus n = a^e the exact step is e -> 3e/2 on an odd base and e -> e/2 on an even one, with no floor loss at all, and there the no-cycle argument is the pure exponent count 3^o != 2^o, needing neither Catalan nor Baker. The Mersenne modulus is precisely the reduction under which Collatz BECOMES the Juggler's exponent dynamics, and the price is exact: pulled back through the congruence, 3^o != 2^o degrades from a contradiction into m | u. An impossibility becomes a floor. THE CAP (EXACT — HUMAN PROOF). On a word all of whose proper prefixes are non-contracting -- Paper A's CycleMin shape, the shape of a negative Collatz cycle word at its minimum and of a Juggler cycle word by neg_cycle_word_is_juggler_shape, and of a positive one by prefix_bound_of_min -- the leading run of a odd letters is followed by an E-run of length r_1 >= 1, and non-contraction at its end is 3^a >= 2^(a + r_1); since R | r_1, R <= r_1 <= floor((log2 3 - 1) a) = floor(0.58496 a). So the dual floor 2^R sits below Lemma 8's 2^a by the factor 2^((2 - log2 3) a) = 2^(0.41504 a) and never binds. The only exception to the cap is the word whose first E-run is also its last, O^a E^r -- the circuit, whose nontrivial case Steiner 1977 excludes -- and there the dual still does not win. The two floors are anti-correlated by the condition that defines the family: prefix non-contraction forces the word to bunch its odd letters, which lengthens odd runs and shortens even runs. COMPUTATIONALLY VERIFIED: the block expansion on every word to length 12 and the Mersenne divisibility on every word to length 14 with R >= 2, 0 violations; the congruence at every odd element of the rational cycle of every word to length 13 starting with O, 0 violations (read at an EVEN element it genuinely fails, as EOE with m = 3 and u = 7/5 shows -- the statement is about odd elements); the coprimality hypothesis is needed, OOEEEE having R = 4 with 15 not dividing u and M(4,2) = 3 dividing it; all three known cycles of the Z map have an E-run of length 1, so R = 1 and the dual is vacuous at every one of them, the exact opposite of Lemma 8, which all three attain with equality; on the 198891 expanding and 81119 contracting shape words to length 22 the cap has 0 exceptions on the expanding side and 12 on the contracting side, ALL circuits, the cap is attained so it is sharp, and the dual beats Lemma 8 on 0 words of either family; sieved against the kernel-checked neg_cycle_finance ceiling the dual kills only words Lemma 8 had already killed -- 0 dual-only kills at length 22, and 0 again at length 26 over 2264815 shape words. NOVELTY, SETTLED: the block expansion is KNOWN (Brox, above); the gcd step and the congruence were searched hard and NOT FOUND, but they are one line from Brox's printed identity and that must be said rather than left implicit; what stands as this branch's own content is the SUBORDINATION, R <= floor((log2 3 - 1) a) with 0 dual-only kills over 2264815 words, and nothing resembling it was found. Post-2009 coverage rests on search snippets, so absence there is a failure to find and not a proof. Not a kill, not a period bound, not a floor raise, not a halt theorem; N_0 is untouched.",
+  "decl": [
+   "neg_cycle_word_is_juggler_shape",
+   "neg_prefix_noncontracting",
+   "prefix_bound_of_min"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-excursion-parity-monomial-twists",
@@ -6493,11 +6541,15 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "The Juggler conjecture as an almost-all statement (fate-contagion note, Corollary 4.5). Fix N_0 with [1, N_0] ⊆ R (Lean N_0 = 260, reachesOne_of_lt_two_hundred_sixty_one; certified N_0 = 3.5·10^8). The following are equivalent: (1) every n ≥ 1 reaches 1; (2) Σ_{n ≤ x, n ∉ R} 1/n = o((log x)^λ) for some λ < λ** = 0.4926…; (3) the starts n ≤ x whose orbit never enters [1, N_0] have logarithmic count o((log x)^λ) for some λ < λ**. In natural-density terms (3) asks that all but O(x (log x)^{−0.508}) starts below x eventually fall below N_0 — a Tao-type almost-bounded-values statement with a bounded target and a mild logarithmic rate. For Collatz the analogous implication is false, and by exhibit rather than by tree size: {3 * 2^k} is backward-closed under the accelerated map, because a multiple of three has no odd preimage, and its reciprocal sum is 2/3. The Krasikov–Lagarias exponent x^{0.84} is a LOWER bound on preimage counts and establishes no thinness -- an earlier wording of this row said it did, which had the direction backwards; the published manuscript never did. What separates the two maps is worst-case backward log-mass: the Juggler even block carries exactly 1/m for every m with no exceptional residues, while the accelerated Collatz step carries 1/m in the mean but exactly 1/(2m) on every multiple of three, and Theorem 1 quantifies over every backward-closed set. This is a reduction, not a proof of termination, and no almost-all statement of type (3) is proved.",
   "source": "docs/theory/juggler_fate_contagion_note.md",
-  "lean": "",
+  "lean": "Problems/Juggler/FatePoorProduction.lean",
   "tests": [
    "tests/research/juggler_sequence/test_fate_contagion.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "failures_logMass_averaged"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-fate-cylinder-corollary",
@@ -6667,7 +6719,7 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Logarithmic density of a fate class (fate-contagion note, Theorem 4.2 and Corollary 4.3; Paper C Theorem 1). Let λ** = 0.4925715447… be the root of 2^{−λ} + (1/9)(3/8)^λ + (2/9)(3/4)^λ + (1/27)(9/32)^λ + (1/81)(27/128)^λ + (1/243)(81/512)^λ + (1/729)(243/2048)^λ + (1/2187)(729/8192)^λ = 1 (V_5 truncation 0.4924 of the first seven terms; V_4 truncation 0.4916 of the first six terms; V_3 truncation 0.4891 of the first five terms; OEOEE truncation 0.4801 of the first four terms; pairing-only root 0.4480 of the first three; λ* ≈ 0.3774, root of 2^{−λ} + (1/3)(3/8)^λ = 1, without pairing; the adversarial sweep 1/7 gave 0.4050). For every nonempty backward-closed A ⊆ ℕ and every λ < λ** there are c, x_0 > 0 with Σ_{n ∈ A, n ≤ x} 1/n ≥ c (log x)^λ for x ≥ x_0. Proof: even blocks contribute g(t/2)(1 − o(1)), OE images of E-blocks contribute (1/3) g(3t/8)(1 − o(1)), OE images of the rest contribute (2/9)·(g(3t/4) − g(3t/8))·(1 − o(1)) by monotone pairing, the elementary OEOEE production contributes (1/27) g(9t/32)(1 − o(1)) (J-fate-oeoee-production), the V_3 = OEOEOEE production contributes (1/81) g(27t/128)(1 − o(1)) (J-fate-v3-production), the V_4 = OEOEOEOEE production contributes (1/243) g(81t/512)(1 − o(1)) (J-fate-v4-production), the V_5 = OEOEOEOEOEE production contributes (1/729) g(243t/2048)(1 − o(1)) (J-fate-v5-production), and the V_6 = OEOEOEOEOEOEE production contributes (1/2187) g(729t/8192)(1 − o(1)) (J-fate-v6-production), all in (√x, x] and pairwise disjoint after removing those shares from family 3. The formal ideal depth-two recursion has root 0.4927; this is a model ceiling, not an attained infinite-family theorem. Not a halt theorem; no fate is excluded. The 9 September publication revision supplies a self-contained finite-depth proof in Appendix D using exact nested inverse endpoints, smooth multiplicity weights and averaged cancellation; no unproved pointwise cancellation on each short fiber is assumed. The analytic production estimates remain outside Lean. The recursion-and-seed half of the proof is Lean given the production inequality (5.2), for every λ ≤ 0.49: row J-fate-contagion-conditional (contagion_of_production_inequality in FateContagionBound.lean); (5.2) itself and the root λ** stay human. UNCONDITIONAL ABOVE THIS, 20 September 2026: J-oe-averaged-two-productions-reach-the-depth-two-ceiling reaches lambda <= 100/203 = 0.4926108 with no hypothesis, Production.logMass_contagion_averaged in Problems/Juggler/FatePoorProduction.lean, so Proposition 4.4's exponential sums are off the critical path for this consequence.",
   "source": "docs/theory/juggler_fate_almost_all_note.md",
-  "lean": "",
+  "lean": "Problems/Juggler/FatePoorProduction.lean",
   "tests": [
    "tests/research/juggler_sequence/test_fate_contagion.py",
    "tests/research/juggler_sequence/test_oeoee_production.py",
@@ -6677,7 +6729,12 @@
    "tests/research/juggler_sequence/test_v5_audit.py",
    "tests/research/juggler_sequence/test_v6_audit.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "logMass_contagion_averaged",
+   "contagion_averaged"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-fate-minimal-failure-oo",
@@ -7310,13 +7367,17 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Divergent flight structure: a descent-free Juggler flight (x_k >= n >= 2 for all k) that is not eventually periodic satisfies, pointwise: (1) all states are distinct and x_k → ∞ (a repeat forces periodicity by determinism; distinct integers >= n leave every bounded set), with x_0 = n the global minimum; (2) linear peak growth max_{j<=k} x_j >= n + k (k+1 distinct integers >= n); (3) pointwise walk divergence with a log-log rate: u_k >= log_2(log x_k / log n) → ∞ by the anchor-free upper envelope log x_k <= 2^{u_k} log n (follows_log_le_walkWeight / power_bound_word, Lean), hence sup_{j<=k} u_j >= log_2(log(n+k)/log n) — strengthening J-flight-walk-divergence from sup to pointwise in the divergent case; (4) hug-excess divergence a_k − hugOdds(k) → ∞ (hug band hugOdds_pow_lt, Lean); (5) recurrent hug domination: tail minima are attained (x_k → ∞) and strictly increase (distinctness), giving infinitely many cofinal record indices from which the tail is itself a descent-free flight with anchor x_i, so hug domination (aboveAnchor_prefix_odds_ge_hug, Lean) restarts from every record. Sharp: the log-log rate is attained with equality at realized peaks (probe slack 0.0 on all seven high-flyers, peaks up to 6.5e6 bits); no faster pointwise rate follows from these layers. Answers the anchor-period branch's standing question: the proved layers describe divergent flights with rates; only their exclusion (including the open eventually-all-odd / infinite odd tower subcase) is behind all-depth equidistribution. Not a halt theorem; no exclusion claimed; the PARKed re-anchored excursion envelope is not reopened.",
   "source": "docs/problems/juggler_flight_divergent_structure.md",
-  "lean": "",
+  "lean": "Problems/Juggler/WalkTransport.lean",
   "tests": [
    "tests/research/juggler_sequence/test_flight_divergent_structure.py"
   ],
   "related_conjectures": [
    "juggler_asymptotic_descent"
-  ]
+  ],
+  "decl": [
+   "aboveAnchor_flight_envelope"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-flight-envelope-transport",
@@ -7395,13 +7456,20 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Flight walk-divergence: every descent-free Juggler flight (infinite orbit with x_k >= n for all k) has unbounded exponent walk sup_k u_k = ∞, where u_k = a_k log_2 3 − k. Proof: a walk bounded by B forces x_k <= n^{2^B} (power_bound_word / follows_log_le_walkWeight, Lean), so the flight visits finitely many states and is eventually periodic; its period word is a realized return and hence strictly expanding, 2^p < 3^o (cycle_strict_envelope, Lean; 3^o = 2^p is impossible for p >= 1), so each traversal adds δ = log_2(3^o/2^p) > 0 to the walk — contradiction. Since the hug walk is bounded (hugOdds_pow_ge/hugOdds_pow_lt: 0 <= u^hug < log_2 3, Lean), no flight stays within bounded excess of the hug itinerary: the extremal hug-hugging adversary of the above-anchor branch is cycle-exclusive. Dichotomy at the laboratory frontier: a descent-free flight starts above the certified floor 162849448 and either enters a nontrivial cycle (minimum above the floor, period >= 478245) or has unbounded states (a divergent orbit). Answers the Paper B × hug flights question negatively for Paper B as mechanism: its proved depth-<=4 layer is ambient-density, the ambient-to-orbit transfer stays REFUTED, and no finite window is forbidden pointwise; the kill uses pigeonhole plus strict expansion instead. Not a halt theorem, not a divergent-orbit existence claim, and not a claim about orbits that dip below their anchor.",
   "source": "docs/problems/juggler_flight_walk_divergence.md",
-  "lean": "",
+  "lean": "Problems/Juggler/Envelope.lean",
   "tests": [
    "tests/research/juggler_sequence/test_flight_walk_divergence.py"
   ],
   "related_conjectures": [
    "juggler_asymptotic_descent"
-  ]
+  ],
+  "decl": [
+   "power_bound_word",
+   "cycle_envelope",
+   "cycle_strict_envelope",
+   "two_pow_ne_three_pow"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-floor-stratifies-even-cylinders-lean",
@@ -7910,12 +7978,18 @@
   "id": "J-knight-is-sign-free-and-catalan-bounds-the-escapes",
   "tag": "EXACT — HUMAN PROOF",
   "source": "docs/problems/juggler_negative_lemma_eight_window.md",
-  "lean": "",
+  "lean": "Problems/Juggler/CollatzBridge.lean",
   "tests": [
    "tests/research/juggler_sequence/test_knight_mirror.py"
   ],
   "related_conjectures": [],
-  "statement": "Knight's high-cycle argument is sign-free, so it mirrors onto the Juggler's side of the linear form, and Catalan supplies the complete list of its escapes. WHAT KNIGHT USES. knight-2026-collatz-high-cycles proves no integer high cycle exists from three ingredients only: the reverse of an aperiodic upper Christoffel word v_h is a rotation of it (Cohn 1972), so f(v_h) and f(v_h^R) lie in one cycle; the split v_h = 1 u 0 and v_h^R = 0 u 1 (Berstel et al); and the gap 2^k - 3^x being ODD with |gap| > 1, whence 3 f(v_h) - f(v_h^R) + 1 = 2^(k-1)/(2^k - 3^x) cannot be an integer. NONE OF THE THREE USES THE SIGN OF THE GAP. Verified here: the identity holds for every aperiodic (k,x) on BOTH sides, contracting 2^k > 3^x and expanding 2^k < 3^x, for x <= 60; the apparent failures are exactly the periodic words gcd(k,x) > 1, which Knight excludes and whose aperiodic cores he reduces to. THE MIRROR. The expanding sign 2^k < 3^x is the Juggler's and the negative Collatz cycles' (neg_cycle_expanding, J-juggler-cycle-words-are-collatz-negative-cycle-words). There the same contradiction excludes the Christoffel word's rational cycle from being integral at every aperiodic (k,x) with |gap| > 1. The escapes are |gap| = 1, and by Catalan proved by Mihailescu (the row J-lemma-eight-floor-is-tight-at-every-known-cycle records the complete list (x,k) = (0,1),(1,1),(1,2),(2,3)) the expanding side keeps exactly (1,1) and (3,2), whose Christoffel words give f = -1 and f = -5. BOTH ARE REAL CYCLES, so the mirror is consistent and tight: it kills every expanding Christoffel high cycle except the two that exist. This upgrades the Mihailescu gap observation from an extreme case closed cheaply to the completeness of Knight's exception list. IT IS THE LABORATORY'S OWN WORD. Knight's v_h is LITERALLY the ceiling mechanical word of J-cycle-cubic-band-order -- identical strings for every coprime (L,o) with L <= 18 -- so the word a height-bounded Juggler cycle must carry (M < m^3, which forces gcd(L,o) = 1 and the ceiling mechanical word) is exactly the word Knight's argument addresses. WHAT THIS DOES NOT SAY, AND THE DISTINCTION IS THE WHOLE POINT. It excludes the NEGATIVE COLLATZ REALIZATION of that word. It excludes no Juggler cycle: the laboratory's bridge is word-level, and a shared word shape does not transport a realization, which is the standing content of J-the-missing-juggler-floor-is-worth-a-quarter-at-length-22. Nor does it contradict J-christoffel-one-parameter, which refuted CONCENTRATION of leftover cells on the Christoffel necklace and explicitly left cycle-only near-Christoffel rigidity open. Consistency check: -17 sits at (k,x) = (11,7) but is NOT the high cycle there, the Christoffel word at (11,7) giving the non-integer -3767/139, so the mirror kills the high cycle at that length while -17 survives as a different rotation class. No floor is raised, no period bound moves, and Paper A is unchanged."
+  "statement": "Knight's high-cycle argument is sign-free, so it mirrors onto the Juggler's side of the linear form, and Catalan supplies the complete list of its escapes. WHAT KNIGHT USES. knight-2026-collatz-high-cycles proves no integer high cycle exists from three ingredients only: the reverse of an aperiodic upper Christoffel word v_h is a rotation of it (Cohn 1972), so f(v_h) and f(v_h^R) lie in one cycle; the split v_h = 1 u 0 and v_h^R = 0 u 1 (Berstel et al); and the gap 2^k - 3^x being ODD with |gap| > 1, whence 3 f(v_h) - f(v_h^R) + 1 = 2^(k-1)/(2^k - 3^x) cannot be an integer. NONE OF THE THREE USES THE SIGN OF THE GAP. Verified here: the identity holds for every aperiodic (k,x) on BOTH sides, contracting 2^k > 3^x and expanding 2^k < 3^x, for x <= 60; the apparent failures are exactly the periodic words gcd(k,x) > 1, which Knight excludes and whose aperiodic cores he reduces to. THE MIRROR. The expanding sign 2^k < 3^x is the Juggler's and the negative Collatz cycles' (neg_cycle_expanding, J-juggler-cycle-words-are-collatz-negative-cycle-words). There the same contradiction excludes the Christoffel word's rational cycle from being integral at every aperiodic (k,x) with |gap| > 1. The escapes are |gap| = 1, and by Catalan proved by Mihailescu (the row J-lemma-eight-floor-is-tight-at-every-known-cycle records the complete list (x,k) = (0,1),(1,1),(1,2),(2,3)) the expanding side keeps exactly (1,1) and (3,2), whose Christoffel words give f = -1 and f = -5. BOTH ARE REAL CYCLES, so the mirror is consistent and tight: it kills every expanding Christoffel high cycle except the two that exist. This upgrades the Mihailescu gap observation from an extreme case closed cheaply to the completeness of Knight's exception list. IT IS THE LABORATORY'S OWN WORD. Knight's v_h is LITERALLY the ceiling mechanical word of J-cycle-cubic-band-order -- identical strings for every coprime (L,o) with L <= 18 -- so the word a height-bounded Juggler cycle must carry (M < m^3, which forces gcd(L,o) = 1 and the ceiling mechanical word) is exactly the word Knight's argument addresses. WHAT THIS DOES NOT SAY, AND THE DISTINCTION IS THE WHOLE POINT. It excludes the NEGATIVE COLLATZ REALIZATION of that word. It excludes no Juggler cycle: the laboratory's bridge is word-level, and a shared word shape does not transport a realization, which is the standing content of J-the-missing-juggler-floor-is-worth-a-quarter-at-length-22. Nor does it contradict J-christoffel-one-parameter, which refuted CONCENTRATION of leftover cells on the Christoffel necklace and explicitly left cycle-only near-Christoffel rigidity open. Consistency check: -17 sits at (k,x) = (11,7) but is NOT the high cycle there, the Christoffel word at (11,7) giving the non-integer -3767/139, so the mirror kills the high cycle at that length while -17 survives as a different rotation class. No floor is raised, no period bound moves, and Paper A is unchanged.",
+  "decl": [
+   "neg_cycle_expanding",
+   "neg_five_cycle",
+   "neg_seventeen_cycle"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-l84-m-ge-three-floor-261",
@@ -8152,12 +8226,20 @@
   "id": "J-lemma-eight-floor-is-tight-at-every-known-cycle",
   "tag": "EXACT — HUMAN PROOF",
   "source": "docs/problems/juggler_negative_lemma_eight_window.md",
-  "lean": "",
+  "lean": "Problems/Juggler/CollatzBridge.lean",
   "tests": [
    "tests/research/juggler_sequence/test_negative_lemma_eight_window.py"
   ],
   "related_conjectures": [],
-  "statement": "The Lemma 8 floor is sign-symmetric, and it is attained with equality by every nontrivial cycle of the shortcut Z map. The congruence holds over Z (two_pow_mul_iter_add_one_int): a consecutive odd states force x = -1 mod 2^a. On the positive side x + 1 >= 2^a gives Hercher's x >= 2^a - 1; on the negative side x <= -2 gives x + 1 <= -1, hence x + 1 <= -2^a and x <= -(2^a + 1). The negative floor is the LARGER of the two by exactly 2, and the negative side is the one that has cycles, so the valuation is not what separates the signs; the linear form is, 2^K - 3^o > 0 small forcing K enormous while 3^o - 2^K > 0 is 1 at K = 3 and 139 at K = 11. TIGHT AT ALL THREE. {1,2} has a = 1 and x = 1 = 2^1 - 1; -5 has a = 2 and |x| = 5 = 2^2 + 1; -17 has a = 4 and |x| = 17 = 2^4 + 1. Equivalently x + 1 = -2^a exactly at both negative cycles, equivalently -- through the cycle equation (x+1)(2^K - 3^o) = evenCharge w -- the odd part of the word's even-charge is |2^K - 3^o|: 1 for OOE and 139 for the -17 word. A bound tight at every object it is meant to exclude is not the exclusion, which is why Steiner-type results need Baker on top of Lemma 8 rather than Lemma 8 alone. -1 is the degenerate case the hypothesis x <= -2 removes, with u = 0 and the product formula vacuous. Paired with the kernel-checked neg_cycle_finance the floor becomes a per-word window 2^a + 1 <= |x| <= 1 + e 3^o / (2 (3^o - 2^K)), which at OOE is [5, 11/2] and so pins -5 as the unique realization of that word with no search."
+  "statement": "The Lemma 8 floor is sign-symmetric, and it is attained with equality by every nontrivial cycle of the shortcut Z map. The congruence holds over Z (two_pow_mul_iter_add_one_int): a consecutive odd states force x = -1 mod 2^a. On the positive side x + 1 >= 2^a gives Hercher's x >= 2^a - 1; on the negative side x <= -2 gives x + 1 <= -1, hence x + 1 <= -2^a and x <= -(2^a + 1). The negative floor is the LARGER of the two by exactly 2, and the negative side is the one that has cycles, so the valuation is not what separates the signs; the linear form is, 2^K - 3^o > 0 small forcing K enormous while 3^o - 2^K > 0 is 1 at K = 3 and 139 at K = 11. TIGHT AT ALL THREE. {1,2} has a = 1 and x = 1 = 2^1 - 1; -5 has a = 2 and |x| = 5 = 2^2 + 1; -17 has a = 4 and |x| = 17 = 2^4 + 1. Equivalently x + 1 = -2^a exactly at both negative cycles, equivalently -- through the cycle equation (x+1)(2^K - 3^o) = evenCharge w -- the odd part of the word's even-charge is |2^K - 3^o|: 1 for OOE and 139 for the -17 word. A bound tight at every object it is meant to exclude is not the exclusion, which is why Steiner-type results need Baker on top of Lemma 8 rather than Lemma 8 alone. -1 is the degenerate case the hypothesis x <= -2 removes, with u = 0 and the product formula vacuous. Paired with the kernel-checked neg_cycle_finance the floor becomes a per-word window 2^a + 1 <= |x| <= 1 + e 3^o / (2 (3^o - 2^K)), which at OOE is [5, 11/2] and so pins -5 as the unique realization of that word with no search.",
+  "decl": [
+   "two_pow_mul_iter_add_one_int",
+   "cycle_equation_int",
+   "neg_cycle_finance",
+   "neg_seventeen_is_least",
+   "neg_seventeen_finance"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-lemma-eight-is-the-exponent-valuation",
@@ -8168,7 +8250,21 @@
    "tests/research/juggler_sequence/test_exponent_valuation_mirror.py"
   ],
   "related_conjectures": [],
-  "statement": "Hercher's Lemma 8 survives the exponential conjugacy, on the exponent, and the laboratory had already proved it under another name. Conjugating the Collatz odd step by u = x + 1 turns (3x+1)/2 into exactly u -> 3u/2; the Juggler's exact odd step on n = a^e turns, on the exponent, into exactly e -> 3e/2. Same map, same prime, same reason -- 3 is a 2-adic unit, so one step costs exactly one unit of v_2 and nothing else -- and the exact even step e -> e/2 costs the same unit, so the valuation drops by one per step whatever the letter and an exact run is monochrome, the letter being the parity of the base. COLLATZ CARRIES THE 2-ADIC INTEGER IN THE VALUE, THE JUGGLER IN THE EXPONENT. Hence one law at the two ends of x = 2^y: run(x) = v_2(x+1) (Hercher 2023, Lemma 8: k consecutive odd steps force x = -1 mod 2^k) and exactRun(n) = v_2(e(n)), where e(n) = max{e : n = a^e} and exactRun counts consecutive states at which the floor is not charged, that is consecutive squares. The Juggler half is kernel-checked as HasPowTwoDepth with hasPowTwoDepth_even_exact, hasPowTwoDepth_odd_exact and power_bound_eq_implies_pow_two_depth (j-saturation-budget, filed as a local arithmetic question in August); the converse half is isSquare_pow_three_iff. Exhaustive agreement to N = 10^6: 999 square states, 19859 non-square states, 100000 odd Collatz starts, no failure. THE FLOOR IS THE EXPONENTIAL OF THE FLOOR. Both pointwise bounds follow by the same product-formula step -- a nonzero integer with v_2 >= k has absolute value at least 2^k -- and both are attained: run(x) >= k forces x >= 2^k - 1, attained at 2^k - 1; exactRun(n) >= k forces n >= 2^(2^k), and on odd starts n >= 3^(2^k), attained at 3^(2^k) with word O^k. log(3^(2^k)) = 2^k log 3, so J-juggler-is-collatz-one-exponential-up holds pointwise and not only on the walk. WHAT IT DOES NOT DO, WHICH IS THE POINT. Hercher's hypothesis is k consecutive odd LETTERS, a condition on the word that any cycle with a long run supplies free; the mirror's hypothesis is k consecutive EXACT steps, a condition on the integer that no word implies. The exponential moves the hypothesis from the word to the arithmetic, so the mirror is inert for cycles and for termination: no floor is raised, no m-cycle is excluded, and no Collatz bound is improved. Lemma 8 is quoted from hercher-2023-collatz-m-cycles, not reproved. PRIORITY CORRECTION, 20 SEPTEMBER: THE COLLATZ HALF IS WILLIAMS 2026. williams-2026-collatz-coordinates (arXiv:2607.01718, compiled 3 July 2026) builds Collatz dynamics on exactly the coordinate this row opens with. Every odd n has a unique n + 1 = lambda 2^a 3^b with gcd(lambda,6) = 1 and a >= 1, and her (lambda, a, b) is precisely (the 6-free part of x+1, v_2(x+1), v_3(x+1)); her Theorem 3.6 and Proposition 3.11 are the diagonal flow (a,b) -> (a-1,b+1) multiplying n+1 by exactly 3/2, which IS the statement that u = x + 1 conjugates the odd shortcut step to u -> 3u/2. Her Corollary 3.9 is the run length a - 1 to the boundary, Lemma 8 in coordinates; her Corollary 3.7 is v_2(3n+1) = 1 in the interior; her preserved row index k = a + b is the first integral v_2 + v_3; and her preserved lambda is the conserved 6-free part. Verified here against her definitions on odd n < 2e5. So the Collatz side of this row is NOT NEW and is hers, and the laboratory reached it independently two and a half months later. WHAT STANDS is the half this row exists for: her paper is pure Collatz, with no Juggler and no floor-power map, so exactRun(n) = v_2(e(n)), the identification with the kernel-checked HasPowTwoDepth, the attained floors n >= 2^(2^k) and 3^(2^k), the monochrome fibre and the density contrast floor(N^(2^-k)) - 1 against floor((N+1)/2^k) are the laboratory's. Her Section 1.3.3 also records the 3/2 flow's Flatto and Mahler links as structural rather than a tool, with leverage an open question -- the laboratory's own position, reached independently."
+  "statement": "Hercher's Lemma 8 survives the exponential conjugacy, on the exponent, and the laboratory had already proved it under another name. Conjugating the Collatz odd step by u = x + 1 turns (3x+1)/2 into exactly u -> 3u/2; the Juggler's exact odd step on n = a^e turns, on the exponent, into exactly e -> 3e/2. Same map, same prime, same reason -- 3 is a 2-adic unit, so one step costs exactly one unit of v_2 and nothing else -- and the exact even step e -> e/2 costs the same unit, so the valuation drops by one per step whatever the letter and an exact run is monochrome, the letter being the parity of the base. COLLATZ CARRIES THE 2-ADIC INTEGER IN THE VALUE, THE JUGGLER IN THE EXPONENT. Hence one law at the two ends of x = 2^y: run(x) = v_2(x+1) (Hercher 2023, Lemma 8: k consecutive odd steps force x = -1 mod 2^k) and exactRun(n) = v_2(e(n)), where e(n) = max{e : n = a^e} and exactRun counts consecutive states at which the floor is not charged, that is consecutive squares. The Juggler half is kernel-checked as HasPowTwoDepth with hasPowTwoDepth_even_exact, hasPowTwoDepth_odd_exact and power_bound_eq_implies_pow_two_depth (j-saturation-budget, filed as a local arithmetic question in August); the converse half is isSquare_pow_three_iff. Exhaustive agreement to N = 10^6: 999 square states, 19859 non-square states, 100000 odd Collatz starts, no failure. THE FLOOR IS THE EXPONENTIAL OF THE FLOOR. Both pointwise bounds follow by the same product-formula step -- a nonzero integer with v_2 >= k has absolute value at least 2^k -- and both are attained: run(x) >= k forces x >= 2^k - 1, attained at 2^k - 1; exactRun(n) >= k forces n >= 2^(2^k), and on odd starts n >= 3^(2^k), attained at 3^(2^k) with word O^k. log(3^(2^k)) = 2^k log 3, so J-juggler-is-collatz-one-exponential-up holds pointwise and not only on the walk. WHAT IT DOES NOT DO, WHICH IS THE POINT. Hercher's hypothesis is k consecutive odd LETTERS, a condition on the word that any cycle with a long run supplies free; the mirror's hypothesis is k consecutive EXACT steps, a condition on the integer that no word implies. The exponential moves the hypothesis from the word to the arithmetic, so the mirror is inert for cycles and for termination: no floor is raised, no m-cycle is excluded, and no Collatz bound is improved. Lemma 8 is quoted from hercher-2023-collatz-m-cycles, not reproved. PRIORITY CORRECTION, 20 SEPTEMBER: THE COLLATZ HALF IS WILLIAMS 2026. williams-2026-collatz-coordinates (arXiv:2607.01718, compiled 3 July 2026) builds Collatz dynamics on exactly the coordinate this row opens with. Every odd n has a unique n + 1 = lambda 2^a 3^b with gcd(lambda,6) = 1 and a >= 1, and her (lambda, a, b) is precisely (the 6-free part of x+1, v_2(x+1), v_3(x+1)); her Theorem 3.6 and Proposition 3.11 are the diagonal flow (a,b) -> (a-1,b+1) multiplying n+1 by exactly 3/2, which IS the statement that u = x + 1 conjugates the odd shortcut step to u -> 3u/2. Her Corollary 3.9 is the run length a - 1 to the boundary, Lemma 8 in coordinates; her Corollary 3.7 is v_2(3n+1) = 1 in the interior; her preserved row index k = a + b is the first integral v_2 + v_3; and her preserved lambda is the conserved 6-free part. Verified here against her definitions on odd n < 2e5. So the Collatz side of this row is NOT NEW and is hers, and the laboratory reached it independently two and a half months later. WHAT STANDS is the half this row exists for: her paper is pure Collatz, with no Juggler and no floor-power map, so exactRun(n) = v_2(e(n)), the identification with the kernel-checked HasPowTwoDepth, the attained floors n >= 2^(2^k) and 3^(2^k), the monochrome fibre and the density contrast floor(N^(2^-k)) - 1 against floor((N+1)/2^k) are the laboratory's. Her Section 1.3.3 also records the 3/2 flow's Flatto and Mahler links as structural rather than a tool, with leverage an open question -- the laboratory's own position, reached independently.",
+  "decl": [
+   "hasPowTwoDepth_even_exact",
+   "hasPowTwoDepth_odd_exact",
+   "power_bound_eq_implies_pow_two_depth",
+   "isSquare_pow_three_iff",
+   "power_bound_eq_implies_monochrome",
+   "power_bound_eq_iff_extremal",
+   "hasPowTwoDepth_two_le",
+   "power_bound_eq_contracts_pow_two_lb",
+   "two_pow_two_pow_extremal_even",
+   "three_pow_two_pow_extremal_odd",
+   "odd_equality_three_pow_le"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-length7-integer-w-block",
@@ -8407,12 +8503,17 @@
   "id": "J-low-share-forces-a-small-order-resonance",
   "tag": "EXACT — HUMAN PROOF",
   "source": "docs/problems/juggler_oe_rest_average.md",
-  "lean": "",
+  "lean": "Problems/Juggler/FateFiberParity.lean",
   "tests": [
    "tests/research/juggler_sequence/test_oe_rest_average.py"
   ],
   "related_conjectures": [],
-  "statement": "If an OE fibre's share deviates from 1/2 by delta, its step alpha_m is close to a rational of order O(1/delta). Precisely: writing phi_j = frac(f(lo + 2j)) with f(n) = n^(3/2)/2, so that floor(n^(3/2)) is even exactly when phi_j < 1/2 (an exact identity, not an approximation: with q = floor(sqrt(n^3)), frac((q+f)/2) < 1/2 iff q is even), if |sigma_m - 1/2| >= delta then there is 1 <= k <= K = ceil(2 C_ET/delta) with ||k alpha_m|| <= C_ET (1 + 2 pi k gamma H^2) log(eK) / (delta H), where gamma = 2 f''(lo) = (3/4) lo^(-1/2) and gamma H^2 -> 1/3 by algebra. PROOF, four steps, all classical: [0,1/2) is an interval anchored at 0 so the star discrepancy is at least |sigma_m - 1/2|; Erdos-Turan; pigeonhole over k <= K; and Abel summation of the quadratic modulator e(k gamma j^2), whose total variation is at most 2 pi k gamma H^2, against the geometric sum bounded by 1/(2||k alpha||). The Abel step was checked on 12500 (fibre, k) pairs at 2^20 with zero violations, worst ratio 0.352. WHAT IS ACTUALLY NEW IS NARROW. Paper C's Lemma 4.2 IS this statement at delta = 1/6, it needs no Erdos-Turan and no Weyl sums, it is 37 times sharper (K = 2 and W = 14.67/H against K = 12 and W = 546/H), and it is kernel-checked as FiberParity.fiber_parity_good in FateFiberParity.lean with Lemma 4.1' as its engine. So the content here is the range delta < 1/6, which the bootstrap does need since it wants theta for every fixed theta < 1/2, and this must be read as an extension of Lemma 4.2 rather than a first proof of anything. AND IT IS VACUOUS WHERE ANYONE CAN COMPUTE. The window exceeds the trivial bound 1/2 until H > 72572, that is m > 1.3e15 at delta = 0.1; the corollary's measure bound drops below 1 only past m ~ 1e20. At 2^20 the window is 541, so the theorem there asserts ||k alpha|| <= 541 and says nothing. The census that motivated it -- every low-share fibre at 2^20 resonating at k <= 5 with median H||k alpha|| = 0.858, against median 2.980 for balanced fibres -- is therefore evidence for a far sharper constant-free phenomenon and NOT confirmation of this theorem, which is silent there. A Selberg-Vaaler majorant in place of Erdos-Turan removes C_ET from K and is worth about 60x on the constant; not done. CONSEQUENCE. Combined with the resonant density this converts the measured m^(-0.32..-0.40) of J-oe-low-share-weight-decays-polynomially into a proved O_delta(m^(-1/3)) upper bound, which is the shape the bootstrap consumes. The resonance is a LARGER set than the is_resonant probe tests -- that one checks denominators 1 and 3 only, this gives every denominator up to K -- so the measured flat constant of about 9 does not transfer; the constant here is O(log(1/delta)/delta^3). Not a bound on any Juggler orbit, not a cycle exclusion, not a termination result, and it does not by itself license the bootstrap: that needs the second ingredient recorded on the other row."
+  "statement": "If an OE fibre's share deviates from 1/2 by delta, its step alpha_m is close to a rational of order O(1/delta). Precisely: writing phi_j = frac(f(lo + 2j)) with f(n) = n^(3/2)/2, so that floor(n^(3/2)) is even exactly when phi_j < 1/2 (an exact identity, not an approximation: with q = floor(sqrt(n^3)), frac((q+f)/2) < 1/2 iff q is even), if |sigma_m - 1/2| >= delta then there is 1 <= k <= K = ceil(2 C_ET/delta) with ||k alpha_m|| <= C_ET (1 + 2 pi k gamma H^2) log(eK) / (delta H), where gamma = 2 f''(lo) = (3/4) lo^(-1/2) and gamma H^2 -> 1/3 by algebra. PROOF, four steps, all classical: [0,1/2) is an interval anchored at 0 so the star discrepancy is at least |sigma_m - 1/2|; Erdos-Turan; pigeonhole over k <= K; and Abel summation of the quadratic modulator e(k gamma j^2), whose total variation is at most 2 pi k gamma H^2, against the geometric sum bounded by 1/(2||k alpha||). The Abel step was checked on 12500 (fibre, k) pairs at 2^20 with zero violations, worst ratio 0.352. WHAT IS ACTUALLY NEW IS NARROW. Paper C's Lemma 4.2 IS this statement at delta = 1/6, it needs no Erdos-Turan and no Weyl sums, it is 37 times sharper (K = 2 and W = 14.67/H against K = 12 and W = 546/H), and it is kernel-checked as FiberParity.fiber_parity_good in FateFiberParity.lean with Lemma 4.1' as its engine. So the content here is the range delta < 1/6, which the bootstrap does need since it wants theta for every fixed theta < 1/2, and this must be read as an extension of Lemma 4.2 rather than a first proof of anything. AND IT IS VACUOUS WHERE ANYONE CAN COMPUTE. The window exceeds the trivial bound 1/2 until H > 72572, that is m > 1.3e15 at delta = 0.1; the corollary's measure bound drops below 1 only past m ~ 1e20. At 2^20 the window is 541, so the theorem there asserts ||k alpha|| <= 541 and says nothing. The census that motivated it -- every low-share fibre at 2^20 resonating at k <= 5 with median H||k alpha|| = 0.858, against median 2.980 for balanced fibres -- is therefore evidence for a far sharper constant-free phenomenon and NOT confirmation of this theorem, which is silent there. A Selberg-Vaaler majorant in place of Erdos-Turan removes C_ET from K and is worth about 60x on the constant; not done. CONSEQUENCE. Combined with the resonant density this converts the measured m^(-0.32..-0.40) of J-oe-low-share-weight-decays-polynomially into a proved O_delta(m^(-1/3)) upper bound, which is the shape the bootstrap consumes. The resonance is a LARGER set than the is_resonant probe tests -- that one checks denominators 1 and 3 only, this gives every denominator up to K -- so the measured flat constant of about 9 does not transfer; the constant here is O(log(1/delta)/delta^3). Not a bound on any Juggler orbit, not a cycle exclusion, not a termination result, and it does not by itself license the bootstrap: that needs the second ingredient recorded on the other row.",
+  "decl": [
+   "cell_xval_even_iff",
+   "floor_two_xval"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-manuscript-crossquote-audit",
@@ -8640,13 +8741,33 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "SUPERSEDED 21 September 2026 by J-negative-m-cycles-excluded-through-61: the same floor 2^51 and the same route, with one lemma more -- the valley count -- reading m <= 61. Kept as the record of version 1.0.0 of the paper, which states m <= 58 and is correct as it stands. THEOREM, WITH ONE EXTERNAL INPUT. Given Rhin's effective measure |u_0 + u_1 log 2 + u_2 log 3| >= H^(-13.3) for H = max(|u_1|, |u_2|) >= 2 (Rhin 1987, Proposition p. 160 (7)), the 3n-1 map g(y) = y/2 (even), (3y-1)/2 (odd) has no m-cycle with 1 <= m <= 58 whose least element is at least 2^51; with the floor (every 1 <= y < 2^51 reaches 1, 5 or 17: the CPU certificate to 2^44 and the GPU sweep of 21 September 2026 to 2^51, 1117103813820416 odd starts, no failure, spot-checked against the CPU walker on three 2^37 windows), none with m <= 58 other than (5, 7, 10) and the cycle at 17. THE ROUTE is that of the m <= 49 row at 2^44 (J-negative-m-cycles-excluded-through-49, now superseded): negative Lemma 8 y >= 2^a + 1, the run identity, the cycle equation Lambda < m/(x_min - 1), the chaining u' < u^delta / 2, the exact enumeration of the admissible lengths by the three-gap walk below Rhin's ceiling K_3(m), each tested against the chaining; the enumeration is Simons-de Weger's Section 7 lattice list and the two tests are their Corollary 5 and Lemma 7, so no step of their template is left. AT 2^51: no admissible length below the ceiling for m <= 52; for 53 <= m <= 58 the admissible lengths (1, 2, 4, 6, 10, 16 of them) are excluded by the chaining, the closest with 9.8 bits to spare at m = 58, K = 64789416887513; at m = 59 two lengths survive, 64789416887513 (12.4 bits) and 83130157078217 (5.0 bits), removed at floors 2^51.87 and 2^55.18. THE LADDER by the same tables: 2^40 gives 44, 2^44 gives 49, 2^49 gives 54, 2^50 gives 56, 2^51 to 2^55 give 58, 2^56 gives 63, 2^59 gives 64, 2^60 gives 68, 2^68 gives 82; on the 3n+1 side at 301 * 2^50 the same machinery reproduces Simons-de Weger's Lemma 18 to the unit. The m-free period bound at 2^51 is 85137581 with 53715833 odd steps. INDEPENDENT CHECK: tools/check_3n_minus_1_note_numeric.py re-sieves the admissible lengths and recomputes the ceilings, margins and killing floors from scratch and agrees with the note's tables at this floor. THE KNOWN-BAD INPUTS: with the floor at 17 and m = 2 the template leaves the 17-cycle's length 11; at 5 and m = 1 it leaves length 3; one above each it does not. PRIORITY: Simons 2007 proves m = 2 floor-free; Simons-de Weger 2005 and Hercher 2023 do 3n+1; nothing in print does 3n-1 at any m >= 3. LEMMAS 1 AND 3 ARE LEAN (21 September 2026): Problems.Collatz.NegativeMCycles, twenty declarations, in the Problems barrel; thirteen on Mathlib's three standard axioms, five (the decide computations on the known cycles) on none, two derived; no sorry, no native_decide. The run is put in closed form as negT_run_iter, g^k(2^a m + 1) = 3^k 2^(a-k) m + 1 for k <= a, which removes every truncated subtraction; Lemma 1's clauses are negT_run_odd, negT_run_even, negT_start_ge, negT_localMax, packaged by negT_lemma_one over the v_2 decomposition negT_run_decomp, and Lemma 3 is negT_chain_nat (2 u' < 3^a m) with negT_chain_real (u' < u^delta / 2), packaged as negT_lemma_three. The sign of the map and the three known cycles are kernel computations (negT_sign_is_minus: g 17 = 25 where 3n+1 gives 26; negT_chain_tight_at_17: 2 * 40 < 81, one unit of slack, the note's tightness remark). FORMALIZING SHARPENED ONE HYPOTHESIS: the closed form needs no parity assumption on m, the powers of two alone keeping the state odd through the run, so oddness is used only to know the run stops at a. LEMMA 2 IS NOT IN LEAN: the cycle equation and the bound on Lambda are real-analytic; its first clause Lambda > 0 is neg_cycle_expanding on the conjugate side, and the conjugation x = -y is not formalized because Problems.Collatz sits below Problems.Juggler.",
   "source": "docs/problems/juggler_negative_m_cycles.md",
-  "lean": "formal/Problems/Collatz/NegativeMCycles.lean",
+  "lean": "Problems/Collatz/NegativeMCycles.lean",
   "tests": [
    "tests/research/juggler_sequence/test_negative_m_cycles.py",
    "tests/research/juggler_sequence/test_negative_floor_gpu.py",
    "tests/research/juggler_sequence/test_negative_m_cycles_lean.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "negT_run_iter",
+   "negT_run_odd",
+   "negT_run_even",
+   "negT_start_ge",
+   "negT_localMax",
+   "negT_run_decomp",
+   "negT_lemma_one",
+   "negT_chain_nat",
+   "negT_chain_real",
+   "negT_lemma_three",
+   "negT_sign_is_minus",
+   "negT_cycle_one",
+   "negT_cycle_five",
+   "negT_cycle_seventeen",
+   "negT_run_at_seventeen",
+   "negT_localMax_seventeen",
+   "negT_chain_tight_at_17"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-negative-m-cycles-excluded-through-61",
@@ -8745,20 +8866,33 @@
    "tests/research/juggler_sequence/test_layer_architecture.py",
    "tests/research/juggler_sequence/paper_b_prefix_count/test_killed_walk.py"
   ],
-  "lean": "formal/Problems/Juggler/PaperBWeightGap.lean",
+  "lean": "Problems/Juggler/PaperBWeightGap.lean",
   "related_conjectures": [],
-  "statement": "The criticality of the killed walk is not a coordinate artifact: no exponential weight separates the decay rate from the essential spectrum, so a contraction argument in that whole class is impossible rather than merely missing. THE CLAUSE THIS PROVES. J-killed-walk-forgets-polynomially says the memory loss is not geometric, so a contraction argument does not describe the walk HOWEVER IT IS SET UP. The quantified clause was an observation; this proves it for the class it is usually meant against, exponential reweighting. THE SET-UP, which is modelling and is NOT proved. On the space weighted by r^m the two updates act on r^m by multiplication, by (1 + 1/r)/2 and (1 + r)/2, so the log essential spectral radius at weight r is the beta-average chi(r) = (1-beta) log((1+1/r)/2) + beta log((1+r)/2). Identifying exp(chi(r)) with the essential radius is the modelling step; the theorem is the inequality about chi. THE THEOREM. `no_weight_separates` gives logRho beta <= chi r for every r > 0, and `chi_tailRoot_eq` gives equality at r = tailRoot beta = (1-beta)/beta. Since logRho beta IS the decay rate, the Perron eigenvalue never drops below the essential radius at any weight; the best an exponential weight achieves is EQUALITY, and it achieves it at the tail base the profile already carries, so the weight buys nothing the profile did not already have. THE PROOF, short because the pieces existed. Substituting r = exp s collapses chi onto the Chernoff exponent at the COMPLEMENTARY slope, chi(exp s) = chernoffExp s (1-beta) (`chi_eq_chernoffExp`); logRho is symmetric under b -> 1-b (`logRho_symm`), so the target is its own minimum; and the gap between a Chernoff exponent and that minimum is a relative entropy, chernoffExp lam b - logRho b = klDiv b (e^lam/(1+e^lam)) (`chernoffExp_sub_logRho`), nonnegative by Gibbs -- `OneSided.klDiv_nonneg`, already in the fate layer. No new analysis; what is new is that the three fit. All six declarations print [propext, Classical.choice, Quot.sound]. SUPPORTING MEASUREMENT. The capped period operator's gap CLOSES as the cap grows, |lambda2/lambda1| = 0.1079, 0.5701, 0.8683, 0.9652, 0.9912 at caps 40 to 640, which is what an essential radius equal to the Perron eigenvalue looks like from inside a truncation. And chi(r*) - logRho(beta) = 5.6e-17 with the minimum over a 400000-point scan of r in (0,4] nonnegative to 2.1e-12. CONSEQUENCE, and the limit of it. This closes contraction in the exponentially weighted class for the quasi-stationary limit of J-boundary-fraction-is-the-clean-coordinate. EXTENDED, same day: the bound is POINTWISE in r, so it already covers non-exponential weights. A weight w has local ratios w(m+1)/w(m); the essential radius is an average of chi over those ratios, and no average of values bounded below by log rho falls below log rho. The exponential case is the constant-ratio one and is not special. What stays untouched is a change of space that is not multiplication by a function of m at all. Independently confirmed by J-killed-chain-is-rho-null. It moves no bound and excludes no fate. It is a statement about a class of proofs, not about the Juggler map."
+  "statement": "The criticality of the killed walk is not a coordinate artifact: no exponential weight separates the decay rate from the essential spectrum, so a contraction argument in that whole class is impossible rather than merely missing. THE CLAUSE THIS PROVES. J-killed-walk-forgets-polynomially says the memory loss is not geometric, so a contraction argument does not describe the walk HOWEVER IT IS SET UP. The quantified clause was an observation; this proves it for the class it is usually meant against, exponential reweighting. THE SET-UP, which is modelling and is NOT proved. On the space weighted by r^m the two updates act on r^m by multiplication, by (1 + 1/r)/2 and (1 + r)/2, so the log essential spectral radius at weight r is the beta-average chi(r) = (1-beta) log((1+1/r)/2) + beta log((1+r)/2). Identifying exp(chi(r)) with the essential radius is the modelling step; the theorem is the inequality about chi. THE THEOREM. `no_weight_separates` gives logRho beta <= chi r for every r > 0, and `chi_tailRoot_eq` gives equality at r = tailRoot beta = (1-beta)/beta. Since logRho beta IS the decay rate, the Perron eigenvalue never drops below the essential radius at any weight; the best an exponential weight achieves is EQUALITY, and it achieves it at the tail base the profile already carries, so the weight buys nothing the profile did not already have. THE PROOF, short because the pieces existed. Substituting r = exp s collapses chi onto the Chernoff exponent at the COMPLEMENTARY slope, chi(exp s) = chernoffExp s (1-beta) (`chi_eq_chernoffExp`); logRho is symmetric under b -> 1-b (`logRho_symm`), so the target is its own minimum; and the gap between a Chernoff exponent and that minimum is a relative entropy, chernoffExp lam b - logRho b = klDiv b (e^lam/(1+e^lam)) (`chernoffExp_sub_logRho`), nonnegative by Gibbs -- `OneSided.klDiv_nonneg`, already in the fate layer. No new analysis; what is new is that the three fit. All six declarations print [propext, Classical.choice, Quot.sound]. SUPPORTING MEASUREMENT. The capped period operator's gap CLOSES as the cap grows, |lambda2/lambda1| = 0.1079, 0.5701, 0.8683, 0.9652, 0.9912 at caps 40 to 640, which is what an essential radius equal to the Perron eigenvalue looks like from inside a truncation. And chi(r*) - logRho(beta) = 5.6e-17 with the minimum over a 400000-point scan of r in (0,4] nonnegative to 2.1e-12. CONSEQUENCE, and the limit of it. This closes contraction in the exponentially weighted class for the quasi-stationary limit of J-boundary-fraction-is-the-clean-coordinate. EXTENDED, same day: the bound is POINTWISE in r, so it already covers non-exponential weights. A weight w has local ratios w(m+1)/w(m); the essential radius is an average of chi over those ratios, and no average of values bounded below by log rho falls below log rho. The exponential case is the constant-ratio one and is not special. What stays untouched is a change of space that is not multiplication by a function of m at all. Independently confirmed by J-killed-chain-is-rho-null. It moves no bound and excludes no fate. It is a statement about a class of proofs, not about the Juggler map.",
+  "decl": [
+   "no_weight_separates",
+   "logRho_symm",
+   "chernoffExp_sub_logRho",
+   "logRho_le_chernoffExp"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-non-rising-barrier-step-doubles-the-count",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "PROVED, and elementary. Write N_d for the number of words of length d with o_t >= ceil(t BETA) at every t <= d, and P_d = N_d/2^d. If the barrier does not rise at step d, that is ceil((d+1)BETA) = ceil(d BETA), then N_(d+1) = 2 N_d and so P_(d+1) = P_d EXACTLY. Proof: let w be a surviving word of length d and x any letter. The odd count is monotone, so o_(d+1) = o_d + x >= o_d >= ceil(d BETA) = ceil((d+1)BETA), and w ++ [x] survives; conversely a survivor of length d+1 restricts to one of length d. So (w, x) -> w ++ [x] is a bijection from survivors of length d times two letters onto survivors of length d+1. THIS SETTLES J-sturmian-zero-step-leaves-the-raw-jump-invariant. When s_k = 0 both depths bracketing k BETA have a non-rising barrier, so P at each is individually unchanged under d -> d+1, hence so is any combination -- and the 1/rho of J-psi-amplitude-ratio-is-one-over-rho-at-the-sturmian-zeros is what the rho^d d^(-3/2) normalisation makes of one free step. CORRECTION. That row states that the two terms are NOT individually preserved and that a proof needs a bijection on their difference. Both are false, checked: at s_k = 0 each term is preserved on its own, to floating-point zero, and no bijection on a difference is needed or exists. The claim was asserted without testing it and is withdrawn. LEAN. The content is survives_succ_of_no_rise, with survives_of_survives_succ the converse restriction and noRise_iff_le_ceil characterising the non-rising step as ((t+1) b <= ceil(t b)), which for b = BETA is the Sturmian condition indexing s_k; barrier and barrierRise name the two quantities. Kernel-checked on propext, Classical.choice and Quot.sound alone. The cardinality bookkeeping N_(d+1) = 2 N_d is the bijection above and is not formalised; it is one line and is stated here rather than in Lean. SCOPE. This proves an identity about the counting function, not anything about psi's existence, which remains a local limit theorem for a killed walk against a Sturmian barrier and is untouched. It also explains the residual drift recorded in the earlier rows: the measured ratios approach 1/rho from above and slide because of the d^(-3/2) factor, not because the identity is approximate. It is not approximate.",
   "source": "docs/research_journal.md",
-  "lean": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+  "lean": "Problems/Juggler/PaperBBarrierStep.lean",
   "tests": [
    "tests/research/juggler_sequence/paper_b_prefix_count/test_sturmian_recursion.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "survives_succ_of_no_rise",
+   "survives_of_survives_succ",
+   "noRise_iff_le_ceil"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-noncontracting-peak-supremum-log2-three",
@@ -10927,11 +11061,17 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "The two papers' large-deviation exponents are one rate function of one walk, evaluated at the level each needs. The bad-word condition at depth d = CL is u_d > -L, so the odd fraction must exceed p(C) = (1 - 1/C)/log2(3), and Paper C's e(C) is C KL(p(C) || 1/2)/log 2. Paper B sits at L = 0, which is C to infinity, where p(C) tends to 1/log2(3) = BETA = log2/log3, the threshold its own Hoeffding step uses. So e(C)/C converges to Paper B's rate in bits, 0.050044473: measured gaps 4.8e-3 at C = 100, 4.9e-4 at 1000, 4.9e-5 at 10000, 4.9e-6 at 100000, i.e. like 1/C. With J-paper-b-count-is-the-level-zero-bad-count this closes the correspondence: the conditions, the counts and now the exponents are the same objects at two levels. COROLLARY, and it corrects a reading recorded earlier the same day. Paper B's Hoeffding exponent is nearly sharp, not lossy: chernoff_rate() returns the minimised MGF rho, so the sharp rate is -log(rho), which equals kl_bernoulli(BETA) = 0.034688185 exactly, against HOEFFDING_C = 0.034285201 -- a slack of 1.0118 per letter, the module's own 'right to one part in eighty'. Over 24 letters that contributes 1.01x of a total loss of 25.7x. Essentially all of the loss is the polynomial d^(-3/2) that meander_constant names, whose constant converges to about 10.8. An earlier entry described the loss as splitting between the endpoint-versus-path gap and Hoeffding's own constant, which is true of those two ratios but invites the wrong conclusion: the exponent contributes essentially nothing. Not a bound and not an improvement to either paper. IN LEAN. The corollary is the load-bearing part and is now machine-checked: `neg_logRho_eq_klHalf` proves -logRho b = klHalf b for EVERY real b, with no positivity hypothesis, because both sides are the same arrangement of b log b, (1-b) log(1-b) and log 2. That is the bridge -- Paper B's rate was in PaperBSlopeRate and Paper C's relative entropy was already in FateChernoff as klHalf, proved for the Chernoff count, and neither layer knew about the other. The level-zero limits follow: `pC_tendsto_beta` sends Paper C's threshold (1 - 1/C)*beta to beta, and `eOverC_tendsto` sends e(C)/C to klHalf beta / log 2, which is 0.050044473. All kernel-clean. NOT formalised: the counting statements either side of the dictionary.",
   "source": "docs/research_journal.md",
-  "lean": "formal/Problems/Juggler/PaperBPaperCBridge.lean",
+  "lean": "Problems/Juggler/PaperBPaperCBridge.lean",
   "tests": [
    "tests/research/juggler_sequence/paper_b_prefix_count/test_meander.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "neg_logRho_eq_klHalf",
+   "pC_tendsto_beta",
+   "eOverC_tendsto"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-paper-c-hypothesis-stopped-pressure",
@@ -11280,11 +11420,15 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Advancing the phase by BETA is exactly one application of the update map, and the consequence is that R halves outright at every non-rising phase. THE RELATION. w_j(phi + BETA) = 1{frac(phi - j BETA) >= 1 - BETA} = w_(j-1)(phi), so shifting the phase shifts the backward word one place and prepends a letter -- that is, applies one more update at the end: Pi_(phi+BETA) = T_(b(phi)) Pi_phi / (1 - b(phi) Pi_phi(0) / 2). Verified at random phases with residual 0.0e+00, the mass lost being exactly Pi_phi(0)/2 when b = 1 and exactly zero when b = 0. THE COROLLARY. At b(phi) = 0 the update preserves mass, so the normaliser is 1, and PaperBBarrierStep.update_false_at_zero gives T_0 Pi(0) = Pi(0)/2. Hence R(phi + BETA) = R(phi)/2 whenever phi < 1 - BETA. Confirmed to 1.6e-16 at phases away from the switch point and to 1e-12 against the independent forward orbit profile; at b = 1 it fails as it must, the observed ratios being 2.63 and 3.26 rather than 1. THIS SUBSUMES J-r-jumps-halve-at-the-sturmian-zeros: if R itself halves under the shift then so does any difference of two of its values, which is what that row measured. It also explains why the jump recursion delta_(k+1) = T_(s_k) delta_k is exact at s_k = 0, with residuals at machine epsilon, and fails at s_k = 1 with relative errors 0.10 to 0.50 -- at a rising step the two sides of a jump lose DIFFERENT amounts of mass, so the normalisers differ and the map is no longer linear on differences. WHAT IT IS. A transfer-operator cocycle over the rotation: the quasi-stationary family is generated by iterating one of two explicit maps according to the Sturmian word, and every structural fact recorded about R and psi in this thread is a consequence of that single relation. What remains unproved is unchanged -- that the iteration converges, which is the quasi-stationary statement of J-boundary-fraction-is-the-clean-coordinate. IN LEAN. THE RELATION is `backWord_shift` of PaperBBackwardWord, which proves w_(j+1)(phi + b) = w_j(phi) and is kernel-clean; paired with `PaperBBarrierStep.update_false_at_zero` for the halving, both halves of this row's mechanism are now machine-checked. The cocycle statement itself is not, because it quantifies over the quasi-stationary profile, whose existence is the open obligation.",
   "source": "docs/research_journal.md",
-  "lean": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+  "lean": "Problems/Juggler/PaperBBarrierStep.lean",
   "tests": [
    "tests/research/juggler_sequence/paper_b_prefix_count/test_boundary_rotation.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "update_false_at_zero"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-plateau-lengths-are-a-beatty-complement",
@@ -11577,11 +11721,15 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "psi's discontinuity set is exactly the forward rotation orbit {k BETA mod 1 : k >= 0}, which identifies the unexplained second jump of J-psi-is-bounded-variation-with-an-ostrowski-spectrum and subsumes it into a cascade. THE MECHANISM IS EXACT. The Sturmian barrier increment is b_t = 1 iff fract(t BETA) >= 1 - BETA (PaperBTilt.sturmian_step), and fract((d-1-k)BETA) = fract(d BETA) - (k+1)BETA. The set {phi : phi - (k+1)BETA mod 1 >= 1 - BETA} is an arc of length BETA whose endpoints are k BETA and (k+1)BETA. So the barrier step k+1 from the end switches at k BETA, and taking the union over k the jump set is the whole orbit: countable, dense, with summable sizes. The k = 1 member is BETA = 0.6309, which is the jump at about 0.633 recorded as unexplained. MEASURED. At 512 bins over 20001 depths the nine largest jumps land on k BETA for k = 0 to 8 with no exception, each within 0.0006 of target against a bin width of 0.00195. Sizes from windows of width 0.02 either side: -0.07112, -0.03415, -0.01505, -0.01559, -0.01078, -0.00573, -0.00593, -0.00403, -0.00172 at k = 0 to 8, every one NEGATIVE. So psi drops crossing each k BETA upward and recovers smoothly between: a sawtooth on the orbit. The sizes pair up at k = (2,3), (5,6), (8,9), (10,11) -- differences of 3 = q_2 -- which is the three-distance structure of the orbit. From k = 8 the jumps fall to the level at which a window comparison also picks up psi's local slope (off-orbit controls read up to 0.0056), so they are not individually resolved and nothing is claimed for them. WHAT IT EXPLAINS. Both earlier readings, at once. Jumps give the k^(-0.79) Fourier decay, and a jump set which IS a rotation orbit gives the Ostrowski peaks, the transform of the jump measure being sum_k a_k e^(-2 pi i j k BETA). It also revises the attribution of the k = 0 jump: the explicit factor e^(-lamStar(1-phi)) jumps by e^(lamStar) = 1.7095 on the circle, but the measured net jump at 0 is only 7%, so h cancels most of it, consistent with the two-competing-effects reading. The jumps at k >= 1 come from h alone, the explicit factor being smooth away from 0. No bound moves; this is the structure of psi, not its existence, which remains open.",
   "source": "docs/research_journal.md",
-  "lean": "formal/Problems/Juggler/PaperBTilt.lean",
+  "lean": "Problems/Juggler/PaperBBackwardWord.lean",
   "tests": [
    "tests/research/juggler_sequence/paper_b_prefix_count/test_phase_profile.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "backWord_iff_fract_lt"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-psi-reconstructed-from-its-jump-measure",
@@ -11654,18 +11802,24 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "R's jump amplitudes halve exactly at every Sturmian zero, and the reason is one line. THE RULE. Crossing k BETA flips exactly two letters of the backward word, w_(k-1) from 1 to 0 and w_k from 0 to 1, so R's jump there is a difference of two word-driven runs and is directly computable. Measured at k = 0..21 the ratio a_(k+1)/a_k is 0.50000 to five decimals at k = 2, 5, 8, 10, 13, 16, 18 -- exactly the k with s_k = 0 -- and unsettled elsewhere, running 0.988, 0.773, 1.166, 0.895, 1.258, 1.415, 1.060, 1.388. THE MECHANISM. A non-rising step is m -> m + X, so m = 0 is reachable only from m = 0 and the update sends pi(0) to pi(0)/2; it also preserves total mass, so no renormalisation intervenes. A boundary PERTURBATION therefore halves, and R's jump with it. A rising step mixes in pi(1), which is why no rule of this kind holds at s_k = 1. Formalised as PaperBBarrierStep.update, update_false_at_zero, update_false_sub_at_zero and update_true_at_zero, kernel-checked on propext, Classical.choice and Quot.sound alone. This is the exact companion of J-non-rising-barrier-step-doubles-the-count: a non-rising step doubles the count and halves the boundary value, both for the same reason, that nothing can fall below a barrier that did not move. WHY THE RATIOS ARE TRUSTWORTHY WHERE THE AMPLITUDES ARE NOT. Doubling the word length from 1500 to 3000 moves every amplitude by 1.2 to 1.3 percent. That is a COMMON scale factor, since both sides of each jump are run identically and for the same length, so it cancels in the ratio and not in the value: the absolute amplitudes carry the convergence error of J-boundary-fraction-is-a-step-function-on-the-orbit, the ratios do not. That is the reverse of the usual situation in this thread, where ratios were the suspect quantity.",
   "source": "docs/research_journal.md",
-  "lean": "formal/Problems/Juggler/PaperBBarrierStep.lean",
+  "lean": "Problems/Juggler/PaperBBarrierStep.lean",
   "tests": [
    "tests/research/juggler_sequence/paper_b_prefix_count/test_boundary_rotation.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "update",
+   "update_false_sub_at_zero",
+   "update_true_at_zero"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-rate-free-density-one",
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Rate-free and biased-split reductions of the density-one hypothesis. (A) If for each FIXED depth d every parity class w of length d satisfies #w(N) = 2^{-d} N + o(N) as N -> infinity (qualitative, no rate, non-uniform in d), then the set of Juggler starts with a finite descent certificate has natural density one: Proposition J's inequality (row J-equidistribution-implies-density-one) #(no contracting prefix <= d) <= (N_d/2^d) N + N_d E_d(N), with N -> infinity taken BEFORE d -> infinity, gives upper density <= N_d/2^d for every d (and <= e^{-cd} via the closed form); certificates are the Lean power envelope (power_bound_word: an exponent-negative prefix 3^{a_k} < 2^k forces x_k <= n^{3^a/2^k} < n). (B) Full equidistribution is not needed: if for each fixed depth every surviving class sends O-share at most 1 - beta with beta > beta* = 1 - log2/log3 = 0.36907..., rate-free, then the never-contracting measure at depth d is <= exp(-D(gamma || 1-beta) d) by generating-function domination (sum over classes of mu(sigma) x^{o(sigma)} <= (beta + (1-beta)x)^d) and Chernoff at gamma = log2/log3 (a never-contracting itinerary has o_d >= gamma d), and density one follows the same way. Consequence for the K3 wall: the BB/GG/JJ obstruction ladder (rows J-k3-toolkit-obstruction, J-intra-block-harmonic-obstruction, J-derandomization-obstruction) blocks power-savings mechanisms only; the weakest sufficient kernel input is rate-free (or 0.37-biased) fixed-depth equidistribution - recorded as the active conjecture juggler_tower_rate_free_equidistribution, ergodic species (bracket-Hardy / nilmanifold), outside the toolkit the wall closes. Exact profiles: never-negative word count C_200/2^200 = 3.06e-6 (empirical rate 0.0635/letter, Hoeffding majorizes at 0.0343 -- the apparent factor of two is the d^{-3/2} of row J-equidistribution-implies-density-one, not a different exponential rate; the observed rate falls to 0.0401 by d = 1600 against an asymptote of 0.034688); biased adversary at beta = 0.37 decays at 0.0154/letter at d = 200. Not a K3 bound, not a density-one claim, not a halt theorem; Conjectures K/V/HH stay PARKED unchanged; Paper B untouched.",
   "source": "docs/problems/juggler_k3_rate_free.md",
-  "lean": "Problems/Juggler/RateFreeDensity.lean",
+  "lean": "Problems/Juggler/PaperBSurvivorDecay.lean",
   "tests": [
    "tests/research/juggler_sequence/test_k3_rate_free.py",
    "tests/research/juggler_sequence/paper_b_prefix_count/test_counting.py",
@@ -11673,7 +11827,16 @@
   ],
   "related_conjectures": [
    "juggler_tower_rate_free_equidistribution"
-  ]
+  ],
+  "decl": [
+   "FairClasses",
+   "uncertifiedCount_div_tendsto",
+   "neverCertified_density_zero",
+   "neverNegCount_div_pow_le_theta",
+   "neverNegCount_div_pow_tendsto_zero",
+   "oddCount_ge_of_mem_neverNeg"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-rate-free-floor-certificates",
@@ -11717,8 +11880,15 @@
    "tests/research/juggler_sequence/paper_b_prefix_count/test_rational_barriers.py"
   ],
   "related_conjectures": [],
-  "lean": "formal/Problems/Juggler/PaperBSlopeRate.lean",
-  "statement": "d/ds log rho(s) = -log(s/(1-s)): the tilt that makes the walk drift-free is also the sensitivity of the rate to the barrier's slope. PROOF. Against a barrier of slope s the Chernoff rate is the Legendre transform of a fair coin, log rho(s) = -s log s + (s-1) log(1-s) - log 2. Differentiating, -log s - 1 + log(1-s) + (s-1) * (-1/(1-s)) = -log(s/(1-s)), the -1 cancelling against the last term. The second derivative is -1/(s(1-s)). CONSEQUENCE. lamStar = log(BETA/(1-BETA)) = 0.536207535136 already carried two roles that looked unrelated: the exponential tilt of the surviving profile, and through r* = (1-BETA)/BETA = e^(-lamStar) the base of its tail. This is a third that unifies them -- it is the derivative of the rate in the barrier slope -- and it is what converts a barrier error |BETA - p/q| into a rate error. MEASURED. Rational barriers realise it: the difference quotient between the 12/19 and 41/65 barriers agrees with -barrier_tilt at the midpoint slope to 1e-6, and the second-order term is confirmed too -- at 64/101, where |s - BETA| = 2.7e-3, the two-term Taylor matches the measured rate to 4e-5 relative. ONE FUNCTION, TWO DERIVATIVES. Write G(lam, s) = -lam s + log((1+e^lam)/2), so that log rho(s) = min_lam G. Stationarity in lam is the DOUBLE ROOT of J-rho-has-a-tail-variable-variational-formula: the minimiser is lamStar(s) and its exponential e^(-lamStar) = (1-s)/s is the tail base r*. The envelope in s is this row: d/ds min_lam G = -lamStar, and it is the vanishing lam-derivative that makes the envelope step legal. The double root and the slope derivative were recorded as separate facts; they are the two partial derivatives of G at one point. Verified at s = 0.579, BETA, 0.66: the minimiser matches barrier_tilt to 1e-7, e^(-lam) matches (1-s)/s to 1e-7, and the minimum matches log chernoff_rate_at to 1e-14. IN LEAN. `logRho_deriv` is this row and is kernel-clean; `chernoffExp_lam_deriv` is the vanishing lam-derivative that makes the envelope step legal rather than merely plausible; `chernoffExp_at_lamStar` is the identity that the exponent at the tilt IS the rate, at every slope; and `log_rho_eq` puts the closed form of PaperBTilt.rho into logs, over the definitions `logRho` and `chernoffExp`. All four print [propext, Classical.choice, Quot.sound] and nothing else. What is NOT in Lean is the measured content -- that a rational barrier of slope p/q really decays at rho(p/q) -- which stays in J-barrier-rate-is-the-chernoff-rate-at-its-slope as a measurement. Machinery: chernoff_exponent, barrier_tilt, chernoff_rate_at."
+  "lean": "Problems/Juggler/PaperBSlopeRate.lean",
+  "statement": "d/ds log rho(s) = -log(s/(1-s)): the tilt that makes the walk drift-free is also the sensitivity of the rate to the barrier's slope. PROOF. Against a barrier of slope s the Chernoff rate is the Legendre transform of a fair coin, log rho(s) = -s log s + (s-1) log(1-s) - log 2. Differentiating, -log s - 1 + log(1-s) + (s-1) * (-1/(1-s)) = -log(s/(1-s)), the -1 cancelling against the last term. The second derivative is -1/(s(1-s)). CONSEQUENCE. lamStar = log(BETA/(1-BETA)) = 0.536207535136 already carried two roles that looked unrelated: the exponential tilt of the surviving profile, and through r* = (1-BETA)/BETA = e^(-lamStar) the base of its tail. This is a third that unifies them -- it is the derivative of the rate in the barrier slope -- and it is what converts a barrier error |BETA - p/q| into a rate error. MEASURED. Rational barriers realise it: the difference quotient between the 12/19 and 41/65 barriers agrees with -barrier_tilt at the midpoint slope to 1e-6, and the second-order term is confirmed too -- at 64/101, where |s - BETA| = 2.7e-3, the two-term Taylor matches the measured rate to 4e-5 relative. ONE FUNCTION, TWO DERIVATIVES. Write G(lam, s) = -lam s + log((1+e^lam)/2), so that log rho(s) = min_lam G. Stationarity in lam is the DOUBLE ROOT of J-rho-has-a-tail-variable-variational-formula: the minimiser is lamStar(s) and its exponential e^(-lamStar) = (1-s)/s is the tail base r*. The envelope in s is this row: d/ds min_lam G = -lamStar, and it is the vanishing lam-derivative that makes the envelope step legal. The double root and the slope derivative were recorded as separate facts; they are the two partial derivatives of G at one point. Verified at s = 0.579, BETA, 0.66: the minimiser matches barrier_tilt to 1e-7, e^(-lam) matches (1-s)/s to 1e-7, and the minimum matches log chernoff_rate_at to 1e-14. IN LEAN. `logRho_deriv` is this row and is kernel-clean; `chernoffExp_lam_deriv` is the vanishing lam-derivative that makes the envelope step legal rather than merely plausible; `chernoffExp_at_lamStar` is the identity that the exponent at the tilt IS the rate, at every slope; and `log_rho_eq` puts the closed form of PaperBTilt.rho into logs, over the definitions `logRho` and `chernoffExp`. All four print [propext, Classical.choice, Quot.sound] and nothing else. What is NOT in Lean is the measured content -- that a rational barrier of slope p/q really decays at rho(p/q) -- which stays in J-barrier-rate-is-the-chernoff-rate-at-its-slope as a measurement. Machinery: chernoff_exponent, barrier_tilt, chernoff_rate_at.",
+  "decl": [
+   "logRho_deriv",
+   "chernoffExp_lam_deriv",
+   "chernoffExp_at_lamStar",
+   "log_rho_eq"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-rational-barriers-give-exact-profiles",
@@ -12041,11 +12211,17 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "rho has a second variational characterisation, in the TAIL variable, dual to the Cramer one in the tilt variable -- and the minimum is attained with a DOUBLE root, which is the structural reason a polynomial factor accompanies rho^d. THE SET-UP. In the m coordinate the conditional law updates by two maps: T_0 pi(m) = (pi(m) + pi(m-1))/2 when the barrier does not rise, and T_1 pi(m) = (pi(m) + pi(m+1))/2 when it does, the latter losing pi(0)/2. A geometric tail r^m keeps its SHAPE under both -- T_0 multiplies its mass by (1+1/r)/2 and T_1 by (1+r)/2 -- so along a word with density BETA of rises the tail reproduces with factor [(1+1/r)/2]^(1-BETA) [(1+r)/2]^BETA. Setting that equal to rho is the characteristic equation for the quasi-stationary tail. THE DOUBLE ROOT. The exponent is stationary exactly at r* = (1-BETA)/BETA = exp(-lamStar) = 0.584962501, and there 1 + 1/r* = 1/(1-BETA) and 1 + r* = 1/BETA, so its value collapses to -[log2 + BETA log BETA + (1-BETA) log(1-BETA)] = -KL(BETA || 1/2) = log rho. The minimum TOUCHES log rho rather than crossing it: verified to 5.55e-17, and g(r* +- delta) > log rho at delta = 0.2, 0.05, 0.01, 0.001. So rho = min over r of that expression, attained at the tilt. WHY IT MATTERS. A simple root would give a pure geometric tail and a pure exponential decay; a double root is the critical case and produces the polynomial correction, which is where d^(-3/2) comes from. The tail ratio of the quasi-stationary profile being exactly exp(-lamStar) also ties J-boundary-fraction-is-the-clean-coordinate to J-paper-b-tilt-reduction-and-the-phase-factor: the rate at which the conditional profile decays away from the barrier is the same number that makes the walk mean zero. LEAN. The substitutions are one_add_inv_tailRoot and one_add_tailRoot, the identification of the tail ratio with the tilt is tailRoot_mul_odds, and the first-order condition is stationary_iff_eq_tailRoot, with tailRoot naming the quantity; all kernel-checked on propext, Classical.choice and Quot.sound alone. MEASURED, WITH A CAVEAT. The conditional profile's ratio pi(m+1)/pi(m) falls through r* from above around m = 60 to 80 and then continues below it, reading 0.5940, 0.5819, 0.5699, 0.5498 at m = 40, 80, 150, 300. That is NOT a grid artefact -- the figures are identical on grids of width 600, 1200 and 2400 -- but a finite-depth cutoff at large m, and it is recorded rather than explained. Nothing here proves the quasi-stationary limit exists. The same stationarity read in the TILT variable rather than the tail variable is `chernoffExp_lam_deriv` of J-rate-slope-derivative-is-the-tilt, where it is paired with the envelope in the slope; the two are partial derivatives of one function at one point.",
   "source": "docs/research_journal.md",
-  "lean": "formal/Problems/Juggler/PaperBTilt.lean",
+  "lean": "Problems/Juggler/PaperBWeightGap.lean",
   "tests": [
    "tests/research/juggler_sequence/paper_b_prefix_count/test_boundary_fraction.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "chi",
+   "chi_eq_chernoffExp",
+   "chi_tailRoot_eq"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-run-survivor-lattice",
@@ -12674,11 +12850,18 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "Paper B's zero-drift tilt and Paper C's theta_C are one change of measure in two coordinate systems, and Paper B is the level-zero member. Paper C picks theta_C so the unconditioned tilted mean endpoint sits at the barrier -L; at L = 0, i.e. C to infinity, that is zero drift, which is the tilt meander_constant works under and the minimiser of the MGF chernoff_rate computes. The measures agree outright: the MGF minimiser gives tilted P(O) = 0.630929753 and p_C converges to BETA = 1/log2(3) = 0.630929754, with the tilted walk drift measured at -1.1e-9. The tilt PARAMETERS do not agree and should not, because the papers tilt by different statistics -- Paper C by the odd count o, Paper B by the walk value in nats. On words of fixed length t, e^{theta sum X} = e^{theta(o log 3 - t log 2)} = const(t) e^{(theta log 3) o}, so the coordinates differ by exactly log 3: theta_C = theta* log 3, verified to machine precision (0.536207535 against 0.488077132 times 1.098612289). Closed forms: theta* = log(log 2 / log(3/2))/log 3 and theta_C = log(log 2 / log(3/2)) = log(BETA/(1 - BETA)). This is the fourth and last level of the correspondence, after the conditions (J-paper-b-screen-is-a-walk-condition), the counts (J-paper-b-count-is-the-level-zero-bad-count) and the exponents (J-paper-c-exponent-is-paper-b-rate-at-level-zero): condition, count, exponent and measure are the same objects at two levels of one walk. Nothing here is a bound, and no result in either paper changes. IN LEAN. `beta_odds` proves beta/(1-beta) = log 2 / log(3/2), the identity behind both closed forms, and `lamStar_beta_closed` reads off Paper C's tilt as log(log 2 / log(3/2)). The coordinate change is `tilt_coordinate_change`: on words of length t with o odd letters the walk value is o log 3 - t log 2, so tilting by it with parameter theta equals tilting by the odd count alone with parameter theta * log 3, times a factor depending only on t -- which is why the parameters differ by exactly log 3 and should, recorded as `thetaStar_mul_log_three`. All kernel-clean. What is NOT formalised is that these tilts are the ones the two papers' arguments actually select; that is the content of the rows they come from, not of this dictionary.",
   "source": "docs/research_journal.md",
-  "lean": "formal/Problems/Juggler/PaperBPaperCBridge.lean",
+  "lean": "Problems/Juggler/PaperBPaperCBridge.lean",
   "tests": [
    "tests/research/juggler_sequence/paper_b_prefix_count/test_meander.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "beta_odds",
+   "lamStar_beta_closed",
+   "thetaStar_mul_log_three",
+   "tilt_coordinate_change"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-theorem-six-one-threshold-is-slack",
@@ -12809,7 +12992,13 @@
   "tests": [
    "tests/research/juggler_sequence/test_two_step_parity.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "seq_floor_gap",
+   "floor_gap_eq_carry",
+   "gap_carry_mem"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-tilted-live-mass-is-expanding",
