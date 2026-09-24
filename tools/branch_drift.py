@@ -27,9 +27,13 @@ from __future__ import annotations
 
 import json
 import subprocess
+import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
+from research.repository import query as git_query
 
 # Historical refs may predate topic files; compare their committed aggregate exports.
 LEDGER = "docs/theory/theorem_ledger.json"
@@ -47,10 +51,13 @@ ARTIFACTS = {
 
 
 def _git(repo: Path, *args: str) -> str:
-    out = subprocess.run(
-        ["git", *args], capture_output=True, cwd=repo, check=False
-    )
-    return out.stdout.decode("utf-8", "replace")
+    try:
+        out = git_query(repo, *args, text=True)
+    except (OSError, subprocess.SubprocessError) as exc:
+        raise ValueError(f'Branch discovery failed: {exc}') from exc
+    if out.returncode:
+        raise ValueError('Branch discovery failed: ' + out.stderr.strip()[-2000:])
+    return out.stdout
 
 
 def branch_refs(repo: Path, base: str = "main") -> list[str]:
@@ -99,15 +106,17 @@ def head_sha(repo: Path, ref: str, length: int = 8) -> str:
 
 
 def _ledger_rows(repo: Path, ref: str) -> dict[str, str]:
-    """Map row id to statement at ``ref``; empty if the ledger is unreadable."""
+    """Map historical export rows; a genuinely absent export contributes no rows."""
 
-    raw = _git(repo, "show", f"{ref}:{LEDGER}")
-    if not raw.strip():
+    if not _git(repo, 'ls-tree', '-z', ref, '--', LEDGER).strip():
         return {}
+    raw = _git(repo, "show", f"{ref}:{LEDGER}")
     try:
         rows = json.loads(raw)
-    except json.JSONDecodeError:
-        return {}
+    except json.JSONDecodeError as exc:
+        raise ValueError(f'Unreadable claim export at {ref}:{LEDGER}') from exc
+    if not isinstance(rows, list):
+        raise ValueError(f'Expected a claim array at {ref}:{LEDGER}')
     return {
         r["id"]: r.get("statement") or ""
         for r in rows

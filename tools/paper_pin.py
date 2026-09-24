@@ -40,8 +40,11 @@ import json
 from pathlib import Path
 import re
 import subprocess
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'src'))
+from research.repository import query as git_query, blobs
 REPOSITORY_RE = re.compile(r"^Repository:\s+(\S+)\s*$", re.M)
 COMMIT_RE = re.compile(r"^Commit:\s+([0-9a-f]{7,40})\s*$", re.M)
 HISTORY_MAP = "docs/history/2026-09-23-commit-map.json"
@@ -86,10 +89,8 @@ class NoPinClaimed(RuntimeError):
 
 def _git(root: Path, *args: str) -> subprocess.CompletedProcess:
     try:
-        return subprocess.run(["git", "-C", str(root), *args],
-                              capture_output=True, text=True,
-                              encoding="utf-8", errors="replace")
-    except OSError as exc:                                   # git not installed
+        return git_query(root, *args, text=True)
+    except (OSError, subprocess.SubprocessError) as exc:
         raise PinUnavailable(f"git is not runnable here: {exc}") from exc
 
 
@@ -153,25 +154,11 @@ def pinned_inputs(root: Path, module) -> list[str]:
 
 
 def _blobs(root: Path, commit: str, paths: list[str]) -> dict[str, bytes | None]:
-    """One git process for the whole input list.  None means absent at that commit."""
-    specs = [f"{commit}:{name}" for name in paths]
-    proc = subprocess.run(["git", "-C", str(root), "cat-file", "--batch"],
-                          input=("\n".join(specs) + "\n").encode("utf-8"),
-                          stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    out, pos, found = proc.stdout, 0, {}
-    for name, spec in zip(paths, specs):
-        end = out.find(b"\n", pos)
-        if end < 0:
-            raise PinUnavailable("git cat-file stopped early; the history looks truncated")
-        header = out[pos:end].decode("utf-8", "replace")
-        pos = end + 1
-        if header.endswith((" missing", " ambiguous")):
-            found[name] = None
-            continue
-        size = int(header.rsplit(" ", 1)[1])
-        found[name] = out[pos:pos + size]
-        pos += size + 1
-    return found
+    """One batch for the input list after revision validation; None means absent."""
+    try:
+        return blobs(root, commit, paths)
+    except (OSError, ValueError, subprocess.SubprocessError) as exc:
+        raise PinUnavailable(f'Cannot read committed publication inputs: {exc}') from exc
 
 
 def verify(root: Path, module) -> str:

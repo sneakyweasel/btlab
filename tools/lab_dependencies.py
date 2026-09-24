@@ -12,6 +12,7 @@ import uuid
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
 from research.claims import claim_files
+from research.repository import query as git_query
 
 GIT = ['git', '-c', 'core.longpaths=true']
 
@@ -28,9 +29,7 @@ def inside(root: Path, path: Path) -> Path:
 
 
 def git(path: Path, *args: str) -> str:
-    result = subprocess.run([*GIT, '-c', f'safe.directory={path.resolve().as_posix()}', *args],
-        cwd=path, capture_output=True, text=True, encoding='utf-8', errors='replace',
-        stdin=subprocess.DEVNULL, timeout=120)
+    result = git_query(path, *args, text=True, timeout=120)
     if result.returncode:
         raise ValueError(result.stderr.strip()[-2000:])
     return result.stdout.strip()
@@ -83,6 +82,7 @@ def math_inputs(root: Path) -> dict[str, str]:
     paths += [root / n for n in ('tools/lab.py', 'tools/lab_scope.py', 'tools/lab_environment.py',
         'tools/lab_prepare.py', 'tools/lab_dependencies.py',
         'src/research/claims.py', 'src/research/claim_dependencies.py',
+        'src/research/repository.py',
         'tools/formalpedia_core/semantic_build.py', 'tools/lean/SemanticExport.lean')]
     paths += list(claim_files(root))  # Claim associations participate in the active Lean build graph.
     return {p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()

@@ -4,17 +4,15 @@ from __future__ import annotations
 import ast
 from collections import defaultdict, deque
 import hashlib
-import io
 import json
 from pathlib import Path
 import re
-import subprocess
-import zipfile
 
-from lab_environment import ROOT, environment
+from lab_environment import ROOT
 import sys
 sys.path.insert(0, str(ROOT / "src"))
 from research.claims import load_claims, EXPORT
+from research.repository import query as git_query, blobs
 
 LIMITATIONS = ('Static module imports and recorded file associations, not theorem-level dependence, '
                'complete dynamic dependency discovery, compilation or mathematical verification. '
@@ -22,9 +20,7 @@ LIMITATIONS = ('Static module imports and recorded file associations, not theore
 
 
 def git(root: Path, *args: str) -> bytes:
-    result = subprocess.run(['git', '-c', f'safe.directory={root.resolve().as_posix()}', *args],
-                            cwd=root, env=environment(root), capture_output=True,
-                            stdin=subprocess.DEVNULL, timeout=60)
+    result = git_query(root, *args)
     if result.returncode:
         raise ValueError(result.stderr.decode('utf-8', 'replace').strip())
     return result.stdout
@@ -140,13 +136,16 @@ def closure(reverse: dict, changed: set[str]) -> set[str]:
 
 
 def old_sources(root: Path, base: str, changed: set[str]) -> dict[str, bytes]:
-    tracked = names(git(root, 'ls-tree', '-r', '--name-only', '-z', base))
-    paths = sorted(p for p in changed & tracked if p.endswith(('.py', '.lean')))
-    result = {}
-    for start in range(0, len(paths), 100):
-        with zipfile.ZipFile(io.BytesIO(git(root, 'archive', '--format=zip', base, '--', *paths[start:start + 100]))) as archive:
-            result.update({p: archive.read(p) for p in archive.namelist() if not p.endswith('/')})
-    return result
+    paths = sorted(p for p in changed if p.endswith(('.py', '.lean')))
+    return {name: raw for name, raw in blobs(root, base, paths).items() if raw is not None}
+
+
+def changed_paths(root: Path, base: str) -> set[str]:
+    # With diff.autoRefreshIndex disabled, --name-only includes stat-only changes.
+    # --numstat compares contents without rewriting the index. Keep even 0/0 rows:
+    # they can represent empty-file additions, removals or real mode changes.
+    raw = git(root, 'diff', '--numstat', '--no-renames', '-z', base, '--')
+    return {record.split(b'\t', 2)[2].decode('utf-8') for record in raw.split(b'\0') if record}
 
 
 def descriptors(rows, owner: str) -> set[str]:
@@ -161,7 +160,7 @@ def analyze(root: Path = ROOT, *, since: str = 'HEAD', paths: list[str] | None =
     base = git(root, 'rev-parse', '--verify', '--end-of-options', since + '^{commit}').decode().strip()
     files = inventory(root)
     if paths is None:
-        changed = names(git(root, 'diff', '--name-only', '--no-renames', '-z', base, '--'))
+        changed = changed_paths(root, base)
         changed |= names(git(root, 'ls-files', '--others', '--exclude-standard', '-z'))
     else:
         changed = set()

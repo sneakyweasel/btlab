@@ -22,6 +22,11 @@ are removed. The Juggler companion website remains in `web/juggler-companion/`.
 and `research.literature` read their supporting registries. These are infrastructure,
 not additional research programmes.
 
+`research.repository` owns checkout-bound, read-only Git queries and batched
+committed-blob reads for discovery, provenance and validation. Callers keep their
+own error semantics: an unavailable revision cannot become a clean audit.
+Git mutations remain explicit in preparation and other authorized workflows.
+
 The [research catalogue](research_catalogue.md) connects canonical dossiers,
 claims, source files, data, obstructions, and verification commands across both
 programmes. It is a live derived view, not another manually maintained ledger.

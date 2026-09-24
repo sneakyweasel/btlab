@@ -20,6 +20,8 @@ import time
 from oeis_source import SEARCH_FIELDS, parse_record, term_key
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'src'))
+from research.repository import query as git_query, query_command, query_environment
 DEFAULT_DB = ROOT / 'data/external/oeis/catalog.sqlite3'
 DEFAULT_MIRROR = ROOT.parent / 'oeisdata'
 SCHEMA = 1
@@ -27,20 +29,15 @@ LICENSE = {'owner': 'OEIS Foundation, Inc.', 'license': 'CC BY-SA 4.0',
            'url': 'https://oeis.org/wiki/Legal_Documents'}
 
 
-def git(mirror: Path, *args: str) -> list[str]:
-    return ['git', '-c', f'safe.directory={mirror.resolve().as_posix()}',
-            '-C', str(mirror), *args]
-
-
 def revision(mirror: Path, ref: str = 'HEAD') -> str:
-    return subprocess.check_output(git(mirror, 'rev-parse', '--verify', ref + '^{commit}'),
-                                   text=True, timeout=15, stdin=subprocess.DEVNULL,
-                                   stderr=subprocess.PIPE).strip()
+    return git_query(mirror, 'rev-parse', '--verify', '--end-of-options', ref + '^{commit}',
+                     text=True, timeout=15, check=True).stdout.strip()
 
 
 def records(mirror: Path, commit: str):
     """Stream Git's immutable tree without extracting hundreds of thousands of files."""
-    with subprocess.Popen(git(mirror, 'archive', '--format=tar', commit, 'seq'),
+    with subprocess.Popen(query_command(mirror, 'archive', '--format=tar', commit, 'seq'),
+                          env=query_environment(mirror), stdin=subprocess.DEVNULL,
                           stdout=subprocess.PIPE, stderr=subprocess.PIPE) as process:
         try:
             with tarfile.open(fileobj=process.stdout, mode='r|') as archive:
@@ -148,7 +145,7 @@ def main(argv=None):
     parser.add_argument('--revision', default='HEAD')
     args = parser.parse_args(argv)
     commit = revision(args.mirror, args.revision)
-    exported = subprocess.check_output(git(args.mirror, 'show', commit + ':time.txt'), text=True).strip()
+    exported = git_query(args.mirror, 'show', commit + ':time.txt', text=True, check=True).stdout.strip()
     result = create_database(args.database, records(args.mirror, commit), {
         'mirror': str(args.mirror.resolve()), 'revision': commit, 'exported_at': exported,
         'upstream': 'https://github.com/oeis/oeisdata'},
