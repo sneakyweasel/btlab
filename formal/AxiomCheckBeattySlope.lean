@@ -3,7 +3,8 @@ import Problems.Juggler.BeattySlopeLocalContent
 import Problems.Juggler.BeattySlopeProfileSpecialization
 
 /-! Recorded dependencies of the public arbitrary-boundary counting results.
-The expanded actual-count consumers are in `InterfaceCheckBeattySlope.lean`.
+The expanded actual-count consumers are in `InterfaceCheckBeattySlope.lean`,
+`InterfaceCheckBeattySlopeGeometry.lean` and `InterfaceCheckBeattySlopeContent.lean`.
 -/
 
 namespace Problems.Juggler

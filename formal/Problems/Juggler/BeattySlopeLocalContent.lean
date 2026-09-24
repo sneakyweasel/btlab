@@ -5,7 +5,8 @@ import Problems.Juggler.BeattyTailConvergence
 /-!
 # The complete geometric measure limit for every irrational slope
 
-The corresponding gap and tube assertions for every irrational boundary in `(0,1)`.
+Weak convergence of the rescaled tube measures and of uniform tube sampling,
+for every irrational boundary in `(0,1)`.
 All inputs concern the actual first-passage counts, without an arithmetic rate premise.
 -/
 

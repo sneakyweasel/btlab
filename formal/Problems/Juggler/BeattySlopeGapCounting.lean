@@ -5,7 +5,7 @@ import Problems.Juggler.BeattyGapCounting
 /-!
 # Exact gap counting for every irrational slope
 
-The corresponding gap and tube assertions for every irrational boundary in `(0,1)`.
+The gap-count limit `x^(2/3) N(x) -> A` for every irrational boundary in `(0,1)`.
 All inputs concern the actual first-passage counts, without an arithmetic rate premise.
 -/
 

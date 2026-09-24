@@ -5,7 +5,8 @@ import Problems.Juggler.BeattyGapContent
 /-!
 # Exact Minkowski content for every irrational slope
 
-The corresponding gap and tube assertions for every irrational boundary in `(0,1)`.
+The exact Minkowski content of the cluster set and its identification with
+the two-thirds moment of the empirical limit law, for every irrational boundary in `(0,1)`.
 All inputs concern the actual first-passage counts, without an arithmetic rate premise.
 -/
 

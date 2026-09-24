@@ -4,7 +4,8 @@ import Problems.Juggler.BeattyLocalCounting
 /-!
 # Spatial gap counting for every irrational slope
 
-The corresponding gap and tube assertions for every irrational boundary in `(0,1)`.
+Gap counts restricted to gaps above a spatial threshold, for every irrational
+boundary in `(0,1)`.
 All inputs concern the actual first-passage counts, without an arithmetic rate premise.
 -/
 

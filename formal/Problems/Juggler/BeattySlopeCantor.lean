@@ -5,7 +5,8 @@ import Problems.Juggler.BeattyGapDecay
 /-!
 # Two-thirds Minkowski dimension for every irrational slope
 
-The corresponding gap and tube assertions for every irrational boundary in `(0,1)`.
+The exact tube formula, cube-root bounds and logarithmic Minkowski dimension
+of the cluster set, for every irrational boundary in `(0,1)`.
 All inputs concern the actual first-passage counts, without an arithmetic rate premise.
 -/
 

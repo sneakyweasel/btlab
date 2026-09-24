@@ -10,14 +10,14 @@ set of accumulation values is the profile's envelope with its open jump
 intervals removed: a nonempty compact perfect set of Lebesgue measure zero.
 The empirical probabilities converge to the image of uniform phase measure
 under the profile. This law is singular continuous, and its continuous CDF
-inverts the profile and has explicit plateaus at the Beatty phases. These
-family statements are formalized for the actual integer word counts.
-For every such irrational slope, the gap lengths have order `r^(-3/2)` and
-the neighbourhood volume has an
+inverts the profile and has explicit plateaus at the Beatty phases.
+The gap lengths have order `r^(-3/2)` and the neighbourhood volume has an
 exact positive `epsilon^(1/3)` asymptotic, giving Minkowski dimension `2/3`
 and explicit content. The whole rescaled neighbourhood measure converges
 weakly to the empirical law weighted by its value to the two-thirds power,
-with the same geometric scale factor.
+with the same geometric scale factor. All of these statements hold for every
+irrational slope above one and are proved in Lean for the actual integer
+word counts.
 At the logarithmic slope `alpha=log_2 3`, the
 same integer counts in BGL's exact Gamma normalization have an absolutely
 continuous limiting law, mutually singular with the first. We give its
@@ -29,15 +29,14 @@ dense null set of infinite values. It is in weak `L^(3/2)` and every
 `L^p` with `1<=p<3/2`; its CDF is `1/3`-Holder but nowhere locally
 Lipschitz in the support interior. The entire infinite-density set has
 Hausdorff dimension at most `2/3`. These conclusions and all real-power
-moments are also Lean-checked. The underlying
+moments are also Lean-checked; the Gamma-law family extension remains
+separate. At the same slope, classical irrationality measures for
+`log_2 3` give written positive lower bounds on the Hausdorff dimension of
+the first cluster set: `2/39.9` with Rhin's effective constant and
+`2/(3*4.1163051)=0.16195...` from Wu and Wang. The underlying
 periodic survivor amplitude has a classical precursor; the focus here is
 its explicit transfer to the cumulative profile and the resulting singular
-geometry. The profile and these qualitative geometric and distributional
-results are proved in Lean for the actual integer counts. The full family
-now includes the qualitative phase theorem, exact
-normalization, complete null perfect cluster set and singular empirical law.
-The exact Minkowski content and the whole local geometric measure now cover
-the family as well. The Gamma-law family extension remains separate.
+geometry.
 
 **Main conclusions.** For every irrational `alpha>1`, use the actual word
 counts of Section 24 and write `E=alpha/(alpha-1)`. The checked statements are
@@ -71,7 +70,9 @@ Section 19 proves finite two-thirds Hausdorff measure and isolates a
 quantitative phase-hitting condition for matching lower bounds.
 Section 20 derives that condition from uniform Diophantine lower bounds,
 with no loss in the exponent, and separates the arithmetic premises for
-dimension equality and critical-measure positivity.
+dimension equality and critical-measure positivity. At the logarithmic
+slope it applies the irrationality measures of Rhin and of Wu and Wang to
+obtain positive Hausdorff lower bounds as written corollaries.
 Sections 12–13 establish their counting and asymptotic inputs.
 Section 21 identifies the empirical law in BGL's Gamma normalization and
 explains why changing the normalization changes the type of limiting measure.
@@ -129,13 +130,26 @@ The exact Gamma-normalized
 first-passage amplitude in Section 1.1 and its absolutely continuous empirical
 law, density and real-power moment identities in Section 21, and the exact
 interval support and density topology in Section 22, are also Lean-checked.
-The path dictionary with BGL and the spectral corollary in
-Section 17 remain written deductions.
+The path dictionary with BGL, the spectral corollary in
+Section 17 and the Hausdorff lower bounds from Rhin and from Wu and Wang
+in Section 20 remain written deductions (**EXACT — HUMAN PROOF**).
 This is a standalone working
 note supporting Paper B; it does not revise a deposited paper or establish
 literature priority or trajectory termination.
 
-The phase-asymptotic interface is
+For every irrational slope, the phase theorem is
+[passage_phase_asymptotic_reciprocal](../../formal/Problems/Juggler/BeattySlopeAsymptotic.lean),
+the cluster set and empirical law are in
+[BeattySlopeCluster.lean](../../formal/Problems/Juggler/BeattySlopeCluster.lean)
+and [BeattySlopeDistribution.lean](../../formal/Problems/Juggler/BeattySlopeDistribution.lean),
+and the gap, content and tube-measure theorems are in
+[BeattySlopeContent.lean](../../formal/Problems/Juggler/BeattySlopeContent.lean)
+and [BeattySlopeLocalContent.lean](../../formal/Problems/Juggler/BeattySlopeLocalContent.lean).
+The expanded original-count consumers are
+[InterfaceCheckBeattySlopeGeometry.lean](../../formal/InterfaceCheckBeattySlopeGeometry.lean)
+and [InterfaceCheckBeattySlopeContent.lean](../../formal/InterfaceCheckBeattySlopeContent.lean).
+The modules listed next are the earlier specializations at the logarithmic slope.
+Its phase-asymptotic interface is
 [certificate_phase_asymptotic](../../formal/Problems/Juggler/BeattyCertificateAsymptotic.lean).
 The exact series equality is in
 [BeattyCertificateIdentification.lean](../../formal/Problems/Juggler/BeattyCertificateIdentification.lean),
@@ -261,7 +275,7 @@ For BGL's normalization [8, (4.11)], put
  \mathcal B_r=c_r/D_r.
 \]
 Stirling gives `D_r=kappa B^r r^(-3/2)(1+O(r^(-1)))`. The identity
-`c_r=B^r q^(delta_r) w_r` and the checked gap asymptotic of Section 17 imply
+`c_r=B^r q^(delta_r) w_r` and the checked gap asymptotic (23) of Section 16 imply
 \[
  \mathcal B_r-q^{\delta_r}F(\delta_r)\longrightarrow0.
 \]
@@ -627,8 +641,9 @@ The paper's evidence labels are not retagged by this note. The analytic
 convolution argument is covered by Lean, as described in Section 10.
 Sections 12–13 discharge its concrete inputs and establish the complete
 certificate-profile identification and unconditional `MeanderShape` at the
-logarithmic slope. The quantitative rate and general irrational-slope
-statement still require independent review.
+logarithmic slope. Section 24 proves the qualitative phase theorem for every
+irrational slope in Lean. The quantitative `O(r^(-1/2))` rate of Sections 1–7
+still requires independent review.
 
 Validation on 23 September: the module and the full retained Lean graph compile
 (9034 build jobs); eleven principal declarations were audited and use only
@@ -717,6 +732,11 @@ bounded phase kernel.
 | Complete compact perfect null accumulation set and exact gaps | Lean proved in Section 14 |
 | Uniform phase law, singular continuous empirical law and exact threshold frequencies | Lean proved in Section 15 |
 | Three-halves gap bounds, exact metric tube formula and Minkowski dimension `2/3` | Lean proved in Section 16; covering-number equivalence recorded as a written argument |
+| Exact Minkowski content and whole geometric limiting measure | Lean proved in Sections 17–18; spectral corollary is a written application |
+| Finite critical Hausdorff measure; conditional lower bounds from hitting and Diophantine premises | Lean proved in Sections 19–20 |
+| Positive Hausdorff lower bounds at the logarithmic slope from the Rhin and Wu–Wang measures | Written proof in Section 20 (**EXACT — HUMAN PROOF**) |
+| Gamma-normalized law, density, support, moments and regularity | Lean proved at the logarithmic slope in Sections 21–23 |
+| Phase theorem, cluster set, singular law, sharp gaps, Minkowski content and geometric measure for every irrational `alpha>1` | Lean proved in Sections 24–26 |
 | Quantitative `O(r^(-1/2))` error | Written proof; this continuation proves `o(1)` only |
 
 These distinctions must be preserved in any communication about the result.
@@ -1059,8 +1079,9 @@ a general consequence, not a novelty claim. The application here specifies
 every certificate accumulation value and every interior gap beyond the
 earlier extremal envelopes. Section 15 now proves empirical weak convergence
 to the law of `F(U)` for uniform `U`, and singular continuity of that law.
-Those results use additional modules beyond the cluster-set proof. Quantitative errors,
-effective constants and arbitrary irrational slopes remain separate as well.
+Those results use additional modules beyond the cluster-set proof. Quantitative
+errors and effective constants remain separate; Section 25 extends this
+accumulation-set theorem to every irrational slope.
 **PROMOTE** this completed accumulation-set theorem within the existing dossier.
 
 Validation: the complete retained Lean graph passes (9046 jobs). The executed
@@ -1161,8 +1182,9 @@ interfaces are `certificateLaw_Iic_profile`, `certificateRatio_threshold_frequen
 and `certificateLaw_Iic_gap`.
 
 **Boundary and decision.** These are qualitative frequency results for the
-concrete logarithmic slope. No discrepancy rate, effective truncation error,
-arbitrary-slope certificate theorem, or literature priority claim is added.
+concrete logarithmic slope; Section 25 extends them to every irrational slope.
+No discrepancy rate, effective truncation error or literature priority claim
+is added.
 The generic measure arguments are standard; the specialization identifies
 the empirical law of the original certificate counts explicitly.
 **PROMOTE** this completed empirical-law theorem within the existing dossier.
@@ -1272,8 +1294,9 @@ gap lengths is classical; see Hare, Mendivil and Zuberman [4]. The result
 here identifies the gap decay and dimension for the actual certificate
 accumulation set. It does not establish Hausdorff dimension `2/3`: a
 matching Hausdorff lower bound would require additional control of the
-placement of the gaps. No bounded-partial-quotient hypothesis, effective
-phase error, arbitrary-slope generalization or priority claim is used.
+placement of the gaps; Sections 19–20 treat that question. No
+bounded-partial-quotient hypothesis, effective phase error or priority claim
+is used. Section 26 extends this theorem to every irrational slope.
 **PROMOTE** this completed Cantor-geometry theorem within the existing dossier.
 
 The reproducible consumer audit is
@@ -1394,8 +1417,8 @@ interface or a new general spectral result.
 **Scope and review.** The exact constant connects these certificate counts
 to their singular empirical law. No quantitative equidistribution bound,
 bounded-partial-quotient hypothesis or self-similarity assumption is used.
-Hausdorff dimension, effective error bounds and arbitrary irrational slopes
-remain separate questions. **PROMOTE** the completed exact-content theorem
+Hausdorff dimension is treated in Sections 19–20 and effective error bounds
+remain open. Section 26 extends the exact content to every irrational slope. **PROMOTE** the completed exact-content theorem
 within the existing dossier.
 
 The consumer audit
@@ -1507,8 +1530,8 @@ probability on the actual metric neighbourhood at every positive radius.
 Local Minkowski content is a classical measure-theoretic refinement;
 see Winter [6]. The result here identifies the local content explicitly
 for these certificate counts through their singular empirical law.
-It does not establish Hausdorff dimension, an effective asymptotic error,
-or the arbitrary-slope extension.
+It does not establish Hausdorff dimension or an effective asymptotic error.
+Section 26 proves the arbitrary-slope extension.
 **PROMOTE** this completed geometric limiting-measure theorem.
 
 The executable consumer audit is
@@ -1595,10 +1618,11 @@ Diophantine dependence of Hausdorff dimension for classical Denjoy minimal
 sets. This is a reason to examine rotation spacing separately from gap
 decay. Their construction uses a two-sided orbit, whereas this certificate
 set uses the positive orbit. No identification with their model or direct
-application of their dimension formula is claimed here. The immediate
-arithmetic target is a proved hitting bound for the actual logarithmic
-phase orbit; exact Hausdorff dimension and critical-measure positivity
-remain open without such further input.
+application of their dimension formula is claimed here. Section 20 derives
+the hitting bound from Diophantine lower bounds; at the logarithmic slope,
+the Rhin and Wu–Wang measures then give positive written lower bounds on
+`dim_H K`, the better being `0.16195...`. Exact Hausdorff dimension and critical-measure positivity remain
+open.
 
 The public proofs are
 [BeattyHausdorffUpper.lean](../../formal/Problems/Juggler/BeattyHausdorffUpper.lean)
@@ -1618,10 +1642,12 @@ the axiom check does not assert that this argument has been constructed.
 ## 20. Diophantine approximation supplies the hitting bound
 
 **EXACT — LEAN VERIFIED, with the arithmetic premise explicit.** Let
-\(\xi\in\mathbb R\), \(c>0\), and \(\tau>0\). Suppose
+\(\xi\in\mathbb R\), \(c>0\), and \(\tau>0\). In this section \(k\) and
+\(p\) denote the denominator and numerator of a rational approximation;
+\(q=1-\beta\) is not used. Suppose
 \[
- |q\xi-p|\ge c q^{-\tau}
- \qquad(q\in\mathbb N_{>0},\ p\in\mathbb Z).                  \tag{42}
+ |k\xi-p|\ge c k^{-\tau}
+ \qquad(k\in\mathbb N_{>0},\ p\in\mathbb Z).                  \tag{42}
 \]
 Then every \(0\le a<b\le1\) contains a positive rotation phase
 \(\{m\xi\}\), with
@@ -1634,16 +1660,16 @@ input needed by the certificate geometry.
 
 **Proof and constants.** Put \(h=b-a\) and
 \(N=\lceil (4/h)^\tau/c\rceil\). Dirichlet approximation gives a
-reduced rational \(p/q\), \(1\le q\le N\), with
+reduced rational \(p/k\), \(1\le k\le N\), with
 \[
- |\xi-p/q|\le\frac1{(N+1)q}.
+ |\xi-p/k|\le\frac1{(N+1)k}.
 \]
-Combining this with (42) gives \(q^\tau\ge c(N+1)>(4/h)^\tau\),
-so \(qh>4\). The approximation error is at most \(q^{-2}\).
-The reduced rational orbit visits every grid point \(j/q\);
-choose \(j=\lfloor qa\rfloor+2\). Then \(0<j<q\) and
-\(a+1/q<j/q<b-1/q\). Its corresponding index \(1\le m<q\)
-moves by less than \(1/q\) when \(p/q\) is replaced by \(\xi\).
+Combining this with (42) gives \(k^\tau\ge c(N+1)>(4/h)^\tau\),
+so \(kh>4\). The approximation error is at most \(k^{-2}\).
+The reduced rational orbit visits every grid point \(j/k\);
+choose \(j=\lfloor ka\rfloor+2\). Then \(0<j<k\) and
+\(a+1/k<j/k<b-1/k\). Its corresponding index \(1\le m<k\)
+moves by less than \(1/k\) when \(p/k\) is replaced by \(\xi\).
 It therefore remains strictly inside \((a,b)\), without wrapping across
 an endpoint. Finally
 \(m h^\tau\le N h^\tau\le4^\tau/c+h^\tau\le4^\tau/c+1\).
@@ -1657,12 +1683,67 @@ therefore implies all the conclusions of Section 19:
  \frac{2}{3\tau}\le\dim_H K\le\frac23.                        \tag{44}
 \]
 The same input gives the global CDF exponent \(2/(3\tau)\).
-No pair \((c,\tau)\) satisfying (42) for this slope is constructed here.
+The Lean development constructs no pair \((c,\tau)\) satisfying (42) for
+this slope; the next paragraph supplies one from the literature.
+
+**Corollary at the logarithmic slope — EXACT — HUMAN PROOF.** Rhin
+[11, Proposition, p. 160, (7)] proves that for integers \(u_0,u_1,u_2\)
+with \(H=\max(|u_1|,|u_2|)\ge2\),
+\[
+ |u_0+u_1\log2+u_2\log3|\ge H^{-13.3},
+\]
+with no further constant. This is the same input used for Corollary 4.11 of
+the [finite-dynamics note](juggler_finite_dynamics_note.md). Let
+\(\xi=\log_2 3\), \(k\ge1\) and \(p\in\mathbb Z\). If \(|k\xi-p|\ge1/2\),
+then (42) holds for every \(c\le1/2\). Otherwise \(1\le p\le k\xi+1/2\), so
+\(p\le2k\): for \(k=1\) because \(p\le2.085\), and for \(k\ge2\) because
+\((2-\xi)k>1/2\). The only pair with \(\max(|p|,k)=1\) is \(k=p=1\), and it
+has \(|\xi-1|>1/2\). Hence \(2\le H=\max(|p|,k)\le2k\), and
+\[
+ |k\xi-p|=\frac{|k\log3-p\log2|}{\log2}\ge\frac{(2k)^{-13.3}}{\log2}.
+\]
+Thus (42) holds with
+\[
+ \tau=13.3,\qquad c=\frac{2^{-13.3}}{\log2}<\frac12,
+\]
+and (44) gives, unconditionally apart from Rhin's theorem,
+\[
+ \boxed{\quad
+ \mathcal H^{2/39.9}(K)>0,\qquad
+ \frac{2}{39.9}\le\dim_H K\le\frac23,
+ \quad}                                                       \tag{44a}
+\]
+with \(2/39.9=0.0501\ldots\). The CDF \(G\) is \(2/39.9\)-Hölder on
+\(\mathbb R\). The deduction from (42) to (44) is Lean-checked; Rhin's
+estimate is a classical transcendence input that is not formalized, so the
+corollary is a written proof. Rhin's sharper estimate (8) holds only beyond
+an uncomputed height and is not used.
+
+**Sharper exponent from Wu–Wang — EXACT — HUMAN PROOF.** Positivity of
+Hausdorff measure needs only the existence of \(c>0\) in (42), not an
+effective value. Wu and Wang [12, Theorem 1] give, for every
+\(\varepsilon>0\), the linear-form bound
+\(|u_0+u_1\log2+u_2\log3|\ge H^{-4.1163051-\varepsilon}\) for all
+sufficiently large heights; the
+[phase-collapse dossier](../problems/juggler_winkler_phase_collapse.md)
+already applies it to this slope. The reduction above gives
+\(|k\xi-p|\ge c_\varepsilon k^{-4.1163051-\varepsilon}\) for large \(k\),
+and irrationality of \(\xi\) absorbs the finitely many remaining \(k\) into
+\(c_\varepsilon>0\). Applying (44) for each \(\varepsilon\) gives
+\[
+ \mathcal H^{2/(3(4.1163051+\varepsilon))}(K)>0\quad(\varepsilon>0),
+ \qquad
+ \dim_H K\ge\frac{2}{3\cdot4.1163051}=0.16195\ldots.           \tag{44b}
+\]
+The constants \(c_\varepsilon\) are not effective, and no positive
+measure is claimed at the limiting exponent itself. Both (44a) and (44b)
+concern only the logarithmic slope and remain far from the Minkowski
+value `2/3`.
 
 There is a useful distinction at the endpoint. The weaker family premise
 \[
- \forall\tau>1\ \exists c_\tau>0\ \forall q\ge1\ \forall p\in\mathbb Z:
- \quad |q/\beta-p|\ge c_\tau q^{-\tau}                         \tag{45}
+ \forall\tau>1\ \exists c_\tau>0\ \forall k\ge1\ \forall p\in\mathbb Z:
+ \quad |k/\beta-p|\ge c_\tau k^{-\tau}                         \tag{45}
 \]
 already gives \(\dim_H K=2/3\), by letting \(\tau\downarrow1\)
 in (44). The constants may depend on \(\tau\); no uniform bound is needed.
@@ -1684,8 +1765,9 @@ constants in (45). Its
 [executable audit](../../tests/research/juggler_sequence/test_beatty_diophantine_interface.py)
 checks ten dependency records and permits only `propext`, `Classical.choice`,
 and `Quot.sound`.
-**PROMOTE** the arithmetic-to-geometry implication; obtaining a usable
-arithmetic bound for the concrete logarithmic slope remains a separate target.
+**PROMOTE** the arithmetic-to-geometry implication and the corollaries
+(44a) and (44b). The arithmetic premises (45) and bad approximability remain open for
+the concrete logarithmic slope.
 
 ## 21. The law in the BGL normalization
 
@@ -2169,9 +2251,11 @@ using only `propext`, `Classical.choice` and `Quot.sound`.
 This completes the qualitative phase theorem for the family. Section 25
 extends its cluster-set and singular empirical-law consequences. The
 Gamma-law package, convergence rates and arithmetic lower bounds still
-require separate family arguments. Section 26 completes the Minkowski package. The logarithmic atom
-formula `w_1=beta` in Section 13 is not asserted
-for all slopes here. The classical BGL survival and probability-flow
+require separate family arguments. Section 26 completes the Minkowski package.
+The first atom is explicit for every slope: the only first-passage word with
+one odd letter is `O E^(m_1)`, so `c_1=1` and `w_1=beta*q^(floor(alpha)-1)`.
+This equals the logarithmic value `w_1=beta` of Section 13 exactly when
+`alpha<2`. This short count is a written remark, not a Lean statement. The classical BGL survival and probability-flow
 precursors remain acknowledged; the scope extension and formal proof do
 not by themselves settle literature priority. **PROMOTE** the family phase
 theorem; the positive dense atom structure and qualitative geometry are completed
@@ -2308,16 +2392,18 @@ The scalar theorem extends to the entire spatial measure:
 
 \[
  \varepsilon^{-1/3}\lambda\!\restriction_{K_{\alpha,\varepsilon}}
- \Longrightarrow \eta_\alpha,
+ \Longrightarrow \nu_\alpha,
  \qquad
- \eta_\alpha(dy)=3\,2^{1/3}\kappa_\alpha^{2/3}
+ \nu_\alpha(dy)=3\,2^{1/3}\kappa_\alpha^{2/3}
                     y^{2/3}\mu_\alpha(dy).
 \]
 
+As in Section 18, `nu` denotes the local content measure and `eta` is
+reserved for the Gamma law of Section 21.
 Lean proves weak convergence of these finite measures, their masses, and
 the limiting mass above every real spatial threshold. It also proves the
 probability version: uniform volume sampling in the shrinking neighbourhoods
-converges to `nu_alpha=eta_alpha/M_alpha`. For every bounded continuous `g`,
+converges to `hat(nu)_alpha=nu_alpha/M_alpha`. For every bounded continuous `g`,
 
 \[
  \frac{\int_{K_{\alpha,\varepsilon}}g(y)\,dy}
@@ -2329,7 +2415,7 @@ converges to `nu_alpha=eta_alpha/M_alpha`. For every bounded continuous `g`,
 
 This distinguishes two sampling procedures throughout the whole family:
 sampling the count index gives `mu_alpha`; sampling space near its
-accumulation set gives the explicitly weighted law `nu_alpha`.
+accumulation set gives the explicitly weighted law `hat(nu)_alpha`.
 
 **Proof.** At `m_r=floor(r/beta)`, the tilted Stirling first term has phase
 factor `2^(-beta*delta_r)`. Multiplication by `2^(beta*delta_r)` cancels
@@ -2357,11 +2443,15 @@ give the scalar geometry.
 and [BeattySlopeLocalContent.lean](../../formal/Problems/Juggler/BeattySlopeLocalContent.lean)
 identify the spatial limit and its probability normalization.
 [InterfaceCheckBeattySlopeContent.lean](../../formal/InterfaceCheckBeattySlopeContent.lean)
-has seven expanded consumers, exposing the actual count weights, all-slope
-quantifiers, metric neighbourhoods and test-function integrals. The public
+has eight expanded consumers, exposing the actual count weights, all-slope
+quantifiers, metric neighbourhoods and test-function integrals. Its
+`actual_family_cluster_content` states the dimension, content and
+tube-sampling limits directly for the set of subsequential limits of the
+original integer ratios, so the identification of `K_alpha` with that set
+is part of the checked statement. The public
 family audit now checks 160 theorem records with only `propext`,
 `Classical.choice` and `Quot.sound`; the three family consumer files check
-48 expanded statements in total.
+49 expanded statements in total.
 
 **Boundary.** Every assertion is for each fixed irrational slope. No
 convergence rate or uniformity as the slope varies is supplied. The
@@ -2413,3 +2503,11 @@ rotation comparison and arithmetic Hausdorff classification remain future work.
     of Shot Noise Processes with Jumps*, Journal of Applied Probability
     **49** (2012), 100–113, Proposition 1.
     [doi:10.1239/jap/1331216836](https://doi.org/10.1239/jap/1331216836).
+11. G. Rhin, *Approximants de Padé et mesures effectives
+    d'irrationalité*, in *Séminaire de Théorie des Nombres, Paris
+    1985–86*, Progress in Mathematics **71**, Birkhäuser, Boston, 1987,
+    155–164, Proposition, p. 160, (7).
+    [doi:10.1007/978-1-4757-4267-1_11](https://doi.org/10.1007/978-1-4757-4267-1_11).
+12. Q. Wu and L. Wang, *On the irrationality measure of log 3*,
+    Journal of Number Theory **142** (2014), 264–273, Theorem 1.
+    [doi:10.1016/j.jnt.2014.03.007](https://doi.org/10.1016/j.jnt.2014.03.007).

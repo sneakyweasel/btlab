@@ -11,6 +11,20 @@ consolidation is at `e9725762eaf028d1ace354ff20e0fc48f1a3d143`. See
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-24 -- Beatty cluster set has positive Hausdorff dimension at log_2 3
+
+Review of the Beatty note. **EXACT — HUMAN PROOF:** Rhin's effective
+measure `|u_0+u_1 log 2+u_2 log 3|>=H^(-13.3)` supplies the Diophantine
+premise of the Lean-checked implication with `tau=13.3`, so the original
+certificate cluster set has `H^(2/39.9)(K)>0`. Wu-Wang's noneffective
+exponent `4.1163051+epsilon` raises the bound to
+`dim_H K>=2/(3*4.1163051)=0.16195...`. Minkowski dimension stays `2/3`;
+exact Hausdorff dimension and critical-measure positivity remain open.
+A new interface theorem states the family Minkowski results directly for
+the set of subsequential limits of the original ratios. **PROMOTE** within
+the dossier; row `J-beatty-rhin-hausdorff-lower-bound`, Section 20 of the
+[Beatty note](theory/juggler_beatty_first_passage_note.md).
+
 ## 2026-09-24 -- Counting escapes reduces to the all-depth program
 
 Clotho Phase-0. **EXACT — LEAN VERIFIED:** an escape rate above `3/8`
@@ -226,15 +240,3 @@ minimum, the normalized root weight divided by 1-q is at most
 other periodic subsolutions and fixed-root divergence remain open. Fifteen
 exact controls pass. No Juggler pressure or termination follows. See the
 [dossier](problems/collatz_fibre_block_weights.md).
-
-## 2026-09-23 -- Subcritical weights isolate the missing fixed-root constant
-
-Lean checks that L_s h>=q*h with 0<=h<=1 gives C_d(a)>=q^d*h(a),
-and that a family q_i tending to one forces divergence if its normalized
-root values stay above c*(1-q_i). Both family premises remain open.
-Eight exact Python certificates at levels 1–4 reach q=0.771500620;
-they establish no asymptotic rate or root constant. **PARK** further finite
-tables; the next target is the analytic family estimate. The newly located
-Nikpour–Rabbani preprint is registered as an unchecked abstract claim,
-not a verified input. No Juggler pressure or termination follows. See the
-[dossier](problems/collatz_fibre_critical_minorants.md).

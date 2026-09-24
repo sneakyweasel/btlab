@@ -1318,13 +1318,14 @@ normalization and all real-power moment identities. Its exact interval
 support, full cluster set, strict CDF, dense null density blowup and local
 essential unboundedness are now checked too. Remaining
 mathematical extensions are exact Hausdorff dimension and critical-measure
-positivity, supplying a Diophantine bound for the quantitative hitting theorem,
+positivity (a written positive lower bound `0.16195...` now follows from
+Wu-Wang), a Lean formalization of that arithmetic input,
 a quantitative phase remainder, evaluation of the support endpoints,
 full Lean formalization of the written `p<62/41` arithmetic improvement,
 `L^p` density integrability at `p=62/41` and above, optimal CDF Holder regularity,
 and a matching Hausdorff lower bound for the infinite-density set,
-effective numerical constants, and completion of the analytic/geometric
-generalization to arbitrary irrational `alpha>1`. The weighted survivor phase,
+effective numerical constants, and the Gamma-law generalization to
+arbitrary irrational `alpha>1`. The weighted survivor phase,
 its absolute summability, positivity and periodicity now cover every such
 irrational slope. Critical survival now tends to zero and the actual
 first-passage probabilities sum to one; the actual positive-index Beatty
@@ -1413,6 +1414,35 @@ family extension is supplied. The classical precursors remain acknowledged.
 **PROMOTE** this whole-family geometric theorem. Canonical rotation comparison
 and arithmetic Hausdorff classification remain future work; no new branch opens here.
 
+A review consumer, `actual_family_cluster_content`, now states the dimension,
+content and tube-sampling limits directly for the set of real subsequential
+limits of the original integer ratios, bringing the consumer count to 49.
+Eight over-length family declaration names were shortened.
+
+### Positive Hausdorff dimension at the logarithmic slope (24 September)
+
+```text
+Mathematical target     Discharge the Diophantine premise of Section 20 at log_2 3.
+Novelty hypothesis      A known linear-form measure already gives a positive exponent.
+Falsifier               A height or sign condition in the measure that the reduction violates.
+Already killed by?      No; the Diophantine walls concern cycle finance, and Rhin (8) stays unused.
+Existing machinery      Lean implication (42)->(44), Rhin (7), Wu-Wang Theorem 1.
+Maximum Phase-0 scope   Written corollary only; no new Lean or arithmetic formalization.
+Promotion criterion     An explicit reduction to (42) valid for every k>=1.
+Stop criterion          Do not claim dimension 2/3 or critical-measure positivity.
+```
+
+**EXACT — HUMAN PROOF.** Rhin's (7), `|u_0+u_1 log 2+u_2 log 3|>=H^(-13.3)`
+for `H>=2` with no constant, gives `|k log_2 3-p|>=c k^(-13.3)` for every
+`k>=1` with `c=2^(-13.3)/log 2`: a near approximation has `2<=H<=2k`.
+The Lean-checked implication then gives `H^(2/39.9)(K)>0` for the original
+certificate cluster set. Positivity needs only some constant, so Wu-Wang's
+noneffective exponent `4.1163051+epsilon` gives
+`dim_H K>=2/(3*4.1163051)=0.16195...`. Minkowski dimension remains `2/3`;
+exact Hausdorff dimension and critical-measure positivity stay open.
+**PROMOTE** within this dossier as `J-beatty-rhin-hausdorff-lower-bound`;
+Section 20 of the working note gives the proof.
+
 ## Decision
 
 `PROMOTE` -- for every irrational slope above one, the actual normalized
@@ -1434,6 +1464,9 @@ matching lower bounds are proved under an explicit phase-hitting estimate,
 now derived from a standard uniform Diophantine lower bound without exponent
 loss. Bounds for every exponent above one suffice for dimension equality;
 the stronger exponent-one bound supplies positive critical measure.
+Written corollaries from the Rhin and Wu-Wang measures give
+`H^(2/39.9)(K)>0` and `dim_H K>=0.16195...` at `log_2 3`
+(**EXACT — HUMAN PROOF**).
 The Gamma normalization gives an absolutely continuous limiting law,
 mutually singular with the original law. Its explicit density series,
 logarithmic normalization and every real-power moment are formalized,

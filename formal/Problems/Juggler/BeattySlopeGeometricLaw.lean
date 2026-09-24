@@ -4,7 +4,8 @@ import Problems.Juggler.BeattySlopeLocalCounting
 /-!
 # The geometric limiting law for every irrational slope
 
-The corresponding gap and tube assertions for every irrational boundary in `(0,1)`.
+The two-thirds-reweighted local-content measure and its normalized law,
+for every irrational boundary in `(0,1)`.
 All inputs concern the actual first-passage counts, without an arithmetic rate premise.
 -/
 

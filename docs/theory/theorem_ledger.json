@@ -1529,7 +1529,7 @@
  {
   "id": "J-beatty-diophantine-hausdorff-geometry",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "A uniform Diophantine lower bound with c>0 and tau>0 for the actual slope 1/beta gives positive Hausdorff measure at exponent 2/(3*tau) and dim_H K>=2/(3*tau) for the original certificate cluster set. A family of such bounds for every tau>1, with constants depending on tau, suffices for dim_H K=2/3. The stronger exponent-one bound gives positive finite two-thirds Hausdorff measure. These are checked conditional implications; neither arithmetic premise is discharged for log_2 3. Dimension equality under the family premise does not assert critical-measure positivity. The consumer expands the original integer counts and every arithmetic quantifier.",
+  "statement": "A uniform Diophantine lower bound with c>0 and tau>0 for the actual slope 1/beta gives positive Hausdorff measure at exponent 2/(3*tau) and dim_H K>=2/(3*tau) for the original certificate cluster set. A family of such bounds for every tau>1, with constants depending on tau, suffices for dim_H K=2/3. The stronger exponent-one bound gives positive finite two-thirds Hausdorff measure. These are checked conditional implications; neither the tau>1 family premise nor the exponent-one premise is discharged for log_2 3. The written corollary J-beatty-rhin-hausdorff-lower-bound discharges the uniform premise at tau=13.3 from Rhin's theorem. Dimension equality under the family premise does not assert critical-measure positivity. The consumer expands the original integer counts and every arithmetic quantifier.",
   "source": "docs/theory/juggler_beatty_first_passage_note.md",
   "lean": "Problems/Juggler/BeattyDiophantineGeometry.lean",
   "decl": [
@@ -1549,7 +1549,7 @@
  {
   "id": "J-beatty-diophantine-phase-hitting",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "For c>0 and tau>0, if c<=q^tau*|q*xi-p| for every positive natural q and integer p, then the positive rotation phases frac((n+1)*xi) satisfy PhaseHittingBound with the same exponent tau and explicit constant H=4^tau/c+1. Dirichlet approximation and the lower bound force a reduced denominator large enough for rational-grid coverage. No such arithmetic constants are supplied for the logarithmic certificate slope.",
+  "statement": "For c>0 and tau>0, if c<=q^tau*|q*xi-p| for every positive natural q and integer p, then the positive rotation phases frac((n+1)*xi) satisfy PhaseHittingBound with the same exponent tau and explicit constant H=4^tau/c+1. Dirichlet approximation and the lower bound force a reduced denominator large enough for rational-grid coverage. The Lean development supplies no such arithmetic constants for the logarithmic certificate slope; J-beatty-rhin-hausdorff-lower-bound supplies tau=13.3 by a written argument from Rhin's theorem.",
   "source": "docs/theory/juggler_beatty_first_passage_note.md",
   "lean": "Problems/Juggler/BeattyDiophantineHitting.lean",
   "decl": [
@@ -2154,6 +2154,17 @@
   "related_conjectures": []
  },
  {
+  "id": "J-beatty-rhin-hausdorff-lower-bound",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "At the logarithmic slope xi=1/beta=log_2 3, Rhin's effective measure |u_0+u_1*log 2+u_2*log 3|>=H^(-13.3) for H=max(|u_1|,|u_2|)>=2 (Seminaire de Theorie des Nombres Paris 1985-86, Proposition, p. 160, (7)) gives |k*xi-p|>=c*k^(-13.3) for every integer k>=1 and p, with c=2^(-13.3)/log 2. Indeed |k*xi-p|<1/2 forces 1<=p<=2k, hence 2<=H=max(p,k)<=2k, and the pair k=p=1 has |xi-1|>1/2. The Lean-checked implication J-beatty-diophantine-hausdorff-geometry with tau=13.3 then gives positive Hausdorff measure of the original certificate cluster set K at exponent 2/39.9, so 2/39.9<=dim_H K<=2/3, and the limiting CDF is 2/39.9-Holder. Rhin's estimate is an unformalized classical input, so the corollary is a written proof. Positivity needs only some c>0, so Wu and Wang, J. Number Theory 142 (2014), Theorem 1, with linear-form exponent 4.1163051+epsilon for large heights, give by the same reduction and finitely many absorbed small k a noneffective c_epsilon>0 with tau=4.1163051+epsilon for every epsilon>0. Hence H^(2/(3*(4.1163051+epsilon)))(K)>0 for every epsilon>0 and dim_H K>=2/(3*4.1163051)=0.16195...; no positive measure is claimed at the limiting exponent. It does not give dim_H K=2/3, critical-measure positivity or any statement for other slopes; Rhin's sharper estimate (8) holds only beyond an uncomputed height and is not used.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_diophantine_interface.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-slope-complete-cluster-set",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For every irrational 0<beta<1, equivalently every irrational alpha=1/beta>1, the complete set of real subsequential limits of the actual ratios r*c_r/choose(m_r-1,r-1) is K_beta=[1,1/(1-beta)] minus the union of the open intervals (F_beta(delta_r),F_beta(delta_r)+w_r), over positive r. This is exactly the closure of the strict profile range, and is nonempty, compact, perfect, of zero Lebesgue measure and empty interior. The profile is strictly increasing on [0,1]. Both endpoints of each genuine gap are cluster values, and every closed interval strictly inside a gap is eventually avoided. The exact liminf and limsup are 1 and 1/(1-beta). No unproved density or asymptotic premise, convergence rate, Minkowski dimension or arithmetic Hausdorff lower bound is asserted.",
@@ -2312,9 +2323,9 @@
   "source": "docs/problems/juggler_winkler_phase_collapse.md",
   "lean": "Problems/Juggler/BeattySlopeGapCounting.lean",
   "decl": [
-   "passagePhase_shift_interval_frequency",
+   "passagePhase_shift_frequency",
    "passageGapMoment_pos",
-   "passageJumpWeight_two_thirds_phase_asymptotic",
+   "passageWeight_two_thirds_limit",
    "passage_gapCount_asymptotic"
   ],
   "lean_trust": "kernel",
@@ -2328,7 +2339,7 @@
  {
   "id": "J-beatty-slope-geometric-law",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "For every irrational alpha>1, the finite local-content measure eta_alpha has density 3*2^(1/3)*kappa_alpha^(2/3)*y^(2/3) relative to the empirical passage law on its positive envelope. Its total mass is exactly M_alpha, its spatial tails are the explicit phase integrals, and it is nonzero. Its normalized probability law integrates every real test function by the normalized two-thirds-weighted empirical integral, with the library convention for nonintegrable functions. Convergence of actual tubes is proved in the separate local-measure row.",
+  "statement": "For every irrational alpha>1, the finite local-content measure nu_alpha has density 3*2^(1/3)*kappa_alpha^(2/3)*y^(2/3) relative to the limiting empirical law mu_alpha on its positive envelope. Its total mass is exactly M_alpha, its spatial tails are the explicit phase integrals, and it is nonzero. Its normalized probability law integrates every real test function by the normalized two-thirds-weighted empirical integral, with the library convention for nonintegrable functions. Convergence of actual tubes is proved in the separate local-measure row.",
   "source": "docs/problems/juggler_winkler_phase_collapse.md",
   "lean": "Problems/Juggler/BeattySlopeGeometricLaw.lean",
   "decl": [
@@ -2402,7 +2413,7 @@
  {
   "id": "J-beatty-slope-local-minkowski-measure",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "For every irrational alpha>1, the finite measures epsilon^(-1/3)*volume restricted to the actual open epsilon-neighbourhood of the complete count cluster set converge weakly to eta_alpha=3*2^(1/3)*kappa_alpha^(2/3)*y^(2/3)*mu_alpha(dy). Rescaled tube tails converge at every real threshold. The uniform probability laws on the positive-radius tubes converge to eta_alpha/M_alpha; every bounded continuous spatial observable has the normalized two-thirds-weighted empirical integral as its limit. The theorem has no unproved analytic or Diophantine input, rate, or slope-uniformity claim.",
+  "statement": "For every irrational alpha>1, the finite measures epsilon^(-1/3)*volume restricted to the actual open epsilon-neighbourhood of the complete count cluster set converge weakly to nu_alpha=3*2^(1/3)*kappa_alpha^(2/3)*y^(2/3)*mu_alpha(dy). Rescaled tube tails converge at every real threshold. The uniform probability laws on the positive-radius tubes converge to hat(nu)_alpha=nu_alpha/M_alpha; every bounded continuous spatial observable has the normalized two-thirds-weighted empirical integral as its limit. The identification of K_alpha with the set of real subsequential limits of the original integer ratios r*c_r/choose(m_r-1,r-1) is part of the checked consumer actual_family_cluster_content in formal/InterfaceCheckBeattySlopeContent.lean. The theorem has no unproved analytic or Diophantine input, rate, or slope-uniformity claim.",
   "source": "docs/problems/juggler_winkler_phase_collapse.md",
   "lean": "Problems/Juggler/BeattySlopeLocalContent.lean",
   "decl": [
@@ -2413,7 +2424,7 @@
    "passageTubeLaw_real",
    "passageTubeLaw_integral",
    "passageTubeLaw_tendsto",
-   "passageClusterSet_tube_average_tendsto"
+   "passageCluster_tube_average"
   ],
   "lean_trust": "kernel",
   "tests": [
@@ -2469,14 +2480,14 @@
  {
   "id": "J-beatty-slope-minkowski-content",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "For every irrational alpha>1, the actual open metric tube volume divided by epsilon^(1/3) converges to the strictly positive exact content M_alpha=3*2^(1/3)*kappa_alpha^(2/3)*integral_0^1 F_alpha(t)^(2/3) dt. The same constant is 3*2^(1/3)*kappa_alpha^(2/3) times the two-thirds moment of the proved empirical law. This is a full limit for each fixed slope, without a rate or uniformity in alpha.",
+  "statement": "For every irrational alpha>1, the actual open metric tube volume divided by epsilon^(1/3) converges to the strictly positive exact content M_alpha=3*2^(1/3)*kappa_alpha^(2/3)*integral_0^1 F_beta(t)^(2/3), beta=1/alpha, dt. The same constant is 3*2^(1/3)*kappa_alpha^(2/3) times the two-thirds moment of the limiting empirical law mu_beta=(F_beta)_*Uniform(0,1]. The identification of K_alpha with the set of real subsequential limits of the original integer ratios r*c_r/choose(m_r-1,r-1) is part of the checked consumer actual_family_cluster_content in formal/InterfaceCheckBeattySlopeContent.lean. This is a full limit for each fixed slope, without a rate or uniformity in alpha.",
   "source": "docs/problems/juggler_winkler_phase_collapse.md",
   "lean": "Problems/Juggler/BeattySlopeContent.lean",
   "decl": [
-   "passageGapMoment_eq_profile_moment",
+   "passageGapMoment_eq_profile",
    "passageGapMoment_eq_law_moment",
    "passageMinkowskiContent_pos",
-   "passageClusterSet_minkowski_content"
+   "passageCluster_minkowski_content"
   ],
   "lean_trust": "kernel",
   "tests": [
@@ -2489,13 +2500,13 @@
  {
   "id": "J-beatty-slope-minkowski-dimension",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "For every irrational alpha>1, the complete actual-count cluster set has Minkowski dimension 2/3, expressed by 1-log(volume(K_epsilon))/log(epsilon) -> 2/3 as epsilon decreases to zero. The actual open metric tube has exact volume 2*epsilon+sum_r min(w_(r+1),2*epsilon), and positive finite cube-root upper and lower bounds hold for all radii in (0,1/2]. No Hausdorff lower bound is asserted.",
+  "statement": "For every irrational alpha>1, the complete actual-count cluster set has Minkowski dimension 2/3, expressed by 1-log(volume(K_epsilon))/log(epsilon) -> 2/3 as epsilon decreases to zero. The actual open metric tube has exact volume 2*epsilon+sum_r min(w_(r+1),2*epsilon), and positive finite cube-root upper and lower bounds hold for all radii in (0,1/2]. The identification of K_alpha with the set of real subsequential limits of the original integer ratios r*c_r/choose(m_r-1,r-1) is part of the checked consumer actual_family_cluster_content in formal/InterfaceCheckBeattySlopeContent.lean. No Hausdorff lower bound is asserted.",
   "source": "docs/problems/juggler_winkler_phase_collapse.md",
   "lean": "Problems/Juggler/BeattySlopeCantor.lean",
   "decl": [
    "passageClusterSet_tube_formula",
    "passageClusterSet_tube_bounds",
-   "passageClusterSet_minkowski_dimension"
+   "passageCluster_minkowski_dim"
   ],
   "lean_trust": "kernel",
   "tests": [
@@ -2573,8 +2584,8 @@
    "passageAmplitude_pos",
    "passageAmplitude_eq",
    "passageAmplitude_reciprocal",
-   "passageJumpWeight_phase_asymptotic",
-   "passageJumpWeight_three_halves_bounds"
+   "passageWeight_phase_asymptotic",
+   "passageWeight_three_halves"
   ],
   "lean_trust": "kernel",
   "tests": [
