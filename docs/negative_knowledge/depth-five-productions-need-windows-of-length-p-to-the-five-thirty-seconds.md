@@ -18,4 +18,7 @@ Branch: [juggler_depth_five_production](../problems/juggler_depth_five_productio
 Do not reopen as another depth-four transfer, a longer census of fibre counts,
 or a sharper resonance tail. Reopen only with a mean-square bound for depth-five
 parity sums on `P^(5/32)` windows, or differenced depth-five mixed sums with
-shifts up to `P^(5/32)` and a power saving.
+shifts up to `P^(5/32)` and a power saving. The binding step in Paper B's route
+is the bounded remainder of (C.17), `k h_1 h_2 <= P^(1/8)`; an exponent audit of
+Appendix C at bounded frequencies with an outer shift `P^delta` decides whether
+`delta = 5/32` is reachable.

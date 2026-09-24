@@ -124,11 +124,36 @@ windows of length `P^(7/16)`: a saving of `P^(1/32)`. At depth five:
   frozen-gap collision reaches shifts `P^(1/8)`, and its depth-five mixed sums
   (`J-paper-b-oooee-mixed-127`, written) are unshifted.
 
+**4. The frozen-gap desk study locates the binding inequality (desk reading,
+24 September 2026; not a proof).** By Chebyshev over windows of length
+`L = P^(5/32)`, the fraction of unfair windows is at most
+`(1/(eta^2 L)) (1 + P^(-1) sum_{0<|d|<L} |T_d|)` with
+`T_d = sum_{P<n<=2P} e(phi(n+2d) - phi(n))`. The diagonal gives `P^(-5/32)`, so
+the poor tail needs only some power saving in the once-differenced depth-five
+sums for shifts `d <= P^(5/32)` and **bounded** frequencies.
+
+In [Paper B](../theory/juggler_parity_discrepancy_note.md), Appendix C, (C.4)
+collapses the doubly nested floor to a kernel term `c(n){Y}` with
+`c ~ k n^(9/8)`, (C.10) differences twice with `h_1 < P^(1/48)` and
+`h_2 < P^(1/24)`, and (C.17) splits the growing kernel coefficient into
+`(27/32) k b x^(3/8)` plus a remainder `O(Pi P^(-1/8) + ...)`, `Pi = k h_1 h_2`,
+which the argument uses as a bounded coefficient. That needs
+`k h_1 h_2 <= P^(1/8)`, the same exponent as the range `h <= P^(1/8)` of
+Proposition 7.6: in both places it is the Taylor remainder of a frozen
+coefficient. With the fibre shift as `h_1 = d`, bounded `k` and `h_2 = 1`,
+`d = P^(5/32)` exceeds `P^(1/8)` by `P^(1/32)`; the remainder then reaches
+`P^(1/32)`, against Paper B's uniform saving `P^(1/128)`. Proposition 7.6's own
+bound (7.5) keeps a power saving up to `h < P^(1/4)` when `u` is bounded, so the
+basic model is not what binds.
+
 ## Open questions
 
-The missing input is a mean-square bound for the depth-five parity sums over
-windows of length `P^(5/32)`, equivalently differenced depth-five mixed sums with
-shifts up to `P^(5/32)` and some power saving.
+The missing input is a power saving for the once-differenced depth-five sums
+`T_d` with shifts `d <= P^(5/32)` and bounded frequencies. The binding step in
+Paper B's route is the bounded remainder of (C.17), which needs
+`k h_1 h_2 <= P^(1/8)`. Paper B's `P^(1/128)` saving is paid for uniformity over
+frequencies up to `P^(1/24)`; for bounded frequencies the margin of Appendix C
+may be larger, and C.5--C.9 have not been re-audited for other binding terms.
 
 ## Decision
 
@@ -137,8 +162,9 @@ parity control on windows of length `P^(5/32)`, which neither the depth-four
 fibre machinery nor Paper B's global depth-five sums supply, and no averaged
 substitute is available on present estimates. The pricing stands: depth five
 would move contagion from `5/8` toward `0.75` and the required rate from `3/8`
-toward `1/4`. Best next question: do Paper B's depth-five mixed sums extend to
-differenced phases with shifts up to `P^(5/32)` and a power saving?
+toward `1/4`. Best next question: rerun Appendix C's exponent bookkeeping
+with bounded frequencies and an outer shift `P^delta`; is the largest `delta`
+with a positive saving at least `5/32`?
 
 ## Publication assessment
 
