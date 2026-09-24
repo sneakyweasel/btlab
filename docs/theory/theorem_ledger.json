@@ -8845,14 +8845,20 @@
  },
  {
   "id": "J-ooe-escape-residue-obstruction",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "For every even Q>=2, odd 1<=a<Q and integer h>=1, set t=2Qh and x=t^8+a. Exact square margins prove O(x)=t^12+(3a/2)t^4 is even. Thus every odd residue class contains arbitrarily large sources failing the second-O guard, and no nonempty eventual union of odd residue classes is a fully guarded all-OOE invariant domain. Finite fixed polynomial congruences are included; floor-output predicates, variable moduli and thin nonperiodic subsets are not. AI-assisted written proof, not Lean or independently human reviewed. No escape or no-escape theorem.",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every even Q>=2, odd 1<=a<Q and integer h>=1, set t=2Qh and x=t^8+a. Exact square margins prove O(x)=t^12+(3a/2)t^4 is even. Thus every odd residue class contains arbitrarily large sources failing the second-O guard, and no nonempty eventual union of odd residue classes is a fully guarded all-OOE invariant domain. Finite fixed polynomial congruences are included; floor-output predicates, variable moduli and thin nonperiodic subsets are not. Lean verified for every Q>=1 and every eventually periodic predicate with an odd member beyond its periodicity threshold; independent human review outstanding. No escape or no-escape theorem.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
-  "lean": "",
+  "lean": "Problems/Juggler/OOEEscapeResidue.lean",
   "tests": [
    "tests/research/juggler_sequence/test_ooe_escape_families.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "escape_residue_source",
+   "exists_escape_of_periodic",
+   "not_oo_guarded_of_periodic"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-ooe-escape-shifted-valuation",

@@ -198,6 +198,7 @@ import Problems.Juggler.RemainderCarry
 import Problems.Juggler.CubicReturn
 import Problems.Juggler.CubicReturnStrip
 import Problems.Juggler.GuardResidueFamily
+import Problems.Juggler.OOEEscapeResidue
 import Problems.Juggler.ReturnWordLoss
 import Problems.Juggler.ReturnWordData
 import Problems.Juggler.ReturnWordBounds
