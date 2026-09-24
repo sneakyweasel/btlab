@@ -29,3 +29,9 @@ outer shifts `P^delta` for `delta < 1/6`, or `delta < 3/16` at bounded frequenci
 and that the `P^(1/8)` limits above are local and repairable. The parking reason is
 therefore provisional for `OOOEE`: an independent audit decides it. `OOEOE` has not
 been bookkept.
+
+**Revised again 24 September 2026.** Results 7-16 of the dossier write the
+averaged substitute for `OOOEE`. Differenced sums with shifts up to `P^(5/32)` have
+`|T_d| << P^(127/128)` at bounded frequencies, and the count-poor tail has
+reciprocal mass `<< U^(-1/109)`. The parking reason no longer applies to `OOOEE`,
+subject to review of those AI-written lemmas. It still applies to `OOEOE`.
