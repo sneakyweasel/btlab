@@ -73,9 +73,20 @@ jobs:
       # `lab.py build` compiles and then exports formalpedia metadata with all output in a
       # log file, so a runner that died mid-build left no trace. Compile first with streamed
       # output and resource samples; the export runs as its own step below.
+      # The build ran the 16 GB runner out of memory near its end (samples reached
+      # 15.8 GB) and the runner was killed. Swap on the free disk turns that peak into a
+      # slowdown; the samples name the largest Lean processes so the module can be found.
+      - name: Add swap for peak Lean memory
+        run: |
+          sudo swapoff -a || true
+          sudo fallocate -l 16G /mnt/btlab.swap
+          sudo chmod 600 /mnt/btlab.swap
+          sudo mkswap /mnt/btlab.swap
+          sudo swapon /mnt/btlab.swap
+          free -m
       - name: Build active Juggler and Collatz graph
         run: |
-          (while true; do echo "::notice::$(date -u +%T) $(free -m | awk '/Mem:/{print "mem used/total MB " $3 "/" $2}') $(df -h / | awk 'NR==2{print "disk used " $3 " of " $2}')"; sleep 60; done) &
+          (while true; do echo "::notice::$(date -u +%T) $(free -m | awk '/Mem:/{m=$3"/"$2} /Swap:/{s=$3} END{print "mem used/total MB " m " swap used MB " s}') $(df -h / | awk 'NR==2{print "disk used " $3 " of " $2}') top: $(ps -eo rss=,args= --sort=-rss | awk '{f=""; for(i=2;i<=NF;i++) if($i ~ /[.]lean$/) f=$i} f!="" && n++<3 {printf "%dMB %s; ", $1/1024, f}')"; sleep 60; done) &
           targets=$(python tools/lab.py build --list | sed 's/^/+/')
           cd formal && lake build $targets
       - name: Lean-dependent gates
