@@ -21,6 +21,14 @@ M=L+\mathtt{OOE}=\mathtt{OOEOOOEOOEEOOE}
 (length 14, 9 odds). The square-cell budget
 \(2^{15+3k}>3^{9+2k}\) is for this \(M\), not for \(L\) itself.
 
+## Envelope scope
+
+A failed exponent comparison means that the inherited upper envelope does
+not certify the proposed descent or cell bound. It gives no lower bound on
+an actual orbit and does not prove absence of `FiniteProgress`. Negative
+claims labelled REFUTED below concern deductions from this envelope test;
+separate explicit orbit counterexamples retain their stated finite scope.
+
 ## Problem
 
 When \(k=5\) loses the \(n^2\) cell, what exact \(n\)-relative
@@ -92,7 +100,7 @@ It is not required.
   **EXACT — HUMAN PROOF**.
 - The cube cell holds:
   \(3^{19}<3\cdot 2^{29}=1610612736\), hence
-  \(x_5<n^{3^{19}/2^{29}}<n^3\) —
+  \(x_5\le n^{3^{19}/2^{29}}<n^3\) —
   **EXACT — HUMAN PROOF**. The first integer threshold
   replacing \(n^2\) is \(n^3\).
 - \(x_5\ge n^2\) is forced by the square failure —
@@ -104,7 +112,7 @@ It is not required.
   exactly \(9/8\) —
   **EXACT — HUMAN PROOF**. This is a near-square leak,
   not a jump to \(n^4\).
-- Even \(x_5\) is FiniteProgress —
+- The inherited envelope certifies a drop below \(n\) after even \(x_5\) —
   **REFUTED**. \(3^{19}>2^{30}\).
 - Even \(x_5\) resets:
   \(T(x_5)^{2^{30}}\le n^{3^{19}}\) and
@@ -113,7 +121,7 @@ It is not required.
   cell. This is the known \(C_1\)-type corridor, not a
   new hierarchy. Even \(x_5\) cannot start \(L\)
   (\(L\) begins with `O`).
-- Odd \(x_5\) has next-`O` image below \(n^3\) —
+- The envelope certifies the next-`O` image below \(n^3\) for odd \(x_5\) —
   **REFUTED**. \(3^{20}>3\cdot 2^{30}\).
 - Odd \(x_5\) has next-`O` image below \(n^4\):
   \(3^{20}<4\cdot 2^{30}\) —
@@ -142,7 +150,7 @@ It is not required.
 - Records: [juggler_k5_post_l_ooe.md](../research/juggler_k5_post_l_ooe.md),
   [juggler_k5_post_l_ooe.json](../research/juggler_k5_post_l_ooe.json)
 - Tests: `tests/research/juggler_sequence/test_k5_post_l_ooe.py`
-- No Lean. Not imported by `Problems.JugglerPaper`. No
+- The envelope core is in `CycleMinEnvelopes.lean`; see Formalization. No
   `sorry`. No halt theorem.
 
 ## Conjectures
@@ -159,8 +167,9 @@ hierarchy, is **REFUTED** by
 3^{19}<3\cdot 2^{29}.
 \]
 
-The hypothesis that even \(x_5\) drops below \(n\) is
-**REFUTED** by \(3^{19}>2^{30}\).
+The claim that the inherited envelope certifies a drop below \(n\)
+after even \(x_5\) is **REFUTED** by \(3^{19}>2^{30}\).
+This comparison does not establish non-descent of an actual orbit.
 
 The hypothesis that \(501\) pays the \(k=5\) escape is
 **REFUTED**:
@@ -174,10 +183,12 @@ the Phase-0 window \(12\le n<801\).
 
 ## Formalization
 
-None. Existing `Envelope.lean` `power_bound_word` and
-`power_bound_contracts` are cited, not rewritten. No
-`no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`.
-No `no_juggler_cycle`. Paper A is unchanged.
+The envelope core is formalized in
+[CycleMinEnvelopes.lean](../../formal/Problems/Juggler/CycleMinEnvelopes.lean).
+The canonical ledger rows `J-cyclemin-k5-post-l-cube`
+name the matching declarations. Negative declarations with
+`exponent_not_lt` in their names prove only failure of the exponent
+test. They do not prove non-descent or non-termination.
 
 ## Results
 
@@ -192,7 +203,7 @@ x_5^{536870912}\le n^{1162261467}<n^{1610612736}=(n^3)^{536870912},
 so
 
 \[
-x_5<n^{3^{19}/2^{29}}<n^3.
+x_5\le n^{3^{19}/2^{29}}<n^3.
 \]
 
 The square cell is unavailable. The first integer
@@ -206,7 +217,8 @@ Even \(x_5\) returns to a previously controlled corridor:
 x_5\text{ even}\Rightarrow T(x_5)<n^{3/2}<n^2,
 \]
 
-and cannot restart \(L\). It is not FiniteProgress.
+and cannot restart \(L\). This envelope does not certify descent below
+the original anchor \(n\).
 
 Odd \(x_5\) has a controlled next-`O` envelope below
 \(n^4\), which may enter \(C_3\). That is the leftover.
@@ -216,8 +228,8 @@ assembler, and not a halt theorem.
 
 ## Open questions
 
-Lean-package \(3^{19}<3\cdot 2^{29}\) and the even
-\(n^{3/2}\) reset. The odd \(k=5\) next-`O` residual is
+The cube bound and even reset are formalized in
+`w5_lt_cube` and `w5_even`. The odd \(k=5\) next-`O` residual is
 the separate branch
 [juggler_odd_k5_leak.md](juggler_odd_k5_leak.md).
 Do not reopen bunched-short cells. Do not write \(Z_5\).

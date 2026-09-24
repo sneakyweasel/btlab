@@ -11,6 +11,14 @@ cell, and not a claim that every positive integer reaches 1.
 The terminal-cluster program stays frozen. This is the residual of the
 promoted pre/post refinement of the coarse scale loop.
 
+## Envelope scope
+
+A failed exponent comparison means that the inherited upper envelope does
+not certify the proposed descent or cell bound. It gives no lower bound on
+an actual orbit and does not prove absence of `FiniteProgress`. Negative
+claims labelled REFUTED below concern deductions from this envelope test;
+separate explicit orbit counterexamples retain their stated finite scope.
+
 ## Problem
 
 After one pass of \(L(n)=T_{\mathtt{OOEOOOEOOEE}}(n)\) on the
@@ -89,9 +97,9 @@ It is not required.
   has FiniteProgress and cannot start `OOE`, hence cannot
   meet the pre-\(L\) entrance —
   **EXACT — HUMAN PROOF**.
-- `OOE` after \(t\) compose-drops —
+- The exponent test certifies an `OOE` drop after \(t\) —
   **REFUTED**. \(2187\cdot 9>2048\cdot 8\).
-- A second \(L\) compose-drops —
+- The exponent test certifies a drop after a second \(L\) —
   **REFUTED**. \(2187\cdot 2187>2048\cdot 2048\).
 - Every post-\(L\) recovery is `OE` —
   **REFUTED**. \(11233\) is `E`; \(501\) is `OO`.
@@ -116,7 +124,7 @@ It is not required.
 - Records: [juggler_oneshot_recovery.md](../research/juggler_oneshot_recovery.md),
   [juggler_oneshot_recovery.json](../research/juggler_oneshot_recovery.json)
 - Tests: `tests/research/juggler_sequence/test_oneshot_recovery.py`
-- No Lean. Not imported by `Problems.JugglerPaper`. No
+- The envelope core is in `CycleMinEnvelopes.lean`; see Formalization. No
   `sorry`. No halt theorem.
 
 ## Conjectures
@@ -155,10 +163,12 @@ No \(L^k(n)=n\) approach was found.
 
 ## Formalization
 
-None. Existing `Envelope.lean` `power_bound_word` and
-`power_bound_contracts` are cited, not rewritten. No
-`no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`.
-No `no_juggler_cycle`. Paper A is unchanged.
+The envelope core is formalized in
+[CycleMinEnvelopes.lean](../../formal/Problems/Juggler/CycleMinEnvelopes.lean).
+The canonical ledger rows `J-cyclemin-oneshot-oe-drop`
+name the matching declarations. Negative declarations with
+`exponent_not_lt` in their names prove only failure of the exponent
+test. They do not prove non-descent or non-termination.
 
 ## Results
 
@@ -191,8 +201,8 @@ assembler, and not a halt theorem.
 
 ## Open questions
 
-Lean-package \(2187<4096\) and \(6561<8192\) after
-`OOEOOOEOOEE`. The residual is the `OO` post-\(L\) branch,
+The post-`L` drops are formalized in `post_l_drop_even` and
+`post_l_drop_oe`. The residual is the `OO` post-\(L\) branch,
 now the separate branch
 [juggler_post_l_ooe.md](juggler_post_l_ooe.md).
 Do not reopen bunched-short cells. Do not write \(Z_5\).

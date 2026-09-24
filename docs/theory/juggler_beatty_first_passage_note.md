@@ -576,13 +576,18 @@ The output and its actual-run provenance are
 and
 [phase_transfer.research.json](../../data/research/juggler/winkler_phase_collapse/phase_transfer.research.json).
 
-The profile figure in Section 14 is generated separately by
-`python tools/render_beatty_profile.py`. It uses exact integer barriers
-and survivor counts through depth 8000, checks the first 407 counts against
-the stored Arb audit, and encloses the phases, weights and entire omitted
-mass with 256-bit Arb arithmetic. The [drawing data](figures/beatty_profile.json)
-and [actual-run manifest](figures/beatty_profile.research.json) record the
-scope and source fingerprints; the numerical drawing is not a Lean proof.
+The React companion and the static profile figure in Section 14 share certified
+numerical data. `tools/export_beatty_profile.py --output <path>` generates it
+without a plotting dependency: exact integer barriers and survivor counts
+through depth 8000, the first 407 counts checked against the stored Arb audit,
+and phases, weights and omitted mass enclosed with 256-bit Arb arithmetic.
+The [drawing data](../../data/research/juggler/winkler_phase_collapse/beatty_profile.json)
+and [actual-run manifest](../../data/research/juggler/winkler_phase_collapse/beatty_profile.research.json)
+record the scope and source fingerprints. React renders the interactive view.
+The existing static PDF/SVG/PNG retain their
+[original figure provenance](figures/beatty_profile.research.json);
+`tools/render_beatty_profile.py` is an optional matplotlib consumer of the JSON.
+The numerical drawing is not a Lean proof.
 
 ## 9. Review boundary and relation to the existing programme
 

@@ -12,6 +12,14 @@ The terminal-cluster program stays frozen. This is the residual of
 the promoted first post-\(L\) `OOE` theorem: the landing \(s\)
 that starts `OO`.
 
+## Envelope scope
+
+A failed exponent comparison means that the inherited upper envelope does
+not certify the proposed descent or cell bound. It gives no lower bound on
+an actual orbit and does not prove absence of `FiniteProgress`. Negative
+claims labelled REFUTED below concern deductions from this envelope test;
+separate explicit orbit counterexamples retain their stated finite scope.
+
 ## Problem
 
 After \(s=T_M(n)\) starts `OO`, does the next completed `OOE`
@@ -21,7 +29,7 @@ consecutive post-\(L\) `OOE` blocks does that cell survive?
 ## Exact statement
 
 Let \(M=\mathtt{OOEOOOEOOEEOOE}\) and assume \(s=T_M(n)\) is
-odd and starts `OO`. Write \(r=T_{\mathtt{OOE}}(s)\). The
+odd and follows the completed word `OOE`. Write \(r=T_{\mathtt{OOE}}(s)\). The
 Phase-0 questions are:
 
 1. whether \(r=T_{M+\mathtt{OOE}}(n)\) satisfies \(n\le r<n^2\);
@@ -74,24 +82,25 @@ It is not required.
 
 - \(M+\mathtt{OOE}\) has length 17 and 11 odds, so
   \(r^{131072}\le n^{177147}\) and \(2^{18}>3^{11}\),
-  hence \(n\le r<n^2\) —
+  hence \(r<n^2\) (and \(n\le r\) only under a separate cycle-minimum assumption) —
   **EXACT — HUMAN PROOF**.
 - Even \(r\) drops: \(3^{11}<2^{18}\) —
   **EXACT — HUMAN PROOF**.
 - \(M(\mathtt{OOE})^k\) has the square gap
   \(2^{15+3k}>3^{9+2k}\) iff \(k\le 4\) —
-  **EXACT — HUMAN PROOF**. The cell is lost at
+  **EXACT — HUMAN PROOF**. The square-envelope certificate fails at
   \(k=5\) (\(2^{30}<3^{19}\)). This is a corridor
   budget, not a halt bound.
-- `OE` after the second `OOE` is FiniteProgress —
+- The exponent test certifies `OE` after the second `OOE` as FiniteProgress —
   **REFUTED**. \(3^{12}>2^{19}\) (\(531441>524288\)).
   The itinerary still has a square cell (\(3^{12}<2^{20}\)).
   If that landing is even, `M+OOEOEE` contracts.
 - Therefore
   \(\operatorname{CycleMin}(n,M\,\mathtt{OOE}\,v)\)
   implies FiniteProgress or \(v\) starts with `O` —
-  **EXACT — HUMAN PROOF**. `OE` is not itself a drop.
-- Repeated \(k\) is unbounded in the square cell —
+  **EXACT — HUMAN PROOF**. The inherited exponent test does not
+  certify a drop for `OE` itself.
+- This square-envelope test succeeds for arbitrarily large \(k\) —
   **REFUTED**. First failure at \(k=5\).
 - The second `OOE` is a generic `OOE` from \(s\)
   with no \(n\)-relative cell —
@@ -109,7 +118,7 @@ It is not required.
 - Records: [juggler_second_post_l_ooe.md](../research/juggler_second_post_l_ooe.md),
   [juggler_second_post_l_ooe.json](../research/juggler_second_post_l_ooe.json)
 - Tests: `tests/research/juggler_sequence/test_second_post_l_ooe.py`
-- No Lean. Not imported by `Problems.JugglerPaper`. No
+- The envelope core is in `CycleMinEnvelopes.lean`; see Formalization. No
   `sorry`. No halt theorem.
 
 ## Conjectures
@@ -118,11 +127,11 @@ None opened.
 
 ## Counterexamples
 
-The hypothesis that `OE` after the second post-\(L\)
-`OOE` drops below \(n\) is **REFUTED** by the exponent
-comparison \(531441>524288\).
+The claim that the inherited exponent test certifies descent for
+`OE` after the second post-\(L\) `OOE` is **REFUTED** by
+\(531441>524288\). This does not refute actual descent.
 
-The hypothesis that the square cell persists for all
+The claim that this exponent test certifies the square cell for all
 \(k\) is **REFUTED**:
 
 \[
@@ -142,31 +151,36 @@ never paying a first `OOO` from \(1749\).
 
 ## Formalization
 
-None. Existing `Envelope.lean` `power_bound_word` and
-`power_bound_contracts` are cited, not rewritten. No
-`no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`.
-No `no_juggler_cycle`. Paper A is unchanged.
+The envelope core is formalized in
+[CycleMinEnvelopes.lean](../../formal/Problems/Juggler/CycleMinEnvelopes.lean).
+The canonical ledger rows `J-cyclemin-second-post-l-ooe-square`
+name the matching declarations. Negative declarations with
+`exponent_not_lt` in their names prove only failure of the exponent
+test. They do not prove non-descent or non-termination.
 
 ## Results
 
 Classification **SECOND_POST_L_OOE_GREEN**.
 
-If \(s=T_M(n)\) starts `OO` and \(r=T_{\mathtt{OOE}}(s)\),
+If \(n\ge2\) follows \(M\,\mathtt{OOE}\), with
+\(s=T_M(n)\) and \(r=T_{\mathtt{OOE}}(s)\),
 then
 
 \[
 r^{131072}\le n^{177147}<n^{262144}=(n^2)^{131072},
 \]
 
-so \(n\le r<n^2\). Even \(r\) is FiniteProgress. An `OE`
-after \(r\) is not. The repeated residual
+so \(r<n^2\). The lower bound \(n\le r\) requires the separate
+cycle-minimum hypothesis. Even \(r\) gives FiniteProgress; the
+inherited exponent test does not certify it for `OE` after \(r\).
+The repeated residual
 
 \[
 M(\mathtt{OOE})^k
 \]
 
-stays in the square cell for every \(k\le 4\) and leaves
-it at \(k=5\). That is a finite algebraic budget on
+has a certified square upper bound for every \(k\le 4\); this
+exponent certificate first fails at \(k=5\). That is a budget for the test on
 consecutive post-\(L\) `OOE` blocks, not a proof that
 every orbit dies before \(k=5\).
 
@@ -175,7 +189,8 @@ assembler, and not a halt theorem.
 
 ## Open questions
 
-Lean-package \(2^{18}>3^{11}\) and the \(k\le 4\) gap.
+The square bound and \(k\le4\) exponent gap are formalized
+in `m_ooe_lt_sq` and `m_ooePow_gap_iff`.
 The first \(k=5\) square failure is the separate branch
 [juggler_k5_post_l_ooe.md](juggler_k5_post_l_ooe.md).
 The residual after a second `OO` landing (\(501\to 4447\))
@@ -186,11 +201,12 @@ assemble `no_cycle_itinerary_length_eleven`. Do not build a
 
 ## Decision
 
-**PROMOTE**. The second post-\(L\) `OOE` still occupies
-\([n,n^2)\), even landings drop, and consecutive copies
-have a finite square-cell budget \(k\le 4\). `OE` after
-the second block is not FiniteProgress. The \(k=5\)
-failure is not a contradiction.
+**PROMOTE**. The second post-\(L\) `OOE` stays below \(n^2\),
+and even landings drop below \(n\). Under a cycle-minimum assumption,
+the intermediate landing also lies above or at \(n\). The square
+envelope test succeeds for consecutive copies exactly when \(k\le4\).
+For `OE` after the second copy, the test does not certify descent.
+Its failure at \(k=5\) is not an orbit contradiction.
 
 Best next question: at \(k=5\), when
 \(2^{15+3k}>3^{9+2k}\) fails, what exact corridor

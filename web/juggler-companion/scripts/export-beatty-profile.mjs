@@ -1,18 +1,18 @@
-// Package an existing certified figure snapshot; never recompute research evidence.
+// Package an existing certified numerical snapshot; never recompute research evidence.
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
-const source = new URL("../../../docs/theory/figures/beatty_profile.json", import.meta.url);
-const manifestPath = new URL("../../../docs/theory/figures/beatty_profile.research.json", import.meta.url);
+const source = new URL("../../../data/research/juggler/winkler_phase_collapse/beatty_profile.json", import.meta.url);
+const manifestPath = new URL("../../../data/research/juggler/winkler_phase_collapse/beatty_profile.research.json", import.meta.url);
 const destination = new URL("../src/data/beatty_profile.json", import.meta.url);
 const bytes = readFileSync(source);
 const report = JSON.parse(bytes);
 const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
 const sha256 = createHash("sha256").update(bytes).digest("hex");
 assert.equal(manifest.outputs.find(row => row.path.endsWith("beatty_profile.json"))?.sha256, sha256,
-  "Figure snapshot does not match its provenance record");
+  "Numerical snapshot does not match its provenance record");
 assert.equal(report.orders, report.drawing.length);
 assert.deepEqual(report.drawing.map(row => row.order).sort((a, b) => a - b),
   Array.from({ length: report.orders }, (_, i) => i + 1));
@@ -32,7 +32,7 @@ function midpoint(interval) {
   return (rational(interval.lower) + rational(interval.upper)) / 2;
 }
 const data = {
-  source: "docs/theory/figures/beatty_profile.json",
+  source: "data/research/juggler/winkler_phase_collapse/beatty_profile.json",
   sourceSha256: sha256,
   generatedUtc: manifest.created_utc,
   scope: report.scope,

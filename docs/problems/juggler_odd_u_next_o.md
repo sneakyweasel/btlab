@@ -12,6 +12,14 @@ The terminal-cluster program stays frozen. This is the designated
 next question of the promoted \(W_5\) second-`OO` branch: odd
 \(u\) after the first \(n^5\) corridor.
 
+## Envelope scope
+
+A failed exponent comparison means that the inherited upper envelope does
+not certify the proposed descent or cell bound. It gives no lower bound on
+an actual orbit and does not prove absence of `FiniteProgress`. Negative
+claims labelled REFUTED below concern deductions from this envelope test;
+separate explicit orbit counterexamples retain their stated finite scope.
+
 ## Problem
 
 If \(u=T(z)\) is odd, what inherited corridor does the next
@@ -43,7 +51,7 @@ axioms of the lost eighth-power cell.
   even \(z\) resets below \(n^{5/2}\); even \(u\) resets
   below \(n^4\) —
   **EXACT — HUMAN PROOF** (`J-cyclemin-w5-second-oo-z-fifth`).
-- \(u<n^5\) —
+- The inherited envelope certifies \(u<n^5\) —
   **REFUTED**.
 - Odd \(x_5\) gives \(y<n^4\); `OEE` contracts —
   **EXACT — HUMAN PROOF**.
@@ -86,11 +94,11 @@ It is not required.
   **EXACT — HUMAN PROOF**.
 - The tenth-power cell fails:
   \(3^{23}>10\cdot 2^{33}\) —
-  **EXACT — HUMAN PROOF**. Crossing \(n^8\) is possible,
-  not forced.
+  **EXACT — HUMAN PROOF**. The envelope does not exclude crossing
+  \(n^8\); no orbit realizing such a crossing is asserted.
 - The eleventh-power cell holds:
   \(3^{23}<11\cdot 2^{33}\), hence
-  \(v<n^{3^{23}/2^{33}}<n^{11}\) —
+  \(v\le n^{3^{23}/2^{33}}<n^{11}\) —
   **EXACT — HUMAN PROOF**. Slack under \(11\) is
   \(346101685\). This is the first integer, not a
   convenient one.
@@ -99,7 +107,7 @@ It is not required.
   **EXACT — HUMAN PROOF**.
 - \(v\ge n^8\) is forced —
   **REFUTED** as a deduction.
-- Even \(v\) resets to \(C_1\)–\(C_4\) —
+- The inherited envelope certifies an even-\(v\) reset to \(C_1\)–\(C_4\) —
   **REFUTED**. \(3^{23}>4\cdot 2^{34}\), and also
   \(n^2\), \(n^3\), and \(n^5\) fail.
 - Even \(v\) resets below \(n^6\):
@@ -108,7 +116,7 @@ It is not required.
   generic-\(12\) gap. This is a new even-reset band,
   still finite, not an unbounded hierarchy. Even \(v\)
   cannot start \(L\).
-- `OE`/`OOE`/`OEE` from \(u\) contract versus \(n\) —
+- The inherited tests certify `OE`/`OOE`/`OEE` from \(u\) below \(n\) —
   **REFUTED**.
 - After \(W_5\) plus \(k\) extra odds the first integers
   are \(3,4,5,8,11\) for \(k=0,\ldots,4\). These are the
@@ -116,10 +124,10 @@ It is not required.
   **EXACT — HUMAN PROOF**. \(n^{11}\) is not a new
   structural rung.
 - The post-\(L\) odd residual has a finite set of
-  admissible rational-exponent states —
+  formal envelope exponents under arbitrary repeated `O` updates —
   **REFUTED**. Repeated `O` multiplies the ceiling by
   \(3/2\).
-- A next `O` from odd \(v\) stays below \(n^{16}\) —
+- The envelope certifies a next `O` from odd \(v\) below \(n^{16}\) —
   **REFUTED**. It stays below \(n^{17}\). That is the
   leftover, not a hierarchy.
 - \(501\) realizes odd \(u\) —
@@ -135,7 +143,7 @@ It is not required.
 - Records: [juggler_odd_u_next_o.md](../research/juggler_odd_u_next_o.md),
   [juggler_odd_u_next_o.json](../research/juggler_odd_u_next_o.json)
 - Tests: `tests/research/juggler_sequence/test_odd_u_next_o.py`
-- No Lean. Not imported by `Problems.JugglerPaper`. No
+- The envelope core is in `CycleMinEnvelopes.lean`; see Formalization. No
   `sorry`. No halt theorem.
 
 ## Conjectures
@@ -153,22 +161,26 @@ by
 3^{23}<12\cdot 2^{33}.
 \]
 
-The hypothesis that even \(v\) returns to \(C_1\)–\(C_4\)
-is **REFUTED**: the first even integer is \(n^6\).
+The claim that this envelope certifies an even-\(v\) return to
+\(C_1\)–\(C_4\) is **REFUTED**: the first integer-power upper
+bound supplied by the test is \(n^6\). No lower bound follows.
 
-The hypothesis that the odd residual has a finite
-rational-exponent state set is **REFUTED** by the exact
-map \(\mathrm{O}:\alpha\mapsto\tfrac32\alpha\).
+The formal envelope iteration has infinitely many distinct exponents
+under \(\mathrm{O}:\alpha\mapsto\tfrac32\alpha\). This refutes
+a finite state set for that iteration, without proving that actual
+orbits realize arbitrarily long odd continuations.
 
 `501` never follows \(W_5\). No \(W_5\) follower occurs in
 the Phase-0 window \(12\le n<801\).
 
 ## Formalization
 
-None. Existing `Envelope.lean` `power_bound_word` and
-`power_bound_contracts` are cited, not rewritten. No
-`no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`.
-No `no_juggler_cycle`. Paper A is unchanged.
+The envelope core is formalized in
+[CycleMinEnvelopes.lean](../../formal/Problems/Juggler/CycleMinEnvelopes.lean).
+The canonical ledger rows `J-cyclemin-odd-u-v-eleventh`
+name the matching declarations. Negative declarations with
+`exponent_not_lt` in their names prove only failure of the exponent
+test. They do not prove non-descent or non-termination.
 
 ## Results
 
@@ -183,7 +195,7 @@ v^{8589934592}\le n^{94143178827}<n^{94489280512}=(n^{11})^{8589934592},
 so
 
 \[
-v<n^{3^{23}/2^{33}}<n^{11}.
+v\le n^{3^{23}/2^{33}}<n^{11}.
 \]
 
 The primary object is the rational ceiling
@@ -191,11 +203,11 @@ The primary object is the rational ceiling
 ceiling crosses. Inherited history still beats generic
 \(n^{12}\).
 
-Even \(v\) does **not** reset to a previously named
-\(C_1\)–\(C_4\) band:
+The envelope does not certify an even-\(v\) reset to a previously
+named \(C_1\)–\(C_4\) band. It instead gives:
 
 \[
-v\text{ even}\Rightarrow T(v)<n^{3^{23}/2^{34}}<n^{6}.
+v\text{ even}\Rightarrow T(v)\le n^{3^{23}/2^{34}}<n^{6}.
 \]
 
 That is a downward reset from \(n^{11}\), but a new even
@@ -207,8 +219,8 @@ assembler, and not a halt theorem.
 
 ## Open questions
 
-Lean-package \(3^{23}<11\cdot 2^{33}\) and the even-\(v\)
-sixth-power reset. The parity-persistence question is the
+The eleventh-power bound and even-\(v\) sixth-power reset are
+formalized in `v_bound` and `v_even`. The parity-persistence question is the
 separate branch
 [juggler_parity_persist.md](juggler_parity_persist.md).
 Do not reopen bunched-short cells. Do not write \(Z_5\).
@@ -219,9 +231,9 @@ phase.
 ## Decision
 
 **PROMOTE**. The inherited constraint survives one more
-`O`: \(v<n^{3^{23}/2^{33}}<n^{11}\), strictly below
-generic \(n^{12}\). Even \(v\) resets below \(n^6\), not
-to \(C_1\)–\(C_4\). The integers \(3,4,5,8,11\) are
+`O`: \(v\le n^{3^{23}/2^{33}}<n^{11}\), strictly below
+generic \(n^{12}\). Even \(v\) resets below \(n^6\); this envelope
+does not certify the narrower \(C_1\)–\(C_4\) bound. The integers \(3,4,5,8,11\) are
 crossings of a single rational sequence, not a new rung
 law. The exponent-chain approach remains constrained, but
 it is no longer producing named even-resets into old
@@ -236,7 +248,7 @@ unconstrained odd run?
 
 Status: `THEOREM`.
 
-A named exact eleventh-power cell, a refutation of the
-\(C_1\)–\(C_4\) even reset, and the identification of the
+A named exact eleventh-power envelope, failure of its exponent test
+for the \(C_1\)–\(C_4\) even reset, and the identification of the
 integer sequence as rational crossings. Not a Juggler
 totality result and not a finite exponent-state system.

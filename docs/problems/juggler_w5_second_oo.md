@@ -12,6 +12,14 @@ The terminal-cluster program stays frozen. This is the designated
 next question of the promoted odd \(k=5\) leak: the second `OO`
 after odd \(y=T(x_5)\).
 
+## Envelope scope
+
+A failed exponent comparison means that the inherited upper envelope does
+not certify the proposed descent or cell bound. It gives no lower bound on
+an actual orbit and does not prove absence of `FiniteProgress`. Negative
+claims labelled REFUTED below concern deductions from this envelope test;
+separate explicit orbit counterexamples retain their stated finite scope.
+
 ## Problem
 
 After odd \(x_5\) produces odd \(y<n^4\), what inherited
@@ -39,7 +47,7 @@ axioms of the lost fourth-power cell.
 
 ## Current literature
 
-- Odd \(x_5\) gives \(y<n^{3^{20}/2^{30}}<n^4\); even \(y\)
+- Odd \(x_5\) gives \(y\le n^{3^{20}/2^{30}}<n^4\); even \(y\)
   resets to \(C_1\); `OEE` contracts —
   **EXACT — HUMAN PROOF** (`J-cyclemin-odd-k5-y-fourth`).
 - \(W_5\) cube cell \(x_5<n^3\) —
@@ -83,17 +91,17 @@ It is not required.
   **EXACT — HUMAN PROOF**.
 - The fourth-power cell for \(z\) fails:
   \(3^{21}>4\cdot 2^{31}\) —
-  **EXACT — HUMAN PROOF**. Crossing \(n^4\) is possible,
-  not forced.
+  **EXACT — HUMAN PROOF**. The envelope does not exclude crossing
+  \(n^4\); no orbit realizing such a crossing is asserted.
 - The fifth-power cell for \(z\) holds:
   \(3^{21}<5\cdot 2^{31}\), hence
-  \(z<n^{3^{21}/2^{31}}<n^5\) —
+  \(z\le n^{3^{21}/2^{31}}<n^5\) —
   **EXACT — HUMAN PROOF**. This is the first \(n^5\)
   corridor. It beats generic \(z<n^6\) from \(y<n^4\).
 - If \(z\) is odd, \(W_5+\mathtt{OOO}\) has length 32 and
   22 odds, so \(u^{2^{32}}\le n^{3^{22}}\) —
   **EXACT — HUMAN PROOF**.
-- \(u<n^5\) —
+- The inherited envelope certifies \(u<n^5\) —
   **REFUTED**. \(3^{22}>5\cdot 2^{32}\)
   (\(31381059609>21474836480\)). Also \(n^4\), \(n^6\),
   and \(n^7\) fail.
@@ -108,22 +116,22 @@ It is not required.
 - Two further odds raise the integer ceiling by exactly
   one (\(n^4\to n^5\)) —
   **REFUTED**. The completed second `OO` jumps to \(n^8\).
-- Even \(z\) returns below \(n^2\) —
+- The inherited envelope certifies \(T(z)<n^2\) for even \(z\) —
   **REFUTED**. \(3^{21}>2^{33}\).
 - Even \(z\) resets:
-  \(v=T(z)\) satisfies \(v<n^{3^{21}/2^{32}}<n^{5/2}<n^3\)
+  \(v=T(z)\) satisfies \(v\le n^{3^{21}/2^{32}}<n^{5/2}<n^3\)
   —
   **EXACT — HUMAN PROOF**. This is a \(C_2\)-type return,
   not a new hierarchy. Even \(z\) cannot start \(L\).
-- Even \(u\) returns below \(n^3\) —
+- The envelope certifies an even-\(u\) return below \(n^3\) —
   **REFUTED**. \(3^{22}>3\cdot 2^{33}\).
 - Even \(u\) resets below \(n^4\):
   \(3^{22}<4\cdot 2^{33}\) —
   **EXACT — HUMAN PROOF**. That is the previous \(y\)
   ceiling, not a new scale.
-- `OE`/`OOE`/`OEE` from \(y\) contract versus \(n\) —
+- The inherited tests certify `OE`/`OOE`/`OEE` from \(y\) below \(n\) —
   **REFUTED**.
-- A next `O` from odd \(u\) stays below \(n^{10}\) —
+- The envelope certifies a next `O` from odd \(u\) below \(n^{10}\) —
   **REFUTED**. It stays below \(n^{11}\). That is the
   leftover, not a hierarchy.
 - \(501\) realizes the second `OO` —
@@ -139,7 +147,7 @@ It is not required.
 - Records: [juggler_w5_second_oo.md](../research/juggler_w5_second_oo.md),
   [juggler_w5_second_oo.json](../research/juggler_w5_second_oo.json)
 - Tests: `tests/research/juggler_sequence/test_w5_second_oo.py`
-- No Lean. Not imported by `Problems.JugglerPaper`. No
+- The envelope core is in `CycleMinEnvelopes.lean`; see Formalization. No
   `sorry`. No halt theorem.
 
 ## Conjectures
@@ -148,9 +156,9 @@ None opened.
 
 ## Counterexamples
 
-The hypothesis that the completed second `OO` occupies an
-\(n^5\) cell, or that two further odds raise the integer
-ceiling by one, is **REFUTED** by
+The claim that the inherited envelope certifies the completed second
+`OO` below \(n^5\), or raises its integer ceiling by only one,
+is **REFUTED** by
 
 \[
 3^{22}>5\cdot 2^{32},\qquad 3^{22}<8\cdot 2^{32}.
@@ -165,10 +173,12 @@ the Phase-0 window \(12\le n<801\).
 
 ## Formalization
 
-None. Existing `Envelope.lean` `power_bound_word` and
-`power_bound_contracts` are cited, not rewritten. No
-`no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`.
-No `no_juggler_cycle`. Paper A is unchanged.
+The envelope core is formalized in
+[CycleMinEnvelopes.lean](../../formal/Problems/Juggler/CycleMinEnvelopes.lean).
+The canonical ledger rows `J-cyclemin-w5-second-oo-z-fifth`
+name the matching declarations. Negative declarations with
+`exponent_not_lt` in their names prove only failure of the exponent
+test. They do not prove non-descent or non-termination.
 
 ## Results
 
@@ -183,20 +193,20 @@ z^{2147483648}\le n^{10460353203}<n^{10737418240}=(n^5)^{2147483648},
 so
 
 \[
-z<n^{3^{21}/2^{31}}<n^5.
+z\le n^{3^{21}/2^{31}}<n^5.
 \]
 
-This is the first \(n^5\) corridor. Crossing \(n^4\) is
-possible, not forced.
+This envelope certifies \(n^5\), but does not certify \(n^4\).
+No orbit crossing of \(n^4\) is established by that failure.
 
 If \(z\) is also odd, then
 
 \[
-u<n^{3^{22}/2^{32}}<n^8.
+u\le n^{3^{22}/2^{32}}<n^8.
 \]
 
-The \(n^5\) candidate does not survive the second odd
-letter of the `OO`. The first integer is \(n^8\).
+The envelope test for the \(n^5\) bound fails after the second odd
+letter of the `OO`. Its first certified integer-power bound is \(n^8\).
 
 Even \(z\) returns to a previously controlled band:
 
@@ -214,8 +224,8 @@ assembler, and not a halt theorem.
 
 ## Open questions
 
-Lean-package \(3^{21}<5\cdot 2^{31}\) and
-\(3^{22}<8\cdot 2^{32}\). The odd-\(u\) next-`O` residual
+The \(z<n^5\) and \(u<n^8\) envelopes are formalized
+in `y_odd_lt_fifth` and `u_bound`. The odd-\(u\) next-`O` residual
 is the separate branch
 [juggler_odd_u_next_o.md](juggler_odd_u_next_o.md).
 Do not reopen bunched-short cells. Do not write \(Z_5\).
@@ -227,8 +237,8 @@ arbitrary-word rung theorem.
 
 **PROMOTE**. The first new corridor after odd \(y\) starts
 `OO` is fifth-power for the first extra `O`. Completing
-that `OO` by a second odd letter is **not** fifth-power:
-it is an eighth-power cell. Even landings reset to known
+that `OO` by a second odd letter has an eighth-power envelope;
+the fifth-power exponent test fails. Even landings reset to known
 bands (\(n^{5/2}\) or \(n^4\)). The one-rung-per-two-odds
 pattern fails here.
 
@@ -240,6 +250,6 @@ is that eleventh-power landing the leftover?
 
 Status: `THEOREM`.
 
-A named exact \(z<n^5\) cell, a refutation of \(u<n^5\),
+A named exact \(z<n^5\) envelope, failure of the \(u<n^5\) exponent test,
 and even-reset theorems. Not a Juggler totality result and
 not a claim that the odd branch dies after one more `OO`.

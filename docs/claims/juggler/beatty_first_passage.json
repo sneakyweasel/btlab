@@ -1021,5 +1021,206 @@
    "tests/integration/test_docs_links.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-first-passage",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For the actual binary-word counts at every real boundary beta, survivors and first passages partition the extensions of surviving words: S_beta(n+1)+P_beta(n+1)=2*S_beta(n), with S_beta(0)=1 and P_beta(0)=0. For 0<beta<=1, every first-passage word with r odd letters has length floor(r/beta)+1 and ends in an even letter. Survival uses weak prefix inequalities and crossing is strict, so this first-crossing location also covers rational boundaries. InterfaceCheckBeattySlope.lean expands the consumer statements; AxiomCheckBeattySlope.lean records the public theorem dependencies. No asymptotic assertion follows merely from this finite partition.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeWords.lean",
+  "decl": [
+   "survivorCount_add_passageCount",
+   "survivorCount_zero",
+   "passageCount_zero",
+   "FirstPassage.exists_even_prefix",
+   "FirstPassage.length_eq_crossingDepth"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-counting",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational real beta and every natural n, the actual weak-prefix survivor counts satisfy n*S_beta(n)=sum_(0<=j<n) A_beta(n-j)*S_beta(j), where A_beta(m)=sum_(0<=k<=m, m*beta<k) choose(m,k). Irrationality is the only slope hypothesis; no assumed generating identity, asymptotic estimate or Diophantine bound occurs. InterfaceCheckBeattySlope.lean expands the terminal binomial sum and checks the reciprocal parameter beta=1/alpha for every irrational alpha. This is a formal generalization of a classical counting identity, not a novelty claim or a general-slope phase theorem.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeCounting.lean",
+  "decl": [
+   "survivorCount_recurrence"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-logarithmic-specialization",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "At beta=log(2)/log(3), the parameterized finite survivor and first-passage word sets equal the original neverNegWords and minimalCertWords at every length. Their integer counts and the strict endpoint counts therefore agree exactly. Irrationality of this beta is proved directly from distinct powers of two and three, independently of the counting identity. The original survivor_count_recurrence now uses the arbitrary-boundary theorem through these equalities, preserving the original survivor_exponential_identity interface. The specialization asserts no new general analytic or geometric conclusion.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeSpecialization.lean",
+  "decl": [
+   "survivorWords_logarithmic",
+   "passageWords_logarithmic",
+   "survivorCount_logarithmic",
+   "passageCount_logarithmic",
+   "endpointCount_logarithmic",
+   "logarithmic_irrational"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-weighted-counting",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For actual binary word sums with weight z per odd letter, S_beta,z(n+1)+P_beta,z(n+1)=(1+z)*S_beta,z(n) holds for all real beta,z. For every irrational real beta and every real z, n*S_beta,z(n)=sum_(j<n) A_beta,z(n-j)*S_beta,z(j), where A_beta,z(m)=sum_(k<=m, m*beta<k) choose(m,k)*z^k. The integer recurrence is its weight-one specialization. These are finite algebraic identities; no positivity, terminal estimate, large-deviation hypothesis or new counting-identity priority is asserted.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeCounting.lean",
+  "decl": [
+   "survivorWeight_add_passageWeight",
+   "survivorWeight_recurrence"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-crossing-weight",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every real 0<beta<=1, the crossing-depth map r -> floor(r/beta)+1 is strictly increasing, and every first-passage word at the r-th crossing edge has exactly r odd letters. Thus its weighted count is exactly z^r times the original integer count for every real z. A nonzero weight can be removed by division at every edge. The weak-survival and strict-crossing conventions include rational boundaries; this is an exact finite identity, not an analytic transfer assertion.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeWords.lean",
+  "decl": [
+   "crossingDepth_strictMono",
+   "FirstPassage.oddCount_eq_of_length_eq_crossingDepth",
+   "passageWeight_crossingDepth",
+   "passageCount_eq_weight_div"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-weighted-renewal",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational real beta and all real z,v, the actual weighted sequence u(n)=S_beta,z(n)/v^n equals the formal renewal exponential of a(n)=A_beta,z(n)/v^n, with no analytic premise. For nonnegative z,v, a terminal square-root upper bound implies a three-halves upper bound for u. More precisely, assuming a bounded real function Phi and sqrt(n)*a(n)-Phi(n*beta)->0, Lean proves n*sqrt(n)*u(n)-sum_j u(j)*Phi((n-j)*beta)->0. These analytic conclusions are conditional on the stated terminal estimates; no arbitrary-slope Stirling estimate, explicit jump profile, critical total mass, convergence rate or geometric family theorem is asserted.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeRenewal.lean",
+  "decl": [
+   "normalizedSurvivor_recurrence",
+   "normalizedSurvivor_eq_renewalCoeff",
+   "normalizedSurvivor_three_halves_bound",
+   "normalizedSurvivor_phase_limit"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-subcritical-tilt",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every real 0<beta<1, the odd-letter weight z=beta/(2*(1-beta)) is positive, its normalized Bernoulli bias is p=z/(1+z)=beta/(2-beta), and 0<p<beta. The terminal ratio z*(1-beta)/beta equals exactly 1/2. This algebraic choice covers every reciprocal slope alpha>1 and removes the fair-walk restriction at the counting level. It is a classical change of bias, not a proved terminal asymptotic or a completed general-slope phase theorem.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeRenewal.lean",
+  "decl": [
+   "tiltedOddWeight_pos",
+   "tiltedBernoulliBias_eq",
+   "tiltedBernoulliBias_bounds",
+   "tiltedOddWeight_terminal_ratio"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-tilted-binomial-tail",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every real 0<beta<1, put z=beta/(2*(1-beta)) and k=floor(n*beta)+1. At every natural depth n and offset j, choose(n,k+j)*z^(k+j)<=choose(n,k)*z^k*2^(-j). At every positive depth, the actual strict weighted endpoint sum lies between choose(n,k)*z^k and twice this first term. These finite inequalities include rational boundaries, zero terms beyond the binomial support and every positive depth; the factor two is uniform in beta. They require no Stirling estimate or irrationality and do not assert a phase limit or uniform asymptotic error near either endpoint of the beta interval.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeBinomial.lean",
+  "decl": [
+   "tilted_choose_step_bound",
+   "tilted_choose_shift_bound",
+   "tilted_endpoint_first_term_bounds"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-tilted-endpoint-asymptotic",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every fixed real 0<beta<1, set q=1-beta, z=beta/(2*q), v=2^(-beta)/q and C=(2*pi*beta*q)^(-1/2). The actual strict weighted endpoint sum A_beta,z(n) satisfies sqrt(n)*A_beta,z(n)/v^n-C*2^(frac(n*beta))->0. The first-term Stirling limit retains the factor 2^(-(1-frac(n*beta))), and the full tilted tail divided by its first term tends to two. Both limits and the explicit base/kernel identities are proved in Lean. Irrationality is not needed for the endpoint result; no asymptotic premise, convergence rate or uniform error near beta=0 or beta=1 is asserted. This is a formalization of the classical tilted binomial asymptotic, not a new priority claim.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeEndpointAsymptotic.lean",
+  "decl": [
+   "tiltedBase_eq",
+   "tiltedTerminalPhase_eq",
+   "tilted_first_term_phase_limit",
+   "tilted_binomial_tail_ratio_limit",
+   "tilted_endpoint_phase_limit",
+   "tiltedTerminalPhase_bound"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-tilted-survivor-asymptotic",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every fixed irrational 0<beta<1, equivalently every irrational alpha=1/beta>1 with no upper cutoff, let u(n) be the actual weighted survivor word sum with z=beta/(2*(1-beta)), divided by v^n with v=2^(-beta)/(1-beta). Then u is summable and n*sqrt(n)*u(n)-psi(n*beta)->0, where psi(t)=C*sum_j u(j)*2^(frac(t-j*beta)) and C=(2*pi*beta*(1-beta))^(-1/2). The profile series is absolutely summable at every real t, has period one, and satisfies C<=psi(t)<=2*C*sum_j u(j). The empty survivor supplies the positive lower bound. All counting, Stirling and endpoint inputs are proved; the expanded consumer exposes actual word sums and the reciprocal-slope quantifiers. This weighted survivor theorem does not yet identify the original unweighted first-passage jump profile, critical total mass or geometric limiting measure for the family, and it asserts no convergence rate or uniformity in beta.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeEndpointAsymptotic.lean",
+  "decl": [
+   "summable_tilted_survivor",
+   "summable_tiltedSurvivorPhase_terms",
+   "tiltedSurvivorPhase_bounds",
+   "tiltedSurvivorPhase_periodic",
+   "tilted_survivor_phase_limit",
+   "tilted_survivor_phase_limit_reciprocal"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
  }
 ]

@@ -1,0 +1,64 @@
+'Problems.Juggler.BeattySlope.survives_iff_strict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.survivorCount_add_passageCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.survivorCount_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageCount_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.FirstPassage.exists_even_prefix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattySlope.FirstPassage.length_eq_crossingDepth' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattySlope.survivorCount_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.survivorWeight_add_passageWeight' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattySlope.survivorWeight_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.crossingDepth_strictMono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.FirstPassage.oddCount_eq_of_length_eq_crossingDepth' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattySlope.passageWeight_crossingDepth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageCount_eq_weight_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.normalizedSurvivor_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.normalizedSurvivor_eq_renewalCoeff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattySlope.normalizedSurvivor_three_halves_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattySlope.normalizedSurvivor_phase_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.tiltedOddWeight_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.tiltedBernoulliBias_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.tiltedBernoulliBias_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.tiltedOddWeight_terminal_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.tilted_choose_step_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.tilted_choose_shift_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.tilted_endpoint_first_term_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattySlope.tiltedBase_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.tiltedTerminalPhase_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.tilted_first_term_phase_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.tilted_binomial_tail_ratio_limit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattySlope.tilted_endpoint_phase_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.tiltedTerminalPhase_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.summable_tilted_survivor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.summable_tiltedSurvivorPhase_terms' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattySlope.tiltedSurvivorPhase_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.tiltedSurvivorPhase_periodic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.tilted_survivor_phase_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.tilted_survivor_phase_limit_reciprocal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattySlope.survivorWords_logarithmic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageWords_logarithmic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.survivorCount_logarithmic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageCount_logarithmic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.endpointCount_logarithmic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.logarithmic_irrational' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattyPhase.survivor_count_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattyPhase.survivor_exponential_identity' depends on axioms: [propext, Classical.choice, Quot.sound]

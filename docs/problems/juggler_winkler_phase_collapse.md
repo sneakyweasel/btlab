@@ -778,6 +778,341 @@ external inputs explicit. Full Lean formalization of that improvement is
 a separate remaining task. No larger numerical campaign or new research
 branch is opened automatically.
 
+### Arbitrary-boundary counting foundation (24 September)
+
+The sustained generalization programme begins with the actual integer counts,
+before extending the analytic estimates. This is a formal generalization of
+classical counting machinery, not a claim of a new counting identity.
+
+```text
+Mathematical target     Exact survivor counting for every irrational boundary 0 < beta < 1.
+Novelty hypothesis      Reusable formal foundation for the general-slope theorem;
+                        the underlying counting identity is classical.
+Falsifier               An endpoint or first-crossing convention breaks the identity.
+Already killed by?      No matching obstruction; this is a counting generalization.
+Existing machinery      Binary-word enumeration and the formal-series support proof.
+Maximum Phase-0 scope   General counts, crossing decomposition, counting recurrence,
+                        and recovery of the existing logarithmic counts.
+Promotion criterion     Lean checks the general statement and its specialization.
+Stop criterion          Keep any analytic or geometric assumptions explicit.
+```
+
+For a real boundary `beta`, let `S_beta(n)` count binary words of length `n`
+whose first `k` letters contain at least `beta*k` odd letters, for every
+`0<=k<=n`. Let `P_beta(n)` count words whose first strict crossing below that
+boundary occurs at their endpoint. The empty word survives. Put
+
+\[
+ A_\beta(n)=\sum_{\substack{0\le k\le n\\n\beta<k}}\binom nk.
+\]
+
+The new checked statements are:
+
+1. For **every real** `beta`,
+   `S_beta(n+1)+P_beta(n+1)=2*S_beta(n)`, with `S_beta(0)=1` and
+   `P_beta(0)=0`.
+2. For **every irrational real** `beta` and every natural `n`,
+   \[
+   nS_\beta(n)=\sum_{j=0}^{n-1}A_\beta(n-j)S_\beta(j).
+   \]
+   At every nonempty prefix, weak survival is equivalent to strict survival.
+   No Diophantine estimate, generating-identity premise or bound on `beta`
+   occurs in this recurrence.
+3. For `0<beta<=1`, a first-passage word with `r` odd letters ends in an even
+   letter and has length `floor(r/beta)+1`. This includes rational boundaries
+   with the weak-survival/strict-crossing convention. It recovers the BGL
+   crossing-edge location directly from the word definition.
+4. At `beta=log(2)/log(3)`, both finite word sets agree exactly with the
+   existing survivor and minimal-certificate sets. The old counting and
+   exponential-identity theorems now use the general recurrence through this
+   equality. Their public statements are unchanged.
+
+The sources are
+[`BeattySlopeWords.lean`](../../formal/Problems/Juggler/BeattySlopeWords.lean),
+[`BeattySlopeCounting.lean`](../../formal/Problems/Juggler/BeattySlopeCounting.lean)
+and
+[`BeattySlopeSpecialization.lean`](../../formal/Problems/Juggler/BeattySlopeSpecialization.lean).
+The original
+[`BeattyCounting.lean`](../../formal/Problems/Juggler/BeattyCounting.lean)
+is a specialization, rather than a second copy of the proof.
+[`InterfaceCheckBeattySlope.lean`](../../formal/InterfaceCheckBeattySlope.lean)
+expands the binomial sum, the prefix convention, the reciprocal parameter
+`beta=1/alpha`, the crossing edge and the finite-set equalities.
+Its eighteen consumer records and the forty-four public-theorem records in
+[`AxiomCheckBeattySlope.lean`](../../formal/AxiomCheckBeattySlope.lean)
+allow only the standard Lean dependencies.
+
+The current coverage map is deliberately asymmetric:
+
+| Statement | Parameter range | Formal status |
+|---|---|---|
+| One-step survivor/first-passage partition | Every real `beta` | Checked |
+| Positive-partial-sum integer recurrence | Every irrational real `beta` | Checked |
+| Weighted recurrence and exact normalized renewal exponential | Every irrational real `beta`, every real letter weight and base | Checked |
+| Crossing edge `floor(r/beta)+1` | Every real `0<beta<=1` | Checked |
+| Exact removal of the crossing weight | Every real `0<beta<=1`, nonzero letter weight | Checked |
+| Subcritical bias with terminal ratio `1/2` | Every real `0<beta<1` | Checked algebraic identity |
+| Tilted finite tail between its first term and twice that term | Every real `0<beta<1`, every positive depth | Checked; no irrationality or Stirling premise |
+| Weighted survivor phase transfer | Every irrational real `beta`, nonnegative weight and base | Checked implication; bounded terminal phase asymptotic is an explicit premise |
+| Explicit tilted terminal phase | Every real `0<beta<1` | Checked without an asymptotic premise |
+| Explicit tilted survivor phase | Every irrational `0<beta<1`, equivalently every irrational `alpha>1` | Checked without an asymptotic premise; summable, positive, bounded and periodic profile |
+| Exact original logarithmic word sets | `beta=log(2)/log(3)` | Checked |
+| Original fair-weight survivor phase formula | Logarithmic boundary | Checked; the full-interval theorem uses the chosen bias instead |
+| Jump profile, limiting laws and geometric measure | Irrational `1<alpha<2` | Written general profile argument; existing end-to-end formal package is logarithmic |
+| Matching Hausdorff lower bounds | Explicit Diophantine hypotheses | Conditional concrete results; arithmetic inputs and a family theorem still need assembly |
+
+The weighted version of `BeattyEndpointAsymptotic` is now proved below.
+The original fair-walk route requires
+`1/2<beta<1`; the tilt below removes that restriction at the algebraic level.
+The lower cutoff for the Stirling estimates must still depend on `beta`.
+A family theorem should first quantify **for each fixed irrational slope**,
+with slope-dependent constants; this is weaker than uniformity as the slope
+approaches the endpoints. Rational boundary ties need their own analytic
+statement.
+
+The weighted continuation supplies the exact foundation beyond the fair-walk interval.
+BGL's [Section 2.1, equation (2.15)](https://arxiv.org/html/cond-mat/9905252)
+allows any Bernoulli bias `0<p<beta`. For any `0<beta<1`, the choice
+`p=beta/(2-beta)` puts the walk in that regime and makes the limiting
+binomial-tail ratio `((1-beta)*p)/(beta*(1-p))` exactly `1/2`.
+Equivalently, evaluate the odd-letter counting polynomial at
+`z=p/(1-p)=beta/(2*(1-beta))`, instead of at `1`.
+At a crossing edge with exactly `r` odd letters, this weighting multiplies
+the path count by `z^r`, so it can be removed exactly. The weighted recurrence,
+that removal, the normalization, and the conditional phase transfer are now
+checked in Lean, as detailed below. This remains a classical change of bias,
+not a checked extension of the full profile theorem to every irrational
+`alpha>1`.
+
+**PROMOTE** this formal foundation within the existing phase programme.
+It does not promote the general analytic or geometric conclusions, and it
+does not establish a new number-theoretic bound or any trajectory result.
+
+### Weighted continuation across the full boundary interval (24 September)
+
+```text
+Mathematical target     Weighted survivor and first-passage identities at every
+                        irrational boundary, with a useful bias for 0 < beta < 1.
+Novelty hypothesis      A formal route to the full slope family; the weighted
+                        counting identity itself is classical.
+Falsifier               Weighting changes the crossing convention or cannot be
+                        removed exactly at a crossing edge.
+Already killed by?      No matching obstruction; BGL supports this change of bias.
+Existing machinery      The odd-letter polynomial proof and generic renewal theorem.
+Maximum Phase-0 scope   Weighted recurrence, exact removal of crossing weights,
+                        and the normalized renewal identity.
+Promotion criterion     Lean checks actual weighted word sums and their specialization.
+Stop criterion          Keep the general Stirling and phase-transfer inputs explicit.
+```
+
+Give each odd letter weight `z` and each even letter weight one. Write
+`S_beta,z(n)` and `P_beta,z(n)` for the sums of these weights over the actual
+survivor and first-passage word sets, and put
+
+\[
+ A_{\beta,z}(n)=\sum_{\substack{0\le k\le n\\n\beta<k}}\binom nk z^k.
+\]
+
+The single polynomial proof now gives
+
+\[
+ S_{\beta,z}(n+1)+P_{\beta,z}(n+1)=(1+z)S_{\beta,z}(n),
+ \qquad
+ nS_{\beta,z}(n)=\sum_{j=0}^{n-1}A_{\beta,z}(n-j)S_{\beta,z}(j).
+\]
+
+The first identity holds for every real `beta,z`; the second requires only
+irrationality of `beta`. Taking `z=1` recovers the original integer theorem.
+For `0<beta<=1`, the crossing-depth map `r -> floor(r/beta)+1` is strictly
+increasing. Every first-passage word at that depth has exactly `r` odd letters,
+so
+
+\[
+ P_{\beta,z}(\lfloor r/\beta\rfloor+1)
+   =z^r P_\beta(\lfloor r/\beta\rfloor+1).
+\]
+
+This finite identity includes rational boundaries and permits exact division
+when `z` is nonzero. It is checked against the word definitions, rather than
+assumed from an interpretation of a generating function.
+
+The new
+[`BeattySlopeRenewal.lean`](../../formal/Problems/Juggler/BeattySlopeRenewal.lean)
+then identifies
+`u(n)=S_beta,z(n)/v^n` with the formal renewal exponential of
+`a(n)=A_beta,z(n)/v^n`. It proves the corresponding three-halves bound and phase
+transfer **conditionally on the terminal estimates**. In particular, for
+nonnegative `z,v`, a bounded function `Phi` satisfying
+
+\[
+ \sqrt n\,a(n)-\Phi(n\beta)\longrightarrow0
+\]
+
+implies
+
+\[
+ n^{3/2}u(n)-\sum_{j\ge0}u(j)\Phi((n-j)\beta)\longrightarrow0.
+\]
+
+The expanded consumer states both actual finite sums and the terminal-limit
+premise. The exact renewal identity itself requires no terminal estimate.
+The full-range choice `z=beta/(2*(1-beta))`, its Bernoulli bias
+`p=beta/(2-beta)`, the inequalities `0<p<beta`, and
+`z*(1-beta)/beta=1/2` are also Lean-checked.
+
+The precise endpoint target, now proved in the continuation below, is obtained by
+putting `q=1-beta`,
+
+\[
+ v=2^{-\beta}/q,
+ \qquad \Phi_\beta(t)=\frac{2^{\{t\}}}{\sqrt{2\pi\beta q}}.
+\]
+
+The limit is `sqrt(n)*A_beta,z(n)/v^n-Phi_beta(n*beta) -> 0`.
+The strict cutoff `floor(n*beta)+1` contributes
+`2^(-(1-frac(n*beta)))`; summing the limiting geometric tail supplies the
+factor two. This calculation specifies the Stirling proof and its jump
+convention; the continuation below now supplies the full Lean proof.
+Even after this estimate, the first-passage
+transfer, critical total mass, jump-profile identification and geometric
+assembly must be generalized before claiming the full family theorem.
+
+**PROMOTE** the checked weighted foundation within the existing programme.
+The new scope is an unconditional finite/renewal identity plus an explicitly
+conditional analytic transfer, not a novelty claim for the classical identity
+or a completed theorem for arbitrary irrational slopes.
+
+The finite-tail continuation asks a narrower analytic preparation question:
+
+```text
+Mathematical target     Bound the tilted terminal tail by twice its first term.
+Novelty hypothesis      A reusable formal estimate; the comparison is classical.
+Falsifier               A term beyond the strict cutoff has ratio above 1/2.
+Already killed by?      No matching obstruction; the existing proof uses 3/5
+                        at the fixed logarithmic slope.
+Existing machinery      Binomial recurrence and the checked tilt.
+Maximum Phase-0 scope   Cutoff, adjacent-term bound, geometric sum bound.
+Promotion criterion     Lean checks the bounds for every 0 < beta < 1.
+Stop criterion          Leave the Stirling asymptotic as the next input.
+```
+
+This is now **EXACT — LEAN VERIFIED** in
+[`BeattySlopeBinomial.lean`](../../formal/Problems/Juggler/BeattySlopeBinomial.lean).
+Put `k=floor(n*beta)+1` and `z=beta/(2*(1-beta))`. For every real
+`0<beta<1`, every natural `n,j`,
+
+\[
+ \binom n{k+j}z^{k+j}\le \binom nk z^k\,2^{-j}.
+\]
+
+Consequently, for every positive `n`,
+
+\[
+ \binom nk z^k\le A_{\beta,z}(n)\le2\binom nk z^k.
+\]
+
+The convention that binomial coefficients vanish outside their support is
+included in the proof. The constant two is uniform over all these boundaries
+and depths; it does not make the subsequent Stirling remainder uniform near
+`beta=0` or `beta=1`. The expanded consumer checks the full endpoint sum,
+strict cutoff and tilt. **PROMOTE** this finite geometric bound within the
+existing programme. The next continuation discharges the endpoint phase limit.
+
+### Unconditional tilted survivor phase for every irrational slope (24 September)
+
+```text
+Mathematical target     Prove the tilted endpoint phase limit for every 0 < beta < 1,
+                        then the survivor phase limit for irrational beta.
+Novelty hypothesis      Formal generalization of the classical survival asymptotic;
+                        the geometric family theorem is still the larger target.
+Falsifier               The cutoff phase or normalization changes the leading term.
+Already killed by?      No matching obstruction; the finite half-ratio bound is checked.
+Existing machinery      Mathlib Stirling, the concrete phase proof, and weighted renewal.
+Maximum Phase-0 scope   First-term Stirling limit, tail ratio limit, survivor transfer.
+Promotion criterion     Expanded Lean consumers with no assumed asymptotic input.
+Stop criterion          Keep critical mass and explicit jump identification separate.
+```
+
+The new
+[`BeattySlopeEndpointAsymptotic.lean`](../../formal/Problems/Juggler/BeattySlopeEndpointAsymptotic.lean)
+proves the terminal theorem for **every fixed real** `0<beta<1` and the
+survivor theorem for **every fixed irrational** boundary in that interval.
+The reciprocal consumer explicitly quantifies over every irrational
+`alpha>1`, with no upper slope cutoff. These are statements about actual
+weighted word sums, not an abstract sequence satisfying an assumed recurrence.
+
+Put
+
+\[
+ q=1-\beta,\quad z=\frac{\beta}{2q},\quad
+ v=\frac{2^{-\beta}}q,\quad C_\beta=(2\pi\beta q)^{-1/2},\quad
+ u_\beta(n)=\frac{S_{\beta,z}(n)}{v^n}.
+\]
+
+Lean checks both explicit normalizations. With the strict endpoint convention,
+
+\[
+ \sqrt n\,\frac{A_{\beta,z}(n)}{v^n}
+       -C_\beta 2^{\{n\beta\}}\longrightarrow0.
+\]
+
+The first term contributes
+`C_beta*2^(-(1-frac(n*beta)))`; its full tail divided by that first term
+tends to two. The Stirling proof lets the cutoff and complementary index
+tend to infinity for each fixed boundary, avoiding the previous fixed
+numerical cutoff. The finite half-geometric majorant justifies passage from
+individual tail terms to their infinite sum.
+
+For irrational `beta`, define the **weighted survivor profile**
+
+\[
+ \psi_\beta(t)=C_\beta\sum_{j\ge0}u_\beta(j)\,2^{\{t-j\beta\}}.
+\]
+
+Then the following facts are **EXACT — LEAN VERIFIED**, with no assumed
+Stirling estimate, terminal limit or counting identity:
+
+\[
+ \sum_{j\ge0}u_\beta(j)<\infty,\qquad
+ n^{3/2}u_\beta(n)-\psi_\beta(n\beta)\longrightarrow0,
+\]
+
+\[
+ C_\beta\le\psi_\beta(t)
+   \le2C_\beta\sum_{j\ge0}u_\beta(j),\qquad
+ \psi_\beta(t+1)=\psi_\beta(t).
+\]
+
+The profile series is absolutely summable at every real phase. The lower
+bound comes from the empty surviving word. The expanded consumers display
+the actual finite word sums, real-power base and fractional-part kernel,
+and make the absence of an asymptotic premise explicit. The public axiom
+audit records only `propext`, `Classical.choice` and `Quot.sound`.
+
+This advances the classical BGL-type survival part of the family programme.
+It does **not** yet identify the original first-passage jump profile `F` for
+all slopes. In particular, weighted survivor sums cannot simply be called
+unweighted survivor counts; the exact removal of the tilt applies at each
+fixed first-crossing class. No rate or uniform error near `beta=0,1` is
+claimed. Rational boundaries are covered by the terminal theorem, while the
+survivor theorem retains irrationality because its strict endpoint renewal
+identity requires it.
+
+The next useful step is the general critical-mass identity. The existing
+logarithmic proof preserves probability and a centered first moment under
+the last-letter partition. For the present tilt, a word of endpoint height
+`h=k-beta*n` has critical mass equal to its normalized tilted weight times
+`2^h`. Splitting at any fixed positive height `H` therefore gives the same
+route to zero critical survival mass: the low-height part is bounded by
+`2^H*u_beta(n)`, and the high-height part by `beta/H`. Summability now supplies
+`u_beta(n)->0`. This explains the next proof to generalize; that critical-mass
+assembly and the subsequent jump-series identification are not yet checked
+for the family.
+
+**PROMOTE** the unconditional tilted endpoint and survivor phase theorems,
+including finite positive periodic profile bounds. The full first-passage
+profile and geometric family theorem remain the active objective.
+
 ## Open questions
 
 The qualitative logarithmic-slope phase theorem and normalization are complete
@@ -796,8 +1131,11 @@ a quantitative phase remainder, evaluation of the support endpoints,
 full Lean formalization of the written `p<62/41` arithmetic improvement,
 `L^p` density integrability at `p=62/41` and above, optimal CDF Holder regularity,
 and a matching Hausdorff lower bound for the infinite-density set,
-effective numerical constants, and generalization from the concrete
-logarithmic slope to arbitrary irrational `1<alpha<2`. Literature comparison
+effective numerical constants, and completion of the analytic/geometric
+generalization to arbitrary irrational `alpha>1`. The weighted survivor phase,
+its absolute summability, positivity and periodicity now cover every such
+irrational slope. The first-passage critical mass and explicit jump-profile
+identification are the next missing family inputs, as detailed above. Literature comparison
 is separate from proof checking; existing paper claims and releases retain
 their earlier evidence labels.
 

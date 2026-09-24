@@ -75,6 +75,27 @@ The 4096-atom Arb audit is finite evidence only. `L^2` remains unresolved.
 The complete proof and trust boundary are in the same dossier; the paper
 retains its previously audited formal range pending incorporation.
 
+The arbitrary-slope continuation now checks the actual binary-word counting
+recurrence for every irrational real boundary, the survivor/first-passage
+partition for every real boundary, and the crossing edge
+`floor(r/beta)+1` for `0<beta<=1`. Exact finite-set equalities recover the old
+logarithmic counts, whose counting theorem now specializes the general proof.
+**PROMOTE** this reusable formal foundation, without a novelty claim for the
+classical identity. The weighted continuation proves exact removal of crossing
+weights and identifies the normalized actual word sums with the renewal
+exponential. Its checked bias `p=beta/(2-beta)` has terminal ratio `1/2` for
+every `0<beta<1`. **PROMOTE** this foundation for all irrational `alpha>1`;
+the analytic transfer still assumes a terminal binomial estimate. Proving that
+weighted estimate, then the critical mass and profile identification, remains
+necessary. The same dossier records the expanded audit and coverage map.
+The finite tilted binomial tail is now also checked between its first term
+and twice that term, uniformly for all `0<beta<1` and positive depths.
+The Stirling continuation now proves the explicit tilted terminal phase for
+every real `0<beta<1` and the unconditional weighted survivor phase for every
+irrational `alpha>1`. Its convolution series is summable, positive, bounded
+and periodic. **PROMOTE** this formal family theorem for weighted survivors;
+general critical mass and the original first-passage jump profile remain next.
+
 ## 2026-09-23 -- OEIS generator corrections and exact modified-map descent
 
 The bounded A325904 check found an empty-sum error at order two in the

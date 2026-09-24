@@ -224,7 +224,7 @@
  {
   "id": "J-cyclemin-k5-post-l-cube",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "If n ≥ 2 follows W_5 = M(OOE)^5 with M = OOEOOOEOOEEOOE, then W_5 has length 29 and 19 odds, so x_5 = T_{W_5}(n) satisfies x_5^{2^{29}} ≤ n^{3^{19}}. The square cell fails (2^{30} < 3^{19}) and the cube cell holds (3^{19} < 3·2^{29}), hence x_5 < n^{3^{19}/2^{29}} < n^3. The k=4 ceiling lies below 2 (3^{17} < 2^{27}); the k=5 ceiling lies above 2; the exponent ratios differ by exactly 9/8. If x_5 is even then T(x_5) < n^{3/2} < n^2 (same comparison 3^{19} < 3·2^{29}) and x_5 cannot start L; even x_5 is not FiniteProgress (3^{19} > 2^{30}). If x_5 is odd then the next O satisfies T(x_5) < n^4 (3^{20} < 4·2^{30}). This is a near-square replacement of the square cell, not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "statement": "If n ≥ 2 follows W_5 = M(OOE)^5 with M = OOEOOOEOOEEOOE, then W_5 has length 29 and 19 odds, so x_5 = T_{W_5}(n) satisfies x_5^{2^{29}} ≤ n^{3^{19}}. The square cell fails (2^{30} < 3^{19}) and the cube cell holds (3^{19} < 3·2^{29}), hence x_5 ≤ n^{3^{19}/2^{29}} < n^3. The k=4 ceiling lies below 2 (3^{17} < 2^{27}); the k=5 ceiling lies above 2; the exponent ratios differ by exactly 9/8. If x_5 is even then T(x_5) < n^{3/2} < n^2 (same comparison 3^{19} < 3·2^{29}) and x_5 cannot start L; the inherited envelope does not certify T(x_5) < n (3^{19} > 2^{30}). If x_5 is odd then the next O satisfies T(x_5) < n^4 (3^{20} < 4·2^{30}). This is a near-square replacement of the square cell, not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_k5_post_l_ooe.md",
   "lean": "Problems/Juggler/CycleMinEnvelopes.lean",
   "tests": [
@@ -237,7 +237,7 @@
    "w5_lt_cube",
    "w4_w5_ceilings",
    "w5_even",
-   "w5_even_no_progress",
+   "w5_even_exponent_not_lt",
    "w5_odd_lt_fourth"
   ],
   "lean_trust": "kernel"
@@ -245,7 +245,7 @@
  {
   "id": "J-cyclemin-k5-post-l-hierarchy",
   "tag": "REFUTED",
-  "statement": "The k=5 post-L OOE escape has no useful finite upper power bound below n^4, the even branch creates a new scale hierarchy, and x_5 ≥ n^2 is forced by the square-cell failure. False. 3^{19} < 3·2^{29} gives x_5 < n^3. Even x_5 returns to T < n^{3/2} < n^2 and does not drop below n (3^{19} > 2^{30}). The k=5/k=4 exponent ratios differ by exactly 9/8; the first integer threshold is n^3, not n^4. Losing the square ceiling does not create a square floor. 501 never follows W_5 (max k=2, landing 12707 starts OE). This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "statement": "The k=5 post-L OOE escape has no useful finite upper power bound below n^4, the even branch creates a new scale hierarchy, and x_5 ≥ n^2 is forced by the square-cell failure. False. 3^{19} < 3·2^{29} gives x_5 < n^3. Even x_5 returns to T < n^{3/2} < n^2, but this envelope does not certify T < n (3^{19} > 2^{30}). The k=5/k=4 exponent ratios differ by exactly 9/8; the first integer threshold is n^3, not n^4. Losing the square ceiling does not create a square floor. 501 never follows W_5 (max k=2, landing 12707 starts OE). This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_k5_post_l_ooe.md",
   "lean": "",
   "tests": [
@@ -267,7 +267,7 @@
  {
   "id": "J-cyclemin-l-odd-run-envelope",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "If t^{2048} ≤ n^{2187} and t follows O^k, then T_{O^k}(t) < n would require 2187·3^k < 2048·2^k. That inequality fails for every k ≥ 0 because 2187 > 2048 and 3^k ≥ 2^k. Slack at k = 0 is 139 and increases. Therefore the inherited L-envelope never compose-drops an odd continuation. This is not a finite-K theorem, not an unboundedness theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "statement": "If t^{2048} ≤ n^{2187} and t follows O^k, composition gives T_{O^k}(t)^{2048·2^k} ≤ n^{2187·3^k}. The inherited exponent test certifies descent when 2187·3^k < 2048·2^k; this sufficient test is not a necessary condition for actual descent. That inequality fails for every k ≥ 0 because 2187 > 2048 and 3^k ≥ 2^k. Slack at k = 0 is 139 and increases. Therefore this envelope test cannot certify descent after an odd continuation. Actual descent is compatible with the premises: n = 6, t = 3, k = 1 gives T(t) = 5 < 6. This is not a finite-K theorem, not an unboundedness theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_l_odd_run_cap.md",
   "lean": "Problems/Juggler/CycleMinEnvelopes.lean",
   "tests": [
@@ -276,9 +276,10 @@
   "related_conjectures": [],
   "decl": [
    "post_l_odd_run_bound",
-   "odd_run_never_drops",
+   "post_l_odd_run_exponent_not_lt",
    "odd_run_slack_zero",
-   "odd_run_slack_strictMono"
+   "odd_run_slack_strictMono",
+   "post_l_envelope_descent_example"
   ],
   "lean_trust": "kernel"
  },
@@ -340,7 +341,7 @@
  {
   "id": "J-cyclemin-odd-k5-generic",
   "tag": "REFUTED",
-  "statement": "The odd k=5 next O has only the generic y < n^{9/2} bound, stays in C_3, and an even y opens a new scale hierarchy; the short words E, OE, OOE, OOOE recover from x_5. False. The inherited envelope is y < n^{3^{20}/2^{30}} < n^4, which is below 9/2 and not below n^3 (3^{20} > 3·2^{30}). Even y returns to z < n^2 (3^{20} < 2^{32}) and does not drop below n. OEE contracts; E, OE, OOE, and OOOE do not. 501 never follows W_5. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "statement": "The odd k=5 next O has only the generic y < n^{9/2} bound, stays in C_3, and an even y opens a new scale hierarchy; the short words E, OE, OOE, OOOE recover from x_5. False. The inherited envelope is y ≤ n^{3^{20}/2^{30}} < n^4, whose exponent is below 9/2 but above 3 (3^{20} > 3·2^{30}). Even y returns to z < n^2 (3^{20} < 2^{32}); this envelope does not certify z < n. OEE contracts; E, OE, OOE, and OOOE fail the inherited exponent test. 501 never follows W_5. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_odd_k5_leak.md",
   "lean": "",
   "tests": [
@@ -351,7 +352,7 @@
  {
   "id": "J-cyclemin-odd-k5-y-fourth",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "If n ≥ 2 follows W_5 = M(OOE)^5 with M = OOEOOOEOOEEOOE and x_5 = T_{W_5}(n) is odd, then y = T(x_5) satisfies y^{2^{30}} ≤ n^{3^{20}}. The cube cell fails (3^{20} > 3·2^{30}) and the fourth-power cell holds (3^{20} < 4·2^{30}), hence y < n^{3^{20}/2^{30}} < n^4. The inherited ceiling is below the generic 9/2 (3^{20} < 9·2^{29}). If y is even then z = T(y) satisfies z < n^{3^{20}/2^{31}} < n^2 and y cannot start L; even y is not FiniteProgress (3^{20} > 2^{31}). The itinerary OEE contracts versus n (3^{20} < 2^{32}); E, OE, OOE, and OOOE do not. A second O from odd y stays below n^5 (3^{21} < 5·2^{31}). This is a near-cube replacement of C_3, not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "statement": "If n ≥ 2 follows W_5 = M(OOE)^5 with M = OOEOOOEOOEEOOE and x_5 = T_{W_5}(n) is odd, then y = T(x_5) satisfies y^{2^{30}} ≤ n^{3^{20}}. The cube cell fails (3^{20} > 3·2^{30}) and the fourth-power cell holds (3^{20} < 4·2^{30}), hence y ≤ n^{3^{20}/2^{30}} < n^4. The inherited ceiling is below the generic 9/2 (3^{20} < 9·2^{29}). If y is even then z = T(y) satisfies z ≤ n^{3^{20}/2^{31}} < n^2 and y cannot start L; the inherited envelope does not certify T(y) < n (3^{20} > 2^{31}). The itinerary OEE contracts versus n (3^{20} < 2^{32}); E, OE, OOE, and OOOE fail the inherited exponent test. A second O from odd y stays below n^5 (3^{21} < 5·2^{31}). This is a near-cube replacement of C_3, not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_odd_k5_leak.md",
   "lean": "Problems/Juggler/CycleMinEnvelopes.lean",
   "tests": [
@@ -362,7 +363,7 @@
    "y_bound",
    "y_cells",
    "y_even",
-   "y_even_no_progress",
+   "y_even_exponent_not_lt",
    "x5_contractions",
    "x5_oee_drop",
    "y_odd_lt_fifth"
@@ -394,7 +395,7 @@
  {
   "id": "J-cyclemin-odd-u-generic",
   "tag": "REFUTED",
-  "statement": "After odd u on the W_5 branch the next O has only the generic v < n^{12} bound, even v resets to C_1–C_4, n^{11} is a new structural rung, and the odd residual has a finite set of rational-exponent states. False. The inherited envelope is v < n^{3^{23}/2^{33}} < n^{11}, which is below 12 and not below 10. Even v returns below n^6, not n^4. The integers 3,4,5,8,11 are crossings of (3/2)^k · 3^{19}/2^{29}; repeated O multiplies the ceiling by 3/2. OE/OOE/OEE from u do not contract. 501 never follows W_5. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "statement": "After odd u on the W_5 branch the next O has only the generic v < n^{12} bound, the envelope certifies an even-v reset to C_1–C_4, n^{11} is a new structural rung, and the formal odd-envelope iteration has a finite set of rational-exponent states. False. The inherited envelope is v ≤ n^{3^{23}/2^{33}} < n^{11}, which is below 12 and not below 10. Even v returns below n^6; this envelope does not certify a return below n^4. The integers 3,4,5,8,11 are crossings of (3/2)^k · 3^{19}/2^{29}; repeated O multiplies the ceiling by 3/2. OE/OOE/OEE from u fail the inherited exponent test. 501 never follows W_5. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_odd_u_next_o.md",
   "lean": "",
   "tests": [
@@ -405,7 +406,7 @@
  {
   "id": "J-cyclemin-odd-u-v-eleventh",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "If n ≥ 2 follows W_5 = M(OOE)^5 with M = OOEOOOEOOEEOOE, the states x_5, y = T(x_5), z = T(y) are odd, and u = T(z) is odd, then v = T(u) satisfies v^{2^{33}} ≤ n^{3^{23}}. The tenth-power cell fails (3^{23} > 10·2^{33}) and the eleventh-power cell holds (3^{23} < 11·2^{33}), hence v < n^{3^{23}/2^{33}} < n^{11}. This beats generic v < n^{12} from u < n^8. If v is even then T(v) < n^{3^{23}/2^{34}} < n^6; even v is not below n^4 (3^{23} > 4·2^{34}) and cannot start L. After W_5 plus k extra odds the first integers are 3,4,5,8,11 for k = 0,…,4, the crossings of (3/2)^k · 3^{19}/2^{29}. This is not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "statement": "If n ≥ 2 follows W_5 = M(OOE)^5 with M = OOEOOOEOOEEOOE, the states x_5, y = T(x_5), z = T(y) are odd, and u = T(z) is odd, then v = T(u) satisfies v^{2^{33}} ≤ n^{3^{23}}. The tenth-power cell fails (3^{23} > 10·2^{33}) and the eleventh-power cell holds (3^{23} < 11·2^{33}), hence v ≤ n^{3^{23}/2^{33}} < n^{11}. This beats generic v < n^{12} from u < n^8. If v is even then T(v) ≤ n^{3^{23}/2^{34}} < n^6; the inherited envelope does not certify T(v) < n^4 (3^{23} > 4·2^{34}) while even v cannot start L. After W_5 plus k extra odds the first integers are 3,4,5,8,11 for k = 0,…,4, the crossings of (3/2)^k · 3^{19}/2^{29}. This is not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_odd_u_next_o.md",
   "lean": "Problems/Juggler/CycleMinEnvelopes.lean",
   "tests": [
@@ -416,7 +417,7 @@
    "v_bound",
    "v_cells",
    "v_even",
-   "v_even_not_fourth",
+   "v_even_exponent_not_lt_four",
    "w5_extra_odd_cells"
   ],
   "lean_trust": "kernel"
@@ -436,8 +437,8 @@
    "post_l_drop",
    "post_l_drop_even",
    "post_l_drop_oe",
-   "post_l_ooe_no_drop",
-   "post_l_second_l_no_drop",
+   "post_l_ooe_exponent_not_lt",
+   "post_l_second_l_exponent_not_lt",
    "not_follows_odd_head_of_even",
    "not_follows_oo_of_oe"
   ],
@@ -573,7 +574,7 @@
  {
   "id": "J-cyclemin-post-l-ooe-me-drop",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "If n ≥ 2 follows OOEOOOEOOEE through the inherited even-even second-OO corridor, t = T_OOEOOOEOOEE(n) starts OOE, and s = T_OOE(t), then the composite word M = OOEOOOEOOEEOOE satisfies s^{16384} ≤ n^{19683} < n^{32768} = (n^2)^{16384}, so s < n^2. M does not contract versus n (19683 > 16384). If s is even, M+E contracts (19683 < 32768). If s follows OE, M+OE contracts (59049 < 65536). Those landings are FiniteProgress and cannot meet the OOE+OOO entrance of L. A second post-L OOE then OE does not contract versus n (3^{12} > 2^{19}). This is not a claim that every post-L OOE landing starts OE, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "statement": "If n ≥ 2 follows OOEOOOEOOEE through the inherited even-even second-OO corridor, t = T_OOEOOOEOOEE(n) starts OOE, and s = T_OOE(t), then the composite word M = OOEOOOEOOEEOOE satisfies s^{16384} ≤ n^{19683} < n^{32768} = (n^2)^{16384}, so s < n^2. The exponent test for M does not certify descent below n (19683 > 16384). If s is even, M+E contracts (19683 < 32768). If s follows OE, M+OE contracts (59049 < 65536). Those landings are FiniteProgress and cannot meet the OOE+OOO entrance of L. A second post-L OOE then OE fails the envelope descent test (3^{12} > 2^{19}). This is not a claim that every post-L OOE landing starts OE, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_post_l_ooe.md",
   "lean": "Problems/Juggler/CycleMinEnvelopes.lean",
   "tests": [
@@ -583,12 +584,12 @@
   "decl": [
    "m_bound",
    "m_lt_sq",
-   "m_no_contract",
+   "m_exponent_not_lt",
    "me_finiteProgress",
    "moe_finiteProgress",
    "even_not_lEntrance",
    "oe_not_lEntrance",
-   "m_ooe_oe_no_contract"
+   "m_ooe_oe_exponent_not_lt"
   ],
   "lean_trust": "kernel"
  },
@@ -807,7 +808,7 @@
  {
   "id": "J-cyclemin-second-oo-scale-acyclic",
   "tag": "REFUTED",
-  "statement": "The second OO from an inherited odd cube-corridor q stays in C_2 ∪ C_3, the scale/parity graph is acyclic, even u drops, and consecutive odd defects obey a narrow relation. False. 491 has u = 312209649122 in C_4 and s = 558757 odd in C_2. 1181 has odd u and v = 48329349373548636613 in C_6. 501 has even u, even s = 582916, and t = 763 in C_1 with t ≥ 501, so C_2 → C_4 → C_2 → C_1 is realized. The itinerary OOEOOOEOOEE does not contract versus n (2187 > 2048). Inherited-window defects satisfy 0.04 < δ_0/(2q) < 0.75. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "statement": "The second OO from an inherited odd cube-corridor q stays in C_2 ∪ C_3, the scale/parity graph is acyclic, even u drops, and consecutive odd defects obey a narrow relation. False. 491 has u = 312209649122 in C_4 and s = 558757 odd in C_2. 1181 has odd u and v = 48329349373548636613 in C_6. 501 has even u, even s = 582916, and t = 763 in C_1 with t ≥ 501, so C_2 → C_4 → C_2 → C_1 is realized. The itinerary OOEOOOEOOEE fails the exponent descent test (2187 > 2048). Inherited-window defects satisfy 0.04 < δ_0/(2q) < 0.75. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_second_oo_cube.md",
   "lean": "",
   "tests": [
@@ -818,7 +819,7 @@
  {
   "id": "J-cyclemin-second-post-l-ooe-oe-drops",
   "tag": "REFUTED",
-  "statement": "OE after the second post-L OOE is FiniteProgress, the square cell persists for all k, and the second OOE has no n-relative envelope. False. M+OOEOE does not contract (3^{12} = 531441 > 524288 = 2^{19}) though it still has a square cell (531441 < 1048576). M(OOE)^k loses the square cell at k = 5. 501 maps 1749 through OOE to 4447 < 501^2, and 4447 starts OO; walk_language(1749) exits by drop. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "statement": "The inherited exponent test certifies FiniteProgress for OE after the second post-L OOE and a square cell for all k, while the second OOE has no n-relative envelope. False. The exponent test for M+OOEOE does not certify descent (3^{12} = 531441 > 524288 = 2^{19}) though it still has a square cell (531441 < 1048576). The square-envelope test for M(OOE)^k first fails at k = 5. 501 maps 1749 through OOE to 4447 < 501^2, and 4447 starts OO; walk_language(1749) exits by drop. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_second_post_l_ooe.md",
   "lean": "",
   "tests": [
@@ -829,7 +830,7 @@
  {
   "id": "J-cyclemin-second-post-l-ooe-square",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "If n ≥ 2 follows M = OOEOOOEOOEEOOE, s = T_M(n) starts OO, and r = T_OOE(s), then the itinerary M+OOE has length 17 and 11 odds, so r^{131072} ≤ n^{177147} and 2^{18} > 3^{11} gives n ≤ r < n^2. Even r is FiniteProgress (3^{11} < 2^{18}). For k ≥ 0 the itinerary M(OOE)^k has the square-cell gap 2^{15+3k} > 3^{9+2k} if and only if k ≤ 4; the cell is lost at k = 5 (2^{30} < 3^{19}). CycleMin(n, M OOE v) therefore implies FiniteProgress or v starts with O. This is a corridor budget, not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem. The CycleMin dichotomy holds for every v, including the empty one, which would be a length-17 cycle (cycleMin_m_ooe_any in CycleMinSecondPostL.lean, via no_cycle_itinerary_length_le_eighteen). The lower bound n ≤ r is proved on a CycleMin start; for a start that merely follows M·OOE the envelope gives only r < n^2, so that part stays a human proof.",
+  "statement": "If n ≥ 2 follows M+OOE with M = OOEOOOEOOEEOOE, s = T_M(n), and r = T_OOE(s), then the itinerary M+OOE has length 17 and 11 odds, so r^{131072} ≤ n^{177147} and 2^{18} > 3^{11} gives r < n^2. The lower bound n ≤ r additionally requires a cycle-minimum hypothesis with M+OOE as a proper prefix. Even r is FiniteProgress (3^{11} < 2^{18}). For k ≥ 0 the itinerary M(OOE)^k has the square-cell gap 2^{15+3k} > 3^{9+2k} if and only if k ≤ 4; the square-envelope certificate first fails at k = 5 (2^{30} < 3^{19}). For nonempty v, CycleMin(n, M OOE v) therefore implies FiniteProgress or v starts with O. This is a corridor budget, not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem. The CycleMin dichotomy holds for every v, including the empty one, which would be a length-17 cycle (cycleMin_m_ooe_any in CycleMinSecondPostL.lean, via no_cycle_itinerary_length_le_eighteen). The lower bound n ≤ r is proved on a CycleMin start; for a start that merely follows M·OOE the envelope gives only r < n^2, so that part stays a human proof.",
   "source": "docs/problems/juggler_second_post_l_ooe.md",
   "lean": "Problems/Juggler/CycleMinEnvelopes.lean",
   "tests": [
@@ -978,7 +979,7 @@
  {
   "id": "J-cyclemin-w5-second-oo-u-fifth",
   "tag": "REFUTED",
-  "statement": "After odd y on the W_5 branch, the completed second OO occupies an n^5 cell, two further odds raise the integer ceiling by exactly one, and only generic 3/2 growth survives. False. If z = T(y) is odd then u = T(z) satisfies 3^{22} > 5·2^{32} (31381059609 > 21474836480), so u < n^5 fails; the first integer is n^8 (3^{22} < 8·2^{32}), still below generic n^9. Even z returns below n^{5/2}, not a new hierarchy. OE/OOE/OEE from y do not contract. 501 never follows W_5. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "statement": "After odd y on the W_5 branch, the completed second OO occupies an n^5 cell, two further odds raise the integer ceiling by exactly one, and only generic 3/2 growth survives. False. If z = T(y) is odd then u = T(z) satisfies 3^{22} > 5·2^{32} (31381059609 > 21474836480), so this envelope does not certify u < n^5; the first integer is n^8 (3^{22} < 8·2^{32}), still below generic n^9. Even z returns below n^{5/2}, not a new hierarchy. OE/OOE/OEE from y fail the inherited exponent test. 501 never follows W_5. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_w5_second_oo.md",
   "lean": "",
   "tests": [
@@ -989,7 +990,7 @@
  {
   "id": "J-cyclemin-w5-second-oo-z-fifth",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "If n ≥ 2 follows W_5 = M(OOE)^5 with M = OOEOOOEOOEEOOE, x_5 = T_{W_5}(n) is odd, and y = T(x_5) is odd, then z = T(y) satisfies z^{2^{31}} ≤ n^{3^{21}}. The fourth-power cell fails (3^{21} > 4·2^{31}) and the fifth-power cell holds (3^{21} < 5·2^{31}), hence z < n^{3^{21}/2^{31}} < n^5. This beats generic z < n^6 from y < n^4. If z is even then T(z) < n^{3^{21}/2^{32}} < n^{5/2} < n^3 and z cannot start L; even z is not below n^2 (3^{21} > 2^{33}). If z is odd then u = T(z) satisfies u^{2^{32}} ≤ n^{3^{22}} and u < n^8 (3^{22} < 8·2^{32}); even u returns below n^4. This is not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "statement": "If n ≥ 2 follows W_5 = M(OOE)^5 with M = OOEOOOEOOEEOOE, x_5 = T_{W_5}(n) is odd, and y = T(x_5) is odd, then z = T(y) satisfies z^{2^{31}} ≤ n^{3^{21}}. The fourth-power cell fails (3^{21} > 4·2^{31}) and the fifth-power cell holds (3^{21} < 5·2^{31}), hence z ≤ n^{3^{21}/2^{31}} < n^5. This beats generic z < n^6 from y < n^4. If z is even then T(z) ≤ n^{3^{21}/2^{32}} < n^{5/2} < n^3 and z cannot start L; the inherited envelope does not certify T(z) < n^2 (3^{21} > 2^{33}). If z is odd then u = T(z) satisfies u^{2^{32}} ≤ n^{3^{22}} and u < n^8 (3^{22} < 8·2^{32}); even u returns below n^4. This is not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_w5_second_oo.md",
   "lean": "Problems/Juggler/CycleMinEnvelopes.lean",
   "tests": [
@@ -1001,7 +1002,7 @@
    "z_cells",
    "floorPower_odd_lt_of_lt",
    "z_even",
-   "z_even_not_sq",
+   "z_even_exponent_not_lt_two",
    "u_bound",
    "u_even_lt_fourth"
   ],

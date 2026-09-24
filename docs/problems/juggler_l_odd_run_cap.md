@@ -13,6 +13,14 @@ is not resumed. This is the designated next question of the parked
 parity-persistence branch: whether a Diophantine obstruction caps
 odd runs from \(t=T_L(n)\).
 
+## Envelope scope
+
+A failed exponent comparison means that the inherited upper envelope does
+not certify the proposed descent or cell bound. It gives no lower bound on
+an actual orbit and does not prove absence of `FiniteProgress`. Negative
+claims labelled REFUTED below concern deductions from this envelope test;
+separate explicit orbit counterexamples retain their stated finite scope.
+
 ## Problem
 
 Does the inherited envelope \(t^{2048}\le n^{2187}\) forbid
@@ -38,7 +46,7 @@ Do not open an \(L+\mathtt{O}^k\) itinerary census. Do not reopen
 ## Current literature
 
 - \(t^{2048}\le n^{2187}\); `E` and `OE` from \(t\) drop;
-  `OOE` does not —
+  the `OOE` exponent test fails —
   **EXACT — HUMAN PROOF**.
 - \(33391\to 67709\) has odd-run length \(5\) —
   **COMPUTATIONALLY VERIFIED**.
@@ -60,7 +68,7 @@ question of the parked parity-persistence branch.
 ```text
 Mathematical target     L-envelope vs long odd runs from t
 Novelty hypothesis      2187/2048 supplies a finite K
-Falsifier               compose never drops; k=5 realized
+Falsifier               exponent test never certifies descent; k=5 realized
 Existing machinery      compose_below_anchor; 33391 run 5
 Maximum Phase-0 scope   compose test; 33391; no itinerary census
 Promotion criterion     finite K theorem, or unboundedness
@@ -79,12 +87,12 @@ It is not required.
 ## Candidate operations / invariants
 
 - If \(t^{2048}\le n^{2187}\) and \(t\) follows \(\mathtt{O}^k\),
-  then \(T_{\mathtt{O}^k}(t)<n\) —
+  then the inherited exponent test certifies \(T_{\mathtt{O}^k}(t)<n\) —
   **REFUTED**. \(2187>2048\) and \(3^{k}\ge 2^{k}\), so
   \(2187\cdot 3^{k}>2048\cdot 2^{k}\) for every \(k\ge 0\).
   Slack at \(k=0\) is \(139\) and increases.
 - Therefore the \(L\)-envelope supplies a finite odd-run
-  budget \(K\) —
+  budget \(K\) by that exponent test —
   **REFUTED**.
 - `no_cycle_odd_run_append_even` caps path-length from
   \(t\) —
@@ -107,7 +115,7 @@ It is not required.
 - Records: [juggler_l_odd_run_cap.md](../research/juggler_l_odd_run_cap.md),
   [juggler_l_odd_run_cap.json](../research/juggler_l_odd_run_cap.json)
 - Tests: `tests/research/juggler_sequence/test_l_odd_run_cap.py`
-- No Lean. Not imported by `Problems.JugglerPaper`. No
+- The envelope core is in `CycleMinEnvelopes.lean`; see Formalization. No
   `sorry`. No halt theorem. No \(L+\mathtt{O}^k\) census.
 
 ## Conjectures
@@ -116,8 +124,15 @@ None opened.
 
 ## Counterexamples
 
-The hypothesis that \(t^{2048}\le n^{2187}\) forbids long
-odd runs from \(t\) is **REFUTED** by
+Failure of the exponent test is compatible with actual descent. For
+`n = 6`, `t = 3`, `k = 1`, the premise `3^2048 ≤ 6^2187` holds,
+the odd step gives `floor(sqrt(27)) = 5 < 6`, and the exponent
+comparison `2187·3 < 2048·2` fails.
+This concerns the envelope premise alone; it does not assert that `6` realizes
+an `L` prefix.
+
+The claim that this exponent test supplies an odd-run cap is
+**REFUTED** by
 
 \[
 2187\cdot 3^{k}>2048\cdot 2^{k}\qquad(k\ge 0)
@@ -128,11 +143,12 @@ length \(5\).
 
 ## Formalization
 
-None. Existing `power_bound_contracts`,
-`odd_run_suffix_threshold`, and
-`no_cycle_odd_run_append_even` are cited, not rewritten.
-No `no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`.
-No `no_juggler_cycle`. Paper A is unchanged.
+The envelope core is formalized in
+[CycleMinEnvelopes.lean](../../formal/Problems/Juggler/CycleMinEnvelopes.lean).
+The canonical ledger rows `J-cyclemin-l-odd-run-envelope`
+name the matching declarations. Negative declarations with
+`exponent_not_lt` in their names prove only failure of the exponent
+test. They do not prove non-descent or non-termination.
 
 ## Results
 
@@ -175,6 +191,6 @@ more followers?
 
 Status: `THEOREM`.
 
-A named exact non-contraction for every odd continuation
-of an \(L\)-image. Not a finite-\(K\) theorem, not an
+A named exact failure of the inherited descent test for every odd
+continuation of an \(L\)-image. Not a finite-\(K\) theorem, not an
 unboundedness theorem, and not a Juggler totality result.

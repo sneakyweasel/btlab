@@ -31,12 +31,16 @@ order, inspect a phase, zoom around the selection, change the sample window,
 or toggle the chart layers. It loads as a separate route chunk.
 
 The bundled `src/data/beatty_profile.json` is a display snapshot of
-`docs/theory/figures/beatty_profile.json`: 5,047 orders at depth 8,000, with
+`data/research/juggler/winkler_phase_collapse/beatty_profile.json`: 5,047 orders at depth 8,000, with
 256-bit Arb enclosures and omitted tail below 0.020220. It retains the source
 hash and the exact rational gap certificates. Gray strip regions remain
 unresolved; the tail band bounds the infinite profile, not finite-sample error.
 
-After deliberately regenerating the canonical figure, refresh the display data:
+React owns visualization. From the repository root, generate certified data
+without matplotlib using `python tools/export_beatty_profile.py --output
+data/research/juggler/winkler_phase_collapse/beatty_profile.json`. Prefer
+[artifact staging](../../docs/architecture/artifact_staging.md) before replacing
+committed data. Then, from this web directory, refresh the display snapshot:
 
 ```powershell
 npm run sync:beatty

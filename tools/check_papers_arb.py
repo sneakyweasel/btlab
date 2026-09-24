@@ -96,7 +96,7 @@ async def run(args):
                                    inputs=inputs, sources=sources,
                                    parameters={"paper": paper, "transport": "MCP stdio", "default_precision_bits": 256},
                                    command=["python", "tools/check_papers_arb.py", "--paper", paper,
-                                            "--output-root", "." if args.output_root == ROOT else str(args.output_root)])
+                                            "--output-root", args.output_argument])
                     print(json.dumps({"paper": paper, "mcp_calls": len(audit.calls),
                                       "progress": summary["progress"], "output": str(output)}, indent=2), flush=True)
 
@@ -106,6 +106,9 @@ def main():
     parser.add_argument("--paper", nargs="+", choices=list(PAPERS), default=list(PAPERS))
     parser.add_argument("--output-root", type=Path, default=ROOT)
     args = parser.parse_args()
+    # Preserve the requested relative CLI path in public provenance; resolving
+    # it for file IO must not replace it with a machine-specific absolute path.
+    args.output_argument = "." if args.output_root == ROOT else str(args.output_root)
     args.output_root = args.output_root.resolve()
     asyncio.run(run(args))
 

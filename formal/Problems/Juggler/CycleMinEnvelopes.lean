@@ -110,12 +110,23 @@ theorem post_l_bound {n : ℕ} (hw : follows n lWord) :
   rw [← image_eq_iterate] at h
   simpa [lWord, oddCount] using h
 
-/-- An odd run never composes below `n` from the post-L envelope:
+/-- The post-L exponent test cannot certify descent after an odd run:
 `2187·3^k < 2048·2^k` fails for every `k`, with slack `139` at `k = 0`
 and strictly increasing slack. -/
-theorem odd_run_never_drops (k : ℕ) : ¬ 2187 * 3 ^ k < 2048 * 2 ^ k := by
+theorem post_l_odd_run_exponent_not_lt (k : ℕ) : ¬ 2187 * 3 ^ k < 2048 * 2 ^ k := by
   have : 2 ^ k ≤ 3 ^ k := Nat.pow_le_pow_left (by norm_num) k
   omega
+
+/-- The envelope premise and a failed exponent test are compatible with actual
+descent: the odd step from `3` is `5`, below the anchor `6`. -/
+theorem post_l_envelope_descent_example :
+    (3 : ℕ) ^ 2048 ≤ 6 ^ 2187 ∧ follows 3 [.odd] ∧
+      image 3 [.odd] = 5 ∧ image 3 [.odd] < 6 ∧ ¬ 2187 * 3 ^ 1 < 2048 * 2 ^ 1 := by
+  have bound (a b m n : ℕ) (hab : a ≤ b) (hb : 1 ≤ b) (hmn : m ≤ n) :
+      a ^ m ≤ b ^ n :=
+    (Nat.pow_le_pow_left hab m).trans (Nat.pow_le_pow_right hb hmn)
+  exact ⟨bound 3 6 2048 2187 (by decide) (by decide) (by decide),
+    by simp [follows], by decide +kernel, by decide +kernel, by norm_num⟩
 
 /-- The slack `2187·3^k - 2048·2^k` is `139` at `k = 0`. -/
 theorem odd_run_slack_zero : 2187 * 3 ^ 0 - 2048 * 2 ^ 0 = 139 := by norm_num
@@ -153,11 +164,11 @@ theorem post_l_drop_oe {n t : ℕ} (hn : 2 ≤ n) (ht : t ^ 2048 ≤ n ^ 2187)
     (hW : follows t [.odd, .even]) : image t [.odd, .even] < n :=
   post_l_drop hn ht hW (by decide)
 
-/-- `OOE` alone and a second copy of `L` do not compose below `n`. -/
-theorem post_l_ooe_no_drop : ¬ 2187 * 3 ^ 2 < 2048 * 2 ^ 3 := by norm_num
+/-- The post-L `OOE` exponent test cannot certify descent below `n`. -/
+theorem post_l_ooe_exponent_not_lt : ¬ 2187 * 3 ^ 2 < 2048 * 2 ^ 3 := by norm_num
 
-/-- A second copy of `L` does not compose below `n` (`2187^2 > 2048^2`). -/
-theorem post_l_second_l_no_drop :
+/-- A second copy of `L` fails the envelope descent test (`2187^2 > 2048^2`). -/
+theorem post_l_second_l_exponent_not_lt :
     ¬ 2187 * 3 ^ oddCount lWord < 2048 * 2 ^ lWord.length := by decide
 
 /-! ## The composite `M = L·OOE` -/
@@ -173,8 +184,8 @@ theorem m_bound {n : ℕ} (hw : follows n mWord) :
 theorem m_lt_sq {n : ℕ} (hn : 2 ≤ n) (hw : follows n mWord) : image n mWord < n ^ 2 :=
   image_lt_of_gap hn hw (by decide)
 
-/-- `M` itself does not contract versus `n`. -/
-theorem m_no_contract : ¬ 3 ^ oddCount mWord < 2 ^ mWord.length := by decide
+/-- The exponent test for `M` fails; this does not rule out actual descent. -/
+theorem m_exponent_not_lt : ¬ 3 ^ oddCount mWord < 2 ^ mWord.length := by decide
 
 /-- `M·E` and `M·OE` contract versus `n`, giving finite progress. -/
 theorem me_finiteProgress {n : ℕ} (hn : 2 ≤ n) (hw : follows n (mWord ++ [.even])) :
@@ -194,8 +205,8 @@ theorem even_not_lEntrance {s : ℕ} (hs : s % 2 = 0) : ¬ follows s lEntrance :
 theorem oe_not_lEntrance {s : ℕ} (hs : follows s [.odd, .even]) : ¬ follows s lEntrance :=
   not_follows_oo_of_oe hs
 
-/-- A second post-L `OOE` followed by `OE` does not contract (`3^12 > 2^19`). -/
-theorem m_ooe_oe_no_contract :
+/-- A second post-L `OOE` followed by `OE` fails the envelope descent test (`3^12 > 2^19`). -/
+theorem m_ooe_oe_exponent_not_lt :
     ¬ 3 ^ oddCount (mWord ++ ([.odd, .odd, .even, .odd, .even] : List Branch)) <
       2 ^ (mWord ++ ([.odd, .odd, .even, .odd, .even] : List Branch)).length := by decide
 
@@ -303,8 +314,9 @@ theorem w5_even {n : ℕ} (hn : 2 ≤ n) (hw : follows n (w5Word ++ [.even])) :
   · have he := (follows_of_append_right hw).1
     exact not_follows_odd_head_of_even he
 
-/-- The envelope does not certify finite progress for even `x₅` (`3^19 ≥ 2^30`). -/
-theorem w5_even_no_progress : ¬ 3 ^ 19 < 2 ^ 30 := by norm_num
+/-- The exponent test does not certify a drop below the original anchor after
+even `x₅` (`3^19 ≥ 2^30`). -/
+theorem w5_even_exponent_not_lt : ¬ 3 ^ 19 < 2 ^ 30 := by norm_num
 
 /-- Odd `x₅`: the next O lands below `n^4` (`3^20 < 4·2^30`). -/
 theorem w5_odd_lt_fourth {n : ℕ} (hn : 2 ≤ n) (hw : follows n (w5Word ++ [.odd])) :
@@ -333,11 +345,12 @@ theorem y_even {n : ℕ} (hn : 2 ≤ n) (hw : follows n (w5Word ++ [.odd, .even]
   rw [show w5Word ++ [Branch.odd, .even] = (w5Word ++ [.odd]) ++ [.even] by simp] at h
   exact not_follows_odd_head_of_even (follows_of_append_right h).1
 
-/-- The envelope does not certify finite progress for even `y` (`3^20 ≥ 2^31`). -/
-theorem y_even_no_progress : ¬ 3 ^ 20 < 2 ^ 31 := by norm_num
+/-- The exponent test does not certify a drop below the original anchor after
+even `y` (`3^20 ≥ 2^31`). -/
+theorem y_even_exponent_not_lt : ¬ 3 ^ 20 < 2 ^ 31 := by norm_num
 
 /-- From `x₅`, `OEE` contracts versus `n` (`3^20 < 2^32`); `E`, `OE`, `OOE`
-and `OOOE` do not. -/
+and `OOOE` fail that exponent test. -/
 theorem x5_contractions :
     3 ^ 20 < 2 ^ 32 ∧ ¬ 3 ^ 19 < 2 ^ 30 ∧ ¬ 3 ^ 20 < 2 ^ 31 ∧
       ¬ 3 ^ 21 < 2 ^ 32 ∧ ¬ 3 ^ 22 < 2 ^ 33 := by norm_num
@@ -393,7 +406,7 @@ theorem z_even {n : ℕ} (hn : 2 ≤ n) (hw : follows n (w5Word ++ [.odd, .odd, 
   · exact not_follows_odd_head_of_even (follows_of_append_right hw').1
 
 /-- Even `z` is not certified below `n^2` (`3^21 ≥ 2^33`). -/
-theorem z_even_not_sq : ¬ 3 ^ 21 < 2 * 2 ^ 32 := by norm_num
+theorem z_even_exponent_not_lt_two : ¬ 3 ^ 21 < 2 * 2 ^ 32 := by norm_num
 
 /-- Odd `z`: `u = T(z)` satisfies `u^{2^32} ≤ n^{3^22}` and `u < n^8`. -/
 theorem u_bound {n : ℕ} (hn : 2 ≤ n) (hw : follows n (w5Word ++ [.odd, .odd, .odd])) :
@@ -435,7 +448,7 @@ theorem v_even {n : ℕ} (hn : 2 ≤ n)
   exact not_follows_odd_head_of_even (follows_of_append_right hw').1
 
 /-- Even `v` is not certified below `n^4` (`3^23 ≥ 4·2^34`). -/
-theorem v_even_not_fourth : ¬ 3 ^ 23 < 4 * 2 ^ 34 := by norm_num
+theorem v_even_exponent_not_lt_four : ¬ 3 ^ 23 < 4 * 2 ^ 34 := by norm_num
 
 /-- After `W₅` plus `k` extra odds, the first integer cells are `3,4,5,8,11`
 for `k = 0,…,4`: `(c-1)·2^{29+k} ≤ 3^{19+k} < c·2^{29+k}`. -/
@@ -445,5 +458,44 @@ theorem w5_extra_odd_cells :
     (4 * 2 ^ 31 ≤ 3 ^ 21 ∧ 3 ^ 21 < 5 * 2 ^ 31) ∧
     (7 * 2 ^ 32 ≤ 3 ^ 22 ∧ 3 ^ 22 < 8 * 2 ^ 32) ∧
     (10 * 2 ^ 33 ≤ 3 ^ 23 ∧ 3 ^ 23 < 11 * 2 ^ 33) := by norm_num
+
+
+/-! Deprecated names retained for existing consumers; each is only an exponent comparison. -/
+
+/-- Deprecated name for `post_l_odd_run_exponent_not_lt`; it does not assert non-descent of an orbit. -/
+@[deprecated (since := "2026-09-24")]
+alias odd_run_never_drops := post_l_odd_run_exponent_not_lt
+
+/-- Deprecated name for `post_l_ooe_exponent_not_lt`; it does not assert non-descent of an orbit. -/
+@[deprecated (since := "2026-09-24")]
+alias post_l_ooe_no_drop := post_l_ooe_exponent_not_lt
+
+/-- Deprecated name for `post_l_second_l_exponent_not_lt`; it does not assert non-descent of an orbit. -/
+@[deprecated (since := "2026-09-24")]
+alias post_l_second_l_no_drop := post_l_second_l_exponent_not_lt
+
+/-- Deprecated name for `m_exponent_not_lt`; it does not assert non-descent of an orbit. -/
+@[deprecated (since := "2026-09-24")]
+alias m_no_contract := m_exponent_not_lt
+
+/-- Deprecated name for `m_ooe_oe_exponent_not_lt`; it does not assert non-descent of an orbit. -/
+@[deprecated (since := "2026-09-24")]
+alias m_ooe_oe_no_contract := m_ooe_oe_exponent_not_lt
+
+/-- Deprecated name for `w5_even_exponent_not_lt`; it does not assert non-descent of an orbit. -/
+@[deprecated (since := "2026-09-24")]
+alias w5_even_no_progress := w5_even_exponent_not_lt
+
+/-- Deprecated name for `y_even_exponent_not_lt`; it does not assert non-descent of an orbit. -/
+@[deprecated (since := "2026-09-24")]
+alias y_even_no_progress := y_even_exponent_not_lt
+
+/-- Deprecated name for `z_even_exponent_not_lt_two`; it does not assert non-descent of an orbit. -/
+@[deprecated (since := "2026-09-24")]
+alias z_even_not_sq := z_even_exponent_not_lt_two
+
+/-- Deprecated name for `v_even_exponent_not_lt_four`; it does not assert non-descent of an orbit. -/
+@[deprecated (since := "2026-09-24")]
+alias v_even_not_fourth := v_even_exponent_not_lt_four
 
 end Problems.Juggler.CycleMinEnvelopes

@@ -12,6 +12,14 @@ The terminal-cluster program stays frozen. This is the residual of the
 promoted post-\(L\) `E`/`OE` FiniteProgress theorem: the odd \(t\)
 that starts `OOE`.
 
+## Envelope scope
+
+A failed exponent comparison means that the inherited upper envelope does
+not certify the proposed descent or cell bound. It gives no lower bound on
+an actual orbit and does not prove absence of `FiniteProgress`. Negative
+claims labelled REFUTED below concern deductions from this envelope test;
+separate explicit orbit counterexamples retain their stated finite scope.
+
 ## Problem
 
 After \(t=L(n)\) begins `OOE`, can that episode regenerate the
@@ -76,7 +84,7 @@ It is not required.
   hence \(s<n^2\) —
   **EXACT — HUMAN PROOF**. This uses \(t^{2048}\le n^{2187}\)
   through one `OOE` (\(s^8\le t^9\)).
-- \(M\) contracts versus \(n\) —
+- The exponent test certifies contraction of \(M\) versus \(n\) —
   **REFUTED**. \(19683>16384\).
 - After \(M\), even \(s\) drops: `M+E` contracts
   (\(19683<32768\)) —
@@ -88,10 +96,10 @@ It is not required.
 - Therefore a post-\(L\) `OOE` landing that does not start
   `OO` is FiniteProgress and cannot meet the \(L\)-entrance —
   **EXACT — HUMAN PROOF**.
-- `OOE` from \(t\) compose-drops versus \(n\) —
+- The exponent test certifies `OOE` from \(t\) below \(n\) —
   **REFUTED**. \(2187\cdot 9>2048\cdot 8\).
-- A second post-\(L\) `OOE` then `OE` contracts versus
-  \(n\) —
+- The exponent test certifies a second post-\(L\) `OOE` then `OE`
+  below \(n\) —
   **REFUTED**. \(3^{12}>2^{19}\).
 - Post-\(L\) `OOE` always dies immediately —
   **REFUTED**. \(501\to 763\to 1749\) starts `OO`.
@@ -112,7 +120,7 @@ It is not required.
 - Records: [juggler_post_l_ooe.md](../research/juggler_post_l_ooe.md),
   [juggler_post_l_ooe.json](../research/juggler_post_l_ooe.json)
 - Tests: `tests/research/juggler_sequence/test_post_l_ooe.py`
-- No Lean. Not imported by `Problems.JugglerPaper`. No
+- The envelope core is in `CycleMinEnvelopes.lean`; see Formalization. No
   `sorry`. No halt theorem.
 
 ## Conjectures
@@ -147,10 +155,12 @@ follows a second `OOEOOOEOOEE`.
 
 ## Formalization
 
-None. Existing `Envelope.lean` `power_bound_word` and
-`power_bound_contracts` are cited, not rewritten. No
-`no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`.
-No `no_juggler_cycle`. Paper A is unchanged.
+The envelope core is formalized in
+[CycleMinEnvelopes.lean](../../formal/Problems/Juggler/CycleMinEnvelopes.lean).
+The canonical ledger rows `J-cyclemin-post-l-ooe-me-drop`
+name the matching declarations. Negative declarations with
+`exponent_not_lt` in their names prove only failure of the exponent
+test. They do not prove non-descent or non-termination.
 
 ## Results
 
@@ -163,7 +173,8 @@ then
 s^{16384}\le n^{19683}<n^{32768}=(n^2)^{16384},
 \]
 
-so \(n\le s<n^2\) on the inherited corridor. Moreover
+so \(s<n^2\). The additional lower bound \(n\le s\) requires
+a cycle-minimum hypothesis with this word as a proper prefix. Moreover
 
 \[
 s\text{ even}\Rightarrow T(s)<n,
@@ -174,15 +185,15 @@ s\text{ follows }\mathtt{OE}\Rightarrow T_{\mathtt{OE}}(s)<n.
 Those landings cannot recreate the \(L\)-entrance. The only
 surviving residual is a landing that starts `OO` — a second
 post-\(L\) `OOE`, not an \(L\)-episode. That second `OOE`
-then `OE` does not contract versus \(n\).
+then `OE` fails the inherited exponent test for descent below \(n\).
 
 This is not \(Z_5\), not a length-11 census, not a four-even
 assembler, and not a halt theorem.
 
 ## Open questions
 
-Lean-package \(19683<32768\) and \(59049<65536\) after
-`OOEOOOEOOEEOOE`. The residual is a second post-\(L\)
+The square envelope and the two drop cases are formalized in
+`m_lt_sq`, `me_finiteProgress` and `moe_finiteProgress`. The residual is a second post-\(L\)
 `OOE` (\(501\to 1749\)), now the separate branch
 [juggler_second_post_l_ooe.md](juggler_second_post_l_ooe.md).
 Do not reopen bunched-short cells. Do not write \(Z_5\).
@@ -200,7 +211,7 @@ The \(L\)-entrance is not recreated. The second `OOE` after
 Best next question: after \(L+\mathtt{OOE}\), if \(s\)
 starts `OO`, does that second `OOE` still admit an exact
 \(n\)-relative split, or is that the first post-\(L\) block
-that no longer contracts on `OE`?
+whose exponent test no longer certifies contraction on `OE`?
 
 ## Publication assessment
 

@@ -89,6 +89,12 @@ import Problems.Juggler.BeattyPhaseTransfer
 import Problems.Juggler.BeattyRenewalLimit
 import Problems.Juggler.BeattyRenewalSeries
 import Problems.Juggler.BeattySurvivorProfile
+import Problems.Juggler.BeattySlopeWords
+import Problems.Juggler.BeattySlopeCounting
+import Problems.Juggler.BeattySlopeRenewal
+import Problems.Juggler.BeattySlopeBinomial
+import Problems.Juggler.BeattySlopeEndpointAsymptotic
+import Problems.Juggler.BeattySlopeSpecialization
 import Problems.Juggler.BeattyCounting
 import Problems.Juggler.BeattyBinomialBounds
 import Problems.Juggler.BeattyEndpointAsymptotic

@@ -23,11 +23,14 @@ depths is individually unchanged, and so is any combination of them.
 * `noRise_iff_le_ceil` characterises the non-rising step as `(t+1)·b ≤ ⌈t·b⌉`,
   the Sturmian condition that ties it to the word, stated without fractional parts.
 
-What is NOT formalised here is the cardinality bookkeeping `N_(d+1) = 2 * N_d`.
-That step is the observation that the extension map is a bijection, which is
-immediate from `survives_succ_of_no_rise` together with the fact that a survivor
-of length `d+1` restricts to one of length `d`; it is recorded in the ledger row
-rather than in Lean.
+The cardinality bookkeeping is formalised separately in
+`PaperBCertificateRecursion.lean`: `neverNegCount_add_minimalCertCount` gives
+the exact extension recurrence and `minimalCertCount_succ` identifies its lost
+words with `onBarrierCount`. This module proves the individual step rules;
+the separate module proves the Finset cardinality identities.
+`PaperBBarrierMass.lean` connects these counts to the ceiling barrier and
+formalises the mass-preserving update and fractional-part phase conditions.
+The measured amplitude identities remain outside this formalisation.
 -/
 
 import Mathlib.Tactic
