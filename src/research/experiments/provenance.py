@@ -14,6 +14,8 @@ import subprocess
 import sys
 import tempfile
 
+from research.repository import query as git_query
+
 SCHEMA = "btlab-output/v2"
 SCHEMAS = {"btlab-output/v1", SCHEMA}
 TEXT_SUFFIXES = {'.py', '.lean', '.md', '.json', '.jsonl', '.toml', '.yaml', '.yml', '.txt', '.csv', '.tsv'}
@@ -38,11 +40,7 @@ def recording_run(command: list[str]):
 
 def _git(root: Path, *args: str) -> str | None:
     try:
-        result = subprocess.run(
-            ["git", "-c", f"safe.directory={root.as_posix()}", *args], cwd=root,
-            capture_output=True, text=True, encoding="utf-8", errors="replace",
-            timeout=15, stdin=subprocess.DEVNULL,
-        )
+        result = git_query(root, *args, text=True, timeout=15)
         return result.stdout.strip() if result.returncode == 0 else None
     except (OSError, subprocess.TimeoutExpired):
         return None

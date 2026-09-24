@@ -8,7 +8,12 @@ import pytest
 
 import artifact_store as store
 import lab_artifacts as artifacts
-from lab_impact import git
+
+
+def git(root, *args):
+    """Fixture mutations must not use the production read-only Git API."""
+    return subprocess.check_output(['git', '-c', f'safe.directory={root.as_posix()}', *args],
+                                   cwd=root, stderr=subprocess.PIPE)
 
 TARGET = 'data/research/juggler/example'
 OUTPUT = TARGET + '/result.json'

@@ -97,6 +97,10 @@ def checkout(tmp_path):
 
 
 def test_real_stdio_client_searches_resolves_and_rejects_invalid_pagination(checkout):
+    import os
+    watched = checkout / 'src/research/juggler_sequence/lean_registry.py'
+    stamp = watched.stat()
+    os.utime(watched, ns=(stamp.st_atime_ns, stamp.st_mtime_ns + 10_000_000_000))
     def inventory():
         return {p.relative_to(checkout).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                 for p in checkout.rglob('*') if p.is_file()}
@@ -104,7 +108,9 @@ def test_real_stdio_client_searches_resolves_and_rejects_invalid_pagination(chec
     before = inventory()
     async def check():
         params = StdioServerParameters(command=sys.executable,
-            args=[str(TOOLS / 'formalpedia_mcp.py'), '--root', str(checkout)], cwd=str(checkout))
+            args=[str(TOOLS / 'formalpedia_mcp.py'), '--root', str(checkout)], cwd=str(checkout),
+            env={'GIT_DIR': str(checkout / 'not-the-selected-repository'),
+                 'GIT_INDEX_FILE': str(checkout / 'wrong-index')})
         async with stdio_client(params) as (read, write):
             async with ClientSession(read, write) as session:
                 await session.initialize()

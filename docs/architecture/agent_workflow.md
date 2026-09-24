@@ -14,7 +14,7 @@ python tools/lab.py verify --changed --workers 8
 
 ## Prepare an isolated checkout
 
-Python 3.11 or newer, `uv`, Git, and the compiler named in
+Python 3.11 or newer, `uv`, Git 2.45 or newer, and the compiler named in
 `formal/lean-toolchain` must already be installed. Preparation does not select a
 different compiler or modify global Python packages. Start inside the checkout:
 
@@ -61,6 +61,23 @@ also tries bounded version commands. Neither installs anything or changes global
 configuration. Directory presence and executable discovery do not establish a
 successful build. The runner binds Python imports, Lean binaries, and temporary
 Git ownership exceptions to the selected checkout and its local packages.
+
+Discovery, provenance, publication checks and dependency probes share
+`research.repository` for Git reads. Queries remove inherited repository/index
+selectors, bind the requested directory (including linked worktrees and bare
+mirrors), and disable optional index refresh, filesystem-monitor helpers,
+external diff/text conversion and lazy fetching of missing objects. `doctor --probe`
+checks Git's no-lazy-fetch capability. Queries do not edit global Git configuration.
+Explicit preparation still performs its requested clones/checkouts with normal
+mandatory Git locks; the shared child environment removes inherited selectors.
+
+Impact uses content comparisons so timestamp-only changes do not become false
+source edits when index refresh is disabled. Historical source reads use exact
+committed blobs, unaffected by archive exclusion/substitution attributes. Missing
+local history is an error, not an empty successful scan or permission to fetch.
+The query API serves fixed internal calls; it is not a sandbox for arbitrary Git
+arguments or executable/configuration changes. Use `GIT_OPTIONAL_LOCKS=0` and
+`-c diff.autoRefreshIndex=false` for separate read-only Git shell inspections.
 
 `impact` compares HEAD with the working tree, including staged changes,
 unstaged changes, deletions, and untracked files. Use `--since <commit>` to

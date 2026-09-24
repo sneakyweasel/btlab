@@ -11,6 +11,8 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'src'))
+from research.repository import environment as repository_environment
 
 
 def elan_home() -> Path | None:
@@ -57,7 +59,7 @@ def executable(name: str, root: Path = ROOT) -> str | None:
 def environment(root: Path = ROOT) -> dict[str, str]:
     """Bind imports and Git ownership exceptions to this checkout for child processes."""
     root = root.resolve()
-    env = os.environ.copy()
+    env = repository_environment()
     inherited = env.get('PYTHONPATH')
     env['PYTHONPATH'] = str(root / 'src') + (os.pathsep + inherited if inherited else '')
     home = elan_home()
@@ -113,7 +115,8 @@ def doctor(root: Path = ROOT, *, probe: bool = False) -> dict:
             row['reason'] = 'Executable or pinned Lean toolchain not installed locally; no installation attempted.'
         elif probe:
             try:
-                result = subprocess.run([path, '--version'], cwd=root, env=env, capture_output=True,
+                argv = [path, *(['--no-lazy-fetch'] if name == 'git' else []), '--version']
+                result = subprocess.run(argv, cwd=root, env=env, capture_output=True,
                                         text=True, encoding='utf-8', errors='replace', timeout=10,
                                         stdin=subprocess.DEVNULL)
                 row['version_probe'] = 'passed' if result.returncode == 0 else 'failed'

@@ -10,10 +10,10 @@ import hashlib
 import json
 from pathlib import Path
 import re
-import subprocess
 
 from formalpedia_core import source as fp_source, workspace as fp_workspace
 import lean_source
+from research.repository import query as git_query, blobs
 
 BASELINE = fp_workspace.ROOT / 'data/research/formalpedia/style_baseline.json'
 RULES = {
@@ -84,24 +84,20 @@ def report(index: dict, baseline: dict) -> dict:
 
 
 def committed_index(revision: str) -> tuple[str, dict]:
-    """Read committed blobs in one Git process; never baseline a peer's draft edits."""
-    git = ['git', '-c', f'safe.directory={fp_workspace.ROOT.as_posix()}']
-    resolved = subprocess.check_output(git + ['rev-parse', '--verify', revision + '^{commit}'],
-                                       cwd=fp_workspace.ROOT, text=True).strip()
-    paths = subprocess.check_output(git + ['ls-tree', '-r', '--name-only', resolved, 'formal'],
-                                   cwd=fp_workspace.ROOT, text=True).splitlines()
+    """Read committed blobs in a batch; never baseline a peer's draft edits."""
+    resolved = git_query(fp_workspace.ROOT, 'rev-parse', '--verify', '--end-of-options',
+                         revision + '^{commit}', text=True, check=True).stdout.strip()
+    paths = git_query(fp_workspace.ROOT, 'ls-tree', '-r', '--name-only', '-z', resolved, 'formal',
+                      text=True, check=True).stdout.split('\0')
     paths = [p for p in paths if p.endswith('.lean') and
              p.split('/')[1].removesuffix('.lean') in fp_workspace.LIBRARIES]
-    payload = ''.join(f'{resolved}:{p}\n' for p in paths).encode()
-    output = subprocess.check_output(git + ['cat-file', '--batch'], input=payload, cwd=fp_workspace.ROOT)
-    cursor, declarations = 0, []
-    for path in paths:
-        end = output.index(b'\n', cursor)
-        size = int(output[cursor:end].split()[-1])
-        source = output[end + 1:end + 1 + size].decode('utf-8').replace('\r\n', '\n')
+    declarations = []
+    for path, raw in blobs(fp_workspace.ROOT, resolved, paths).items():
+        if raw is None:
+            raise ValueError(f'Committed Lean source is missing: {path}')
+        source = raw.decode('utf-8').replace('\r\n', '\n')
         module = path[len('formal/'):].removesuffix('.lean').replace('/', '.')
         declarations.extend(lean_source.scan(source, module, path))
-        cursor = end + size + 2
     return resolved, {'declarations': declarations}
 
 

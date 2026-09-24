@@ -9,9 +9,11 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path, PurePosixPath
-import subprocess
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'src'))
+from research.repository import query as git_query
 
 
 def prohibited(path: str) -> bool:
@@ -27,9 +29,7 @@ def prohibited(path: str) -> bool:
 
 
 def git(root: Path, *args: str) -> bytes:
-    result = subprocess.run(
-        ["git", "-C", str(root), *args], capture_output=True, check=False,
-    )
+    result = git_query(root, *args)
     if result.returncode:
         raise RuntimeError(result.stderr.decode("utf-8", "replace").strip())
     return result.stdout

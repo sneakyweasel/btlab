@@ -16,6 +16,7 @@ from oeis_index import ROOT
 from oeis_source import aid
 from lab_scope import active_lean_modules, path_scope, policy, validate_scope
 from research.claims import load_claims
+from research.repository import query as git_query
 
 KINDS = ('paper', 'dossier', 'negative_knowledge', 'lean', 'theory', 'source',
          'literature', 'ledger', 'bibliography', 'laboratory_reference')
@@ -67,10 +68,8 @@ def find_mentions(identifier: str, root: Path):
     candidates = None
     if shutil.which('git'):
         try:
-            result = subprocess.run(['git', '-c', f'safe.directory={root.resolve().as_posix()}',
-                                     'ls-files', '--cached', '--others', '--exclude-standard', '-z',
-                                     '--', *directories], cwd=root, capture_output=True,
-                                    text=True, encoding='utf-8', timeout=20, stdin=subprocess.DEVNULL)
+            result = git_query(root, 'ls-files', '--cached', '--others', '--exclude-standard', '-z',
+                               '--', *directories, text=True, timeout=20)
             if result.returncode == 0:
                 candidates = {p for p in result.stdout.split('\0') if p}
         except OSError:
