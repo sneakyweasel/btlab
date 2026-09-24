@@ -7,6 +7,7 @@ import Problems.Juggler.BeattySlopeDiophantineDim
 import Problems.Juggler.BeattySlopeExactDim
 import Problems.Juggler.BeattySlopeIrrExp
 import Problems.Juggler.BeattySlopeRegularDim
+import Problems.Juggler.BeattySlopeConvergents
 import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeGlobalLaw
 import Problems.Juggler.BeattySlopeLawContinuity
@@ -459,5 +460,42 @@ namespace Problems.Juggler
 #print axioms BeattySlope.regular_cluster_dimH_le'
 #print axioms BeattySlope.regular_dio_lower
 #print axioms BeattySlope.regular_cluster_dimH_eq
+#print axioms BeattySlope.cfDen_add_two
+#print axioms BeattySlope.cfNum_add_two
+#print axioms BeattySlope.cf_det
+#print axioms BeattySlope.cf_det_two
+#print axioms BeattySlope.cfDen_le_succ
+#print axioms BeattySlope.cfDen_succ_pos
+#print axioms BeattySlope.le_cfDen
+#print axioms BeattySlope.cfDen_tendsto
+#print axioms BeattySlope.cfConv_odd_lt
+#print axioms BeattySlope.cfConv_even_lt
+#print axioms BeattySlope.cfConv_odd_lt_even
+#print axioms BeattySlope.cfConv_odd_lt_even'
+#print axioms BeattySlope.cfConv_odd_lt_lim
+#print axioms BeattySlope.cfLim_lt_conv_even
+#print axioms BeattySlope.cfErr_pos
+#print axioms BeattySlope.cf_sign_sq
+#print axioms BeattySlope.abs_cf_err
+#print axioms BeattySlope.cfErr_identity
+#print axioms BeattySlope.cfErr_recurrence
+#print axioms BeattySlope.cfErr_succ_le
+#print axioms BeattySlope.cfErr_le
+#print axioms BeattySlope.cfErr_ge
+#print axioms BeattySlope.cf_best_approx
+#print axioms BeattySlope.cf_goodConvergents
+#print axioms BeattySlope.cfLim_gt
+#print axioms BeattySlope.cfLim_irrational
+#print axioms BeattySlope.expQuot_succ_ge
+#print axioms BeattySlope.cfDen_expQuot
+#print axioms BeattySlope.one_lt_expSlope
+#print axioms BeattySlope.expSlope_irrational
+#print axioms BeattySlope.expDen_growth
+#print axioms BeattySlope.expSlope_good
+#print axioms BeattySlope.expSlope_cluster_dimH
+#print axioms BeattySlope.exists_slope_cluster_dimH
+#print axioms BeattySlope.cluster_dimH_spectrum
+#print axioms BeattySlope.regular_diophClass
+#print axioms BeattySlope.expSlope_diophClass
 
 end Problems.Juggler

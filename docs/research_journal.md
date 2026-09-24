@@ -50,7 +50,8 @@ irrational slopes. Hausdorff dimension for Diophantine class `nu` lies in
 `dim_H K_alpha=2/3` exactly when the irrationality exponent is `2`, so at
 `log_2 3` the dimension question is equivalent to an open number-theory one.
 For regular slopes (`q_(n+1)` of order `q_n^nu` at every level) the dimension
-is exactly `2/(2+nu)` (Lean, given classical convergent facts).
+is exactly `2/(2+nu)`; explicit slopes of every class exist, so the
+dimensions over all irrational slopes fill exactly `[0,2/3]` (Lean).
 **PROMOTE**. See Sections 27–31 of the
 [Beatty note](theory/juggler_beatty_first_passage_note.md).
 

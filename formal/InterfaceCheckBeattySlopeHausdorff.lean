@@ -3,6 +3,7 @@ import Problems.Juggler.BeattySlopeLiouville
 import Problems.Juggler.BeattySlopeDiophantineDim
 import Problems.Juggler.BeattySlopeExactDim
 import Problems.Juggler.BeattySlopeIrrExp
+import Problems.Juggler.BeattySlopeConvergents
 
 /-! Expanded consumers of the family Hausdorff theorems. Each statement
 concerns the set of real subsequential limits of the original integer
@@ -150,6 +151,22 @@ theorem actual_dim_two_thirds_iff (α : ℝ) (hα1 : 1 < α) (hα : Irrational �
   rw [cluster_eq α hα1 hα]
   exact cluster_dimH_eq_iff hα1 hα
 
+/-- The Hausdorff dimensions of the actual limit sets over all irrational
+slopes above one fill exactly the interval `[0, 2/3]`. -/
+theorem actual_dim_spectrum :
+    Set.range (fun α : {x : ℝ // 1 < x ∧ Irrational x} =>
+      dimH {y : ℝ | MapClusterPt y atTop (fun r : ℕ => let m := ⌊(α : ℝ)*(r : ℝ)⌋₊;
+        (r : ℝ)*(passageCount (1/(α : ℝ)) (m+1) : ℝ)/((m-1).choose (r-1) : ℝ))}) =
+      Set.Icc 0 (2/3) := by
+  have h : (fun α : {x : ℝ // 1 < x ∧ Irrational x} =>
+      dimH {y : ℝ | MapClusterPt y atTop (fun r : ℕ => let m := ⌊(α : ℝ)*(r : ℝ)⌋₊;
+        (r : ℝ)*(passageCount (1/(α : ℝ)) (m+1) : ℝ)/((m-1).choose (r-1) : ℝ))}) =
+      (fun α : {x : ℝ // 1 < x ∧ Irrational x} => dimH (passageClusterSet (1/(α : ℝ)))) := by
+    funext α
+    rw [cluster_eq α α.2.1 α.2.2]
+  rw [h]
+  exact cluster_dimH_spectrum
+
 #print axioms actual_family_hausdorff_finite
 #print axioms actual_ae_hausdorff_dim
 #print axioms actual_dio_hausdorff_pos
@@ -161,5 +178,6 @@ theorem actual_dim_two_thirds_iff (α : ℝ) (hα1 : 1 < α) (hα : Irrational �
 #print axioms actual_exponent_dim
 #print axioms actual_dim_class_lower
 #print axioms actual_dim_two_thirds_iff
+#print axioms actual_dim_spectrum
 
 end Problems.Juggler.BeattySlopeHausdorffChecks

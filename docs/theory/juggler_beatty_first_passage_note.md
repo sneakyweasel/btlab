@@ -2643,10 +2643,21 @@ length about `1/q_n` is cut at its own early atoms; the at most seven gaps
 carrying chain continuations cost order `q_n^(-1)E^(-1/2)`, and every other
 gap is a cell of the next level. The cost exponents improve at every level
 exactly when `s>2/(2+nu)`. The lower bound is (62e) with `tau=nu`, since
-regular growth and separation give a uniform bound of exponent `nu`. That
-continued-fraction convergents satisfy these hypotheses and that regular
-slopes exist are classical facts, not formalized
+regular growth and separation give a uniform bound of exponent `nu`
 ([BeattySlopeRegularDim.lean](../../formal/Problems/Juggler/BeattySlopeRegularDim.lean)).
+
+**Explicit slopes and the dimension spectrum — EXACT — LEAN VERIFIED.**
+Continued fractions built directly from the recurrences, with partial
+quotients `a_k=ceil(Q_k^(nu-1))+1`, give an explicit irrational slope of
+Diophantine class exactly `nu` that satisfies these hypotheses, so (62g)
+holds unconditionally for it. Together with the golden ratio (dimension
+`2/3`) and a Liouville number (dimension `0`),
+\[
+ \{\dim_H K_\alpha:\ \alpha>1\ \text{irrational}\}=\Bigl[0,\frac23\Bigr].   \tag{62h}
+\]
+([BeattySlopeConvergents.lean](../../formal/Problems/Juggler/BeattySlopeConvergents.lean)).
+That the convergents of an arbitrary irrational satisfy the hypotheses is
+classical and not formalized.
 For slopes of the same class `nu` whose good levels are isolated among
 bounded partial quotients, a written sketch suggests the larger value
 `2(sqrt(1+3 nu)-1)/(3 nu)`; if so, Hausdorff dimension is not a function
