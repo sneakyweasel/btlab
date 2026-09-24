@@ -2631,6 +2631,27 @@ order `q^(-p/2)` and so (62d) caps the dimension below `2/3`; otherwise
 is two, an open problem in number theory
 ([BeattySlopeIrrExp.lean](../../formal/Problems/Juggler/BeattySlopeIrrExp.lean)).
 
+**Regular slopes — EXACT — LEAN VERIFIED.** Suppose every convergent level
+is good: `c q_n^nu <= q_(n+1) <= C q_n^nu` for all `n`, with the convergent
+properties `|q_n alpha-p_n|<=1/q_(n+1)` and `|m alpha-r|>=1/(2q_n)` for
+`0<m<q_n`. Then
+\[
+ \dim_H K_\alpha=\frac{2}{2+\nu}.                                      \tag{62g}
+\]
+The upper bound refines covers level by level inside each gap: a cell of
+length about `1/q_n` is cut at its own early atoms; the at most seven gaps
+carrying chain continuations cost order `q_n^(-1)E^(-1/2)`, and every other
+gap is a cell of the next level. The cost exponents improve at every level
+exactly when `s>2/(2+nu)`. The lower bound is (62e) with `tau=nu`, since
+regular growth and separation give a uniform bound of exponent `nu`. That
+continued-fraction convergents satisfy these hypotheses and that regular
+slopes exist are classical facts, not formalized
+([BeattySlopeRegularDim.lean](../../formal/Problems/Juggler/BeattySlopeRegularDim.lean)).
+For slopes of the same class `nu` whose good levels are isolated among
+bounded partial quotients, a written sketch suggests the larger value
+`2(sqrt(1+3 nu)-1)/(3 nu)`; if so, Hausdorff dimension is not a function
+of the Diophantine class. This is a conjecture here.
+
 *Remark on classical Denjoy sets.* For two-sided classical Denjoy sets with
 gap exponent `1/delta`, Kra and Schmeling [7, Theorem 3.1] state the
 Hausdorff dimension `delta/nu`. The same many-hits argument suggests that

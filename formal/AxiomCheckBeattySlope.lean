@@ -6,6 +6,7 @@ import Problems.Juggler.BeattySlopeLiouville
 import Problems.Juggler.BeattySlopeDiophantineDim
 import Problems.Juggler.BeattySlopeExactDim
 import Problems.Juggler.BeattySlopeIrrExp
+import Problems.Juggler.BeattySlopeRegularDim
 import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeGlobalLaw
 import Problems.Juggler.BeattySlopeLawContinuity
@@ -429,5 +430,34 @@ namespace Problems.Juggler
 #print axioms BeattySlope.approx_of_liouvilleWith
 #print axioms BeattySlope.cluster_dimH_eq_iff
 #print axioms BeattySlope.log_cluster_dimH_iff
+#print axioms BeattySlope.gapMass_nonneg
+#print axioms BeattySlope.CellCover
+#print axioms BeattySlope.cellCover_self
+#print axioms BeattySlope.exists_cutGap_Icc
+#print axioms BeattySlope.sum_biUnion_le_of_nonneg
+#print axioms BeattySlope.cellCover_of_gaps
+#print axioms BeattySlope.cellCover_hausdorff_zero
+#print axioms BeattySlope.card_le_of_separated
+#print axioms BeattySlope.phase_separated
+#print axioms BeattySlope.block_count_le
+#print axioms BeattySlope.sum_range_three_halves_le
+#print axioms BeattySlope.cell_tail_le
+#print axioms BeattySlope.chain_same_cell_gap
+#print axioms BeattySlope.card_mid_gaps_le
+#print axioms BeattySlope.gap_short_of_approx
+#print axioms BeattySlope.card_range_filter_le
+#print axioms BeattySlope.cell_block_count
+#print axioms BeattySlope.cell_refine_step
+#print axioms BeattySlope.step_cost_le
+#print axioms BeattySlope.weight_const_nonneg
+#print axioms BeattySlope.levelCovers_base
+#print axioms BeattySlope.good_approx_sq
+#print axioms BeattySlope.levelCovers_step
+#print axioms BeattySlope.levelCovers_exists
+#print axioms BeattySlope.regular_hausdorff_zero
+#print axioms BeattySlope.regular_cluster_dimH_le
+#print axioms BeattySlope.regular_cluster_dimH_le'
+#print axioms BeattySlope.regular_dio_lower
+#print axioms BeattySlope.regular_cluster_dimH_eq
 
 end Problems.Juggler
