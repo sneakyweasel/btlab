@@ -2422,6 +2422,59 @@
   "related_conjectures": []
  },
  {
+  "id": "J-beatty-slope-dim-spectrum",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Continued fractions are built from the recurrences P,Q with the determinant identity; the limit alpha of the convergents satisfies (1/2)/Q_(k+1) <= |Q_k alpha - P_k| <= 1/Q_(k+1) and the best approximation property |m alpha - r| >= |Q_k alpha - P_k| for 0<m<Q_(k+1), so its convergents satisfy the hypotheses of J-beatty-slope-regular-exact-dim. With partial quotients a_k = ceil(Q_k^(nu-1))+1 the slope expSlope(nu)>1 is irrational, has Q_(n+1) between Q_n^nu and 4*Q_n^nu, is of Diophantine class exactly nu (inequality |q alpha - p|<q^(-mu) has infinitely many denominators for mu<nu and finitely many for mu>nu), and its actual cluster set has Hausdorff dimension exactly 2/(2+nu) for nu>1. Consequently the set of Hausdorff dimensions of the actual cluster sets over all irrational slopes alpha>1 is exactly [0,2/3]: 0 at a Liouville number, 2/3 at the golden ratio, and every value in between at expSlope(2/t-2).",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeConvergents.lean",
+  "decl": [
+   "cfDen_add_two",
+   "cfNum_add_two",
+   "cf_det",
+   "cf_det_two",
+   "cfDen_le_succ",
+   "cfDen_succ_pos",
+   "le_cfDen",
+   "cfDen_tendsto",
+   "cfConv_odd_lt",
+   "cfConv_even_lt",
+   "cfConv_odd_lt_even",
+   "cfConv_odd_lt_even'",
+   "cfConv_odd_lt_lim",
+   "cfLim_lt_conv_even",
+   "cfErr_pos",
+   "cf_sign_sq",
+   "abs_cf_err",
+   "cfErr_identity",
+   "cfErr_recurrence",
+   "cfErr_succ_le",
+   "cfErr_le",
+   "cfErr_ge",
+   "cf_best_approx",
+   "cf_goodConvergents",
+   "cfLim_gt",
+   "cfLim_irrational",
+   "expQuot_succ_ge",
+   "cfDen_expQuot",
+   "one_lt_expSlope",
+   "expSlope_irrational",
+   "expDen_growth",
+   "expSlope_good",
+   "expSlope_cluster_dimH",
+   "exists_slope_cluster_dimH",
+   "cluster_dimH_spectrum",
+   "regular_diophClass",
+   "expSlope_diophClass"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_hausdorff_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-slope-first-passage",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For the actual binary-word counts at every real boundary beta, survivors and first passages partition the extensions of surviving words: S_beta(n+1)+P_beta(n+1)=2*S_beta(n), with S_beta(0)=1 and P_beta(0)=0. For 0<beta<=1, every first-passage word with r odd letters has length floor(r/beta)+1 and ends in an even letter. Survival uses weak prefix inequalities and crossing is strict, so this first-crossing location also covers rational boundaries. InterfaceCheckBeattySlope.lean expands the consumer statements; AxiomCheckBeattySlope.lean records the public theorem dependencies. No asymptotic assertion follows merely from this finite partition.",
@@ -3218,7 +3271,7 @@
  {
   "id": "J-beatty-slope-regular-exact-dim",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "Let alpha>1 be irrational with a sequence of approximations p_n/q_n (q_n -> infinity) satisfying the convergent properties |q_n*alpha-p_n|<=1/q_(n+1) and |m*alpha-r|>=1/(2 q_n) for 0<m<q_n, and regular growth c*q_n^nu <= q_(n+1) <= C*q_n^nu for every n, with nu>1. Then the complete set K_alpha of subsequential limits of the actual ratios has Hausdorff dimension exactly 2/(2+nu). The upper bound uses multi-level cell covers refined inside each gap; the lower bound follows from a uniform Diophantine bound of exponent nu implied by the growth and separation. That continued-fraction convergents satisfy these hypotheses, and that such regular slopes exist, are classical facts not formalized here. For the same Diophantine class nu a slope with isolated good levels is conjectured (written sketch) to have the larger dimension 2(sqrt(1+3nu)-1)/(3nu); this is not asserted.",
+  "statement": "Let alpha>1 be irrational with a sequence of approximations p_n/q_n (q_n -> infinity) satisfying the convergent properties |q_n*alpha-p_n|<=1/q_(n+1) and |m*alpha-r|>=1/(2 q_n) for 0<m<q_n, and regular growth c*q_n^nu <= q_(n+1) <= C*q_n^nu for every n, with nu>1. Then the complete set K_alpha of subsequential limits of the actual ratios has Hausdorff dimension exactly 2/(2+nu). The upper bound uses multi-level cell covers refined inside each gap; the lower bound follows from a uniform Diophantine bound of exponent nu implied by the growth and separation. Explicit slopes satisfying these hypotheses for every nu>1 are constructed in J-beatty-slope-dim-spectrum; that the convergents of an arbitrary irrational satisfy them is classical and not formalized here. For the same Diophantine class nu a slope with isolated good levels is conjectured (written sketch) to have the larger dimension 2(sqrt(1+3nu)-1)/(3nu); this is not asserted.",
   "source": "docs/problems/juggler_winkler_phase_collapse.md",
   "lean": "Problems/Juggler/BeattySlopeRegularDim.lean",
   "decl": [
@@ -7364,7 +7417,7 @@
  {
   "id": "J-depth-five-small-shift-poor-tail",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "The depth-five count-poor tails need differenced sums only at small shifts. Take blocks of L_1 <= eta min H_t / 10 consecutive odd integers inside fibres of H_t candidates. Every fibre whose count deviates by eta contains at least 0.3 eta H_t / L_1 blocks deviating by eta/2, not merely one. With blocks of length P^(delta') for any fixed delta' > 0, the poor fraction is therefore << P^(-min(delta', sigma)) whenever |T_d| << P^(1-sigma) for all 1 <= d < P^(delta') and bounded nonzero frequencies. At delta' = 1/48 this is enough for both OOOEE and OOEOE. The inputs are Paper B's printed Appendix C.9 (|T_1(h_1)| << P^(63/64+eps) for h_1 < P^(1/48)) and C.2, E5's j = 0 case, and Lemma E7, whose j != 0 case reruns Lemma 4.4's proof with a U-carry. The OOOEE and OOEOE poor tails then have reciprocal mass << U_0^(-1/55) and << U_0^(-1/41) (restated E6' and E8'). The widened Lemmas E1-E4 are then off the critical path of the 0.74 route. Depth seven (windows P^(47/128), root about 0.787 at 1/85) is blocked by six-coordinate nested floors, not by shift range. AI-assisted written proof in juggler_depth_five_production (Result 23); one AI adversarial audit found no failing step (Result 24); human review outstanding. The restated tails are Theorem 6.3 of Paper B, prepared version 1.2.0 (24 September 2026, not deposited), with the proof written as Appendix D; an AI review of that text found two gaps, the range of the second moment and the OOEOE frequency labels, both repaired there (Result 36).",
+  "statement": "The depth-five count-poor tails need differenced sums only at small shifts. Take blocks of L_1 <= eta min H_t / 10 consecutive odd integers inside fibres of H_t candidates. Every fibre whose count deviates by eta contains at least 0.3 eta H_t / L_1 blocks deviating by eta/2, not merely one. With blocks of length P^(delta') for any fixed delta' > 0, the poor fraction is therefore << P^(-min(delta', sigma)) whenever |T_d| << P^(1-sigma) for all 1 <= d < P^(delta') and bounded nonzero frequencies. At delta' = 1/48 this is enough for both OOOEE and OOEOE. The inputs are Paper B's printed Appendix C.9 (|T_1(h_1)| << P^(63/64+eps) for h_1 < P^(1/48)) and C.2, E5's j = 0 case, and Lemma E7, whose j != 0 case reruns Lemma 4.4's proof with a U-carry. The OOOEE and OOEOE poor tails then have reciprocal mass << U_0^(-1/55) and << U_0^(-1/41) (restated E6' and E8'). The widened Lemmas E1-E4 are then off the critical path of the 0.74 route. Depth seven (windows P^(47/128), root about 0.787 at 1/85) is blocked by six-coordinate nested floors, not by shift range. AI-assisted written proof in juggler_depth_five_production (Result 23); one AI adversarial audit found no failing step (Result 24); human review outstanding. The restated tails are Theorem 6.3 of Paper B version 1.2.0, published 24 September 2026 (doi:10.5281/zenodo.22946276), with the proof written as Appendix D; an AI review of that text found two gaps, the range of the second moment and the OOEOE frequency labels, both repaired there (Result 36).",
   "source": "docs/problems/juggler_depth_five_production.md",
   "lean": "",
   "tests": [
