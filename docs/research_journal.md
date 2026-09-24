@@ -11,6 +11,29 @@ consolidation is at `e9725762eaf028d1ace354ff20e0fc48f1a3d143`. See
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-24 -- Both depth-five productions written; contagion 0.74 conditional
+
+Depth-five branch, Results 7-24. The route rests on the following:
+
+- **EXACT — HUMAN PROOF (AI-written, AI-audited, not human-reviewed):**
+  - *Both productions at `1/28`.* Both the `OOOEE` and the `OOEOE` production
+    hold at coefficient `1/28`.
+  - *Small shifts suffice.* Lemma E9's sub-block averaging shows that the poor
+    tails need only differenced sums at shifts below `P^(1/48)`. Those are
+    Paper B's printed Appendix C.9 and C.2, plus two new mechanisms: E5's
+    `j = 0` diagonal (`243/4096`) and E7's smooth-coefficient `U`-carry for
+    `OOEOE` (`-1701/4096`).
+  - *Widened lemmas no longer needed.* The widened Lemmas E1-E4 are off the
+    critical path.
+- **EXACT — LEAN VERIFIED (conditional):** `FateDepthFiveAssembly` turns both
+  productions into contagion `(log X)^(37/50)` and thresholds `13/50`. The
+  Arb-certified root is `0.74057`.
+
+**PARK:** the promotion criterion `lambda > 0.74` is met in writing; promotion
+awaits human review. Depth seven, with root about `0.787`, would need
+six-coordinate nested floors. Record:
+[depth-five dossier](problems/juggler_depth_five_production.md).
+
 ## 2026-09-24 -- Beatty cluster set has positive Hausdorff dimension at log_2 3
 
 Review of the Beatty note. **EXACT — HUMAN PROOF:** Rhin's effective
@@ -228,15 +251,3 @@ lower/upper iteration brackets all coordinates within 10^(-9) at levels
 bound on that ratio along rates tending to one; no coefficient divergence,
 Juggler pressure or termination follows. See the
 [dossier](problems/collatz_fibre_subsolutions.md).
-
-## 2026-09-23 -- Fixed-root coefficients are at most linear; block-minimum weights lose their prefactor
-
-Lean now bounds both signed complete unit coefficients by A_s(a)*(d+1)
-at each nonperiodic positive odd root, using actual endpoints, harmonic
-mass and the finite-height tail. The all-source bound loses only 21/5.
-For geometric generation blocks whose rate is certified by the block
-minimum, the normalized root weight divided by 1-q is at most
-4*A_s(a)*N^3*(2/3)^(N-1), and tends to zero. **CLOSE** that construction;
-other periodic subsolutions and fixed-root divergence remain open. Fifteen
-exact controls pass. No Juggler pressure or termination follows. See the
-[dossier](problems/collatz_fibre_block_weights.md).

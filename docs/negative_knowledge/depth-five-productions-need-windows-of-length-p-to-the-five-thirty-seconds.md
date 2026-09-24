@@ -35,3 +35,11 @@ averaged substitute for `OOOEE`. Differenced sums with shifts up to `P^(5/32)` h
 `|T_d| << P^(127/128+eps)` at bounded nonzero frequencies, and the count-poor tail has
 reciprocal mass `<< U^(-1/109)`. The parking reason no longer applies to `OOOEE`,
 subject to review of those AI-written lemmas. It still applies to `OOEOE`.
+
+**Revised a third time, 24 September 2026.** Results 19-24 write `OOEOE` as well,
+and Lemma E9 (Result 23) shows that this record's reopening condition was too
+strong. By sub-block averaging, the poor tail needs differenced sums only at shifts
+below an arbitrarily small power of `P`, not up to the window `P^(5/32)`. The
+parking reason therefore no longer applies to either depth-five word, subject to
+human review of Lemmas E5-E9. What remains open beyond depth five is nesting depth,
+not window length: the depth-seven words need six nested floor coordinates.
