@@ -17,7 +17,10 @@ and explicit content. The whole rescaled neighbourhood measure converges
 weakly to the empirical law weighted by its value to the two-thirds power,
 with the same geometric scale factor. All of these statements hold for every
 irrational slope above one and are proved in Lean for the actual integer
-word counts.
+word counts. The Hausdorff dimension of the accumulation set is at most
+`2/3` for every such slope, and exactly `2/3` for Lebesgue-almost every
+slope; every quadratic irrational slope has positive finite two-thirds
+Hausdorff measure.
 At the logarithmic slope `alpha=log_2 3`, the
 same integer counts in BGL's exact Gamma normalization have an absolutely
 continuous limiting law, mutually singular with the first. We give its
@@ -737,6 +740,7 @@ bounded phase kernel.
 | Positive Hausdorff lower bounds at the logarithmic slope from the Rhin and Wu–Wang measures | Written proof in Section 20 (**EXACT — HUMAN PROOF**) |
 | Gamma-normalized law, density, support, moments and regularity | Lean proved at the logarithmic slope in Sections 21–23 |
 | Phase theorem, cluster set, singular law, sharp gaps, Minkowski content and geometric measure for every irrational `alpha>1` | Lean proved in Sections 24–26 |
+| Family Hausdorff upper bound; dimension `2/3` for almost every slope; positive finite measure for quadratic irrational slopes | Lean proved in Section 27 |
 | Quantitative `O(r^(-1/2))` error | Written proof; this continuation proves `o(1)` only |
 
 These distinctions must be preserved in any communication about the result.
@@ -2462,6 +2466,77 @@ content precedents retain the roles described earlier; extension and
 formal verification do not establish a literature-priority claim.
 **PROMOTE** the whole-family gap and geometric-measure theorem. Canonical
 rotation comparison and arithmetic Hausdorff classification remain future work.
+
+## 27. Hausdorff geometry across the family
+
+**Family Hausdorff theorems — EXACT — LEAN VERIFIED.** Fix any irrational
+`alpha>1` and retain `K_alpha` from Sections 25–26. The Section 19
+arguments transfer verbatim, because they use only the cube-root tube
+bound, the three-halves weight bounds, the closure-of-range identity and
+the exact CDF identities, all of which now hold for the family. Thus
+\[
+ \mathcal H^{2/3}(K_\alpha)<\infty,\qquad \dim_H K_\alpha\le\frac23
+\]
+for every irrational slope above one. Its CDF `G_alpha` satisfies
+`G_alpha(F_alpha(t))=t`, is constant on every closed gap, and maps
+`K_alpha` onto `[0,1]`. If the phases `{(n+1)alpha}` hit every interval of
+width `h` by index `H h^(-tau)`, then `G_alpha` is `2/(3 tau)`-Hölder and
+`H^(2/(3 tau))(K_alpha)>0`. The Section 20 Dirichlet argument supplies that
+hitting bound from any uniform Diophantine bound (42) for `xi=alpha`.
+
+**Almost every slope — EXACT — LEAN VERIFIED.** For Lebesgue-almost every
+real `alpha>1`,
+\[
+ \boxed{\quad \dim_H K_\alpha=\frac23. \quad}                        \tag{61}
+\]
+The arithmetic input is Mathlib's theorem that almost every real number is
+not Liouville with any exponent `p>2`. If an irrational `x` is not
+Liouville with exponent `p`, then `|qx-p'|>=q^(1-p)` for all sufficiently
+large `q`; distance to the nearest integer is positive for the finitely many
+remaining denominators, so (42) holds with `tau=p-1` and some `c>0`. Taking
+`p=tau+1` for every `tau>1` gives premise (45), and the family version of
+(44) gives (61). Almost every real is irrational because the rationals are
+countable. The exceptional null set is not described.
+
+**Quadratic slopes — EXACT — LEAN VERIFIED.** Let `alpha>1` be an irrational
+root of `a x^2+b x+c` with integers `a!=0`, `b`, `c`, and conjugate
+`alpha'`. The norm form
+`a p^2+b p q+c q^2=a(p-q alpha)(p-q alpha')` is a nonzero integer, since
+neither root is rational. If `|q alpha-p|<1`, then
+`|p-q alpha'|<=q(1+|alpha-alpha'|)`, and so
+\[
+ |q\alpha-p|\ge\frac{\kappa}{q},\qquad
+ \kappa=\min\Bigl(1,\frac1{|a|(1+|\alpha-\alpha'|)}\Bigr).
+\]
+This is bad approximability with an explicit constant; the `tau=1` case then gives
+\[
+ \boxed{\quad 0<\mathcal H^{2/3}(K_\alpha)<\infty,\qquad
+ \dim_H K_\alpha=\frac23 \quad}                                     \tag{62}
+\]
+for every quadratic irrational slope above one, including the golden ratio.
+
+**Formal interfaces and scope.**
+[BeattySlopeHausdorff.lean](../../formal/Problems/Juggler/BeattySlopeHausdorff.lean)
+contains the family upper bound, CDF identities, Hölder transfer and
+conditional lower bounds;
+[BeattySlopeArithmetic.lean](../../formal/Problems/Juggler/BeattySlopeArithmetic.lean)
+contains the Liouville reduction, the almost-every-slope theorem and the
+quadratic norm-form argument.
+[InterfaceCheckBeattySlopeHausdorff.lean](../../formal/InterfaceCheckBeattySlopeHausdorff.lean)
+states all five consumer theorems for the set of real subsequential limits
+of the original integer ratios, and the family audit now checks 180 records
+with only `propext`, `Classical.choice` and `Quot.sound`.
+
+The almost-every statement does not decide any particular transcendental
+slope. At `alpha=log_2 3` the Lean layer still gives only the conditional
+bounds of Section 20; the Rhin and Wu–Wang corollaries (44a)–(44b) remain
+written proofs. Whether some irrational slope, necessarily in the null
+exceptional set, has `dim_H K_alpha<2/3`, and whether the critical
+two-thirds measure is positive for almost every slope, remain open. For
+classical Denjoy sets such a Diophantine dependence occurs [7]; no
+identification with that model is claimed.
+**PROMOTE** the family Hausdorff upper bound, the almost-every-slope
+dimension theorem and the quadratic-irrational positive-measure theorem.
 
 ## References
 

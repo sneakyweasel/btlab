@@ -122,6 +122,8 @@ import Problems.Juggler.BeattySlopeContent
 import Problems.Juggler.BeattySlopeLocalCounting
 import Problems.Juggler.BeattySlopeGeometricLaw
 import Problems.Juggler.BeattySlopeLocalContent
+import Problems.Juggler.BeattySlopeHausdorff
+import Problems.Juggler.BeattySlopeArithmetic
 import Problems.Juggler.BeattyCertificateWeights
 import Problems.Juggler.BeattyGammaNormalization
 import Problems.Juggler.BeattyFirstPassageAmplitude

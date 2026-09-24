@@ -228,3 +228,27 @@
 'Problems.Juggler.BeattySlope.passageTubeLaw_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.BeattySlope.passageTubeLaw_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.BeattySlope.passageCluster_tube_average' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageCluster_hausdorff_ne_top' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattySlope.passageCluster_dimH_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageCdf_profile' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageCdf_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageCdf_image_cluster' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageCdf_holder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageCluster_hausdorff_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageCluster_dimH_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passagePhase_hitting' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageCluster_hausdorff_dio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageCluster_hausdorff_bad' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageCluster_dimH_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.dio_const_below' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.dio_of_not_liouvilleWith' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.ae_irrational' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.ae_dio_family' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.ae_passageCluster_dimH' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.dio_of_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.quadratic_cluster_hausdorff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.golden_passageCluster_hausdorff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

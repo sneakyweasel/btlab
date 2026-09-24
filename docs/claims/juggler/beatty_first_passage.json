@@ -1632,5 +1632,89 @@
    "tests/research/juggler_sequence/test_layer_completeness.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-hausdorff-upper",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational 0<beta<1, equivalently every irrational alpha=1/beta>1, the complete actual-count cluster set K_beta has finite two-thirds Hausdorff measure (Mathlib diameter normalization), hence dim_H K_beta<=2/3. The proof covers K_beta by maximal separated sets and uses only the proved cube-root tube upper bound. Positivity of the two-thirds measure is not asserted here.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeHausdorff.lean",
+  "decl": [
+   "passageCluster_hausdorff_ne_top",
+   "passageCluster_dimH_le"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_hausdorff_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-hausdorff-conditional",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational 0<beta<1, the continuous CDF G_beta of the limiting passage law satisfies G_beta(F_beta(t))=t on [0,1], is constant on every closed gap and maps K_beta onto [0,1]. If every interval (a,b) in [0,1] contains a phase delta_(n+1) with (n+1)*(b-a)^tau<=H, then G_beta is 2/(3*tau)-Holder and H^(2/(3*tau))(K_beta)>0, so dim_H K_beta>=2/(3*tau). A uniform Diophantine bound c<=q^tau*|q*alpha-p| supplies this hitting premise with H=4^tau/c+1. With tau=1 the two-thirds measure is positive and finite; bounds for every tau>1 give dim_H K_beta=2/3. The hitting and Diophantine premises are explicit arguments.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeHausdorff.lean",
+  "decl": [
+   "passageCdf_profile",
+   "passageCdf_gap",
+   "passageCdf_image_cluster",
+   "passageCdf_holder",
+   "passageCluster_hausdorff_pos",
+   "passageCluster_dimH_ge",
+   "passagePhase_hitting",
+   "passageCluster_hausdorff_dio",
+   "passageCluster_hausdorff_bad",
+   "passageCluster_dimH_eq"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_hausdorff_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-ae-hausdorff-dimension",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For Lebesgue-almost every real alpha>1, the complete set of real subsequential limits of the actual ratios r*c_r/choose(m_r-1,r-1), with m_r=floor(alpha*r), has Hausdorff dimension exactly 2/3. Almost every real number is irrational and, by Mathlib's null set of LiouvilleWith numbers, is not Liouville with any exponent p>2; an irrational number that is not Liouville with exponent p satisfies c<=q^(p-1)*|q*x-p'| for every positive q, after absorbing finitely many small denominators. This gives the Diophantine family premise at every exponent above one. The exceptional null set of slopes is not described, and positivity of the critical two-thirds measure is not asserted for almost every slope.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeArithmetic.lean",
+  "decl": [
+   "dio_const_below",
+   "dio_of_not_liouvilleWith",
+   "ae_irrational",
+   "ae_dio_family",
+   "ae_passageCluster_dimH"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_hausdorff_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-quadratic-hausdorff",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Every irrational root alpha>1 of an integer quadratic a*x^2+b*x+c with a nonzero is badly approximable: the norm form a*p^2+b*p*q+c*q^2 is a nonzero integer, which gives |q*alpha-p|>=kappa/q with kappa=min(1,1/(|a|*(1+|alpha-alpha'|))). Hence the complete actual-count cluster set at slope alpha has positive finite two-thirds Hausdorff measure and Hausdorff dimension 2/3. In particular this holds at the golden-ratio slope. No statement is made for higher-degree algebraic slopes.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeArithmetic.lean",
+  "decl": [
+   "dio_of_quadratic",
+   "quadratic_cluster_hausdorff",
+   "golden_passageCluster_hausdorff"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_hausdorff_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
  }
 ]

@@ -11,6 +11,19 @@ consolidation is at `e9725762eaf028d1ace354ff20e0fc48f1a3d143`. See
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-24 -- Beatty cluster sets have dimension 2/3 for almost every slope
+
+**EXACT — LEAN VERIFIED** for the whole irrational family: every cluster set
+`K_alpha` has finite two-thirds Hausdorff measure, and Diophantine bounds give
+matching lower bounds through the family CDF. Mathlib's null set of
+`LiouvilleWith` numbers gives `dim_H K_alpha=2/3` for Lebesgue-almost every
+`alpha>1`; the quadratic norm form gives positive finite two-thirds measure
+for every quadratic irrational slope, including the golden ratio. Five
+expanded original-count consumers; 180 family audit records. Open: a slope
+with smaller dimension, and critical measure for almost every slope.
+**PROMOTE**. See Section 27 of the
+[Beatty note](theory/juggler_beatty_first_passage_note.md).
+
 ## 2026-09-24 -- Both depth-five productions written; contagion 0.74 conditional
 
 Depth-five branch, Results 7-24. The route rests on the following:
@@ -239,15 +252,3 @@ is additional. This downgrades the proposed 1-1/r scale, without refuting
 it. The next target is a direct actual-word lower count at one ordinary
 integer. No coefficient divergence or Juggler input follows. See the
 [dossier](problems/collatz_fibre_rate_barrier.md).
-
-## 2026-09-23 -- Capped weights improve fixed-root constants; the near-critical bound remains open
-
-Lean constructs the greatest bounded periodic subsolution at each rate and
-level, with monotonicity under ternary refinement at a fixed rate. Exact
-lower/upper iteration brackets all coordinates within 10^(-9) at levels
-1–4. At level four and q=3/4, the root-to-deficit ratios improve from
-0.281 to 0.466 for plus root 7 and from 0.146 to 0.256 for minus root 47.
-**PARK** further finite tables. The remaining target is a positive lower
-bound on that ratio along rates tending to one; no coefficient divergence,
-Juggler pressure or termination follows. See the
-[dossier](problems/collatz_fibre_subsolutions.md).

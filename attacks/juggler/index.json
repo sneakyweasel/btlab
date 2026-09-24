@@ -6126,6 +6126,7 @@
         "J-beatty-gamma-overlap-finite-audit",
         "J-beatty-phase-transfer-finite-checks",
         "J-beatty-phase-transfer-kernel",
+        "J-beatty-slope-ae-hausdorff-dimension",
         "J-beatty-slope-complete-cluster-set",
         "J-beatty-slope-counting",
         "J-beatty-slope-critical-mass-bookkeeping",
@@ -6135,6 +6136,8 @@
         "J-beatty-slope-first-passage-asymptotic",
         "J-beatty-slope-gap-counting",
         "J-beatty-slope-geometric-law",
+        "J-beatty-slope-hausdorff-conditional",
+        "J-beatty-slope-hausdorff-upper",
         "J-beatty-slope-jump-weight-mass",
         "J-beatty-slope-local-gap-counting",
         "J-beatty-slope-local-minkowski-measure",
@@ -6145,6 +6148,7 @@
         "J-beatty-slope-positive-crossings",
         "J-beatty-slope-profile-envelope",
         "J-beatty-slope-profile-identification",
+        "J-beatty-slope-quadratic-hausdorff",
         "J-beatty-slope-sharp-gap-profile",
         "J-beatty-slope-singular-empirical-law",
         "J-beatty-slope-subcritical-tilt",
@@ -7806,6 +7810,22 @@
       "conjecture": [],
       "decision": null,
       "ledger_ids": [],
+      "aliases": [],
+      "nk_clusters": []
+    },
+    {
+      "id": "depth_five_structural",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/depth_five_structural.py",
+      "test": "tests/research/juggler_sequence/test_depth_five_structural.py",
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": [
+        "J-depth-five-ooeoe-carry-structural-check"
+      ],
       "aliases": [],
       "nk_clusters": []
     },

@@ -1,5 +1,6 @@
 import Problems.Juggler.BeattyCounting
 import Problems.Juggler.BeattySlopeLocalContent
+import Problems.Juggler.BeattySlopeArithmetic
 import Problems.Juggler.BeattySlopeProfileSpecialization
 
 /-! Recorded dependencies of the public arbitrary-boundary counting results.
@@ -171,5 +172,25 @@ namespace Problems.Juggler
 #print axioms BeattySlope.passageTubeLaw_integral
 #print axioms BeattySlope.passageTubeLaw_tendsto
 #print axioms BeattySlope.passageCluster_tube_average
+#print axioms BeattySlope.passageCluster_hausdorff_ne_top
+#print axioms BeattySlope.passageCluster_dimH_le
+#print axioms BeattySlope.passageCdf_profile
+#print axioms BeattySlope.passageCdf_gap
+#print axioms BeattySlope.passageCdf_image_cluster
+#print axioms BeattySlope.passageCdf_holder
+#print axioms BeattySlope.passageCluster_hausdorff_pos
+#print axioms BeattySlope.passageCluster_dimH_ge
+#print axioms BeattySlope.passagePhase_hitting
+#print axioms BeattySlope.passageCluster_hausdorff_dio
+#print axioms BeattySlope.passageCluster_hausdorff_bad
+#print axioms BeattySlope.passageCluster_dimH_eq
+#print axioms BeattySlope.dio_const_below
+#print axioms BeattySlope.dio_of_not_liouvilleWith
+#print axioms BeattySlope.ae_irrational
+#print axioms BeattySlope.ae_dio_family
+#print axioms BeattySlope.ae_passageCluster_dimH
+#print axioms BeattySlope.dio_of_quadratic
+#print axioms BeattySlope.quadratic_cluster_hausdorff
+#print axioms BeattySlope.golden_passageCluster_hausdorff
 
 end Problems.Juggler

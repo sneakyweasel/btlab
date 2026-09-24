@@ -376,6 +376,8 @@ AUXILIARY_MODULES: dict[str, str] = {
     "BeattySlopeLocalCounting": "Spatially localized gap-counting asymptotic at every irrational slope",
     "BeattySlopeGeometricLaw": "Explicit local content and geometric probability as two-thirds reweightings of the family empirical law",
     "BeattySlopeLocalContent": "Weak limits of rescaled metric tube measures and uniform tube sampling for every irrational slope",
+    "BeattySlopeHausdorff": "Finite two-thirds Hausdorff measure for every irrational slope and Hausdorff lower bounds from explicit phase-hitting or Diophantine premises",
+    "BeattySlopeArithmetic": "Hausdorff dimension two-thirds for almost every slope and positive finite two-thirds measure for every quadratic irrational slope",
     "BeattyCertificateWeights": "Moving phase asymptotic and uniform two-sided three-halves bounds for actual certificate gap weights",
     "BeattyGammaNormalization": "Uniform Gamma interpolation for arbitrary moving fractional parts from log-convexity",
     "BeattyFirstPassageAmplitude": "Exact BGL Gamma normalization and explicit periodic amplitude for original integer certificate counts",

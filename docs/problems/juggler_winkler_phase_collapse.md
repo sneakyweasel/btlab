@@ -1443,6 +1443,31 @@ exact Hausdorff dimension and critical-measure positivity stay open.
 **PROMOTE** within this dossier as `J-beatty-rhin-hausdorff-lower-bound`;
 Section 20 of the working note gives the proof.
 
+### Hausdorff geometry for the whole family (24 September)
+
+```text
+Mathematical target     Hausdorff measure and dimension of K_alpha across all irrational alpha>1.
+Novelty hypothesis      Almost-every-slope dimension 2/3 and quadratic positive measure for these count sets.
+Falsifier               A log-slope-only ingredient in the Hoelder argument, or LiouvilleWith not matching (45).
+Already killed by?      No; no obstruction record, and the Diophantine walls concern cycle finance.
+Existing machinery      Generic tube-to-Hausdorff bound, Dirichlet hitting, family CDF, Mathlib ae_not_liouvilleWith.
+Maximum Phase-0 scope   One family Hausdorff module, one arithmetic module and an interface consumer.
+Promotion criterion     Actual-count Lean statements with standard axioms only.
+Stop criterion          Any premise that cannot be discharged stays explicit.
+```
+
+**EXACT — LEAN VERIFIED.** Every family cluster set has finite two-thirds
+Hausdorff measure. The family CDF inverts the profile, is flat on gaps and
+maps `K_alpha` onto `[0,1]`, so phase hitting and Diophantine bounds give
+Hölder regularity and matching lower bounds exactly as at the logarithmic
+slope. Mathlib's null set of `LiouvilleWith` numbers gives
+`dim_H K_alpha=2/3` for Lebesgue-almost every `alpha>1`. The quadratic norm
+form gives explicit bad approximability for every quadratic irrational, so
+those slopes, including the golden ratio, have positive finite two-thirds
+measure. Five expanded consumers and 20 new audit records use only standard
+axioms; see Section 27 of the working note. **PROMOTE**. Open: a slope with
+`dim_H K_alpha<2/3`, and critical-measure positivity for almost every slope.
+
 ## Decision
 
 `PROMOTE` -- for every irrational slope above one, the actual normalized
