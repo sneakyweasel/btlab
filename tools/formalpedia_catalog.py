@@ -4,6 +4,8 @@ from __future__ import annotations
 from collections import Counter
 import hashlib
 import json
+import os
+from pathlib import Path
 import re
 import threading
 
@@ -45,15 +47,20 @@ class Catalogue:
 
     No request writes generated artifacts, invokes Lean, or sends mathematics to
     another service. A lock keeps concurrent MCP requests on a coherent snapshot.
+
+    ``persist`` names a file that carries the built index between processes, for the
+    CLI, which otherwise rebuilds it on every call. It is reused only while every source,
+    the ledger, every axiom artifact and the indexing code itself are unchanged.
     """
 
-    def __init__(self, semantic=None):
+    def __init__(self, semantic=None, persist: Path | None = None):
+        self._persist = persist
         self._lock = threading.RLock()
         self._stamp = None
         self._index = None
         self._ledger = []
         self._snapshot = ''
-        self._documents = {}
+        self._documents = None
         self._audits = {'by_name': {}, 'artifacts': [], 'problems': []}
         self._semantic = semantic
 
@@ -75,9 +82,64 @@ class Catalogue:
         return tuple((p.relative_to(fp_workspace.ROOT).as_posix(), p.stat().st_mtime_ns, p.stat().st_size)
                      for p in paths if p.exists())
 
+    @staticmethod
+    def _code() -> str:
+        """Fingerprint of the code that builds the index: a parser change invalidates the cache."""
+        tools = Path(__file__).resolve().parent
+        files = sorted((tools / 'formalpedia_core').glob('*.py')) + [
+            tools / name for name in ('lean_source.py', 'trust_boundary.py', 'formalpedia_catalog.py')]
+        digest = hashlib.sha256()
+        for path in files:
+            digest.update(path.name.encode() + b'\0' + path.read_bytes())
+        return digest.hexdigest()
+
+    def _restore(self, state) -> bool:
+        if self._persist is None:
+            return False
+        try:
+            saved = json.loads(self._persist.read_text(encoding='utf-8'))
+        except (OSError, ValueError):
+            return False
+        if saved.get('state') != [list(row) for row in state] or saved.get('code') != self._code():
+            return False
+        self._index, self._audits = saved['index'], saved['audits']
+        self._ledger = json.loads(fp_workspace.LEDGER.read_text(encoding='utf-8'))
+        self._stamp, self._snapshot = state, saved['snapshot']
+        self._documents = {key: (text, set(words)) for key, (text, words) in saved['documents'].items()}
+        return True
+
+    def _save(self) -> None:
+        if self._persist is None:
+            return
+        try:
+            self._persist.parent.mkdir(parents=True, exist_ok=True)
+            partial = self._persist.with_name(f'{self._persist.name}.{os.getpid()}.tmp')
+            partial.write_text(json.dumps({'state': [list(row) for row in self._stamp],
+                                           'code': self._code(), 'snapshot': self._snapshot,
+                                           'index': self._index, 'audits': self._audits,
+                                           'documents': {key: [text, sorted(words)] for key, (text, words)
+                                                         in self._search_documents().items()}}),
+                                encoding='utf-8')
+            os.replace(partial, self._persist)
+        except OSError:
+            pass  # a cache that cannot be written only costs the next call a rebuild
+
+    def _search_documents(self) -> dict:
+        """Search text per declaration, built on first search rather than on every load."""
+        if self._documents is None:
+            by_id = {row['id']: row for row in self._ledger}
+            self._documents = {}
+            for d in self._index['declarations']:
+                fields = [d['source_name'], d['doc'], d['signature'], d['module']]
+                fields += [by_id[r].get('statement', '') for r in d['ledger_exact'] if r in by_id]
+                self._documents[d['id']] = (' '.join(fields).casefold(), set(tokens(' '.join(fields))))
+        return self._documents
+
     def snapshot(self) -> tuple[dict, list[dict], str]:
         with self._lock:
             before = self._state()
+            if self._index is None and self._restore(before):
+                return self._index, self._ledger, self._snapshot
             if self._index is None or before != self._stamp:
                 for _ in range(3):
                     index = fp_source.build()
@@ -89,16 +151,11 @@ class Catalogue:
                     before = after
                 else:
                     raise RuntimeError('Sources kept changing during indexing; retry after the edits settle')
-                by_id = {row['id']: row for row in ledger}
-                self._documents = {}
-                for d in index['declarations']:
-                    fields = [d['source_name'], d['doc'], d['signature'], d['module']]
-                    fields += [by_id[r].get('statement', '') for r in d['ledger_exact'] if r in by_id]
-                    self._documents[d['id']] = (' '.join(fields).casefold(),
-                                                 set(tokens(' '.join(fields))))
+                self._documents = None
                 self._index, self._ledger, self._stamp = index, ledger, after
                 self._audits = audits
                 self._snapshot = hashlib.sha256(fp_source.render(index).encode()).hexdigest()[:16]
+                self._save()
             return self._index, self._ledger, self._snapshot
 
     def search(self, query: str, *, namespace: str | None = None, module: str | None = None,
@@ -111,7 +168,7 @@ class Catalogue:
             raise ValueError('query must not exceed 2000 characters; search with a few key terms')
         with self._lock:
             index, _, snapshot = self.snapshot()
-            documents = self._documents
+            documents = self._search_documents()
         terms, needle = tokens(query), query.strip().casefold()
         active = active_lean_modules(index, fp_workspace.ROOT)
         hits = []

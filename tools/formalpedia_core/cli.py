@@ -125,7 +125,8 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.cmd in {"search", "show", "status", "claim", "impact", "audits"}:
         from formalpedia_catalog import Catalogue
-        catalogue = Catalogue()
+        # One CLI call per process: reuse the built index while nothing it reads changed.
+        catalogue = Catalogue(persist=_fp_workspace.CACHE / 'live_catalogue.json')
         try:
             if args.cmd == "search":
                 result = catalogue.search(args.text, namespace=args.namespace, module=args.module,

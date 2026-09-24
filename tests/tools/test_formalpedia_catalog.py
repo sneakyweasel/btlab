@@ -310,3 +310,38 @@ def test_theorem_names_preserve_conventional_uppercase_object_tokens():
         '/-- An interval law. -/\ntheorem Icc_subset_Icc : True := trivial\nend N\n',
         'N', 'formal/N.lean')
     assert all(v['rule'] != 'theorem_case' for v in lean_style.violations({'declarations': rows}))
+
+
+def test_a_persisted_index_is_reused_only_while_its_inputs_are_unchanged(library, monkeypatch):
+    """The CLI's on-disk index must never answer for sources, ledger or code it did not read."""
+    import os
+    folder, ledger = library
+    cache = fp_workspace.ROOT / 'cache/live.json'
+    source = write(folder, 'A', 'namespace N\ntheorem first : True := trivial\nend N\n')
+    built = Catalogue(persist=cache)
+    first = built.show('N.first')
+    assert cache.is_file() and built.search('first')['total'] == 1
+
+    calls = []
+    real_build = fp_source.build
+    monkeypatch.setattr(fp_source, 'build', lambda: calls.append(1) or real_build())
+    reused = Catalogue(persist=cache)
+    assert reused.show('N.first') == first and reused.search('first')['total'] == 1
+    assert calls == []
+
+    def bump(path):
+        stat = path.stat()
+        os.utime(path, ns=(stat.st_atime_ns, stat.st_mtime_ns + 1_000_000_000))
+
+    write(folder, 'A', 'namespace N\ntheorem second : True := trivial\nend N\n')
+    bump(source)
+    assert Catalogue(persist=cache).show('N.second')['status'] == 'found' and calls == [1]
+    ledger.write_text('[ ]', encoding='utf-8')
+    bump(ledger)
+    Catalogue(persist=cache).status()
+    assert calls == [1, 1]
+    monkeypatch.setattr(Catalogue, '_code', staticmethod(lambda: 'changed indexing code'))
+    Catalogue(persist=cache).status()
+    assert calls == [1, 1, 1]
+    cache.write_text('not json', encoding='utf-8')
+    assert Catalogue(persist=cache).show('N.second')['status'] == 'found' and len(calls) == 4
