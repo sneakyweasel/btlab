@@ -17,10 +17,10 @@ theorem shortcutC_odd {n : ℕ} (h : Odd n) : shortcutC n = (3 * n + 1) / 2 := b
   simp [shortcutC, this]
 
 theorem shortcutC_one : shortcutC 1 = 2 := by
-  native_decide
+  decide
 
 theorem shortcutC_two : shortcutC 2 = 1 := by
-  native_decide
+  decide
 
 theorem shortcutC_terminal_cycle :
     shortcutC 1 = 2 ∧ shortcutC 2 = 1 :=

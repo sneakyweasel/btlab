@@ -375,7 +375,7 @@
       "formal/Problems/Collatz/PreimageGrowth.lean": "c4f6cfa467b1686ae1dca140e7e91620818d7a3f6ffa86fd081356967ec1aa27",
       "formal/Problems/Collatz/PreimageScale.lean": "370d3afd772a9e209132e29368998224dcf664b2f9cefbaa6f7b4832172e2a35",
       "formal/Problems/Collatz/PreimageWeights12.lean": "98bffe924d495bba10c8c5a4cab9f89925f4302648462556a955664e65dea49d",
-      "formal/Problems/Collatz/Shortcut.lean": "74c2366318762326e7ee4b9982afd208afe6ab5b6b3d852cf640d195f30a9fc3",
+      "formal/Problems/Collatz/Shortcut.lean": "d02846f65e1f218e5d25bce964e5e0c440db9504feb0aaa40767de2f4b3c7c97",
       "formal/Problems/Juggler/Certificates.lean": "fb6cc2041532d15259a49641e24ca038988aaae3cf3f38fedb95b29fdacfa274",
       "formal/Problems/Juggler/Collapse.lean": "239f16482d73238ce90222cfe6e4b760baf1dbab1a84c05319704afe0f715ee4",
       "formal/Problems/Juggler/CollatzBridge.lean": "5d188faa63ab5fd616ff99b9eac1e72281255361edf028c367167faf1dc65435",

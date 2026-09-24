@@ -112,7 +112,7 @@
     {
       "path": "docs/theory/paper_e_validation.json",
       "mode": "text",
-      "sha256": "5a628359ab2c6086f815801aa089c1161a75d5b828ffbfe519b3dbef3199bdae"
+      "sha256": "f362c0d79bc2c7127c8a776b7138aa87427c238cc60d194f9e95b09ff75bf961"
     },
     {
       "path": "docs/theory/qualitative_weyl_cancellation_note.md",
@@ -347,7 +347,7 @@
     {
       "path": "formal/Problems/Collatz/Shortcut.lean",
       "mode": "text",
-      "sha256": "74c2366318762326e7ee4b9982afd208afe6ab5b6b3d852cf640d195f30a9fc3"
+      "sha256": "d02846f65e1f218e5d25bce964e5e0c440db9504feb0aaa40767de2f4b3c7c97"
     },
     {
       "path": "formal/Problems/Juggler/Certificates.lean",

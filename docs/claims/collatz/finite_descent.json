@@ -43,10 +43,6 @@
    "shortcutC_two",
    "shortcutC_terminal_cycle"
   ],
-  "lean_trust": "mixed",
-  "compiler_decls": [
-   "shortcutC_one",
-   "shortcutC_two"
-  ]
+  "lean_trust": "kernel"
  }
 ]
