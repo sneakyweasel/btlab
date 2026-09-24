@@ -327,7 +327,7 @@ theorem. A widened Theorem B.1 is therefore an open piece, and it carries the
 thinnest margin of the route, `P^(1/192)`.
 
 **10. Theorem E3: Paper B's Theorem B.1 at shifts up to `P^(5/32)` (written
-proof, 24 September 2026; AI-assisted, not independently reviewed).**
+proof, 24 September 2026; AI-assisted, audited in Result 11).**
 
 *Statement.* Fix `C`, `M` and `delta` with `1/24 <= delta <= 5/32`. Keep every
 hypothesis of Paper B's Theorem B.1 except the following, which are widened:
@@ -349,8 +349,7 @@ instead of `P^(1/12)`, and recheck each step at the widened sizes.
 - *B.2, differencing.* Cell-boundary crossings number `O(h P^(1/2+delta))`, which
   is at most `P^(25/32)` per `h`. The twist ratio (B.9) is `P^(-1/3)/|t|`. The
   theta and `E` cost (B.11) is `|t| h P^(3/4) + |t| P^(1/4)`, at most `P^(11/12)`
-  for `h < P^(1/8)` and `|t| <= C P^(1/24)`; this is the only step that used
-  `h <= P^(1/12)`. (B.12) holds uniformly for `h <= P^(1/8)`, because
+  for `h < P^(1/8)` and `|t| <= C P^(1/24)`. (B.12) holds uniformly for `h <= P^(1/8)`, because
   `A_h'' = O(h^2 P^(-7/4))` is `o(M_h)`.
 - *B.3, Lemma A.1 at `h_{l,1} = P^delta`.* Lemma A.1 is printed for
   `h <= P^(1/8)`, which covers the new `H`. With `p = h_1 h_2 <= P^(19/96)` and
@@ -362,13 +361,18 @@ instead of `P^(1/12)`, and recheck each step at the widened sizes.
   `p P^(1/4) = P^(43/96)` and `D = P^(21/32)`. For `j != 0`,
   `(P + D P^(1/4))/Q + P^(3/4) + D << P^(3/4)`. The mismatch count (A.6) is
   `<< P^(3/4)`, and (A.7) is `h (P^(3/4) + P^(21/32)) <= P^(7/8)`. The coefficient
-  windows number `O(1 + k h P^(1/8)) = O(P^(7/24))`. In (A.10), measured against
+  windows number `O(1 + k h P^(1/8)) = O(P^(7/24))`, not Paper B's `P^(1/4)`. In
+  (A.10), measured against
   `M = |t| h P^(-3/4)`, the four ratios are at most `P^(-3/16)`, `P^(-47/96)`,
   `P^(-1/3)` and `P^(-61/96)`, so `|Phi_q''| << P^(-15/16)` as in (B.13). Moving
   the base and coefficient by `O(P^delta)` changes derivative comparisons by
-  factors `1 + O(P^(delta-1))`.
-- *B.4, first-floor carries.* Lemma A.2 applies at shifts `O(h + P^delta)`: its
-  endpoint-crossing argument uses only the convexity of `X`, and (A.12) is uniform
+  factors `1 + O(P^(delta-1))`. Lemma A.1's closing remark (A.11), with exponent
+  `11/12`, fails at `h_1 = P^delta`: its term `(h_1+h_2)(uh)^(-1/2) P^(7/8)` is
+  `P^(33/32)` at `h = 1`. Appendix B never cites (A.11); the same cost is the
+  `D_h` endpoint term of (B.16) below, where it is charged.
+- *B.4, first-floor carries.* Lemma A.2 is printed for `h <= P^(1/12)`, but its
+  proof uses `h` only through the shift size. It applies at shifts
+  `O(h + P^delta)`: its endpoint-crossing argument uses only the convexity of `X`, and (A.12) is uniform
   in translations `O(P^delta)`. The cell count becomes
   `D_h << (h + P^delta) P^(1/2)`, which absorbs the input cells, the D2 runs and the
   coefficient windows.
@@ -378,7 +382,9 @@ instead of `P^(1/12)`, and recheck each step at the widened sizes.
   <= P^(-1/12)`. (B.17) becomes `P^(7/8) + (h + P^delta) P^(3/4) <= P^(29/32)`.
 
 Collect the per-`h` costs: the D2 error `P^(15/16)`, (B.16), (B.17), (B.11),
-(A.12) and the boundary crossings. Insert them in (B.8) with `H = P^(1/8)`:
+(A.12), (B.6) and the boundary crossings. Insert them in (B.8) with `H = P^(1/8)`
+(the negligible terms `P^(41/24)`, `P^(57/32)`, `P^(11/6)` and `P^(7/4)` from the
+first (B.16) term, the crossings, (A.12) and (B.6) are omitted):
 `|U|^2 << P^2/H + P^(31/16) + H^(1/2) P^(15/8) + H^(-1/2) P^(15/8+delta)
 + |t| H P^(7/4) + P^(61/32)`. With `|t| >= 1/2` the terms are `P^(15/8)`,
 `P^(31/16)`, `P^(31/16)`, `P^(29/16+delta)`, `P^(23/12)` and `P^(61/32)`. The
@@ -387,24 +393,64 @@ largest is `P^(31/16)` for `delta <= 1/8` and `P^(29/16+delta)` above it.
 
 The binding term is the (B.16) endpoint cost at small `h`. With Paper B's own
 `H = P^(1/12)` the same collection gives `|U| << P^(191/192+eps)` at
-`delta = 5/32`. The `P^(1/8)` choice needs only Lemma A.1's printed range and the
-theta cost above.
+`delta = 5/32`. Paper B also used `h <= P^(1/12)` in the B.2 crossing cost, the
+(B.13) window count, the B.5 carry-mode ratio `P^(-1/8)` (now `P^(-1/12)`), the
+`P^(11/12)` remark after (B.16), and Lemma A.2's printed range; each is rechecked
+above.
 
 *Consequence for Appendix C.* In C.5 at `h_1 <= P^(5/32)`, `h_2 <= P^(1/24)`,
 bounded `k` and `Pi <= P^(19/96)`, the retained terms meet the widened hypotheses.
 Each hypothesis checks as follows:
 
-- The terms `a_1 W_1` and `c_11 A` have `r = h_{l,1} = h_1 <= P^(5/32)`.
-- `|a_1| h_1 << (k h_2 P^(1/8) + J) P^(5/32) = O(P^(0.33))`.
+- The terms `a_1 W_1` and `c_11 A` have `r = h_{l,1} = h_1 <= P^(5/32)`, `e_j = 0`
+  and coefficient shift `v = d_1 + d_2 = O(P^(5/32))`.
+- `|a_1| h_1 << (k h_2 P^(1/8) + J) P^(5/32) = O(P^(31/96))`, and
+  `|a_2| h_2 << k h_1 P^(1/8) P^(1/24) = O(P^(31/96))`.
 - The original runs have local density `(h_1+h_2) P^(-1/2) = P^(-11/32)`. The `N_*`
   windows and E2's `O(1 + Pi P^(-1/8)) = O(P^(7/96))` stretches are sparser.
 - (C.18) keeps `|Phi'''| << P^(-13/12)`, because `Pi P^(-13/8) = P^(-137/96)` and the
   mode range `|r| <= R + |B|` is `O(R)`.
+- *Centering at nonzero `b` (added after the audit, Result 11).* C.5 centers at
+  `N_* = floor((27/32) k b x^(3/8))` and needs `B_core - N_*` bounded. By (C.17) the
+  remainder is `O(Pi P^(-1/8) + k(h_1+h_2) P^(-5/8))`, bounded only because (C.10)
+  has `Pi << P^(5/48)`; at `Pi = P^(19/96)` it is `P^(7/96)` for every `b`. Center
+  instead at `N = floor(B_core)` on the windows where it is constant. `B_core'` is
+  `O(k P^(-5/8) + Pi P^(-9/8))`, so the windows have local density at most
+  `P^(-7/12)`, below `P^(-11/32)`. Nothing else needs to be continuous across
+  windows, since Theorem B.1 lets `phi` jump between cells. On a window the
+  residual `B_core - N` lies in `[0, 1)` and has variation at most one. Lemma 4.7
+  expands it with coefficient masses `O(log R)`. The frequency `(r - N) X` has
+  `|N| << |N_*| + P^(7/96) << P^(5/12)`, so (C.18) is unchanged. Result 6's
+  objection to piecewise centering concerns Lemma 7.5's curvature at `t = 0`; it
+  does not apply here.
 
 So the nonzero-`t` row of C.9 is `<< P^(63/64+eps)` at these sizes. The positive
 errors (E1) and the `t = 0`, `b = 0` row (E2) are written. The `t = 0`, nonzero-`b`
 row (C.6, C.7) at these sizes rests only on Result 5's desk reading. If that row
 holds, the double correlation is `<< P^(63/64+eps)`.
+
+**11. Audit of Theorem E3 (24 September 2026).** An independent adversarial
+reviewer re-derived every exponent from Paper B's text. **The main bound holds**,
+including `P^(63/64)` at `delta = 5/32`; no step fails. The reviewer:
+
+- confirmed Lemma A.1 at `h_1 = P^(5/32)`, including all four (A.10) ratios;
+- confirmed Lemma A.2 at shifts `O(h + P^delta)`;
+- recomputed the (B.8) collection with ten terms, and the maximum is `29/16 + delta`
+  above `delta = 1/8`;
+- found nothing that scales with `D_h` or the cell count beyond what is charged.
+
+It found four wording faults, now fixed in Result 10. The claim that (B.11) was the
+only use of `h <= P^(1/12)` was false; five other uses exist, and each passes.
+(A.11)'s printed exponent fails at the wider shift, harmlessly. The `a_2` budget was
+missing. The collected formula dropped four negligible terms.
+
+It found one gap in the Appendix C consequence. The C.5 centering at nonzero `b`
+relied on (C.10)'s `Pi << P^(5/48)`, which the widened `Pi` breaks for every `b`.
+I verified this at the source (note (C.10) and (C.17)). The repair, centering at the
+floor of the whole coefficient on its own windows, is now written in Result 10. The
+nonzero-`t` row is therefore `<< P^(63/64+eps)` at `h_1 <= P^(5/32)`,
+`Pi <= P^(19/96)`, subject to that added paragraph, which the reviewer proposed
+but did not re-audit.
 
 ## Open questions
 
@@ -412,7 +458,8 @@ Lemmas E1 and E2 and Theorem E3 (Results 7, 8 and 10) write out Paper B's
 Appendices A-C for `OOOEE` at first shifts up to `P^(5/32)`, except the `t = 0`,
 nonzero-`b` row. Together they would give a double correlation `<< P^(63/64+eps)`.
 E1 has been audited, and E2 has been audited with its nonzero-`t` clause withdrawn.
-E3 is unreviewed. Still unwritten: the `t = 0`, nonzero-`b` row at these sizes, the
+E3 has been audited (Result 11), with a nonzero-`b` centering repair added. Still
+unwritten: the `t = 0`, nonzero-`b` row at these sizes, the
 `k = 0` frequency cases of `T_d` (Lemma 4.4 and Proposition 7.6 at `h = d`), and the
 poor-tail reduction from sliding windows to the actual fibres, including the
 square-wave truncation. `OOEOE` needs its own bookkeeping.
@@ -427,9 +474,9 @@ for `OOOEE` up to `delta < 1/6`, or `delta < 3/16` at bounded frequencies, after
 three local repairs. That would be the averaged substitute, but it is a first-pass
 reading of a dense proof and does not meet the promotion criterion. The pricing
 stands: `OOOEE` alone would lift the ideal contagion from `0.633` to `0.6915`, both
-depth-five words to `0.7512`. Best next question: does an independent audit confirm
-Theorem E3, and do the `k = 0` cases of `T_d` keep a power saving at
-`d = P^(5/32)`?
+depth-five words to `0.7512`. Best next question: does the `t = 0`, nonzero-`b` row (C.6, C.7)
+keep `P^(23/24)` at `h_1 = P^(5/32)` and `Pi = P^(19/96)`, and do the `k = 0` cases of
+`T_d` keep a power saving at `d = P^(5/32)`?
 
 ## Publication assessment
 
