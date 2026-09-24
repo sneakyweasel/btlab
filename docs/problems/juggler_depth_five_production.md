@@ -452,17 +452,95 @@ nonzero-`t` row is therefore `<< P^(63/64+eps)` at `h_1 <= P^(5/32)`,
 `Pi <= P^(19/96)`, subject to that added paragraph, which the reviewer proposed
 but did not re-audit.
 
+**12. Lemma E4: the `t = 0`, nonzero-`b` case of Appendix C at `Pi` up to
+`P^(19/96)` (written proof, 24 September 2026; AI-assisted, not independently
+reviewed).**
+
+*Statement.* In Paper B's Appendix C, take first shift `h_1 <= P^(5/32)`, second
+shift `h_2 <= P^(1/24)`, `1 <= k <= C P^(1/24)` and `Pi = k h_1 h_2 <= P^(19/96)`.
+Keep `J = floor(P^(1/24))`, `R = P^(5/16)` and `R_c = P^(1/4)`. Then the `t = 0`,
+nonzero-`b` part of the double correlation is
+`<< (k^(1/2) P^(15/16) + k^(-1/2) P^(13/16)) log^C P`. This is (C.23) unchanged:
+`P^(23/24)` in general, and `P^(15/16)` at bounded `k`.
+
+*Proof.* Follow C.6 and C.7 and recheck each step. Throughout,
+`p = h_1 h_2 <= P^(19/96)`, the original runs number `D << (h_1+h_2) P^(1/2) =
+P^(21/32)`, and (C.13) becomes
+`|a_1| h_1 + |a_2| h_2 << Pi P^(1/8) + J(h_1+h_2) << P^(31/96)`.
+
+- *Floor exceptions (C.6).* Replacing `A` by `J_F = floor(G)` at nonzero `b`
+  uses (A.3) with derivative scale `a = P^(-1/4)` and distance
+  `delta << P^(-3/4) + p P^(-5/4)`. The count is
+  `delta (P + D/a) + P a + D << P^(1/4) + P^(21/32 - 1/2) + P^(3/4) + P^(21/32)`,
+  which is `O(P^(3/4))` as printed.
+- *First-difference Taylor step (C.6).* The error `|a_a| h_a P^(-7/4)` per point
+  sums to `P^(31/96 - 3/4) = P^(-41/96)`, still bounded.
+- *The theta coefficient is no longer a bounded shift of `N_*`.* The wave part of
+  `B` in (C.20) is `<< Pi P^(-1/8) + J(h_1+h_2) P^(-1/4)`, which Paper B bounds by
+  `O(1)` using (C.10). Here it is `O(P^(7/96))`. The (C.17) remainder is
+  `O(P^(7/96))` for the same reason (Result 11). So `B - N_*` is not bounded.
+
+  *Repair.* Center at `N = floor(B)` for the whole coefficient `B` of (C.20),
+  instead of at `N_*`, as in Result 10's nonzero-`t` repair.
+  - `B` is monotone on each cell of the `N_1`, `N_2` partition. The leading part of
+    `B'` is `(81/256) k b x^(-5/8)`, of size at least a constant times `P^(-5/8)`
+    because `b` is a nonzero integer. The other parts of `B'` are
+    `Pi P^(-9/8) + J(h_1+h_2) P^(-5/4) + k h_1 P^(-13/8) << P^(-89/96)`.
+  - `B` jumps by `O(h_a P^(-1/4))` where `N_a` changes. This is harmless, because
+    the `N` windows are taken inside those cells.
+  - The windows number `O(k P^(3/8))` plus `O(1)` per cell.
+  - On each window the residual `B - N` lies in `[0, 1)` and is monotone. Lemma 4.7
+    expands it with coefficient mass `O(log R)`, and its positive error is charged
+    once globally, as in (A.12).
+- *Curvature (C.21)-(C.22).* The `-N X''` row of (C.21) changes by
+  `|N - N_*| X'' << P^(7/96 - 1/2) = P^(-41/96)`. That is below the allowed error
+  `P^(-3/16) = P^(-18/96)`, so the leading coefficient `-243/512` stands. The
+  (C.22) error list at these sizes:
+
+  | Error term | Size |
+  |---|---|
+  | `Pi P^(-5/8)` | `P^(-41/96)` |
+  | `k(h_1+h_2) P^(-9/8)` | at most `P^(-89/96)` |
+  | `k P^(-7/8)` | at most `P^(-5/6)` |
+  | `(\|a_1\| h_1 + \|a_2\| h_2) P^(-3/4)` | `P^(-41/96)` |
+  | `(R + R_c + 1) P^(-1/2)` | `P^(-3/16)`, unchanged and still the largest |
+  | `R_c (h_1+h_2) P^(-3/2)` | `P^(-35/32)` |
+  | the `q`, `l` and `phi_0''` terms | smaller |
+
+  So (C.22) holds with error smaller than the main curvature by `O(P^(-1/16)/k)`.
+- *Interval count.* The `G`-levels give `O(P^(3/4))` cuts, since `|G'|` is about
+  `P^(-1/4)` at nonzero `b`. The other cuts are smaller:
+  - original runs, `P^(21/32)`;
+  - `N_1`, `N_2` windows, `O(k h_1 P^(1/8)) = O(P^(31/96))`;
+  - `N` windows, `O(k P^(3/8))`;
+  - endpoint-order cuts, a fixed multiple of these.
+
+  The total stays `O(P^(3/4))`.
+- *Sum.* The second-derivative test over these intervals, with curvature about
+  `k P^(-1/8)`, gives `P (k P^(-1/8))^(1/2) + P^(3/4) (k P^(-1/8))^(-1/2)`, which
+  is (C.23). The floor exceptions (`P^(3/4)`), the Lemma 4.7 and carry positive
+  errors (`P^(5/6) log P`), and the replacements of `q D` by `q G` (`P^(7/24)`) and
+  of the fifth coordinate (`O(1)`) are smaller. `QED`
+
+*Consequence.* With E1 (the positive errors, `P^(23/24)`), E2 (`t = 0`, `b = 0`,
+`P^(29/32)`), E3 (nonzero `t`, `P^(63/64)`) and E4, every row of C.9 is written at
+`h_1 <= P^(5/32)`, `h_2 <= P^(1/24)`, bounded `k` and `Pi <= P^(19/96)`. The deleted
+master term grows from `P^(11/48)` to `P^(31/96)`, and the extra-power errors stay
+`P^(7/24)`. The double correlation is therefore `<< P^(63/64+eps)`. A van der Corput
+step in `h_2 < P^(1/24)` then gives `|T_d|^2 << P^(2-1/24) + P^(1+63/64+eps)`, so
+`|T_d| << P^(127/128+eps)` for the frequency vectors with `k != 0` at `d <= P^(5/32)`.
+The `k = 0` vectors (C.2) are not covered.
+
 ## Open questions
 
-Lemmas E1 and E2 and Theorem E3 (Results 7, 8 and 10) write out Paper B's
-Appendices A-C for `OOOEE` at first shifts up to `P^(5/32)`, except the `t = 0`,
-nonzero-`b` row. Together they would give a double correlation `<< P^(63/64+eps)`.
-E1 has been audited, and E2 has been audited with its nonzero-`t` clause withdrawn.
-E3 has been audited (Result 11), with a nonzero-`b` centering repair added. Still
-unwritten: the `t = 0`, nonzero-`b` row at these sizes, the
-`k = 0` frequency cases of `T_d` (Lemma 4.4 and Proposition 7.6 at `h = d`), and the
-poor-tail reduction from sliding windows to the actual fibres, including the
-square-wave truncation. `OOEOE` needs its own bookkeeping.
+Lemmas E1, E2 and E4 and Theorem E3 (Results 7, 8, 10 and 12) write out every row
+of Paper B's Appendix C for `OOOEE` at first shifts up to `P^(5/32)`, bounded `k`
+and `Pi <= P^(19/96)`. The double correlation is `<< P^(63/64+eps)`, and
+`|T_d| << P^(127/128+eps)` for `k != 0`. E1 and E3 have been audited; E2 has been
+audited with its nonzero-`t` clause withdrawn; E4 is unreviewed. Still unwritten:
+the `k = 0` frequency cases of `T_d` (Appendix C.2, Lemma 4.4 and Proposition 7.6
+at `h = d`), and the poor-tail reduction from sliding windows to the actual fibres,
+including the square-wave truncation. `OOEOE` needs its own bookkeeping.
 
 ## Decision
 
@@ -474,9 +552,8 @@ for `OOOEE` up to `delta < 1/6`, or `delta < 3/16` at bounded frequencies, after
 three local repairs. That would be the averaged substitute, but it is a first-pass
 reading of a dense proof and does not meet the promotion criterion. The pricing
 stands: `OOOEE` alone would lift the ideal contagion from `0.633` to `0.6915`, both
-depth-five words to `0.7512`. Best next question: does the `t = 0`, nonzero-`b` row (C.6, C.7)
-keep `P^(23/24)` at `h_1 = P^(5/32)` and `Pi = P^(19/96)`, and do the `k = 0` cases of
-`T_d` keep a power saving at `d = P^(5/32)`?
+depth-five words to `0.7512`. Best next question: do the `k = 0` frequency cases of `T_d`
+(Appendix C.2) keep a power saving at `d = P^(5/32)`?
 
 ## Publication assessment
 
