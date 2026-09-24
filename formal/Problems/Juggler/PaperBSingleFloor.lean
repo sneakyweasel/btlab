@@ -52,6 +52,7 @@ def ooCount (N : ℕ) : ℕ :=
 def c2Count (N : ℕ) : ℕ :=
   ((Icc 1 N).filter (fun n => itinerary n 2 ≠ [.odd, .odd])).card
 
+/-- `⌊n^{3/2}⌋ = Nat.sqrt (n^3)`: the real floor is the natural square root of the cube. -/
 theorem floor_pow32 (n : ℕ) :
     ⌊(n : ℝ) * sqrt (n : ℝ)⌋ = ((Nat.sqrt (n ^ 3) : ℕ) : ℤ) := by
   have h : (n : ℝ) * sqrt (n : ℝ) = sqrt (((n ^ 3 : ℕ) : ℝ)) := by
@@ -62,9 +63,11 @@ theorem floor_pow32 (n : ℕ) :
   rw [h]
   exact floor_real_sqrt_eq_nat_sqrt (a := n ^ 3)
 
+/-- An even image has sign `+1`. -/
 theorem imageSign_even {n : ℕ} (h : Nat.sqrt (n ^ 3) % 2 = 0) : imageSign n = 1 := by
   simp [imageSign, h]
 
+/-- An odd image has sign `-1`. -/
 theorem imageSign_odd {n : ℕ} (h : Nat.sqrt (n ^ 3) % 2 = 1) : imageSign n = -1 := by
   simp [imageSign, h]
 
@@ -76,9 +79,11 @@ theorem oo_iff_odd_image {n : ℕ} (hn : n % 2 = 1) :
   simp only [itinerary, hbit, hfp, List.cons.injEq, true_and]
   simp [bit]
 
+/-- The start `1` has word `OO`, since `1` is a fixed point. -/
 theorem one_is_oo : itinerary 1 2 = [.odd, .odd] := by
   decide
 
+/-- The `OO` starts are exactly the odd starts with an odd image. -/
 theorem ooCount_eq_odd_image (N : ℕ) :
     ooCount N =
       ((oddStarts N).filter (fun n => Nat.sqrt (n ^ 3) % 2 = 1)).card := by
@@ -173,6 +178,7 @@ theorem c2_compl (N : ℕ) : c2Count N + ooCount N = N := by
   simp only [c2Count, ooCount]
   omega
 
+/-- The certificate count is `N` minus the `OO` count. -/
 theorem c2Count_eq (N : ℕ) : c2Count N = N - ooCount N := by
   have h := c2_compl N
   omega
@@ -202,6 +208,7 @@ theorem c2_bridge (N : ℕ) :
 /-- `g(r) = (1/2) (2r+1)^{3/2}`. -/
 noncomputable def phaseG (r : ℝ) : ℝ := (1 / 2) * pow32 (2 * r + 1)
 
+/-- The first derivative: `g'(r) = (3/2)(2r+1)^{1/2}`. -/
 theorem hasDerivAt_phaseG {r : ℝ} (hr : 0 < 2 * r + 1) :
     HasDerivAt phaseG ((3 / 2) * sqrt (2 * r + 1)) r := by
   have hlin : HasDerivAt (fun t : ℝ => 2 * t + 1) 2 r := by
@@ -237,6 +244,7 @@ theorem hasDerivAt_phaseG' {r : ℝ} (hr : 0 < 2 * r + 1) :
 
 /-! ## Cutoff arithmetic: `H = Q^{1/6}` turns the block majorant into `O(Q^{5/6})` -/
 
+/-- At `H = Q^{1/6}` the classical block majorant `Q/H + H^{1/2} Q^{3/4} + Q^{1/4}` is at most `3 Q^{5/6}`. -/
 theorem dyadic_cutoff {Q : ℝ} (hQ : 1 ≤ Q) :
     Q / Q ^ (1 / 6 : ℝ) + (Q ^ (1 / 6 : ℝ)) ^ (1 / 2 : ℝ) * Q ^ (3 / 4 : ℝ)
         + Q ^ (1 / 4 : ℝ) ≤
@@ -264,6 +272,7 @@ and passing through Erdős–Turán are not done here. -/
 
 open BTCalculus.SecondDerivative BTCalculus.WeylDifferencing
 
+/-- On a block of length at most its left endpoint, `h g''` stays between `λ` and `2λ`. -/
 theorem block_curvature {h N : ℕ} {a x : ℝ}
     (ha : (1 : ℝ) ≤ a) (hN : (N : ℝ) ≤ a) (hh : 1 ≤ h)
     (hx : x ∈ Set.Icc a (a + N)) :
