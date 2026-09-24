@@ -55,6 +55,8 @@ that a declaration covers the entire English claim. Check statements together.
 The source `trust` marker detects direct `native_decide` or incomplete proof
 markers; `unmarked` only means none was found in the declaration's text. It does
 not establish compilation, transitive trust, or kernel axiom dependencies.
+Use the executable Lean audits for those claims. Do not infer an unconditional
+result from a conditional theorem's name or documentation.
 
 When `signature_complete` is false, read `signature_context`: section `variable`,
 `include` and `omit` commands add binders the header does not show.
@@ -64,8 +66,7 @@ When `signature_complete` is false, read `signature_context`: section `variable`
 evidence as of the recording commit; an empty list means no check covers the
 declaration. `python tools/formalpedia.py audits` lists missing and stale
 artifacts. Formalpedia covers this repository only: search Mathlib with
-`#loogle`/`#leansearch` (LeanSearchClient) or `exact?` through Lean. Use the executable Lean audits for those claims. Do not infer
-an unconditional result from a conditional theorem's name or documentation.
+`#loogle`/`#leansearch` (LeanSearchClient) or `exact?` through Lean.
 
 ## Public interface policy
 
