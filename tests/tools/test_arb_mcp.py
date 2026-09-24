@@ -22,7 +22,8 @@ def test_schemas_and_read_only_annotations():
     async def check():
         tools = await server.mcp.list_tools()
         assert {tool.name for tool in tools} == {"arb_capabilities", "arb_evaluate", "arb_compare",
-                "arb_production_root", "arb_paper_c_models", "arb_paper_c_rate"}
+                "arb_production_root", "arb_continued_fraction", "arb_paper_c_models",
+                "arb_paper_c_rate"}
         for tool in tools:
             assert tool.outputSchema
             assert tool.annotations.readOnlyHint and not tool.annotations.destructiveHint
@@ -57,6 +58,12 @@ def test_stdio_certifies_paper_examples_and_survives_bad_requests(tmp_path):
                     "left": "(1/2)**(5/8)+(33/100)*(3/4)**(5/8)+(11/100)*(9/16)**(5/8)",
                     "right": "1"})
                 assert slack.structuredContent["holds"] is True
+                fraction = await session.call_tool("arb_continued_fraction",
+                    {"expression": "log(3)/log(2)", "terms": 10})
+                assert fraction.structuredContent["quotients"] == [
+                    "1", "1", "1", "2", "2", "3", "1", "5", "2", "23"]
+                assert fraction.structuredContent["last_convergent"] == {"p": "24727", "q": "15601"}
+                assert "src/research_engine/diophantine.py" in fraction.structuredContent["source_sha256"]
                 for C, expected in ((15, False), (16, True)):
                     rate = await session.call_tool("arb_paper_c_rate", {"C": C, "q": "1/2"})
                     assert rate.structuredContent["holds"] is expected
@@ -105,6 +112,44 @@ def test_exact_root_and_unresolved_root_are_distinct():
     unknown = run({"operation": "production_root", "arguments": {
         "terms": [["2", "1/3"]], "digits": 100, "bits": 32, "max_bits": 32}})
     assert unknown["status"] == "unresolved" and "root" not in unknown
+
+
+#: OEIS A028507, continued fraction for log_2(3), terms n = 0..44.
+LOG2_3 = ["1", "1", "1", "2", "2", "3", "1", "5", "2", "23", "2", "2", "1", "1", "55", "1",
+          "4", "3", "1", "1", "15", "1", "9", "2", "5", "7", "1", "1", "4", "8", "1", "11",
+          "1", "20", "2", "1", "10", "1", "4", "1", "1", "1", "1", "1", "37"]
+
+
+def test_continued_fraction_matches_oeis_and_stops_on_a_true_prefix():
+    full = run({"operation": "continued_fraction",
+                "arguments": {"expression": "log(3)/log(2)", "terms": 45}})
+    assert full["status"] == "certified" and full["quotients"] == LOG2_3
+    short = run({"operation": "continued_fraction", "arguments": {
+        "expression": "log(3)/log(2)", "terms": 45, "bits": 32, "max_bits": 32}})
+    assert short["status"] == "unresolved" and short["reason"]
+    assert 0 < short["certified_terms"] < 45
+    assert short["quotients"] == LOG2_3[:short["certified_terms"]]
+
+
+def test_continued_fraction_of_rationals_and_boxes():
+    exact = run({"operation": "continued_fraction", "arguments": {"expression": "355/113"}})
+    assert exact["quotients"] == ["3", "7", "16"] and exact["terminated"]
+    assert exact["last_convergent"] == {"p": "355", "q": "113"}
+    truncated = run({"operation": "continued_fraction",
+                     "arguments": {"expression": "355/113", "terms": 2}})
+    assert truncated["quotients"] == ["3", "7"] and not truncated["terminated"]
+    box = run({"operation": "continued_fraction",
+               "arguments": {"expression": "x", "variables": {"x": ["1.58", "1.59"]}}})
+    assert box["status"] == "unresolved" and box["quotients"] == ["1", "1", "1", "2"]
+
+
+@pytest.mark.parametrize("arguments", [
+    {"expression": "log(3)/log(2)", "terms": 0}, {"expression": "log(3)/log(2)", "terms": 1001},
+    {"expression": "log(3)/log(2)", "terms": True}, {"expression": "log(3)", "bits": 16},
+])
+def test_invalid_continued_fraction_requests(arguments):
+    with pytest.raises(ValueError):
+        run({"operation": "continued_fraction", "arguments": arguments})
 
 
 @pytest.mark.parametrize("change", [{"C": True}, {"C": 10001}, {"q": "0"},

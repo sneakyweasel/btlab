@@ -13,10 +13,14 @@ sys.path.insert(0, str(ROOT / "src"))
 import flint
 from flint import ctx
 
-from research_engine.arb_expressions import compare, evaluate, exact, precision
+from research_engine.arb_expressions import Expression, bounded, compare, evaluate, exact, precision
+from research_engine.diophantine import (
+    certified_partial_quotients, convergents, rational_partial_quotients,
+)
 from research_engine.intervals import UnresolvedInterval, ball, enclosure, production_root
 
 MAX_REQUEST_BYTES = 32768
+MAX_CF_TERMS = 1000
 SCOPE = ("Finite numerical enclosure of the supplied expressions and input box. "
          "Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. "
          "Only a certified decision establishes the requested comparison; unresolved is not false.")
@@ -48,6 +52,8 @@ def dispatch(operation: str, arguments: dict) -> dict:
                 "justification": "Positive coefficients and bases in (0,1) give continuity "
                                  "and strict decrease; endpoint signs bracket the unique root.",
                 "width_at_most": f"1e-{digits}"}
+    if operation == "continued_fraction":
+        return continued_fraction(**arguments)
     if operation == "paper_c_models":
         from check_paper_c_intervals import production_models
 
@@ -88,6 +94,36 @@ def dispatch(operation: str, arguments: dict) -> dict:
     raise ValueError("Unknown worker operation")
 
 
+def continued_fraction(expression: str, terms: int = 20, variables: dict | None = None,
+                       bits: int = 128, max_bits: int = 4096) -> dict:
+    if type(terms) is not int or not 1 <= terms <= MAX_CF_TERMS:
+        raise ValueError(f"Require integer terms in [1, {MAX_CF_TERMS}]")
+    precision(bits, max_bits)
+    value = None
+    if not variables:
+        try:
+            value = exact(expression)
+        except ValueError:
+            pass
+    if value is not None:
+        full = rational_partial_quotients(value)
+        quotients, terminated = full[:terms], len(full) <= terms
+        result = {"status": "certified", "method": "exact rational (Euclid)",
+                  "quotients": [str(a) for a in quotients], "certified_terms": len(quotients),
+                  "requested_terms": terms, "terminated": terminated, "reason": None}
+    else:
+        parsed = Expression(expression, variables)
+        expansion = certified_partial_quotients(lambda: bounded(parsed.evaluate()), terms,
+                                                bits=bits, max_bits=max_bits)
+        quotients = list(expansion.quotients)
+        result = {**expansion.as_dict(), "method": "Arb enclosure; a term is returned only "
+                  "when the floor is one integer for the whole enclosure"}
+    if quotients:
+        p, q = convergents(quotients)[-1]
+        result["last_convergent"] = {"p": str(p), "q": str(q)}
+    return result
+
+
 def run(request: dict) -> dict:
     if type(request) is not dict or set(request) != {"operation", "arguments"}:
         raise ValueError("Expected operation and arguments")
@@ -97,6 +133,8 @@ def run(request: dict) -> dict:
              ROOT / "src/research_engine/intervals.py"]
     if request["operation"] in ("paper_c_models", "paper_c_rate"):
         paths.append(ROOT / "tools/check_paper_c_intervals.py")
+    if request["operation"] == "continued_fraction":
+        paths.append(ROOT / "src/research_engine/diophantine.py")
     sources = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                for p in paths}
     try:
