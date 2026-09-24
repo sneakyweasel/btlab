@@ -133,19 +133,19 @@ namespace Problems.Juggler
 #print axioms BeattySlope.passageAmplitude_pos
 #print axioms BeattySlope.passageAmplitude_eq
 #print axioms BeattySlope.passageAmplitude_reciprocal
-#print axioms BeattySlope.passageJumpWeight_phase_asymptotic
-#print axioms BeattySlope.passageJumpWeight_three_halves_bounds
-#print axioms BeattySlope.passagePhase_shift_interval_frequency
+#print axioms BeattySlope.passageWeight_phase_asymptotic
+#print axioms BeattySlope.passageWeight_three_halves
+#print axioms BeattySlope.passagePhase_shift_frequency
 #print axioms BeattySlope.passageGapMoment_pos
-#print axioms BeattySlope.passageJumpWeight_two_thirds_phase_asymptotic
+#print axioms BeattySlope.passageWeight_two_thirds_limit
 #print axioms BeattySlope.passage_gapCount_asymptotic
 #print axioms BeattySlope.passageClusterSet_tube_formula
 #print axioms BeattySlope.passageClusterSet_tube_bounds
-#print axioms BeattySlope.passageClusterSet_minkowski_dimension
-#print axioms BeattySlope.passageGapMoment_eq_profile_moment
+#print axioms BeattySlope.passageCluster_minkowski_dim
+#print axioms BeattySlope.passageGapMoment_eq_profile
 #print axioms BeattySlope.passageGapMoment_eq_law_moment
 #print axioms BeattySlope.passageMinkowskiContent_pos
-#print axioms BeattySlope.passageClusterSet_minkowski_content
+#print axioms BeattySlope.passageCluster_minkowski_content
 #print axioms BeattySlope.passageTailDensity_monotone
 #print axioms BeattySlope.passageTailDensity_nonneg
 #print axioms BeattySlope.passageTailWeight_summable
@@ -169,6 +169,6 @@ namespace Problems.Juggler
 #print axioms BeattySlope.passageTubeLaw_real
 #print axioms BeattySlope.passageTubeLaw_integral
 #print axioms BeattySlope.passageTubeLaw_tendsto
-#print axioms BeattySlope.passageClusterSet_tube_average_tendsto
+#print axioms BeattySlope.passageCluster_tube_average
 
 end Problems.Juggler

@@ -132,7 +132,7 @@ private theorem gapFactor_identity {r : ℕ} (hr : 0 < r) :
 
 /-- The genuine crossing gaps have the explicit moving three-halves
 asymptotic for every irrational boundary. This is additive `o(1)`, without a rate. -/
-theorem passageJumpWeight_phase_asymptotic :
+theorem passageWeight_phase_asymptotic :
     Tendsto (fun r : ℕ => (r : ℝ)*Real.sqrt r*passageJumpWeight β r -
       passageAmplitude β*passageProfile β (passagePhase β r)) atTop (𝓝 0) := by
   have h1 := (passage_phase_asymptotic_odd_count hβ0 hβ1 hβ).mul (gapFactor_limit hβ0 hβ1 hβ)
@@ -181,14 +181,14 @@ private theorem positive_bounds_of_eventually {f : ℕ → ℝ} (hf : ∀ n, 0 <
 
 /-- Uniform two-sided three-halves bounds for every genuine gap. The
 constants absorb the finite initial segment; no arithmetic hypothesis is added. -/
-theorem passageJumpWeight_three_halves_bounds :
+theorem passageWeight_three_halves :
     ∃ a b : ℝ, 0 < a ∧ 0 < b ∧ ∀ r : ℕ,
       a / ((r : ℝ)+1)^(3/2 : ℝ) ≤ (passageJumpWeight β) (r+1) ∧
       (passageJumpWeight β) (r+1) ≤ b / ((r : ℝ)+1)^(3/2 : ℝ) := by
   have hκ := (passageAmplitude_pos hβ0 hβ1)
   have hsmall : ∀ᶠ r : ℕ in atTop, |(r : ℝ)*Real.sqrt r*(passageJumpWeight β) r -
       (passageAmplitude β)*(passageProfile β) ((passagePhase β) r)| < (passageAmplitude β)/2 := by
-    simpa [Real.dist_eq] using (tendsto_order.1 (passageJumpWeight_phase_asymptotic hβ0 hβ1 hβ).abs).2
+    simpa [Real.dist_eq] using (tendsto_order.1 (passageWeight_phase_asymptotic hβ0 hβ1 hβ).abs).2
       ((passageAmplitude β)/2) (by simpa using half_pos hκ)
   have hev : ∀ᶠ r : ℕ in atTop,
       (passageAmplitude β)/2 ≤ ((r : ℝ)+1)^(3/2 : ℝ)*(passageJumpWeight β) (r+1) ∧

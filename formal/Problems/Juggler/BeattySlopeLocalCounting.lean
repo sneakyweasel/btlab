@@ -66,7 +66,7 @@ theorem passageTailWeight_nonneg (y : ℝ) (n : ℕ) : 0 ≤ (passageTailWeight 
 theorem passage_tail_gapCount_asymptotic (y : ℝ) :
     Tendsto (fun x : ℝ => x^(2/3 : ℝ)*(gapCount ((passageTailWeight β) y) x : ℝ))
       (𝓝[>] 0) (𝓝 (∫ t in (0 : ℝ)..1, (passageTailDensity β) y t)) := by
-  obtain ⟨a,b,ha,hb,hh⟩ := (passageJumpWeight_three_halves_bounds hβ0 hβ1 hβ)
+  obtain ⟨a,b,ha,hb,hh⟩ := (passageWeight_three_halves hβ0 hβ1 hβ)
   let u (n : ℕ) := ((n : ℝ)+1)*((passageTailWeight β) y n)^(2/3 : ℝ)
   have hun (n : ℕ) : 0 ≤ u n := mul_nonneg (by positivity)
     (Real.rpow_nonneg ((passageTailWeight_nonneg hβ0 hβ1) y n) _)
@@ -88,7 +88,7 @@ theorem passage_tail_gapCount_asymptotic (y : ℝ) :
       atTop (𝓝 0) := by
     apply Metric.tendsto_nhds.2
     intro ε hε
-    filter_upwards [Metric.tendsto_nhds.1 (passageJumpWeight_two_thirds_phase_asymptotic hβ0 hβ1 hβ) ε hε]
+    filter_upwards [Metric.tendsto_nhds.1 (passageWeight_two_thirds_limit hβ0 hβ1 hβ) ε hε]
       with n hn
     dsimp only [u, passageTailWeight, passageTailDensity]
     split_ifs
@@ -96,7 +96,7 @@ theorem passage_tail_gapCount_asymptotic (y : ℝ) :
     · simpa using hε
   have h := diagonalCount_nonneg_tendsto_of_sub_tendsto_zero
     (fun n => (passagePhase_mem_Ico hβ0) (n+1))
-    (fun _ _ ha hab hb => (passagePhase_shift_interval_frequency hβ0 hβ) ha hab hb)
+    (fun _ _ ha hab hb => (passagePhase_shift_frequency hβ0 hβ) ha hab hb)
     ((passageTailDensity_monotone hβ0 hβ1 hβ) y) ((passageTailDensity_nonneg hβ0 hβ1 hβ) y 0) hun hu he
   have ht := h.comp (tendsto_rpow_neg_nhdsGT_zero (by norm_num : (-2/3 : ℝ) < 0))
   apply ht.congr'

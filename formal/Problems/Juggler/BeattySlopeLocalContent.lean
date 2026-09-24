@@ -138,7 +138,7 @@ theorem passageScaledTubeMeasure_tendsto :
     Tendsto (passageScaledTubeMeasure β) (𝓝[>] 0) (𝓝 (passageLocalContent hβ0 hβ1 hβ)) := by
   apply tendsto_finiteMeasure_of_tails (passageLocalContent_ne_zero hβ0 hβ1 hβ)
   · rw [(passageLocalContent_mass hβ0 hβ1 hβ)]
-    apply (passageClusterSet_minkowski_content hβ0 hβ1 hβ).congr'
+    apply (passageCluster_minkowski_content hβ0 hβ1 hβ).congr'
     filter_upwards [self_mem_nhdsWithin] with ε hε
     rw [(passageScaledTubeMeasure_real (β := β)) hε MeasurableSet.univ, inter_univ]
   · intro y
@@ -206,7 +206,7 @@ theorem passageTubeLaw_tendsto :
 
 /-- Every bounded continuous spatial observable has the predicted
 geometric limiting average, expressed entirely through the passage law. -/
-theorem passageClusterSet_tube_average_tendsto (g : ℝ →ᵇ ℝ) :
+theorem passageCluster_tube_average (g : ℝ →ᵇ ℝ) :
     Tendsto (fun ε : ℝ => (∫ y in Metric.thickening ε (passageClusterSet β), g y) /
       volume.real (Metric.thickening ε (passageClusterSet β))) (𝓝[>] 0)
       (𝓝 ((∫ y, g y*y^(2/3 : ℝ) ∂((passageLaw hβ0 hβ1 hβ) : Measure ℝ)) /

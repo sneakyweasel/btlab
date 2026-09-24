@@ -20,7 +20,7 @@ theorem actual_family_gap_asymptotic (α : ℝ) (hα1 : 1 < α) (hα : Irrationa
   have hα0 : 0 < α := by linarith
   have hβ0 := one_div_pos.mpr hα0
   have hβ1 := (div_lt_one hα0).mpr hα1
-  have h := passageJumpWeight_phase_asymptotic hβ0 hβ1 (by simpa using hα.inv)
+  have h := passageWeight_phase_asymptotic hβ0 hβ1 (by simpa using hα.inv)
   simp_rw [passageJumpWeight_eq hβ0 hβ1, passageAmplitude_reciprocal hα1] at h
   simpa only [passagePhase, passageIndex, one_div, div_inv_eq_mul, mul_comm] using h
 
@@ -29,7 +29,7 @@ theorem actual_family_gap_bounds (β : ℝ) (hβ0 : 0 < β) (hβ1 : β < 1) (hβ
     ∃ a b : ℝ, 0 < a ∧ 0 < b ∧ ∀ r : ℕ,
       a/((r : ℝ)+1)^(3/2 : ℝ) ≤ passageJumpWeight β (r+1) ∧
       passageJumpWeight β (r+1) ≤ b/((r : ℝ)+1)^(3/2 : ℝ) :=
-  passageJumpWeight_three_halves_bounds hβ0 hβ1 hβ
+  passageWeight_three_halves hβ0 hβ1 hβ
 
 /-- The gap count is an actual set cardinality, with its exact phase moment. -/
 theorem actual_family_gap_count (β : ℝ) (hβ0 : 0 < β) (hβ1 : β < 1) (hβ : Irrational β) :
@@ -44,7 +44,7 @@ theorem actual_family_minkowski_dimension (α : ℝ) (hα1 : 1 < α) (hα : Irra
       Real.log (volume.real (Metric.thickening ε (passageClusterSet (1/α))))/Real.log ε)
       (𝓝[>] 0) (𝓝 (2/3 : ℝ)) := by
   have hα0 : 0 < α := by linarith
-  exact passageClusterSet_minkowski_dimension (one_div_pos.mpr hα0)
+  exact passageCluster_minkowski_dim (one_div_pos.mpr hα0)
     ((div_lt_one hα0).mpr hα1) (by simpa using hα.inv)
 
 /-- Exact positive Minkowski content in the open-radius tube convention,
@@ -58,10 +58,10 @@ theorem actual_family_minkowski_content (α : ℝ) (hα1 : 1 < α) (hα : Irrati
   have hβ0 := one_div_pos.mpr hα0
   have hβ1 := (div_lt_one hα0).mpr hα1
   have hβ : Irrational (1/α) := by simpa using hα.inv
-  simpa only [passageMinkowskiContent, passageGapMoment_eq_profile_moment hβ0 hβ1 hβ,
+  simpa only [passageMinkowskiContent, passageGapMoment_eq_profile hβ0 hβ1 hβ,
     passageAmplitude_reciprocal hα1] using
     And.intro (passageMinkowskiContent_pos hβ0 hβ1 hβ)
-      (passageClusterSet_minkowski_content hβ0 hβ1 hβ)
+      (passageCluster_minkowski_content hβ0 hβ1 hβ)
 
 /-- The weak local-content limit is the actual rescaled tube measure, and
 its integral is the explicit two-thirds reweighting of the empirical law. -/
@@ -86,7 +86,7 @@ theorem actual_family_tube_sampling (β : ℝ) (hβ0 : 0 < β) (hβ1 : β < 1) (
       volume.real (Metric.thickening ε (passageClusterSet β))) (𝓝[>] 0)
       (𝓝 ((∫ y, g y*y^(2/3 : ℝ) ∂(passageLaw hβ0 hβ1 hβ : Measure ℝ)) /
         (∫ y, y^(2/3 : ℝ) ∂(passageLaw hβ0 hβ1 hβ : Measure ℝ)))) :=
-  passageClusterSet_tube_average_tendsto hβ0 hβ1 hβ g
+  passageCluster_tube_average hβ0 hβ1 hβ g
 
 /-- The dimension, content and weak tube limits concern the actual set of
 subsequential limits of the original integer ratios, for every irrational
@@ -111,9 +111,9 @@ theorem actual_family_cluster_content (α : ℝ) (hα1 : 1 < α) (hα : Irration
   have he : {y : ℝ | MapClusterPt y atTop (passageRatio (1/α))} = passageClusterSet (1/α) := by
     ext y
     exact passageRatio_cluster_iff hβ0 hβ1 hβ y
-  have hh := And.intro (passageClusterSet_minkowski_dimension hβ0 hβ1 hβ)
-    (And.intro (passageClusterSet_minkowski_content hβ0 hβ1 hβ)
-      (passageClusterSet_tube_average_tendsto hβ0 hβ1 hβ))
+  have hh := And.intro (passageCluster_minkowski_dim hβ0 hβ1 hβ)
+    (And.intro (passageCluster_minkowski_content hβ0 hβ1 hβ)
+      (passageCluster_tube_average hβ0 hβ1 hβ))
   rw [← he] at hh
   unfold passageRatio at hh
   simpa only [passageIndex, one_div, div_inv_eq_mul, mul_comm] using hh

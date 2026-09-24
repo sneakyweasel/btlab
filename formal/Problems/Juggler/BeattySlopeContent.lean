@@ -20,7 +20,7 @@ variable {β : ℝ} (hβ0 : 0 < β) (hβ1 : β < 1) (hβ : Irrational β)
 include hβ0 hβ1 hβ
 
 /-- Separating the Stirling amplitude from the phase moment. -/
-theorem passageGapMoment_eq_profile_moment :
+theorem passageGapMoment_eq_profile :
     (passageGapMoment β) = (passageAmplitude β)^(2/3 : ℝ)*
       ∫ t in (0 : ℝ)..1, ((passageProfile β) t)^(2/3 : ℝ) := by
   unfold passageGapMoment
@@ -39,7 +39,7 @@ theorem passageGapMoment_eq_law_moment :
       ∫ t in Ioc (0 : ℝ) 1, ((passageProfile β) t)^(2/3 : ℝ) :=
     integral_map_of_stronglyMeasurable (passageProfile_monotone hβ0 hβ1 hβ).measurable
       (Real.continuous_rpow_const (by norm_num : (0 : ℝ) ≤ 2/3)).stronglyMeasurable
-  rw [(passageGapMoment_eq_profile_moment hβ0 hβ1 hβ), hi,
+  rw [(passageGapMoment_eq_profile hβ0 hβ1 hβ), hi,
     intervalIntegral.integral_of_le (by norm_num : (0 : ℝ) ≤ 1)]
 
 /-- Unnormalized real-line Minkowski content at dimension two-thirds:
@@ -55,7 +55,7 @@ theorem passageMinkowskiContent_pos : 0 < (passageMinkowskiContent β) := by
 /-- The passage Cantor set is Minkowski measurable at dimension
 two-thirds. This is a full limit for its metric neighbourhoods, not merely
 two-sided bounds or a logarithmic dimension statement. -/
-theorem passageClusterSet_minkowski_content :
+theorem passageCluster_minkowski_content :
     Tendsto (fun ε : ℝ => volume.real (Metric.thickening ε (passageClusterSet β))/ε^(1/3 : ℝ))
       (𝓝[>] 0) (𝓝 (passageMinkowskiContent β)) := by
   have h := truncated_sum_asymptotic_of_gapCount (passage_jump_weights_hasSum hβ0 hβ1 hβ).summable

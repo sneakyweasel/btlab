@@ -77,7 +77,7 @@ theorem passageClusterSet_tube_bounds :
     ∃ c C : ℝ, 0 < c ∧ 0 < C ∧ ∀ ε : ℝ, 0 < ε → ε ≤ 1/2 →
       c*ε^(1/3 : ℝ) ≤ volume.real (Metric.thickening ε (passageClusterSet β)) ∧
       volume.real (Metric.thickening ε (passageClusterSet β)) ≤ C*ε^(1/3 : ℝ) := by
-  obtain ⟨a,b,ha,hb,hw⟩ := (passageJumpWeight_three_halves_bounds hβ0 hβ1 hβ)
+  obtain ⟨a,b,ha,hb,hw⟩ := (passageWeight_three_halves hβ0 hβ1 hβ)
   have he (n : ℕ) : ((n : ℝ)+1)^(-3/2 : ℝ) = (((n : ℝ)+1)^(3/2 : ℝ))⁻¹ := by
     rw [show (-3/2 : ℝ) = -(3/2) by norm_num, Real.rpow_neg (by positivity)]
   have hlo (n : ℕ) : a*((n : ℝ)+1)^(-3/2 : ℝ) ≤ (passageJumpWeight β) (n+1) := by
@@ -100,7 +100,7 @@ theorem passageClusterSet_tube_bounds :
 /-- Minkowski dimension `2/3`, expressed by the standard real-line
 logarithmic neighbourhood-volume formula. The two-sided tube estimate
 also gives positive finite lower and upper Minkowski contents. -/
-theorem passageClusterSet_minkowski_dimension :
+theorem passageCluster_minkowski_dim :
     Tendsto (fun ε : ℝ => 1 -
       Real.log (volume.real (Metric.thickening ε (passageClusterSet β)))/Real.log ε)
       (𝓝[>] 0) (𝓝 (2/3 : ℝ)) := by

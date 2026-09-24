@@ -1480,8 +1480,8 @@
    "passageAmplitude_pos",
    "passageAmplitude_eq",
    "passageAmplitude_reciprocal",
-   "passageJumpWeight_phase_asymptotic",
-   "passageJumpWeight_three_halves_bounds"
+   "passageWeight_phase_asymptotic",
+   "passageWeight_three_halves"
   ],
   "lean_trust": "kernel",
   "tests": [
@@ -1498,9 +1498,9 @@
   "source": "docs/problems/juggler_winkler_phase_collapse.md",
   "lean": "Problems/Juggler/BeattySlopeGapCounting.lean",
   "decl": [
-   "passagePhase_shift_interval_frequency",
+   "passagePhase_shift_frequency",
    "passageGapMoment_pos",
-   "passageJumpWeight_two_thirds_phase_asymptotic",
+   "passageWeight_two_thirds_limit",
    "passage_gapCount_asymptotic"
   ],
   "lean_trust": "kernel",
@@ -1520,7 +1520,7 @@
   "decl": [
    "passageClusterSet_tube_formula",
    "passageClusterSet_tube_bounds",
-   "passageClusterSet_minkowski_dimension"
+   "passageCluster_minkowski_dim"
   ],
   "lean_trust": "kernel",
   "tests": [
@@ -1537,10 +1537,10 @@
   "source": "docs/problems/juggler_winkler_phase_collapse.md",
   "lean": "Problems/Juggler/BeattySlopeContent.lean",
   "decl": [
-   "passageGapMoment_eq_profile_moment",
+   "passageGapMoment_eq_profile",
    "passageGapMoment_eq_law_moment",
    "passageMinkowskiContent_pos",
-   "passageClusterSet_minkowski_content"
+   "passageCluster_minkowski_content"
   ],
   "lean_trust": "kernel",
   "tests": [
@@ -1612,7 +1612,7 @@
    "passageTubeLaw_real",
    "passageTubeLaw_integral",
    "passageTubeLaw_tendsto",
-   "passageClusterSet_tube_average_tendsto"
+   "passageCluster_tube_average"
   ],
   "lean_trust": "kernel",
   "tests": [

@@ -39,7 +39,7 @@ include hβ0 hβ1 hβ
 
 omit hβ1 in
 /-- Positive-index passage phases have the exact uniform interval frequencies. -/
-theorem passagePhase_shift_interval_frequency {a b : ℝ}
+theorem passagePhase_shift_frequency {a b : ℝ}
     (ha : 0 ≤ a) (hab : a < b) (hb : b ≤ 1) :
     Tendsto (fun N => (count (fun n => (passagePhase β) (n+1) ∈ Ico a b) N : ℝ)/N)
       atTop (𝓝 (b-a)) := by
@@ -85,11 +85,11 @@ theorem passageGapMoment_pos : 0 < (passageGapMoment β) := by
 
 /-- The actual passage weights, after the power transformation appropriate
 to gap counting, differ from their phase profile by a quantity tending to zero. -/
-theorem passageJumpWeight_two_thirds_phase_asymptotic :
+theorem passageWeight_two_thirds_limit :
     Tendsto (fun n : ℕ => ((n : ℝ)+1)*((passageJumpWeight β) (n+1))^(2/3 : ℝ) -
       ((passageAmplitude β)*(passageProfile β) ((passagePhase β) (n+1)))^(2/3 : ℝ))
       atTop (𝓝 0) := by
-  obtain ⟨a, b, ha, hb, hh⟩ := (passageJumpWeight_three_halves_bounds hβ0 hβ1 hβ)
+  obtain ⟨a, b, ha, hb, hh⟩ := (passageWeight_three_halves hβ0 hβ1 hβ)
   let B := max b ((passageAmplitude β)*(1/(1-β)))
   have hnon (t : ℝ) : 0 ≤ (passageAmplitude β)*(passageProfile β) t :=
     mul_nonneg (passageAmplitude_pos hβ0 hβ1).le (by linarith [((passageProfile_bounds hβ0 hβ1 hβ) t).1])
@@ -100,7 +100,7 @@ theorem passageJumpWeight_two_thirds_phase_asymptotic :
   have hv (n : ℕ) : (passageAmplitude β)*(passageProfile β) ((passagePhase β) (n+1)) ∈ Icc (0 : ℝ) B :=
     ⟨hnon _, (mul_le_mul_of_nonneg_left ((passageProfile_bounds hβ0 hβ1 hβ) _).2
       (passageAmplitude_pos hβ0 hβ1).le).trans (le_max_right _ _)⟩
-  have he := (passageJumpWeight_phase_asymptotic hβ0 hβ1 hβ).comp (tendsto_add_atTop_nat 1)
+  have he := (passageWeight_phase_asymptotic hβ0 hβ1 hβ).comp (tendsto_add_atTop_nat 1)
   have he' : Tendsto (fun n : ℕ => ((n : ℝ)+1)^(3/2 : ℝ)*(passageJumpWeight β) (n+1) -
       (passageAmplitude β)*(passageProfile β) ((passagePhase β) (n+1))) atTop (𝓝 0) := by
     convert he using 1
@@ -119,7 +119,7 @@ by `x^(2/3)` normalizes the number of gaps of length at least `x`. -/
 theorem passage_gapCount_asymptotic :
     Tendsto (fun x : ℝ => x^(2/3 : ℝ)*(gapCount (fun n => (passageJumpWeight β) (n+1)) x : ℝ))
       (𝓝[>] 0) (𝓝 (passageGapMoment β)) := by
-  obtain ⟨a, b, ha, hb, hh⟩ := (passageJumpWeight_three_halves_bounds hβ0 hβ1 hβ)
+  obtain ⟨a, b, ha, hb, hh⟩ := (passageWeight_three_halves hβ0 hβ1 hβ)
   have hu (n : ℕ) : ((n : ℝ)+1)*((passageJumpWeight β) (n+1))^(2/3 : ℝ) ≤ b^(2/3 : ℝ) := by
     rw [← scaled_power _ _ ((passageJumpWeight_pos hβ0 hβ1) _).le]
     apply Real.rpow_le_rpow (mul_nonneg (by positivity) ((passageJumpWeight_pos hβ0 hβ1) _).le) _ (by norm_num)
@@ -130,8 +130,8 @@ theorem passage_gapCount_asymptotic :
       (by linarith [((passageProfile_bounds hβ0 hβ1 hβ) 0).1])) _
   have h := diagonalCount_tendsto_of_sub_tendsto_zero
     (fun n => (passagePhase_mem_Ico hβ0) (n+1))
-    (fun _ _ ha hab hb => (passagePhase_shift_interval_frequency hβ0 hβ) ha hab hb)
-    (amplitudeProfile_monotone hβ0 hβ1 hβ) hg0 hu (passageJumpWeight_two_thirds_phase_asymptotic hβ0 hβ1 hβ)
+    (fun _ _ ha hab hb => (passagePhase_shift_frequency hβ0 hβ) ha hab hb)
+    (amplitudeProfile_monotone hβ0 hβ1 hβ) hg0 hu (passageWeight_two_thirds_limit hβ0 hβ1 hβ)
   have ht := h.comp (tendsto_rpow_neg_nhdsGT_zero (by norm_num : (-2/3 : ℝ) < 0))
   apply ht.congr'
   filter_upwards [self_mem_nhdsWithin] with x hx
