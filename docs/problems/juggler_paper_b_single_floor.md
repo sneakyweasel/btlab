@@ -51,18 +51,25 @@ None.
 
 `formal/Problems/Juggler/PaperBSingleFloor.lean`. Theorems `singleFloor_bridge`, `c2_bridge`, `oo_count_of_sum`, `hasDerivAt_phaseG'`, `dyadic_cutoff`, `block_exponential_sum`, `sum_inv_sqrt`. No `sorry`.
 
+`formal/BTCalculus/ErdosTuran.lean` (2026-09-25). This is the Erdős–Turán inequality with main term `N/H`: `abs_arcError_le_modeSum` and its mode-bound form `abs_arcError_le_of_modes`. For `H ≥ 3` and every arc of length at most one, it gives `|count - N·length| ≤ 8N/(H+1) + 4 ∑_{h≤H} B_h/h` when `|∑ e(±h z_n)| ≤ B_h`. The proof uses the existing Fejér kernel at radius `δ = 2/(H+1)`, where the tail mass is `1/4`. It compares the translates of the expanded and contracted arcs with the extreme discrepancy rather than with `N`, so the smoothing loss is `τ · D` and not `τ · N`. The self-referential bound then closes: `D/2 ≤ T + 4N/(H+1)`. No Selberg polynomial is needed.
+
+`formal/Problems/Juggler/PaperBSingleFloorBound.lean` (2026-09-25). This module proves the printed theorem, which the stop criterion above kept out of the bridge module:
+`imageSign_eq_arc` puts parity in the arc `[0, 1/2)`; `abs_block_sign_sum_le` gives `528 a^{5/6}` on a block `[a, a+M)` with `M ≤ a` at `H = ⌊a^{1/6}⌋`; `abs_odd_sign_sum_le` recurses at `⌈R/2⌉`; and `abs_singleFloorSum_le`, `abs_ooCount_sub_le` and `abs_c2Count_sub_le` are the three assertions. They depend only on `propext`, `Classical.choice` and `Quot.sound`.
+
 ## Results
 
-`J-paper-b-theorem-3-1-bridge` — `EXACT — LEAN VERIFIED` for the bridge, the cutoff arithmetic, and one dyadic exponential sum. The bound `S_O(N) = O(N^{5/6})` is not proved here.
+`J-paper-b-theorem-3-1-bridge` — `EXACT — LEAN VERIFIED` for the bridge, the cutoff arithmetic, and one dyadic exponential sum.
+
+`J-paper-b-theorem-3-1` — `EXACT — LEAN VERIFIED`: `|S_O(N)| ≤ 2112 N^{5/6}` for every `N`. For `N ≥ 1`, `|#OO - N/4| ≤ 1057 N^{5/6}` and `|#(C_2 ∩ [1,N]) - 3N/4| ≤ 1057 N^{5/6}`. This is Theorem 3.1 as printed, with explicit constants. The bound on `S_O` beats the trivial `|S_O| ≤ (N+1)/2` only once `N > 4224^6 ≈ 5.7·10^21`; it is an asymptotic statement, not a finite-range improvement.
 
 ## Open questions
 
-The missing half is a one-dimensional discrepancy inequality with main term `N/H` and weights `1/h`. The repository Fejér discrepancy has main term `N/√H`, and with `H = Q^{1/6}` that error is `Q^{11/12}`, larger than `Q^{5/6}`. `sum_inv_sqrt` is the harmonic comparison the `N/H` argument uses.
+Closed on 2026-09-25: `BTCalculus.ErdosTuran` supplies the one-dimensional inequality with main term `N/H` and weights `1/h`. The older `BTCalculus.FejerWeighted` bound, with main term `N/√H`, stays as it was. The new inequality also fits Proposition 3.2, whose two-dimensional form (Erdős–Turán–Koksma) is not formalized.
 
 ## Decision
 
-`PROMOTE` — the exact bridge, one dyadic block, and `∑ h^{-1/2} ≤ 2√H` are kernel-checked. The printed `O(N^{5/6})` remains open. Best next question: is there an Erdős–Turán inequality in this library whose main term is `N/H` rather than `N/√H`?
+`PROMOTE` — the exact bridge, one dyadic block, and `∑ h^{-1/2} ≤ 2√H` are kernel-checked. On 2026-09-25 the printed `O(N^{5/6})` and both counts were kernel-checked too, through the new `N/H` Erdős–Turán inequality. Best next question: does the extreme-discrepancy argument lift to the two-dimensional box in `BTCalculus.FejerBox`? Proposition 3.2 needs that lift.
 
 ## Publication assessment
 
-Status: `THEOREM`. Supports Paper B. It does not by itself Lean-verify Theorem 3.1.
+Status: `THEOREM`. Supports Paper B. With `J-paper-b-theorem-3-1`, Theorem 3.1 is Lean-verified in full.

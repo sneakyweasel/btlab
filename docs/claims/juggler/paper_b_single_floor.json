@@ -2,9 +2,37 @@
  {
   "id": "J-paper-b-theorem-3-1-bridge",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "Paper B Theorem 3.1, exact bridge and one dyadic block. On odd starts in {1,...,N}, the sign sum S_O equals M - 2 times the number of starts with word_2 = OO, and the two-step certificate count is N minus that number. A bound |S_O| <= E is a bound of E on |2 #OO - M|. The phase g(r) = (1/2)(2r+1)^{3/2} has second derivative (3/2)(2r+1)^{-1/2}. On one interval of length at most its left endpoint, the second-derivative test bounds the exponential sum of h*g. At H = Q^{1/6} the classical block majorant is at most 3 Q^{5/6}. Lean: PaperBSingleFloor.singleFloor_bridge, block_exponential_sum, dyadic_cutoff, sum_inv_sqrt. sum_inv_sqrt is the comparison sum_{h=1}^H h^{-1/2} <= 2 H^{1/2}. This does not sum the dyadic blocks or prove S_O(N) = O(N^{5/6}): the repository Fejer discrepancy has main term N/sqrt(H), and the printed exponent needs an Erdős–Turán inequality with main term N/H.",
+  "statement": "Paper B Theorem 3.1, exact bridge and one dyadic block. On odd starts in {1,...,N}, the sign sum S_O equals M - 2 times the number of starts with word_2 = OO, and the two-step certificate count is N minus that number. A bound |S_O| <= E is a bound of E on |2 #OO - M|. The phase g(r) = (1/2)(2r+1)^{3/2} has second derivative (3/2)(2r+1)^{-1/2}. On one interval of length at most its left endpoint, the second-derivative test bounds the exponential sum of h*g. At H = Q^{1/6} the classical block majorant is at most 3 Q^{5/6}. Lean: PaperBSingleFloor.singleFloor_bridge, block_exponential_sum, dyadic_cutoff, sum_inv_sqrt. sum_inv_sqrt is the comparison sum_{h=1}^H h^{-1/2} <= 2 H^{1/2}. This row alone does not sum the dyadic blocks; the bound S_O(N) = O(N^{5/6}) is J-paper-b-theorem-3-1.",
   "source": "docs/problems/juggler_paper_b_single_floor.md",
   "lean": "Problems/Juggler/PaperBSingleFloor.lean",
+  "decl": [
+   "singleFloor_bridge",
+   "c2_bridge",
+   "oo_count_of_sum",
+   "hasDerivAt_phaseG'",
+   "dyadic_cutoff",
+   "block_exponential_sum",
+   "sum_inv_sqrt"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-theorem-3-1",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper B Theorem 3.1 (single-floor parity), with explicit constants. For every N, |S_O(N)| <= 2112 N^{5/6}, where S_O(N) is the sum of psi(n^{3/2}) over odd n <= N. For N >= 1, |#{n <= N : word_2(n) = OO} - N/4| <= 1057 N^{5/6} and |#(C_2 cap [1,N]) - 3N/4| <= 1057 N^{5/6}. The analytic input is an Erdos-Turan inequality with main term N/H (BTCalculus.ErdosTuran.abs_arcError_le_of_modes): for H >= 3, every arc of length at most one has discrepancy at most 8N/(H+1) + 4 sum_{h=1}^H B_h/h whenever |sum_n e(+-h z_n)| <= B_h. Its proof smooths with the Fejer kernel of radius 2/(H+1) and compares translates of the expanded and contracted arcs with the extreme discrepancy, not with N; no Selberg polynomial is used. On a block [a, a+M) with M <= a, the second-derivative bound at H = floor(a^{1/6}) gives a block sign sum of at most 528 a^{5/6}; halving the range at ceil(R/2) closes the recursion because (3/4)^{5/6} <= 4/5. The constants make the bound on S_O better than the trivial bound only for N above about 5.7 * 10^21; the statement is the printed O(N^{5/6}) with an explicit constant, not a finite-range numerical improvement.",
+  "source": "docs/problems/juggler_paper_b_single_floor.md",
+  "lean": "Problems/Juggler/PaperBSingleFloorBound.lean",
+  "decl": [
+   "abs_singleFloorSum_le",
+   "abs_ooCount_sub_le",
+   "abs_c2Count_sub_le",
+   "abs_block_sign_sum_le"
+  ],
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_layer_architecture.py"
   ],

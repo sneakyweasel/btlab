@@ -1,6 +1,6 @@
 # Paper C — reproducible preprint build
 
-The canonical manuscript is [juggler_fate_almost_all_note.md](juggler_fate_almost_all_note.md). The 9 September 2026 revision is the Zenodo preprint [doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165). A local rebuild does not create or update that record.
+The canonical manuscript is [juggler_fate_almost_all_note.md](juggler_fate_almost_all_note.md). The 9 September 2026 revision was the first Zenodo preprint, [doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165); the current deposit is version 1.3.0 of 24 September 2026, [doi:10.5281/zenodo.22947659](https://doi.org/10.5281/zenodo.22947659), listed with the others under Zenodo below. A local rebuild does not create or update that record.
 
 The local 11 September 2026 rebuild refreshes source hashes after a shared Lean refactor and repairs Unicode text encoding in the PDF template. It preserves the mathematical text, title and date; it does not update the deposited version.
 
@@ -47,7 +47,7 @@ Development notes are historical. Where their statements differ, the corrected m
 
 ## Zenodo
 
-This repository holds version 1.3.0, which is prepared and not deposited. The record is at [zenodo.org/records/22865705](https://zenodo.org/records/22865705); its current version is 1.1.0, [doi:10.5281/zenodo.22865705](https://doi.org/10.5281/zenodo.22865705), of 21 September 2026, after 1.0.0 [doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165) of 9 September 2026. The concept DOI [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) resolves to the latest version. Resource type Publication / Preprint, English, open access, CC BY 4.0, with the author's ORCID [0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382). A rebuild writes local metadata only; it does not upload a new version. Later revisions should use that record's new-version operation. The manuscript includes an AI-assistance disclosure and the author's responsibility statement.
+This repository holds version 1.3.0, deposited on 24 September 2026 as [doi:10.5281/zenodo.22947659](https://doi.org/10.5281/zenodo.22947659), record [zenodo.org/records/22947659](https://zenodo.org/records/22947659). The record's one file is byte-identical to the repository PDF by the md5 the Zenodo API reports. Earlier versions are 1.1.0, [doi:10.5281/zenodo.22865705](https://doi.org/10.5281/zenodo.22865705), of 21 September 2026, and 1.0.0, [doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165), of 9 September 2026. The concept DOI [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) resolves to the latest version. Resource type Publication / Preprint, English, open access, CC BY 4.0, with the author's ORCID [0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382). A rebuild writes local metadata only; it does not upload a new version. Later revisions should use that record's new-version operation. The manuscript includes an AI-assistance disclosure and the author's responsibility statement.
 
 ## Revision of 22 September 2026: three productions
 
@@ -99,4 +99,5 @@ draft are replaced by the results Paper B 1.2.0 contains. A three-lens
 AI review of this revision found no mathematical error in Section 5.10;
 its findings on status wording and stale sentences are repaired. The historical 37-module barrel and
 its 473 reports are unchanged; the supplementary modules and their audits
-are pinned in the release manifest. No deposit is performed.
+are pinned in the release manifest. This version was deposited on 24
+September 2026 as doi:10.5281/zenodo.22947659.

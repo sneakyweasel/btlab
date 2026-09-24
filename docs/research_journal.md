@@ -11,7 +11,18 @@ consolidation is at `e9725762eaf028d1ace354ff20e0fc48f1a3d143`. See
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
-## 2026-09-24 -- Paper C 1.3.0 prepared with contagion 37/50
+## 2026-09-25 -- Paper B Theorem 3.1 closed in Lean
+
+**EXACT — LEAN VERIFIED:** `|S_O(N)| ≤ 2112 N^{5/6}` for every `N`, and both
+counts are within `1057 N^{5/6}` of `N/4` and `3N/4`. The missing input was an
+Erdős–Turán inequality with main term `N/H`. `BTCalculus.ErdosTuran` proves it
+from the existing Fejér kernel: arc translates are compared with the extreme
+discrepancy rather than with `N`, with no Selberg polynomial. Remaining premise:
+none for Theorem 3.1. Proposition 3.2 needs the two-dimensional lift.
+Decision: PROMOTE. This entry replaces the two 24 September Theorem 3.1
+entries. Record: [single-floor dossier](problems/juggler_paper_b_single_floor.md).
+
+## 2026-09-24 -- Paper C 1.3.0 published with contagion 37/50
 
 **EXACT — HUMAN PROOF (one written input, not human-reviewed):** Paper C's new
 Theorem 5.20 feeds the two depth-five productions into the recursion through
@@ -24,21 +35,10 @@ at `5/8`, with the threshold `3/8`, is now kernel-checked, since
 that, and the ledger keeps that row at EXACT — HUMAN PROOF until its statement
 coverage is audited. The least depth constants drop to 14 (fair) and 14, 28,
 132, 866 (one-sided) at `13/50`, each Arb-certified from `C = 5`. Remaining
-premise: human review of Paper B's Appendix D. Decision: prepared, not
-deposited. Record: [depth-five dossier](problems/juggler_depth_five_production.md),
-Result 37, and the [deposit record](theory/paper_deposits.md).
-
-## 2026-09-24 -- Paper B Theorem 3.1, one dyadic block
-
-**EXACT — LEAN VERIFIED:** on an interval of length at most its left endpoint, the second-derivative test bounds the exponential sum of `h * g`. Remaining premise: sum the blocks and pass through discrepancy to get `S_O(N) = O(N^{5/6})`. Decision: PROMOTE the block. Record: [single-floor dossier](problems/juggler_paper_b_single_floor.md).
-
-## 2026-09-24 -- Paper B Theorem 3.1 exact bridge
-
-**EXACT — LEAN VERIFIED** for the counting identity only: on odd starts,
-`S_O = M - 2 · #OO`, and the two-step certificate count is the complement.
-The phase second derivative and the cutoff `H = Q^{1/6}` are checked.
-Remaining premise: the exponential-sum bound `S_O(N) = O(N^{5/6})`.
-Decision: PROMOTE the bridge. Record: [single-floor dossier](problems/juggler_paper_b_single_floor.md).
+premise: human review of Paper B's Appendix D. Decision: published 24 September
+2026, doi:10.5281/zenodo.22947659; no Paper B 1.2.1 for its now-stale D.8
+sentence. Record: [depth-five dossier](problems/juggler_depth_five_production.md),
+Results 37 and 38, and the [deposit record](theory/paper_deposits.md).
 
 ## 2026-09-24 -- Paper B 1.2.0 published with the depth-five fair-share theorem
 

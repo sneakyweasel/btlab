@@ -102,15 +102,18 @@ Hypothesis FD carried as a hypothesis (`PaperBChernoff`, `PaperBMarkov`, `PaperB
 the threshold algebra of Remark 6.2 (`PaperBThreshold`). Outside it, because they reach the
 itinerary stack shared with Paper A, are Lemma 5.1 (`PaperBCertificates`), the count assembly
 of Theorems 5.2--5.4 (`PaperBFiveStepDensity`), the certificate lengths, recursion, survivor
-decay, tilt, barrier step and jump transposition, the exact bridge of Theorem 3.1
-(`PaperBSingleFloor`), Lemma D.3 (`SubBlockAveraging`) and the fibre geometry (D.2)
-(`DepthFiveFibreGeometry`).
+decay, tilt, barrier step and jump transposition, Theorem 3.1 in full with explicit
+constants (`PaperBSingleFloor` for the exact bridge, `PaperBSingleFloorBound` for
+`|S_O(N)| ≤ 2112 N^{5/6}` through the `N/H` inequality of `BTCalculus.ErdosTuran`), Lemma D.3
+(`SubBlockAveraging`) and the fibre geometry (D.2) (`DepthFiveFibreGeometry`). Theorem 3.1 and
+its Erdős–Turán inequality postdate the 1.2.0 edition, which does not cite them.
 
 ## What is not here
 
-No analytic estimate of Sections 4 and 7 or of Appendices A--D is machine-checked: not
-Theorems 4.5, 4.9, 4.11 or B.1, not Lemmas 4.4, 4.7 or 4.8, not Propositions 3.2, 7.4 or 7.6,
-and not the averaging argument of Theorem 6.3 beyond Lemma D.3 and (D.2). The densities
+Theorem 3.1 is the one exponential-sum estimate of the paper that is machine-checked, and it
+lives outside this barrel. No analytic estimate of Sections 4 and 7 or of Appendices A--D is
+machine-checked: not Theorems 4.5, 4.9, 4.11 or B.1, not Lemmas 4.4, 4.7 or 4.8, not
+Propositions 3.2, 7.4 or 7.6, and not the averaging argument of Theorem 6.3 beyond Lemma D.3 and (D.2). The densities
 `13/16`, `27/32` and `7/8` of Theorems 5.2--5.4 are therefore machine-checked only as count
 assemblies from their analytic inputs. Nothing in this barrel bounds an exponential sum.
 

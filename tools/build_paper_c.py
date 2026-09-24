@@ -243,7 +243,7 @@ def write_metadata(root: Path, pandoc: str) -> None:
                           "orcid": ORCID}],
             "upload_type": "publication", "publication_type": "preprint", "access_right": "open",
             "license": "cc-by-4.0", "language": "eng", "version": datetime.strptime(date, '%d %B %Y').date().isoformat(),
-            "keywords": ['Juggler map', 'preimage sets', 'logarithmic counting', 'parity cylinders', 'integer dynamics'],
+            "keywords": ['Juggler map', 'preimage sets', 'logarithmic counting', 'parity cylinders', 'integer dynamics', 'Collatz map'],
             "description": description,
             "related_identifiers": [{"identifier": "https://github.com/sneakyweasel/btlab", "relation": "isSupplementTo", "scheme": "url"}]}
     meta = carry_forward(root, meta)
