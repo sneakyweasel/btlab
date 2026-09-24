@@ -15,9 +15,9 @@ from dataclasses import dataclass
 from fractions import Fraction
 from typing import Callable, Iterable
 
-from flint import arb, ctx
+from flint import arb, ctx, fmpq
 
-from research_engine.intervals import rational
+from research_engine.intervals import enclosure, rational
 
 
 def rational_partial_quotients(value: int | str | Fraction) -> list[int]:
@@ -87,11 +87,12 @@ class Expansion:
     precision_bits: int
     attempted_bits: tuple[int, ...]
     reason: str | None
+    satisfied: bool = False
 
     @property
     def complete(self) -> bool:
-        """The requested count was reached, or the expansion provably ended."""
-        return self.terminated or len(self.quotients) == self.requested
+        """The requested count or stopping condition was reached, or the expansion ended."""
+        return self.terminated or self.satisfied or len(self.quotients) == self.requested
 
     def as_dict(self) -> dict:
         return {"status": "certified" if self.complete else "unresolved",
@@ -101,23 +102,30 @@ class Expansion:
                 "attempted_bits": list(self.attempted_bits), "reason": self.reason}
 
 
-def _expand(x: arb, terms: int) -> tuple[list[int], bool, str | None]:
+Until = Callable[[list[int]], bool]
+
+
+def _expand(x: arb, terms: int, until: Until | None
+            ) -> tuple[list[int], bool, str | None, bool]:
     found: list[int] = []
     while len(found) < terms:
         if not x.is_finite():
-            return found, False, f"Nonfinite enclosure at term {len(found)}"
+            return found, False, f"Nonfinite enclosure at term {len(found)}", False
         a = x.floor().unique_fmpz()
         if a is None:
-            return found, False, f"Floor of the enclosure is not one integer at term {len(found)}"
+            return (found, False, f"Floor of the enclosure is not one integer at term {len(found)}",
+                    False)
         found.append(int(a))
+        if until is not None and until(found):
+            return found, False, None, True
         rest = x - a
         if rest.is_zero():
-            return found, True, None
+            return found, True, None, False
         if rest.contains(0):
             return found, False, (f"Remainder after term {len(found) - 1} encloses zero: "
-                                  "the value may be rational here, or precision is exhausted")
+                                  "the value may be rational here, or precision is exhausted"), False
         x = 1 / rest
-    return found, False, None
+    return found, False, None, False
 
 
 def certified_partial_quotients(evaluate: Callable[[], arb], terms: int, *, bits: int = 128,
@@ -131,24 +139,109 @@ def certified_partial_quotients(evaluate: Callable[[], arb], terms: int, *, bits
     Results from different precisions must agree on their common prefix;
     disagreement means a broken enclosure and raises instead of choosing one.
     """
-    if type(terms) is not int or terms < 1:
-        raise ValueError("Require a positive integer number of terms")
+    return _certified(evaluate, terms, None, bits, max_bits)
+
+
+def _check_precision(bits: int, max_bits: int) -> None:
     if type(bits) is not int or type(max_bits) is not int or not 2 <= bits <= max_bits:
         raise ValueError("Require integer precision 2 <= bits <= max_bits")
+
+
+def _certified(evaluate: Callable[[], arb], terms: int, until: Until | None, bits: int,
+               max_bits: int) -> Expansion:
+    if type(terms) is not int or terms < 1:
+        raise ValueError("Require a positive integer number of terms")
+    _check_precision(bits, max_bits)
     attempts: list[int] = []
-    best: tuple[list[int], bool, str | None] = ([], False, None)
+    best: tuple[list[int], bool, str | None, bool] = ([], False, None, False)
     best_bits = bits
     while True:
         attempts.append(bits)
         with ctx.workprec(bits):
-            found, terminated, reason = _expand(evaluate(), terms)
+            found, terminated, reason, satisfied = _expand(evaluate(), terms, until)
         shorter, longer = sorted((found, best[0]), key=len)
         if longer[:len(shorter)] != shorter:
             raise ArithmeticError("Certified prefixes disagree between precisions")
         if len(found) >= len(best[0]):
-            best, best_bits = (found, terminated, reason), bits
-        if terminated or len(found) == terms or bits == max_bits:
+            best, best_bits = (found, terminated, reason, satisfied), bits
+        if terminated or satisfied or len(found) == terms or bits == max_bits:
             break
         bits = min(2 * bits, max_bits)
-    found, terminated, reason = best
-    return Expansion(tuple(found), terms, terminated, best_bits, tuple(attempts), reason)
+    found, terminated, reason, satisfied = best
+    return Expansion(tuple(found), terms, terminated, best_bits, tuple(attempts), reason,
+                     satisfied)
+
+
+def _fibonacci_index_above(bound: int) -> int:
+    """Least n with F(n) > bound; q_n >= F(n+1) bounds how many terms reach it."""
+    a, b, n = 0, 1, 1
+    while b <= bound:
+        a, b, n = b, a + b, n + 1
+    return n
+
+
+def best_approximations(evaluate: Callable[[], arb], max_denominator: int,
+                        tau: int | str | Fraction = 0, *, bits: int = 128,
+                        max_bits: int = 4096) -> dict:
+    """Certify min over 1 <= q <= Q of q**tau * ||q alpha||, with every convergent up to Q.
+
+    For tau >= 0 the minimum is attained at a convergent denominator: if
+    q_n <= q < q_{n+1} then ||q alpha|| >= ||q_n alpha|| (convergents are the best
+    approximations of the second kind; Khinchin, Continued Fractions, Theorems
+    16-17) and q**tau >= q_n**tau. When a_1 = 1 the convergents p_0/q_0 and
+    p_1/q_1 share q = 1, and only the nearer one, p_1, gives ||alpha||.
+
+    The result is a finite-range statement. It bounds from above every valid
+    constant c in |q alpha - p| >= c q**(-tau), and certifies nothing for q > Q.
+    Distances are recomputed from `evaluate` at doubling precision until each is
+    certainly positive or exactly zero; otherwise the status is unresolved.
+    """
+    if type(max_denominator) is not int or max_denominator < 1:
+        raise ValueError("max_denominator must be a positive integer")
+    exponent = rational(tau)
+    if exponent < 0:
+        raise ValueError("tau must be nonnegative")
+    _check_precision(bits, max_bits)
+    expansion = _certified(evaluate, _fibonacci_index_above(max_denominator) + 2,
+                           lambda found: convergents(found)[-1][1] > max_denominator,
+                           bits, max_bits)
+    base = {"max_denominator": str(max_denominator), "tau": str(exponent),
+            "quotients": [str(a) for a in expansion.quotients],
+            "expansion_bits": list(expansion.attempted_bits)}
+    if not (expansion.satisfied or expansion.terminated):
+        return {**base, "status": "unresolved",
+                "reason": expansion.reason or "Continued fraction did not pass max_denominator"}
+    fractions = convergents(expansion.quotients)
+    rows = [(n, p, q) for n, (p, q) in enumerate(fractions) if q <= max_denominator]
+    if len(fractions) > 1 and fractions[1][1] == 1:
+        rows = rows[1:]
+    attempts: list[int] = []
+    while True:
+        attempts.append(bits)
+        with ctx.workprec(bits):
+            alpha = evaluate()
+            signed = [q * alpha - p for _, p, q in rows]
+            if all(s.is_zero() or s > 0 or s < 0 for s in signed):
+                weights = [arb(q) ** arb(fmpq(exponent.numerator, exponent.denominator))
+                           for _, _, q in rows]
+                entries = []
+                for (n, p, q), s, w in zip(rows, signed, weights):
+                    distance = abs(s)
+                    entries.append({"n": n, "p": str(p), "q": str(q),
+                                    "side": "exact" if s.is_zero() else "below" if s > 0 else "above",
+                                    "distance": enclosure(distance),
+                                    "weighted": enclosure(w * distance)})
+                break
+        if bits == max_bits:
+            return {**base, "status": "unresolved", "precision_bits": bits,
+                    "attempted_bits": attempts,
+                    "reason": "A convergent distance still encloses zero at max_bits"}
+        bits = min(2 * bits, max_bits)
+    lower = min(Fraction(e["weighted"]["lower"]) for e in entries)
+    upper = min(Fraction(e["weighted"]["upper"]) for e in entries)
+    attained = [e["q"] for e in entries if Fraction(e["weighted"]["lower"]) <= upper]
+    return {**base, "status": "certified", "convergents": entries,
+            "minimum": {"lower": str(lower), "upper": str(upper)}, "attained_at": attained,
+            "precision_bits": bits, "attempted_bits": attempts,
+            "scope": "Minimum over 1 <= q <= max_denominator only; nothing is certified "
+                     "for larger q."}

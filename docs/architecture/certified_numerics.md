@@ -82,6 +82,16 @@ An input box certifies only the prefix shared by all its points. A rational
 supplied as an enclosure stays unresolved at its last term; use
 `rational_partial_quotients` for exact rationals.
 
+`best_approximations(evaluate, Q, tau)` certifies `min q**tau * ||q alpha||`
+over `1 <= q <= Q` for `tau >= 0`, with every convergent up to `Q`, its side of
+`alpha` and an enclosure of its distance. The minimum is taken over convergent
+denominators only, which is exact: for `q_n <= q < q_{n+1}`, `||q alpha|| >=
+||q_n alpha||` (best approximations of the second kind) and `q**tau >= q_n**tau`.
+Tests confirm it against a brute-force minimum over every `q <= 2000`. It is a
+finite-range upper bound on any constant `c` with `|q alpha - p| >= c q**(-tau)`
+and certifies nothing for `q > Q`, so it can test a claimed Diophantine
+constant but never supply one for all `q`.
+
 API references: [python-flint's arithmetic and comparisons](https://python-flint.readthedocs.io/en/stable/general.html),
 [Arb endpoints and error bounds](https://python-flint.readthedocs.io/en/stable/arb.html).
 
