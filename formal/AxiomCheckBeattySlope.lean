@@ -1,5 +1,6 @@
 import Problems.Juggler.BeattyCounting
-import Problems.Juggler.BeattySlopeAsymptotic
+import Problems.Juggler.BeattySlopeDistribution
+import Problems.Juggler.BeattySlopeProfileSpecialization
 
 /-! Recorded dependencies of the public arbitrary-boundary counting results.
 The expanded actual-count consumers are in `InterfaceCheckBeattySlope.lean`.
@@ -84,5 +85,49 @@ namespace Problems.Juggler
 #print axioms BeattySlope.logarithmic_irrational
 #print axioms BeattyPhase.survivor_count_recurrence
 #print axioms BeattyPhase.survivor_exponential_identity
+
+#print axioms BeattySlope.passageCount_crossingDepth_pos
+#print axioms BeattySlope.passageJumpWeight_pos
+#print axioms BeattySlope.passageIndex_logarithmic
+#print axioms BeattySlope.passagePhase_logarithmic
+#print axioms BeattySlope.criticalWordMass_logarithmic
+#print axioms BeattySlope.passageJumpWeight_logarithmic
+#print axioms BeattySlope.passageProfile_logarithmic
+#print axioms BeattyPhase.phase_ne_one_of_irrational
+#print axioms BeattyPhase.tendsto_irrational_phase_average
+#print axioms BeattyPhase.irrational_rotation_fract_pos
+#print axioms BeattyPhase.irrational_rotation_recurrent
+#print axioms BeattyPhase.irrational_rotation_equidistributed
+#print axioms BeattySlope.passagePhase_eq_fract
+#print axioms BeattySlope.passagePhase_injective
+#print axioms BeattySlope.passagePhase_recurrent
+#print axioms BeattySlope.passageProfile_strictMonoOn
+#print axioms BeattySlope.passageClusterSet_eq_jumpRange
+#print axioms BeattySlope.passageClusterSet_eq_closure_range
+#print axioms BeattySlope.passageRatio_cluster_iff
+#print axioms BeattySlope.isCompact_passageClusterSet
+#print axioms BeattySlope.perfect_passageClusterSet
+#print axioms BeattySlope.volume_passageClusterSet
+#print axioms BeattySlope.interior_passageClusterSet
+#print axioms BeattySlope.passage_gap_endpoints_mem
+#print axioms BeattySlope.passageRatio_gap_endpoints_cluster
+#print axioms BeattySlope.passageRatio_eventually_avoids_gap
+#print axioms BeattySlope.passageClusterSet_nonempty
+#print axioms BeattySlope.passageRatio_envelope_endpoints_cluster
+#print axioms BeattySlope.passageRatio_liminf_limsup
+#print axioms BeattySlope.passagePhase_equidistributed
+#print axioms BeattySlope.passageProfile_ae_continuous
+#print axioms BeattySlope.passageRatio_empiricalLaw_tendsto
+#print axioms BeattySlope.passageLaw_singleton
+#print axioms BeattySlope.passageLaw_cdf_continuous
+#print axioms BeattySlope.passageLaw_compl_clusterSet
+#print axioms BeattySlope.passageLaw_clusterSet
+#print axioms BeattySlope.passageLaw_mutuallySingular_volume
+#print axioms BeattySlope.passageLaw_Iic_profile
+#print axioms BeattySlope.passageLaw_closed_gap
+#print axioms BeattySlope.passageLaw_Iic_gap
+#print axioms BeattySlope.passageRatio_threshold_frequency
+#print axioms BeattySlope.passageRatio_profile_threshold_frequency
+#print axioms BeattySlope.passageRatio_average_tendsto
 
 end Problems.Juggler

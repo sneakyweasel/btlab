@@ -335,4 +335,41 @@ theorem passageCount_eq_weight_div {β z : ℝ} (hβ0 : 0 < β) (hβ1 : β ≤ 1
   rw [passageWeight_crossingDepth hβ0 hβ1]
   exact (mul_div_cancel_right₀ _ (pow_ne_zero _ hz)).symm
 
+/-- Every crossing edge carries an actual first-passage word: all `r` odd
+letters first, then even letters until the crossing. This also holds at
+rational boundaries under the weak-survival convention. -/
+theorem passageCount_crossingDepth_pos {β : ℝ} (hβ0 : 0 < β) (hβ1 : β ≤ 1) (r : ℕ) :
+    0 < passageCount β (crossingDepth β r) := by
+  classical
+  have hr : r ≤ ⌊(r : ℝ)/β⌋₊ := Nat.le_floor
+    ((le_div_iff₀ hβ0).2 (mul_le_of_le_one_right (Nat.cast_nonneg r) hβ1))
+  have hrl : r ≤ crossingDepth β r := by unfold crossingDepth; omega
+  have hlen := blockWord_length hrl
+  apply Finset.card_pos.mpr
+  refine ⟨blockWord (crossingDepth β r) r, mem_filter.mpr ⟨mem_allWords.mpr hlen, ?_⟩⟩
+  refine ⟨?_, ?_, ?_⟩
+  · intro he
+    have := congrArg List.length he
+    rw [hlen, List.length_nil] at this
+    unfold crossingDepth at this
+    omega
+  · rw [Below, hlen, blockWord_oddCount]
+    have h := (div_lt_iff₀ hβ0).mp (Nat.lt_floor_add_one ((r : ℝ)/β))
+    simpa only [crossingDepth, Nat.cast_add, Nat.cast_one, mul_comm] using h
+  · intro k _ hk
+    rw [hlen] at hk
+    have hodd : oddCount ((blockWord (crossingDepth β r) r).take k) = min k r := by
+      simp [blockWord, List.take_append, List.take_replicate, oddCount_append,
+        oddCount_replicate_odd, oddCount_replicate_even]
+    rw [hodd]
+    by_cases hkr : k ≤ r
+    · rw [Nat.min_eq_left hkr]
+      exact mul_le_of_le_one_left (Nat.cast_nonneg k) hβ1
+    · rw [Nat.min_eq_right (by omega : r ≤ k)]
+      have hk' : (k : ℝ) ≤ ⌊(r : ℝ)/β⌋₊ := by
+        exact_mod_cast (show k ≤ ⌊(r : ℝ)/β⌋₊ by unfold crossingDepth at hk; omega)
+      have hf := (le_div_iff₀ hβ0).mp
+        (Nat.floor_le (div_nonneg (Nat.cast_nonneg r) hβ0.le))
+      nlinarith
+
 end Problems.Juggler.BeattySlope

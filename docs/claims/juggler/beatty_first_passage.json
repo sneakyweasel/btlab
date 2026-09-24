@@ -1266,7 +1266,7 @@
  {
   "id": "J-beatty-slope-jump-weight-mass",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "For every real 0<beta<1, let m_r=floor(r/beta), c_r be the actual integer first-passage count at depth m_r+1, and w_r=c_r*beta^r*(1-beta)^(m_r-r). Lean proves m_r>=r, that critical first-passage mass at m_r+1 equals (1-beta)*w_r and vanishes off the range of these strictly increasing edges, and that w_0=1 with every w_r nonnegative. For irrational beta, the full weight series has sum 1/(1-beta), and the positive-index series has sum beta/(1-beta). The reciprocal-slope interface covers every irrational alpha>1 and states the sum as 1/(alpha-1). These are exact actual-count normalizations; the separate profile identification and count limit are established in J-beatty-slope-profile-identification and J-beatty-slope-first-passage-asymptotic.",
+  "statement": "For every real 0<beta<1, let m_r=floor(r/beta), c_r be the actual integer first-passage count at depth m_r+1, and w_r=c_r*beta^r*(1-beta)^(m_r-r). Lean proves m_r>=r, that critical first-passage mass at m_r+1 equals (1-beta)*w_r and vanishes off the range of these strictly increasing edges, and that w_0=1 with every w_r strictly positive. For irrational beta, the full weight series has sum 1/(1-beta), and the positive-index series has sum beta/(1-beta). The reciprocal-slope interface covers every irrational alpha>1 and states the sum as 1/(alpha-1). These are exact actual-count normalizations; the separate profile identification and count limit are established in J-beatty-slope-profile-identification and J-beatty-slope-first-passage-asymptotic.",
   "source": "docs/problems/juggler_winkler_phase_collapse.md",
   "lean": "Problems/Juggler/BeattySlopeSeries.lean",
   "decl": [
@@ -1278,7 +1278,8 @@
    "passageJumpWeight_zero",
    "passageJumpWeight_nonneg",
    "passage_jump_weights_hasSum",
-   "passage_jump_weights_hasSum_reciprocal"
+   "passage_jump_weights_hasSum_reciprocal",
+   "passageJumpWeight_pos"
   ],
   "lean_trust": "kernel",
   "tests": [
@@ -1313,7 +1314,7 @@
  {
   "id": "J-beatty-slope-profile-envelope",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "For every irrational 0<beta<1, the strict actual-count jump profile F_beta is nondecreasing on the real line, satisfies 1<=F_beta(t)<=1/(1-beta) for every real t, and has exact values F_beta(0)=1 and F_beta(1)=1/(1-beta). In reciprocal slope notation the upper endpoint is alpha/(alpha-1). These are formal consequences of the exact weight mass and phase support; strict increase, a full family cluster-set theorem and limiting-law geometry are separate conclusions.",
+  "statement": "For every irrational 0<beta<1, the strict actual-count jump profile F_beta is nondecreasing on the real line, satisfies 1<=F_beta(t)<=1/(1-beta) for every real t, and has exact values F_beta(0)=1 and F_beta(1)=1/(1-beta). In reciprocal slope notation the upper endpoint is alpha/(alpha-1). These are formal consequences of the exact weight mass and phase support; strict increase, the full family cluster set and its singular empirical law are now recorded separately in J-beatty-slope-complete-cluster-set and J-beatty-slope-singular-empirical-law.",
   "source": "docs/problems/juggler_winkler_phase_collapse.md",
   "lean": "Problems/Juggler/BeattySlopeIdentification.lean",
   "decl": [
@@ -1347,6 +1348,104 @@
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-positive-crossings",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every real 0<beta<=1 and every natural r, the actual first-passage count at depth floor(r/beta)+1 is strictly positive. The witness consists of r odd letters followed by even letters up to the crossing. Rational boundaries are included under the weak-survival convention; this is an exact word-count statement, not an orbit-realization claim.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeWords.lean",
+  "decl": [
+   "passageCount_crossingDepth_pos"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_geometry_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-logarithmic-profile-specialization",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "At beta=log(2)/log(3), the general crossing indices, phases, critical word masses, actual jump weights and strict cumulative profile equal the original certificate definitions exactly, including at atoms and index zero. The original certificate_phase_asymptotic now follows from the irrational-family theorem through this bridge. The different tilted and fair-walk survivor profiles are not identified.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeProfileSpecialization.lean",
+  "decl": [
+   "passageIndex_logarithmic",
+   "passagePhase_logarithmic",
+   "criticalWordMass_logarithmic",
+   "passageJumpWeight_logarithmic",
+   "passageProfile_logarithmic"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_geometry_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-complete-cluster-set",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational 0<beta<1, equivalently every irrational alpha=1/beta>1, the complete set of real subsequential limits of the actual ratios r*c_r/choose(m_r-1,r-1) is K_beta=[1,1/(1-beta)] minus the union of the open intervals (F_beta(delta_r),F_beta(delta_r)+w_r), over positive r. This is exactly the closure of the strict profile range, and is nonempty, compact, perfect, of zero Lebesgue measure and empty interior. The profile is strictly increasing on [0,1]. Both endpoints of each genuine gap are cluster values, and every closed interval strictly inside a gap is eventually avoided. The exact liminf and limsup are 1 and 1/(1-beta). No unproved density or asymptotic premise, convergence rate, Minkowski dimension or arithmetic Hausdorff lower bound is asserted.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeCluster.lean",
+  "decl": [
+   "passagePhase_injective",
+   "passagePhase_recurrent",
+   "passageProfile_strictMonoOn",
+   "passageClusterSet_eq_closure_range",
+   "passageRatio_cluster_iff",
+   "isCompact_passageClusterSet",
+   "perfect_passageClusterSet",
+   "volume_passageClusterSet",
+   "interior_passageClusterSet",
+   "passage_gap_endpoints_mem",
+   "passageRatio_gap_endpoints_cluster",
+   "passageRatio_eventually_avoids_gap",
+   "passageClusterSet_nonempty",
+   "passageRatio_envelope_endpoints_cluster",
+   "passageRatio_liminf_limsup"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_geometry_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-singular-empirical-law",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational 0<beta<1, equivalently every irrational alpha>1, the empirical probabilities of the actual binomial-normalized first-passage ratios converge weakly to mu_beta=(F_beta)_*Uniform((0,1]). This law is atomless, concentrated on the null complete cluster set, and mutually singular with Lebesgue measure; its CDF is continuous. Exactly mu_beta((-infinity,F_beta(t)])=t on [0,1], and the CDF is constant at delta_r across the closed r-th gap. Threshold frequencies converge at every real threshold, and every bounded continuous observable has the corresponding explicit phase-integral average. Equidistribution is proved for the actual irrational rotation. No convergence rate or general-slope local Minkowski measure is claimed.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeDistribution.lean",
+  "decl": [
+   "passagePhase_equidistributed",
+   "passageRatio_empiricalLaw_tendsto",
+   "passageLaw_singleton",
+   "passageLaw_cdf_continuous",
+   "passageLaw_compl_clusterSet",
+   "passageLaw_clusterSet",
+   "passageLaw_mutuallySingular_volume",
+   "passageLaw_Iic_profile",
+   "passageLaw_closed_gap",
+   "passageLaw_Iic_gap",
+   "passageRatio_threshold_frequency",
+   "passageRatio_profile_threshold_frequency",
+   "passageRatio_average_tendsto"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_geometry_interface.py",
    "tests/tools/test_formalpedia_audits.py",
    "tests/research/juggler_sequence/test_layer_completeness.py"
   ],

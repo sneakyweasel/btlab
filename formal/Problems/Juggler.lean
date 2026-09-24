@@ -99,6 +99,7 @@ import Problems.Juggler.BeattySlopeSeries
 import Problems.Juggler.BeattySlopeIdentification
 import Problems.Juggler.BeattySlopeAsymptotic
 import Problems.Juggler.BeattySlopeSpecialization
+import Problems.Juggler.BeattySlopeProfileSpecialization
 import Problems.Juggler.BeattyCounting
 import Problems.Juggler.BeattyBinomialBounds
 import Problems.Juggler.BeattyEndpointAsymptotic
@@ -107,10 +108,13 @@ import Problems.Juggler.BeattyCertificateSeries
 import Problems.Juggler.BeattyCertificateIdentification
 import Problems.Juggler.BeattyCertificateAsymptotic
 import Problems.Juggler.BeattyProfileGeometry
+import Problems.Juggler.BeattySlopeCluster
 import Problems.Juggler.BeattyCertificateCluster
 import Problems.Juggler.BeattyWeakConvergence
+import Problems.Juggler.BeattyRotation
 import Problems.Juggler.BeattyPhaseEquidistribution
 import Problems.Juggler.BeattyCertificateDistribution
+import Problems.Juggler.BeattySlopeDistribution
 import Problems.Juggler.BeattyCertificateWeights
 import Problems.Juggler.BeattyGammaNormalization
 import Problems.Juggler.BeattyFirstPassageAmplitude

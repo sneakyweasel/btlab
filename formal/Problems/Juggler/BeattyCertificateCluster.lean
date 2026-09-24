@@ -1,7 +1,6 @@
 import Problems.Juggler.BeattyCertificateAsymptotic
 import Problems.Juggler.BeattyProfileGeometry
-import Mathlib.Topology.Instances.AddCircle.DenseSubgroup
-import Mathlib.Topology.Algebra.Group.SubmonoidClosure
+import Problems.Juggler.BeattyRotation
 import Mathlib.MeasureTheory.Measure.OpenPos
 
 /-!
@@ -43,30 +42,8 @@ large indices. This is recurrence of the actual phases, not just a density
 assumption in the final count theorem. -/
 theorem certificatePhase_recurrent (a b : ℝ) (ha : 0 ≤ a) (hab : a < b)
     (hb : b ≤ 1) (N : ℕ) : ∃ n : ℕ, N ≤ n ∧ certificatePhase n ∈ Ioo a b := by
-  let slope : AddCircle (1 : ℝ) := ↑(1/beta : ℝ)
-  have hd : DenseRange (fun n : ℤ => n • slope) :=
-    AddCircle.denseRange_zsmul_coe_iff.2 (by simpa using certificateSlope_irrational)
-  obtain ⟨x, hax, hxb⟩ := exists_between hab
-  have hc : MapClusterPt (↑x : AddCircle (1 : ℝ)) atTop (fun n : ℕ => n • slope) :=
-    (mapClusterPt_atTop_nsmul_tfae (↑x : AddCircle (1 : ℝ)) slope).out 3 0 |>.mp
-      (hd (↑x))
-  let U : Set (AddCircle (1 : ℝ)) := (fun x : ℝ => (↑x : AddCircle (1 : ℝ))) '' Ioo a b
-  have hU : IsOpen U := QuotientAddGroup.isOpenMap_coe _ isOpen_Ioo
-  have hxU : (↑x : AddCircle (1 : ℝ)) ∈ U := ⟨x, ⟨hax, hxb⟩, rfl⟩
-  obtain ⟨n, hn, hnU⟩ := frequently_atTop.1 (hc.frequently (hU.mem_nhds hxU)) N
-  obtain ⟨y, hy, he⟩ := hnU
-  have hphase : (↑(certificatePhase n) : AddCircle (1 : ℝ)) = n • slope := by
-    rw [certificatePhase_eq_fract, AddCircle.coe_fract]
-    change (↑((n : ℝ)/beta) : AddCircle (1 : ℝ)) = n • ↑(1/beta : ℝ)
-    rw [← AddCircle.coe_nsmul, nsmul_eq_mul]
-    congr 1
-    ring
-  have hny : certificatePhase n = y := by
-    apply AddCircle.coe_eq_coe_iff_of_mem_Ico
-      (p := (1 : ℝ)) (a := 0) (by simpa using certificatePhase_mem_Ico n)
-      (by constructor <;> linarith [hy.1, hy.2]) |>.1
-    exact hphase.trans he.symm
-  exact ⟨n, hn, hny.symm ▸ hy⟩
+  simpa only [certificatePhase_eq_fract, div_eq_mul_inv, one_mul] using
+    irrational_rotation_recurrent certificateSlope_irrational a b ha hab hb N
 
 private theorem weight_summable : Summable (fun r => certificateWeight (r+1)) :=
   certificate_jump_weights_hasSum.summable

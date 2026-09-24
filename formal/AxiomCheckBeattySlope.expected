@@ -111,3 +111,66 @@
 'Problems.Juggler.BeattySlope.logarithmic_irrational' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.BeattyPhase.survivor_count_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.BeattyPhase.survivor_exponential_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageCount_crossingDepth_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageJumpWeight_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageIndex_logarithmic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passagePhase_logarithmic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.criticalWordMass_logarithmic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageJumpWeight_logarithmic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageProfile_logarithmic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattyPhase.phase_ne_one_of_irrational' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattyPhase.tendsto_irrational_phase_average' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattyPhase.irrational_rotation_fract_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattyPhase.irrational_rotation_recurrent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattyPhase.irrational_rotation_equidistributed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattySlope.passagePhase_eq_fract' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passagePhase_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passagePhase_recurrent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageProfile_strictMonoOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageClusterSet_eq_jumpRange' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageClusterSet_eq_closure_range' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattySlope.passageRatio_cluster_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.isCompact_passageClusterSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.perfect_passageClusterSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.volume_passageClusterSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.interior_passageClusterSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passage_gap_endpoints_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageRatio_gap_endpoints_cluster' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattySlope.passageRatio_eventually_avoids_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattySlope.passageClusterSet_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageRatio_envelope_endpoints_cluster' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattySlope.passageRatio_liminf_limsup' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passagePhase_equidistributed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageProfile_ae_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageRatio_empiricalLaw_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattySlope.passageLaw_singleton' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageLaw_cdf_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageLaw_compl_clusterSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageLaw_clusterSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageLaw_mutuallySingular_volume' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattySlope.passageLaw_Iic_profile' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageLaw_closed_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageLaw_Iic_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.passageRatio_threshold_frequency' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattySlope.passageRatio_profile_threshold_frequency' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.BeattySlope.passageRatio_average_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]

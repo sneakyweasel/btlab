@@ -3,21 +3,22 @@
 Philippe Cochin. 24 September 2026. Unpublished working note.
 
 **Abstract.** Binary first-passage counts at a Beatty boundary belong to the
-binomial random-walk framework of Bauer, Godrèche and Luck. At the slope
-`alpha=log_2 3`, we identify an explicit positive cumulative jump profile
-for Winkler's normalized counts and determine the geometry and distribution
-of its values. Their complete set of accumulation values is the profile's
-envelope with its open jump intervals removed: a nonempty compact perfect
-set of Lebesgue measure zero. Its gap lengths have order `r^(-3/2)` and
-its neighbourhood volume has an exact positive `epsilon^(1/3)` asymptotic,
-giving Minkowski dimension `2/3` and an explicit Minkowski content.
-The whole rescaled neighbourhood measure converges weakly to an explicit
-local content measure: the empirical law weighted by its value to the
-two-thirds power, with the same geometric scale factor.
-Their empirical probability measures converge
-to the image of uniform phase measure under the profile. This limiting law
-is singular continuous. Its continuous distribution function inverts the
-profile and has explicit plateaus at the Beatty phases. In contrast, the
+binomial random-walk framework of Bauer, Godrèche and Luck. For every
+irrational slope `alpha>1`, we identify an explicit positive cumulative
+jump profile for the original binomial-normalized counts. Their complete
+set of accumulation values is the profile's envelope with its open jump
+intervals removed: a nonempty compact perfect set of Lebesgue measure zero.
+The empirical probabilities converge to the image of uniform phase measure
+under the profile. This law is singular continuous, and its continuous CDF
+inverts the profile and has explicit plateaus at the Beatty phases. These
+family statements are formalized for the actual integer word counts.
+At the logarithmic slope `alpha=log_2 3`, the formal development goes further:
+the gap lengths have order `r^(-3/2)` and the neighbourhood volume has an
+exact positive `epsilon^(1/3)` asymptotic, giving Minkowski dimension `2/3`
+and explicit content. The whole rescaled neighbourhood measure converges
+weakly to the empirical law weighted by its value to the two-thirds power,
+with the same geometric scale factor.
+At this logarithmic slope, the
 same integer counts in BGL's exact Gamma normalization have an absolutely
 continuous limiting law, mutually singular with the first. We give its
 density as a nonnegative series over the exponentially rescaled jump intervals.
@@ -32,13 +33,12 @@ moments are also Lean-checked. The underlying
 periodic survivor amplitude has a classical precursor; the focus here is
 its explicit transfer to the cumulative profile and the resulting singular
 geometry. The profile and these qualitative geometric and distributional
-results are proved in Lean for the actual integer counts. A further formal
-continuation proves the qualitative first-passage profile and its exact
-normalization for every irrational slope `alpha>1`; the geometric and
-distributional family extensions remain separate.
+results are proved in Lean for the actual integer counts. The full family now includes the qualitative phase theorem, exact
+normalization, complete null perfect cluster set and singular empirical law.
+The Minkowski and Gamma-law family extensions remain separate.
 
-**Main conclusions.** With the notation of Section 1 and `alpha=log_2 3`,
-write `E=alpha/(alpha-1)`. The checked statements are
+**Main conclusions.** For every irrational `alpha>1`, use the actual word
+counts of Section 24 and write `E=alpha/(alpha-1)`. The checked statements are
 
 \[
 \begin{gathered}
@@ -79,9 +79,10 @@ Section 23 quantifies this law by cube-root concentration, subcritical
 density integrability, CDF regularity and exceptional-set Hausdorff bounds.
 Section 24 extends the explicit first-passage phase theorem to every
 irrational slope above one, using a subcritical tilt whose weight cancels
-from the final integer ratio.
+from the final integer ratio. Section 25 extends the complete cluster set,
+singular empirical law and exact CDF identities to this whole family.
 
-The central spatial conclusion is, with
+At the logarithmic slope, the central spatial conclusion is, with
 `kappa=(2 pi alpha (alpha-1))^(-1/2)`,
 \[
  \varepsilon^{-1/3}\lambda\!\restriction_{K_\varepsilon}
@@ -116,8 +117,10 @@ written argument for irrational `1<alpha<2`, including a quantitative
 `O(r^(-1/2))` rate. Those stronger statements are explicitly distinguished
 from the checked qualitative statements. Section 24 now proves the
 qualitative phase theorem for every irrational `alpha>1`, with no rate or
-uniformity in the slope. The geometric conclusions above remain checked
-at the logarithmic slope. The exact Gamma-normalized
+uniformity in the slope. Section 25 now extends the compact perfect null cluster set, singular
+empirical law and exact threshold frequencies to that whole family. The
+Minkowski dimension, content and local tube-measure conclusions remain
+checked at the logarithmic slope. The exact Gamma-normalized
 first-passage amplitude in Section 1.1 and its absolutely continuous empirical
 law, density and real-power moment identities in Section 21, and the exact
 interval support and density topology in Section 22, are also Lean-checked.
@@ -2159,15 +2162,16 @@ that no asymptotic premise is hidden behind a definition. The combined
 family audit checks 30 expanded consumers and 77 public theorem records,
 using only `propext`, `Classical.choice` and `Quot.sound`.
 
-This completes the qualitative phase theorem for the family. It does not
-yet extend the geometric, empirical-law or Gamma-law packages of Sections
-14–23 to every slope, nor prove a convergence rate or an arithmetic lower
-bound. The logarithmic atom formula `w_1=beta` in Section 13 is not asserted
+This completes the qualitative phase theorem for the family. Section 25
+extends its cluster-set and singular empirical-law consequences. The
+Minkowski and Gamma-law packages, convergence rates and arithmetic lower
+bounds still require separate family arguments. The logarithmic atom formula `w_1=beta` in Section 13 is not asserted
 for all slopes here. The classical BGL survival and probability-flow
 precursors remain acknowledged; the scope extension and formal proof do
 not by themselves settle literature priority. **PROMOTE** the family phase
-theorem; the next target is the positive dense atom structure and the
-three-halves gap asymptotic needed for the geometric family theorem.
+theorem; the positive dense atom structure and qualitative geometry are completed
+in Section 25. The three-halves gap asymptotic remains the next input for
+the Minkowski family theorem.
 
 ## References
 
@@ -2209,3 +2213,88 @@ three-halves gap asymptotic needed for the geometric family theorem.
     of Shot Noise Processes with Jumps*, Journal of Applied Probability
     **49** (2012), 100–113, Proposition 1.
     [doi:10.1239/jap/1331216836](https://doi.org/10.1239/jap/1331216836).
+
+## 25. The complete cluster set and singular law for every irrational slope
+
+**Family geometry and law — EXACT — LEAN VERIFIED.** Fix any irrational
+`alpha>1` and retain the actual counts, phases, weights and profile from
+Section 24. Set `E=alpha/(alpha-1)` and
+
+\[
+ K_\alpha=[1,E]\setminus\bigcup_{r\ge1}
+ (F_\alpha(\delta_r),F_\alpha(\delta_r)+w_r).
+\]
+
+The complete set of real subsequential limits of the original ratios
+`R_r^+=r*c_r/choose(m_r-1,r-1)` is exactly `K_alpha`. It is nonempty,
+compact, perfect and of zero Lebesgue measure; it equals the **closure**
+of the profile range, with both traces at every jump included. Every
+listed weight is positive, and every closed interval strictly inside a
+listed gap is eventually avoided by the actual count sequence. In particular,
+
+\[
+ \liminf_{r\to\infty}R_r^+=1,\qquad
+ \limsup_{r\to\infty}R_r^+=\frac\alpha{\alpha-1}.
+\]
+
+The empirical probabilities converge weakly to
+`mu_alpha=(F_alpha)_*Uniform((0,1])`. This probability is atomless, gives
+`K_alpha` full mass, and is mutually singular with Lebesgue measure. For its
+continuous CDF `G_alpha`, Lean proves
+
+\[
+ G_\alpha(F_\alpha(t))=t\quad(0\le t\le1),\qquad
+ G_\alpha(y)=\delta_r\quad
+ (F_\alpha(\delta_r)\le y\le F_\alpha(\delta_r)+w_r).
+\]
+
+Consequently threshold frequencies converge at **every** real threshold,
+and for every bounded continuous real function `g`,
+
+\[
+ \frac1N\sum_{r=0}^{N-1}g(R_r^+)
+ \longrightarrow\int_0^1 g(F_\alpha(t))\,dt.
+\]
+
+**Proof and consolidation.** Every crossing has an explicit word witness,
+`O^r E^(m_r+1-r)`: its proper prefixes survive and its full length crosses.
+This positivity statement actually holds for every real `0<beta<=1`,
+including rational boundaries with weak survival. Irrationality makes the
+positive-index phases distinct and interior, and the rotation theorem
+makes them recurrent and uniformly distributed. The generic jump-range
+results now apply to the actual weights. The proved `o(1)` count error
+transfers cluster values and empirical laws from the profile to the ratios.
+Strict increase makes the law atomless; total jump mass makes its carrier null.
+The usual almost-everywhere continuous mapping argument applies despite
+the dense jumps, because a monotone profile has only countably many
+points of discontinuity.
+
+The logarithmic bridge now identifies the general indices, phases, word
+masses, jump weights and strict profile with the original definitions.
+The original `certificate_phase_asymptotic` specializes the family theorem;
+its separate asymptotic proof has been removed. The original recurrence and
+equidistribution proofs also reuse the extracted irrational-rotation result.
+The distinct tilted and fair-walk survivor profiles are not equated.
+
+**Formal interfaces.**
+[BeattySlopeProfileSpecialization.lean](../../formal/Problems/Juggler/BeattySlopeProfileSpecialization.lean)
+checks the exact bridge;
+[BeattyRotation.lean](../../formal/Problems/Juggler/BeattyRotation.lean)
+contains the reusable irrational recurrence and empirical law;
+[BeattySlopeCluster.lean](../../formal/Problems/Juggler/BeattySlopeCluster.lean)
+contains the complete set and envelope assertions; and
+[BeattySlopeDistribution.lean](../../formal/Problems/Juggler/BeattySlopeDistribution.lean)
+contains the singular law, CDF and sampling statements.
+[InterfaceCheckBeattySlopeGeometry.lean](../../formal/InterfaceCheckBeattySlopeGeometry.lean)
+expands the original integer ratios and quantifies explicitly over every
+irrational `alpha>1`, including slopes greater than two. The public audit
+permits only `propext`, `Classical.choice` and `Quot.sound`.
+
+**Remaining boundary.** This extends the qualitative Cantor-set geometry
+and empirical law, not yet the three-halves gap asymptotic, Minkowski
+content or local geometric measure to the whole family. No rate, uniformity
+in the slope or arithmetic Hausdorff lower bound is supplied. Comparison
+with classical random-walk and Denjoy results still governs novelty
+positioning; formalization alone is not a priority claim.
+**PROMOTE** the family cluster-set and singular-law theorem. The next bounded
+mathematical input is the general three-halves gap asymptotic.

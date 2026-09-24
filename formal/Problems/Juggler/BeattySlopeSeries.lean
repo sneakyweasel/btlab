@@ -136,4 +136,11 @@ theorem passage_jump_weights_hasSum_reciprocal {α : ℝ} (hα1 : 1 < α)
   convert hh using 1
   field_simp
 
+/-- Every actual crossing weight is strictly positive, witnessed by an
+odd-then-even first-passage word. Irrationality is not needed for positivity. -/
+theorem passageJumpWeight_pos {β : ℝ} (hβ0 : 0 < β) (hβ1 : β < 1) (r : ℕ) :
+    0 < passageJumpWeight β r :=
+  mul_pos (by exact_mod_cast passageCount_crossingDepth_pos hβ0 hβ1.le r)
+    (criticalWordMass_pos hβ0 hβ1 _ _)
+
 end Problems.Juggler.BeattySlope
