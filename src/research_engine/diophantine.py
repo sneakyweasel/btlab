@@ -180,6 +180,21 @@ def _fibonacci_index_above(bound: int) -> int:
     return n
 
 
+def partial_quotients_past(evaluate: Callable[[], arb], max_denominator: int, *,
+                           bits: int = 128, max_bits: int = 4096) -> Expansion:
+    """Certified quotients up to the first convergent whose denominator exceeds the bound.
+
+    `complete` means that convergent was reached, or the expansion ended first
+    (an exact integer). Otherwise the prefix is certified but stops short of
+    the bound, and callers must not treat it as covering every q <= bound.
+    """
+    if type(max_denominator) is not int or max_denominator < 1:
+        raise ValueError("max_denominator must be a positive integer")
+    return _certified(evaluate, _fibonacci_index_above(max_denominator) + 2,
+                      lambda found: convergents(found)[-1][1] > max_denominator,
+                      bits, max_bits)
+
+
 def best_approximations(evaluate: Callable[[], arb], max_denominator: int,
                         tau: int | str | Fraction = 0, *, bits: int = 128,
                         max_bits: int = 4096) -> dict:
@@ -196,15 +211,11 @@ def best_approximations(evaluate: Callable[[], arb], max_denominator: int,
     Distances are recomputed from `evaluate` at doubling precision until each is
     certainly positive or exactly zero; otherwise the status is unresolved.
     """
-    if type(max_denominator) is not int or max_denominator < 1:
-        raise ValueError("max_denominator must be a positive integer")
     exponent = rational(tau)
     if exponent < 0:
         raise ValueError("tau must be nonnegative")
     _check_precision(bits, max_bits)
-    expansion = _certified(evaluate, _fibonacci_index_above(max_denominator) + 2,
-                           lambda found: convergents(found)[-1][1] > max_denominator,
-                           bits, max_bits)
+    expansion = partial_quotients_past(evaluate, max_denominator, bits=bits, max_bits=max_bits)
     base = {"max_denominator": str(max_denominator), "tau": str(exponent),
             "quotients": [str(a) for a in expansion.quotients],
             "expansion_bits": list(expansion.attempted_bits)}
