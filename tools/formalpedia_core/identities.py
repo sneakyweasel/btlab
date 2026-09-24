@@ -57,10 +57,12 @@ def signature(decl: dict[str, Any], limit: int = 8) -> str:
 
     Nine of the queue's confident candidates carry no docstring, and an entry that offers
     only a name is not answerable: deciding "is this row that theorem?" needs the theorem.
-    The signature is what the docstring would have paraphrased.
+    The signature is what the docstring would have paraphrased.  Section ``variable``,
+    ``include`` and ``omit`` commands in scope come first: without them the header omits
+    binders the statement quantifies over.
     """
     if "signature" in decl:
-        return decl["signature"]
+        return "\n".join([*decl.get("signature_context", []), decl["signature"]])
     try:
         lines = io.open(_fp_workspace.ROOT / decl["file"], encoding="utf-8").read().splitlines()
     except OSError:

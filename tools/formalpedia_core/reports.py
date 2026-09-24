@@ -92,7 +92,7 @@ def coverage_digest(
         label = "**Declaration.**" if len(r["decls"]) == 1 else "**Declarations.**"
         for i, d in enumerate(r["decls"]):
             head = label if i == 0 else "**And.**"
-            out += [f"{head} `{d['name']}` &mdash; {d['trust']}-checked, `{r['lean']}:{d['line']}`",
+            out += [f"{head} `{d['name']}` &mdash; source trust {d['trust']}, `{r['lean']}:{d['line']}`",
                     ""]
             if d.get("doc"):
                 out += [f"> {d['doc']}", ""]
@@ -120,7 +120,7 @@ def _jev_lines(row: dict[str, Any], top: dict[str, Any],
         trust = other["trust"] if other else "?"
         line = other["line"] if other else "?"
         out += [f"**Jev.** picks `{jv['decl']}` at {conf}, not the scorer's candidate.", "",
-                f"**Jev's candidate.** `{jv['decl']}` &mdash; {trust}-checked, "
+                f"**Jev's candidate.** `{jv['decl']}` &mdash; source trust {trust}, "
                 f"`{row['lean']}:{line}`", ""]
         if other and other.get("doc"):
             out += [f"> {other['doc']}", ""]
@@ -217,7 +217,7 @@ def review_digest(
         out.append("")
         out.append(f"**Row.** {row['statement'][:340]}")
         out.append("")
-        out.append(f"**Candidate.** `{top['decl']}` &mdash; {top['trust']}-checked, "
+        out.append(f"**Candidate.** `{top['decl']}` &mdash; source trust {top['trust']}, "
                    f"`{row['lean']}:{top['line']}`")
         out.append("")
         doc = (decl or {}).get("doc")

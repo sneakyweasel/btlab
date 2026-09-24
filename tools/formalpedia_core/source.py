@@ -148,7 +148,7 @@ def _trust(body: str) -> str:
         return "open"
     if "native_decide" in body:
         return "compiler"
-    return "kernel"
+    return "unmarked"
 
 
 def declares(text: str, name: str, kind: str = "theorem") -> bool:

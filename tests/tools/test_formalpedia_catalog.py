@@ -159,6 +159,23 @@ def test_complete_header_keeps_default_arguments_and_late_hypotheses():
     assert 'exact hLast' not in row['signature']
 
 
+def test_section_variables_travel_with_the_declarations_in_their_scope():
+    """Regression: a header under ``variable`` was reported as the complete statement."""
+    text = ('namespace A\nvariable {n : Nat}\n/-- Doc. -/\ntheorem t1 : n = n := rfl\n'
+            'section S\nvariable (m : Nat)\n  (h : m = m)\n\n/-- Next. -/\nomit h in\n'
+            'theorem t2 : m = m := rfl\ntheorem t3 : m = m := rfl\nend S\n'
+            'theorem t4 : True := trivial\nend A\ntheorem t5 : True := trivial\n')
+    rows = {d['name']: d for d in lean_source.scan(text, 'A', 'formal/A.lean')}
+    outer, inner = 'variable {n : Nat}', 'variable (m : Nat)\n  (h : m = m)'
+    assert rows['t1']['signature_context'] == [outer]
+    assert rows['t2']['signature_context'] == [outer, inner, 'omit h in']
+    assert rows['t3']['signature_context'] == [outer, inner]
+    assert rows['t4']['signature_context'] == [outer]
+    assert rows['t5']['signature_context'] == []
+    assert [rows[n]['signature_complete'] for n in ('t1', 't2', 't3', 't4', 't5')] == [
+        False, False, False, False, True]
+
+
 def test_comments_and_strings_are_not_declarations_or_trust_markers():
     text = ('namespace N\n/-- Mentions sorry and native_decide. -/\n'
             'def message : String := "native_decide\\n theorem fake : True"\n'
@@ -166,7 +183,7 @@ def test_comments_and_strings_are_not_declarations_or_trust_markers():
             'theorem good : True := by\n  /- sorry -/\n  trivial\nend N\n')
     rows = lean_source.scan(text, 'N', 'formal/N.lean')
     assert [d['name'] for d in rows] == ['message', 'good']
-    assert {d['trust'] for d in rows} == {'kernel'}
+    assert {d['trust'] for d in rows} == {'unmarked'}
 
 
 def test_headers_keep_boolean_and_pipe_operators_but_stop_at_equations():

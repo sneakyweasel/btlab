@@ -21,7 +21,7 @@ def test_every_declaration_carries_its_location_and_trust(corpus_index) -> None:
     for d in index["declarations"]:
         assert d["name"] and d["module"] and d["file"]
         assert d["line"] >= 1
-        assert d["trust"] in {"kernel", "compiler", "open"}
+        assert d["trust"] in {"unmarked", "compiler", "open"}
 
 
 def test_a_docstring_belongs_to_the_declaration_it_sits_above() -> None:

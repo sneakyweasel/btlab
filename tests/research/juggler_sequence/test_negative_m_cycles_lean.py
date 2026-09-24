@@ -96,8 +96,8 @@ def test_the_index_reports_no_source_trust_markers() -> None:
     index = build()
     rows = [d for d in _iter_decls(index) if d.get("module") == "Problems.Collatz.NegativeMCycles"]
     assert rows, "the module is missing from a fresh index"
-    assert all(d.get("trust") == "kernel" for d in rows), [d["name"] for d in rows
-                                                           if d.get("trust") != "kernel"]
+    assert all(d.get("trust") == "unmarked" for d in rows), [d["name"] for d in rows
+                                                             if d.get("trust") != "unmarked"]
 
 
 def _iter_decls(index):
