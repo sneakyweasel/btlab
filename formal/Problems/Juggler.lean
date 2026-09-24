@@ -94,6 +94,10 @@ import Problems.Juggler.BeattySlopeCounting
 import Problems.Juggler.BeattySlopeRenewal
 import Problems.Juggler.BeattySlopeBinomial
 import Problems.Juggler.BeattySlopeEndpointAsymptotic
+import Problems.Juggler.BeattySlopeCriticalMass
+import Problems.Juggler.BeattySlopeSeries
+import Problems.Juggler.BeattySlopeIdentification
+import Problems.Juggler.BeattySlopeAsymptotic
 import Problems.Juggler.BeattySlopeSpecialization
 import Problems.Juggler.BeattyCounting
 import Problems.Juggler.BeattyBinomialBounds

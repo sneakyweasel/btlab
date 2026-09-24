@@ -18,6 +18,13 @@ EXPECTED = {
         "actual_tilted_tail_majorant", "actual_tilted_tail_comparison",
         "actual_tilted_endpoint_limit", "actual_tilted_survivor_limit",
         "actual_tilted_survivor_reciprocal", "actual_tilted_phase_series", "actual_tilted_phase_bounds",
+        "actual_critical_word_tilt", "actual_critical_partial_mass",
+        "actual_critical_survival_limit", "actual_critical_passage_mass",
+        "actual_beatty_crossing_mass", "actual_beatty_jump_mass",
+        "actual_beatty_jump_mass_reciprocal",
+        "actual_beatty_profile_identification", "actual_beatty_profile_reciprocal",
+        "actual_beatty_profile_envelope",
+        "actual_beatty_count_phase_limit", "actual_beatty_count_phase_reciprocal",
     )
 }
 

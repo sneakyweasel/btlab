@@ -100,20 +100,21 @@ partition for every real boundary, and the crossing edge
 `floor(r/beta)+1` for `0<beta<=1`. Exact finite-set equalities recover the old
 logarithmic counts, whose counting theorem now specializes the general proof.
 **PROMOTE** this reusable formal foundation, without a novelty claim for the
-classical identity. The weighted continuation proves exact removal of crossing
-weights and identifies the normalized actual word sums with the renewal
-exponential. Its checked bias `p=beta/(2-beta)` has terminal ratio `1/2` for
-every `0<beta<1`. **PROMOTE** this foundation for all irrational `alpha>1`;
-the analytic transfer still assumes a terminal binomial estimate. Proving that
-weighted estimate, then the critical mass and profile identification, remains
-necessary. The same dossier records the expanded audit and coverage map.
-The finite tilted binomial tail is now also checked between its first term
-and twice that term, uniformly for all `0<beta<1` and positive depths.
-The Stirling continuation now proves the explicit tilted terminal phase for
+classical identity. Exact removal of crossing weights and the normalized
+renewal identity support the bias `p=beta/(2-beta)`. The finite tilted tail
+is between its first term and twice that term at every positive depth.
+The Stirling continuation proves the explicit tilted terminal phase for
 every real `0<beta<1` and the unconditional weighted survivor phase for every
 irrational `alpha>1`. Its convolution series is summable, positive, bounded
-and periodic. **PROMOTE** this formal family theorem for weighted survivors;
-general critical mass and the original first-passage jump profile remain next.
+and periodic. The centered-moment and tilt argument also proves zero critical
+survival mass and total first-passage probability one for the family.
+Beatty reindexing fixes the actual positive-index jump mass at `1/(alpha-1)`.
+The exact strict profile identity and original integer-count phase asymptotic
+are now checked for every irrational `alpha>1`, in both binomial normalizations.
+**PROMOTE** the full qualitative phase theorem: no counting or asymptotic
+premise remains. Rates and the family geometry remain next. The combined
+audit checks 30 expanded consumers and 77 public theorem records.
+The same dossier records the expanded audit and coverage map.
 
 ## 2026-09-23 -- OEIS generator corrections and exact modified-map descent
 

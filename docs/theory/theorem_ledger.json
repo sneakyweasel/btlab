@@ -2152,6 +2152,46 @@
   "related_conjectures": []
  },
  {
+  "id": "J-beatty-slope-critical-mass-bookkeeping",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every real 0<beta<1, write b_beta(n,k)=(1-beta)^n*(beta/(1-beta))^k, Q_n for its sum over actual surviving words, and P_n for its sum over actual first-passage words. Lean proves positivity of each word mass, Q_(n+1)+P_(n+1)=Q_n, and sum_(j=0)^n P_j+Q_n=1. With z=beta/(2*(1-beta)) and v=2^(-beta)/(1-beta), the exact critical/subcritical identity is b_beta(n,k)=z^k*exp((k-n*beta)*log(2))/v^n. For every H>0 and every depth, Q_n<=exp(H*log(2))*u_beta(n)+beta/H, where u_beta is the actual normalized tilted survivor sum. The finite mass and centered-moment proof includes rational boundaries and assumes no limit theorem.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeCriticalMass.lean",
+  "decl": [
+   "criticalWordMass_pos",
+   "criticalMass_step",
+   "passageCriticalMass_nonneg",
+   "criticalWordMass_eq_exp",
+   "survivorCriticalMass_height_split",
+   "criticalMass_partial_sum"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-critical-passage-mass",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational real 0<beta<1, the total critical Bernoulli mass Q_n of the actual surviving words tends to zero. Consequently the series of critical masses P_n of actual first-passage words over all depths has sum exactly one. The proof combines finite centered-moment bookkeeping with the already proved summability of tilted survivors; no asymptotic premise, Diophantine bound or convergence rate is assumed. This is a formal family version of the classical probability-flow law. The infinite result retains irrationality and does not by itself identify a jump-profile asymptotic.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeCriticalMass.lean",
+  "decl": [
+   "survivorCriticalMass_tendsto_zero",
+   "passageCriticalMass_hasSum"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-slope-crossing-weight",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For every real 0<beta<=1, the crossing-depth map r -> floor(r/beta)+1 is strictly increasing, and every first-passage word at the r-th crossing edge has exactly r odd letters. Thus its weighted count is exactly z^r times the original integer count for every real z. A nonzero weight can be removed by division at every edge. The weak-survival and strict-crossing conventions include rational boundaries; this is an exact finite identity, not an analytic transfer assertion.",
@@ -2193,6 +2233,54 @@
   "related_conjectures": []
  },
  {
+  "id": "J-beatty-slope-first-passage-asymptotic",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every fixed irrational 0<beta<1, equivalently every irrational alpha=1/beta>1 with no upper cutoff, put m_r=floor(r/beta), delta_r=r/beta-m_r, and let c_r be the actual integer first-passage count at depth m_r+1. Lean proves m_r*c_r/choose(m_r,r)-F_beta(delta_r)->0. For every positive r this normalization equals r*c_r/choose(m_r-1,r-1), and the latter has the same limit theorem. The proof transfers the already proved weighted survivor phase to first passage, divides by a moving first-binomial phase bounded below by C_beta/2, and removes the letter tilt exactly at the crossing where the strict cutoff equals r. The expanded reciprocal consumer exposes floor(alpha*r), the actual counts, and the strict explicit jump-weight series. All counting, Stirling, critical mass and profile-identification inputs are proved. The remainder is additive o(1), with no rate, uniformity in the slope, Diophantine premise or geometric family theorem asserted.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeAsymptotic.lean",
+  "decl": [
+   "tilted_passage_phase_limit",
+   "passagePhase_pos",
+   "endpointCutoff_passageIndex",
+   "passage_phase_asymptotic",
+   "passage_normalization_identity",
+   "passage_phase_asymptotic_odd_count",
+   "passage_phase_asymptotic_reciprocal"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-jump-weight-mass",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every real 0<beta<1, let m_r=floor(r/beta), c_r be the actual integer first-passage count at depth m_r+1, and w_r=c_r*beta^r*(1-beta)^(m_r-r). Lean proves m_r>=r, that critical first-passage mass at m_r+1 equals (1-beta)*w_r and vanishes off the range of these strictly increasing edges, and that w_0=1 with every w_r nonnegative. For irrational beta, the full weight series has sum 1/(1-beta), and the positive-index series has sum beta/(1-beta). The reciprocal-slope interface covers every irrational alpha>1 and states the sum as 1/(alpha-1). These are exact actual-count normalizations; the separate profile identification and count limit are established in J-beatty-slope-profile-identification and J-beatty-slope-first-passage-asymptotic.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeSeries.lean",
+  "decl": [
+   "passageIndex_ge",
+   "passageJumpWeight_eq",
+   "passageCriticalMass_crossingDepth",
+   "passageCriticalMass_eq_zero_off_range",
+   "passageJumpWeight_hasSum",
+   "passageJumpWeight_zero",
+   "passageJumpWeight_nonneg",
+   "passage_jump_weights_hasSum",
+   "passage_jump_weights_hasSum_reciprocal"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-slope-logarithmic-specialization",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "At beta=log(2)/log(3), the parameterized finite survivor and first-passage word sets equal the original neverNegWords and minimalCertWords at every length. Their integer counts and the strict endpoint counts therefore agree exactly. Irrationality of this beta is proved directly from distinct powers of two and three, independently of the counting identity. The original survivor_count_recurrence now uses the arbitrary-boundary theorem through these equalities, preserving the original survivor_exponential_identity interface. The specialization asserts no new general analytic or geometric conclusion.",
@@ -2205,6 +2293,47 @@
    "passageCount_logarithmic",
    "endpointCount_logarithmic",
    "logarithmic_irrational"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-profile-envelope",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational 0<beta<1, the strict actual-count jump profile F_beta is nondecreasing on the real line, satisfies 1<=F_beta(t)<=1/(1-beta) for every real t, and has exact values F_beta(0)=1 and F_beta(1)=1/(1-beta). In reciprocal slope notation the upper endpoint is alpha/(alpha-1). These are formal consequences of the exact weight mass and phase support; strict increase, a full family cluster-set theorem and limiting-law geometry are separate conclusions.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeIdentification.lean",
+  "decl": [
+   "passageProfile_monotone",
+   "passageProfile_bounds",
+   "passageProfile_endpoints"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-profile-identification",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational 0<beta<1, let F_beta(t)=1+sum_(r>=1,delta_r<t) w_r, where delta_r=r/beta-floor(r/beta) and w_r is the actual integer first-passage weight from J-beatty-slope-jump-weight-mass. With z=beta/(2*(1-beta)), v=2^(-beta)/(1-beta), C=(2*pi*beta*(1-beta))^(-1/2) and the proved tilted survivor profile psi_beta, Lean checks the exact identity (1+z)*psi_beta(-beta*t)-v*psi_beta(-beta*t+beta)=C*2^(-beta*t)*F_beta(t) for every 0<t<1, including atom phases. The reciprocal interface admits every irrational alpha>1. The proof telescopes summable survivor kernels, reindexes the actual crossings, and cancels the constant using total critical mass; no undetermined continuous part or additive constant remains. This exact identity alone does not assert a count limit or geometric family theorem.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeIdentification.lean",
+  "decl": [
+   "passageIndex_strictMono",
+   "passagePhase_mem_Ico",
+   "passageWeight_div_eq",
+   "passageJumpWeight_eq_rpow",
+   "passageProfile_eq_transfer",
+   "passageProfile_eq_transfer_reciprocal"
   ],
   "lean_trust": "kernel",
   "tests": [
@@ -2278,7 +2407,7 @@
  {
   "id": "J-beatty-slope-tilted-survivor-asymptotic",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "For every fixed irrational 0<beta<1, equivalently every irrational alpha=1/beta>1 with no upper cutoff, let u(n) be the actual weighted survivor word sum with z=beta/(2*(1-beta)), divided by v^n with v=2^(-beta)/(1-beta). Then u is summable and n*sqrt(n)*u(n)-psi(n*beta)->0, where psi(t)=C*sum_j u(j)*2^(frac(t-j*beta)) and C=(2*pi*beta*(1-beta))^(-1/2). The profile series is absolutely summable at every real t, has period one, and satisfies C<=psi(t)<=2*C*sum_j u(j). The empty survivor supplies the positive lower bound. All counting, Stirling and endpoint inputs are proved; the expanded consumer exposes actual word sums and the reciprocal-slope quantifiers. This weighted survivor theorem does not yet identify the original unweighted first-passage jump profile, critical total mass or geometric limiting measure for the family, and it asserts no convergence rate or uniformity in beta.",
+  "statement": "For every fixed irrational 0<beta<1, equivalently every irrational alpha=1/beta>1 with no upper cutoff, let u(n) be the actual weighted survivor word sum with z=beta/(2*(1-beta)), divided by v^n with v=2^(-beta)/(1-beta). Then u is summable and n*sqrt(n)*u(n)-psi(n*beta)->0, where psi(t)=C*sum_j u(j)*2^(frac(t-j*beta)) and C=(2*pi*beta*(1-beta))^(-1/2). The profile series is absolutely summable at every real t, has period one, and satisfies C<=psi(t)<=2*C*sum_j u(j). The empty survivor supplies the positive lower bound. All counting, Stirling and endpoint inputs are proved; the expanded consumer exposes actual word sums and the reciprocal-slope quantifiers. This weighted survivor theorem does not itself identify the original unweighted first-passage jump profile or geometric limiting measure for the family, and it asserts no convergence rate or uniformity in beta. Critical total mass is established separately in J-beatty-slope-critical-passage-mass.",
   "source": "docs/problems/juggler_winkler_phase_collapse.md",
   "lean": "Problems/Juggler/BeattySlopeEndpointAsymptotic.lean",
   "decl": [

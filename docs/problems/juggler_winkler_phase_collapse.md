@@ -838,7 +838,7 @@ is a specialization, rather than a second copy of the proof.
 [`InterfaceCheckBeattySlope.lean`](../../formal/InterfaceCheckBeattySlope.lean)
 expands the binomial sum, the prefix convention, the reciprocal parameter
 `beta=1/alpha`, the crossing edge and the finite-set equalities.
-Its eighteen consumer records and the forty-four public-theorem records in
+Its thirty consumer records and the seventy-seven public-theorem records in
 [`AxiomCheckBeattySlope.lean`](../../formal/AxiomCheckBeattySlope.lean)
 allow only the standard Lean dependencies.
 
@@ -856,9 +856,12 @@ The current coverage map is deliberately asymmetric:
 | Weighted survivor phase transfer | Every irrational real `beta`, nonnegative weight and base | Checked implication; bounded terminal phase asymptotic is an explicit premise |
 | Explicit tilted terminal phase | Every real `0<beta<1` | Checked without an asymptotic premise |
 | Explicit tilted survivor phase | Every irrational `0<beta<1`, equivalently every irrational `alpha>1` | Checked without an asymptotic premise; summable, positive, bounded and periodic profile |
+| Critical survival vanishes and first-passage probabilities sum to one | Every irrational `0<beta<1` | Checked; finite mass and height bounds also cover rational boundaries |
+| Beatty jump weights sum to `1/(alpha-1)` | Every irrational `alpha>1` | Checked for the actual integer counts, with the auxiliary zero atom removed |
 | Exact original logarithmic word sets | `beta=log(2)/log(3)` | Checked |
 | Original fair-weight survivor phase formula | Logarithmic boundary | Checked; the full-interval theorem uses the chosen bias instead |
-| Jump profile, limiting laws and geometric measure | Irrational `1<alpha<2` | Written general profile argument; existing end-to-end formal package is logarithmic |
+| Explicit jump profile and original integer first-passage asymptotic | Every irrational `alpha>1` | Checked with actual counts, strict atoms and additive `o(1)` error |
+| Complete cluster set, limiting laws and geometric measure | Logarithmic slope | Checked; assembling the geometric family theorem remains next |
 | Matching Hausdorff lower bounds | Explicit Diophantine hypotheses | Conditional concrete results; arithmetic inputs and a family theorem still need assembly |
 
 The weighted version of `BeattyEndpointAsymptotic` is now proved below.
@@ -1098,20 +1101,206 @@ claimed. Rational boundaries are covered by the terminal theorem, while the
 survivor theorem retains irrationality because its strict endpoint renewal
 identity requires it.
 
-The next useful step is the general critical-mass identity. The existing
-logarithmic proof preserves probability and a centered first moment under
-the last-letter partition. For the present tilt, a word of endpoint height
-`h=k-beta*n` has critical mass equal to its normalized tilted weight times
-`2^h`. Splitting at any fixed positive height `H` therefore gives the same
-route to zero critical survival mass: the low-height part is bounded by
-`2^H*u_beta(n)`, and the high-height part by `beta/H`. Summability now supplies
-`u_beta(n)->0`. This explains the next proof to generalize; that critical-mass
-assembly and the subsequent jump-series identification are not yet checked
-for the family.
+The critical-mass continuation below now completes the probability-flow
+input for the family. Identifying the explicit jump profile remains a
+separate step: the survivor theorem alone does not identify it.
 
 **PROMOTE** the unconditional tilted endpoint and survivor phase theorems,
 including finite positive periodic profile bounds. The full first-passage
 profile and geometric family theorem remain the active objective.
+
+### Critical first-passage mass for the whole irrational family (24 September)
+
+```text
+Mathematical target     Total critical first-passage probability is one for every
+                        irrational boundary 0 < beta < 1.
+Novelty hypothesis      A formal family version of the classical probability-flow law.
+Falsifier               The centered-moment bound or removal of the tilt fails.
+Already killed by?      No matching obstruction; the logarithmic proof uses the same
+                        finite-word partition and survivor decay now available here.
+Existing machinery      General word partition, crossing bounds, summable tilted survivors.
+Maximum Phase-0 scope   Critical survival tends to zero; first-passage masses sum to one.
+Promotion criterion     Lean checks actual critical word sums with all slope assumptions.
+Stop criterion          Leave Beatty reindexing and jump-profile identification explicit.
+```
+
+[`BeattySlopeCriticalMass.lean`](../../formal/Problems/Juggler/BeattySlopeCriticalMass.lean)
+defines the actual critical Bernoulli word mass
+
+\[
+ b_\beta(n,k)=(1-\beta)^n\left(\frac\beta{1-\beta}\right)^k,
+\]
+
+and its sums `Q_n` over surviving words and `P_n` over first-passage words.
+The last-letter partition conserves both mass and centered first moment.
+First-crossing heights lie in `[-beta,0)`, while survivor heights are
+nonnegative, giving the surviving first-moment bound `M_n<=beta`.
+For endpoint height `h=k-beta*n`, Lean checks the exact tilt identity
+`b_beta(n,k)=z^k*2^h/v^n`. Splitting at any `H>0` gives
+
+\[
+ Q_n\le 2^H u_\beta(n)+\frac\beta H.
+\]
+
+For each fixed height, the first term tends to zero by summability of
+`u_beta`; then increasing the height forces `Q_n->0`. The finite identity
+`sum_{j=0}^n P_j+Q_n=1` therefore proves
+
+\[
+ \sum_{n\ge0}P_n=1.
+\]
+
+These are **EXACT — LEAN VERIFIED** statements about the actual word sets,
+not hypotheses on an abstract random walk. The finite bound and mass
+partition cover rational boundaries in `(0,1)` too; the infinite limit
+currently retains irrationality. The proof needs no convergence rate or
+Diophantine estimate. The expanded audit at this stage checks 22 consumers
+and 52 public theorem records, with only the three standard Lean axioms.
+
+**PROMOTE** the formal probability-flow theorem for the whole irrational
+family, acknowledging its classical role. The sum here is indexed by
+crossing depths; the Beatty jump-weight normalization requires the explicit
+reindexing in the next bounded continuation.
+
+### Beatty reindexing of the general critical mass
+
+```text
+Mathematical target     Reindex critical crossing probabilities as exact jump weights;
+                        prove sum_{r>=1} w_r = beta/(1-beta).
+Novelty hypothesis      Formal family normalization, an input to the geometric theorem.
+Falsifier               A crossing is omitted, counted twice, or has the wrong zero atom.
+Already killed by?      No matching obstruction found; crossingDepth is strictly monotone
+                        and every first-passage word has its unique crossing edge.
+Existing machinery      General crossing theorem and total critical probability one.
+Maximum Phase-0 scope   Exact reindexing, zero atom, and positive-index total mass.
+Promotion criterion     Actual-count Lean statements with all slope assumptions expanded.
+Stop criterion          Do not assert a first-passage phase limit from mass alone.
+```
+
+[`BeattySlopeSeries.lean`](../../formal/Problems/Juggler/BeattySlopeSeries.lean)
+now proves this normalization for the actual counts. Put
+
+\[
+ m_r=\lfloor r/\beta\rfloor,\qquad
+ c_r=P_\beta(m_r+1),\qquad
+ w_r=c_r\beta^r(1-\beta)^{m_r-r}.
+\]
+
+Here `P_beta` denotes the integer word count, whereas `P_n` in the preceding
+section denotes a probability. Lean checks `m_r>=r`, and every first-passage
+word at `m_r+1` has exactly `r` odd letters. Its critical probability is
+therefore `(1-beta)*w_r`. There is no first-passage mass outside these edges,
+and strict increase of the edge map prevents double counting. Reindexing
+the proved mass-one series gives
+
+\[
+ \sum_{r\ge0}w_r=\frac1{1-\beta},\qquad w_0=1,\qquad
+ \sum_{r\ge1}w_r=\frac\beta{1-\beta}=\frac1{\alpha-1}.
+\]
+
+These identities are **EXACT — LEAN VERIFIED** for every irrational
+`alpha>1`. The public reciprocal-slope interface and expanded consumer
+explicitly cover slopes above two. The finite crossing identities require
+only `0<beta<1`. At this stage the combined audit has 25 expanded consumers
+and 61 public theorem records.
+
+**PROMOTE** the exact family normalization. Its classical probability-flow
+origin is acknowledged; the contribution here is the checked connection to
+the actual Beatty counts over the entire slope range. The continuations below
+now telescope the survivor profile into this series and transfer the
+asymptotic to the original counts. Geometry remains a separate family theorem.
+
+For the already checked tilt, the exact identification is now
+
+\[
+ (1+z)\psi_\beta(-\beta\delta)-v\psi_\beta(\beta(1-\delta))
+   =C_\beta 2^{-\beta\delta}
+     \left(1+\sum_{r\ge1,\ \{r/\beta\}<\delta}w_r\right),
+ \qquad 0<\delta<1.
+\]
+
+This identity is **EXACT — LEAN VERIFIED** in
+[`BeattySlopeIdentification.lean`](../../formal/Problems/Juggler/BeattySlopeIdentification.lean).
+The exact one-step partition supplies the left side; after reindexing, the
+kernel doubles exactly when the crossing phase is strictly below `delta`.
+The total-mass identity cancels the remaining constant. The strict inequality
+is retained at the atoms. The count transfer uses the normalization
+`R_r^+=m_r*c_r/binom(m_r,r)` for positive `r`.
+
+### Exact profile identification and original count asymptotic (24 September)
+
+The identification continuation has the following bounded scope:
+
+```text
+Mathematical target     Identify the consecutive-survivor transfer with the exact
+                        strict jump profile for every irrational 0 < beta < 1.
+Novelty hypothesis      A checked explicit profile identity across the entire slope range.
+Falsifier               The tilt leaves an extra constant or reverses a jump convention.
+Already killed by?      No matching obstruction found; total mass and unique crossing
+                        reindexing are proved, including slopes alpha > 2.
+Existing machinery      Summable tilted survivors, kernel bounds, critical jump weights.
+Maximum Phase-0 scope   Exact profile identity on 0 < delta < 1 and normalization bounds.
+Promotion criterion     Expanded Lean identity with actual count weights and strict atoms.
+Stop criterion          Leave the count asymptotic and geometric assembly separate.
+```
+
+The identity and its monotonicity, normalization bounds and exact endpoint
+corollaries are checked in `BeattySlopeIdentification.lean`. **PROMOTE** the
+exact identity, including its value at each atom. The count continuation
+has the following separate scope:
+
+```text
+Mathematical target     Prove R_r^+ - F_beta({r/beta}) -> 0 for every irrational
+                        0 < beta < 1 using the original integer count ratio.
+Novelty hypothesis      Full explicit first-passage profile across all irrational slopes.
+Falsifier               The moving quotient loses its lower bound or leaves a tilt factor.
+Already killed by?      No matching obstruction; the weighted survivor limit, first-term
+                        Stirling limit and exact profile identity are now checked.
+Existing machinery      Consecutive-survivor difference, positive kernel and Beatty edges.
+Maximum Phase-0 scope   Additive phase asymptotic in the two equivalent integer normalizations.
+Promotion criterion     Expanded actual-count Lean theorem with no asymptotic premise.
+Stop criterion          Leave convergence rates and the geometric family assembly explicit.
+```
+
+[`BeattySlopeAsymptotic.lean`](../../formal/Problems/Juggler/BeattySlopeAsymptotic.lean)
+now proves, for **every fixed irrational** `alpha>1`,
+
+\[
+ R_r^+=\frac{m_r c_r}{\binom{m_r}{r}}
+       =\frac{r c_r}{\binom{m_r-1}{r-1}},\qquad
+ R_r^+-F_\alpha(\delta_r)\longrightarrow0,
+\]
+
+where `m_r=floor(alpha*r)`, `delta_r=alpha*r-m_r`, and
+
+\[
+ F_\alpha(t)=1+\sum_{j\ge1,\ \delta_j<t}
+   c_j\alpha^{-j}(1-\alpha^{-1})^{m_j-j}.
+\]
+
+The finite ratio identity is for positive `r`; both sequences have the same
+limit statement. The proof first transfers the weighted survivor asymptotic
+to the actual weighted first-passage sequence, retaining the consecutive-depth
+correction until its limit is taken. The first binomial term has a moving
+phase factor bounded below by `C_beta/2`. This justifies division even at
+phases approaching jumps. At every positive crossing the strict cutoff is
+exactly `r`, so the letter weight cancels from the quotient. Periodicity and
+the exact profile identity finish the argument.
+
+The formal corollaries include monotonicity of `F_alpha`, its bounds
+`1<=F_alpha(t)<=alpha/(alpha-1)`, and exact values
+`F_alpha(0)=1`, `F_alpha(1)=alpha/(alpha-1)`. The expanded reciprocal consumer
+shows the actual integer counts, `floor(alpha*r)`, both slope hypotheses,
+and the strict inequality in the jump series. The combined audit checks 30
+expanded consumers and 77 public records using only the three standard Lean
+axioms. No asymptotic premise, Diophantine estimate, rate or uniformity as
+the slope approaches one or infinity is assumed or concluded.
+
+**PROMOTE** the full qualitative first-passage phase theorem for the entire
+irrational slope family. The two-thirds gap law, complete cluster set,
+empirical law and local Minkowski measure still need their family assembly.
+The classical survival and probability-flow inputs retain their existing
+attribution; this proof does not establish a literature-priority claim.
 
 ## Open questions
 
@@ -1134,14 +1323,21 @@ and a matching Hausdorff lower bound for the infinite-density set,
 effective numerical constants, and completion of the analytic/geometric
 generalization to arbitrary irrational `alpha>1`. The weighted survivor phase,
 its absolute summability, positivity and periodicity now cover every such
-irrational slope. The first-passage critical mass and explicit jump-profile
-identification are the next missing family inputs, as detailed above. Literature comparison
+irrational slope. Critical survival now tends to zero and the actual
+first-passage probabilities sum to one; the actual positive-index Beatty
+weights sum to `1/(alpha-1)`. The explicit strict jump profile and the
+original integer-count asymptotic now cover that whole family too. The next
+family inputs are positive dense phase atoms and their three-halves gap
+asymptotic, followed by the geometric and distributional assembly. Literature comparison
 is separate from proof checking; existing paper claims and releases retain
 their earlier evidence labels.
 
 ## Decision
 
-`PROMOTE` -- the actual normalized certificate counts have the explicit positive
+`PROMOTE` -- for every irrational slope above one, the actual normalized
+first-passage counts approach the exact strict jump series, with its full
+normalization checked. The following geometric and distributional package
+remains specialized to the logarithmic slope: the actual normalized certificate counts have the explicit positive
 jump-series asymptotic, with its full normalization and strict atom convention
 proved. The continuation identifies the full null perfect accumulation set,
 its exact gaps, the singular continuous empirical law with exact threshold

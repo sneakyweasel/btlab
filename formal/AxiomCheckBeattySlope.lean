@@ -1,5 +1,5 @@
 import Problems.Juggler.BeattyCounting
-import Problems.Juggler.BeattySlopeEndpointAsymptotic
+import Problems.Juggler.BeattySlopeAsymptotic
 
 /-! Recorded dependencies of the public arbitrary-boundary counting results.
 The expanded actual-count consumers are in `InterfaceCheckBeattySlope.lean`.
@@ -43,6 +43,39 @@ namespace Problems.Juggler
 #print axioms BeattySlope.tiltedSurvivorPhase_periodic
 #print axioms BeattySlope.tilted_survivor_phase_limit
 #print axioms BeattySlope.tilted_survivor_phase_limit_reciprocal
+#print axioms BeattySlope.criticalWordMass_pos
+#print axioms BeattySlope.criticalMass_step
+#print axioms BeattySlope.passageCriticalMass_nonneg
+#print axioms BeattySlope.criticalWordMass_eq_exp
+#print axioms BeattySlope.survivorCriticalMass_height_split
+#print axioms BeattySlope.survivorCriticalMass_tendsto_zero
+#print axioms BeattySlope.criticalMass_partial_sum
+#print axioms BeattySlope.passageCriticalMass_hasSum
+#print axioms BeattySlope.passageIndex_ge
+#print axioms BeattySlope.passageJumpWeight_eq
+#print axioms BeattySlope.passageCriticalMass_crossingDepth
+#print axioms BeattySlope.passageCriticalMass_eq_zero_off_range
+#print axioms BeattySlope.passageJumpWeight_hasSum
+#print axioms BeattySlope.passageJumpWeight_zero
+#print axioms BeattySlope.passageJumpWeight_nonneg
+#print axioms BeattySlope.passage_jump_weights_hasSum
+#print axioms BeattySlope.passage_jump_weights_hasSum_reciprocal
+#print axioms BeattySlope.passageIndex_strictMono
+#print axioms BeattySlope.passagePhase_mem_Ico
+#print axioms BeattySlope.passageWeight_div_eq
+#print axioms BeattySlope.passageJumpWeight_eq_rpow
+#print axioms BeattySlope.passageProfile_eq_transfer
+#print axioms BeattySlope.passageProfile_eq_transfer_reciprocal
+#print axioms BeattySlope.passageProfile_monotone
+#print axioms BeattySlope.passageProfile_bounds
+#print axioms BeattySlope.passageProfile_endpoints
+#print axioms BeattySlope.tilted_passage_phase_limit
+#print axioms BeattySlope.passagePhase_pos
+#print axioms BeattySlope.endpointCutoff_passageIndex
+#print axioms BeattySlope.passage_phase_asymptotic
+#print axioms BeattySlope.passage_normalization_identity
+#print axioms BeattySlope.passage_phase_asymptotic_odd_count
+#print axioms BeattySlope.passage_phase_asymptotic_reciprocal
 #print axioms BeattySlope.survivorWords_logarithmic
 #print axioms BeattySlope.passageWords_logarithmic
 #print axioms BeattySlope.survivorCount_logarithmic

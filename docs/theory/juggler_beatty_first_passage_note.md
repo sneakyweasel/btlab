@@ -32,7 +32,10 @@ moments are also Lean-checked. The underlying
 periodic survivor amplitude has a classical precursor; the focus here is
 its explicit transfer to the cumulative profile and the resulting singular
 geometry. The profile and these qualitative geometric and distributional
-results are proved in Lean for the actual integer counts.
+results are proved in Lean for the actual integer counts. A further formal
+continuation proves the qualitative first-passage profile and its exact
+normalization for every irrational slope `alpha>1`; the geometric and
+distributional family extensions remain separate.
 
 **Main conclusions.** With the notation of Section 1 and `alpha=log_2 3`,
 write `E=alpha/(alpha-1)`. The checked statements are
@@ -74,6 +77,9 @@ Section 22 identifies its interval support and full cluster set, and proves
 the density's dense null blowup and local essential unboundedness.
 Section 23 quantifies this law by cube-root concentration, subcritical
 density integrability, CDF regularity and exceptional-set Hausdorff bounds.
+Section 24 extends the explicit first-passage phase theorem to every
+irrational slope above one, using a subcritical tilt whose weight cancels
+from the final integer ratio.
 
 The central spatial conclusion is, with
 `kappa=(2 pi alpha (alpha-1))^(-1/2)`,
@@ -108,7 +114,10 @@ at the concrete logarithmic slope, without unproved counting, binomial,
 first-passage or equidistribution inputs. Sections 1–7 also retain a broader
 written argument for irrational `1<alpha<2`, including a quantitative
 `O(r^(-1/2))` rate. Those stronger statements are explicitly distinguished
-from the checked qualitative specialization. The exact Gamma-normalized
+from the checked qualitative statements. Section 24 now proves the
+qualitative phase theorem for every irrational `alpha>1`, with no rate or
+uniformity in the slope. The geometric conclusions above remain checked
+at the logarithmic slope. The exact Gamma-normalized
 first-passage amplitude in Section 1.1 and its absolutely continuous empirical
 law, density and real-power moment identities in Section 21, and the exact
 interval support and density topology in Section 22, are also Lean-checked.
@@ -139,8 +148,10 @@ The neighbourhood-volume and dimension interfaces are in
 
 ## 1. Statement and notation
 
-This section and Sections 2–7 present the broader written argument. The
-formal theorem summarized above specializes to \(\alpha=\log_2 3\).
+This section and Sections 2–7 present the broader written argument with its
+quantitative remainder. The geometric formal package summarized above
+specializes to \(\alpha=\log_2 3\); Section 24 gives the checked qualitative
+phase theorem for every irrational \(\alpha>1\).
 Fix an irrational \(1<\alpha<2\), and put
 \[
 \beta=\alpha^{-1},\quad q=1-\beta,\quad s=\alpha-1=q/\beta,\quad
@@ -931,7 +942,8 @@ distinct indices have distinct phases; `w_1=beta`; `F` is nondecreasing;
 right-minus-left jump is precisely its weight. The generic trace results
 also identify continuity away from the listed atoms. No quantitative
 `O(r^(-1/2))` remainder or effective numerical truncation constant is claimed.
-The arbitrary-irrational-slope generalization remains a separate theorem.
+The arbitrary-irrational-slope phase theorem is proved separately in
+Section 24, without the quantitative remainder.
 **PROMOTE** the completed qualitative specialization within this branch.
 
 Validation of Section 13: the complete retained Lean graph passes (9044
@@ -1839,7 +1851,9 @@ converging to the probability measure defined by the explicit density.
 Only `propext`, `Classical.choice` and `Quot.sound` are permitted.
 No occupation, endpoint-mass or moment-integrability premise remains in
 these concrete statements. Section 22 completes the support description.
-Rates and the arbitrary-slope first-passage theorem remain separate questions.
+Rates and the Gamma-law family extension remain separate questions. The
+qualitative first-passage theorem for every irrational slope is now checked
+in Section 24.
 **PROMOTE** the complete density and real-power moment identification.
 
 ## 22. Interval support and the density's dense null blowup
@@ -2041,6 +2055,119 @@ No new arithmetic hypothesis or literature-priority claim is added.
 and whether `dim_H S=2/3` remain open. The latter concerns this exceptional
 set and is distinct from the Hausdorff question for the original cluster
 set `K` in Section 19.
+
+## 24. The phase theorem for every irrational slope above one
+
+**Family phase theorem — EXACT — LEAN VERIFIED.** Fix any irrational
+`alpha>1`, with no upper bound on `alpha`. Set `beta=1/alpha`, `q=1-beta`,
+and let `c_r` count binary words that first cross below the boundary
+`beta*n` at depth `m_r+1`, where
+
+\[
+ m_r=\lfloor\alpha r\rfloor,\qquad \delta_r=\alpha r-m_r.
+\]
+
+At an irrational boundary weak survival at every prefix agrees with strict
+survival at every nonempty prefix. These are the actual integer word counts;
+no recurrence or asymptotic is supplied as a hypothesis. Define
+
+\[
+ w_r=c_r\beta^r q^{m_r-r},\qquad
+ F_\alpha(t)=1+\sum_{r\ge1,\ \delta_r<t}w_r.
+\]
+
+The series is summable, and Lean proves
+
+\[
+ \sum_{r\ge1}w_r=\frac1{\alpha-1},\qquad
+ F_\alpha(0)=1,\qquad F_\alpha(1)=\frac\alpha{\alpha-1},
+\]
+
+\[
+ 1\le F_\alpha(t)\le\frac\alpha{\alpha-1},\qquad
+ F_\alpha\text{ is nondecreasing},
+\]
+
+and, in both equivalent integer normalizations,
+
+\[
+ \frac{m_r c_r}{\binom{m_r}{r}}-F_\alpha(\delta_r)\longrightarrow0,
+ \qquad
+ \frac{r c_r}{\binom{m_r-1}{r-1}}-F_\alpha(\delta_r)\longrightarrow0.
+\]
+
+The finite equality of the two ratios holds for every positive `r`.
+The strict atom convention is retained throughout. The result includes
+irrational slopes above two, for which the fair-walk large-deviation route
+of Sections 3–5 is unavailable. It is a theorem for each fixed slope, not a
+uniform error estimate as the slope approaches one or infinity.
+
+**Why the slope restriction disappears.** Introduce the positive odd-letter
+weight and exponential base
+
+\[
+ z_\beta=\frac\beta{2q},\qquad
+ V_\beta=\frac{2^{-\beta}}q,\qquad
+ C_\beta=(2\pi\beta q)^{-1/2}.
+\]
+
+The corresponding Bernoulli bias is `p=beta/(2-beta)<beta` for every
+`0<beta<1`. Thus every slope admits a subcritical walk. Its strict endpoint
+tail has successive terms bounded by a half-geometric progression, and its
+ratio to the first term tends to two. With `u_beta(n)` the actual weighted
+survivor sum divided by `V_beta^n`, the checked Stirling and renewal arguments
+give the summable survivor phase
+
+\[
+ \Psi_\beta(t)=C_\beta\sum_{j\ge0}u_\beta(j)2^{\{t-j\beta\}},\qquad
+ n^{3/2}u_\beta(n)-\Psi_\beta(n\beta)\longrightarrow0.
+\]
+
+These tilted quantities differ from the fair-walk normalization earlier in
+the note. The exact profile identification is
+
+\[
+ (1+z_\beta)\Psi_\beta(-\beta t)
+ -V_\beta\Psi_\beta(-\beta t+\beta)
+ =C_\beta2^{-\beta t}F_\alpha(t),\qquad 0<t<1.
+\]
+
+This holds at atom phases too. Consecutive survivor kernels telescope into
+first-passage weights. After Beatty reindexing the kernel doubles precisely
+when `delta_r<t`; critical total mass cancels the remaining constant.
+The critical mass theorem itself follows from finite centered moments and
+the bound `Q_n<=2^H*u_beta(n)+beta/H` for every `H>0`, which forces critical
+survival mass `Q_n` to zero.
+
+Finally, the moving first-binomial phase is bounded below by `C_beta/2`.
+The quotient of the first-passage and binomial asymptotics is therefore
+legitimate. At a crossing every first-passage word has exactly `r` odd
+letters and the strict binomial cutoff is `r`, so the factor `z_beta^r`
+cancels exactly. This recovers the original unweighted integer ratios.
+
+**Formal interfaces and remaining scope.** The family construction is in
+[BeattySlopeEndpointAsymptotic.lean](../../formal/Problems/Juggler/BeattySlopeEndpointAsymptotic.lean),
+[BeattySlopeCriticalMass.lean](../../formal/Problems/Juggler/BeattySlopeCriticalMass.lean),
+[BeattySlopeSeries.lean](../../formal/Problems/Juggler/BeattySlopeSeries.lean),
+[BeattySlopeIdentification.lean](../../formal/Problems/Juggler/BeattySlopeIdentification.lean)
+and [BeattySlopeAsymptotic.lean](../../formal/Problems/Juggler/BeattySlopeAsymptotic.lean).
+The public theorem `passage_phase_asymptotic_reciprocal` quantifies over
+every irrational `alpha>1`.
+[InterfaceCheckBeattySlope.lean](../../formal/InterfaceCheckBeattySlope.lean)
+expands the actual counts, `floor(alpha*r)` and strict jump series, checking
+that no asymptotic premise is hidden behind a definition. The combined
+family audit checks 30 expanded consumers and 77 public theorem records,
+using only `propext`, `Classical.choice` and `Quot.sound`.
+
+This completes the qualitative phase theorem for the family. It does not
+yet extend the geometric, empirical-law or Gamma-law packages of Sections
+14–23 to every slope, nor prove a convergence rate or an arithmetic lower
+bound. The logarithmic atom formula `w_1=beta` in Section 13 is not asserted
+for all slopes here. The classical BGL survival and probability-flow
+precursors remain acknowledged; the scope extension and formal proof do
+not by themselves settle literature priority. **PROMOTE** the family phase
+theorem; the next target is the positive dense atom structure and the
+three-halves gap asymptotic needed for the geometric family theorem.
 
 ## References
 
