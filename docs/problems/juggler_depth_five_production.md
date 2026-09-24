@@ -1111,7 +1111,7 @@ once by an AI reviewer, not human-reviewed, and not in Lean. Whether to promote
 the branch on that basis is the owner's decision.
 
 **23. The poor tail needs only small shifts (written proof, 24 September 2026;
-AI-assisted, not independently reviewed).** Result 4 applied Chebyshev with blocks
+AI-assisted, audited in Result 24).** Result 4 applied Chebyshev with blocks
 as long as the whole fibre window, `P^(5/32)`. That made the poor tail look as if
 it needed differenced sums at every shift up to the window length, and Results
 7-13 widened Paper B to that range. The requirement is weaker.
@@ -1144,26 +1144,43 @@ arbitrarily small power of `P`.**
 
 *What this removes.* Take `delta' = 1/48`.
 
-- *`OOOEE` with `k != 0`.* Paper B's own double correlation (C.9) holds for every
+- *`OOOEE` with `k != 0`.* Paper B's own double correlation (Appendix C.9) holds for every
   `h_1 < P^(1/48)` and `h_2 < P^(1/24)`, with bound `P^(31/32+eps)`. A van der
   Corput step in `h_2` gives `|T_d| << P^(63/64+eps)` for `d < P^(1/48)`.
-- *`OOOEE` with `k = 0`.* These cases are E5 at `d < P^(1/48)`. Their `j != 0`
-  step is Paper B's printed Lemma 4.4 (range `h <= P^(1/12)`) with C.2's `l`-term;
-  the other cases are elementary.
-- *`OOEOE`.* E7 at `d < P^(1/48)`, where its `j != 0` step is again the printed
-  Lemma 4.4.
+- *`OOOEE` with `k = 0`.*
+  - For `j != 0`, Paper B's C.2 prints the differenced bound itself:
+    `P^(7/8)(1 + sqrt h)` for `h <= P^(1/12)`.
+  - For `j = 0`, `l != 0`, E5's Fourier and curvature argument (the `243/4096`
+    diagonal) is genuinely needed, since C.2 is undifferenced there.
+  - For `j = l = 0`, the Kusmin-Landau case is elementary.
+- *`OOEOE`.* E7 at `d < P^(1/48)`. Its `j != 0` case reruns Lemma 4.4's proof
+  with an added `U`-carry. That rerun is E7's own content. At these shifts it
+  needs only Paper B's `P^(-1/8)` carry-mode dominance, not E1.
 
 Neither production then uses E1-E4. That means neither Theorem B.1 widened to
 `P^(5/32)` nor the uncentered C.8 repair is needed, and those are the lemmas
-where the audits found overclaims. E1-E4 remain correct extensions but are off the
-critical path. The poor fractions become `P^(-1/64+eps)` for `OOOEE`, since
+where the audits found overclaims. E1-E4 are off the critical path. Each has had
+one AI audit, and E3's added centering paragraph was not re-audited. The poor fractions become `P^(-1/64+eps)` for `OOOEE`, since
 `min(1/48, 1/64) = 1/64`, and `P^(-1/48)` for `OOEOE`.
+
+*E6 and E8 restated with sub-blocks.* Rerun both proofs with grid blocks of
+`L_1 = P^(1/48)` odd integers in place of `eta P^(5/32)/10`, and count poor
+fibres through E9's multiplicity rather than one bad block each. Nothing else
+changes.
+
+- *E6'.* The `OOOEE` poor targets above `U_0` have reciprocal mass
+  `<< U_0^(-1/55)`. The exact exponent is `(32/27)(1/64 - eps)`, from `|T_d| <<
+  P^(63/64+eps)`, which is Paper B's Appendix C.9 for `k != 0` and C.2 and E5 for
+  `k = 0`.
+- *E8'.* The `OOEOE` poor targets above `U_0` have reciprocal mass
+  `<< U_0^(-1/41)`. The exact exponent is `(32/27)(1/48) = 2/81`, since E7's
+  largest term at `d < P^(1/48)` is its `U`-truncation `P^(15/16) log P`.
 
 *Revised dependency of the `0.74` route:*
 
-- Paper B's printed Appendices A-C and Lemma 4.4;
-- E5 and E7 at shifts below `P^(1/48)`;
-- E6 and E8, with E9's sub-blocks;
+- Paper B's printed Appendices A-C, Lemma 4.4 and C.2;
+- E5's `j = 0` case, and E7, at shifts below `P^(1/48)`;
+- E6' and E8';
 - the kernel-checked `FateDepthFiveAssembly`.
 
 Result 4's desk reduction, "shifts up to `P^(5/32)`", was a sufficient condition
@@ -1172,11 +1189,37 @@ that overstated what the poor tail needs.
 *What depth seven would need.* The three depth-seven words have `rho = 81/128`,
 coefficient `1/81` and windows `P^(47/128)`. At `1/85` each on top of the current
 five productions, the root would be `0.7865`, about thresholds `0.21`. By E9 the
-window length is harmless. The obstacle is that their parity words involve six
-nested floor coordinates, `J n` through `J^6 n`. Paper B's mixed-sum machinery
-stops at four formal coordinates. So depth seven needs new nested-floor
-exponential-sum estimates at nesting depth six. It does not need a wider shift
-range.
+window length is harmless. The obstacle is that their parity words involve six nested floor
+coordinates, `J n` through `J^6 n`. Paper B's mixed-sum machinery stops at four
+formal coordinates. So depth seven would need new nested-floor exponential-sum
+estimates at nesting depth six, and a seven-production assembly. It would not
+need a wider shift range. This is an assessment, not a proved obstruction.
+
+**24. Audit of Lemma E9 (24 September 2026).** An independent adversarial
+reviewer confirmed E9 and its consequences:
+
+- The averaging constants hold; in fact `|dev(B)| <= (15/16) L_1`, which is
+  slack in E9's favour.
+- The poor fraction is `P^(-min(delta', sigma))`.
+- Paper B's printed Appendix C.9 bounds `T_1(h_1)` by `P^(63/64+eps)` uniformly
+  for `h_1 < P^(1/48)`. That quantity is Result 4's `T_d`, since the (C.5)
+  replacement is a per-point cost.
+- The claim that E1-E4 are off the critical path holds in substance. Printed C.9
+  and C.2, E5's `j = 0` case and E7 at small shifts cover every bounded nonzero
+  frequency vector.
+- The depth-seven pricing checks: three words, each with `rho = 81/128`; root
+  `0.786518` at `1/85` and `0.78877` at the ideal `1/81`.
+
+It found one missing piece: E6 and E8 were still written against Results 7-15.
+They are now restated in Result 23 as E6' and E8', with exponents `1/55` and
+`1/41`. It also found five wording faults, now fixed:
+
+- "(C.9)" meant Appendix C.9, not equation (C.9);
+- E7's `j != 0` step is a rerun of Lemma 4.4's proof, not the printed lemma;
+- the `k = 0`, `j != 0` bound is printed in C.2, and E5's `j = 0` case is
+  substantive rather than elementary;
+- E1-E4 are "off the path", not "correct";
+- "blocked" for depth seven is an assessment, not a proof.
 
 ## Open questions
 
@@ -1184,14 +1227,13 @@ Result 23 (Lemma E9) shows that the productions need `T_d` only at shifts below 
 arbitrarily small power of `P`. The `0.74` route therefore rests on four pieces:
 
 - Paper B's printed estimates;
-- E5 and E7 at `d < P^(1/48)`;
-- E6 and E8, with E9's sub-blocks;
+- E5's `j = 0` case and E7, at `d < P^(1/48)`;
+- E6' and E8', restated with E9's sub-blocks;
 - the kernel-checked five-production assembly (Result 22).
 
-E1-E4 are off the critical path. E5-E8 have each had one AI audit, and E9 has not
-been audited. None has had human review. Still open:
+E1-E4 are off the critical path. E5-E9 have each had one AI audit, and none has
+had human review. Still open:
 
-- an audit of E9;
 - human review;
 - a Lean proof of either production;
 - depth seven, which needs nested-floor sums in six coordinates.
@@ -1221,8 +1263,10 @@ That assembly turns productions at `1/28` into contagion `37/50` and thresholds
 
 Promotion is the owner's decision after review.
 
-Best next question: does an independent audit confirm Lemma E9, and
-with it that the depth-five productions need only Paper B's printed ranges?
+Best next question: for human review, check the two new mechanisms on
+the critical path. The first is E7's smooth-coefficient `U`-carry, with zero-mode
+curvature `-1701/4096`. The second is E5's `j = 0` diagonal, with curvature
+`243/4096`. Everything else on the path is printed Paper B or standard.
 
 ## Publication assessment
 
