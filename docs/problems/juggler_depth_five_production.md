@@ -699,7 +699,7 @@ With E1-E5, `|T_d| << P^(127/128+eps)` for every bounded nonzero frequency vecto
 at `1 <= d <= P^(5/32)`. Each lemma has had one AI audit and no human review.
 
 **16. Lemma E6: the `OOOEE` count-poor tail (written proof, 24 September 2026;
-AI-assisted, not independently reviewed).**
+AI-assisted, audited in Result 17).**
 
 *Setting.* The word `OOOEE` means that `n`, `J(n)` and `J^2(n)` are odd and
 `J^3(n)` and `J^4(n)` are even. Put `X = n^(3/2)`, `m = floor(X)`,
@@ -710,12 +710,25 @@ AI-assisted, not independently reviewed).**
 indicator of a half arc of `{v/2}`: `[1/2, 1)` for odd, `[0, 1/2)` for even. Paper
 B's phase `(iX + jY + kZ + lU)/2` has exactly these coordinates.
 
-The composite `G(n) = floor(floor(U)^(1/2))` along the word is nondecreasing. So
-the target-`t` fibre is `F_t = {n in I_t odd : n has word OOOEE}`, where
+The composite `G(n) = floor(floor(U)^(1/2))` is nondecreasing on all `n`, as a
+composition of nondecreasing maps; on the word it equals `J^5(n)`. So the
+target-`t` fibre is `F_t = {n in I_t odd : n has word OOOEE}`, where
 `I_t = G^(-1)(t)` is an interval of integers. Let `H_t` be the number of odd
-integers in `I_t`. By the inverse-power geometry of Result 2,
-`H_t = (16/27) t^(5/27) (1 + o(1))` and every `n` in `I_t` is at most
-`t^(32/27) (1 + o(1))`. Define
+integers in `I_t`.
+
+*Fibre geometry.* The floor losses propagate as follows:
+
+- `floor(Y) = n^(9/4) - O(n^(3/4))`;
+- `Z = n^(27/8) - O(n^(15/8))`;
+- `U = n^(27/16) - O(n^(3/16))`.
+
+`U` is nondecreasing with smooth rate about `n^(11/16)`. Now `G(n) = t` exactly
+when `U` lies in `[t^2, (t+1)^2)`, a range of width `2t + 1`. So
+`|I_t| = (32/27) t^(5/27)(1 + o(1)) + O(1)`, and the fluctuation shifts each
+endpoint by `O(n^(3/16 - 11/16)) = o(1)`. Hence
+`H_t = (16/27) t^(5/27)(1 + o(1))` and `max I_t <= (t+1)^(32/27)(1 + o(1))`.
+
+Define
 `Poor_eta = {t : |#F_t / H_t - 1/16| >= eta}`.
 
 *Statement.* For each `eta > 0` there are `D` and `M` such that, for every
@@ -730,7 +743,7 @@ containing the left end of `I_t`. Its fibre then lies in
 - *Square waves.* Take a degree `J` and the Beurling-Selberg (Vaaler) majorant
   `chi_i^+` and minorant `chi_i^-` of each closed or open half arc. Then
   `chi^- <= chi <= chi^+` everywhere, including at integer values of `v/2`. The
-  difference `Delta_i = chi_i^+ - chi_i^-` is nonnegative with mean `1/(J+1)`.
+  difference `Delta_i = chi_i^+ - chi_i^-` is nonnegative with mean `2/(J+1)`.
   All coefficients are bounded, and `sup |chi^+| <= A` for an absolute `A`.
   Telescoping gives
   `|prod chi_i - prod chi_i^+| <= A^3 sum_i Delta_i`. The constant term of
@@ -761,7 +774,8 @@ containing the left end of `I_t`. Its fibre then lies in
   where `T_d^nu` is the differenced sum of Result 4 at frequency `nu`. The average
   over the offset `s` of `sum_{B in grid(s)} |S_nu(B)|^2` is this divided by
   `L_1`. Choose `s` so that the total over the `O_eta(1)` vectors `nu` is at most
-  its average.
+  its average. Fibres may run to `2P + O(P^(5/32))`. The windows there cost
+  `O(P^(5/32) L_1^2) = O(P^(15/32))`, and Paper B's estimates hold on `[P, 3P]`.
 
   Since `L_1 <= P^(5/32)`, Results 7-15 give `|T_d^nu| << P^(127/128+eps)` for
   every such `nu` and `d`. So
@@ -801,13 +815,53 @@ That consequence rests on three things:
 
 - the six written lemmas E1-E6, none of them human-reviewed, with E6 not yet
   audited;
-- the fibre geometry of Result 2, used here with explicit constants;
-- a four-production version of `FateOOEEAssembly`, which is not written. The
-  existing assembly takes three productions, and its exponent certificate is
-  generic in the family.
+- the production inequality's `O(1)` in `27t/32 - O(1)`, which still needs an
+  explicit constant;
+- a four-production version of `FateOOEEAssembly`, which is not written. Only
+  `recursion_lemma` is generic. `rate`, `coeff` and `shifted_recurrence` are fixed
+  at three productions. `rate_bounds` caps the rates at `3/4`, below `27/32`. The
+  shift `16` and the constant `5C` must grow: the shift to at least about `26`
+  plus the new `O(1)`, and the multiplier to at least about `6.4`. The
+  pressure-threshold instance hard-codes `3/8` and must be redone at `1/3`.
 
 It is not proved, and nothing here is kernel-checked. It also falls short of the
 branch's promotion criterion `lambda > 0.74`, which needs `OOEOE` as well.
+
+**17. Audit of Lemma E6 (24 September 2026).** An independent adversarial
+reviewer re-derived E6 from the dossier and Paper B. **E6's tail bound holds**,
+conditional on E1-E5; no step fails. The reviewer confirmed:
+
+- the parity encoding against Paper B's `U = floor(Z)^(1/2)`;
+- the ideal fraction `1/16` and coefficient `1/27`;
+- the telescoped Vaaler bound;
+- the coverage of the one-coordinate `Delta_i` vectors by E1-E5;
+- the grid-block and offset argument;
+- the second moment;
+- the exponents `11/16`, `107/128` and `1/108`.
+
+It also recomputed the four-production root, `0.6793040534268`; the sum at
+`lambda = 2/3` is `1.00709`.
+
+Fixed in Result 16:
+
+- the mean of `Delta_i` is `2/(J+1)`;
+- `G` is nondecreasing on all `n`;
+- the fibre geometry is now derived, not cited from Result 2, which has no proof;
+- fibres running past `2P` are now charged.
+
+**The assembly is not a drop-in.** Result 16 called the existing exponent
+certificate "generic in the family". That is false for the current Lean code; I
+checked `FateOOEEAssembly.lean` (lines 176-235). Only `recursion_lemma` is generic.
+`rate` and `coeff` are defined on `Fin 3`. `rate_bounds` caps the rates at `3/4`.
+`shifted_recurrence` absorbs the `-4` losses with a shift of `16`, which requires
+rate at most `3/4`, and subtracts `5C` for three losses. At rate `27/32` with a
+fourth production, both constants must be rederived. The pressure-threshold
+instance also hard-codes `3/8`.
+
+The Decision section now says the production "would give" `2/3`. The ledger row
+and the obstruction record have also been corrected. The conditional
+consequence stands: an `OOOEE` production at `1/30`, and contagion `2/3` once a
+four-production assembly is written and E1-E6 are reviewed.
 
 ## Open questions
 
@@ -819,7 +873,7 @@ Lemmas E1-E6 and Theorem E3 (Results 7-16) write out the `OOOEE` production:
 
 With coefficient `1/30` it would lift contagion to `2/3` (Arb-certified root
 `0.6793`). E1 and E3-E5 have been audited; E2 has been audited with its
-nonzero-`t` clause withdrawn; E6 is unreviewed. Still unwritten:
+nonzero-`t` clause withdrawn; E6 has been audited (Result 17). Still unwritten:
 
 - a four-production assembly;
 - the Lean formalisation;
@@ -831,18 +885,20 @@ nonzero-`t` clause withdrawn; E6 is unreviewed. Still unwritten:
 **PARK, pending audit.** Phase-0's stop criterion fired on the estimates then
 available. Results 7-16 have since written out, for `OOOEE`, the averaged
 substitute that Phase-0 said was missing: Paper B's Appendices A-C at first shifts
-up to `P^(5/32)`, the `k = 0` cases, and the count-poor tail. Together these give
-an `OOOEE` production at coefficient `1/30`, and with the certified depth-four
-productions an Arb-certified contagion root `0.6793 > 2/3`. The branch is not
-promoted, for three reasons:
+up to `P^(5/32)`, the `k = 0` cases, and the count-poor tail. Together they would
+give an `OOOEE` production at coefficient `1/30`. With the certified depth-four
+productions, the Arb-certified contagion root would be `0.6793 > 2/3`. The branch
+is not promoted, for three reasons:
 
-- the proofs are AI-written and not human-reviewed, and E6 is not yet audited;
-- the four-production assembly is not written, and nothing is kernel-checked;
+- the proofs are AI-written and not human-reviewed;
+- the four-production assembly is not written, and it is not a drop-in change
+  (Result 17). Nothing is kernel-checked;
 - the promotion criterion `lambda > 0.74` needs `OOEOE`, which has not been
   bookkept.
 
-Best next question: does an independent audit confirm Lemma E6, the
-reduction from sliding windows to the actual fibres?
+Best next question: does a four-production assembly, with its shift and
+loss constants rederived for rate `27/32`, certify contagion `2/3` from the
+`OOOEE` production at coefficient `1/30`?
 
 ## Publication assessment
 
