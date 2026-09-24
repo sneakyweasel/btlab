@@ -322,6 +322,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "OOECarrySubstitution": "OOE carry family: quotient floors d and D differ by 36r^2+1; floor(x^(9/8)) = z+1",
     "PaperBBarrierMass": "Paper B barrier: update mass, the fract(t beta) phase of the rise, and N_(d+1) = 2N_d - b_d M_d",
     "CycleMinSecondPostL": "Second post-L OOE on a cycle minimum for every continuation, the empty one being a length-17 cycle",
+    "FatePressureAveraged": "Paper C Proposition 9.3 corollary at the averaged exponent 103/203",
     "OOEEffectiveReturn": "Paper E Theorem 4.4: exact floor-residue count, both uniform errors, positive count and bounded actual OOE modular witness",
     "PaperECompletion": "Paper E: series identification, frequency and exponent statements, direct stopping-word sums, and finite complete prefix trees",
     "CollatzMoments": "Paper B/C word-moment bridge: coefficient shift and complete first-descent stopping counterexample",
