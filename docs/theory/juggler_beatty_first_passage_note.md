@@ -2618,6 +2618,19 @@ A written argument, not formalized, improves the upper bound to
 `2(sqrt(1+3 nu)-1)/(3 nu)`; the exact dimension is open and heuristically
 depends on the pattern of good convergents, not on `nu` alone.
 
+**Dimension two-thirds and the irrationality exponent — EXACT — LEAN
+VERIFIED.** For every irrational `alpha>1`,
+\[
+ \dim_H K_\alpha=\frac23\iff \mu(\alpha)=2,                          \tag{62f}
+\]
+where `mu(alpha)=2` means that `alpha` is not `LiouvilleWith p` for any
+`p>2`. A Liouville approximation of exponent `p>2` gives approximations of
+order `q^(-p/2)` and so (62d) caps the dimension below `2/3`; otherwise
+(45) holds and the dimension is `2/3`. At `alpha=log_2 3`,
+`dim_H K=2/3` holds if and only if the irrationality exponent of `log_2 3`
+is two, an open problem in number theory
+([BeattySlopeIrrExp.lean](../../formal/Problems/Juggler/BeattySlopeIrrExp.lean)).
+
 *Remark on classical Denjoy sets.* For two-sided classical Denjoy sets with
 gap exponent `1/delta`, Kra and Schmeling [7, Theorem 3.1] state the
 Hausdorff dimension `delta/nu`. The same many-hits argument suggests that

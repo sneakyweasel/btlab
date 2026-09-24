@@ -5,6 +5,7 @@ import Problems.Juggler.BeattySlopeContinuity
 import Problems.Juggler.BeattySlopeLiouville
 import Problems.Juggler.BeattySlopeDiophantineDim
 import Problems.Juggler.BeattySlopeExactDim
+import Problems.Juggler.BeattySlopeIrrExp
 import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeGlobalLaw
 import Problems.Juggler.BeattySlopeLawContinuity
@@ -425,5 +426,8 @@ namespace Problems.Juggler
 #print axioms BeattySlope.cluster_dimH_ge_class
 #print axioms BeattySlope.cluster_dimH_gt_denjoy
 #print axioms BeattySlope.cluster_dimH_window
+#print axioms BeattySlope.approx_of_liouvilleWith
+#print axioms BeattySlope.cluster_dimH_eq_iff
+#print axioms BeattySlope.log_cluster_dimH_iff
 
 end Problems.Juggler

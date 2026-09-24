@@ -2,6 +2,7 @@ import Problems.Juggler.BeattySlopeArithmetic
 import Problems.Juggler.BeattySlopeLiouville
 import Problems.Juggler.BeattySlopeDiophantineDim
 import Problems.Juggler.BeattySlopeExactDim
+import Problems.Juggler.BeattySlopeIrrExp
 
 /-! Expanded consumers of the family Hausdorff theorems. Each statement
 concerns the set of real subsequential limits of the original integer
@@ -140,6 +141,15 @@ theorem actual_dim_class_lower (α ν : ℝ) (hα1 : 1 < α) (hα : Irrational �
   rw [cluster_eq α hα1 hα]
   exact cluster_dimH_ge_class hα1 hα hν hdio
 
+/-- The actual limit set has Hausdorff dimension exactly two-thirds if and
+only if the slope has irrationality exponent two. -/
+theorem actual_dim_two_thirds_iff (α : ℝ) (hα1 : 1 < α) (hα : Irrational α) :
+    dimH {y : ℝ | MapClusterPt y atTop (fun r : ℕ => let m := ⌊α*(r : ℝ)⌋₊;
+      (r : ℝ)*(passageCount (1/α) (m+1) : ℝ)/((m-1).choose (r-1) : ℝ))} = 2/3 ↔
+      ∀ p > (2 : ℝ), ¬ LiouvilleWith p α := by
+  rw [cluster_eq α hα1 hα]
+  exact cluster_dimH_eq_iff hα1 hα
+
 #print axioms actual_family_hausdorff_finite
 #print axioms actual_ae_hausdorff_dim
 #print axioms actual_dio_hausdorff_pos
@@ -150,5 +160,6 @@ theorem actual_dim_class_lower (α ν : ℝ) (hα1 : 1 < α) (hα : Irrational �
 #print axioms actual_hausdorff_pos_iff
 #print axioms actual_exponent_dim
 #print axioms actual_dim_class_lower
+#print axioms actual_dim_two_thirds_iff
 
 end Problems.Juggler.BeattySlopeHausdorffChecks

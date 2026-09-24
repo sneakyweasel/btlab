@@ -129,6 +129,7 @@ import Problems.Juggler.BeattyJumpCover
 import Problems.Juggler.BeattySlopeLiouville
 import Problems.Juggler.BeattySlopeDiophantineDim
 import Problems.Juggler.BeattySlopeExactDim
+import Problems.Juggler.BeattySlopeIrrExp
 import Problems.Juggler.BeattySlopeRationalMass
 import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeWeakCounting

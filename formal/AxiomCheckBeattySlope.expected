@@ -497,3 +497,6 @@
 'Problems.Juggler.BeattySlope.cluster_dimH_ge_class' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.BeattySlope.cluster_dimH_gt_denjoy' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.BeattySlope.cluster_dimH_window' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.approx_of_liouvilleWith' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.cluster_dimH_eq_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.log_cluster_dimH_iff' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -14,7 +14,7 @@ EXPECTED = {
         "actual_dio_hausdorff_pos", "actual_quadratic_hausdorff", "actual_golden_hausdorff",
         "actual_liouville_hausdorff", "actual_liouville_dim",
         "actual_hausdorff_pos_iff", "actual_exponent_dim",
-        "actual_dim_class_lower",
+        "actual_dim_class_lower", "actual_dim_two_thirds_iff",
     )
 }
 

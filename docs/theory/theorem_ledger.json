@@ -2403,6 +2403,25 @@
   "related_conjectures": []
  },
  {
+  "id": "J-beatty-slope-dim-irrationality-exponent",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational alpha>1, the complete set K_alpha of real subsequential limits of the actual ratios has Hausdorff dimension exactly 2/3 if and only if alpha is not LiouvilleWith p for any p>2, i.e. its irrationality exponent is 2. A LiouvilleWith approximation of exponent p>2 gives |q*alpha-m|<=q^(-p/2) at arbitrarily large q, hence dim_H K_alpha<=2/(2+sqrt(p/2))<2/3; otherwise Diophantine bounds hold at every exponent above 1 and dim_H K_alpha=2/3. In particular, at the laboratory slope log_2 3, dim_H K=2/3 if and only if log_2 3 has irrationality exponent 2, which is an open problem; no value is asserted.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeIrrExp.lean",
+  "decl": [
+   "approx_of_liouvilleWith",
+   "cluster_dimH_eq_iff",
+   "log_cluster_dimH_iff"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_hausdorff_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-slope-first-passage",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For the actual binary-word counts at every real boundary beta, survivors and first passages partition the extensions of surviving words: S_beta(n+1)+P_beta(n+1)=2*S_beta(n), with S_beta(0)=1 and P_beta(0)=0. For 0<beta<=1, every first-passage word with r odd letters has length floor(r/beta)+1 and ends in an even letter. Survival uses weak prefix inequalities and crossing is strict, so this first-crossing location also covers rational boundaries. InterfaceCheckBeattySlope.lean expands the consumer statements; AxiomCheckBeattySlope.lean records the public theorem dependencies. No asymptotic assertion follows merely from this finite partition.",
