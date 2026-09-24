@@ -43,6 +43,24 @@ def test_round_trip_unknown_git_state_and_changed_outputs(tmp_path):
     assert not check_manifest(manifest, tmp_path)["hashes_checked"]
 
 
+def test_a_crlf_recorded_output_checked_out_with_lf_is_a_warning_not_a_change(tmp_path):
+    """Regression: a manifest written on Windows failed CI once Git stored the output as LF."""
+    manifest, _, output = make_run(tmp_path)
+    output.write_bytes(b'{\r\n  "answer": 42\r\n}\r\n')
+    payload = json.loads(manifest.read_text(encoding="utf-8"))
+    entry = payload["outputs"][0]
+    entry["sha256"] = __import__("hashlib").sha256(output.read_bytes()).hexdigest()
+    entry["bytes"] = output.stat().st_size
+    manifest.write_text(json.dumps(payload), encoding="utf-8")
+    output.write_bytes(b'{\n  "answer": 42\n}\n')
+    for hashes in (False, True):
+        result = check_manifest(manifest, tmp_path, hashes=hashes)
+        assert not result["errors"], result
+        assert any("Line endings differ" in w for w in result["warnings"])
+    output.write_bytes(b'{\n  "answer": 43\n}\n')
+    assert any("Changed outputs" in e for e in check_manifest(manifest, tmp_path, hashes=True)["errors"])
+
+
 def test_git_revision_and_dirty_state_are_real(tmp_path):
     subprocess.run(["git", "init", str(tmp_path)], check=True, capture_output=True)
     def git(*args):

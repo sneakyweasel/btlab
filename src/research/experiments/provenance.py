@@ -205,6 +205,25 @@ def schema_errors(data) -> list[str]:
     return errors
 
 
+def _eol_variant_matches(file: Path, entry: dict, *, hashes: bool) -> bool:
+    """Does the file match its record once only CRLF/LF line endings are exchanged?
+
+    A manifest written on Windows records the CRLF bytes; Git's ``text=auto`` checks the
+    same content out with LF elsewhere. Only the other line-ending form is compared, so
+    any change to the content itself still fails. Without ``hashes`` only sizes compare.
+    """
+    data = file.read_bytes()
+    if b"\r\n" in data:
+        variant = data.replace(b"\r\n", b"\n")
+    elif b"\n" in data and b"\r" not in data:
+        variant = data.replace(b"\n", b"\r\n")
+    else:
+        return False
+    if len(variant) != entry["bytes"]:
+        return False
+    return not hashes or hashlib.sha256(variant).hexdigest() == entry["sha256"]
+
+
 def check_manifest(path: Path, root: Path = ROOT, *, hashes: bool = False) -> dict:
     """Read-only structural/integrity check; source changes are reported as staleness."""
     path, root = path.resolve(), root.resolve()
@@ -232,9 +251,15 @@ def check_manifest(path: Path, root: Path = ROOT, *, hashes: bool = False) -> di
             elif not file.is_file():
                 (warnings if name == "source" else errors).append(f"Missing {name}: {entry['path']}")
             elif hashes and sha256(file) != entry["sha256"]:
-                (warnings if name == "source" else errors).append(f"Changed {name}: {entry['path']}")
+                if _eol_variant_matches(file, entry, hashes=True):
+                    warnings.append(f"Line endings differ from the recorded {name}: {entry['path']}")
+                else:
+                    (warnings if name == "source" else errors).append(f"Changed {name}: {entry['path']}")
             elif name != "source" and file.stat().st_size != entry["bytes"]:
-                errors.append(f"Changed {name} size: {entry['path']}")
+                if _eol_variant_matches(file, entry, hashes=False):
+                    warnings.append(f"Line endings differ from the recorded {name}: {entry['path']}")
+                else:
+                    errors.append(f"Changed {name} size: {entry['path']}")
     if data["generator"]["command"] is None:
         warnings.append("Reproduction command was not recorded")
     if data["source"]["revision"] is None:
