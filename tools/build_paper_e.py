@@ -209,6 +209,31 @@ def source_archive(root: Path) -> bytes:
     return buffer.getvalue()
 
 
+def archive_matches(path: Path, expected: bytes) -> bool:
+    """Same members, order, metadata and contents, and nothing after the end record.
+
+    Deflate output depends on the zlib build (zlib and zlib-ng differ), so the compressed
+    bytes of an unchanged archive differ between Python installations and a byte comparison
+    failed on every machine but the one that wrote it. Paper A's kit compares members the
+    same way; the end-record test keeps bytes appended to the archive a failure.
+    """
+    data = path.read_bytes()
+    end = data.rfind(b"PK\x05\x06")
+    if end < 0 or end + 22 + int.from_bytes(data[end + 20:end + 22], "little") != len(data):
+        return False
+    try:
+        with zipfile.ZipFile(io.BytesIO(data)) as found, zipfile.ZipFile(io.BytesIO(expected)) as fresh:
+            ours, theirs = found.infolist(), fresh.infolist()
+            fields = ("filename", "date_time", "external_attr", "compress_type", "CRC", "file_size")
+            if [[getattr(i, f) for f in fields] for i in ours] != [[getattr(i, f) for f in fields]
+                                                                   for i in theirs]:
+                return False
+            # By name: a ZipInfo carries its own archive's offsets and compressed sizes.
+            return all(found.read(i.filename) == fresh.read(i.filename) for i in theirs)
+    except zipfile.BadZipFile:
+        return False
+
+
 def sync(root: Path) -> None:
     read_release(root)
     for source, target in export_pairs(root):
@@ -235,7 +260,7 @@ def check(root: Path, exports: bool = True) -> None:
     meta = json.loads((root / METADATA).read_text(encoding="utf-8"))
     if (root / KIT / "ZENODO_FIELDS.txt").read_text(encoding="utf-8") != zenodo_fields(meta):
         raise ValueError("Stale Zenodo fields; run --sync")
-    if not (root / SOURCE_ZIP).is_file() or (root / SOURCE_ZIP).read_bytes() != source_archive(root):
+    if not (root / SOURCE_ZIP).is_file() or not archive_matches(root / SOURCE_ZIP, source_archive(root)):
         raise ValueError("Stale source-and-certificate archive; run --sync")
     if (root / KIT / "SHA256SUMS.txt").read_text(encoding="utf-8") != checksums(root):
         raise ValueError("Stale checksums; run --sync")

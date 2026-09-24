@@ -90,3 +90,33 @@ def test_rebuild_preserves_external_deposit_facts(tmp_path):
     assert result["conceptdoi"] == "test-concept"
     assert result["latest_deposit"] == previous["latest_deposit"]
     assert result["creators"][0]["orcid"] == paper.ORCID
+
+
+def test_the_archive_is_compared_by_members_not_by_deflate_bytes(tmp_path):
+    """Regression: zlib builds compress identical members differently; contents decide."""
+    import io
+    import zipfile
+
+    def archive(level, members):
+        buffer = io.BytesIO()
+        with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=level) as z:
+            for name, data in members:
+                info = zipfile.ZipInfo(name, (2026, 9, 22, 0, 0, 0))
+                info.compress_type = zipfile.ZIP_DEFLATED
+                info.external_attr = 0o100644 << 16
+                z.writestr(info, data, compresslevel=level)
+        return buffer.getvalue()
+
+    members = [("a.txt", b"alpha\n" * 200), ("b.md", b"beta\n" * 50)]
+    expected = archive(9, members)
+    found = tmp_path / "found.zip"
+    found.write_bytes(archive(1, members))
+    assert found.read_bytes() != expected and paper.archive_matches(found, expected)
+    found.write_bytes(archive(1, members) + b"changed")
+    assert not paper.archive_matches(found, expected)
+    found.write_bytes(archive(9, [("a.txt", b"alpha\n" * 200), ("b.md", b"gamma\n")]))
+    assert not paper.archive_matches(found, expected)
+    found.write_bytes(archive(9, members[::-1]))
+    assert not paper.archive_matches(found, expected)
+    found.write_bytes(b"not a zip")
+    assert not paper.archive_matches(found, expected)
