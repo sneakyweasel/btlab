@@ -2314,6 +2314,31 @@
   "related_conjectures": []
  },
  {
+  "id": "J-beatty-slope-critical-measure-dichotomy",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational alpha>1, the complete set K_alpha of real subsequential limits of the actual ratios r*c_r/choose(m_r-1,r-1) has positive two-thirds Hausdorff measure if and only if alpha is badly approximable, i.e. c<=q*|q*alpha-p| for some c>0 and all q>=1, p. If alpha is not badly approximable, a sharpened cut-cover bound sum_g m_g^s <= (q+1)^(1-s)T(E)^s+(E+2)^(1-s)T(N)^s, obtained by splitting each gap mass into chain and late parts, subadditivity and concavity of x^s, gives H^(2/3)(K_alpha)=0. More generally, if |q*alpha-p|<=q^(-nu) for arbitrarily large q with nu>1, then H^s(K_alpha)=0 for 2/(2+sqrt(nu))<s<=1 and dim_H K_alpha<=2/(2+sqrt(nu)). Combining this with the Diophantine lower bounds to characterize dim_H K_alpha=2/3 by irrationality exponent 2 is a written corollary, not a single Lean statement.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeDiophantineDim.lean",
+  "decl": [
+   "rpow_finset_sum_le",
+   "sum_rpow_le_card_mul",
+   "sum_tsum_le_of_disjoint",
+   "chain_same_gap",
+   "chain_cut_bound_sharp",
+   "not_bad_cluster_hausdorff",
+   "cluster_hausdorff_pos_iff",
+   "dio_exponent_hausdorff",
+   "dio_exponent_dimH_le"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_hausdorff_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-slope-critical-passage-mass",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For every irrational real 0<beta<1, the total critical Bernoulli mass Q_n of the actual surviving words tends to zero. Consequently the series of critical masses P_n of actual first-passage words over all depths has sum exactly one. The proof combines finite centered-moment bookkeeping with the already proved summability of tilted survivors; no asymptotic premise, Diophantine bound or convergence rate is assumed. This is a formal family version of the classical probability-flow law. The infinite result retains irrationality and does not by itself identify a jump-profile asymptotic.",

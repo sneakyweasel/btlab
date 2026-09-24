@@ -20,7 +20,9 @@ matching lower bounds through the family CDF. Mathlib's null set of
 `alpha>1`; the quadratic norm form gives positive finite two-thirds measure
 for every quadratic irrational slope, including the golden ratio. At every
 Liouville slope the dimension is `0`, so Hausdorff dimension depends on the
-arithmetic of the slope while Minkowski dimension stays `2/3`.
+arithmetic of the slope while Minkowski dimension stays `2/3`; the critical
+measure is positive exactly at badly approximable slopes, and exponent-`nu`
+approximations bound the dimension by `2/(2+sqrt nu)`.
 Continuation, also **EXACT — LEAN VERIFIED**: counts are locally constant
 at irrational boundaries, the weights converge in `l1` by a Scheffé argument,
 and the laws and Minkowski content are continuous at every irrational slope.

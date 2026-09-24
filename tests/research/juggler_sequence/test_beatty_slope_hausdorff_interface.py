@@ -13,6 +13,7 @@ EXPECTED = {
         "actual_family_hausdorff_finite", "actual_ae_hausdorff_dim",
         "actual_dio_hausdorff_pos", "actual_quadratic_hausdorff", "actual_golden_hausdorff",
         "actual_liouville_hausdorff", "actual_liouville_dim",
+        "actual_hausdorff_pos_iff", "actual_exponent_dim",
     )
 }
 

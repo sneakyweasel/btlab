@@ -742,7 +742,7 @@ bounded phase kernel.
 | Positive Hausdorff lower bounds at the logarithmic slope from the Rhin and Wu–Wang measures | Written proof in Section 20 (**EXACT — HUMAN PROOF**) |
 | Gamma-normalized law, density, support, moments and regularity | Lean proved at the logarithmic slope in Sections 21–23 |
 | Phase theorem, cluster set, singular law, sharp gaps, Minkowski content and geometric measure for every irrational `alpha>1` | Lean proved in Sections 24–26 |
-| Family Hausdorff upper bound; dimension `2/3` for almost every slope; positive finite measure for quadratic irrational slopes; dimension `0` at Liouville slopes | Lean proved in Section 27 |
+| Family Hausdorff upper bound; dimension `2/3` for almost every slope; positive finite measure for quadratic irrational slopes; dimension `0` at Liouville slopes; positive critical measure iff badly approximable; exponent bound `2/(2+sqrt nu)` | Lean proved in Section 27 |
 | `l1` continuity of the weights, weak continuity of the laws and continuity of the Minkowski content at irrational slopes | Lean proved in Section 28 |
 | Gamma-normalized law, density, moments, interval support and regularity for every irrational `alpha>1` | Lean proved in Section 29 |
 | Quantitative `O(r^(-1/2))` error | Written proof; this continuation proves `o(1)` only |
@@ -2569,9 +2569,38 @@ Thus Minkowski dimension is universal (`2/3` for every irrational slope),
 whereas Hausdorff dimension is `2/3` for almost every slope, for every
 quadratic irrational and for every slope satisfying (45), but `0` at every
 Liouville slope. This is the Diophantine dependence known for classical
-Denjoy sets [7]; no identification with that model is claimed. Open: the
-exact dimension as a function of the irrationality exponent, and positivity
-of the critical two-thirds measure beyond the badly approximable slopes.
+Denjoy sets [7]; no identification with that model is claimed.
+
+**Critical measure and irrationality exponent — EXACT — LEAN VERIFIED.**
+Sharpen the Liouville cover: split each gap mass into the part carried by
+chain continuations (indices `E<=n<N`) and the late part (`n>=N`). By
+subadditivity and concavity of `x^s` for `0<s<=1`, with each chain in a
+single gap and the late parts disjoint,
+\[
+ \sum_{\text{pieces}}\operatorname{diam}^s\le
+ (q+1)^{1-s}T(E)^s+(E+2)^{1-s}T(N)^s .                              \tag{62b}
+\]
+If `alpha` is not badly approximable, choose `q|q alpha-p|<c` with `c`
+small, `E` about `q c^(-1/2)` and `N=floor(1/|theta|)`; both terms of
+(62b) at `s=2/3` are of order `c^(1/6)`. Together with Section 20,
+\[
+ \boxed{\quad \mathcal H^{2/3}(K_\alpha)>0\iff\alpha\ \text{is badly approximable.}\quad}
+                                                                    \tag{62c}
+\]
+If `|q alpha-p|<=q^(-nu)` for arbitrarily large `q`, with `nu>1`, then
+taking `E=q^e` in (62b) gives
+\[
+ \dim_H K_\alpha\le\frac{2}{2+\sqrt\nu},                            \tag{62d}
+\]
+while (44) gives `dim_H K_alpha>=2/(3 tau)` whenever (42) holds with
+exponent `tau`. Hence, in terms of the irrationality exponent
+`mu(alpha)`, `dim_H K_alpha=2/3` when `mu=2`, and
+`2/(3(mu-1))<=dim_H K_alpha<=2/(2+sqrt(mu-1))<2/3` when `2<mu<infinity`
+(the lower bound needs (42) at every `tau>mu-1`; this combination is a
+written corollary of the two Lean theorems). In particular, almost every
+slope has dimension `2/3` but zero critical measure. The module is
+[BeattySlopeDiophantineDim.lean](../../formal/Problems/Juggler/BeattySlopeDiophantineDim.lean).
+Open: the exact dimension for `2<mu<infinity`.
 **PROMOTE** the family Hausdorff upper bound, the almost-every-slope
 dimension theorem, the quadratic-irrational positive-measure theorem and the
 Liouville dimension-zero theorem.

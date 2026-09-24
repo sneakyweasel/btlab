@@ -1472,8 +1472,12 @@ cluster set has zero Hausdorff measure in every positive dimension, so
 `dim_H K_alpha=0` while `dim_M K_alpha=2/3`. Exact rotation chains labelled
 by `Z(r)=rp-q floor(r alpha)` and a generic cut cover of the jump range give
 the covers. Hausdorff dimension therefore depends on the arithmetic of the
-slope. Open: the dimension as a function of the irrationality exponent, and
-critical-measure positivity beyond badly approximable slopes.
+slope. Further, **EXACT — LEAN VERIFIED**: the critical two-thirds measure
+is positive exactly at badly approximable slopes, and approximations of
+order `q^(-nu)` bound the dimension by `2/(2+sqrt nu)`, so the dimension is
+`2/3` exactly when the irrationality exponent is `2`, up to the written
+combination with the Section 20 lower bound. Open: the exact dimension for
+exponents strictly between `2` and infinity.
 
 ### Continuity in the slope (24 September)
 

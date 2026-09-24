@@ -1,5 +1,6 @@
 import Problems.Juggler.BeattySlopeArithmetic
 import Problems.Juggler.BeattySlopeLiouville
+import Problems.Juggler.BeattySlopeDiophantineDim
 
 /-! Expanded consumers of the family Hausdorff theorems. Each statement
 concerns the set of real subsequential limits of the original integer
@@ -107,6 +108,26 @@ theorem actual_liouville_dim (α : ℝ) (hα1 : 1 < α) (hL : Liouville α) :
   exact ⟨liouville_cluster_dimH hα1 hL, passageCluster_minkowski_dim (one_div_pos.mpr hα0)
     ((div_lt_one hα0).mpr hα1) (by simpa using hL.irrational.inv)⟩
 
+/-- The actual limit set has positive critical two-thirds Hausdorff measure
+exactly when the slope is badly approximable. -/
+theorem actual_hausdorff_pos_iff (α : ℝ) (hα1 : 1 < α) (hα : Irrational α) :
+    0 < Measure.hausdorffMeasure (2/3 : ℝ) {y : ℝ | MapClusterPt y atTop (fun r : ℕ =>
+      let m := ⌊α*(r : ℝ)⌋₊;
+      (r : ℝ)*(passageCount (1/α) (m+1) : ℝ)/((m-1).choose (r-1) : ℝ))} ↔
+    ∃ c : ℝ, 0 < c ∧ ∀ q : ℕ, 0 < q → ∀ p : ℤ, c ≤ (q : ℝ)^(1 : ℝ)*|(q : ℝ)*α-(p : ℝ)| := by
+  rw [cluster_eq α hα1 hα]
+  exact cluster_hausdorff_pos_iff hα1 hα
+
+/-- Infinitely many approximations of order `q^(-ν)` bound the Hausdorff
+dimension of the actual limit set by `2/(2+√ν)`. -/
+theorem actual_exponent_dim (α ν : ℝ) (hα1 : 1 < α) (hα : Irrational α) (hν : 1 < ν)
+    (happ : ∀ Q : ℕ, ∃ q : ℕ, Q < q ∧ ∃ p : ℤ, |(q : ℝ)*α-(p : ℝ)| ≤ (q : ℝ)^(-ν)) :
+    dimH {y : ℝ | MapClusterPt y atTop (fun r : ℕ => let m := ⌊α*(r : ℝ)⌋₊;
+      (r : ℝ)*(passageCount (1/α) (m+1) : ℝ)/((m-1).choose (r-1) : ℝ))} ≤
+      ENNReal.ofReal (2/(2+Real.sqrt ν)) := by
+  rw [cluster_eq α hα1 hα]
+  exact dio_exponent_dimH_le hα1 hα hν happ
+
 #print axioms actual_family_hausdorff_finite
 #print axioms actual_ae_hausdorff_dim
 #print axioms actual_dio_hausdorff_pos
@@ -114,5 +135,7 @@ theorem actual_liouville_dim (α : ℝ) (hα1 : 1 < α) (hL : Liouville α) :
 #print axioms actual_golden_hausdorff
 #print axioms actual_liouville_hausdorff
 #print axioms actual_liouville_dim
+#print axioms actual_hausdorff_pos_iff
+#print axioms actual_exponent_dim
 
 end Problems.Juggler.BeattySlopeHausdorffChecks
