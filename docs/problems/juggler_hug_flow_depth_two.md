@@ -125,8 +125,15 @@ is closed here.
 
 ## Formalization
 
-None new. No `HugFlowDepthTwo.lean`. No `sorry`. Paper A and
-Paper B are unchanged.
+`HugFlowImageGap.lean` (24 September 2026) proves the image gap for every
+`x`, not only odd `x >= 3` (`sqrt_cube_add_two_ge`, `floorPower_add_two_ge`),
+the separation of odd images (`no_odd_image_in_gap`), the window comparison
+(`window_le_sqrt`, `window_lt_gap`) and the ratio
+`3 floor(sqrt x) / ((2/3) sqrt x) -> 9/2` (`gap_window_ratio_tendsto`).
+Kernel-checked with the standard axioms only; not imported by the paper
+roots. `J-hug-flow-image-gap` is **EXACT — LEAN VERIFIED**. The remark that
+an interval Erdős–Turán bound does not apply directly is methodological,
+not a theorem. No `sorry`. Paper A and Paper B are unchanged.
 
 ## Results
 

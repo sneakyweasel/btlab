@@ -3,7 +3,8 @@
 Status: **STRUCTURAL**. Decision: **PROMOTE** the construction obstructions.
 This is the canonical proof owner for this gate. The results are AI-assisted
 written proofs, independently checked by AI agents; independent human review
-and Lean formalization of the new results remain outstanding. They construct
+remains outstanding, and Lean formalization for all but the residue
+obstruction, which is Lean since 24 September 2026. They construct
 no escaping trajectory and prove no general no-escape or no-cycle theorem.
 
 The latest authorized sparse-set construction attempt (Sections 5--7) is
@@ -125,8 +126,8 @@ exact integer arithmetic and polynomial growth rates.
 
 ## Candidate operations / invariants
 
-- J-ooe-escape-residue-obstruction: **EXACT — HUMAN PROOF**, meaning the
-  repository's written-proof category; the proof here is AI-assisted.
+- J-ooe-escape-residue-obstruction: **EXACT — LEAN VERIFIED**
+  (`OOEEscapeResidue.lean`, 24 September 2026).
 - J-ooe-escape-polynomial-obstruction: **EXACT — HUMAN PROOF**, with the
   same explicit AI-assisted and not-yet-Lean trust status.
 - J-ooe-escape-shifted-valuation: **REFUTED** as a proposed monotone rank.
@@ -183,9 +184,13 @@ a rank using additional unbounded remainder data.
 
 Existing endpoint, growth, and single-family-chain kernels are in
 `CubicReturn.lean`, `ReturnCells.lean`, and `FamilyChains.lean` as indexed
-by Paper A. The new residue, curvature, finite-union, sparse-pair, and fixed-base
-tube results in this dossier remain written proofs. The fixed Python controls are not Lean
-formalizations. No new Lean module or trust claim is introduced by this gate.
+by Paper A. The residue obstruction is `OOEEscapeResidue.lean`
+(`escape_residue_source`, `exists_escape_of_periodic`,
+`not_oo_guarded_of_periodic`), for every `Q >= 1` and every eventually
+periodic predicate with an odd member. The curvature, finite-union,
+sparse-pair, and fixed-base tube results in this dossier remain written proofs. The fixed Python controls are not Lean
+formalizations. Apart from the residue module, no Lean module or trust claim is introduced
+by this gate.
 
 ## Results
 

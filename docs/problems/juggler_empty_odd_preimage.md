@@ -129,10 +129,14 @@ Ordinary terminating orbits, not `MinimalNonTerm` witnesses.
 
 ## Formalization
 
-No new Lean module. The cube criterion is recorded as a human
-proof. `odd_preimage_unique` and `odd_preimage_iff` stay in `Preimages.lean`.
-Not imported by `Problems.JugglerPaper`. No `sorry`. No
-`OddPredEmpty` API. No `juggler_reaches_one`.
+`OddPreimageTypes.lean` (24 September 2026) proves the cube criterion:
+`cell_empty_iff` (Type 0), `cell_contains_even_iff` and
+`cell_contains_odd_iff` (Types 1 and 2), `eq_of_inOddCell` (the only
+possible occupant is the least cube root `k`) and `oddPredEmpty_iff`
+(no odd predecessor exactly in Types 0 and 1).
+`J-odd-pred-empty-cube` is **EXACT — LEAN VERIFIED**. `odd_preimage_unique` and `odd_preimage_iff` stay in `Preimages.lean`.
+Not imported by `Problems.JugglerPaper`. No `sorry`. `OddPredEmpty` is
+stated as a negated existence, not a separate API. No `juggler_reaches_one`.
 
 ## Results
 

@@ -120,6 +120,23 @@ theorem cycleMin_ooePow_mem {n k : ℕ} {v : List Branch} (hn : 2 ≤ n) (hk : k
 /-- The prefix `OOEOOO` (length 6, five odds) has lost the square-cell gap. -/
 theorem ooeooo_gap_lost : ¬ 3 ^ 5 < 2 * 2 ^ 6 := by norm_num
 
+/-- Every prefix `(OOE)^k·OOO` has lost the square-cell gap: it has `2k + 3` odds
+in length `3k + 3`, and `27·9^k ≥ 16·8^k`. So `OOEOOO` (`k = 1`) is the first
+such prefix after the first `OO`, and the bare `OOO` (`k = 0`) has lost it too. -/
+theorem ooePow_ooo_gap_lost (k : ℕ) :
+    ¬ 3 ^ oddCount (ooePow k ++ [Branch.odd, .odd, .odd]) <
+      2 * 2 ^ (ooePow k ++ [Branch.odd, .odd, .odd]).length := by
+  have ho : oddCount (ooePow k ++ [Branch.odd, .odd, .odd]) = 2 * k + 3 := by
+    rw [oddCount_append, ooePow_oddCount]; rfl
+  have hl : (ooePow k ++ [Branch.odd, .odd, .odd]).length = 3 * k + 3 := by
+    simp [ooePow_length]
+  rw [ho, hl, Nat.not_lt]
+  have h98 : 8 ^ k ≤ 9 ^ k := Nat.pow_le_pow_left (by norm_num) k
+  calc 2 * 2 ^ (3 * k + 3) = 16 * 8 ^ k := by
+        rw [pow_add, pow_mul]; ring
+    _ ≤ 27 * 9 ^ k := by omega
+    _ = 3 ^ (2 * k + 3) := by rw [pow_add, pow_mul]; ring
+
 /-- The word `OOEOOOE`. -/
 def ooeoooe : List Branch := [.odd, .odd, .even, .odd, .odd, .odd, .even]
 

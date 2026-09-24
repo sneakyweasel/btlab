@@ -115,7 +115,8 @@ It is not required.
 - Records: [juggler_first_ooo_escape.md](../research/juggler_first_ooo_escape.md),
   [juggler_first_ooo_escape.json](../research/juggler_first_ooo_escape.json)
 - Tests: `tests/research/juggler_sequence/test_first_ooo_escape.py`
-- No Lean. Not imported by `Problems.JugglerPaper`. No
+- Lean since 24 September 2026: `CycleMinOOOSquare.lean` (see
+  Formalization). Not imported by `Problems.JugglerPaper`. No
   `sorry`. No halt theorem.
 
 ## Conjectures
@@ -150,7 +151,15 @@ odd letter is the escape.
 
 ## Formalization
 
-None. Existing `Envelope.lean`, `CycleCore.lean`,
+`CycleMinOOOSquare.lean` (24 September 2026) proves the row's statements:
+`sqrt_cube_cube_ge` (`isqrt(n^3)^3 >= n^4` for `n >= 3`),
+`floorPower_two_odd_ge_sq`, `ooePow_gap` and `ooePow_gap_fails_six` (the
+`(OOE)^k` square cell holds exactly for `k <= 5`), `cycleMin_ooePow_mem`,
+`ooePow_ooo_gap_lost` (every `(OOE)^k OOO` has lost the gap, so `OOEOOO` is
+the first such prefix after the first `OO`) and `ooeoooe_image_lt_sq`.
+`J-cyclemin-ooo-second-step-square` is **EXACT — LEAN VERIFIED**.
+
+Existing `Envelope.lean`, `CycleCore.lean`,
 `FirstInternalOO.lean`, and `Scale.lean` lemmas are cited, not
 rewritten. No `no_cycleMin_prefix_ooeooo`. No
 `no_cycleMin_four_even`. No `no_cycle_itinerary_length_eleven`. No

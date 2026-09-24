@@ -223,6 +223,7 @@ import Problems.Juggler.CycleMinEnvelopes
 import Problems.Juggler.OddPreimageTypes
 import Problems.Juggler.OOECarrySubstitution
 import Problems.Juggler.PaperBBarrierMass
+import Problems.Juggler.CycleMinSecondPostL
 import Problems.Juggler.ReturnWordLoss
 import Problems.Juggler.ReturnWordData
 import Problems.Juggler.ReturnWordBounds

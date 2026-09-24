@@ -150,6 +150,15 @@ by `Problems.JugglerPaper`. The theorem ledger distinguishes the compiled
 statements from the additional written consequences. No general no-cycle
 or escape-exclusion theorem is claimed.
 
+Two of this dossier's Paper A blocks gained Lean beyond Appendix A on
+24 September 2026, outside the paper root, whose text stays pinned:
+`CubicHiddenParity.lean` (`J-cycle-cubic-hidden-parity`: the threshold
+block `s^4 -> s^6 -> s^3` at `b = s^3` and the actual image `s^9`) and
+`OOECarrySubstitution.lean` (`J-cycle-ooe-carry-substitution-obstruction`:
+`d = 2r^9 - 27r^2 + 18r`, `D = 2r^9 + 9r^2 + 18r + 1`, so `D - d = 36r^2 + 1`,
+the clipped displacement and `floor(x^(9/8)) = z + 1`). Both rows are
+**EXACT — LEAN VERIFIED**.
+
 ## Results
 
 The current statements and proofs are consolidated in **Appendix E.1--E.2** of

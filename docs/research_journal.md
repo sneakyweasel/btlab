@@ -11,6 +11,28 @@ consolidation is at `e9725762eaf028d1ace354ff20e0fc48f1a3d143`. See
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-24 -- Written-proof rows converted to Lean, with a coverage audit
+
+**EXACT — LEAN VERIFIED**, kernel trust: twelve rows leave the written-proof
+category. They are Paper A E.7 (`OOEEscapeResidue`), the hug-flow image gap,
+the cube-threshold hidden parity, the first-OOO square cell, the odd-preimage
+Type 0/1/2 criterion, the OOE carry substitution (`D - d = 36r^2 + 1` exactly,
+by coefficient positivity in `t = (r-3)/2`) and seven post-L envelope rows.
+The new row `J-paper-b-barrier-mass-phase-count` proves mass preservation by
+the non-rising update, the `fract(t beta)` form of the barrier rise and
+`N_(d+1) = 2 N_d - b_d M_d`. A review of 39 further rows that name existing
+Lean found none fully covered; 29 now link their partial support.
+Corrections: several post-L statements turned an envelope failure into an
+orbit claim (reworded, counterexample `n = 6`), and two reviewer errors,
+on Rhin's measure and on `lambda**` against `100/203`, were caught at source.
+**PROMOTE** the conversions. Remaining premise: rows that mix measurements
+with theorems stay written proofs pending a split. See the claim ledger and
+the dossiers for [hug flow](problems/juggler_hug_flow_depth_two.md),
+[first OOO](problems/juggler_first_ooo_escape.md),
+[empty odd preimage](problems/juggler_empty_odd_preimage.md),
+[cubic induction](problems/juggler_cycle_cubic_induction.md) and
+[OOE escape](problems/juggler_ooe_escape_families.md).
+
 ## 2026-09-24 -- Beatty phase geometry and quantitative Gamma-law regularity
 
 **EXACT — LEAN VERIFIED** at the logarithmic slope: the actual integer ratios
@@ -178,14 +200,3 @@ exception. **PROMOTE** this summable-family reduction. Five exact controls
 pass. Transported peaks cannot themselves supply fixed-root divergence;
 the remaining word count and Juggler pressure stay open. See the
 [dossier](problems/collatz_fibre_run_tail.md).
-
-## 2026-09-23 -- Actual coefficient peaks defeat local Harnack comparison
-
-A fixed exponent branch transports the actual one-halving spike into every
-ternary unit neighborhood, for both signs. Lean proves coefficient values
-above every bound at arbitrarily large depths and positive odd heights;
-four independent actual-word and mean controls pass. **CLOSE** uniform local
-Harnack comparison as a route from averages to a fixed-root lower bound.
-The peak's integer target varies with depth, so fixed-integer divergence and
-Juggler termination remain open. See the
-[dossier](problems/collatz_fibre_local_bounds.md).

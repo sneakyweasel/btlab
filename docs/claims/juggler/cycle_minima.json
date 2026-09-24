@@ -523,7 +523,7 @@
  {
   "id": "J-cyclemin-ooo-second-step-square",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "If n ≥ 3, then isqrt(n^3)^3 ≥ n^4. Hence if x ≥ n is odd and T(x) is odd, T^2(x) ≥ n^2. A first post-first-OO OOO entered from a CycleMin state therefore loses the square-cell ceiling at the second odd letter. For k ≤ 5 the itinerary (OOE)^k still has the square-cell gap 2^{3k+1} > 3^{2k}, so that entrance lies in [n, n^2). OOEOOO is the first OOO-prefix that loses the gap; completed OOEOOOE restores it (256 > 243). This is not an OOO-inevitability theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "statement": "If n ≥ 3, then isqrt(n^3)^3 ≥ n^4. Hence if x ≥ n is odd and T(x) is odd, T^2(x) ≥ n^2. A first post-first-OO OOO entered from a CycleMin state therefore loses the square-cell ceiling at the second odd letter. For k ≤ 5 the itinerary (OOE)^k still has the square-cell gap 2^{3k+1} > 3^{2k}, so that entrance lies in [n, n^2). Every prefix (OOE)^k OOO has lost the gap (27·9^k ≥ 16·8^k), so OOEOOO is the first such prefix after the first OO; completed OOEOOOE restores it (256 > 243). This is not an OOO-inevitability theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_first_ooo_escape.md",
   "lean": "Problems/Juggler/CycleMinOOOSquare.lean",
   "tests": [
@@ -538,7 +538,8 @@
    "ooePow_image_lt_sq",
    "cycleMin_ooePow_mem",
    "ooeooo_gap_lost",
-   "ooeoooe_image_lt_sq"
+   "ooeoooe_image_lt_sq",
+   "ooePow_ooo_gap_lost"
   ],
   "lean_trust": "kernel"
  },
@@ -828,7 +829,7 @@
  {
   "id": "J-cyclemin-second-post-l-ooe-square",
   "tag": "EXACT — HUMAN PROOF",
-  "statement": "If n ≥ 2 follows M = OOEOOOEOOEEOOE, s = T_M(n) starts OO, and r = T_OOE(s), then the itinerary M+OOE has length 17 and 11 odds, so r^{131072} ≤ n^{177147} and 2^{18} > 3^{11} gives n ≤ r < n^2. Even r is FiniteProgress (3^{11} < 2^{18}). For k ≥ 0 the itinerary M(OOE)^k has the square-cell gap 2^{15+3k} > 3^{9+2k} if and only if k ≤ 4; the cell is lost at k = 5 (2^{30} < 3^{19}). CycleMin(n, M OOE v) therefore implies FiniteProgress or v starts with O. This is a corridor budget, not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
+  "statement": "If n ≥ 2 follows M = OOEOOOEOOEEOOE, s = T_M(n) starts OO, and r = T_OOE(s), then the itinerary M+OOE has length 17 and 11 odds, so r^{131072} ≤ n^{177147} and 2^{18} > 3^{11} gives n ≤ r < n^2. Even r is FiniteProgress (3^{11} < 2^{18}). For k ≥ 0 the itinerary M(OOE)^k has the square-cell gap 2^{15+3k} > 3^{9+2k} if and only if k ≤ 4; the cell is lost at k = 5 (2^{30} < 3^{19}). CycleMin(n, M OOE v) therefore implies FiniteProgress or v starts with O. This is a corridor budget, not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem. The CycleMin dichotomy holds for every v, including the empty one, which would be a length-17 cycle (cycleMin_m_ooe_any in CycleMinSecondPostL.lean, via no_cycle_itinerary_length_le_eighteen). The lower bound n ≤ r is proved on a CycleMin start; for a start that merely follows M·OOE the envelope gives only r < n^2, so that part stays a human proof.",
   "source": "docs/problems/juggler_second_post_l_ooe.md",
   "lean": "Problems/Juggler/CycleMinEnvelopes.lean",
   "tests": [
