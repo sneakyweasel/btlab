@@ -75,9 +75,12 @@ import time
 from math import exp, expm1, log
 from typing import Any
 
+from flint import arb, ctx
 from mpmath import mp
 from mpmath import floor as mpfloor
 from mpmath import log as mplog
+
+from research_engine.diophantine import convergents, partial_quotients_past
 
 from research.juggler_sequence.collatz_bridge import juggler
 from research.juggler_sequence.lean_paths import DATA_ROOT, DOCS_RESEARCH
@@ -359,22 +362,25 @@ def convergents_log2_3(q_max: int) -> list[dict[str, Any]]:
     `dist` is `||q log2 3||`; `above` says `3^q > 2^p`, the side on which a word can end
     with a tiny slack `(1 - 2^{-f_O}) ln m`.
     """
-    mp.dps = 80
-    alpha = mplog(3) / mplog(2)
-    x = alpha
-    a = [int(mpfloor(x))]
-    p = [1, a[0]]
-    q = [0, 1]
-    while q[-1] <= q_max:
-        x = 1 / (x - a[-1])
-        a.append(int(mpfloor(x)))
-        p.append(a[-1] * p[-1] + p[-2])
-        q.append(a[-1] * q[-1] + q[-2])
+    expansion = partial_quotients_past(_log2_3, q_max)
+    if not expansion.complete:
+        raise ArithmeticError(expansion.reason or "Partial quotients of log2 3 not certified")
+    a = list(expansion.quotients)
+    fractions = convergents(a)
     rows = []
-    for n in range(1, len(q)):
-        signed = q[n] * alpha - p[n]
-        rows.append({"q": q[n], "p": p[n], "a": a[n - 1], "dist": float(abs(signed)), "above": bool(signed > 0)})
+    # |q alpha - p| ~ 1/q: 2 log2(q) bits cancel, and 96 more leave the double exact.
+    with ctx.workprec(2 * fractions[-1][1].bit_length() + 96):
+        alpha = _log2_3()
+        for n, (p, q) in enumerate(fractions):
+            signed = q * alpha - p
+            if not (signed > 0 or signed < 0):
+                raise ArithmeticError(f"Side of convergent {p}/{q} not certified")
+            rows.append({"q": q, "p": p, "a": a[n], "dist": float(abs(signed)), "above": bool(signed > 0)})
     return rows
+
+
+def _log2_3() -> arb:
+    return arb(3).log() / arb(2).log()
 
 
 def delta(O: int, conv: list[dict[str, Any]]) -> float:

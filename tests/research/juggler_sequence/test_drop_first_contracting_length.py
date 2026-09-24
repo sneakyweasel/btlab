@@ -118,6 +118,24 @@ def test_margin_accounting_on_recorded_starts() -> None:
     assert big["dropping_time"] == 149 and int(big["peak_bits"] * 0.30103) == 972462
 
 
+def test_convergents_are_certified_and_leave_mpmath_precision_alone() -> None:
+    # The mpmath version set mp.dps = 80 for the whole process, and 80 digits stop
+    # resolving partial quotients near q ~ 1e40.
+    from mpmath import mp
+
+    saved = mp.dps
+    mp.dps = 15
+    try:
+        rows = convergents_log2_3(10**60)
+        assert mp.dps == 15
+    finally:
+        mp.dps = saved
+    assert rows[-1]["q"] > 10**60 >= rows[-2]["q"]
+    dists = [row["dist"] for row in rows[1:]]
+    assert all(later < earlier for earlier, later in zip(dists, dists[1:]))
+    assert [row["above"] for row in rows[:4]] == [True, False, True, False]
+
+
 def test_convergents_and_o_min_table() -> None:
     conv = convergents_log2_3(10**7)
     qs = [row["q"] for row in conv]
