@@ -124,5 +124,64 @@ def run(output_root: Path | None = None) -> Path:
     )
 
 
+FROZEN_DIR = DATA_ROOT / "depth_five_production" / "oooeoee_frozen"
+FROZEN_SHIFTS = (1, 30)
+FROZEN_POINTS = 3000
+
+
+def frozen_branch(P: int, d: int, points: int) -> dict:
+    """``OOOEOEE``'s ``U``-carry on frozen ``X``-branches (Result 29).
+
+    ``U = floor(Z)^(1/2)`` carries ``theta``-noise of size ``P^(3/16)``, but on a
+    branch with ``beta = m(n+2d) - m(n)`` fixed, ``Delta_d U`` should equal
+    ``S = (m+beta)^(9/8) - m^(9/8)`` up to ``O(P^(-9/16))``. The ``floor(U)`` gap
+    should then be ``floor(S) + kappa``. The E7-type model with a common
+    coefficient ``B(n)`` should miss the phase of ``k R_5/2``, ``R_5 = floor(U)^(3/2)``,
+    by about ``d P^(-5/32)``, the change of ``B``.
+    """
+    mp.dps = 80
+    n = P + 1 if P % 2 == 0 else P
+    noise, errs, mismatches = [], [], 0
+    for _ in range(points):
+        parts = []
+        for x in (n, n + 2 * d):
+            m = isqrt(x ** 3)
+            z = isqrt(isqrt(m ** 3) ** 3)
+            u = isqrt(z)
+            parts.append((m, sqrt(mpf(z)), u, mpf(u) ** 1.5))
+        (m0, U0, u0, R0), (m1, U1, u1, R1) = parts
+        S = mpf(m1) ** (mpf(9) / 8) - mpf(m0) ** (mpf(9) / 8)
+        noise.append(float(abs(U1 - U0 - S)))
+        G = floor(S)
+        kappa = 1 if frac(U0) >= 1 - (S - G) else 0
+        mismatches += int(u1 - u0 != int(G) + kappa)
+        model = ((U0 + S) ** 1.5 - U0 ** 1.5) / 2 - mpf(3) / 4 * sqrt(U0) * (S - G - kappa)
+        errs.append(_dist((R1 - R0) / 2 - model))
+        n += 2
+    errs.sort()
+    return {"P": P, "d": d, "points": points, "max_noise": max(noise),
+            "model_median": errs[points // 2], "model_max": errs[-1],
+            "carry_mismatches": mismatches}
+
+
+def run_frozen(output_root: Path | None = None) -> Path:
+    """Write the ``OOOEOEE`` frozen-branch table and its manifest."""
+    out_dir = artifact_path(FROZEN_DIR, output_root)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    rows = [frozen_branch(P, d, FROZEN_POINTS) for P in SCALES for d in FROZEN_SHIFTS]
+    table = out_dir / "frozen_branch.json"
+    table.write_text(json.dumps({"rows": rows}, indent=1) + "\n", encoding="utf-8", newline="\n")
+    return write_manifest(
+        out_dir / "run.research.json", programme="juggler",
+        research_id="juggler/depth_five_production",
+        scope=f"{FROZEN_POINTS} consecutive odd n from each P in {list(SCALES)}; "
+              f"d in {list(FROZEN_SHIFTS)}; frequency k5 = 1 on R5",
+        parameters={"scales": list(SCALES), "shifts": list(FROZEN_SHIFTS),
+                    "points": FROZEN_POINTS, "mp_dps": 80},
+        outputs=[table], sources=[Path(__file__)],
+    )
+
+
 if __name__ == "__main__":
-    print(run())
+    import sys
+    print(run_frozen() if "--frozen" in sys.argv else run())

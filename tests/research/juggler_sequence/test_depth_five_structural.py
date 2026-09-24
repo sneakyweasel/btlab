@@ -35,3 +35,18 @@ def test_small_instance_matches_the_model() -> None:
     r = dfs.residuals(10 ** 6, 3, 0, 0, 1, 40)
     assert r["corrected_max"] <= charged(10 ** 6, 3, 0, 1)
     assert r["corrected_max"] < r["raw_max"]
+
+
+FROZEN = DATA_ROOT / "depth_five_production" / "oooeoee_frozen" / "frozen_branch.json"
+
+
+def test_frozen_branches_cancel_the_theta_noise() -> None:
+    for r in json.loads(FROZEN.read_text(encoding="utf-8"))["rows"]:
+        assert r["max_noise"] <= r["P"] ** (-9 / 16), r
+        assert r["carry_mismatches"] <= r["points"] * r["P"] ** (-3 / 8), r
+
+
+def test_frozen_branch_model_misses_by_the_change_of_b() -> None:
+    for r in json.loads(FROZEN.read_text(encoding="utf-8"))["rows"]:
+        if r["d"] == 1:
+            assert r["model_median"] <= r["P"] ** (-5 / 32), r

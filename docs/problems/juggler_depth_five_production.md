@@ -1420,6 +1420,44 @@ pieces:
 
 Worth: `0.7406 -> 0.7560` (Result 27).
 
+**29. `OOOEOEE`'s frozen-branch carry, checked on actual coordinates
+(COMPUTATIONALLY VERIFIED, finite; 24 September 2026).** The probe
+`depth_five_structural --frozen` writes
+`data/research/juggler/depth_five_production/oooeoee_frozen/frozen_branch.json`,
+and `test_depth_five_structural.py` tests it. It runs 3,000 odd `n` from each
+`P = 10^8, 10^10`, at `d = 1, 30`, and evaluates `U = floor(Z)^(1/2)` and
+`R_5 = floor(U)^(3/2)` exactly.
+
+- *The `theta`-noise cancels on frozen branches.* With `beta = m(n+2d) - m(n)`,
+  the quantity `|Delta_d U - ((m+beta)^(9/8) - m^(9/8))|` is at most `2.3e-5`
+  at `10^8` and `1.8e-6` at `10^10`. That is within `P^(-9/16)`, although `U`
+  alone carries `theta`-noise of size `P^(3/16)`, about 30 at `10^8`. So Result
+  28's repair of E7's carry is right.
+- *The `floor(U)` carry is exact.* There are no mismatches in 12,000 points.
+- *A cost Result 28 missed.* The E7-type model with a common coefficient
+  `B(n) = (3k/4) U^(1/2)` misses the phase of `k R_5 / 2` by a median of
+  `0.035` at `d = 1`, `P = 10^8`. That falls by `0.48` to `10^10`, as
+  `P^(-5/32)` predicts (`0.487`). At `d = 30` the miss is of order 1. The cause is
+  that here `B` changes between the endpoints by `B(n+2d) - B(n) ~ d P^(-5/32)`,
+  against `d P^(-7/16)` in E7.
+  - Summed over `n`, the replacement costs `d P^(27/32)`, which is still a power
+    saving at `d < P^(1/48)`.
+  - It also leaves a first-level `theta`-coefficient of size about `d P^(1/32)`.
+    That coefficient is the change of `B` times `U`'s `theta`-sensitivity
+    `P^(3/16)`, which does not cancel. It needs Paper B's Lemma A.1-type floor
+    reduction, which handles coefficients up to `k h P^(1/8)`. It cannot simply
+    be deleted.
+
+*Refined `OOOEOEE` plan for `k_3 = 0`:*
+
+- freeze the `X`-carries;
+- apply E7's `floor(U)` carry, whose zero-mode curvature is
+  `-(10935/32768) k d x^(-15/32)`;
+- keep the endpoint coefficients `B(n)` and `B(n+2d)` apart. Then apply one
+  Lemma A.1 reduction to the residual `theta`-factor of size `d P^(1/32)`.
+
+The joint case `k_3 != 0` remains the open core.
+
 ## Open questions
 
 Result 23 (Lemma E9) shows that the productions need `T_d` only at shifts below an
