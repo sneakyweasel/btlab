@@ -19,7 +19,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 import flint
 from research_engine.arb_expressions import FUNCTIONS, LIMITS, RELATIONS
-from arb_worker import MAX_CF_TERMS, MAX_REQUEST_BYTES, SCOPE
+from arb_worker import MAX_APPROXIMATION_DENOMINATOR, MAX_CF_TERMS, MAX_REQUEST_BYTES, SCOPE
 
 TIMEOUT_SECONDS = 20
 MAX_RESPONSE_BYTES = 131072
@@ -34,6 +34,7 @@ mcp = FastMCP("arb-local", instructions=(
     "are enclosed uniformly, without claiming omitted tails or analytic hypotheses. "
     "Use arb_paper_c_models and arb_paper_c_rate for canonical paper formulas, and "
     "arb_continued_fraction for certified partial quotients, never a float expansion. "
+    "arb_best_approximation certifies finite-range Diophantine minima, never all q. "
     "No arbitrary Python, files, networking or artifact writes. " + SCOPE))
 
 
@@ -94,6 +95,8 @@ def arb_capabilities() -> dict[str, Any]:
             "variables": 'Point: {"q":"3/5"}; closed interval: {"x":["1/3","1/2"]}',
             "limits": {**LIMITS, "production_terms": 32, "root_digits": 100,
                        "continued_fraction_terms": MAX_CF_TERMS,
+                       "approximation_max_denominator": str(MAX_APPROXIMATION_DENOMINATOR),
+                       "approximation_tau": "0 <= tau <= 16",
                        "root_domain": "0 <= lower < upper <= 16", "exp_argument_abs": 700,
                        "workers": 2, "worker_seconds": TIMEOUT_SECONDS,
                        "queue_wait_seconds": TIMEOUT_SECONDS, "request_bytes": MAX_REQUEST_BYTES,
@@ -103,7 +106,10 @@ def arb_capabilities() -> dict[str, Any]:
                          {"tool": "arb_evaluate", "arguments":
                           {"expression": "log(x)/log(3)", "variables": {"x": ["2", "3"]}}},
                          {"tool": "arb_continued_fraction", "arguments":
-                          {"expression": "log(3)/log(2)", "terms": 40}}],
+                          {"expression": "log(3)/log(2)", "terms": 40}},
+                         {"tool": "arb_best_approximation", "arguments":
+                          {"expression": "log(3)/log(2)", "max_denominator": "1000000",
+                           "tau": "1"}}],
             "scope": SCOPE, "guide": "arb://guide"}
 
 
@@ -165,6 +171,26 @@ async def arb_continued_fraction(expression: StrictStr, terms: StrictInt = 20,
     return await calculate("continued_fraction", {"expression": expression, "terms": terms,
                                                   "variables": variables, "bits": bits,
                                                   "max_bits": max_bits})
+
+
+@mcp.tool(annotations=READ_ONLY)
+async def arb_best_approximation(expression: StrictStr, max_denominator: StrictStr,
+                                 tau: StrictStr = "0", variables: Variables | None = None,
+                                 bits: StrictInt = 128, max_bits: StrictInt = 4096
+                                 ) -> dict[str, Any]:
+    """Certify min over 1 <= q <= Q of q**tau * ||q alpha|| and list the convergents up to Q.
+
+    max_denominator is an integer string up to 10**60; tau is exact in [0, 16].
+    The minimum is exact over convergent denominators (best approximations of the
+    second kind) and is returned with outward rational endpoints; each convergent
+    row gives p, q, the side of alpha, and distance displays with their radius.
+    This is a finite-range statement: it bounds any Diophantine constant c in
+    |q alpha - p| >= c q**(-tau) from above and certifies nothing for q > Q.
+    """
+    return await calculate("best_approximation", {"expression": expression,
+                                                  "max_denominator": max_denominator,
+                                                  "tau": tau, "variables": variables,
+                                                  "bits": bits, "max_bits": max_bits})
 
 
 @mcp.tool(annotations=READ_ONLY)

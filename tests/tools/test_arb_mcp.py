@@ -22,8 +22,8 @@ def test_schemas_and_read_only_annotations():
     async def check():
         tools = await server.mcp.list_tools()
         assert {tool.name for tool in tools} == {"arb_capabilities", "arb_evaluate", "arb_compare",
-                "arb_production_root", "arb_continued_fraction", "arb_paper_c_models",
-                "arb_paper_c_rate"}
+                "arb_production_root", "arb_continued_fraction", "arb_best_approximation",
+                "arb_paper_c_models", "arb_paper_c_rate"}
         for tool in tools:
             assert tool.outputSchema
             assert tool.annotations.readOnlyHint and not tool.annotations.destructiveHint
@@ -64,6 +64,9 @@ def test_stdio_certifies_paper_examples_and_survives_bad_requests(tmp_path):
                     "1", "1", "1", "2", "2", "3", "1", "5", "2", "23"]
                 assert fraction.structuredContent["last_convergent"] == {"p": "24727", "q": "15601"}
                 assert "src/research_engine/diophantine.py" in fraction.structuredContent["source_sha256"]
+                approximation = await session.call_tool("arb_best_approximation",
+                    {"expression": "log(3)/log(2)", "max_denominator": "20000"})
+                assert approximation.structuredContent["attained_at"] == ["15601"]
                 for C, expected in ((15, False), (16, True)):
                     rate = await session.call_tool("arb_paper_c_rate", {"C": C, "q": "1/2"})
                     assert rate.structuredContent["holds"] is expected
@@ -150,6 +153,39 @@ def test_continued_fraction_of_rationals_and_boxes():
 def test_invalid_continued_fraction_requests(arguments):
     with pytest.raises(ValueError):
         run({"operation": "continued_fraction", "arguments": arguments})
+
+
+def test_best_approximation_reports_the_minimum_with_exact_endpoints():
+    result = run({"operation": "best_approximation", "arguments": {
+        "expression": "log(3)/log(2)", "max_denominator": "1000000", "tau": "1"}})
+    assert result["status"] == "certified"
+    lo, hi = F(result["minimum"]["lower"]), F(result["minimum"]["upper"])
+    assert 0 < lo <= hi
+    assert result["convergents"][-1]["q"] == "190537"
+    assert all(isinstance(row["distance"], str) for row in result["convergents"])
+    assert "src/research_engine/diophantine.py" in result["source_sha256"]
+
+
+def test_largest_best_approximation_fits_the_response_budget():
+    import json
+    import time
+
+    start = time.perf_counter()
+    result = run({"operation": "best_approximation", "arguments": {
+        "expression": "(1+sqrt(5))/2", "max_denominator": str(10**60), "tau": "16"}})
+    # All partial quotients of the golden ratio are 1: the most convergents below any bound.
+    assert result["status"] == "certified" and len(result["convergents"]) > 280
+    assert time.perf_counter() - start < 10
+    assert len(json.dumps(result)) < 131072
+
+
+@pytest.mark.parametrize("change", [{"max_denominator": "0"}, {"max_denominator": "1/2"},
+                                    {"max_denominator": str(10**60 + 1)}, {"tau": "-1"},
+                                    {"tau": "17"}, {"max_denominator": 10}])
+def test_invalid_best_approximation_requests(change):
+    with pytest.raises((TypeError, ValueError)):
+        run({"operation": "best_approximation", "arguments": {
+            "expression": "log(3)/log(2)", "max_denominator": "100", **change}})
 
 
 @pytest.mark.parametrize("change", [{"C": True}, {"C": 10001}, {"q": "0"},

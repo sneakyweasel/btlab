@@ -122,9 +122,11 @@ elaboration; confirm applicability against the installed pinned Mathlib.
 
 The local Arb MCP performs bounded numerical computations in isolated workers.
 Use `arb_compare` for tri-state decisions, `arb_production_root` for positive
-production sums, `arb_continued_fraction` for certified partial quotients, and
-`arb_paper_c_models` / `arb_paper_c_rate` for canonical paper formulas. Keep exact endpoints and scope; `holds=null` is unresolved.
-It writes no research artifacts and never upgrades a claim or Lean proof.
+production sums, `arb_continued_fraction` for certified partial quotients,
+`arb_best_approximation` for finite-range Diophantine minima, and
+`arb_paper_c_models` / `arb_paper_c_rate` for canonical paper formulas. Keep
+exact endpoints and scope; `holds=null` is unresolved. It writes no research
+artifacts and never upgrades a claim or Lean proof.
 
 The alphaXiv connector searches and reads arXiv. It is an external service tied
 to the owner's claude.ai account, not a repository server: never send it

@@ -13,6 +13,7 @@ stdio service; Formalpedia remains a discovery service. No API key is needed.
 | `arb_compare` | Adaptive true / false / unresolved comparison with a residual enclosure |
 | `arb_production_root` | Unique root bracket for a positive, decreasing production sum |
 | `arb_continued_fraction` | Certified leading partial quotients and last convergent; exact for a bare rational |
+| `arb_best_approximation` | Certified `min q**tau * ||q alpha||` over `1 <= q <= Q`, with the convergents up to `Q` |
 | `arb_paper_c_models` | The twelve canonical models from the existing Paper C audit |
 | `arb_paper_c_rate` | Test one integer depth against a specified contagion exponent |
 
@@ -25,7 +26,7 @@ Publish durable evidence through a deliberate audit with a research manifest;
 MCP calls do not write reports, update the ledger or change evidence labels.
 
 Resources `arb://guide` and `arb://capabilities` expose this guide and current
-capabilities. All seven tools have structured outputs and read-only annotations.
+capabilities. All eight tools have structured outputs and read-only annotations.
 
 ## Exact expression language
 
@@ -114,6 +115,10 @@ Production roots accept up to 32 terms, 1–100 decimal width digits, and
 `0 <= lower < upper <= 16`. Rate checks accept integer depths 5–10000.
 Continued fractions accept 1–1000 terms and return only terms whose floor is
 certain over the whole enclosure; an unresolved result keeps its certified prefix.
+Best approximations accept integer bounds up to `10**60` and `0 <= tau <= 16`;
+the minimum carries exact endpoints and each convergent a display with its
+radius. The result says nothing about denominators above the bound, so it can
+test a claimed Diophantine constant but never establish one for all `q`.
 Responses are capped at 128 KiB. The service offers no arbitrary code, file
 paths, networking or artifact writes. Process isolation is a resource and
 precision boundary, not an operating-system security sandbox.

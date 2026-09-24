@@ -15,12 +15,13 @@ from flint import ctx
 
 from research_engine.arb_expressions import Expression, bounded, compare, evaluate, exact, precision
 from research_engine.diophantine import (
-    certified_partial_quotients, convergents, rational_partial_quotients,
+    best_approximations, certified_partial_quotients, convergents, rational_partial_quotients,
 )
 from research_engine.intervals import UnresolvedInterval, ball, enclosure, production_root
 
 MAX_REQUEST_BYTES = 32768
 MAX_CF_TERMS = 1000
+MAX_APPROXIMATION_DENOMINATOR = 10**60
 SCOPE = ("Finite numerical enclosure of the supplied expressions and input box. "
          "Not a Lean proof, analytic hypothesis, infinite-tail bound, or termination proof. "
          "Only a certified decision establishes the requested comparison; unresolved is not false.")
@@ -54,6 +55,8 @@ def dispatch(operation: str, arguments: dict) -> dict:
                 "width_at_most": f"1e-{digits}"}
     if operation == "continued_fraction":
         return continued_fraction(**arguments)
+    if operation == "best_approximation":
+        return best_approximation(**arguments)
     if operation == "paper_c_models":
         from check_paper_c_intervals import production_models
 
@@ -124,6 +127,25 @@ def continued_fraction(expression: str, terms: int = 20, variables: dict | None 
     return result
 
 
+def best_approximation(expression: str, max_denominator: str, tau: str = "0",
+                       variables: dict | None = None, bits: int = 128,
+                       max_bits: int = 4096) -> dict:
+    bound, exponent = exact(max_denominator), exact(tau)
+    if bound.denominator != 1 or not 1 <= bound <= MAX_APPROXIMATION_DENOMINATOR:
+        raise ValueError("max_denominator must be an integer string in [1, 10**60]")
+    if not 0 <= exponent <= 16:
+        raise ValueError("tau must lie in [0, 16]")
+    precision(bits, max_bits)
+    parsed = Expression(expression, variables)
+    result = best_approximations(lambda: bounded(parsed.evaluate()), int(bound), exponent,
+                                 bits=bits, max_bits=max_bits)
+    # Per-convergent exact endpoints can exceed the response budget; the minimum keeps them.
+    for row in result.get("convergents", []):
+        row["distance"] = row["distance"]["display"]
+        row["weighted"] = row["weighted"]["display"]
+    return result
+
+
 def run(request: dict) -> dict:
     if type(request) is not dict or set(request) != {"operation", "arguments"}:
         raise ValueError("Expected operation and arguments")
@@ -133,7 +155,7 @@ def run(request: dict) -> dict:
              ROOT / "src/research_engine/intervals.py"]
     if request["operation"] in ("paper_c_models", "paper_c_rate"):
         paths.append(ROOT / "tools/check_paper_c_intervals.py")
-    if request["operation"] == "continued_fraction":
+    if request["operation"] in ("continued_fraction", "best_approximation"):
         paths.append(ROOT / "src/research_engine/diophantine.py")
     sources = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                for p in paths}
