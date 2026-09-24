@@ -2618,7 +2618,8 @@
       "decision": "PARK",
       "ledger_ids": [
         "J-depth-five-small-shift-extension",
-        "J-depth-five-uncentered-zero-offset"
+        "J-depth-five-uncentered-zero-offset",
+        "J-depth-five-widened-wave-bearing"
       ],
       "aliases": [],
       "nk_clusters": [
