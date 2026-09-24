@@ -12,13 +12,13 @@ The empirical probabilities converge to the image of uniform phase measure
 under the profile. This law is singular continuous, and its continuous CDF
 inverts the profile and has explicit plateaus at the Beatty phases. These
 family statements are formalized for the actual integer word counts.
-At the logarithmic slope `alpha=log_2 3`, the formal development goes further:
-the gap lengths have order `r^(-3/2)` and the neighbourhood volume has an
+For every such irrational slope, the gap lengths have order `r^(-3/2)` and
+the neighbourhood volume has an
 exact positive `epsilon^(1/3)` asymptotic, giving Minkowski dimension `2/3`
 and explicit content. The whole rescaled neighbourhood measure converges
 weakly to the empirical law weighted by its value to the two-thirds power,
 with the same geometric scale factor.
-At this logarithmic slope, the
+At the logarithmic slope `alpha=log_2 3`, the
 same integer counts in BGL's exact Gamma normalization have an absolutely
 continuous limiting law, mutually singular with the first. We give its
 density as a nonnegative series over the exponentially rescaled jump intervals.
@@ -33,9 +33,11 @@ moments are also Lean-checked. The underlying
 periodic survivor amplitude has a classical precursor; the focus here is
 its explicit transfer to the cumulative profile and the resulting singular
 geometry. The profile and these qualitative geometric and distributional
-results are proved in Lean for the actual integer counts. The full family now includes the qualitative phase theorem, exact
+results are proved in Lean for the actual integer counts. The full family
+now includes the qualitative phase theorem, exact
 normalization, complete null perfect cluster set and singular empirical law.
-The Minkowski and Gamma-law family extensions remain separate.
+The exact Minkowski content and the whole local geometric measure now cover
+the family as well. The Gamma-law family extension remains separate.
 
 **Main conclusions.** For every irrational `alpha>1`, use the actual word
 counts of Section 24 and write `E=alpha/(alpha-1)`. The checked statements are
@@ -81,8 +83,10 @@ Section 24 extends the explicit first-passage phase theorem to every
 irrational slope above one, using a subcritical tilt whose weight cancels
 from the final integer ratio. Section 25 extends the complete cluster set,
 singular empirical law and exact CDF identities to this whole family.
+Section 26 proves the sharp gap asymptotic, exact Minkowski content and
+whole geometric limiting measure for every irrational slope above one.
 
-At the logarithmic slope, the central spatial conclusion is, with
+For every irrational slope above one, the central spatial conclusion is, with
 `kappa=(2 pi alpha (alpha-1))^(-1/2)`,
 \[
  \varepsilon^{-1/3}\lambda\!\restriction_{K_\varepsilon}
@@ -111,16 +115,17 @@ comparison with these sources alone does not establish literature priority.
 
 **Evidence boundary.** The profile, cluster-set, empirical-law and tube-measure
 conclusions displayed above are **EXACT — LEAN VERIFIED**
-at the concrete logarithmic slope, without unproved counting, binomial,
+for every irrational slope `alpha>1`, without unproved counting, binomial,
 first-passage or equidistribution inputs. Sections 1–7 also retain a broader
 written argument for irrational `1<alpha<2`, including a quantitative
 `O(r^(-1/2))` rate. Those stronger statements are explicitly distinguished
 from the checked qualitative statements. Section 24 now proves the
 qualitative phase theorem for every irrational `alpha>1`, with no rate or
-uniformity in the slope. Section 25 now extends the compact perfect null cluster set, singular
-empirical law and exact threshold frequencies to that whole family. The
-Minkowski dimension, content and local tube-measure conclusions remain
-checked at the logarithmic slope. The exact Gamma-normalized
+uniformity in the slope. Section 25 extends the compact perfect null cluster set,
+singular empirical law and exact threshold frequencies to that whole family.
+Section 26 extends the sharp gap asymptotic, Minkowski dimension, content
+and local tube-measure conclusions to every irrational slope above one.
+The exact Gamma-normalized
 first-passage amplitude in Section 1.1 and its absolutely continuous empirical
 law, density and real-power moment identities in Section 21, and the exact
 interval support and density topology in Section 22, are also Lean-checked.
@@ -152,9 +157,8 @@ The neighbourhood-volume and dimension interfaces are in
 ## 1. Statement and notation
 
 This section and Sections 2–7 present the broader written argument with its
-quantitative remainder. The geometric formal package summarized above
-specializes to \(\alpha=\log_2 3\); Section 24 gives the checked qualitative
-phase theorem for every irrational \(\alpha>1\).
+quantitative remainder. The geometric formal package is proved for every irrational \(\alpha>1\)
+in Sections 24–26; the earlier concrete modules specialize to \(\alpha=\log_2 3\).
 Fix an irrational \(1<\alpha<2\), and put
 \[
 \beta=\alpha^{-1},\quad q=1-\beta,\quad s=\alpha-1=q/\beta,\quad
@@ -2159,20 +2163,20 @@ every irrational `alpha>1`.
 [InterfaceCheckBeattySlope.lean](../../formal/InterfaceCheckBeattySlope.lean)
 expands the actual counts, `floor(alpha*r)` and strict jump series, checking
 that no asymptotic premise is hidden behind a definition. The phase audit retains 30 expanded consumers; the public family audit
-now checks 120 theorem records, with the geometry consumers in Section 25,
+now checks 160 theorem records, with geometry consumers in Sections 25–26,
 using only `propext`, `Classical.choice` and `Quot.sound`.
 
 This completes the qualitative phase theorem for the family. Section 25
 extends its cluster-set and singular empirical-law consequences. The
-Minkowski and Gamma-law packages, convergence rates and arithmetic lower
-bounds still require separate family arguments. The logarithmic atom
+Gamma-law package, convergence rates and arithmetic lower bounds still
+require separate family arguments. Section 26 completes the Minkowski package. The logarithmic atom
 formula `w_1=beta` in Section 13 is not asserted
 for all slopes here. The classical BGL survival and probability-flow
 precursors remain acknowledged; the scope extension and formal proof do
 not by themselves settle literature priority. **PROMOTE** the family phase
 theorem; the positive dense atom structure and qualitative geometry are completed
-in Section 25. The three-halves gap asymptotic remains the next input for
-the Minkowski family theorem.
+in Section 25, and the sharp gaps and geometric measure are completed in
+Section 26.
 
 ## 25. The complete cluster set and singular law for every irrational slope
 
@@ -2250,14 +2254,124 @@ expands the original integer ratios and quantifies explicitly over every
 irrational `alpha>1`, including slopes greater than two. Its eleven
 expanded consumers and the public family audit permit only `propext`, `Classical.choice` and `Quot.sound`.
 
-**Remaining boundary.** This extends the qualitative Cantor-set geometry
-and empirical law, not yet the three-halves gap asymptotic, Minkowski
-content or local geometric measure to the whole family. No rate, uniformity
+**Scope of this section.** This extends the qualitative Cantor-set geometry
+and empirical law. Section 26 proves the three-halves gap asymptotic, Minkowski
+content and local geometric measure for the whole family. No rate, uniformity
 in the slope or arithmetic Hausdorff lower bound is supplied. Comparison
 with classical random-walk and Denjoy results still governs novelty
 positioning; formalization alone is not a priority claim.
-**PROMOTE** the family cluster-set and singular-law theorem. The next bounded
-mathematical input is the general three-halves gap asymptotic.
+**PROMOTE** the family cluster-set and singular-law theorem. Its sharp-gap
+and geometric-measure continuation is in Section 26.
+
+## 26. Sharp gaps and the whole geometric measure for every irrational slope
+
+**Family Minkowski theorem — EXACT — LEAN VERIFIED.** Fix any irrational
+`alpha>1`, with the actual counts and strict profile of Sections 24–25. Put
+
+\[
+ \kappa_\alpha=\frac1{\sqrt{2\pi\alpha(\alpha-1)}},\qquad
+ A_\alpha=\kappa_\alpha^{2/3}\int_0^1 F_\alpha(t)^{2/3}\,dt,\qquad
+ M_\alpha=3\,2^{1/3}A_\alpha.
+\]
+
+All three constants are positive. The actual jump weights satisfy
+
+\[
+ r^{3/2}w_r-\kappa_\alpha F_\alpha(\delta_r)\longrightarrow0.
+\]
+
+In particular there are constants `a,b>0`, depending on the fixed slope,
+such that `a*r^(-3/2)<=w_r<=b*r^(-3/2)` for every positive integer `r`.
+For `N_alpha(x)=#{r>=1:w_r>=x}`, the exact gap-counting limit is
+
+\[
+ x^{2/3}N_\alpha(x)\longrightarrow A_\alpha\qquad(x\downarrow0).
+\]
+
+Let `K_alpha` be the complete count accumulation set from Section 25 and
+`K_alpha,epsilon={y:dist(y,K_alpha)<epsilon}` its open metric neighbourhood.
+Then
+
+\[
+ \lambda(K_{\alpha,\varepsilon})
+   =2\varepsilon+\sum_{r\ge1}\min(w_r,2\varepsilon),\qquad
+ \frac{\lambda(K_{\alpha,\varepsilon})}{\varepsilon^{1/3}}
+   \longrightarrow M_\alpha.
+\]
+
+Thus **every irrational slope above one has Minkowski dimension `2/3`
+and positive finite exact Minkowski content**, in this open-radius convention.
+The dimension assertion is checked as the full logarithmic tube-volume limit
+`1-log(lambda(K_alpha,epsilon))/log(epsilon) -> 2/3`.
+
+The scalar theorem extends to the entire spatial measure:
+
+\[
+ \varepsilon^{-1/3}\lambda\!\restriction_{K_{\alpha,\varepsilon}}
+ \Longrightarrow \eta_\alpha,
+ \qquad
+ \eta_\alpha(dy)=3\,2^{1/3}\kappa_\alpha^{2/3}
+                    y^{2/3}\mu_\alpha(dy).
+\]
+
+Lean proves weak convergence of these finite measures, their masses, and
+the limiting mass above every real spatial threshold. It also proves the
+probability version: uniform volume sampling in the shrinking neighbourhoods
+converges to `nu_alpha=eta_alpha/M_alpha`. For every bounded continuous `g`,
+
+\[
+ \frac{\int_{K_{\alpha,\varepsilon}}g(y)\,dy}
+      {\lambda(K_{\alpha,\varepsilon})}
+ \longrightarrow
+ \frac{\int g(y)y^{2/3}\,\mu_\alpha(dy)}
+      {\int y^{2/3}\,\mu_\alpha(dy)}.
+\]
+
+This distinguishes two sampling procedures throughout the whole family:
+sampling the count index gives `mu_alpha`; sampling space near its
+accumulation set gives the explicitly weighted law `nu_alpha`.
+
+**Proof.** At `m_r=floor(r/beta)`, the tilted Stirling first term has phase
+factor `2^(-beta*delta_r)`. Multiplication by `2^(beta*delta_r)` cancels
+it exactly. The identity between the original count normalization and the
+critical jump weight, together with `r/m_r -> beta`, leaves the amplitude
+`beta*sqrt(beta)/sqrt(2*pi*beta*(1-beta))=kappa_alpha`.
+The family phase theorem supplies the remaining profile factor. Strict
+positivity absorbs the finite initial segment into the two-sided bounds.
+Equidistribution and the monotone moving-cutoff argument give the exact
+gap count. Integrating that count gives the truncated-gap sum and hence
+the tube content. Restricting to gaps whose left endpoints exceed a spatial
+threshold gives the local version; the tube-tail error is at most
+`4*epsilon`, which disappears after division by `epsilon^(1/3)`.
+The finite-measure tail criterion then yields the full weak limit.
+
+**Formal interfaces.**
+[BeattySlopeWeights.lean](../../formal/Problems/Juggler/BeattySlopeWeights.lean)
+proves the amplitude and sharp gap profile;
+[BeattySlopeGapCounting.lean](../../formal/Problems/Juggler/BeattySlopeGapCounting.lean),
+[BeattySlopeCantor.lean](../../formal/Problems/Juggler/BeattySlopeCantor.lean)
+and [BeattySlopeContent.lean](../../formal/Problems/Juggler/BeattySlopeContent.lean)
+give the scalar geometry.
+[BeattySlopeLocalCounting.lean](../../formal/Problems/Juggler/BeattySlopeLocalCounting.lean),
+[BeattySlopeGeometricLaw.lean](../../formal/Problems/Juggler/BeattySlopeGeometricLaw.lean)
+and [BeattySlopeLocalContent.lean](../../formal/Problems/Juggler/BeattySlopeLocalContent.lean)
+identify the spatial limit and its probability normalization.
+[InterfaceCheckBeattySlopeContent.lean](../../formal/InterfaceCheckBeattySlopeContent.lean)
+has seven expanded consumers, exposing the actual count weights, all-slope
+quantifiers, metric neighbourhoods and test-function integrals. The public
+family audit now checks 160 theorem records with only `propext`,
+`Classical.choice` and `Quot.sound`; the three family consumer files check
+48 expanded statements in total.
+
+**Boundary.** Every assertion is for each fixed irrational slope. No
+convergence rate or uniformity as the slope varies is supplied. The
+universal Minkowski dimension does not supply a matching Hausdorff lower
+bound. The Gamma-normalized law and its density regularity remain
+formalized at the logarithmic slope. The BGL, Lapidus–Pomerance and local
+content precedents retain the roles described earlier; extension and
+formal verification do not establish a literature-priority claim.
+**PROMOTE** the whole-family gap and geometric-measure theorem. Canonical
+rotation comparison and arithmetic Hausdorff classification remain future work.
 
 ## References
 

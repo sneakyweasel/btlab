@@ -2306,6 +2306,53 @@
   "related_conjectures": []
  },
  {
+  "id": "J-beatty-slope-gap-counting",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational 0<beta<1, the actual gap count N_beta(x)=#{n:x<=w_(n+1)} satisfies x^(2/3)*N_beta(x) -> A_beta as x decreases to zero, where A_beta=integral_0^1 (kappa_beta*F_beta(t))^(2/3) dt is strictly positive. The proof includes exact shifted-phase interval frequencies and the power-transformed moving-profile asymptotic; no discrepancy-rate premise is assumed.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeGapCounting.lean",
+  "decl": [
+   "passagePhase_shift_interval_frequency",
+   "passageGapMoment_pos",
+   "passageJumpWeight_two_thirds_phase_asymptotic",
+   "passage_gapCount_asymptotic"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_content_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-geometric-law",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational alpha>1, the finite local-content measure eta_alpha has density 3*2^(1/3)*kappa_alpha^(2/3)*y^(2/3) relative to the empirical passage law on its positive envelope. Its total mass is exactly M_alpha, its spatial tails are the explicit phase integrals, and it is nonzero. Its normalized probability law integrates every real test function by the normalized two-thirds-weighted empirical integral, with the library convention for nonintegrable functions. Convergence of actual tubes is proved in the separate local-measure row.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeGeometricLaw.lean",
+  "decl": [
+   "passageContentDensity_continuous",
+   "passageContentDensity_nonneg",
+   "passageContentDensity_monotone",
+   "passageLaw_ae_bounds",
+   "passageContentDensity_integrable",
+   "passageLocalContent_tail",
+   "passageLocalContent_mass",
+   "passageLocalContent_ne_zero",
+   "passageGeometricLaw_real",
+   "passageLocalContent_integral",
+   "passageGeometricLaw_integral"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_content_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-slope-jump-weight-mass",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For every real 0<beta<1, let m_r=floor(r/beta), c_r be the actual integer first-passage count at depth m_r+1, and w_r=c_r*beta^r*(1-beta)^(m_r-r). Lean proves m_r>=r, that critical first-passage mass at m_r+1 equals (1-beta)*w_r and vanishes off the range of these strictly increasing edges, and that w_0=1 with every w_r strictly positive. For irrational beta, the full weight series has sum 1/(1-beta), and the positive-index series has sum beta/(1-beta). The reciprocal-slope interface covers every irrational alpha>1 and states the sum as 1/(alpha-1). These are exact actual-count normalizations; the separate profile identification and count limit are established in J-beatty-slope-profile-identification and J-beatty-slope-first-passage-asymptotic.",
@@ -2326,6 +2373,51 @@
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-local-gap-counting",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational alpha>1 and real spatial threshold y, retaining the actual gaps whose left profile endpoint exceeds y preserves summability and gives the exact gap-count limit x^(2/3)*N_y(x) -> integral_0^1 1_(y<F(t))*(kappa_alpha*F(t))^(2/3) dt. No spatial-threshold exception or Diophantine rate is assumed.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeLocalCounting.lean",
+  "decl": [
+   "passageTailDensity_monotone",
+   "passageTailDensity_nonneg",
+   "passageTailWeight_summable",
+   "passageTailWeight_nonneg",
+   "passage_tail_gapCount_asymptotic"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_content_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-local-minkowski-measure",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational alpha>1, the finite measures epsilon^(-1/3)*volume restricted to the actual open epsilon-neighbourhood of the complete count cluster set converge weakly to eta_alpha=3*2^(1/3)*kappa_alpha^(2/3)*y^(2/3)*mu_alpha(dy). Rescaled tube tails converge at every real threshold. The uniform probability laws on the positive-radius tubes converge to eta_alpha/M_alpha; every bounded continuous spatial observable has the normalized two-thirds-weighted empirical integral as its limit. The theorem has no unproved analytic or Diophantine input, rate, or slope-uniformity claim.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeLocalContent.lean",
+  "decl": [
+   "passage_tail_truncated_asymptotic",
+   "passageClusterSet_local_tube_tail",
+   "passageScaledTubeMeasure_real",
+   "passageScaledTubeMeasure_tendsto",
+   "passageTubeLaw_real",
+   "passageTubeLaw_integral",
+   "passageTubeLaw_tendsto",
+   "passageClusterSet_tube_average_tendsto"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_content_interface.py",
    "tests/tools/test_formalpedia_audits.py",
    "tests/research/juggler_sequence/test_layer_completeness.py"
   ],
@@ -2369,6 +2461,45 @@
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-minkowski-content",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational alpha>1, the actual open metric tube volume divided by epsilon^(1/3) converges to the strictly positive exact content M_alpha=3*2^(1/3)*kappa_alpha^(2/3)*integral_0^1 F_alpha(t)^(2/3) dt. The same constant is 3*2^(1/3)*kappa_alpha^(2/3) times the two-thirds moment of the proved empirical law. This is a full limit for each fixed slope, without a rate or uniformity in alpha.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeContent.lean",
+  "decl": [
+   "passageGapMoment_eq_profile_moment",
+   "passageGapMoment_eq_law_moment",
+   "passageMinkowskiContent_pos",
+   "passageClusterSet_minkowski_content"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_content_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-minkowski-dimension",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational alpha>1, the complete actual-count cluster set has Minkowski dimension 2/3, expressed by 1-log(volume(K_epsilon))/log(epsilon) -> 2/3 as epsilon decreases to zero. The actual open metric tube has exact volume 2*epsilon+sum_r min(w_(r+1),2*epsilon), and positive finite cube-root upper and lower bounds hold for all radii in (0,1/2]. No Hausdorff lower bound is asserted.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeCantor.lean",
+  "decl": [
+   "passageClusterSet_tube_formula",
+   "passageClusterSet_tube_bounds",
+   "passageClusterSet_minkowski_dimension"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_content_interface.py",
    "tests/tools/test_formalpedia_audits.py",
    "tests/research/juggler_sequence/test_layer_completeness.py"
   ],
@@ -2427,6 +2558,27 @@
   "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_beatty_slope_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-sharp-gap-profile",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every irrational 0<beta<1, equivalently every irrational alpha=1/beta>1, the actual critical first-passage jump weights satisfy r*sqrt(r)*w_r-kappa_alpha*F_beta(delta_r) -> 0. The amplitude is exactly kappa_alpha=1/sqrt(2*pi*alpha*(alpha-1)). Positive constants a,b absorb the finite initial segment and give a/(r+1)^(3/2)<=w_(r+1)<=b/(r+1)^(3/2) for every natural r. No rate or uniformity in the slope is claimed.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeWeights.lean",
+  "decl": [
+   "passageAmplitude_pos",
+   "passageAmplitude_eq",
+   "passageAmplitude_reciprocal",
+   "passageJumpWeight_phase_asymptotic",
+   "passageJumpWeight_three_halves_bounds"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_content_interface.py",
    "tests/tools/test_formalpedia_audits.py",
    "tests/research/juggler_sequence/test_layer_completeness.py"
   ],
@@ -6251,6 +6403,36 @@
   "related_conjectures": [
    "juggler_loglog_depth_cylinder_bound"
   ]
+ },
+ {
+  "id": "J-depth-five-four-production-assembly",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "Kernel-checked conditional assembly; advisory statement coverage pending. OOOEEGuard n requires n, J n, J^2 n odd and J^3 n, J^4 n even for the actual Juggler map. OOOEEProductionBound A asks for b, C >= 0 and T with (1/30) fullMass A (27t/32 - b) <= sourceMass A OOOEEGuard (cutoff t) + C for all t >= T. Assuming it for a backward-closed A that contains some a >= 1, with the unconditional E, OE and OOEE productions of FateOOEEWeighted, gives K > 0 and N with K (log x)^(2/3) <= logMass A x for all x >= N. The proof uses a four-way disjoint source partition, a shift 16 + 32b/5 and loss multiplier 7 in the recurrence, a rational certificate for sum c_i rate_i^(2/3) > 1 with coefficients 1, 33/100, 11/100, 1/30 and rates 1/2, 3/4, 9/16, 27/32, and the generic recursion lemma. With the production for the failure class, the Tao-rate hypothesis at any e > 1/3, or Paper C's pressure or no-momentum hypothesis at e > 1/3, implies that every positive integer reaches 1. The OOOEE production itself is the written, AI-audited, unreviewed Lemmas E1-E6 of juggler_depth_five_production and is not proved in Lean; neither the production, the rate hypotheses, nor termination is proved here.",
+  "source": "docs/problems/juggler_depth_five_production.md",
+  "lean": "Problems/Juggler/FateOOOEEAssembly.lean",
+  "decl": [
+   "OOOEEGuard",
+   "OOOEEProductionBound",
+   "source_partition",
+   "production_recurrence",
+   "rate",
+   "coeff",
+   "rate_bounds",
+   "coeff_nonneg",
+   "certificate_two_thirds",
+   "shifted_recurrence",
+   "fullMass_growth",
+   "logMass_growth_of_oooee",
+   "conjecture_of_tao_rate",
+   "pressure_conjecture_oooee",
+   "noMomentum_conjecture_oooee"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py",
+   "tests/research/juggler_sequence/test_lean_paths_declares_name.py"
+  ],
+  "related_conjectures": []
  },
  {
   "id": "J-depth-five-nonzero-offset-zero-frequency",

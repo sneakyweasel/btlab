@@ -1,5 +1,5 @@
 import Problems.Juggler.BeattyCounting
-import Problems.Juggler.BeattySlopeDistribution
+import Problems.Juggler.BeattySlopeLocalContent
 import Problems.Juggler.BeattySlopeProfileSpecialization
 
 /-! Recorded dependencies of the public arbitrary-boundary counting results.
@@ -129,5 +129,46 @@ namespace Problems.Juggler
 #print axioms BeattySlope.passageRatio_threshold_frequency
 #print axioms BeattySlope.passageRatio_profile_threshold_frequency
 #print axioms BeattySlope.passageRatio_average_tendsto
+
+#print axioms BeattySlope.passageAmplitude_pos
+#print axioms BeattySlope.passageAmplitude_eq
+#print axioms BeattySlope.passageAmplitude_reciprocal
+#print axioms BeattySlope.passageJumpWeight_phase_asymptotic
+#print axioms BeattySlope.passageJumpWeight_three_halves_bounds
+#print axioms BeattySlope.passagePhase_shift_interval_frequency
+#print axioms BeattySlope.passageGapMoment_pos
+#print axioms BeattySlope.passageJumpWeight_two_thirds_phase_asymptotic
+#print axioms BeattySlope.passage_gapCount_asymptotic
+#print axioms BeattySlope.passageClusterSet_tube_formula
+#print axioms BeattySlope.passageClusterSet_tube_bounds
+#print axioms BeattySlope.passageClusterSet_minkowski_dimension
+#print axioms BeattySlope.passageGapMoment_eq_profile_moment
+#print axioms BeattySlope.passageGapMoment_eq_law_moment
+#print axioms BeattySlope.passageMinkowskiContent_pos
+#print axioms BeattySlope.passageClusterSet_minkowski_content
+#print axioms BeattySlope.passageTailDensity_monotone
+#print axioms BeattySlope.passageTailDensity_nonneg
+#print axioms BeattySlope.passageTailWeight_summable
+#print axioms BeattySlope.passageTailWeight_nonneg
+#print axioms BeattySlope.passage_tail_gapCount_asymptotic
+#print axioms BeattySlope.passageContentDensity_continuous
+#print axioms BeattySlope.passageContentDensity_nonneg
+#print axioms BeattySlope.passageContentDensity_monotone
+#print axioms BeattySlope.passageLaw_ae_bounds
+#print axioms BeattySlope.passageContentDensity_integrable
+#print axioms BeattySlope.passageLocalContent_tail
+#print axioms BeattySlope.passageLocalContent_mass
+#print axioms BeattySlope.passageLocalContent_ne_zero
+#print axioms BeattySlope.passageGeometricLaw_real
+#print axioms BeattySlope.passageLocalContent_integral
+#print axioms BeattySlope.passageGeometricLaw_integral
+#print axioms BeattySlope.passage_tail_truncated_asymptotic
+#print axioms BeattySlope.passageClusterSet_local_tube_tail
+#print axioms BeattySlope.passageScaledTubeMeasure_real
+#print axioms BeattySlope.passageScaledTubeMeasure_tendsto
+#print axioms BeattySlope.passageTubeLaw_real
+#print axioms BeattySlope.passageTubeLaw_integral
+#print axioms BeattySlope.passageTubeLaw_tendsto
+#print axioms BeattySlope.passageClusterSet_tube_average_tendsto
 
 end Problems.Juggler

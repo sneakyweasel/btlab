@@ -129,9 +129,12 @@ perfect null set, exact gaps and envelope extrema. Threshold frequencies
 and CDF plateaus are checked for every irrational slope above one. The
 original phase theorem now specializes the family proof through an exact
 profile bridge; irrational recurrence and equidistribution are shared.
-The family audit checks 120 public theorem records. Rates, the three-halves
-gap asymptotic and the Minkowski/local-measure family remain next. The same
-dossier and Section 25 of the note record the consumers and scope.
+The sharp three-halves gap law, universal Minkowski dimension `2/3`, exact
+positive content and whole geometric measure now cover every irrational slope.
+Uniform spatial sampling tends to the normalized two-thirds-weighted empirical law.
+**PROMOTE** this family extension: 160 public audit records and 48 expanded
+consumers. Sections 25–26 record the scope. Rates, the Gamma-law family and
+arithmetic Hausdorff classification remain separate.
 
 ## 2026-09-23 -- OEIS generator corrections and exact modified-map descent
 

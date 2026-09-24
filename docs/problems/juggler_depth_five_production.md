@@ -96,7 +96,8 @@ None.
 
 ## Formalization
 
-None new. The depth-four chain is `FateOOEEWeighted.lean` and its imports.
+`FateOOOEEAssembly.lean` (Result 18) is the four-production assembly, conditional on
+the `OOOEE` production. The depth-four chain is `FateOOEEWeighted.lean` and its imports.
 
 ## Results
 
@@ -863,6 +864,40 @@ and the obstruction record have also been corrected. The conditional
 consequence stands: an `OOOEE` production at `1/30`, and contagion `2/3` once a
 four-production assembly is written and E1-E6 are reviewed.
 
+**18. The four-production assembly (kernel-checked, conditional; 24 September
+2026).** [FateOOOEEAssembly.lean](../../formal/Problems/Juggler/FateOOOEEAssembly.lean)
+takes the `OOOEE` production as its single explicit input. `OOOEEProductionBound A`
+says that for some `b, C >= 0` and all large `t`,
+`(1/30) fullMass A (27t/32 - b) <= sourceMass A OOOEEGuard (cutoff t) + C`. The
+guard is the actual parity word: `n`, `J n` and `J^2 n` odd, and `J^3 n` and `J^4 n`
+even. The `E`, `OE` and `OOEE` productions are the unconditional ones of
+`FateOOEEWeighted`.
+
+The module proves:
+
+- the four-way disjoint source partition;
+- the recurrence with one constant `3C`;
+- the shift `16 + 32b/5`, which absorbs the `-4` losses at rates up to `3/4` and
+  the `-b` loss at `27/32`;
+- the loss multiplier `7`, since `7 (sum c - 1) = 7 * 71/150 >= 3`;
+- the rational certificate `sum c_i rate_i^(2/3) > 1`, from lower bounds
+  `0.6299`, `0.8254`, `0.6814` and `0.8928` on the four powers (sum `1.0070`);
+- through the generic `recursion_lemma` with `emax = 27/32`:
+  - `logMass_growth_of_oooee`, contagion `K (log X)^(2/3)`;
+  - the Tao-rate implication at `e > 1/3`;
+  - the pressure (Theorem 9.2) and no-momentum (Proposition 9.3) corollaries at
+    `e > 1/3`.
+
+The module builds (3,658 jobs). `AxiomCheckOOOEEAssembly` shows that all 11
+theorems depend only on propext, Classical.choice and Quot.sound. The Lean style
+check reports no new violations.
+
+This answers Result 17's objection: the assembly needed rederived constants, not
+new mathematics. It does not prove the `OOOEE` production. That input is E1-E6
+(Results 7-17), written and AI-audited but not human-reviewed, and not in Lean.
+The scale-average form of the pressure theorem (`FateScaleAverage`) is not redone
+at `1/3`.
+
 ## Open questions
 
 Lemmas E1-E6 and Theorem E3 (Results 7-16) write out the `OOOEE` production:
@@ -873,10 +908,12 @@ Lemmas E1-E6 and Theorem E3 (Results 7-16) write out the `OOOEE` production:
 
 With coefficient `1/30` it would lift contagion to `2/3` (Arb-certified root
 `0.6793`). E1 and E3-E5 have been audited; E2 has been audited with its
-nonzero-`t` clause withdrawn; E6 has been audited (Result 17). Still unwritten:
+nonzero-`t` clause withdrawn; E6 has been audited (Result 17). The four-production
+assembly is kernel-checked with the `OOOEE` production as its explicit hypothesis
+(Result 18). Still open:
 
-- a four-production assembly;
-- the Lean formalisation;
+- human review of E1-E6;
+- a Lean proof of the `OOOEE` production itself;
 - `OOEOE`, which needs its own bookkeeping and is required for the promotion
   criterion `lambda > 0.74`.
 
@@ -891,14 +928,13 @@ productions, the Arb-certified contagion root would be `0.6793 > 2/3`. The branc
 is not promoted, for three reasons:
 
 - the proofs are AI-written and not human-reviewed;
-- the four-production assembly is not written, and it is not a drop-in change
-  (Result 17). Nothing is kernel-checked;
+- the four-production assembly is kernel-checked (Result 18), but only with the
+  `OOOEE` production as a hypothesis; the production itself is not in Lean;
 - the promotion criterion `lambda > 0.74` needs `OOEOE`, which has not been
   bookkept.
 
-Best next question: does a four-production assembly, with its shift and
-loss constants rederived for rate `27/32`, certify contagion `2/3` from the
-`OOOEE` production at coefficient `1/30`?
+Best next question: does `OOEOE`, with Theorem 4.9's phase family in
+place of Appendix C's, admit the same Results 7-16 chain at shifts `P^(5/32)`?
 
 ## Publication assessment
 

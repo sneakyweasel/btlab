@@ -115,6 +115,13 @@ import Problems.Juggler.BeattyRotation
 import Problems.Juggler.BeattyPhaseEquidistribution
 import Problems.Juggler.BeattyCertificateDistribution
 import Problems.Juggler.BeattySlopeDistribution
+import Problems.Juggler.BeattySlopeWeights
+import Problems.Juggler.BeattySlopeGapCounting
+import Problems.Juggler.BeattySlopeCantor
+import Problems.Juggler.BeattySlopeContent
+import Problems.Juggler.BeattySlopeLocalCounting
+import Problems.Juggler.BeattySlopeGeometricLaw
+import Problems.Juggler.BeattySlopeLocalContent
 import Problems.Juggler.BeattyCertificateWeights
 import Problems.Juggler.BeattyGammaNormalization
 import Problems.Juggler.BeattyFirstPassageAmplitude
@@ -241,6 +248,7 @@ import Problems.Juggler.CycleMinSecondPostL
 import Problems.Juggler.FatePressureAveraged
 import Problems.Juggler.FatePressureOOEE
 import Problems.Juggler.EscapeRate
+import Problems.Juggler.FateOOOEEAssembly
 import Problems.Juggler.ReturnWordLoss
 import Problems.Juggler.ReturnWordData
 import Problems.Juggler.ReturnWordBounds

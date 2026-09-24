@@ -1,0 +1,15 @@
+'Problems.Juggler.FateOOOEEAssembly.source_partition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOOOEEAssembly.production_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOOOEEAssembly.rate_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOOOEEAssembly.coeff_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOOOEEAssembly.certificate_two_thirds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOOOEEAssembly.shifted_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOOOEEAssembly.fullMass_growth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOOOEEAssembly.logMass_growth_of_oooee' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOOOEEAssembly.conjecture_of_tao_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.FateOOOEEAssembly.pressure_conjecture_oooee' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.FateOOOEEAssembly.noMomentum_conjecture_oooee' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

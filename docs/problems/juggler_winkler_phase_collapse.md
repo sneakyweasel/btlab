@@ -863,7 +863,8 @@ The current coverage map is deliberately asymmetric:
 | Explicit jump profile and original integer first-passage asymptotic | Every irrational `alpha>1` | Checked with actual counts, strict atoms and additive `o(1)` error |
 | Positive actual crossing counts | Every real `0<beta<=1` | Checked with an explicit odd-then-even word witness |
 | Complete null perfect cluster set and singular empirical law | Every irrational `alpha>1` | Checked with exact gaps, envelope extrema and CDF plateaus |
-| Three-halves gap asymptotic, Minkowski and Gamma-law packages | Logarithmic slope | Checked; family assembly remains next |
+| Three-halves gaps, exact Minkowski content and local geometric measure | Every irrational `alpha>1` | Checked for actual counts and metric tubes |
+| Gamma-law and density regularity | Logarithmic slope | Checked; family extension remains separate |
 | Matching Hausdorff lower bounds | Explicit Diophantine hypotheses | Conditional concrete results; arithmetic inputs and a family theorem still need assembly |
 
 The weighted version of `BeattyEndpointAsymptotic` is now proved below.
@@ -1329,9 +1330,9 @@ irrational slope. Critical survival now tends to zero and the actual
 first-passage probabilities sum to one; the actual positive-index Beatty
 weights sum to `1/(alpha-1)`. The explicit strict jump profile and the
 original integer-count asymptotic now cover that whole family too. The complete null perfect cluster set, singular empirical law, exact
-CDF plateaus and envelope extrema now cover the family as well. The next
-family input is the three-halves gap asymptotic, followed by Minkowski
-content and local measure; the Gamma-law extension also remains separate. Literature comparison
+CDF plateaus and envelope extrema now cover the family as well. The sharp
+three-halves gap asymptotic, exact Minkowski content and whole local geometric
+measure now cover every irrational slope too. The Gamma-law extension remains separate. Literature comparison
 is separate from proof checking; existing paper claims and releases retain
 their earlier evidence labels.
 
@@ -1378,6 +1379,40 @@ three-halves gap asymptotic, family Minkowski content and local geometric
 measure remain next; the canonical rotation comparison and arithmetic
 Hausdorff classification are prospective, not proved corollaries.
 
+### Sharp gaps and the complete geometric family theorem (24 September)
+
+```text
+Mathematical target     Sharp gap asymptotics, exact Minkowski content and local geometric measure for every irrational alpha>1.
+Novelty hypothesis      Extend the explicit first-passage geometry to the whole family; no priority claim for the general machinery.
+Falsifier               A surviving slope restriction or normalization mismatch.
+Already killed by?      No matching obstruction found; this is count geometry, not trajectory termination.
+Existing machinery      Family phase theorem, tilted Stirling, equidistribution, gap counting and tube convergence.
+Maximum Phase-0 scope   This extension and its direct geometric corollaries.
+Promotion criterion     Actual-count Lean statements, expanded geometric consumers and standard axiom audit.
+Stop criterion          Record any unresolved mathematical premise explicitly.
+```
+
+**EXACT — LEAN VERIFIED.** The auxiliary tilt cancels at every crossing.
+The resulting amplitude is exactly `kappa_alpha=1/sqrt(2*pi*alpha*(alpha-1))`.
+For each fixed irrational `alpha>1`, `r^(3/2)*w_r-kappa_alpha*F_alpha(delta_r)`
+tends to zero, and positive two-sided three-halves bounds hold for every gap.
+The exact gap-count constant is `A_alpha=kappa_alpha^(2/3)*integral_0^1 F_alpha^(2/3)`.
+The actual open metric tube volume divided by `epsilon^(1/3)` tends to the
+positive constant `M_alpha=3*2^(1/3)*A_alpha`; the Minkowski dimension is `2/3`.
+The entire rescaled tube measure converges weakly to
+`3*2^(1/3)*kappa_alpha^(2/3)*y^(2/3)*mu_alpha(dy)`. Its normalization gives
+the limit of uniform spatial sampling in the shrinking neighbourhoods.
+Both spatial tail masses and bounded-continuous observable averages are checked.
+
+Seven registered family modules implement these statements. The public family
+audit contains 160 theorem records; the three consumer modules contain 48
+expanded statements, including seven new consumers for actual weights, all-slope
+quantifiers, metric tubes and integrals. See Section 26 of the working note.
+No convergence rate, uniformity in the slope, Hausdorff lower bound or Gamma-law
+family extension is supplied. The classical precursors remain acknowledged.
+**PROMOTE** this whole-family geometric theorem. Canonical rotation comparison
+and arithmetic Hausdorff classification remain future work; no new branch opens here.
+
 ## Decision
 
 `PROMOTE` -- for every irrational slope above one, the actual normalized
@@ -1389,11 +1424,11 @@ is singular continuous, with exact threshold frequencies and CDF plateaus.
 The original logarithmic phase theorem now specializes the general proof
 through exact weight and profile equalities.
 
-The following geometric and distributional refinements remain specialized
-to the logarithmic slope: the three-halves gap law, cube-root neighbourhood
-volume, dimension `2/3` and exact content given by the two-thirds law moment.
-The whole geometric limiting measure is the explicitly scaled
-`y^(2/3)` reweighting of the empirical law, with its probability normalization.
+The three-halves gap law, cube-root neighbourhood volume, Minkowski dimension
+`2/3` and exact content given by the two-thirds law moment now hold for every
+irrational slope above one. The whole geometric limiting measure is the explicitly
+scaled `y^(2/3)` reweighting of the empirical law throughout the family, with
+its probability normalization. The following refinements remain at the logarithmic slope.
 The Hausdorff upper bound and finite critical measure are unconditional;
 matching lower bounds are proved under an explicit phase-hitting estimate,
 now derived from a standard uniform Diophantine lower bound without exponent
