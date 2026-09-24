@@ -59,6 +59,29 @@ justify replacing a global optimization by a sample grid. Existing evidence
 labels remain in use: these finite expression checks are
 **COMPUTATIONALLY VERIFIED**, with their exact domain stated.
 
+## Continued fractions
+
+[research_engine.diophantine](../../src/research_engine/diophantine.py) is the
+shared home for partial quotients, convergents and semiconvergents. Rationals
+expand exactly by Euclid's algorithm. A real is a callback that rebuilds its
+enclosure; a partial quotient is returned only when the enclosure's floor is a
+single integer, and the result reports how many terms were certified and why it
+stopped. Do not expand a float: a double gives sixteen correct terms of
+`log2(3)` and then wrong ones without warning.
+
+```python
+from flint import arb
+from research_engine.diophantine import certified_partial_quotients, convergents
+
+expansion = certified_partial_quotients(lambda: arb(3).log() / arb(2).log(), 40)
+assert expansion.complete  # 40 terms, checked against OEIS A028507 in the tests
+print(convergents(expansion.quotients)[:8])  # (p, q) with p/q -> log2(3)
+```
+
+An input box certifies only the prefix shared by all its points. A rational
+supplied as an enclosure stays unresolved at its last term; use
+`rational_partial_quotients` for exact rationals.
+
 API references: [python-flint's arithmetic and comparisons](https://python-flint.readthedocs.io/en/stable/general.html),
 [Arb endpoints and error bounds](https://python-flint.readthedocs.io/en/stable/arb.html).
 
