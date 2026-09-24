@@ -25,7 +25,7 @@ Cochin},pdfsubject={Parity statistics and five-step descent certificates for the
 Map\\[0.4em]{\large Parity Statistics of Nested Floor Powers}}
 \author{Philippe Cochin\\\small\texttt{philippe@cochin.fr}\\
   \small ORCID \href{https://orcid.org/0009-0004-1939-3382}{0009-0004-1939-3382}}
-\date{23 September 2026}
+\date{24 September 2026}
 \begin{document}
 \maketitle
 \begin{center}\small Preprint\end{center}
@@ -43,10 +43,14 @@ der Corput differencing, with all floor exceptions and partition
 endpoints counted. The two five-letter classes \(OOEOE\) and \(OOOEE\)
 are treated through their distinct formal chains. For \(OOOEE\), the
 full mixed phase is retained and its signed curvature is recomputed
-after each frequency center is frozen. The complete analytic argument is
-included in three appendices. Fair-share densities at every fixed depth
-would imply density-one finite certificates; that hypothesis, general
-decorated estimates, and short-interval localization remain open. No
+after each frequency center is frozen. The complete analytic argument
+for this density is included in Appendices A--C. Fair-share densities at
+every fixed depth would imply density-one finite certificates; that
+hypothesis and general decorated estimates remain open. For the two
+five-letter words, the starts reaching a given fifth iterate lie in a
+window of about \(n^{5/32}\) integers near a start \(n\); all but a
+power-saving proportion of these windows carry their fair share (Theorem
+6.3). Localization to a prescribed short interval remains open. No
 result asserts universal arrival at \(1\).
 
 \textbf{Keywords:} Juggler map; nested floor powers; parity
@@ -88,8 +92,10 @@ The single-floor estimate and the conditional all-depth counting
 argument use standard methods. The latter is in the spirit of
 stopping-time arguments for the Collatz map, such as Terras {[}4{]}. The
 general \(95/96\) kernel target and arbitrary short-interval extensions
-from earlier drafts remain unproved. The weaker \(127/128\) exponent
-proved here suffices for the five-step count.
+from earlier drafts remain unproved. Theorem 6.3 and Appendix D prove an
+averaged substitute for the two five-letter words: almost every target
+fibre receives its fair share. The weaker \(127/128\) exponent proved
+here suffices for the five-step count.
 
 That kinship is an identity rather than an analogy, and stating it
 precisely is what fixes the contribution of this paper. The shortcut
@@ -166,6 +172,8 @@ carries \\
 Appendix B & The wave-bearing estimate used in Appendix C \\
 Sections 5--6 & Five-step density and the conditional all-depth
 implication \\
+Section 6.1 and Appendix D & Averaged localization on depth-five
+fibres \\
 \end{longtable}
 
 \endgroup
@@ -907,10 +915,10 @@ actual words. Summing the sixteen discrepancies also controls every
 nonempty sign product. The end of Appendix C gives the endpoint
 conventions and full dyadic argument. \(\square\)
 
+\needspace{8\baselineskip}
+
 \section{5. Finite-depth descent
 densities}\label{finite-depth-descent-densities}
-
-\needspace{5\baselineskip}
 
 \textbf{Lemma 5.1 (minimal certificates through length five).} The
 contracting words of length at most five with no proper contracting
@@ -1040,10 +1048,10 @@ coordinate \(v^{3/2}\); the \(OOEOE\) chain in Section 4.3 uses
 families. Neither proof asserts fair-share counts for every actual
 itinerary at every depth.
 
+\needspace{8\baselineskip}
+
 \section{6. The fixed-depth reduction to density-one
 certificates}\label{the-fixed-depth-reduction-to-density-one-certificates}
-
-\needspace{5\baselineskip}
 
 \textbf{Hypothesis \(\mathrm{FD}\).} For every fixed \(d\ge1\) and every
 odd-rooted word \(w\) of length \(d\), \[
@@ -1451,6 +1459,68 @@ blocked only by \(p<1\), and that \(d\ge4\) is the first usable depth
 closed form and the arithmetic of the barrier gap in
 \texttt{formal/Problems/Juggler/PaperBTilt.lean}.
 
+\subsection{6.1 Averaged localization on depth-five
+fibres}\label{averaged-localization-on-depth-five-fibres}
+
+Hypothesis \(\mathrm{FD}\) concerns the proportion of starts with a
+given word. A finer question is whether the starts sharing a word and a
+target also share evenly. Fix one of the two five-letter words \(OOOEE\)
+and \(OOEOE\). The integers whose fifth iterate along the word, with
+each letter applied regardless of parity, equals \(y\) form a window of
+about \(\tfrac{32}{27}y^{5/27}\) consecutive integers near
+\(y^{32/27}\), roughly \(P^{5/32}\) integers at scale \(P\). The starts
+that actually follow the word and reach \(y\) are some of the odd
+members of this window. Corollaries 4.10 and 4.12 count the two words
+over whole dyadic blocks. They do not say that the individual windows
+receive their share, and Section 7 explains why a block count cannot be
+rescaled to a short interval. The following theorem proves the share on
+almost every window by averaging, without a bound for any fixed short
+interval.
+
+For \(a\in\{OOOEE,OOEOE\}\) and an integer \(y\ge1\), let
+\(\mathcal F_a(y)\) be the set of \(n\) with
+\(\operatorname{word}_5(n)=a\) and \(J^5(n)=y\), let \(\mathcal I_a(y)\)
+be the set of integers whose fifth iterate along \(a\), with each letter
+applied regardless of parity, equals \(y\), and let \(H_a(y)\) be the
+number of odd integers in \(\mathcal I_a(y)\). Appendix D.1 shows that
+\(\mathcal I_a(y)\) is an interval, that \(\mathcal F_a(y)\) consists of
+its odd members with word \(a\), and that
+\(H_a(y)=\tfrac{16}{27}y^{5/27}+O(1)\).
+
+\needspace{5\baselineskip}
+
+\textbf{Theorem 6.3 (averaged localization on depth-five fibres).} For
+\(\eta>0\) let \(\Pi_\eta(a)\) be the set of targets whose fibre misses
+the share \(1/16\) of its odd candidates by at least \(\eta\): \[
+\Pi_\eta(a)=\Bigl\{y\ge1:\ \Bigl|\#\mathcal F_a(y)
+-\frac{H_a(y)}{16}\Bigr|\ge\eta H_a(y)\Bigr\}.
+\] Then, for every \(y_0\ge1\), \[
+\sum_{\substack{y>y_0\\ y\in\Pi_\eta(OOOEE)}}\frac1y\ll_\eta y_0^{-1/55},
+\qquad
+\sum_{\substack{y>y_0\\ y\in\Pi_\eta(OOEOE)}}\frac1y\ll_\eta y_0^{-1/41}.
+\tag{6.1}
+\] More precisely, the proof shows the dyadic form from which (6.1)
+follows by summation: among the targets whose windows begin in
+\((P,2P]\), a proportion \(O_{\eta,\varepsilon}(P^{-1/64+\varepsilon})\)
+for \(OOOEE\), and \(O_\eta(P^{-1/48})\) for \(OOEOE\), lie in
+\(\Pi_\eta(a)\). The exponents in (6.1) are rounded down from
+\(\tfrac{32}{27}(\tfrac1{64}-\varepsilon)\) and \(\tfrac2{81}\).
+
+The set \(\Pi_\eta(a)\) contains the targets with \(H_a(y)=0\). By (D.2)
+and an exact computation below the point where (D.2) excludes them,
+these are \(y=4,12\) for \(OOOEE\) and \(y=5,14,16,20\) for \(OOEOE\).
+
+The proof is in Appendix D. It rests on the estimates of Appendix C, on
+Lemma 4.4 and Section 4.3, and on two further differenced estimates
+proved there. One diagonal curvature constant, \(243/4096\), belongs to
+Lemma D.6 for \(OOOEE\). The other, \(-1701/4096\), belongs to a carry
+of \(\lfloor U\rfloor\) that treats \(OOEOE\) without Theorem 4.9's
+centering. Theorem 6.3 is a statement about almost every window. It
+gives no bound for a prescribed short interval, and Section 7's caution
+stands. Like the proofs of Appendices A--C, the proof is an AI-assisted
+written argument that has not been independently reviewed; Appendix D.8
+records what has been machine-checked.
+
 \section{7. Exact floor defects and separate analytic
 questions}\label{exact-floor-defects-and-separate-analytic-questions}
 
@@ -1539,12 +1609,14 @@ Short-interval variants require separate estimates. A bound for a
 transition set \(\Omega\subset(P,2P]\) of the form \(|\Omega|\ll P^a\)
 implies only \(|\Omega\cap I|\le\min(|I|,O(P^a))\). It does not imply a
 bound proportional to \(|I|/P\). Therefore the earlier localized-kernel
-threshold \(|I|\ge P^{29/48+\delta}\) is not asserted here.
+threshold \(|I|\ge P^{29/48+\delta}\) is not asserted here. Theorem 6.3
+is consistent with this caution: it averages over the target windows and
+asserts nothing for a prescribed one.
+
+\needspace{8\baselineskip}
 
 \subsection{7.1 An unconditional estimate averaged over a
 shift}\label{an-unconditional-estimate-averaged-over-a-shift}
-
-\needspace{5\baselineskip}
 
 \textbf{Proposition 7.4 (shift average).} Let \(L\ge1\), let
 \(A_1<\cdots<A_L\) obey \(|A_t-A_s|\ge a|t-s|\) with \(a>0\), and let
@@ -1720,8 +1792,10 @@ proved \\
 Finite combinatorics of Sections 5--6 and the chain of Theorem 6.1 &
 Machine-checked; modules listed below \\
 Restricted mixed sums & Theorems 4.5, 4.9, and 4.11 \\
-General decorated kernel and short-interval extension & Unproved; no
-numerical threshold certified \\
+General decorated kernel and prescribed short-interval extension &
+Unproved; no numerical threshold certified \\
+Fair share on almost every depth-five fibre & Theorem 6.3 and Appendix
+D; AI-assisted written proof, not independently reviewed \\
 Basic frozen-gap collision model & Proposition 7.6; does not certify
 every decorated phase \\
 Shift-averaged estimate & Direct integral proof in Proposition 7.4 \\
@@ -1768,7 +1842,8 @@ module, all of them under \texttt{formal/Problems/Juggler/}:
   free lengths.
 \item
   \texttt{PaperBSurvivorDecay}: \(N_d/2^d\le\vartheta(p)^d\), the upper
-  bound of Theorem D with its exact exponent, and \(N_d/2^d\to0\).
+  bound of Lagarias's Theorem D {[}14{]} with its exact exponent, and
+  \(N_d/2^d\to0\).
 \item
   \texttt{PaperBChernoff}, \texttt{PaperBMarkov},
   \texttt{PaperBDensity}: the chain of Theorem 6.1 with Hypothesis
@@ -1822,17 +1897,23 @@ any line; \texttt{klDiv\_nonneg}, cited in the proof of Theorem 6.1 for
 contrast, is audited there too. All are checked by Lean's kernel, with
 no \texttt{native\_decide}. This version claims no Lean formalization of
 its analytic estimates --- the exponential sums of Sections 3, 4 and 7
-and Appendices A--C --- nor of the complete manuscript. Earlier theorem
+and Appendices A--D --- nor of the complete manuscript. Earlier theorem
 numbers are superseded and should not be used as citations to
 unconditional nested estimates. Companion texts that rely on those
 estimates require their own review.
 
+Lemma D.3 and the fibre geometry (D.2) of Appendix D are checked in two
+further modules, listed with their audits in Appendix D.8. The
+square-wave, second-moment and counting steps of Appendix D are not
+formalized.
+
 The full five-step certificate class proved here has density \(7/8\).
 The argument does not extend its error estimates proportionally to an
 arbitrary short interval, and it supplies no universal termination
-conclusion. A proof of all fixed-depth fair-share counts would imply
-density-one certificates by Theorem 6.1; that additional hypothesis
-remains open.
+conclusion. Theorem 6.3 is an averaged substitute for the two
+five-letter words, not a bound on a prescribed interval. A proof of all
+fixed-depth fair-share counts would imply density-one certificates by
+Theorem 6.1; that additional hypothesis remains open.
 
 \section{Appendix A. Floor reductions and the carry
 inventory}\label{appendix-a.-floor-reductions-and-the-carry-inventory}
@@ -1843,15 +1924,15 @@ frequency partition. Constants may depend on fixed comparability
 constants. Every displayed estimate is uniform for sufficiently large P;
 bounded smaller P is absorbed into the implied constants.
 
+\needspace{8\baselineskip}
+
 \subsection{A.1 A reduction for a differenced floor
 factor}\label{a.1-a-reduction-for-a-differenced-floor-factor}
-
-\needspace{5\baselineskip}
 
 \textbf{Lemma A.1 (fixed-label floor reduction).} The definitions below
 lead to (A.9), with the stated error and coefficient variation bounds.
 
-In Appendices A--C, a subscript on \(\Delta\) denotes the actual
+In Appendices A--D, a subscript on \(\Delta\) denotes the actual
 translation: \(\Delta_d f(x)=f(x+d)-f(x)\). Thus a half-shift \(h\) uses
 \(\Delta_{2h}\). This differs from the local half-shift convention
 \(\Delta_h f(x)=f(x+2h)-f(x)\) in Section 4.2. All constants below are
@@ -2073,10 +2154,10 @@ waves has curvature comparable to M. At a curvature cancellation, the
 reference-function and sublevel hypotheses must still be verified for
 the complete phase.
 
+\needspace{8\baselineskip}
+
 \subsection{A.2 Joint first-floor
 carries}\label{a.2-joint-first-floor-carries}
-
-\needspace{5\baselineskip}
 
 \textbf{Lemma A.2 (carry arcs and global positive errors).} Let
 \(1\le h\le P^{1/12}\), and let the number of shifts below be bounded by
@@ -3073,6 +3154,424 @@ union of its 27/32 class and OOOEE. The former error \(O(N^{47/48})\) is
 smaller. Their densities add to \(27/32+1/32=7/8\), proving (C.3). This
 proves Corollary 4.12 and Theorem 5.4.
 
+\section{Appendix D. Localization on depth-five
+fibres}\label{appendix-d.-localization-on-depth-five-fibres}
+
+This appendix proves Theorem 6.3. Throughout, \(a\in\{OOOEE,OOEOE\}\),
+all sums run over odd integers, and \(P\) is large. The four formal
+coordinates of \(a\) are written \(R_1,R_2,R_3,R_4\): \(X,Y,Z,U\) of
+Appendix C for \(OOOEE\), and \(X,Y,W,U\) of Section 4.3, in that order,
+for \(OOEOE\). For a nonzero integer vector \(\nu=(i,j,k,l)\) put \[
+\phi_\nu(n)=\tfrac12\bigl(iR_1(n)+jR_2(n)+kR_3(n)+lR_4(n)\bigr),
+\qquad
+D_h(\nu)=\sum_{P<n\le2P}e\bigl(\phi_\nu(n+2h)-\phi_\nu(n)\bigr).
+\tag{D.1}
+\] Here \(k\) is the frequency of \(Z\) for \(OOOEE\), as in Theorem
+4.11, and of \(W\) for \(OOEOE\), as in Theorem 4.9, whose \(\ell\) is
+our \(l\); \(l\) is the frequency of \(U\) in both words. For \(OOEOE\)
+the coordinates are listed out of their order of iteration so that \(k\)
+and \(l\) keep these meanings. The coordinates are defined on
+\([P,3P]\), as in Section 4.3 and Appendix C, but \(D_h(\nu)\) always
+runs over the dyadic block \((P,2P]\). All estimates are uniform in
+\(\nu\) with \(\|\nu\|_\infty\le C\), for any fixed \(C\), and in the
+shifts \(1\le h<H_1=\lfloor P^{1/48}\rfloor\), the first-shift range of
+Appendix C.9.
+
+\subsection{D.1 The fibres}\label{d.1-the-fibres}
+
+Write \(\iota(b)=\lceil b^{2/3}\rceil\), so that
+\(\lfloor q^{3/2}\rfloor\ge b\) if and only if \(q\ge\iota(b)\). Along
+\(OOOEE\) the fifth iterate is \(\lfloor\lfloor Z\rfloor^{1/4}\rfloor\).
+Along \(OOEOE\) it is \(\lfloor\lfloor W\rfloor^{1/2}\rfloor\). Each is
+a composition of nondecreasing maps of \(n\). Put \[
+E_{OOOEE}(y)=\iota(\iota(\iota(y^4))),\qquad
+E_{OOEOE}(y)=\iota\bigl(\iota(\iota(y^2)^2)\bigr).
+\] Then the fifth iterate along \(a\) equals \(y\) exactly on
+\(\mathcal I_a(y)=[E_a(y),E_a(y+1))\), and \(\mathcal F_a(y)\) is the
+set of odd members of \(\mathcal I_a(y)\) with
+\(\operatorname{word}_5(n)=a\).
+
+The ceilings propagate as follows. For \(b\ge1\) and \(e\ge0\),
+concavity gives \[
+(b+e)^{2/3}\le b^{2/3}+\tfrac23b^{-1/3}e\le b^{2/3}+e,
+\] and each ceiling adds less than \(1\). For \(OOOEE\) the weaker form
+suffices: after the three ceilings the errors are below \(1\), \(2\) and
+\(3\). For \(OOEOE\), the square of \(\iota(y^2)<y^{4/3}+1\) exceeds
+\(y^{8/3}\) by less than \(2y^{4/3}+1\). The factor \(b^{-1/3}\) of the
+next power \(2/3\) reduces this excess to \(\tfrac43y^{4/9}+O(1)\), and
+the last power reduces it to \(O(1)\). For \(y\ge1\) this gives \[
+y^{32/27}\le E_a(y)\le y^{32/27}+4,\qquad
+\Bigl|H_a(y)-\tfrac{16}{27}y^{5/27}\Bigr|\le4,
+\tag{D.2}
+\] and every \(n\in\mathcal I_a(y)\) satisfies
+\(y^{32/27}\le n\le y^{32/27}+\tfrac{32}{27}y^{5/27}+6\). For \(OOOEE\)
+the endpoint constant is \(3\).
+
+\subsection{D.2 Square waves}\label{d.2-square-waves}
+
+By Lemma 2.2, \(\lfloor R\rfloor\) is odd exactly when
+\(\{R/2\}\in[1/2,1)\). So for odd \(n\), the indicator of
+\(\operatorname{word}_5(n)=a\) is a product
+\(\prod_{t=1}^4\chi_t(R_t(n)/2)\) of indicators of half arcs of the
+circle. For a degree \(K\), Vaaler's trigonometric polynomials
+\(\chi_t^\pm\) satisfy \(\chi_t^-\le\chi_t\le\chi_t^+\) everywhere, and
+\(\gamma_t=\chi_t^+-\chi_t^-\ge0\) has mean \(2/(K+1)\). Their
+coefficients are bounded, and \(\sup|\chi_t^+|\le A\) for an absolute
+constant \(A\ge1\). Telescoping gives
+\(|\prod\chi_t-\prod\chi_t^+|\le A^3\sum_t\gamma_t\). The constant
+coefficient of \(\prod\chi_t^+\) is \(1/16+O(1/K)\). Hence, for any set
+\(Q\) of consecutive odd integers, with
+\(S_\nu(Q)=\sum_{n\in Q}e(\phi_\nu(n))\), \[
+\Bigl|\#\{n\in Q:\operatorname{word}_5(n)=a\}-\tfrac{\#Q}{16}\Bigr|
+\le\frac{C_0\,\#Q}{K}+C_1\sum_{0<\|\nu\|_\infty\le K}|S_\nu(Q)|,
+\tag{D.3}
+\] where \(C_0\) and \(C_1\) are absolute constants. The sum includes
+the vectors with a single nonzero coordinate that come from the
+\(\gamma_t\). We fix \(K=\lceil40C_0/\eta\rceil\).
+
+\needspace{8\baselineskip}
+
+\subsection{D.3 Sub-block averaging}\label{d.3-sub-block-averaging}
+
+\textbf{Lemma D.3 (bad blocks in a poor fibre).} Let a finite union of
+blocks \(Q\) of \(L\) consecutive odd integers carry deviations
+\(\mathrm{dev}(Q)\) with \(|\mathrm{dev}(Q)|\le L\), let their total
+size be at most \(H\), and let the whole set, together with a remainder
+\(p\), have deviation \(|\sum_Q\mathrm{dev}(Q)+p|\ge\eta H\), where
+\(|p|\le\eta H/5\). Then the blocks with
+\(|\mathrm{dev}(Q)|\ge(\eta/2)L\) have total size at least
+\(\tfrac3{10}\eta H\).
+
+\emph{Proof.} The block deviations sum in absolute value to at least
+\(\tfrac45\eta H\). If \(b\) blocks are bad, that sum is at most
+\(bL+\tfrac12\eta H\). Hence \(bL\ge\tfrac3{10}\eta H\). \(\square\)
+
+Call a block \(Q\) of \(L\) odd integers bad if
+\(|\#\{n\in Q:\operatorname{word}_5(n)=a\}-L/16|\ge(\eta/2)L\). The
+blocks used below are those of the single tiling fixed in Appendix D.4.
+A window \(\mathcal I_a(y)\) with \(y\in\Pi_\eta(a)\) is cut into the
+blocks of that tiling that lie inside it, where \(L\le\eta\min H_a/10\),
+and at most two partial pieces, each with fewer than \(L\) odd integers.
+The partial pieces make up the remainder \(p\). By Lemma D.3 at least
+\(\tfrac3{10}\eta H_a(y)/L\) of its blocks are bad. A single bad block
+would not suffice for what follows; a positive proportion of bad blocks
+is what lets the shifts stay small.
+
+\subsection{D.4 The second moment}\label{d.4-the-second-moment}
+
+Let \(1\le L\le H_1\). By (D.2), every window whose left end lies in
+\((P,2P]\) lies in \((P,2P+c_2P^{5/32}]\), for an absolute constant
+\(c_2\). Let \(\mathcal R\) be the set of odd integers in that interval.
+Tile all odd integers into blocks of \(L\) consecutive ones, starting at
+an offset \(t\in[0,L)\), and restrict the tiling to \(\mathcal R\). A
+pair \(n,n+2h\) with \(1\le h<L\) lies in one block for exactly \(L-h\)
+of the \(L\) offsets. Hence \[
+\frac1L\sum_{t<L}\sum_Q|S_\nu(Q)|^2
+=\#\mathcal R+2\,\mathrm{Re}\sum_{1\le h<L}\Bigl(1-\frac hL\Bigr)
+\sum_{n,\,n+2h\in\mathcal R}e\bigl(\phi_\nu(n+2h)-\phi_\nu(n)\bigr).
+\] For \(P<n\le2P\) the point \(n+2h\) lies in \(\mathcal R\), so each
+inner sum differs from \(D_h(\nu)\) by fewer than \(c_2P^{5/32}\) terms,
+those with \(n>2P\). Since \(LP^{5/32}\le P\), \[
+\frac1L\sum_{t<L}\sum_Q|S_\nu(Q)|^2
+\ll P+\sum_{1\le h<L}|D_h(\nu)|.
+\tag{D.4}
+\] Choose one offset \(t\) for which the sum over the finitely many
+\(\nu\) of (D.3) of \(\sum_Q|S_\nu(Q)|^2\) is at most its average over
+\(t\). By (D.3) with \(C_0L/K\le\eta L/40\), a bad block has
+\(|S_\nu(Q)|\ge c_\eta L\) for some \(\nu\) with
+\(0<\|\nu\|_\infty\le K\), where \(c_\eta>0\) depends only on \(\eta\).
+Chebyshev's inequality then bounds the number of bad blocks of this
+tiling by \[
+\ll_\eta\frac1{L^2}\Bigl(P+\max_{\nu}\sum_{1\le h<L}|D_h(\nu)|\Bigr).
+\tag{D.5}
+\] Only shifts \(h<L\) enter. This is why the shifts can stay far below
+the window length.
+
+\needspace{8\baselineskip}
+
+\subsection{D.5 The differenced sums of
+OOOEE}\label{d.5-the-differenced-sums-of-oooee}
+
+\textbf{Proposition D.5.} For \(a=OOOEE\), every bounded nonzero \(\nu\)
+and every \(1\le h<H_1\),
+\(|D_h(\nu)|\ll_{C,\varepsilon}P^{63/64+\varepsilon}\).
+
+\emph{Proof.} If \(k\ne0\), \(D_h(\nu)\) is the first correlation
+\(T_1(h)\) of Appendix C.9 up to the replacement (C.6). That replacement
+is a per-point cost, so it applies at both endpoints. C.9 gives
+\(T_1(h)\ll P^{63/64+\varepsilon}\) for \(h<H_1\). If \(k=0\),
+(C.4)--(C.6) reduce the phase to \(iX/2+jY/2+lm^{9/8}/2\).
+
+\begin{itemize}
+\tightlist
+\item
+  If \(j\ne0\), C.2 bounds this correlation by \(P^{7/8}(1+\sqrt h)\),
+  since \(h\le P^{1/12}\).
+\item
+  If \(j=l=0\), then \(i\ne0\). The phase \((i/2)\Delta_{2h}X\) has a
+  monotone derivative of size about \(hP^{-1/2}\), below \(1/4\) on the
+  odd lattice, and the Kusmin--Landau inequality gives
+  \(O(P^{1/2}/h+1)\).
+\item
+  The case \(j=0\), \(l\ne0\) is Lemma D.6. \(\square\)
+\end{itemize}
+
+\needspace{8\baselineskip}
+
+\subsection{D.6 The diagonal of the fifth
+coordinate}\label{d.6-the-diagonal-of-the-fifth-coordinate}
+
+\textbf{Lemma D.6.} Let \(a=OOOEE\) and \(j=k=0\neq l\), with \(i\) and
+\(l\) bounded, and \(1\le h<H_1\). Then
+\(|D_h(\nu)|\ll P^{15/16}\log P\), where the phase is taken after the
+replacement (C.6), whose cost \(O(|l|P^{7/16})\) is charged at each
+endpoint.
+
+\emph{Proof.} Put \(\theta=\{X\}\), \(B(x)=\tfrac{9l}{16}x^{3/16}\) and
+\(N_B=\lfloor B\rfloor\). By (C.8), at each endpoint \[
+\tfrac l2m^{9/8}=\tfrac l2n^{27/16}-B\theta+O(|l|P^{-21/16}).
+\] Lemma 4.7 at cutoff \(T=\lfloor P^{1/16}\rfloor\) gives
+\(e(\phi(n))=\sum_{|r|\le T}a_r(\beta)e(f_r(n))+O(E_T(X(n))+P^{-21/16})\),
+where \(f_r=\tfrac l2x^{27/16}+(\tfrac i2+r-N_B)X\). The truncated
+series is uniformly bounded by (4.13). So the product of the expansions
+at \(n+2h\) and \(n\) has error \(O(E_T(X(n))+E_T(X(n+2h)))\), and
+(4.3), applied inside \([P,3P]\), bounds its sum by \(P^{15/16}\log P\).
+
+Put \(N_1=N_B(x+2h)\) and \(N_2=N_B(x)\). Since \(B(x+2h)-B(x)=o(1)\)
+with the sign of \(l\), we have
+\(N_1-N_2\in\{0,\operatorname{sign}l\}\). Both \(N_1\) and \(N_2\) are
+constant on each of the \(O(1+P^{3/16})\) intervals of a common
+partition, and on each such interval both residuals \(\beta\) are
+monotone. By (4.13) the product weight
+\(a_r(\beta(n+2h))\overline{a_{r'}(\beta(n))}\) has supremum plus
+variation \(O(1/((1+|r|)(1+|r'|)))\).
+
+The pair \((r,r')\) has phase
+\(F=\tfrac l2\Delta_{2h}(x^{27/16})+c_1X(x+2h)-c_2X(x)\), where
+\(c_1=\tfrac i2+r-N_1\) and \(c_2=\tfrac i2+r'-N_2\). Their difference
+\(\omega=c_1-c_2\) is an integer, and \[
+F''=\omega X''(x+2h)+c_2\bigl(X''(x+2h)-X''(x)\bigr)
++\tfrac l2\Delta_{2h}\bigl((x^{27/16})''\bigr).
+\] If \(\omega\ne0\), the first term has size about \(|\omega|P^{-1/2}\)
+and the others are \(O(hP^{-21/16})\), because \(|c_2|\ll P^{3/16}\).
+The second-derivative estimate on each interval, summed with the
+weights, gives \(O(T^{1/2}P^{3/4}\log T+P^{7/16}\log^2T)\).
+
+If \(\omega=0\), then
+\(F''=\Delta_{2h}((l/2)(x^{27/16})'')+c\,\Delta_{2h}X''\) with \(c\)
+frozen. Writing \(N_1=B(x)+O(1)\), the leading part is \[
+F''=\tfrac{243}{4096}\,l\,h\,x^{-21/16}
+\Bigl(1+O\bigl((1+T)P^{-3/16}\bigr)\Bigr),
+\tag{D.6}
+\] from
+\(2h\bigl[\tfrac12\cdot\tfrac{27}{16}\cdot\tfrac{11}{16}\cdot(-\tfrac5{16})
++\tfrac9{16}\cdot\tfrac38\bigr]=\tfrac{243}{4096}h\). It is one-signed,
+and its size is comparable to \(hP^{-21/16}\) across the block. The
+estimate gives \(h^{1/2}P^{11/32}+(1+P^{3/16})h^{-1/2}P^{21/32}\ll
+P^{27/32}\), and the diagonal weights sum to \(O(1)\). \(\square\)
+
+With the cutoff \(T=\lfloor P^{1/8}\rfloor\) the same proof gives
+\(P^{7/8}\log P\), but (D.6) is then certified to keep its sign only
+from much larger \(P\) (Appendix D.8). The cutoff \(P^{1/16}\) costs
+nothing here, because Proposition D.5 is limited by Appendix C.9.
+
+\needspace{8\baselineskip}
+
+\subsection{D.7 The differenced sums of
+OOEOE}\label{d.7-the-differenced-sums-of-ooeoe}
+
+\textbf{Proposition D.7.} For \(a=OOEOE\), every bounded nonzero \(\nu\)
+and every \(1\le h<H_1\), \(|D_h(\nu)|\ll_C P^{15/16}\log^2P\).
+
+\emph{Proof.} Theorem 4.9 centers the coefficient of \(\{U\}\) at its
+floor on intervals of length \(P^{7/16}\). For the differenced sum at
+\(j=0\) that fails. A pair of modes \((r,r')\) with \(r\ne r'\) keeps a
+phase \((r-r')x^{9/8}\), whose curvature is about \(P^{-7/8}\), and on
+an interval of length \(P^{7/16}\) the second-derivative test then saves
+nothing. We keep the coefficient smooth and treat the gap of
+\(\lfloor U\rfloor\) as a carry, as Lemma 4.4 treats the gap of
+\(\lfloor X\rfloor\).
+
+By (4.18), \(\tfrac k2W=\tfrac k2n^{27/16}-C\theta-B\xi+O(P^{-9/16})\),
+where \(\xi=\{U\}\), and \(B=\tfrac{3k}4x^{9/16}\) and
+\(C=\tfrac{9k}{16}x^{3/16}\) are the coefficients \(B(x)\) and \(C(x)\)
+of the proof of Theorem 4.9. Replacing \(B(n+2h)\) by \(B(n)\) costs
+\(khP^{-7/16}\) per point. The two \(\xi\)-terms then combine to
+\(-B(n)(\Delta_{2h}U-g)\), where
+\(g=\lfloor U(n+2h)\rfloor-\lfloor U(n)\rfloor\).
+
+Write \(\Delta_{2h}U=V+\zeta_\theta\), with \(V=\Delta_{2h}(x^{9/8})\)
+and
+\(\zeta_\theta=-\tfrac34[\theta(n+2h)(n+2h)^{-3/8}-\theta(n)n^{-3/8}]
++O(P^{-9/8})\). Because \(\tfrac34Bx^{-3/8}=C\), the term
+\(-B\zeta_\theta\) cancels the two \(C\theta\) terms up to
+\(O(khP^{-13/16})\) per point. This is (4.19) at each endpoint.
+
+Put \(G=\lfloor V\rfloor\) and \(z=V-G\), which is monotone on each of
+the \(O(1+hP^{1/8})\) intervals where \(G\) is constant. Then
+\(g=G+\kappa\) with \(\kappa=\mathbf 1[\{U(n)\}\ge1-z]\), except where
+\(\|U(n+2h)\|\ll P^{-3/8}\). By (4.17) on the shifted block, that
+happens at \(O(P^{7/8})\) points. The analogue of (4.8) writes the
+exponential exactly as \((1-z)e(F_{G,0})+ze(F_{G,1})\) plus sawtooth
+terms \(b(U(n))-b(U(n)+z)\), where
+\(F_{G,\epsilon}=\tfrac k2\Delta_{2h}(x^{27/16})-B(V-G-\epsilon)
++\tfrac i2\Delta_{2h}X+\tfrac l2V\) plus the \(Y\)-part. Lemma 4.3 at
+cutoff \(R_U\) expands the sawtooth terms into modes \(e(sU(n))\) and
+\(e(s(U(n)+V))\) with weights \(1/|s|\). Since
+\(R_U|\zeta_\theta|\le1\), we have \(E_R(U(n)+z)\le2E_R(U(n+2h))\), so
+(4.17) bounds the total error by \(P\log R_U/R_U+P^{7/8}\).
+
+\emph{The case \(j=0\).} The leading terms of
+\(\tfrac k2\Delta_{2h}(x^{27/16})\) and \(BV\) are both
+\(\tfrac{27}{16}khx^{11/16}\), and they cancel. With \(G+\epsilon\)
+frozen, \[
+F_{G,\epsilon}''=-\tfrac{1701}{4096}\,k\,h\,x^{-21/16}
+\bigl(1+O(P^{-1/8})\bigr).
+\tag{D.7}
+\] A carry mode adds curvature about \(sP^{-7/8}\), which dominates. At
+\(R_U=P^{1/8}\), the second-derivative estimate with the monotone
+weights \(z\) and \(1-z\) gives \(P^{11/32}h^{1/2}+P^{25/32}h^{1/2}\)
+for the zero modes and \(R_U^{1/2}P^{9/16}+hP^{9/16}\) for the carry
+modes. The remaining costs are:
+
+\begin{itemize}
+\tightlist
+\item
+  the truncation, \(P^{7/8}\log P\);
+\item
+  the mismatches, \(P^{7/8}\);
+\item
+  the \(\theta\)-noise in the modes, \(R_UP^{5/8}\);
+\item
+  the \(l\)-noise, \(P^{5/8}\);
+\item
+  the replacements, \(khP^{9/16}\), \(khP^{3/16}\) and \(kP^{7/16}\).
+\end{itemize}
+
+\emph{The case \(j\ne0\).} Combine the exact interpolation of Lemma 4.4
+for the gap of \(\lfloor X\rfloor\) with the one above for
+\(\lfloor U\rfloor\). Their product is exact, and products of monotone
+weights have bounded variation on the common cells.
+
+\begin{itemize}
+\tightlist
+\item
+  The zero mode keeps Lemma 4.4's curvature \(uhP^{-3/4}\). The
+  \(U\)-part changes it by relative \(O(P^{-9/16})\).
+\item
+  A \(U\)-mode \(s\le R_U=P^{1/16}\) adds \(sP^{-7/8}\), relative at
+  most \(P^{-1/16}\).
+\item
+  An \(X\)-mode dominates everything by Lemma 4.4's ratio \(P^{-1/8}\).
+\end{itemize}
+
+This is Lemma 4.4's proof with one more carry, valid for
+\(h\le P^{1/12}\). It gives \(P^{7/8}(1+h^{1/2})+hP^{3/4}+P^{5/6}\), and
+the \(U\)-truncation adds \(P^{15/16}\log P\).
+
+\emph{The case \(k=0\).} If \(j\ne0\), after the \(l\)-noise the phase
+is that of Lemma 4.4 with its \(k\) equal to \(l\), because
+\(V=\Delta_{2h}(x^{9/8})\). If \(j=0\), the phase is
+\((i/2)\Delta_{2h}X+(l/2)V\) plus the noise. Its derivative is monotone,
+of size about \(hP^{-1/2}\) or \(hP^{-7/8}\), and Kusmin--Landau gives
+\(O(P^{7/8}/h)\). \(\square\)
+
+\subsection{D.8 Proof of Theorem 6.3, and what has been
+checked}\label{d.8-proof-of-theorem-6.3-and-what-has-been-checked}
+
+Take \(L=H_1=\lfloor P^{1/48}\rfloor\) odd integers per block. This is
+the first-shift range of Appendix C.9, on which Proposition D.5 is
+available. By (D.2) it is below \(\eta\min H_a/10\) for large \(P\).
+Propositions D.5 and D.7 bound \(|D_h(\nu)|\) by \(P^{1-\sigma}\) for
+\(1\le h<L\), with \(\sigma=\tfrac1{64}-\varepsilon\) for \(OOOEE\) and
+\(\sigma=\tfrac1{16}-\varepsilon\) for \(OOEOE\). By (D.5) the bad
+blocks of the tiling fixed in Appendix D.4 number
+\(\ll P/L^2+P^{1-\sigma}/L\).
+
+Assign each target to the dyadic block containing the left end of its
+window. By (D.2) the window then lies in \(\mathcal R\), the range tiled
+in Appendix D.4. Windows are disjoint, and by Lemma D.3 a window of a
+target in \(\Pi_\eta(a)\) contains at least \(\tfrac3{10}\eta H_a/L\)
+bad blocks. So these targets number \[
+\ll_\eta\frac P{H_a}\bigl(L^{-1}+P^{-\sigma}\bigr)
+\ll P^{27/32}\,P^{-\min(1/48,\sigma)}.
+\] The targets themselves have size about \(P^{27/32}\), and about
+\(P^{27/32}\) of them have windows beginning in \((P,2P]\). This is the
+dyadic form stated after Theorem 6.3. For \(OOEOE\) its exponent is set
+by \(L\), since \(\min(1/48,1/16-\varepsilon)=1/48\). Summing \(1/y\)
+over the dyadic blocks with \(P\gg y_0^{32/27}\) gives (6.1) with
+exponents \(\tfrac{32}{27}(\tfrac1{64}-\varepsilon)>\tfrac1{55}\) and
+\(\tfrac{32}{27}\cdot\tfrac1{48}=\tfrac2{81}>\tfrac1{41}\). The finitely
+many small targets, including those with \(H_a(y)=0\), are absorbed in
+the implied constant. \(\square\)
+
+\textbf{What is machine-checked.} The following are kernel-checked in
+Lean 4, with no axiom beyond \texttt{propext}, \texttt{Classical.choice}
+and \texttt{Quot.sound}:
+
+\begin{itemize}
+\tightlist
+\item
+  Lemma D.3, as \texttt{SubBlockAveraging.poor\_fibre\_bad\_blocks};
+\item
+  the fibre geometry (D.2) and the identification of \(\mathcal F_a(y)\)
+  with the actual fibres, in \texttt{DepthFiveFibreGeometry}.
+\end{itemize}
+
+Their audits are the two files
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{formal/AxiomCheckSubBlockAveraging.lean};
+\item
+  \texttt{formal/AxiomCheckDepthFiveWeighted.lean}.
+\end{itemize}
+
+The second also audits \texttt{FateDepthFiveWeighted}. That module
+derives, from the finiteness of the reciprocal sums in (6.1) at
+\(\eta=1/1000\), the two depth-five production inequalities, at
+coefficient \(1/28\), of a conditional contagion assembly in the
+laboratory's Lean library. No published companion text uses these
+productions; the companion notes on fate contagion still record them as
+unavailable. The square-wave, second-moment and counting steps of D.2,
+D.4 and D.8 are not formalized.
+
+Numerical checks, none of them a proof of cancellation:
+
+\begin{itemize}
+\tightlist
+\item
+  The constants of (D.6) and (D.7) were derived exactly with SymPy.
+\item
+  With every charged correction included, Arb interval arithmetic
+  certifies the sign of (D.7) for \(x\ge10^8\), and of (D.6) for
+  \(x\ge10^{11}\) at the cutoff \(P^{1/16}\), for frequency bound \(1\)
+  and shifts \(h\le x^{1/48}\). For frequency bound \(100\) the
+  thresholds are \(10^{11}\) and \(10^{16}\). At the cutoff \(P^{1/8}\),
+  (D.6) is certified only from \(10^{18}\). The proof uses frequencies
+  up to \(K\), which grows as \(\eta\) decreases; for them the sign is
+  known only asymptotically, so these checks do not bound the effective
+  range of Theorem 6.3.
+\item
+  An exact-fraction ledger checks every listed cost against its claimed
+  bound.
+\item
+  A pointwise evaluation on the actual nested-floor coordinates, at
+  \(P=10^8\) and \(10^{10}\), matches the \(j=0\) carry decomposition of
+  Proposition D.7 within its charged error orders, for three frequency
+  vectors and shifts \(1\), \(30\) and \(300\). It does not test the
+  cases \(j\ne0\) or \(k=0\).
+\end{itemize}
+
+The exponential-sum estimates of this appendix are not formalized. Lemma
+D.6 and Proposition D.7 have each had two independent AI adversarial
+passes, and the averaging and counting steps one. A further AI review of
+this appendix's text found no failing step. It found two gaps, the range
+of the second moment and the frequency labels of \(OOEOE\), both
+repaired in this version. Independent mathematical review is
+outstanding.
+
 \needspace{12\baselineskip}
 
 \section{Acknowledgments and AI
@@ -3088,13 +3587,14 @@ are not authors.
 
 \section{Availability and version}\label{availability-and-version}
 
-This is version 1.1.2 of Paper B, of 23 September 2026. This revision
-clarifies Section 6's conjectural limiting-profile discussion, its
-public prior-art comparison, and three formula corrections in that
-discussion. It retains the corrected Terras attribution and arXiv
-reference {[}13{]}. The numbered results and their proofs are unchanged.
-It is a preprint, it has not been refereed, and it is not deposited. The
-current Zenodo version is 1.0.0
+This is version 1.2.0 of Paper B, of 24 September 2026. It adds Section
+6.1 and Appendix D: Theorem 6.3, the fair share on almost every
+depth-five fibre, with its proof. The earlier numbered results and their
+proofs are unchanged. Version 1.1.2 clarified Section 6's conjectural
+limiting-profile discussion, and this version retains that, the
+corrected Terras attribution and arXiv reference {[}13{]}. It is a
+preprint, it has not been refereed, and it is not deposited. The current
+Zenodo version is 1.0.0
 (\href{https://doi.org/10.5281/zenodo.22864934}{doi:10.5281/zenodo.22864934}),
 published 21 September 2026 from the edition of 20 September 2026. The
 concept DOI

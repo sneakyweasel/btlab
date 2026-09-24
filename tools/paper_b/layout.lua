@@ -15,7 +15,13 @@ function Pandoc(doc)
     if block.t == 'Para' and block.content[1] and block.content[1].t == 'Strong' then
       local label = pandoc.utils.stringify(block.content[1])
       if label:match('^Theorem') or label:match('^Proposition') or label:match('^Corollary') or label:match('^Lemma') or label:match('^Hypothesis') then
-        blocks:insert(pandoc.RawBlock('latex', '\\needspace{5\\baselineskip}'))
+        -- A statement that opens a section keeps its heading: a \needspace placed
+        -- between the two breaks the page after the heading and strands it there.
+        if #blocks > 0 and blocks[#blocks].t == 'Header' then
+          blocks:insert(#blocks, pandoc.RawBlock('latex', '\\needspace{8\\baselineskip}'))
+        else
+          blocks:insert(pandoc.RawBlock('latex', '\\needspace{5\\baselineskip}'))
+        end
       end
     end
     blocks:insert(block)

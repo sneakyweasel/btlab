@@ -2,6 +2,12 @@
 
 10 September 2026. Version 2026-09-10-proof-audit.
 
+**Release note, 24 September 2026:** version 1.2.0 adds Section 6.1 and
+Appendix D, Theorem 6.3 with its proof. This audit does not cover them;
+their AI audit record and machine checks are listed in Appendix D.8 of
+the manuscript. The earlier numbered results and their proofs are
+unchanged, and the audit below remains their recorded evidence.
+
 **Release note, 23 September 2026:** this historical analytic audit remains
 the evidence recorded below; it is not an independent review of version
 1.1.2. The current revision leaves every numbered result and its proof

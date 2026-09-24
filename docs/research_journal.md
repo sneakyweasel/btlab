@@ -11,6 +11,18 @@ consolidation is at `e9725762eaf028d1ace354ff20e0fc48f1a3d143`. See
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-24 -- Paper B 1.2.0 prepared with the depth-five fair-share theorem
+
+**EXACT — HUMAN PROOF (AI-written, AI-audited, not human-reviewed):** Paper B's
+Theorem 6.3 states that, for `OOOEE` and `OOEOE`, the targets whose fibre misses
+the share `1/16` by `eta` have reciprocal sums `O(y_0^(-1/55))` and
+`O(y_0^(-1/41))` beyond `y_0`. Appendix D writes the proof, dossier Lemmas
+E5-E9. An AI review of the new text found two gaps and two overstatements, all
+repaired, and every Paper B release gate passes. Remaining premise: human review
+of Appendix D. Decision: prepared, not deposited; Paper C's `0.74` update waits
+for that review. Record: [depth-five dossier](problems/juggler_depth_five_production.md),
+Result 36, and the [deposit record](theory/paper_deposits.md).
+
 ## 2026-09-24 -- Beatty cluster sets have dimension 2/3 for almost every slope
 
 **EXACT — LEAN VERIFIED** for the whole irrational family: every cluster set
@@ -258,15 +270,3 @@ families cannot supply divergence; arbitrary switching remains unbounded.
 The next signed-word target is a depth-averaged lower count for varying
 actual words at a fixed integer. Juggler pressure and termination remain
 open. See the [dossier](problems/collatz_fibre_word_tail.md).
-
-## 2026-09-23 -- Near-critical periodic weights already require the global cell rate
-
-Lean now transports any nonzero subsolution coordinate to a global
-geometric lower bound at the same rate, with cost 3/2^(2*3^r) and one
-depth shift. Therefore nonzero periodic tables at rates tending to one
-already imply uniform subexponential cell lower decay. **CLOSE** treating
-the capped family as an easier local shortcut; its root-prefactor bound
-is additional. This downgrades the proposed 1-1/r scale, without refuting
-it. The next target is a direct actual-word lower count at one ordinary
-integer. No coefficient divergence or Juggler input follows. See the
-[dossier](problems/collatz_fibre_rate_barrier.md).

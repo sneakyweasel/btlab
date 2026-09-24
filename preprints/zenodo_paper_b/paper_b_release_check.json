@@ -1,35 +1,35 @@
 {
   "status": "PASS",
-  "scope": "Local version 1.1.2: reproducible preprint publication files, finite controls and rendered layout. No independent mathematical certification.",
+  "scope": "Local version 1.2.0: reproducible preprint publication files, finite controls and rendered layout. No independent mathematical certification.",
   "title": "Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers",
-  "version": "1.1.2",
-  "source_edition": "2026-09-23-preprint",
-  "changes": "Clarify the conjectural and conditional status of the Section 6 limiting profile; remove a broad priority claim while retaining public attribution; correct the logarithm of the tail factor, the Fourier coefficient of log(psi), and the log(r) term in the ladder-profile Fourier denominator. Numbered results and their proofs are unchanged.",
+  "version": "1.2.0",
+  "source_edition": "2026-09-24-preprint",
+  "changes": "Add Section 6.1 and Appendix D: Theorem 6.3, the fair share on almost every depth-five target fibre of OOOEE and OOEOE, with its AI-assisted written proof, its Lean-checked combinatorial steps and its numerical controls. Update the abstract, the reading order, the status table and the version section. Keep a heading with a statement that opens its section in the layout filter. Extend the validator's equation-reference check to Appendix D. The earlier numbered results and their proofs are unchanged.",
   "publication_pdf": "Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf",
-  "pdf_pages": 45,
-  "pdf_bytes": 298056,
-  "pdf_sha256": "9701a815c6082069633401c17ac2036881c8a6b7d4efd4fa3247f768d3b6030d",
-  "source_sha256": "a695439420a6d2ca01390ce30ed391b10135cc482fbdd0f096dbe39c99412e8a",
-  "tex_sha256": "1f5cee1e45b53800002f772c7c0bb32aa1269e9ab4563c7558abde28c4726992",
-  "source_zip_sha256": "ca0cf03bb83d2d1521b5986f0a8a039aa633bd14eac8cb4fe85ac1e668318b9e",
+  "pdf_pages": 50,
+  "pdf_bytes": 335234,
+  "pdf_sha256": "e747a699ea5fbf76714cbc904afcea8fa8744c731b495af43fff57c5268dd93b",
+  "source_sha256": "3a6a5da04d9c9d1514c0815970803d6e1ffcf42426683ceda151a52e98d6d4d7",
+  "tex_sha256": "ef74905d30df87189eea194d0ba29e9a3ef7b0e39c13a60291362105157a1bd6",
+  "source_zip_sha256": "30676f0c22500e6cd4c444aeef21990d1ec4229a0b2635896ed2bf2e2965d23c",
   "digest_convention": "Text: normalized LF. PDF and ZIP: raw bytes.",
-  "mathematical_body_sha256": "8b6b4066d4d5c08ccf0bf199fb88288e9e908efd0644c4726c8201099f31d04c",
-  "written_result": "Theorem 5.4: five-step certificate count 7N/8 + O_epsilon(N^(127/128+epsilon)).",
+  "mathematical_body_sha256": "11d2aad9495305d027a1ea674a2c6cf27a074f4d130d05038287508e9397e6cd",
+  "written_result": "Theorem 5.4: five-step certificate count 7N/8 + O_epsilon(N^(127/128+epsilon)). Theorem 6.3, added in 1.2.0: beyond Y, the targets whose OOOEE or OOEOE fibre misses the share 1/16 by eta have reciprocal sums O_eta(Y^(-1/55)) and O_eta(Y^(-1/41)).",
   "exact_control_modules": 9,
-  "equation_tags": 93,
-  "appendix_equation_references": 78,
-  "standalone_source_rebuild": "PASS: extracted source rebuilt with its own builder; generated LaTeX and PDF are byte-identical to the delivered files.",
+  "equation_tags": 101,
+  "appendix_equation_references": 99,
+  "standalone_source_rebuild": "PASS: extracted source rebuilt with its own builder; generated LaTeX, PDF and build manifest are byte-identical to the delivered files.",
   "standalone_controls": "PASS: all nine exact-control modules rerun in the extracted source; report matches the canonical report.",
   "symbolic_derivation": "PASS: symbolic derivation rerun in the extracted source; report matches the canonical report.",
   "formula_correction_checks": {
     "tail_factor": "PASS: the positive tail factor equals rho at the stated critical r; its logarithm equals log(rho).",
     "ladder_fourier": "PASS: independent midpoint quadrature with 100000 samples for modes 0, 1, -1, 3 and 15 agrees with the corrected coefficients, maximum absolute error 3.24662588712783e-10. The repository ladder_fourier implementation already includes this logarithm.",
-    "scope": "Checks the elementary formula corrections only; does not establish a limiting profile or justify the proposed limit interchanges."
+    "scope": "Checks the elementary formula corrections of 1.1.2 only; those formulas are unchanged in 1.2.0. Does not establish a limiting profile or justify the proposed limit interchanges."
   },
   "source_archive_members": 26,
   "source_archive_scope": "Explicit public-source whitelist only. No private correspondence or private manuscript is cited, quoted or packaged.",
   "visual_review": {
-    "method": "All 45 pages rendered with Poppler and inspected in contact sheets; corrected-formula pages 18 and 19 and the availability page 43 inspected at full rendered size. The preprints migration rebuilt an identical PDF (verified by SHA-256 and byte comparison), so this layout review remains applicable.",
+    "method": "All 50 pages rendered with Poppler and inspected in contact sheets; Section 6.1 (page 20) and Appendix D (pages 44-49) inspected at full rendered size. The first 1.2.0 build left the heading of Appendix D.7 alone at the foot of page 46, because the layout filter placed its space request between a heading and the statement opening that section. The filter now places it before the heading; that moved page breaks on pages 14-20, 25-26 and 45-47, which were re-inspected, and a scan of every page finds no heading as its last text line.",
     "agent_layout_review": "PASS",
     "human_review": "Outstanding for the local revision."
   },
@@ -74,5 +74,7 @@
     "scope": "Rename publication root to preprints, remove source mirrors, and refresh current archives and provenance. Mathematical claims are unchanged.",
     "standalone_rebuild": "PASS: extracted source archive rebuilt independently; PDF bytes and normalized LaTeX match the delivered files.",
     "changed_pdf_text_pages": []
-  }
+  },
+  "appendix_equation_reference_scope": "References of the form (A.n) through (D.n), each required to match a tag; Appendix D was added to the check in 1.2.0, so the count is not comparable with the 78 A-C references of 1.1.2.",
+  "appendix_d_review": "An AI review of Section 6.1 and Appendix D in four lenses returned 13 serious findings, 6 of them adversarially verified and none refuted, and 28 wording findings. Verified: the second moment tiled (P,3P] while D_h is summed over (P,2P]; the frequency labels of OOEOE disagreed with the proof; \"Equivalently\" overstated the relation between the dyadic and summed forms; and D.7 claimed that a companion paper uses the productions. All are repaired in this version, with the substantive wording findings. No step of the argument was found to fail. Independent mathematical review is outstanding."
 }

@@ -1,5 +1,5 @@
 GENERATED FROM docs/theory/; do not edit this export.
-Version 1.1.2 is prepared and is not deposited. The record exists: concept doi:10.5281/zenodo.22864933 resolves to the latest version, which is 1.0.0 at doi:10.5281/zenodo.22864934 of 2026-09-21. A new version goes up through the new-version operation of that record, which keeps the concept DOI.
+Version 1.2.0 is prepared and is not deposited. The record exists: concept doi:10.5281/zenodo.22864933 resolves to the latest version, which is 1.0.0 at doi:10.5281/zenodo.22864934 of 2026-09-21. A new version goes up through the new-version operation of that record, which keeps the concept DOI.
 
 TITLE
 Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers
@@ -13,7 +13,7 @@ RESOURCE TYPE
 Publication / Preprint
 
 VERSION
-1.1.2
+1.2.0
 
 LICENSE
 cc-by-4.0
@@ -34,7 +34,7 @@ exponential sums
 finite-step descent
 
 DESCRIPTION (HTML)
-<p>The Juggler map applies the integer part of the square root at even positive integers and of the three-halves power at odd positive integers. We prove that the starting values admitting a power-envelope descent certificate within five operations have natural density 7/8. More precisely, their count up to N is 7N/8+O_epsilon(N^(127/128+epsilon)) for every epsilon&gt;0. The four-step subfamily has density 13/16. The proof uses exact carry identities, centered Fourier expansions, and van der Corput differencing, with all floor exceptions and partition endpoints counted. The two five-letter classes OOEOE and OOOEE are treated through their distinct formal chains. For OOOEE, the full mixed phase is retained and its signed curvature is recomputed after each frequency center is frozen. The complete analytic argument is included in three appendices. Fair-share densities at every fixed depth would imply density-one finite certificates; that hypothesis, general decorated estimates, and short-interval localization remain open. No result asserts universal arrival at 1.</p>
+<p>The Juggler map applies the integer part of the square root at even positive integers and of the three-halves power at odd positive integers. We prove that the starting values admitting a power-envelope descent certificate within five operations have natural density 7/8. More precisely, their count up to N is 7N/8+O_epsilon(N^(127/128+epsilon)) for every epsilon&gt;0. The four-step subfamily has density 13/16. The proof uses exact carry identities, centered Fourier expansions, and van der Corput differencing, with all floor exceptions and partition endpoints counted. The two five-letter classes OOEOE and OOOEE are treated through their distinct formal chains. For OOOEE, the full mixed phase is retained and its signed curvature is recomputed after each frequency center is frozen. The complete analytic argument for this density is included in Appendices A-C. Fair-share densities at every fixed depth would imply density-one finite certificates; that hypothesis and general decorated estimates remain open. For the two five-letter words, the starts reaching a given fifth iterate lie in a window of about n^(5/32) integers near a start n; all but a power-saving proportion of these windows carry their fair share (Theorem 6.3). Localization to a prescribed short interval remains open. No result asserts universal arrival at 1.</p>
 
 RELATED WORKS
 isSupplementTo: https://github.com/sneakyweasel/btlab

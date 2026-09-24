@@ -2,14 +2,16 @@
 
 Parity Statistics of Nested Floor Powers.
 
-Version: 1.1.2; source edition: 23 September 2026. Author: Philippe Cochin.
+Version: 1.2.0; source edition: 24 September 2026. Author: Philippe Cochin.
 
 The manuscript proves full five-step power-envelope certificate
 density 7/8, with count error O_epsilon(N^(127/128+epsilon)).
 Theorem 4.11 and Appendices A-C contain the complete OOOEE proof;
 Theorem 5.4 gives the count. The four-step density 13/16 and OOEOE
-estimate remain included. The stronger historical 95/96 target,
-arbitrary decorations, localization, and all-depth hypotheses remain open.
+estimate remain included. Theorem 6.3 and Appendix D prove the fair
+share on almost every depth-five target fibre, by averaging. The stronger
+historical 95/96 target, arbitrary decorations, localization to a
+prescribed short interval, and all-depth hypotheses remain open.
 
 ## Deposit files
 
@@ -140,3 +142,17 @@ and the five-step density 7/8 are unchanged. No private correspondence
 or unpublished manuscript is cited, quoted, or included in the archives.
 The deposit instructions use the canonical metadata for the prepared
 version and distinguish the current package from the historical deposit.
+
+## Revision of 24 September 2026
+
+Version 1.2.0 adds Section 6.1 and Appendix D. Theorem 6.3 proves that,
+for the words OOOEE and OOEOE, all but a power-saving proportion of the
+depth-five target fibres, windows of about n^(5/32) starts, carry their
+fair share 1/16. It gives no bound for a prescribed short interval. The
+proof is an AI-assisted written argument; Appendix D.8 records its AI
+adversarial audits, the Lean modules that check Lemma D.3 and the fibre
+geometry, and the numerical controls. The 10 September proof audit does
+not cover the new material. The earlier numbered results, their proofs,
+and the five-step density 7/8 are unchanged. The release validator now
+also requires every cited (D.n) equation to exist. No deposit is
+performed.

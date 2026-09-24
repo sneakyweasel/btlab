@@ -4,12 +4,12 @@
   "transport": "MCP stdio via tools/arb_mcp.py",
   "scope": "Finite expression certificates and explicitly stated derived consequences; no new Lean proof or termination result.",
   "paper_source_sha256": {
-    "before": "a695439420a6d2ca01390ce30ed391b10135cc482fbdd0f096dbe39c99412e8a",
-    "after": "a695439420a6d2ca01390ce30ed391b10135cc482fbdd0f096dbe39c99412e8a"
+    "before": "3a6a5da04d9c9d1514c0815970803d6e1ffcf42426683ceda151a52e98d6d4d7",
+    "after": "3a6a5da04d9c9d1514c0815970803d6e1ffcf42426683ceda151a52e98d6d4d7"
   },
   "paper_unchanged_during_run": true,
   "input_source_sha256": {
-    "tools/check_papers_arb.py": "bafe29b4ab8987cbef3b4e56703433be1c69348dbd7c97474c87fee43817b387",
+    "tools/check_papers_arb.py": "1ddf156621f5cf0eaf93286c4499f724b34f0b89846c75b43d908d78f30eaf9c",
     "tools/arb_paper_audit_core/__init__.py": "60a13e62761a04350a519ddd376be7a977202f294fa7eb654e12db1c05ca9511",
     "tools/arb_paper_audit_core/beatty.py": "b85bd7f41f7c8e2cfebe75811444675ea3a274f83b8ecf7a6035cc26f07aedc5",
     "tools/arb_paper_audit_core/client.py": "797695762c4aec729c18819b67ea2f47e5905308e35a9e0d6d93e304d4c5a2b3",
@@ -20,7 +20,7 @@
     "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
     "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
     "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
-    "docs/theory/juggler_parity_discrepancy_note.md": "a695439420a6d2ca01390ce30ed391b10135cc482fbdd0f096dbe39c99412e8a"
+    "docs/theory/juggler_parity_discrepancy_note.md": "3a6a5da04d9c9d1514c0815970803d6e1ffcf42426683ceda151a52e98d6d4d7"
   },
   "summary": {
     "constants": {

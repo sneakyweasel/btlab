@@ -35,15 +35,18 @@ The OOOEE proof is complete within Theorem 4.11 and Appendices A-C.
 The 10 September proof audit adds the bounded signed-residual Fourier
 extension and verifies its variation hypotheses; it covers every section
 except the abstract and Sections 1, 5, 6 and 8, whose later paragraphs
-postdate it. The current revision clarifies the conjectural phase-profile
-discussion and its attribution, and corrects three formula errors there.
-The numbered results and their proofs are unchanged. Page-by-page
+postdate it. Version 1.1.2 clarified the conjectural phase-profile
+discussion and its attribution, and corrected three formula errors there.
+Version 1.2.0 adds Section 6.1 and Appendix D, Theorem 6.3: the fair share
+on almost every depth-five target fibre, with an AI-assisted proof that
+the 10 September audit does not cover. The earlier numbered results and
+their proofs are unchanged. Page-by-page
 comparisons recorded for earlier editions do not describe this PDF;
 paper_b_release_check.json records the current layout and file checks.
 See the
 [fresh proof audit](../../docs/theory/paper_b_proof_review.md).
 All-depth hypotheses, arbitrary decorated estimates, and localization
-remain open. AI assistance is disclosed; independent mathematical
+to a prescribed short interval remain open. AI assistance is disclosed; independent mathematical
 review and complete Lean verification remain outstanding.
 
 The delivery bundle `paper_b_zenodo_package.zip` contains the PDF, source

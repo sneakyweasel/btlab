@@ -1727,6 +1727,34 @@ With this pass, the steps a human reviewer must still read reduce to three:
 - the completeness of each cost list, which two AI passes and the ledger now
   agree on.
 
+**36. Paper B 1.2.0 prepared: Theorem 6.3 and Appendix D (24 September 2026; not
+deposited).** Paper B now states the restated poor tails E6' and E8' as Theorem
+6.3, averaged localization on depth-five fibres, and writes their proof as
+Appendix D: Lemma D.3 is E9's core, Proposition D.5 is Appendix C.9 and C.2 with
+Lemma D.6, which is E5's `j = 0` case, and Proposition D.7 is E7. A four-lens AI
+review of the new text returned 13 serious findings, 6 of them adversarially
+verified and none refuted, and 28 wording findings. The verified findings, all
+repaired before the build:
+
+- the second moment tiled `(P, 3P]` while `D_h` is summed over `(P, 2P]`. The
+  tiling now covers `(P, 2P + c P^(5/32)]`, and the extra `O(P^(5/32))` points
+  cost `O(L P^(5/32)) <= P`;
+- the `OOEOE` frequency labels in (D.1) put `k` on `U`, while Proposition D.7
+  follows Theorem 4.9 with `k` on `W`. The coordinates are now listed
+  `X, Y, W, U`;
+- "Equivalently" joined the dyadic proportions to (6.1), which they imply but
+  do not follow from;
+- Appendix D said a companion paper uses the productions. The fate notes still
+  record them as unavailable.
+
+Targets with no odd candidate, `y = 4, 12` for `OOOEE` and `y = 5, 14, 16, 20`
+for `OOEOE` (exact below the point where (D.2) excludes them), count as poor, as
+in the Lean definitions. The Paper B layout filter now keeps a heading with a
+statement that opens its section, the release validator's reference check covers
+Appendix D, and the Paper B Arb audit was re-staged for the new manuscript with
+unchanged constants. Paper C is not updated: its `0.74` contagion waits for human
+review of E5-E9.
+
 ## Open questions
 
 Result 23 (Lemma E9) shows that the productions need `T_d` only at shifts below an
@@ -1775,4 +1803,6 @@ carry cells at density `P^(-5/16)`.
 
 ## Publication assessment
 
-Status: `EXPLORATORY`.
+Status: `EXPLORATORY`. Paper B's prepared version 1.2.0 (24 September 2026, not
+deposited) states E6' and E8' as Theorem 6.3, with the proof as Appendix D
+(Result 36). The contagion consequence `37/50` is in no paper.

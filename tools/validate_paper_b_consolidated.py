@@ -82,7 +82,7 @@ def validate(source):
     assert "Monotonicity is not required for this extension." in s
     tags=re.findall(r"\\tag\{([^}]+)\}",s)
     assert not [k for k,v in Counter(tags).items() if v>1]
-    refs=re.findall(r"\(([ABC]\.\d+)\)",s)
+    refs=re.findall(r"\(([A-D]\.\d+)\)",s)
     assert not set(refs)-set(tags)
     assert "**Theorem 4.11 (OOOEE mixed modes)." in s
     assert "**Theorem 5.4 (full five-step certificate density)." in s

@@ -67,7 +67,9 @@ the tables by content and both are byte-identical to the versions 1.0.0 reports.
 
 ### Paper B, Five-Step Descent Certificates for the Juggler Map
 
-Prepared 1.1.2, 23 September 2026; see the [release record](paper_b_release_check.json) for the current editorial revision.
+Prepared 1.2.0, 24 September 2026. Adds Section 6.1 and Appendix D: Theorem 6.3, the fair share on almost every depth-five target fibre, with an AI-assisted written proof that has not been independently reviewed. The earlier numbered results are unchanged. See the [release record](paper_b_release_check.json) for the current revision.
+
+Prepared 1.1.2, 23 September 2026. Clarifies the conjectural status of Section 6's limiting profile and corrects three formulas there.
 
 Prepared 1.1.1, 22 September 2026. Corrects the recursion attribution to Terras (1976) and Winkler's arXiv citation. Mathematical results are unchanged. No new deposit has been made.
 
@@ -75,6 +77,7 @@ Record [zenodo.org/records/22864934](https://zenodo.org/records/22864934).
 
 | Version | DOI | Date |
 | --- | --- | --- |
+| 1.2.0 | not deposited | 24 September 2026 |
 | 1.1.2 | not deposited | 23 September 2026 |
 | 1.1.1 | not deposited | 22 September 2026 |
 | 1.1.0 | not deposited | 21 September 2026 |
