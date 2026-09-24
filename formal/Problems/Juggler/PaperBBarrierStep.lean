@@ -20,8 +20,8 @@ depths is individually unchanged, and so is any combination of them.
 * `survives_succ_of_no_rise` is the content: survival to `d` plus a non-rising
   barrier gives survival to `d+1`, for either letter, since the count is
   monotone.
-* `barrierRise_eq_zero_iff` characterises the non-rising step by the phase, which
-  is what ties it to the Sturmian word.
+* `noRise_iff_le_ceil` characterises the non-rising step as `(t+1)·b ≤ ⌈t·b⌉`,
+  the Sturmian condition that ties it to the word, stated without fractional parts.
 
 What is NOT formalised here is the cardinality bookkeeping `N_(d+1) = 2 * N_d`.
 That step is the observation that the extension map is a bijection, which is
