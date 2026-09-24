@@ -59,8 +59,14 @@ jobs:
           python-version: "3.11"
       - name: Install
         run: python -m pip install -e ".[dev]"
+      # `lab.py build` compiles and then exports formalpedia metadata with all output in a
+      # log file, so a runner that died mid-build left no trace. Compile first with streamed
+      # output and resource samples; the export runs as its own step below.
       - name: Build active Juggler and Collatz graph
-        run: python tools/lab.py build
+        run: |
+          (while true; do echo "::notice::$(date -u +%T) $(free -m | awk '/Mem:/{print "mem used/total MB " $3 "/" $2}') $(df -h / | awk 'NR==2{print "disk used " $3 " of " $2}')"; sleep 60; done) &
+          targets=$(python tools/lab.py build --list | sed 's/^/+/')
+          cd formal && lake build $targets
       - name: Lean-dependent gates
         run: >
           pytest --runslow -q
@@ -77,7 +83,7 @@ jobs:
       # exporter working and publishes the snapshot for local and agent use.
       - name: Formalpedia semantic export
         if: ${{ !cancelled() }}
-        run: python tools/formalpedia.py semantic build
+        run: python tools/lab.py build
       - name: Upload formalpedia semantic snapshot
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
@@ -86,3 +92,11 @@ jobs:
           path: .cache/formalpedia/
           if-no-files-found: warn
           retention-days: 30
+      - name: Upload build logs
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-build-logs
+          path: .build/formalpedia/
+          if-no-files-found: ignore
+          retention-days: 14
