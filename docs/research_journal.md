@@ -11,6 +11,20 @@ consolidation is at `e9725762eaf028d1ace354ff20e0fc48f1a3d143`. See
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-24 -- Depth-five productions priced and parked
+
+Atropos Phase-0. The first-descent words through length four are exactly
+`E`, `OE`, `OOEE`, so the kernel-checked `5/8` contagion sits at the
+depth-four ideal `0.6328`. Depth five adds `OOOEE` and `OOEOE` and would lift
+the ideal to `0.7512`, lowering the required failure rate from `3/8` toward
+`1/4` (COMPUTATIONALLY VERIFIED, exact multipliers). Their fibres are windows
+of length `P^(5/32)` rather than `P^(7/16)`: the depth-four mixed-mode bound
+`O(P^(13/32))` is weaker than trivial there, and an averaged poor tail needs
+differenced depth-five mixed sums with shifts up to `P^(5/32)`, beyond Paper
+B's `P^(1/8)` frozen gaps. **PARK.** See the
+[depth-five dossier](problems/juggler_depth_five_production.md) and its
+obstruction record.
+
 ## 2026-09-24 -- Written-proof rows converted to Lean, with a coverage audit
 
 **EXACT — LEAN VERIFIED**, kernel trust: twelve rows leave the written-proof
@@ -215,14 +229,3 @@ global divergence at nonperiodic unit roots. **CLOSE** this route as a weaker
 uniform arithmetic target. Six exact controls pass. No lower-count premise,
 Juggler pressure or termination is proved. See the
 [dossier](problems/collatz_fibre_lower_transfer.md).
-
-## 2026-09-23 -- One-halving runs have summable fixed-root weight
-
-At a fixed positive root a, all actual words with one arbitrary first
-exponent followed by d one-halving steps contribute at most 3a/2^(d+1),
-with total allowance 3a. Lean checks both signs, actual returns and the
-necessary divisor; the negative fixed point a=1 is retained as a growing
-exception. **PROMOTE** this summable-family reduction. Five exact controls
-pass. Transported peaks cannot themselves supply fixed-root divergence;
-the remaining word count and Juggler pressure stay open. See the
-[dossier](problems/collatz_fibre_run_tail.md).

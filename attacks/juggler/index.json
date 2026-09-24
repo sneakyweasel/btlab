@@ -2607,6 +2607,22 @@
       "nk_clusters": []
     },
     {
+      "id": "depth_five_production",
+      "kind": "branch",
+      "probe": "src/research/juggler_sequence/depth_five_production.py",
+      "test": "tests/research/juggler_sequence/test_depth_five_production.py",
+      "dossier": "docs/problems/juggler_depth_five_production.md",
+      "data_dir": "data/research/juggler/depth_five_production",
+      "lean": [],
+      "conjecture": [],
+      "decision": "PARK",
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_clusters": [
+        "Depth-five productions need windows of length P^(5/32)"
+      ]
+    },
+    {
       "id": "depth_one_main_term",
       "kind": "branch",
       "probe": "src/research/juggler_sequence/depth_one_main_term.py",
@@ -5001,11 +5017,15 @@
         "J-fate-landing-window",
         "J-fate-minimal-failure-oo",
         "J-fate-monotone-pairing-repair",
+        "J-fate-no-momentum-averaged",
+        "J-fate-no-momentum-three-eighths",
         "J-fate-one-sided-atoms",
         "J-fate-one-sided-conjecture",
         "J-fate-one-sided-moments",
+        "J-fate-pressure-averaged",
         "J-fate-pressure-conjecture",
         "J-fate-pressure-form",
+        "J-fate-pressure-three-eighths",
         "J-fate-recursion-lemma",
         "J-fate-seed",
         "J-fate-share-law-layer",
