@@ -199,6 +199,12 @@ import Problems.Juggler.CubicReturn
 import Problems.Juggler.CubicReturnStrip
 import Problems.Juggler.GuardResidueFamily
 import Problems.Juggler.OOEEscapeResidue
+import Problems.Juggler.HugFlowImageGap
+import Problems.Juggler.CubicHiddenParity
+import Problems.Juggler.CycleMinOOOSquare
+import Problems.Juggler.CycleMinEnvelopes
+import Problems.Juggler.OddPreimageTypes
+import Problems.Juggler.OOECarrySubstitution
 import Problems.Juggler.ReturnWordLoss
 import Problems.Juggler.ReturnWordData
 import Problems.Juggler.ReturnWordBounds

@@ -23,13 +23,23 @@
  },
  {
   "id": "J-odd-pred-empty-cube",
-  "tag": "EXACT — HUMAN PROOF",
+  "tag": "EXACT — LEAN VERIFIED",
   "statement": "Let k be the least integer with k^3 ≥ x^2. The odd one-step preimage {z : x^2 ≤ z^3 < (x+1)^2} is empty iff k^3 ≥ (x+1)^2 (Type 0), contains the even k iff k^3 < (x+1)^2 and k is even (Type 1), and contains the odd k iff k^3 < (x+1)^2 and k is odd (Type 2). OddPredEmpty(x) means there is no odd z with T(z)=x, equivalently Type 0 or Type 1, equivalently k^3 ≥ (x+1)^2 or k even. At most one occupant exists by odd_preimage_unique. This is not a forward restriction, not PredClosure, and not a halt theorem.",
   "source": "docs/problems/juggler_empty_odd_preimage.md",
-  "lean": "",
+  "lean": "Problems/Juggler/OddPreimageTypes.lean",
   "tests": [
    "tests/research/juggler_sequence/test_empty_odd_preimage.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "floorPower_odd_eq_iff",
+   "le_of_inOddCell",
+   "eq_of_inOddCell",
+   "cell_empty_iff",
+   "cell_contains_even_iff",
+   "cell_contains_odd_iff",
+   "oddPredEmpty_iff"
+  ],
+  "lean_trust": "kernel"
  }
 ]

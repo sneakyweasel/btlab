@@ -2902,14 +2902,20 @@
  },
  {
   "id": "J-cycle-cubic-hidden-parity",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "For every odd integer s>=3, take threshold b=s^3 and source x=s^4. The exact threshold map S_b makes the lower-to-lower first-return block s^4 -> s^6 -> s^3, since s^3<=s^4<s^6=b^2<b^3. Both endpoints are odd and the collapsed OE endpoint is exactly x^(3/4)=s^3, but the eliminated E source s^6 is odd; the actual Juggler map there gives s^9. Thus exact collapsed endpoint cells, odd endpoint parity and threshold cuts do not imply the original internal parity guard. This family occurs at unbounded cube thresholds, not every threshold, and its members are blocks rather than closed cycles. It refutes omitting internal parity, not short-word endpoint identities, guarded compression, or any full-cycle assertion. The prescribed power family and all three odd parities are Lean verified by oe_perfect_power and oe_perfect_power_hidden_odd; the threshold placement is an elementary written consequence. These are blocks, not cycles.",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every odd integer s>=3, take threshold b=s^3 and source x=s^4. The exact threshold map S_b makes the lower-to-lower first-return block s^4 -> s^6 -> s^3, since s^3<=s^4<s^6=b^2<b^3. Both endpoints are odd and the collapsed OE endpoint is exactly x^(3/4)=s^3, but the eliminated E source s^6 is odd; the actual Juggler map there gives s^9. Thus exact collapsed endpoint cells, odd endpoint parity and threshold cuts do not imply the original internal parity guard. This family occurs at unbounded cube thresholds, not every threshold, and its members are blocks rather than closed cycles. It refutes omitting internal parity, not short-word endpoint identities, guarded compression, or any full-cycle assertion. The prescribed power family and all three odd parities are Lean verified by oe_perfect_power and oe_perfect_power_hidden_odd; the threshold placement and the actual image s^9 are Lean verified by thresholdMap_cube_block and floorPower_hidden_odd_block. These are blocks, not cycles.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
-  "lean": "",
+  "lean": "Problems/Juggler/CubicHiddenParity.lean",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_cubic_induction.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "thresholdMap_cube_block",
+   "threshold_block_eq_oe",
+   "floorPower_hidden_odd_block"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cycle-cubic-return-compression",
@@ -3426,14 +3432,25 @@
  },
  {
   "id": "J-cycle-ooe-carry-substitution-obstruction",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "For every odd integer r>=3, x=r^8+8,u=r^12+12r^4,v=r^18+18r^10+54r^2-1,z=r^9+9r-1 form a genuine parity-valid Juggler OOE block x->u->v->z in threshold band [b,b^3), b=r^8, with x,u,z below b^2 and v above it; max(block)<min(block)^3. Its true suffix quotient is d=floor((u^3-z^4)/(2z^2)); the candidate pure-power replacement is D=floor((x^(9/2)-z^4)/(2z^2)). Exactly D-d is 36r^2 or 36r^2+1. For c=v-z^2 and H=min(D,2z), c=2z-27r^2, H=2z, and H-c=27r^2. Meanwhile floor(x^(9/8))=z+1 and odd projection gives the correct endpoint z. Hence no uniformly bounded additive correction repairs this specified quotient or clipped-displacement substitution. The ideal radicand lies outside the original unit endpoint cell at z, so the example refutes a candidate closure extension rather than the valid one-block normal form. The actual first square remainder is 48r^8+512 and cannot simply be discarded in that extension. These are blocks, not cycles; the family itself has a polynomial-plus-one-carry correction, so no impossibility for general fixed-dimensional data or parity-only formulas is claimed. The exact polynomial Juggler block is Lean verified separately; the real quotient-substitution inequalities and clipped-error calculation remain written proofs. No periodic membership is claimed.",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every odd integer r>=3, x=r^8+8,u=r^12+12r^4,v=r^18+18r^10+54r^2-1,z=r^9+9r-1 form a genuine parity-valid Juggler OOE block x->u->v->z in threshold band [b,b^3), b=r^8, with x,u,z below b^2 and v above it; max(block)<min(block)^3. Its true suffix quotient is d=floor((u^3-z^4)/(2z^2)); the candidate pure-power replacement is D=floor((x^(9/2)-z^4)/(2z^2)). Exactly D-d is 36r^2 or 36r^2+1. For c=v-z^2 and H=min(D,2z), c=2z-27r^2, H=2z, and H-c=27r^2. Meanwhile floor(x^(9/8))=z+1 and odd projection gives the correct endpoint z. Hence no uniformly bounded additive correction repairs this specified quotient or clipped-displacement substitution. The ideal radicand lies outside the original unit endpoint cell at z, so the example refutes a candidate closure extension rather than the valid one-block normal form. The actual first square remainder is 48r^8+512 and cannot simply be discarded in that extension. These are blocks, not cycles; the family itself has a polynomial-plus-one-carry correction, so no impossibility for general fixed-dimensional data or parity-only formulas is claimed. The exact polynomial Juggler block, the two quotient floors (d=2r^9-27r^2+18r and D=2r^9+9r^2+18r+1, so D-d=36r^2+1), the clipped-error calculation and floor(x^(9/8))=z+1 are Lean verified. No periodic membership is claimed.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
-  "lean": "",
+  "lean": "Problems/Juggler/OOECarrySubstitution.lean",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_cubic_induction.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "carry_block_band",
+   "first_square_remainder",
+   "trueQuot_floor",
+   "powerQuot_floor",
+   "powerQuot_sub_trueQuot",
+   "quot_gap_unbounded",
+   "clipped_displacement",
+   "nine_eighths_floor"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cycle-ooe-exact-remainder-repair",
@@ -4458,14 +4475,24 @@
  },
  {
   "id": "J-cyclemin-k5-post-l-cube",
-  "tag": "EXACT — HUMAN PROOF",
+  "tag": "EXACT — LEAN VERIFIED",
   "statement": "If n ≥ 2 follows W_5 = M(OOE)^5 with M = OOEOOOEOOEEOOE, then W_5 has length 29 and 19 odds, so x_5 = T_{W_5}(n) satisfies x_5^{2^{29}} ≤ n^{3^{19}}. The square cell fails (2^{30} < 3^{19}) and the cube cell holds (3^{19} < 3·2^{29}), hence x_5 < n^{3^{19}/2^{29}} < n^3. The k=4 ceiling lies below 2 (3^{17} < 2^{27}); the k=5 ceiling lies above 2; the exponent ratios differ by exactly 9/8. If x_5 is even then T(x_5) < n^{3/2} < n^2 (same comparison 3^{19} < 3·2^{29}) and x_5 cannot start L; even x_5 is not FiniteProgress (3^{19} > 2^{30}). If x_5 is odd then the next O satisfies T(x_5) < n^4 (3^{20} < 4·2^{30}). This is a near-square replacement of the square cell, not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_k5_post_l_ooe.md",
-  "lean": "",
+  "lean": "Problems/Juggler/CycleMinEnvelopes.lean",
   "tests": [
    "tests/research/juggler_sequence/test_k5_post_l_ooe.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "w5_bound",
+   "w5_cells",
+   "w5_lt_cube",
+   "w4_w5_ceilings",
+   "w5_even",
+   "w5_even_no_progress",
+   "w5_odd_lt_fourth"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cyclemin-k5-post-l-hierarchy",
@@ -4491,14 +4518,21 @@
  },
  {
   "id": "J-cyclemin-l-odd-run-envelope",
-  "tag": "EXACT — HUMAN PROOF",
+  "tag": "EXACT — LEAN VERIFIED",
   "statement": "If t^{2048} ≤ n^{2187} and t follows O^k, then T_{O^k}(t) < n would require 2187·3^k < 2048·2^k. That inequality fails for every k ≥ 0 because 2187 > 2048 and 3^k ≥ 2^k. Slack at k = 0 is 139 and increases. Therefore the inherited L-envelope never compose-drops an odd continuation. This is not a finite-K theorem, not an unboundedness theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_l_odd_run_cap.md",
-  "lean": "",
+  "lean": "Problems/Juggler/CycleMinEnvelopes.lean",
   "tests": [
    "tests/research/juggler_sequence/test_l_odd_run_cap.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "post_l_odd_run_bound",
+   "odd_run_never_drops",
+   "odd_run_slack_zero",
+   "odd_run_slack_strictMono"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cyclemin-l-odd-run-envelope-caps",
@@ -4568,14 +4602,24 @@
  },
  {
   "id": "J-cyclemin-odd-k5-y-fourth",
-  "tag": "EXACT — HUMAN PROOF",
+  "tag": "EXACT — LEAN VERIFIED",
   "statement": "If n ≥ 2 follows W_5 = M(OOE)^5 with M = OOEOOOEOOEEOOE and x_5 = T_{W_5}(n) is odd, then y = T(x_5) satisfies y^{2^{30}} ≤ n^{3^{20}}. The cube cell fails (3^{20} > 3·2^{30}) and the fourth-power cell holds (3^{20} < 4·2^{30}), hence y < n^{3^{20}/2^{30}} < n^4. The inherited ceiling is below the generic 9/2 (3^{20} < 9·2^{29}). If y is even then z = T(y) satisfies z < n^{3^{20}/2^{31}} < n^2 and y cannot start L; even y is not FiniteProgress (3^{20} > 2^{31}). The itinerary OEE contracts versus n (3^{20} < 2^{32}); E, OE, OOE, and OOOE do not. A second O from odd y stays below n^5 (3^{21} < 5·2^{31}). This is a near-cube replacement of C_3, not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_odd_k5_leak.md",
-  "lean": "",
+  "lean": "Problems/Juggler/CycleMinEnvelopes.lean",
   "tests": [
    "tests/research/juggler_sequence/test_odd_k5_leak.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "y_bound",
+   "y_cells",
+   "y_even",
+   "y_even_no_progress",
+   "x5_contractions",
+   "x5_oee_drop",
+   "y_odd_lt_fifth"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cyclemin-odd-oooe-even-q-drops",
@@ -4612,25 +4656,44 @@
  },
  {
   "id": "J-cyclemin-odd-u-v-eleventh",
-  "tag": "EXACT — HUMAN PROOF",
+  "tag": "EXACT — LEAN VERIFIED",
   "statement": "If n ≥ 2 follows W_5 = M(OOE)^5 with M = OOEOOOEOOEEOOE, the states x_5, y = T(x_5), z = T(y) are odd, and u = T(z) is odd, then v = T(u) satisfies v^{2^{33}} ≤ n^{3^{23}}. The tenth-power cell fails (3^{23} > 10·2^{33}) and the eleventh-power cell holds (3^{23} < 11·2^{33}), hence v < n^{3^{23}/2^{33}} < n^{11}. This beats generic v < n^{12} from u < n^8. If v is even then T(v) < n^{3^{23}/2^{34}} < n^6; even v is not below n^4 (3^{23} > 4·2^{34}) and cannot start L. After W_5 plus k extra odds the first integers are 3,4,5,8,11 for k = 0,…,4, the crossings of (3/2)^k · 3^{19}/2^{29}. This is not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_odd_u_next_o.md",
-  "lean": "",
+  "lean": "Problems/Juggler/CycleMinEnvelopes.lean",
   "tests": [
    "tests/research/juggler_sequence/test_odd_u_next_o.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "v_bound",
+   "v_cells",
+   "v_even",
+   "v_even_not_fourth",
+   "w5_extra_odd_cells"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cyclemin-oneshot-oe-drop",
-  "tag": "EXACT — HUMAN PROOF",
+  "tag": "EXACT — LEAN VERIFIED",
   "statement": "If n ≥ 2 follows OOEOOOEOOEE and t = T_OOEOOOEOOEE(n), then t^{2048} ≤ n^{2187}. If t follows a further word W with 2187 · 3^{#O(W)} < 2048 · 2^{|W|}, then T_W(t) < n. In particular an even t drops (W = E: 2187 < 4096) and a t that follows OE drops (6561 < 8192). Those post-L states cannot start OOE, so they lie outside the pre-L entrance of the even-even second-OO corridor. OOE alone does not compose below n (19683 > 16384), and a second copy of OOEOOOEOOEE does not compose below n (2187^2 > 2048^2). This is not a claim that every post-L state starts OE, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_oneshot_recovery.md",
-  "lean": "",
+  "lean": "Problems/Juggler/CycleMinEnvelopes.lean",
   "tests": [
    "tests/research/juggler_sequence/test_oneshot_recovery.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "post_l_bound",
+   "post_l_drop",
+   "post_l_drop_even",
+   "post_l_drop_oe",
+   "post_l_ooe_no_drop",
+   "post_l_second_l_no_drop",
+   "not_follows_odd_head_of_even",
+   "not_follows_oo_of_oe"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cyclemin-oneshot-reenters",
@@ -4700,14 +4763,25 @@
  },
  {
   "id": "J-cyclemin-ooo-second-step-square",
-  "tag": "EXACT — HUMAN PROOF",
+  "tag": "EXACT — LEAN VERIFIED",
   "statement": "If n ≥ 3, then isqrt(n^3)^3 ≥ n^4. Hence if x ≥ n is odd and T(x) is odd, T^2(x) ≥ n^2. A first post-first-OO OOO entered from a CycleMin state therefore loses the square-cell ceiling at the second odd letter. For k ≤ 5 the itinerary (OOE)^k still has the square-cell gap 2^{3k+1} > 3^{2k}, so that entrance lies in [n, n^2). OOEOOO is the first OOO-prefix that loses the gap; completed OOEOOOE restores it (256 > 243). This is not an OOO-inevitability theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_first_ooo_escape.md",
-  "lean": "",
+  "lean": "Problems/Juggler/CycleMinOOOSquare.lean",
   "tests": [
    "tests/research/juggler_sequence/test_first_ooo_escape.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "sqrt_cube_cube_ge",
+   "floorPower_two_odd_ge_sq",
+   "ooePow_gap",
+   "ooePow_gap_fails_six",
+   "ooePow_image_lt_sq",
+   "cycleMin_ooePow_mem",
+   "ooeooo_gap_lost",
+   "ooeoooe_image_lt_sq"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cyclemin-parity-persist-budget",
@@ -4738,14 +4812,25 @@
  },
  {
   "id": "J-cyclemin-post-l-ooe-me-drop",
-  "tag": "EXACT — HUMAN PROOF",
+  "tag": "EXACT — LEAN VERIFIED",
   "statement": "If n ≥ 2 follows OOEOOOEOOEE through the inherited even-even second-OO corridor, t = T_OOEOOOEOOEE(n) starts OOE, and s = T_OOE(t), then the composite word M = OOEOOOEOOEEOOE satisfies s^{16384} ≤ n^{19683} < n^{32768} = (n^2)^{16384}, so s < n^2. M does not contract versus n (19683 > 16384). If s is even, M+E contracts (19683 < 32768). If s follows OE, M+OE contracts (59049 < 65536). Those landings are FiniteProgress and cannot meet the OOE+OOO entrance of L. A second post-L OOE then OE does not contract versus n (3^{12} > 2^{19}). This is not a claim that every post-L OOE landing starts OE, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_post_l_ooe.md",
-  "lean": "",
+  "lean": "Problems/Juggler/CycleMinEnvelopes.lean",
   "tests": [
    "tests/research/juggler_sequence/test_post_l_ooe.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "m_bound",
+   "m_lt_sq",
+   "m_no_contract",
+   "me_finiteProgress",
+   "moe_finiteProgress",
+   "even_not_lEntrance",
+   "oe_not_lEntrance",
+   "m_ooe_oe_no_contract"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cyclemin-post-l-ooe-reenters-l",
@@ -4986,11 +5071,17 @@
   "tag": "EXACT — HUMAN PROOF",
   "statement": "If n ≥ 2 follows M = OOEOOOEOOEEOOE, s = T_M(n) starts OO, and r = T_OOE(s), then the itinerary M+OOE has length 17 and 11 odds, so r^{131072} ≤ n^{177147} and 2^{18} > 3^{11} gives n ≤ r < n^2. Even r is FiniteProgress (3^{11} < 2^{18}). For k ≥ 0 the itinerary M(OOE)^k has the square-cell gap 2^{15+3k} > 3^{9+2k} if and only if k ≤ 4; the cell is lost at k = 5 (2^{30} < 3^{19}). CycleMin(n, M OOE v) therefore implies FiniteProgress or v starts with O. This is a corridor budget, not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_second_post_l_ooe.md",
-  "lean": "",
+  "lean": "Problems/Juggler/CycleMinEnvelopes.lean",
   "tests": [
    "tests/research/juggler_sequence/test_second_post_l_ooe.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "m_ooe_lt_sq",
+   "cycleMin_m_ooe",
+   "m_ooePow_gap_iff"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cyclemin-short-31-exponent",
@@ -5137,14 +5228,24 @@
  },
  {
   "id": "J-cyclemin-w5-second-oo-z-fifth",
-  "tag": "EXACT — HUMAN PROOF",
+  "tag": "EXACT — LEAN VERIFIED",
   "statement": "If n ≥ 2 follows W_5 = M(OOE)^5 with M = OOEOOOEOOEEOOE, x_5 = T_{W_5}(n) is odd, and y = T(x_5) is odd, then z = T(y) satisfies z^{2^{31}} ≤ n^{3^{21}}. The fourth-power cell fails (3^{21} > 4·2^{31}) and the fifth-power cell holds (3^{21} < 5·2^{31}), hence z < n^{3^{21}/2^{31}} < n^5. This beats generic z < n^6 from y < n^4. If z is even then T(z) < n^{3^{21}/2^{32}} < n^{5/2} < n^3 and z cannot start L; even z is not below n^2 (3^{21} > 2^{33}). If z is odd then u = T(z) satisfies u^{2^{32}} ≤ n^{3^{22}} and u < n^8 (3^{22} < 8·2^{32}); even u returns below n^4. This is not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
   "source": "docs/problems/juggler_w5_second_oo.md",
-  "lean": "",
+  "lean": "Problems/Juggler/CycleMinEnvelopes.lean",
   "tests": [
    "tests/research/juggler_sequence/test_w5_second_oo.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "z_bound",
+   "z_cells",
+   "floorPower_odd_lt_of_lt",
+   "z_even",
+   "z_even_not_sq",
+   "u_bound",
+   "u_even_lt_fourth"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cyclemin-walk-arch-kills-blocker",
@@ -7356,16 +7457,25 @@
  },
  {
   "id": "J-hug-flow-image-gap",
-  "tag": "EXACT — HUMAN PROOF",
+  "tag": "EXACT — LEAN VERIFIED",
   "statement": "For every odd integer x ≥ 3, floor((x+2)^{3/2}) − floor(x^{3/2}) ≥ 3 floor(√x). Proof: (x+2)^{3/2} > x^{3/2}+3√x because (x+2)^3 − (x^{3/2}+3√x)^2 = 3x+8 > 0, hence the floor difference is at least floor(3√x) ≥ 3 floor(√x). At image scale Y = floor(x^{3/2}) the depth-1 working window is (2/3) Y^{1/3} ≤ (2/3)√x, so the gap exceeds that whole window (ratio → 9/2). Therefore the image V(I) of any odd window I is a 3√X-separated packing, not a consecutive interval, and interval Erdős–Turán cannot be applied to y = floor(x^{3/2}). Not a depth-2 mixing theorem, not C_L nonempty, not a Paper B edit, and not a halt theorem.",
   "source": "docs/problems/juggler_hug_flow_depth_two.md",
-  "lean": "",
+  "lean": "Problems/Juggler/HugFlowImageGap.lean",
   "tests": [
    "tests/research/juggler_sequence/test_hug_flow_depth_two.py"
   ],
   "related_conjectures": [
    "juggler_hug_flow_window"
-  ]
+  ],
+  "decl": [
+   "sqrt_cube_add_two_ge",
+   "floorPower_add_two_ge",
+   "no_odd_image_in_gap",
+   "window_le_sqrt",
+   "window_lt_gap",
+   "gap_window_ratio_tendsto"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-hug-flow-window-depth-one",
@@ -8560,14 +8670,24 @@
  },
  {
   "id": "J-odd-pred-empty-cube",
-  "tag": "EXACT — HUMAN PROOF",
+  "tag": "EXACT — LEAN VERIFIED",
   "statement": "Let k be the least integer with k^3 ≥ x^2. The odd one-step preimage {z : x^2 ≤ z^3 < (x+1)^2} is empty iff k^3 ≥ (x+1)^2 (Type 0), contains the even k iff k^3 < (x+1)^2 and k is even (Type 1), and contains the odd k iff k^3 < (x+1)^2 and k is odd (Type 2). OddPredEmpty(x) means there is no odd z with T(z)=x, equivalently Type 0 or Type 1, equivalently k^3 ≥ (x+1)^2 or k even. At most one occupant exists by odd_preimage_unique. This is not a forward restriction, not PredClosure, and not a halt theorem.",
   "source": "docs/problems/juggler_empty_odd_preimage.md",
-  "lean": "",
+  "lean": "Problems/Juggler/OddPreimageTypes.lean",
   "tests": [
    "tests/research/juggler_sequence/test_empty_odd_preimage.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "floorPower_odd_eq_iff",
+   "le_of_inOddCell",
+   "eq_of_inOddCell",
+   "cell_empty_iff",
+   "cell_contains_even_iff",
+   "cell_contains_odd_iff",
+   "oddPredEmpty_iff"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-odd-predecessor-exact-transport",

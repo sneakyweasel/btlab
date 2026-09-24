@@ -117,14 +117,20 @@
  },
  {
   "id": "J-cycle-cubic-hidden-parity",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "For every odd integer s>=3, take threshold b=s^3 and source x=s^4. The exact threshold map S_b makes the lower-to-lower first-return block s^4 -> s^6 -> s^3, since s^3<=s^4<s^6=b^2<b^3. Both endpoints are odd and the collapsed OE endpoint is exactly x^(3/4)=s^3, but the eliminated E source s^6 is odd; the actual Juggler map there gives s^9. Thus exact collapsed endpoint cells, odd endpoint parity and threshold cuts do not imply the original internal parity guard. This family occurs at unbounded cube thresholds, not every threshold, and its members are blocks rather than closed cycles. It refutes omitting internal parity, not short-word endpoint identities, guarded compression, or any full-cycle assertion. The prescribed power family and all three odd parities are Lean verified by oe_perfect_power and oe_perfect_power_hidden_odd; the threshold placement is an elementary written consequence. These are blocks, not cycles.",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every odd integer s>=3, take threshold b=s^3 and source x=s^4. The exact threshold map S_b makes the lower-to-lower first-return block s^4 -> s^6 -> s^3, since s^3<=s^4<s^6=b^2<b^3. Both endpoints are odd and the collapsed OE endpoint is exactly x^(3/4)=s^3, but the eliminated E source s^6 is odd; the actual Juggler map there gives s^9. Thus exact collapsed endpoint cells, odd endpoint parity and threshold cuts do not imply the original internal parity guard. This family occurs at unbounded cube thresholds, not every threshold, and its members are blocks rather than closed cycles. It refutes omitting internal parity, not short-word endpoint identities, guarded compression, or any full-cycle assertion. The prescribed power family and all three odd parities are Lean verified by oe_perfect_power and oe_perfect_power_hidden_odd; the threshold placement and the actual image s^9 are Lean verified by thresholdMap_cube_block and floorPower_hidden_odd_block. These are blocks, not cycles.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
-  "lean": "",
+  "lean": "Problems/Juggler/CubicHiddenParity.lean",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_cubic_induction.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "thresholdMap_cube_block",
+   "threshold_block_eq_oe",
+   "floorPower_hidden_odd_block"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cycle-cubic-return-compression",
@@ -406,14 +412,25 @@
  },
  {
   "id": "J-cycle-ooe-carry-substitution-obstruction",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "For every odd integer r>=3, x=r^8+8,u=r^12+12r^4,v=r^18+18r^10+54r^2-1,z=r^9+9r-1 form a genuine parity-valid Juggler OOE block x->u->v->z in threshold band [b,b^3), b=r^8, with x,u,z below b^2 and v above it; max(block)<min(block)^3. Its true suffix quotient is d=floor((u^3-z^4)/(2z^2)); the candidate pure-power replacement is D=floor((x^(9/2)-z^4)/(2z^2)). Exactly D-d is 36r^2 or 36r^2+1. For c=v-z^2 and H=min(D,2z), c=2z-27r^2, H=2z, and H-c=27r^2. Meanwhile floor(x^(9/8))=z+1 and odd projection gives the correct endpoint z. Hence no uniformly bounded additive correction repairs this specified quotient or clipped-displacement substitution. The ideal radicand lies outside the original unit endpoint cell at z, so the example refutes a candidate closure extension rather than the valid one-block normal form. The actual first square remainder is 48r^8+512 and cannot simply be discarded in that extension. These are blocks, not cycles; the family itself has a polynomial-plus-one-carry correction, so no impossibility for general fixed-dimensional data or parity-only formulas is claimed. The exact polynomial Juggler block is Lean verified separately; the real quotient-substitution inequalities and clipped-error calculation remain written proofs. No periodic membership is claimed.",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For every odd integer r>=3, x=r^8+8,u=r^12+12r^4,v=r^18+18r^10+54r^2-1,z=r^9+9r-1 form a genuine parity-valid Juggler OOE block x->u->v->z in threshold band [b,b^3), b=r^8, with x,u,z below b^2 and v above it; max(block)<min(block)^3. Its true suffix quotient is d=floor((u^3-z^4)/(2z^2)); the candidate pure-power replacement is D=floor((x^(9/2)-z^4)/(2z^2)). Exactly D-d is 36r^2 or 36r^2+1. For c=v-z^2 and H=min(D,2z), c=2z-27r^2, H=2z, and H-c=27r^2. Meanwhile floor(x^(9/8))=z+1 and odd projection gives the correct endpoint z. Hence no uniformly bounded additive correction repairs this specified quotient or clipped-displacement substitution. The ideal radicand lies outside the original unit endpoint cell at z, so the example refutes a candidate closure extension rather than the valid one-block normal form. The actual first square remainder is 48r^8+512 and cannot simply be discarded in that extension. These are blocks, not cycles; the family itself has a polynomial-plus-one-carry correction, so no impossibility for general fixed-dimensional data or parity-only formulas is claimed. The exact polynomial Juggler block, the two quotient floors (d=2r^9-27r^2+18r and D=2r^9+9r^2+18r+1, so D-d=36r^2+1), the clipped-error calculation and floor(x^(9/8))=z+1 are Lean verified. No periodic membership is claimed.",
   "source": "docs/theory/juggler_finite_dynamics_note.md",
-  "lean": "",
+  "lean": "Problems/Juggler/OOECarrySubstitution.lean",
   "tests": [
    "tests/research/juggler_sequence/test_cycle_cubic_induction.py"
   ],
-  "related_conjectures": []
+  "related_conjectures": [],
+  "decl": [
+   "carry_block_band",
+   "first_square_remainder",
+   "trueQuot_floor",
+   "powerQuot_floor",
+   "powerQuot_sub_trueQuot",
+   "quot_gap_unbounded",
+   "clipped_displacement",
+   "nine_eighths_floor"
+  ],
+  "lean_trust": "kernel"
  },
  {
   "id": "J-cycle-ooe-exact-remainder-repair",
