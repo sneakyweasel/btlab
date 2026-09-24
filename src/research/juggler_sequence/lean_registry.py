@@ -399,6 +399,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "BeattySlopeWeakIdentification": "Right-trace profile identification and the phase theorem for actual ratios at every boundary in (0,1)",
     "BeattySlopeGlobalLaw": "Convergence of the empirical law of actual first-passage ratios for every real slope above one",
     "BeattySlopeLawContinuity": "Slope map of the limit laws: right-continuous at every slope, continuous exactly at irrational slopes, explicit jumps at rationals",
+    "BeattySlopeExactDim": "Sharp Hausdorff lower bound 2/(2+tau) from many orbit hits per interval, exceeding the Denjoy-set value 2/(3 nu) for Diophantine class above one",
     "BeattySlopeContinuity": "Local constancy of actual counts in the boundary, l1 continuity of jump weights, weak continuity of the laws and continuity of the Minkowski content at irrational slopes",
     "BeattySlopeArithmetic": "Hausdorff dimension two-thirds for almost every slope and positive finite two-thirds measure for every quadratic irrational slope",
     "BeattyCertificateWeights": "Moving phase asymptotic and uniform two-sided three-halves bounds for actual certificate gap weights",

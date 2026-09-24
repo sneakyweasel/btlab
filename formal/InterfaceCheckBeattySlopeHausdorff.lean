@@ -1,6 +1,7 @@
 import Problems.Juggler.BeattySlopeArithmetic
 import Problems.Juggler.BeattySlopeLiouville
 import Problems.Juggler.BeattySlopeDiophantineDim
+import Problems.Juggler.BeattySlopeExactDim
 
 /-! Expanded consumers of the family Hausdorff theorems. Each statement
 concerns the set of real subsequential limits of the original integer
@@ -128,6 +129,17 @@ theorem actual_exponent_dim (α ν : ℝ) (hα1 : 1 < α) (hα : Irrational α) 
   rw [cluster_eq α hα1 hα]
   exact dio_exponent_dimH_le hα1 hα hν happ
 
+/-- A slope of Diophantine class `ν` (bounds at every exponent above `ν`)
+gives Hausdorff dimension at least `2/(2+ν)` for the actual limit set. -/
+theorem actual_dim_class_lower (α ν : ℝ) (hα1 : 1 < α) (hα : Irrational α) (hν : 0 ≤ ν)
+    (hdio : ∀ τ : ℝ, ν < τ → ∃ c : ℝ, 0 < c ∧
+      ∀ q : ℕ, 0 < q → ∀ p : ℤ, c ≤ (q : ℝ)^τ*|(q : ℝ)*α-(p : ℝ)|) :
+    ENNReal.ofReal (2/(2+ν)) ≤ dimH {y : ℝ | MapClusterPt y atTop (fun r : ℕ =>
+      let m := ⌊α*(r : ℝ)⌋₊;
+      (r : ℝ)*(passageCount (1/α) (m+1) : ℝ)/((m-1).choose (r-1) : ℝ))} := by
+  rw [cluster_eq α hα1 hα]
+  exact cluster_dimH_ge_class hα1 hα hν hdio
+
 #print axioms actual_family_hausdorff_finite
 #print axioms actual_ae_hausdorff_dim
 #print axioms actual_dio_hausdorff_pos
@@ -137,5 +149,6 @@ theorem actual_exponent_dim (α ν : ℝ) (hα1 : 1 < α) (hα : Irrational α) 
 #print axioms actual_liouville_dim
 #print axioms actual_hausdorff_pos_iff
 #print axioms actual_exponent_dim
+#print axioms actual_dim_class_lower
 
 end Problems.Juggler.BeattySlopeHausdorffChecks

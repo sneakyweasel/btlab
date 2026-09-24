@@ -1476,8 +1476,14 @@ slope. Further, **EXACT — LEAN VERIFIED**: the critical two-thirds measure
 is positive exactly at badly approximable slopes, and approximations of
 order `q^(-nu)` bound the dimension by `2/(2+sqrt nu)`, so the dimension is
 `2/3` exactly when the irrationality exponent is `2`, up to the written
-combination with the Section 20 lower bound. Open: the exact dimension for
-exponents strictly between `2` and infinity.
+combination with the Section 20 lower bound. A sharper Lean lower bound,
+`dim_H K_alpha>=2/(2+tau)` from many orbit hits per phase interval, places
+the dimension for Diophantine class `nu` in `[2/(2+nu), 2/(2+sqrt nu)]`,
+strictly above the Denjoy-set value `2/(3 nu)` of Kra and Schmeling when
+`nu>1`; their upper-bound estimate (15) appears to count a single gap per
+interval (Section 27 remark, not independently reviewed). At `log_2 3` the
+Wu-Wang input now gives `dim_H K>=0.3270...` (written). Open: the exact
+dimension for exponents strictly between `2` and infinity.
 
 ### Continuity in the slope (24 September)
 

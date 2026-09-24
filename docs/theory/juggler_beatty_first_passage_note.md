@@ -1746,7 +1746,11 @@ and irrationality of \(\xi\) absorbs the finitely many remaining \(k\) into
  \dim_H K\ge\frac{2}{3\cdot4.1163051}=0.16195\ldots.           \tag{44b}
 \]
 The constants \(c_\varepsilon\) are not effective, and no positive
-measure is claimed at the limiting exponent itself. Both (44a) and (44b)
+measure is claimed at the limiting exponent itself. Section 27 later proves
+the sharper Lean bound \(\dim_H K\ge 2/(2+\tau)\) from (42); with the same
+arithmetic inputs it gives \(\dim_H K\ge 2/15.3=0.1307\ldots\) (Rhin) and
+\(\dim_H K\ge 2/(2+4.1163051)=0.3270\ldots\) (Wu–Wang), again as written
+corollaries. Both (44a) and (44b)
 concern only the logarithmic slope and remain far from the Minkowski
 value `2/3`.
 
@@ -2595,11 +2599,34 @@ taking `E=q^e` in (62b) gives
  \dim_H K_\alpha\le\frac{2}{2+\sqrt\nu},                            \tag{62d}
 \]
 while (44) gives `dim_H K_alpha>=2/(3 tau)` whenever (42) holds with
-exponent `tau`. Hence, in terms of the irrationality exponent
-`mu(alpha)`, `dim_H K_alpha=2/3` when `mu=2`, and
-`2/(3(mu-1))<=dim_H K_alpha<=2/(2+sqrt(mu-1))<2/3` when `2<mu<infinity`
-(the lower bound needs (42) at every `tau>mu-1`; this combination is a
-written corollary of the two Lean theorems). In particular, almost every
+exponent `tau`.
+
+**Sharper lower bound — EXACT — LEAN VERIFIED.** (44) uses only the first
+orbit point in each phase interval. A phase interval of length `l` in fact
+contains order `l D` of the first `D` orbit points, where `D` is a Dirichlet
+denominator with `D` of order `l^(-tau)` under (42); their jumps give the
+interval mass at least of order `l^(1+tau/2)`. Hence the CDF is
+`2/(2+tau)`-Hölder and
+\[
+ \dim_H K_\alpha\ \ge\ \frac{2}{2+\tau}\ >\ \frac{2}{3\tau}\qquad(\tau>1).   \tag{62e}
+\]
+For Diophantine class `nu` (bounds at every exponent above `nu`) this gives
+`dim_H K_alpha>=2/(2+nu)`, strictly above `2/(3 nu)` when `nu>1`; with (62d),
+`2/(2+nu)<=dim_H K_alpha<=2/(2+sqrt nu)`. The module is
+[BeattySlopeExactDim.lean](../../formal/Problems/Juggler/BeattySlopeExactDim.lean).
+A written argument, not formalized, improves the upper bound to
+`2(sqrt(1+3 nu)-1)/(3 nu)`; the exact dimension is open and heuristically
+depends on the pattern of good convergents, not on `nu` alone.
+
+*Remark on classical Denjoy sets.* For two-sided classical Denjoy sets with
+gap exponent `1/delta`, Kra and Schmeling [7, Theorem 3.1] state the
+Hausdorff dimension `delta/nu`. The same many-hits argument suggests that
+the analogue of (62e) holds there, which would exceed `delta/nu` for
+`nu>1`. In their upper-bound proof, estimate (15) bounds the image of an
+interval by a single gap, whereas the image length is the sum of the gaps
+of all orbit points in the interval; this appears to undercount by a
+factor of order `q_(n+1)/q_n`. This reading concerns their two-sided sets,
+is not formalized here and has not been independently reviewed. In particular, almost every
 slope has dimension `2/3` but zero critical measure. The module is
 [BeattySlopeDiophantineDim.lean](../../formal/Problems/Juggler/BeattySlopeDiophantineDim.lean).
 Open: the exact dimension for `2<mu<infinity`.
@@ -2740,13 +2767,13 @@ and [BeattySlopeRationalLimit.lean](../../formal/Problems/Juggler/BeattySlopeRat
 | Phase theorem, profile, total mass | explicit jump profile `F_alpha`, mass `1/(alpha-1)` | Lean, every irrational `alpha` (mass: every `alpha`) |
 | Cluster set, empirical law | compact perfect null `K_alpha`; singular continuous `mu_alpha` | Lean, every irrational `alpha` |
 | Gaps and Minkowski geometry | `w_r` of order `r^(-3/2)`; `dim_M=2/3`; exact content and tube measure | Lean, every irrational `alpha` |
-| Hausdorff dimension | `2/3` if `mu(alpha)=2` (a.e.); `<=2/(2+sqrt(mu-1))` otherwise; `0` at Liouville slopes | Lean (exponent characterization of `2/3` is a written combination) |
+| Hausdorff dimension | `2/3` if `mu(alpha)=2` (a.e.); between `2/(2+nu)` and `2/(2+sqrt nu)` for Diophantine class `nu`; `0` at Liouville slopes | Lean (exponent characterization of `2/3` is a written combination) |
 | Critical measure `H^(2/3)` | positive iff badly approximable | Lean |
 | Gamma normalization | absolutely continuous law with explicit density, interval support, `L^p` for `p<3/2` | Lean, every irrational `alpha` |
 | Dependence on the slope | weights, laws, content continuous at irrational slopes | Lean |
 | Rational slopes | actual counts converge by residue class; law uniform on `b` atoms, equal to the limit from above; jump from below | Lean (Section 31) |
 | Slope map `alpha -> mu_alpha` | right-continuous, continuous exactly at irrationals | Lean (Section 31) |
-| Logarithmic slope arithmetic | `dim_H K>=0.16195...` | Written (Wu–Wang) |
+| Logarithmic slope arithmetic | `dim_H K>=0.3270...` | Written (Wu–Wang input to the Lean bound (62e)) |
 | Rates | `O(r^(-1/2))` | Written, `1<alpha<2` only |
 
 **Open.** The exact Hausdorff

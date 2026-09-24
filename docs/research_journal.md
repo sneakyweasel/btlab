@@ -33,7 +33,8 @@ Global theorem: for every real `alpha>1` the empirical law of the actual
 ratios converges; the rational phase theorem `R_r-F^+(delta_r)->0` comes from
 a weak counting identity transferred from nearby irrational boundaries. The
 slope map `alpha -> mu_alpha` is right-continuous and continuous exactly at
-irrational slopes.
+irrational slopes. Hausdorff dimension for Diophantine class `nu` lies in
+`[2/(2+nu), 2/(2+sqrt nu)]` (Lean), above the Denjoy-set value `2/(3 nu)`.
 **PROMOTE**. See Sections 27–31 of the
 [Beatty note](theory/juggler_beatty_first_passage_note.md).
 

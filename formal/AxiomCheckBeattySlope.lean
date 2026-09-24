@@ -4,6 +4,7 @@ import Problems.Juggler.BeattySlopeArithmetic
 import Problems.Juggler.BeattySlopeContinuity
 import Problems.Juggler.BeattySlopeLiouville
 import Problems.Juggler.BeattySlopeDiophantineDim
+import Problems.Juggler.BeattySlopeExactDim
 import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeGlobalLaw
 import Problems.Juggler.BeattySlopeLawContinuity
@@ -414,5 +415,15 @@ namespace Problems.Juggler
 #print axioms BeattySlope.passageLaw_slope_jump
 #print axioms BeattySlope.passageLaw_slope_contAt_iff
 #print axioms BeattySlope.passageLaw_slope_contAt
+#print axioms BeattySlope.jumpGap_mass_ge
+#print axioms BeattySlope.rotation_many_hits
+#print axioms BeattySlope.passageCdf_sum_le
+#print axioms BeattySlope.passageCdf_mass_lower
+#print axioms BeattySlope.passageCdf_holder_sharp
+#print axioms BeattySlope.passageCluster_dimH_ge_sharp
+#print axioms BeattySlope.cluster_dimH_ge_sharp
+#print axioms BeattySlope.cluster_dimH_ge_class
+#print axioms BeattySlope.cluster_dimH_gt_denjoy
+#print axioms BeattySlope.cluster_dimH_window
 
 end Problems.Juggler
