@@ -246,6 +246,57 @@ count (A.2) gives `P a_0 = P^(13/32+gamma)` on the zero branch and
 `P^(23/24) log P` otherwise. Hence (A.13) holds for every argument at
 `h_1 <= P^(5/32)`.
 
+**8. Lemma E2: the zero-offset case of Appendix C at `Pi` up to `P^(19/96)`
+(written proof, 24 September 2026; AI-assisted, not independently reviewed).**
+
+*Statement.* In Paper B's Appendix C with first shift `h_1 <= P^(5/32)`, second
+shift `h_2 <= P^(1/24)`, bounded `k` and `Pi = k h_1 h_2 <= P^(19/96)`, the
+`t = 0`, `b = 0` part of the double correlation is `<< P^(29/32+eps)`, and the
+`b = 0` part of the nonzero-`t` case still satisfies the hypotheses of
+Theorem B.1.
+
+*Proof.* At `b = 0` the theta coefficient `B` of (C.20) is no longer bounded: it is
+`-(243/128) Pi x^(-1/8)` up to smaller terms, of size up to `P^(1/32+gamma)`, with
+`B' = O(Pi P^(-9/8))`. Do not center (Result 6 shows centering fails).
+
+*Coefficients.* For every real `beta`, `a_r(beta) = int_0^1 e(-(beta+r)t) dt`
+satisfies `|a_r(beta)| + |a_r'(beta)| << 1/(1+|r+beta|)`: the integral is at most
+one, and one integration by parts gives `1/|r+beta|`. Split `(P, 2P]` into
+`O(1 + Pi P^(-1/8))` stretches on which `B` varies by at most one, and on each
+stretch keep the modes `|r + B_0| <= R = P^(5/16)` around a fixed value `B_0` of
+`B`. The truncation error is Paper B's positive error at cutoff `R`, and the sum of
+sup norms and variations of `a_r(B(x))` is `O(log P)` per stretch, uniformly in the
+size of `B`. Each retained mode has a fixed integer frequency `r`.
+
+*Curvature.* After the carry expansion put `l = r + s`. With the frozen offsets
+fixed, (C.25) holds for each mode with the continuous reference
+`Lambda = -(27/32) alpha_0 x^(-3/4) + (3645/2048) Pi x^(-5/8) + (3/4) l x^(-1/2)`
+and error `O(Pi P^(-3/4))`, so `rho << P^(-1/8)`. Every term in the (C.25) error list
+is at most `Pi P^(-3/4)` times a negative power of `P` at these shifts, using
+`h_1 + h_2 <= 2 Pi`, `|a_1| << k h_2 P^(1/8) + J` and `|a_2| << k h_1 P^(1/8) + J`.
+
+*Lemma 7.5.* Write `Lambda = x^(-5/8) g(x)` with
+`g = (3645/2048) Pi + (3/4) l x^(1/8) - (27/32) alpha_0 x^(-1/8)`. For `l` near the
+collision value `-(1215/512) Pi x^(-1/8)`, the `l`-term of `g'` dominates the
+`alpha_0`-term by a factor `J P^(-1/8)`, so `g` is monotone and the sublevel sets and
+dyadic bands have total length `O(Ps)`; away from it `|Lambda|` is comparable to
+the larger of `Pi P^(-5/8)` and `|l| P^(-1/2)`. `M <= 1`, `MP^2 >= 1` and
+`rho <= 1/8` hold. The partition has `O(P^(21/32))` cells (original runs at shift
+`h_1`, `G`-level cuts, `N_a` windows and stretch ends).
+
+*Costs.* At a collision `M` is comparable to `Pi P^(-5/8)`, and (7.4) gives
+`Pi^(1/2) P^(11/16) + P^(31/32) Pi^(-1/2) + P^(7/8)`, at most `P^(29/32)` for
+`Pi` in `[P^(1/8), P^(19/96)]`. The colliding pairs `(r, s)` carry total weight
+`O(log P)`, because both the `r`-coefficients `1/(1+|r+B|)` and the carry weights
+`1/(1+|s|)` are small unless the other factor is. Non-colliding modes cost
+`R^(1/2) P^(3/4) + P^(21/32+1/4) = P^(29/32)`, as in (C.27). Applying (7.4) on each
+stretch adds `(P/M)^(1/3)` per stretch, in total `P^(5/12 + 2 pi/3)` with
+`Pi = P^pi`. Hence the `t = 0`, `b = 0` part is `<< P^(29/32+eps)`.
+
+*Nonzero `t` at `b = 0`.* The same uncentered expansion in C.5 shifts the mode
+range by `|B| << R`, so (C.18) keeps `|Phi'''| << P^(-13/12)` and Theorem B.1's twist
+budget holds. `QED`
+
 ## Open questions
 
 The first-pass bookkeeping (Result 5) finds no binding constraint for `OOOEE`
@@ -265,10 +316,10 @@ for `OOOEE` up to `delta < 1/6`, or `delta < 3/16` at bounded frequencies, after
 three local repairs. That would be the averaged substitute, but it is a first-pass
 reading of a dense proof and does not meet the promotion criterion. The pricing
 stands: `OOOEE` alone would lift the ideal contagion from `0.633` to `0.6915`, both
-depth-five words to `0.7512`. Best next question: Lemma E1 closes the Lemma 4.4 gap with
-margin `P^(1/192)`; does the uncentered C.8 repair, written out with the uniform
-coefficient bound `|a_r(beta)| + |a_r'(beta)| << 1/(1+|r+beta|)`, keep a power
-saving at `Pi` near `P^(1/8)`?
+depth-five words to `0.7512`. Best next question: with Lemmas E1 and E2, the remaining pieces
+of the `OOOEE` route are the `k = 0` frequency cases of `T_d` (Lemma 4.4 and
+Proposition 7.6 at `h = d`) and the poor-tail reduction from sliding windows to the
+actual fibres; do the `k = 0` cases keep a power saving at `h = P^(5/32)`?
 
 ## Publication assessment
 

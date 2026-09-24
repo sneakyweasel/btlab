@@ -2617,7 +2617,8 @@
       "conjecture": [],
       "decision": "PARK",
       "ledger_ids": [
-        "J-depth-five-small-shift-extension"
+        "J-depth-five-small-shift-extension",
+        "J-depth-five-uncentered-zero-offset"
       ],
       "aliases": [],
       "nk_clusters": [
