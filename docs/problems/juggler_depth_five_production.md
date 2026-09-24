@@ -898,24 +898,166 @@ new mathematics. It does not prove the `OOOEE` production. That input is E1-E6
 The scale-average form of the pressure theorem (`FateScaleAverage`) is not redone
 at `1/3`.
 
+**19. Lemma E7: the `OOEOE` differenced sums at shifts up to `P^(5/32)` (written
+proof, 24 September 2026; AI-assisted, not independently reviewed).**
+
+*Setting.* Paper B's Section 4.3 uses the coordinates `X = n^(3/2)`,
+`m = floor(X)`, `Y = m^(3/2)`, `U = floor(Y)^(1/2)` and `W = floor(U)^(3/2)`. With
+`theta = {X}` and `xi = {U}`, its (4.18) reads:
+
+- `U = n^(9/8) - (3/4) theta n^(-3/8) + O(P^(-9/8))`;
+- `W = n^(27/16) - C theta - B xi + O(P^(-9/16))`, where
+  `B = (3k/4) x^(9/16)` and `C = (9k/16) x^(3/16)` appear as the coefficients of
+  `kW/2`.
+
+Let `phi = (iX + jY + l U + kW)/2` for a bounded nonzero integer vector
+`(i, j, l, k)`, and let `T_d = sum e(phi(n+2d) - phi(n))` over odd `n` in `(P, 2P]`.
+
+*Statement.* For `1 <= d <= P^(5/32)`, `|T_d| << P^(61/64) log^2 P`. More precisely:
+
+| Case | Bound on `\|T_d\|` |
+|---|---|
+| `j != 0` | `(P^(7/8) d^(1/2) + d P^(3/4) + P^(15/16)) log^2 P` |
+| `j = 0`, `k != 0` | `P^(7/8) log P` |
+| `k = 0`, `j = 0`, `(i, l) != 0` | `P^(7/8)` |
+
+*Idea.* Paper B centres `B` at its floor on windows of length `P^(7/16)/k`. For a
+differenced sum that fails when `j = 0`: the pairs of modes `(r, r')` with
+`r != r'` keep a phase `(r - r') x^(9/8)`, whose curvature `P^(-7/8)` is worth one
+curvature scale per window. So there is no saving across `P^(9/16)` windows.
+Instead, keep `B` smooth and treat the gap of `floor(U)` as a carry, as Lemma 4.4
+treats the gap of `floor(X)`.
+
+*The `U`-carry.*
+
+- *Common coefficient.* Replacing `B(n+2d)` by `B(n)` costs `k d P^(-7/16)` per
+  point, `P^(23/32)` in total. The two `xi`-terms then combine to
+  `-B(n)(Delta_d U - g)`, where `g = floor(U(n+2d)) - floor(U(n))`.
+- *Noise.* Write `Delta_d U = S + nu`. Here `S = Delta_d (x^(9/8))` is smooth, and
+  `nu = -(3/4)[theta(n+2d)(n+2d)^(-3/8) - theta(n) n^(-3/8)] + O(P^(-9/8))`.
+- *Theta cancellation.* `-B nu` cancels the two `C theta` terms of `kW/2` up to
+  `O(k d P^(-7/16) P^(-3/8))` per point, because `(3/4) B x^(-3/8) = C`. This is
+  (4.19) at each endpoint.
+- *Carry.* Put `G = floor(S)` and `z = S - G`, which is monotone in `[0, 1)` on each
+  `G`-cell. Then `g = G + kappa` with `kappa = 1[{U(n)} >= 1 - z]`, except where
+  `{U(n)} + z` lies within `|nu| << P^(-3/8)` of an integer. By the discrepancy
+  bound (4.17) that happens `O(P^(5/8) + P^(7/8))` times.
+- *Cell count.* `S` is about `(9/4) d x^(1/8)` with `S'` about `d P^(-7/8)`, so
+  there are `O(d P^(1/8))` `G`-cells.
+- *Interpolation.* On a cell, the exact interpolation (4.8) gives
+  `(1 - z) e(F_{G,0}) + z e(F_{G,1})` plus sawtooth terms
+  `b(U(n)) - b(U(n) + z)`, with
+  `F_{G,epsilon} = (k/2) Delta_d(x^(27/16)) - B (S - G - epsilon) + (i/2) Delta_d X
+  + (l/2) S + [j-part]`.
+- *Sawtooth terms.* Lemma 4.3 at cutoff `R_U` expands them into modes
+  `e(s U(n))` and `e(s (U(n) + S))` with weights `1/|s|`. The truncation error is
+  `P log R_U / R_U + P^(7/8)`, by (4.17) for both arguments. The `theta`-noise in
+  `s U` costs `|s| P^(-3/8)` per point, which is `P^(3/4) log` in total at `R_U <= P^(1/8)`.
+
+*Zero-mode curvature at `j = 0`.* The leading terms of `(k/2) Delta_d x^(27/16)` and
+`B S` are both `(27/16) k d x^(11/16)`, and they cancel exactly. With
+`G + epsilon` frozen, what remains is
+`F'' = -(1701/4096) k d x^(-21/16) (1 + O(P^(-1/8)))`. A 60-digit numerical
+differentiation at `x = 10^14`, `d = 1000` gives `-0.41528320312`, against
+`-1701/4096 = -0.41528320313`. The errors, relative to `k d P^(-21/16)`, are:
+
+- the frozen `z` term, `B'' = O(k P^(-23/16))`, relative `P^(-1/8)/d`;
+- the `i` term, relative `P^(-3/16)`;
+- the `l` term, relative `P^(-9/16)`.
+
+A carry mode `s` adds curvature `s P^(-7/8)`, which dominates by at least
+`P^(9/32)`.
+
+*Case `j = 0`, `k != 0`.* Take `R_U = P^(1/8)`. The zero modes give
+`P (k d P^(-21/16))^(1/2) + d P^(1/8) (k d P^(-21/16))^(-1/2)
+<< P^(11/32) d^(1/2) + P^(25/32) d^(1/2) <= P^(55/64)`. The nonzero modes give
+`R_U^(1/2) P^(9/16) + d P^(1/8) P^(7/16) <= P^(23/32)`. The errors are:
+
+- `P^(7/8) log P` from truncation;
+- `P^(7/8)` from the carry mismatches;
+- `P^(3/4) log P` from the `theta`-noise;
+- `l P^(5/8)` from the `l`-noise;
+- `k P^(7/16)` from the Taylor step (4.18).
+
+*Case `j != 0`.* The `Y`-wave is Paper B's Lemma 4.4 at `h = d`, which E1
+(Result 7) extends to `|u| d <= c_0 P^(1/4)`. Take the product of the two exact
+interpolations, for the `X`-gap and the `U`-gap, on their common cells:
+`O(d P^(1/2))` cells, plus `O(d P^(1/8))`. The weights are products of monotone
+`z`'s. Relative to E1's main curvature `u d P^(-3/4)`:
+
+- the `U`-part zero-mode curvature `k d P^(-21/16)` is `O(P^(-9/16))`;
+- a `U`-mode `s <= R_U = P^(1/16)` adds `s P^(-7/8)`, relative at most
+  `P^(-1/16)`;
+- an `X`-mode `rho` adds `rho P^(-1/2)`, which dominates everything, as in E1.
+
+E1's bound therefore holds with doubled log masses. The `U`-truncation at
+`P^(1/16)` costs `P^(15/16) log P`.
+
+*Case `k = 0`.*
+
+- If `j != 0`: E1 applies. The `l` term is smooth plus noise costing `P^(5/8)`,
+  with curvature `l d P^(-15/8)`, negligible.
+- If `j = 0`: the phase is `(i/2) Delta_d X + (l/2) S` plus noise costing
+  `P^(5/8)`. Its derivative is monotone, of size about `d P^(-1/2)` if `i != 0`
+  and `d P^(-7/8)` if `i = 0`, and below `1/4` on the odd lattice. Kusmin-Landau
+  gives `P^(1/2)/d` or `P^(7/8)/d`. `QED`
+
+**20. Lemma E8: the `OOEOE` count-poor tail (written proof, 24 September 2026;
+AI-assisted, not independently reviewed).**
+
+*Setting.* The word `OOEOE` means that `n` and `J(n)` are odd, `J^2(n)` is even,
+`J^3(n)` is odd and `J^4(n)` is even. Then `J(n) = floor(X)`, `J^2(n) = floor(Y)`,
+`J^3(n) = floor(floor(Y)^(1/2)) = floor(U)` (because `J^2 n` is even), and
+`J^4(n) = floor(W)` (because `J^3 n` is odd). The target is
+`G(n) = floor(floor(W)^(1/2))`, which is nondecreasing on all `n`. The word is the
+product of four half-arc indicators of `{X/2}`, `{Y/2}`, `{U/2}` and `{W/2}`:
+Paper B's Section 4.3 coordinates.
+
+*Fibre geometry.* `U = n^(9/8) - O(P^(-3/8))`, and
+`W = n^(27/16) - O(P^(9/16))`: the loss of `floor(U)`, times `W'` in `U`. Since
+`W' ~ n^(11/16)`, each fibre endpoint moves by `O(P^(-1/8))`. So
+`H_t = (16/27) t^(5/27)(1 + o(1))` and `max I_t <= (t+1)^(32/27)(1 + o(1))`, as
+for `OOOEE`. The multiplier is `27/32`, the ideal fraction is `1/16` and the ideal
+coefficient is `1/27`.
+
+*Statement and proof.* For each `eta > 0`,
+`sum_{t > U_0, t in Poor_eta} 1/t << U_0^(-1/19)`. The proof is E6's word for word,
+with E7 in place of Results 7-15. Every bounded nonzero `nu` has
+`|T_d^nu| << P^(61/64) log^2 P`, so:
+
+- `#bad << P^(11/16) + P^(61/64 - 5/32 + eps) = P^(51/64 + eps)`;
+- against `P^(54/64)` targets per block, the poor mass per block is
+  `P^(-3/64 + eps)`;
+- the dyadic sum gives `U_0^(-(32/27)(3/64) + eps) = U_0^(-1/18 + eps)`.
+
+`QED`
+
+*Consequence (conditional).* Take `eta = 1/500`. For both depth-five words, the
+fibres that are not poor then carry at least
+`(1 - 16 eta)(1 - o(1))/(27 t) >= 1/(28 t)`, since `0.968 * 28/27 > 1.0039`. The
+`OOEOE` sources are disjoint from the `E`, `OE`, `OOEE` and `OOOEE` sources, by
+their parity prefixes. With `E` at 1, `OE` at `33/100`, `OOEE` at `11/100`, and
+both depth-five words at `1/28`, Arb certifies the contagion root
+`[0.740571591021 +/- 8e-13]`. That exceeds the branch's promotion threshold
+`0.74`, with a margin of `5.7e-4`, conditional on E1-E8 and a five-production
+assembly.
+
 ## Open questions
 
-Lemmas E1-E6 and Theorem E3 (Results 7-16) write out the `OOOEE` production:
+Lemmas E1-E8 and Theorem E3 (Results 7-20) write out both depth-five productions:
 
-- the differenced sums `|T_d| << P^(127/128+eps)` for every bounded nonzero
-  frequency vector at `d <= P^(5/32)`;
-- the count-poor tail with reciprocal mass `<< U^(-1/109)`.
+- `OOOEE`, through E1-E6;
+- `OOEOE`, through E7 and E8.
 
-With coefficient `1/30` it would lift contagion to `2/3` (Arb-certified root
-`0.6793`). E1 and E3-E5 have been audited; E2 has been audited with its
-nonzero-`t` clause withdrawn; E6 has been audited (Result 17). The four-production
-assembly is kernel-checked with the `OOOEE` production as its explicit hypothesis
-(Result 18). Still open:
+At coefficient `1/28` each, the Arb-certified root is `0.74057 > 0.74`. E1 and
+E3-E6 have been audited; E2 has been audited with its nonzero-`t` clause withdrawn;
+E7 and E8 are unreviewed. The four-production assembly for `OOOEE` alone is
+kernel-checked (Result 18). Still open:
 
-- human review of E1-E6;
-- a Lean proof of the `OOOEE` production itself;
-- `OOEOE`, which needs its own bookkeeping and is required for the promotion
-  criterion `lambda > 0.74`.
+- an audit of E7 and E8;
+- a five-production assembly at `37/50`;
+- human review of E1-E8;
+- a Lean proof of either production.
 
 ## Decision
 
@@ -933,8 +1075,9 @@ is not promoted, for three reasons:
 - the promotion criterion `lambda > 0.74` needs `OOEOE`, which has not been
   bookkept.
 
-Best next question: does `OOEOE`, with Theorem 4.9's phase family in
-place of Appendix C's, admit the same Results 7-16 chain at shifts `P^(5/32)`?
+Best next question: does an independent audit confirm Lemmas E7
+and E8, the `OOEOE` differenced sums through a smooth-coefficient carry of
+`floor(U)`?
 
 ## Publication assessment
 
