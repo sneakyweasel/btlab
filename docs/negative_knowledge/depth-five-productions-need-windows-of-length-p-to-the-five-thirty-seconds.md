@@ -43,3 +43,12 @@ below an arbitrarily small power of `P`, not up to the window `P^(5/32)`. The
 parking reason therefore no longer applies to either depth-five word, subject to
 human review of Lemmas E5-E9. What remains open beyond depth five is nesting depth,
 not window length: the depth-seven words need six nested floor coordinates.
+
+**Revised a fourth time, 24 September 2026.** For depth seven the obstruction is
+now located. Dossier Results 28-31 find that `OOOEOEE` (the cheapest
+depth-seven word) is `O . OOEOE . E`, so its `Z`-free part lifts to E7. Its joint
+`Z`/`R_5` part fails in Paper B's route because the `floor(U)` carry of the
+`n^(27/16)`-size coordinate `U` has about `h P^(11/16)` cells. In the `t != 0`
+and C.8-collision subcases the curvature cannot pay for them (endpoint costs
+`P^(13/12)` and `P^(97/96)`). Reopen depth seven only with a method that does
+not charge each such cell as an endpoint.

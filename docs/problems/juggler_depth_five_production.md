@@ -1489,6 +1489,45 @@ Theorem B.1 admitting the `R_5` carry cells (Result 28).
 E7, plus one A.1 centring with a verified curvature constant. It still needs to
 be written out. The joint case remains the open core.
 
+**31. Where `OOOEOEE`'s joint case fails (desk bookkeeping; 24 September 2026;
+not a proof of impossibility).** Take `k_3 != 0` and `k_5 != 0`, and follow Paper
+B's `n`-variable route: the `h_2` Weyl step, then the double correlation. The
+`R_5`-part brings `floor(U)`-gap cells at the shifts `d`, `h_2` and `d + h_2`.
+Because `U` grows like `n^(27/16)`, there are about `h P^(11/16)` of them, with
+`h = P^(1/24)`. That is `P^(35/48)` in all, against `d P^(1/8)` for `OOEOE`, whose
+`U` grows like `n^(9/8)`.
+
+The `U`-carry zero mode switches phase at every cell. Consecutive
+`F_{G+epsilon}` differ by the non-integer `B`, of size `n^(27/32)`. So every cell
+is an endpoint for the second-derivative test. The endpoint cost
+`D lambda^(-1/2)` in each of Paper B's subcases:
+
+| Subcase | Curvature `lambda` | Endpoint cost |
+|---|---|---|
+| `t != 0` (Theorem B.1's `Y`-wave) | `h P^(-3/4)` | `P^(13/12)`: **fails** |
+| `t = 0`, `b != 0` (C.7) | `P^(-1/8)` | `P^(19/24)`: fine |
+| `t = 0`, `b = 0` (C.8 collision) | `Pi P^(-5/8)` | about `P^(97/96)`: **fails** |
+| nonzero `U`-carry modes | `s P^(-5/16)` | `P^(85/96)`: fine |
+
+So the wall is concrete. The `floor(U)` carry's cell count, `P^(11/16)` per unit
+shift, exceeds what the small curvature of the `Y`-wave, and of the C.8
+collision band, can pay for.
+
+- It does not arise for `k_3 = 0`, where the O-lift of Result 30 applies.
+- It does not arise for `OOEOE`, whose `U` is slow.
+- It is the "two stacked growing factors" of Result 26, in countable form.
+
+A method that crosses it must avoid treating each `floor(U)` cell as an endpoint.
+One route would be a Fourier expansion of the phase switch `e(B Q)` across cells
+that keeps a usable curvature. Another would be to difference in `m` rather than
+in `n` for the `R_5`-part. Neither is attempted here.
+
+*Where the depth-seven map now stands:*
+
+- `OOOEOEE` with `k_3 = 0`: reachable in outline.
+- `OOOEOEE`, joint case: blocked at two subcases.
+- `OOEOOEE` and `OOOOEEE`: costlier (Result 27).
+
 ## Open questions
 
 Result 23 (Lemma E9) shows that the productions need `T_d` only at shifts below an
