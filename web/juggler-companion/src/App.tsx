@@ -1,4 +1,5 @@
 import { Analytics } from "@vercel/analytics/react";
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { PlayStateProvider } from "./context/PlayState";
@@ -24,6 +25,7 @@ import { TrajectoryTab } from "./pages/play/TrajectoryTab";
 import { ItineraryTab } from "./pages/play/ItineraryTab";
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, "");
+const BeattyTab = lazy(() => import("./pages/play/BeattyTab"));
 
 export default function App() {
   return (
@@ -54,6 +56,7 @@ export default function App() {
               <Route path="rho" element={<Navigate to="/play/v-ladder" replace />} />
               <Route path="cycle" element={<CycleTab />} />
               <Route path="survivors" element={<SurvivorsTab />} />
+              <Route path="beatty-profile" element={<Suspense fallback={<p role="status">Loading Beatty profile…</p>}><BeattyTab /></Suspense>} />
               <Route path="leftovers" element={<Navigate to="/play/survivors" replace />} />
               <Route path="run-suffix" element={<RunSuffixTab />} />
               <Route path="suffix" element={<Navigate to="/play/run-suffix" replace />} />

@@ -5,6 +5,7 @@ const TABS = [
   { to: "/play/trajectory", label: "Trajectory" },
   { to: "/play/cycle", label: "Cycle" },
   { to: "/play/survivors", label: "Survivors" },
+  { to: "/play/beatty-profile", label: "Beatty profile" },
   { to: "/play/run-suffix", label: "Run-suffix" },
   { to: "/play/itinerary", label: "Itinerary" },
   { to: "/play/preimages", label: "Preimages" },
@@ -35,7 +36,8 @@ export function PlaygroundPage() {
           pair, grow the two Paper C productions, average an even block, split the three sources, climb the V-ladder, look up a certified floor,
           look up a length in the shipped Theorem 4.6 table, read the
           gap-transfer / Rhin plane, the walk-charge explorer, or the
-          semiconvergent fan. Caps:
+          semiconvergent fan. Explore the Beatty phase profile, exact-count samples,
+          and certified deleted gaps in Beatty profile. Caps:
           80 steps, 256 bits live, itineraries of length at most 8 (cycles 16,
           tour words 24), production seeds at most 1,000,000. Shipped monsters
           are pictures, not a live walk. Hitting 1 is not a theorem.
