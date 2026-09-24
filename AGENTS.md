@@ -126,6 +126,12 @@ production sums, and `arb_paper_c_models` / `arb_paper_c_rate` for canonical
 paper formulas. Keep exact endpoints and scope; `holds=null` is unresolved.
 It writes no research artifacts and never upgrades a claim or Lean proof.
 
+The alphaXiv connector searches and reads arXiv. It is an external service tied
+to the owner's claude.ai account, not a repository server: never send it
+unpublished results or correspondence, and ask before library or follow changes.
+A search miss is not novelty. Record what was read in the
+[literature registry](docs/architecture/literature.md#reading-arxiv-through-alphaxiv).
+
 Use Lean LSP or Lean itself for elaboration and proof checking; a source catalogue
 is not an axiom audit. External [prove2.me](.claude/skills/prove2me/SKILL.md) is
 separate from formalpedia. Ask before public submit or verify.
