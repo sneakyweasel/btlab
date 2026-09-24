@@ -211,6 +211,41 @@ from sliding windows to the actual fibres and a truncation of the parity square
 waves. No defect found is fatal, but the argument is not established and its
 margins are small powers of `P`.
 
+**7. Lemma E1: Paper B's Lemma 4.4 and Lemma A.3 at shifts up to `P^(5/32)`
+(written proof, 24 September 2026; AI-assisted, not independently reviewed).**
+
+*Statement.* Fix `C`. Let `P` be large, `h >= 1` an integer, `u = j/2` with
+`1 <= |j| <= C P^(1/24)`, `|i|, |k| <= C P^(1/24)`, and suppose `|u| h <= c_0 P^(1/4)`
+for a small absolute `c_0`. Then the sum (4.4) of Paper B satisfies
+`<< P^(7/8)(1 + h^(1/2)) + (1 + |u|) h P^(3/4) + |u| P^(1/4) + P^(5/6)`.
+Paper B states (4.4) for `h <= P^(1/12)` only.
+
+*Proof.* Follow Paper B's proof of Lemma 4.4 and check each step at larger `h`.
+(4.5) and `A_h'' = O(h^2 P^(-7/4))` use only `2h/x = o(1)`. The deletion (4.6)
+costs `|u| h P^(3/4) + |u| P^(1/4)` for every `h`, since
+`Delta_h(x^(3/4)) = O(h P^(-1/4))` and `E = O(P^(-3/4))`. The gap cells of
+`G = floor(Delta_h X)` number `O(1 + h P^(1/2))` for `h <= P^(1/2)`, and (4.7),
+(4.8) and the Lemma 4.3 sawtooth errors `O(P^(5/6) + P^(3/4) log P)` do not depend
+on `h`. In (4.9) the main curvature is `|u| h P^(-3/4)` up to constants and the
+error ratios are `h/P`, `(|i|/|u|) P^(-3/4)` and `(|k|/|u|) P^(-9/8)`, all `o(1)`.
+The second-derivative estimate on the cells gives (4.10),
+`(uh)^(1/2) P^(5/8) + (h/u)^(1/2) P^(7/8)`. For a nonzero carry mode `r`,
+`1 <= |r| <= R = P^(1/4)`, the added curvature `|r| P^(-1/2)` dominates (4.9)
+because `|u| h P^(-3/4) / (|r| P^(-1/2)) <= |u| h P^(-1/4) <= c_0`; this replaces
+Paper B's `P^(-1/8)` and is the only use of `uh << P^(1/4)`. The per-mode cost
+`|r|^(1/2) P^(3/4) + h |r|^(-1/2) P^(3/4)`, weighted by `1/|r|`, sums to
+`R^(1/2) P^(3/4) + h P^(3/4)`. Collecting terms gives the bound. `QED`
+
+*Consequence for Lemma A.3.* With `h_1 <= P^(5/32)`, `h_2 <= P^(1/24)`,
+`J = floor(P^(1/24))` and `u = q`, `1 <= |q| <= J`, (A.13) for `W_1 = Delta_1 Y` costs
+`sum_q q^(-1) [P^(7/8) h_1^(1/2) + q h_1 P^(3/4)] << P^(61/64) log P + P^(91/96)`,
+below `P^(23/24)` by margins `P^(1/192)` and `P^(1/96)`; the condition
+`q h_1 <= J h_1 = P^(19/96) <= c_0 P^(1/4)` holds. For `D`, the value error of
+(A.14) is `(h_1+h_2) P^(-1/4) = P^(-3/32)`, and `J P^(-3/32) -> 0`; the monotone
+count (A.2) gives `P a_0 = P^(13/32+gamma)` on the zero branch and
+`P^(23/24) log P` otherwise. Hence (A.13) holds for every argument at
+`h_1 <= P^(5/32)`.
+
 ## Open questions
 
 The first-pass bookkeeping (Result 5) finds no binding constraint for `OOOEE`
@@ -230,9 +265,10 @@ for `OOOEE` up to `delta < 1/6`, or `delta < 3/16` at bounded frequencies, after
 three local repairs. That would be the averaged substitute, but it is a first-pass
 reading of a dense proof and does not meet the promotion criterion. The pricing
 stands: `OOOEE` alone would lift the ideal contagion from `0.633` to `0.6915`, both
-depth-five words to `0.7512`. Best next question: with the uncentered C.8 repair,
-does a written extension of Lemma 4.4 to `h = P^(5/32)` keep its `P^(1/192)`
-margin once every term is recomputed?
+depth-five words to `0.7512`. Best next question: Lemma E1 closes the Lemma 4.4 gap with
+margin `P^(1/192)`; does the uncentered C.8 repair, written out with the uniform
+coefficient bound `|a_r(beta)| + |a_r'(beta)| << 1/(1+|r+beta|)`, keep a power
+saving at `Pi` near `P^(1/8)`?
 
 ## Publication assessment
 
