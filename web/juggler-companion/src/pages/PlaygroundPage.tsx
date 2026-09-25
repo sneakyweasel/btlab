@@ -6,7 +6,6 @@ const TABS = [
   { to: "/play/cycle", label: "Cycle" },
   { to: "/play/survivors", label: "Survivors" },
   { to: "/play/beatty-profile", label: "Beatty profile" },
-  { to: "/play/beatty-progress", label: "Beatty progress" },
   { to: "/play/run-suffix", label: "Run-suffix" },
   { to: "/play/itinerary", label: "Itinerary" },
   { to: "/play/preimages", label: "Preimages" },
@@ -38,7 +37,7 @@ export function PlaygroundPage() {
           look up a length in the shipped Theorem 4.6 table, read the
           gap-transfer / Rhin plane, the walk-charge explorer, or the
           semiconvergent fan. Explore the Beatty phase profile, exact-count samples,
-          and certified deleted gaps in Beatty profile, and every recorded Beatty claim in Beatty progress. Caps:
+          and certified deleted gaps in Beatty profile. Caps:
           80 steps, 256 bits live, itineraries of length at most 8 (cycles 16,
           tour words 24), production seeds at most 1,000,000. Shipped monsters
           are pictures, not a live walk. Hitting 1 is not a theorem.

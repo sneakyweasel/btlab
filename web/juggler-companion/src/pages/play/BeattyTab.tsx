@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { BeattyExplorer } from "../../components/BeattyExplorer";
 import { Tex } from "../../components/Tex";
 
@@ -11,8 +10,7 @@ export default function BeattyTab() {
         <p className="prose-measure text-muted">
           The normalized counts gather around an increasing profile. Each jump
           skips an interval of values. Select a jump or move through the phase to
-          see how those gaps appear on the value axis. The proved results
-          behind this picture are listed in <Link to="/play/beatty-progress">Beatty progress</Link>.
+          see how those gaps appear on the value axis.
         </p>
       </header>
       <BeattyExplorer />
