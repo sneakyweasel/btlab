@@ -11,6 +11,17 @@ consolidation is at `e9725762eaf028d1ace354ff20e0fc48f1a3d143`. See
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-25 -- Two-scale slopes below the threshold in Lean
+
+**EXACT — LEAN VERIFIED:** for `nu > 1` and `1 <= rho <= 1 + 3/nu`, an isolated slope
+with an `IsoLevels` enumeration (no good index between consecutive levels,
+`2 N_j <= q_(j+1)`) and `q_(j+1) <= N_j^rho'` eventually for every `rho' > rho` has
+`dim_H K_alpha = 2/(2+nu)`; the two-scale slopes exist for every such `rho`. It is an
+assembly: the quadratic is nonnegative at `2/(2+nu)` and increasing, so the existing
+cover bound applies, and the class bound gives the lower bound. Remaining premise:
+only the limit `rho -> oo` is written without Lean. Decision: PROMOTE. Record: claim
+`J-beatty-slope-two-scale-low`, note section 33.
+
 ## 2026-09-25 -- Beatty dimension as a growth-sequence game; two-scale slopes in Lean
 
 **OBSERVATION (exponent model):** reduced to exponent recursions, the cover of

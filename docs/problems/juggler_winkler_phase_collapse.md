@@ -1763,10 +1763,21 @@ replacing the `IsoLevels` sparsity with a growth ratio.
 isolated slope whose good denominators grow like `q_(j+1) >= q_j^(rho nu)` and at most
 `N_j^rho'` for every `rho' > rho` has `dim_H K_alpha = S(nu, rho)`, and such slopes of
 class exactly `nu` exist for every `nu`, `rho` (claim `J-beatty-slope-two-scale`,
-`twoScale_dimH_eq`, `twoScale_dims`). This proves the dimension game of Phase 0 on
-the whole two-scale family. The regime `rho <= 1 + 3/nu` is not stated in Lean; there
-the value `2/(2+nu)` is expected. **PROMOTE.** Open next: patterns with several
-jumps per period, where the game is known numerically but no Lean statement exists.
+`twoScale_dimH_eq`, `twoScale_dims`). The enumeration of good indices must also skip
+no good index and satisfy `2 N_j <= q_(j+1)` (`IsoLevels`).
+
+**Low regime — EXACT — LEAN VERIFIED (25 September).** For `nu > 1` and
+`1 <= rho <= 1 + 3/nu`, under the same two `IsoLevels` conditions and the upper growth
+condition alone, `dim_H K_alpha = 2/(2+nu)`, and the two-scale slopes exist for every
+such `rho` (claim `J-beatty-slope-two-scale-low`, `twoScale_dimH_low`,
+`twoScale_dims_low`). The quadratic satisfies `(2+nu)^2 Q(2/(2+nu)) = 4(nu-1)(nu+3-R)`,
+which is `>= 0` exactly when `rho <= 1 + 3/nu`, so the existing cover bound applies
+to every `s > 2/(2+nu)`; the class bound gives the matching lower bound. At
+`rho = 1 + 3/nu` the two formulas agree (`twoScaleDim_boundary`). With this, the
+dimension game of Phase 0 is proved in Lean on the whole two-scale family `rho >= 1`;
+only the limit `rho -> oo` is written without Lean. **PROMOTE.** Open next: patterns
+with several jumps per period, where the game is known numerically but no Lean
+statement exists.
 
 ## Decision
 

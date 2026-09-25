@@ -425,6 +425,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "BeattyTwoScale": "Two-scale slopes: window masses at a fixed growth ratio of good denominators, the window-exponent interval, and the lower bound dim_H K_alpha >= s where 3(R-1)s^2 + 4(rho-1)s - 4(rho-1) < 0",
     "BeattyTwoScaleUpper": "Two-scale upper bound: pass-through covers across dense stretches, the uniform exponent gain, and H^s(K_alpha) = 0 above the two-scale threshold for good convergents with jump growth",
     "BeattyTwoScaleExact": "The two-scale dimension S(nu, rho), the root of 3(rho nu - 1)s^2 + 4(rho - 1)s - 4(rho - 1), and dim_H K_alpha = S(nu, rho) for isolated slopes with two-scale growth",
+    "BeattyTwoScaleLow": "Two-scale slopes below the threshold: for 1 <= rho <= 1 + 3/nu the quadratic is positive above 2/(2+nu), so dim_H K_alpha = 2/(2+nu), with existence and S(nu, 1 + 3/nu) = 2/(2+nu)",
     "BeattySlopeContinuity": "Local constancy of actual counts in the boundary, l1 continuity of jump weights, weak continuity of the laws and continuity of the Minkowski content at irrational slopes",
     "BeattySlopeArithmetic": "Hausdorff dimension two-thirds for almost every slope and positive finite two-thirds measure for every quadratic irrational slope",
     "BeattyCertificateWeights": "Moving phase asymptotic and uniform two-sided three-halves bounds for actual certificate gap weights",

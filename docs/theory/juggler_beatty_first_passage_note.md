@@ -3011,16 +3011,21 @@ and `s*(nu)`.
 
 **Setting.** Take partial quotients `a_g = ceil(Q_g^(nu-1)) + 1` at good indices
 `g >= 1` and `a_k = 1` otherwise, as in Section 32. Let `g_0 < g_1 < ...` enumerate
-the good indices from some point on. Put `q_j = Q_(g_j)`, `N_j = Q_(g_j+1)`, so
-`q_j^nu <= N_j <= 4 q_j^nu`, and suppose
+the good indices from some point on, with no good index strictly between `g_j` and
+`g_(j+1)` and with `2 Q_(g_j+1) <= Q_(g_(j+1))` for every `j` (the enumeration
+`IsoLevels` of Section 32). Put `q_j = Q_(g_j)`, `N_j = Q_(g_j+1)`, so
+`q_j^nu <= N_j <= 4 q_j^nu` and `2 N_j <= q_(j+1)`, and suppose
 \[
  \frac{\log q_{j+1}}{\log q_j}\longrightarrow R=\rho\nu ,\qquad \rho\ge 1 .      \tag{62j}
 \]
 Between `N_j` and `q_(j+1)` every partial quotient is `1`, so consecutive
 denominators there at most double. For every `nu > 1` and `rho >= 1`, choosing
-`g_(j+1)` as the first index with `log Q >= R log q_j` gives such a slope.
+`g_(j+1)` as the least index at least `g_j + 3` with `log Q >= R log q_j` gives such
+a slope.
 
-**Two-scale slopes — EXACT — LEAN VERIFIED.** Under (62j),
+**Two-scale slopes.** **EXACT — LEAN VERIFIED** in both regimes
+`1 <= rho <= 1 + 3/nu` and `rho > 1 + 3/nu`; the limit `rho -> oo` is
+**EXACT — HUMAN PROOF**, see *Lean formalization* below. Under (62j),
 `dim_H K_alpha = S(nu, rho)`, where `S(nu, rho) = 2/(2+nu)` if `rho <= 1 + 3/nu`,
 and otherwise `S(nu, rho)` is the positive root of
 \[
@@ -3104,8 +3109,23 @@ conditions form an interval `(gamma_2, gamma_1)` with
 `gamma_1 - gamma_2 = -Q(s)(R-1)/(2 rho (s(R-1) - 2))`. Existence is `twoScale_dims`:
 each next good index is the least index at least three beyond the last whose
 denominator reaches `q_j^R`, computed from the good indices already chosen; minimality
-gives `q_(j+1) <= 4 N_j^rho`. The axiom audit lists only `propext`,
-`Classical.choice` and `Quot.sound`.
+gives `q_(j+1) <= 4 N_j^rho`.
+
+The regime `1 <= rho <= 1 + 3/nu` is `twoScale_dimH_low`
+([BeattyTwoScaleLow.lean](../../formal/Problems/Juggler/BeattyTwoScaleLow.lean)). There
+`(2+nu)^2 Q(2/(2+nu)) = 4(nu-1)(nu+3-R) >= 0` and `Q` increases for `s > 0`, so
+`Q(s) > 0` for every `s > 2/(2+nu)` (`twoScaleQuad_pos_low`), and the upper bound
+above gives `H^s(K_alpha) = 0`. The lower bound is the class bound of Section 32. So
+this regime needs only the upper growth condition, not `q_(j+1) >= q_j^R`.
+`twoScale_dims_low` gives the slopes for every such `rho`, and `twoScaleDim_boundary`
+checks that `S(nu, 1 + 3/nu) = 2/(2+nu)`, where the two regimes meet.
+
+Scope of the Lean statements: in both regimes the enumeration carries the two
+`IsoLevels` conditions of the setting (no good index between consecutive `g_j`, and
+`2 N_j <= q_(j+1)`); its size floor `B <= q_0` is vacuous here, since `B` is
+arbitrary. The limit `S(nu, rho) -> s*(nu)` is not stated in Lean and rests on the
+written argument above. The axiom audit lists only `propext`, `Classical.choice` and
+`Quot.sound`.
 
 ## References
 

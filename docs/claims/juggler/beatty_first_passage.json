@@ -2616,6 +2616,26 @@
   "related_conjectures": []
  },
  {
+  "id": "J-beatty-slope-two-scale-low",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Let nu > 1 and 1 <= rho <= 1 + 3/nu, and let the isolated-level slope (a_g = ceil(Q_g^(nu-1)) + 1 at good g >= 1, a_k = 1 otherwise) have an enumeration of good indices g_0 < g_1 < ..., with no good index strictly between consecutive terms and 2 Q_(g_j + 1) <= Q_(g_(j+1)) for every j, such that for every rho' > rho, Q_(g_(j+1)) <= Q_(g_j + 1)^rho' from some level on. Then dim_H K_alpha = 2/(2+nu). No lower growth condition is needed. For every such nu and rho the adaptively chosen good set of J-beatty-slope-two-scale gives a slope of Diophantine class exactly nu with this dimension, and S(nu, 1 + 3/nu) = 2/(2+nu), so the two regimes meet at the threshold. Upper bound: the two-scale quadratic 3(R-1)s^2 + 4(rho-1)s - 4(rho-1), R = rho nu, times (2+nu)^2 equals 4(nu-1)(nu+3-R) >= 0 at s = 2/(2+nu) and increases for s > 0, so it is positive for every s > 2/(2+nu), and the two-scale cover gives H^s(K_alpha) = 0 there. Lower bound: the slope has Diophantine class nu, and the class bound gives dim_H K_alpha >= 2/(2+nu).",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyTwoScaleLow.lean",
+  "decl": [
+   "twoScaleQuad_pos_low",
+   "twoScaleDim_boundary",
+   "twoScale_dimH_low",
+   "twoScale_dims_low"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py",
+   "tests/research/juggler_sequence/test_beatty_slope_hausdorff_interface.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-slope-frostman-principle",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For the cut-out set K of a jump profile F with injective interior atom phases, if an atomless finite measure nu on the phases with nu(0,1) > 0 satisfies nu[u,v] <= C (F(v) - F^+(u))^s for 0 <= u < v <= 1, then H^s(K) > 0; the same holds when nu is the Stieltjes measure of a continuous nondecreasing h with h(0) < h(1) and h(v) - h(u) <= C (F(v) - F^+(u))^s. For a reduced approximation p/q with |q alpha - p| < 1/q, every grid point i/q with 0 < i < q carries the orbit point {t alpha} = i/q + t(q alpha - p)/q of an index 0 < t < q. These are the first formal inputs of the isolated-level lower bound J-beatty-slope-isolated-exact.",
