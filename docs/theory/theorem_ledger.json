@@ -2215,6 +2215,35 @@
   "related_conjectures": []
  },
  {
+  "id": "J-beatty-slope-cf-expansion",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For irrational alpha >= 0 the Gauss map x_0 = alpha, x_(k+1) = 1/fract(x_k) gives partial quotients a_k = floor(x_k) with a_(k+1) >= 1 and the complete-quotient identity alpha (x_(k+1) Q_(k+1) + Q_k) = x_(k+1) P_(k+1) + P_k, hence |Q_(k+1) alpha - P_(k+1)| <= 1/Q_(k+1) and alpha is the limit of its own convergents. So the continued-fraction convergents of every irrational alpha >= 0 satisfy the good-convergent hypotheses of J-beatty-slope-regular-exact-dim, which are stable under an index shift. Consequently, for every irrational alpha > 1 whose continued-fraction denominators eventually satisfy c q_n^nu <= q_(n+1) <= C q_n^nu with nu > 1, the actual cluster set has Hausdorff dimension exactly 2/(2+nu).",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeCFExpansion.lean",
+  "decl": [
+   "gaussQuot_irrational",
+   "fract_pos_of_irrational",
+   "one_lt_gaussQuot",
+   "cfDigits_succ_ge",
+   "gaussQuot_nonneg",
+   "gaussQuot_step",
+   "cf_complete_identity",
+   "cf_expansion_err_le",
+   "cfLim_cfDigits",
+   "irrational_goodConvergents",
+   "cfDigits_den_tendsto",
+   "GoodConvergents.shift",
+   "cf_regular_dimH_eq"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_hausdorff_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-slope-complete-cluster-set",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For every irrational 0<beta<1, equivalently every irrational alpha=1/beta>1, the complete set of real subsequential limits of the actual ratios r*c_r/choose(m_r-1,r-1) is K_beta=[1,1/(1-beta)] minus the union of the open intervals (F_beta(delta_r),F_beta(delta_r)+w_r), over positive r. This is exactly the closure of the strict profile range, and is nonempty, compact, perfect, of zero Lebesgue measure and empty interior. The profile is strictly increasing on [0,1]. Both endpoints of each genuine gap are cluster values, and every closed interval strictly inside a gap is eventually avoided. The exact liminf and limsup are 1 and 1/(1-beta). No unproved density or asymptotic premise, convergence rate, Minkowski dimension or arithmetic Hausdorff lower bound is asserted.",

@@ -8,6 +8,7 @@ import Problems.Juggler.BeattySlopeExactDim
 import Problems.Juggler.BeattySlopeIrrExp
 import Problems.Juggler.BeattySlopeRegularDim
 import Problems.Juggler.BeattySlopeConvergents
+import Problems.Juggler.BeattySlopeCFExpansion
 import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeGlobalLaw
 import Problems.Juggler.BeattySlopeLawContinuity
@@ -497,5 +498,18 @@ namespace Problems.Juggler
 #print axioms BeattySlope.cluster_dimH_spectrum
 #print axioms BeattySlope.regular_diophClass
 #print axioms BeattySlope.expSlope_diophClass
+#print axioms BeattySlope.gaussQuot_irrational
+#print axioms BeattySlope.fract_pos_of_irrational
+#print axioms BeattySlope.one_lt_gaussQuot
+#print axioms BeattySlope.cfDigits_succ_ge
+#print axioms BeattySlope.gaussQuot_nonneg
+#print axioms BeattySlope.gaussQuot_step
+#print axioms BeattySlope.cf_complete_identity
+#print axioms BeattySlope.cf_expansion_err_le
+#print axioms BeattySlope.cfLim_cfDigits
+#print axioms BeattySlope.irrational_goodConvergents
+#print axioms BeattySlope.cfDigits_den_tendsto
+#print axioms BeattySlope.GoodConvergents.shift
+#print axioms BeattySlope.cf_regular_dimH_eq
 
 end Problems.Juggler

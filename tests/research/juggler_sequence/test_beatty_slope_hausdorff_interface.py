@@ -15,7 +15,7 @@ EXPECTED = {
         "actual_liouville_hausdorff", "actual_liouville_dim",
         "actual_hausdorff_pos_iff", "actual_exponent_dim",
         "actual_dim_class_lower", "actual_dim_two_thirds_iff",
-        "actual_dim_spectrum",
+        "actual_dim_spectrum", "actual_cf_regular_dim",
     )
 }
 

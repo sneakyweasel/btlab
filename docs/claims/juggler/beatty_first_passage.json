@@ -2416,5 +2416,34 @@
    "tests/research/juggler_sequence/test_layer_completeness.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-cf-expansion",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For irrational alpha >= 0 the Gauss map x_0 = alpha, x_(k+1) = 1/fract(x_k) gives partial quotients a_k = floor(x_k) with a_(k+1) >= 1 and the complete-quotient identity alpha (x_(k+1) Q_(k+1) + Q_k) = x_(k+1) P_(k+1) + P_k, hence |Q_(k+1) alpha - P_(k+1)| <= 1/Q_(k+1) and alpha is the limit of its own convergents. So the continued-fraction convergents of every irrational alpha >= 0 satisfy the good-convergent hypotheses of J-beatty-slope-regular-exact-dim, which are stable under an index shift. Consequently, for every irrational alpha > 1 whose continued-fraction denominators eventually satisfy c q_n^nu <= q_(n+1) <= C q_n^nu with nu > 1, the actual cluster set has Hausdorff dimension exactly 2/(2+nu).",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeCFExpansion.lean",
+  "decl": [
+   "gaussQuot_irrational",
+   "fract_pos_of_irrational",
+   "one_lt_gaussQuot",
+   "cfDigits_succ_ge",
+   "gaussQuot_nonneg",
+   "gaussQuot_step",
+   "cf_complete_identity",
+   "cf_expansion_err_le",
+   "cfLim_cfDigits",
+   "irrational_goodConvergents",
+   "cfDigits_den_tendsto",
+   "GoodConvergents.shift",
+   "cf_regular_dimH_eq"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_hausdorff_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
  }
 ]

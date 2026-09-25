@@ -4,6 +4,7 @@ import Problems.Juggler.BeattySlopeDiophantineDim
 import Problems.Juggler.BeattySlopeExactDim
 import Problems.Juggler.BeattySlopeIrrExp
 import Problems.Juggler.BeattySlopeConvergents
+import Problems.Juggler.BeattySlopeCFExpansion
 
 /-! Expanded consumers of the family Hausdorff theorems. Each statement
 concerns the set of real subsequential limits of the original integer
@@ -167,6 +168,20 @@ theorem actual_dim_spectrum :
   rw [h]
   exact cluster_dimH_spectrum
 
+/-- An irrational slope whose own continued-fraction denominators eventually
+grow like `c q_n^ν ≤ q_(n+1) ≤ C q_n^ν`, `ν > 1`, gives Hausdorff dimension
+exactly `2/(2+ν)` for the actual limit set. -/
+theorem actual_cf_regular_dim (α ν c C : ℝ) (hα1 : 1 < α) (hα : Irrational α) (hν : 1 < ν)
+    (hc : 0 < c) (hC : 0 < C)
+    (hgrow : ∀ᶠ n in atTop,
+      c * (cfDen (cfDigits α) (n + 1) : ℝ) ^ ν ≤ cfDen (cfDigits α) (n + 2) ∧
+        (cfDen (cfDigits α) (n + 2) : ℝ) ≤ C * (cfDen (cfDigits α) (n + 1) : ℝ) ^ ν) :
+    dimH {y : ℝ | MapClusterPt y atTop (fun r : ℕ => let m := ⌊α*(r : ℝ)⌋₊;
+      (r : ℝ)*(passageCount (1/α) (m+1) : ℝ)/((m-1).choose (r-1) : ℝ))} =
+      ENNReal.ofReal (2/(2+ν)) := by
+  rw [cluster_eq α hα1 hα]
+  exact cf_regular_dimH_eq hα1 hα hν hc hC hgrow
+
 #print axioms actual_family_hausdorff_finite
 #print axioms actual_ae_hausdorff_dim
 #print axioms actual_dio_hausdorff_pos
@@ -179,5 +194,6 @@ theorem actual_dim_spectrum :
 #print axioms actual_dim_class_lower
 #print axioms actual_dim_two_thirds_iff
 #print axioms actual_dim_spectrum
+#print axioms actual_cf_regular_dim
 
 end Problems.Juggler.BeattySlopeHausdorffChecks

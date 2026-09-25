@@ -2,7 +2,7 @@
   "schema": "btlab-output/v2",
   "programme": "juggler",
   "research_id": "juggler/winkler_phase_collapse",
-  "created_utc": "2026-09-24T13:58:45.824907+00:00",
+  "created_utc": "2026-09-25T00:06:55.305033+00:00",
   "scope": "Exact integer counts; Arb enclosures using the proved positive mass identity; rounded display coordinates. Not a finite-depth asymptotic-error certificate.",
   "artifact_root": ".",
   "generator": {
@@ -16,7 +16,7 @@
       "--bits",
       "256",
       "--output",
-      ".build/artifacts/9557c7535efe48d7898c290a459029ba/work/data/research/juggler/winkler_phase_collapse/beatty_profile.json"
+      ".build/artifacts/fd1ba0af4a414938bfb84367350cd95d/work/data/research/juggler/winkler_phase_collapse/beatty_profile.json"
     ],
     "parameters": {
       "depth": 8000,
@@ -27,7 +27,7 @@
     "python": "3.13.9"
   },
   "source": {
-    "revision": "74f4d2c29730947bce78e2c73996a6020ef57a4d",
+    "revision": "e14f7449e222cad7d0dd9d0238e3d21d04fef654",
     "dirty": true,
     "coverage": "loaded local Python, project configuration, and explicit sources at manifest creation; not an execution or dependency audit",
     "files": [
@@ -171,11 +171,11 @@
   "inputs": [
     {
       "path": "data/research/juggler/arb_paper_audit/beatty.json",
-      "sha256": "74a2ceea6b3b46c26fabaeba5584ac81633c1ee293f841d2a90017d0513b5f3a",
+      "sha256": "8de5cb380c498f3510392dac37ab8d3b035cfdaedcfc32c87b33c6c0521f176b",
       "bytes": 1855880,
       "text": {
         "normalization": "utf8-crlf-to-lf",
-        "sha256": "74a2ceea6b3b46c26fabaeba5584ac81633c1ee293f841d2a90017d0513b5f3a",
+        "sha256": "8de5cb380c498f3510392dac37ab8d3b035cfdaedcfc32c87b33c6c0521f176b",
         "bytes": 1855880
       }
     }

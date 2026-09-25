@@ -1697,7 +1697,7 @@ The Lean development constructs no pair \((c,\tau)\) satisfying (42) for
 this slope; the next paragraph supplies one from the literature.
 
 **Corollary at the logarithmic slope — EXACT — HUMAN PROOF.** Rhin
-[11, Proposition, p. 160, (7)] proves that for integers \(u_0,u_1,u_2\)
+[11, Proposition, p. 160] proves, in its display (7), that for integers \(u_0,u_1,u_2\)
 with \(H=\max(|u_1|,|u_2|)\ge2\),
 \[
  |u_0+u_1\log2+u_2\log3|\ge H^{-13.3},
@@ -2656,8 +2656,13 @@ holds unconditionally for it. Together with the golden ratio (dimension
  \{\dim_H K_\alpha:\ \alpha>1\ \text{irrational}\}=\Bigl[0,\frac23\Bigr].   \tag{62h}
 \]
 ([BeattySlopeConvergents.lean](../../formal/Problems/Juggler/BeattySlopeConvergents.lean)).
-That the convergents of an arbitrary irrational satisfy the hypotheses is
-classical and not formalized.
+The convergents of an arbitrary irrational satisfy the hypotheses: the Gauss
+map gives partial quotients with `alpha(x_(k+1)Q_(k+1)+Q_k)=x_(k+1)P_(k+1)+P_k`,
+so `alpha` is the limit of its own convergents, and good convergents are
+stable under an index shift. Hence (62g) holds for every irrational `alpha>1`
+whose continued-fraction denominators eventually satisfy
+`c q_n^nu <= q_(n+1) <= C q_n^nu` — EXACT — LEAN VERIFIED
+([BeattySlopeCFExpansion.lean](../../formal/Problems/Juggler/BeattySlopeCFExpansion.lean)).
 For slopes of the same class `nu` whose good levels are isolated among
 bounded partial quotients, a written sketch suggests the larger value
 `2(sqrt(1+3 nu)-1)/(3 nu)`; if so, Hausdorff dimension is not a function
