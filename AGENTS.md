@@ -33,8 +33,10 @@ its canonical proof sources, not in duplicated instructions.
 - `bt.*` must never import `research.*` or `research_engine`. Application imports
   are `research.juggler_sequence`, `research.collatz`, `research.syracuse`, and
   `research.collatz_finite_descent`. Shared machinery lives in `research_engine`.
-- Preserve concurrent work. Inspect Git status and the latest commit before
-  editing or staging. Commit bounded changes; do not stage unrelated files.
+- Preserve concurrent work. Work in your own worktree (`lab.py worktree new`) and
+  reach `main` only through `lab.py land`; see the agent workflow. In a shared
+  checkout, inspect Git status and the latest commit before editing or staging.
+  Commit bounded changes; do not stage unrelated files.
 - Tests read committed research evidence. Tests that exercise artifact writers
   must use explicit `tmp_path` destinations; pytest rejects canonical output writes.
 - Use the seven evidence labels in `docs/README.md`. A Lean statement must cover
@@ -83,6 +85,8 @@ python tools/lab.py doctor                                # local prerequisites
 python tools/lab.py verify --changed --plan               # inspect planned gates
 python tools/lab.py verify --changed --profile focused --plan  # iteration test selection
 python tools/lab.py verify --changed --workers 8          # execute them
+python tools/lab.py worktree new <name>                  # own worktree + branch agent/<name>
+python tools/lab.py land agent/<name>                    # the only way onto main
 ```
 
 `lab.py run` and `lab.py test` bind imports and output paths to this checkout,

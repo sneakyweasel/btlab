@@ -226,9 +226,30 @@ independent copy; it never caches the production source reader. Cache mutation
 and CLI writer tests use temporary catalogues. Run the module matching a change
 first, then the full affected verification gates.
 
-For independent concurrent tasks, prefer separate Git worktrees. Inspect the
-latest commit and status before editing or staging in a shared checkout; commit
-only the files belonging to the task. Build outputs, semantic snapshots and test
+## Concurrent agents: a worktree each, one landing path
+
+Each agent works in its own worktree and branch and never commits to `main`:
+
+```text
+python tools/lab.py worktree new <name>   # .build/worktrees/<name> on agent/<name>, prepared
+python tools/lab.py verify --changed      # in the worktree, before asking to land
+python tools/lab.py land agent/<name>     # from any checkout; --dry-run to rehearse
+```
+
+`land` rebases the branch onto `main` in a temporary worktree, regenerates the
+shared views (`docs/theory/theorem_ledger.*`, `attacks/juggler/index.json`,
+`preprints/README.md`) from committed files only, runs the landing checks (ledger,
+branch index, preprints, paper pins) and fast-forwards `main`. Branches land one at a
+time. A conflict in a shared view is resolved by regeneration; any other conflict
+stops the landing with `main` unchanged, and the agent rebases and lands again. If
+uncommitted work in `main`'s checkout would be overwritten, git refuses and the result
+waits on `land/<branch>`. Agents need not commit the shared views at all; landing
+writes them. An orchestrating session assigns non-overlapping scopes, runs `land`,
+and serializes changes to cross-cutting files such as `tools/build_paper.py`, the
+paper settings and the Lean barrels. Pushing and deposits stay with the owner.
+
+In a shared checkout, inspect the latest commit and status before editing or
+staging, and commit only the files belonging to the task. Build outputs, semantic snapshots and test
 scratch directories belong to the selected checkout. A worktree must set up its
 own pinned dependencies using `prepare --apply` before compiling; do not assume another checkout's build
 results establish freshness here.

@@ -1,6 +1,6 @@
 """Land an agent's branch on main, one branch at a time, with the shared views regenerated.
 
-    python tools/lab.py worktree new <name>      create ../btlab-<name> on branch agent/<name>
+    python tools/lab.py worktree new <name>      create .build/worktrees/<name> on branch agent/<name>
     python tools/lab.py land <branch>            rebase, regenerate, check, fast-forward main
     python tools/lab.py land <branch> --dry-run  do everything except move main
 
@@ -156,7 +156,7 @@ def land(root: Path, branch: str, onto: str = "main", dry_run: bool = False,
 
 
 def new_worktree(root: Path, name: str, onto: str = "main", prepare: bool = True) -> dict:
-    path = root.parent / f"btlab-{name}"
+    path = root / ".build/worktrees" / name
     branch = f"agent/{name}"
     git(root, "worktree", "add", "-b", branch, str(path), onto)
     report = {"status": "created", "worktree": str(path), "branch": branch}
