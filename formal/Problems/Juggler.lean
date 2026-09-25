@@ -136,6 +136,7 @@ import Problems.Juggler.BeattySlopeRegularDim
 import Problems.Juggler.BeattySlopeConvergents
 import Problems.Juggler.BeattySlopeCFExpansion
 import Problems.Juggler.BeattySlopePacking
+import Problems.Juggler.BeattySlopeMeasureDim
 import Problems.Juggler.BeattySlopeRationalMass
 import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeWeakCounting

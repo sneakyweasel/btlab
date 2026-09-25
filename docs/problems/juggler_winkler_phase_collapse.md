@@ -1580,6 +1580,37 @@ exactly when `alpha` is `LiouvilleWith p` for some `p>2`
 ([BeattySlopePacking.lean](../../formal/Problems/Juggler/BeattySlopePacking.lean),
 claim `J-beatty-slope-packing-dim`). **PROMOTE**.
 
+### The dimension of the limit law (25 September)
+
+```text
+Mathematical target     The lower Hausdorff dimension of mu_alpha for every irrational alpha>1.
+Novelty hypothesis      Unlike dim_H K_alpha, it is a function of the Diophantine class alone.
+Falsifier               A positive-mass set of dimension below 2/(2+nu), or none reaching it.
+Already killed by?      No; section 4 of the exact-dimension notes says no formula in nu holds for the set, not the law.
+Existing machinery      Hoelder distribution function, block counts, tail masses, convergents of every irrational.
+Maximum Phase-0 scope   One module: late windows at one level, limsup over levels, lower bound, class assembly.
+Promotion criterion     Lean theorem for every Diophantine class and for Liouville slopes, standard axioms.
+Stop criterion          Window images not shrinking like q^(-1)|theta|^(1/2).
+```
+
+**EXACT — LEAN VERIFIED.** Write `lawDimH(mu)` for the least Hausdorff
+dimension of a measurable set of positive `mu`-mass. At a convergent `q` with
+`|q alpha - p| = |theta|`, the orbit fills each of the `q` cells from one side
+in steps `|theta|`, so the half reached last receives no point below index
+`N = floor(1/(2|theta|))`, and at most two points from each block of `q`
+consecutive indices. Its atom mass, the length of its profile image, is at most
+`6B/(q sqrt N)`. The `q` windows carry law mass `1/2`. Taking the limsup over
+fast good levels gives a set of mass at least `1/2` and zero `s`-measure for
+every `s > 2/(2+nu)`; the Hoelder bound of the distribution function gives the
+matching lower bound. Hence `lawDimH(mu_alpha) = 2/(2+nu) = 2/(1+omega)` for
+every irrational `alpha > 1` of Diophantine class `nu` (irrationality exponent
+`omega = 1+nu`), and `0` at Liouville slopes
+([BeattySlopeMeasureDim.lean](../../formal/Problems/Juggler/BeattySlopeMeasureDim.lean),
+claim `J-beatty-slope-law-dimension`). The law's dimension is a function of
+the Diophantine class alone, while the Hausdorff dimension of its support
+`K_alpha` is at least that value and, by the heuristic in the exact-dimension
+notes, can exceed it; the packing dimension is `2/3` throughout. **PROMOTE**.
+
 ## Decision
 
 `PROMOTE` -- for every irrational slope above one, the actual normalized

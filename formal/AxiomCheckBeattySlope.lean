@@ -10,6 +10,7 @@ import Problems.Juggler.BeattySlopeRegularDim
 import Problems.Juggler.BeattySlopeConvergents
 import Problems.Juggler.BeattySlopeCFExpansion
 import Problems.Juggler.BeattySlopePacking
+import Problems.Juggler.BeattySlopeMeasureDim
 import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeGlobalLaw
 import Problems.Juggler.BeattySlopeLawContinuity
@@ -524,5 +525,24 @@ namespace Problems.Juggler
 #print axioms BeattySlope.passageCluster_local_tube
 #print axioms BeattySlope.passageCluster_modUpperBoxDim
 #print axioms BeattySlope.cluster_dim_gap_iff
+#print axioms BeattySlope.window_mass_le
+#print axioms BeattySlope.level_early_avoid
+#print axioms BeattySlope.levelLeft_bounds
+#print axioms BeattySlope.good_cf_level
+#print axioms BeattySlope.passageCdf_image_volume_pos
+#print axioms BeattySlope.passageLaw_dimH_ge
+#print axioms BeattySlope.passagePhase_succ_fract
+#print axioms BeattySlope.levelSet_measurable
+#print axioms BeattySlope.passage_level
+#print axioms BeattySlope.exists_fine_level
+#print axioms BeattySlope.tsum_half_tail
+#print axioms BeattySlope.passageLaw_null_set
+#print axioms BeattySlope.passageLaw_cluster
+#print axioms BeattySlope.lawDimH_le_of
+#print axioms BeattySlope.exists_pos_le_finset
+#print axioms BeattySlope.dioph_lower_of_class
+#print axioms BeattySlope.passageLaw_lawDimH_le
+#print axioms BeattySlope.passageLaw_lawDimH_liouville
+#print axioms BeattySlope.passageLaw_lawDimH_eq
 
 end Problems.Juggler

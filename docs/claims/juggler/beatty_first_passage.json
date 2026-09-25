@@ -2473,5 +2473,40 @@
    "tests/research/juggler_sequence/test_layer_completeness.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-law-dimension",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Let lawDimH(mu) be the least Hausdorff dimension of a measurable set of positive mu-mass. For every irrational alpha > 1 of Diophantine class nu >= 1 (|q alpha - p| < q^(-mu) has infinitely many solutions for mu < nu and finitely many for mu > nu), the limit law mu_alpha of the actual normalized first-passage ratios has lawDimH(mu_alpha) = 2/(2+nu) = 2/(1+omega) with omega the irrationality exponent; at every Liouville slope lawDimH(mu_alpha) = 0. Upper bound: at a convergent q with |q alpha - p| = |theta|, the half of each of the q cells reached last receives no orbit point below index N = floor(1/(2|theta|)) and at most two from every block of q consecutive indices, so its profile image has length at most 6B/(q sqrt N); these windows carry law mass 1/2, and the limsup over fast good levels has mass at least 1/2 and zero s-measure for s > 2/(2+nu). Lower bound: the distribution function is Hoelder of exponent 2/(2+tau) for every tau > nu.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeMeasureDim.lean",
+  "decl": [
+   "window_mass_le",
+   "level_early_avoid",
+   "levelLeft_bounds",
+   "good_cf_level",
+   "passageCdf_image_volume_pos",
+   "passageLaw_dimH_ge",
+   "passagePhase_succ_fract",
+   "levelSet_measurable",
+   "passage_level",
+   "exists_fine_level",
+   "tsum_half_tail",
+   "passageLaw_null_set",
+   "passageLaw_cluster",
+   "lawDimH_le_of",
+   "exists_pos_le_finset",
+   "dioph_lower_of_class",
+   "passageLaw_lawDimH_le",
+   "passageLaw_lawDimH_liouville",
+   "passageLaw_lawDimH_eq"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_global_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
  }
 ]
