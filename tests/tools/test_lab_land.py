@@ -44,8 +44,8 @@ def regenerate(repo: Path) -> None:
     subprocess.run([sys.executable, "gen.py"], cwd=repo, check=True)
 
 
-@pytest.fixture
-def repo(tmp_path):
+def make_repo(tmp_path: Path) -> Path:
+    """A small lab: a claim, a generator for its view, and the committed view."""
     repo = tmp_path / "lab"
     repo.mkdir()
     git(repo, "init", "-q", "-b", "main")
@@ -59,6 +59,11 @@ def repo(tmp_path):
     git(repo, "add", VIEW)
     git(repo, "commit", "-q", "-m", "view")
     return repo
+
+
+@pytest.fixture
+def repo(tmp_path):
+    return make_repo(tmp_path)
 
 
 def branch_with(repo: Path, name: str, files: dict[str, str], with_view: bool = True) -> None:
