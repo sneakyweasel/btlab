@@ -41,9 +41,19 @@ import branch_drift as BD  # noqa: E402
 #: carries a ledger row or artifact main lacks. The staleness gate asks for
 #: entries to be removed once a branch stops drifting, so both lists are empty
 #: rather than historical. The reasons they held are in the merge commits.
-READ_AT: dict[str, str] = {}
+READ_AT: dict[str, str] = {
+    "claude/awesome-goodall-wy4ghe": "c576a35e",
+}
 
-ACKNOWLEDGED: dict[str, str] = {}
+ACKNOWLEDGED: dict[str, str] = {
+    # Read 25 September 2026. A cloud session's Paper B formalization that could not
+    # land (cloud sessions cannot run lab.py land): Prop. 3.2, Lemmas 4.3 and 4.4,
+    # Thm 4.5, Prop. 7.4, the 2D Erdos-Turan-Koksma inequality, seven ledger rows.
+    # Never compiled (its CI build timed out). Pending extraction: rebase onto main,
+    # compile, axiom-audit and land; a second, uncommitted local formalization of
+    # J-paper-b-minimal-prefixes-five exists and must be reconciled with it.
+    "claude/awesome-goodall-wy4ghe": "pending extraction",
+}
 
 
 def _key(ref: str) -> str:

@@ -55,6 +55,10 @@ def make_repo(tmp_path: Path) -> Path:
     git(repo, "config", "user.name", "Test")
     git(repo, "config", "user.email", "test@example.invalid")
     git(repo, "config", "core.autocrlf", "false")
+    # Background auto-maintenance after commits writes .git/objects/maintenance.lock at
+    # arbitrary times, which made "writes nothing" snapshots flaky on CI.
+    git(repo, "config", "maintenance.auto", "false")
+    git(repo, "config", "gc.auto", "0")
     (repo / ".gitignore").write_text(".build/\n")
     commit(repo, {"gen.py": GENERATOR, "check.py": CHECK, "claims/a.txt": "row a\n",
                   "notes.md": "base\n", ".gitignore": ".build/\n"}, "base")

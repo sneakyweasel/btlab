@@ -54,7 +54,9 @@ def test_region_requires_an_aws_virtual_host() -> None:
         lean_cache.region({"artifactEndpoint": "https://example.r2.cloudflarestorage.com/lean/a0"})
 
 
-@pytest.mark.parametrize("key", [None, "", "no-colon", "a:b:c", ":secret", "id:", " : "])
+@pytest.mark.parametrize("key", [None, "", "no-colon", "a:b:c", ":secret", "id:", " : ",
+                                 "AKIA : secret", "\"AKIA:secret\"", "AKIA:sec ret", "AKIA:secret\nextra",
+                                 "AK/IA:secret"])
 def test_malformed_keys_are_refused(key) -> None:
     with pytest.raises(ValueError):
         lean_cache.parse_key(key)

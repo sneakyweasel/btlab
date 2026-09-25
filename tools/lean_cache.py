@@ -91,9 +91,15 @@ def parse_key(key: str | None) -> tuple[str, str]:
     """LAKE_CACHE_KEY is ACCESS_KEY_ID:SECRET_ACCESS_KEY, as curl's --user expects."""
     if not key or key.count(':') != 1:
         raise ValueError('LAKE_CACHE_KEY must be set to ACCESS_KEY_ID:SECRET_ACCESS_KEY')
-    ident, secret = (part.strip() for part in key.split(':'))
+    # Lake passes the key to curl verbatim; a space, quote or line break inside it makes
+    # AWS answer AuthorizationHeaderMalformed for every upload (CI, 25 September 2026).
+    if any(c.isspace() or c in "\"'" for c in key.strip()):
+        raise ValueError('LAKE_CACHE_KEY contains whitespace or quotes; store exactly ACCESS_KEY_ID:SECRET_ACCESS_KEY')
+    ident, secret = key.strip().split(':')
     if not ident or not secret:
         raise ValueError('LAKE_CACHE_KEY must be set to ACCESS_KEY_ID:SECRET_ACCESS_KEY')
+    if not ident.isalnum():
+        raise ValueError('the access key id part of LAKE_CACHE_KEY must be alphanumeric')
     return ident, secret
 
 
