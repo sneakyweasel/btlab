@@ -7796,7 +7796,9 @@
       "lean": [],
       "conjecture": [],
       "decision": null,
-      "ledger_ids": [],
+      "ledger_ids": [
+        "J-beatty-slope-two-scale"
+      ],
       "aliases": [],
       "nk_clusters": []
     },

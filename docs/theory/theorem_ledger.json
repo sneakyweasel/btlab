@@ -3642,6 +3642,26 @@
   "related_conjectures": []
  },
  {
+  "id": "J-beatty-slope-two-scale",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Let nu > 1, rho > 1 + 3/nu and R = rho nu, and let the isolated-level slope (a_g = ceil(Q_g^(nu-1)) + 1 at good g >= 1, a_k = 1 otherwise) have an enumeration of good indices g_0 < g_1 < ... with Q_(g_(j+1)) >= Q_(g_j)^R from some level on and, for every rho' > rho, Q_(g_(j+1)) <= Q_(g_j + 1)^rho' from some level on. Then dim_H K_alpha = S(nu, rho), the positive root of 3(R-1)s^2 + 4(rho-1)s - 4(rho-1) = 0, which lies strictly between 2/(2+nu) and 2/3 and tends to s*(nu) as rho -> oo. For every such nu and rho an adaptively chosen good set gives a slope of Diophantine class exactly nu with this dimension. Upper bound: self-covers at the start of each dense stretch, pass-through covers across it and chain steps at the jumps improve the cover exponent by a fixed amount while 2/(2+nu) < s and the quadratic is positive. Lower bound: the grid-window Cantor measure with window masses Q_j^(-1+eta), eta > (gamma-1)/(R-1), where the admissible window exponents form an interval exactly when the quadratic is negative.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattyTwoScaleExact.lean",
+  "decl": [
+   "twoScaleDim_props",
+   "twoScale_iso_hausdorff_zero",
+   "twoScale_dimH_eq",
+   "twoScale_dims"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py",
+   "tests/research/juggler_sequence/test_beatty_dimension_game.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-slope-weak-counting",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For every real boundary beta and weight z, the actual weak-survival word sums satisfy n*S_n = sum_(j<n) W_(n-j)*S_j with the WEAK endpoint weight W_m = sum_k [m*beta<=k] C(m,k) z^k. For fixed n the survivor sets and strict endpoint sums at an irrational boundary just below beta coincide with those at beta up to depth n, so the identity transfers from the irrational recurrence. At irrational beta the weak and strict endpoint weights agree.",
