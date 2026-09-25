@@ -100,9 +100,18 @@ def negative_errors(root: Path, texts: dict[str, str]) -> list[dict]:
     return errors
 
 
+JOURNAL = "docs/research_journal.md"
+JOURNAL_LIMIT = 12
+
+
+def journal_entries(text: str) -> int:
+    """Each journal entry is one second-level heading."""
+    return len(re.findall(r"^## ", text, re.M))
+
+
 def journal_errors(text: str) -> list[dict]:
     """Keep chronology bounded; durable evidence belongs in canonical records."""
-    if len(re.findall(r"^## ", text, re.M)) > 12:
-        return [{"path": "docs/research_journal.md", "error":
+    if journal_entries(text) > JOURNAL_LIMIT:
+        return [{"path": JOURNAL, "error":
                  "Journal exceeds twelve entries; consolidate older results into canonical records"}]
     return []

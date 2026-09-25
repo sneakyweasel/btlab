@@ -88,6 +88,8 @@ python tools/lab.py verify --changed --profile focused --plan  # iteration test 
 python tools/lab.py verify --changed --workers 8          # execute them
 python tools/lab.py worktree new <name>                  # own worktree + branch agent/<name>
 python tools/lab.py land agent/<name>                    # the only way onto main
+python tools/lab.py worktree remove <name>               # after landing: clean + landed only
+python tools/lab.py status                               # read-only lab state as JSON
 ```
 
 `lab.py run` and `lab.py test` bind imports and output paths to this checkout,

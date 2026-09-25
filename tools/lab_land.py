@@ -3,6 +3,8 @@
     python tools/lab.py worktree new <name>      create .build/worktrees/<name> on branch agent/<name>
     python tools/lab.py land <branch>            rebase, regenerate, check, fast-forward main
     python tools/lab.py land <branch> --dry-run  do everything except move main
+    python tools/lab.py worktree list            each agent branch, its worktree and landed verdict
+    python tools/lab.py worktree remove <name>   remove a clean, landed worktree and its branch
 
 Agents work in their own worktree and branch and never commit to main. Landing happens
 in a temporary worktree, so neither main's checkout nor the agent's is touched until the
@@ -56,15 +58,83 @@ def python(root: Path, argv: list[str]) -> subprocess.CompletedProcess:
                           encoding="utf-8", errors="replace", env=env)
 
 
-def checkout_of(root: Path, branch: str) -> Path | None:
-    """The worktree that has `branch` checked out, if any."""
-    current = None
+def checkouts(root: Path) -> dict[str, Path]:
+    """Each checked-out branch and the worktree that has it."""
+    found, current = {}, None
     for line in git(root, "worktree", "list", "--porcelain").splitlines():
         if line.startswith("worktree "):
             current = Path(line[len("worktree "):])
-        elif line == f"branch refs/heads/{branch}":
-            return current
-    return None
+        elif line.startswith("branch refs/heads/"):
+            found[line[len("branch refs/heads/"):]] = current
+    return found
+
+
+def checkout_of(root: Path, branch: str) -> Path | None:
+    """The worktree that has `branch` checked out, if any."""
+    return checkouts(root).get(branch)
+
+
+def changes(work: Path) -> list[str]:
+    """Uncommitted and untracked changes, without refreshing the index."""
+    return git(work, "--no-optional-locks", "status", "--porcelain", "--untracked-files=all").splitlines()
+
+
+def landed(root: Path, branch: str, onto: str = "main") -> dict:
+    """Whether every commit of `branch` is on `onto`. Landing rebases, so an ancestor test
+    alone misses landed work; a branch whose commits all have a patch-equivalent commit on
+    `onto` (`git cherry` reports only `-`) is landed too. A commit whose shared views were
+    regenerated during landing changes its patch, and is reported as not landed."""
+    if subprocess.run(["git", "merge-base", "--is-ancestor", branch, onto], cwd=root).returncode == 0:
+        return {"landed": True, "test": "ancestor", "detail": f"{branch} is an ancestor of {onto}"}
+    cherry = git(root, "cherry", "-v", onto, branch).splitlines()
+    pending = [line[2:] for line in cherry if line.startswith("+")]
+    if not pending:
+        return {"landed": True, "test": "cherry",
+                "detail": f"all {len(cherry)} commits are patch-equivalent to commits on {onto}"}
+    return {"landed": False, "test": None, "unlanded": pending}
+
+
+def agent_branches(root: Path, onto: str = "main") -> list[dict]:
+    """Every agent/* branch, its worktree, whether that is dirty, and the landed verdict."""
+    held = checkouts(root)
+    rows = []
+    for branch in git(root, "for-each-ref", "--format=%(refname:short)", "refs/heads/agent/").splitlines():
+        path = held.get(branch)
+        rows.append({"name": branch[len("agent/"):], "branch": branch,
+                     "worktree": str(path) if path else None,
+                     "dirty": bool(changes(path)) if path else None, **landed(root, branch, onto)})
+    return rows
+
+
+def remove_worktree(root: Path, name: str, onto: str = "main", dry_run: bool = False) -> dict:
+    """Remove agent/<name> and its worktree, only when clean and fully on `onto`."""
+    branch = f"agent/{name}"
+    if subprocess.run(["git", "rev-parse", "--verify", "-q", f"refs/heads/{branch}"], cwd=root,
+                      capture_output=True).returncode:
+        raise LandingError(f"no branch {branch}")
+    path = checkout_of(root, branch)
+    verdict = landed(root, branch, onto)
+    report = {"name": name, "branch": branch, "worktree": str(path) if path else None, "onto": onto,
+              "verdict": verdict}
+    refusals = []
+    if path is not None:
+        dirty = changes(path)
+        if dirty:
+            refusals.append(f"the worktree has uncommitted or untracked changes: {dirty[:20]}")
+        if path.resolve() == root.resolve():
+            refusals.append("this is the checkout running the command; run it from another checkout")
+    if not verdict["landed"]:
+        refusals.append(f"{len(verdict['unlanded'])} commit(s) of {branch} are not on {onto}: "
+                        f"{verdict['unlanded'][:20]}")
+    if refusals:
+        return report | {"status": "refused", "reasons": refusals}
+    if dry_run:
+        return report | {"status": "removable (dry run; nothing changed)"}
+    if path is not None:
+        git(root, "worktree", "remove", str(path))
+    git(root, "branch", "-D", branch)
+    git(root, "worktree", "prune")
+    return report | {"status": "removed"}
 
 
 def rebase(work: Path, onto: str) -> list[str]:
@@ -187,22 +257,29 @@ def main(argv: list[str]) -> int:
     landing.add_argument("branch")
     landing.add_argument("--onto", default="main")
     landing.add_argument("--dry-run", action="store_true")
-    tree = commands.add_parser("worktree", help="create an agent worktree")
-    tree.add_argument("action", choices=["new"])
-    tree.add_argument("name")
+    tree = commands.add_parser("worktree", help="create, list or remove agent worktrees")
+    tree.add_argument("action", choices=["new", "list", "remove"])
+    tree.add_argument("name", nargs="?")
     tree.add_argument("--onto", default="main")
     tree.add_argument("--no-prepare", action="store_true")
+    tree.add_argument("--dry-run", action="store_true", help="remove: print the verdict only")
     args = parser.parse_args(argv)
+    if args.command == "worktree" and args.action != "list" and not args.name:
+        parser.error(f"worktree {args.action} needs a name")
     try:
         if args.command == "land":
             report = land(ROOT, args.branch, args.onto, args.dry_run)
-        else:
+        elif args.action == "new":
             report = new_worktree(ROOT, args.name, args.onto, not args.no_prepare)
+        elif args.action == "list":
+            report = {"onto": args.onto, "agents": agent_branches(ROOT, args.onto)}
+        else:
+            report = remove_worktree(ROOT, args.name, args.onto, args.dry_run)
     except LandingError as exc:
         print(json.dumps({"status": "failed", "reason": str(exc)}, indent=2))
         return 1
     print(json.dumps(report, indent=2))
-    return 0
+    return int(report.get("status") == "refused")
 
 
 if __name__ == "__main__":

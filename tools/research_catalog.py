@@ -367,6 +367,21 @@ class ResearchCatalogue:
     def check(self, *, hashes: bool = False, limit: int = 30, offset: int = 0,
               snapshot: str | None = None) -> dict:
         data = self._current(snapshot)
+        issues = self._issues(data, hashes)
+        counts = Counter(i["severity"] for i in issues)
+        return {"status": "failed" if counts["error"] else "ok", "snapshot": data["snapshot"],
+                "errors": counts["error"], "warnings": counts["warning"], "hashes_checked": hashes,
+                "coverage": {"dossiers": len(data["records"]), "programmes": dict(Counter(r["programme"] for r in data["records"])),
+                             "obstruction_records": len(data["obstructions"]),
+                             "standard_manifests": len(data["manifests"]),
+                             "legacy_data": "Not retroactively certified; only *.research.json uses the new contract"},
+                **page(issues, limit, offset), "limitations": LIMITATION}
+
+    def issues(self, *, hashes: bool = False) -> list[dict]:
+        """Every issue `check` reports, unpaged."""
+        return self._issues(self._current(None), hashes)
+
+    def _issues(self, data: dict, hashes: bool) -> list[dict]:
         issues = [dict(i, severity="error") for i in data["errors"]]
         for identifier, count in Counter(r['id'] for r in data['records']).items():
             if not identifier or count > 1:
@@ -397,14 +412,7 @@ class ResearchCatalogue:
                                    "error": f"Unresolved dossier reference: {ref['path']}"})
             if row["decision"] is None:
                 issues.append({"severity": "warning", "path": row["dossier"], "error": "No explicit branch decision found"})
-        counts = Counter(i["severity"] for i in issues)
-        return {"status": "failed" if counts["error"] else "ok", "snapshot": data["snapshot"],
-                "errors": counts["error"], "warnings": counts["warning"], "hashes_checked": hashes,
-                "coverage": {"dossiers": len(data["records"]), "programmes": dict(Counter(r["programme"] for r in data["records"])),
-                             "obstruction_records": len(data["obstructions"]),
-                             "standard_manifests": len(data["manifests"]),
-                             "legacy_data": "Not retroactively certified; only *.research.json uses the new contract"},
-                **page(issues, limit, offset), "limitations": LIMITATION}
+        return issues
 
 
 def main(argv=None) -> int:

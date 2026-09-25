@@ -234,7 +234,21 @@ Each agent works in its own worktree and branch and never commits to `main`:
 python tools/lab.py worktree new <name>   # .build/worktrees/<name> on agent/<name>, prepared
 python tools/lab.py verify --changed      # in the worktree, before asking to land
 python tools/lab.py land agent/<name>     # from any checkout; --dry-run to rehearse
+python tools/lab.py worktree remove <name>  # after landing, from another checkout; --dry-run
+python tools/lab.py worktree list         # every agent/* branch, its worktree and verdict
+python tools/lab.py status                # read-only: main, agents, journal, check, papers
 ```
+
+`worktree remove` deletes the worktree and `agent/<name>` only when the worktree has
+no uncommitted or untracked changes and every commit of the branch is on `main`:
+either the branch is an ancestor of `main`, or `git cherry main agent/<name>` finds a
+patch-equivalent commit for each (landing rebases, so this is the usual case). The
+report names the test that passed. A commit whose shared views were rewritten by
+regeneration during landing no longer matches its patch; it is refused, and deciding
+it is safe stays manual. `status` writes nothing: it reports `main`'s head and whether
+its checkout is clean, each agent branch with the same verdict, the journal entry
+count against its limit of twelve, the `lab.py check` counts with warnings grouped by
+message, and each paper's local version against its latest recorded deposit.
 
 `land` rebases the branch onto `main` in a temporary worktree, regenerates the
 shared views (`docs/theory/theorem_ledger.*`, `attacks/juggler/index.json`,

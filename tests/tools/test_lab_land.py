@@ -144,3 +144,71 @@ def test_regeneration_may_only_touch_the_shared_views(repo):
     (repo / "notes.md").write_text("changed by a generator\n")
     with pytest.raises(lab_land.LandingError, match="outside the shared views"):
         lab_land.commit_views(repo, "regenerate")
+
+
+def agent_worktree(repo: Path, name: str, files: dict[str, str] | None = None) -> Path:
+    """An agent worktree as `lab.py worktree new` makes it, optionally with one commit."""
+    work = repo / ".build/worktrees" / name
+    git(repo, "worktree", "add", "-q", "-b", f"agent/{name}", str(work), "main")
+    if files:
+        commit(work, files, f"work on {name}")
+    return work
+
+
+def gone(repo: Path, work: Path, branch: str) -> bool:
+    return not work.exists() and not git(repo, "branch", "--list", branch)
+
+
+def test_a_branch_with_an_unlanded_commit_is_refused(repo):
+    work = agent_worktree(repo, "one", {"claims/b.txt": "row b\n"})
+    report = lab_land.remove_worktree(repo, "one")
+    assert report["status"] == "refused" and not report["verdict"]["landed"]
+    assert report["verdict"]["unlanded"][0].endswith("work on one")
+    assert work.exists() and git(repo, "branch", "--list", "agent/one")
+
+
+def test_a_dirty_worktree_is_refused_even_when_landed(repo):
+    work = agent_worktree(repo, "one")
+    (work / "scratch.txt").write_text("untracked\n")
+    report = lab_land.remove_worktree(repo, "one")
+    assert report["verdict"]["test"] == "ancestor"
+    assert report["status"] == "refused" and "untracked" in report["reasons"][0]
+    (work / "scratch.txt").unlink()
+    (work / "notes.md").write_text("modified\n")
+    assert lab_land.remove_worktree(repo, "one")["status"] == "refused"
+    assert (work / "notes.md").read_text() == "modified\n"
+
+
+def test_a_rebased_and_landed_branch_is_accepted_by_cherry(repo):
+    work = agent_worktree(repo, "one", {"claims/b.txt": "row b\n"})
+    commit(repo, {"notes.md": "main moved on\n"}, "unrelated work on main")
+    assert land(repo, "agent/one")["status"] == "landed"
+    assert subprocess.run(["git", "merge-base", "--is-ancestor", "agent/one", "main"],
+                          cwd=repo).returncode, "the precondition: landing rewrote the commit"
+    dry = lab_land.remove_worktree(repo, "one", dry_run=True)
+    assert dry["status"].startswith("removable") and dry["verdict"]["test"] == "cherry"
+    assert work.exists(), "a dry run changes nothing"
+    assert lab_land.remove_worktree(repo, "one")["status"] == "removed"
+    assert gone(repo, work, "agent/one")
+
+
+def test_a_merged_branch_is_accepted_as_an_ancestor(repo):
+    work = agent_worktree(repo, "one", {"claims/b.txt": "row b\n"})
+    git(repo, "merge", "-q", "--no-ff", "-m", "merge", "agent/one")
+    report = lab_land.remove_worktree(repo, "one")
+    assert report["status"] == "removed" and report["verdict"]["test"] == "ancestor"
+    assert gone(repo, work, "agent/one")
+
+
+def test_worktree_listing_reports_each_agent_branch(repo):
+    agent_worktree(repo, "done")
+    work = agent_worktree(repo, "open", {"claims/b.txt": "row b\n"})
+    (work / "scratch.txt").write_text("untracked\n")
+    rows = {row["name"]: row for row in lab_land.agent_branches(repo)}
+    assert rows["done"]["landed"] and rows["done"]["dirty"] is False
+    assert not rows["open"]["landed"] and rows["open"]["dirty"] is True
+
+
+def test_removing_an_unknown_branch_fails(repo):
+    with pytest.raises(lab_land.LandingError, match="no branch agent/none"):
+        lab_land.remove_worktree(repo, "none")
