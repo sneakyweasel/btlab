@@ -56,6 +56,15 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument('--snapshot')
     p.add_argument('--format', choices=['json', 'markdown'], default='json')
     p.add_argument('--require-complete', action='store_true', help='fail on incomplete written dependency coverage')
+    p = sub.add_parser('frontier', help='formalization work queue: ready, one-blocker and blocked claims')
+    p.add_argument('--scope', metavar='CLAIM', help="restrict the lists to one claim's written inputs")
+    p.add_argument('--list', action='append', dest='lists', metavar='NAME',
+                   help='ready, almost_ready, unlocks, blocked, stale, needs_annotation, unannotated_boundary')
+    p.add_argument('--limit', type=int, default=20)
+    p.add_argument('--format', choices=['json', 'markdown'], default='markdown')
+    p = sub.add_parser('blueprint', help='write a self-contained HTML frontier and claim graph')
+    p.add_argument('--out', default='.cache/formalpedia/blueprint.html', help='checkout-relative or absolute path')
+    p.add_argument('--scope', metavar='CLAIM')
     p = sub.add_parser("search", help="ranked search across names, statements, docs and exact claims")
     p.add_argument("text")
     p.add_argument("--limit", type=int, default=20)
@@ -137,6 +146,32 @@ def main(argv: list[str] | None = None) -> int:
                     max_nodes=args.max_nodes, limit=args.limit, offset=args.offset, snapshot=args.snapshot)
                 print(_fp_source.render(result), end='')
             return 1 if args.require_complete and not result['dependency_coverage_complete'] else 0
+        except (ValueError, OSError) as exc:
+            print(str(exc), file=sys.stderr)
+            return 2
+
+    if args.cmd in ('frontier', 'blueprint'):
+        from pathlib import Path
+        from formalpedia_catalog import Catalogue
+        from . import blueprint, claim_query, frontier
+        catalogue = Catalogue()
+        try:
+            if args.cmd == 'frontier' and args.format == 'json':
+                result = catalogue.frontier(scope=args.scope, lists=args.lists, limit=args.limit)
+                print(_fp_source.render(result), end='')
+                return 0
+            data = claim_query.frontier_data(catalogue, scope=args.scope)
+            if args.cmd == 'frontier':
+                print(frontier.markdown(data, limit=args.limit), end='')
+                return 0
+            import datetime
+            _, ledger, _ = catalogue.snapshot()
+            out = Path(args.out)
+            out = out if out.is_absolute() else _fp_workspace.ROOT / out
+            generated = datetime.datetime.now().astimezone().isoformat(timespec='minutes')
+            blueprint.write(out, blueprint.render(data, ledger, generated=generated))
+            print(f'wrote {out}')
+            return 0
         except (ValueError, OSError) as exc:
             print(str(exc), file=sys.stderr)
             return 2

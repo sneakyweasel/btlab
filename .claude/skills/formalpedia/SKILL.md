@@ -39,6 +39,14 @@ python tools/formalpedia.py ledger-check
 python tools/formalpedia.py mathlib "Real.sqrt, _ * _"
 ```
 
+To choose what to formalize, run `python tools/formalpedia.py frontier` (MCP
+`formalpedia_frontier`). `ready` claims have a complete written route whose
+inputs are all Lean verified; follow each item's `next_action`, and read its
+input coverage warnings before relying on an input. `unlocks` ranks the missing
+inputs that would make most claims ready. `blueprint` writes the same data as a
+browsable HTML page under `.cache/formalpedia/`. See the
+[frontier guide](../../../docs/architecture/claim_dependencies.md#formalization-frontier-and-blueprint-view).
+
 The MCP equivalents are `formalpedia_search`, `formalpedia_show`,
 `formalpedia_claim`, `formalpedia_impact`, `formalpedia_status`, and
 `formalpedia_lint`. Restart paginated searches if the snapshot changes.

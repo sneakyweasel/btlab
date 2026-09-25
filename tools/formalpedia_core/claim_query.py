@@ -102,3 +102,38 @@ def query(catalogue, ledger_id: str, *, choices: dict[str, str] | None = None,
             'items': items[offset:offset + limit], 'total': len(items), 'offset': offset,
             'next_offset': offset + limit if offset + limit < len(items) else None,
             'limitations': graph['limitations']}
+
+
+def frontier_data(catalogue, *, scope: str | None = None) -> dict:
+    """The full frontier, with Jev coverage readings for LEAN VERIFIED inputs attached."""
+    from . import frontier, verdicts
+
+    index, ledger, _ = catalogue.snapshot()
+    coverage = {entry['id']: entry for entry in verdicts.coverage_rows(index, ledger, verdicts.load_jev())}
+    return frontier.build(ledger, workspace.ROOT, coverage=coverage, scope=scope)
+
+
+FRONTIER_LISTS = ('ready', 'almost_ready', 'unlocks', 'blocked', 'stale', 'needs_annotation',
+                  'unannotated_boundary')
+
+
+def frontier_query(catalogue, *, scope: str | None = None, lists: list[str] | None = None,
+                   limit: int = 20) -> dict:
+    """Bounded agent view: each selected list is cut to ``limit`` and reports its total."""
+    from . import frontier
+
+    if not 1 <= limit <= 200:
+        raise ValueError('limit must be between 1 and 200')
+    lists = list(lists or FRONTIER_LISTS)
+    unknown = sorted(set(lists) - set(FRONTIER_LISTS))
+    if unknown:
+        raise ValueError('Unknown frontier lists: ' + ', '.join(unknown))
+    data = frontier_data(catalogue, scope=scope)
+    out = {'scope': scope, 'snapshot': data['snapshot'], 'counts': data['counts'],
+           'limitations': data['limitations'], 'totals': {}, 'truncated': False}
+    for name in lists:
+        items = data[name]
+        out['totals'][name] = len(items)
+        out['truncated'] |= len(items) > limit
+        out[name] = [item if name == 'unlocks' else frontier.compact(item) for item in items[:limit]]
+    return out

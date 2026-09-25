@@ -30,7 +30,7 @@ def test_mcp_discovery_is_structured_and_read_only():
             'formalpedia_lab_doctor', 'formalpedia_change_impact', 'formalpedia_verification_plan',
             'formalpedia_capabilities', 'formalpedia_semantic_status', 'formalpedia_semantic_show',
             'formalpedia_type_search', 'formalpedia_dependencies', 'formalpedia_semantic_diff',
-            'formalpedia_claim_dependencies'}
+            'formalpedia_claim_dependencies', 'formalpedia_frontier'}
         for tool in tools:
             assert tool.annotations.readOnlyHint
             assert tool.annotations.destructiveHint is False
@@ -128,6 +128,10 @@ def test_real_stdio_client_searches_resolves_and_rejects_invalid_pagination(chec
                 assert not claims.isError
                 assert not claims.structuredContent['dependency_coverage_complete']
                 assert claims.structuredContent['summary']['incomplete_dependencies'] == ['C-fixture']
+                queue = await session.call_tool('formalpedia_frontier', {'limit': 5})
+                assert not queue.isError
+                assert sum(queue.structuredContent['counts'].values()) >= 1
+                assert queue.structuredContent['totals']['ready'] == 0
                 origin = await session.call_tool('formalpedia_claim', {'ledger_id': 'C-fixture'})
                 assert origin.structuredContent['claim_location'] == {
                     'path': 'docs/claims/collatz/example.json', 'pointer': '/0'}

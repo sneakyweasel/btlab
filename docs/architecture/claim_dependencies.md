@@ -129,5 +129,44 @@ Accordingly, the projection neither proves English implication nor discharges
 premises, runs an axiom audit, or changes evidence labels. No Lean build is needed
 for written graphs; current compiled exports are needed for the optional overlay.
 
-The ledger remains the single source of truth. A Blueprint export can later use
-these annotations without introducing a second manually maintained graph.
+The ledger remains the single source of truth. The frontier and Blueprint view
+below read these annotations; neither is a second manually maintained graph.
+
+## Formalization frontier and Blueprint view
+
+Following Tao's [PFR Blueprint](https://terrytao.wordpress.com/2023/11/18/formalizing-the-proof-of-pfr-in-lean4-using-blueprint-a-short-tour/),
+the frontier turns the written graph into a work queue. Each claim receives one status:
+
+| Status | Meaning |
+|---|---|
+| `formalized` | `EXACT — LEAN VERIFIED`. |
+| `ready` | Human-proved; a complete, current route whose proof and statement inputs are all Lean verified. |
+| `ready_conditional` | As `ready`, with assumption edges kept as explicit hypotheses. |
+| `blocked` | A complete route still has inputs outside Lean. Computation edges block until the finite claim is formalized. |
+| `stale` | The chosen route's source pin no longer matches. |
+| `needs_annotation` | Only partial or unknown routes: enumerate the dependencies first. |
+| `unannotated` | No route: dependencies are unknown, never empty. |
+| `open`, `finite`, `not_a_target` | Hypotheses and conjectures; `COMPUTATIONALLY VERIFIED` rows; `REFUTED` and `OBSERVATION` rows. |
+
+Lists rank by downstream reach (claims that transitively use the item). `almost_ready`
+has one missing input; `unlocks` ranks missing inputs by the claims they would make
+ready; `unannotated_boundary` lists unannotated claims that an annotated proof uses.
+Every item carries `next_action`, the proof passage with its current line, Lean inputs
+with their declarations, and warnings. Inputs report the cached Jev English-coverage
+band (`covered`, `doubtful`, `not_covered`, `stale`, `unasked` or `no_declaration`).
+The band is advisory and never gates readiness. It does not replace review before a
+retag. Alternative routes are evaluated separately; the best one is reported.
+
+```powershell
+python tools/formalpedia.py frontier                          # Markdown work queue
+python tools/formalpedia.py frontier --format json --list ready --list unlocks
+python tools/formalpedia.py frontier --scope J-paper-b-five-step-density-127
+python tools/formalpedia.py blueprint                         # .cache/formalpedia/blueprint.html
+```
+
+The MCP tool `formalpedia_frontier` returns the JSON form. `blueprint` writes one
+self-contained, git-ignored HTML page: status filters, the frontier lists, the
+written graph (arrows point to inputs), a detail panel and a table of every claim.
+It embeds the frontier JSON in its `#frontier-data` block and makes no network
+requests. Open it directly, or serve it with the `blueprint` entry in
+`.claude/launch.json`. Pass `--out` for another destination. Do not commit it.

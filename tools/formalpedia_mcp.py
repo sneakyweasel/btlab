@@ -34,6 +34,8 @@ mcp = FastMCP('formalpedia', instructions=(
     'modules and disclose coverage. formalpedia_show joins exact source and compiled identities. '
     'Use formalpedia_claim_dependencies for written proof routes, open assumptions and '
     'incomplete dependency coverage; compiled associations are a separate optional overlay. '
+    'Use formalpedia_frontier to choose formalization work: ready claims, one-blocker claims, '
+    'the blockers that unlock most, and routes still to annotate. '
     'Structural matches are not proof applicability. '
     'formalpedia_mathlib_search queries the public Loogle service for Mathlib results and '
     'checks each hit against the pinned Mathlib; every other tool is local. All are read-only.'))
@@ -100,6 +102,23 @@ def formalpedia_claim_dependencies(ledger_id: str, choices: dict[str, str] | Non
 
 
 @mcp.tool(annotations=READ_ONLY)
+def formalpedia_frontier(scope: str | None = None, lists: list[str] | None = None,
+                         limit: int = 20) -> dict[str, Any]:
+    """Formalization work queue from written proof routes and evidence labels.
+
+    ready: complete route, every proof/statement input LEAN VERIFIED (ready_conditional
+    keeps assumption edges as hypotheses). almost_ready: exactly one missing input.
+    unlocks: missing inputs ranked by how many claims they would make ready.
+    needs_annotation and unannotated_boundary: routes to write before the graph can say more.
+    Items carry next_action, the proof passage with its current line, Lean inputs with
+    declarations and Jev English-coverage bands (advisory), and warnings. scope limits the
+    lists to one claim's written inputs; lists selects among the list names. No label is
+    promoted; unannotated means unknown, not dependency-free.
+    """
+    return catalogue.frontier(scope=scope, lists=lists, limit=limit)
+
+
+@mcp.tool(annotations=READ_ONLY)
 def formalpedia_impact(target: str, limit: int = 50, offset: int = 0) -> dict[str, Any]:
     """Find imports, dependent modules and affected paper roots before editing a declaration.
 
@@ -127,7 +146,7 @@ def formalpedia_capabilities() -> dict[str, Any]:
                 'source': ['search', 'show', 'claim', 'impact', 'status', 'lint', 'axiom_audits',
                            'ledger_check'],
                 'external': ['mathlib_search'],
-                'claims': ['claim_dependencies'],
+                'claims': ['claim_dependencies', 'frontier'],
                 'research': ['research_search', 'research_context', 'research_check'],
                 'maintenance': ['lab_doctor', 'change_impact', 'verification_plan'],
                 'semantic': ['semantic_status', 'semantic_show', 'type_search', 'dependencies', 'semantic_diff']},

@@ -331,6 +331,12 @@ class Catalogue:
                 'of_which_audited': len(audited_exact),
                 'nonstandard_audits': sum(not a['standard'] for rows in by_name.values() for a in rows)}
 
+    def frontier(self, **options) -> dict:
+        """Formalization work queue from written routes, evidence labels and Jev coverage."""
+        from formalpedia_core.claim_query import frontier_query
+        with self._lock:
+            return frontier_query(self, **options)
+
     def claim_dependencies(self, ledger_id: str, **options) -> dict:
         """Inspect selected written proof routes and optional compiled associations."""
         from formalpedia_core.claim_query import query
