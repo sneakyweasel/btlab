@@ -99,7 +99,7 @@ theorem prod_den_le {R' : ℝ} (hR' : 1 < R') {j1 : ℕ}
 
 /-- Once `2 ≤ Q_j^δ`, window masses satisfy
 `M_(j+1) Q_j ≤ (M_(j2+1) Q_(j2)) (∏_(j2 ≤ i < j) Q_i)^(γ-1+δ)`. -/
-theorem mass_prod_le {δ : ℝ} (hδ : 0 < δ) {j2 : ℕ} (h2 : ∀ j, j2 ≤ j → 2 ≤ Lv.den j ^ δ) :
+theorem mass_prod_le {δ : ℝ} (_hδ : 0 < δ) {j2 : ℕ} (h2 : ∀ j, j2 ≤ j → 2 ≤ Lv.den j ^ δ) :
     ∀ j, j2 ≤ j → (Lv.grid P).tree.mass (j + 1) * Lv.den j ≤
       ((Lv.grid P).tree.mass (j2 + 1) * Lv.den j2) *
         (∏ i ∈ Finset.Ico j2 j, Lv.den i) ^ (γ - 1 + δ) := by

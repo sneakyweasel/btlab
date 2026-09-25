@@ -199,7 +199,7 @@ theorem jumpCovers_step {φ w : ℕ → ℝ} {α ν ρ : ℝ} (hα : Irrational 
     (hfr : ∀ k : ℕ, φ k = Int.fract (((k : ℝ) + 1) * α))
     {B : ℝ} (hb : ∀ n, w n ≤ B / ((n : ℝ) + 1) ^ (3/2 : ℝ)) {s : ℝ} (hs : 0 < s)
     {p : ℕ → ℤ} {q : ℕ → ℕ} (hG : GoodConvergents α p q) (hmono : Monotone q)
-    {n : ℕ → ℕ} (hnm : StrictMono n) (hν : 1 ≤ ν) (hρ : 1 ≤ ρ) {j₀ : ℕ}
+    {n : ℕ → ℕ} (hnm : StrictMono n) (_hν : 1 ≤ ν) (_hρ : 1 ≤ ρ) {j₀ : ℕ}
     (hgrow : ∀ j, j₀ ≤ j → (q (n j) : ℝ) ^ ν ≤ q (n j + 1))
     (hup : ∀ j, j₀ ≤ j → (q (n (j + 1)) : ℝ) ≤ (q (n j + 1) : ℝ) ^ ρ)
     {σ K : ℝ} {j₁ : ℕ} (hσ1 : 3 * s / 2 ≤ σ) (hσ2 : σ ≤ 1) (hK : 0 ≤ K)

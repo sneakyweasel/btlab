@@ -28,6 +28,7 @@ variable {ν γ B : ℝ} {G : ℕ → Prop} [DecidablePred G] {Lv : IsoLevels ν
 
 include P
 
+omit P in
 /-- The isolated slope exceeds one. -/
 theorem slope_gt : 1 < isoSlope ν G := one_lt_isoSlope ν G
 
@@ -196,7 +197,7 @@ theorem base_between (L : ℕ) {a u v : ℝ} (ha : (Lv.grid P).tree.Charged L a)
       have hs : Lv.side L = false := by simp [side, not_lt.2 hneg.le]
       have he : D.e (L + 1) = -(2 / Lv.den' L) - Lv.den L ^ (-γ) := by
         show (if D.pos (L + 1) then _ else _) = _
-        simp only [D, grid, hs, if_false]; rfl
+        simp only [D, grid, hs]; rfl
       refine ⟨i, by omega, ?_, ?_, ?_⟩
       · have : (i : ℝ) < isoDen ν G (Lv.g L) := by rw [hdef]; linarith
         exact_mod_cast this
@@ -361,7 +362,7 @@ theorem chain_window (j : ℕ) {a u v : ℝ} (ha : (Lv.grid P).tree.Charged (j +
     · have hs : Lv.side j = false := by simp [side, not_lt.2 hneg.le]
       have he : D.e (j + 1) = -(2 / Lv.den' j) - d := by
         show (if D.pos (j + 1) then _ else _) = _
-        simp only [D, grid, hs, if_false]; rfl
+        simp only [D, grid, hs]; rfl
       have hleft : D.leftEnd (j + 1) i = i / Lv.den j - 2 / Lv.den' j - d := by
         simp only [GridData.leftEnd, hqj, he]; ring
       have hdj : D.d (j + 1) = d := rfl
@@ -483,7 +484,7 @@ theorem inc_nonneg {u v : ℝ} (huv : u < v) : 0 ≤ inc ν G u v :=
 
 omit P in
 /-- The atom mass does not increase when the interval shrinks. -/
-theorem inc_mono {u v u' v' : ℝ} (hu : u ≤ u') (huv : u' < v') (hv : v' ≤ v) :
+theorem inc_mono {u v u' v' : ℝ} (hu : u ≤ u') (_huv : u' < v') (hv : v' ≤ v) :
     inc ν G u' v' ≤ inc ν G u v := by
   unfold inc
   have hw := wt_summable (ν := ν) (G := G)

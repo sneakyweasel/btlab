@@ -204,7 +204,7 @@ theorem gap_width (L : ℕ) {a u v : ℝ} {m m' : ℕ} (hmm : m < m')
 /-- **Small-scale exponent.** If `M ≤ Q^(-1+η)`, `ℓ Q' ≤ 10` and
 `γ - 1 + η ≤ ν(1 - 3s/2)`, then `18 M ℓ Q^γ ≤ 180 ℓ^(3s/2)`. -/
 theorem small_exponent (j : ℕ) {s η M ℓ : ℝ} (hs : 0 < s) (hs23 : s < 2 / 3)
-    (hE1 : γ - 1 + η ≤ ν * (1 - 3 * s / 2)) (hM0 : 0 ≤ M)
+    (hE1 : γ - 1 + η ≤ ν * (1 - 3 * s / 2)) (_hM0 : 0 ≤ M)
     (hM : M ≤ Lv.den j ^ (-1 + η)) (hℓ : 0 < ℓ) (hℓQ : ℓ * Lv.den' j ≤ 10) :
     18 * M * ℓ / Lv.den j ^ (-γ) ≤ 180 * ℓ ^ (3 * s / 2) := by
   have hq := den_pos (Lv := Lv) P j
@@ -305,7 +305,7 @@ theorem chain_scale (j : ℕ) {a u v : ℝ} (ha : (Lv.grid P).tree.Charged (j + 
 
 /-- **Chain-scale exponent.** If `M ≤ Q^(-1+η)`, `ℓ ≤ d`, and
 `s(3+ν-γ)/2 ≤ 1 - η`, then `18 M ℓ/d ≤ 18 (32/A)^s ((A/32)(ℓ/d)/Q^e)^s`. -/
-theorem chain_exponent (j : ℕ) {s η M ℓ A : ℝ} (hs : 0 < s) (hs1 : s ≤ 1)
+theorem chain_exponent (j : ℕ) {s η M ℓ A : ℝ} (_hs : 0 < s) (hs1 : s ≤ 1)
     (hE2 : s * (3 + ν - γ) / 2 ≤ 1 - η) (hM0 : 0 ≤ M) (hM : M ≤ Lv.den j ^ (-1 + η))
     (hℓ : 0 < ℓ) (hℓd : ℓ ≤ Lv.den j ^ (-γ)) (hA : 0 < A) :
     18 * M * ℓ / Lv.den j ^ (-γ) ≤

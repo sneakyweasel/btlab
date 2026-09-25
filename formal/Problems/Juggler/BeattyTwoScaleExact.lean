@@ -330,7 +330,7 @@ theorem twoScale_agree (ν R : ℝ) (l : ℕ) {k : ℕ} (hk : k ≤ twoScaleIdx 
 
 open Classical in
 /-- The two-scale enumeration. -/
-noncomputable def twoScaleLevels (ν R : ℝ) (hν : 1 ≤ ν) : IsoLevels ν (TwoScaleGood ν R) 1 where
+noncomputable def twoScaleLevels (ν R : ℝ) (_hν : 1 ≤ ν) : IsoLevels ν (TwoScaleGood ν R) 1 where
   g := twoScaleIdx ν R
   mono := twoScaleIdx_mono ν R
   one_le := le_rfl
