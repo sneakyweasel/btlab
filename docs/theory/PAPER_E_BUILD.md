@@ -152,3 +152,12 @@ Remark 5.5 records that the existing certificate rate gives the exponent
 checker now verifies in both directions; FLINT/Arb certifies the same
 inequality (C-paper-e-rational-exponent-423-500). The Lean exponent stays
 21/25. All earlier theorem numbers and constants are unchanged.
+
+The source archive now also carries Section 7.3's written records (the
+fibre-mass dossier, its bounded-stopping and cross-sign follow-ups, the five
+Lean proof maps) and the Zarnowski and Tao citation records, and opens with a
+top-level README.md written from `preprints/zenodo_paper_e/SOURCE_README.md`.
+A bare extraction passes `check_paper_e.py` and the certificate generator's
+`--check`; the builder's `--check` needs a rebuild first, because the archive
+cannot contain the PDF kit it belongs to. That rebuild reproduced the kit PDF
+byte for byte on 25 September 2026.

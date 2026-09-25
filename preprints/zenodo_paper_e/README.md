@@ -9,7 +9,8 @@ The builder supplies the PDF, Sources_and_certificate.zip,
 ZENODO_FIELDS.txt, and SHA256SUMS.txt here. The PDF is identical
 to the top-level preprint PDF. The ZIP is a deterministic snapshot
 of the manuscript, proof sources, full integer certificate, tools,
-license, and review/build guides.
+license, review/build guides, and the written records behind Section 7.3.
+Its top-level README.md is SOURCE_README.md from this folder.
 
 For the preprint deposit, upload Juggler_and_signed_Collatz.pdf and
 Sources_and_certificate.zip, with SHA256SUMS.txt as the integrity record.

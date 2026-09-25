@@ -20,7 +20,8 @@ KIT_FILES = {
           "paper_b_release_check.json", "paper_b_source_package.zip", "paper_b_zenodo_package.zip"),
     "c": ("README.md", "AFTER_ZENODO.md", "ZENODO_FIELDS.txt"),
     "d": ("README.md", "AFTER_ZENODO.md", "ZENODO_FIELDS.txt", "SHA256SUMS.txt"),
-    "e": ("README.md", "ZENODO_FIELDS.txt", "SHA256SUMS.txt", "Sources_and_certificate.zip"),
+    "e": ("README.md", "SOURCE_README.md", "ZENODO_FIELDS.txt", "SHA256SUMS.txt",
+          "Sources_and_certificate.zip"),
 }
 
 

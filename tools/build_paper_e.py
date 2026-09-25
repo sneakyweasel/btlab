@@ -51,6 +51,8 @@ MANIFEST = "docs/theory/paper_e_release.json"
 METADATA = "docs/theory/paper_e_zenodo.json"
 OUTPUTS = [PDF, TEX, METADATA]
 EDITORIAL = [SOURCE, "docs/theory/PAPER_E_BUILD.md", "docs/theory/paper_e_review.md"]
+#: Written into the archive root as README.md, so the first file a reader opens explains it.
+SOURCE_README = "preprints/zenodo_paper_e/SOURCE_README.md"
 BUILD_INPUTS = [
     "tools/build_paper_e.py", "tools/paper_e_common.py", "tools/check_paper_e.py",
     "tools/paper_e/article.tex", "tools/paper_e/layout.lua",
@@ -90,6 +92,18 @@ BUILD_INPUTS = [
     "LICENSE", "pyproject.toml", REPORT,
     "tests/unit/test_paper_e_release.py",
     "preprints/zenodo_paper_e/README.md",
+    SOURCE_README,
+    # Section 7.3: the written records behind the signed-fibre results.
+    "docs/problems/collatz_fibre_mass.md",
+    "docs/problems/collatz_bounded_fibre_stopping.md",
+    "docs/problems/collatz_fibre_sign_coupling.md",
+    "docs/theory/collatz_fibre_mass_lean_note.md",
+    "docs/theory/collatz_actual_fibre_mass_lean_note.md",
+    "docs/theory/collatz_generation_mass_lean_note.md",
+    "docs/theory/collatz_negative_generation_mass_lean_note.md",
+    "docs/theory/collatz_uniform_generation_mass_lean_note.md",
+    "literature/zarnowski-2008-congruence-structure.json",
+    "literature/tao-2019-almost-all-collatz.json",
 ]
 KIT = "preprints/zenodo_paper_e"
 #: the deposit carries the PDF under a readable name; the repository keeps one copy, in
@@ -206,6 +220,10 @@ def source_archive(root: Path) -> bytes:
             info.external_attr = 0o100644 << 16
             data = (root / name).read_bytes().replace(b"\r\n", b"\n").replace(b"\r", b"\n")
             archive.writestr(info, data)
+        info = zipfile.ZipInfo("README.md", time.gmtime(int(_SOURCE_DATE_EPOCH))[:6])
+        info.compress_type = zipfile.ZIP_DEFLATED
+        info.external_attr = 0o100644 << 16
+        archive.writestr(info, (root / SOURCE_README).read_bytes().replace(b"\r\n", b"\n"))
     return buffer.getvalue()
 
 

@@ -30,6 +30,21 @@
       "sha256": "89edc515d0020edb68a13b3d3c1df2198b21c66ebe45242118ad5fdd7c81acf3"
     },
     {
+      "path": "docs/problems/collatz_bounded_fibre_stopping.md",
+      "mode": "text",
+      "sha256": "fd233782d480d2cde83b5d80bc003047091502024e616ba26327475a05e3eefd"
+    },
+    {
+      "path": "docs/problems/collatz_fibre_mass.md",
+      "mode": "text",
+      "sha256": "859f94f585e48f1188ef9271ce9bc49ecf2522d7afd12081ba27439b545b4593"
+    },
+    {
+      "path": "docs/problems/collatz_fibre_sign_coupling.md",
+      "mode": "text",
+      "sha256": "536a6417f838dc47e508aa9df4e922da87bb3717f9d6da3d54b15c93dae1cb32"
+    },
+    {
       "path": "docs/problems/juggler_cycle_denominator_coupling.md",
       "mode": "text",
       "sha256": "df021a6668b791f149b020e2850cc0d374e7072ef2d7adf94e938023d7e2b92e"
@@ -42,7 +57,32 @@
     {
       "path": "docs/theory/PAPER_E_BUILD.md",
       "mode": "text",
-      "sha256": "e62638caa42e0caafe69863c08203080993167b01139a7c16c8137cf69a28197"
+      "sha256": "4c068e5c6339ab13945efa8e59d802fd4b81c1b19bdea8ae7f2b9d1d1b5b3188"
+    },
+    {
+      "path": "docs/theory/collatz_actual_fibre_mass_lean_note.md",
+      "mode": "text",
+      "sha256": "f319d5f578e006f2c7f3aae8241eefe4397a23ecc0a21eedf3e4b454dad23bc8"
+    },
+    {
+      "path": "docs/theory/collatz_fibre_mass_lean_note.md",
+      "mode": "text",
+      "sha256": "02cad3461ef60eb04299decd987aa2b2645e9fa1f319bec30a1e8f89387bbc70"
+    },
+    {
+      "path": "docs/theory/collatz_generation_mass_lean_note.md",
+      "mode": "text",
+      "sha256": "3c6c6fd4d50edf3d7c4014a64766093f70cecd55c541ef3c841345c99eca58e8"
+    },
+    {
+      "path": "docs/theory/collatz_negative_generation_mass_lean_note.md",
+      "mode": "text",
+      "sha256": "2fd30ded6690cc38a0c387b98a3c73e0492f3d2c1647bb956c67a2934b5fc7fb"
+    },
+    {
+      "path": "docs/theory/collatz_uniform_generation_mass_lean_note.md",
+      "mode": "text",
+      "sha256": "171363f94c59b919157b2dddb0ebc24ba56788f7fe38ef0a175e9a1ca41b5ede"
     },
     {
       "path": "docs/theory/finite_fejer_box_note.md",
@@ -740,14 +780,29 @@
       "sha256": "df6876e27f020c74e15801ce030585b5edd355af6574c76814951dca39d905bd"
     },
     {
+      "path": "literature/tao-2019-almost-all-collatz.json",
+      "mode": "text",
+      "sha256": "db06f769bb561d01c75763c996eb3f16ab4c120eb4eb1e07394a715b7780925b"
+    },
+    {
       "path": "literature/terras-1976-stopping-time.json",
       "mode": "text",
       "sha256": "58feb89f7540c1de68bead3bf60da9de093ca98dc647b8a9532db99c382ddfad"
     },
     {
+      "path": "literature/zarnowski-2008-congruence-structure.json",
+      "mode": "text",
+      "sha256": "07c91276095af61dc073761f86c2c8a3d553e29650b87ea562c2f3c47500f252"
+    },
+    {
       "path": "preprints/zenodo_paper_e/README.md",
       "mode": "text",
-      "sha256": "e3b723717ad9d3d9432dc11747964df3016c01d3232afa7e38c544602d05a71b"
+      "sha256": "ab0305ff0a6a39fa9d93a029a0760834e1079e7c355898b27ce5e7ba471ca638"
+    },
+    {
+      "path": "preprints/zenodo_paper_e/SOURCE_README.md",
+      "mode": "text",
+      "sha256": "99afc2ee6381f8acd94fdfa56add0593b9cf833ed040db50caa611165e45a070"
     },
     {
       "path": "pyproject.toml",
@@ -782,7 +837,7 @@
     {
       "path": "tools/build_paper_e.py",
       "mode": "text",
-      "sha256": "636038d9ded0041d24c827fd8829dc3baed2d3c487a7fb09f386af540f71c339"
+      "sha256": "9b3aa01e8562ff76675927419d45d16b8ea6aa3b7fa6349a5b7c6ae645b3113d"
     },
     {
       "path": "tools/check_paper_e.py",
