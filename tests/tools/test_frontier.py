@@ -120,6 +120,36 @@ def test_next_actions_and_markdown(ledger, tmp_path):
     assert frontier.compact(result['claims']['ready'])['next_action']
 
 
+def test_agent_prompts_are_self_contained(ledger, tmp_path):
+    locations = {'ready': {'path': 'docs/claims/juggler/x.json', 'pointer': '/4'}}
+    claims = frontier.build(ledger, tmp_path, locations=locations)['claims']
+    ready = claims['ready']['agent_prompt']
+    assert ready.startswith('Task: Formalize `ready` in Lean.')
+    for part in ('ready statement', '`docs/claims/juggler/x.json` at JSON pointer `/4`',
+                 '`proof.md` line 1, from "# Proof" up to "# End"', '- `L` (proof) in `Problems/L.lean`: `l_thm`',
+                 'python tools/lab.py worktree new ready', 'AxiomCheck', 'Done when `ready` is'):
+        assert part in ready, part
+    assert 'Assumptions, never to be discharged: `H`' in claims['conditional']['agent_prompt']
+    assert 'Missing inputs:\n- `F` (computation' in claims['finite-input']['agent_prompt']
+    assert 'Recorded inputs not yet in Lean' not in claims['partial']['agent_prompt']
+    assert 'Task: Complete the written proof route of `partial`' in claims['partial']['agent_prompt']
+    assert 'passage-pin' in claims['stale']['agent_prompt']
+    assert 'passage-pin' in claims['E']['agent_prompt']
+    assert 'locate it with `python tools/formalpedia.py claim E`' in claims['E']['agent_prompt']
+    for name in ('L', 'H', 'F', 'refuted'):
+        assert claims[name]['agent_prompt'] is None
+    assert frontier.compact(claims['ready'])['agent_prompt'] == ready
+
+
+def test_passage_pin_reproduces_a_recorded_pin(capsys):
+    from formalpedia_core import cli
+    row = next(r for r in load_claims(ROOT).entries if r.get('proof_routes'))
+    source = row['proof_routes'][0]['source']
+    assert cli.main(['passage-pin', source['path'], source['start'], source['end']]) == 0
+    assert json.loads(capsys.readouterr().out)['sha256'] == source['sha256']
+    assert cli.main(['passage-pin', source['path'], source['start'], 'no such delimiter']) == 2
+
+
 def test_blueprint_layout_points_down_and_escapes_statements(ledger, tmp_path):
     ledger[4]['statement'] = 'E </script><script>alert(1)</script>'
     result = frontier.build(ledger, tmp_path)

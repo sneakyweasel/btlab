@@ -110,7 +110,8 @@ def formalpedia_frontier(scope: str | None = None, lists: list[str] | None = Non
     keeps assumption edges as hypotheses). almost_ready: exactly one missing input.
     unlocks: missing inputs ranked by how many claims they would make ready.
     needs_annotation and unannotated_boundary: routes to write before the graph can say more.
-    Items carry next_action, the proof passage with its current line, Lean inputs with
+    Items carry next_action, agent_prompt (a self-contained task to hand another agent
+    verbatim; null when there is nothing to do), the proof passage with its current line, Lean inputs with
     declarations and Jev English-coverage bands (advisory), and warnings. scope limits the
     lists to one claim's written inputs; lists selects among the list names. No label is
     promoted; unannotated means unknown, not dependency-free.

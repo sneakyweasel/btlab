@@ -166,7 +166,17 @@ main { max-width: 1400px; margin: 0 auto; padding: 0 16px 40px; display: grid; g
 .counts { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; }
 .chip { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px;
   padding: 3px 10px; font-size: 12.5px; cursor: pointer; }
-.chip[aria-pressed="false"] { opacity: .45; }
+.counts.filtering .chip[aria-pressed="false"]:not(.clear) { opacity: .45; }
+.chip[aria-pressed="true"] { border-color: var(--focus); box-shadow: inset 0 0 0 1px var(--focus); }
+.chip.clear { color: var(--focus); }
+button.copy { border: 1px solid var(--line); background: var(--bg); color: var(--muted); border-radius: 4px;
+  padding: 0 6px; font: 11.5px system-ui, sans-serif; cursor: pointer; vertical-align: 1px; }
+button.copy:hover { color: var(--ink); border-color: var(--focus); }
+.task-head { display: flex; align-items: center; justify-content: space-between; margin: 14px 0 4px; }
+.task-head h3 { font-size: 13.5px; margin: 0; }
+pre.task { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--bg); border: 1px solid var(--line);
+  border-radius: 6px; padding: 8px; margin: 0; max-height: 340px; overflow: auto;
+  font: 11.5px/1.45 ui-monospace, "Cascadia Mono", Consolas, monospace; }
 .chip i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 6px; vertical-align: 0; }
 .lists { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
 .lists ol { margin: 0; padding-left: 20px; }
@@ -290,18 +300,50 @@ document.getElementById('generated').textContent = D.generated;
 document.getElementById('limits').textContent = D.limitations;
 const link = (id) => { const a = el('a', {class: 'claim mono', href: '#' + encodeURIComponent(id)}, id);
   a.addEventListener('click', (ev) => { ev.preventDefault(); select(id, true); }); return a; };
+async function copyText(text) {
+  try { await navigator.clipboard.writeText(text); return true; } catch (e) {}
+  const area = el('textarea'); area.value = text; area.style.position = 'fixed'; area.style.opacity = '0';
+  document.body.append(area); area.select();
+  let ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+  area.remove(); return ok;
+}
+function copyButton(text, label, aria) {
+  const b = el('button', {class: 'copy', type: 'button', 'aria-label': aria || label}, label);
+  b.addEventListener('click', async (ev) => { ev.stopPropagation();
+    const ok = await copyText(text); b.textContent = ok ? 'Copied' : 'Copy failed';
+    setTimeout(() => { b.textContent = label; }, 1400); });
+  return b;
+}
 
-// Status chips double as graph filters.
-const hidden = new Set();
+// Status chips show only the chosen statuses, in the graph and the table.
+// Click selects one status (again to clear); Ctrl, Shift or Cmd adds or removes one.
+const active = new Set(), chips = {};
+const shown = (status) => !active.size || active.has(status);
 const counts = document.getElementById('counts');
 for (const status of Object.keys(LABEL)) {
   const n = D.counts[status]; if (!n) continue;
-  const b = el('button', {class: 'chip', 'aria-pressed': 'true', type: 'button'});
+  const b = el('button', {class: 'chip', 'aria-pressed': 'false', type: 'button',
+    title: 'Show only this status; Ctrl-click to combine'});
   const sw = el('i'); sw.style.background = `var(${SWATCH[status]})`;
   sw.style.border = '1px solid var(--line)'; b.append(sw, `${LABEL[status]} ${n}`);
-  b.addEventListener('click', () => { hidden.has(status) ? hidden.delete(status) : hidden.add(status);
-    b.setAttribute('aria-pressed', hidden.has(status) ? 'false' : 'true'); paint(); });
-  counts.append(b);
+  b.addEventListener('click', (ev) => {
+    if (ev.ctrlKey || ev.shiftKey || ev.metaKey) active.has(status) ? active.delete(status) : active.add(status);
+    else if (active.size === 1 && active.has(status)) active.clear();
+    else { active.clear(); active.add(status); }
+    applyStatus(true); });
+  counts.append(b); chips[status] = b;
+}
+const clear = el('button', {class: 'chip clear', type: 'button', hidden: ''}, 'Show all');
+clear.addEventListener('click', () => { active.clear(); applyStatus(false); });
+counts.append(clear);
+function applyStatus(reveal) {
+  for (const [s, b] of Object.entries(chips)) b.setAttribute('aria-pressed', active.has(s) ? 'true' : 'false');
+  counts.classList.toggle('filtering', active.size > 0);
+  clear.hidden = !active.size;
+  paint(); filterTable(); writeHash();
+  if (!reveal || !active.size) return;
+  const inGraph = Object.keys(nodeEls).some(id => active.has(C[id].status));
+  document.getElementById(inGraph ? 'graph-h' : 'all-h').scrollIntoView({behavior: 'smooth', block: 'start'});
 }
 
 // Frontier lists.
@@ -327,6 +369,7 @@ for (const [key, title, why] of LISTS) {
     else if (key === 'almost_ready') li.append(el('span', {class: 'why'}, ` needs ${c.blockers[0].claim}`));
     else if (c.downstream) li.append(el('span', {class: 'why'}, ` · ${c.downstream} downstream`));
     if (c.warnings && c.warnings.length) li.append(el('span', {class: 'warnline', title: c.warnings.join('\n')}, ' !'));
+    if (c.agent_prompt) li.append(' ', copyButton(c.agent_prompt, 'Copy task', `Copy the agent task for ${id}`));
     ol.append(li);
   }
   if (ids.length > 12) ol.append(el('li', {class: 'why'}, `… ${ids.length - 12} more in the table`));
@@ -394,14 +437,16 @@ function paint() {
   const near = new Set();
   if (selected && nodeEls[selected]) { near.add(selected);
     for (const [e] of edgeEls) { if (e.from === selected) near.add(e.to); if (e.to === selected) near.add(e.from); } }
+  // A status filter overrides the neighbourhood focus; a selected node always stays visible.
+  const focus = selected && nodeEls[selected] && !query && !active.size;
   for (const [id, g] of Object.entries(nodeEls)) {
-    const off = hidden.has(C[id].status) || !matches(id) || (selected && nodeEls[selected] && !near.has(id) && !query);
+    const off = id !== selected && (!shown(C[id].status) || !matches(id) || (focus && !near.has(id)));
     g.classList.toggle('dim', off); g.classList.toggle('selected', id === selected);
   }
   for (const [e, p] of edgeEls) {
     const on = selected && (e.from === selected || e.to === selected);
     p.classList.toggle('hi', !!on);
-    p.classList.toggle('dim', (!!selected && !on && !query) || hidden.has(C[e.from].status) || hidden.has(C[e.to].status));
+    p.classList.toggle('dim', !on && ((focus && !on) || (!shown(C[e.from].status) && !shown(C[e.to].status))));
   }
 }
 
@@ -436,12 +481,26 @@ function select(id, scroll) {
   if (c.coverage) row(dl, 'English coverage', `${c.coverage.band}${c.coverage.reading ? ' — ' + c.coverage.reading : ''} (Jev, advisory)`);
   if (c.warnings && c.warnings.length) { const w = el('div', {class: 'warnline'}); c.warnings.forEach(x => w.append(el('div', {}, x))); row(dl, 'Warnings', w); }
   box.push(dl);
+  if (c.agent_prompt) {
+    const head = el('div', {class: 'task-head'});
+    head.append(el('h3', {}, 'Agent task'), copyButton(c.agent_prompt, 'Copy'));
+    box.push(head, el('pre', {class: 'task'}, c.agent_prompt),
+      el('code', {class: 'cmd'}, `python tools/formalpedia.py frontier --task ${id}`));
+  }
   box.push(el('code', {class: 'cmd'}, `python tools/formalpedia.py claim ${id}`));
   if (nodeEls[id]) box.push(el('code', {class: 'cmd'}, `python tools/formalpedia.py claim-graph ${id} --format markdown`));
   detail.replaceChildren(...box);
   if (scroll && nodeEls[id]) { const p = G.nodes[id];
     wrap.scrollTo({left: p.x * zoom - wrap.clientWidth / 2 + W * zoom / 2, top: p.y * zoom - wrap.clientHeight / 2, behavior: 'smooth'}); }
-  history.replaceState(null, '', '#' + encodeURIComponent(id));
+  writeHash();
+}
+// The hash keeps both the status filter and the selected claim: #status=ready,blocked&claim=ID.
+// A bare #ID, the earlier form, still selects that claim.
+function writeHash() {
+  const parts = [];
+  if (active.size) parts.push('status=' + [...active].join(','));
+  if (selected) parts.push('claim=' + encodeURIComponent(selected));
+  history.replaceState(null, '', parts.length ? '#' + parts.join('&') : location.pathname + location.search);
 }
 
 // Table.
@@ -451,11 +510,26 @@ const trs = order.map(c => { const tr = el('tr'); const td = el('td'); td.append
   tr.append(td, el('td', {}, LABEL[c.status]), el('td', {}, c.tag), el('td', {class: 'n'}, String(c.downstream)));
   tr.dataset.text = `${c.id} ${c.status} ${LABEL[c.status]} ${c.tag} ${c.statement}`.toLowerCase(); tbody.append(tr); return tr; });
 const tf = document.getElementById('table-find');
-tf.addEventListener('input', () => { const q = tf.value.trim().toLowerCase();
-  for (const tr of trs) tr.hidden = !!q && !tr.dataset.text.includes(q); });
+const tableHead = document.getElementById('all-h');
+function filterTable() {
+  const q = tf.value.trim().toLowerCase(); let n = 0;
+  trs.forEach((tr, i) => { tr.hidden = !shown(order[i].status) || (!!q && !tr.dataset.text.includes(q)); n += !tr.hidden; });
+  tableHead.textContent = n === trs.length ? `All claims (${n})` : `Claims (${n} of ${trs.length})`;
+}
+tf.addEventListener('input', filterTable);
 
-const start = decodeURIComponent(location.hash.slice(1));
-if (C[start]) select(start, true);
+function readHash() {
+  const hash = decodeURIComponent(location.hash.slice(1));
+  const params = new URLSearchParams(hash.includes('=') ? hash : '');
+  active.clear();
+  for (const s of (params.get('status') || '').split(',')) if (chips[s]) active.add(s);
+  const claim = hash.includes('=') ? params.get('claim') : hash;
+  selected = null;
+  applyStatus(false);
+  if (C[claim]) select(claim, true); else select(null, false);
+}
+window.addEventListener('hashchange', readHash);
+readHash();
 })();
 </script>
 </body>

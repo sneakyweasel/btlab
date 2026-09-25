@@ -7,6 +7,7 @@ computation or an open hypothesis as formalized.
 """
 from __future__ import annotations
 
+import re
 from collections import defaultdict
 from pathlib import Path
 
@@ -74,11 +75,12 @@ def _closure(start: str, step) -> set[str]:
 
 
 def build(ledger: list[dict], root: Path, *, coverage: dict[str, dict] | None = None,
-          scope: str | None = None) -> dict:
+          scope: str | None = None, locations: dict[str, dict] | None = None) -> dict:
     """Classify every claim; ``scope`` restricts the listed items to one root's inputs.
 
     ``coverage`` maps LEAN VERIFIED claim IDs to Jev coverage entries (``verdict``,
-    ``band``, ``reading``). Missing entries are reported as unasked.
+    ``band``, ``reading``). Missing entries are reported as unasked. ``locations``
+    maps claim IDs to their canonical topic file and JSON pointer, for agent prompts.
     """
     errors = validate(ledger, root, check_sources=False)
     if errors:
@@ -138,6 +140,7 @@ def build(ledger: list[dict], root: Path, *, coverage: dict[str, dict] | None = 
         for blocker in item.get('blockers', []):
             blocker['status'] = claims[blocker['claim']]['status']
         item['next_action'] = _next_action(item)
+        item['agent_prompt'] = agent_prompt(item, rows, (locations or {}).get(name))
     # A blocker "unlocks" a user when it is that user's only blocker on its best complete route.
     unlocks: dict[str, list[str]] = defaultdict(list)
     for name, item in claims.items():
@@ -205,10 +208,129 @@ def _next_action(item: dict) -> str:
             'not_a_target': 'Not a formalization target.'}[status]
 
 
+PROMPT_STATUSES = {'ready', 'ready_conditional', 'blocked', 'stale', 'needs_annotation', 'unannotated'}
+_HEADS = {
+    'ready': 'Formalize `{0}` in Lean.',
+    'ready_conditional': 'Formalize `{0}` in Lean, keeping its assumptions as hypotheses.',
+    'blocked': 'Unblock `{0}`: formalize its missing inputs in Lean.',
+    'stale': 'Review the stale proof route of `{0}` and repin it.',
+    'needs_annotation': 'Complete the written proof route of `{0}`.',
+    'unannotated': 'Record a written proof route for `{0}`.',
+}
+_DONE = {
+    'ready': '`{0}` is `EXACT — LEAN VERIFIED` with named declarations and an axiom check.',
+    'ready_conditional': '`{0}` is `EXACT — LEAN VERIFIED` with its assumptions as explicit hypotheses.',
+    'blocked': '`python tools/formalpedia.py frontier --task {0}` reports it ready.',
+    'stale': 'the route pin is current and its uses match the passage.',
+    'needs_annotation': '`claim-graph {0}` reports the route of this claim complete.',
+    'unannotated': '`{0}` has a pinned route and `claim-graph {0}` shows its inputs.',
+}
+_ROUTE_EDIT = [
+    'Map each input to a ledger ID (`python tools/lab.py search "<words>"`, '
+    '`python tools/formalpedia.py search "<words>"`, grep `docs/claims`) and confirm it by reading '
+    'that row. If an input has no row, add one rather than skipping it.',
+    'Record them in the route `uses` with kind `proof`, `statement`, `assumption` (required for '
+    'hypotheses) or `computation` (only for COMPUTATIONALLY VERIFIED rows). Set `coverage` to '
+    '`complete` only when every immediate input is listed.',
+    '`python tools/render_theorem_ledger.py --check`, then '
+    '`python tools/formalpedia.py claim-graph {0} --format markdown`.',
+]
+
+
+def _steps(status: str, name: str, row: dict, slug: str) -> list[str]:
+    worktree = f'Work in your own worktree: `python tools/lab.py worktree new {slug}`.'
+    land = f'`python tools/lab.py verify --changed`, then `python tools/lab.py land agent/{slug}`.'
+    pin = ('Pin the passage: `python tools/formalpedia.py passage-pin <path> "<start>" "<end>"` '
+           'prints its `sha256` and line.')
+    route_edit = [s.format(name) for s in _ROUTE_EDIT]
+    if status in {'ready', 'ready_conditional'}:
+        return [
+            worktree,
+            'Search before proving: `python tools/formalpedia.py search "<objects and conclusion>" --limit 10`; '
+            'read each input with `python tools/formalpedia.py show <qualified name>`.',
+            'State the whole English claim in Lean, every hypothesis and conclusion, and prove it from the inputs. '
+            'No `sorry` or `admit`; declaration names of at most 33 characters; `python tools/lab.py build`.',
+            'Add `formal/AxiomCheck<Name>.lean` and its `.expected`. Name the declarations in the claim `decl` '
+            'and set `lean`; run `python tools/formalpedia.py ledger-check`.',
+            'Retag `EXACT — LEAN VERIFIED` only once the statement covers the claim. '
+            f'`python tools/formalpedia.py jev-coverage --rows {name}` is advisory, not a review.',
+            land]
+    if status == 'blocked':
+        return [
+            f'See the whole chain: `python tools/formalpedia.py frontier --scope {name}`.',
+            'Start with the missing input that is itself ready or has the fewest blockers; print its own '
+            'task with `python tools/formalpedia.py frontier --task <ID>`.',
+            f'Return to `{name}` when `frontier --task {name}` reports it ready.']
+    if status == 'stale':
+        return [worktree,
+                'Reread the passage and compare it with the recorded `uses`, conditions and scope.',
+                'Update `uses` if the argument changed. Only then recompute the pin and replace `sha256`. ' + pin,
+                route_edit[2], land]
+    if status == 'needs_annotation':
+        return [worktree,
+                'Read the passage. List every result it uses: numbered lemmas, results from other notes, '
+                'external theorems, finite computations and standing hypotheses.',
+                *route_edit, land]
+    return [worktree,
+            f"Find the proof of `{name}` in `{row['source']}`; choose `start` and `end` delimiters that each occur once.",
+            pin,
+            'Add a `proof_routes` entry with `id` and `method` "written", `source` (path, start, end, sha256), '
+            '`uses`, `coverage` and `notes`, following docs/architecture/claim_dependencies.md. '
+            'List every result the proof uses.',
+            *route_edit, land]
+
+
+def agent_prompt(item: dict, rows: dict[str, dict], location: dict | None = None) -> str | None:
+    """A self-contained task to hand an agent verbatim, or None when there is no task.
+
+    It restates the claim, passage and inputs so the receiving agent needs no other
+    context, then gives the commands and the condition for being done.
+    """
+    status, name = item['status'], item['id']
+    if status not in PROMPT_STATUSES:
+        return None
+    row = rows[name]
+    where = (f"`{location['path']}` at JSON pointer `{location['pointer']}`" if location
+             else f'`docs/claims/`; locate it with `python tools/formalpedia.py claim {name}`')
+    lines = ['Task: ' + _HEADS[status].format(name), '', f"Claim `{name}` ({row['tag']}):", row['statement'],
+             '', f'Claim record: {where}.']
+    source = item.get('proof_source')
+    if source:
+        route = next(r for r in row['proof_routes'] if r['id'] == item['route'])
+        lines.append(f"Proof passage: `{source['path']}` line {source['line']}, from \"{route['source']['start']}\" "
+                     f"up to \"{route['source']['end']}\" (route `{item['route']}`, coverage "
+                     f"{route['coverage']}, pin {source['freshness']}).")
+        lines.append(f"Route notes: {route['notes']}")
+    else:
+        lines.append(f"Source: `{row['source']}` (no proof route recorded yet).")
+    lines += [f'Local condition: {c}' for c in row.get('conditions', [])]
+    if item.get('inputs'):
+        lines += ['', 'Lean-verified inputs:']
+        for i in item['inputs']:
+            decls = ', '.join(f'`{d}`' for d in i['decl']) or 'no declaration named in the ledger'
+            lines.append(f"- `{i['claim']}` ({i['kind']}) in `{i['lean']}`: {decls}; "
+                         f"English coverage {i['coverage']['band']}.")
+    if item.get('blockers'):
+        lines += ['', 'Missing inputs:' if status == 'blocked' else 'Recorded inputs not yet in Lean:']
+        for b in item['blockers']:
+            text = rows[b['claim']]['statement']
+            lines.append(f"- `{b['claim']}` ({b['kind']}; {b['tag']}; frontier status {b['status']}): "
+                         + (text if len(text) <= 300 else text[:299] + '…'))
+    if item.get('conditional_on'):
+        lines += ['', 'Assumptions, never to be discharged: ' + ', '.join(f'`{c}`' for c in item['conditional_on'])]
+    if item['warnings']:
+        lines += ['', 'Warnings:'] + [f'- {w}' for w in item['warnings']]
+    slug = re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')[:40]
+    lines += ['', 'Steps:'] + [f'{k}. {s}' for k, s in enumerate(_steps(status, name, row, slug), 1)]
+    lines += ['', f'Done when {_DONE[status].format(name)} '
+              'This task never promotes an evidence label by itself.']
+    return '\n'.join(lines)
+
+
 def compact(item: dict) -> dict:
     """Agent-facing item without per-route internals; the full record stays in ``claims``."""
     keep = ('id', 'tag', 'status', 'route', 'proof_source', 'blockers', 'conditional_on', 'inputs',
-            'downstream', 'warnings', 'next_action', 'lean', 'source')
+            'downstream', 'warnings', 'next_action', 'agent_prompt', 'lean', 'source')
     return {k: item[k] for k in keep if k in item}
 
 

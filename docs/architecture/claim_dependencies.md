@@ -103,9 +103,10 @@ Do not bulk-refresh pins to silence a failing check. `render_theorem_ledger.py
 retain stale edges with a warning rather than hiding their claims or treating
 them as established. A current hash establishes only that the passage is unchanged.
 
-To compute the pin after review, use `claim_graph.source_passage(root, source)`
-from `tools/formalpedia_core`, then SHA-256 of the returned text encoded as UTF-8.
-There is no automatic command that attests a review or promotes an evidence tag.
+To compute the pin after review, run
+`python tools/formalpedia.py passage-pin <path> "<start>" "<end>"`. It prints the
+SHA-256 and current start line of the delimited passage and writes nothing. No
+command attests a review or promotes an evidence tag.
 
 ## Optional compiler associations
 
@@ -151,8 +152,12 @@ the frontier turns the written graph into a work queue. Each claim receives one 
 Lists rank by downstream reach (claims that transitively use the item). `almost_ready`
 has one missing input; `unlocks` ranks missing inputs by the claims they would make
 ready; `unannotated_boundary` lists unannotated claims that an annotated proof uses.
-Every item carries `next_action`, the proof passage with its current line, Lean inputs
-with their declarations, and warnings. Inputs report the cached Jev English-coverage
+Every item carries a one-line `next_action`, the proof passage with its current line,
+Lean inputs with their declarations, and warnings. Items with work to do also carry
+`agent_prompt`, a self-contained task to hand an agent verbatim. It restates the claim,
+its record location, passage, inputs and assumptions, then gives numbered commands and
+the condition for being done. `frontier --task <ID>` prints it for one claim, whatever
+its list. Inputs report the cached Jev English-coverage
 band (`covered`, `doubtful`, `not_covered`, `stale`, `unasked` or `no_declaration`).
 The band is advisory and never gates readiness. It does not replace review before a
 retag. Alternative routes are evaluated separately; the best one is reported.
@@ -161,12 +166,16 @@ retag. Alternative routes are evaluated separately; the best one is reported.
 python tools/formalpedia.py frontier                          # Markdown work queue
 python tools/formalpedia.py frontier --format json --list ready --list unlocks
 python tools/formalpedia.py frontier --scope J-paper-b-five-step-density-127
+python tools/formalpedia.py frontier --task J-ooee-count-poor-resonance   # paste-ready prompt
 python tools/formalpedia.py blueprint                         # .cache/formalpedia/blueprint.html
 ```
 
-The MCP tool `formalpedia_frontier` returns the JSON form. `blueprint` writes one
-self-contained, git-ignored HTML page: status filters, the frontier lists, the
-written graph (arrows point to inputs), a detail panel and a table of every claim.
-It embeds the frontier JSON in its `#frontier-data` block and makes no network
-requests. Open it directly, or serve it with the `blueprint` entry in
-`.claude/launch.json`. Pass `--out` for another destination. Do not commit it.
+The MCP tool `formalpedia_frontier` returns the JSON form, prompts included. `blueprint`
+writes one self-contained, git-ignored HTML page: the collapsible frontier lists with a
+copy button per task, the written graph (arrows point to inputs), a detail panel with
+the agent task, and a table of every claim. A status chip shows only that status in the
+graph and the table; Ctrl-click combines statuses. The URL keeps the view, as in
+`#status=ready,blocked&claim=<ID>`; a bare `#<ID>` still selects a claim. The page
+embeds the frontier JSON in its `#frontier-data` block and makes no network requests.
+Open it directly, or serve it with the `blueprint` entry in `.claude/launch.json`.
+Pass `--out` for another destination. Do not commit it.

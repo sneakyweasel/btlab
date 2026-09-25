@@ -110,7 +110,19 @@ def frontier_data(catalogue, *, scope: str | None = None) -> dict:
 
     index, ledger, _ = catalogue.snapshot()
     coverage = {entry['id']: entry for entry in verdicts.coverage_rows(index, ledger, verdicts.load_jev())}
-    return frontier.build(ledger, workspace.ROOT, coverage=coverage, scope=scope)
+    return frontier.build(ledger, workspace.ROOT, coverage=coverage, scope=scope,
+                          locations=catalogue._claim_locations)
+
+
+def frontier_task(catalogue, ledger_id: str) -> dict:
+    """One claim's status and paste-ready agent prompt, whatever list it falls in."""
+    from . import frontier
+
+    data = frontier_data(catalogue)
+    if ledger_id not in data['claims']:
+        raise ValueError(f'Unknown ledger claim: {ledger_id}')
+    return {**frontier.compact(data['claims'][ledger_id]), 'snapshot': data['snapshot'],
+            'limitations': data['limitations']}
 
 
 FRONTIER_LISTS = ('ready', 'almost_ready', 'unlocks', 'blocked', 'stale', 'needs_annotation',

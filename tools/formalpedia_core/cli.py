@@ -62,6 +62,11 @@ def main(argv: list[str] | None = None) -> int:
                    help='ready, almost_ready, unlocks, blocked, stale, needs_annotation, unannotated_boundary')
     p.add_argument('--limit', type=int, default=20)
     p.add_argument('--format', choices=['json', 'markdown'], default='markdown')
+    p.add_argument('--task', metavar='CLAIM', help='print only the paste-ready agent prompt for one claim')
+    p = sub.add_parser('passage-pin', help='SHA-256 and start line of a delimited proof passage, for a route source')
+    p.add_argument('path', help='checkout-relative POSIX path')
+    p.add_argument('start', help='delimiter that begins the passage; must occur once')
+    p.add_argument('end', help='delimiter just after the passage; must occur once')
     p = sub.add_parser('blueprint', help='write a self-contained HTML frontier and claim graph')
     p.add_argument('--out', default='.cache/formalpedia/blueprint.html', help='checkout-relative or absolute path')
     p.add_argument('--scope', metavar='CLAIM')
@@ -150,12 +155,33 @@ def main(argv: list[str] | None = None) -> int:
             print(str(exc), file=sys.stderr)
             return 2
 
+    if args.cmd == 'passage-pin':
+        import hashlib
+        from research.claim_dependencies import source_passage
+        try:
+            text, line = source_passage(_fp_workspace.ROOT, {'path': args.path, 'start': args.start, 'end': args.end})
+        except (ValueError, OSError) as exc:
+            print(str(exc), file=sys.stderr)
+            return 2
+        # Computing a pin attests nothing: review the route before writing it into a claim.
+        print(_fp_source.render({'path': args.path, 'start': args.start, 'end': args.end, 'line': line,
+                                 'sha256': hashlib.sha256(text.encode()).hexdigest()}), end='')
+        return 0
+
     if args.cmd in ('frontier', 'blueprint'):
         from pathlib import Path
         from formalpedia_catalog import Catalogue
         from . import blueprint, claim_query, frontier
         catalogue = Catalogue()
         try:
+            if args.cmd == 'frontier' and args.task:
+                with catalogue._lock:
+                    task = claim_query.frontier_task(catalogue, args.task)
+                if args.format == 'json':
+                    print(_fp_source.render(task), end='')
+                else:
+                    print(task['agent_prompt'] or f"{task['id']}: {task['status']}. {task['next_action']}")
+                return 0
             if args.cmd == 'frontier' and args.format == 'json':
                 result = catalogue.frontier(scope=args.scope, lists=args.lists, limit=args.limit)
                 print(_fp_source.render(result), end='')
