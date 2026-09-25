@@ -1,6 +1,7 @@
 """Land an agent's branch on main, one branch at a time, with the shared views regenerated.
 
     python tools/lab.py worktree new <name>      create .build/worktrees/<name> on branch agent/<name>
+    python tools/lab.py worktree new <name> --profile python   the same, Python setup only
     python tools/lab.py land <branch>            rebase, regenerate, check, fast-forward main
     python tools/lab.py land <branch> --dry-run  do everything except move main
     python tools/lab.py worktree list            each agent branch, its worktree and landed verdict
@@ -238,13 +239,17 @@ def land(root: Path, branch: str, onto: str = "main", dry_run: bool = False,
         git(root, "worktree", "remove", "--force", str(work), check=False)
 
 
-def new_worktree(root: Path, name: str, onto: str = "main", prepare: bool = True) -> dict:
+def new_worktree(root: Path, name: str, onto: str = "main", prepare: bool = True,
+                 profile: str = "full") -> dict:
+    """Create the worktree and prepare it from this checkout. Use the python profile for
+    changes outside formal/: it installs the pinned Python environment only."""
     path = root / ".build/worktrees" / name
     branch = f"agent/{name}"
     git(root, "worktree", "add", "-b", branch, str(path), onto)
-    report = {"status": "created", "worktree": str(path), "branch": branch}
+    report = {"status": "created", "worktree": str(path), "branch": branch, "profile": profile}
     if prepare:
-        run = subprocess.run([sys.executable, "tools/lab.py", "prepare", "--apply", "--from", str(root)],
+        run = subprocess.run([sys.executable, "tools/lab.py", "prepare", "--apply", "--profile", profile,
+                              "--from", str(root)],
                              cwd=path, capture_output=True, text=True, encoding="utf-8", errors="replace")
         report["prepare"] = "ok" if run.returncode == 0 else (run.stdout + run.stderr)[-600:]
     return report
@@ -263,6 +268,8 @@ def main(argv: list[str]) -> int:
     tree.add_argument("name", nargs="?")
     tree.add_argument("--onto", default="main")
     tree.add_argument("--no-prepare", action="store_true")
+    tree.add_argument("--profile", choices=["python", "full"], default="full",
+                      help="new: python prepares only the pinned Python environment (changes outside formal/)")
     tree.add_argument("--dry-run", action="store_true", help="remove: print the verdict only")
     args = parser.parse_args(argv)
     if args.command == "worktree" and args.action != "list" and not args.name:
@@ -271,7 +278,7 @@ def main(argv: list[str]) -> int:
         if args.command == "land":
             report = land(ROOT, args.branch, args.onto, args.dry_run)
         elif args.action == "new":
-            report = new_worktree(ROOT, args.name, args.onto, not args.no_prepare)
+            report = new_worktree(ROOT, args.name, args.onto, not args.no_prepare, args.profile)
         elif args.action == "list":
             report = {"onto": args.onto, "agents": agent_branches(ROOT, args.onto)}
         else:

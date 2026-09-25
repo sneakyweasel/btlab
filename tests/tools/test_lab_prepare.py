@@ -148,3 +148,121 @@ def test_lean_receipt_invalidates_on_source_or_object_change(tmp_path, monkeypat
     receipt['lean_build']['outputs'] = {'../outside.olean': '0' * 64}
     prep.atomic_json(tmp_path, tmp_path / prep.RECEIPT, receipt)
     assert prep.readiness(tmp_path)['lean_build']['status'] == 'unavailable'
+
+
+def lean_checkout(root, *, olean=b'compiled Demo'):
+    """A checkout with one Lean module, a pinned (empty) package lock and a compiled object."""
+    locked(root)
+    write(root, 'formal/lean-toolchain', 'leanprover/lean4:v4.33.1\n')
+    write(root, 'formal/lake-manifest.json', json.dumps({'packagesDir': '.lake/packages', 'packages': []}))
+    write(root, 'formal/Problems/Demo.lean', 'theorem demo : True := True.intro\n')
+    if olean is not None:
+        path = root / 'formal/.lake/build/lib/lean/Problems/Demo.olean'
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(olean)
+    return root
+
+
+def ready_donor(root):
+    """A donor whose build receipt and semantic snapshot are both current."""
+    from formalpedia_core import semantic_common as common, semantic_query as query, semantic_store as store
+    lean_checkout(root)
+    subprocess.run(['git', 'init', '-q'], cwd=root, check=True)
+    subprocess.run(['git', '-c', 'user.name=Test', '-c', 'user.email=test@example.invalid', 'commit', '-q',
+                    '--allow-empty', '-m', 'fixture'], cwd=root, check=True)
+    prep.atomic_json(root, root / prep.RECEIPT, {'created_utc': 'fixture', 'lean_build': {
+        'inputs': deps.math_inputs(root), 'outputs': prep.object_hashes(root)}})
+    cat = query.SemanticCatalogue(root)
+    olean = str((root / 'formal/.lake/build/lib/lean/Problems/Demo.olean').resolve())
+    row = {'id': 'Problems.Demo::demo', 'name': 'demo', 'module': 'Problems.Demo', 'kind': 'theorem',
+           'type': 'True', 'type_ast': ['const', 'True', []], 'axioms': [], 'binders': [],
+           'type_dependencies': [], 'value_dependencies': [], 'value_hash64': '1'}
+    row['type_sha256'] = common.digest(row['type_ast'])
+    store.publish(cat, ['Problems.Demo'], [row], {
+        'imports': {'Problems.Demo': []}, 'source_modules': ['Problems.Demo'],
+        'inputs': common.scoped_inputs(common.inputs(root), ['Problems.Demo']),
+        'objects': {olean: common.file_stamp(Path(olean))}, 'object_modules': {olean: 'Problems.Demo'}})
+    assert prep.readiness(root)['lean_build']['status'] == 'ready'
+    assert cat.status()['status'] == 'current'
+    return root
+
+
+def copy_packages(target, donor):
+    """Package preparation, which copies the donor's compiled objects as independent files."""
+    deps.prepare_packages(target, donor, lambda argv: None, offline=True)
+
+
+def test_donor_build_is_reused_over_identical_inputs_and_stays_independent(tmp_path):
+    from formalpedia_core import semantic_query as query
+    donor, target = ready_donor(tmp_path / 'donor'), lean_checkout(tmp_path / 'target', olean=None)
+    eligible = prep.reusable_build(target, donor)
+    assert eligible['status'] == 'eligible', eligible
+    copy_packages(target, donor)
+    reuse = prep.adopt_build(target, donor, eligible)
+    assert reuse['status'] == 'reused', reuse
+    record = reuse['lean_build']['reused_from']
+    assert record['donor'] == str(donor) and len(record['commit']) == 40
+    assert 'never establish proof status' in record['note']
+    prep.atomic_json(target, target / prep.RECEIPT, {'lean_build': reuse['lean_build']})
+    assert prep.readiness(target)['lean_build']['status'] == 'ready'
+    semantic = query.SemanticCatalogue(target)
+    assert semantic.status()['status'] == 'current'
+    envs, _ = semantic._store.environment_records(semantic._loaded[1])
+    objects = [p for env in envs.values() for p in env['objects']]
+    assert objects and all(Path(p).is_relative_to(target.resolve()) for p in objects)
+    # The copies are independent: rebuilding the donor leaves this checkout current.
+    (donor / 'formal/.lake/build/lib/lean/Problems/Demo.olean').write_bytes(b'rebuilt elsewhere')
+    assert query.SemanticCatalogue(target).status()['status'] == 'current'
+    assert prep.readiness(target)['lean_build']['status'] == 'ready'
+
+
+@pytest.mark.parametrize('change', [
+    lambda text: text.replace(b'intro', b'intrO'),   # one byte of one module
+    lambda text: text.replace(b'\n', b'\r\n'),        # line endings only
+], ids=['one-byte', 'crlf'])
+def test_reuse_is_refused_when_any_lean_source_byte_differs(tmp_path, change):
+    donor, target = ready_donor(tmp_path / 'donor'), lean_checkout(tmp_path / 'target', olean=None)
+    source = target / 'formal/Problems/Demo.lean'
+    source.write_bytes(change(source.read_bytes()))
+    refused = prep.reusable_build(target, donor)
+    assert refused['status'] == 'refused'
+    assert refused['differing_inputs'] == ['formal/Problems/Demo.lean']
+
+
+def test_reuse_is_refused_without_a_donor_or_with_a_stale_donor_receipt(tmp_path):
+    donor, target = ready_donor(tmp_path / 'donor'), lean_checkout(tmp_path / 'target', olean=None)
+    refused = prep.reusable_build(target, None)
+    assert refused['status'] == 'refused' and 'no donor' in refused['reason']
+    # A receipt whose recorded outputs no longer match, beside a current semantic snapshot.
+    receipt = json.loads((donor / prep.RECEIPT).read_text(encoding='utf-8'))
+    good = dict(receipt['lean_build']['outputs'])
+    receipt['lean_build']['outputs'] = dict.fromkeys(good, '0' * 64)
+    prep.atomic_json(donor, donor / prep.RECEIPT, receipt)
+    refused = prep.reusable_build(target, donor)
+    assert refused['status'] == 'refused' and refused['reason'] == "the donor's Lean build receipt is stale"
+    (donor / 'formal/.lake/build/lib/lean/Problems/Demo.olean').write_bytes(b'compiled Demo, then changed')
+    # A current receipt beside a stale semantic snapshot is refused too.
+    prep.atomic_json(donor, donor / prep.RECEIPT, {'lean_build': {
+        'inputs': deps.math_inputs(donor), 'outputs': prep.object_hashes(donor)}})
+    assert prep.readiness(donor)['lean_build']['status'] == 'ready'
+    refused = prep.reusable_build(target, donor)
+    assert refused['status'] == 'refused' and 'semantic' in refused['reason']
+
+
+def test_reuse_is_refused_when_this_checkout_already_holds_other_objects(tmp_path):
+    donor = ready_donor(tmp_path / 'donor')
+    target = lean_checkout(tmp_path / 'target', olean=b'an older local build')
+    eligible = prep.reusable_build(target, donor)
+    copy_packages(target, donor)  # an existing build directory is never overwritten
+    refused = prep.adopt_build(target, donor, eligible)
+    assert refused['status'] == 'refused' and 'differ' in refused['reason']
+    assert not (target / '.cache/formalpedia/semantic/current').exists()
+
+
+def test_a_second_prepare_in_the_same_checkout_refuses(tmp_path):
+    from lab_lock import exclusive
+    locked(tmp_path)
+    with exclusive(tmp_path / prep.PREPARE_LOCK, purpose='prepare --apply', root=tmp_path, wait=False):
+        with pytest.raises(ValueError, match='already running'):
+            prep.prepare(tmp_path, apply=True, profile='python')
+    assert prep.prepare(tmp_path, profile='python')['status'] == 'planned'

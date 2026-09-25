@@ -13,11 +13,14 @@ import sys
 import uuid
 
 from lab_environment import ROOT, environment, executable
-from lab_dependencies import inside, math_inputs, package_state, prepare_packages
+from lab_dependencies import git, inside, math_inputs, package_state, prepare_packages
+from lab_lock import LockBusy, exclusive
 
 LOCK = 'tools/requirements-lab.lock'
 LOCK_META = 'tools/requirements-lab.json'
 RECEIPT = '.build/preparation/ready.json'
+#: Held while prepare --apply runs, so a second one in the same checkout refuses.
+PREPARE_LOCK = '.build/preparation/prepare.lock'
 LOCK_INPUTS = ('pyproject.toml', 'tools/requirements-formalpedia.txt')
 INVENTORY_SCRIPT = (
     'import importlib.metadata as m,json,platform,sys; '
@@ -108,6 +111,69 @@ def readiness(root: Path = ROOT, *, probe: bool = False, lean: bool = True) -> d
         'limitations': 'Readiness covers the recorded environment and local build only. It is not a theorem audit or a passing test suite. Cache copies never establish proof status.'}
 
 
+def object_hashes(root: Path) -> dict[str, str]:
+    return {p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+            for p in sorted((root / 'formal/.lake/build/lib/lean').rglob('*.olean'))}
+
+
+def reusable_build(root: Path, donor: Path | None) -> dict:
+    """Whether the donor's ready build covers exactly this checkout's Lean inputs.
+
+    Inputs are compared as the receipt records them, raw bytes included: a checkout whose
+    sources differ from the donor's only by line endings is refused, not normalised.
+    """
+    if donor is None:
+        return {'status': 'refused', 'reason': 'no donor checkout was given'}
+    state = readiness(donor, lean=True)['lean_build']
+    if state['status'] != 'ready':
+        return {'status': 'refused', 'reason': f"the donor's Lean build receipt is {state['status']}"}
+    recorded = json.loads((donor / RECEIPT).read_text(encoding='utf-8'))
+    ours = math_inputs(root)
+    differing = sorted(p for p in ours.keys() | recorded['lean_build']['inputs'].keys()
+                       if ours.get(p) != recorded['lean_build']['inputs'].get(p))
+    if differing:
+        return {'status': 'refused', 'reason': f'{len(differing)} Lean input(s) differ from the donor build',
+                'differing_inputs': differing[:20]}
+    from formalpedia_core.semantic_query import SemanticCatalogue
+    semantic = SemanticCatalogue(donor).status()
+    if semantic['status'] != 'current':
+        return {'status': 'refused', 'reason': f"the donor's semantic snapshot is {semantic['status']}"}
+    return {'status': 'eligible', 'inputs': ours, 'receipt': recorded,
+            'commit': git(donor, 'rev-parse', 'HEAD'), 'semantic_modules': semantic['module_count']}
+
+
+def adopt_build(root: Path, donor: Path, eligible: dict) -> dict:
+    """Issue a build record from the donor's copied objects, verified in this checkout.
+
+    The objects were copied as independent files by package preparation. The record is
+    refused unless they hash to the donor's recorded outputs and the adopted semantic
+    snapshot reads as current against this checkout's own copies.
+    """
+    donated = eligible['receipt']['lean_build']
+    if object_hashes(root) != donated['outputs']:
+        return {'status': 'refused', 'reason': "this checkout's Lean objects differ from the donor's recorded outputs"}
+    from formalpedia_core.semantic_query import SemanticCatalogue
+    from formalpedia_core.semantic_store import adopt
+    cache = root / '.cache/formalpedia/semantic'
+    try:
+        snapshot = adopt(donor, root)
+    except (OSError, ValueError, KeyError) as exc:
+        return {'status': 'refused', 'reason': f'semantic snapshot not adopted: {exc}'}
+    semantic = SemanticCatalogue(root).status()
+    if semantic['status'] != 'current' or semantic['module_count'] != eligible['semantic_modules']:
+        (cache / 'current').unlink(missing_ok=True)
+        return {'status': 'refused', 'reason': f"the adopted semantic snapshot is {semantic['status']} here"}
+    if (math_inputs(root) != eligible['inputs'] or
+            json.loads((donor / RECEIPT).read_text(encoding='utf-8')) != eligible['receipt']):
+        (cache / 'current').unlink(missing_ok=True)
+        return {'status': 'refused', 'reason': 'Lean inputs or the donor receipt changed during reuse'}
+    return {'status': 'reused', 'lean_build': {'inputs': eligible['inputs'], 'outputs': donated['outputs'],
+        'reused_from': {'donor': str(donor), 'commit': eligible['commit'],
+            'donor_receipt_created_utc': eligible['receipt'].get('created_utc'), 'semantic_snapshot': snapshot,
+            'note': 'Copied from a donor build over byte-identical Lean inputs, without compiling here. '
+                    'Cache copies never establish proof status.'}}}
+
+
 def atomic_json(root: Path, path: Path, data: dict):
     path = inside(root, path)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -132,10 +198,21 @@ def prepare(root: Path = ROOT, *, apply=False, donor: Path | None = None, offlin
         'offline': offline, 'donor': str(donor) if donor else None,
         'actions': ['Create an independent .build/python environment and sync the hash-pinned lock'] +
             (['Materialize exact Lake package revisions, copying compatible caches as independent files',
-              'Run the local Lean build and refresh compiled discovery records'] if profile == 'full' else []),
+              'Reuse the donor build when its receipt covers byte-identical Lean inputs; otherwise run '
+              'the local Lean build (one per machine) and refresh compiled discovery records']
+             if profile == 'full' else []),
         'before': readiness(root, lean=profile == 'full')}
     if not apply:
         return result
+    try:
+        with exclusive(inside(root, root / PREPARE_LOCK), purpose='prepare --apply', root=root, wait=False):
+            return apply_preparation(root, result, lock, donor=donor, offline=offline, profile=profile, timeout=timeout)
+    except LockBusy as exc:
+        raise ValueError(f'Another prepare --apply is already running in this checkout: {exc}') from exc
+
+
+def apply_preparation(root: Path, result: dict, lock: dict, *, donor: Path | None, offline: bool,
+                      profile: str, timeout: int) -> dict:
     uv = shutil.which('uv')
     if not uv:
         raise ValueError('uv is required for preparation; install tools/requirements-formalpedia.txt first')
@@ -148,12 +225,12 @@ def prepare(root: Path = ROOT, *, apply=False, donor: Path | None = None, offlin
     env['UV_PYTHON_DOWNLOADS'] = 'never'
     steps = []
 
-    def run(argv, cwd=root):
+    def run(argv, cwd=root, limit=timeout):
         log = run_dir / f'{len(steps):02d}.log'
         print(f'Preparing: {argv[0]} {argv[1] if len(argv) > 1 else ""} (log {log.relative_to(root)})', file=sys.stderr, flush=True)
         with log.open('wb') as output:
             process = subprocess.run(argv, cwd=cwd, env=env, stdin=subprocess.DEVNULL,
-                stdout=output, stderr=subprocess.STDOUT, timeout=timeout)
+                stdout=output, stderr=subprocess.STDOUT, timeout=limit)
         steps.append({'argv': argv, 'log': log.relative_to(root).as_posix(), 'exit_code': process.returncode})
         if process.returncode:
             raise ValueError(f'Preparation command failed; see {log}')
@@ -175,17 +252,34 @@ def prepare(root: Path = ROOT, *, apply=False, donor: Path | None = None, offlin
                 saved = json.loads((root / RECEIPT).read_text(encoding='utf-8'))
                 receipt['lean_build'] = saved['lean_build']
         if profile == 'full':
+            try:
+                eligible = reusable_build(root, donor)
+            except (OSError, ValueError, KeyError, subprocess.SubprocessError) as exc:
+                eligible = {'status': 'refused', 'reason': f'the donor build could not be inspected: {exc}'}
             receipt['packages'] = prepare_packages(root, donor, run, offline=offline)
-            inputs = math_inputs(root)
-            # This invokes the existing compiler/exporter; a copied cache alone cannot pass.
-            run([str(python), 'tools/lab.py', 'build', '--timeout', str(timeout)])
-            if inputs != math_inputs(root):
-                raise ValueError('Lean sources changed during preparation; no build receipt was issued')
-            outputs = list((root / 'formal/.lake/build/lib/lean').rglob('*.olean'))
-            if not outputs:
-                raise ValueError('Build reported success without any local Lean objects')
-            receipt['lean_build'] = {'inputs': inputs, 'outputs': {
-                p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in outputs}}
+            reuse = eligible
+            if eligible['status'] == 'eligible':
+                try:
+                    reuse = adopt_build(root, donor, eligible)
+                except (OSError, ValueError, KeyError) as exc:
+                    reuse = {'status': 'refused', 'reason': f'the donor build could not be adopted: {exc}'}
+            if reuse['status'] == 'reused':
+                receipt['lean_build'] = reuse['lean_build']
+                result['build'] = {'mode': 'reused', **reuse['lean_build']['reused_from']}
+            else:
+                result['build'] = {'mode': 'built', 'reuse_refused': reuse}
+                inputs = math_inputs(root)
+                # Without a reusable donor build, run the compiler/exporter; copied caches
+                # only let Lake skip work it has itself validated.
+                # lab.py build waits for the machine-wide build lock, so the wait is not timed
+                # here; each Lean command inside it keeps its own timeout.
+                run([str(python), 'tools/lab.py', 'build', '--timeout', str(timeout)], limit=None)
+                if inputs != math_inputs(root):
+                    raise ValueError('Lean sources changed during preparation; no build receipt was issued')
+                outputs = object_hashes(root)
+                if not outputs:
+                    raise ValueError('Build reported success without any local Lean objects')
+                receipt['lean_build'] = {'inputs': inputs, 'outputs': outputs}
         if initial != lock_inputs(root) or lock != lock_state(root):
             raise ValueError('Dependency lock inputs changed during preparation')
         atomic_json(root, root / RECEIPT, receipt)

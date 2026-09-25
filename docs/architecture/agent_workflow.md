@@ -39,10 +39,28 @@ preparation fetches the repositories recorded in the Lake lock.
 
 A donor must have the same Lean toolchain and Lake lock. Compatible caches are
 copied as ordinary independent files; neither build trees nor Git object stores
-are shared through writable links. Lake still validates/rebuilds local targets.
+are shared through writable links. When preparation builds, Lake still validates
+or rebuilds local targets.
 Dirty or incorrectly pinned destination packages cause a failure, never a reset.
 Cache copies can require several GB. A failed copy remains unpromoted in the
 selected checkout's `.build/preparation/`; logs explain the failure.
+
+Full preparation reuses the donor's build instead of compiling when the donor's
+receipt is ready, its recorded Lean inputs equal this checkout's byte for byte
+(line endings included), and its semantic snapshot is current. The copied objects
+must hash to the donor's recorded outputs, and the adopted snapshot, with object
+paths renamed to this checkout, must read as current here; otherwise preparation
+builds. The receipt's `lean_build.reused_from` names the donor and its commit.
+A reused build is not a compilation in this checkout and, like every cache copy,
+never establishes proof status. The report's `build` field says which happened
+and, when it built, why reuse was refused.
+
+At most one `lab.py build` runs per machine. It holds a lock in the user's temp
+directory (`btlab/lean-build.lock`, overridable with `BTLAB_LEAN_BUILD_LOCK`);
+other builds wait and print the holder's PID, start time and checkout. The
+operating system releases the lock of a killed holder, and the next build reports
+the stale record it replaced. A second `prepare --apply` in the same checkout
+refuses while the first runs. Verification's per-check timeout includes any wait.
 
 The readiness receipt records the Python package inventory, lock digest, Lean
 source inventory and local object hashes. `prepare --check` probes actual package
@@ -232,9 +250,14 @@ first, then the full affected verification gates.
 
 ## Concurrent agents: a worktree each, one landing path
 
-Each agent works in its own worktree and branch and never commits to `main`:
+Each agent works in its own worktree and branch and never commits to `main`.
+Use `--profile python` for changes outside `formal/`: it installs the pinned
+Python environment only and never starts a Lean build. The default full profile
+reuses the donor's build when its inputs match and otherwise builds under the
+machine-wide lock:
 
 ```text
+python tools/lab.py worktree new <name> --profile python  # changes outside formal/
 python tools/lab.py worktree new <name>   # .build/worktrees/<name> on agent/<name>, prepared
 python tools/lab.py verify --changed      # in the worktree, before asking to land
 python tools/lab.py land agent/<name>     # from any checkout; --dry-run to rehearse

@@ -220,6 +220,44 @@ class SnapshotStore:
                     'modules': len(converted['modules']), 'built_at': data['built_at']}
 
 
+def adopt(source_root: Path, target_root: Path, cache: str = '.cache/formalpedia/semantic') -> str:
+    """Copy another checkout's current snapshot, renaming its compiled objects to ours.
+
+    Environment records name absolute object paths; those inside the source checkout are
+    rebased onto the target, so freshness is judged against the target's own copied
+    objects. The caller must confirm the adopted snapshot reads as current there.
+    """
+    source_root, target_root = source_root.resolve(), target_root.resolve()
+    source, target = SnapshotStore(source_root / cache), SnapshotStore(target_root / cache)
+
+    def rebase(value: str) -> str:
+        path = Path(value)
+        return str(target_root / path.relative_to(source_root)) if path.is_relative_to(source_root) else value
+
+    with publication_lock(target.cache):
+        if (target.cache / 'current').exists():
+            raise ValueError('This checkout already has its own semantic snapshot')
+        _, data = source.load()
+        if data['schema'] != SCHEMA:
+            raise ValueError('The donor semantic snapshot uses an older storage schema')
+        source.check_references(data)
+        keys, refs = {}, {}
+        for key, ref in data['environments'].items():
+            env = source.read('environments', ref)
+            env = dict(env, objects={rebase(p): s for p, s in env['objects'].items()},
+                       object_modules={rebase(p): m for p, m in env['object_modules'].items()})
+            keys[key] = digest(env)
+            refs[keys[key]] = target.write('environments', env)
+        for shard in data['shards'].values():
+            for kind, field in (('modules', 'records'), ('indexes', 'index')):
+                path = target.path(kind, shard[field]['sha256'])
+                if not path.exists():
+                    atomic_write(path, source.path(kind, shard[field]['sha256']).read_bytes())
+        adopted = dict(data, environments=refs,
+                       module_environments={m: keys[k] for m, k in data['module_environments'].items()})
+        return target.commit(adopted)
+
+
 def publish(cat, modules: list[str], rows: list[dict], env: dict) -> dict:
     """Merge a verified compiler export against the latest manifest under a process lock."""
     store = SnapshotStore(cat.cache)

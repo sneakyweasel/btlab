@@ -104,8 +104,12 @@ def main(argv=None) -> int:
         print('\n'.join(targets))
         return 0
     from formalpedia_core.semantic_build import build as semantic_build
+    from lab_lock import build_lock_path, exclusive
     try:
-        result = semantic_build(targets, root=fp_workspace.ROOT, timeout=args.timeout)
+        # One Lean build/export per machine; the wait is reported on stderr, not timed.
+        with exclusive(build_lock_path(), purpose='lab.py build', root=fp_workspace.ROOT) as lock:
+            result = semantic_build(targets, root=fp_workspace.ROOT, timeout=args.timeout)
+        result = dict(result, build_lock={'waited_seconds': lock['waited_seconds']})
     except (ValueError, OSError, subprocess.TimeoutExpired) as exc:
         print(json.dumps({'status': 'failed', 'reason': str(exc)}))
         return 1

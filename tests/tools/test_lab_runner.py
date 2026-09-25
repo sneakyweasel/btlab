@@ -47,10 +47,18 @@ def test_command_forwards_arguments_and_exit_status(monkeypatch, argv, expected)
     assert calls == [expected]
 
 
-def test_build_refreshes_selected_modules_and_propagates_failure(monkeypatch):
+def test_build_refreshes_selected_modules_and_propagates_failure(tmp_path, monkeypatch):
     from formalpedia_core import semantic_build as sem_build
+    import lab_lock
+    lock = tmp_path / 'lean-build.lock'
+    monkeypatch.setenv(lab_lock.BUILD_LOCK_ENV, str(lock))
     calls = []
     def build(modules, **kwargs):
+        # The machine-wide build lock is held for the whole build and export.
+        assert lab_lock.read_holder(lock)['purpose'] == 'lab.py build'
+        with pytest.raises(lab_lock.LockBusy):
+            with lab_lock.exclusive(lock, purpose='second build', wait=False):
+                pass
         calls.append(modules)
         return {'status': 'built'}
     monkeypatch.setattr(sem_build, 'build', build)
