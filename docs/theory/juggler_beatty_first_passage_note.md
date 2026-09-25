@@ -2914,7 +2914,7 @@ empirical-law theorem and the slope-map theorem (68).
   ([BeattySlopeStarDim.lean](../../formal/Problems/Juggler/BeattySlopeStarDim.lean)).
 
 **Isolated good levels — EXACT — LEAN VERIFIED.** Take partial quotients
-`a_0 = 1`, `a_(g+1) = ceil(Q_g^(nu-1)) + 1` at good indices `g`, and `a_k = 1`
+`a_0 = 1`, `a_g = ceil(Q_g^(nu-1)) + 1` at good indices `g >= 1`, and `a_k = 1`
 otherwise. With infinitely many good indices the slope has Diophantine class
 exactly `nu`, its law has dimension `2/(2+nu)`, and its cluster set has
 dimension at most `s*(nu)`
