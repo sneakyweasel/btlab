@@ -3002,6 +3002,97 @@ The Frostman principle for a continuous distribution function
 then gives `H^s(K_alpha) > 0`. The axiom audit of the final theorems lists
 only `propext`, `Classical.choice` and `Quot.sound`.
 
+## 33. Two-scale slopes
+
+Section 32 treats isolated good levels, whose dense stretches are infinitely long in
+logarithmic scale. This section keeps the construction of Section 32 but fixes the
+length of the dense stretches. The dimension then interpolates between `2/(2+nu)`
+and `s*(nu)`.
+
+**Setting.** Take partial quotients `a_g = ceil(Q_g^(nu-1)) + 1` at good indices
+`g >= 1` and `a_k = 1` otherwise, as in Section 32. Let `g_0 < g_1 < ...` enumerate
+the good indices from some point on. Put `q_j = Q_(g_j)`, `N_j = Q_(g_j+1)`, so
+`q_j^nu <= N_j <= 4 q_j^nu`, and suppose
+\[
+ \frac{\log q_{j+1}}{\log q_j}\longrightarrow R=\rho\nu ,\qquad \rho\ge 1 .      \tag{62j}
+\]
+Between `N_j` and `q_(j+1)` every partial quotient is `1`, so consecutive
+denominators there at most double. For every `nu > 1` and `rho >= 1`, choosing
+`g_(j+1)` as the first index with `log Q >= R log q_j` gives such a slope.
+
+**Two-scale slopes — EXACT — HUMAN PROOF (written, not yet refereed or formalized).** Under (62j),
+`dim_H K_alpha = S(nu, rho)`, where `S(nu, rho) = 2/(2+nu)` if `rho <= 1 + 3/nu`,
+and otherwise `S(nu, rho)` is the positive root of
+\[
+ 3(R-1)s^2+4(\rho-1)s-4(\rho-1)=0,\qquad
+ S(\nu,\rho)=\frac{2\bigl(\sqrt{(\rho-1)(3R+\rho-4)}-(\rho-1)\bigr)}{3(R-1)} .   \tag{62k}
+\]
+At `rho = 1 + 3/nu` both expressions equal `2/(2+nu)`, and `S(nu, rho) -> s*(nu)`
+as `rho -> oo`, which recovers (62i). The formula was found with the exponent
+model of the [phase-collapse dossier](../problems/juggler_winkler_phase_collapse.md);
+the two arguments below are that model's two sides made rigorous.
+
+*Upper bound.* Use the cells of the regular-slope proof (Section 27,
+[BeattySlopeRegularDim.lean](../../formal/Problems/Juggler/BeattySlopeRegularDim.lean)):
+a level-`q` cell is a phase interval of length at most `4/q` holding no phase of
+index below `q`. Write `f = 3s/2 - 1`.
+
+1. *Self-cover.* A level-`q` cell covers itself at cost `(27B q^(-3/2))^s`
+   (`cell_tail_le`).
+2. *Pass-through.* If every level-`q_(j+1)` cell has a cover at cost `X`, every
+   level-`N_j` cell has one at cost `(9(q_(j+1)/N_j + 1) + 2) X`: cut at the phases
+   of index below `q_(j+1)`. Separation at the convergent `N_j` bounds their number
+   (`cell_block_count`), and `gap_short_of_approx` at `q_(j+1)` makes every piece a
+   level-`q_(j+1)` cell.
+3. *Chain step.* `cell_refine_step` with `q = q_j`, `q' = N_j` and `E = q_j^y`,
+   `1 <= y <= nu`, turns covers of level-`N_j` cells at cost `X'` into covers of
+   level-`q_j` cells at cost `7(27B q_j^(-1) E^(-1/2))^s + (9(E/q_j + 1) + 2) X'`.
+
+In exponents, with `w = sigma - 1` for a cover of cost `q^(-sigma)` of a level-`q`
+cell, steps 1-3 give the monotone maps `P(w) = max(f, rho w)` from level `q_(j+1)`
+to level `N_j`, and
+`C(w) = max(f, max_y min(s + s y/2 - 1, nu w + nu - y))` from level `N_j` to level
+`q_j`; each step loses only a constant factor and an `o(log q)` from (62j). If
+`(C o P)^m(f) > 0` for some `m`, then `m` steps from self-covered cells give covers of
+level-`q_j` cells at cost `o(q_j^(-1))`. With the `q_j + 2` cells of `[0,1]` cut at
+the first `q_j` phases, `cellCover_hausdorff_zero` gives `H^s(K_alpha) = 0`.
+
+The iterates `w_m = (C o P)^m(f)` do not decrease. On the branch where the two terms
+of `C` are equal, `y(w) = (nu w + nu - s + 1)/(1 + s/2)`, which lies in `[1, nu]` at
+`w = f` for every `s <= 1`, and `C(w) = E(w) = (s(1+nu/2) - 1 + (s nu/2) w)/(1 + s/2)`.
+The map `w -> E(rho w)` is affine with slope `k = s rho nu/(2 + s)`.
+
+- If `k < 1` and `s > 2/(2+nu)`, its fixed point `E(0)/(1-k)` is positive, so the
+  iterates converge to a positive value and exceed `0`.
+- If `k >= 1`, the iterates leave the floor exactly when `rho C(f) > f`. After that
+  they satisfy `E(rho w) - w = (k - 1)(w - w_*) > 0`, where `w_*` is the fixed
+  point of `w -> E(rho w)`: at `w = f/rho` the map gives `E(f) = C(f) > f/rho`, so
+  `w_* < f/rho`, and the iterates increase without bound. Solving `rho E(f) = f` gives the quadratic in (62k).
+
+At `s = 2/(2+nu)` the slope is `k = rho nu/(nu + 3)`, so `k < 1` exactly when
+`rho < 1 + 3/nu`: the switch in (62k) is where the recursion stops contracting.
+Hence `H^s(K_alpha) = 0` for every `s > S(nu, rho)`.
+
+*Lower bound.* For `rho <= 1 + 3/nu` the slope has Diophantine class `nu`
+(Section 32), and (62e) with every `tau > nu` gives `dim_H K_alpha >= 2/(2+nu)`. For
+`rho > 1 + 3/nu`, run the construction of (62i) with window length `q_j^(-gamma)` at
+every good level, with `gamma` from the dossier formula. The only change is the
+mass of a window. Each level multiplies it by at most `2 q_j^(gamma-1)/q_(j+1)`, so
+by (62j)
+\[
+ M_j\le q_j^{-1+\eta+o(1)},\qquad \eta=\frac{\gamma-1}{R-1},
+\]
+in place of `q_j^(-1+o(1))`. The case analysis of (62i) is unchanged. With this `eta`
+its two conditions become `gamma - 1 + eta <= nu(1 - 3s/2)` (scales below `10/N_j`,
+where the dense stretch supplies convergents at every scale) and
+`s(3 + nu - gamma)/2 <= 1 - eta` (chain scales). At the dossier's `gamma` both hold
+with equality at `s = S(nu, rho)`, so every `s < S(nu, rho)` is admissible and
+`H^s(K_alpha) > 0`.
+
+The upper argument is complete except for writing out the constants. The lower
+argument reuses Section 32 verbatim with one changed exponent. Both are to be
+formalized by generalizing `IsoLevels` (sparsity) to a growth ratio.
+
 ## References
 
 1. G. Baxter, *An analytic problem whose solution follows from a simple

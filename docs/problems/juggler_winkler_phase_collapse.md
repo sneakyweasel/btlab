@@ -1750,6 +1750,15 @@ Decision: **PROMOTE** to Phase 1. The first target is a written and Lean proof f
 the two-scale family (a jump `nu` followed by a dense stretch `rho`, repeated), which
 generalizes `IsoLevels` from infinite to finite gaps. The next branch is not opened.
 
+**Phase 1 opened (25 September): two-scale slopes.** The upper threshold of the
+model is the root of `rho C(3s/2 - 1) = 3s/2 - 1`, which simplifies to
+`3(R-1)s^2 + 4(rho-1)s - 4(rho-1) = 0` with `R = rho nu`; it equals the window
+optimum (tests in the probe). At `s = 2/(2+nu)` the pass-through slope is
+`rho nu/(nu+3)`, so the switch `rho = 1 + 3/nu` is where the cover recursion stops
+contracting. The written proof of both bounds is note section 33, (62k)
+(**EXACT — HUMAN PROOF**, not refereed). Next: formalize, lower bound first by
+replacing the `IsoLevels` sparsity with a growth ratio.
+
 ## Decision
 
 `PROMOTE` -- for every irrational slope above one, the actual normalized

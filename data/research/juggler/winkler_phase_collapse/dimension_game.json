@@ -64,7 +64,7 @@
       "gammas": [
         1.3728942548679912
       ],
-      "closed_form": 0.5285576833822255
+      "closed_form": 0.5285576833822254
     },
     {
       "family": "two-scale nu=3 rho=10",
@@ -84,7 +84,7 @@
       "gammas": [
         1.860612308660186
       ],
-      "closed_form": 0.4688247566298422
+      "closed_form": 0.46882475662984224
     },
     {
       "family": "two-scale nu=2 rho=1e9",
@@ -104,7 +104,7 @@
       "gammas": [
         1.3542486890142138
       ],
-      "closed_form": 0.548583770269554
+      "closed_form": 0.5485837702695538
     },
     {
       "family": "alternating 2,4",

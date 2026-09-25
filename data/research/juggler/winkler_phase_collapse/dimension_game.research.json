@@ -2,7 +2,7 @@
   "schema": "btlab-output/v2",
   "programme": "juggler",
   "research_id": "juggler/winkler_phase_collapse",
-  "created_utc": "2026-09-25T10:06:02.827243+00:00",
+  "created_utc": "2026-09-25T10:36:40.014926+00:00",
   "scope": "Exponent-level upper (cover recursion) and lower (window measure) dimension bounds for 15 periodic growth patterns; backward iteration over 30000 periods; floating point, constants dropped.",
   "artifact_root": ".",
   "generator": {
@@ -11,7 +11,7 @@
       "-m",
       "research.juggler_sequence.beatty_dimension_game",
       "--output",
-      ".build/artifacts/cfe4bf59fc6f4d2ba6ab6189642bc4cf/work/data/research/juggler/winkler_phase_collapse/dimension_game.json"
+      ".build/artifacts/cc8a0d85a2604a0ba202dbeacbc78787/work/data/research/juggler/winkler_phase_collapse/dimension_game.json"
     ],
     "parameters": {
       "periods": 30000,
@@ -20,7 +20,7 @@
     "python": "3.13.9"
   },
   "source": {
-    "revision": "7fe00a1b0e57c1ebe53ec4367f6b900676be4d44",
+    "revision": "a950112028418ba69de7cd222d223333f4939efc",
     "dirty": true,
     "coverage": "loaded local Python, project configuration, and explicit sources at manifest creation; not an execution or dependency audit",
     "files": [
@@ -96,12 +96,12 @@
       },
       {
         "path": "src/research/juggler_sequence/beatty_dimension_game.py",
-        "sha256": "0b3dea18f08faa12cea660926241a0f5560661818447c24837ce8d9c29e26d62",
-        "bytes": 9303,
+        "sha256": "8ce925819d6c202714d7383683c771bbef23a2890a2549bbaf7d383c7ad5ce55",
+        "bytes": 9836,
         "text": {
           "normalization": "utf8-crlf-to-lf",
-          "sha256": "0b3dea18f08faa12cea660926241a0f5560661818447c24837ce8d9c29e26d62",
-          "bytes": 9303
+          "sha256": "8ce925819d6c202714d7383683c771bbef23a2890a2549bbaf7d383c7ad5ce55",
+          "bytes": 9836
         }
       },
       {
@@ -126,12 +126,12 @@
       },
       {
         "path": "tools/lab.py",
-        "sha256": "949f0778e44f74580a475d63b63287d2ca9f3918aaf13c1487d494fafc8cede5",
-        "bytes": 5992,
+        "sha256": "e8058ada81a436f8e79f82c9d192e3ecccfc3ecc3a63b86f6c23386a14cc9666",
+        "bytes": 6391,
         "text": {
           "normalization": "utf8-crlf-to-lf",
-          "sha256": "949f0778e44f74580a475d63b63287d2ca9f3918aaf13c1487d494fafc8cede5",
-          "bytes": 5992
+          "sha256": "e8058ada81a436f8e79f82c9d192e3ecccfc3ecc3a63b86f6c23386a14cc9666",
+          "bytes": 6391
         }
       },
       {
@@ -155,8 +155,8 @@
   "outputs": [
     {
       "path": "dimension_game.json",
-      "sha256": "b3f27980929c2d3063d932af651b2886a04a01a2913676910891ebdfed3a0965",
-      "bytes": 5912
+      "sha256": "2bc7394339f7669aea876a1c3d8f33567f83ec8dd33f3923258ca6c9f63a0358",
+      "bytes": 5914
     }
   ],
   "verification": "Outputs are byte-exact. Explicit text fingerprints on inputs/sources accept only UTF-8 CRLF-to-LF representation changes, which are reported. No theorem or compilation status is asserted."

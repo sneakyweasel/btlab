@@ -162,12 +162,28 @@ def star_dim(nu: float) -> float:
 
 
 def two_scale_dim(nu: float, rho: float) -> tuple[float, float]:
-    """Closed form for one jump nu followed by a dense stretch rho: (dimension, gamma)."""
+    """Closed form for one jump nu followed by a dense stretch rho: (dimension, gamma).
+
+    With R = rho nu, the dimension is the positive root of
+    3(R-1) s^2 + 4(rho-1) s - 4(rho-1) = 0 once rho > 1 + 3/nu, and 2/(2+nu) before.
+    The optimal window exponent is returned for the lower-bound construction.
+    """
     if rho <= 1 + 3 / nu:
         return 2 / (2 + nu), 1.0
     r = rho * nu
-    g = nu + 2 - (2 + math.sqrt((rho - 1) * (3 * nu * rho + rho - 4))) / rho
-    return 2 * (r - g) / ((r - 1) * (nu + 3 - g)), g
+    root = math.sqrt((rho - 1) * (3 * r + rho - 4))
+    s = 2 * (root - (rho - 1)) / (3 * (r - 1))
+    g = nu + 2 - (2 + root) / rho
+    return s, g
+
+
+def two_scale_window_value(nu: float, rho: float) -> float:
+    """The window-measure value at the optimal gamma, 2(R-gamma)/((R-1)(nu+3-gamma))."""
+    s, g = two_scale_dim(nu, rho)
+    if g == 1.0:
+        return s
+    r = rho * nu
+    return 2 * (r - g) / ((r - 1) * (nu + 3 - g))
 
 
 FAMILIES: list[tuple[str, Pattern]] = [

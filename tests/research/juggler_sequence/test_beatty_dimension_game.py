@@ -5,7 +5,8 @@ import math
 import pytest
 
 from research.juggler_sequence.beatty_dimension_game import (
-    lower_dim, lower_s, star_dim, two_scale_dim, upper_dim, upper_positive,
+    lower_dim, lower_s, star_dim, two_scale_dim, two_scale_window_value, upper_dim,
+    upper_positive,
 )
 
 
@@ -50,3 +51,21 @@ def test_windows_never_beat_the_cover_on_a_mixed_pattern():
     assert low <= upper_dim(pattern, periods=400) + 1e-9
     assert low == pytest.approx(upper_dim(pattern, periods=400), abs=1e-7)
     assert 1.0 <= gammas[0] <= 2.0 and 1.0 <= gammas[1] <= 4.0
+
+
+@pytest.mark.parametrize('nu,rho', [(2.0, 5.0), (3.0, 10.0), (5.0, 3.0), (2.0, 2.6), (7.0, 1.5)])
+def test_quadratic_root_equals_window_optimum(nu, rho):
+    """The upper threshold root 3(R-1)s^2 + 4(rho-1)(s-1) = 0 is the window value."""
+    s, _ = two_scale_dim(nu, rho)
+    assert s == pytest.approx(two_scale_window_value(nu, rho), abs=1e-13)
+    r = nu * rho
+    if rho > 1 + 3 / nu:
+        assert 3 * (r - 1) * s * s + 4 * (rho - 1) * (s - 1) == pytest.approx(0, abs=1e-12)
+
+
+@pytest.mark.parametrize('nu', [1.5, 2.0, 4.0])
+def test_quadratic_root_meets_regular_value_at_the_switch(nu):
+    rho = 1 + 3 / nu
+    r = nu * rho
+    s = 2 / (2 + nu)
+    assert 3 * (r - 1) * s * s + 4 * (rho - 1) * (s - 1) == pytest.approx(0, abs=1e-13)
