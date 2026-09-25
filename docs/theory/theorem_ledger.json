@@ -13018,6 +13018,24 @@
   "related_conjectures": []
  },
  {
+  "id": "J-paper-b-theorem-4-5",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper B Theorem 4.5, the restricted mixed exponential sums (4.11), with an explicit constant. Let m(n) = floor(n^{3/2}). For every real C there is K such that for all P >= 1 and every nonzero integer triple (i, j, k) with |i|, |j|, |k| <= C P^{1/24}, the sum of e((i/2) n^{3/2} + (j/2) m(n)^{3/2} + (k/2) n^{9/8}) over the odd n with P < n <= 2P has modulus at most K P^{23/24}. With C' = max(C, 1) and K4 = 3 (4096 C')^3 + 508000 C' + 1 the constant of Lemma 4.4 (J-paper-b-lemma-4-4), K = sqrt(36 + 24 K4) + 1 + (48 C' + 81) + (16 C' + 23) works. For j != 0 the proof applies van der Corput on the odd lattice with H = floor(P^{1/12}) and Lemma 4.4 to every shift 1 <= d < H; for j = 0 != i the second-derivative test with curvature |i| P^{-1/2}; for i = j = 0 != k the second-derivative test with curvature |k| P^{-7/8}.",
+  "source": "docs/problems/juggler_paper_b_mixed_sums.md",
+  "lean": "Problems/Juggler/PaperBMixedSums.lean",
+  "decl": [
+   "mixed_sum",
+   "differenced_window_sum",
+   "smooth_window_sum",
+   "slow_window_sum"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-paper-b-tilt-reduction-and-the-phase-factor",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "The exact reduction behind the almost-periodic prefactor of J-paper-b-meander-prefactor-is-almost-periodic, together with the one step of it that is NOT proved. Steps Y = X - BETA with X ~ Bernoulli(1/2), so Lam(l) = -l BETA + log((e^l+1)/2). THE TILT. Lam'(l) = -BETA + e^l/(e^l+1) vanishes exactly at lamStar = log(BETA/(1-BETA)) = 0.536207535136, where the tilted coin is Bernoulli(BETA) and the walk o_t - t BETA has mean zero and per-step variance BETA(1-BETA) = 0.232857400: PaperBTilt.expLamStar, lamStar_mean_zero, and beta_mean_zero at BETA itself. So BETA is the threshold for a structural reason rather than by fitting. THE RATE IS AN IDENTITY. rho = exp(Lam(lamStar)) = exp(-lamStar BETA)/(2(1-BETA)) = BETA^(-BETA) (1-BETA)^(BETA-1) / 2, which is exactly theta(BETA). J-theorem-six-one-threshold-is-slack recorded theta(p) = rho as agreeing to 1.1e-16; PaperBTilt.rho_closed_form and beta_rho_closed prove it, kernel-checked on propext, Classical.choice and Quot.sound alone. THE CHANGE OF MEASURE. N_d/2^d = rho^d E~[e^(-lamStar S_d); S_t >= 0 for all t <= d], verified against the integer DP to 1e-12 at d = 50, 200, 500. WHERE THE PHASE COMES FROM. On the event S_d = m_d + (1 - fract(d BETA)) with m_d = o_d - ceil(d BETA) a nonnegative integer, and 1 - fract(d BETA) is exactly the least attainable endpoint: PaperBTilt.gap, with ceil_sub_eq_one_sub_fract naming it. Hence the exact factorisation N_d/2^d = rho^d e^(-lamStar (1 - fract(d BETA))) G(d) with G integer-indexed. THE BARRIER IS STURMIAN. m_(t+1) = m_t + X_(t+1) - b_t where b_t = ceil((t+1)BETA) - ceil(t BETA) is 0 or 1 (PaperBTilt.sturmian_step), the Sturmian word of BETA. So the killed walk runs against a Sturmian barrier, not a straight line, which is why the classical local limit theorem does not apply. THE TWO EFFECTS NEARLY CANCEL. The explicit factor rises by e^(0.9 lamStar) = 1.6203 across the circle while psi rises only 1.0606, so the integer part h falls by 1.527, measured. The small observed oscillation is the residue of two large opposed ones: a wider barrier gap costs e^(-lamStar(1-phi)) in the tilt and buys survival room in h. Stripping the elementary factor therefore does not simplify the problem -- it exchanges a 6% oscillation for a 53% one. WHAT REMAINS OPEN. Everything above is an identity. The existence of psi(phi) = e^(-lamStar(1-phi)) h(phi), i.e. the convergence of d^(3/2) G(d) along fract(d BETA) -> phi, needs a local limit theorem for this Sturmian-driven killed walk and is NOT proved here or anywhere in the laboratory. This row supplies the exact reduction that obligation is stated against; it proves no asymptotic and moves no bound. PaperBTilt.one_add_tailRoot is the inversion 1 + tailRoot b = b-inverse used to move between the tail variable and the base; it shares a basename with PaperBTailSpectrum.one_add_tailRoot, which states the same inversion in the spectral module's own variable, so the two must be cited qualified.",

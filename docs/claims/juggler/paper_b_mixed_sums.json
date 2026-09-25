@@ -1,0 +1,20 @@
+[
+ {
+  "id": "J-paper-b-theorem-4-5",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper B Theorem 4.5, the restricted mixed exponential sums (4.11), with an explicit constant. Let m(n) = floor(n^{3/2}). For every real C there is K such that for all P >= 1 and every nonzero integer triple (i, j, k) with |i|, |j|, |k| <= C P^{1/24}, the sum of e((i/2) n^{3/2} + (j/2) m(n)^{3/2} + (k/2) n^{9/8}) over the odd n with P < n <= 2P has modulus at most K P^{23/24}. With C' = max(C, 1) and K4 = 3 (4096 C')^3 + 508000 C' + 1 the constant of Lemma 4.4 (J-paper-b-lemma-4-4), K = sqrt(36 + 24 K4) + 1 + (48 C' + 81) + (16 C' + 23) works. For j != 0 the proof applies van der Corput on the odd lattice with H = floor(P^{1/12}) and Lemma 4.4 to every shift 1 <= d < H; for j = 0 != i the second-derivative test with curvature |i| P^{-1/2}; for i = j = 0 != k the second-derivative test with curvature |k| P^{-7/8}.",
+  "source": "docs/problems/juggler_paper_b_mixed_sums.md",
+  "lean": "Problems/Juggler/PaperBMixedSums.lean",
+  "decl": [
+   "mixed_sum",
+   "differenced_window_sum",
+   "smooth_window_sum",
+   "slow_window_sum"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ }
+]

@@ -90,6 +90,7 @@ import Problems.Juggler.PaperBCarryExpansion
 import Problems.Juggler.PaperBShiftAverage
 import Problems.Juggler.PaperBSawtoothExpansion
 import Problems.Juggler.PaperBSmallShift
+import Problems.Juggler.PaperBMixedSums
 import Problems.Juggler.PaperBCertificateLengths
 import Problems.Juggler.PaperBCertificateRecursion
 import Problems.Juggler.BeattyPhaseTransfer

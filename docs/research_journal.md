@@ -11,6 +11,14 @@ consolidation is at `e9725762eaf028d1ace354ff20e0fc48f1a3d143`. See
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-25 -- Paper B Theorem 4.5 in Lean
+
+**EXACT — LEAN VERIFIED:** the restricted mixed sums (4.11) are at most `K P^{23/24}` for every
+nonzero triple with `|i|, |j|, |k| ≤ C P^{1/24}`, with `K` explicit in `C`. For `j ≠ 0`,
+van der Corput with `H = ⌊P^{1/12}⌋` and Lemma 4.4 on each differenced window; for `j = 0`, the
+second-derivative test. Remaining premise: none. Decision: PROMOTE. Record:
+[mixed-sums dossier](problems/juggler_paper_b_mixed_sums.md).
+
 ## 2026-09-25 -- Paper B Lemma 4.4 in Lean
 
 **EXACT — LEAN VERIFIED:** the small-shift nested sum (4.4) is at most
@@ -166,17 +174,3 @@ start is a live start, and Ville's maximal inequality for the fair multiplier
 martingale (checked exactly on words to depth 60) needs fair parity at every
 depth. **CLOSE** as a reparameterization. See the
 [escape-rate dossier](problems/juggler_escape_rate.md).
-
-## 2026-09-24 -- Depth-five productions priced and parked
-
-Atropos Phase-0. The first-descent words through length four are exactly
-`E`, `OE`, `OOEE`, so the kernel-checked `5/8` contagion sits at the
-depth-four ideal `0.6328`. Depth five adds `OOOEE` and `OOEOE` and would lift
-the ideal to `0.7512`, lowering the required failure rate from `3/8` toward
-`1/4` (COMPUTATIONALLY VERIFIED, exact multipliers). Their fibres are windows
-of length `P^(5/32)` rather than `P^(7/16)`: the depth-four mixed-mode bound
-`O(P^(13/32))` is weaker than trivial there, and an averaged poor tail needs
-differenced depth-five mixed sums with shifts up to `P^(5/32)`, beyond Paper
-B's `P^(1/8)` frozen gaps. **PARK.** See the
-[depth-five dossier](problems/juggler_depth_five_production.md) and its
-obstruction record.

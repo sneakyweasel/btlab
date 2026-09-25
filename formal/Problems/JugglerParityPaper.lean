@@ -112,14 +112,16 @@ inequality of `BTCalculus.ErdosTuran`) and Proposition 3.2 in full (`PaperBOEThi
 `BTCalculus.ErdosTuranBox`), Lemma 4.3 in full (`PaperBSawtoothExpansion` for
 `b = b_R + O(E_R)`, `PaperBCarryExpansion` for the bound (4.3)), Lemma 4.4
 (`PaperBSmallShift`, `O_C(P^{7/8}(1 + h^{1/2}))` with an explicit constant, through Paper C's
-OOEE cell phases), and Proposition 7.4 (`PaperBShiftAverage`).
+OOEE cell phases), Theorem 4.5 (`PaperBMixedSums`, `O_C(P^{23/24})` through van der Corput
+and Lemma 4.4 for `j ≠ 0` and the second-derivative test for `j = 0`), and Proposition 7.4
+(`PaperBShiftAverage`).
 
 ## What is not here
 
-Theorem 3.1, Proposition 3.2, Lemmas 4.3 and 4.4 and Proposition 7.4 are the paper's
-machine-checked analytic estimates, and all live outside this barrel. No other analytic
-estimate of Sections 4 and 7 or of Appendices A--D is machine-checked: not Theorems 4.5, 4.9,
-4.11 or B.1, not Lemmas 4.7 or 4.8, not Proposition 7.6, and not the averaging argument of Theorem 6.3
+Theorem 3.1, Proposition 3.2, Lemmas 4.3 and 4.4, Theorem 4.5 and Proposition 7.4 are the
+paper's machine-checked analytic estimates, and all live outside this barrel. No other analytic
+estimate of Sections 4 and 7 or of Appendices A--D is machine-checked: not Corollary 4.6, not
+Theorems 4.9, 4.11 or B.1, not Lemmas 4.7 or 4.8, not Proposition 7.6, and not the averaging argument of Theorem 6.3
 beyond Lemma D.3 and (D.2). The densities `13/16`, `27/32` and `7/8` of Theorems 5.2--5.4
 are therefore machine-checked only as count assemblies from their analytic inputs. Nothing
 in this barrel bounds an exponential sum.

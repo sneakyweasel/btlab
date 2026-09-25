@@ -6863,6 +6863,22 @@
       "nk_clusters": []
     },
     {
+      "id": "paper_b_mixed_sums",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_paper_b_mixed_sums.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-paper-b-theorem-4-5"
+      ],
+      "aliases": [],
+      "nk_clusters": []
+    },
+    {
       "id": "paper_b_oe_third_letter",
       "kind": "dossier_only",
       "probe": null,
