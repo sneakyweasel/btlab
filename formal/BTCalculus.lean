@@ -14,6 +14,7 @@ import BTCalculus.FejerBox
 import BTCalculus.FejerWeighted
 import BTCalculus.FejerBox3
 import BTCalculus.ErdosTuran
+import BTCalculus.ErdosTuranBox
 import BTCalculus.SecondDerivative
 import BTCalculus.HigherDerivative
 import BTCalculus.PartialSummation

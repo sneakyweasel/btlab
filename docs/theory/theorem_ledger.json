@@ -7769,6 +7769,22 @@
   "related_conjectures": []
  },
  {
+  "id": "J-erdos-turan-koksma-box",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Two-dimensional Erdos-Turan-Koksma inequality with main term N/H. For points z_0, ..., z_{N-1} on the torus, H >= 7, and every half-open box [a,b) x [c,d) with b - a <= 1 and d - c <= 1, |#{n < N : z_n in box} - N (b-a)(d-c)| <= 32N/(H+1) + 2 sum w(k) w(l) |S_{k,l}|, the sum over (k,l) != (0,0) with |k|, |l| <= H, where S_{k,l} = sum_n e(k x_n + l y_n) and w(k) = 1/max(1,|k|). The proof smooths with the product Fejer kernel at radius 4/(H+1) and compares translates of the expanded and contracted boxes with the extreme box discrepancy, as in the one-dimensional BTCalculus.ErdosTuran; the double kernel integral is written as two nested one-dimensional integrals. This is the discrepancy input of Paper B Proposition 3.2; the proposition itself is not yet Lean-verified.",
+  "source": "docs/problems/juggler_paper_b_oe_third_letter.md",
+  "lean": "BTCalculus/ErdosTuranBox.lean",
+  "decl": [
+   "abs_boxError_le_modeSum",
+   "extremeBoxError_le_modeSum"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-escape-episode-dichotomy",
   "tag": "REFUTED",
   "statement": "Every completed leftover escape episode produces a lower-anchor state or an exact recurrent entrance, or equal successive record minima force bounded recurrence, or an even reset lowers the rank-2 return rank. False. Rank-2 episodes stay AboveAnchor and return at rank 2 with climbing (365) or oscillating (1517) PE landings. The global record minimum is frozen at n without a cycle. First-below-anchor is the existing HasFiniteStop drop. No (start, reset) signature repeats. 69 and 89 already show the same rank-2 return-then-drop. This is not PredClosure-from-1, not a Z5 family, not a length-11 census, and not a halt theorem.",
