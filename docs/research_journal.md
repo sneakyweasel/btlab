@@ -11,14 +11,14 @@ consolidation is at `e9725762eaf028d1ace354ff20e0fc48f1a3d143`. See
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
-## 2026-09-25 -- Two-dimensional Erdős–Turán in Lean, toward Proposition 3.2
+## 2026-09-25 -- Paper B Proposition 3.2 closed in Lean
 
-**EXACT — LEAN VERIFIED:** for `H ≥ 7` and every box with sides at most one, the box
-discrepancy is at most `32N/(H+1) + 2 ∑ w(k) w(l) |S_{k,l}|` with `w(k) = 1/max(1,|k|)`
-(`BTCalculus.ErdosTuranBox`). The one-dimensional extreme-discrepancy argument lifts with
-the product Fejér kernel at radius `4/(H+1)`. Remaining premise for Proposition 3.2: the
-mixed-mode block bound and the dyadic recursion. Decision: PROMOTE. Record:
-[OE third-letter dossier](problems/juggler_paper_b_oe_third_letter.md).
+**EXACT — LEAN VERIFIED:** for `N ≥ 1` and `w ∈ {OEE, OEO}`,
+`|#{n ≤ N : word_3(n) = w} - N/8| ≤ 6849 N^{5/6} (1 + log N)`. The input is the
+two-dimensional Erdős–Turán inequality with main term `N/H` (`BTCalculus.ErdosTuranBox`), the
+one-dimensional extreme-discrepancy argument lifted with the product Fejér kernel. Remaining
+premise: none for Proposition 3.2. Decision: PROMOTE. This entry replaces the morning's
+two-dimensional entry. Record: [OE third-letter dossier](problems/juggler_paper_b_oe_third_letter.md).
 
 ## 2026-09-25 -- Paper B Theorem 3.1 closed in Lean
 

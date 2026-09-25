@@ -6851,7 +6851,8 @@
       "conjecture": [],
       "decision": "PROMOTE",
       "ledger_ids": [
-        "J-erdos-turan-koksma-box"
+        "J-erdos-turan-koksma-box",
+        "J-paper-b-proposition-3-2"
       ],
       "aliases": [],
       "nk_clusters": []

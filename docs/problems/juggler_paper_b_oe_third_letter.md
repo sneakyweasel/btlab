@@ -71,8 +71,8 @@ are compared with the extreme box discrepancy, as in the one-dimensional proof, 
 bound closes with a factor two. The double kernel integral is two nested one-dimensional
 integrals, so no product measure is used. Axioms: `propext`, `Classical.choice`, `Quot.sound`.
 
-`formal/Problems/Juggler/PaperBOEThirdLetter.lean` (2026-09-25, in progress). It proves the
-exact half and the per-mode block bounds:
+`formal/Problems/Juggler/PaperBOEThirdLetter.lean` (2026-09-25). It proves the exact half,
+the per-mode block bounds, and the proposition:
 `floor_sqrt_eq_sqrt_floor` (`⌊√x⌋₊ = Nat.sqrt ⌊x⌋₊`), `word3_oee_iff`, `word3_oeo_iff`,
 `torusPoint_mem_oee_iff` and `torusPoint_mem_oeo_iff` (each word is a box of area `1/4` for
 the point `(g(r), h(r))`, `h(r) = (1/2)(2r+1)^{3/4}`), `mode_torusPoint`, and two
@@ -80,26 +80,33 @@ second-derivative bounds on a block `[a, a+M]` with `M ≤ a`. For `i ≥ 1` and
 `|l| ≤ a^{3/4}`, `mixed_mode_bound` gives `14 M √λ + 10/√λ` with
 `λ = i (3/2)/√(2(a+M)+1)`, because the `n^{3/4}` curvature is at most a quarter of the
 `n^{3/2}` curvature (`small_curvature`). For `i = 0`, `quarter_mode_bound` gives
-`16 M √μ + 8/√μ` with `μ = |l| (3/8) (2(a+M)+1)^{-5/4}`.
+`16 M √μ + 8/√μ` with `μ = |l| (3/8) (2(a+M)+1)^{-5/4}`. In powers of `u = a^{1/12}` the
+modes are at most `48 u^9 √|k|` for `k ≠ 0` and `88 u^8` for `k = 0` (`nonzero_mode_le`,
+`zero_mode_le`); the weighted sum is at most `264 u^{10} + 192 u^{10} (1 + 2 H_H)`
+(`block_boxModeSum_le`), and the block discrepancy at most `1712 a^{5/6} (1 + log a)`
+(`abs_block_boxError_le`). Halving at `⌈R/2⌉` gives `6848 R^{5/6} (1 + log R)`
+(`abs_oe_boxError_le`), and `abs_oeeCount_sub_le`, `abs_oeoCount_sub_le` are the two counts.
+Axioms: `propext`, `Classical.choice`, `Quot.sound`.
 
 ## Results
 
 `J-erdos-turan-koksma-box` — `EXACT — LEAN VERIFIED`: the two-dimensional inequality above.
 
-Proposition 3.2 itself is not yet proved in Lean. The exact half and the per-mode bounds
-compile; the weighted mode sum on one block, the dyadic recursion and the final counts remain.
+`J-paper-b-proposition-3-2` — `EXACT — LEAN VERIFIED`: for `N ≥ 1` and `w ∈ {OEE, OEO}`,
+`|#{n ≤ N : word_3(n) = w} - N/8| ≤ 6849 N^{5/6} (1 + log N)`. This is Proposition 3.2 as
+printed, `O(N^{5/6} log(2N))`, with explicit constants.
 
 ## Open questions
 
-Does the mixed curvature stay within a factor two of its `i`-term on every block
-`[P, 2P]` with `P` above an explicit threshold, for all `0 < |i| ≤ H` and `|l| ≤ H` at
-`H = ⌊P^{1/6}⌋`? The manuscript's ratio bound `|l/i| P^{-3/4} ≤ P^{-7/12}` suggests yes.
+Closed on 2026-09-25. No threshold on `P` is needed: once `|l| ≤ a^{3/4}`, which
+`H = ⌊a^{1/6}⌋` guarantees, the `n^{3/4}` curvature is at most a quarter of the `n^{3/2}`
+curvature on every block (`small_curvature`). The constants make the bound nontrivial only
+for very large `N`; it is an asymptotic statement.
 
 ## Decision
 
-`PROMOTE` — the two-dimensional inequality is kernel-checked. The count remains open.
+`PROMOTE` — the two-dimensional inequality and Proposition 3.2 are kernel-checked.
 
 ## Publication assessment
 
-Status: `THEOREM` for the inequality. It supports Paper B Proposition 3.2 but does not
-by itself Lean-verify it.
+Status: `THEOREM`. With `J-paper-b-proposition-3-2`, Proposition 3.2 is Lean-verified in full.
