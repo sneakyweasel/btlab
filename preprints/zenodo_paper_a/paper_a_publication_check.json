@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "scope": "Local Zenodo preprint preparation, file reproducibility, numerical checks and rendered layout. This is not independent mathematical certification.",
+  "scope": "Zenodo preprint version 1.2.2, deposited, file reproducibility, numerical checks and rendered layout. This is not independent mathematical certification.",
   "title": "Lower Bounds for Cycle Lengths in the Juggler Map",
   "version": "1.2.2",
   "source_edition": "2026-09-25-preprint",
@@ -8,7 +8,7 @@
   "pdf_sha256": "cc85998bb4557cf9ac52af2e89d067f684d121c77c374688deadce71b2c0a0e3",
   "source_sha256": "49f85da595499baf6e851d037eb2057bd448a8501c30f4433fb6bd80214cdf44",
   "tex_sha256": "c60f39d850551dfff1ed9f11278cd32b1698abdd62734ab9f8f39e08dd1c7924",
-  "source_zip_sha256": "aea5687a4940304a1fcd53f2266136115057045ebcfec0f1b2b1e44e1a6f825b",
+  "source_zip_sha256": "60591c6924bd20a85eb7cdbf03da8175ce3a2ddc7fe8a72c3528d972ff6939a2",
   "digest_convention": "Text uses normalized LF; PDF and ZIP use raw bytes.",
   "pdf_pages": 113,
   "pdf_bytes": 609741,
@@ -35,7 +35,7 @@
   "visual_review": {
     "method": "All 113 pages rendered at 60 dpi and compared pixel-for-pixel with the 1.2.1 PDF. Pages 1, 7, 8, 67, 111, 112 and 113 changed (date, the two Paper C passages, availability section, references 16 and 17); they were inspected at 80 dpi. Page count and embedded fonts were rechecked. The Section 8 rewording changed page 111 only, which was inspected again.",
     "agent_layout_review": "PASS",
-    "human_review": "Outstanding for this local revision."
+    "human_review": "Outstanding for this revision."
   },
   "compiler_checks": "PASS: three XeLaTeX passes; no overflow, missing glyphs, unresolved or duplicate references.",
   "page_bounds": "PASS: every page is US Letter (612 by 792 points).",
@@ -43,7 +43,7 @@
   "embedded_font_count": 26,
   "independent_mathematical_review": false,
   "complete_lean_verification": false,
-  "publication_status": "Prepared locally; not deposited. The last repository-recorded deposit is 1.0.2, DOI 10.5281/zenodo.22865237, dated 20 September 2026.",
+  "publication_status": "Deposited on 25 September 2026 as version 1.2.2, DOI 10.5281/zenodo.22954947, concept DOI 10.5281/zenodo.22676452, with two files: the PDF (609741 bytes, md5 c35a72a0cf1fbfc152b0e4d7a760763d) and paper_a_source_and_verification.zip (1537436 bytes, md5 2b7e9bd33f55e432c6ace56e4a8f967a), both the files of commit 59362273a. The source archive rebuilt after this record differs from the deposited one only because it includes the updated metadata. Earlier deposits: 1.0.2 as 10.5281/zenodo.22865237, 1.0.1 as 10.5281/zenodo.22846460, 1.0.0 as 10.5281/zenodo.22676453.",
   "preprints_migration": {
     "date": "2026-09-23",
     "scope": "Rename publication root to preprints, remove source mirrors, and refresh current archives and provenance. Mathematical claims are unchanged.",

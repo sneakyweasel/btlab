@@ -101,8 +101,12 @@ build prepares local metadata only; it never creates or updates an external reco
 md5 `c6f6f662016ca30a859bf57b0cc81793` and was byte-identical to the kit copy and to the
 repository's single PDF on the day it was deposited, checked against the record.
 
-That identity has ended: the repository now holds version 1.1.1, so the kit PDF is a different
-file. While it held, the manuscript deliberately did **not** carry its own DOI, because editing
+Version 1.1.1 was deposited on 25 September 2026:
+[doi:10.5281/zenodo.22954088](https://doi.org/10.5281/zenodo.22954088), record
+[zenodo.org/records/22954088](https://zenodo.org/records/22954088), one file, md5
+`b0c53ad122a2c25ebb3c336e0a0378e3`, byte-identical to the kit PDF of commit `e098e639d`
+by the md5 the Zenodo API reports. Before that, the 1.0.0 identity had ended when the
+repository moved to 1.1.0, so the kit PDF was then a different file. While it held, the manuscript deliberately did **not** carry its own DOI, because editing
 the text to add one would have broken it. The DOIs entered the text at 1.1.0, as planned. A rebuild from an unchanged source reproduces the deposited bytes, since
 `SOURCE_DATE_EPOCH` is pinned; a rebuild after any source edit does not, and at that point
 the kit stops being the deposited file and `AFTER_ZENODO.md` should say so.

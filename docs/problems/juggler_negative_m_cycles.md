@@ -402,7 +402,9 @@ arrangement.
 
 ## Publication assessment
 
-Status: `PUBLISHED`, with **version 1.1.1 built and not yet deposited**. The record is
+Status: `PUBLISHED`, **version 1.1.1 deposited 25 September 2026** as
+[10.5281/zenodo.22954088](https://doi.org/10.5281/zenodo.22954088), byte-identical to
+the kit PDF of `e098e639d`. The record is
 **Paper D**, deposited 21 September 2026 as *No m-cycles of the 3n−1 map for m ≤ 58*,
 version 1.0.0, nine pages, at the floor \(2^{51}\): version DOI
 [10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190), concept DOI

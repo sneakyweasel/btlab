@@ -20,32 +20,46 @@
     "computer-assisted proof",
     "Lean"
   ],
-  "description": "<p>The Juggler map and the shortcut 3n + 1 and 3n − 1 maps share the word multiplier 3^(o)/2^(L), but realize their words in different arithmetic and metric spaces. Classical parity coding defines an exact map from every Juggler orbit into the 2-adic 3n − 1 system. On actual periodic Juggler orbits it preserves every return time, and its value is an ordinary integer exactly when an explicit word divisibility holds. A family of genuine Juggler prefixes shows that arbitrarily precise modular return does not force that divisibility. We count this constructed family with an exact leading constant and prescribe its residues throughout the final even run. For the fixed word OOE, we also give an explicit counting error and a uniform polynomial first-witness bound in the modulus; this quantitative extension has a complete Lean proof, with independent review pending. On the positive integers, we prove that every 3n − 1 target prime to three has at least X^(21/25) ancestors below X, for all sufficiently large X. This signed adaptation uses height-corrected inverse-tree inequalities, a closed root domain, and an exact integer certificate with 177147 rows. A mean inequality places every positive certificate in the fixed 1/50 grid, for either sign and at every finite residue level, strictly below exponent 0.99 in the at-most-linear range. For reciprocal mass on the signed Collatz fibres, no finite ternary weight table reproduces itself for either sign, over any fixed number of generations or under any bounded stopping rule; divergent ancestor mass at a nonperiodic target follows from divergence of an explicit coefficient series, a premise that remains open. Lean formalizations accompany the orbit, period, counting, grid-ceiling, modular-return, and signed-fibre results, including the modular return’s analytic recurrence input. These results separate symbolic correspondence from integer realization and reciprocal-mass transport; no universal termination or unrestricted cycle exclusion theorem is asserted.</p>\n<p>The author thanks the authors of the cited work and the Lean and Mathlib communities for the mathematical and formal infrastructure. M. Sharpe’s grid implementation is specifically acknowledged in Section 1.1 and the attributed source modules.</p>\n<p>AI assistance was used in mathematical exploration, drafting, programming, and formalization. The author is responsible for the manuscript and its claims. Kernel-checked results are identified individually; AI assistance and local checking do not replace independent mathematical review.</p>",
+  "description": "<p>The Juggler map and the shortcut 3n + 1 and 3n − 1 maps share the word multiplier 3^(o)/2^(L), but realize their words in different arithmetic and metric spaces. Classical parity coding defines an exact map from every Juggler orbit into the 2-adic 3n − 1 system. On actual periodic Juggler orbits it preserves every return time, and its value is an ordinary integer exactly when an explicit word divisibility holds. A family of genuine Juggler prefixes shows that arbitrarily precise modular return does not force that divisibility. We count this constructed family with an exact leading constant and prescribe its residues throughout the final even run. For the fixed word OOE, we also give an explicit counting error and a uniform polynomial first-witness bound in the modulus; this quantitative extension has a complete Lean proof, with independent review pending. On the positive integers, we prove that every 3n − 1 target prime to three has at least X^(21/25) ancestors below X, for all sufficiently large X. This signed adaptation uses height-corrected inverse-tree inequalities, a closed root domain, and an exact integer certificate with 177147 rows. A mean inequality places every positive certificate in the fixed 1/50 grid, for either sign and at every finite residue level, strictly below exponent 0.99 in the at-most-linear range. For reciprocal mass on the signed Collatz fibres, no finite ternary weight table reproduces itself for either sign, over any fixed number of generations or under any bounded stopping rule; divergent ancestor mass at a nonperiodic target follows from divergence of an explicit coefficient series, a premise that remains open. Lean formalizations accompany the orbit, period, counting, grid-ceiling, modular-return, and signed-fibre results, including the modular return’s analytic recurrence input. These results separate symbolic correspondence from integer realization and reciprocal-mass transport; no universal termination or unrestricted cycle exclusion theorem is asserted.</p>",
   "related_identifiers": [
     {
       "identifier": "https://github.com/sneakyweasel/btlab",
       "relation": "isSupplementTo",
-      "scheme": "url"
+      "scheme": "url",
+      "resource_type": "software"
     },
     {
       "identifier": "10.5281/zenodo.22676452",
       "relation": "cites",
-      "scheme": "doi"
+      "scheme": "doi",
+      "resource_type": "publication-preprint"
     },
     {
       "identifier": "10.5281/zenodo.22864933",
       "relation": "cites",
-      "scheme": "doi"
+      "scheme": "doi",
+      "resource_type": "publication-preprint"
     },
     {
       "identifier": "10.5281/zenodo.22678164",
       "relation": "cites",
-      "scheme": "doi"
+      "scheme": "doi",
+      "resource_type": "publication-preprint"
     },
     {
       "identifier": "10.5281/zenodo.22876189",
       "relation": "cites",
-      "scheme": "doi"
+      "scheme": "doi",
+      "resource_type": "publication-preprint"
     }
-  ]
+  ],
+  "doi": "10.5281/zenodo.22954746",
+  "publication_date": "2026-09-25",
+  "conceptdoi": "10.5281/zenodo.22905649",
+  "record_url": "https://zenodo.org/records/22954746",
+  "latest_deposit": {
+    "version": "0.8.0",
+    "doi": "10.5281/zenodo.22954746",
+    "publication_date": "2026-09-25"
+  }
 }

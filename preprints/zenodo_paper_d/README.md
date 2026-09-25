@@ -1,14 +1,15 @@
 # Paper D: Zenodo preprint kit
 
-**No m-cycles of the 3n−1 map for m ≤ 61.** Version 1.1.1, 25 September 2026, prepared and not yet deposited.
+**No m-cycles of the 3n−1 map for m ≤ 61.** Version 1.1.1, 25 September 2026, deposited as
+[doi:10.5281/zenodo.22954088](https://doi.org/10.5281/zenodo.22954088).
 
-**Version 1.0.0 is deposited; this folder now holds 1.1.1.** Upload it through the record's
-new-version operation. Version 1.0.0's DOI [10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190), concept DOI
+**This folder holds the deposited version 1.1.1**; a later revision goes up through the
+record's new-version operation. Version 1.0.0's DOI [10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190), concept DOI
 [10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189), record
 [zenodo.org/records/22876190](https://zenodo.org/records/22876190), with the author's ORCID
 [0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382) attached. The deposited file has
-md5 `c6f6f662016ca30a859bf57b0cc81793`; the PDF here is version 1.1.1 and is no longer that
-file. See [AFTER_ZENODO.md](AFTER_ZENODO.md).
+md5 `c6f6f662016ca30a859bf57b0cc81793`; the PDF here is version 1.1.1, the file of the 1.1.1
+record. See [AFTER_ZENODO.md](AFTER_ZENODO.md).
 
 This folder is generated from the canonical editorial inputs in `docs/theory/`. For manuscript changes, edit
 [collatz_3n_minus_1_m_cycles_note.md](../../docs/theory/collatz_3n_minus_1_m_cycles_note.md)

@@ -57,7 +57,7 @@
     {
       "path": "docs/theory/PAPER_E_BUILD.md",
       "mode": "text",
-      "sha256": "4c068e5c6339ab13945efa8e59d802fd4b81c1b19bdea8ae7f2b9d1d1b5b3188"
+      "sha256": "a00f9867edeefea8f46b631f21533e7b038fdc070aaabea7656bf47c1b185e4e"
     },
     {
       "path": "docs/theory/collatz_actual_fibre_mass_lean_note.md",
@@ -797,7 +797,7 @@
     {
       "path": "preprints/zenodo_paper_e/README.md",
       "mode": "text",
-      "sha256": "ab0305ff0a6a39fa9d93a029a0760834e1079e7c355898b27ce5e7ba471ca638"
+      "sha256": "f9d3641511fb094ac2c55e26aec1981405f62a07cbaa1d62abe4c6decc3beb56"
     },
     {
       "path": "preprints/zenodo_paper_e/SOURCE_README.md",
@@ -837,7 +837,7 @@
     {
       "path": "tools/build_paper_e.py",
       "mode": "text",
-      "sha256": "9b3aa01e8562ff76675927419d45d16b8ea6aa3b7fa6349a5b7c6ae645b3113d"
+      "sha256": "2c3050669356aaf500208c558f1496522458f7afedeac5ec99ad58ef8e6594f2"
     },
     {
       "path": "tools/check_paper_e.py",
@@ -879,7 +879,7 @@
     {
       "path": "docs/theory/paper_e_zenodo.json",
       "mode": "text",
-      "sha256": "50070bf0b023aa6b202f759126e48947730ed7f5e967939d417eafd25a44f4ef"
+      "sha256": "15700a57cac676b419f2697f7537af031ce99d11f96fa51ac96e12ebc7eebf69"
     }
   ]
 }

@@ -16,18 +16,18 @@ version, and AI disclosure. Creator: Philippe Cochin, ORCID
 [0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382), with no
 affiliation. The existing CC BY 4.0 preprint license choice is retained.
 
-The prepared version is recorded in the generated `ZENODO_FIELDS.txt`.
-It is a local revision, not a new deposit. The last repository-recorded
-deposit is version 1.0.2,
+Version 1.2.2, this PDF, was deposited on 25 September 2026 with the source
+supplement:
+[doi:10.5281/zenodo.22954947](https://doi.org/10.5281/zenodo.22954947),
+record [zenodo.org/records/22954947](https://zenodo.org/records/22954947). It
+follows 1.0.2,
 [doi:10.5281/zenodo.22865237](https://doi.org/10.5281/zenodo.22865237) of
-20 September 2026, after 1.0.1
+20 September 2026, 1.0.1
 [doi:10.5281/zenodo.22846460](https://doi.org/10.5281/zenodo.22846460) and 1.0.0
 [doi:10.5281/zenodo.22676453](https://doi.org/10.5281/zenodo.22676453). The
 concept DOI
 [10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) resolves to
-the latest version; the record is
-[zenodo.org/records/22865237](https://zenodo.org/records/22865237). A local
-rebuild does not change that record.
+the latest version. A local rebuild does not change the record.
 
 The PDF is a preprint, not a peer-reviewed article. It establishes finite
 cycle exclusions with the evidence boundaries described in the paper;

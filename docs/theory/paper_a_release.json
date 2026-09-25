@@ -51,7 +51,7 @@
     {
       "path": "docs/theory/PAPER_A_BUILD.md",
       "mode": "text",
-      "sha256": "3616c2a3fbf85b8eb4eee43edc46e31fdb26f8e52f0a8458f1743fa452fada4f"
+      "sha256": "7a217376fcf03e8530c31d1e1998783d2d7694627c5938abec84f0d07bb91988"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_formalization.md",
@@ -683,7 +683,7 @@
     {
       "path": "docs/theory/paper_a_zenodo.json",
       "mode": "text",
-      "sha256": "81170ed6a543f0aa25e32c7b54ba65d0f3b5a96af880151fb967eca2f444f995"
+      "sha256": "25444c4508d1033ee0573d2061a7c5732c602f20f7b48e50a46ea88d2a4299ef"
     }
   ]
 }

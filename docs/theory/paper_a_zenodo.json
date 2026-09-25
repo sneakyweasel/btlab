@@ -24,29 +24,35 @@
     {
       "identifier": "https://github.com/sneakyweasel/btlab",
       "relation": "isSupplementTo",
-      "scheme": "url"
+      "scheme": "url",
+      "resource_type": "software"
     },
     {
       "identifier": "10.5281/zenodo.22864933",
       "relation": "cites",
-      "scheme": "doi"
+      "scheme": "doi",
+      "resource_type": "publication-preprint"
     },
     {
       "identifier": "10.5281/zenodo.22678164",
       "relation": "cites",
-      "scheme": "doi"
+      "scheme": "doi",
+      "resource_type": "publication-preprint"
     },
     {
       "identifier": "10.5281/zenodo.22876189",
       "relation": "isCitedBy",
-      "scheme": "doi"
+      "scheme": "doi",
+      "resource_type": "publication-preprint"
     }
   ],
+  "doi": "10.5281/zenodo.22954947",
+  "publication_date": "2026-09-25",
   "conceptdoi": "10.5281/zenodo.22676452",
-  "record_url": "https://zenodo.org/records/22865237",
+  "record_url": "https://zenodo.org/records/22954947",
   "latest_deposit": {
-    "version": "1.0.2",
-    "doi": "10.5281/zenodo.22865237",
-    "publication_date": "2026-09-20"
+    "version": "1.2.2",
+    "doi": "10.5281/zenodo.22954947",
+    "publication_date": "2026-09-25"
   }
 }

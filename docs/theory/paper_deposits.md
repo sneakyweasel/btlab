@@ -14,22 +14,23 @@ which is what the other habit costs.
 
 | Paper | Title | Repository | Latest deposit | Concept DOI |
 | --- | --- | --- | --- | --- |
-| A | Lower Bounds for Cycle Lengths in the Juggler Map | 1.2.2, not deposited | [1.0.2](https://doi.org/10.5281/zenodo.22865237) | [10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) |
+| A | Lower Bounds for Cycle Lengths in the Juggler Map | 1.2.2, deposited | [1.2.2](https://doi.org/10.5281/zenodo.22954947) | [10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) |
 | B | Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers | 1.2.0, deposited | [1.2.0](https://doi.org/10.5281/zenodo.22946276) | [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) |
 | C | Fate Contagion and Termination Criteria for the Juggler Map | 1.3.0, deposited | [1.3.0](https://doi.org/10.5281/zenodo.22947659) | [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) |
-| D | No m-cycles of the 3n−1 map for m ≤ 61 | 1.1.1, not deposited | [1.0.0](https://doi.org/10.5281/zenodo.22876190) | [10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) |
-| E | The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions | 0.8.0, local preprint | None | Not assigned |
+| D | No m-cycles of the 3n−1 map for m ≤ 61 | 1.1.1, deposited | [1.1.1](https://doi.org/10.5281/zenodo.22954088) | [10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) |
+| E | The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions | 0.8.0, deposited | [0.8.0](https://doi.org/10.5281/zenodo.22954746) | [10.5281/zenodo.22905649](https://doi.org/10.5281/zenodo.22905649) |
 
 Every DOI in this file was resolved against doi.org on 21 September 2026, and each
 concept DOI was confirmed to return the version named beside it as the latest. Paper
 B's rows for 1.1.2 and 1.2.0 were read from the Zenodo API on 24 September 2026,
 where its concept record returns 1.2.0. Paper C's row for 1.3.0 was read from the
-Zenodo API on 25 September 2026, where its concept record returns 1.3.0. All
-four papers are resource type Publication / Preprint, CC BY 4.0, English, open
-access.
+Zenodo API on 25 September 2026, where its concept record returns 1.3.0. The rows
+for A 1.2.2, D 1.1.1 and both E versions were read from the Zenodo API the same day,
+where each concept record returns the version named. All five papers are resource
+type Publication / Preprint, CC BY 4.0, English, open access.
 
-The repository is ahead of every record except those of Papers B and C, whose
-deposited 1.2.0 and 1.3.0 are the repository versions. Being ahead is the normal state here: a revision
+On 25 September 2026 every record holds the repository version: A 1.2.2, B 1.2.0,
+C 1.3.0, D 1.1.1 and E 0.8.0. Being ahead is the normal state here: a revision
 is prepared, checked and committed, and deposited only when the author decides to.
 `tools/build_paper_*.py` prints which state a paper is in, and
 `ZENODO_FIELDS.txt` says so at the top of the generated export.
@@ -38,10 +39,15 @@ is prepared, checked and committed, and deposited only when the author decides t
 
 ### Paper A, Lower Bounds for Cycle Lengths in the Juggler Map
 
-Prepared 1.2.2, 25 September 2026. Updates the description of Paper C's contagion
-theorem and the references to Papers B and C to their published versions 1.2.0 and
-1.3.0. Mathematical statements, proofs and the provenance pin are unchanged. No new
-deposit has been made.
+Published 1.2.2, 25 September 2026 (record created 08:36 UTC). Updates the
+description of Paper C's contagion theorem and the references to Papers B and C to
+their published versions 1.2.0 and 1.3.0, and words Section 8 so that it stays true
+after deposit. Mathematical statements, proofs and the provenance pin are unchanged.
+It is the first deposit with the source supplement: the PDF, 609,741 bytes, md5
+`c35a72a0cf1fbfc152b0e4d7a760763d`, and `paper_a_source_and_verification.zip`,
+1,537,436 bytes, md5 `2b7e9bd33f55e432c6ace56e4a8f967a`, both the files of commit
+`59362273a`. The record adds the keyword "Collatz map", which the pinned builder does
+not write; add it to the builder with the next version.
 
 Prepared 1.2.1, 23 September 2026. Completes the source and verification
 supplement, corrects the generated metadata description, and synchronizes
@@ -49,11 +55,11 @@ publication instructions and provenance. Mathematical statements and proofs
 are unchanged from 1.2.0, including the Wu-Wang refinement and the numerical
 cycle exclusions. No new deposit has been made.
 
-Record [zenodo.org/records/22865237](https://zenodo.org/records/22865237).
+Record [zenodo.org/records/22954947](https://zenodo.org/records/22954947), the latest version.
 
 | Version | DOI | Date |
 | --- | --- | --- |
-| 1.2.2 | not deposited | 25 September 2026 |
+| 1.2.2 | [10.5281/zenodo.22954947](https://doi.org/10.5281/zenodo.22954947) | 25 September 2026 |
 | 1.2.1 | not deposited | 23 September 2026 |
 | 1.2.0 | not deposited | 22 September 2026 |
 | 1.1.0 | not deposited | 21 September 2026 |
@@ -161,18 +167,20 @@ the 1.3.0 PDF carries that statement in its acknowledgments.
 
 ### Paper D, No m-cycles of the 3n−1 map for m ≤ 61
 
-Record [zenodo.org/records/22876190](https://zenodo.org/records/22876190).
+Record [zenodo.org/records/22954088](https://zenodo.org/records/22954088), the latest version.
 
 | Version | DOI | Date |
 | --- | --- | --- |
-| 1.1.1 | not deposited | 25 September 2026 |
+| 1.1.1 | [10.5281/zenodo.22954088](https://doi.org/10.5281/zenodo.22954088) | 25 September 2026 |
 | 1.1.0 | not deposited | 21 September 2026 |
 | 1.0.0 | [10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190) | 21 September 2026 |
 
 Version 1.0.0 proved the theorem for \(m\le58\) at the verification floor
 \(2^{51}\); 1.1.0 adds the valley-count lemma as Lemma 6 and reaches \(m\le61\) at
 the same floor; 1.1.1 corrects its wording and precision, with the theorem and tables
-unchanged. The record carries one file,
+unchanged, and was published on 25 September 2026 (record created 07:49 UTC) as one
+file, 141,714 bytes, md5 `b0c53ad122a2c25ebb3c336e0a0378e3`, the PDF of commit
+`e098e639d`. The record of 1.0.0 carries one file,
 `No_m_cycles_of_the_3n_minus_1_map.pdf`, 131984 bytes, md5
 `c6f6f662016ca30a859bf57b0cc81793`, whose identity was checked against the record's
 own checksum after deposit.
@@ -185,14 +193,30 @@ new-version operation, not a correction.
 
 ### Paper E, The Juggler Map and the 3n±1 Maps
 
-Current local version: 0.8.0. The [build guide](PAPER_E_BUILD.md) and
-[review record](paper_e_review.md) describe its quantitative formalization
-and provenance. No deposit has been made.
+Published 0.8.0, 25 September 2026 (record created 08:24 UTC):
+`Juggler_and_signed_Collatz.pdf`, 180,942 bytes, md5
+`dd852032e49425d6ae39ba9c12d88b56`, the PDF of commit `5a11a3b83`, and
+`Sources_and_certificate.zip`, 2,754,843 bytes, md5
+`c261b8ca3f8741ee7ff21dd0143d9846`, the archive of commit `699b8203b`. Version 0.7.1
+was published on 22 September 2026 as one file, 165,575 bytes, md5
+`49a5eda7861d2b250d13cddb9a8c923e`, the PDF of commit `5d166cee9`; this register
+listed Paper E as undeposited until 25 September 2026. Both PDFs' Section 1.2 and
+availability section, written before upload, say no deposit exists. The
+[build guide](PAPER_E_BUILD.md) and [review record](paper_e_review.md) describe
+its quantitative formalization and provenance.
+
+Record [zenodo.org/records/22954746](https://zenodo.org/records/22954746), the latest
+version; concept DOI [10.5281/zenodo.22905649](https://doi.org/10.5281/zenodo.22905649).
+
+| Version | DOI | Date |
+| --- | --- | --- |
+| 0.8.0 | [10.5281/zenodo.22954746](https://doi.org/10.5281/zenodo.22954746) | 25 September 2026 |
+| 0.7.1 | [10.5281/zenodo.22905650](https://doi.org/10.5281/zenodo.22905650) | 22 September 2026 |
 
 Version 0.8.0, 25 September 2026: adds Section 7.3, the signed Collatz
 fibre results (finite-weight obstruction and two ancestor-mass criteria, all
 kernel-checked, with an open divergence premise), and Remark 5.5's exponent
-423/500 from the existing certificate. No deposit has been made.
+423/500 from the existing certificate.
 
 Version 0.6.0, 22 September 2026: adds the written effective OOE theorem
 and complete quantitative appendix. The selected 49-declaration Lean

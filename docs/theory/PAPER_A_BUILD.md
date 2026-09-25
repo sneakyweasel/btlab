@@ -48,12 +48,13 @@ four reported boundaries; the descent floors remain supplied inputs. In
 `AxiomCheckPaperA.expected`. When the manuscript cites a different set of
 declarations, update the audit list and regenerate its expected output.
 
-This repository holds version 1.2.2, which is prepared and not deposited.
-The record is at
-[zenodo.org/records/22865237](https://zenodo.org/records/22865237); its current
-version is 1.0.2,
+This repository holds version 1.2.2, deposited on 25 September 2026 with its source
+supplement as
+[doi:10.5281/zenodo.22954947](https://doi.org/10.5281/zenodo.22954947), record
+[zenodo.org/records/22954947](https://zenodo.org/records/22954947); both files are
+those of commit `59362273a`. Earlier versions are 1.0.2,
 [doi:10.5281/zenodo.22865237](https://doi.org/10.5281/zenodo.22865237), of
-20 September 2026, after 1.0.1
+20 September 2026, 1.0.1
 [doi:10.5281/zenodo.22846460](https://doi.org/10.5281/zenodo.22846460) of
 19 September 2026 and 1.0.0
 [doi:10.5281/zenodo.22676453](https://doi.org/10.5281/zenodo.22676453) of

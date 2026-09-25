@@ -11,7 +11,7 @@
   "pdf_sha256": "e747a699ea5fbf76714cbc904afcea8fa8744c731b495af43fff57c5268dd93b",
   "source_sha256": "3a6a5da04d9c9d1514c0815970803d6e1ffcf42426683ceda151a52e98d6d4d7",
   "tex_sha256": "ef74905d30df87189eea194d0ba29e9a3ef7b0e39c13a60291362105157a1bd6",
-  "source_zip_sha256": "b7c12877b157520cc55d99f7ddd71b9679e57b47b9c79e7c4901fd18beb57d88",
+  "source_zip_sha256": "6e3c19c2f05548f44104a24f166335687446970f00cf0100ff24eae0a3c7a72b",
   "digest_convention": "Text: normalized LF. PDF and ZIP: raw bytes.",
   "mathematical_body_sha256": "11d2aad9495305d027a1ea674a2c6cf27a074f4d130d05038287508e9397e6cd",
   "written_result": "Theorem 5.4: five-step certificate count 7N/8 + O_epsilon(N^(127/128+epsilon)). Theorem 6.3, added in 1.2.0: beyond Y, the targets whose OOOEE or OOEOE fibre misses the share 1/16 by eta have reciprocal sums O_eta(Y^(-1/55)) and O_eta(Y^(-1/41)).",
@@ -68,7 +68,7 @@
   "independent_mathematical_review": false,
   "complete_lean_verification": false,
   "historical_95_96_target": "CONJECTURE",
-  "publication_status": "Deposited on 24 September 2026 as version 1.2.0, DOI 10.5281/zenodo.22946276, concept DOI 10.5281/zenodo.22864933. The record carries one file, the PDF. The Zenodo API reports 335234 bytes and md5 ec6aa6e0c9428f42ce28fdc490e4ab45, which are those of the PDF recorded here as pdf_sha256. Earlier deposits: 1.1.2 as 10.5281/zenodo.22906043 and 1.0.0 as 10.5281/zenodo.22864934. The availability section, written before the upload, still says the paper is not deposited.",
+  "publication_status": "Deposited on 24 September 2026 as version 1.2.0, DOI 10.5281/zenodo.22946276, concept DOI 10.5281/zenodo.22864933. The record carries one file, the PDF. The Zenodo API reports 335234 bytes and md5 ec6aa6e0c9428f42ce28fdc490e4ab45, which are those of the PDF recorded here as pdf_sha256. Earlier deposits: 1.1.2 as 10.5281/zenodo.22906043 and 1.0.0 as 10.5281/zenodo.22864934. The availability section, written before the upload, still says the paper is not deposited. On 25 September 2026 the source package was rebuilt, unchanged in content except the metadata and field sheet: the field sheet now gives a plain-text abstract and the related works in the upload form's fields; the PDF is unchanged.",
   "preprints_migration": {
     "date": "2026-09-23",
     "scope": "Rename publication root to preprints, remove source mirrors, and refresh current archives and provenance. Mathematical claims are unchanged.",

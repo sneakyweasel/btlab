@@ -726,7 +726,7 @@
     {
       "path": "tools/build_paper_c.py",
       "mode": "text",
-      "sha256": "53a56846bfc8692a6ecad7abd0a757f2a957a2ef063fb3d806e0b3ba9030e395"
+      "sha256": "95b6ef3cad55080c07a696bbea53e88f30ef1b905b926d8732d236d7c7662879"
     },
     {
       "path": "tools/check_paper_c_numeric.py",
@@ -758,7 +758,7 @@
     {
       "path": "docs/theory/paper_c_zenodo.json",
       "mode": "text",
-      "sha256": "1c6ae28d679ba1417ab839ceb510f30d422760de1a0a37915d2d848540c17d80"
+      "sha256": "5bcf53c5ba4d0bc9ee00199343ec6dc1cc9e525a3bd98b86b4e14ba59b3af242"
     }
   ],
   "publication": {

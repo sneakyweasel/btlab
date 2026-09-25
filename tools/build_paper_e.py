@@ -15,7 +15,7 @@ from __future__ import annotations
 import argparse
 from datetime import datetime
 import hashlib
-from html import escape
+from html import escape, unescape
 import json
 import os
 from pathlib import Path
@@ -156,6 +156,32 @@ def export_pairs(root: Path):
     return [(PDF, name) for name in PDF_EXPORTS]
 
 
+#: The upload form's labels for the relation and resource-type codes the metadata stores.
+FORM_RELATIONS = {"isSupplementTo": "Is supplement to", "cites": "Cites", "isCitedBy": "Is cited by"}
+FORM_RESOURCE_TYPES = {"software": "Software", "publication-preprint": "Publication / Preprint"}
+
+
+def plain_description(html: str) -> str:
+    """The metadata keeps Zenodo's HTML; the author pastes plain paragraphs into the form."""
+    text = re.sub(r"<br\s*/?>\s*<br\s*/?>", "\n\n", html)
+    text = re.sub(r"</p>\s*<p>", "\n\n", text)
+    text = re.sub(r"<[^>]+>", "", text)
+    paragraphs = [" ".join(p.split()) for p in unescape(text).split("\n\n")]
+    return "\n\n".join(p for p in paragraphs if p)
+
+
+def related_works(rows) -> str:
+    """One block per related work, in the form's own fields."""
+    blocks = []
+    for r in rows:
+        kind = r.get("resource_type") or ("software" if r.get("scheme") == "url" else "publication-preprint")
+        blocks.append(f'Relation: {FORM_RELATIONS.get(r["relation"], r["relation"])}\n'
+                      f'Identifier: {r["identifier"]}\n'
+                      f'Scheme: {r.get("scheme", "doi").upper()}\n'
+                      f'Resource type: {FORM_RESOURCE_TYPES.get(kind, kind)}')
+    return "\n\n".join(blocks)
+
+
 def zenodo_fields(meta: dict) -> str:
     """Render the upload form fields from the prepared metadata.
 
@@ -189,8 +215,7 @@ def zenodo_fields(meta: dict) -> str:
     orcid = (f'ORCID: {who["orcid"]} (https://orcid.org/{who["orcid"]})\n'
              if who.get('orcid') else '')
     record = f'RECORD\n{row["record_url"]}\n\n' if row.get('record_url') else ''
-    related = '\n'.join(f'{r["relation"]}: {r["identifier"]}'
-                        for r in row.get('related_identifiers', ()))
+    related = related_works(row.get('related_identifiers', ()))
     return (
         'GENERATED FROM docs/theory/; do not edit this export.\n'
         + standing
@@ -198,8 +223,8 @@ def zenodo_fields(meta: dict) -> str:
         + 'Affiliation: none\n\nRESOURCE TYPE\nPublication / Preprint\n\n'
         + f'VERSION\n{row["version"]}\n\nLICENSE\n{row["license"]}\n\n'
         + record + date_field
-        + 'KEYWORDS\n' + '\n'.join(row['keywords']) + '\n\nDESCRIPTION (HTML)\n'
-        + row['description'] + '\n\nRELATED WORKS\n' + related + '\n')
+        + 'KEYWORDS\n' + '\n'.join(row['keywords']) + '\n\nDESCRIPTION (plain text)\n'
+        + plain_description(row['description']) + '\n\nRELATED WORKS\n' + related + '\n')
 
 def checksums(root: Path) -> str:
     lines = ["# sha256 of the files in this kit and of the PDF they alias.",
@@ -316,10 +341,10 @@ def write_metadata(root: Path, pandoc: str) -> None:
     title = re.search(r'^title: "(.*)"$', source, re.M).group(1)
     author = re.search(r"^author: (.*)$", source, re.M).group(1)
     abstract = source.split("## Abstract\n", 1)[1].split("**2020 Mathematics", 1)[0]
-    acknowledgment = source.split("## Acknowledgments and use of AI\n", 1)[1].split("## Availability", 1)[0]
+    # Abstract only: the acknowledgments and the AI disclosure are in the paper itself.
     plain = subprocess.check_output(
         [pandoc, "--from=markdown+tex_math_single_backslash", "--to=plain", "--wrap=none"],
-        input=abstract + "\n" + acknowledgment, encoding="utf-8")
+        input=abstract, encoding="utf-8")
     description = "\n".join("<p>" + escape(p.replace("\n", " ")) + "</p>"
                             for p in plain.strip().split("\n\n"))
     # A reusable field sheet, not an API call and not a claim of a published DOI.

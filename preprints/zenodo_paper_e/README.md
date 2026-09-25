@@ -22,7 +22,12 @@ Edit docs/theory/juggler_signed_collatz_note.md and rebuild with
 python tools/build_paper_e.py. Verify with --check before sharing.
 Do not edit the generated files in this kit.
 
-The first deposit requires the author's decision, an actual publication
-date, and the platform's returned identifiers. Do not supply a fabricated
-DOI. Subsequent editions should use the existing record's versioning
-operation and retain its concept DOI.
+Version 0.8.0 was deposited on 25 September 2026 with these two files, as
+[doi:10.5281/zenodo.22954746](https://doi.org/10.5281/zenodo.22954746), after 0.7.1
+([doi:10.5281/zenodo.22905650](https://doi.org/10.5281/zenodo.22905650)) of
+22 September. The concept DOI
+[10.5281/zenodo.22905649](https://doi.org/10.5281/zenodo.22905649) resolves to the
+latest version. The source archive includes the metadata file, which now
+records the deposit, so the archive here differs from the deposited one, the
+archive of commit `699b8203b`. Later editions use the record's versioning
+operation and keep its concept DOI.

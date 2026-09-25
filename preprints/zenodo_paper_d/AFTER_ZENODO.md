@@ -1,9 +1,14 @@
 # Paper D Zenodo record
 
-**Version 1.1.1 is prepared here and not yet deposited.** It proves the same theorem for
-m <= 61 where 1.0.0 proved m <= 58, by Lemma 6, the valley count, which 1.1.0 added; the
-floor is unchanged at 2^51. 1.1.1 corrects wording and precision in 1.1.0, which was
-never deposited. Use the record's **new version** operation, not a fresh deposit, so the
+**Version 1.1.1 is published**, 25 September 2026: version DOI
+[10.5281/zenodo.22954088](https://doi.org/10.5281/zenodo.22954088), record
+[zenodo.org/records/22954088](https://zenodo.org/records/22954088). Its one file,
+`No_m_cycles_of_the_3n_minus_1_map.pdf`, 141714 bytes, md5
+`b0c53ad122a2c25ebb3c336e0a0378e3`, is the kit PDF here and the PDF of commit
+`e098e639d`. It proves the theorem for m <= 61 where 1.0.0 proved m <= 58, by Lemma 6,
+the valley count, which the undeposited 1.1.0 added; 1.1.1 corrects wording and
+precision. The floor is unchanged at 2^51. Its related works were entered on the
+record. Use the record's **new version** operation, not a fresh deposit, so the
 concept DOI keeps resolving to the latest. The files to upload are the ones in this folder,
 which the builder has regenerated; the PDF here is no longer the 1.0.0 file.
 

@@ -47,7 +47,7 @@
     {
       "path": "docs/theory/PAPER_D_BUILD.md",
       "mode": "text",
-      "sha256": "1fa8f7c5b2d44e7d2baf4acde055970626a39116e9e7825eb8b47e9595a88d83"
+      "sha256": "fa5ff00b7a23b76f35382f5a8458491e77e2ec7331fe147c7c8de542e44b520e"
     },
     {
       "path": "docs/theory/collatz_3n_minus_1_m_cycles_note.md",
@@ -104,7 +104,7 @@
     {
       "path": "docs/theory/paper_d_zenodo.json",
       "mode": "text",
-      "sha256": "8ed1c8898b79c202c7867e4bc36dca2934787ead55c01828e9a5d7d9261ce0a9"
+      "sha256": "e07f95ff98f09e853979ed085b3764eb2cd565338536c1991501ff5dab789d78"
     }
   ]
 }
