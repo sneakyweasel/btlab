@@ -12,6 +12,7 @@ import Problems.Juggler.BeattySlopeCFExpansion
 import Problems.Juggler.BeattySlopePacking
 import Problems.Juggler.BeattySlopeMeasureDim
 import Problems.Juggler.BeattySlopeStarDim
+import Problems.Juggler.BeattySlopeLawPacking
 import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeGlobalLaw
 import Problems.Juggler.BeattySlopeLawContinuity
@@ -551,5 +552,12 @@ namespace Problems.Juggler
 #print axioms BeattySlope.starDim_pos
 #print axioms BeattySlope.dio_star_hausdorff
 #print axioms BeattySlope.dio_star_dimH_le
+#print axioms BeattySlope.le_upperBoxDim_of_tube_freq
+#print axioms BeattySlope.measure_mul_le_thickening
+#print axioms BeattySlope.conv_radius_identity
+#print axioms BeattySlope.passageLaw_ball_le
+#print axioms BeattySlope.passageLaw_upperBoxDim_ge
+#print axioms BeattySlope.passageLaw_lawDimP_eq
+#print axioms BeattySlope.passageLaw_dims_eq_iff
 
 end Problems.Juggler

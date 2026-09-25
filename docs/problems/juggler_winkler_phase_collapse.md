@@ -1632,6 +1632,33 @@ claim `J-beatty-slope-star-upper`). With the law dimension,
 `2/(2+nu) <= dim_H K_alpha <= s*(nu)` for Diophantine class `nu`, and the
 lower end is attained at regular slopes. **PROMOTE**.
 
+### The packing dimension of the law (25 September)
+
+```text
+Mathematical target     The packing dimension of mu_alpha for every irrational alpha>1.
+Novelty hypothesis      Uniform small balls at convergent radii give 2/3 for every slope.
+Falsifier               A ball of radius A Q^(-3/2)/3 with law mass above 4/Q.
+Already killed by?      No; the law's dimensions were first studied in the previous entry.
+Existing machinery      gap_short_of_approx, convergents of every irrational, modified upper box dimension.
+Maximum Phase-0 scope   One module: frequent tube bound, grid counting, ball bound, assembly.
+Promotion criterion     Lean theorem for every irrational slope with standard axioms.
+Stop criterion          A uniform ball bound failing at some slope.
+```
+
+**EXACT — LEAN VERIFIED.** At a continued-fraction denominator `Q` every
+phase interval longer than `4/Q` holds an atom of index below `Q`, of weight at
+least `A Q^(-3/2)`; so every ball of radius `r = A Q^(-3/2)/3` carries law mass
+at most `4/Q`, whatever the slope. Counting grid intervals of length `r` gives
+`vol(E_r) >= c r^(1/3)` along these radii for every set of positive mass, so the
+law has packing dimension `2/3` at every irrational slope
+([BeattySlopeLawPacking.lean](../../formal/Problems/Juggler/BeattySlopeLawPacking.lean),
+claim `J-beatty-slope-law-packing`). With the law dimension, the Hausdorff and
+packing dimensions of `mu_alpha` agree exactly when the irrationality exponent
+is `2`. A two-constraint Frostman computation with windows of length
+`q^(-gamma)` at isolated good levels (not written up, not in Lean) returns
+exactly `s*(nu)` at the optimal `gamma = nu + 2 - sqrt(1+3nu)`, which supports
+the conjecture that `dim_H K_alpha = s*(nu)` for such slopes. **PROMOTE**.
+
 ## Decision
 
 `PROMOTE` -- for every irrational slope above one, the actual normalized

@@ -12,7 +12,7 @@ EXPECTED = {
     f"Problems.Juggler.BeattySlopeGlobalChecks.{name}" for name in (
         "actual_global_law", "actual_global_law_explicit",
         "actual_rational_law", "actual_right_phase", "actual_law_slope_map",
-        "actual_law_dimension", "actual_law_dimension_liouville",
+        "actual_law_dimension", "actual_law_dimension_liouville", "actual_law_packing",
     )
 }
 

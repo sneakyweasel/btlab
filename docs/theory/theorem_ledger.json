@@ -3026,6 +3026,29 @@
   "related_conjectures": []
  },
  {
+  "id": "J-beatty-slope-law-packing",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Let lawDimP(mu) be the least modified upper box (packing) dimension of a set of positive mu-mass. For every irrational boundary, at each continued-fraction denominator Q every phase interval longer than 4/Q holds an orbit point of index below Q, whose atom weighs at least A Q^(-3/2); so every ball of radius r = A Q^(-3/2)/3 has law mass at most 4/Q, uniformly in the centre. Grid counting gives mu(E) r <= (4/Q) vol(E_r), hence vol(E_r) >= c r^(1/3) along these radii for every set E of positive mass, so lawDimP(mu_alpha) = 2/3 at every irrational slope. For Diophantine class nu >= 1, lawDimH(mu_alpha) = lawDimP(mu_alpha) iff nu = 1, that is iff the irrationality exponent is 2.",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeLawPacking.lean",
+  "decl": [
+   "le_upperBoxDim_of_tube_freq",
+   "measure_mul_le_thickening",
+   "conv_radius_identity",
+   "passageLaw_ball_le",
+   "passageLaw_upperBoxDim_ge",
+   "passageLaw_lawDimP_eq",
+   "passageLaw_dims_eq_iff"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_global_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-slope-liouville-dimension-zero",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For every Liouville number alpha>1, the complete set of real subsequential limits of the actual ratios r*c_r/choose(m_r-1,r-1), m_r=floor(alpha*r), has zero s-dimensional Hausdorff measure for every s>0, hence Hausdorff dimension 0, although its Minkowski dimension is 2/3. For a good approximation p/q with theta=q*alpha-p, the exact identity q*frac(r*alpha)=Z(r)+r*theta labels rotation chains by the integer Z(r) in [0,q]; no early phase separates two later phases of one chain, so the cut cover by the first E phases has sum of s-th powers at most (q+1)*T(E)^s+(E+2)*T(N)^s with N=floor(1/|theta|) and T(M)<=2b*M^(-1/2) from the proved three-halves weight bound. Liouville approximations make both terms small. Hausdorff dimension is therefore not constant on the family: it is 2/3 for almost every slope and 0 at every Liouville slope.",

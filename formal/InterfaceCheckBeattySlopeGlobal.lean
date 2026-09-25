@@ -1,6 +1,7 @@
 import Problems.Juggler.BeattySlopeGlobalLaw
 import Problems.Juggler.BeattySlopeLawContinuity
 import Problems.Juggler.BeattySlopeMeasureDim
+import Problems.Juggler.BeattySlopeLawPacking
 
 /-! Expanded consumers of the global empirical-law theorem. The ratio is
 written through the original integer first-passage counts, the crossing
@@ -89,6 +90,23 @@ theorem actual_law_dimension_liouville (α : ℝ) (hα : 1 < α) (hL : Liouville
     (by simpa using hL.irrational.inv)]
   exact passageLaw_lawDimH_liouville hα hL
 
+/-- At every irrational slope above one of Diophantine class `ν`, the
+empirical law of the original integer ratios converges to a law of packing
+dimension `2/3`, whose Hausdorff dimension equals its packing dimension exactly
+when `ν = 1`. -/
+theorem actual_law_packing (α ν : ℝ) (hα : 1 < α) (hirr : Irrational α) (hν : 1 ≤ ν)
+    (hcls : DiophClass α ν) :
+    ∃ μ : ProbabilityMeasure ℝ, Tendsto (empiricalLaw (fun r : ℕ =>
+      (r : ℝ)*(passageCount (1/α) (⌊(r : ℝ)/(1/α)⌋₊+1) : ℝ) /
+        ((⌊(r : ℝ)/(1/α)⌋₊-1).choose (r-1) : ℝ))) atTop (𝓝 μ) ∧
+      lawDimP (μ : Measure ℝ) = ENNReal.ofReal (2/3) ∧
+      (lawDimH (μ : Measure ℝ) = lawDimP (μ : Measure ℝ) ↔ ν = 1) := by
+  have hα0 : 0 < α := by linarith
+  refine ⟨passageProfileLaw (1/α), passageRatio_law_slope hα, ?_⟩
+  rw [passageProfileLaw_irrational (one_div_pos.2 hα0) ((div_lt_one hα0).2 hα)
+    (by simpa using hirr.inv)]
+  exact passageLaw_dims_eq_iff hα hirr hν hcls
+
 #print axioms actual_global_law
 #print axioms actual_global_law_explicit
 #print axioms actual_rational_law
@@ -96,5 +114,6 @@ theorem actual_law_dimension_liouville (α : ℝ) (hα : 1 < α) (hL : Liouville
 #print axioms actual_law_slope_map
 #print axioms actual_law_dimension
 #print axioms actual_law_dimension_liouville
+#print axioms actual_law_packing
 
 end Problems.Juggler.BeattySlopeGlobalChecks
