@@ -141,6 +141,11 @@ import Problems.Juggler.BeattySlopeStarDim
 import Problems.Juggler.BeattySlopeLawPacking
 import Problems.Juggler.BeattySlopeIsolated
 import Problems.Juggler.BeattySlopeFrostman
+import Problems.Juggler.BeattyCantorTree
+import Problems.Juggler.BeattyGridTree
+import Problems.Juggler.BeattyAtomBounds
+import Problems.Juggler.BeattyIsoLevels
+import Problems.Juggler.BeattyIsoGrid
 import Problems.Juggler.BeattySlopeRationalMass
 import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeWeakCounting
