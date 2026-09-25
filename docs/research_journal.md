@@ -11,6 +11,14 @@ consolidation is at `e9725762eaf028d1ace354ff20e0fc48f1a3d143`. See
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-25 -- Paper B Lemma 4.3, bound (4.3), in Lean
+
+**EXACT — LEAN VERIFIED:** over odd starts `2r+1`, `r ∈ [r₀, r₁)`,
+`∑ E_R(n^{3/2}) ≤ 4 (r₁ - r₀)(⌊log₂ R⌋ + 2)/R + 25344 r₁^{5/6}`, the printed (4.3) with
+constants. Theorem 3.1's discrepancy holds for every arc, and a dyadic layer bound on `E_R`
+finishes it. Remaining premise: the first assertion `b = b_R + O(E_R)` is not formalized.
+Decision: PROMOTE. Record: [carry-expansion dossier](problems/juggler_paper_b_carry_expansion.md).
+
 ## 2026-09-25 -- Paper B Proposition 3.2 closed in Lean
 
 **EXACT — LEAN VERIFIED:** for `N ≥ 1` and `w ∈ {OEE, OEO}`,
@@ -254,18 +262,3 @@ Uniform spatial sampling tends to the normalized two-thirds-weighted empirical l
 **PROMOTE** this family extension: 160 public audit records and 48 expanded
 consumers. Sections 25–26 record the scope. Rates, the Gamma-law family and
 arithmetic Hausdorff classification remain separate.
-
-## 2026-09-23 -- OEIS generator corrections and exact modified-map descent
-
-The bounded A325904 check found an empty-sum error at order two in the
-printed A100982 transform, plus six stored generator terms inconsistent
-with their recurrence. Exact coefficients and the repaired upper limit
-reproduce 256 certificate counts and survivor depths 0..406.
-**CLOSE** as a new counting method; the all-orders repaired identity
-remains unproved here. See the [audit](problems/juggler_oeis_generator_check.md).
-
-For A095396, a written floor-equality proof gives exactly one unit of
-descent at every actual OE pair; actual EO pairs also strictly descend.
-**PROMOTE** the bounded structural identity, with regressions through
-10000 and at large perfect powers. No Lean or novelty claim, no termination
-result, and no manuscript change. See [modified-map descent](problems/juggler_modified_juggler_descent.md).

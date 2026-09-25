@@ -12328,6 +12328,24 @@
   "statement": "The non-lattice local limit theorem constant is the mean of an explicit profile, and that profile is what generates psi. The Spitzer identity behind J-paper-b-meander-constant-derived exponentiates A_n = P(S_n >= 0)/theta^n, and that row invokes the non-lattice local limit theorem for A_n ~ kappa/sqrt(n), kappa = 1/(sqrt(2 pi) theta* sigma) = 1.541814521. That is true of the MEAN and of nothing else. Measured, A_n*sqrt(n) is a function of frac(n*beta) to 100 percent of its variance -- residual sd 0.0033 against a total sd of 0.238, and the two halves of the n-range agree to 0.00034 -- oscillating by about 15 percent around kappa. THE PROFILE IS CLOSED FORM. Since ceil(n*beta) - n*beta is exactly 1 - frac(n*beta), and consecutive binomial terms at the large-deviation point n*beta have ratio r = (1-beta)/beta, the tail is geometric to O(1/n) and Phi(x) = r^(1-x) / ((1-r) sqrt(2 pi beta (1-beta))). Checked pointwise without binning: the relative error is a pure 1/n offset, -7.8e-3, -1.9e-3, -8.1e-4 at n about 2000, 8000, 18000, with scatter falling 2.7e-3 to 1.5e-4. It is an exponential, not the sawtooth it first resembles; Phi(0.5) sits below the chord. TWO CONSEQUENCES IN CLOSED FORM. Its mean is 1/(log(beta/(1-beta)) sqrt(2 pi beta (1-beta))), which IS kappa identically -- beta/(1-beta) = log2/log(3/2), so log(beta/(1-beta)) = theta* log 3 and sqrt(2 pi beta (1-beta)) = sqrt(2 pi) sigma / log 3 -- agreeing to 2.2e-10. And its jump at the origin is one binomial term at the large-deviation point, rescaled: 1/sqrt(2 pi beta (1-beta)) = kappa theta* log 3 = 0.826732564. That jump is what fixes psi's amplitude (J-paper-b-jump-amplitude-is-closed-form). WHAT IT DOES NOT SAY. Nothing here is proved: Phi is a measured profile with a derived closed form, the O(1/n) correction is not computed, and the local limit theorem it refines is quoted rather than re-derived."
  },
  {
+  "id": "J-paper-b-lemma-4-3-sum",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper B Lemma 4.3, bound (4.3), with explicit constants. Let E_R(t) = min(1, 1/(R ||t||)), with E_R = 1 at integers, where ||t|| is the distance to the nearest integer. For R >= 1 and r0 <= r1, the sum of E_R(n^{3/2}) over the odd starts n = 2r+1 with r in [r0, r1) is at most 4 (r1 - r0)(floor(log_2 R) + 2)/R + 25344 r1^{5/6}. For an interval I in [P, 3P] this is the printed O(P log(2R)/R + P^{5/6}). The proof extends Theorem 3.1's discrepancy bound to every arc (264 a^{5/6} on a block, 1056 R^{5/6} on a prefix), covers the points with ||n^{3/2}|| < z by three arcs of n^{3/2}/2 of total length 2z, and sums the dyadic layers E_R(t) <= sum_{j <= J} 2^{1-j} [||t|| < 2^j/R]. The first assertion of Lemma 4.3, b = b_R + O(E_R), is not covered.",
+  "source": "docs/problems/juggler_paper_b_carry_expansion.md",
+  "lean": "Problems/Juggler/PaperBCarryExpansion.lean",
+  "decl": [
+   "sum_carryWeight_le",
+   "nearCount_le",
+   "abs_prefix_arcError_le",
+   "abs_block_arcError_le"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-paper-b-lemma-5-1-minimal-certificates",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "Paper B Lemma 5.1: the contracting words of length at most five with no proper nonempty contracting prefix are exactly E, OE, OOEE, OOOEE, and OOEOE. Their formal cylinder measures sum to 1/2+1/4+1/16+1/32+1/32=7/8 (and the four-step and 27/32 subfamily sums likewise). Lean: Problems.Juggler.PaperBCertificates.lemma51 and certificate_measures_sum. This is the combinatorial classification only; it does not count starts, bound exponential sums, or prove Theorem 5.4. The two subfamily sums are separate declarations: four_step_measures_sum is 1/2+1/4+1/16 = 13/16 and twenty_seven_thirty_two_sum is 13/16+1/32 = 27/32.",

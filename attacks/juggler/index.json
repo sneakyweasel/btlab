@@ -6732,6 +6732,22 @@
       "nk_clusters": []
     },
     {
+      "id": "paper_b_carry_expansion",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_paper_b_carry_expansion.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-paper-b-lemma-4-3-sum"
+      ],
+      "aliases": [],
+      "nk_clusters": []
+    },
+    {
       "id": "paper_b_certificate_lengths",
       "kind": "dossier_only",
       "probe": null,
