@@ -7007,8 +7007,9 @@ description of the companion Papers B and C, and references [16] and
 the source and verification supplement, publication metadata, and
 provenance record, and retained the asymptotic refinement in Corollary
 4.11a. The mathematical statements, proofs, certified floors, and
-numerical period exclusions are unchanged from version 1.2.0. It is a preprint, it has
-not been refereed, and it is not deposited. The deposited versions are:
+numerical period exclusions are unchanged from version 1.2.0. It is a preprint and has
+not been refereed. Versions 1.1.0 to 1.2.1 were prepared but not deposited. The
+earlier Zenodo versions are:
 
 - 1.0.2 of 20 September 2026,
   [doi:10.5281/zenodo.22865237](https://doi.org/10.5281/zenodo.22865237);
@@ -7019,7 +7020,8 @@ not been refereed, and it is not deposited. The deposited versions are:
 
 The concept DOI
 [10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) resolves to the
-latest version, and the record is at <https://zenodo.org/records/22865237>.
+latest version; the record of version 1.0.2 is at
+<https://zenodo.org/records/22865237>.
 The author's ORCID is
 [0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382).
 A later revision goes up through the record's new-version operation, which
