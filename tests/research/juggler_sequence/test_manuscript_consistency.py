@@ -277,12 +277,18 @@ def test_no_document_still_quotes_the_old_window_as_the_window() -> None:
 
 
 def test_contagion_exponent_quoted_by_paper_a_is_the_current_one() -> None:
-    """The companion reference distinguishes the written bound from its Lean baseline."""
+    """Paper A quotes published Paper C 1.3.0: 5/8 in Lean, 37/50 through Paper B's Theorem 6.3.
+
+    The undeposited 22 September revision it quoted before, with a Lean baseline of
+    100/203, is superseded, so neither may reappear."""
     text = read(PAPER)
-    assert r"0<\lambda\le5/8" in text
-    assert r"\lambda\le100/203" in text
-    assert "22 September written revision" in text
-    assert "unconditional Lean baseline" in text
+    assert r"0<\lambda\le5/8\), a bound" in text
+    assert "checked in Lean" in text
+    assert r"0<\lambda\le37/50" in text
+    assert "Theorem 6.3" in text
+    assert "10.5281/zenodo.22947659" in text
+    assert "100/203" not in text
+    assert "22 September written revision" not in text
     assert "0.4050" not in text
     assert re.search(r"e>0\.595", text.replace(" ", "")) is None
 

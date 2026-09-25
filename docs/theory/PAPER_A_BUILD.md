@@ -48,7 +48,7 @@ four reported boundaries; the descent floors remain supplied inputs. In
 `AxiomCheckPaperA.expected`. When the manuscript cites a different set of
 declarations, update the audit list and regenerate its expected output.
 
-This repository holds version 1.2.1, which is prepared and not deposited.
+This repository holds version 1.2.2, which is prepared and not deposited.
 The record is at
 [zenodo.org/records/22865237](https://zenodo.org/records/22865237); its current
 version is 1.0.2,
@@ -116,3 +116,17 @@ including the QA record's binding to the PDF, manuscript and source ZIP.
 Text members use LF and archive timestamps are fixed to the edition date.
 Independent mathematical review and complete Lean verification remain
 outstanding and are disclosed in the manuscript and reviewer packet.
+
+## Companion update of 25 September 2026
+
+Version 1.2.2 updates the two sentences that describe Paper C's contagion
+theorem, in the introduction and Section 6.1, and references [16] and [17],
+after Paper B 1.2.0 (doi:10.5281/zenodo.22946276) and Paper C 1.3.0
+(doi:10.5281/zenodo.22947659) were published. Paper C now gives the bound for
+lambda at most 5/8 in Lean and for lambda at most 37/50 through Paper B's
+Theorem 6.3, whose written proof has not been independently reviewed. The
+1.2.1 text quoted an undeposited 22 September revision of Paper C while
+citing its version 1.1.0. Paper A's statements, proofs, certified floors,
+numerical period exclusions and provenance pin are unchanged. The builder
+is pinned, so the PDF metadata and archive timestamps keep the 23 September
+build date.

@@ -2,20 +2,20 @@
   "status": "PASS",
   "scope": "Local Zenodo preprint preparation, file reproducibility, numerical checks and rendered layout. This is not independent mathematical certification.",
   "title": "Lower Bounds for Cycle Lengths in the Juggler Map",
-  "version": "1.2.1",
-  "source_edition": "2026-09-23-preprint",
-  "changes": "Correct metadata section extraction, synchronize publication documents, add deterministic source and verification supplement with checksums, and update the provenance pin. Mathematical statements and proofs are unchanged from 1.2.0. Separate stable paths from module registration; refresh the import-dependent finance input and provenance pin without changing computations or mathematical statements.",
-  "pdf_sha256": "4d135483447d47a59f6f2bbcb24d902cc82e7857e78261f5ec3ab8ba98ce6066",
-  "source_sha256": "721b3b28945ae99827f74849edff0f53e1d5b7121e1463a72c66303e7d4f4919",
-  "tex_sha256": "a16d9a798dc343cc1809b0f004d203d2879b1b850e3f7afd77304dcdc9312ab9",
-  "source_zip_sha256": "48f11922d5162fccc54ed063c004cd6c5c3501618a1b78185b6c511121949b06",
+  "version": "1.2.2",
+  "source_edition": "2026-09-25-preprint",
+  "changes": "Update the description of Paper C's contagion theorem (introduction and Section 6.1) and references [16] and [17] to the published Paper B 1.2.0 and Paper C 1.3.0. Mathematical statements, proofs, certified floors, numerical period exclusions and the provenance pin are unchanged from 1.2.1.",
+  "pdf_sha256": "7da9df6ba23804687a4ef31ff703782f97d2b66f33073ca3bdb5eedab448b5f9",
+  "source_sha256": "da435c44d70fc12eb067ca4158a0f0cc739862620f6c285a8d324570d473b537",
+  "tex_sha256": "6fe1eeaaa725afd7f418387530cc80ecc66ebb6d21d6cf0e85100a2b5e90a150",
+  "source_zip_sha256": "c62f3870d116775ba479bf03513765d27b5a20f08e05bc6b93890879b85f70e4",
   "digest_convention": "Text uses normalized LF; PDF and ZIP use raw bytes.",
   "pdf_pages": 113,
-  "pdf_bytes": 609451,
+  "pdf_bytes": 609763,
   "source_archive_members": 143,
   "source_archive_scope": "Every release-pinned input and explicit public supplement files; excludes unrelated working files and private materials. Third-party dependencies and complete descent-floor replays are not bundled.",
-  "standalone_pdf_rebuild": "PASS: the extracted source archive rebuilt with its own builder, producing byte-identical PDF and normalized LaTeX.",
-  "standalone_numeric_recheck": "PASS: the extracted numerical checker was rerun and reproduces all four recorded period cutoffs at the supplied floors. The floor searches themselves were not rerun.",
+  "standalone_pdf_rebuild": "PASS: the extracted 1.2.2 source archive rebuilt with its own builder, producing byte-identical PDF and normalized LaTeX.",
+  "standalone_numeric_recheck": "PASS: the extracted 1.2.2 numerical checker reproduces all four recorded period cutoffs at the supplied floors. The floor searches themselves were not rerun.",
   "period_cutoffs": [
     25781,
     176251,
@@ -33,7 +33,7 @@
   "pinned_non_editorial_inputs": 128,
   "metadata_description": "PASS: abstract and AI disclosure only; version history is excluded.",
   "visual_review": {
-    "method": "All 113 pages rendered and compared pixel-for-pixel with the preceding validated PDF. Only page 11 changed (repository commit reference); that page was visually inspected at 120 dpi. Page count, page bounds, and embedded fonts were rechecked.",
+    "method": "All 113 pages rendered at 60 dpi and compared pixel-for-pixel with the 1.2.1 PDF. Pages 1, 7, 8, 67, 111, 112 and 113 changed (date, the two Paper C passages, availability section, references 16 and 17); they were inspected at 80 dpi. Page count and embedded fonts were rechecked.",
     "agent_layout_review": "PASS",
     "human_review": "Outstanding for this local revision."
   },
@@ -77,6 +77,17 @@
     "errors": 0,
     "scope": "Complete fast repository suite via lab.py verify --changed --path tools/lab.py --workers 8. Slow tests excluded; optional skips remain explicit. Includes real MCP transport, publication provenance/archive gates and the existing Lean-backed tests. No global termination or full-paper formalization claim is inferred.",
     "checkout_snapshot_status": "stale",
-    "snapshot_limitation": "The shared checkout changed during testing; test counts do not certify a frozen latest checkout. A subsequent content-aware run passed 49 integration/ledger tests with 4 declared skips and identified BeattyCounting.lean as the sole concurrently changed file. That unfinished research module is outside Paper A and E release inputs."
+    "snapshot_limitation": "The shared checkout changed during testing; test counts do not certify a frozen latest checkout. A subsequent content-aware run passed 49 integration/ledger tests with 4 declared skips and identified BeattyCounting.lean as the sole concurrently changed file. That unfinished research module is outside Paper A and E release inputs.",
+    "context": "Run for version 1.2.1 on 23 September 2026; not repeated in full for 1.2.2."
+  },
+  "companion_update_test_run": {
+    "date": "2026-09-25",
+    "total_tests": 969,
+    "passed": 963,
+    "skipped": 5,
+    "failures": 1,
+    "scope": "Every test file that reads Paper A, its build, kit, deposit register or preprint index (100 files).",
+    "failure": "test_contagion_exponent_quoted_by_paper_a_is_the_current_one pinned the superseded Paper C wording; it now requires the published 1.3.0 statement, rejects the 1.2.1 text, and its file reruns with 66 passed.",
+    "not_run": "Slow tests and the full repository suite."
   }
 }
