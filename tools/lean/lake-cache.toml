@@ -1,0 +1,15 @@
+# Lake system configuration for the laboratory's shared build cache.
+#
+# Selected with LAKE_CONFIG by tools/lean_cache.py and the CI lean job; it is never
+# installed globally. Reads are anonymous HTTPS (the bucket grants public
+# s3:GetObject on lean/* only); uploads need LAKE_CACHE_KEY, which only CI holds.
+# Cached artifacts save compile time. They are not proof: Lake re-hashes every
+# download and rebuilds anything whose inputs differ, and evidence still comes from
+# the axiom audits and the ledger check.
+# See docs/architecture/lean_build_cache.md.
+
+[[cache.service]]
+name = "btlab"
+kind = "s3"
+artifactEndpoint = "https://weasel-lean-cache.s3.us-east-1.amazonaws.com/lean/a0"
+revisionEndpoint = "https://weasel-lean-cache.s3.us-east-1.amazonaws.com/lean/r0"

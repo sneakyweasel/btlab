@@ -19,6 +19,7 @@ is their home. Do not recreate compatibility packages or a parallel research are
 | Lean discovery and names | [Lean guide](docs/architecture/lean_discovery.md); use formalpedia before adding a theorem |
 | Sequences and prior art | [OEIS guide](docs/architecture/oeis_discovery.md); use the local OEIS MCP |
 | Certified numerical bounds | [FLINT/Arb guide](docs/architecture/certified_numerics.md) and [Arb MCP](docs/architecture/arb_mcp.md); start with `arb_capabilities`, or use `research_engine.intervals` and the paper-specific audit |
+| Lean build time, cloud sessions | [Shared Lean build cache](docs/architecture/lean_build_cache.md); `lean_cache.py fetch` instead of a cold build |
 | Shared Python code | [Architecture](docs/architecture/overview.md) |
 
 Do not read entire generated indexes, theorem ledgers or journals to find one item.
@@ -90,6 +91,7 @@ python tools/lab.py worktree new <name>                  # own worktree + branch
 python tools/lab.py land agent/<name>                    # the only way onto main
 python tools/lab.py worktree remove <name>               # after landing: clean + landed only
 python tools/lab.py status                               # read-only lab state as JSON
+python tools/lean_cache.py fetch                         # compiled Lean from the shared cache
 ```
 
 `lab.py run` and `lab.py test` bind imports and output paths to this checkout,

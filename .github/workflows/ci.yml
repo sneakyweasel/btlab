@@ -61,6 +61,16 @@ jobs:
 
   lean:
     runs-on: ubuntu-latest
+    # A cold build of the whole library takes over half an hour on this runner; the
+    # shared cache below makes later runs incremental.
+    timeout-minutes: 300
+    # Shared Lean build cache (docs/architecture/lean_build_cache.md): every build in this
+    # job reads and fills Lake's local artifact cache, restores outputs into
+    # formal/.lake/build, and finds the public S3 service through this tracked config.
+    env:
+      LAKE_CONFIG: ${{ github.workspace }}/tools/lean/lake-cache.toml
+      LAKE_ARTIFACT_CACHE: "true"
+      LAKE_RESTORE_ARTIFACTS: "true"
     steps:
       - uses: actions/checkout@v4
       - uses: leanprover/lean-action@v1
@@ -91,12 +101,19 @@ jobs:
           sudo mkswap /mnt/btlab.swap
           sudo swapon /mnt/btlab.swap
           free -m
+      # Download the compiled modules of the nearest main commit that CI has published.
+      # Lake re-hashes every artifact and the build below recompiles only modules whose
+      # inputs differ. Before the first publish there is nothing to fetch; that is fine.
+      - name: Fetch shared Lean build
+        continue-on-error: true
+        run: python tools/lean_cache.py fetch --no-mathlib --no-build --no-snapshot
       - name: Prepare pinned Lean packages and build active graph
+        id: build
         run: |
           (while true; do free -m; ps -eo rss=,args= --sort=-rss | sed -n '1,8p'; sleep 60; done) &
           monitor=$!
           trap 'kill "$monitor" 2>/dev/null || true' EXIT
-          python tools/lab.py prepare --apply
+          python tools/lab.py prepare --apply --timeout 7200
       - name: Lean-dependent gates
         run: >
           python tools/lab.py test -- --runslow -q
@@ -112,6 +129,7 @@ jobs:
       # otherwise exists only where someone built it by hand. Building it here keeps the
       # exporter working and publishes the snapshot for local and agent use.
       - name: Formalpedia semantic export
+        id: export
         if: ${{ !cancelled() }}
         run: python tools/lab.py build
       # The export records Lean's collectAxioms for every local declaration; every
@@ -119,6 +137,15 @@ jobs:
       # lean_trust allows.
       - name: LEAN VERIFIED ledger rows carry kernel-checked axioms
         run: python tools/formalpedia.py ledger-check --require-compiled
+      # Only main publishes and only CI holds the write key. The compile cache needs only
+      # a successful build: proof status is judged by the gates above, never by the cache.
+      # The snapshot goes up only when the export step succeeded. Agents and cloud
+      # sessions fetch with `python tools/lean_cache.py fetch`.
+      - name: Publish shared Lean build and formalpedia snapshot
+        if: ${{ !cancelled() && steps.build.outcome == 'success' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        env:
+          LAKE_CACHE_KEY: ${{ secrets.LAKE_CACHE_KEY }}
+        run: python tools/lean_cache.py publish ${{ steps.export.outcome != 'success' && '--no-snapshot' || '' }}
       - name: Upload formalpedia semantic snapshot
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4

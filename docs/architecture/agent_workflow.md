@@ -29,6 +29,10 @@ python tools/lab.py prepare --check                     # probe readiness
 the active Lean graph and refreshes compiled Formalpedia records. Later
 `lab.py` commands select that environment and bind imports to this checkout.
 Use `--profile python` for Python-only setup; it does not certify Lean readiness.
+For changes outside `formal/`, prefer `--profile python`: a full preparation runs the
+memory-heavy Lean build and semantic export. Cloud sessions and Linux checkouts fetch
+compiled modules instead of building them; see the
+[shared Lean build cache](lean_build_cache.md) and `python tools/lean_cache.py fetch`.
 `--offline` forbids package downloads; cached Python archives and compatible
 local Lean dependencies must already be available. Without `--from`, full
 preparation fetches the repositories recorded in the Lake lock.
