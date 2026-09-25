@@ -70,6 +70,8 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser('blueprint', help='write a self-contained HTML frontier and claim graph')
     p.add_argument('--out', default='.cache/formalpedia/blueprint.html', help='checkout-relative or absolute path')
     p.add_argument('--scope', metavar='CLAIM')
+    p.add_argument('--json', metavar='PATH', help='write the page data as JSON instead, e.g. the companion snapshot '
+                   'web/juggler-companion/public/data/blueprint.json')
     p = sub.add_parser("search", help="ranked search across names, statements, docs and exact claims")
     p.add_argument("text")
     p.add_argument("--limit", type=int, default=20)
@@ -195,7 +197,12 @@ def main(argv: list[str] | None = None) -> int:
             out = Path(args.out)
             out = out if out.is_absolute() else _fp_workspace.ROOT / out
             generated = datetime.datetime.now().astimezone().isoformat(timespec='minutes')
-            blueprint.write(out, blueprint.render(data, ledger, generated=generated))
+            if args.json:
+                out = Path(args.json)
+                out = out if out.is_absolute() else _fp_workspace.ROOT / out
+                blueprint.write(out, blueprint.render_json(data, ledger, generated=generated))
+            else:
+                blueprint.write(out, blueprint.render(data, ledger, generated=generated))
             print(f'wrote {out}')
             return 0
         except (ValueError, OSError) as exc:

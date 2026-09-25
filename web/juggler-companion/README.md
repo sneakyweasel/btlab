@@ -69,6 +69,29 @@ The exporter verifies the canonical output hash before copying drawing data.
 It does not regenerate counts, change evidence labels, or read private
 correspondence. Site-only builds use the bundled snapshot.
 
+## Formalization blueprint
+
+`/blueprint` is an unlisted laboratory view with `noindex`. It shows which
+human-proved claims have every written input in Lean, what blocks the rest, the
+written claim graph, and a paste-ready agent task per claim. It is the React form
+of `python tools/formalpedia.py blueprint`; see the
+[frontier guide](../../docs/architecture/claim_dependencies.md#formalization-frontier-and-blueprint-view).
+Status chips show only the chosen statuses (Ctrl-click combines them), and the URL
+keeps the view as `?status=ready,blocked&claim=<ID>`.
+
+The page fetches `public/data/blueprint.json` when the route opens, so the snapshot
+never enters the main bundle. The laboratory computes it; Vercel cannot. Refresh it
+from the repository root after claim or route changes:
+
+```powershell
+python tools/formalpedia.py blueprint --json web/juggler-companion/public/data/blueprint.json
+```
+
+The page shows its export date. A snapshot may lag the ledger, but
+`blueprint.lab.test.ts` fails when it names a claim that no longer exists or shows
+a claim as formalized that the ledger no longer labels `LEAN VERIFIED`. No label is
+promoted by the page.
+
 ## Build
 
 ```powershell

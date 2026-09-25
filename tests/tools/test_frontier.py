@@ -168,6 +168,17 @@ def test_blueprint_layout_points_down_and_escapes_statements(ledger, tmp_path):
     assert out.read_text(encoding='utf-8') == text
 
 
+def test_blueprint_json_is_the_page_model(ledger, tmp_path):
+    result = frontier.build(ledger, tmp_path)
+    text = blueprint.render_json(result, ledger, generated='test')
+    data = json.loads(text)
+    assert data['schema'] == 1
+    assert data == {**blueprint.page_data(result, ledger, generated='test'), 'schema': 1}
+    assert set(data['lists']) == {'ready', 'almost_ready', 'unlocks', 'blocked', 'stale', 'needs_annotation',
+                                  'unannotated_boundary'}
+    assert data['claims']['ready']['agent_prompt'].startswith('Task: Formalize')
+
+
 def test_committed_ledger_frontier_invariants():
     ledger = load_claims(ROOT).entries
     result = frontier.build(ledger, ROOT)

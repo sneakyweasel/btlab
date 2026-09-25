@@ -108,6 +108,13 @@ def render(result: dict, ledger: list[dict], *, generated: str) -> str:
             .replace('{{DATA}}', payload))
 
 
+def render_json(result: dict, ledger: list[dict], *, generated: str) -> str:
+    """The page model alone, for the React companion; the same data the HTML embeds."""
+    data = page_data(result, ledger, generated=generated)
+    data['schema'] = 1
+    return json.dumps(data, ensure_ascii=False, sort_keys=True, separators=(',', ':')) + '\n'
+
+
 def write(path: Path, text: str) -> str:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text, encoding='utf-8', newline='\n')

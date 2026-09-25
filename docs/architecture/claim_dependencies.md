@@ -179,3 +179,8 @@ graph and the table; Ctrl-click combines statuses. The URL keeps the view, as in
 embeds the frontier JSON in its `#frontier-data` block and makes no network requests.
 Open it directly, or serve it with the `blueprint` entry in `.claude/launch.json`.
 Pass `--out` for another destination. Do not commit it.
+
+The companion site carries the same view at the unlisted route `/blueprint`, from a
+committed snapshot written by `blueprint --json
+web/juggler-companion/public/data/blueprint.json`. That snapshot is a dated export,
+refreshed by hand; see the [companion README](../../web/juggler-companion/README.md#formalization-blueprint).
