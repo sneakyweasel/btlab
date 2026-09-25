@@ -210,7 +210,10 @@ def fetch(*, mathlib: bool = True, library: bool = True, build: bool = True, sna
     if build:
         # Restores cached outputs into formal/.lake/build; compiles only modules whose inputs differ.
         from lab import build_targets
-        run([lake, 'build', *('+' + m for m in build_targets())], cwd=formal, env=env)
+        from lab_lock import build_lock_path, exclusive
+        # It may compile changed modules, so it takes the machine-wide build lock.
+        with exclusive(build_lock_path(), purpose='lean_cache.py fetch', root=ROOT):
+            run([lake, 'build', *('+' + m for m in build_targets())], cwd=formal, env=env)
         result['build'] = 'restored; changed modules compiled locally'
     if snapshot:
         rev = first_available(git_revs(), lambda r: url_exists(snapshot_url(service, r)))
@@ -259,7 +262,9 @@ def publish(*, snapshot: bool = True) -> dict:
     work.mkdir(parents=True, exist_ok=True)
     mappings = work / f'map-{rev}.jsonl'
     env = lake_env()
-    run([lake, 'build', '-o', str(mappings), *('+' + m for m in modules)], cwd=formal, env=env)
+    from lab_lock import build_lock_path, exclusive
+    with exclusive(build_lock_path(), purpose='lean_cache.py publish', root=ROOT):
+        run([lake, 'build', '-o', str(mappings), *('+' + m for m in modules)], cwd=formal, env=env)
     count = mapping_count(mappings)
     check_mappings(count, len(modules))
     aws_region = region(service)
