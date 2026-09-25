@@ -422,6 +422,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "BeattyIsoBounds": "Atom-mass lower bounds on the grid tree of an isolated slope: the base between two children, chains of a window base, and rotation hits at intermediate scales",
     "BeattyIsoFrostman": "Sparse Cantor masses on the isolated-slope grid tree and the Frostman bound h(v) - h(u) <= C inc(u,v)^s under the small-scale and chain exponent conditions",
     "BeattyIsoExact": "Exact cluster-set dimension s*(nu) at isolated slopes with sparse good levels, the optimal window exponent, and the tower slope of every class nu > 1",
+    "BeattyTwoScale": "Two-scale slopes: window masses at a fixed growth ratio of good denominators, the window-exponent interval, and the lower bound dim_H K_alpha >= s where 3(R-1)s^2 + 4(rho-1)s - 4(rho-1) < 0",
     "BeattySlopeContinuity": "Local constancy of actual counts in the boundary, l1 continuity of jump weights, weak continuity of the laws and continuity of the Minkowski content at irrational slopes",
     "BeattySlopeArithmetic": "Hausdorff dimension two-thirds for almost every slope and positive finite two-thirds measure for every quadratic irrational slope",
     "BeattyCertificateWeights": "Moving phase asymptotic and uniform two-sided three-halves bounds for actual certificate gap weights",
