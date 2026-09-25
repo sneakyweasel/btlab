@@ -100,3 +100,6 @@ literature/*.private.json
 
 # Private recovery archives must never be published.
 *.bundle
+
+# Crash dumps from Git Bash / MSYS tools
+*.stackdump
