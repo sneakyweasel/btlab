@@ -92,6 +92,29 @@ def rebase(work: Path, onto: str) -> list[str]:
     return sorted(set(resolved))
 
 
+def commit_views(work: Path, message: str) -> list[str]:
+    """Commit what regeneration changed, which must be shared views only; return the paths.
+
+    The status is read NUL-separated and unstripped: a porcelain entry starts with a
+    status column that may be a space. A view can also differ only in line endings,
+    which git reports as modified and then normalises away on `add`; that is no change,
+    so the commit happens only when the staged diff is real.
+    """
+    status = subprocess.run(["git", "status", "--porcelain", "-z"], cwd=work, capture_output=True,
+                            text=True, encoding="utf-8").stdout
+    changed = [entry[3:] for entry in status.split("\0") if entry]
+    if not changed:
+        return []
+    stray = [path for path in changed if path not in SHARED_VIEWS]
+    if stray:
+        raise LandingError(f"regeneration wrote files outside the shared views: {stray}")
+    git(work, "add", "--", *changed)
+    staged = git(work, "diff", "--cached", "--name-only").splitlines()
+    if staged:
+        git(work, "commit", "-q", "-m", message)
+    return staged
+
+
 def land(root: Path, branch: str, onto: str = "main", dry_run: bool = False,
          regenerate=REGENERATE, checks=CHECKS) -> dict:
     tip = git(root, "rev-parse", "--verify", f"{branch}^{{commit}}")
@@ -112,22 +135,7 @@ def land(root: Path, branch: str, onto: str = "main", dry_run: bool = False,
                 failures.append({"command": argv, "output": (run.stdout + run.stderr)[-800:]})
         if failures:
             raise LandingError(f"regeneration failed: {failures}")
-        # NUL-separated and unstripped: a porcelain line starts with a status column that
-        # may be a space, and stripping the output would eat it from the first path.
-        status = subprocess.run(["git", "status", "--porcelain", "-z"], cwd=work, capture_output=True,
-                                text=True, encoding="utf-8").stdout
-        changed = [entry[3:] for entry in status.split("\0") if entry]
-        if changed:
-            stray = [path for path in changed if path not in SHARED_VIEWS]
-            if stray:
-                raise LandingError(f"regeneration wrote files outside the shared views: {stray}")
-            git(work, "add", "--", *changed)
-            # A regenerated view can differ only in line endings, which git normalises
-            # away on `add`; commit only a real change.
-            staged = git(work, "diff", "--cached", "--name-only").splitlines()
-            if staged:
-                git(work, "commit", "-q", "-m", f"Regenerate the shared views after landing {branch}")
-            report["regenerated"] = staged
+        report["regenerated"] = commit_views(work, f"Regenerate the shared views after landing {branch}")
         results = []
         for argv in checks:
             run = python(work, argv)

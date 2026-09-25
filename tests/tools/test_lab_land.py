@@ -17,7 +17,7 @@ GENERATOR = """
 from pathlib import Path
 rows = sorted(p.read_text().strip() for p in Path('claims').glob('*.txt'))
 Path('docs/theory').mkdir(parents=True, exist_ok=True)
-Path('docs/theory/theorem_ledger.md').write_text('\\n'.join(rows) + '\\n')
+Path('docs/theory/theorem_ledger.md').write_text('\\n'.join(rows) + '\\n', newline='\\n')
 """
 CHECK = """
 from pathlib import Path
@@ -130,13 +130,17 @@ def test_a_branch_already_in_main_has_nothing_to_land(repo):
 
 
 def test_a_view_that_differs_only_in_line_endings_is_not_a_change(repo):
-    """Regression: on Windows the regenerated views came out CRLF, git normalised them away
-    on `add`, and landing failed on an empty commit."""
-    lf_join = "write_text('\\n'.join(rows) + '\\n')"
-    crlf_join = "write_bytes(('\\r\\n'.join(rows) + '\\r\\n').encode())"
-    assert lf_join in GENERATOR
-    crlf = GENERATOR.replace(lf_join, crlf_join)
-    commit(repo, {".gitattributes": "* text=auto eol=lf\n", "gen.py": crlf}, "crlf generator")
-    branch_with(repo, "agent/one", {"notes.md": "one\n"}, with_view=False)
-    report = land(repo, "agent/one")
-    assert report["status"] == "landed" and report.get("regenerated", []) == []
+    """Regression: on Windows the regenerated views came out CRLF; git reports such a file
+    as modified and then normalises it away on `add`, and landing failed on an empty commit."""
+    commit(repo, {".gitattributes": "* text=auto eol=lf\n"}, "attributes")
+    view = repo / VIEW
+    view.write_bytes(view.read_bytes().replace(b"\n", b"\r\n"))
+    assert git(repo, "status", "--porcelain"), "the precondition: git sees the file as modified"
+    assert lab_land.commit_views(repo, "regenerate") == []
+    assert git(repo, "log", "-1", "--format=%s") == "attributes"
+
+
+def test_regeneration_may_only_touch_the_shared_views(repo):
+    (repo / "notes.md").write_text("changed by a generator\n")
+    with pytest.raises(lab_land.LandingError, match="outside the shared views"):
+        lab_land.commit_views(repo, "regenerate")
