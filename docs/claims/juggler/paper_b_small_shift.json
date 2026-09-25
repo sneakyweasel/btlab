@@ -7,6 +7,7 @@
   "lean": "Problems/Juggler/PaperBSmallShift.lean",
   "decl": [
    "small_shift_sum",
+   "small_shift_window_sum",
    "small_shift_core",
    "retained_sum_wide",
    "comparison_wide",

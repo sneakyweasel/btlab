@@ -1459,22 +1459,40 @@ theorem rpow_24_pow {P : ℝ} (hP : 0 ≤ P) (m : ℕ) (q : ℝ) (hq : (m : ℝ)
   rw [← rpow_natCast, ← rpow_mul hP, ← hq]
   ring_nf
 
-/-- **Paper B, Lemma 4.4.** For every `C` there is `K` such that for `P ≥ 1`, an integer
-shift `1 ≤ h ≤ P^{1/12}` and integers `i, j, k` with `j ≠ 0` and `|i|, |j|, |k| ≤ C P^{1/24}`,
-the sum of `e((i/2)Δ_h X + (j/2)Δ_h Y + (k/2)Δ_h(n^{9/8}))` over the odd `n ∈ (P, 2P - 2h]` has
-modulus at most `K P^{7/8}(1 + h^{1/2})`. -/
-theorem small_shift_sum (C : ℝ) : ∃ K : ℝ, ∀ P : ℝ, 1 ≤ P → ∀ h : ℕ, 1 ≤ h →
+/-- A window of odd samples in `(P, 2P]` has at most `3P` elements. -/
+theorem window_card_le {P : ℝ} (r₀ N : ℕ) (hP : 1 ≤ P) (ha : P < ((2 * r₀ + 1 : ℕ) : ℝ))
+    (hb : 1 ≤ N → ((2 * r₀ + 1 : ℕ) : ℝ) + 2 * ((N - 1 : ℕ) : ℝ) ≤ 2 * P) :
+    (N : ℝ) ≤ 3 * P := by
+  rcases Nat.eq_zero_or_pos N with hN | hN
+  · subst hN
+    simp only [Nat.cast_zero]
+    linarith
+  obtain ⟨M, rfl⟩ : ∃ M, N = M + 1 := ⟨N - 1, by omega⟩
+  have h := hb (by omega)
+  simp only [Nat.add_sub_cancel] at h
+  push_cast
+  linarith
+
+/-- The trivial bound: a window of unimodular terms has modulus at most its length. -/
+theorem norm_window_le (f : ℕ → ℝ) (N : ℕ) : ‖∑ m ∈ range N, phase (f m)‖ ≤ N := by
+  refine (norm_sum_le _ _).trans ?_
+  simp only [phase_norm, sum_const, card_range, nsmul_eq_mul, mul_one, le_refl]
+
+/-- **Lemma 4.4 on an odd window.** For every `C` there is `K ≥ 0` such that the sum (4.4)
+over the odd `2 r₀ + 1 + 2m`, `m < N`, with first sample above `P` and last sample at most
+`2P - 2h`, is at most `K P^{7/8}(1 + h^{1/2})`. -/
+theorem small_shift_window_sum (C : ℝ) : ∃ K : ℝ, 0 ≤ K ∧ ∀ P : ℝ, 1 ≤ P → ∀ h : ℕ, 1 ≤ h →
     (h : ℝ) ≤ P ^ (1 / 12 : ℝ) → ∀ i j k : ℤ, j ≠ 0 →
     |(i : ℝ)| ≤ C * P ^ (1 / 24 : ℝ) → |(j : ℝ)| ≤ C * P ^ (1 / 24 : ℝ) →
-    |(k : ℝ)| ≤ C * P ^ (1 / 24 : ℝ) →
-    ‖∑ n ∈ (range (⌊2 * P⌋₊ + 1)).filter
-        (fun n : ℕ => P < (n : ℝ) ∧ (n : ℝ) ≤ 2 * P - 2 * h ∧ Odd n),
-        phase (smallShiftPhase i j k h n)‖ ≤ K * P ^ (7 / 8 : ℝ) * (1 + √(h : ℝ)) := by
+    |(k : ℝ)| ≤ C * P ^ (1 / 24 : ℝ) → ∀ r₀ N : ℕ, P < ((2 * r₀ + 1 : ℕ) : ℝ) →
+    (1 ≤ N → ((2 * r₀ + 1 : ℕ) : ℝ) + 2 * ((N - 1 : ℕ) : ℝ) ≤ 2 * P - 2 * h) →
+    ‖∑ m ∈ range N, phase (smallShiftPhase i j k h ((2 * r₀ + 1 + 2 * m : ℕ) : ℝ))‖ ≤
+      K * P ^ (7 / 8 : ℝ) * (1 + √(h : ℝ)) := by
   set C' := max C 1 with hC'
   have hC1 : 1 ≤ C' := le_max_right _ _
   have hCC : C ≤ C' := le_max_left _ _
-  refine ⟨3 * (4096 * C') ^ 3 + 508000 * C' + 1, ?_⟩
-  intro P hP h hh1 hhP i j k hj0 hi hj hk
+  refine ⟨3 * (4096 * C') ^ 3 + 508000 * C' + 1, by positivity, ?_⟩
+  intro P hP h hh1 hhP i j k hj0 hi hj hk r₀ N ha hb
   have hP0 : 0 ≤ P := by linarith
   set T := P ^ (1 / 24 : ℝ) with hTdef
   have hT24 : T ^ 24 = P := by rw [rpow_24_pow hP0 24 1 (by norm_num), rpow_one]
@@ -1487,21 +1505,11 @@ theorem small_shift_sum (C : ℝ) : ∃ K : ℝ, ∀ P : ℝ, 1 ≤ P → ∀ h 
   have hK0 : 0 ≤ 3 * (4096 * C') ^ 3 := by positivity
   by_cases hsmall : T < 4096 * C'
   · -- trivial bound
-    refine (norm_sum_le _ _).trans ?_
-    simp only [phase_norm, sum_const, nsmul_eq_mul, mul_one]
-    have hcard : ((((range (⌊2 * P⌋₊ + 1)).filter
-        (fun n : ℕ => P < n ∧ (n : ℝ) ≤ 2 * P - 2 * h ∧ Odd n)).card : ℕ) : ℝ) ≤ 3 * T ^ 24 := by
-      have h1 := card_filter_le (range (⌊2 * P⌋₊ + 1))
-        (fun n : ℕ => P < n ∧ (n : ℝ) ≤ 2 * P - 2 * h ∧ Odd n)
-      rw [card_range] at h1
-      have h2 : ((⌊2 * P⌋₊ + 1 : ℕ) : ℝ) ≤ 2 * P + 1 := by
-        push_cast
-        linarith [Nat.floor_le (show 0 ≤ 2 * P by linarith)]
-      have h1' : (((range (⌊2 * P⌋₊ + 1)).filter
-          (fun n : ℕ => P < n ∧ (n : ℝ) ≤ 2 * P - 2 * h ∧ Odd n)).card : ℝ) ≤
-          ((⌊2 * P⌋₊ + 1 : ℕ) : ℝ) := by exact_mod_cast h1
-      rw [hT24]
-      linarith
+    have hN := window_card_le r₀ N hP ha (fun hN => by
+      have := hb hN
+      have : (0 : ℝ) ≤ h := Nat.cast_nonneg h
+      linarith)
+    refine (norm_window_le _ N).trans ?_
     have hT3 : T ^ 3 ≤ (4096 * C') ^ 3 := pow_le_pow_left₀ (by linarith) hsmall.le 3
     have h24 : 3 * T ^ 24 ≤ 3 * (4096 * C') ^ 3 * T ^ 21 := by
       have : T ^ 24 = T ^ 3 * T ^ 21 := by ring
@@ -1513,12 +1521,9 @@ theorem small_shift_sum (C : ℝ) : ∃ K : ℝ, ∀ P : ℝ, 1 ≤ P → ∀ h 
       have : 0 ≤ T ^ 21 := by positivity
       have : 0 ≤ (508000 * C' + 1) * T ^ 21 := by positivity
       nlinarith [mul_nonneg hK0 (mul_nonneg this hsh)]
+    rw [← hT24] at hN
     linarith
   push Not at hsmall
-  obtain ⟨r₀, N, ha, hb, hsum⟩ := odd_window_sum hP (L := 2 * P - 2 * h)
-    (by have : (0 : ℝ) ≤ h := Nat.cast_nonneg h; linarith)
-    (fun n => phase (smallShiftPhase i j k h n))
-  rw [hsum]
   rw [← hT24] at ha hb
   have hCT : C * T ≤ C' * T := mul_le_mul_of_nonneg_right hCC (by linarith)
   have hbound : (508000 * C' + 1) * T ^ 21 * (1 + √(h : ℝ)) ≤
@@ -1535,7 +1540,6 @@ theorem small_shift_sum (C : ℝ) : ∃ K : ℝ, ∀ P : ℝ, 1 ≤ P → ∀ h 
     rw [sum_congr rfl he, norm_sum_phase_neg]
     apply small_shift_window (-i) (-j) (-k) r₀ N h hC1 hsmall hh1 hhP (by omega)
     · push_cast
-      have := neg_abs_le (j : ℝ)
       rw [abs_le] at hj
       linarith
     · push_cast; rw [abs_neg]; linarith
@@ -1549,6 +1553,26 @@ theorem small_shift_sum (C : ℝ) : ∃ K : ℝ, ∀ P : ℝ, 1 ≤ P → ∀ h 
     · linarith
     · exact ha
     · exact hb
+
+/-- **Paper B, Lemma 4.4.** For every `C` there is `K` such that for `P ≥ 1`, an integer
+shift `1 ≤ h ≤ P^{1/12}` and integers `i, j, k` with `j ≠ 0` and `|i|, |j|, |k| ≤ C P^{1/24}`,
+the sum of `e((i/2)Δ_h X + (j/2)Δ_h Y + (k/2)Δ_h(n^{9/8}))` over the odd `n ∈ (P, 2P - 2h]` has
+modulus at most `K P^{7/8}(1 + h^{1/2})`. -/
+theorem small_shift_sum (C : ℝ) : ∃ K : ℝ, ∀ P : ℝ, 1 ≤ P → ∀ h : ℕ, 1 ≤ h →
+    (h : ℝ) ≤ P ^ (1 / 12 : ℝ) → ∀ i j k : ℤ, j ≠ 0 →
+    |(i : ℝ)| ≤ C * P ^ (1 / 24 : ℝ) → |(j : ℝ)| ≤ C * P ^ (1 / 24 : ℝ) →
+    |(k : ℝ)| ≤ C * P ^ (1 / 24 : ℝ) →
+    ‖∑ n ∈ (range (⌊2 * P⌋₊ + 1)).filter
+        (fun n : ℕ => P < (n : ℝ) ∧ (n : ℝ) ≤ 2 * P - 2 * h ∧ Odd n),
+        phase (smallShiftPhase i j k h n)‖ ≤ K * P ^ (7 / 8 : ℝ) * (1 + √(h : ℝ)) := by
+  obtain ⟨K, _, hK⟩ := small_shift_window_sum C
+  refine ⟨K, ?_⟩
+  intro P hP h hh1 hhP i j k hj0 hi hj hk
+  obtain ⟨r₀, N, ha, hb, hsum⟩ := odd_window_sum hP (L := 2 * P - 2 * h)
+    (by have : (0 : ℝ) ≤ h := Nat.cast_nonneg h; linarith)
+    (fun n => phase (smallShiftPhase i j k h n))
+  rw [hsum]
+  exact hK P hP h hh1 hhP i j k hj0 hi hj hk r₀ N ha hb
 
 end PaperBSmallShift
 
