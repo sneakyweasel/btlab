@@ -26,7 +26,7 @@
    {
     "id": "written",
     "method": "written",
-    "coverage": "partial",
+    "coverage": "complete",
     "source": {
      "path": "docs/theory/juggler_ooee_weighted_production_note.md",
      "start": "## Exact statement",
@@ -47,7 +47,7 @@
       "kind": "assumption"
      }
     ],
-    "notes": "The named open pressure input and generic reduction are explicit. The finite target is a local parameter condition, not a newly certified computational floor. Lower-level pressure proof dependencies remain unexpanded."
+    "notes": "Lean: pressure_average_conjecture (FateOOEEWeighted.lean line 199) is pressure_average_conjecture_of_ooee applied to ooee_production, with ScaleAverage.Bound as a premise. The count-to-weight part of the passage is the proof of J-ooee-actual-weighted-production. The 5/8 exponent it cites is derived inside the transfer row, so no separate contagion edge is needed. Backward closure of the nonterminating set (not_reachesOne_backwardClosed) is elementary. The finite target is a local condition, not a certified computational floor. Enumerated 2026-09-25; not an independent proof audit."
    }
   ]
  },
