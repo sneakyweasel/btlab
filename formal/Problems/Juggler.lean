@@ -88,6 +88,7 @@ import Problems.Juggler.PaperBSingleFloorBound
 import Problems.Juggler.PaperBOEThirdLetter
 import Problems.Juggler.PaperBCarryExpansion
 import Problems.Juggler.PaperBShiftAverage
+import Problems.Juggler.PaperBSawtoothExpansion
 import Problems.Juggler.PaperBCertificateLengths
 import Problems.Juggler.PaperBCertificateRecursion
 import Problems.Juggler.BeattyPhaseTransfer

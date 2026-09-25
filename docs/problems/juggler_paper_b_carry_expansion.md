@@ -1,9 +1,10 @@
-# Paper B: Lemma 4.3, the near-integer sum (4.3)
+# Paper B: Lemma 4.3, the truncated carry expansion
 
 ## Problem
 
-Machine-check the second assertion of Paper B Lemma 4.3: the bound (4.3) on
-`∑ E_R(n^{3/2})` over the odd `n` of an interval, where `E_R(t) = min(1, 1/(R‖t‖))`.
+Machine-check Paper B Lemma 4.3: the expansion `b(t) = b_R(t) + O(E_R(t))` of the sawtooth
+`b(t) = {t} - 1/2` by its truncated Fourier series, and the bound (4.3) on `∑ E_R(n^{3/2})` over
+the odd `n` of an interval, where `E_R(t) = min(1, 1/(R‖t‖))`.
 
 ## Exact statement
 
@@ -28,6 +29,7 @@ No priority claim.
   `b = b_R + O(E_R)` of the first assertion.
 - **Promotion criterion:** compiles with no `sorry` and Mathlib's three axioms.
 - **Stop criterion:** the first assertion, which needs pointwise bounds on sawtooth partial sums.
+  (Reopened on 2026-09-25 at the owner's request; see Formalization.)
 
 ## Balanced-ternary formulation
 
@@ -64,6 +66,17 @@ interval `[r₀, r₁)` (`abs_intervalCount_sub_le`). Since `n^{3/2} = 2 g(r)`, 
 `E_R(t) ≤ ∑_{j ≤ J} 2^{1-j} [‖t‖ < 2^j/R]` for `2^J ≥ R` (`carryWeight_le_layers`) then gives
 `sum_carryWeight_le`. Axioms: `propext`, `Classical.choice`, `Quot.sound`.
 
+`formal/Problems/Juggler/PaperBSawtoothExpansion.lean` (2026-09-25) proves the first
+assertion without infinite series. `sawtoothPartial_eq_exp` identifies the printed
+`b_R(t) = -∑_{1 ≤ |r| ≤ R} e(rt)/(2πi r)` with `-∑_{r=1}^R sin(2π r t)/(π r)`. Near an integer,
+`|sin(2π r t)| ≤ 2π r ‖t‖` gives `|b_R| ≤ 2 R ‖t‖` (`abs_sawtoothPartial_le`). Away from integers,
+the gap `G = b - b_R` has derivative the Dirichlet kernel `sin((2R+1)π s)/sin(π s)`
+(`sin_mul_dirichlet`, `hasDerivAt_sawtoothGap`) and vanishes at `1/2`; one integration by parts
+against `1/sin(π s)`, decreasing on `(0, 1/2]`, and `sin(π s) ≥ 2 s` give `|G(f)| ≤ 1/(R f)` for
+`0 < f ≤ 1/2` (`abs_sawtoothGap_le_of_le_half`), and `G(1 - t) = -G(t)` covers `(1/2, 1)`.
+`abs_sawtooth_sub_le`: `|b(t) - b_R(t)| ≤ (5/2) E_R(t)` for every real `t` and `R ≥ 1`.
+Axioms: `propext`, `Classical.choice`, `Quot.sound`.
+
 ## Results
 
 `J-paper-b-lemma-4-3-sum` — `EXACT — LEAN VERIFIED`: for `R ≥ 1` and `r₀ ≤ r₁`, over the odd
@@ -71,15 +84,18 @@ starts `n = 2r+1`, `r ∈ [r₀, r₁)`,
 `∑ E_R(n^{3/2}) ≤ 4 (r₁ - r₀)(⌊log₂ R⌋ + 2)/R + 25344 r₁^{5/6}`. For `I ⊆ [P, 3P]` this is
 (4.3) with explicit constants. The bound holds for every interval, not only inside `[P, 3P]`.
 
+`J-paper-b-lemma-4-3-expansion` — `EXACT — LEAN VERIFIED`: for `R ≥ 1` and every real `t`,
+`|{t} - 1/2 - b_R(t)| ≤ (5/2) E_R(t)`, including at integers. With the row above, Lemma 4.3 is
+Lean-verified in full, with explicit constants (the manuscript allows `R ≥ 2` integral).
+
 ## Open questions
 
-The first assertion of Lemma 4.3, `b(t) = b_R(t) + O(E_R(t))` including at integers, is not
-formalized. It needs a pointwise bound on the tail of the sawtooth Fourier series.
+None for this lemma.
 
 ## Decision
 
-`PROMOTE` — the bound (4.3) is kernel-checked.
+`PROMOTE` — both assertions of Lemma 4.3 are kernel-checked.
 
 ## Publication assessment
 
-Status: `THEOREM`. It Lean-verifies the second assertion of Lemma 4.3 only.
+Status: `THEOREM`. Lemma 4.3 is Lean-verified in full.

@@ -18,13 +18,15 @@ exceptional shifts have measure at most `η`, with the printed constants. Each o
 term is two affine pieces over a period starting at a breakpoint. Remaining premise: none.
 Decision: PROMOTE. Record: [shift-average dossier](problems/juggler_paper_b_shift_average.md).
 
-## 2026-09-25 -- Paper B Lemma 4.3, bound (4.3), in Lean
+## 2026-09-25 -- Paper B Lemma 4.3 in Lean
 
-**EXACT — LEAN VERIFIED:** over odd starts `2r+1`, `r ∈ [r₀, r₁)`,
-`∑ E_R(n^{3/2}) ≤ 4 (r₁ - r₀)(⌊log₂ R⌋ + 2)/R + 25344 r₁^{5/6}`, the printed (4.3) with
-constants. Theorem 3.1's discrepancy holds for every arc, and a dyadic layer bound on `E_R`
-finishes it. Remaining premise: the first assertion `b = b_R + O(E_R)` is not formalized.
-Decision: PROMOTE. Record: [carry-expansion dossier](problems/juggler_paper_b_carry_expansion.md).
+**EXACT — LEAN VERIFIED:** both assertions with explicit constants.
+`|{t} - 1/2 - b_R(t)| ≤ (5/2) E_R(t)` for every `t`, through the Dirichlet kernel and one
+integration by parts, with no infinite Fourier series; and over odd starts `2r+1`,
+`r ∈ [r₀, r₁)`, `∑ E_R(n^{3/2}) ≤ 4 (r₁ - r₀)(⌊log₂ R⌋ + 2)/R + 25344 r₁^{5/6}`, from Theorem
+3.1's discrepancy on every arc and a dyadic layer bound. Remaining premise: none. Decision:
+PROMOTE. This entry replaces the (4.3) entry of the same day. Record:
+[carry-expansion dossier](problems/juggler_paper_b_carry_expansion.md).
 
 ## 2026-09-25 -- Paper B Proposition 3.2 closed in Lean
 

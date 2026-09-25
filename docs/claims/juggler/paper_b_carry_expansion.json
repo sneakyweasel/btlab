@@ -2,7 +2,7 @@
  {
   "id": "J-paper-b-lemma-4-3-sum",
   "tag": "EXACT — LEAN VERIFIED",
-  "statement": "Paper B Lemma 4.3, bound (4.3), with explicit constants. Let E_R(t) = min(1, 1/(R ||t||)), with E_R = 1 at integers, where ||t|| is the distance to the nearest integer. For R >= 1 and r0 <= r1, the sum of E_R(n^{3/2}) over the odd starts n = 2r+1 with r in [r0, r1) is at most 4 (r1 - r0)(floor(log_2 R) + 2)/R + 25344 r1^{5/6}. For an interval I in [P, 3P] this is the printed O(P log(2R)/R + P^{5/6}). The proof extends Theorem 3.1's discrepancy bound to every arc (264 a^{5/6} on a block, 1056 R^{5/6} on a prefix), covers the points with ||n^{3/2}|| < z by three arcs of n^{3/2}/2 of total length 2z, and sums the dyadic layers E_R(t) <= sum_{j <= J} 2^{1-j} [||t|| < 2^j/R]. The first assertion of Lemma 4.3, b = b_R + O(E_R), is not covered.",
+  "statement": "Paper B Lemma 4.3, bound (4.3), with explicit constants. Let E_R(t) = min(1, 1/(R ||t||)), with E_R = 1 at integers, where ||t|| is the distance to the nearest integer. For R >= 1 and r0 <= r1, the sum of E_R(n^{3/2}) over the odd starts n = 2r+1 with r in [r0, r1) is at most 4 (r1 - r0)(floor(log_2 R) + 2)/R + 25344 r1^{5/6}. For an interval I in [P, 3P] this is the printed O(P log(2R)/R + P^{5/6}). The proof extends Theorem 3.1's discrepancy bound to every arc (264 a^{5/6} on a block, 1056 R^{5/6} on a prefix), covers the points with ||n^{3/2}|| < z by three arcs of n^{3/2}/2 of total length 2z, and sums the dyadic layers E_R(t) <= sum_{j <= J} 2^{1-j} [||t|| < 2^j/R]. The first assertion of Lemma 4.3 is J-paper-b-lemma-4-3-expansion.",
   "source": "docs/problems/juggler_paper_b_carry_expansion.md",
   "lean": "Problems/Juggler/PaperBCarryExpansion.lean",
   "decl": [
@@ -10,6 +10,23 @@
    "nearCount_le",
    "abs_prefix_arcError_le",
    "abs_block_arcError_le"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-paper-b-lemma-4-3-expansion",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper B Lemma 4.3, first assertion, with an explicit constant. Let b(t) = {t} - 1/2, b_R(t) = -sum_{1 <= |r| <= R} e(rt)/(2 pi i r) = -sum_{r=1}^R sin(2 pi r t)/(pi r), and E_R(t) = min(1, 1/(R ||t||)) with E_R = 1 at integers. For R >= 1 and every real t, |b(t) - b_R(t)| <= (5/2) E_R(t), including at integers. Near an integer |b_R(t)| <= 2 R ||t|| from |sin x| <= |x|. Away from integers, b - b_R has derivative the Dirichlet kernel sin((2R+1) pi s)/sin(pi s) and vanishes at 1/2; one integration by parts against 1/sin(pi s) and Jordan's inequality sin(pi s) >= 2s give |b - b_R| <= 1/(R ||t||). No infinite Fourier series is used.",
+  "source": "docs/problems/juggler_paper_b_carry_expansion.md",
+  "lean": "Problems/Juggler/PaperBSawtoothExpansion.lean",
+  "decl": [
+   "abs_sawtooth_sub_le",
+   "sawtoothPartial_eq_exp",
+   "abs_sawtoothGap_le_of_le_half"
   ],
   "lean_trust": "kernel",
   "tests": [

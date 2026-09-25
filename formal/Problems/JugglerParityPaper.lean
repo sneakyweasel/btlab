@@ -109,15 +109,15 @@ Also outside it, and postdating the 1.2.0 edition, which does not cite them: The
 (`PaperBSingleFloor`, `PaperBSingleFloorBound`, `|S_O(N)| ≤ 2112 N^{5/6}` through the `N/H`
 inequality of `BTCalculus.ErdosTuran`) and Proposition 3.2 in full (`PaperBOEThirdLetter`,
 `N/8 + O(N^{5/6} log N)` through the two-dimensional inequality of
-`BTCalculus.ErdosTuranBox`), the bound (4.3) of Lemma 4.3 (`PaperBCarryExpansion`), and
-Proposition 7.4 (`PaperBShiftAverage`).
+`BTCalculus.ErdosTuranBox`), Lemma 4.3 in full (`PaperBSawtoothExpansion` for
+`b = b_R + O(E_R)`, `PaperBCarryExpansion` for the bound (4.3)), and Proposition 7.4
+(`PaperBShiftAverage`).
 
 ## What is not here
 
-Theorem 3.1, Proposition 3.2, the bound (4.3) and Proposition 7.4 are the paper's
-machine-checked exponential-sum estimates, and all live outside this barrel. No other
-analytic estimate of Sections 4 and 7 or of Appendices A--D is machine-checked: not
-Theorems 4.5, 4.9, 4.11 or B.1, not the expansion `b = b_R + O(E_R)` of Lemma 4.3, not
+Theorem 3.1, Proposition 3.2, Lemma 4.3 and Proposition 7.4 are the paper's machine-checked
+analytic estimates, and all live outside this barrel. No other analytic estimate of Sections
+4 and 7 or of Appendices A--D is machine-checked: not Theorems 4.5, 4.9, 4.11 or B.1, not
 Lemmas 4.4, 4.7 or 4.8, not Proposition 7.6, and not the averaging argument of Theorem 6.3
 beyond Lemma D.3 and (D.2). The densities `13/16`, `27/32` and `7/8` of Theorems 5.2--5.4
 are therefore machine-checked only as count assemblies from their analytic inputs. Nothing
