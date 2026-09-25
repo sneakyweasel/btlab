@@ -12639,10 +12639,22 @@
  },
  {
   "id": "J-paper-b-minimal-prefixes-five",
-  "tag": "EXACT — HUMAN PROOF",
+  "tag": "EXACT — LEAN VERIFIED",
   "statement": "Paper B Lemma 5.1: the minimal power-envelope contracting prefixes through length five are exactly E, OE, OOEE, OOEOE and OOOEE. They give disjoint prefix classes whose union is the five-step certificate class; accidental earlier descent outside this certificate class is not included.",
   "source": "docs/theory/juggler_parity_discrepancy_note.md",
-  "lean": "",
+  "lean": "Problems/Juggler/PaperBMinimalPrefixes.lean",
+  "decl": [
+   "minimal_certificates_five_iff",
+   "certifiedAt_five_iff",
+   "certifiedAt_five_unique",
+   "prefix_classes_disjoint",
+   "minimal_prefix_mem",
+   "exists_minimal_prefix",
+   "fiveCertificates_minimal",
+   "fiveCertificates_prefix_free",
+   "certifiedAt_descends"
+  ],
+  "lean_trust": "kernel",
   "tests": [
    "tests/research/juggler_sequence/test_layer_architecture.py"
   ],

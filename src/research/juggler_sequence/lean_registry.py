@@ -339,6 +339,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "MonomialSplitting": "Paper B review target",
     "PaperBAssembly": "Paper B review target",
     "PaperBCertificates": "Paper B Lemma 5.1: minimal certificates through length five",
+    "PaperBMinimalPrefixes": "Paper B Lemma 5.1 over starts: C_5 is the disjoint union of the five minimal prefix classes",
     "PaperBFiveStepDensity": "Paper B Theorems 5.2-5.4: the certificate count assembly",
     "PaperBSingleFloor": "Paper B Theorem 3.1: exact bridge and one dyadic second-derivative block",
     "PaperBSingleFloorBound": "Paper B Theorem 3.1: S_O(N) = O(N^(5/6)) and both counts, via Erdos-Turan with main term N/H",

@@ -1,0 +1,20 @@
+'Problems.Juggler.PaperBCertificates.lemma51' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperBCertificates.certE_is' depends on axioms: [propext]
+'Problems.Juggler.PaperBCertificates.certOE_is' depends on axioms: [propext]
+'Problems.Juggler.PaperBCertificates.certOOEE_is' depends on axioms: [propext]
+'Problems.Juggler.PaperBCertificates.certOOOEE_is' depends on axioms: [propext]
+'Problems.Juggler.PaperBCertificates.certOOEOE_is' depends on axioms: [propext]
+'Problems.Juggler.PaperBMinimalPrefixes.minimal_certificates_five_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.PaperBMinimalPrefixes.exists_minimal_prefix' depends on axioms: [propext, Quot.sound]
+'Problems.Juggler.PaperBMinimalPrefixes.fiveCertificates_minimal' depends on axioms: [propext]
+'Problems.Juggler.PaperBMinimalPrefixes.fiveCertificates_prefix_free' depends on axioms: [propext, Quot.sound]
+'Problems.Juggler.PaperBMinimalPrefixes.minimal_prefix_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperBMinimalPrefixes.prefix_or_prefix_of_follows' depends on axioms: [propext, Quot.sound]
+'Problems.Juggler.PaperBMinimalPrefixes.prefix_classes_disjoint' depends on axioms: [propext, Quot.sound]
+'Problems.Juggler.PaperBMinimalPrefixes.certifiedAt_five_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.PaperBMinimalPrefixes.certifiedAt_five_unique' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problems.Juggler.PaperBMinimalPrefixes.certifiedAt_descends' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -82,6 +82,7 @@ import Problems.Juggler.PaperBSurvivorDecay
 import Problems.Juggler.PaperBSurvivorAsymptotic
 import Problems.Juggler.PaperBDensity
 import Problems.Juggler.PaperBCertificates
+import Problems.Juggler.PaperBMinimalPrefixes
 import Problems.Juggler.PaperBFiveStepDensity
 import Problems.Juggler.PaperBSingleFloor
 import Problems.Juggler.PaperBSingleFloorBound
