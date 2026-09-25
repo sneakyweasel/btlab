@@ -47,6 +47,9 @@ def main(argv=None) -> int:
     if arguments and arguments[0] == 'artifacts':
         from lab_artifacts import main as artifacts_main
         return artifacts_main(arguments[1:])
+    if arguments and arguments[0] in {'land', 'worktree'}:
+        from lab_land import main as land_main
+        return land_main(arguments)
     if arguments and arguments[0] in {'doctor', 'impact', 'verify'}:
         from lab_verify import main as workflow_main
         return workflow_main(arguments)
@@ -66,6 +69,9 @@ def main(argv=None) -> int:
     run.add_argument('args', nargs=argparse.REMAINDER)
     test = commands.add_parser('test', help='run pytest using this checkout\'s source tree')
     test.add_argument('args', nargs=argparse.REMAINDER)
+    commands.add_parser('land', add_help=False,
+                        help='rebase a branch on main, regenerate the shared views, check, fast-forward')
+    commands.add_parser('worktree', add_help=False, help='create an agent worktree on its own branch')
     for name in ('doctor', 'impact', 'verify'):
         commands.add_parser(name, add_help=False, help={
             'doctor': 'inspect local prerequisites',
