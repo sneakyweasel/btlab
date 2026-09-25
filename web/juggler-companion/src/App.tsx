@@ -26,6 +26,7 @@ import { ItineraryTab } from "./pages/play/ItineraryTab";
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, "");
 const BeattyTab = lazy(() => import("./pages/play/BeattyTab"));
+const BeattyProgressTab = lazy(() => import("./pages/play/BeattyProgressTab"));
 
 export default function App() {
   return (
@@ -57,6 +58,7 @@ export default function App() {
               <Route path="cycle" element={<CycleTab />} />
               <Route path="survivors" element={<SurvivorsTab />} />
               <Route path="beatty-profile" element={<Suspense fallback={<p role="status">Loading Beatty profile…</p>}><BeattyTab /></Suspense>} />
+              <Route path="beatty-progress" element={<Suspense fallback={<p role="status">Loading Beatty progress…</p>}><BeattyProgressTab /></Suspense>} />
               <Route path="leftovers" element={<Navigate to="/play/survivors" replace />} />
               <Route path="run-suffix" element={<RunSuffixTab />} />
               <Route path="suffix" element={<Navigate to="/play/run-suffix" replace />} />
