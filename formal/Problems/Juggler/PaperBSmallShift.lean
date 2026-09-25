@@ -23,6 +23,7 @@ curvature comparison uses.
 -/
 
 import Problems.Juggler.OOEECarryFourier
+import Problems.Juggler.OOEEPhaseComparison
 import Problems.Juggler.PaperBSawtoothExpansion
 
 noncomputable section
@@ -665,6 +666,103 @@ theorem sawtooth_contribution_wide {P a h u v w eps t : ℝ} (N R : ℕ) (hR : 1
     rw [norm_mul, phase_norm, mul_one, Complex.norm_real, Real.norm_eq_abs]
     exact PaperBSawtoothExpansion.abs_sawtooth_sub_le hR (θ n)
   exact (norm_add_le _ _).trans (add_le_add hmodes herr)
+
+/-! ## The retained sum -/
+
+/-- The total cost of the sawtooth modes, `∑_{k=1}^R modeCost(k)/(π k)`. -/
+noncomputable def modeTotal (P h : ℝ) (N R : ℕ) : ℝ :=
+  ∑ r ∈ range R, modeCost P h N ((r : ℝ) + 1) / (π * ((r : ℝ) + 1))
+
+/-- **The retained sum.** Over `N` odd samples in `[P, 2P - 2h]`, the carry-retained phases sum
+to at most the smooth bound, four sawtooth mode totals, and `5 (E_0 + E_{2h})`, where `E_t` is
+`∑ E_R(X(x + t))`. -/
+theorem retained_sum_wide {P a h u v w : ℝ} (N R : ℕ) (hR : 1 ≤ R)
+    (hP : 1 ≤ P) (ha : P ≤ a) (hb : a + 2 * N + 2 * h ≤ 2 * P)
+    (hh : 1 ≤ h) (hhP : 1024 * h ≤ P)
+    (hu : 0 < u) (hfreq : |v| + |w| ≤ u * P ^ (3 / 4 : ℝ) / 1024)
+    (hdom : 32 * u * h ≤ P ^ (1 / 4 : ℝ)) :
+    ‖∑ n ∈ range N, phase (OOEECarryFourier.retainedPhase h u v w (a + 2 * n))‖ ≤
+      (1024 * N * √(u * h * P ^ (-3 / 4 : ℝ) / 16) +
+        4 * (3 * h * P ^ (-1 / 2 : ℝ) * N + 2) * (4 / √(u * h * P ^ (-3 / 4 : ℝ) / 16) + 1)) +
+      4 * modeTotal P h N R +
+      5 * (∑ n ∈ range N, PaperBCarryExpansion.carryWeight R ((a + 2 * n + 0) ^ (3 / 2 : ℝ)) +
+        ∑ n ∈ range N, PaperBCarryExpansion.carryWeight R ((a + 2 * n + 2 * h) ^ (3 / 2 : ℝ))) := by
+  have hh0 : 0 ≤ h := by linarith
+  have hb' : a + 2 * N ≤ 2 * P := by linarith
+  have hs := smooth_contribution_wide (v := v) (w := w) N hP ha hb' hh hhP hu hfreq
+  set Z : ℝ → ℝ → ℂ := fun t eps => ∑ n ∈ range N,
+    ((Int.fract ((a + 2 * n + t) ^ (3 / 2 : ℝ)) - 1 / 2 : ℝ) : ℂ) *
+      phase (cellPhase (2 * h) u v w ((⌊gap h (a + 2 * n)⌋ : ℝ) + eps) (a + 2 * n)) with hZ
+  have hz (t eps : ℝ) (ht : 0 ≤ t ∧ t ≤ 2 * P) (heps : 0 ≤ eps ∧ eps ≤ 1) :=
+    sawtooth_contribution_wide (v := v) (w := w) (eps := eps) (t := t) N R hR hP ha hb' hh hhP
+      hu hfreq heps ht hdom
+  have hP0 : 0 ≤ P := by linarith
+  have h00 := hz 0 0 ⟨le_refl 0, by linarith⟩ ⟨le_refl 0, by norm_num⟩
+  have h01 := hz 0 1 ⟨le_refl 0, by linarith⟩ ⟨by norm_num, le_refl 1⟩
+  have ht0 := hz (2 * h) 0 ⟨by positivity, by linarith⟩ ⟨le_refl 0, by norm_num⟩
+  have ht1 := hz (2 * h) 1 ⟨by positivity, by linarith⟩ ⟨by norm_num, le_refl 1⟩
+  have hcarry : (∑ n ∈ range N, OOEECarryFourier.carryTerm h u v w (a + 2 * n)) =
+      (Z 0 1 - Z 0 0) - (Z (2 * h) 1 - Z (2 * h) 0) := by
+    simp only [hZ, ← sum_sub_distrib]
+    apply sum_congr rfl
+    intro n _
+    rw [OOEECarryFourier.carryTerm]
+    simp only [add_zero, Complex.ofReal_sub]
+    ring
+  have he : (∑ n ∈ range N, phase (OOEECarryFourier.retainedPhase h u v w (a + 2 * n))) =
+      (∑ n ∈ range N, smoothTerm h u v w (a + 2 * n)) +
+      ∑ n ∈ range N, OOEECarryFourier.carryTerm h u v w (a + 2 * n) := by
+    rw [← sum_add_distrib]
+    apply sum_congr rfl
+    intro n _
+    exact carry_decomposition h u v w (a + 2 * n)
+  rw [he, hcarry]
+  have n1 := norm_sub_le (Z 0 1 - Z 0 0) (Z (2 * h) 1 - Z (2 * h) 0)
+  have n2 := norm_sub_le (Z 0 1) (Z 0 0)
+  have n3 := norm_sub_le (Z (2 * h) 1) (Z (2 * h) 0)
+  have n4 := norm_add_le (∑ n ∈ range N, smoothTerm h u v w (a + 2 * n))
+    ((Z 0 1 - Z 0 0) - (Z (2 * h) 1 - Z (2 * h) 0))
+  change ‖Z 0 0‖ ≤ _ at h00
+  change ‖Z 0 1‖ ≤ _ at h01
+  change ‖Z (2 * h) 0‖ ≤ _ at ht0
+  change ‖Z (2 * h) 1‖ ≤ _ at ht1
+  unfold modeTotal
+  linarith
+
+/-! ## The near-integer sums on odd integers -/
+
+/-- `(2m+1)^{3/2}`, as a real power, is `2 g(m)`. -/
+theorem odd_rpow_eq_two_phaseG (m : ℕ) :
+    (((2 * m + 1 : ℕ) : ℝ)) ^ (3 / 2 : ℝ) = 2 * PaperBSingleFloor.phaseG (m : ℝ) := by
+  rw [OOEEPhaseComparison.three_halves_eq_mul_sqrt (by positivity),
+    PaperBSingleFloor.two_mul_phaseG_natCast]
+
+/-- **The near-integer sum along odd samples.** For `a = 2 r₀ + 1` and an integer shift
+`t = 2 s`, `∑_{n < N} E_R((a + 2n + t)^{3/2})` is bounded by the sum (4.3). -/
+theorem carryWeight_sum_odd (R : ℕ) (hR : 1 ≤ R) (r₀ s N : ℕ) :
+    ∑ n ∈ range N, PaperBCarryExpansion.carryWeight R
+        ((((2 * r₀ + 1 : ℕ) : ℝ) + 2 * n + 2 * (s : ℝ)) ^ (3 / 2 : ℝ)) ≤
+      4 * (N : ℝ) * (Nat.log 2 R + 2) / R +
+        25344 * ((r₀ + s + N : ℕ) : ℝ) ^ (5 / 6 : ℝ) := by
+  have he : ∀ n ∈ range N,
+      PaperBCarryExpansion.carryWeight R
+        ((((2 * r₀ + 1 : ℕ) : ℝ) + 2 * n + 2 * (s : ℝ)) ^ (3 / 2 : ℝ)) =
+      PaperBCarryExpansion.carryWeight R (2 * PaperBSingleFloor.phaseG ((r₀ + s + n : ℕ) : ℝ)) := by
+    intro n _
+    rw [← odd_rpow_eq_two_phaseG]
+    congr 2
+    push_cast
+    ring
+  rw [sum_congr rfl he]
+  have hshift := (sum_Ico_eq_sum_range (fun m => PaperBCarryExpansion.carryWeight R
+    (2 * PaperBSingleFloor.phaseG (m : ℝ))) (r₀ + s) (r₀ + s + N)).symm
+  have hsub : r₀ + s + N - (r₀ + s) = N := by omega
+  rw [hsub] at hshift
+  rw [hshift]
+  have h := PaperBCarryExpansion.sum_carryWeight_le R hR (r₀ + s) (r₀ + s + N) (by omega)
+  have hc : ((r₀ + s + N : ℕ) : ℝ) - ((r₀ + s : ℕ) : ℝ) = N := by push_cast; ring
+  rw [hc] at h
+  exact h
 
 end PaperBSmallShift
 
