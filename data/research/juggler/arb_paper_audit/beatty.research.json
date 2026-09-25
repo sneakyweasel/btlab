@@ -2,7 +2,7 @@
   "schema": "btlab-output/v2",
   "programme": "juggler",
   "research_id": null,
-  "created_utc": "2026-09-25T10:20:36.464043+00:00",
+  "created_utc": "2026-09-25T11:53:10.036985+00:00",
   "scope": "Paper Beatty: First explicit interval for the full profile's two-thirds moment and Minkowski content, with a certified entire omitted tail; no asymptotic tail estimate is guessed.",
   "artifact_root": ".",
   "generator": {
@@ -12,7 +12,7 @@
       "--paper",
       "Beatty",
       "--output-root",
-      ".build\\artifacts\\2834378a3bf0447e8d58a9ee925a83b0\\work"
+      ".build\\artifacts\\531b6a64b57a4bd0891e59e9c18e16d1\\work"
     ],
     "parameters": {
       "paper": "Beatty",
@@ -22,7 +22,7 @@
     "python": "3.13.9"
   },
   "source": {
-    "revision": "ef8b4681391124044ffaf77e7afdc8280620fb1d",
+    "revision": "abf8a00a2004d3c944ede067fa3e7aa10634e4b7",
     "dirty": true,
     "coverage": "loaded local Python, project configuration, and explicit sources at manifest creation; not an execution or dependency audit",
     "files": [
@@ -208,12 +208,12 @@
       },
       {
         "path": "tools/lab.py",
-        "sha256": "949f0778e44f74580a475d63b63287d2ca9f3918aaf13c1487d494fafc8cede5",
-        "bytes": 5992,
+        "sha256": "e8058ada81a436f8e79f82c9d192e3ecccfc3ecc3a63b86f6c23386a14cc9666",
+        "bytes": 6391,
         "text": {
           "normalization": "utf8-crlf-to-lf",
-          "sha256": "949f0778e44f74580a475d63b63287d2ca9f3918aaf13c1487d494fafc8cede5",
-          "bytes": 5992
+          "sha256": "e8058ada81a436f8e79f82c9d192e3ecccfc3ecc3a63b86f6c23386a14cc9666",
+          "bytes": 6391
         }
       },
       {
@@ -236,19 +236,19 @@
   "inputs": [
     {
       "path": "docs/theory/juggler_beatty_first_passage_note.md",
-      "sha256": "ab25b25fd7d4e48566b61e7ce00e5c811148c1a2a13e146dd5005553ed3fd319",
-      "bytes": 161852,
+      "sha256": "9e4b4432341d0222bac8407b26b2b86bbcfec4515d1ce62211fc2a7ce5e13a06",
+      "bytes": 162822,
       "text": {
         "normalization": "utf8-crlf-to-lf",
-        "sha256": "ab25b25fd7d4e48566b61e7ce00e5c811148c1a2a13e146dd5005553ed3fd319",
-        "bytes": 161852
+        "sha256": "9e4b4432341d0222bac8407b26b2b86bbcfec4515d1ce62211fc2a7ce5e13a06",
+        "bytes": 162822
       }
     }
   ],
   "outputs": [
     {
       "path": "beatty.json",
-      "sha256": "687d2078e8810b0b618b46bd2211eeed2356d19171d97db93e543ff1a16ca85f",
+      "sha256": "c65d9a5e27553710c0cfe06c8c316eba9c42168e1273c80f3d66f054d29958fe",
       "bytes": 1855880
     }
   ],

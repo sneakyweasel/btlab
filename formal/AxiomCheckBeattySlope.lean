@@ -15,6 +15,7 @@ import Problems.Juggler.BeattySlopeStarDim
 import Problems.Juggler.BeattySlopeLawPacking
 import Problems.Juggler.BeattySlopeIsolated
 import Problems.Juggler.BeattyIsoExact
+import Problems.Juggler.BeattyTwoScaleExact
 import Problems.Juggler.BeattySlopeFrostman
 import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeGlobalLaw
@@ -582,5 +583,11 @@ namespace Problems.Juggler
 #print axioms BeattySlope.iso_dimH_ge
 #print axioms BeattySlope.iso_dimH_eq
 #print axioms BeattySlope.isoTower_dims
+#print axioms BeattySlope.twoScale_dimH_ge
+#print axioms BeattySlope.twoScale_hausdorff_zero
+#print axioms BeattySlope.twoScale_iso_hausdorff_zero
+#print axioms BeattySlope.twoScaleDim_props
+#print axioms BeattySlope.twoScale_dimH_eq
+#print axioms BeattySlope.twoScale_dims
 
 end Problems.Juggler

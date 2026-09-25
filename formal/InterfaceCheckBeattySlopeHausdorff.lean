@@ -8,6 +8,7 @@ import Problems.Juggler.BeattySlopeCFExpansion
 import Problems.Juggler.BeattySlopePacking
 import Problems.Juggler.BeattySlopeStarDim
 import Problems.Juggler.BeattyIsoExact
+import Problems.Juggler.BeattyTwoScaleExact
 
 /-! Expanded consumers of the family Hausdorff theorems. Each statement
 concerns the set of real subsequential limits of the original integer
@@ -234,10 +235,26 @@ theorem actual_iso_dim (ν : ℝ) (hν : 1 < ν) :
   rw [cluster_eq _ (one_lt_isoSlope _ _) (isoSlope_irrational _ _)]
   exact hd
 
+/-- For every `ν > 1` and `ρ > 1 + 3/ν`, a slope of Diophantine class `ν` has actual
+cluster set of Hausdorff dimension `S(ν, ρ)`, the positive root of
+`3(ρν-1)s² + 4(ρ-1)s - 4(ρ-1) = 0`. -/
+theorem actual_two_scale_dim (ν ρ : ℝ) (hν : 1 < ν) (hρ : 1 + 3 / ν < ρ) :
+    ∃ α : ℝ, 1 < α ∧ Irrational α ∧ DiophClass α ν ∧
+      dimH {y : ℝ | MapClusterPt y atTop (fun r : ℕ => let m := ⌊α*(r : ℝ)⌋₊;
+        (r : ℝ)*(passageCount (1/α) (m+1) : ℝ)/((m-1).choose (r-1) : ℝ))} =
+        ENNReal.ofReal (2 * (Real.sqrt ((ρ - 1) * (3 * (ρ * ν) + ρ - 4)) - (ρ - 1)) /
+          (3 * (ρ * ν - 1))) := by
+  classical
+  obtain ⟨hc, hd⟩ := twoScale_dims hν hρ
+  refine ⟨_, one_lt_isoSlope _ _, isoSlope_irrational _ _, hc, ?_⟩
+  rw [cluster_eq _ (one_lt_isoSlope _ _) (isoSlope_irrational _ _)]
+  exact hd
+
 #print axioms actual_dim_spectrum
 #print axioms actual_cf_regular_dim
 #print axioms actual_packing_dim
 #print axioms actual_star_dim
 #print axioms actual_iso_dim
+#print axioms actual_two_scale_dim
 
 end Problems.Juggler.BeattySlopeHausdorffChecks

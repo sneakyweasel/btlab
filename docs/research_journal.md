@@ -11,15 +11,19 @@ consolidation is at `e9725762eaf028d1ace354ff20e0fc48f1a3d143`. See
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
-## 2026-09-25 -- Dimension of Beatty cluster sets as a growth-sequence game
+## 2026-09-25 -- Beatty dimension as a growth-sequence game; two-scale slopes in Lean
 
 **OBSERVATION (exponent model):** reduced to exponent recursions, the cover of
 Theorem 6.18a and the grid-window measure of Theorem 6.71 give the same Hausdorff
 dimension on every periodic growth pattern tested (34 patterns, gaps below `1e-15`
 away from marginal thresholds). A jump `nu` followed by a dense stretch `rho` has an
 explicit two-scale formula interpolating `2/(2+nu)` and `s*(nu)`, with windows helping
-exactly when `rho > 1 + 3/nu`. Remaining premise: a proof. Decision: PROMOTE to Phase 1,
-starting with the two-scale family. Record: [phase-collapse dossier](problems/juggler_winkler_phase_collapse.md).
+exactly when `rho > 1 + 3/nu`. Phase 1, same day, **EXACT — LEAN VERIFIED**: for
+`rho > 1 + 3/nu` the two-scale slopes have `dim_H K_alpha = S(nu, rho)`, the root of
+`3(R-1)s^2 + 4(rho-1)s - 4(rho-1) = 0`, and exist in every class `nu > 1`
+(`twoScale_dims`). Remaining premise: none for this family; patterns with several
+jumps per period stay numerical. Decision: PROMOTE. Record: claim
+`J-beatty-slope-two-scale`, note section 33, [phase-collapse dossier](problems/juggler_winkler_phase_collapse.md).
 
 ## 2026-09-25 -- Isolated slopes attain s*(nu) in Lean
 

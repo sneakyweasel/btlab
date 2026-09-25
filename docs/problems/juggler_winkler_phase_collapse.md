@@ -1759,6 +1759,15 @@ contracting. The written proof of both bounds is note section 33, (62k)
 (**EXACT — HUMAN PROOF**, not refereed). Next: formalize, lower bound first by
 replacing the `IsoLevels` sparsity with a growth ratio.
 
+**Phase 1 result — EXACT — LEAN VERIFIED.** For `nu > 1`, `rho > 1 + 3/nu`, an
+isolated slope whose good denominators grow like `q_(j+1) >= q_j^(rho nu)` and at most
+`N_j^rho'` for every `rho' > rho` has `dim_H K_alpha = S(nu, rho)`, and such slopes of
+class exactly `nu` exist for every `nu`, `rho` (claim `J-beatty-slope-two-scale`,
+`twoScale_dimH_eq`, `twoScale_dims`). This proves the dimension game of Phase 0 on
+the whole two-scale family. The regime `rho <= 1 + 3/nu` is not stated in Lean; there
+the value `2/(2+nu)` is expected. **PROMOTE.** Open next: patterns with several
+jumps per period, where the game is known numerically but no Lean statement exists.
+
 ## Decision
 
 `PROMOTE` -- for every irrational slope above one, the actual normalized

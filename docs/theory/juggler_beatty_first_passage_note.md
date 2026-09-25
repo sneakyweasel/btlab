@@ -3020,7 +3020,7 @@ Between `N_j` and `q_(j+1)` every partial quotient is `1`, so consecutive
 denominators there at most double. For every `nu > 1` and `rho >= 1`, choosing
 `g_(j+1)` as the first index with `log Q >= R log q_j` gives such a slope.
 
-**Two-scale slopes — EXACT — HUMAN PROOF (written, not yet refereed or formalized).** Under (62j),
+**Two-scale slopes — EXACT — LEAN VERIFIED.** Under (62j),
 `dim_H K_alpha = S(nu, rho)`, where `S(nu, rho) = 2/(2+nu)` if `rho <= 1 + 3/nu`,
 and otherwise `S(nu, rho)` is the positive root of
 \[
@@ -3089,9 +3089,23 @@ where the dense stretch supplies convergents at every scale) and
 with equality at `s = S(nu, rho)`, so every `s < S(nu, rho)` is admissible and
 `H^s(K_alpha) > 0`.
 
-The upper argument is complete except for writing out the constants. The lower
-argument reuses Section 32 verbatim with one changed exponent. Both are to be
-formalized by generalizing `IsoLevels` (sparsity) to a growth ratio.
+*Lean formalization.* The Lean statement reads (62j) as two one-sided growth
+conditions: `q_(j+1) >= q_j^R` from some level on, and `q_(j+1) <= N_j^rho'` from
+some level on for every `rho' > rho`
+([BeattyTwoScaleExact.lean](../../formal/Problems/Juggler/BeattyTwoScaleExact.lean),
+`twoScale_dimH_eq`). The upper bound is `twoScale_hausdorff_zero`
+([BeattyTwoScaleUpper.lean](../../formal/Problems/Juggler/BeattyTwoScaleUpper.lean)):
+the pass-through step is `cell_pass_step`, and `twoScale_gain` gives a uniform gain
+`min(Q/(2(2+s)rho), (s(2+nu)-2)/(s+2))` on `sigma in [3s/2, 1]`, which covers both
+regimes of (62k) at once. The lower bound is `twoScale_dimH_ge`
+([BeattyTwoScale.lean](../../formal/Problems/Juggler/BeattyTwoScale.lean)); its
+exponent choice needs no square root, since the window exponents allowed by the two
+conditions form an interval `(gamma_2, gamma_1)` with
+`gamma_1 - gamma_2 = -Q(s)(R-1)/(2 rho (s(R-1) - 2))`. Existence is `twoScale_dims`:
+each next good index is the least index at least three beyond the last whose
+denominator reaches `q_j^R`, computed from the good indices already chosen; minimality
+gives `q_(j+1) <= 4 N_j^rho`. The axiom audit lists only `propext`,
+`Classical.choice` and `Quot.sound`.
 
 ## References
 
