@@ -13,6 +13,7 @@ import Problems.Juggler.BeattySlopePacking
 import Problems.Juggler.BeattySlopeMeasureDim
 import Problems.Juggler.BeattySlopeStarDim
 import Problems.Juggler.BeattySlopeLawPacking
+import Problems.Juggler.BeattySlopeIsolated
 import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeGlobalLaw
 import Problems.Juggler.BeattySlopeLawContinuity
@@ -559,5 +560,12 @@ namespace Problems.Juggler
 #print axioms BeattySlope.passageLaw_upperBoxDim_ge
 #print axioms BeattySlope.passageLaw_lawDimP_eq
 #print axioms BeattySlope.passageLaw_dims_eq_iff
+#print axioms BeattySlope.isoQuot_succ_ge
+#print axioms BeattySlope.cfDen_isoQuot
+#print axioms BeattySlope.one_lt_isoSlope
+#print axioms BeattySlope.isoSlope_irrational
+#print axioms BeattySlope.isoDen_growth
+#print axioms BeattySlope.isoSlope_diophClass
+#print axioms BeattySlope.isoSlope_dims
 
 end Problems.Juggler

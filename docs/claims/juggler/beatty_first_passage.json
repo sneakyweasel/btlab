@@ -2553,5 +2553,38 @@
    "tests/research/juggler_sequence/test_layer_completeness.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-isolated",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For nu > 1 and a set G of good indices, the slope with partial quotients a_0 = 1, a_k = ceil(Q_k^(nu-1)) + 1 at good k >= 1 and a_k = 1 otherwise satisfies Q_(k+1) <= 4 Q_k^nu always and Q_(k+1) >= Q_k^nu at good k. With infinitely many good indices it is irrational, exceeds one, has Diophantine class exactly nu, its limit law has lower Hausdorff dimension 2/(2+nu), and its cluster set has Hausdorff dimension at most s*(nu) = 2(sqrt(1+3nu)-1)/(3nu).",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattySlopeIsolated.lean",
+  "decl": [
+   "isoQuot_succ_ge",
+   "cfDen_isoQuot",
+   "one_lt_isoSlope",
+   "isoSlope_irrational",
+   "isoDen_growth",
+   "isoSlope_diophClass",
+   "isoSlope_dims"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-isolated-exact",
+  "tag": "EXACT — HUMAN PROOF",
+  "statement": "If the good indices are sparse (j log Q_(g_(j-1)+1) = o(log Q_(g_j)), e.g. g_j = 2^(g_(j-1))), the isolated-level slope of class nu > 1 has dim_H K_alpha = s*(nu) = 2(sqrt(1+3nu)-1)/(3nu). Lower bound: a Cantor measure on open windows of length q^(-gamma) beside the bases at each good level is s-Frostman under the profile for every s < min(2/(3+nu-gamma), 2(1+nu-gamma)/(3nu)); the optimum gamma = nu + 2 - sqrt(1+3nu) gives s*(nu). Since regular slopes of the same class have dimension 2/(2+nu) < s*(nu), dim_H K_alpha is not a function of the Diophantine class, while the law dimension is. The written proof passed an automated referee pass with repairs incorporated; it has no human referee and the lower bound is not formalized.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "",
+  "tests": [
+   "tests/tools/test_formalpedia_audits.py"
+  ],
+  "related_conjectures": []
  }
 ]

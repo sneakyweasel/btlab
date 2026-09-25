@@ -1659,6 +1659,31 @@ is `2`. A two-constraint Frostman computation with windows of length
 exactly `s*(nu)` at the optimal `gamma = nu + 2 - sqrt(1+3nu)`, which supports
 the conjecture that `dim_H K_alpha = s*(nu)` for such slopes. **PROMOTE**.
 
+### Isolated good levels (25 September)
+
+```text
+Mathematical target     A slope of class nu with dim_H K_alpha > 2/(2+nu).
+Novelty hypothesis      Windows of length q^(-gamma) beside bases give an s*(nu)-Frostman measure.
+Falsifier               A scale where the Cantor measure beats inc(I)^s for every gamma.
+Already killed by?      No; section 4 of the exact-dimension notes predicted s*(nu) heuristically.
+Existing machinery      s*(nu) upper bound, class lemma, many hits, chain identity.
+Maximum Phase-0 scope   Written proof and referee pass; Lean construction, class and upper bound.
+Promotion criterion     A complete written lower-bound proof surviving review.
+Stop criterion          A fatal gap in the case analysis.
+```
+
+**EXACT — HUMAN PROOF (lower bound); LEAN VERIFIED (construction, class, law
+dimension, upper bound).** For sparse isolated good levels,
+`dim_H K_alpha = s*(nu)` (note section 32, (62i); claim
+`J-beatty-slope-isolated-exact`; Lean construction in
+[BeattySlopeIsolated.lean](../../formal/Problems/Juggler/BeattySlopeIsolated.lean),
+claim `J-beatty-slope-isolated`). With (62g), the Hausdorff dimension of the
+cluster set is not a function of the Diophantine class, while the dimension of
+the law is. An automated referee pass returned *correct with repairs*: the
+choice of base for `theta < 0`, the endpoint convention, and the wrap-around
+window. The repairs are incorporated. **PROMOTE**; formalizing the Cantor
+measure is the remaining step.
+
 ## Decision
 
 `PROMOTE` -- for every irrational slope above one, the actual normalized
