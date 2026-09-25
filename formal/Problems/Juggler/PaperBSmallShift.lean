@@ -943,6 +943,208 @@ theorem modeTotal_le {P h : ℝ} (N R : ℕ) (hP : 0 < P) (hh : 0 ≤ h) :
   have e : 6 * A / √s * 3 = 18 * A / √s := by ring
   nlinarith
 
+/-! ## Powers of `P = T^{24}` -/
+
+/-- `(T^{24})^q = T^m` when `24 q = m`. -/
+theorem pow24_rpow_nat {T : ℝ} (hT : 0 < T) {q : ℝ} {m : ℕ} (hq : 24 * q = m) :
+    (T ^ 24) ^ q = T ^ m := by
+  rw [← rpow_natCast T 24, ← rpow_mul hT.le, show ((24 : ℕ) : ℝ) * q = m by push_cast; linarith,
+    rpow_natCast]
+
+/-- `(T^{24})^q = 1/T^m` when `24 q = -m`. -/
+theorem pow24_rpow_neg {T : ℝ} (hT : 0 < T) {q : ℝ} {m : ℕ} (hq : 24 * q = -(m : ℝ)) :
+    (T ^ 24) ^ q = 1 / T ^ m := by
+  rw [← rpow_natCast T 24, ← rpow_mul hT.le, show ((24 : ℕ) : ℝ) * q = -(m : ℝ) by
+    push_cast; linarith, rpow_neg hT.le, rpow_natCast, one_div]
+
+/-! ## The four contributions in powers of `T` -/
+
+/-- `√(u h) ≤ C T^2` for `u ≤ C T/2`, `h ≤ T^2`. -/
+theorem sqrt_uh_le {C T u hr : ℝ} (hC : 1 ≤ C) (hT : 1 ≤ T) (hh : 0 ≤ hr)
+    (huC : u ≤ C * T / 2) (hhT : hr ≤ T ^ 2) : √(u * hr) ≤ C * T ^ 2 := by
+  rw [sqrt_le_left (by positivity)]
+  have h1 : u * hr ≤ (C * T / 2) * T ^ 2 := mul_le_mul huC hhT hh (by positivity)
+  have h2 : C * T / 2 * T ^ 2 ≤ C * T ^ 3 := by
+    have : 0 ≤ C * T ^ 3 := by positivity
+    nlinarith
+  have h3 : C * T ^ 3 ≤ (C * T ^ 2) ^ 2 := by
+    have hc : C ≤ C * C := by nlinarith
+    have ht : T ^ 3 ≤ T ^ 4 := pow_le_pow_right₀ hT (by norm_num)
+    calc C * T ^ 3 ≤ (C * C) * T ^ 4 := mul_le_mul hc ht (by positivity) (by positivity)
+      _ = (C * T ^ 2) ^ 2 := by ring
+  linarith
+
+/-- `√(u h) ≥ √h/2` for `u ≥ 1/2`. -/
+theorem sqrt_uh_ge {u hr : ℝ} (hu : 1 / 2 ≤ u) (hh : 0 ≤ hr) : √hr / 2 ≤ √(u * hr) := by
+  have h1 : hr / 4 ≤ u * hr := by nlinarith
+  calc √hr / 2 = √(hr / 4) := by
+        rw [sqrt_div hh, show (4 : ℝ) = 2 ^ 2 by norm_num, sqrt_sq (by norm_num)]
+    _ ≤ √(u * hr) := sqrt_le_sqrt h1
+
+/-- `3 h N/T^{12} + 2 ≤ 5 h T^{12}` for `N ≤ T^{24}`, `h ≥ 1`. -/
+theorem carry_count_le {T hr : ℝ} (N : ℕ) (hT : 1 ≤ T) (hh : 1 ≤ hr) (hN : (N : ℝ) ≤ T ^ 24) :
+    3 * hr * (1 / T ^ 12) * N + 2 ≤ 5 * hr * T ^ 12 := by
+  have h12 : (1 : ℝ) ≤ T ^ 12 := one_le_pow₀ hT
+  have hNT : (N : ℝ) / T ^ 12 ≤ T ^ 12 := by
+    rw [div_le_iff₀ (by positivity)]
+    calc (N : ℝ) ≤ T ^ 24 := hN
+      _ = T ^ 12 * T ^ 12 := by ring
+  have e : 3 * hr * (1 / T ^ 12) * N = 3 * hr * ((N : ℝ) / T ^ 12) := by ring
+  have h1 : 3 * hr * ((N : ℝ) / T ^ 12) ≤ 3 * hr * T ^ 12 := by gcongr
+  have h2 : 2 ≤ 2 * hr * T ^ 12 := by nlinarith
+  linarith
+
+/-- **The smooth part.** `1024 N √λ + 4(3 h N/T^{12} + 2)(4/√λ + 1) ≤ (256 C + 660 √h) T^{21}`,
+`λ = u h/(16 T^{18})`. -/
+theorem smooth_part_T {C T u hr : ℝ} (N : ℕ) (hC : 1 ≤ C) (hT : 1 ≤ T) (hh1 : 1 ≤ hr)
+    (hhT : hr ≤ T ^ 2) (hu1 : 1 / 2 ≤ u) (huC : u ≤ C * T / 2) (hN : (N : ℝ) ≤ T ^ 24) :
+    1024 * N * √(u * hr * (1 / T ^ 18) / 16) +
+        4 * (3 * hr * (1 / T ^ 12) * N + 2) * (4 / √(u * hr * (1 / T ^ 18) / 16) + 1) ≤
+      256 * C * T ^ 21 + 660 * √hr * T ^ 21 := by
+  have hT0 : 0 < T := by linarith
+  have hu0 : 0 ≤ u := by linarith
+  have hh0 : 0 ≤ hr := by linarith
+  have hlam : √(u * hr * (1 / T ^ 18) / 16) = √(u * hr) / (4 * T ^ 9) := by
+    rw [show u * hr * (1 / T ^ 18) / 16 = (u * hr) / (4 * T ^ 9) ^ 2 by ring,
+      sqrt_div (by positivity), sqrt_sq (by positivity)]
+  rw [hlam]
+  have huh := sqrt_uh_le hC hT hh0 huC hhT
+  have huhlo := sqrt_uh_ge hu1 hh0
+  have hsh1 : 1 ≤ √hr := by rw [show (1 : ℝ) = √1 by simp]; exact sqrt_le_sqrt hh1
+  have hsh : √hr ≤ T := by rw [sqrt_le_left hT0.le]; exact hhT
+  have hA := carry_count_le N hT hh1 hN
+  -- first term
+  have t1 : 1024 * (N : ℝ) * (√(u * hr) / (4 * T ^ 9)) ≤ 256 * C * T ^ 21 := by
+    calc 1024 * (N : ℝ) * (√(u * hr) / (4 * T ^ 9))
+        ≤ 1024 * T ^ 24 * (C * T ^ 2 / (4 * T ^ 9)) := by gcongr
+      _ = 256 * C * T ^ 17 := by field_simp; ring
+      _ ≤ 256 * C * T ^ 21 :=
+          mul_le_mul_of_nonneg_left (pow_le_pow_right₀ hT (by norm_num)) (by positivity)
+  -- second term
+  have hinv : 4 / (√(u * hr) / (4 * T ^ 9)) ≤ 32 * T ^ 9 / √hr := by
+    have hpos : 0 < √(u * hr) := lt_of_lt_of_le (by positivity) huhlo
+    rw [div_div_eq_mul_div, div_le_div_iff₀ hpos (by positivity)]
+    have : 0 ≤ T ^ 9 := by positivity
+    nlinarith
+  have t2 : 4 * (3 * hr * (1 / T ^ 12) * N + 2) * (4 / (√(u * hr) / (4 * T ^ 9)) + 1) ≤
+      4 * (5 * hr * T ^ 12) * (32 * T ^ 9 / √hr + 1) := by
+    have : 0 ≤ 4 / (√(u * hr) / (4 * T ^ 9)) + 1 := by positivity
+    gcongr
+  have e2 : 4 * (5 * hr * T ^ 12) * (32 * T ^ 9 / √hr + 1) =
+      640 * √hr * T ^ 21 + 20 * hr * T ^ 12 := by
+    set sh := √hr with hshdef
+    have hs0 : sh ≠ 0 := by positivity
+    have hsq : sh * sh = hr := mul_self_sqrt hh0
+    rw [← hsq]
+    field_simp
+    ring
+  have t3 : 20 * hr * T ^ 12 ≤ 20 * √hr * T ^ 21 := by
+    have hsq : √hr * √hr = hr := mul_self_sqrt hh0
+    have h1 : hr ≤ √hr * T := by
+      calc hr = √hr * √hr := hsq.symm
+        _ ≤ √hr * T := mul_le_mul_of_nonneg_left hsh (sqrt_nonneg _)
+    have h2 : T * T ^ 12 ≤ T ^ 21 := by
+      calc T * T ^ 12 = T ^ 13 := by ring
+        _ ≤ T ^ 21 := pow_le_pow_right₀ hT (by norm_num)
+    calc 20 * hr * T ^ 12 ≤ 20 * (√hr * T) * T ^ 12 := by gcongr
+      _ = 20 * √hr * (T * T ^ 12) := by ring
+      _ ≤ 20 * √hr * T ^ 21 := by gcongr
+  linarith
+
+/-- **The sawtooth modes.** With `P = T^{24}` and `√R ≤ T^3`, four mode totals cost at most
+`(128 + 400 √h) T^{21}`. -/
+theorem modes_part_T {T hr : ℝ} (N R : ℕ) (hT : 1 ≤ T) (hh1 : 1 ≤ hr) (hhT : hr ≤ T ^ 2)
+    (hN : (N : ℝ) ≤ T ^ 24) (hR : √(R : ℝ) ≤ T ^ 3) :
+    4 * modeTotal (T ^ 24) hr N R ≤ 128 * T ^ 21 + 400 * √hr * T ^ 21 := by
+  have hT0 : 0 < T := by linarith
+  have hm := modeTotal_le (P := T ^ 24) (h := hr) N R (by positivity) (by linarith)
+  have hs : (T ^ 24) ^ (-1 / 2 : ℝ) = 1 / T ^ 12 := pow24_rpow_neg hT0 (m := 12) (by norm_num)
+  have hss : √(1 / T ^ 12) = 1 / T ^ 6 := by
+    rw [show (1 : ℝ) / T ^ 12 = (1 / T ^ 6) ^ 2 by ring, sqrt_sq (by positivity)]
+  rw [hs, hss] at hm
+  have hA := carry_count_le N hT hh1 hN
+  have hA0 : 0 ≤ 3 * hr * (1 / T ^ 12) * N + 2 := by positivity
+  have hsh : √hr ≤ T := by rw [sqrt_le_left hT0.le]; exact hhT
+  have hsq : √hr * √hr = hr := mul_self_sqrt (by linarith)
+  have hR0 : 0 ≤ √(R : ℝ) := sqrt_nonneg _
+  have t1 : 32 * (N : ℝ) * (1 / T ^ 6) * √(R : ℝ) ≤ 32 * T ^ 21 := by
+    calc 32 * (N : ℝ) * (1 / T ^ 6) * √(R : ℝ) ≤ 32 * T ^ 24 * (1 / T ^ 6) * T ^ 3 := by gcongr
+      _ = 32 * T ^ 21 := by field_simp
+  have t2 : 18 * (3 * hr * (1 / T ^ 12) * N + 2) / (1 / T ^ 6) ≤ 90 * √hr * T ^ 21 := by
+    rw [div_div_eq_mul_div, div_one]
+    calc 18 * (3 * hr * (1 / T ^ 12) * N + 2) * T ^ 6 ≤ 18 * (5 * hr * T ^ 12) * T ^ 6 := by
+          gcongr
+      _ = 90 * (√hr * √hr) * T ^ 18 := by rw [hsq]; ring
+      _ ≤ 90 * (√hr * T) * T ^ 18 := by gcongr
+      _ = 90 * √hr * T ^ 19 := by ring
+      _ ≤ 90 * √hr * T ^ 21 :=
+          mul_le_mul_of_nonneg_left (pow_le_pow_right₀ hT (by norm_num)) (by positivity)
+  have t3 : 2 * (3 * hr * (1 / T ^ 12) * N + 2) * √(R : ℝ) ≤ 10 * √hr * T ^ 21 := by
+    calc 2 * (3 * hr * (1 / T ^ 12) * N + 2) * √(R : ℝ) ≤ 2 * (5 * hr * T ^ 12) * T ^ 3 := by
+          gcongr
+      _ = 10 * (√hr * √hr) * T ^ 15 := by rw [hsq]; ring
+      _ ≤ 10 * (√hr * T) * T ^ 15 := by gcongr
+      _ = 10 * √hr * T ^ 16 := by ring
+      _ ≤ 10 * √hr * T ^ 21 :=
+          mul_le_mul_of_nonneg_left (pow_le_pow_right₀ hT (by norm_num)) (by positivity)
+  linarith
+
+/-- **One near-integer sum.** For `N ≤ T^{24}`, `√R ≥ T^3/2` and `0 ≤ X ≤ 2 T^{24}`,
+`4 N (⌊log₂ R⌋ + 2)/R + 25344 X^{5/6} ≤ 50720 T^{21}`. -/
+theorem nearint_part_T {T X : ℝ} (N R : ℕ) (hT : 1 ≤ T) (hR1 : 1 ≤ R)
+    (hN : (N : ℝ) ≤ T ^ 24) (hR : T ^ 3 / 2 ≤ √(R : ℝ)) (hX0 : 0 ≤ X) (hX : X ≤ 2 * T ^ 24) :
+    4 * (N : ℝ) * (Nat.log 2 R + 2) / R + 25344 * X ^ (5 / 6 : ℝ) ≤ 50720 * T ^ 21 := by
+  have hT0 : 0 < T := by linarith
+  have hRr : (1 : ℝ) ≤ R := by exact_mod_cast hR1
+  have hsR1 : 1 ≤ √(R : ℝ) := by rw [show (1 : ℝ) = √1 by simp]; exact sqrt_le_sqrt hRr
+  have hsq : √(R : ℝ) * √(R : ℝ) = R := mul_self_sqrt (by linarith)
+  have hlog := log_two_le_two_sqrt R
+  have t1 : 4 * (N : ℝ) * (Nat.log 2 R + 2) / R ≤ 32 * T ^ 21 := by
+    have h1 : (Nat.log 2 R : ℝ) + 2 ≤ 4 * √(R : ℝ) := by linarith
+    have hN0 : (0 : ℝ) ≤ N := Nat.cast_nonneg N
+    calc 4 * (N : ℝ) * (Nat.log 2 R + 2) / R ≤ 4 * N * (4 * √(R : ℝ)) / R := by gcongr
+      _ = 16 * N / √(R : ℝ) := by
+          rw [div_eq_div_iff (by positivity) (by positivity)]
+          linear_combination (16 * (N : ℝ)) * hsq
+      _ ≤ 16 * T ^ 24 / (T ^ 3 / 2) := by
+          apply div_le_div₀ (by positivity) (by linarith) (by positivity) hR
+      _ = 32 * T ^ 21 := by field_simp; ring
+  have t2 : X ^ (5 / 6 : ℝ) ≤ 2 * T ^ 20 := by
+    calc X ^ (5 / 6 : ℝ) ≤ (2 * T ^ 24) ^ (5 / 6 : ℝ) := rpow_le_rpow hX0 hX (by norm_num)
+      _ = 2 ^ (5 / 6 : ℝ) * (T ^ 24) ^ (5 / 6 : ℝ) := mul_rpow (by norm_num) (by positivity)
+      _ = 2 ^ (5 / 6 : ℝ) * T ^ 20 := by rw [pow24_rpow_nat hT0 (m := 20) (by norm_num)]
+      _ ≤ 2 * T ^ 20 := by
+          gcongr
+          calc (2 : ℝ) ^ (5 / 6 : ℝ) ≤ 2 ^ (1 : ℝ) :=
+                rpow_le_rpow_of_exponent_le (by norm_num) (by norm_num)
+            _ = 2 := rpow_one 2
+  have t3 : T ^ 20 ≤ T ^ 21 := pow_le_pow_right₀ hT (by norm_num)
+  nlinarith
+
+/-- **The phase comparison (4.6).** `N · 2π u ((9/4) h P^{-1/4} + 2 P^{-3/4}) ≤ 17 C T^{21}` for
+`P = T^{24}`, `N ≤ T^{24}`, `u ≤ C T/2`, `h ≤ T^2`. -/
+theorem comparison_part_T {C T u hr : ℝ} (N : ℕ) (hC : 1 ≤ C) (hT : 1 ≤ T) (hu : 0 ≤ u)
+    (huC : u ≤ C * T / 2) (hh : 0 ≤ hr) (hhT : hr ≤ T ^ 2) (hN : (N : ℝ) ≤ T ^ 24) :
+    N * (2 * π * (|u| * ((9 / 4) * hr * (T ^ 24) ^ (-1 / 4 : ℝ) +
+      2 * (T ^ 24) ^ (-3 / 4 : ℝ)))) ≤ 17 * C * T ^ 21 := by
+  have hT0 : 0 < T := by linarith
+  rw [pow24_rpow_neg hT0 (m := 6) (by norm_num), pow24_rpow_neg hT0 (m := 18) (by norm_num),
+    abs_of_nonneg hu]
+  have hpi : π ≤ 4 := pi_le_four
+  have hin : (9 / 4) * hr * (1 / T ^ 6) + 2 * (1 / T ^ 18) ≤ (17 / 4) / T ^ 4 := by
+    have h1 : hr * (1 / T ^ 6) ≤ 1 / T ^ 4 := by
+      rw [mul_one_div, div_le_div_iff₀ (by positivity) (by positivity)]
+      calc hr * T ^ 4 ≤ T ^ 2 * T ^ 4 := by gcongr
+        _ = 1 * T ^ 6 := by ring
+    have h2 : 1 / T ^ 18 ≤ 1 / T ^ 4 :=
+      one_div_le_one_div_of_le (by positivity) (pow_le_pow_right₀ hT (by norm_num))
+    have : (17 / 4 : ℝ) / T ^ 4 = (9 / 4) * (1 / T ^ 4) + 2 * (1 / T ^ 4) := by ring
+    linarith
+  have hin0 : 0 ≤ (9 / 4) * hr * (1 / T ^ 6) + 2 * (1 / T ^ 18) := by positivity
+  calc (N : ℝ) * (2 * π * (u * ((9 / 4) * hr * (1 / T ^ 6) + 2 * (1 / T ^ 18))))
+      ≤ T ^ 24 * (2 * 4 * ((C * T / 2) * ((17 / 4) / T ^ 4))) := by gcongr
+    _ = 17 * C * T ^ 21 := by field_simp
+
 end PaperBSmallShift
 
 end Problems.Juggler
