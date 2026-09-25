@@ -119,9 +119,9 @@ machine-checked exponential-sum estimates, and all live outside this barrel. No 
 analytic estimate of Sections 4 and 7 or of Appendices A--D is machine-checked: not
 Theorems 4.5, 4.9, 4.11 or B.1, not the expansion `b = b_R + O(E_R)` of Lemma 4.3, not
 Lemmas 4.4, 4.7 or 4.8, not Proposition 7.6, and not the averaging argument of Theorem 6.3
-beyond Lemma D.3 and (D.2). The densities `13/16`, `27/32` and `7/8` of Theorems 5.2--5.4 are therefore
-machine-checked only as count assemblies from their analytic inputs. Nothing in this barrel
-bounds an exponential sum.
+beyond Lemma D.3 and (D.2). The densities `13/16`, `27/32` and `7/8` of Theorems 5.2--5.4
+are therefore machine-checked only as count assemblies from their analytic inputs. Nothing
+in this barrel bounds an exponential sum.
 
 This barrel is not imported by `Problems.lean`; build it with
 `lake build Problems.JugglerParityPaper`. Paper A's barrel is `Problems.JugglerPaper`, and the
