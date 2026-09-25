@@ -381,6 +381,291 @@ theorem smooth_contribution_wide {P a h u v w : ℝ} (N : ℕ)
         have := mul_le_mul_of_nonneg_right hcount (show 0 ≤ 4 * (4 / √lam + 1) by positivity)
         nlinarith
 
+/-! ## The sawtooth modes on every cell -/
+
+/-- **One sawtooth, as modes.** `b_R(θ) e(F) = ∑_{k=1}^R (i/(2π k)) (e(F + kθ) - e(F - kθ))`. -/
+theorem sawtoothPartial_mul_phase (R : ℕ) (θ F : ℝ) :
+    ((PaperBSawtoothExpansion.sawtoothPartial R θ : ℝ) : ℂ) * phase F =
+      ∑ r ∈ range R, (Complex.I / (2 * π * ((r : ℂ) + 1))) *
+        (phase (F + ((r : ℝ) + 1) * θ) - phase (F - ((r : ℝ) + 1) * θ)) := by
+  unfold PaperBSawtoothExpansion.sawtoothPartial
+  push_cast
+  rw [neg_mul, sum_mul, ← sum_neg_distrib]
+  apply sum_congr rfl
+  intro r _
+  set E1 := Complex.exp (((2 * π * F : ℝ) : ℂ) * Complex.I) with hE1
+  set E2 := Complex.exp (((2 * π * ((r : ℝ) + 1) * θ : ℝ) : ℂ) * Complex.I) with hE2
+  have hE2ne : E2 ≠ 0 := Complex.exp_ne_zero _
+  have hF : phase F = E1 := rfl
+  have hplus : phase (F + ((r : ℝ) + 1) * θ) = E1 * E2 := by
+    unfold phase
+    rw [hE1, hE2, ← Complex.exp_add]
+    congr 1
+    push_cast
+    ring
+  have hminus : phase (F - ((r : ℝ) + 1) * θ) = E1 * E2⁻¹ := by
+    unfold phase
+    rw [hE1, hE2, ← Complex.exp_neg, ← Complex.exp_add]
+    congr 1
+    push_cast
+    ring
+  have hsin : Complex.sin (2 * π * ((r : ℂ) + 1) * θ) = (E2 - E2⁻¹) / (2 * Complex.I) := by
+    rw [Complex.sin, hE2, ← Complex.exp_neg]
+    have : (2 * π * ((r : ℂ) + 1) * θ) * Complex.I =
+        (((2 * π * ((r : ℝ) + 1) * θ : ℝ) : ℂ) * Complex.I) := by push_cast; ring
+    rw [show -(2 * π * ((r : ℂ) + 1) * θ) * Complex.I =
+      -(((2 * π * ((r : ℝ) + 1) * θ : ℝ) : ℂ) * Complex.I) by push_cast; ring, this]
+    field_simp
+    ring_nf
+    rw [Complex.I_sq]
+    ring
+  rw [hF, hplus, hminus, hsin]
+  have hπ : (π : ℂ) ≠ 0 := by exact_mod_cast pi_ne_zero
+  have hr : ((r : ℂ) + 1) ≠ 0 := by exact_mod_cast (show (r : ℝ) + 1 ≠ 0 by positivity)
+  field_simp
+  ring_nf
+  rw [Complex.I_sq]
+  ring
+
+/-- Sampled floor conditions suffice for one mode on a cell: only the final sample can leave
+the closed cell. -/
+theorem perturbed_sum_of_samples_wide {P a h u v w eps r t : ℝ} {G : ℤ} (N : ℕ)
+    (hP : 1 ≤ P) (ha : P ≤ a) (hb : a + 2 * N ≤ 2 * P)
+    (hh : 1 ≤ h) (hhP : 1024 * h ≤ P)
+    (hu : 0 < u) (hfreq : |v| + |w| ≤ u * P ^ (3 / 4 : ℝ) / 1024)
+    (hcell : ∀ n < N, ⌊gap h (a + 2 * n)⌋ = G) (heps : 0 ≤ eps ∧ eps ≤ 1)
+    (ht : 0 ≤ t ∧ t ≤ 2 * P) (hr : r ≠ 0) (hdom : 32 * u * h ≤ |r| * P ^ (1 / 4 : ℝ)) :
+    ‖∑ n ∈ range N, phase (perturbedPhase h u v w (G + eps) r t (a + 2 * n))‖ ≤
+      64 * N * √(|r| * P ^ (-1 / 2 : ℝ) / 8) + 4 / √(|r| * P ^ (-1 / 2 : ℝ) / 8) + 1 := by
+  have hP0 : 0 < P := by linarith
+  have hh0 : 0 ≤ h := by linarith
+  have hpos : 0 ≤ 64 * (N : ℝ) * √(|r| * P ^ (-1 / 2 : ℝ) / 8) +
+      4 / √(|r| * P ^ (-1 / 2 : ℝ) / 8) := by positivity
+  cases N with
+  | zero => simp only [range_zero, sum_empty, norm_zero]; positivity
+  | succ N =>
+    have h0 := floor_cell_bounds (hcell 0 (by omega))
+    have hlast := floor_cell_bounds (hcell N (by omega))
+    simp only [Nat.cast_zero, mul_zero, add_zero] at h0
+    have hclosed : ∀ x ∈ Set.Icc a (a + 2 * N),
+        (G : ℝ) ≤ powerDiff (2 * h) (3 / 2) x ∧ powerDiff (2 * h) (3 / 2) x ≤ (G : ℝ) + 1 := by
+      intro x hx
+      have hl := gap_mono hP0 ha hx.1 hh0
+      have hr' := gap_mono hP0 (ha.trans hx.1) hx.2 hh0
+      exact ⟨h0.1.trans hl, hr'.trans hlast.2⟩
+    have hs := perturbed_cell_sum_wide N hP ha (by push_cast at hb; linarith) hh hhP hu hfreq
+      hclosed heps ht hr hdom
+    rw [sum_range_succ]
+    have hmono : 64 * (N : ℝ) * √(|r| * P ^ (-1 / 2 : ℝ) / 8) ≤
+        64 * ((N + 1 : ℕ) : ℝ) * √(|r| * P ^ (-1 / 2 : ℝ) / 8) := by
+      gcongr
+      linarith
+    calc ‖_ + _‖ ≤ ‖∑ n ∈ range N, phase (perturbedPhase h u v w (G + eps) r t (a + 2 * n))‖ +
+          ‖phase (perturbedPhase h u v w (G + eps) r t (a + 2 * N))‖ := norm_add_le _ _
+      _ ≤ _ := by rw [phase_norm]; linarith
+
+/-- **One mode over an interval.** Over `N` odd samples in `[P, 2P]`, with the carry `G` of
+each sample's own cell, one mode sum is at most `64 N √μ + (3 h P^{-1/2} N + 2)(4/√μ + 1)`. -/
+theorem perturbed_contribution_wide {P a h u v w eps r t : ℝ} (N : ℕ)
+    (hP : 1 ≤ P) (ha : P ≤ a) (hb : a + 2 * N ≤ 2 * P)
+    (hh : 1 ≤ h) (hhP : 1024 * h ≤ P)
+    (hu : 0 < u) (hfreq : |v| + |w| ≤ u * P ^ (3 / 4 : ℝ) / 1024) (heps : 0 ≤ eps ∧ eps ≤ 1)
+    (ht : 0 ≤ t ∧ t ≤ 2 * P) (hr : r ≠ 0) (hdom : 32 * u * h ≤ |r| * P ^ (1 / 4 : ℝ)) :
+    ‖∑ n ∈ range N,
+        phase (perturbedPhase h u v w ((⌊gap h (a + 2 * n)⌋ : ℝ) + eps) r t (a + 2 * n))‖ ≤
+      64 * N * √(|r| * P ^ (-1 / 2 : ℝ) / 8) +
+        (3 * h * P ^ (-1 / 2 : ℝ) * N + 2) * (4 / √(|r| * P ^ (-1 / 2 : ℝ) / 8) + 1) := by
+  classical
+  set K := Finset.Icc ⌊gap h a⌋ ⌊gap h (a + 2 * N)⌋ with hK
+  set mu := |r| * P ^ (-1 / 2 : ℝ) / 8 with hmu
+  have hP0 : 0 < P := by linarith
+  have hh0 : 0 ≤ h := by linarith
+  have hmap (n : ℕ) (hn : n ∈ range N) : ⌊gap h (a + 2 * n)⌋ ∈ K := by
+    have hnR : (n : ℝ) ≤ N := by exact_mod_cast (mem_range.mp hn).le
+    apply Finset.mem_Icc.mpr
+    exact ⟨Int.floor_mono (gap_mono hP0 ha (by linarith [Nat.cast_nonneg (α := ℝ) n]) hh0),
+      Int.floor_mono (gap_mono hP0 (by linarith [Nat.cast_nonneg (α := ℝ) n]) (by linarith) hh0)⟩
+  have hm (i j : ℕ) (hij : i ≤ j) : gap h (a + 2 * i) ≤ gap h (a + 2 * j) := by
+    have hc : (i : ℝ) ≤ j := by exact_mod_cast hij
+    exact gap_mono hP0 (by linarith [Nat.cast_nonneg (α := ℝ) i]) (by linarith) hh0
+  have hfibre : ∀ G ∈ K,
+      ‖∑ n ∈ {n ∈ range N | ⌊gap h (a + 2 * (n : ℕ))⌋ = G},
+        phase (perturbedPhase h u v w ((⌊gap h (a + 2 * n)⌋ : ℝ) + eps) r t (a + 2 * n))‖ ≤
+      64 * ({n ∈ range N | ⌊gap h (a + 2 * (n : ℕ))⌋ = G}.card : ℝ) * √mu + (4 / √mu + 1) := by
+    intro G _
+    set S : Finset ℕ := {n ∈ range N | ⌊gap h (a + 2 * (n : ℕ))⌋ = G} with hSdef
+    have hconv : ∀ i ∈ S, ∀ j ∈ S, ∀ n, i ≤ n → n ≤ j → n ∈ S := by
+      intro i hi j hj n hin hnj
+      have hi' := mem_filter.mp hi
+      have hj' := mem_filter.mp hj
+      apply mem_filter.mpr
+      refine ⟨mem_range.mpr (by have := mem_range.mp hj'.1; omega), ?_⟩
+      have hl := Int.floor_mono (hm i n hin)
+      have hr' := Int.floor_mono (hm n j hnj)
+      rw [hi'.2] at hl
+      rw [hj'.2] at hr'
+      exact le_antisymm hr' hl
+    by_cases hs : S.Nonempty
+    · set start := S.min' hs
+      set len := S.max' hs + 1 - start
+      have hmin : start ≤ S.max' hs := S.min'_le _ (S.max'_mem hs)
+      have hmax : S.max' hs < N := mem_range.mp (mem_filter.mp (S.max'_mem hs)).1
+      have hlen : start + len ≤ N := by omega
+      have hlenR : (start : ℝ) + len ≤ N := by exact_mod_cast hlen
+      have hmem (n : ℕ) (hn : n < len) : start + n ∈ S := by
+        apply hconv _ (S.min'_mem hs) _ (S.max'_mem hs) <;> omega
+      have hshift (n : ℕ) : a + 2 * (start + n : ℕ) = (a + 2 * start) + 2 * n := by
+        push_cast; ring
+      have hcell : ∀ n < len, ⌊gap h ((a + 2 * start) + 2 * n)⌋ = G := by
+        intro n hn
+        have hg := (mem_filter.mp (hmem n hn)).2
+        simpa only [hshift] using hg
+      have hw := perturbed_sum_of_samples_wide (G := G) len hP
+        (show P ≤ a + 2 * start by linarith [Nat.cast_nonneg (α := ℝ) start])
+        (show (a + 2 * start) + 2 * len ≤ 2 * P by linarith) hh hhP hu hfreq hcell heps ht hr hdom
+      have hcard : S.card = len := by
+        have h1 := interval_sum S hs hconv (fun _ => (1 : ℂ))
+        simp only [sum_const, card_range, nsmul_eq_mul, mul_one] at h1
+        exact_mod_cast h1
+      rw [interval_sum S hs hconv, hcard]
+      show ‖∑ n ∈ range len, phase (perturbedPhase h u v w
+        ((⌊gap h (a + 2 * ((start + n : ℕ) : ℝ))⌋ : ℝ) + eps) r t (a + 2 * ((start + n : ℕ) : ℝ)))‖ ≤ _
+      have hG : ∀ n ∈ range len, phase (perturbedPhase h u v w
+          ((⌊gap h (a + 2 * ((start + n : ℕ) : ℝ))⌋ : ℝ) + eps) r t (a + 2 * ((start + n : ℕ) : ℝ))) =
+          phase (perturbedPhase h u v w ((G : ℝ) + eps) r t ((a + 2 * start) + 2 * n)) := by
+        intro n hn
+        rw [hshift, hcell n (mem_range.mp hn)]
+      rw [sum_congr rfl hG]
+      rw [← hmu] at hw
+      linarith
+    · rw [not_nonempty_iff_eq_empty.mp hs]
+      simp only [sum_empty, norm_zero, card_empty, Nat.cast_zero]
+      positivity
+  have hcardsum : ∑ G ∈ K, (({n ∈ range N | ⌊gap h (a + 2 * (n : ℕ))⌋ = G}.card : ℕ) : ℝ) = N := by
+    have := card_eq_sum_card_fiberwise hmap
+    rw [card_range] at this
+    exact_mod_cast this.symm
+  rw [← sum_fiberwise_of_maps_to hmap (fun n => phase (perturbedPhase h u v w
+    ((⌊gap h (a + 2 * n)⌋ : ℝ) + eps) r t (a + 2 * n)))]
+  have hcount := carry_level_count_wide N hP ha hh0
+  rw [← hK] at hcount
+  calc _ ≤ ∑ G ∈ K, ‖∑ n ∈ {n ∈ range N | ⌊gap h (a + 2 * (n : ℕ))⌋ = G},
+          phase (perturbedPhase h u v w ((⌊gap h (a + 2 * n)⌋ : ℝ) + eps) r t (a + 2 * n))‖ :=
+        norm_sum_le _ _
+    _ ≤ ∑ G ∈ K, (64 * ({n ∈ range N | ⌊gap h (a + 2 * (n : ℕ))⌋ = G}.card : ℝ) * √mu +
+          (4 / √mu + 1)) := sum_le_sum hfibre
+    _ = 64 * √mu * ∑ G ∈ K, (({n ∈ range N | ⌊gap h (a + 2 * (n : ℕ))⌋ = G}.card : ℕ) : ℝ) +
+          (K.card : ℝ) * (4 / √mu + 1) := by
+        rw [sum_add_distrib, sum_const, nsmul_eq_mul, mul_sum]
+        congr 1
+        apply sum_congr rfl
+        intro G _
+        ring
+    _ ≤ 64 * N * √mu + (3 * h * P ^ (-1 / 2 : ℝ) * N + 2) * (4 / √mu + 1) := by
+        rw [hcardsum]
+        have := mul_le_mul_of_nonneg_right hcount (show 0 ≤ 4 / √mu + 1 by positivity)
+        nlinarith
+
+/-- The bound for one mode `k ≥ 1` over an interval, `64 N √μ + (3 h P^{-1/2} N + 2)(4/√μ + 1)`,
+`μ = k P^{-1/2}/8`. -/
+noncomputable def modeCost (P h : ℝ) (N : ℕ) (k : ℝ) : ℝ :=
+  64 * N * √(k * P ^ (-1 / 2 : ℝ) / 8) +
+    (3 * h * P ^ (-1 / 2 : ℝ) * N + 2) * (4 / √(k * P ^ (-1 / 2 : ℝ) / 8) + 1)
+
+/-- **One sawtooth over an interval.** With the carry of each sample's own cell,
+`∑ (b(X(x+t))) e(F_{G,ε}(x))` over `N` odd samples is at most
+`∑_{k=1}^R modeCost(k)/(π k) + (5/2) ∑ E_R(X(x+t))`, once `32 u h ≤ P^{1/4}`. -/
+theorem sawtooth_contribution_wide {P a h u v w eps t : ℝ} (N R : ℕ) (hR : 1 ≤ R)
+    (hP : 1 ≤ P) (ha : P ≤ a) (hb : a + 2 * N ≤ 2 * P)
+    (hh : 1 ≤ h) (hhP : 1024 * h ≤ P)
+    (hu : 0 < u) (hfreq : |v| + |w| ≤ u * P ^ (3 / 4 : ℝ) / 1024) (heps : 0 ≤ eps ∧ eps ≤ 1)
+    (ht : 0 ≤ t ∧ t ≤ 2 * P) (hdom : 32 * u * h ≤ P ^ (1 / 4 : ℝ)) :
+    ‖∑ n ∈ range N, ((Int.fract ((a + 2 * n + t) ^ (3 / 2 : ℝ)) - 1 / 2 : ℝ) : ℂ) *
+        phase (cellPhase (2 * h) u v w ((⌊gap h (a + 2 * n)⌋ : ℝ) + eps) (a + 2 * n))‖ ≤
+      ∑ r ∈ range R, modeCost P h N ((r : ℝ) + 1) / (π * ((r : ℝ) + 1)) +
+        5 / 2 * ∑ n ∈ range N,
+          PaperBCarryExpansion.carryWeight R ((a + 2 * n + t) ^ (3 / 2 : ℝ)) := by
+  set θ : ℕ → ℝ := fun n => (a + 2 * n + t) ^ (3 / 2 : ℝ) with hθ
+  set F : ℕ → ℝ := fun n => cellPhase (2 * h) u v w ((⌊gap h (a + 2 * n)⌋ : ℝ) + eps) (a + 2 * n)
+    with hF
+  have hsplit : ∀ n ∈ range N, ((Int.fract (θ n) - 1 / 2 : ℝ) : ℂ) * phase (F n) =
+      ((PaperBSawtoothExpansion.sawtoothPartial R (θ n) : ℝ) : ℂ) * phase (F n) +
+        ((Int.fract (θ n) - 1 / 2 - PaperBSawtoothExpansion.sawtoothPartial R (θ n) : ℝ) : ℂ) *
+          phase (F n) := by
+    intro n _
+    push_cast
+    ring
+  have hL : ∑ n ∈ range N, ((Int.fract (θ n) - 1 / 2 : ℝ) : ℂ) * phase (F n) =
+      ∑ n ∈ range N, ((PaperBSawtoothExpansion.sawtoothPartial R (θ n) : ℝ) : ℂ) * phase (F n) +
+        ∑ n ∈ range N,
+          ((Int.fract (θ n) - 1 / 2 - PaperBSawtoothExpansion.sawtoothPartial R (θ n) : ℝ) : ℂ) *
+            phase (F n) := by
+    rw [sum_congr rfl hsplit, sum_add_distrib]
+  change ‖∑ n ∈ range N, ((Int.fract (θ n) - 1 / 2 : ℝ) : ℂ) * phase (F n)‖ ≤ _
+  rw [hL]
+  -- the modes
+  have hmodes : ‖∑ n ∈ range N,
+      ((PaperBSawtoothExpansion.sawtoothPartial R (θ n) : ℝ) : ℂ) * phase (F n)‖ ≤
+      ∑ r ∈ range R, modeCost P h N ((r : ℝ) + 1) / (π * ((r : ℝ) + 1)) := by
+    simp_rw [sawtoothPartial_mul_phase]
+    rw [sum_comm]
+    refine (norm_sum_le _ _).trans (sum_le_sum (fun r _ => ?_))
+    have hk : (0 : ℝ) < (r : ℝ) + 1 := by positivity
+    have hk1 : (1 : ℝ) ≤ (r : ℝ) + 1 := by linarith [Nat.cast_nonneg (α := ℝ) r]
+    have hdomk : ∀ s : ℝ, |s| = (r : ℝ) + 1 → 32 * u * h ≤ |s| * P ^ (1 / 4 : ℝ) := by
+      intro s hs
+      rw [hs]
+      have : 0 ≤ P ^ (1 / 4 : ℝ) := by positivity
+      nlinarith
+    have hplus := perturbed_contribution_wide (r := (r : ℝ) + 1) N hP ha hb hh hhP hu hfreq heps
+      ht (by positivity) (hdomk _ (abs_of_pos hk))
+    have hminus := perturbed_contribution_wide (r := -((r : ℝ) + 1)) N hP ha hb hh hhP hu hfreq
+      heps ht (by linarith) (hdomk _ (by rw [abs_neg, abs_of_pos hk]))
+    rw [abs_of_pos hk] at hplus
+    rw [abs_neg, abs_of_pos hk] at hminus
+    have hpert : ∀ n ∈ range N, (Complex.I / (2 * π * ((r : ℂ) + 1))) *
+        (phase (F n + ((r : ℝ) + 1) * θ n) - phase (F n - ((r : ℝ) + 1) * θ n)) =
+        (Complex.I / (2 * π * ((r : ℂ) + 1))) *
+          (phase (perturbedPhase h u v w ((⌊gap h (a + 2 * n)⌋ : ℝ) + eps) ((r : ℝ) + 1) t
+              (a + 2 * n)) -
+            phase (perturbedPhase h u v w ((⌊gap h (a + 2 * n)⌋ : ℝ) + eps) (-((r : ℝ) + 1)) t
+              (a + 2 * n))) := by
+      intro n _
+      simp only [hF, hθ, perturbedPhase]
+      congr 3
+      ring
+    rw [sum_congr rfl hpert, ← mul_sum, sum_sub_distrib, norm_mul]
+    have hc : ‖Complex.I / (2 * π * ((r : ℂ) + 1))‖ = 1 / (2 * π * ((r : ℝ) + 1)) := by
+      rw [norm_div, Complex.norm_I, show (2 * π * ((r : ℂ) + 1)) = ((2 * π * ((r : ℝ) + 1) : ℝ) : ℂ)
+        by push_cast; ring, Complex.norm_real, Real.norm_eq_abs, abs_of_pos (by positivity)]
+    rw [hc]
+    have hsub := norm_sub_le
+      (∑ n ∈ range N, phase (perturbedPhase h u v w ((⌊gap h (a + 2 * n)⌋ : ℝ) + eps)
+        ((r : ℝ) + 1) t (a + 2 * n)))
+      (∑ n ∈ range N, phase (perturbedPhase h u v w ((⌊gap h (a + 2 * n)⌋ : ℝ) + eps)
+        (-((r : ℝ) + 1)) t (a + 2 * n)))
+    have hsum := add_le_add hplus hminus
+    have hpos : 0 < 2 * π * ((r : ℝ) + 1) := by positivity
+    calc 1 / (2 * π * ((r : ℝ) + 1)) * ‖_ - _‖
+        ≤ 1 / (2 * π * ((r : ℝ) + 1)) * (2 * modeCost P h N ((r : ℝ) + 1)) := by
+          apply mul_le_mul_of_nonneg_left _ (by positivity)
+          unfold modeCost
+          linarith
+      _ = modeCost P h N ((r : ℝ) + 1) / (π * ((r : ℝ) + 1)) := by
+          field_simp
+  -- the remainders
+  have herr : ‖∑ n ∈ range N,
+      ((Int.fract (θ n) - 1 / 2 - PaperBSawtoothExpansion.sawtoothPartial R (θ n) : ℝ) : ℂ) *
+        phase (F n)‖ ≤
+      5 / 2 * ∑ n ∈ range N, PaperBCarryExpansion.carryWeight R (θ n) := by
+    refine (norm_sum_le _ _).trans ?_
+    rw [mul_sum]
+    apply sum_le_sum
+    intro n _
+    rw [norm_mul, phase_norm, mul_one, Complex.norm_real, Real.norm_eq_abs]
+    exact PaperBSawtoothExpansion.abs_sawtooth_sub_le hR (θ n)
+  exact (norm_add_le _ _).trans (add_le_add hmodes herr)
+
 end PaperBSmallShift
 
 end Problems.Juggler
