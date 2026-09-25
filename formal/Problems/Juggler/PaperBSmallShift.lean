@@ -19,7 +19,18 @@ curvature comparison uses.
   `256 N √λ + 4/√λ`, `λ = u h P^{-3/4}/16`;
 * `perturbed_curvature_wide`, `perturbed_cell_sum_wide`: with a mode `r X(x + t)`,
   `32 u h ≤ |r| P^{1/4}`, the curvature has size `|r| P^{-1/2}` and a cell has sum at most
-  `64 N √μ + 4/√μ`, `μ = |r| P^{-1/2}/8`.
+  `64 N √μ + 4/√μ`, `μ = |r| P^{-1/2}/8`;
+* `smooth_contribution_wide`: the frozen-carry parts `(1 - z) e(F_{G,0}) + z e(F_{G,1})` of (4.8),
+  summed over the carry levels by partial summation;
+* `sawtooth_contribution_wide`, `retained_sum_wide`: the sawtooth parts of (4.8), expanded by
+  Lemma 4.3 (`PaperBSawtoothExpansion`) into `R` modes plus `(5/2) E_R`, with the near-integer
+  sums bounded by (4.3) (`carryWeight_sum_odd`);
+* `comparison_wide`: the cost (4.6) of deleting the last two terms of (4.5);
+* `small_shift_core`: at `P = T^{24}`, `T ≥ 4096 C` and `R = ⌊T^6⌋ = ⌊P^{1/4}⌋`, the sum is at
+  most `508000 C T^{21}(1 + √h)`;
+* `small_shift_sum`: **Lemma 4.4**, in the printed form, with
+  `K = 3(4096 C')^3 + 508000 C' + 1`, `C' = max(C, 1)`. Negative `j` is conjugated, and
+  `P < (4096 C')^{24}` is the trivial bound.
 -/
 
 import Problems.Juggler.OOEECarryFourier

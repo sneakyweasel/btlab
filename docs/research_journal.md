@@ -11,6 +11,14 @@ consolidation is at `e9725762eaf028d1ace354ff20e0fc48f1a3d143`. See
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-25 -- Paper B Lemma 4.4 in Lean
+
+**EXACT — LEAN VERIFIED:** the small-shift nested sum (4.4) is at most
+`K P^{7/8}(1 + h^{1/2})` with `K = 3 (4096 C')^3 + 508000 C' + 1`, `C' = max(C, 1)`, in the
+printed range. Paper C's OOEE cell phases are restated for any cell length under
+`1024 h ≤ P`; the sawtooths go through Lemma 4.3 with `R = ⌊P^{1/4}⌋`. Remaining premise:
+none. Decision: PROMOTE. Record: [small-shift dossier](problems/juggler_paper_b_small_shift.md).
+
 ## 2026-09-25 -- Paper B Proposition 7.4 in Lean
 
 **EXACT — LEAN VERIFIED:** `|∫_0^1 |S_λ|^2 - L| ≤ (4/π)(L/a)(1 + log L)` and the
@@ -172,30 +180,3 @@ differenced depth-five mixed sums with shifts up to `P^(5/32)`, beyond Paper
 B's `P^(1/8)` frozen gaps. **PARK.** See the
 [depth-five dossier](problems/juggler_depth_five_production.md) and its
 obstruction record.
-
-## 2026-09-24 -- Written-proof rows converted to Lean, with a coverage audit
-
-**EXACT — LEAN VERIFIED**, kernel trust: twelve rows leave the written-proof
-category. They are Paper A E.7 (`OOEEscapeResidue`), the hug-flow image gap,
-the cube-threshold hidden parity, the first-OOO square cell, the odd-preimage
-Type 0/1/2 criterion, the OOE carry substitution (`D - d = 36r^2 + 1` exactly,
-by coefficient positivity in `t = (r-3)/2`) and seven post-L envelope rows.
-The new row `J-paper-b-barrier-mass-phase-count` proves mass preservation by
-the non-rising update, the `fract(t beta)` form of the barrier rise and
-`N_(d+1) = 2 N_d - b_d M_d`. A review of 39 further rows that name existing
-Lean found none fully covered; 29 now link their partial support.
-Corrections: several post-L statements turned an envelope failure into an
-orbit claim (reworded, counterexample `n = 6`), and two reviewer errors,
-on Rhin's measure and on `lambda**` against `100/203`, were caught at source.
-Later the same day, the averaged contagion bound lowered the Section 9.2
-corollaries: termination follows from the pressure or the no-momentum
-hypothesis at any failure exponent above `3/8`, through the OOEE contagion
-at `5/8` (`J-fate-pressure-three-eighths`, `J-fate-no-momentum-three-eighths`);
-an intermediate `103/203` form is superseded. Both hypotheses stay open.
-**PROMOTE** the conversions. Remaining premise: rows that mix measurements
-with theorems stay written proofs pending a split. See the claim ledger and
-the dossiers for [hug flow](problems/juggler_hug_flow_depth_two.md),
-[first OOO](problems/juggler_first_ooo_escape.md),
-[empty odd preimage](problems/juggler_empty_odd_preimage.md),
-[cubic induction](problems/juggler_cycle_cubic_induction.md) and
-[OOE escape](problems/juggler_ooe_escape_families.md).

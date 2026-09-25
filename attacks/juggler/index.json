@@ -6971,6 +6971,22 @@
       "nk_clusters": []
     },
     {
+      "id": "paper_b_small_shift",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_paper_b_small_shift.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-paper-b-lemma-4-4"
+      ],
+      "aliases": [],
+      "nk_clusters": []
+    },
+    {
       "id": "paper_b_small_shift_repair",
       "kind": "dossier_only",
       "probe": null,
