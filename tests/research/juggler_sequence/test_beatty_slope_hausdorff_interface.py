@@ -17,6 +17,7 @@ EXPECTED = {
         "actual_dim_class_lower", "actual_dim_two_thirds_iff",
         "actual_dim_spectrum", "actual_cf_regular_dim", "actual_packing_dim",
         "actual_star_dim", "actual_iso_dim", "actual_two_scale_dim",
+        "actual_two_scale_low",
     )
 }
 

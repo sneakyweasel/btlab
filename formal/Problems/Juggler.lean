@@ -152,6 +152,7 @@ import Problems.Juggler.BeattyIsoExact
 import Problems.Juggler.BeattyTwoScale
 import Problems.Juggler.BeattyTwoScaleUpper
 import Problems.Juggler.BeattyTwoScaleExact
+import Problems.Juggler.BeattyTwoScaleLow
 import Problems.Juggler.BeattySlopeRationalMass
 import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeWeakCounting

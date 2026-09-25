@@ -103,6 +103,21 @@ theorem twoScaleDim_props {ν ρ : ℝ} (hν : 1 < ν) (hρ : 1 + 3 / ν < ρ) :
   · rw [hfac s]
     exact mul_pos (by linarith) (hpos s (hS0.trans hsS))
 
+/-- A positive two-scale quadratic stays positive for a slightly larger `ρ`. -/
+theorem twoScaleQuad_pos_right {ν ρ s : ℝ} (hQ : 0 < twoScaleQuad ν ρ s) :
+    ∃ t, 0 < t ∧ 0 < twoScaleQuad ν (ρ + t) s := by
+  set c1 := 3 * ν * s ^ 2 + 4 * s - 4 with hc1
+  set t := twoScaleQuad ν ρ s / (2 * (|c1| + 1)) with ht
+  have ht0 : 0 < t := by positivity
+  refine ⟨t, ht0, ?_⟩
+  have e : twoScaleQuad ν (ρ + t) s = twoScaleQuad ν ρ s + t * c1 := by
+    unfold twoScaleQuad; rw [hc1]; ring
+  have hb : t * |c1| ≤ twoScaleQuad ν ρ s / 2 := by
+    rw [ht, div_mul_eq_mul_div, div_le_div_iff₀ (by positivity) (by norm_num)]
+    nlinarith [abs_nonneg c1]
+  rw [e]
+  nlinarith [neg_abs_le c1]
+
 /-- **Two-scale upper bound for isolated slopes.** If `Q_(g(j+1)) ≤ Q_(g j + 1)^ρ`
 from some level on, then `H^s(K_α) = 0` whenever `2/(2+ν) < s < 2/3` and the
 two-scale quadratic is positive at `s`. -/
@@ -179,19 +194,8 @@ theorem twoScale_dimH_eq {ν B ρ : ℝ} {G : ℕ → Prop} [DecidablePred G]
         exact (ENNReal.ofReal_lt_ofReal_iff (by linarith)).2
           (h2.trans_le (min_le_left _ _))
     obtain ⟨hs23, hsc⟩ := hs2
-    have hQs := hposQ s hs1
     -- a slightly larger `ρ'` keeps the quadratic positive
-    set c1 := 3 * ν * s ^ 2 + 4 * s - 4 with hc1
-    set t := twoScaleQuad ν ρ s / (2 * (|c1| + 1)) with ht
-    have ht0 : 0 < t := by positivity
-    have hQ' : 0 < twoScaleQuad ν (ρ + t) s := by
-      have e : twoScaleQuad ν (ρ + t) s = twoScaleQuad ν ρ s + t * c1 := by
-        unfold twoScaleQuad; rw [hc1]; ring
-      have hb : t * |c1| ≤ twoScaleQuad ν ρ s / 2 := by
-        rw [ht, div_mul_eq_mul_div, div_le_div_iff₀ (by positivity) (by norm_num)]
-        nlinarith [abs_nonneg c1]
-      rw [e]
-      nlinarith [neg_abs_le c1]
+    obtain ⟨t, ht0, hQ'⟩ := twoScaleQuad_pos_right (hposQ s hs1)
     obtain ⟨j1, hj1⟩ := hup (ρ + t) (by linarith)
     have hzero := twoScale_iso_hausdorff_zero Lv hν (by linarith) ⟨j1, hj1⟩
       (hlo.trans hs1) hs23 hQ'
@@ -426,20 +430,13 @@ theorem twoScale_growth {ν ρ : ℝ} (hν : 1 ≤ ν) (hρ : 1 ≤ ρ) (l : ℕ
           linarith
 
 open Classical in
-/-- **Two-scale slopes exist and attain `S(ν, ρ)`.** For every `ν > 1` and
-`ρ > 1 + 3/ν` the two-scale slope has Diophantine class exactly `ν` and
-`dim_H K_α = S(ν, ρ)`. -/
-theorem twoScale_dims {ν ρ : ℝ} (hν : 1 < ν) (hρ : 1 + 3 / ν < ρ) :
-    DiophClass (isoSlope ν (TwoScaleGood ν (ρ * ν))) ν ∧
-    dimH (passageClusterSet (1 / isoSlope ν (TwoScaleGood ν (ρ * ν)))) =
-      ENNReal.ofReal (twoScaleDim ν ρ) := by
-  have hν0 : 0 < ν := by linarith
-  have hρ1 : 1 ≤ ρ := by
-    have : 0 < 3 / ν := by positivity
-    linarith
-  set Lv := twoScaleLevels ν (ρ * ν) hν.le
-  refine ⟨isoSlope_diophClass hν Lv.frequent, ?_⟩
-  apply twoScale_dimH_eq Lv hν hρ ⟨0, fun j _ => (twoScale_growth hν.le hρ1 j).1⟩
+/-- **Upper growth of the two-scale denominators.** For `ν, ρ ≥ 1` and every
+`ρ' > ρ`, `Q_(g(j+1)) ≤ Q_(g j + 1)^ρ'` from some level on. -/
+theorem twoScale_up_rpow {ν ρ : ℝ} (hν : 1 ≤ ν) (hρ1 : 1 ≤ ρ) :
+    ∀ ρ', ρ < ρ' → ∃ j1, ∀ j, j1 ≤ j →
+      (isoDen ν (TwoScaleGood ν (ρ * ν)) ((twoScaleLevels ν (ρ * ν) hν).g (j + 1)) : ℝ) ≤
+        (isoDen ν (TwoScaleGood ν (ρ * ν)) ((twoScaleLevels ν (ρ * ν) hν).g j + 1) : ℝ) ^ ρ' := by
+  set Lv := twoScaleLevels ν (ρ * ν) hν
   intro ρ' hρ'
   -- `4 N^ρ ≤ N^ρ'` once `N^(ρ'-ρ) ≥ 4`, and `N ≥ g ≥ j` grows without bound
   set t := ρ' - ρ with ht
@@ -465,10 +462,27 @@ theorem twoScale_dims {ν ρ : ℝ} (hν : 1 < ν) (hρ : 1 + 3 / ν < ρ) :
     calc (4 : ℝ) = ((4 : ℝ) ^ (1 / t)) ^ t := by
           rw [← Real.rpow_mul (by norm_num), one_div_mul_cancel ht0.ne', Real.rpow_one]
       _ ≤ N ^ t := Real.rpow_le_rpow (by positivity) hc ht0.le
-  have hgr := (twoScale_growth hν.le hρ1 j).2
+  have hgr := (twoScale_growth hν hρ1 j).2
   calc (isoDen ν (TwoScaleGood ν (ρ * ν)) (twoScaleIdx ν (ρ * ν) (j + 1)) : ℝ)
       ≤ 4 * N ^ ρ := hgr
     _ ≤ N ^ t * N ^ ρ := by gcongr
     _ = N ^ ρ' := by rw [← Real.rpow_add (by linarith), ht]; ring_nf
+
+open Classical in
+/-- **Two-scale slopes exist and attain `S(ν, ρ)`.** For every `ν > 1` and
+`ρ > 1 + 3/ν` the two-scale slope has Diophantine class exactly `ν` and
+`dim_H K_α = S(ν, ρ)`. -/
+theorem twoScale_dims {ν ρ : ℝ} (hν : 1 < ν) (hρ : 1 + 3 / ν < ρ) :
+    DiophClass (isoSlope ν (TwoScaleGood ν (ρ * ν))) ν ∧
+    dimH (passageClusterSet (1 / isoSlope ν (TwoScaleGood ν (ρ * ν)))) =
+      ENNReal.ofReal (twoScaleDim ν ρ) := by
+  have hν0 : 0 < ν := by linarith
+  have hρ1 : 1 ≤ ρ := by
+    have : 0 < 3 / ν := by positivity
+    linarith
+  set Lv := twoScaleLevels ν (ρ * ν) hν.le
+  exact ⟨isoSlope_diophClass hν Lv.frequent,
+    twoScale_dimH_eq Lv hν hρ ⟨0, fun j _ => (twoScale_growth hν.le hρ1 j).1⟩
+      (twoScale_up_rpow hν.le hρ1)⟩
 
 end Problems.Juggler.BeattySlope
