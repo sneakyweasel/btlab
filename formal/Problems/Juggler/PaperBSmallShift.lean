@@ -764,6 +764,185 @@ theorem carryWeight_sum_odd (R : ℕ) (hR : 1 ≤ R) (r₀ s N : ℕ) :
   rw [hc] at h
   exact h
 
+/-! ## Elementary sums for the mode totals -/
+
+/-- `∑_{k=1}^R 1/√k ≤ 2√R`. -/
+theorem sum_range_inv_sqrt_le (R : ℕ) :
+    ∑ r ∈ range R, 1 / √((r : ℝ) + 1) ≤ 2 * √(R : ℝ) := by
+  have h := PaperBSingleFloor.sum_one_div_sqrt_le R
+  have he : ∑ r ∈ range R, 1 / √((r : ℝ) + 1) = ∑ k ∈ Finset.Icc 1 R, 1 / √(k : ℝ) := by
+    rw [← Finset.Ico_add_one_right_eq_Icc, sum_Ico_eq_sum_range]
+    simp only [Nat.add_sub_cancel]
+    apply sum_congr rfl
+    intro r _
+    push_cast
+    ring_nf
+  rw [he]
+  exact h
+
+/-- `∑_{k=1}^R 1/k ≤ 2√R`. -/
+theorem sum_range_inv_le (R : ℕ) : ∑ r ∈ range R, 1 / ((r : ℝ) + 1) ≤ 2 * √(R : ℝ) := by
+  refine le_trans (sum_le_sum (fun r _ => ?_)) (sum_range_inv_sqrt_le R)
+  have h1 : (1 : ℝ) ≤ (r : ℝ) + 1 := by linarith [Nat.cast_nonneg (α := ℝ) r]
+  have hs : √((r : ℝ) + 1) ≤ (r : ℝ) + 1 := by
+    rw [sqrt_le_left (by linarith)]
+    nlinarith
+  exact one_div_le_one_div_of_le (sqrt_pos.mpr (by linarith)) hs
+
+/-- `∑_{k=1}^R k^{-3/2} ≤ 3`, in the form `3 - 2/√R` for `R ≥ 1`. -/
+theorem sum_range_inv_three_halves_le (R : ℕ) :
+    ∑ r ∈ range R, 1 / (((r : ℝ) + 1) * √((r : ℝ) + 1)) ≤ 3 := by
+  have key : ∀ R : ℕ, 1 ≤ R →
+      ∑ r ∈ range R, 1 / (((r : ℝ) + 1) * √((r : ℝ) + 1)) ≤ 3 - 2 / √(R : ℝ) := by
+    intro R hR
+    induction R with
+    | zero => omega
+    | succ R ih =>
+      rcases Nat.eq_zero_or_pos R with h0 | hpos
+      · subst h0
+        norm_num
+      · have ih' := ih hpos
+        rw [sum_range_succ]
+        have hR1 : (1 : ℝ) ≤ R := by exact_mod_cast hpos
+        set a := √(R : ℝ) with ha
+        set b := √((R : ℝ) + 1) with hb
+        have ha0 : 0 < a := sqrt_pos.mpr (by linarith)
+        have hab : a ≤ b := sqrt_le_sqrt (by linarith)
+        have ha2 : a ^ 2 = R := sq_sqrt (by linarith)
+        have hb2 : b ^ 2 = (R : ℝ) + 1 := sq_sqrt (by linarith)
+        have hcast : (((R + 1 : ℕ) : ℝ)) = (R : ℝ) + 1 := by push_cast; ring
+        rw [hcast]
+        rw [← hb]
+        have hstep : 1 / (((R : ℝ) + 1) * b) ≤ 2 / a - 2 / b := by
+          rw [← hb2]
+          rw [div_sub_div _ _ ha0.ne' (by positivity), div_le_div_iff₀ (by positivity)
+            (by positivity)]
+          have hba : 0 ≤ b - a := by linarith
+          nlinarith [mul_nonneg hba ha0.le, mul_nonneg (mul_nonneg hba ha0.le) hba]
+        linarith
+  rcases Nat.eq_zero_or_pos R with h0 | hpos
+  · subst h0
+    simp
+  · have := key R hpos
+    have : 0 ≤ 2 / √(R : ℝ) := by positivity
+    linarith
+
+/-- `⌊log₂ R⌋ ≤ 2 √R`. -/
+theorem log_two_le_two_sqrt (R : ℕ) : (Nat.log 2 R : ℝ) ≤ 2 * √(R : ℝ) := by
+  set n := Nat.log 2 R with hn
+  rcases Nat.eq_zero_or_pos R with h0 | hpos
+  · subst h0
+    simp [hn]
+  have hpow : 2 ^ n ≤ R := Nat.pow_log_le_self 2 (by omega)
+  have hsq : ∀ m : ℕ, m ^ 2 ≤ 4 * 2 ^ m := by
+    intro m
+    induction m with
+    | zero => norm_num
+    | succ m ih =>
+      rcases Nat.lt_or_ge m 3 with hm | hm
+      · interval_cases m <;> norm_num
+      · have h2 : (m + 1) ^ 2 ≤ 2 * m ^ 2 := by nlinarith
+        calc (m + 1) ^ 2 ≤ 2 * m ^ 2 := h2
+          _ ≤ 2 * (4 * 2 ^ m) := by omega
+          _ = 4 * 2 ^ (m + 1) := by ring
+  have h1 : ((n : ℝ)) ^ 2 ≤ 4 * R := by
+    have := hsq n
+    have : n ^ 2 ≤ 4 * R := this.trans (by omega)
+    exact_mod_cast this
+  calc (n : ℝ) = √((n : ℝ) ^ 2) := (sqrt_sq (Nat.cast_nonneg n)).symm
+    _ ≤ √(4 * R) := sqrt_le_sqrt h1
+    _ = 2 * √(R : ℝ) := by
+      rw [sqrt_mul (by norm_num), show (4 : ℝ) = 2 ^ 2 by norm_num, sqrt_sq (by norm_num)]
+
+/-- One mode cost over `π k`, in three terms. With `s = P^{-1/2}` and `A = 3 h s N + 2`,
+`modeCost(k)/(π k) ≤ 16 N √s/√k + 6 A/(√s k √k) + A/k` for `k ≥ 1`. -/
+theorem modeCost_div_le {P h : ℝ} (N : ℕ) {k : ℝ} (hk : 1 ≤ k) (hP : 0 < P) (hh : 0 ≤ h) :
+    modeCost P h N k / (π * k) ≤
+      16 * N * √(P ^ (-1 / 2 : ℝ)) / √k +
+        6 * (3 * h * P ^ (-1 / 2 : ℝ) * N + 2) / (√(P ^ (-1 / 2 : ℝ)) * (k * √k)) +
+        (3 * h * P ^ (-1 / 2 : ℝ) * N + 2) / k := by
+  set s := P ^ (-1 / 2 : ℝ) with hsdef
+  have hs : 0 < s := rpow_pos_of_pos hP _
+  set A := 3 * h * s * N + 2 with hAdef
+  have hA : 0 < A := by positivity
+  have hk0 : 0 < k := by linarith
+  set sk := √k with hsk
+  set ss := √s with hss
+  set e := √(8 : ℝ) with he
+  have hsk1 : 1 ≤ sk := by rw [hsk, show (1 : ℝ) = √1 by simp]; exact sqrt_le_sqrt hk
+  have hsk2 : sk * sk = k := mul_self_sqrt hk0.le
+  have hss0 : 0 < ss := sqrt_pos.mpr hs
+  have he2 : e * e = 8 := mul_self_sqrt (by norm_num)
+  have he0 : 0 < e := sqrt_pos.mpr (by norm_num)
+  have he_lo : 2 ≤ e := by nlinarith
+  have he_hi : e ≤ 3 := by nlinarith
+  have hq : √(k * s / 8) = sk * ss / e := by
+    rw [sqrt_div (by positivity), sqrt_mul hk0.le]
+  have hpi : 2 ≤ π := two_le_pi
+  have hN : (0 : ℝ) ≤ N := Nat.cast_nonneg N
+  unfold modeCost
+  rw [← hsdef, ← hAdef, hq]
+  rw [add_div, add_div, show A * (4 / (sk * ss / e) + 1) = A * (4 / (sk * ss / e)) + A by ring,
+    add_div]
+  have t1 : 64 * (N : ℝ) * (sk * ss / e) / (π * k) ≤ 16 * N * ss / sk := by
+    rw [← hsk2, show 64 * (N : ℝ) * (sk * ss / e) / (π * (sk * sk)) = 64 * N * ss / (e * π * sk)
+      by field_simp]
+    rw [div_le_div_iff₀ (by positivity) (by positivity)]
+    have hp : 0 ≤ (N : ℝ) * ss * sk := by positivity
+    have h4 : 4 ≤ e * π := by nlinarith
+    nlinarith [mul_le_mul_of_nonneg_left h4 hp]
+  have t2 : A * (4 / (sk * ss / e)) / (π * k) ≤ 6 * A / (ss * (k * sk)) := by
+    rw [← hsk2]
+    rw [show A * (4 / (sk * ss / e)) / (π * (sk * sk)) = 4 * A * e / (π * (ss * (sk * sk * sk)))
+      by field_simp]
+    rw [div_le_div_iff₀ (by positivity) (by positivity)]
+    have hp : 0 ≤ A * (ss * (sk * sk * sk)) := by positivity
+    have h23 : 2 * e ≤ 3 * π := by nlinarith
+    nlinarith [mul_le_mul_of_nonneg_left h23 hp]
+  have t3 : A / (π * k) ≤ A / k := by
+    apply div_le_div_of_nonneg_left hA.le (by positivity)
+    nlinarith
+  have hAk : A / k = 3 * h * s * N / k + 2 / k := by rw [hAdef]; ring
+  linarith
+
+/-- **The mode total.** With `s = P^{-1/2}` and `A = 3 h s N + 2`,
+`modeTotal ≤ 32 N √s √R + 18 A/√s + 2 A √R`. -/
+theorem modeTotal_le {P h : ℝ} (N R : ℕ) (hP : 0 < P) (hh : 0 ≤ h) :
+    modeTotal P h N R ≤
+      32 * N * √(P ^ (-1 / 2 : ℝ)) * √(R : ℝ) +
+        18 * (3 * h * P ^ (-1 / 2 : ℝ) * N + 2) / √(P ^ (-1 / 2 : ℝ)) +
+        2 * (3 * h * P ^ (-1 / 2 : ℝ) * N + 2) * √(R : ℝ) := by
+  set s := P ^ (-1 / 2 : ℝ) with hsdef
+  have hs : 0 < s := rpow_pos_of_pos hP _
+  set A := 3 * h * s * N + 2 with hAdef
+  have hA : 0 < A := by positivity
+  unfold modeTotal
+  have hterm : ∀ r ∈ range R, modeCost P h N ((r : ℝ) + 1) / (π * ((r : ℝ) + 1)) ≤
+      16 * N * √s * (1 / √((r : ℝ) + 1)) +
+        6 * A / √s * (1 / (((r : ℝ) + 1) * √((r : ℝ) + 1))) +
+        A * (1 / ((r : ℝ) + 1)) := by
+    intro r _
+    have h := modeCost_div_le N (k := (r : ℝ) + 1) (by linarith [Nat.cast_nonneg (α := ℝ) r]) hP hh
+    rw [← hsdef, ← hAdef] at h
+    have e1 : 16 * (N : ℝ) * √s / √((r : ℝ) + 1) = 16 * N * √s * (1 / √((r : ℝ) + 1)) := by ring
+    have e2 : 6 * A / (√s * (((r : ℝ) + 1) * √((r : ℝ) + 1))) =
+        6 * A / √s * (1 / (((r : ℝ) + 1) * √((r : ℝ) + 1))) := by
+      field_simp
+    have e3 : A / ((r : ℝ) + 1) = A * (1 / ((r : ℝ) + 1)) := by ring
+    linarith
+  refine (sum_le_sum hterm).trans ?_
+  rw [sum_add_distrib, sum_add_distrib, ← mul_sum, ← mul_sum, ← mul_sum]
+  have h1 := sum_range_inv_sqrt_le R
+  have h2 := sum_range_inv_three_halves_le R
+  have h3 := sum_range_inv_le R
+  have c1 : 0 ≤ 16 * (N : ℝ) * √s := by positivity
+  have c2 : 0 ≤ 6 * A / √s := by positivity
+  have := mul_le_mul_of_nonneg_left h1 c1
+  have := mul_le_mul_of_nonneg_left h2 c2
+  have := mul_le_mul_of_nonneg_left h3 hA.le
+  have e : 6 * A / √s * 3 = 18 * A / √s := by ring
+  nlinarith
+
 end PaperBSmallShift
 
 end Problems.Juggler
