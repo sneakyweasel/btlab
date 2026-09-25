@@ -68,6 +68,11 @@ Lemma 18, which is the calibration, not a new result.
 
 ## Version and the floor
 
+Version 1.1.2, 25 September 2026, is built by the laboratory's common paper builder,
+`tools/build_paper.py` with `tools/papers/d.json`; Section 8 names commit `efaa92cbf`,
+where all fifteen non-editorial inputs are byte-identical, and the new build command.
+Nothing else in the text changed, and it is not deposited; the latest deposit is 1.1.1.
+
 Version 1.1.0 carries the floor \(2^{51}\) and the theorem \(m \le 61\); version 1.0.0 proved
 the same theorem for \(m \le 58\) and lacked Lemma 6. The floor is the only moving part:
 \(2^{56}\) gives \(m \le 68\) and \(2^{60}\) gives \(m \le 74\), at about 32 hours and about

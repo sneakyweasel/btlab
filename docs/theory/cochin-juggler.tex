@@ -628,9 +628,10 @@ checker uses outward interval comparisons and rational screening. The
 historical GPU and CPU tables remain separately identified in Appendix
 B.
 
-The build command \texttt{python\ tools/build\_paper\_a.py} produces the
-canonical PDF and synchronized distribution copies from this source.
-\texttt{python\ tools/build\_paper\_a.py\ -\/-check} checks their
+The build command \texttt{python\ tools/build\_paper.py\ A}, the
+laboratory's common paper builder, produces the canonical PDF and
+synchronized distribution copies from this source.
+\texttt{python\ tools/build\_paper.py\ A\ -\/-check} checks their
 provenance and hashes. The manuscript source, formalization map, and
 reviewer packet in \texttt{\nolinkurl{docs/theory/}} are the editorial
 inputs; the PDF in \texttt{\nolinkurl{preprints/}} and its
@@ -722,7 +723,7 @@ This is not a claim that the paper as a whole is formally verified.
 
 \begin{verbatim}
 Repository:  https://github.com/sneakyweasel/btlab
-Commit:      38cf9b93f57d06b6a83c81280fac65d7210e56c2
+Commit:      efaa92cbff6c3da44bb351055b32e23196de556b
 Lean:        leanprover/lean4:v4.33.1
 Mathlib:     v4.33.1 (lake-manifest rev 0df444a360eaa60ab8c11dca51a86af692955474)
 Build:       lake build Problems.JugglerPaper   (from formal/)
@@ -733,18 +734,19 @@ SHA-256:     Appendix B
 
 The commit is the repository state that produced the finance tables and
 the Lean layer. All 128 non-editorial files the release manifest records
-as inputs --- the finance probe with its three tables, the builder and
-archive packager with the template and layout filter, the numeric
-recheck, the trust-boundary audit, the paper's own audit, the curvature
-probe with its controls, the two floor verifiers with their chunk and
-run records, and the Lean sources this paper's build reaches with their
-toolchain, Lake configuration, lake manifest and axiom expectation ---
-are byte-identical there to the versions this paper reports; the check
-is mechanical and is part of the release gate. Only this text and its
-two companion documents, the typeset LaTeX and the PDF they build, the
-PDF alias in \texttt{\nolinkurl{preprints/zenodo_paper_a/}}, the Zenodo
-metadata and the manifest of digests move afterwards, in the editorial
-commit that writes the line above.
+as inputs --- the finance probe with its three tables, the common
+builder with this paper's settings, template and layout filter, the
+numeric recheck, the trust-boundary audit, the paper's own audit, the
+curvature probe with its controls, the two floor verifiers with their
+chunk and run records, and the Lean sources this paper's build reaches
+with their toolchain, Lake configuration, lake manifest and axiom
+expectation --- are byte-identical there to the versions this paper
+reports; the check is mechanical and is part of the release gate. Only
+this text and its two companion documents, the typeset LaTeX and the PDF
+they build, the PDF alias in
+\texttt{\nolinkurl{preprints/zenodo_paper_a/}}, the Zenodo metadata and
+the manifest of digests move afterwards, in the editorial commit that
+writes the line above.
 
 Version 1.0.0, deposited on 9 September 2026, named commit
 \texttt{\nolinkurl{7802f78b}} here, and that line was wrong as
@@ -6949,18 +6951,24 @@ proofs, code, and final verification of this preprint.
 
 \section{8. Availability and version}\label{availability-and-version}
 
-This is version 1.2.2 of Paper A, of 25 September 2026. It updates the
-description of the companion Papers B and C, and references {[}16{]} and
-{[}17{]}, to their published versions 1.2.0 and 1.3.0. Version 1.2.1
-completed the source and verification supplement, publication metadata,
-and provenance record, and retained the asymptotic refinement in
-Corollary 4.11a. The mathematical statements, proofs, certified floors,
-and numerical period exclusions are unchanged from version 1.2.0. It is
-a preprint and has not been refereed. Versions 1.1.0 to 1.2.1 were
-prepared but not deposited. The earlier Zenodo versions are:
+This is version 1.2.3 of Paper A, of 25 September 2026. It is built by
+the laboratory's common paper builder, so Section 1.2 names a new commit
+and the new build commands; the text is otherwise that of version 1.2.2
+of the same day, which updated the description of the companion Papers B
+and C, and references {[}16{]} and {[}17{]}, to their published versions
+1.2.0 and 1.3.0. Version 1.2.1 completed the source and verification
+supplement, publication metadata, and provenance record, and retained
+the asymptotic refinement in Corollary 4.11a. The mathematical
+statements, proofs, certified floors, and numerical period exclusions
+are unchanged from version 1.2.0. It is a preprint and has not been
+refereed. Versions 1.1.0 to 1.2.1 were prepared but not deposited. The
+earlier Zenodo versions are:
 
 \begin{itemize}
 \tightlist
+\item
+  1.2.2 of 25 September 2026,
+  \href{https://doi.org/10.5281/zenodo.22954947}{doi:10.5281/zenodo.22954947};
 \item
   1.0.2 of 20 September 2026,
   \href{https://doi.org/10.5281/zenodo.22865237}{doi:10.5281/zenodo.22865237};
@@ -6974,8 +6982,8 @@ prepared but not deposited. The earlier Zenodo versions are:
 
 The concept DOI
 \href{https://doi.org/10.5281/zenodo.22676452}{10.5281/zenodo.22676452}
-resolves to the latest version; the record of version 1.0.2 is at
-\url{https://zenodo.org/records/22865237}. The author's ORCID is
+resolves to the latest version; the record of version 1.2.2 is at
+\url{https://zenodo.org/records/22954947}. The author's ORCID is
 \href{https://orcid.org/0009-0004-1939-3382}{0009-0004-1939-3382}. A
 later revision goes up through the record's new-version operation, which
 keeps the concept DOI, rather than as a new deposit. The repository is

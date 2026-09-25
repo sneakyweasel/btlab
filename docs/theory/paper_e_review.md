@@ -1,6 +1,6 @@
 # Paper E: reviewer packet and living review record
 
-Version 0.8.0, 25 September 2026. Canonical manuscript:
+Version 0.8.1, 25 September 2026. Canonical manuscript:
 [The Juggler Map and the 3n±1 Maps](juggler_signed_collatz_note.md).
 Build and updates: [PAPER_E_BUILD.md](PAPER_E_BUILD.md).
 
@@ -222,6 +222,11 @@ does not reproduce it. The fate-class existence remark after Proposition 7.4
 is written only. This is a local coverage judgment, not independent review.
 
 ## Version history
+
+### 0.8.1 - 25 September 2026
+
+Section 1.2 and the availability section give the Zenodo versions and DOIs; Appendix A
+gives the common builder's commands. No statement, proof or audit changed.
 
 ### 0.8.0 - 25 September 2026
 

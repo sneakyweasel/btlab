@@ -1,7 +1,7 @@
 {
   "schema": 2,
   "canonical_source": "docs/theory/juggler_signed_collatz_note.md",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "status": "preprint; this build performs no external deposit",
   "verification_scope": "File provenance only. Mathematical trust boundaries are in the manuscript and its build guide.",
   "pages": 21,
@@ -53,7 +53,7 @@
     {
       "path": "docs/theory/PAPER_E_BUILD.md",
       "mode": "text",
-      "sha256": "a00f9867edeefea8f46b631f21533e7b038fdc070aaabea7656bf47c1b185e4e"
+      "sha256": "54c66c807fcf16d842c99dfef36634159ad219e815348bc407f947aed2d90103"
     },
     {
       "path": "docs/theory/collatz_actual_fibre_mass_lean_note.md",
@@ -128,7 +128,7 @@
     {
       "path": "docs/theory/juggler_signed_collatz_note.md",
       "mode": "text",
-      "sha256": "39f09a11a4754db73c10a1774f609844a26f6563cfade4974260892eb2a42c04"
+      "sha256": "145e806383ef0ac6bb5af40dfdf8cdf7d9c6561d6481ff8150755a76958f0b61"
     },
     {
       "path": "docs/theory/mixed_power_cancellation_note.md",
@@ -143,7 +143,7 @@
     {
       "path": "docs/theory/paper_e_review.md",
       "mode": "text",
-      "sha256": "f4bc610c1d99be156d95e3b7b7f54c6760b8495d6cbb0b6c5ad6a770e2064447"
+      "sha256": "10783124b77a3a435c1a7c735a48e27ec9b4cc9adbc3d6bf484ffbcd5d1228eb"
     },
     {
       "path": "docs/theory/paper_e_validation.json",
@@ -818,12 +818,12 @@
     {
       "path": "tools/build_paper.py",
       "mode": "text",
-      "sha256": "2e334a6cd7a42b60174658fa9deb8bce166bfaaf5b296d858d5f36ba246177d2"
+      "sha256": "99ace2a4a9e8cc8e940c34c41c3cd89cd01b733eaf96297796573024fc597213"
     },
     {
       "path": "tools/check_paper_e.py",
       "mode": "text",
-      "sha256": "5b5dfd8fbe2452c705d9f1330ffb11e46b17ff63dadc7c83272ad4181847519d"
+      "sha256": "0ac6dbdc34e18676da312409b95bae75259259d34182a880c657bece1cc295b0"
     },
     {
       "path": "tools/generate_signed_grid_certificate.py",
@@ -848,24 +848,24 @@
     {
       "path": "tools/papers/e.json",
       "mode": "text",
-      "sha256": "6a32d504968806c309998b8b2369fc47482f4f845f0de33fa79ad1f6d14991b6"
+      "sha256": "31a3778b23aff293c5d49fe5b4ead174ddf302bb5f793be8c436c337d41266b9"
     }
   ],
   "outputs": [
     {
       "path": "preprints/juggler_signed_collatz_note.pdf",
       "mode": "binary",
-      "sha256": "486a329fbafb4b3ad755548e85d7f2f5352bfb5410bfcc2718e3d0d0889d80be"
+      "sha256": "5dfeedb0173db5afcfb792cdd39909ed3b2e56af9d528d1609a44e2e4f1bc310"
     },
     {
       "path": "docs/theory/cochin-juggler-signed-collatz.tex",
       "mode": "text",
-      "sha256": "8f4b5218bd20dff3fbe3c79cb17fdc1f59c003073c15c1eccee17a88d20bf191"
+      "sha256": "a7f227010ab7e1e9dde647ad9d2497a07a69feaa4de0f2da2b1d2290e1a0f42c"
     },
     {
       "path": "docs/theory/paper_e_zenodo.json",
       "mode": "text",
-      "sha256": "15700a57cac676b419f2697f7537af031ce99d11f96fa51ac96e12ebc7eebf69"
+      "sha256": "27bd012e84e979ea509083799475c02bfe27ff46c8c1ecebab3420652aa19071"
     }
   ],
   "publication": {

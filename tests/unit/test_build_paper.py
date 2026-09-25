@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import io
 from pathlib import Path
+import re
 import shutil
 import sys
 import zipfile
@@ -108,7 +109,8 @@ def test_an_extracted_archive_passes_its_release_check(tmp_path):
 def test_the_field_sheet_is_plain_text_and_shaped_like_the_form(letter):
     text = (ROOT / Paper(letter, ROOT).FIELDS).read_text(encoding="utf-8")
     description = text.split("DESCRIPTION (plain text)\n", 1)[1].split("\n\nRELATED WORKS", 1)[0]
-    assert "<" not in description and "&" not in description.replace("& ", "")
+    # Mathematical "<" stays; HTML tags and entities must not.
+    assert not re.search(r"</?(p|br|em|strong)\b|&[a-z]+;|&#\d+;", description), description[:200]
     assert "Large language models" not in text and "AI assistance" not in text
     assert "Relation: Is supplement to\nIdentifier: https://github.com/sneakyweasel/btlab\n" \
            "Scheme: URL\nResource type: Software" in text

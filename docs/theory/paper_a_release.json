@@ -1,7 +1,7 @@
 {
   "schema": 2,
   "canonical_source": "docs/theory/juggler_finite_dynamics_note.md",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "status": "preprint; this build performs no external deposit",
   "verification_scope": "File provenance only. Mathematical trust boundaries are in the manuscript and its build guide.",
   "pages": 113,
@@ -53,22 +53,22 @@
     {
       "path": "docs/theory/PAPER_A_BUILD.md",
       "mode": "text",
-      "sha256": "7a217376fcf03e8530c31d1e1998783d2d7694627c5938abec84f0d07bb91988"
+      "sha256": "b40f9a74ce1f65f50ca081fd0ae3cbbf246d89ddb347d55c146e325ce597b5f5"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_formalization.md",
       "mode": "text",
-      "sha256": "16b94573c42782ca46f7a7770bc389278aa689d8aaf978abc21513ff5db31621"
+      "sha256": "5f3df5c25dd5c507f5f094187b179ca9b66412ee33cd64485cd7f3c797d91af7"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_note.md",
       "mode": "text",
-      "sha256": "49f85da595499baf6e851d037eb2057bd448a8501c30f4433fb6bd80214cdf44"
+      "sha256": "2ecc40d2f1547fef07c64db08a212ec69266207d6e935c5e86efe539f273cbd8"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_reviewer_packet.md",
       "mode": "text",
-      "sha256": "33052f87d0a266a4b3b72a59c85c53cedb3c9762389bafe9cbf7ef044db411bf"
+      "sha256": "413e6df569d659d776eba4ea5fb012a440cfe1176633bb24cd1e5450c8774f85"
     },
     {
       "path": "formal/AxiomCheckPaperA.expected",
@@ -643,7 +643,7 @@
     {
       "path": "tools/build_paper.py",
       "mode": "text",
-      "sha256": "2e334a6cd7a42b60174658fa9deb8bce166bfaaf5b296d858d5f36ba246177d2"
+      "sha256": "99ace2a4a9e8cc8e940c34c41c3cd89cd01b733eaf96297796573024fc597213"
     },
     {
       "path": "tools/check_paper_a_numeric.py",
@@ -663,7 +663,7 @@
     {
       "path": "tools/papers/a.json",
       "mode": "text",
-      "sha256": "f148fab0edeee9bfe1c5a062a3357b96d7179f6ec6e7cc48cd0120e27dc1d699"
+      "sha256": "90b343fddebe1acb98bf5aed27128d8503a347f2158d976d4f430b450834a8c6"
     },
     {
       "path": "tools/trust_boundary.py",
@@ -675,17 +675,17 @@
     {
       "path": "preprints/juggler_finite_dynamics_note.pdf",
       "mode": "binary",
-      "sha256": "cc85998bb4557cf9ac52af2e89d067f684d121c77c374688deadce71b2c0a0e3"
+      "sha256": "412c72c248f92e79a245821d047828b096ced4977ec626ff541998b2c8c58b98"
     },
     {
       "path": "docs/theory/cochin-juggler.tex",
       "mode": "text",
-      "sha256": "c60f39d850551dfff1ed9f11278cd32b1698abdd62734ab9f8f39e08dd1c7924"
+      "sha256": "de018239a01d8722a34ef3057b02a02e2088c410fc91b024cdcf5e70fa960e88"
     },
     {
       "path": "docs/theory/paper_a_zenodo.json",
       "mode": "text",
-      "sha256": "bf8ce64a6fb4c50452003de88f488da052233ed71a1f029b90c29f7d0edbf8a7"
+      "sha256": "7ca26174254f706d33b0a01576148c773571bd46a80602aa87c76abc86efb395"
     }
   ],
   "publication": {

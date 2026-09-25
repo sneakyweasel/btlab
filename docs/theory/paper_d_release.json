@@ -1,7 +1,7 @@
 {
   "schema": 2,
   "canonical_source": "docs/theory/collatz_3n_minus_1_m_cycles_note.md",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "status": "preprint; this build performs no external deposit",
   "verification_scope": "File provenance only. Mathematical trust boundaries are in the manuscript and its build guide.",
   "pages": 10,
@@ -48,12 +48,12 @@
     {
       "path": "docs/theory/PAPER_D_BUILD.md",
       "mode": "text",
-      "sha256": "fa5ff00b7a23b76f35382f5a8458491e77e2ec7331fe147c7c8de542e44b520e"
+      "sha256": "2a1e32da8127efd0e3aa2e89b0c938b1755c087f8bb9fca95bb1ea5b1bc07fe9"
     },
     {
       "path": "docs/theory/collatz_3n_minus_1_m_cycles_note.md",
       "mode": "text",
-      "sha256": "c24c0302eac03d7a5d6d6e7eba428536c7ae92a98ca9db22931be04d6e9fbe2e"
+      "sha256": "958f6490c8759da693358f2da4fa5580d2f7a59ec5acd753b19dd42398d03f01"
     },
     {
       "path": "formal/Problems/Collatz/NegativeMCycles.lean",
@@ -73,7 +73,7 @@
     {
       "path": "tools/build_paper.py",
       "mode": "text",
-      "sha256": "2e334a6cd7a42b60174658fa9deb8bce166bfaaf5b296d858d5f36ba246177d2"
+      "sha256": "99ace2a4a9e8cc8e940c34c41c3cd89cd01b733eaf96297796573024fc597213"
     },
     {
       "path": "tools/check_3n_minus_1_note_numeric.py",
@@ -93,24 +93,24 @@
     {
       "path": "tools/papers/d.json",
       "mode": "text",
-      "sha256": "671b5db54a9f7b5532882533d74158e8f50ebd24c4187921ac6277a645529044"
+      "sha256": "1f411c007f579c0c489636afc49c0f9bb0923e1f9980bfdb3800fef84c848daa"
     }
   ],
   "outputs": [
     {
       "path": "preprints/collatz_3n_minus_1_m_cycles_note.pdf",
       "mode": "binary",
-      "sha256": "a76ee520ed6af2d8a56ace8b3c30bbd40fd3984421c16d53a4fe19290485e031"
+      "sha256": "04c2a20fc163a01b160a4738b54f0a9bc75ab663a664478a2b55c01725143ee6"
     },
     {
       "path": "docs/theory/cochin-3n-minus-1-m-cycles.tex",
       "mode": "text",
-      "sha256": "5712b11840929730f3a81f7e34dedcd50c9f499495fd65a85cf9bfb5a9dc2f28"
+      "sha256": "ad3de09d388d3eee95464600bdbeafb00451fa0a602937031e0e25bba03e4abd"
     },
     {
       "path": "docs/theory/paper_d_zenodo.json",
       "mode": "text",
-      "sha256": "ccbf2bc1651def09dea97c927a8bb56c6483725ee286e1d0ee0bbab02c748095"
+      "sha256": "4e62a805af8c568fe3eb0532c32e149340b7991b8869a1044cb02c1b38e8e552"
     }
   ],
   "publication": {

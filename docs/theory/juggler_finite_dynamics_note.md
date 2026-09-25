@@ -622,9 +622,9 @@ one integer when \(L\log2-o\log3\) is evaluated naively. The independent
 checker uses outward interval comparisons and rational screening. The
 historical GPU and CPU tables remain separately identified in Appendix B.
 
-The build command `python tools/build_paper_a.py` produces the canonical
-PDF and synchronized distribution copies from this source.
-`python tools/build_paper_a.py --check` checks their provenance and hashes.
+The build command `python tools/build_paper.py A`, the laboratory's common paper
+builder, produces the canonical PDF and synchronized distribution copies from this
+source. `python tools/build_paper.py A --check` checks their provenance and hashes.
 The manuscript source, formalization map, and reviewer packet in
 `docs/theory/` are the editorial inputs; the PDF in `preprints/` and its publication-kit alias are
 generated exports. No external
@@ -708,7 +708,7 @@ whole is formally verified.
 
 ```text
 Repository:  https://github.com/sneakyweasel/btlab
-Commit:      38cf9b93f57d06b6a83c81280fac65d7210e56c2
+Commit:      efaa92cbff6c3da44bb351055b32e23196de556b
 Lean:        leanprover/lean4:v4.33.1
 Mathlib:     v4.33.1 (lake-manifest rev 0df444a360eaa60ab8c11dca51a86af692955474)
 Build:       lake build Problems.JugglerPaper   (from formal/)
@@ -720,7 +720,7 @@ SHA-256:     Appendix B
 The commit is the repository state that produced the finance
 tables and the Lean layer. All 128 non-editorial files the release manifest
 records as inputs — the finance probe with its three tables,
-the builder and archive packager with the template and layout filter, the numeric
+the common builder with this paper's settings, template and layout filter, the numeric
 recheck, the trust-boundary audit, the paper's own audit, the
 curvature probe with its controls, the two floor verifiers
 with their chunk and run records, and the Lean sources
@@ -7001,8 +7001,10 @@ preprint.
 
 ## 8. Availability and version
 
-This is version 1.2.2 of Paper A, of 25 September 2026. It updates the
-description of the companion Papers B and C, and references [16] and
+This is version 1.2.3 of Paper A, of 25 September 2026. It is built by the
+laboratory's common paper builder, so Section 1.2 names a new commit and the new
+build commands; the text is otherwise that of version 1.2.2 of the same day, which
+updated the description of the companion Papers B and C, and references [16] and
 [17], to their published versions 1.2.0 and 1.3.0. Version 1.2.1 completed
 the source and verification supplement, publication metadata, and
 provenance record, and retained the asymptotic refinement in Corollary
@@ -7011,6 +7013,8 @@ numerical period exclusions are unchanged from version 1.2.0. It is a preprint a
 not been refereed. Versions 1.1.0 to 1.2.1 were prepared but not deposited. The
 earlier Zenodo versions are:
 
+- 1.2.2 of 25 September 2026,
+  [doi:10.5281/zenodo.22954947](https://doi.org/10.5281/zenodo.22954947);
 - 1.0.2 of 20 September 2026,
   [doi:10.5281/zenodo.22865237](https://doi.org/10.5281/zenodo.22865237);
 - 1.0.1 of 19 September 2026,
@@ -7020,8 +7024,8 @@ earlier Zenodo versions are:
 
 The concept DOI
 [10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) resolves to the
-latest version; the record of version 1.0.2 is at
-<https://zenodo.org/records/22865237>.
+latest version; the record of version 1.2.2 is at
+<https://zenodo.org/records/22954947>.
 The author's ORCID is
 [0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382).
 A later revision goes up through the record's new-version operation, which

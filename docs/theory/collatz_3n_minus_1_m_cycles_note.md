@@ -493,7 +493,7 @@ the fourteen pinned files.
 
 ```text
 Repository:  https://github.com/sneakyweasel/btlab
-Commit:      d20cab375baa47dd207f8a677aec1c93d9046c6f
+Commit:      efaa92cbff6c3da44bb351055b32e23196de556b
 Lean:        leanprover/lean4:v4.33.1
 Mathlib:     v4.33.1 (lake-manifest rev 0df444a360eaa60ab8c11dca51a86af692955474)
 Build:       lake build Problems.Collatz.NegativeMCycles   (from formal/)
@@ -503,8 +503,9 @@ Recheck:     python tools/check_3n_minus_1_note_numeric.py
 ```
 
 The commit is the repository state that produced the tables, the floor records and the Lean
-module. All fourteen files those commands read or write -- the two probes, the recheck, the
-builder and its template, the four floor records, the CUDA source, the two table files and
+module. All fifteen files those commands read or write -- the two probes, the recheck, the
+common paper builder with this paper's settings, template and layout filter, the four
+floor records, the CUDA source, the two table files and
 the Lean module -- are byte-identical there to the versions this paper reports; the check is
 mechanical and is part of the release gate. Only this text, its typeset form and the manifest
 of digests move afterwards, in the editorial commit that writes the line above.
@@ -521,22 +522,25 @@ for the statements, the proofs, the code, and the decision to make this version 
 
 ## Availability and version
 
-This is version 1.1.1 of Paper D, of 25 September 2026, at the floor \(2^{51}\). It is a
-preprint and has not been refereed. It corrects wording and precision in version 1.1.0 of
-21 September 2026: two claims of novelty are hedged, Lemma 6 states its value of
+This is version 1.1.2 of Paper D, of 25 September 2026, at the floor \(2^{51}\). It is a
+preprint and has not been refereed. It is built by the laboratory's common paper builder,
+so Section 8 names a new commit and the build command; the text is otherwise that of
+version 1.1.1 of the same day
+([doi:10.5281/zenodo.22954088](https://doi.org/10.5281/zenodo.22954088)), which
+corrected wording and precision in version 1.1.0 of 21 September 2026: two claims of novelty are hedged, Lemma 6 states its value of
 \(R(T)\) when no \(r\) qualifies, and Section 8 records the interval-arithmetic audit;
 the theorem, the tables and the pinned inputs are unchanged. Version 1.0.0, deposited the same day
 ([doi:10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190)), proved the same
 theorem for \(m\le58\); this version adds Lemma 6 and reaches \(m\le61\) at the same
 floor, with the tables and the calibration regenerated, in version 1.1.0. The concept DOI
 [10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) resolves to the latest
-version, and the record is at <https://zenodo.org/records/22876190>. The author's ORCID is
+version; the record of version 1.1.1 is at <https://zenodo.org/records/22954088>. The author's ORCID is
 [0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382). The manuscript, the probe that computes the tables, the
 independent check that recomputes them, the Lean module, the CUDA verifier and the floor
 certificate with its chunk reports are in the repository
 [sneakyweasel/btlab](https://github.com/sneakyweasel/btlab) at the commit named in Section 8;
-`python tools/build_paper_d.py` rebuilds this document from its canonical Markdown and
-`--check` verifies every generated copy against the manifest. The verification floor is a
+`python tools/build_paper.py D` rebuilds this document from its canonical Markdown and
+`python tools/build_paper.py D --check` verifies every generated copy against the manifest. The verification floor is a
 computation of this laboratory, not a result from the literature, and is labelled as one
 throughout; a higher floor raises the theorem's \(m\) and would be a new version rather than
 a correction of this one.

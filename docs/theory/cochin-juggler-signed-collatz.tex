@@ -31,7 +31,7 @@ Cochin},pdfsubject={Mathematics preprint}}
 and Arithmetic Obstructions}}
 \author{Philippe Cochin \\ \texttt{philippe@cochin.fr} \\
   \small ORCID \href{https://orcid.org/0009-0004-1939-3382}{0009-0004-1939-3382}}
-\date{25 September 2026 · Version 0.8.0}
+\date{25 September 2026 · Version 0.8.1}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -163,10 +163,10 @@ computational floors nor the analytic estimates in {[}B{]}.
 
 \subsection{1.2. Proof status}\label{proof-status}
 
-This is the living preprint, version 0.8.0. It has not been deposited or
-independently refereed. Mathematical priority for the signed adaptation
-and the isolated obstruction results remains subject to specialist
-review.
+This is the living preprint, version 0.8.1. It has not been
+independently refereed; the availability section lists its Zenodo
+versions. Mathematical priority for the signed adaptation and the
+isolated obstruction results remains subject to specialist review.
 
 Theorems 2.1, 3.2, 4.1, 4.4, 5.1, 6.1, and 7.3, Corollaries 4.2-4.3, and
 Propositions 7.4-7.5 have compiled Lean statements; Appendix B
@@ -936,8 +936,15 @@ The canonical source is
 with the command given in Appendix A; the update and validation guide is
 \texttt{\nolinkurl{docs/theory/PAPER_E_BUILD.md}}. The release manifest
 records SHA-256 hashes of the manuscript, mathematical dependencies,
-build tools, and outputs. This edition makes no claim of an existing
-external deposit.
+build tools, and outputs. Version 0.8.1 adds these DOIs and the common
+build commands to the text of 0.8.0. The Zenodo versions are 0.8.0 of 25
+September 2026
+(\href{https://doi.org/10.5281/zenodo.22954746}{doi:10.5281/zenodo.22954746})
+and 0.7.1 of 22 September 2026
+(\href{https://doi.org/10.5281/zenodo.22905650}{doi:10.5281/zenodo.22905650});
+the concept DOI
+\href{https://doi.org/10.5281/zenodo.22905649}{10.5281/zenodo.22905649}
+resolves to the latest version.
 
 The manuscript uses CC BY 4.0. Software retains its repository license
 and third-party notices; reused grid material retains M. Sharpe's MIT
@@ -980,8 +987,8 @@ verifier checks closure and the strict barrier.
 \begin{verbatim}
 python tools/check_paper_e.py
 python tools/generate_signed_grid_certificate.py --check
-python tools/build_paper_e.py
-python tools/build_paper_e.py --check
+python tools/build_paper.py E
+python tools/build_paper.py E --check
 cd formal
 lake build Problems.JugglerCollatzPaper
 lake env lean AxiomCheckJugglerCollatzPaper.lean

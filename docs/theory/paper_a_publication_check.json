@@ -88,5 +88,6 @@
     "scope": "Every test file that reads Paper A, its build, kit, deposit register or preprint index (100 files).",
     "failure": "test_contagion_exponent_quoted_by_paper_a_is_the_current_one pinned the superseded Paper C wording; it now requires the published 1.3.0 statement, rejects the 1.2.1 text, and its file reruns with 66 passed.",
     "not_run": "Slow tests and the full repository suite."
-  }
+  },
+  "note": "Review record of version 1.2.2. Version 1.2.3 changes only the pinned commit and the build commands in Section 1.2; built from the same source by the old and the common builder, the PDF was byte-identical."
 }

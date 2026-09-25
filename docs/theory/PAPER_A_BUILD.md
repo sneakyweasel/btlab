@@ -51,7 +51,14 @@ four reported boundaries; the descent floors remain supplied inputs. In
 `AxiomCheckPaperA.expected`. When the manuscript cites a different set of
 declarations, update the audit list and regenerate its expected output.
 
-This repository holds version 1.2.2, deposited on 25 September 2026 with its source
+Version 1.2.3, 25 September 2026, is built by the laboratory's common paper builder,
+`tools/build_paper.py` with `tools/papers/a.json`. Because the builder is a pinned input,
+Section 1.2 names commit `efaa92cbf`, where all 128 non-editorial inputs are
+byte-identical, and gives the new build commands; nothing else in the text changed.
+Built by the old and the new builder from the same source, the PDF was byte-identical.
+Not deposited; the latest deposit is 1.2.2.
+
+Version 1.2.2 was deposited on 25 September 2026 with its source
 supplement as
 [doi:10.5281/zenodo.22954947](https://doi.org/10.5281/zenodo.22954947), record
 [zenodo.org/records/22954947](https://zenodo.org/records/22954947); both files are

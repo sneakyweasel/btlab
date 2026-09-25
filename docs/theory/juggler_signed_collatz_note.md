@@ -2,7 +2,7 @@
 title: "The Juggler Map and the 3n±1 Maps"
 subtitle: "Exact Coding and Arithmetic Obstructions"
 author: Philippe Cochin
-date: "25 September 2026 · Version 0.8.0"
+date: "25 September 2026 · Version 0.8.1"
 ---
 
 ## Abstract
@@ -129,8 +129,8 @@ floors nor the analytic estimates in [B].
 
 ### 1.2. Proof status
 
-This is the living preprint, version 0.8.0. It has not been
-deposited or independently refereed. Mathematical priority for the
+This is the living preprint, version 0.8.1. It has not been
+independently refereed; the availability section lists its Zenodo versions. Mathematical priority for the
 signed adaptation and the isolated obstruction results remains subject
 to specialist review.
 
@@ -980,8 +980,14 @@ The canonical source is `docs/theory/juggler_signed_collatz_note.md`.
 Build with the command given in Appendix A; the update and
 validation guide is `docs/theory/PAPER_E_BUILD.md`.
 The release manifest records SHA-256 hashes of the manuscript,
-mathematical dependencies, build tools, and outputs. This
-edition makes no claim of an existing external deposit.
+mathematical dependencies, build tools, and outputs. Version
+0.8.1 adds these DOIs and the common build commands to the text of
+0.8.0. The Zenodo versions are 0.8.0 of 25 September 2026
+([doi:10.5281/zenodo.22954746](https://doi.org/10.5281/zenodo.22954746)) and
+0.7.1 of 22 September 2026
+([doi:10.5281/zenodo.22905650](https://doi.org/10.5281/zenodo.22905650)); the concept
+DOI [10.5281/zenodo.22905649](https://doi.org/10.5281/zenodo.22905649) resolves to the
+latest version.
 
 The manuscript uses CC BY 4.0. Software retains its repository
 license and third-party notices; reused grid material retains
@@ -1025,8 +1031,8 @@ and the strict barrier.
 ~~~text
 python tools/check_paper_e.py
 python tools/generate_signed_grid_certificate.py --check
-python tools/build_paper_e.py
-python tools/build_paper_e.py --check
+python tools/build_paper.py E
+python tools/build_paper.py E --check
 cd formal
 lake build Problems.JugglerCollatzPaper
 lake env lean AxiomCheckJugglerCollatzPaper.lean

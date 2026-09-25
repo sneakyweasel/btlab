@@ -14,11 +14,11 @@ which is what the other habit costs.
 
 | Paper | Title | Repository | Latest deposit | Concept DOI |
 | --- | --- | --- | --- | --- |
-| A | Lower Bounds for Cycle Lengths in the Juggler Map | 1.2.2, deposited | [1.2.2](https://doi.org/10.5281/zenodo.22954947) | [10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) |
+| A | Lower Bounds for Cycle Lengths in the Juggler Map | 1.2.3, not deposited | [1.2.2](https://doi.org/10.5281/zenodo.22954947) | [10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) |
 | B | Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers | 1.2.0, deposited | [1.2.0](https://doi.org/10.5281/zenodo.22946276) | [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) |
 | C | Fate Contagion and Termination Criteria for the Juggler Map | 1.3.0, deposited | [1.3.0](https://doi.org/10.5281/zenodo.22947659) | [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) |
-| D | No m-cycles of the 3n−1 map for m ≤ 61 | 1.1.1, deposited | [1.1.1](https://doi.org/10.5281/zenodo.22954088) | [10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) |
-| E | The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions | 0.8.0, deposited | [0.8.0](https://doi.org/10.5281/zenodo.22954746) | [10.5281/zenodo.22905649](https://doi.org/10.5281/zenodo.22905649) |
+| D | No m-cycles of the 3n−1 map for m ≤ 61 | 1.1.2, not deposited | [1.1.1](https://doi.org/10.5281/zenodo.22954088) | [10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) |
+| E | The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions | 0.8.1, not deposited | [0.8.0](https://doi.org/10.5281/zenodo.22954746) | [10.5281/zenodo.22905649](https://doi.org/10.5281/zenodo.22905649) |
 
 Every DOI in this file was resolved against doi.org on 21 September 2026, and each
 concept DOI was confirmed to return the version named beside it as the latest. Paper
@@ -29,15 +29,19 @@ for A 1.2.2, D 1.1.1 and both E versions were read from the Zenodo API the same 
 where each concept record returns the version named. All five papers are resource
 type Publication / Preprint, CC BY 4.0, English, open access.
 
-On 25 September 2026 every record holds the repository version: A 1.2.2, B 1.2.0,
-C 1.3.0, D 1.1.1 and E 0.8.0. Being ahead is the normal state here: a revision
+B and C are at their deposited versions. A, D and E are one local version ahead
+(1.2.3, 1.1.2 and 0.8.1): the move to the common builder repinned A and D, and E gained
+its DOIs; no statement changed. Being ahead is the normal state here: a revision
 is prepared, checked and committed, and deposited only when the author decides to.
-`tools/build_paper_*.py` prints which state a paper is in, and
+`tools/build_paper.py` prints which state a paper is in, and
 `ZENODO_FIELDS.txt` says so at the top of the generated export.
 
 ## Version histories
 
 ### Paper A, Lower Bounds for Cycle Lengths in the Juggler Map
+
+Prepared 1.2.3, 25 September 2026. Built by the common paper builder and repinned to
+`efaa92cbf`; the text is otherwise 1.2.2's. Not deposited.
 
 Published 1.2.2, 25 September 2026 (record created 08:36 UTC). Updates the
 description of Paper C's contagion theorem and the references to Papers B and C to
@@ -59,6 +63,7 @@ Record [zenodo.org/records/22954947](https://zenodo.org/records/22954947), the l
 
 | Version | DOI | Date |
 | --- | --- | --- |
+| 1.2.3 | not deposited | 25 September 2026 |
 | 1.2.2 | [10.5281/zenodo.22954947](https://doi.org/10.5281/zenodo.22954947) | 25 September 2026 |
 | 1.2.1 | not deposited | 23 September 2026 |
 | 1.2.0 | not deposited | 22 September 2026 |
@@ -171,9 +176,13 @@ Record [zenodo.org/records/22954088](https://zenodo.org/records/22954088), the l
 
 | Version | DOI | Date |
 | --- | --- | --- |
+| 1.1.2 | not deposited | 25 September 2026 |
 | 1.1.1 | [10.5281/zenodo.22954088](https://doi.org/10.5281/zenodo.22954088) | 25 September 2026 |
 | 1.1.0 | not deposited | 21 September 2026 |
 | 1.0.0 | [10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190) | 21 September 2026 |
+
+Prepared 1.1.2, 25 September 2026: built by the common paper builder and repinned to
+`efaa92cbf`; the text is otherwise 1.1.1's. Not deposited.
 
 Version 1.0.0 proved the theorem for \(m\le58\) at the verification floor
 \(2^{51}\); 1.1.0 adds the valley-count lemma as Lemma 6 and reaches \(m\le61\) at
@@ -193,6 +202,9 @@ new-version operation, not a correction.
 
 ### Paper E, The Juggler Map and the 3n±1 Maps
 
+Prepared 0.8.1, 25 September 2026: gives its DOIs and the common build commands; no
+statement changed. Not deposited.
+
 Published 0.8.0, 25 September 2026 (record created 08:24 UTC):
 `Juggler_and_signed_Collatz.pdf`, 180,942 bytes, md5
 `dd852032e49425d6ae39ba9c12d88b56`, the PDF of commit `5a11a3b83`, and
@@ -210,6 +222,7 @@ version; concept DOI [10.5281/zenodo.22905649](https://doi.org/10.5281/zenodo.22
 
 | Version | DOI | Date |
 | --- | --- | --- |
+| 0.8.1 | not deposited | 25 September 2026 |
 | 0.8.0 | [10.5281/zenodo.22954746](https://doi.org/10.5281/zenodo.22954746) | 25 September 2026 |
 | 0.7.1 | [10.5281/zenodo.22905650](https://doi.org/10.5281/zenodo.22905650) | 22 September 2026 |
 

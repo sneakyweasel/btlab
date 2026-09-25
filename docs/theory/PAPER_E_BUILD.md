@@ -1,7 +1,9 @@
 # Paper E: living manuscript, checks, and publication package
 
 **The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions.**
-Version 0.8.0, 25 September 2026. Deposited the same day as
+Version 0.8.1, 25 September 2026, local: it adds the DOIs to Section 1.2 and the
+availability section and gives the common build commands in Appendix A. Version 0.8.0
+was deposited the same day as
 [doi:10.5281/zenodo.22954746](https://doi.org/10.5281/zenodo.22954746), concept DOI
 [10.5281/zenodo.22905649](https://doi.org/10.5281/zenodo.22905649); version 0.7.1 was
 deposited on 22 September 2026 as
