@@ -11555,21 +11555,36 @@
    {
     "id": "written",
     "method": "written",
-    "coverage": "partial",
+    "coverage": "complete",
     "source": {
      "path": "docs/theory/juggler_ooee_contagion_note.md",
-     "start": "## 5. The exact exponent certificate",
+     "start": "## 2. Actual source sets and their weights",
      "end": "## 7. OE is now unconditional in the conserved weight",
-     "sha256": "d39f80a50ce3e39197f35ea1fa468e0986a01d40512ff2d099a8629e412fdea2"
+     "sha256": "8727fa7a6eade3f0ea364b01cf038e4f84877fec2a9d1d61b3aba88e83a195d8"
     },
     "uses": [
      {
+      "claim": "J-code-mass-kernel-foundation",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-oe-averaged-two-productions-reach-the-depth-two-ceiling",
+      "kind": "proof"
+     },
+     {
       "claim": "J-fate-recursion-lemma",
+      "kind": "proof"
+     },
+     {
+      "claim": "J-tao-rate-implies-conjecture",
       "kind": "proof"
      }
     ],
-    "notes": "This older, multi-part assembly row retains formal production premises. The current root supplies OE/OOEE separately. Weight/source geometry, seed and Tao-reduction details remain unexpanded; the old source passage is not evidence that current OOEE production is still open."
+    "notes": "Passage widened on 2026-09-25 from Sections 5-6 to Sections 2-6, which the row statement covers. Inputs: the conserved weight and exact even-fibre mass law of CodeMassTransport (even_pullback_cutoff, recorded under J-code-mass-kernel-foundation); the positive seed from unconditional contagion up to 100/203 (Production.logMass_contagion_averaged, FateOOEEAssembly.lean line 196); recursion_lemma (line 255); tao_rate_implies_conjecture at lambda=5/8 (line 302). Section 3 derives OddProductionBounds, which this row keeps as a hypothesis, so its inputs belong to the unconditional 5/8 bound, not to this route. The odd-failure rate premise of the termination part stays inside the row implication rather than as an assumption edge, because J-ooee-contagion-five-eighths uses only the growth part; splitting the row would record this more precisely. Weight bounds, source disjointness and the rational certificate (11) are proved within the row."
    }
+  ],
+  "conditions": [
+   "OddProductionBounds A: there are C>=0 and T with (33/100)F_A(3t/4-4)<=S_OE(A,t)+C and (11/100)F_A(9t/16-4)<=S_OOEE(A,t)+C for all t>=T."
   ]
  },
  {
@@ -11648,7 +11663,7 @@
    {
     "id": "written",
     "method": "written",
-    "coverage": "partial",
+    "coverage": "complete",
     "source": {
      "path": "docs/theory/juggler_ooee_count_poor_tail_note.md",
      "start": "## Counting the resonance family",
@@ -11659,9 +11674,13 @@
      {
       "claim": "J-ooee-count-poor-resonance",
       "kind": "proof"
+     },
+     {
+      "claim": "J-fate-thin-fibers",
+      "kind": "proof"
      }
     ],
-    "notes": "The resonance inclusion is explicit. Monotone arc counting and the dyadic-to-infinite-series lemmas remain unexpanded, though kernel evidence is already recorded."
+    "notes": "The resonance inclusion supplies (3) from (2). The monotone arc-counting theorem cited without a name is FiberParity.arc_count_le (OOEEResonanceTail.lean line 95), recorded under J-fate-thin-fibers (Paper C Lemma 4.3); that row is coarser than the single lemma used. Elementary steps with no ledger row: the Bernoulli phase-increment bound (Numerics.bernoulli_le), 2^(-7/9)<=2/3, the geometric dyadic sum and summability from finite subsets. Enumerated 2026-09-25 against the passage and the Lean proof; not an independent proof audit."
    }
   ]
  },
@@ -11694,7 +11713,7 @@
    {
     "id": "written",
     "method": "written",
-    "coverage": "partial",
+    "coverage": "complete",
     "source": {
      "path": "docs/theory/juggler_ooee_count_poor_tail_note.md",
      "start": "## Fixed cutoffs and inclusion",
@@ -11707,7 +11726,7 @@
       "kind": "proof"
      }
     ],
-    "notes": "The actual fibre-count estimate supplies the contraposition input. Parameter selection and elementary limit lemmas are not separately mapped."
+    "notes": "Sole ledger input: the normalized exact-fibre estimate (normalized_fibre_discrepancy, OOEEFibreResonance.lean line 69), whose constants give A=A_H^3+6A_H, R=2B+18piH+2 and the premise C>=(27/32)H. Remaining steps are elementary: the choice of H, C and M, the reduction of negative frequencies to q=-k with z replaced by -z, and the limit of m^(-1/18) (Mathlib tendsto_rpow_neg_atTop). Enumerated 2026-09-25 against the passage and the Lean proof; not an independent proof audit."
    }
   ]
  },
@@ -11827,7 +11846,7 @@
    {
     "id": "written",
     "method": "written",
-    "coverage": "partial",
+    "coverage": "complete",
     "source": {
      "path": "docs/theory/juggler_ooee_weighted_production_note.md",
      "start": "## Exact statement",
@@ -11848,7 +11867,7 @@
       "kind": "assumption"
      }
     ],
-    "notes": "The named open pressure input and generic reduction are explicit. The finite target is a local parameter condition, not a newly certified computational floor. Lower-level pressure proof dependencies remain unexpanded."
+    "notes": "Lean: pressure_average_conjecture (FateOOEEWeighted.lean line 199) is pressure_average_conjecture_of_ooee applied to ooee_production, with ScaleAverage.Bound as a premise. The count-to-weight part of the passage is the proof of J-ooee-actual-weighted-production. The 5/8 exponent it cites is derived inside the transfer row, so no separate contagion edge is needed. Backward closure of the nonterminating set (not_reachesOne_backwardClosed) is elementary. The finite target is a local condition, not a certified computational floor. Enumerated 2026-09-25; not an independent proof audit."
    }
   ]
  },

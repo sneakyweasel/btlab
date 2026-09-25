@@ -973,11 +973,11 @@ These are written-proof annotations, not additional proof certificates. Rows abs
 | J-five-step-descent-density | written | complete | J-paper-b-five-step-density-127 (proof) |
 | J-four-step-descent-density | written | complete | J-automatic-descent-density (proof), J-triple-parity-discrepancy (proof), J-paper-b-minimal-prefixes-five (proof) |
 | J-ooee-actual-weighted-production | written | complete | J-ooee-exact-fibre-geometry (proof), J-ooee-count-poor-reciprocal-tail (proof), J-oe-conserved-weight-production (proof) |
-| J-ooee-contagion-assembly | written | partial | J-fate-recursion-lemma (proof) |
+| J-ooee-contagion-assembly | written | complete | J-code-mass-kernel-foundation (proof), J-oe-averaged-two-productions-reach-the-depth-two-ceiling (proof), J-fate-recursion-lemma (proof), J-tao-rate-implies-conjecture (proof) |
 | J-ooee-contagion-five-eighths | written | complete | J-ooee-actual-weighted-production (proof), J-oe-conserved-weight-production (proof), J-ooee-contagion-assembly (proof) |
-| J-ooee-count-poor-reciprocal-tail | written | partial | J-ooee-count-poor-resonance (proof) |
-| J-ooee-count-poor-resonance | written | partial | J-ooee-exact-fibre-parity (proof) |
-| J-ooee-pressure-rate-termination | written | partial | J-ooee-actual-weighted-production (proof), J-pressure-scale-average-contagion-transfer (proof), J-paper-c-hypothesis-stopped-pressure (assumption) |
+| J-ooee-count-poor-reciprocal-tail | written | complete | J-ooee-count-poor-resonance (proof), J-fate-thin-fibers (proof) |
+| J-ooee-count-poor-resonance | written | complete | J-ooee-exact-fibre-parity (proof) |
+| J-ooee-pressure-rate-termination | written | complete | J-ooee-actual-weighted-production (proof), J-pressure-scale-average-contagion-transfer (proof), J-paper-c-hypothesis-stopped-pressure (assumption) |
 | J-ooee-tao-rate-termination | written | complete | J-ooee-contagion-five-eighths (proof), J-ooee-contagion-assembly (proof), J-paper-c-hypothesis-tao-rate (assumption) |
 | J-paper-b-density-one-under-fd | written | partial | J-paper-b-hypothesis-fd (assumption), J-power-envelope-contraction (proof), J-paper-b-chernoff-chain-is-formal (proof), J-fd-step-is-formal-and-theorem-six-one-stays-conditional (proof), J-theorem-six-one-threshold-is-slack (proof) |
 | J-paper-b-five-step-density-127 | written | complete | J-five-step-certificate-subfamily (proof), J-paper-b-oooee-count (proof), J-paper-b-minimal-prefixes-five (proof) |
