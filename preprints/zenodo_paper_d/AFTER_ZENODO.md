@@ -1,8 +1,9 @@
 # Paper D Zenodo record
 
-**Version 1.1.0 is prepared here and not yet deposited.** It proves the same theorem for
-m <= 61 where 1.0.0 proved m <= 58, by adding Lemma 6, the valley count; the floor is
-unchanged at 2^51. Use the record's **new version** operation, not a fresh deposit, so the
+**Version 1.1.1 is prepared here and not yet deposited.** It proves the same theorem for
+m <= 61 where 1.0.0 proved m <= 58, by Lemma 6, the valley count, which 1.1.0 added; the
+floor is unchanged at 2^51. 1.1.1 corrects wording and precision in 1.1.0, which was
+never deposited. Use the record's **new version** operation, not a fresh deposit, so the
 concept DOI keeps resolving to the latest. The files to upload are the ones in this folder,
 which the builder has regenerated; the PDF here is no longer the 1.0.0 file.
 
@@ -27,16 +28,17 @@ Published 21 September 2026 at the verification floor 2^51.
 
 That file was byte-identical to the repository's copy when it was deposited, and the md5
 above was read back from the record and compared. The repository copy has since moved on to
-1.1.0, so the two no longer agree; the 1.0.0 bytes are recoverable from the record itself and
-from the commit that carried them. Version 1.1.0's availability section names the 1.0.0 DOI,
+1.1.0 and then 1.1.1, so the two no longer agree; the 1.0.0 bytes are recoverable from the record itself and
+from the commit that carried them. Since 1.1.0 the availability section names the 1.0.0 DOI,
 which is the convention this laboratory now follows once a record exists.
 
 A local `python tools/build_paper_d.py` run does not create or update this record. For a
 later revision, including a higher verification floor, use the record's new-version
 operation; the concept DOI resolves to the latest.
 
-One field on the record is thinner than the field sheet: the relation citing Paper A
-({"cites": "10.5281/zenodo.22676453"}) is not present in the record's metadata. It can be
-added later as a metadata edit, which keeps the DOI.
+The record is thinner than the field sheet: on 25 September 2026 the Zenodo API showed no
+related identifiers at all, neither the relation citing Paper A nor the supplement link
+to the repository. Enter them from `ZENODO_FIELDS.txt` with the new version; they can
+also be added to 1.0.0 as a metadata edit, which keeps the DOI.
 
 Canonical laboratory list: [docs/theory/paper_deposits.md](../../docs/theory/paper_deposits.md).

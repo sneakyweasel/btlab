@@ -72,6 +72,21 @@ the same theorem for \(m \le 58\) and lacked Lemma 6. The floor is the only movi
 record, not a correction, and the build's `SOURCE_DATE_EPOCH` and the `VERSION` constant in
 `tools/build_paper_d.py` both move with it.
 
+Version 1.1.1, 25 September 2026, is editorial. A review found no mathematical error and
+corrected wording and precision: the two claims of novelty in the abstract and Section 1
+are hedged to what is known to the author; Lemma 6 states \(R(T)=0\) when no \(r\)
+qualifies, the case its proof and `negative_m_cycles.valley_cap` already handled; "any
+weakening" of the constants becomes one by more than 0.1 bits, the \(m=61\) margin;
+the Lean module's count reads twenty theorems (it also has two definitions); a sentence
+lost its capital; the reference to Hercher records his corrigendum of 14 June 2026,
+which repairs the proof of his Theorem 21 without changing it, and that the floor
+\(695\cdot2^{60}\) is his journal version's, the arXiv v3 having \(704\cdot2^{60}\);
+and Section 8 records the FLINT/Arb audit of every admissible length through
+\(m=61\). The theorem, the tables and the fourteen pinned inputs are unchanged, so the
+pin stays at `d20cab37`; the version comes from `paper_d_zenodo.json`, and because the
+builder is pinned its `VERSION` default and `SOURCE_DATE_EPOCH` keep 1.1.0's values, and
+the PDF metadata keeps the 21 September build date.
+
 ## Deposit
 
 The kit is `preprints/zenodo_paper_d/`: the PDF under its deposit name, the field sheet
@@ -86,7 +101,7 @@ build prepares local metadata only; it never creates or updates an external reco
 md5 `c6f6f662016ca30a859bf57b0cc81793` and was byte-identical to the kit copy and to the
 repository's single PDF on the day it was deposited, checked against the record.
 
-That identity has ended: the repository now holds version 1.1.0, so the kit PDF is a different
+That identity has ended: the repository now holds version 1.1.1, so the kit PDF is a different
 file. While it held, the manuscript deliberately did **not** carry its own DOI, because editing
 the text to add one would have broken it. The DOIs entered the text at 1.1.0, as planned. A rebuild from an unchanged source reproduces the deposited bytes, since
 `SOURCE_DATE_EPOCH` is pinned; a rebuild after any source edit does not, and at that point

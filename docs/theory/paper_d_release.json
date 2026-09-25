@@ -47,12 +47,12 @@
     {
       "path": "docs/theory/PAPER_D_BUILD.md",
       "mode": "text",
-      "sha256": "efa6020e9330cada71cba0a2f55f14c3103ce85f74d5d4611a0b43e0fa33c6ed"
+      "sha256": "1fa8f7c5b2d44e7d2baf4acde055970626a39116e9e7825eb8b47e9595a88d83"
     },
     {
       "path": "docs/theory/collatz_3n_minus_1_m_cycles_note.md",
       "mode": "text",
-      "sha256": "1c33b7140e348482cfbc60cd9cf3a854e75a625dafcf55ced62b6004a0d67923"
+      "sha256": "c24c0302eac03d7a5d6d6e7eba428536c7ae92a98ca9db22931be04d6e9fbe2e"
     },
     {
       "path": "formal/Problems/Collatz/NegativeMCycles.lean",
@@ -94,17 +94,17 @@
     {
       "path": "preprints/collatz_3n_minus_1_m_cycles_note.pdf",
       "mode": "binary",
-      "sha256": "879119f5b06bb61d17e81635c5e6e6cd357f4da1736afe4a50e2e78b7621617c"
+      "sha256": "a76ee520ed6af2d8a56ace8b3c30bbd40fd3984421c16d53a4fe19290485e031"
     },
     {
       "path": "docs/theory/cochin-3n-minus-1-m-cycles.tex",
       "mode": "text",
-      "sha256": "a23a34523b5c854a32206cf98208d9db25840788f78572183c4d0e72dbda7ffc"
+      "sha256": "5712b11840929730f3a81f7e34dedcd50c9f499495fd65a85cf9bfb5a9dc2f28"
     },
     {
       "path": "docs/theory/paper_d_zenodo.json",
       "mode": "text",
-      "sha256": "1d3d44750ba162815976a06b2eaee207fbeffed5d84a82b40bb85a5a4bd6f971"
+      "sha256": "8ed1c8898b79c202c7867e4bc36dca2934787ead55c01828e9a5d7d9261ce0a9"
     }
   ]
 }

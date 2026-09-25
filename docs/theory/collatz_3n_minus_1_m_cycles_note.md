@@ -2,7 +2,7 @@
 title: "No m-cycles of the 3n−1 map for m ≤ 61"
 subtitle: 'The Simons–de Weger template on the negative side, from a verification floor of \(2^{51}\)'
 author: Philippe Cochin
-date: 21 September 2026
+date: 25 September 2026
 keywords:
   - 3n-1 map
   - Collatz cycles
@@ -37,8 +37,8 @@ vector, and using them together rather than separately is a fourth ingredient: a
 keep all its local minima near the floor and still carry its odd steps, because the chaining
 limits how fast the minima can climb. With Rhin's bound this gives: the \(3n-1\) map has
 no \(m\)-cycle with \(1\le m\le61\) other than the two known ones. For \(m\le2\) that is a
-floor-dependent form of a theorem Simons proved without any floor; the statement is new for
-\(3\le m\le61\). For \(m\le52\) no admissible cycle length lies below Rhin's ceiling; for
+floor-dependent form of a theorem Simons proved without any floor; for \(3\le m\le61\) we
+know of no earlier statement. For \(m\le52\) no admissible cycle length lies below Rhin's ceiling; for
 \(53\le m\le61\) the admissible lengths are excluded, the closest by \(0.1\) bits. At
 \(m=62\) one length remains, \(83130157078217\), with \(0.3\) bits of room, and a floor of
 \(2^{55.25}\) removes it. The same tables give \(m\le49\) from \(2^{40}\), \(m\le51\) from
@@ -106,8 +106,8 @@ and Corollary 5); a chaining of the local minima (Lemmas 6, 7); Crandall's lemma
 for a lower bound on the length (Lemma 10, Corollary 11) against Rhin's bound for an upper one
 (Lemmas 12, 14), sharpened through the partial quotients of \(\log_23\) (Lemma 16); and de
 Weger's approximation lattice where a window remains (Lemma 18). At their floor the three
-stages give \(m\le57\), \(m\le63\) and \(m\le68\). Nobody has run any of it on \(3n-1\),
-because the first step was missing. [S08] carries the template to \(3x+q\) and to
+stages give \(m\le57\), \(m\le63\) and \(m\le68\). We know of no application of it to
+\(3n-1\); its first step, a verification floor, was missing. [S08] carries the template to \(3x+q\) and to
 \(px+q\), but under the standing hypothesis \(q=1\) or \(q\ge5\) prime, which excludes
 \(q=-1\); its Section 5 treats Guy's permutation, a different map, and the paper makes no
 statement about \(3x-1\) anywhere. This note runs all five steps with the constants of
@@ -259,7 +259,7 @@ odd steps, write \(b_i=\log_2u_i\) and \(L_0=\log_2(X_0-1)\). For \(T\ge L_0\) l
 \[
 rT+\sum_{t=1}^{m-r}\Bigl(\delta^tT-\frac{\delta^t-1}{\delta-1}\Bigr)\ \ge\ o .
 \]
-Then, for every \(T\ge L_0\),
+(\(R(T)=0\) if no \(r\ge0\) qualifies). Then, for every \(T\ge L_0\),
 \[
 \Lambda(C)\ <\ R(T)\,2^{-L_0}+\bigl(m-R(T)\bigr)2^{-T}.
 \]
@@ -270,7 +270,8 @@ Then, for every \(T\ge L_0\),
 \(b_{i+1}<\delta b_i-1\).
 
 Fix \(T\ge L_0\), put \(S=\{i:b_i\le T\}\) and \(r=|S|\). If \(S\) is empty then every
-\(b_i>T\) and the displayed bound holds because \(R(T)\ge0\). Otherwise, for \(i\notin S\)
+\(b_i>T\), so \(\Lambda<m2^{-T}\) by the last step below, and the displayed bound holds
+because \(R(T)\ge0\). Otherwise, for \(i\notin S\)
 let \(d_i\ge1\) be least with \(i-d_i\in S\), the indices read cyclically. Iterating
 \(b_{j+1}<\delta b_j-1\), and using that \(z\mapsto\delta z-1\) is increasing,
 \[
@@ -381,8 +382,8 @@ The exclusion tightens steadily and ends on a knife edge: at \(m=61\) the closes
 length clears by \(0.1\) bits, and it is \(K=83130157078217\), the length that survives one
 row later. From \(m=53\) to \(m=58\) the closest length is instead \(64789416887513\), the
 least admissible at this floor. Any weakening of
-the constants, in Rhin's form, in the chaining or in the valley count, would move the theorem
-back to \(m\le60\) or further. At \(m=62\) one length survives,
+the constants, in Rhin's form, in the chaining or in the valley count, by more than \(0.1\) bits would move
+the theorem back to \(m\le60\) or further. At \(m=62\) one length survives,
 \(83130157078217\), with \(0.3\) bits of room; a floor of \(2^{55.25}\) removes it
 (Lemma 2's \(x_{\min}-1<m/\Lambda\)), which is why \(2^{56}\) is the next floor worth
 running.
@@ -450,10 +451,10 @@ It excludes no Juggler cycle. The Juggler's cycle words are, letter for letter, 
 the negative Collatz cycles ([A], Section 5.9), but a word
 shape does not transport a realization, so a \(3n-1\) \(m\)-cycle theorem constrains Juggler
 cycle words and nothing more. It does not settle the \(3n-1\) cycle question, \(m\) being
-bounded, and it says nothing about divergence on either map. the lattice of admissible periods that Eliahou [E93] builds on the positive side is not
+bounded, and it says nothing about divergence on either map. The lattice of admissible periods that Eliahou [E93] builds on the positive side is not
 transposed.
 
-Lemmas 1 and 3 are machine-checked (`Problems.Collatz.NegativeMCycles`, twenty declarations,
+Lemmas 1 and 3 are machine-checked (`Problems.Collatz.NegativeMCycles`, twenty theorems,
 Lean 4 with Mathlib, no `sorry` and nothing off the kernel). The formalization writes the
 start of an odd run as \(y=2^a m+1\) with \(m\) odd, which removes every truncated
 subtraction and puts the run in closed form,
@@ -483,7 +484,12 @@ windows (`python -m research.juggler_sequence.negative_floor_gpu calibrate`, `sw
 `spot`). `lake build Problems.Collatz.NegativeMCycles` checks Lemmas 1 and 3; the module is
 in the `Problems` barrel, so the default build covers it, and
 `tests/research/juggler_sequence/test_negative_m_cycles_lean.py` holds it to no `sorry`, no
-`native_decide` and the three standard axioms.
+`native_decide` and the three standard axioms. Separately, a FLINT/Arb audit through the
+laboratory's interval-arithmetic service (`python tools/check_papers_arb.py --paper D`,
+report `data/research/collatz/arb_paper_audit/d.json`) re-derives the ceilings and an
+interval-certified exclusion witness for every admissible length through \(m=61\), with no
+difference from Table 1; it takes the floor and Rhin's theorem as inputs and is not among
+the fourteen pinned files.
 
 ```text
 Repository:  https://github.com/sneakyweasel/btlab
@@ -515,11 +521,14 @@ for the statements, the proofs, the code, and the decision to make this version 
 
 ## Availability and version
 
-This is version 1.1.0 of Paper D, of 21 September 2026, at the floor \(2^{51}\). It is a
-preprint and has not been refereed. Version 1.0.0, deposited the same day
+This is version 1.1.1 of Paper D, of 25 September 2026, at the floor \(2^{51}\). It is a
+preprint and has not been refereed. It corrects wording and precision in version 1.1.0 of
+21 September 2026: two claims of novelty are hedged, Lemma 6 states its value of
+\(R(T)\) when no \(r\) qualifies, and Section 8 records the interval-arithmetic audit;
+the theorem, the tables and the pinned inputs are unchanged. Version 1.0.0, deposited the same day
 ([doi:10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190)), proved the same
 theorem for \(m\le58\); this version adds Lemma 6 and reaches \(m\le61\) at the same
-floor, with the tables and the calibration regenerated. The concept DOI
+floor, with the tables and the calibration regenerated, in version 1.1.0. The concept DOI
 [10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) resolves to the latest
 version, and the record is at <https://zenodo.org/records/22876190>. The author's ORCID is
 [0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382). The manuscript, the probe that computes the tables, the
@@ -535,7 +544,9 @@ a correction of this one.
 ## References
 
 - [H23] C. Hercher, "There are no Collatz m-cycles with m ≤ 91," *J. Integer Seq.* 26 (2023),
-  Article 23.3.5. arXiv:2201.00406. [doi:10.48550/arXiv.2201.00406](https://doi.org/10.48550/arXiv.2201.00406).
+  Article 23.3.5, with a corrigendum of 14 June 2026 to the proof of its Theorem 21 that
+  leaves the result unchanged; the floor \(695\cdot2^{60}\) is the journal version's
+  Definition 4 (arXiv v3 has \(704\cdot2^{60}\)). arXiv:2201.00406. [doi:10.48550/arXiv.2201.00406](https://doi.org/10.48550/arXiv.2201.00406).
 - [B21] D. Barina, "Convergence verification of the Collatz problem," *J. Supercomput.* 77
   (2021), 2681–2688. [doi:10.1007/s11227-020-03368-x](https://doi.org/10.1007/s11227-020-03368-x).
 - [S07] J. L. Simons, "A simple (inductive) proof for the non-existence of 2-cycles of the

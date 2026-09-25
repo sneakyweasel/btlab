@@ -13,7 +13,7 @@ A successful build does not publish anything or change a paper's evidence status
 | A | 1.2.2 | [Lower Bounds for Cycle Lengths in the Juggler Map](juggler_finite_dynamics_note.pdf) | [Manuscript](../docs/theory/juggler_finite_dynamics_note.md) | [Build](../docs/theory/PAPER_A_BUILD.md) | [Files and instructions](zenodo_paper_a/README.md) |
 | B | 1.2.0 | [Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers](juggler_parity_discrepancy_note.pdf) | [Manuscript](../docs/theory/juggler_parity_discrepancy_note.md) | [Build](../docs/theory/PAPER_B_BUILD.md) | [Files and instructions](zenodo_paper_b/README.md) |
 | C | 1.3.0 | [Fate Contagion and Termination Criteria for the Juggler Map](juggler_fate_almost_all_note.pdf) | [Manuscript](../docs/theory/juggler_fate_almost_all_note.md) | [Build](../docs/theory/PAPER_C_BUILD.md) | [Files and instructions](zenodo_paper_c/README.md) |
-| D | 1.1.0 | [No m-cycles of the 3n−1 map for m ≤ 61](collatz_3n_minus_1_m_cycles_note.pdf) | [Manuscript](../docs/theory/collatz_3n_minus_1_m_cycles_note.md) | [Build](../docs/theory/PAPER_D_BUILD.md) | [Files and instructions](zenodo_paper_d/README.md) |
+| D | 1.1.1 | [No m-cycles of the 3n−1 map for m ≤ 61](collatz_3n_minus_1_m_cycles_note.pdf) | [Manuscript](../docs/theory/collatz_3n_minus_1_m_cycles_note.md) | [Build](../docs/theory/PAPER_D_BUILD.md) | [Files and instructions](zenodo_paper_d/README.md) |
 | E | 0.7.1 | [The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions](juggler_signed_collatz_note.pdf) | [Manuscript](../docs/theory/juggler_signed_collatz_note.md) | [Build](../docs/theory/PAPER_E_BUILD.md) | [Files and instructions](zenodo_paper_e/README.md) |
 
 ## Keeping this directory current

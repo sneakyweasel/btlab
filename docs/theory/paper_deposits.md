@@ -17,7 +17,7 @@ which is what the other habit costs.
 | A | Lower Bounds for Cycle Lengths in the Juggler Map | 1.2.2, not deposited | [1.0.2](https://doi.org/10.5281/zenodo.22865237) | [10.5281/zenodo.22676452](https://doi.org/10.5281/zenodo.22676452) |
 | B | Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers | 1.2.0, deposited | [1.2.0](https://doi.org/10.5281/zenodo.22946276) | [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) |
 | C | Fate Contagion and Termination Criteria for the Juggler Map | 1.3.0, deposited | [1.3.0](https://doi.org/10.5281/zenodo.22947659) | [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) |
-| D | No m-cycles of the 3n−1 map for m ≤ 61 | 1.1.0, not deposited | [1.0.0](https://doi.org/10.5281/zenodo.22876190) | [10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) |
+| D | No m-cycles of the 3n−1 map for m ≤ 61 | 1.1.1, not deposited | [1.0.0](https://doi.org/10.5281/zenodo.22876190) | [10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) |
 | E | The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions | 0.7.1, local preprint | None | Not assigned |
 
 Every DOI in this file was resolved against doi.org on 21 September 2026, and each
@@ -165,12 +165,14 @@ Record [zenodo.org/records/22876190](https://zenodo.org/records/22876190).
 
 | Version | DOI | Date |
 | --- | --- | --- |
+| 1.1.1 | not deposited | 25 September 2026 |
 | 1.1.0 | not deposited | 21 September 2026 |
 | 1.0.0 | [10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190) | 21 September 2026 |
 
 Version 1.0.0 proved the theorem for \(m\le58\) at the verification floor
 \(2^{51}\); 1.1.0 adds the valley-count lemma as Lemma 6 and reaches \(m\le61\) at
-the same floor. The record carries one file,
+the same floor; 1.1.1 corrects its wording and precision, with the theorem and tables
+unchanged. The record carries one file,
 `No_m_cycles_of_the_3n_minus_1_map.pdf`, 131984 bytes, md5
 `c6f6f662016ca30a859bf57b0cc81793`, whose identity was checked against the record's
 own checksum after deposit.

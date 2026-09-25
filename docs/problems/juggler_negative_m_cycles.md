@@ -402,7 +402,7 @@ arrangement.
 
 ## Publication assessment
 
-Status: `PUBLISHED`, with **version 1.1.0 built and not yet deposited**. The record is
+Status: `PUBLISHED`, with **version 1.1.1 built and not yet deposited**. The record is
 **Paper D**, deposited 21 September 2026 as *No m-cycles of the 3n−1 map for m ≤ 58*,
 version 1.0.0, nine pages, at the floor \(2^{51}\): version DOI
 [10.5281/zenodo.22876190](https://doi.org/10.5281/zenodo.22876190), concept DOI
@@ -415,7 +415,11 @@ checked here; it goes up through the record's new-version operation, which keeps
 DOI resolving to the latest. The kit at
 [preprints/zenodo_paper_d/](../../preprints/zenodo_paper_d/) now holds 1.1.0's
 files, so the kit PDF is no longer the deposited bytes; 1.0.0's are recoverable from the
-record and from the commit that carried them.
+record and from the commit that carried them. Version 1.1.1 (25 September 2026) replaces
+1.1.0 in the kit after a review that found no mathematical error: it hedges two novelty
+claims, states \(R(T)=0\) in Lemma 6 when no \(r\) qualifies, records Hercher's corrigendum
+of 14 June 2026 (to his Theorem 21's proof; the result stands) and the FLINT/Arb audit, with
+the theorem, tables and pin unchanged. The 1.0.0 record carries no related identifiers.
 
 **Ready.** The theorem and its margins; every number recomputed by an independent route,
 the valley cap included, from a second implementation written off the manuscript rather than
