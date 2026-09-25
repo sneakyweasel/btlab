@@ -23,5 +23,8 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  // *.lab.test.ts cross-check the app against the laboratory tree (data/, docs/), which
+  // deployments exclude; vitest runs them in the repository, the app build never sees them.
+  "exclude": ["src/**/*.lab.test.ts"]
 }

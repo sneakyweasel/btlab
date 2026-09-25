@@ -67,6 +67,18 @@ jobs:
         env:
           VITE_BASE: /balanced_ternary/
         run: npm run build
+      # Vercel deploys with the laboratory tree excluded (.vercelignore: /data/, /docs/, ...).
+      # Build a copy of this folder alone so an import from outside it fails here, not there.
+      - name: Build without the laboratory tree (as Vercel does)
+        env:
+          VERCEL: "1"
+        run: |
+          iso="$RUNNER_TEMP/iso/web/juggler-companion"
+          mkdir -p "$iso"
+          tar --exclude=node_modules --exclude=dist -cf - . | tar -xf - -C "$iso"
+          cd "$iso"
+          npm ci --no-audit --no-fund
+          npm run build
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
         with:
