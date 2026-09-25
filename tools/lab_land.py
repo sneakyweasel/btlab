@@ -122,8 +122,12 @@ def land(root: Path, branch: str, onto: str = "main", dry_run: bool = False,
             if stray:
                 raise LandingError(f"regeneration wrote files outside the shared views: {stray}")
             git(work, "add", "--", *changed)
-            git(work, "commit", "-q", "-m", f"Regenerate the shared views after landing {branch}")
-            report["regenerated"] = changed
+            # A regenerated view can differ only in line endings, which git normalises
+            # away on `add`; commit only a real change.
+            staged = git(work, "diff", "--cached", "--name-only").splitlines()
+            if staged:
+                git(work, "commit", "-q", "-m", f"Regenerate the shared views after landing {branch}")
+            report["regenerated"] = staged
         results = []
         for argv in checks:
             run = python(work, argv)

@@ -127,3 +127,16 @@ def test_a_failing_check_or_a_dry_run_leaves_main_alone(repo):
 def test_a_branch_already_in_main_has_nothing_to_land(repo):
     git(repo, "branch", "agent/old")
     assert land(repo, "agent/old")["status"] == "nothing to land"
+
+
+def test_a_view_that_differs_only_in_line_endings_is_not_a_change(repo):
+    """Regression: on Windows the regenerated views came out CRLF, git normalised them away
+    on `add`, and landing failed on an empty commit."""
+    lf_join = "write_text('\\n'.join(rows) + '\\n')"
+    crlf_join = "write_bytes(('\\r\\n'.join(rows) + '\\r\\n').encode())"
+    assert lf_join in GENERATOR
+    crlf = GENERATOR.replace(lf_join, crlf_join)
+    commit(repo, {".gitattributes": "* text=auto eol=lf\n", "gen.py": crlf}, "crlf generator")
+    branch_with(repo, "agent/one", {"notes.md": "one\n"}, with_view=False)
+    report = land(repo, "agent/one")
+    assert report["status"] == "landed" and report.get("regenerated", []) == []
