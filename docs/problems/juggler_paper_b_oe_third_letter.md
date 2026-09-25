@@ -71,13 +71,23 @@ are compared with the extreme box discrepancy, as in the one-dimensional proof, 
 bound closes with a factor two. The double kernel integral is two nested one-dimensional
 integrals, so no product measure is used. Axioms: `propext`, `Classical.choice`, `Quot.sound`.
 
+`formal/Problems/Juggler/PaperBOEThirdLetter.lean` (2026-09-25, in progress). It proves the
+exact half and the per-mode block bounds:
+`floor_sqrt_eq_sqrt_floor` (`⌊√x⌋₊ = Nat.sqrt ⌊x⌋₊`), `word3_oee_iff`, `word3_oeo_iff`,
+`torusPoint_mem_oee_iff` and `torusPoint_mem_oeo_iff` (each word is a box of area `1/4` for
+the point `(g(r), h(r))`, `h(r) = (1/2)(2r+1)^{3/4}`), `mode_torusPoint`, and two
+second-derivative bounds on a block `[a, a+M]` with `M ≤ a`. For `i ≥ 1` and
+`|l| ≤ a^{3/4}`, `mixed_mode_bound` gives `14 M √λ + 10/√λ` with
+`λ = i (3/2)/√(2(a+M)+1)`, because the `n^{3/4}` curvature is at most a quarter of the
+`n^{3/2}` curvature (`small_curvature`). For `i = 0`, `quarter_mode_bound` gives
+`16 M √μ + 8/√μ` with `μ = |l| (3/8) (2(a+M)+1)^{-5/4}`.
+
 ## Results
 
 `J-erdos-turan-koksma-box` — `EXACT — LEAN VERIFIED`: the two-dimensional inequality above.
 
-Proposition 3.2 itself is not yet proved in Lean. It still needs the identity
-`⌊√⌊x⌋⌋ = ⌊√x⌋`, the mixed-mode second-derivative bound on a dyadic block, and the dyadic
-recursion.
+Proposition 3.2 itself is not yet proved in Lean. The exact half and the per-mode bounds
+compile; the weighted mode sum on one block, the dyadic recursion and the final counts remain.
 
 ## Open questions
 

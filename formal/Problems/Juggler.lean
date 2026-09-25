@@ -85,6 +85,7 @@ import Problems.Juggler.PaperBCertificates
 import Problems.Juggler.PaperBFiveStepDensity
 import Problems.Juggler.PaperBSingleFloor
 import Problems.Juggler.PaperBSingleFloorBound
+import Problems.Juggler.PaperBOEThirdLetter
 import Problems.Juggler.PaperBCertificateLengths
 import Problems.Juggler.PaperBCertificateRecursion
 import Problems.Juggler.BeattyPhaseTransfer

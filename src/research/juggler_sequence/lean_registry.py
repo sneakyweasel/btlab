@@ -342,6 +342,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "PaperBFiveStepDensity": "Paper B Theorems 5.2-5.4: the certificate count assembly",
     "PaperBSingleFloor": "Paper B Theorem 3.1: exact bridge and one dyadic second-derivative block",
     "PaperBSingleFloorBound": "Paper B Theorem 3.1: S_O(N) = O(N^(5/6)) and both counts, via Erdos-Turan with main term N/H",
+    "PaperBOEThirdLetter": "Paper B Proposition 3.2 (in progress): word_3 in {OEE, OEO} as torus boxes and the mixed-mode block bounds",
     "PaperBCertificateLengths": "Paper B Lemma 5.1 for every length: the odd-count window",
     "PaperBCertificateRecursion": "Paper B: survivors and minimal certificates, one recursion",
     "BeattyPhaseTransfer": "Beatty phase coordinates, survivor jump cancellation, summable jump profiles, and conditional moving-kernel transfer",
