@@ -77,41 +77,31 @@ of Appendix D. Decision: published 24 September 2026, doi:10.5281/zenodo.2294627
 Paper C's `0.74` update waits for that review. Record: [depth-five dossier](problems/juggler_depth_five_production.md),
 Result 36, and the [deposit record](theory/paper_deposits.md).
 
-## 2026-09-24 -- Beatty cluster sets have dimension 2/3 for almost every slope
+## 2026-09-24 -- Beatty first-passage geometry for every slope; dimension 2/3 almost everywhere
 
-**EXACT — LEAN VERIFIED** for the whole irrational family: every cluster set
-`K_alpha` has finite two-thirds Hausdorff measure, and Diophantine bounds give
-matching lower bounds through the family CDF. Mathlib's null set of
-`LiouvilleWith` numbers gives `dim_H K_alpha=2/3` for Lebesgue-almost every
-`alpha>1`; the quadratic norm form gives positive finite two-thirds measure
-for every quadratic irrational slope, including the golden ratio. At every
-Liouville slope the dimension is `0`, so Hausdorff dimension depends on the
-arithmetic of the slope while Minkowski dimension stays `2/3`; the critical
-measure is positive exactly at badly approximable slopes, and exponent-`nu`
-approximations bound the dimension by `2/(2+sqrt nu)`.
-Continuation, also **EXACT — LEAN VERIFIED**: counts are locally constant
-at irrational boundaries, the weights converge in `l1` by a Scheffé argument,
-and the laws and Minkowski content are continuous at every irrational slope.
-The Gamma-normalized law, density and regularity package now covers the
-whole family as well. Total mass is exact at every boundary, and as the
-slope decreases to `a/b` the laws converge to the uniform law on `b` atoms.
-Global theorem: for every real `alpha>1` the empirical law of the actual
-ratios converges; the rational phase theorem `R_r-F^+(delta_r)->0` comes from
-a weak counting identity transferred from nearby irrational boundaries. The
-slope map `alpha -> mu_alpha` is right-continuous and continuous exactly at
-irrational slopes. Hausdorff dimension for Diophantine class `nu` lies in
-`[2/(2+nu), 2/(2+sqrt nu)]` (Lean), above the Denjoy-set value `2/(3 nu)`;
-`dim_H K_alpha=2/3` exactly when the irrationality exponent is `2`, so at
-`log_2 3` the dimension question is equivalent to an open number-theory one.
-For regular slopes (`q_(n+1)` of order `q_n^nu` at every level) the dimension
-is exactly `2/(2+nu)`; explicit slopes of every class exist, so the
-dimensions over all irrational slopes fill exactly `[0,2/3]` (Lean).
-**PROMOTE**. See Sections 27–31 of the
-[Beatty note](theory/juggler_beatty_first_passage_note.md).
+**EXACT — LEAN VERIFIED** for every irrational slope `alpha>1`: the actual
+integer ratios approach an explicit jump profile; the cluster set `K_alpha` is
+null and perfect, with Minkowski dimension `2/3`, exact positive content and an
+explicit local content measure; the empirical law is singular continuous, and
+the Gamma-normalized law is absolutely continuous with an explicit density,
+moments, interval support and dense null blowup. For every real `alpha>1` the
+empirical law converges, and the slope map is continuous exactly at irrationals.
+Hausdorff dimension depends on the arithmetic of the slope: `2/3` exactly when
+the irrationality exponent is `2` (so for almost every slope), `0` at Liouville
+slopes, in `[2/(2+nu), 2/(2+sqrt nu)]` for class `nu`, exactly `2/(2+nu)` at
+regular slopes, and filling `[0,2/3]` over all slopes. At `log_2 3` the question
+is an open number-theory one; **EXACT — HUMAN PROOF** from Rhin and Wu-Wang,
+`dim_H K>=0.16195...`, and `h in L^p` for `1<=p<62/41`. **PROMOTE**; this entry
+replaces four 24 September Beatty entries. Record: Sections 13–31 of the
+[Beatty note](theory/juggler_beatty_first_passage_note.md) and the
+[phase-collapse dossier](problems/juggler_winkler_phase_collapse.md).
 
 ## 2026-09-24 -- Both depth-five productions written; contagion 0.74 conditional
 
-Depth-five branch, Results 7-24. The route rests on the following:
+Depth-five branch, Results 7-24. Depth five adds `OOOEE` and `OOEOE` to the
+first-descent words `E`, `OE`, `OOEE`, whose fibres are windows of length
+`P^(5/32)`; an earlier PARK priced them beyond Paper B's frozen gaps. The
+route rests on the following:
 
 - **EXACT — HUMAN PROOF (AI-written, AI-audited, not human-reviewed):**
   - *Both productions at `1/28`.* Both the `OOOEE` and the `OOEOE` production
@@ -132,20 +122,6 @@ awaits human review. Depth seven, with root about `0.787`, would need
 six-coordinate nested floors. Record:
 [depth-five dossier](problems/juggler_depth_five_production.md).
 
-## 2026-09-24 -- Beatty cluster set has positive Hausdorff dimension at log_2 3
-
-Review of the Beatty note. **EXACT — HUMAN PROOF:** Rhin's effective
-measure `|u_0+u_1 log 2+u_2 log 3|>=H^(-13.3)` supplies the Diophantine
-premise of the Lean-checked implication with `tau=13.3`, so the original
-certificate cluster set has `H^(2/39.9)(K)>0`. Wu-Wang's noneffective
-exponent `4.1163051+epsilon` raises the bound to
-`dim_H K>=2/(3*4.1163051)=0.16195...`. Minkowski dimension stays `2/3`;
-exact Hausdorff dimension and critical-measure positivity remain open.
-A new interface theorem states the family Minkowski results directly for
-the set of subsequential limits of the original ratios. **PROMOTE** within
-the dossier; row `J-beatty-rhin-hausdorff-lower-bound`, Section 20 of the
-[Beatty note](theory/juggler_beatty_first_passage_note.md).
-
 ## 2026-09-24 -- Counting escapes reduces to the all-depth program
 
 Clotho Phase-0. **EXACT — LEAN VERIFIED:** an escape rate above `3/8`
@@ -157,20 +133,6 @@ start is a live start, and Ville's maximal inequality for the fair multiplier
 martingale (checked exactly on words to depth 60) needs fair parity at every
 depth. **CLOSE** as a reparameterization. See the
 [escape-rate dossier](problems/juggler_escape_rate.md).
-
-## 2026-09-24 -- Depth-five productions priced and parked
-
-Atropos Phase-0. The first-descent words through length four are exactly
-`E`, `OE`, `OOEE`, so the kernel-checked `5/8` contagion sits at the
-depth-four ideal `0.6328`. Depth five adds `OOOEE` and `OOEOE` and would lift
-the ideal to `0.7512`, lowering the required failure rate from `3/8` toward
-`1/4` (COMPUTATIONALLY VERIFIED, exact multipliers). Their fibres are windows
-of length `P^(5/32)` rather than `P^(7/16)`: the depth-four mixed-mode bound
-`O(P^(13/32))` is weaker than trivial there, and an averaged poor tail needs
-differenced depth-five mixed sums with shifts up to `P^(5/32)`, beyond Paper
-B's `P^(1/8)` frozen gaps. **PARK.** See the
-[depth-five dossier](problems/juggler_depth_five_production.md) and its
-obstruction record.
 
 ## 2026-09-24 -- Written-proof rows converted to Lean, with a coverage audit
 
@@ -198,75 +160,3 @@ the dossiers for [hug flow](problems/juggler_hug_flow_depth_two.md),
 [empty odd preimage](problems/juggler_empty_odd_preimage.md),
 [cubic induction](problems/juggler_cycle_cubic_induction.md) and
 [OOE escape](problems/juggler_ooe_escape_families.md).
-
-## 2026-09-24 -- Beatty phase geometry and quantitative Gamma-law regularity
-
-**EXACT — LEAN VERIFIED** at the logarithmic slope: the actual integer ratios
-approach the explicit positive jump profile, including its critical total
-mass and strict atom convention. Its complete cluster set is null and
-perfect; the empirical law is singular continuous with exact CDF plateaus.
-The set has Minkowski dimension `2/3`, exact positive content, and local
-content measure `3*2^(1/3)*kappa^(2/3)*y^(2/3) dmu(y)`.
-Finite two-thirds Hausdorff measure is unconditional; matching lower bounds
-retain explicit Diophantine premises. The exact BGL Gamma quotient gives
-amplitude `q^t F(t)` and an absolutely continuous empirical law, mutually
-singular with the original law. The explicit occupation density, logarithmic
-normalization and all real-power moment series are now Lean-checked too,
-including the finite-cutoff endpoint term and negative-power integrability.
-Its support and full Gamma-count cluster set are a nondegenerate interval.
-The density is lower semicontinuous, infinite on a dense null G-delta,
-and locally essentially unbounded throughout the support interior,
-independently of its almost-everywhere version. The density and support
-consumer audits check twenty and twenty-four dependency records with only
-standard Lean axioms. A further fifteen-record audit checks cube-root
-set concentration, weak three-halves density tails, `L^p` for `1<=p<3/2`,
-a Holder but nowhere locally Lipschitz CDF, and Hausdorff dimension at
-most `2/3` for the entire infinite-density set. Rates, general slopes,
-endpoint evaluation, endpoint/supercritical integrability and matching
-Hausdorff lower bounds remain open.
-**PROMOTE** the quantitative regularity and exceptional-set upper bounds. No new
-deposit, priority or trajectory-termination claim. Canonical proof boundary:
-Sections 13–23 of the
-[comparison note](theory/juggler_beatty_first_passage_note.md) and the
-[dossier](problems/juggler_winkler_phase_collapse.md).
-
-The bounded overlap continuation adds an **EXACT — LEAN VERIFIED** criterion:
-the density is in `L^2` exactly when the explicit ordered pair-overlap sum
-is finite. A separate **EXACT — HUMAN PROOF** combines Wu-Wang and
-Erdos-Turan with profile truncation to give `h in L^p` for `1<=p<62/41`,
-including the original three-halves endpoint, weak `L^(62/41)`, and a
-`21/62`-Holder CDF. **PROMOTE** that written arithmetic improvement;
-its discrepancy argument and classical inputs are not formalized in Lean.
-The 4096-atom Arb audit is finite evidence only. `L^2` remains unresolved.
-The complete proof and trust boundary are in the same dossier; the paper
-retains its previously audited formal range pending incorporation.
-
-The arbitrary-slope continuation now checks the actual binary-word counting
-recurrence for every irrational real boundary, the survivor/first-passage
-partition for every real boundary, and the crossing edge
-`floor(r/beta)+1` for `0<beta<=1`. Exact finite-set equalities recover the old
-logarithmic counts, whose counting theorem now specializes the general proof.
-**PROMOTE** this reusable formal foundation, without a novelty claim for the
-classical identity. Exact removal of crossing weights and the normalized
-renewal identity support the bias `p=beta/(2-beta)`. The finite tilted tail
-is between its first term and twice that term at every positive depth.
-The Stirling continuation proves the explicit tilted terminal phase for
-every real `0<beta<1` and the unconditional weighted survivor phase for every
-irrational `alpha>1`. Its convolution series is summable, positive, bounded
-and periodic. The centered-moment and tilt argument also proves zero critical
-survival mass and total first-passage probability one for the family.
-Beatty reindexing fixes the actual positive-index jump mass at `1/(alpha-1)`.
-The exact strict profile identity and original integer-count phase asymptotic
-are now checked for every irrational `alpha>1`, in both binomial normalizations.
-**PROMOTE** the full qualitative phase theorem and its family cluster set
-and singular empirical law: positive dense atoms give a nonempty compact
-perfect null set, exact gaps and envelope extrema. Threshold frequencies
-and CDF plateaus are checked for every irrational slope above one. The
-original phase theorem now specializes the family proof through an exact
-profile bridge; irrational recurrence and equidistribution are shared.
-The sharp three-halves gap law, universal Minkowski dimension `2/3`, exact
-positive content and whole geometric measure now cover every irrational slope.
-Uniform spatial sampling tends to the normalized two-thirds-weighted empirical law.
-**PROMOTE** this family extension: 160 public audit records and 48 expanded
-consumers. Sections 25–26 record the scope. Rates, the Gamma-law family and
-arithmetic Hausdorff classification remain separate.
