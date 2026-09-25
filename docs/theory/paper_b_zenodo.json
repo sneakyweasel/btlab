@@ -1,58 +1,61 @@
 {
-  "metadata": {
-    "title": "Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers",
-    "upload_type": "publication",
-    "publication_type": "preprint",
-    "creators": [
-      {
-        "name": "Cochin, Philippe",
-        "orcid": "0009-0004-1939-3382"
-      }
-    ],
-    "description": "<p>The Juggler map applies the integer part of the square root at even positive integers and of the three-halves power at odd positive integers. We prove that the starting values admitting a power-envelope descent certificate within five operations have natural density 7/8. More precisely, their count up to N is 7N/8+O_epsilon(N^(127/128+epsilon)) for every epsilon&gt;0. The four-step subfamily has density 13/16. The proof uses exact carry identities, centered Fourier expansions, and van der Corput differencing, with all floor exceptions and partition endpoints counted. The two five-letter classes OOEOE and OOOEE are treated through their distinct formal chains. For OOOEE, the full mixed phase is retained and its signed curvature is recomputed after each frequency center is frozen. The complete analytic argument for this density is included in Appendices A-C. Fair-share densities at every fixed depth would imply density-one finite certificates; that hypothesis and general decorated estimates remain open. For the two five-letter words, the starts reaching a given fifth iterate lie in a window of about n^(5/32) integers near a start n; all but a power-saving proportion of these windows carry their fair share (Theorem 6.3). Localization to a prescribed short interval remains open. No result asserts universal arrival at 1.</p>",
-    "version": "1.2.0",
-    "language": "eng",
-    "access_right": "open",
-    "license": "cc-by-4.0",
-    "keywords": [
-      "Juggler map",
-      "descent certificates",
-      "nested floor powers",
-      "parity correlations",
-      "discrepancy",
-      "exponential sums",
-      "finite-step descent",
-      "Collatz map"
-    ],
-    "related_identifiers": [
-      {
-        "identifier": "https://github.com/sneakyweasel/btlab",
-        "relation": "isSupplementTo",
-        "scheme": "url",
-        "resource_type": "software"
-      },
-      {
-        "identifier": "10.5281/zenodo.22676452",
-        "relation": "isCitedBy",
-        "scheme": "doi",
-        "resource_type": "publication-preprint"
-      },
-      {
-        "identifier": "10.5281/zenodo.22678164",
-        "relation": "isCitedBy",
-        "scheme": "doi",
-        "resource_type": "publication-preprint"
-      }
-    ],
-    "notes": "AI-assisted preprint. Theorem 5.4 gives the five-step power-envelope certificate count 7N/8+O_epsilon(N^(127/128+epsilon)); Theorem 4.11 and Appendices A-C contain the OOOEE argument. The 10 September proof audit supplies the bounded signed-residual Fourier extension and its variation checks. Exact and symbolic scripts check algebra and exponent bookkeeping; they do not certify asymptotic cancellation. Independent mathematical review and complete Lean verification remain outstanding. The historical 95/96 target, arbitrary decorations, localization to a prescribed short interval, and all-depth fair-share hypotheses remain open. No universal termination claim is made. This edition sharpens Section 6: the threshold in Theorem 6.1 is now the largest the step admits, its Chernoff and density steps are machine-checked in formal/Problems/Juggler/PaperBMarkov.lean, PaperBChernoff.lean and PaperBDensity.lean, and Remark 6.2 identifies the resulting exponent with the Cramer rate of the underlying walk. Theorem 6.1 remains conditional on the fair-share hypothesis, which is not formalised. The 10 September proof-audit edition covers every section except the abstract and Sections 1, 5, 6 and 8, whose later paragraphs postdate it; Theorem 5.4 and its error exponent are unchanged, as are Appendices A-C. Version 1.1.2 clarifies that Section 6's phase-only profile, nonconvergence and limiting Fourier relations remain conjectural or conditional. It removes a broad priority claim, keeps the public literature attribution, and corrects the logarithm of the tail factor, the Fourier coefficient of log(psi), and the log(r) term in the ladder-profile Fourier denominator. Version 1.2.0 adds Section 6.1 and Appendix D. Theorem 6.3 proves that, for the words OOOEE and OOEOE, all but a power-saving proportion of the depth-five target fibres, windows of about n^(5/32) starts, carry the fair share 1/16; beyond Y the poor targets have reciprocal sums O(Y^(-1/55)) and O(Y^(-1/41)). Its proof is an AI-assisted written argument with AI adversarial audits and no independent review; Lemma D.3 and the fibre geometry are machine-checked in Lean. The earlier numbered results and their proofs are unchanged.",
-    "doi": "10.5281/zenodo.22946276",
-    "publication_date": "2026-09-24",
-    "conceptdoi": "10.5281/zenodo.22864933",
-    "record_url": "https://zenodo.org/records/22946276",
-    "latest_deposit": {
-      "version": "1.2.0",
-      "doi": "10.5281/zenodo.22946276",
-      "publication_date": "2026-09-24"
+  "title": "Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers",
+  "creators": [
+    {
+      "name": "Cochin, Philippe",
+      "orcid": "0009-0004-1939-3382"
     }
+  ],
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "language": "eng",
+  "version": "1.2.0",
+  "keywords": [
+    "Juggler map",
+    "descent certificates",
+    "nested floor powers",
+    "parity correlations",
+    "discrepancy",
+    "exponential sums",
+    "finite-step descent",
+    "Collatz map"
+  ],
+  "description": "<p>The Juggler map applies the integer part of the square root at even positive integers and of the three-halves power at odd positive integers. We prove that the starting values admitting a power-envelope descent certificate within five operations have natural density 7/8. More precisely, their count up to N is 7N/8 + O_(ε)(N^(127/128 + ε)) for every ε &gt; 0. The four-step subfamily has density 13/16. The proof uses exact carry identities, centered Fourier expansions, and van der Corput differencing, with all floor exceptions and partition endpoints counted. The two five-letter classes OOEOE and OOOEE are treated through their distinct formal chains. For OOOEE, the full mixed phase is retained and its signed curvature is recomputed after each frequency center is frozen. The complete analytic argument for this density is included in Appendices A–C. Fair-share densities at every fixed depth would imply density-one finite certificates; that hypothesis and general decorated estimates remain open. For the two five-letter words, the starts reaching a given fifth iterate lie in a window of about n^(5/32) integers near a start n; all but a power-saving proportion of these windows carry their fair share (Theorem 6.3). Localization to a prescribed short interval remains open. No result asserts universal arrival at 1.</p>\n<p>Keywords: Juggler map; nested floor powers; parity correlations; discrepancy; dropping time; finite-step descent.</p>",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/sneakyweasel/btlab",
+      "relation": "isSupplementTo",
+      "scheme": "url",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "10.5281/zenodo.22676452",
+      "relation": "isCitedBy",
+      "scheme": "doi",
+      "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "10.5281/zenodo.22678164",
+      "relation": "isCitedBy",
+      "scheme": "doi",
+      "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "10.5281/zenodo.22905649",
+      "relation": "isCitedBy",
+      "scheme": "doi",
+      "resource_type": "publication-preprint"
+    }
+  ],
+  "doi": "10.5281/zenodo.22946276",
+  "publication_date": "2026-09-24",
+  "conceptdoi": "10.5281/zenodo.22864933",
+  "record_url": "https://zenodo.org/records/22946276",
+  "latest_deposit": {
+    "version": "1.2.0",
+    "doi": "10.5281/zenodo.22946276",
+    "publication_date": "2026-09-24"
   }
 }

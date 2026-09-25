@@ -1,4 +1,6 @@
-# sha256 of the files in this kit and of the PDF they alias.
-# Regenerate with `python tools/build_paper_d.py --sync`.
-a76ee520ed6af2d8a56ace8b3c30bbd40fd3984421c16d53a4fe19290485e031  preprints/zenodo_paper_d/No_m_cycles_of_the_3n_minus_1_map.pdf
-a76ee520ed6af2d8a56ace8b3c30bbd40fd3984421c16d53a4fe19290485e031  preprints/collatz_3n_minus_1_m_cycles_note.pdf
+# sha256 of the files in this kit. Regenerate with `python tools/build_paper.py D --sync`.
+438ee7f11ee2ec486317079c85d4e685781d9af5e55dc2b68d1e970c8d6728dc  AFTER_ZENODO.md
+a76ee520ed6af2d8a56ace8b3c30bbd40fd3984421c16d53a4fe19290485e031  No_m_cycles_of_the_3n_minus_1_map.pdf
+199766fccc84a60471a02385a057077275bf4260f96b04041ad22c328ecded95  README.md
+14259e18bfa85c4faae5681669d8af29a39d4eb05b6e1836fc75ff214d0cc138  ZENODO_FIELDS.txt
+790d9557fabc1778d7af4dd485d2383521359f3e6eae90b0f924a8b1e39561b3  paper_d_sources.zip

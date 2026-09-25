@@ -2,7 +2,7 @@
 #
 # Without this file core.autocrlf decides, and it decided differently in
 # different places: the main checkout held LF while every .claude worktree
-# checked out CRLF, so at one identical HEAD `tools/build_paper_b.py --check`
+# checked out CRLF, so at one identical HEAD Paper B's `--check`
 # passed in one and reported a stale build in the other. The paper gates now
 # normalise before hashing, which is the repair that matters; this file removes
 # the divergence they are normalising around, so a digest taken over raw bytes

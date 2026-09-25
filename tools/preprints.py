@@ -6,43 +6,22 @@ every release manifest, PDF alias, source archive and kit checksum.
 from __future__ import annotations
 
 import argparse
-import importlib.util
 import json
 from pathlib import Path
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-LETTERS = "abcde"
-KIT_FILES = {
-    "a": ("README.md", "AFTER_ZENODO.md", "SOURCE_README.md", "ZENODO_FIELDS.txt",
-          "SHA256SUMS.txt", "paper_a_publication_check.json",
-          "paper_a_source_and_verification.zip", "paper_a_zenodo_package.zip"),
-    "b": ("README.md", "AFTER_ZENODO.md", "ZENODO_FIELDS.txt", "SHA256SUMS.txt",
-          "paper_b_release_check.json", "paper_b_source_package.zip", "paper_b_zenodo_package.zip"),
-    "c": ("README.md", "AFTER_ZENODO.md", "ZENODO_FIELDS.txt"),
-    "d": ("README.md", "AFTER_ZENODO.md", "ZENODO_FIELDS.txt", "SHA256SUMS.txt"),
-    "e": ("README.md", "SOURCE_README.md", "ZENODO_FIELDS.txt", "SHA256SUMS.txt",
-          "Sources_and_certificate.zip"),
-}
-
-
-def builder(root: Path, letter: str):
-    spec = importlib.util.spec_from_file_location(
-        f"preprints_{letter}", root / f"tools/build_paper_{letter}.py")
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from build_paper import Paper, letters  # noqa: E402
 
 
 def expected_files(root: Path) -> set[str]:
+    """The index, each paper's PDF and its kit: the same files for every paper."""
     names = {"README.md"}
-    for letter in LETTERS:
-        module = builder(root, letter)
-        # Paper B also supports compilation from a standalone source archive.
-        pdf = f"preprints/{module.STEM}.pdf" if letter == "b" else module.PDF
-        exports = module.EXPORTS if letter == "b" else module.export_pairs(root)
-        names.add(str(Path(pdf).relative_to("preprints")).replace("\\", "/"))
-        names.update(Path(target).relative_to("preprints").as_posix() for _, target in exports)
-        names.update(f"zenodo_paper_{letter}/{name}" for name in KIT_FILES[letter])
+    for letter in letters(root):
+        paper = Paper(letter, root)
+        for name in [paper.PDF, *paper.kit_files()]:
+            names.add(Path(name).relative_to("preprints").as_posix())
     return names
 
 
@@ -58,11 +37,10 @@ def index_text(root: Path) -> str:
         "| Paper | Local version | PDF | Canonical source | Build guide | Publication kit |",
         "| --- | --- | --- | --- | --- | --- |",
     ]
-    for letter in LETTERS:
-        module = builder(root, letter)
-        meta = json.loads((root / module.METADATA).read_text(encoding="utf-8"))
-        meta = meta.get("metadata", meta)
-        stem = module.STEM
+    for letter in letters(root):
+        paper = Paper(letter, root)
+        meta = json.loads((root / paper.METADATA).read_text(encoding="utf-8"))
+        stem = paper.STEM
         title = meta["title"].replace("|", "\\|")
         lines.append(f"| {letter.upper()} | {meta['version']} | [{title}]({stem}.pdf) | "
                      f"[Manuscript](../docs/theory/{stem}.md) | "
@@ -75,10 +53,11 @@ def index_text(root: Path) -> str:
               "The check rejects missing or unowned files, an outdated index, stale release inputs,",
               "mismatched PDF aliases, and stale archives or checksums. Rebuild an affected paper",
               "using its build guide; never repair a release by editing recorded hashes.", "",
-              "Each kit keeps its established upload filename as an exact alias of the top-level PDF.",
-              "`ZENODO_FIELDS.txt` supplies the generated publication metadata. The kit README",
-              "explains each archive and checksum; `AFTER_ZENODO.md`, where present, records the",
-              "external deposit and the follow-up required after a future publication.", "",
+              "Every paper is built by `python tools/build_paper.py <letter>` from its settings in",
+              "`tools/papers/`. Every kit holds the same files: the PDF under its upload name, the",
+              "source archive `paper_<letter>_sources.zip`, `ZENODO_FIELDS.txt` for the upload form,",
+              "`SHA256SUMS.txt`, a README and `AFTER_ZENODO.md`, the record of the deposits. Upload",
+              "the PDF and the source archive.", "",
               "Do not add manuscript mirrors, scratch experiments, or obsolete editions here.",
               "Earlier editions and removed review copies remain recoverable from Git.", ""]
     return "\n".join(lines)
@@ -99,8 +78,8 @@ def check_inventory(root: Path) -> None:
 
 def check(root: Path) -> None:
     check_inventory(root)
-    for letter in (*LETTERS, "a_kit", "b_kit"):
-        builder(root, letter).check(root)
+    for letter in letters(root):
+        Paper(letter, root).check(root)
     print(f"Preprints: {len(expected_files(root))} owned files; all five releases and kits current.")
 
 

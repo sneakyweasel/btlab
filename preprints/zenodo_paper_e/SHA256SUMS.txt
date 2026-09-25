@@ -1,5 +1,6 @@
-# sha256 of the files in this kit and of the PDF they alias.
-# Regenerate with `python tools/build_paper_e.py --sync`.
-486a329fbafb4b3ad755548e85d7f2f5352bfb5410bfcc2718e3d0d0889d80be  preprints/zenodo_paper_e/Juggler_and_signed_Collatz.pdf
-486a329fbafb4b3ad755548e85d7f2f5352bfb5410bfcc2718e3d0d0889d80be  preprints/juggler_signed_collatz_note.pdf
-3899d705334efc8d58679e2612603c48f411e4887b3f9f5fce248eec06510955  preprints/zenodo_paper_e/Sources_and_certificate.zip
+# sha256 of the files in this kit. Regenerate with `python tools/build_paper.py E --sync`.
+5c9fb1ecbaacbeecfb91e695fa7ee9177b5e8bb1aaddf68c35dd5333b8769994  AFTER_ZENODO.md
+486a329fbafb4b3ad755548e85d7f2f5352bfb5410bfcc2718e3d0d0889d80be  Juggler_and_signed_Collatz.pdf
+f9d3641511fb094ac2c55e26aec1981405f62a07cbaa1d62abe4c6decc3beb56  README.md
+50c4c7aea83b4d95aeb75c9e0df14f2aa474d84449f6b9c3b51c4c887e005fe8  ZENODO_FIELDS.txt
+85433f9e282ccf6eb38e6d948559763363f587d1fda750d18dde8cbb446603cc  paper_e_sources.zip

@@ -1,0 +1,67 @@
+{
+  "stem": "collatz_3n_minus_1_m_cycles_note",
+  "tex": "docs/theory/cochin-3n-minus-1-m-cycles.tex",
+  "version": "1.1.2",
+  "date": "2026-09-25",
+  "editorial": [
+    "docs/theory/PAPER_D_BUILD.md"
+  ],
+  "inputs": [
+    "data/research/juggler/negative_floor_3x1/gpu_calibration/spot_checks_2p44_2p51.json",
+    "data/research/juggler/negative_floor_3x1/gpu_calibration/summary.json",
+    "data/research/juggler/negative_floor_3x1/gpu_runs.json",
+    "data/research/juggler/negative_floor_3x1/summary.json",
+    "data/research/juggler/negative_floor_3x1/verify_3x1_gpu.cu",
+    "data/research/juggler/negative_m_cycles/manuscript_check.json",
+    "data/research/juggler/negative_m_cycles/summary.json",
+    "src/research/juggler_sequence/negative_floor_gpu.py",
+    "src/research/juggler_sequence/negative_m_cycles.py",
+    "tools/check_3n_minus_1_note_numeric.py",
+    "formal/Problems/Collatz/NegativeMCycles.lean"
+  ],
+  "archive_extra": [
+    "LICENSE"
+  ],
+  "latex": {
+    "passes": 3,
+    "longtable_foot": true
+  },
+  "deposit_pdf": "No_m_cycles_of_the_3n_minus_1_map.pdf",
+  "zenodo": {
+    "title": "No m-cycles of the 3n−1 map for m ≤ 61",
+    "keywords": [
+      "3n-1 map",
+      "Collatz cycles",
+      "m-cycles",
+      "linear forms in logarithms",
+      "verification floor"
+    ],
+    "related": [
+      {
+        "identifier": "https://github.com/sneakyweasel/btlab",
+        "relation": "isSupplementTo",
+        "scheme": "url",
+        "resource_type": "software"
+      },
+      {
+        "identifier": "10.5281/zenodo.22676452",
+        "relation": "cites",
+        "scheme": "doi",
+        "resource_type": "publication-preprint"
+      },
+      {
+        "identifier": "10.5281/zenodo.22905649",
+        "relation": "isCitedBy",
+        "scheme": "doi",
+        "resource_type": "publication-preprint"
+      }
+    ]
+  },
+  "readme_contents": [
+    "The table probe, the independent recheck, the CUDA verifier and the floor records of the 2^51 certificate."
+  ],
+  "lean_build": [
+    "lake build Problems.Collatz.NegativeMCycles"
+  ],
+  "scope": "The verification floor is a computation of this laboratory, recorded with its chunk reports and calibration; the floor search is not replayed here. Rhin's measure is the one external theorem. Independent review is outstanding."
+}

@@ -1,0 +1,102 @@
+{
+  "stem": "juggler_finite_dynamics_note",
+  "tex": "docs/theory/cochin-juggler.tex",
+  "version": "1.2.3",
+  "date": "2026-09-25",
+  "editorial": [
+    "docs/theory/juggler_finite_dynamics_formalization.md",
+    "docs/theory/juggler_finite_dynamics_reviewer_packet.md",
+    "docs/theory/PAPER_A_BUILD.md"
+  ],
+  "inputs": [
+    "data/research/juggler/cycle_finance/budget_opt.json",
+    "data/research/juggler/cycle_finance/exceptions_parity.json",
+    "data/research/juggler/cycle_finance/summary.json",
+    "data/research/juggler/cycle_rank_curvature/controls.json",
+    "data/research/juggler/negative_floor_3x1/chunks.json",
+    "data/research/juggler/negative_floor_3x1/runs.json",
+    "data/research/juggler/negative_floor_3x1/verify_3x1.c",
+    "data/research/juggler/negative_floor_3x1/verify_3x1_jump.c",
+    "formal/AxiomCheckPaperA.expected",
+    "formal/lake-manifest.json",
+    "formal/lakefile.toml",
+    "formal/lean-toolchain",
+    "literature/wu-wang-2014-irrationality-measure-log3.json",
+    "src/research/juggler_sequence/cycle_finance.py",
+    "src/research/juggler_sequence/cycle_rank_curvature.py",
+    "src/research/juggler_sequence/paper_a_audit.py",
+    "tools/check_paper_a_numeric.py",
+    "tools/trust_boundary.py"
+  ],
+  "lean_roots": [
+    "formal/Problems/JugglerPaper.lean",
+    "formal/AxiomCheckPaperA.lean"
+  ],
+  "archive_extra": [
+    "LICENSE",
+    "docs/theory/figures/juggler_lean_layers.png",
+    "docs/theory/figures/juggler_lean_layers.mmd",
+    "docs/theory/paper_a_publication_check.json"
+  ],
+  "latex": {
+    "passes": 3,
+    "longtable_foot": true
+  },
+  "deposit_pdf": "Lower_bounds_for_nontrivial_cycles_of_the_Juggler_map.pdf",
+  "zenodo": {
+    "title": "Lower Bounds for Cycle Lengths in the Juggler Map",
+    "keywords": [
+      "Juggler map",
+      "Juggler sequence",
+      "floor-power map",
+      "cycle financing",
+      "integer dynamics",
+      "Collatz map"
+    ],
+    "related": [
+      {
+        "identifier": "https://github.com/sneakyweasel/btlab",
+        "relation": "isSupplementTo",
+        "scheme": "url",
+        "resource_type": "software"
+      },
+      {
+        "identifier": "10.5281/zenodo.22864933",
+        "relation": "cites",
+        "scheme": "doi",
+        "resource_type": "publication-preprint"
+      },
+      {
+        "identifier": "10.5281/zenodo.22678164",
+        "relation": "cites",
+        "scheme": "doi",
+        "resource_type": "publication-preprint"
+      },
+      {
+        "identifier": "10.5281/zenodo.22876189",
+        "relation": "isCitedBy",
+        "scheme": "doi",
+        "resource_type": "publication-preprint"
+      },
+      {
+        "identifier": "10.5281/zenodo.22905649",
+        "relation": "isCitedBy",
+        "scheme": "doi",
+        "resource_type": "publication-preprint"
+      }
+    ]
+  },
+  "readme_contents": [
+    "The finance probe and its three tables, the curvature probe with its controls, and the two descent-floor verifiers with their chunk and run records.",
+    "`tools/check_paper_a_numeric.py`, the independent numerical recheck, and `docs/theory/paper_a_publication_check.json`, the release review."
+  ],
+  "verify": [
+    "python tools/check_paper_a_numeric.py --output paper_a_numeric_check.json"
+  ],
+  "verify_note": "The numerical recheck reproduces the four period cutoffs at the supplied floors; it does not rerun the descent-floor searches.",
+  "lean_build": [
+    "lake build Problems.JugglerPaper",
+    "lake env lean AxiomCheckPaperA.lean"
+  ],
+  "scope": "The descent floors are supplied computations, recorded with their chunk reports but not replayed here. Independent mathematical review and full-paper Lean verification are outstanding; the manuscript separates formal proofs, external theorems, written analysis and finite computations."
+}

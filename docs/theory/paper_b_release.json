@@ -1,0 +1,141 @@
+{
+  "schema": 2,
+  "canonical_source": "docs/theory/juggler_parity_discrepancy_note.md",
+  "version": "1.2.0",
+  "status": "preprint; this build performs no external deposit",
+  "verification_scope": "File provenance only. Mathematical trust boundaries are in the manuscript and its build guide.",
+  "pages": 50,
+  "tools": {
+    "pandoc": "pandoc.EXE 3.6.3",
+    "xelatex": "MiKTeX-XeTeX 4.18 (MiKTeX 26.5)"
+  },
+  "inputs": [
+    {
+      "path": "docs/theory/PAPER_B_BUILD.md",
+      "mode": "text",
+      "sha256": "b21c44e163be5d47d2d5ef19a78352d01ab168b9b06cf1e19c3d77087b8b5ba6"
+    },
+    {
+      "path": "docs/theory/juggler_parity_discrepancy_note.md",
+      "mode": "text",
+      "sha256": "3a6a5da04d9c9d1514c0815970803d6e1ffcf42426683ceda151a52e98d6d4d7"
+    },
+    {
+      "path": "docs/theory/paper_b_consolidated_validation.json",
+      "mode": "text",
+      "sha256": "b2d193db2e64555bcfa93c0cbe6069299cbbde19858ae18c8584539e968de178"
+    },
+    {
+      "path": "docs/theory/paper_b_proof_review.md",
+      "mode": "text",
+      "sha256": "a939a7abe7a055aef204c62cc181a1f3ad70568ba809e9ced5eb818d6632ed7d"
+    },
+    {
+      "path": "docs/theory/paper_b_symbolic_review.json",
+      "mode": "text",
+      "sha256": "a293dcf1d824debe8ce3db5eaf82e3a68ed4105e2749baac810af2ee3d54fe5d"
+    },
+    {
+      "path": "tools/artifact_digest.py",
+      "mode": "text",
+      "sha256": "7e8ad8fe95a0f0e96a466523006bf3b6838a79d246923b060feb5bae7e95a7bf"
+    },
+    {
+      "path": "tools/build_paper.py",
+      "mode": "text",
+      "sha256": "99ace2a4a9e8cc8e940c34c41c3cd89cd01b733eaf96297796573024fc597213"
+    },
+    {
+      "path": "tools/derive_paper_b_review.py",
+      "mode": "text",
+      "sha256": "937abdc9846200cc6f859a869576aced8afdd309424b223d819ab857d0ead4c3"
+    },
+    {
+      "path": "tools/paper_b/article.tex",
+      "mode": "text",
+      "sha256": "a068d896aa5d47896d49cdf21076b5738571d82edaee6c7cd9426f95d0c8043a"
+    },
+    {
+      "path": "tools/paper_b/layout.lua",
+      "mode": "text",
+      "sha256": "f24d3bb5b32c548574077a92ab0cca3555b9ae3cc465da13f2112d46d422279b"
+    },
+    {
+      "path": "tools/papers/b.json",
+      "mode": "text",
+      "sha256": "e7ce88f3d355caf0a8d77efe50210d76269c3b5e843cb105c87bed1d050879cd"
+    },
+    {
+      "path": "tools/validate_paper_b.py",
+      "mode": "text",
+      "sha256": "589195c218156eee8beb406013d0d8aca5654143fb6965dfd038515f488cadbe"
+    },
+    {
+      "path": "tools/validate_paper_b_consolidated.py",
+      "mode": "text",
+      "sha256": "4f0ac8d2001fa15cc936fc61175e9c432a128a221e73b398783009e816f6b7b4"
+    },
+    {
+      "path": "tools/validate_paper_b_d2.py",
+      "mode": "text",
+      "sha256": "f9e2e4d9abd46c4ec7a963eab0394adb65c3f82782671ed6f3af94715b8515dc"
+    },
+    {
+      "path": "tools/validate_paper_b_kernel_assembly.py",
+      "mode": "text",
+      "sha256": "dc9b987bbd17aff16badf7b0b0dcc7e77c5724f072b2eaea716fbf9b7cc5e544"
+    },
+    {
+      "path": "tools/validate_paper_b_offset_anchor.py",
+      "mode": "text",
+      "sha256": "c6f0b30b35066a5f3cd6f67878ac1fb003288bc638e2d435c6e0eebf3c9208fa"
+    },
+    {
+      "path": "tools/validate_paper_b_ooeoe.py",
+      "mode": "text",
+      "sha256": "fb3eac30ab3e31628c49f64ad507d5faabd050e4b1a5a008cdb8296e745504ca"
+    },
+    {
+      "path": "tools/validate_paper_b_oooee_transfer.py",
+      "mode": "text",
+      "sha256": "7cf5608e9d01727aec6d3baeb98d3511c269c7fc8ff839814630e5c56d702608"
+    },
+    {
+      "path": "tools/validate_paper_b_repairs.py",
+      "mode": "text",
+      "sha256": "9dd61a4ead72f9ac3899e3dfe65df6dfe620ca06ebb2bb6f128f7c6cdc19f71f"
+    },
+    {
+      "path": "tools/validate_paper_b_signed_waves.py",
+      "mode": "text",
+      "sha256": "8fa5e787ae267241b29841fe4a2f15586895835ca0e477e93eb06b741c6ca0f0"
+    },
+    {
+      "path": "tools/validate_paper_b_wave_bearing.py",
+      "mode": "text",
+      "sha256": "eb81f4c422606371e407b44572fb702123df0fa44390026f96741456e89992e4"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "preprints/juggler_parity_discrepancy_note.pdf",
+      "mode": "binary",
+      "sha256": "e747a699ea5fbf76714cbc904afcea8fa8744c731b495af43fff57c5268dd93b"
+    },
+    {
+      "path": "docs/theory/juggler_parity_discrepancy_note.tex",
+      "mode": "text",
+      "sha256": "ef74905d30df87189eea194d0ba29e9a3ef7b0e39c13a60291362105157a1bd6"
+    },
+    {
+      "path": "docs/theory/paper_b_zenodo.json",
+      "mode": "text",
+      "sha256": "1a9f32d55970f74da3466f08bf0d8f2b89bfe2a3cd0c5975c59525f9b1f79ebd"
+    }
+  ],
+  "publication": {
+    "doi": "10.5281/zenodo.22946276",
+    "published_date": "2026-09-24",
+    "version": "1.2.0"
+  }
+}

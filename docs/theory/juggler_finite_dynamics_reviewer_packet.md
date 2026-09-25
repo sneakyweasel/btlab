@@ -132,8 +132,8 @@ not assumed. The live-start stopped-pressure input remains open.
 From the repository root:
 
 ```text
-python tools/build_paper_a.py
-python tools/build_paper_a.py --check
+python tools/build_paper.py A
+python tools/build_paper.py A --check
 python tools/render_theorem_ledger.py --check
 python -m research.juggler_sequence.branch_index --check
 python tools/check_paper_a_numeric.py --output paper_a_numeric_check.json

@@ -29,10 +29,11 @@ The check rejects missing or unowned files, an outdated index, stale release inp
 mismatched PDF aliases, and stale archives or checksums. Rebuild an affected paper
 using its build guide; never repair a release by editing recorded hashes.
 
-Each kit keeps its established upload filename as an exact alias of the top-level PDF.
-`ZENODO_FIELDS.txt` supplies the generated publication metadata. The kit README
-explains each archive and checksum; `AFTER_ZENODO.md`, where present, records the
-external deposit and the follow-up required after a future publication.
+Every paper is built by `python tools/build_paper.py <letter>` from its settings in
+`tools/papers/`. Every kit holds the same files: the PDF under its upload name, the
+source archive `paper_<letter>_sources.zip`, `ZENODO_FIELDS.txt` for the upload form,
+`SHA256SUMS.txt`, a README and `AFTER_ZENODO.md`, the record of the deposits. Upload
+the PDF and the source archive.
 
 Do not add manuscript mirrors, scratch experiments, or obsolete editions here.
 Earlier editions and removed review copies remain recoverable from Git.

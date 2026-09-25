@@ -1,19 +1,15 @@
 {
-  "schema": 1,
+  "schema": 2,
   "canonical_source": "docs/theory/juggler_signed_collatz_note.md",
-  "status": "living preprint; independent review pending; no external deposit",
-  "verification_scope": "File provenance only. The mathematical trust boundaries are in the manuscript and in PAPER_E_BUILD.md.",
+  "version": "0.8.0",
+  "status": "preprint; this build performs no external deposit",
+  "verification_scope": "File provenance only. Mathematical trust boundaries are in the manuscript and its build guide.",
   "pages": 21,
   "tools": {
     "pandoc": "pandoc.EXE 3.6.3",
     "xelatex": "MiKTeX-XeTeX 4.18 (MiKTeX 26.5)"
   },
   "inputs": [
-    {
-      "path": "LICENSE",
-      "mode": "text",
-      "sha256": "2dec6dd1b0f4313cb9933b48d3d0d7a0c88f6fa694a42456823fbe4b327c0357"
-    },
     {
       "path": "data/research/formalpedia/ooe_coverage_reviews.json",
       "mode": "text",
@@ -795,16 +791,6 @@
       "sha256": "07c91276095af61dc073761f86c2c8a3d553e29650b87ea562c2f3c47500f252"
     },
     {
-      "path": "preprints/zenodo_paper_e/README.md",
-      "mode": "text",
-      "sha256": "f9d3641511fb094ac2c55e26aec1981405f62a07cbaa1d62abe4c6decc3beb56"
-    },
-    {
-      "path": "preprints/zenodo_paper_e/SOURCE_README.md",
-      "mode": "text",
-      "sha256": "99afc2ee6381f8acd94fdfa56add0593b9cf833ed040db50caa611165e45a070"
-    },
-    {
       "path": "pyproject.toml",
       "mode": "text",
       "sha256": "e99a8deaad3e42c12db855ee4f72dac9b190db67b5a088bea8377c8f94055ef7"
@@ -830,14 +816,9 @@
       "sha256": "2c36b8d99c1336d7803ff94ea5239d30d636d375d4d2bfae0ee977e3e3b4cac3"
     },
     {
-      "path": "tests/unit/test_paper_e_release.py",
+      "path": "tools/build_paper.py",
       "mode": "text",
-      "sha256": "89d29be1c7ffdb65c9a99a6aad2fd5f55c0bea37f108043681eaab922ae92650"
-    },
-    {
-      "path": "tools/build_paper_e.py",
-      "mode": "text",
-      "sha256": "2c3050669356aaf500208c558f1496522458f7afedeac5ec99ad58ef8e6594f2"
+      "sha256": "2e334a6cd7a42b60174658fa9deb8bce166bfaaf5b296d858d5f36ba246177d2"
     },
     {
       "path": "tools/check_paper_e.py",
@@ -863,6 +844,11 @@
       "path": "tools/paper_e_common.py",
       "mode": "text",
       "sha256": "69e6554b4739cffe6c371a24262cf664231f301b2d371a22f68770bfa1a1b91f"
+    },
+    {
+      "path": "tools/papers/e.json",
+      "mode": "text",
+      "sha256": "6a32d504968806c309998b8b2369fc47482f4f845f0de33fa79ad1f6d14991b6"
     }
   ],
   "outputs": [
@@ -881,5 +867,10 @@
       "mode": "text",
       "sha256": "15700a57cac676b419f2697f7537af031ce99d11f96fa51ac96e12ebc7eebf69"
     }
-  ]
+  ],
+  "publication": {
+    "doi": "10.5281/zenodo.22954746",
+    "published_date": "2026-09-25",
+    "version": "0.8.0"
+  }
 }

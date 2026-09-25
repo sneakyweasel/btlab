@@ -20,8 +20,8 @@ Edit that source, never the generated PDF or TeX.
    python tools/check_paper_e.py --refresh
 3. Run python tools/check_paper_e.py and
    python tools/generate_signed_grid_certificate.py --check.
-4. Build with python tools/build_paper_e.py, then run
-   python tools/build_paper_e.py --check.
+4. Build with python tools/build_paper.py E, then run
+   python tools/build_paper.py E --check.
 5. Render the PDF and inspect every page for clipping, tables, equations,
    references, and page breaks. The build rejects overfull boxes,
    missing characters, and unresolved LaTeX references.
@@ -56,7 +56,7 @@ The manifest hashes the transitive local Lean import closure. Editing an
 underlying proof or certificate therefore stales the release even when the
 manuscript is unchanged. The saved Lean report separately pins the audited
 formal inputs, so rebuilding the PDF cannot silently bless a changed proof.
-The integration suite automatically discovers build_paper_e.py.
+The integration suite discovers every paper in tools/papers/.
 
 ## Mathematical trust boundary
 
@@ -159,11 +159,13 @@ checker now verifies in both directions; FLINT/Arb certifies the same
 inequality (C-paper-e-rational-exponent-423-500). The Lean exponent stays
 21/25. All earlier theorem numbers and constants are unchanged.
 
-The source archive now also carries Section 7.3's written records (the
-fibre-mass dossier, its bounded-stopping and cross-sign follow-ups, the five
-Lean proof maps) and the Zarnowski and Tao citation records, and opens with a
-top-level README.md written from `preprints/zenodo_paper_e/SOURCE_README.md`.
-A bare extraction passes `check_paper_e.py` and the certificate generator's
-`--check`; the builder's `--check` needs a rebuild first, because the archive
-cannot contain the PDF kit it belongs to. That rebuild reproduced the kit PDF
-byte for byte on 25 September 2026.
+The source archive also carries Section 7.3's written records (the fibre-mass dossier,
+its bounded-stopping and cross-sign follow-ups, the five Lean proof maps) and the Zarnowski
+and Tao citation records.
+
+The kit in `preprints/zenodo_paper_e/` has the same files as every paper's: the upload
+PDF, `paper_e_sources.zip`, `ZENODO_FIELDS.txt`, `SHA256SUMS.txt`, a README and
+`AFTER_ZENODO.md`. Upload the PDF and the source archive. The archive keeps repository
+paths and holds every release input and output, the manifest, a generated README with
+the verification commands, and its own `SHA256SUMS.txt`; an extracted copy passes
+`python tools/build_paper.py E --check-release`.

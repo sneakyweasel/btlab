@@ -106,7 +106,8 @@ def finite_checks(root: Path) -> dict:
             "printed cap table differs from Lean")
     require("\t" not in manuscript and "\x08" not in manuscript and "\x0c" not in manuscript,
             "mangled LaTeX escape")
-    require("version 0.8.0" in manuscript.lower(), "missing version")
+    version = json.loads((root / "tools/papers/e.json").read_text(encoding="utf-8"))["version"]
+    require(f"version {version}" in manuscript.lower(), "missing version")
     require(str(len(states)) in manuscript, "printed small-orbit cardinality differs")
     labels = re.findall(r"^\*\*(?:Theorem|Lemma|Corollary|Proposition|Example) (\d+\.\d+)", manuscript, re.M)
     require(len(labels) == len(set(labels)), "duplicate statement number")

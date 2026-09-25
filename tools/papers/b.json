@@ -1,0 +1,83 @@
+{
+  "stem": "juggler_parity_discrepancy_note",
+  "tex": "docs/theory/juggler_parity_discrepancy_note.tex",
+  "version": "1.2.0",
+  "date": "2026-09-24",
+  "editorial": [
+    "docs/theory/PAPER_B_BUILD.md"
+  ],
+  "inputs": [
+    "tools/validate_paper_b.py",
+    "tools/validate_paper_b_consolidated.py",
+    "tools/validate_paper_b_d2.py",
+    "tools/validate_paper_b_kernel_assembly.py",
+    "tools/validate_paper_b_offset_anchor.py",
+    "tools/validate_paper_b_ooeoe.py",
+    "tools/validate_paper_b_oooee_transfer.py",
+    "tools/validate_paper_b_repairs.py",
+    "tools/validate_paper_b_signed_waves.py",
+    "tools/validate_paper_b_wave_bearing.py",
+    "tools/derive_paper_b_review.py",
+    "tools/artifact_digest.py",
+    "docs/theory/paper_b_consolidated_validation.json",
+    "docs/theory/paper_b_proof_review.md",
+    "docs/theory/paper_b_symbolic_review.json"
+  ],
+  "archive_extra": [
+    "LICENSE",
+    "docs/theory/ZENODO_README.md",
+    "docs/theory/paper_b_release_check.json"
+  ],
+  "latex": {
+    "passes": 2,
+    "longtable_foot": false
+  },
+  "deposit_pdf": "Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf",
+  "zenodo": {
+    "title": "Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers",
+    "keywords": [
+      "Juggler map",
+      "descent certificates",
+      "nested floor powers",
+      "parity correlations",
+      "discrepancy",
+      "exponential sums",
+      "finite-step descent",
+      "Collatz map"
+    ],
+    "related": [
+      {
+        "identifier": "https://github.com/sneakyweasel/btlab",
+        "relation": "isSupplementTo",
+        "scheme": "url",
+        "resource_type": "software"
+      },
+      {
+        "identifier": "10.5281/zenodo.22676452",
+        "relation": "isCitedBy",
+        "scheme": "doi",
+        "resource_type": "publication-preprint"
+      },
+      {
+        "identifier": "10.5281/zenodo.22678164",
+        "relation": "isCitedBy",
+        "scheme": "doi",
+        "resource_type": "publication-preprint"
+      },
+      {
+        "identifier": "10.5281/zenodo.22905649",
+        "relation": "isCitedBy",
+        "scheme": "doi",
+        "resource_type": "publication-preprint"
+      }
+    ]
+  },
+  "readme_contents": [
+    "The exact and symbolic validators `tools/validate_paper_b*.py`, their recorded results and the proof review."
+  ],
+  "verify": [
+    "python tools/validate_paper_b_consolidated.py --output paper_b_validation.json"
+  ],
+  "scope": "The exact and symbolic scripts check algebra and exponent bookkeeping; they do not certify asymptotic cancellation. Independent mathematical review and complete Lean verification are outstanding.",
+  "verify_note": "The validator reruns Paper B's exact controls and audits the consolidated source references."
+}

@@ -1,0 +1,6 @@
+# sha256 of the files in this kit. Regenerate with `python tools/build_paper.py C --sync`.
+5457a4699bff35354d6597f689003a6a29d547fcb06038dae72d04c13e931f6c  AFTER_ZENODO.md
+3b969e59fc33f5b5aa499557bf02a316a09735a9ed0b7b628804c871309d48cb  Fate_Contagion_Juggler_Map.pdf
+1b339fce5da697f03664e18c60b0a25a2d6dba8c390a88ea68b6856072990279  README.md
+fb420572664b6f1e4f8403f9d52e353da56d0890f0497311e98fd8cce592b02c  ZENODO_FIELDS.txt
+c14a76583eac1ad28aa003783f41cc78aed924d033930780983e5b4044cba01e  paper_c_sources.zip

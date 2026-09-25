@@ -58,7 +58,7 @@ def test_the_recorded_edition_is_the_manuscript_edition_not_the_deposit_version(
     "version" was the literal "2026-09-19-preprint" from the day it was written.  The
     manuscript moved to 20 September and source_sha256 moved with it, but the label
     beside it did not, so the record dated its own subject a day early and shipped
-    that inside paper_b_source_package.zip.
+    that inside the Paper B source archive.
 
     The stamp means the EDITION, what paper_b_release_check.json calls "version".  It
     does not mean the Zenodo RECORD version, which went 1.0.0 to 1.0.1 on 21 September
@@ -103,7 +103,7 @@ def test_the_record_is_written_lf_on_every_platform(tmp_path):
     """Path.write_text defaults to newline=None, which is os.linesep.
 
     Regenerating on Windows therefore wrote CRLF into a file that .gitattributes pins
-    eol=lf and that build_paper_b_kit.py ships as a source archive member.  The record
+    eol=lf and that the paper builder ships as a source archive member.  The record
     should be a function of the manuscript, not of the machine that reran the controls.
     """
     out = tmp_path / "record.json"

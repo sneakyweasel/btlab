@@ -13,7 +13,7 @@ API reported on 25 September 2026.
 - Record of the latest version: [zenodo.org/records/22947659](https://zenodo.org/records/22947659)
 - Concept DOI, all versions: [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164)
 
-A local `python tools/build_paper_c.py` run does not update this record.
+A local `python tools/build_paper.py C` run does not update this record.
 Later revisions use the record's new-version operation, which keeps the
 concept DOI. After publishing a new version, verify the uploaded file
 checksum and record the returned version DOI, publication date and checksum

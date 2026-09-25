@@ -1,33 +1,27 @@
-# Paper E - local publication kit
+# Paper E: Zenodo publication kit
 
-The prepared version is recorded in the
-[canonical metadata](../../docs/theory/paper_e_zenodo.json), also included
-in the source archive. The local ZENODO_FIELDS.txt sheet renders these
-values and the deposit status for the upload form.
+**The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions.**
 
-The builder supplies the PDF, Sources_and_certificate.zip,
-ZENODO_FIELDS.txt, and SHA256SUMS.txt here. The PDF is identical
-to the top-level preprint PDF. The ZIP is a deterministic snapshot
-of the manuscript, proof sources, full integer certificate, tools,
-license, review/build guides, and the written records behind Section 7.3.
-Its top-level README.md is SOURCE_README.md from this folder.
+Every laboratory paper's kit has these files, all generated except this README and
+`AFTER_ZENODO.md`:
 
-For the preprint deposit, upload Juggler_and_signed_Collatz.pdf and
-Sources_and_certificate.zip, with SHA256SUMS.txt as the integrity record.
-Copy the title, creator, version, license, abstract, and related works from
-ZENODO_FIELDS.txt into the upload form. Keep the preprint designation and
-the stated independent-review status.
+- `Juggler_and_signed_Collatz.pdf`: the paper, byte-identical to
+  `preprints/juggler_signed_collatz_note.pdf`. Upload it.
+- `paper_e_sources.zip`: the sources and verification files, with a README
+  that gives the checks and the rebuild. Upload it.
+- `ZENODO_FIELDS.txt`: the upload form's fields, including the plain-text description
+  and the related works. Its first lines say whether this version is deposited.
+- `SHA256SUMS.txt`: checksums of the kit.
+- `AFTER_ZENODO.md`: the published versions and their DOIs.
 
-Edit docs/theory/juggler_signed_collatz_note.md and rebuild with
-python tools/build_paper_e.py. Verify with --check before sharing.
-Do not edit the generated files in this kit.
+From the repository root:
 
-Version 0.8.0 was deposited on 25 September 2026 with these two files, as
-[doi:10.5281/zenodo.22954746](https://doi.org/10.5281/zenodo.22954746), after 0.7.1
-([doi:10.5281/zenodo.22905650](https://doi.org/10.5281/zenodo.22905650)) of
-22 September. The concept DOI
-[10.5281/zenodo.22905649](https://doi.org/10.5281/zenodo.22905649) resolves to the
-latest version. The source archive includes the metadata file, which now
-records the deposit, so the archive here differs from the deposited one, the
-archive of commit `699b8203b`. Later editions use the record's versioning
-operation and keep its concept DOI.
+```text
+python tools/build_paper.py E            # rebuild the paper and this kit
+python tools/build_paper.py E --check    # verify the paper and this kit
+```
+
+Edit `docs/theory/juggler_signed_collatz_note.md` or `tools/papers/e.json`, never a
+generated file here. The [build guide](../../docs/theory/PAPER_E_BUILD.md) gives the
+paper's trust boundaries and review status. A new version goes up through the
+existing record's new-version operation, which keeps the concept DOI.

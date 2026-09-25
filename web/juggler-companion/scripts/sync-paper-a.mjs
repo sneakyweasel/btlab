@@ -24,7 +24,7 @@ if (process.env.VERCEL) {
   console.log('Paper A: Vercel deploy; laboratory tree excluded, release check runs locally and in CI.');
 } else try {
   const release = JSON.parse(readFileSync(manifest, 'utf8'));
-  if (release.schema !== 1 || release.canonical_source !== source ||
+  if (release.schema !== 2 || release.canonical_source !== source ||
       !release.inputs.some((r) => r.path === source) ||
       !release.outputs.some((r) => r.path === canonical)) {
     throw new Error('Incomplete release manifest');
@@ -39,6 +39,6 @@ if (process.env.VERCEL) {
   }
   console.log('Paper A: canonical release verified.');
 } catch (error) {
-  console.error(`Paper A: ${error.message}. Run python tools/build_paper_a.py from the repository root.`);
+  console.error(`Paper A: ${error.message}. Run python tools/build_paper.py A from the repository root.`);
   process.exitCode = 1;
 }

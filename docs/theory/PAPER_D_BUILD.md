@@ -6,11 +6,14 @@ negative side, from this laboratory's own verification floor.
 Canonical source: [collatz_3n_minus_1_m_cycles_note.md](collatz_3n_minus_1_m_cycles_note.md).
 Edit that file, never a generated copy.
 
+```text
+python tools/build_paper.py D            # PDF, LaTeX, metadata, manifest and kit
+python tools/build_paper.py D --check    # release and kit against the manifest
+python tools/build_paper.py D --sync     # regenerate the kit from a current release
 ```
-python tools/build_paper_d.py            # rebuild the PDF, the TeX, the metadata and the kit
-python tools/build_paper_d.py --check    # verify every generated copy against the manifest
-python tools/build_paper_d.py --sync     # refresh the exports without recompiling
-```
+
+Every paper uses this one builder; the settings particular to Paper D (its files,
+Lean roots, Zenodo fields and LaTeX options) are in `tools/papers/d.json`.
 
 The build needs Pandoc and XeLaTeX; `--check` and `--sync` need only the standard library.
 The release gate `tests/integration/test_paper_release_gates.py` discovers this builder and
@@ -69,8 +72,7 @@ Version 1.1.0 carries the floor \(2^{51}\) and the theorem \(m \le 61\); version
 the same theorem for \(m \le 58\) and lacked Lemma 6. The floor is the only moving part:
 \(2^{56}\) gives \(m \le 68\) and \(2^{60}\) gives \(m \le 74\), at about 32 hours and about
 21 days of one RTX 5090 respectively. Raising it is a new version of the
-record, not a correction, and the build's `SOURCE_DATE_EPOCH` and the `VERSION` constant in
-`tools/build_paper_d.py` both move with it.
+record, not a correction, and the `version` and `date` in `tools/papers/d.json` move with it.
 
 Version 1.1.1, 25 September 2026, is editorial. A review found no mathematical error and
 corrected wording and precision: the two claims of novelty in the abstract and Section 1

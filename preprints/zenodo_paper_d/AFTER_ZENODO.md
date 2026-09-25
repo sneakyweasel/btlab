@@ -37,7 +37,7 @@ above was read back from the record and compared. The repository copy has since 
 from the commit that carried them. Since 1.1.0 the availability section names the 1.0.0 DOI,
 which is the convention this laboratory now follows once a record exists.
 
-A local `python tools/build_paper_d.py` run does not create or update this record. For a
+A local `python tools/build_paper.py D` run does not create or update this record. For a
 later revision, including a higher verification floor, use the record's new-version
 operation; the concept DOI resolves to the latest.
 

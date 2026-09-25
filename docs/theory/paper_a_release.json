@@ -1,8 +1,10 @@
 {
-  "schema": 1,
+  "schema": 2,
   "canonical_source": "docs/theory/juggler_finite_dynamics_note.md",
-  "status": "local preprint revision; no new version uploaded by this build",
-  "verification_scope": "File provenance only. Mathematical trust boundaries are in the manuscript and reviewer packet.",
+  "version": "1.2.2",
+  "status": "preprint; this build performs no external deposit",
+  "verification_scope": "File provenance only. Mathematical trust boundaries are in the manuscript and its build guide.",
+  "pages": 113,
   "tools": {
     "pandoc": "pandoc.EXE 3.6.3",
     "xelatex": "MiKTeX-XeTeX 4.18 (MiKTeX 26.5)"
@@ -639,14 +641,9 @@
       "sha256": "b93263cddc671bfb6cdeb95ffc6cfe43c00bf0c9a5a638a7afb4b236dac7ac11"
     },
     {
-      "path": "tools/build_paper_a.py",
+      "path": "tools/build_paper.py",
       "mode": "text",
-      "sha256": "4d1a8c5610f203b692178f06d723a8a60072c2999d5012974a20e9670a501d69"
-    },
-    {
-      "path": "tools/build_paper_a_kit.py",
-      "mode": "text",
-      "sha256": "85aabdfab5d0caeecd17fa0ac5232e5b96091b8dc6f6e2ac637c47173c4b68b6"
+      "sha256": "2e334a6cd7a42b60174658fa9deb8bce166bfaaf5b296d858d5f36ba246177d2"
     },
     {
       "path": "tools/check_paper_a_numeric.py",
@@ -662,6 +659,11 @@
       "path": "tools/paper_a/layout.lua",
       "mode": "text",
       "sha256": "27562f324c0e2289ca5eda3b65289141faab90e9d0b891185be240463c470048"
+    },
+    {
+      "path": "tools/papers/a.json",
+      "mode": "text",
+      "sha256": "f148fab0edeee9bfe1c5a062a3357b96d7179f6ec6e7cc48cd0120e27dc1d699"
     },
     {
       "path": "tools/trust_boundary.py",
@@ -683,7 +685,12 @@
     {
       "path": "docs/theory/paper_a_zenodo.json",
       "mode": "text",
-      "sha256": "25444c4508d1033ee0573d2061a7c5732c602f20f7b48e50a46ea88d2a4299ef"
+      "sha256": "bf8ce64a6fb4c50452003de88f488da052233ed71a1f029b90c29f7d0edbf8a7"
     }
-  ]
+  ],
+  "publication": {
+    "doi": "10.5281/zenodo.22954947",
+    "published_date": "2026-09-25",
+    "version": "1.2.2"
+  }
 }

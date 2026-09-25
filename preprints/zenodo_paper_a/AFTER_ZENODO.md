@@ -19,7 +19,7 @@ The kit's source archive includes the metadata file, which now records this
 deposit, so the archive here differs from the deposited one; the deposited
 bytes are recoverable from the record and from commit `59362273a`.
 
-A local `python tools/build_paper_a.py` run does not update this record.
+A local `python tools/build_paper.py A` run does not update this record.
 Later revisions use the record's new-version operation, which keeps the
 concept DOI. After publishing, record the returned version DOI, date and
 file checksums in the canonical metadata and the

@@ -1,8 +1,9 @@
 {
-  "schema": 1,
+  "schema": 2,
   "canonical_source": "docs/theory/collatz_3n_minus_1_m_cycles_note.md",
-  "status": "preprint; no external deposit performed",
-  "verification_scope": "File provenance only. The mathematical trust boundaries are in the manuscript and in PAPER_D_BUILD.md.",
+  "version": "1.1.1",
+  "status": "preprint; this build performs no external deposit",
+  "verification_scope": "File provenance only. Mathematical trust boundaries are in the manuscript and its build guide.",
   "pages": 10,
   "tools": {
     "pandoc": "pandoc.EXE 3.6.3",
@@ -70,9 +71,9 @@
       "sha256": "d54c7432e328bb70ee059d803cae1390403e6ebe08ff51a2859c1128b6e32281"
     },
     {
-      "path": "tools/build_paper_d.py",
+      "path": "tools/build_paper.py",
       "mode": "text",
-      "sha256": "c6ec4885a71f3922859aecd25a7761384a9a70bef5a74cee3c1e9df794360e7d"
+      "sha256": "2e334a6cd7a42b60174658fa9deb8bce166bfaaf5b296d858d5f36ba246177d2"
     },
     {
       "path": "tools/check_3n_minus_1_note_numeric.py",
@@ -88,6 +89,11 @@
       "path": "tools/paper_d/layout.lua",
       "mode": "text",
       "sha256": "37514155670379b4ab80ee9a5704bc0877c4233d257039ff26ea999add03ec1f"
+    },
+    {
+      "path": "tools/papers/d.json",
+      "mode": "text",
+      "sha256": "671b5db54a9f7b5532882533d74158e8f50ebd24c4187921ac6277a645529044"
     }
   ],
   "outputs": [
@@ -104,7 +110,12 @@
     {
       "path": "docs/theory/paper_d_zenodo.json",
       "mode": "text",
-      "sha256": "e07f95ff98f09e853979ed085b3764eb2cd565338536c1991501ff5dab789d78"
+      "sha256": "ccbf2bc1651def09dea97c927a8bb56c6483725ee286e1d0ee0bbab02c748095"
     }
-  ]
+  ],
+  "publication": {
+    "doi": "10.5281/zenodo.22954088",
+    "published_date": "2026-09-25",
+    "version": "1.1.1"
+  }
 }

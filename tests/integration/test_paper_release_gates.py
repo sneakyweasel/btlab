@@ -5,7 +5,7 @@ no paper gate directly.  On 2026-09-15 both holes fired on the same day:
 
   * a change to `src/research/juggler_sequence/tao_reduction.py` -- an overflow fix, not
     a manuscript edit -- staled Paper C's pinned inputs, and nothing in the suite noticed;
-  * a manuscript edit to Paper B shipped without a rebuild, because `build_paper_b.py`
+  * a manuscript edit to Paper B shipped without a rebuild, because Paper B's builder
     compared only its PDF-to-PDF copies and the Zenodo fields and never consulted the
     digests its own manifest records.
 
@@ -13,18 +13,23 @@ Both were found by running the gates by hand during a consolidation pass.  The l
 that a source change anywhere under `src/` can stale a paper manifest, and only that
 paper's own gate says so -- so the suite has to run them.
 
-This discovers the build tools instead of listing them, so a paper that ships with a
-build script and no working gate fails here rather than going quiet.
+This discovers the papers from their settings in `tools/papers/` instead of listing them,
+so a paper added there is gated here automatically. Every paper uses the one builder,
+`tools/build_paper.py`.
 """
 from __future__ import annotations
 
 import importlib.util
 from pathlib import Path
+import sys
 
 import pytest
 
 ROOT = Path(__file__).resolve().parents[2]
-BUILDERS = sorted(ROOT.glob("tools/build_paper_*.py"))
+sys.path.insert(0, str(ROOT / "tools"))
+from build_paper import Paper, letters  # noqa: E402
+
+LETTERS = letters(ROOT)
 
 
 def _load(path: Path):
@@ -37,28 +42,25 @@ def _load(path: Path):
 paper_pin = _load(ROOT / "tools/paper_pin.py")
 
 
-def test_every_paper_build_tool_is_discovered() -> None:
-    """Three today.  A fourth must be picked up automatically, not added by hand."""
-    names = {p.name for p in BUILDERS}
-    assert names >= {"build_paper_a.py", "build_paper_b.py", "build_paper_c.py"}, names
+def test_every_paper_is_discovered_and_no_private_builder_remains() -> None:
+    """Five today, all through one builder; a per-paper build script would be a special case."""
+    assert set(LETTERS) >= set("abcde"), LETTERS
+    assert not sorted(ROOT.glob("tools/build_paper_*.py"))
 
 
-@pytest.mark.parametrize("builder", BUILDERS, ids=lambda p: p.stem)
-def test_the_paper_gate_exists_and_passes_on_the_live_repository(builder: Path) -> None:
+@pytest.mark.parametrize("letter", LETTERS)
+def test_the_paper_gate_exists_and_passes_on_the_live_repository(letter: str) -> None:
     """The gate must exist, be callable on the repository, and be satisfied.
 
     A failure here means a committed paper disagrees with its source or its pinned
-    inputs: rebuild with `python tools/<builder>.py` and commit the regenerated
+    inputs: rebuild with `python tools/build_paper.py <letter>` and commit the regenerated
     artifacts.  It does not mean the test is wrong.
     """
-    module = _load(builder)
-    check = getattr(module, "check", None)
-    assert callable(check), f"{builder.name} has no check(); a paper without a gate"
-    check(ROOT)
+    Paper(letter, ROOT).check(ROOT)
 
 
-@pytest.mark.parametrize("builder", BUILDERS, ids=lambda p: p.stem)
-def test_the_provenance_pin_names_a_commit_that_holds_the_inputs(builder: Path) -> None:
+@pytest.mark.parametrize("letter", LETTERS)
+def test_the_provenance_pin_names_a_commit_that_holds_the_inputs(letter: str) -> None:
     """A paper's printed commit must be one a reader can actually follow.
 
     The gate above cannot see this.  It compares the live files to the digests in the
@@ -73,9 +75,8 @@ def test_the_provenance_pin_names_a_commit_that_holds_the_inputs(builder: Path) 
     state today, and the test below keeps a suite of nothing but skips from reading as
     a pass.
     """
-    module = _load(builder)
     try:
-        paper_pin.verify(ROOT, module)
+        paper_pin.verify(ROOT, Paper(letter, ROOT))
     except (paper_pin.NoPinClaimed, paper_pin.PinUnavailable) as exc:
         pytest.skip(str(exc))
 
@@ -89,9 +90,9 @@ def test_at_least_one_paper_pin_was_really_verified() -> None:
     nothing while reporting no failure.  This says so instead.
     """
     verified = []
-    for builder in BUILDERS:
+    for letter in LETTERS:
         try:
-            verified.append(paper_pin.verify(ROOT, _load(builder)))
+            verified.append(paper_pin.verify(ROOT, Paper(letter, ROOT)))
         except (paper_pin.NoPinClaimed, paper_pin.PinUnavailable):
             continue
     assert verified, (

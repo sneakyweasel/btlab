@@ -9,13 +9,9 @@ Each deposited version, 1.0.0, 1.1.2 and 1.2.0, carries one file:
 
 - `Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf`: the manuscript.
 
-This package also holds `paper_b_source_package.zip`: Markdown and LaTeX
-sources, build assets, exact-control scripts, symbolic review, metadata, and
-licensing information. No deposit has included it so far; it is
-ready to accompany a PDF as a reproducibility supplement.
-
-The outer `paper_b_zenodo_package.zip` is a delivery bundle. Extract it to
-obtain the record file and the accompanying preparation materials.
+The kit also holds `paper_b_sources.zip`, the source archive every laboratory paper
+ships: Markdown and LaTeX sources, build settings, the exact-control scripts, the symbolic
+review, metadata and licensing information. Upload it with the PDF for a new version.
 
 ## Record fields
 
@@ -29,7 +25,7 @@ Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested 
 - Creator: Cochin, Philippe. ORCID 0009-0004-1939-3382. No affiliation is
   supplied.
 - Version: use the version in paper_b_zenodo.json and
-  paper_b_zenodo_fields.txt. Version 1.2.0 is deposited; a later revision
+  ZENODO_FIELDS.txt. Version 1.2.0 is deposited; a later revision
   takes a new version number.
 - Language: English.
 - Access: Open.
@@ -65,8 +61,8 @@ The 10 September proof audit applies unchanged to every section except the
 abstract and Sections 1, 5, 6 and 8, whose later paragraphs postdate it, and
 Appendix D, which is new in 1.2.0; none of these has had an independent audit. `paper_b_proof_review.md` records that audit
 and its limitations. `paper_b_release_check.json` records the checks on this
-renamed edition. `SHA256SUMS.txt` verifies the delivery files; the source
-archive includes its own checksum manifest. See `PAPER_B_BUILD.md` for
+renamed edition. `SHA256SUMS.txt` verifies the kit; the source archive
+includes its own checksum manifest. See `PAPER_B_BUILD.md` for
 rebuilding.
 
 Paper B was published on Zenodo as version 1.0.0 on 21 September 2026, 1.1.2
@@ -76,5 +72,4 @@ Section 6 distinguishes numerical phase-profile observations from unproved
 limiting statements and uses the existing public literature for attribution;
 Section 6.1 and Appendix D add Theorem 6.3. No private material is included. A
 later revision, with the source archive if it accompanies the PDF, goes up
-through the record's new-version operation, which keeps the concept DOI. The delivery
-bundle itself is an upload-preparation convenience, not another paper.
+through the record's new-version operation, which keeps the concept DOI.

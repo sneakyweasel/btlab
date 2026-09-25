@@ -15,61 +15,41 @@ prescribed short interval, and all-depth hypotheses remain open.
 
 ## Deposit files
 
-Each deposited version carries one file, `Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf`.
-`paper_b_source_package.zip` has not been deposited. The source ZIP contains the complete manuscript, generated LaTeX,
-build assets, all exact-control scripts, aggregate validation, fresh proof audit, metadata, and this guide. paper_b_zenodo_package.zip collects
-the prepared deposit materials for convenience.
+Versions 1.0.0, 1.1.2 and 1.2.0 each carry one file, `Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf`;
+`paper_deposits.md` records their DOIs, and the concept DOI 10.5281/zenodo.22864933 covers
+all versions. A later revision goes up through the record's new-version operation.
 
-Record fields: paper_b_zenodo.json, rendered as ZENODO_FIELDS.txt.
-The repository reviewer kit also contains the byte-identical PDF alias
-Five_Step_Descent_Certificates_for_the_Juggler_Map.pdf and that generated
-export, which both archives ship as paper_b_zenodo_fields.txt.
-Submission instructions are in ZENODO_README.md. Paper B was first published
-on 21 September 2026 as version 1.0.0 (DOI 10.5281/zenodo.22864934). Version
-1.1.2 followed on 22 September (10.5281/zenodo.22906043), and this edition, version
-1.2.0, on 24 September 2026 (10.5281/zenodo.22946276). The concept DOI
-10.5281/zenodo.22864933 covers all versions; paper_deposits.md records them.
-A later revision goes up through the new-version operation of that record.
+The kit in `preprints/zenodo_paper_b/` has the same files as every paper's: the upload
+PDF, `paper_b_sources.zip`, `ZENODO_FIELDS.txt`, `SHA256SUMS.txt`, a README and
+`AFTER_ZENODO.md`. Upload the PDF and the source archive. The archive keeps repository
+paths and holds every release input and output, the manifest, a generated README with
+the verification commands, and its own `SHA256SUMS.txt`; an extracted copy passes
+`python tools/build_paper.py B --check-release`.
 
-## Standalone rebuild
+## Build
 
-Requirements: Python 3.10+, Pandoc, and XeLaTeX with AMS, geometry,
-longtable, booktabs, array, calc, needspace, xurl, and hyperref.
-The tested versions are Pandoc 3.6.3 and MiKTeX-XeTeX 4.18.
-Extract the source ZIP into an empty directory and run:
+Requirements: Python 3.11+, Pandoc and XeLaTeX with AMS, geometry, longtable, booktabs,
+array, calc, needspace, xurl and hyperref; the tested versions are Pandoc 3.6.3 and
+MiKTeX-XeTeX 4.18. From the repository root, or from an extracted source archive:
 
-~~~text
-python build_paper_b.py
-python validate_paper_b_consolidated.py --output paper_b_consolidated_validation.json
-~~~
+```text
+python tools/build_paper.py B            # PDF, LaTeX, metadata, manifest and kit
+python tools/build_paper.py B --check    # release and kit against the manifest
+python tools/build_paper.py B --sync     # regenerate the kit from a current release
+```
 
-Use --pandoc and --xelatex for executable paths, or --output-dir and
---build-dir to select destinations. The build compiles twice and fails
-on overfull boxes, missing glyphs, or undefined references. The supplied
-LaTeX can also be compiled directly twice. PDF timestamps can differ;
-the rebuild check compares generated LaTeX exactly.
+Every paper uses this one builder; the settings particular to Paper B (its files,
+Lean roots, Zenodo fields and LaTeX options) are in `tools/papers/b.json`.
 
-## Repository workflow
+Paper B compiles in two passes and without the longtable-footer adjustment; both are
+settings in `tools/papers/b.json`. The build fails on overfull boxes, missing glyphs or
+undefined references. The exact controls run separately:
 
 ~~~text
-python tools/build_paper_b.py
 python tools/validate_paper_b_consolidated.py --output docs/theory/paper_b_consolidated_validation.json
-python tools/build_paper_b_kit.py
-python tools/build_paper_b.py --check
-python tools/build_paper_b_kit.py --check
-python tools/render_theorem_ledger.py --check
-python -m research.juggler_sequence.branch_index --check
 ~~~
 
-The builder reads docs/theory/ and tools/paper_b/. A repository build
-synchronizes the Zenodo PDF alias in `preprints/zenodo_paper_b/`.
---sync repairs that alias and the metadata fields without compiling, but it does not rebuild
-the Zenodo archives: build_paper_b_kit.py does, and its --check verifies
-every archive member, both in-archive SHA256SUMS.txt files, and the kit
-checksums against the files beside them. Because the release check records
-the source archive's digest and the delivery bundle carries the release
-check, a new edition goes --archive, then write the release check, then a
-full kit build. Review the rendered PDF after every changed build.
+Review the rendered PDF after every changed build.
 
 ## Optional symbolic review
 

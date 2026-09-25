@@ -238,26 +238,23 @@ def main() -> int:
             ap.error(str(exc))
         return 0
 
-    import importlib.util
+    import sys
 
-    builders = ([args.root / f"tools/build_paper_{letter}.py" for letter in args.papers]
-                or sorted(args.root.glob("tools/build_paper_*.py")))
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from build_paper import Paper, letters
+
     failed = False
-    for builder in builders:
-        if not builder.is_file() or builder.name.endswith("_kit.py"):
-            continue
-        spec = importlib.util.spec_from_file_location(f"pin_{builder.stem}", builder)
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
+    for letter in [p.lower() for p in args.papers] or letters(args.root):
+        paper = Paper(letter, args.root)
         try:
-            print("ok      " + verify(args.root, module))
+            print("ok      " + verify(args.root, paper))
         except NoPinClaimed as exc:
-            print(f"no pin  {builder.name}: {exc}")
+            print(f"no pin  {paper.__name__}: {exc}")
         except PinUnavailable as exc:
-            print(f"skipped {builder.name}: {exc}")
+            print(f"skipped {paper.__name__}: {exc}")
         except (ValueError, OSError) as exc:
             failed = True
-            print(f"FAILED  {builder.name}: {exc}")
+            print(f"FAILED  {paper.__name__}: {exc}")
     return 1 if failed else 0
 
 

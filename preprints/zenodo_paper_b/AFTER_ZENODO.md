@@ -13,7 +13,7 @@ API reported on 24 September 2026.
 - Record of the latest version: [zenodo.org/records/22946276](https://zenodo.org/records/22946276)
 - Concept DOI, all versions: [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933)
 
-A local `python tools/build_paper_b.py` run does not update this record.
+A local `python tools/build_paper.py B` run does not update this record.
 Later revisions use the record's new-version operation. Do not edit
 generated PDF copies. Zenodo describes versioning in its
 [record guide](https://help.zenodo.org/docs/deposit/about-records/).

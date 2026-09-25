@@ -21,9 +21,13 @@ theorem barrel. The local correction does not update a deposited version.
 From the repository root, with Pandoc and XeLaTeX installed:
 
 ```text
-python tools/build_paper_c.py
-python tools/build_paper_c.py --check
+python tools/build_paper.py C            # PDF, LaTeX, metadata, manifest and kit
+python tools/build_paper.py C --check    # release and kit against the manifest
+python tools/build_paper.py C --sync     # regenerate the kit from a current release
 ```
+
+Every paper uses this one builder; the settings particular to Paper C (its files,
+Lean roots, Zenodo fields and LaTeX options) are in `tools/papers/c.json`.
 
 The build compiles three passes, rejects overfull boxes, missing glyphs and unresolved references, and then synchronizes the canonical PDF in `preprints/` and its Zenodo PDF alias. It writes a hash manifest and prepared Zenodo metadata. It does not publish a website or upload a deposit. The generated LaTeX can also be compiled directly beside the `figures` directory. `--sync` only copies a build whose input and output hashes still match. Figure regeneration requires matplotlib and is run with `python docs/theory/figures/render_paper_c_figures.py` before rebuilding.
 

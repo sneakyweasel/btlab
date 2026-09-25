@@ -1,34 +1,27 @@
-# Paper C: Zenodo preprint
+# Paper C: Zenodo publication kit
 
-This folder is generated from the canonical editorial inputs in
-`docs/theory/`. The historical filename
-`Fate_Contagion_Juggler_Map.pdf` is maintained as a byte-identical
-alias of the current Paper C PDF, not an older edition.
+**Fate Contagion and Termination Criteria for the Juggler Map.**
 
-Use `python tools/build_paper_c.py --check` from the repository root
-before preparing a later version. Rebuild with
-`python tools/build_paper_c.py` after editing the canonical manuscript
-or [PAPER_C_BUILD.md](../../docs/theory/PAPER_C_BUILD.md). See
-[build instructions](../../docs/theory/PAPER_C_BUILD.md).
+Every laboratory paper's kit has these files, all generated except this README and
+`AFTER_ZENODO.md`:
 
-`ZENODO_FIELDS.txt` describes the deposited version 1.3.0, this PDF,
-[doi:10.5281/zenodo.22947659](https://doi.org/10.5281/zenodo.22947659) of
-24 September 2026, after 1.1.0
-[doi:10.5281/zenodo.22865705](https://doi.org/10.5281/zenodo.22865705) of
-21 September 2026 and 1.0.0
-[doi:10.5281/zenodo.22678165](https://doi.org/10.5281/zenodo.22678165) of
-9 September 2026. The concept DOI
-[10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) resolves
-to the latest version; the record is
-[zenodo.org/records/22947659](https://zenodo.org/records/22947659).
-Creator: Philippe Cochin, ORCID
-[0009-0004-1939-3382](https://orcid.org/0009-0004-1939-3382), with no
-affiliation. A local rebuild does not change that record.
+- `Fate_Contagion_Juggler_Map.pdf`: the paper, byte-identical to
+  `preprints/juggler_fate_almost_all_note.pdf`. Upload it.
+- `paper_c_sources.zip`: the sources and verification files, with a README
+  that gives the checks and the rebuild. Upload it.
+- `ZENODO_FIELDS.txt`: the upload form's fields, including the plain-text description
+  and the related works. Its first lines say whether this version is deposited.
+- `SHA256SUMS.txt`: checksums of the kit.
+- `AFTER_ZENODO.md`: the published versions and their DOIs.
 
-The PDF is a preprint, not a peer-reviewed article. Neither universal
-termination nor the exclusion of a nontrivial cycle or an unbounded
-orbit is established. AI assistance throughout the work is disclosed
-in the manuscript.
+From the repository root:
 
-For a later revision, use the existing record's new-version operation.
-Canonical laboratory list: [docs/theory/paper_deposits.md](../../docs/theory/paper_deposits.md).
+```text
+python tools/build_paper.py C            # rebuild the paper and this kit
+python tools/build_paper.py C --check    # verify the paper and this kit
+```
+
+Edit `docs/theory/juggler_fate_almost_all_note.md` or `tools/papers/c.json`, never a
+generated file here. The [build guide](../../docs/theory/PAPER_C_BUILD.md) gives the
+paper's trust boundaries and review status. A new version goes up through the
+existing record's new-version operation, which keeps the concept DOI.

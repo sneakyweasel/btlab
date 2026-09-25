@@ -1,0 +1,109 @@
+{
+  "stem": "juggler_fate_almost_all_note",
+  "tex": "docs/theory/cochin-juggler-fates.tex",
+  "version": "1.3.0",
+  "date": "2026-09-24",
+  "editorial": [
+    "docs/theory/PAPER_C_BUILD.md"
+  ],
+  "inputs": [
+    "data/research/juggler/fate_contagion/summary.json",
+    "data/research/juggler/paper_c_publication_review/validation.json",
+    "data/research/juggler/tao_reduction/summary.json",
+    "docs/theory/figures/render_paper_c_figures.py",
+    "docs/theory/juggler_ooee_contagion_note.md",
+    "docs/theory/juggler_ooee_mixed_modes_note.md",
+    "docs/theory/juggler_ooee_poor_fibre_tail_note.md",
+    "formal/AxiomCheckDepthFiveAssembly.expected",
+    "formal/AxiomCheckDepthFiveAssembly.lean",
+    "formal/AxiomCheckDepthFiveWeighted.expected",
+    "formal/AxiomCheckDepthFiveWeighted.lean",
+    "formal/AxiomCheckOOEECountPoorTail.expected",
+    "formal/AxiomCheckOOEECountPoorTail.lean",
+    "formal/AxiomCheckOOEEMixedModes.expected",
+    "formal/AxiomCheckOOEEMixedModes.lean",
+    "formal/AxiomCheckOOEEWeighted.expected",
+    "formal/AxiomCheckOOEEWeighted.lean",
+    "formal/AxiomCheckPaperC.expected",
+    "formal/AxiomCheckPaperC.lean",
+    "formal/AxiomCheckScaleAverage.expected",
+    "formal/AxiomCheckScaleAverage.lean",
+    "formal/lake-manifest.json",
+    "formal/lean-toolchain",
+    "src/research/juggler_sequence/fate_contagion.py",
+    "src/research/juggler_sequence/paper_c_audit.py",
+    "src/research/juggler_sequence/paper_c_formal_layer.py",
+    "src/research/juggler_sequence/tao_reduction.py",
+    "tools/check_paper_c_numeric.py"
+  ],
+  "figures": [
+    "docs/theory/figures/paper_c_productions.png",
+    "docs/theory/figures/paper_c_decomposition.png",
+    "docs/theory/figures/paper_c_dependencies.png"
+  ],
+  "lean_roots": [
+    "formal/Problems/JugglerFatePaper.lean",
+    "formal/AxiomCheckPaperC.lean",
+    "formal/Problems/Juggler/FateOOEEAssembly.lean",
+    "formal/Problems/Juggler/FateOEWeighted.lean",
+    "formal/Problems/Juggler/OOEEMixedModes.lean",
+    "formal/Problems/Juggler/FateScaleAverage.lean",
+    "formal/Problems/Juggler/FateOOEEWeighted.lean",
+    "formal/Problems/Juggler/FateDepthFiveWeighted.lean",
+    "formal/Problems/Juggler/FatePressureOOEE.lean"
+  ],
+  "manuscript_artifacts": true,
+  "archive_extra": [
+    "LICENSE"
+  ],
+  "latex": {
+    "passes": 3,
+    "longtable_foot": true
+  },
+  "deposit_pdf": "Fate_Contagion_Juggler_Map.pdf",
+  "zenodo": {
+    "title": "Fate Contagion and Termination Criteria for the Juggler Map",
+    "keywords": [
+      "Juggler map",
+      "preimage sets",
+      "logarithmic counting",
+      "parity cylinders",
+      "integer dynamics",
+      "Collatz map"
+    ],
+    "related": [
+      {
+        "identifier": "https://github.com/sneakyweasel/btlab",
+        "relation": "isSupplementTo",
+        "scheme": "url",
+        "resource_type": "software"
+      },
+      {
+        "identifier": "10.5281/zenodo.22676452",
+        "relation": "cites",
+        "scheme": "doi",
+        "resource_type": "publication-preprint"
+      },
+      {
+        "identifier": "10.5281/zenodo.22864933",
+        "relation": "cites",
+        "scheme": "doi",
+        "resource_type": "publication-preprint"
+      },
+      {
+        "identifier": "10.5281/zenodo.22905649",
+        "relation": "isCitedBy",
+        "scheme": "doi",
+        "resource_type": "publication-preprint"
+      }
+    ]
+  },
+  "readme_contents": [
+    "The written OOEE notes, the numeric and interval checkers, the figure script and figures, and the data files Appendix B lists by SHA-256."
+  ],
+  "lean_build": [
+    "lake build Problems.JugglerFatePaper",
+    "lake env lean AxiomCheckPaperC.lean"
+  ],
+  "scope": "Theorem 5.20's contagion 37/50 rests on Paper B's Theorem 6.3, an AI-assisted written proof without independent review; the log-mass bound at 5/8 is kernel-checked. Neither universal termination nor the exclusion of nontrivial cycles or unbounded orbits is established."
+}

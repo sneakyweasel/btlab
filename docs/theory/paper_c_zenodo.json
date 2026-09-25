@@ -39,6 +39,12 @@
       "relation": "cites",
       "scheme": "doi",
       "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "10.5281/zenodo.22905649",
+      "relation": "isCitedBy",
+      "scheme": "doi",
+      "resource_type": "publication-preprint"
     }
   ],
   "doi": "10.5281/zenodo.22947659",

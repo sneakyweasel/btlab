@@ -8,10 +8,13 @@ PDF alias. Supporting Markdown documents are kept only here.
 From the repository root, with Python 3.10+, Pandoc 3.6+, and XeLaTeX installed:
 
 ```text
-python tools/build_paper_a.py
-python tools/build_paper_a.py --check
-python tools/build_paper_a_kit.py --archive
+python tools/build_paper.py A            # PDF, LaTeX, metadata, manifest and kit
+python tools/build_paper.py A --check    # release and kit against the manifest
+python tools/build_paper.py A --sync     # regenerate the kit from a current release
 ```
+
+Every paper uses this one builder; the settings particular to Paper A (its files,
+Lean roots, Zenodo fields and LaTeX options) are in `tools/papers/a.json`.
 
 The build generates the canonical PDF, a self-contained `cochin-juggler.tex`,
 Zenodo metadata, and `paper_a_release.json`. It runs LaTeX three times and
@@ -85,36 +88,17 @@ pin includes the corrected metadata builder, archive packager and Lake
 configuration. The Zenodo description contains only the abstract and AI
 disclosure; availability and version history remain in their proper fields.
 
-The kit in `preprints/zenodo_paper_a/` contains the upload PDF,
-`paper_a_source_and_verification.zip`, the generated field sheet, a
-publication-check record and `SHA256SUMS.txt`. The outer
-`paper_a_zenodo_package.zip` collects the upload and preparation materials.
-Upload the PDF and source supplement as the new preprint version; retain
-the outer delivery ZIP locally. Use the actual publication date when
-depositing, and preserve the existing concept DOI.
+The kit in `preprints/zenodo_paper_a/` has the same files as every paper's: the upload
+PDF, `paper_a_sources.zip`, `ZENODO_FIELDS.txt`, `SHA256SUMS.txt`, a README and
+`AFTER_ZENODO.md`. Upload the PDF and the source archive. The archive keeps repository
+paths and holds every release input and output, the manifest, a generated README with
+the verification commands, and its own `SHA256SUMS.txt`; an extracted copy passes
+`python tools/build_paper.py A --check-release`.
 
-The supplement retains repository paths and contains every release-pinned
-input plus generated outputs, supporting documents, the Lean Lake
-configuration, and licensing information. Its root README gives the build
-and verification commands. It includes no third-party toolchains, Mathlib
-cache, private correspondence, or unrelated working-tree files. Full
-descent-floor replays and the laboratory probes still require the repository
-and the computations described in Appendix B; the archived summaries alone
-do not certify those replays.
+`docs/theory/paper_a_publication_check.json` records the release review and travels in the
+archive. Full descent-floor replays and the laboratory probes still require the repository
+and the computations described in Appendix B.
 
-The two-stage kit build avoids a circular checksum: build the source
-archive, complete `docs/theory/paper_a_publication_check.json` from actual
-validation results and that archive's SHA-256, then run:
-
-```text
-python tools/build_paper_a_kit.py
-python tools/build_paper_a_kit.py --check
-python tools/paper_pin.py a
-```
-
-The kit gate checks every archive member and both checksum manifests,
-including the QA record's binding to the PDF, manuscript and source ZIP.
-Text members use LF and archive timestamps are fixed to the edition date.
 Independent mathematical review and complete Lean verification remain
 outstanding and are disclosed in the manuscript and reviewer packet.
 

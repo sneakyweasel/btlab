@@ -1,0 +1,141 @@
+{
+  "stem": "juggler_signed_collatz_note",
+  "tex": "docs/theory/cochin-juggler-signed-collatz.tex",
+  "version": "0.8.1",
+  "date": "2026-09-25",
+  "editorial": [
+    "docs/theory/PAPER_E_BUILD.md",
+    "docs/theory/paper_e_review.md"
+  ],
+  "inputs": [
+    "data/research/formalpedia/ooe_coverage_reviews.json",
+    "data/research/juggler/negative_preimage_density/README.md",
+    "data/research/juggler/negative_preimage_density/grid_k12_certificate.json",
+    "docs/problems/collatz_bounded_fibre_stopping.md",
+    "docs/problems/collatz_fibre_mass.md",
+    "docs/problems/collatz_fibre_sign_coupling.md",
+    "docs/problems/juggler_cycle_denominator_coupling.md",
+    "docs/problems/juggler_negative_preimage_density.md",
+    "docs/theory/collatz_actual_fibre_mass_lean_note.md",
+    "docs/theory/collatz_fibre_mass_lean_note.md",
+    "docs/theory/collatz_generation_mass_lean_note.md",
+    "docs/theory/collatz_negative_generation_mass_lean_note.md",
+    "docs/theory/collatz_uniform_generation_mass_lean_note.md",
+    "docs/theory/finite_fejer_box_note.md",
+    "docs/theory/finite_weyl_differencing_note.md",
+    "docs/theory/first_derivative_power_cancellation_note.md",
+    "docs/theory/fourier_box_recurrence_note.md",
+    "docs/theory/higher_derivative_finite_note.md",
+    "docs/theory/juggler_effective_modular_return_audit.md",
+    "docs/theory/juggler_effective_modular_return_note.md",
+    "docs/theory/juggler_ooe_effective_modes_note.md",
+    "docs/theory/juggler_ooe_effective_return_lean_note.md",
+    "docs/theory/mixed_power_cancellation_note.md",
+    "docs/theory/paper_e_counting_corollaries_note.md",
+    "docs/theory/paper_e_validation.json",
+    "docs/theory/qualitative_weyl_cancellation_note.md",
+    "formal/AxiomCheckFejerBox.expected",
+    "formal/AxiomCheckFejerBox.lean",
+    "formal/AxiomCheckHigherDerivative.expected",
+    "formal/AxiomCheckHigherDerivative.lean",
+    "formal/AxiomCheckOOEEffectiveModes.expected",
+    "formal/AxiomCheckOOEEffectiveModes.lean",
+    "formal/AxiomCheckOOEEffectiveReturn.expected",
+    "formal/AxiomCheckOOEEffectiveReturn.lean",
+    "formal/AxiomCheckPaperECorollaries.expected",
+    "formal/AxiomCheckPaperECorollaries.lean",
+    "formal/AxiomCheckPaperEExamples.expected",
+    "formal/AxiomCheckPaperEExamples.lean",
+    "formal/lake-manifest.json",
+    "formal/lakefile.toml",
+    "formal/lean-toolchain",
+    "literature/arias-de-reyna-2024-explicit-derivative-estimate.json",
+    "literature/bernstein-lagarias-1996-conjugacy-map.json",
+    "literature/boshernitzan-1994-hardy-fields.json",
+    "literature/krasikov-lagarias-2003-difference-inequalities.json",
+    "literature/prasad-prasad-2025-juggler-like.json",
+    "literature/tao-2019-almost-all-collatz.json",
+    "literature/terras-1976-stopping-time.json",
+    "literature/zarnowski-2008-congruence-structure.json",
+    "pyproject.toml",
+    "src/research/__init__.py",
+    "src/research/juggler_sequence/__init__.py",
+    "src/research/juggler_sequence/lean_paths.py",
+    "src/research/juggler_sequence/negative_preimage_density.py",
+    "tools/check_paper_e.py",
+    "tools/generate_signed_grid_certificate.py",
+    "tools/paper_e_common.py"
+  ],
+  "lean_roots": [
+    "formal/Problems/JugglerCollatzPaper.lean",
+    "formal/AxiomCheckJugglerCollatzPaper.lean"
+  ],
+  "archive_extra": [
+    "LICENSE"
+  ],
+  "prebuild": [
+    "tools/check_paper_e.py"
+  ],
+  "latex": {
+    "passes": 3,
+    "longtable_foot": true
+  },
+  "deposit_pdf": "Juggler_and_signed_Collatz.pdf",
+  "zenodo": {
+    "title": "The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions",
+    "keywords": [
+      "Juggler map",
+      "signed Collatz maps",
+      "2-adic parity coding",
+      "inverse trees",
+      "computer-assisted proof",
+      "Lean"
+    ],
+    "related": [
+      {
+        "identifier": "https://github.com/sneakyweasel/btlab",
+        "relation": "isSupplementTo",
+        "scheme": "url",
+        "resource_type": "software"
+      },
+      {
+        "identifier": "10.5281/zenodo.22676452",
+        "relation": "cites",
+        "scheme": "doi",
+        "resource_type": "publication-preprint"
+      },
+      {
+        "identifier": "10.5281/zenodo.22864933",
+        "relation": "cites",
+        "scheme": "doi",
+        "resource_type": "publication-preprint"
+      },
+      {
+        "identifier": "10.5281/zenodo.22678164",
+        "relation": "cites",
+        "scheme": "doi",
+        "resource_type": "publication-preprint"
+      },
+      {
+        "identifier": "10.5281/zenodo.22876189",
+        "relation": "cites",
+        "scheme": "doi",
+        "resource_type": "publication-preprint"
+      }
+    ]
+  },
+  "readme_contents": [
+    "The integer certificate of Theorem 5.1, `data/research/juggler/negative_preimage_density/grid_k12_certificate.json` (177147 weights), with its generator.",
+    "The finite checker `tools/check_paper_e.py`, the written notes behind the analytic lemmas and Section 7.3, and citation records (metadata, not copies of the cited works)."
+  ],
+  "verify": [
+    "python tools/check_paper_e.py",
+    "PYTHONPATH=src python tools/generate_signed_grid_certificate.py --check"
+  ],
+  "verify_note": "The checker recomputes every certificate row with integers, the grid phases, the small-orbit barrier, the examples and the exact comparisons, and checks that the saved Lean audit covers the declared inventory. On Windows PowerShell set `$env:PYTHONPATH = \"src\"` before the second command.",
+  "lean_build": [
+    "lake build Problems.JugglerCollatzPaper",
+    "lake env lean AxiomCheckJugglerCollatzPaper.lean"
+  ],
+  "scope": "Finite checks do not prove Theorem 4.1's infinite equidistribution statement; its Lean proof does. The divergence premise of Proposition 7.4 is open. Independent mathematical review is outstanding. Grid material adapted from M. Sharpe's repository keeps its MIT notice in the Lean sources."
+}

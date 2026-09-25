@@ -9,7 +9,7 @@ check, reported three mismatches on 14 September 2026 -- and a reviewer cloning
 the repository on Linux would have seen exactly the same, which is the part
 that mattered.
 
-Normalising first is the convention ``tools/build_paper_a.py`` already uses for
+Normalising first is the convention ``tools/build_paper.py`` already uses for
 its text inputs. It makes a published digest mean the content rather than the
 checkout.
 

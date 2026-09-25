@@ -52,7 +52,7 @@ No theorem-ledger claim is duplicated merely because it enters a manuscript.
 
 tools/check_paper_e.py checks the exact table, grid, small-orbit barrier,
 rational code examples, and modular-return witnesses.
-tools/build_paper_e.py builds and hashes the publication package.
+tools/build_paper.py E builds and hashes the publication package.
 
 ## Conjectures
 
