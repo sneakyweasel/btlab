@@ -98,6 +98,10 @@ literature/*.private.json
 # Private discussions, correspondence and reply drafts (local only).
 /discussions/
 
+# OEIS submission drafts, b-files and edit notes, one folder per sequence (local only;
+# the published record is oeis.org, and the laboratory's durable notes stay in docs/).
+/oeis/
+
 # Private recovery archives must never be published.
 *.bundle
 
