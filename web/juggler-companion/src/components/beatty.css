@@ -34,3 +34,18 @@
 @media (pointer: coarse) {
   .beatty-controls input, .beatty-controls select, .beatty-legend button { min-height: 44px; }
 }
+.atlas-curve-label, .atlas-point-label { font-size: 12px; }
+.beatty-chart .atlas-point-label { fill: var(--color-ink); font-weight: 600; }
+.atlas-fact { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .25rem 1rem; font-size: .9rem; border-top: 1px solid var(--color-line); padding-top: .5rem; }
+.atlas-evidence { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: .4rem; }
+.atlas-badge { display: inline-block; border-radius: 999px; padding: .1rem .55rem; font-size: .7rem; letter-spacing: .04em; white-space: nowrap; border: 1px solid currentColor; }
+.atlas-badge-lean { color: var(--color-ok); }
+.atlas-badge-human { color: var(--color-even); }
+.atlas-badge-computational { color: var(--color-deep); }
+.atlas-badge-observation { color: var(--color-odd); }
+.atlas-badge-conjecture { color: var(--color-warn); border-style: dashed; }
+.atlas-claim { font-size: .72rem; color: var(--color-muted); }
+.atlas-input { border: 1px solid var(--color-line); background: var(--color-card); border-radius: .4rem; padding: .3rem .45rem; color: var(--color-ink); font-variant-numeric: tabular-nums; }
+.atlas-button { border: 1px solid var(--color-line); border-radius: 999px; padding: .3rem .8rem; font-size: .85rem; color: var(--color-ink); background: var(--color-card); }
+.atlas-button:disabled { opacity: .45; }
+@media (pointer: coarse) { .atlas-input, .atlas-button { min-height: 44px; font-size: 16px; } }

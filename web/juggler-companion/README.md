@@ -44,6 +44,16 @@ The bundled `src/data/beatty_profile.json` is a display snapshot of
 hash and the exact rational gap certificates. Gray strip regions remain
 unresolved; the tail band bounds the infinite profile, not finite-sample error.
 
+## Beatty dimension atlas
+
+`/beatty-atlas` is an unlisted working view: no navigation links to it, and it sets
+`noindex`. It places a slope on the map of Hausdorff dimension against the
+Diophantine class, shows the two-scale closed form, and runs the dimension game
+live (a port of `research.juggler_sequence.beatty_dimension_game`). Tests check
+the port against the committed `dimension_game.json` and every cited claim
+against the ledger's current evidence label. The game is an exponent model, not
+a proof; the tube-volume curve is a display computation from the bundled weights.
+
 React owns visualization. From the repository root, generate certified data
 without matplotlib using `python tools/export_beatty_profile.py --output
 data/research/juggler/winkler_phase_collapse/beatty_profile.json`. Prefer
