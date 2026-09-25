@@ -22,7 +22,8 @@ namespace Problems.Juggler.BeattySlope
 
 open Filter Topology Set
 
-/-- An enumeration of the good indices with a size floor and sparsity. -/
+/-- An enumeration of the good indices with a size floor, in which each good
+denominator is at least twice the denominator after the previous good index. -/
 structure IsoLevels (ν : ℝ) (G : ℕ → Prop) [DecidablePred G] (B : ℝ) where
   g : ℕ → ℕ
   mono : StrictMono g
@@ -30,11 +31,15 @@ structure IsoLevels (ν : ℝ) (G : ℕ → Prop) [DecidablePred G] (B : ℝ) wh
   good_mem : ∀ l, G (g l)
   gap : ∀ l k, g l < k → k < g (l + 1) → ¬ G k
   big : B ≤ (isoDen ν G (g 0) : ℝ)
-  sparse : ∀ l, ((2 : ℝ) * isoDen ν G (g l + 1)) ^ ((l + 2) ^ 2) ≤ isoDen ν G (g (l + 1))
+  step2 : ∀ l, (2 : ℝ) * isoDen ν G (g l + 1) ≤ isoDen ν G (g (l + 1))
 
 namespace IsoLevels
 
 variable {ν B : ℝ} {G : ℕ → Prop} [DecidablePred G] (Lv : IsoLevels ν G B)
+
+/-- Sparse good levels: `(2 Q_(g l + 1))^((l+2)²) ≤ Q_(g (l+1))` for every `l`. -/
+def Sparse : Prop :=
+  ∀ l, ((2 : ℝ) * isoDen ν G (Lv.g l + 1)) ^ ((l + 2) ^ 2) ≤ isoDen ν G (Lv.g (l + 1))
 
 /-- Good indices are at least one. -/
 theorem one_le_g (l : ℕ) : 1 ≤ Lv.g l :=

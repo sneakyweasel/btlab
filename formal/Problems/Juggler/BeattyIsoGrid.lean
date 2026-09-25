@@ -152,14 +152,9 @@ noncomputable def grid : GridData where
     | succ l =>
       show (10 : ℝ) ≤ Lv.den l ^ (-γ) * (isoDen ν G (Lv.g (l + 1)) : ℕ)
       have hq := den_pos (Lv := Lv) P l
-      have hsp := Lv.sparse l
       have h1 := (Lv.den'_bounds (by linarith [P.γ1, P.γν]) l).1
-      -- `Q(l+1) ≥ (2Q')^4 ≥ 16 Q^(4ν) ≥ 10 Q^γ`
-      have h2 : (2 : ℝ) * Lv.den' l ≤ ((2 : ℝ) * Lv.den' l) ^ ((l + 2) ^ 2) := by
-        have : (1 : ℝ) ≤ 2 * Lv.den' l := by linarith [den_one (Lv := Lv) P l, Lv.den_le_den' l]
-        calc (2 : ℝ) * Lv.den' l = (2 * Lv.den' l) ^ 1 := (pow_one _).symm
-          _ ≤ _ := pow_le_pow_right₀ this (Nat.one_le_iff_ne_zero.mpr (pow_ne_zero 2 (by omega)))
-      have h3 : 2 * Lv.den' l ≤ (isoDen ν G (Lv.g (l + 1)) : ℝ) := h2.trans hsp
+      -- `Q(l+1) ≥ 2Q' ≥ 2 Q^ν ≥ 10 Q^γ`
+      have h3 : 2 * Lv.den' l ≤ (isoDen ν G (Lv.g (l + 1)) : ℝ) := Lv.step2 l
       have hQn : 2 * Lv.den l ^ ν ≤ (isoDen ν G (Lv.g (l + 1)) : ℝ) := by linarith [h1, h3]
       calc (10 : ℝ) ≤ 2 * Lv.den l ^ (ν - γ) := by linarith [den_rpow_ν (Lv := Lv) P l]
         _ = Lv.den l ^ (-γ) * (2 * Lv.den l ^ ν) := by

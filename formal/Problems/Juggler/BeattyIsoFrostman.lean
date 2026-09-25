@@ -3,15 +3,16 @@ import Problems.Juggler.BeattyIsoBounds
 /-!
 # The Frostman bound at isolated slopes
 
-The grid tree of an isolated slope carries a Cantor measure. Its window masses
-satisfy `M_(j+1) ≤ Q_j^(-1 + γ/(j+1))` by sparsity. Combined with the atom-mass
-bounds of `BeattyIsoBounds`, the Frostman inequality `h(v) - h(u) ≤ C inc(u,v)^s`
-holds whenever
+The grid tree of an isolated slope carries a Cantor measure. If its window masses
+satisfy `M_(j+1) ≤ Q_j^(-1 + η)` from some level on, then, combined with the
+atom-mass bounds of `BeattyIsoBounds`, the Frostman inequality
+`h(v) - h(u) ≤ C inc(u,v)^s` holds whenever
 
 * `γ - 1 + η ≤ ν (1 - 3s/2)` (small scales), and
-* `s (3 + ν - γ)/2 ≤ 1 - η` (chain scales),
+* `s (3 + ν - γ)/2 ≤ 1 - η` (chain scales).
 
-for some `η > 0`. The Frostman principle then gives `H^s(K_α) > 0`.
+The Frostman principle then gives `H^s(K_α) > 0`. Sparse good levels give
+`M_(j+1) ≤ Q_j^(-1 + γ/(j+1))`, hence every `η > 0` from some level on.
 -/
 
 namespace Problems.Juggler.BeattySlope
@@ -126,13 +127,13 @@ theorem mass_prevDen (j : ℕ) :
           mul_le_mul h2 (ih.trans h3) (by positivity) (by positivity)
 
 /-- **Sparse masses.** From level `1` on, `M_(j+1) ≤ Q_j^(-1 + γ/(j+1))`. -/
-theorem mass_sparse {j : ℕ} (hj : 1 ≤ j) :
+theorem mass_sparse (hS : Lv.Sparse) {j : ℕ} (hj : 1 ≤ j) :
     (Lv.grid P).tree.mass (j + 1) ≤ Lv.den j ^ (-1 + γ / ((j : ℝ) + 1)) := by
   obtain ⟨i, rfl⟩ : ∃ i, j = i + 1 := ⟨j - 1, by omega⟩
   have hq := den_pos (Lv := Lv) P (i + 1)
   have hγ := P.γ1
   have hM := mass_prevDen (Lv := Lv) P (i + 1)
-  have hsp := Lv.sparse i
+  have hsp := hS i
   have hY : prevDen Lv (i + 1) = isoDen ν G (Lv.g i + 1) := rfl
   have hY0 := (prevDen_bounds (Lv := Lv) P (i + 1)).1
   have hn : (0 : ℝ) < ((i + 1 : ℕ) : ℝ) + 1 := by positivity
@@ -152,6 +153,22 @@ theorem mass_sparse {j : ℕ} (hj : 1 ≤ j) :
       Lv.den (i + 1) ^ (γ / (((i + 1 : ℕ) : ℝ) + 1)) / Lv.den (i + 1) := this
     _ = Lv.den (i + 1) ^ (-1 + γ / (((i + 1 : ℕ) : ℝ) + 1)) := by
       rw [Real.rpow_add hq, Real.rpow_neg_one]; field_simp
+
+/-- **Sparse masses beat every `η > 0`** from some level on. -/
+theorem sparse_mass_eventually (hS : Lv.Sparse) {η : ℝ} (hη : 0 < η) :
+    ∃ j0 : ℕ, ∀ j, j0 ≤ j → (Lv.grid P).tree.mass (j + 1) ≤ Lv.den j ^ (-1 + η) := by
+  have hγ1 := P.γ1
+  refine ⟨⌈γ / η⌉₊ + 1, fun j hj => ?_⟩
+  have hj1 : 1 ≤ j := by omega
+  have hc : γ / η ≤ ⌈γ / η⌉₊ := Nat.le_ceil _
+  have hjR : ((⌈γ / η⌉₊ + 1 : ℕ) : ℝ) ≤ j := by exact_mod_cast hj
+  have h1 : γ / η ≤ (j : ℝ) + 1 := by push_cast at hjR; linarith
+  have h2 : γ / ((j : ℝ) + 1) ≤ η := by
+    rw [div_le_iff₀ (by positivity)]
+    rw [div_le_iff₀ hη] at h1
+    linarith
+  exact (mass_sparse (Lv := Lv) P hS hj1).trans
+    (Real.rpow_le_rpow_of_exponent_le (den_one (Lv := Lv) P j) (by linarith))
 
 /-- An interval meeting two children of a tree-level-`L` window has length at
 least `1/(4 Q_L)`, and the Frostman left side is at most `9 M_(L+1) ℓ Q_L`. -/
@@ -330,7 +347,8 @@ theorem chain_exponent (j : ℕ) {s η M ℓ A : ℝ} (hs : 0 < s) (hs1 : s ≤ 
 /-- **Frostman bound on the grid tree.** Under the two exponent conditions,
 `h(v) - h(u) ≤ C inc(u,v)^s` on `[0, 1]`, for the limit distribution function
 `h` of the grid tree. -/
-theorem frostman_tree {s η : ℝ} (hs : 0 < s) (hs23 : s < 2 / 3) (hη : 0 < η)
+theorem frostman_tree {s η : ℝ} (hs : 0 < s) (hs23 : s < 2 / 3) (j0 : ℕ)
+    (hM : ∀ j, j0 ≤ j → (Lv.grid P).tree.mass (j + 1) ≤ Lv.den j ^ (-1 + η))
     (hE1 : γ - 1 + η ≤ ν * (1 - 3 * s / 2)) (hE2 : s * (3 + ν - γ) / 2 ≤ 1 - η) :
     ∃ C : ℝ, 0 < C ∧ ∀ u v : ℝ, 0 ≤ u → u < v → v ≤ 1 →
       (Lv.grid P).tree.hlim v - (Lv.grid P).tree.hlim u ≤ C * inc ν G u v ^ s := by
@@ -339,16 +357,6 @@ theorem frostman_tree {s η : ℝ} (hs : 0 < s) (hs23 : s < 2 / 3) (hη : 0 < η
   set T := D.tree
   obtain ⟨A, hA, hwA⟩ := wt_lower (ν := ν) (G := G)
   have hγ1 := P.γ1
-  -- the level from which the sparse mass bound beats `η`
-  set j0 := ⌈γ / η⌉₊ + 1 with hj0
-  have hj0η : ∀ j, j0 ≤ j → γ / ((j : ℝ) + 1) ≤ η := by
-    intro j hj
-    have hc : γ / η ≤ ⌈γ / η⌉₊ := Nat.le_ceil _
-    have hjR : (j0 : ℝ) ≤ j := by exact_mod_cast hj
-    have : γ / η ≤ (j : ℝ) + 1 := by rw [hj0] at hjR; push_cast at hjR; linarith
-    rw [div_le_iff₀ (by positivity)]
-    rw [div_le_iff₀ hη] at this
-    linarith
   have hQ0 := den_pos (Lv := Lv) P j0
   set c0 := A / Lv.den j0 ^ (3/2 : ℝ) with hc0
   have hc0p : 0 < c0 := by positivity
@@ -413,16 +421,12 @@ theorem frostman_tree {s η : ℝ} (hs : 0 < s) (hs23 : s < 2 / 3) (hη : 0 < η
       _ ≤ (C0 + C1 + C2) * inc ν G u v ^ s := hup _ _ hinc0 (by linarith)
   · -- high levels `l = j + 1`
     obtain ⟨j, rfl⟩ : ∃ j, l = j + 1 := ⟨l - 1, by omega⟩
-    have hj1 : 1 ≤ j := by omega
-    have hjη := hj0η j (by omega)
     have hq := den_pos (Lv := Lv) P j
     have hq1 := den_one (Lv := Lv) P j
     have hq2 := den_pos (Lv := Lv) P (j + 1)
     set M := T.mass (j + 1)
     have hM0 : 0 < M := T.mass_pos _
-    have hMη : M ≤ Lv.den j ^ (-1 + η) :=
-      (mass_sparse (Lv := Lv) P hj1).trans
-        (Real.rpow_le_rpow_of_exponent_le hq1 (by linarith))
+    have hMη : M ≤ Lv.den j ^ (-1 + η) := hM j (by omega)
     set d := Lv.den j ^ (-γ)
     have hdp : 0 < d := Real.rpow_pos_of_pos hq _
     have hDd : D.d (j + 1) = d := rfl
@@ -467,10 +471,11 @@ theorem frostman_tree {s η : ℝ} (hs : 0 < s) (hs23 : s < 2 / 3) (hη : 0 < η
 
 /-- **Positive Hausdorff measure.** Under the exponent conditions, the cluster
 set of the isolated slope has positive `s`-dimensional Hausdorff measure. -/
-theorem hausdorff_ne_zero (Lv : IsoLevels ν G B) {s η : ℝ} (hs : 0 < s) (hs23 : s < 2 / 3) (hη : 0 < η)
+theorem hausdorff_ne_zero (Lv : IsoLevels ν G B) {s η : ℝ} (hs : 0 < s) (hs23 : s < 2 / 3)
+    (j0 : ℕ) (hM : ∀ j, j0 ≤ j → (Lv.grid P).tree.mass (j + 1) ≤ Lv.den j ^ (-1 + η))
     (hE1 : γ - 1 + η ≤ ν * (1 - 3 * s / 2)) (hE2 : s * (3 + ν - γ) / 2 ≤ 1 - η) :
     MeasureTheory.Measure.hausdorffMeasure s (passageClusterSet (1 / isoSlope ν G)) ≠ 0 := by
-  obtain ⟨C, hC, hfrost⟩ := frostman_tree (Lv := Lv) P hs hs23 hη hE1 hE2
+  obtain ⟨C, hC, hfrost⟩ := frostman_tree (Lv := Lv) P hs hs23 j0 hM hE1 hE2
   obtain ⟨hβ0, hβ1, hβ⟩ := β_bounds (ν := ν) (G := G)
   rw [passageClusterSet_eq_jumpRange hβ0 hβ1 hβ]
   set T := (Lv.grid P).tree

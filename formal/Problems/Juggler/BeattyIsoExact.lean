@@ -74,19 +74,28 @@ def shift (Lv : IsoLevels ν G B) (k : ℕ) (B' : ℝ) (hB : B' ≤ isoDen ν G 
   good_mem l := Lv.good_mem _
   gap l k' h1 h2 := Lv.gap (l + k) k' h1 (by rwa [show l + 1 + k = l + k + 1 by ring] at h2)
   big := by simpa using hB
-  sparse l := by
-    have hb : 1 ≤ (2 : ℝ) * isoDen ν G (Lv.g (l + k) + 1) := by
-      have : (1 : ℝ) ≤ isoDen ν G (Lv.g (l + k) + 1) := by
-        exact_mod_cast isoDen_pos (Lv.g (l + k))
-      linarith
-    calc ((2 : ℝ) * isoDen ν G (Lv.g (l + k) + 1)) ^ ((l + 2) ^ 2)
-        ≤ ((2 : ℝ) * isoDen ν G (Lv.g (l + k) + 1)) ^ ((l + k + 2) ^ 2) :=
-          pow_le_pow_right₀ hb (Nat.pow_le_pow_left (by omega) 2)
-      _ ≤ isoDen ν G (Lv.g (l + k + 1)) := Lv.sparse (l + k)
-      _ = isoDen ν G (Lv.g (l + 1 + k)) := by rw [show l + 1 + k = l + k + 1 by ring]
+  step2 l := by
+    rw [show l + 1 + k = l + k + 1 by ring]
+    exact Lv.step2 (l + k)
 
-/-- Any size floor is reached by dropping levels. -/
-theorem raise (Lv : IsoLevels ν G B) (B' : ℝ) : Nonempty (IsoLevels ν G B') := by
+/-- Dropping levels keeps sparsity. -/
+theorem shift_sparse (Lv : IsoLevels ν G B) (hS : Lv.Sparse) (k : ℕ) (B' : ℝ)
+    (hB : B' ≤ isoDen ν G (Lv.g k)) : (Lv.shift k B' hB).Sparse := by
+  intro l
+  show ((2 : ℝ) * isoDen ν G (Lv.g (l + k) + 1)) ^ ((l + 2) ^ 2) ≤ isoDen ν G (Lv.g (l + 1 + k))
+  have hb : 1 ≤ (2 : ℝ) * isoDen ν G (Lv.g (l + k) + 1) := by
+    have : (1 : ℝ) ≤ isoDen ν G (Lv.g (l + k) + 1) := by
+      exact_mod_cast isoDen_pos (Lv.g (l + k))
+    linarith
+  calc ((2 : ℝ) * isoDen ν G (Lv.g (l + k) + 1)) ^ ((l + 2) ^ 2)
+      ≤ ((2 : ℝ) * isoDen ν G (Lv.g (l + k) + 1)) ^ ((l + k + 2) ^ 2) :=
+        pow_le_pow_right₀ hb (Nat.pow_le_pow_left (by omega) 2)
+    _ ≤ isoDen ν G (Lv.g (l + k + 1)) := hS (l + k)
+    _ = isoDen ν G (Lv.g (l + 1 + k)) := by rw [show l + 1 + k = l + k + 1 by ring]
+
+/-- Some level has good denominator at least `B'`. -/
+theorem exists_floor_index (Lv : IsoLevels ν G B) (B' : ℝ) :
+    ∃ k, B' ≤ isoDen ν G (Lv.g k) := by
   set k := ⌈B'⌉₊
   have hg : k + 1 ≤ Lv.g k := by
     have : ∀ n, n + 1 ≤ Lv.g n := by
@@ -101,7 +110,18 @@ theorem raise (Lv : IsoLevels ν G B) (B' : ℝ) : Nonempty (IsoLevels ν G B') 
     have : k ≤ isoDen ν G (Lv.g k) := by omega
     calc B' ≤ k := hk
       _ ≤ isoDen ν G (Lv.g k) := by exact_mod_cast this
-  exact ⟨Lv.shift k B' this⟩
+  exact ⟨k, this⟩
+
+/-- Any size floor is reached by dropping levels. -/
+theorem raise (Lv : IsoLevels ν G B) (B' : ℝ) : Nonempty (IsoLevels ν G B') := by
+  obtain ⟨k, hk⟩ := Lv.exists_floor_index B'
+  exact ⟨Lv.shift k B' hk⟩
+
+/-- Any size floor is reached by dropping levels, keeping sparsity. -/
+theorem raise_sparse (Lv : IsoLevels ν G B) (hS : Lv.Sparse) (B' : ℝ) :
+    ∃ Lv' : IsoLevels ν G B', Lv'.Sparse := by
+  obtain ⟨k, hk⟩ := Lv.exists_floor_index B'
+  exact ⟨Lv.shift k B' hk, Lv.shift_sparse hS k B' hk⟩
 
 /-- Good indices exist beyond every bound. -/
 theorem frequent (Lv : IsoLevels ν G B) : ∀ N, ∃ k, N ≤ k ∧ G (k + 1) := by
@@ -173,15 +193,16 @@ theorem exists_isoParams {γ : ℝ} (h1 : 1 < γ) (h2 : γ < ν) : ∃ B, IsoPar
 
 /-- **Lower bound.** An isolated slope whose good levels admit a sparse
 enumeration has `dim_H K_α ≥ s*(ν)`. -/
-theorem iso_dimH_ge {B : ℝ} (Lv : IsoLevels ν G B) (hν : 1 < ν) :
+theorem iso_dimH_ge {B : ℝ} (Lv : IsoLevels ν G B) (hS : Lv.Sparse) (hν : 1 < ν) :
     ENNReal.ofReal (starDim ν) ≤ dimH (passageClusterSet (1 / isoSlope ν G)) := by
   have hmain : ∀ s, 0 < s → s < starDim ν →
       ENNReal.ofReal s ≤ dimH (passageClusterSet (1 / isoSlope ν G)) := by
     intro s hs hss
     obtain ⟨hγ1, hγν, hs23, η, hη, hE1, hE2⟩ := isoGamma_exponents hν hss
     obtain ⟨B', P⟩ := exists_isoParams hγ1 hγν
-    obtain ⟨Lv'⟩ := Lv.raise B'
-    have hne := IsoLevels.hausdorff_ne_zero P Lv' hs hs23 hη hE1 hE2
+    obtain ⟨Lv', hS'⟩ := Lv.raise_sparse hS B'
+    obtain ⟨j0, hM⟩ := IsoLevels.sparse_mass_eventually (Lv := Lv') P hS' hη
+    have hne := IsoLevels.hausdorff_ne_zero P Lv' hs hs23 j0 hM hE1 hE2
     have : ((s.toNNReal : NNReal) : ℝ) = s := Real.coe_toNNReal _ hs.le
     rw [← this] at hne
     exact le_dimH_of_hausdorffMeasure_ne_zero hne
@@ -200,9 +221,9 @@ theorem iso_dimH_ge {B : ℝ} (Lv : IsoLevels ν G B) (hν : 1 < ν) :
 
 /-- **Exact dimension.** An isolated slope whose good levels admit a sparse
 enumeration has `dim_H K_α = s*(ν)`. -/
-theorem iso_dimH_eq {B : ℝ} (Lv : IsoLevels ν G B) (hν : 1 < ν) :
+theorem iso_dimH_eq {B : ℝ} (Lv : IsoLevels ν G B) (hS : Lv.Sparse) (hν : 1 < ν) :
     dimH (passageClusterSet (1 / isoSlope ν G)) = ENNReal.ofReal (starDim ν) :=
-  le_antisymm (isoSlope_dims hν Lv.frequent).2 (iso_dimH_ge Lv hν)
+  le_antisymm (isoSlope_dims hν Lv.frequent).2 (iso_dimH_ge Lv hS hν)
 
 /-- The tower of good indices: `g 0 = 1`, `g (l+1) = g l + 2 + (2 U_(g l + 1))^((l+2)²)`. -/
 noncomputable def isoTower (ν : ℝ) : ℕ → ℕ
@@ -227,8 +248,26 @@ noncomputable def isoTowerLevels (hν : 1 ≤ ν) : IsoLevels ν (IsoTowerGood �
     have b := hm.lt_iff_lt.1 h2
     omega
   big := by simp [isoTower, isoDen]
-  sparse l := by
+  step2 l := by
     have hU := isoDen_le_top (G := IsoTowerGood ν) hν (isoTower ν l + 1)
+    have hidx := idx_le_isoDen (ν := ν) (G := IsoTowerGood ν) (isoTower ν (l + 1))
+    have htow : isoTower ν (l + 1) =
+        isoTower ν l + 2 + (2 * isoDen ν (fun _ => True) (isoTower ν l + 1)) ^ ((l + 2) ^ 2) :=
+      rfl
+    have hself : 2 * isoDen ν (fun _ => True) (isoTower ν l + 1) ≤
+        (2 * isoDen ν (fun _ => True) (isoTower ν l + 1)) ^ ((l + 2) ^ 2) :=
+      Nat.le_self_pow (by positivity) _
+    have : 2 * isoDen ν (IsoTowerGood ν) (isoTower ν l + 1) ≤
+        isoDen ν (IsoTowerGood ν) (isoTower ν (l + 1)) := by omega
+    exact_mod_cast this
+
+open Classical in
+/-- The tower enumeration is sparse. -/
+theorem isoTower_sparse (hν : 1 ≤ ν) : (isoTowerLevels hν).Sparse := by
+  intro l
+  show ((2 : ℝ) * isoDen ν (IsoTowerGood ν) (isoTower ν l + 1)) ^ ((l + 2) ^ 2) ≤
+    isoDen ν (IsoTowerGood ν) (isoTower ν (l + 1))
+  · have hU := isoDen_le_top (G := IsoTowerGood ν) hν (isoTower ν l + 1)
     have hidx := idx_le_isoDen (ν := ν) (G := IsoTowerGood ν) (isoTower ν (l + 1))
     have hpow : (2 * isoDen ν (IsoTowerGood ν) (isoTower ν l + 1)) ^ ((l + 2) ^ 2) ≤
         (2 * isoDen ν (fun _ => True) (isoTower ν l + 1)) ^ ((l + 2) ^ 2) :=
@@ -253,8 +292,8 @@ theorem isoTower_dims (hν : 1 < ν) :
       (by simpa using (isoSlope_irrational ν (IsoTowerGood ν)).inv) : Measure ℝ) =
       ENNReal.ofReal (2 / (2 + ν)) ∧
     dimH (passageClusterSet (1 / isoSlope ν (IsoTowerGood ν))) = ENNReal.ofReal (starDim ν) := by
-  have Lv := isoTowerLevels hν.le
-  exact ⟨isoSlope_diophClass hν Lv.frequent, (isoSlope_dims hν Lv.frequent).1,
-    iso_dimH_eq Lv hν⟩
+  exact ⟨isoSlope_diophClass hν (isoTowerLevels hν.le).frequent,
+    (isoSlope_dims hν (isoTowerLevels hν.le).frequent).1,
+    iso_dimH_eq (isoTowerLevels hν.le) (isoTower_sparse hν.le) hν⟩
 
 end Problems.Juggler.BeattySlope
