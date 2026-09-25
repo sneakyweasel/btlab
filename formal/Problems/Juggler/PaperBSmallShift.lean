@@ -1289,6 +1289,256 @@ theorem small_shift_core {C T u v w : ℝ} (N r₀ h : ℕ) (hC : 1 ≤ C) (hT :
   have hfin := small_shift_budget hC (show 0 ≤ T ^ 21 by positivity) (sqrt_nonneg hr)
   linarith only [hret, hsm, hmo, hE0, hEh, hcmp, hcmpT, htri, hfin]
 
+/-! ## The statement of the paper -/
+
+/-- The summand of (4.4) at `x`: `(i/2)Δ_h X + (j/2)Δ_h Y + (k/2)Δ_h(x^{9/8})`, with
+`X = x^{3/2}`, `Y = ⌊X⌋^{3/2}` and `Δ_h f(x) = f(x + 2h) - f(x)`. -/
+def smallShiftPhase (i j k : ℤ) (h x : ℝ) : ℝ :=
+  (i / 2 : ℝ) * ((x + 2 * h) ^ (3 / 2 : ℝ) - x ^ (3 / 2 : ℝ)) +
+    (j / 2 : ℝ) * (((⌊(x + 2 * h) ^ (3 / 2 : ℝ)⌋ : ℤ) : ℝ) ^ (3 / 2 : ℝ) -
+      ((⌊x ^ (3 / 2 : ℝ)⌋ : ℤ) : ℝ) ^ (3 / 2 : ℝ)) +
+    (k / 2 : ℝ) * ((x + 2 * h) ^ (9 / 8 : ℝ) - x ^ (9 / 8 : ℝ))
+
+/-- The summand is `Δ_h` of `originalPhase` with `u = j/2`, `v = i`, `w = k`. -/
+theorem smallShiftPhase_eq (i j k : ℤ) (h x : ℝ) :
+    smallShiftPhase i j k h x =
+      OOEEPhaseComparison.originalPhase ((j : ℝ) / 2) i k (x + 2 * h) -
+        OOEEPhaseComparison.originalPhase ((j : ℝ) / 2) i k x := by
+  unfold smallShiftPhase OOEEPhaseComparison.originalPhase OOEEPhaseComparison.nestedPower
+    OOEEPhaseComparison.firstFloor
+  ring
+
+/-- Negating all three frequencies negates the summand. -/
+theorem smallShiftPhase_neg (i j k : ℤ) (h x : ℝ) :
+    smallShiftPhase (-i) (-j) (-k) h x = -smallShiftPhase i j k h x := by
+  unfold smallShiftPhase
+  push_cast
+  ring
+
+/-- Conjugation: `‖∑ e(-f)‖ = ‖∑ e(f)‖`. -/
+theorem norm_sum_phase_neg {ι : Type*} (s : Finset ι) (f : ι → ℝ) :
+    ‖∑ n ∈ s, phase (-f n)‖ = ‖∑ n ∈ s, phase (f n)‖ := by
+  have he (t : ℝ) : phase (-t) = (starRingEnd ℂ) (phase t) := by
+    have := phase_mul_conj 0 t
+    rw [zero_sub] at this
+    rw [← this, show phase 0 = 1 by simp [phase], one_mul]
+  simp only [he, ← map_sum, Complex.norm_conj]
+
+/-- **The odd window.** The odd `n ∈ (P, L]`, `L ≤ 2P`, are `2 r₀ + 1 + 2m`, `m < N`, with
+`2 r₀ + 1 > P` and, when `N ≥ 1`, last element at most `L`. -/
+theorem odd_window_sum {P L : ℝ} (hP : 1 ≤ P) (hL : L ≤ 2 * P) (f : ℕ → ℂ) :
+    ∃ r₀ N : ℕ, P < ((2 * r₀ + 1 : ℕ) : ℝ) ∧
+      (1 ≤ N → ((2 * r₀ + 1 : ℕ) : ℝ) + 2 * ((N - 1 : ℕ) : ℝ) ≤ L) ∧
+      ∑ n ∈ (range (⌊2 * P⌋₊ + 1)).filter (fun n : ℕ => P < (n : ℝ) ∧ (n : ℝ) ≤ L ∧ Odd n), f n =
+        ∑ m ∈ range N, f (2 * r₀ + 1 + 2 * m) := by
+  set r₀ := ⌊(P - 1) / 2⌋₊ + 1 with hr₀
+  have hA (r : ℕ) : P < ((2 * r + 1 : ℕ) : ℝ) ↔ r₀ ≤ r := by
+    rw [hr₀, Nat.add_one_le_iff, Nat.floor_lt (by linarith)]
+    push_cast
+    constructor <;> intro h <;> linarith
+  have hodd (n : ℕ) (hn : Odd n) : n = 2 * (n / 2) + 1 := by
+    have := Nat.odd_iff.1 hn
+    omega
+  by_cases hLa : L < ((2 * r₀ + 1 : ℕ) : ℝ)
+  · refine ⟨r₀, 0, (hA r₀).2 le_rfl, fun h => absurd h (by norm_num), ?_⟩
+    rw [range_zero, sum_empty]
+    rw [Finset.filter_eq_empty_iff.2, sum_empty]
+    rintro n _ ⟨hPn, hnL, hn⟩
+    rw [hodd n hn] at hPn hnL
+    have h1 := (hA _).1 hPn
+    have h2 : ((2 * r₀ + 1 : ℕ) : ℝ) ≤ ((2 * (n / 2) + 1 : ℕ) : ℝ) := by
+      exact_mod_cast (by omega : 2 * r₀ + 1 ≤ 2 * (n / 2) + 1)
+    linarith
+  push Not at hLa
+  set F := ⌊(L - 1) / 2⌋₊ with hF
+  have hB (r : ℕ) : ((2 * r + 1 : ℕ) : ℝ) ≤ L ↔ r ≤ F := by
+    have h0 : 0 ≤ (L - 1) / 2 := by
+      have : (1 : ℝ) ≤ ((2 * r₀ + 1 : ℕ) : ℝ) := by exact_mod_cast (by omega : 1 ≤ 2 * r₀ + 1)
+      linarith
+    rw [hF, Nat.le_floor_iff h0]
+    push_cast
+    constructor <;> intro h <;> linarith
+  have hr₀F : r₀ ≤ F := (hB r₀).1 hLa
+  refine ⟨r₀, F + 1 - r₀, (hA r₀).2 le_rfl, fun _ => ?_, ?_⟩
+  · have h := (hB F).2 le_rfl
+    have e : 2 * r₀ + 1 + 2 * (F + 1 - r₀ - 1) = 2 * F + 1 := by omega
+    have h' : ((2 * r₀ + 1 + 2 * (F + 1 - r₀ - 1) : ℕ) : ℝ) ≤ L := by rw [e]; exact h
+    push_cast at h' ⊢
+    linarith
+  · apply sum_nbij' (fun n => n / 2 - r₀) (fun m => 2 * r₀ + 1 + 2 * m)
+    · intro n hn
+      simp only [mem_filter, mem_range] at hn ⊢
+      obtain ⟨_, hPn, hnL, hno⟩ := hn
+      rw [hodd n hno] at hPn hnL
+      have := (hA _).1 hPn
+      have := (hB _).1 hnL
+      omega
+    · intro m hm
+      simp only [mem_filter, mem_range] at hm ⊢
+      have hle := (hB (r₀ + m)).2 (by omega)
+      have e : 2 * (r₀ + m) + 1 = 2 * r₀ + 1 + 2 * m := by ring
+      rw [e] at hle
+      refine ⟨?_, ?_, hle, ⟨r₀ + m, by ring⟩⟩
+      · rw [Nat.lt_add_one_iff]
+        exact Nat.le_floor (by linarith)
+      · have := (hA (r₀ + m)).2 (by omega)
+        rwa [e] at this
+    · intro n hn
+      simp only [mem_filter, mem_range] at hn
+      obtain ⟨_, hPn, _, hno⟩ := hn
+      have h1 := hodd n hno
+      rw [h1] at hPn
+      have := (hA _).1 hPn
+      omega
+    · intro m _
+      omega
+    · intro n hn
+      simp only [mem_filter, mem_range] at hn
+      obtain ⟨_, hPn, _, hno⟩ := hn
+      have h1 := hodd n hno
+      rw [h1] at hPn
+      have := (hA _).1 hPn
+      congr 1
+      omega
+
+/-- **Lemma 4.4 for `j ≥ 1` on an odd window**, at `P = T^{24}` with `T ≥ 4096 C`. -/
+theorem small_shift_window {C T : ℝ} (i j k : ℤ) (r₀ N h : ℕ) (hC : 1 ≤ C)
+    (hT : 4096 * C ≤ T) (hh1 : 1 ≤ h) (hhT : (h : ℝ) ≤ T ^ 2)
+    (hj : 1 ≤ j) (hjC : (j : ℝ) ≤ C * T) (hi : |(i : ℝ)| ≤ C * T) (hk : |(k : ℝ)| ≤ C * T)
+    (ha : T ^ 24 < ((2 * r₀ + 1 : ℕ) : ℝ))
+    (hb : 1 ≤ N → ((2 * r₀ + 1 : ℕ) : ℝ) + 2 * ((N - 1 : ℕ) : ℝ) ≤ 2 * T ^ 24 - 2 * h) :
+    ‖∑ m ∈ range N, phase (smallShiftPhase i j k h ((2 * r₀ + 1 + 2 * m : ℕ) : ℝ))‖ ≤
+      (508000 * C + 1) * T ^ 21 * (1 + √(h : ℝ)) := by
+  have hT1 : 1 ≤ T := by nlinarith
+  have hsh : 0 ≤ √(h : ℝ) := sqrt_nonneg _
+  have hT21 : 1 ≤ T ^ 21 := one_le_pow₀ hT1
+  rcases Nat.eq_zero_or_pos N with hN | hN
+  · subst hN
+    simp only [range_zero, sum_empty, norm_zero]
+    positivity
+  obtain ⟨M, rfl⟩ : ∃ M, N = M + 1 := ⟨N - 1, by omega⟩
+  have hb' := hb (by omega)
+  simp only [Nat.add_sub_cancel] at hb'
+  rw [sum_range_succ]
+  have hlast := norm_add_le
+    (∑ m ∈ range M, phase (smallShiftPhase i j k h ((2 * r₀ + 1 + 2 * m : ℕ) : ℝ)))
+    (phase (smallShiftPhase i j k h ((2 * r₀ + 1 + 2 * M : ℕ) : ℝ)))
+  rw [phase_norm] at hlast
+  have he : ∑ m ∈ range M, phase (smallShiftPhase i j k h ((2 * r₀ + 1 + 2 * m : ℕ) : ℝ)) =
+      ∑ m ∈ range M, phase
+        (OOEEPhaseComparison.originalPhase ((j : ℝ) / 2) i k
+            (((2 * r₀ + 1 : ℕ) : ℝ) + 2 * m + 2 * h) -
+          OOEEPhaseComparison.originalPhase ((j : ℝ) / 2) i k
+            (((2 * r₀ + 1 : ℕ) : ℝ) + 2 * m)) := by
+    apply sum_congr rfl
+    intro m _
+    rw [smallShiftPhase_eq]
+    congr 3 <;> push_cast <;> ring
+  have hj' : (1 : ℝ) ≤ j := by exact_mod_cast hj
+  have hcore := small_shift_core (u := (j : ℝ) / 2) (v := i) (w := k) M r₀ h hC hT hh1 hhT
+    (by linarith) (by linarith) hi hk ha.le (by linarith)
+  rw [he] at hlast ⊢
+  have : 508000 * C * T ^ 21 * (1 + √(h : ℝ)) + 1 ≤ (508000 * C + 1) * T ^ 21 * (1 + √(h : ℝ)) := by
+    nlinarith
+  linarith
+
+/-- `(P^{1/24})^m = P^{m/24}`. -/
+theorem rpow_24_pow {P : ℝ} (hP : 0 ≤ P) (m : ℕ) (q : ℝ) (hq : (m : ℝ) / 24 = q) :
+    (P ^ (1 / 24 : ℝ)) ^ m = P ^ q := by
+  rw [← rpow_natCast, ← rpow_mul hP, ← hq]
+  ring_nf
+
+/-- **Paper B, Lemma 4.4.** For every `C` there is `K` such that for `P ≥ 1`, an integer
+shift `1 ≤ h ≤ P^{1/12}` and integers `i, j, k` with `j ≠ 0` and `|i|, |j|, |k| ≤ C P^{1/24}`,
+the sum of `e((i/2)Δ_h X + (j/2)Δ_h Y + (k/2)Δ_h(n^{9/8}))` over the odd `n ∈ (P, 2P - 2h]` has
+modulus at most `K P^{7/8}(1 + h^{1/2})`. -/
+theorem small_shift_sum (C : ℝ) : ∃ K : ℝ, ∀ P : ℝ, 1 ≤ P → ∀ h : ℕ, 1 ≤ h →
+    (h : ℝ) ≤ P ^ (1 / 12 : ℝ) → ∀ i j k : ℤ, j ≠ 0 →
+    |(i : ℝ)| ≤ C * P ^ (1 / 24 : ℝ) → |(j : ℝ)| ≤ C * P ^ (1 / 24 : ℝ) →
+    |(k : ℝ)| ≤ C * P ^ (1 / 24 : ℝ) →
+    ‖∑ n ∈ (range (⌊2 * P⌋₊ + 1)).filter
+        (fun n : ℕ => P < (n : ℝ) ∧ (n : ℝ) ≤ 2 * P - 2 * h ∧ Odd n),
+        phase (smallShiftPhase i j k h n)‖ ≤ K * P ^ (7 / 8 : ℝ) * (1 + √(h : ℝ)) := by
+  set C' := max C 1 with hC'
+  have hC1 : 1 ≤ C' := le_max_right _ _
+  have hCC : C ≤ C' := le_max_left _ _
+  refine ⟨3 * (4096 * C') ^ 3 + 508000 * C' + 1, ?_⟩
+  intro P hP h hh1 hhP i j k hj0 hi hj hk
+  have hP0 : 0 ≤ P := by linarith
+  set T := P ^ (1 / 24 : ℝ) with hTdef
+  have hT24 : T ^ 24 = P := by rw [rpow_24_pow hP0 24 1 (by norm_num), rpow_one]
+  have hT21 : T ^ 21 = P ^ (7 / 8 : ℝ) := rpow_24_pow hP0 21 _ (by norm_num)
+  have hT2 : T ^ 2 = P ^ (1 / 12 : ℝ) := rpow_24_pow hP0 2 _ (by norm_num)
+  have hT1 : 1 ≤ T := one_le_rpow hP (by norm_num)
+  rw [← hT21]
+  rw [← hT2] at hhP
+  have hsh : 0 ≤ √(h : ℝ) := sqrt_nonneg _
+  have hK0 : 0 ≤ 3 * (4096 * C') ^ 3 := by positivity
+  by_cases hsmall : T < 4096 * C'
+  · -- trivial bound
+    refine (norm_sum_le _ _).trans ?_
+    simp only [phase_norm, sum_const, nsmul_eq_mul, mul_one]
+    have hcard : ((((range (⌊2 * P⌋₊ + 1)).filter
+        (fun n : ℕ => P < n ∧ (n : ℝ) ≤ 2 * P - 2 * h ∧ Odd n)).card : ℕ) : ℝ) ≤ 3 * T ^ 24 := by
+      have h1 := card_filter_le (range (⌊2 * P⌋₊ + 1))
+        (fun n : ℕ => P < n ∧ (n : ℝ) ≤ 2 * P - 2 * h ∧ Odd n)
+      rw [card_range] at h1
+      have h2 : ((⌊2 * P⌋₊ + 1 : ℕ) : ℝ) ≤ 2 * P + 1 := by
+        push_cast
+        linarith [Nat.floor_le (show 0 ≤ 2 * P by linarith)]
+      have h1' : (((range (⌊2 * P⌋₊ + 1)).filter
+          (fun n : ℕ => P < n ∧ (n : ℝ) ≤ 2 * P - 2 * h ∧ Odd n)).card : ℝ) ≤
+          ((⌊2 * P⌋₊ + 1 : ℕ) : ℝ) := by exact_mod_cast h1
+      rw [hT24]
+      linarith
+    have hT3 : T ^ 3 ≤ (4096 * C') ^ 3 := pow_le_pow_left₀ (by linarith) hsmall.le 3
+    have h24 : 3 * T ^ 24 ≤ 3 * (4096 * C') ^ 3 * T ^ 21 := by
+      have : T ^ 24 = T ^ 3 * T ^ 21 := by ring
+      rw [this]
+      have : 0 ≤ T ^ 21 := by positivity
+      nlinarith
+    have hK : 3 * (4096 * C') ^ 3 * T ^ 21 ≤
+        (3 * (4096 * C') ^ 3 + 508000 * C' + 1) * T ^ 21 * (1 + √(h : ℝ)) := by
+      have : 0 ≤ T ^ 21 := by positivity
+      have : 0 ≤ (508000 * C' + 1) * T ^ 21 := by positivity
+      nlinarith [mul_nonneg hK0 (mul_nonneg this hsh)]
+    linarith
+  push Not at hsmall
+  obtain ⟨r₀, N, ha, hb, hsum⟩ := odd_window_sum hP (L := 2 * P - 2 * h)
+    (by have : (0 : ℝ) ≤ h := Nat.cast_nonneg h; linarith)
+    (fun n => phase (smallShiftPhase i j k h n))
+  rw [hsum]
+  rw [← hT24] at ha hb
+  have hCT : C * T ≤ C' * T := mul_le_mul_of_nonneg_right hCC (by linarith)
+  have hbound : (508000 * C' + 1) * T ^ 21 * (1 + √(h : ℝ)) ≤
+      (3 * (4096 * C') ^ 3 + 508000 * C' + 1) * T ^ 21 * (1 + √(h : ℝ)) := by
+    have : 0 ≤ T ^ 21 * (1 + √(h : ℝ)) := by positivity
+    nlinarith
+  refine le_trans ?_ hbound
+  rcases lt_or_gt_of_ne hj0 with hjn | hjp
+  · -- conjugate
+    have he : ∀ m ∈ range N, phase (smallShiftPhase i j k h ((2 * r₀ + 1 + 2 * m : ℕ) : ℝ)) =
+        phase (-smallShiftPhase (-i) (-j) (-k) h ((2 * r₀ + 1 + 2 * m : ℕ) : ℝ)) := by
+      intro m _
+      rw [smallShiftPhase_neg, neg_neg]
+    rw [sum_congr rfl he, norm_sum_phase_neg]
+    apply small_shift_window (-i) (-j) (-k) r₀ N h hC1 hsmall hh1 hhP (by omega)
+    · push_cast
+      have := neg_abs_le (j : ℝ)
+      rw [abs_le] at hj
+      linarith
+    · push_cast; rw [abs_neg]; linarith
+    · push_cast; rw [abs_neg]; linarith
+    · exact ha
+    · exact hb
+  · apply small_shift_window i j k r₀ N h hC1 hsmall hh1 hhP (by omega)
+    · have := le_abs_self (j : ℝ)
+      linarith
+    · linarith
+    · linarith
+    · exact ha
+    · exact hb
+
 end PaperBSmallShift
 
 end Problems.Juggler
