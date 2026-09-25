@@ -53,6 +53,8 @@ def finite_checks(root: Path) -> dict:
         require(16386*cap(t) <= 12288*cap(t+21), f"retarded cap fails at {t}")
     require(2**291 * 8193**498 < 12288**498, "root-measure slack fails")
     require(2**21 * 5000**1250 < 5059**1250, "density rate gap fails")
+    require(2**423 * 5000**25000 < 5059**25000 < 2**424 * 5000**25000,
+            "Remark 5.5 exponent 423/500 is not the certificate's best")
     low, high = Fraction(5069, 5000), Fraction(507, 500)
     mean = lambda x: x**-100 + (x**29 + x**-21)/3
     require(mean(low) < 1 and mean(high) < 1, "ceiling endpoint comparison fails")
@@ -104,14 +106,14 @@ def finite_checks(root: Path) -> dict:
             "printed cap table differs from Lean")
     require("\t" not in manuscript and "\x08" not in manuscript and "\x0c" not in manuscript,
             "mangled LaTeX escape")
-    require("version 0.7.1" in manuscript.lower(), "missing version")
+    require("version 0.8.0" in manuscript.lower(), "missing version")
     require(str(len(states)) in manuscript, "printed small-orbit cardinality differs")
     labels = re.findall(r"^\*\*(?:Theorem|Lemma|Corollary|Proposition|Example) (\d+\.\d+)", manuscript, re.M)
     require(len(labels) == len(set(labels)), "duplicate statement number")
     for label in re.findall(r"(?:Theorem|Lemma|Corollary|Proposition|Example) (\d+\.\d+)", manuscript):
         # External references carry their own labels inside square brackets.
         if label not in labels:
-            require(label in {"1.1", "1.3"}, f"unresolved statement number {label}")
+            require(label in {"1.1", "1.3", "1.12"}, f"unresolved statement number {label}")
     body, bibliography = manuscript.split("## References\n", 1)
     for key in re.findall(r"\[([A-Z][A-Za-z0-9]*)(?:, [^\]]+)?\]", body):
         require(f"[{key}]" in bibliography, f"missing bibliography entry {key}")

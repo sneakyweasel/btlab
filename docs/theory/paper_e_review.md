@@ -1,6 +1,6 @@
 # Paper E: reviewer packet and living review record
 
-Version 0.7.1, 22 September 2026. Canonical manuscript:
+Version 0.8.0, 25 September 2026. Canonical manuscript:
 [The Juggler Map and the 3n±1 Maps](juggler_signed_collatz_note.md).
 Build and updates: [PAPER_E_BUILD.md](PAPER_E_BUILD.md).
 
@@ -206,7 +206,29 @@ entry is Lean verified with kernel trust. The positive advisory is modest;
 the ruling also requires the direct statement comparison and current
 paper audit. Independent review remains pending. No other theorem was sent.
 
+## Signed fibres in 0.8.0
+
+Theorem 7.3 and Propositions 7.4-7.5 were compared with their declarations.
+The comparison keeps both signs; weights vanishing on multiples of three and
+positive on units (only positivity at the residue -s for the stopping form);
+the level r>=1 and depth d>=1; policies that expand the first generation with
+a common finite horizon; nonperiodicity of the target, with divergence of the
+complete unit-source coefficient series as an explicit hypothesis; and the
+ordinary reciprocal series of actual positive odd ancestors prime to three.
+Proposition 7.5's identities hold at every positive integer in Lean; the
+draft's "positive odd integers" was narrower and was corrected. The prose
+argument for the minus criterion summarizes the formal packing bound and
+does not reproduce it. The fate-class existence remark after Proposition 7.4
+is written only. This is a local coverage judgment, not independent review.
+
 ## Version history
+
+### 0.8.0 - 25 September 2026
+
+Added Section 7.3 (signed-fibre reciprocal mass: error bound (7.4), Theorem
+7.3, Propositions 7.4-7.5), Remark 5.5 with the certificate's full exponent
+423/500, and references [Z08] and [Tao22]. Expanded the selected audit from
+59 to 70 declarations. Earlier numbering and constants are unchanged.
 
 ### 0.7.1 - 22 September 2026
 

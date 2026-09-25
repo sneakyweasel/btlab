@@ -1,7 +1,7 @@
 # Paper E: living manuscript, checks, and publication package
 
 **The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions.**
-Version 0.7.1, 22 September 2026. Local preprint; no deposit or DOI assigned.
+Version 0.8.0, 25 September 2026. Local preprint; no deposit or DOI assigned.
 
 Canonical source: [juggler_signed_collatz_note.md](juggler_signed_collatz_note.md).
 Edit that source, never the generated PDF or TeX.
@@ -75,8 +75,11 @@ The integration suite automatically discovers build_paper_e.py.
   PaperECorollaries proves the exact constant, fixed relative intervals, and
   prescribed even-run residues, including the finite expansion threshold.
 - Mass and stopping examples: separately mapped to their compiled statements.
+- Signed fibres (Section 7.3): FibreMassError, FibreMass, FibreDeficit,
+  FibreStopping, FibreGeneration, UniformFibreDistortion and FibreSignCoupling
+  supply the mass error, Theorem 7.3 and Propositions 7.4-7.5.
 
-The combined audit selects 59 declarations and permits only propext,
+The combined audit selects 70 declarations and permits only propext,
 Classical.choice, and Quot.sound. It builds Problems.JugglerCollatzPaper,
 then executes AxiomCheckJugglerCollatzPaper.lean and checks all outputs.
 The finite checker independently recomputes every certificate row, all
@@ -129,3 +132,23 @@ code's positive rational denominator, and the existing sublinear-counting
 example. AxiomCheckPaperEExamples.lean audits the eleven added theorems;
 its expected output is included in the source archive. The last example
 requires a real exponent strictly between zero and one and positive indices.
+
+## Signed fibres and the full certificate exponent in 0.8.0
+
+Section 7.3 states the laboratory's signed Collatz fibre results of 22-23
+September 2026: the actual one-generation mass error (7.4), Theorem 7.3 (no
+finite ternary weight reproduces, at any level, grouping depth or bounded
+stopping horizon, with actual deficient targets of divergent reciprocal mass),
+Proposition 7.4 (divergence of the coefficient series at a nonperiodic target
+implies divergent ancestor mass, for both signs) and Proposition 7.5 (no
+cross-sign compensation at depth two). Eleven theorems join the selected
+audit, which now has 70 declarations; all were built in the paper barrel and
+use only the three standard axioms. The divergence premise of Proposition 7.4
+is open and is stated as such. Records: the
+[fibre-mass dossier](../problems/collatz_fibre_mass.md) and its proof maps.
+
+Remark 5.5 records that the existing certificate rate gives the exponent
+423/500, the best of that form, by the exact comparison (5.10), which the finite
+checker now verifies in both directions; FLINT/Arb certifies the same
+inequality (C-paper-e-rational-exponent-423-500). The Lean exponent stays
+21/25. All earlier theorem numbers and constants are unchanged.

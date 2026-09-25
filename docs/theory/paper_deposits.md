@@ -18,7 +18,7 @@ which is what the other habit costs.
 | B | Five-Step Descent Certificates for the Juggler Map: Parity Statistics of Nested Floor Powers | 1.2.0, deposited | [1.2.0](https://doi.org/10.5281/zenodo.22946276) | [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) |
 | C | Fate Contagion and Termination Criteria for the Juggler Map | 1.3.0, deposited | [1.3.0](https://doi.org/10.5281/zenodo.22947659) | [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) |
 | D | No m-cycles of the 3n−1 map for m ≤ 61 | 1.1.1, not deposited | [1.0.0](https://doi.org/10.5281/zenodo.22876190) | [10.5281/zenodo.22876189](https://doi.org/10.5281/zenodo.22876189) |
-| E | The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions | 0.7.1, local preprint | None | Not assigned |
+| E | The Juggler Map and the 3n±1 Maps: Exact Coding and Arithmetic Obstructions | 0.8.0, local preprint | None | Not assigned |
 
 Every DOI in this file was resolved against doi.org on 21 September 2026, and each
 concept DOI was confirmed to return the version named beside it as the latest. Paper
@@ -185,9 +185,14 @@ new-version operation, not a correction.
 
 ### Paper E, The Juggler Map and the 3n±1 Maps
 
-Current local version: 0.7.1. The [build guide](PAPER_E_BUILD.md) and
+Current local version: 0.8.0. The [build guide](PAPER_E_BUILD.md) and
 [review record](paper_e_review.md) describe its quantitative formalization
 and provenance. No deposit has been made.
+
+Version 0.8.0, 25 September 2026: adds Section 7.3, the signed Collatz
+fibre results (finite-weight obstruction and two ancestor-mass criteria, all
+kernel-checked, with an open divergence premise), and Remark 5.5's exponent
+423/500 from the existing certificate. No deposit has been made.
 
 Version 0.6.0, 22 September 2026: adds the written effective OOE theorem
 and complete quantitative appendix. The selected 49-declaration Lean

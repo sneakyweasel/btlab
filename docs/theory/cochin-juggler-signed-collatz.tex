@@ -31,7 +31,7 @@ Cochin},pdfsubject={Mathematics preprint}}
 and Arithmetic Obstructions}}
 \author{Philippe Cochin \\ \texttt{philippe@cochin.fr} \\
   \small ORCID \href{https://orcid.org/0009-0004-1939-3382}{0009-0004-1939-3382}}
-\date{22 September 2026 · Version 0.7.1}
+\date{25 September 2026 · Version 0.8.0}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -55,9 +55,14 @@ This signed adaptation uses height-corrected inverse-tree inequalities,
 a closed root domain, and an exact integer certificate with 177147 rows.
 A mean inequality places every positive certificate in the fixed
 \(1/50\) grid, for either sign and at every finite residue level,
-strictly below exponent \(0.99\) in the at-most-linear range. Lean
-formalizations accompany the orbit, period, counting, grid-ceiling, and
-modular-return results, including the latter's analytic recurrence
+strictly below exponent \(0.99\) in the at-most-linear range. For
+reciprocal mass on the signed Collatz fibres, no finite ternary weight
+table reproduces itself for either sign, over any fixed number of
+generations or under any bounded stopping rule; divergent ancestor mass
+at a nonperiodic target follows from divergence of an explicit
+coefficient series, a premise that remains open. Lean formalizations
+accompany the orbit, period, counting, grid-ceiling, modular-return, and
+signed-fibre results, including the modular return's analytic recurrence
 input. These results separate symbolic correspondence from integer
 realization and reciprocal-mass transport; no universal termination or
 unrestricted cycle exclusion theorem is asserted.
@@ -103,7 +108,9 @@ codes are nonintegral. Section 5 proves a signed ancestor-count theorem,
 including the height correction that prevents an automatic transfer of
 the positive-map proof. Section 6 proves a limitation of the fixed grid
 used in that argument. Section 7 distinguishes counting from reciprocal
-mass and bounded word identities from unbounded stopping identities.
+mass and bounded word identities from unbounded stopping identities, and
+reduces reciprocal mass on the signed Collatz fibres to one coefficient
+series.
 
 \subsection{1.1. Contributions and prior
 work}\label{contributions-and-prior-work}
@@ -141,6 +148,13 @@ Section 6 isolates a common mean obstruction for this fixed grid at
 every finite residue level. This is a limitation of those certificate
 inequalities, not a bound on actual ancestor growth.
 
+The complete odd-predecessor fibre of a Collatz target is one ray
+\(n\mapsto4n+s\) {[}Z08{]}, and the induced operator on ternary residues
+is the recurrence of {[}Tao22, Lemma 1.12{]} in density normalization.
+Section 7.3 uses both as known. Its obstruction for finite weights, the
+actual-integer error, and the two ancestor-mass criteria are supplied
+here; no priority is claimed for the operator.
+
 The companion papers {[}A{]}, {[}B{]}, {[}C{]}, and {[}D{]} treat
 Juggler cycle bounds, finite-depth descent statistics, fate contagion,
 and bounded-run \(3n-1\) cycles. We cite their results without reissuing
@@ -149,15 +163,17 @@ computational floors nor the analytic estimates in {[}B{]}.
 
 \subsection{1.2. Proof status}\label{proof-status}
 
-This is the living preprint, version 0.7.1. It has not been deposited or
+This is the living preprint, version 0.8.0. It has not been deposited or
 independently refereed. Mathematical priority for the signed adaptation
 and the isolated obstruction results remains subject to specialist
 review.
 
-Theorems 2.1, 3.2, 4.1, 4.4, 5.1, and 6.1 and Corollaries 4.2-4.3 have
-compiled Lean statements; Appendix B identifies their precise scope.
-Theorem 4.1 is unconditional in Lean: first-derivative estimates,
-mixed-power cancellation, and the Fourier criterion prove its
+Theorems 2.1, 3.2, 4.1, 4.4, 5.1, 6.1, and 7.3, Corollaries 4.2-4.3, and
+Propositions 7.4-7.5 have compiled Lean statements; Appendix B
+identifies their precise scope. Remark 5.5's larger exponent rests on
+the same certificate and an exact integer comparison, not on a separate
+Lean statement. Theorem 4.1 is unconditional in Lean: first-derivative
+estimates, mixed-power cancellation, and the Fourier criterion prove its
 simultaneous-box recurrence input. Theorem 4.4 also has a complete
 quantitative Lean proof, including the finite derivative tests, every
 cutoff Fourier mode, the half-open box estimate, both counting errors,
@@ -648,6 +664,16 @@ This is a lower bound on ancestors, not positive natural density or a
 conclusion about every orbit. No classification of all positive \(3n-1\)
 cycles enters its proof.
 
+\textbf{Remark 5.5 (the certificate's full exponent).} The rate
+\(\mu=5059/5000\) gives more than (5.9) records:
+\(50\log_2\mu=0.84620\ldots\), and exact integer comparison gives \[
+2^{423}5000^{25000}<5059^{25000}<2^{424}5000^{25000}.
+\tag{5.10}
+\] The proof of Theorem 5.1 then yields \(X^{423}\le N(a,X)^{500}\) for
+all sufficiently large \(X\), so \(\pi^-_a(X)\ge X^{423/500}\). The
+second inequality in (5.10) shows that \(423/500\) is the best exponent
+of this form from this certificate. The Lean statement keeps \(21/25\).
+
 \section{6. A common ceiling for the fixed
 grid}\label{a-common-ceiling-for-the-fixed-grid}
 
@@ -763,6 +789,108 @@ prove (7.2) directly on the type of minimal certificate words. The
 probabilistic proof explains the missing moment without invoking an
 optional-stopping equality.
 
+\subsection{7.3. Reciprocal mass on signed
+fibres}\label{reciprocal-mass-on-signed-fibres}
+
+For \(s\in\{1,-1\}\) let \(S_s(n)=(3n+s)/2^{v_2(3n+s)}\) on the positive
+odd integers, the odd-to-odd acceleration of \(C_s\). A positive odd
+target \(m\) has no odd predecessor if \(3\mid m\). Otherwise its odd
+predecessors are \(n_k=(2^km-s)/3\) for the \(k\ge1\) with
+\(2^km\equiv s\pmod3\); they form one ray under \(n\mapsto4n+s\), and
+each run of \(3^r\) consecutive members meets every residue class modulo
+\(3^r\) once {[}Z08{]}. For a real weight \(h\) on the residues modulo
+\(3^r\), vanishing on multiples of three, put \[
+(L_sh)(a)=\sum_{\substack{k\ge1\\2^ka\equiv s\ (3)}}\frac3{2^k}\,
+h\Bigl(\frac{2^ka-s}3\Bigr),
+\tag{7.3}
+\] a function of \(a\) modulo \(3^{r+1}\). This is the recurrence of
+{[}Tao22, Lemma 1.12{]}. For \(0\le h\le H\) and every positive odd
+\(m\), the actual weighted mass \(W_h(m)=\sum h(n)/n\) over the odd
+\(n\) with \(S_s(n)=m\) satisfies \[
+\bigl|mW_h(m)-(L_sh)(m)\bigr|\le\frac H{m-1/2}.
+\tag{7.4}
+\] Multiplying a predecessor's term by \(m\) gives
+\((3/2^k)h(n_k)/(1-s/(2^km))\); subtracting its homogeneous part and
+summing \(3H/(4^km)\) over \(k\ge1\) gives (7.4).
+
+\textbf{Theorem 7.3 (no finite ternary weight reproduces).} Let
+\(r\ge1\), let \(h\) be a weight modulo \(3^r\) that vanishes on
+multiples of three and is positive on the units, and let \(d\ge1\). For
+either sign, some unit residue \(a\) modulo \(3^{r+d}\) satisfies \[
+(L_s^dh)(a)<h(a\bmod3^r).
+\tag{7.5}
+\] Consequently the positive odd units \(m\) with \(mW_h(m)<h(m)\) have
+divergent reciprocal sum, and every set of finite reciprocal mass misses
+one of them. More generally, if \(h\ge0\) vanishes on multiples of three
+and \(h(-s)>0\), then for every \(D\ge0\) one unit residue modulo
+\(3^{r+D+1}\) defeats every inverse-tree policy that expands the first
+generation and stops each branch by depth \(D+1\): its homogeneous
+payoff is below \(h\) at every positive integer in that residue.
+
+\emph{Proof of (7.5).} For each \(k\), \(b\mapsto2^{-k}(3b+s)\) is a
+bijection between the child classes and the admissible parent classes,
+so summing (7.3) over \(a\) gives \(\sum_aL_sh(a)=3\sum_bh(b)\), and
+iteration gives the factor \(3^d\). The same total is the sum of
+\(h(a\bmod3^r)\) over the classes modulo \(3^{r+d}\). If no unit row
+were deficient, every row would be an equality, since nonunit rows are
+zero on both sides. At \(a\equiv-s\) the branch \(k=1\) returns \(-s\)
+at the next lower modulus with coefficient \(3/2\), so
+\((L_s^dh)(-s)\ge(3/2)^dh(-s)>h(-s)\), a contradiction. \(\square\)
+
+For \(d=1\), a deficiency \(\delta>0\) and (7.4) make every odd
+\(m\ge1/2+2H/\delta\) in the deficient class satisfy
+\(mW_h(m)\le h(m)-\delta/2\), an arithmetic progression of divergent
+reciprocal sum. The policy statement applies the summation to the
+envelope \(U_0=h\), \(U_{j+1}=\max(h,L_sU_j)\), which dominates every
+policy of the stated depth and is attained by one; its proof is formal
+(Appendix B). No finite residue weight, table size, grouping depth, or
+bounded stopping rule therefore gives uniform reproduction of reciprocal
+mass. This is the Collatz counterpart of the uniform production that
+Paper {[}C{]} obtains on Juggler fibres. It does not bound the
+intersection of the deficient targets with any fate class.
+
+\textbf{Proposition 7.4 (ancestor-mass criteria).} Let \(a\) be a
+positive odd integer that is not periodic under \(S_s\), and put
+\(K_d(a)=(L_s^d\mathbf 1_{\mathrm{units}})(a)\), where
+\(\mathbf 1_{\mathrm{units}}\) is the indicator of the units modulo
+three. If \(\sum_{d\ge0}K_d(a)=\infty\), then \(\sum1/n\) over the
+positive odd ancestors \(n\) of \(a\) prime to three diverges, for
+either sign.
+
+\emph{Proof.} A depth-\(d\) inverse path with exponents
+\(k_1,\ldots,k_d\) has a unique endpoint, and its coefficient in
+\(K_d(a)\) is \(3^d/2^{k_1+\cdots+k_d}\). For \(s=1\) each inverse step
+subtracts \(1/3\) before dividing by three, so the endpoint is at most
+\(a2^{\sum k_i}/3^d\) and generation \(d\) has reciprocal mass at least
+\(K_d(a)/a\). For \(s=-1\) the endpoint exceeds that value by the factor
+\(\prod_j(1-1/(3x_j))^{-1}\) over the path's odd states \(x_j\).
+Distinct states of a nonrepeating finite path have reciprocal sum below
+one absolute constant \(B\), by the exact binary-residue moment of the
+shortcut map and an equal-time packing, so generation \(d\) has mass at
+least \(K_d(a)e^{-B}/a\). A nonperiodic target is reached at one time
+only, so the generations are disjoint and their masses add. \(\square\)
+
+The divergence premise is open at every target; the proposition is a
+reduction, not a lower bound. Every nonempty full fate class of
+\(C_{+1}\) contains such a target: a forward iterate is an odd unit
+whose fibre has infinitely many unit members, at most one of them
+periodic. Pairing the two signs does not help at low depth.
+
+\textbf{Proposition 7.5 (no cross-sign compensation at depth two).} Read
+at every positive integer, the formula for \(S_s\) gives
+\(S_-(2n+1)=S_+(n)\) and \(S_+(2n-1)=S_-(n)\). At every
+\(a\equiv4\pmod{27}\), \[
+K_2^+(a)=\frac{12076}{29127},\qquad K_2^-(a)=\frac{7988}{29127},\qquad
+K_2^+(a)+K_2^-(a)<1 .
+\] If \(M_2^s(a)\) is the actual reciprocal mass of the positive odd
+sources prime to three reaching \(a\) in exactly two returns of \(S_s\),
+then \(a(M_2^+(a)+M_2^-(a))<3/4\) for every \(a=31+54t\), \(t\ge0\).
+
+The identities are direct. The coefficients are exact rational sums over
+the periodic exponent classes, and the actual masses follow from a
+two-step form of (7.4). Iterating the paired operator introduces
+mixed-sign paths, and no statement over all depths is made.
+
 \section{8. What remains open}\label{what-remains-open}
 
 Integer transport on an actual Juggler cycle requires \(D\mid A(w)\), or
@@ -770,7 +898,11 @@ a useful restriction on its reduced denominator. Distribution of Juggler
 words requires estimates of integer-source multiplicities in code
 cylinders. Transport of fate contagion requires control of ordinary
 reciprocal mass. Existence of the exact code supplies none of these
-additional estimates.
+additional estimates. On the Collatz side, Section 7.3 rules out
+finite-weight reproduction and leaves one arithmetic question: whether
+\(\sum_dK_d(a)\) diverges at a nonperiodic target in each fate class.
+Averaged residue mixing controls densities, not these prescribed integer
+targets.
 
 The signed ancestor theorem leaves universal termination and the
 classification of all cycles open. Its grid ceiling is a restriction of
@@ -958,12 +1090,30 @@ Finite complete trees &
 \texttt{\nolinkurl{PaperECompletion.full_prefix_tree_masses}} \\
 Proposition 7.2 &
 \texttt{\nolinkurl{CollatzMoments.complete_family_moment_loss}},
-\texttt{\nolinkurl{PaperECompletion.stopping_word_masses}} \\*
+\texttt{\nolinkurl{PaperECompletion.stopping_word_masses}} \\
+Error bound (7.4) &
+\texttt{\nolinkurl{FibreMassError.predecessor_mass_error}} \\
+Theorem 7.3, deficient rows &
+\texttt{\nolinkurl{FibreMass.finite_weight_obstruction}} \\
+Theorem 7.3, actual deficient targets &
+\texttt{\nolinkurl{FibreDeficit.deficient_mass_not_summable}},
+\texttt{\nolinkurl{exists_predecessor_mass_lt}} \\
+Theorem 7.3, bounded stopping &
+\texttt{\nolinkurl{FibreStopping.bounded_policy_deficit}} \\
+Proposition 7.4, plus &
+\texttt{\nolinkurl{FibreGeneration.ancestor_reciprocals_not_summable}} \\
+Proposition 7.4, minus &
+\texttt{\nolinkurl{UniformFibreDistortion.ancestor_reciprocals_not_summable}} \\
+Proposition 7.5 &
+\texttt{\nolinkurl{FibreSignCoupling.oddReturn_minus_two_mul_add_one}},
+\texttt{\nolinkurl{oddReturn_plus_two_mul_sub_one}},
+\texttt{\nolinkurl{paired_depth_two_deficit}},
+\texttt{\nolinkurl{paired_twoStepMass_progression}} \\*
 \end{longtable}
 
 \endgroup
 
-AxiomCheckJugglerCollatzPaper.lean prints the dependencies of the 59
+AxiomCheckJugglerCollatzPaper.lean prints the dependencies of the 70
 selected declarations. The permitted logical dependencies are propext,
 Classical.choice, and Quot.sound. No additional logical axiom or
 native-evaluation trust extension belongs to this paper's selected
@@ -976,7 +1126,7 @@ proof}\label{appendix-c.-quantitative-ooe-proof}
 
 This appendix proves Theorem 4.4. Write \(e(x)=\exp(2\pi i x)\),
 \(s=1+2Mt\), \(u=\lfloor s^{9/2}\rfloor\), and
-\(v=\lfloor s^{9/4}\rfloor\). The selected 59-declaration audit includes
+\(v=\lfloor s^{9/4}\rfloor\). The selected 70-declaration audit includes
 its complete counting and witness conclusions. The written route below
 uses {[}AR24{]}; the formal route derives its own sufficient derivative
 tests.
@@ -1256,9 +1406,17 @@ Juggler Map}, preprint, 2026.
 DOI:10.5281/zenodo.22678164}.
 
 {[}D{]} P. Cochin, \emph{No m-cycles of the 3n-1 map for m at most 61},
-local version 1.1.0, 2026. Deposited version 1.0.0 states 58.
+local version 1.1.1, 2026. Deposited version 1.0.0 states 58.
 \href{https://doi.org/10.5281/zenodo.22876189}{Concept
 DOI:10.5281/zenodo.22876189}.
+
+{[}Z08{]} R. E. Zarnowski, \emph{The congruence structure of the 3x+1
+map}, The Fibonacci Quarterly 46/47 (2008/2009), Theorem 3 and Remark 1.
+\href{https://www.fq.math.ca/Papers1/46_47-2/Zarnowski_1-09.pdf}{PDF}.
+
+{[}Tao22{]} T. Tao, \emph{Almost all orbits of the Collatz map attain
+almost bounded values}, Forum of Mathematics, Pi 10 (2022), e12.
+\href{https://doi.org/10.1017/fmp.2022.8}{doi:10.1017/fmp.2022.8}.
 
 {[}AR24{]} J. Arias de Reyna, \emph{Explicit van der Corput's d-th
 derivative estimate}, preprint, version 1, 2024, Theorem 11 and Table 1.

@@ -59,3 +59,14 @@ import Problems.JugglerCollatzPaper
 #print axioms Problems.Juggler.OOEEffectiveReturn.error_power_bound
 #print axioms Problems.Juggler.OOEEffectiveReturn.count_at_witnessCutoff
 #print axioms Problems.Juggler.OOEEffectiveReturn.exists_bounded_modular_return
+#print axioms Problems.Collatz.FibreMassError.predecessor_mass_error
+#print axioms Problems.Collatz.FibreMass.finite_weight_obstruction
+#print axioms Problems.Collatz.FibreDeficit.deficient_mass_not_summable
+#print axioms Problems.Collatz.FibreDeficit.exists_predecessor_mass_lt
+#print axioms Problems.Collatz.FibreStopping.bounded_policy_deficit
+#print axioms Problems.Collatz.FibreGeneration.ancestor_reciprocals_not_summable
+#print axioms Problems.Collatz.UniformFibreDistortion.ancestor_reciprocals_not_summable
+#print axioms Problems.Collatz.FibreSignCoupling.oddReturn_minus_two_mul_add_one
+#print axioms Problems.Collatz.FibreSignCoupling.oddReturn_plus_two_mul_sub_one
+#print axioms Problems.Collatz.FibreSignCoupling.paired_depth_two_deficit
+#print axioms Problems.Collatz.FibreSignCoupling.paired_twoStepMass_progression

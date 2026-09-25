@@ -897,7 +897,7 @@
  {
   "id": "C-paper-e-rational-exponent-423-500",
   "tag": "COMPUTATIONALLY VERIFIED",
-  "statement": "Arb certifies 50*log2(5059/5000)>423/500, independently backed by the exact integer check 5059^25000>2^423*5000^25000. With Paper E Lemmas 5.3-5.4 and the same strict-growth interpolation argument as Theorem 5.1, every positive 3n-1 target a prime to three therefore satisfies X^423<=N(a,X)^500<=(pi^-_a(X))^500 for all sufficiently large integer X. This recorded written consequence uses the existing 177147-row growth certificate; the Lean exponent theorem remains 21/25. No new onset bound, positive density, reciprocal-mass divergence or termination result follows.",
+  "statement": "Arb certifies 50*log2(5059/5000)>423/500, independently backed by the exact integer check 5059^25000>2^423*5000^25000. With Paper E Lemmas 5.3-5.4 and the same strict-growth interpolation argument as Theorem 5.1, every positive 3n-1 target a prime to three therefore satisfies X^423<=N(a,X)^500<=(pi^-_a(X))^500 for all sufficiently large integer X. This recorded written consequence uses the existing 177147-row growth certificate and is Remark 5.5 of Paper E version 0.8.0, whose finite checker also verifies 5059^25000<2^424*5000^25000; the Lean exponent theorem remains 21/25. No new onset bound, positive density, reciprocal-mass divergence or termination result follows.",
   "source": "docs/research/arb_paper_audit.md",
   "lean": "",
   "tests": [

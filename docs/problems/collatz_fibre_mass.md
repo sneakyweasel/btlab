@@ -393,4 +393,7 @@ phase stops without asserting their divergence.
 Status: `STRUCTURAL`. The geometric fibres and stochastic recurrence
 are classical. The project-specific contribution is the precise uniform
 weight obstruction and its connection to the actual integer mass error.
-No independent priority or paper claim; no Juggler manuscript is changed.
+No independent priority claim. Paper E version 0.8.0 (25 September 2026)
+states the mass error, the finite-weight obstruction with its bounded-stopping
+form, both ancestor-mass criteria and the depth-two cross-sign deficit as its
+Section 7.3, inside its selected Lean audit; the divergence premise stays open.

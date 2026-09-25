@@ -34,7 +34,7 @@ from check_paper_e import check as check_mathematics
 
 # Reproducible output. XeLaTeX stamps a build time into the PDF's compressed metadata, so
 # without this a no-op rebuild changes the bytes and therefore the sha256 in the manifest.
-_SOURCE_DATE_EPOCH = "1790035200"  # Local revision, 22 September 2026
+_SOURCE_DATE_EPOCH = "1790294400"  # Local revision, 25 September 2026
 
 
 def _pin_build_date() -> None:
@@ -97,7 +97,7 @@ KIT = "preprints/zenodo_paper_e"
 DEPOSIT_PDF = f"{KIT}/Juggler_and_signed_Collatz.pdf"
 SOURCE_ZIP = f"{KIT}/Sources_and_certificate.zip"
 PDF_EXPORTS = [DEPOSIT_PDF]
-VERSION = "0.7.1"
+VERSION = "0.8.0"
 #: Zenodo takes the bare identifier, not the URL, beside the creator's name.
 ORCID = "0009-0004-1939-3382"
 
