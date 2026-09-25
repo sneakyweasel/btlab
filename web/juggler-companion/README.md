@@ -76,8 +76,8 @@ npm run build
 npm run preview
 ```
 
-The default public base is `/` (Vercel and local preview). GitHub project
-pages set `VITE_BASE=/balanced_ternary/` in the workflow.
+The public base is `/` (Vercel and local preview); `VITE_BASE` overrides it for
+hosting under a sub-path.
 
 ## Vercel
 
@@ -126,6 +126,7 @@ before changing what a mark claims.
 
 ## Publish
 
-GitHub Actions workflow `.github/workflows/juggler-companion.yml` builds this
-package and deploys `dist/` to GitHub Pages. Enable Pages in the repository
-settings (source: GitHub Actions) once.
+Vercel deploys the site (see Vercel above). The GitHub Actions workflow
+`.github/workflows/juggler-companion.yml` only tests and builds: once in the
+repository, and once as a copy of this folder alone, as Vercel builds it, so an
+import from the laboratory tree fails in CI rather than in the deploy.

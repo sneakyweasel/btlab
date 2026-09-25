@@ -8,8 +8,7 @@ function publicBase(): string {
 }
 
 export default defineConfig({
-  // Vercel and local preview serve from `/`. GitHub project pages set
-  // VITE_BASE=/balanced_ternary/ in the workflow.
+  // Vercel and local preview serve from `/`; VITE_BASE overrides it for a sub-path.
   base: publicBase(),
   plugins: [react(), tailwindcss()],
   test: {

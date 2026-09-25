@@ -37,13 +37,12 @@ on:
       - ".github/workflows/juggler-companion.yml"
   workflow_dispatch:
 
+# Tests and builds only: the site is deployed by Vercel (vercel.json), not GitHub Pages.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: juggler-companion-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -64,8 +63,6 @@ jobs:
       - name: Test
         run: npm test
       - name: Build
-        env:
-          VITE_BASE: /balanced_ternary/
         run: npm run build
       # Vercel deploys with the laboratory tree excluded (.vercelignore: /data/, /docs/, ...).
       # Build a copy of this folder alone so an import from outside it fails here, not there.
@@ -79,18 +76,3 @@ jobs:
           cd "$iso"
           npm ci --no-audit --no-fund
           npm run build
-      - uses: actions/upload-pages-artifact@v3
-        if: github.event_name != 'pull_request'
-        with:
-          path: web/juggler-companion/dist
-
-  deploy:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
