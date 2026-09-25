@@ -11,6 +11,13 @@ consolidation is at `e9725762eaf028d1ace354ff20e0fc48f1a3d143`. See
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-25 -- Paper B Proposition 7.4 in Lean
+
+**EXACT — LEAN VERIFIED:** `|∫_0^1 |S_λ|^2 - L| ≤ (4/π)(L/a)(1 + log L)` and the
+exceptional shifts have measure at most `η`, with the printed constants. Each off-diagonal
+term is two affine pieces over a period starting at a breakpoint. Remaining premise: none.
+Decision: PROMOTE. Record: [shift-average dossier](problems/juggler_paper_b_shift_average.md).
+
 ## 2026-09-25 -- Paper B Lemma 4.3, bound (4.3), in Lean
 
 **EXACT — LEAN VERIFIED:** over odd starts `2r+1`, `r ∈ [r₀, r₁)`,
@@ -190,75 +197,3 @@ the dossiers for [hug flow](problems/juggler_hug_flow_depth_two.md),
 [empty odd preimage](problems/juggler_empty_odd_preimage.md),
 [cubic induction](problems/juggler_cycle_cubic_induction.md) and
 [OOE escape](problems/juggler_ooe_escape_families.md).
-
-## 2026-09-24 -- Beatty phase geometry and quantitative Gamma-law regularity
-
-**EXACT — LEAN VERIFIED** at the logarithmic slope: the actual integer ratios
-approach the explicit positive jump profile, including its critical total
-mass and strict atom convention. Its complete cluster set is null and
-perfect; the empirical law is singular continuous with exact CDF plateaus.
-The set has Minkowski dimension `2/3`, exact positive content, and local
-content measure `3*2^(1/3)*kappa^(2/3)*y^(2/3) dmu(y)`.
-Finite two-thirds Hausdorff measure is unconditional; matching lower bounds
-retain explicit Diophantine premises. The exact BGL Gamma quotient gives
-amplitude `q^t F(t)` and an absolutely continuous empirical law, mutually
-singular with the original law. The explicit occupation density, logarithmic
-normalization and all real-power moment series are now Lean-checked too,
-including the finite-cutoff endpoint term and negative-power integrability.
-Its support and full Gamma-count cluster set are a nondegenerate interval.
-The density is lower semicontinuous, infinite on a dense null G-delta,
-and locally essentially unbounded throughout the support interior,
-independently of its almost-everywhere version. The density and support
-consumer audits check twenty and twenty-four dependency records with only
-standard Lean axioms. A further fifteen-record audit checks cube-root
-set concentration, weak three-halves density tails, `L^p` for `1<=p<3/2`,
-a Holder but nowhere locally Lipschitz CDF, and Hausdorff dimension at
-most `2/3` for the entire infinite-density set. Rates, general slopes,
-endpoint evaluation, endpoint/supercritical integrability and matching
-Hausdorff lower bounds remain open.
-**PROMOTE** the quantitative regularity and exceptional-set upper bounds. No new
-deposit, priority or trajectory-termination claim. Canonical proof boundary:
-Sections 13–23 of the
-[comparison note](theory/juggler_beatty_first_passage_note.md) and the
-[dossier](problems/juggler_winkler_phase_collapse.md).
-
-The bounded overlap continuation adds an **EXACT — LEAN VERIFIED** criterion:
-the density is in `L^2` exactly when the explicit ordered pair-overlap sum
-is finite. A separate **EXACT — HUMAN PROOF** combines Wu-Wang and
-Erdos-Turan with profile truncation to give `h in L^p` for `1<=p<62/41`,
-including the original three-halves endpoint, weak `L^(62/41)`, and a
-`21/62`-Holder CDF. **PROMOTE** that written arithmetic improvement;
-its discrepancy argument and classical inputs are not formalized in Lean.
-The 4096-atom Arb audit is finite evidence only. `L^2` remains unresolved.
-The complete proof and trust boundary are in the same dossier; the paper
-retains its previously audited formal range pending incorporation.
-
-The arbitrary-slope continuation now checks the actual binary-word counting
-recurrence for every irrational real boundary, the survivor/first-passage
-partition for every real boundary, and the crossing edge
-`floor(r/beta)+1` for `0<beta<=1`. Exact finite-set equalities recover the old
-logarithmic counts, whose counting theorem now specializes the general proof.
-**PROMOTE** this reusable formal foundation, without a novelty claim for the
-classical identity. Exact removal of crossing weights and the normalized
-renewal identity support the bias `p=beta/(2-beta)`. The finite tilted tail
-is between its first term and twice that term at every positive depth.
-The Stirling continuation proves the explicit tilted terminal phase for
-every real `0<beta<1` and the unconditional weighted survivor phase for every
-irrational `alpha>1`. Its convolution series is summable, positive, bounded
-and periodic. The centered-moment and tilt argument also proves zero critical
-survival mass and total first-passage probability one for the family.
-Beatty reindexing fixes the actual positive-index jump mass at `1/(alpha-1)`.
-The exact strict profile identity and original integer-count phase asymptotic
-are now checked for every irrational `alpha>1`, in both binomial normalizations.
-**PROMOTE** the full qualitative phase theorem and its family cluster set
-and singular empirical law: positive dense atoms give a nonempty compact
-perfect null set, exact gaps and envelope extrema. Threshold frequencies
-and CDF plateaus are checked for every irrational slope above one. The
-original phase theorem now specializes the family proof through an exact
-profile bridge; irrational recurrence and equidistribution are shared.
-The sharp three-halves gap law, universal Minkowski dimension `2/3`, exact
-positive content and whole geometric measure now cover every irrational slope.
-Uniform spatial sampling tends to the normalized two-thirds-weighted empirical law.
-**PROMOTE** this family extension: 160 public audit records and 48 expanded
-consumers. Sections 25–26 record the scope. Rates, the Gamma-law family and
-arithmetic Hausdorff classification remain separate.

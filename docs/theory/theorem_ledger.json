@@ -12593,6 +12593,23 @@
   "related_conjectures": []
  },
  {
+  "id": "J-paper-b-proposition-7-4",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Paper B Proposition 7.4 (shift average), with the printed constants. Let L >= 1, reals x_t and A_t for 0 <= t < L with |A_t - A_s| >= a |t - s| for some a > 0, and S_lambda = sum_t e(A_t {x_t + lambda}). Then |int_0^1 |S_lambda|^2 dlambda - L| <= (4/pi)(L/a)(1 + log L), and for every eta > 0 the shifts lambda in (0, 1] with |S_lambda| > [(L/eta)(1 + (4/(pi a))(1 + log L))]^{1/2} have measure at most eta. Each off-diagonal term is integrated over the period starting at a breakpoint, where the phase is affine with slope A_t - A_s on two intervals, giving at most 2/(pi |A_t - A_s|); the row sums are at most 2 H_{L-1}. The proposition gives no bound at a prescribed shift.",
+  "source": "docs/problems/juggler_paper_b_shift_average.md",
+  "lean": "Problems/Juggler/PaperBShiftAverage.lean",
+  "decl": [
+   "abs_integral_normSq_sub_le",
+   "volume_large_shift_le",
+   "norm_integral_pair_le"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_layer_architecture.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-paper-b-psi-fourier-is-the-orbit-series",
   "tag": "COMPUTATIONALLY VERIFIED",
   "source": "docs/problems/juggler_jump_spectrum.md",

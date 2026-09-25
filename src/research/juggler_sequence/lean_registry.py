@@ -343,6 +343,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "PaperBSingleFloor": "Paper B Theorem 3.1: exact bridge and one dyadic second-derivative block",
     "PaperBSingleFloorBound": "Paper B Theorem 3.1: S_O(N) = O(N^(5/6)) and both counts, via Erdos-Turan with main term N/H",
     "PaperBCarryExpansion": "Paper B Lemma 4.3, bound (4.3): the near-integer sum of E_R(n^(3/2)) over odd n in an interval",
+    "PaperBShiftAverage": "Paper B Proposition 7.4: the shift-averaged mean square (7.3) and its exceptional set of shifts",
     "PaperBOEThirdLetter": "Paper B Proposition 3.2: #word_3 = w is N/8 + O(N^(5/6) log N) for w = OEE, OEO, via the two-dimensional Erdos-Turan inequality",
     "PaperBCertificateLengths": "Paper B Lemma 5.1 for every length: the odd-count window",
     "PaperBCertificateRecursion": "Paper B: survivors and minimal certificates, one recursion",

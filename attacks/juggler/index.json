@@ -6918,6 +6918,22 @@
       "nk_clusters": []
     },
     {
+      "id": "paper_b_shift_average",
+      "kind": "dossier_only",
+      "probe": null,
+      "test": null,
+      "dossier": "docs/problems/juggler_paper_b_shift_average.md",
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": "PROMOTE",
+      "ledger_ids": [
+        "J-paper-b-proposition-7-4"
+      ],
+      "aliases": [],
+      "nk_clusters": []
+    },
+    {
       "id": "paper_b_signed_waves",
       "kind": "dossier_only",
       "probe": null,
