@@ -11,6 +11,16 @@ consolidation is at `e9725762eaf028d1ace354ff20e0fc48f1a3d143`. See
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-25 -- Dimension of Beatty cluster sets as a growth-sequence game
+
+**OBSERVATION (exponent model):** reduced to exponent recursions, the cover of
+Theorem 6.18a and the grid-window measure of Theorem 6.71 give the same Hausdorff
+dimension on every periodic growth pattern tested (34 patterns, gaps below `1e-15`
+away from marginal thresholds). A jump `nu` followed by a dense stretch `rho` has an
+explicit two-scale formula interpolating `2/(2+nu)` and `s*(nu)`, with windows helping
+exactly when `rho > 1 + 3/nu`. Remaining premise: a proof. Decision: PROMOTE to Phase 1,
+starting with the two-scale family. Record: [phase-collapse dossier](problems/juggler_winkler_phase_collapse.md).
+
 ## 2026-09-25 -- Isolated slopes attain s*(nu) in Lean
 
 **EXACT — LEAN VERIFIED:** an isolated-level slope whose good levels admit an
@@ -256,18 +266,3 @@ Uniform spatial sampling tends to the normalized two-thirds-weighted empirical l
 **PROMOTE** this family extension: 160 public audit records and 48 expanded
 consumers. Sections 25–26 record the scope. Rates, the Gamma-law family and
 arithmetic Hausdorff classification remain separate.
-
-## 2026-09-23 -- OEIS generator corrections and exact modified-map descent
-
-The bounded A325904 check found an empty-sum error at order two in the
-printed A100982 transform, plus six stored generator terms inconsistent
-with their recurrence. Exact coefficients and the repaired upper limit
-reproduce 256 certificate counts and survivor depths 0..406.
-**CLOSE** as a new counting method; the all-orders repaired identity
-remains unproved here. See the [audit](problems/juggler_oeis_generator_check.md).
-
-For A095396, a written floor-equality proof gives exactly one unit of
-descent at every actual OE pair; actual EO pairs also strictly descend.
-**PROMOTE** the bounded structural identity, with regressions through
-10000 and at large perfect powers. No Lean or novelty claim, no termination
-result, and no manuscript change. See [modified-map descent](problems/juggler_modified_juggler_descent.md).

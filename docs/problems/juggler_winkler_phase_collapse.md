@@ -1686,6 +1686,70 @@ choice of base for `theta < 0`, the endpoint convention, and the wrap-around
 window. The repairs are incorporated. **PROMOTE**; the Cantor measure and
 the Frostman bound are now formalized.
 
+### Dimension as a function of the growth sequence (25 September)
+
+```text
+Mathematical target     dim_H K_alpha as an explicit function of the growth sequence log Q_(k+1)/log Q_k.
+Novelty hypothesis      The cover recursion (upper bound) and the grid-window measure (lower bound) meet at one level-local threshold.
+Falsifier               A growth sequence where the best upper and lower exponents stay apart.
+Already killed by?      No; Paper F section 7.3 lists it as open, and no obstruction record covers it.
+Existing machinery      LevelCovers recursion (BeattySlopeRegularDim), IsoLevels Frostman tree (BeattyIso*), s*(nu) cut bound.
+Maximum Phase-0 scope   Exponent-level computation of both bounds on test sequences; a conjectured formula with its evidence.
+Promotion criterion     Upper and lower exponents agree on every test family.
+Stop criterion          A family where they separate and no refinement of either closes the gap.
+```
+
+**OBSERVATION (exponent model, not a proof).** Model a slope by its
+log-scales `Lambda_k = log Q_k`: a *jump* `Lambda -> t Lambda` (a large partial
+quotient) or a *dense stretch* `Lambda -> rho Lambda` of bounded partial quotients.
+Each proof method reduces to a recursion on exponents with constants dropped.
+
+- *Upper* (the cover of section 6.3 of Paper F and of Theorem 6.18a), with
+  `w = W/Lambda` and `W` the log of the inverse cover cost:
+  `w = max(3s/2-1, t w', max_y min(s+sy/2-1, t w'+t-y))` at a jump, `y in [1,t]`,
+  and `w = max(3s/2-1, rho w')` across a dense stretch; `H^s = 0` when `w > 0`.
+- *Lower* (the window measure of section 6.8): a window exponent
+  `gamma_k in [1, t_k]` at each jump, mass deficit
+  `A_n = Lambda_n - sum_(k<n)(gamma_k-1) Lambda_k`, and the Frostman condition
+  `A_n >= s (Lambda_(n+1)/2 + (3-gamma_n) Lambda_n/2)` at a jump, `A >= (3s/2) Lambda`
+  along a dense stretch. At a jump it says: a window's mass is at most the `s`-th
+  power of the atom mass it holds, `(d q_(n+1))^(-1/2) q_n^(-3/2)`.
+
+Results ([probe](../../src/research/juggler_sequence/beatty_dimension_game.py),
+[data](../../data/research/juggler/winkler_phase_collapse/dimension_game.json),
+15 periodic families; 19 further random patterns in the Phase-0 run agreed as well):
+
+| Family | Upper = lower |
+|---|---|
+| regular `t = nu` | `2/(2+nu)` |
+| one jump `nu`, dense stretch `rho` | closed form below; `s*(nu)` as `rho -> oo` |
+| alternating jumps `2, 4` | `0.343933779` |
+| two jumps `3, 3`, dense `10` | `0.420154062` |
+| random mixtures of 3-4 elements | agree to `1e-15` |
+
+The largest residual gaps (`4.4e-6`, `6.3e-7`) sit exactly at thresholds where the
+backward iteration is marginal; they fall tenfold for each tenfold increase in the
+iteration count.
+
+**Two-scale formula — OBSERVATION (derived in the model; both recursions agree to `1e-15`).** For a jump `nu`
+followed by a dense stretch `rho`,
+`dim = 2/(2+nu)` when `rho <= 1 + 3/nu`; otherwise, with `R = rho nu`,
+`gamma = nu + 2 - (2 + sqrt((rho-1)(3 nu rho + rho - 4)))/rho` and
+`dim = 2(R - gamma)/((R - 1)(nu + 3 - gamma))`. As `rho -> oo`,
+`gamma -> nu + 2 - sqrt(1+3nu)` and `dim -> s*(nu)`, which is Theorem 6.71. Windows
+start to help exactly when the dense stretch is longer than `1 + 3/nu`.
+
+**CONJECTURE.** For every irrational `alpha > 1`, `dim_H K_alpha` equals the value of
+this game: the supremum, over window exponents `gamma_k in [1, t_k]`, of the largest
+`s` for which `A_n - s B_n >= -o(Lambda_n)` along the whole sequence, and this equals
+the threshold of the cover recursion. The model drops constants that could
+compound over unboundedly many levels; periodic patterns avoid that, general
+sequences need care.
+
+Decision: **PROMOTE** to Phase 1. The first target is a written and Lean proof for
+the two-scale family (a jump `nu` followed by a dense stretch `rho`, repeated), which
+generalizes `IsoLevels` from infinite to finite gaps. The next branch is not opened.
+
 ## Decision
 
 `PROMOTE` -- for every irrational slope above one, the actual normalized

@@ -7787,6 +7787,20 @@
       "nk_clusters": []
     },
     {
+      "id": "beatty_dimension_game",
+      "kind": "support",
+      "probe": "src/research/juggler_sequence/beatty_dimension_game.py",
+      "test": "tests/research/juggler_sequence/test_beatty_dimension_game.py",
+      "dossier": null,
+      "data_dir": null,
+      "lean": [],
+      "conjecture": [],
+      "decision": null,
+      "ledger_ids": [],
+      "aliases": [],
+      "nk_clusters": []
+    },
+    {
       "id": "beatty_phase_transfer",
       "kind": "support",
       "probe": "src/research/juggler_sequence/beatty_phase_transfer.py",
