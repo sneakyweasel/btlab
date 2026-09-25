@@ -14,6 +14,7 @@ import Problems.Juggler.BeattySlopeMeasureDim
 import Problems.Juggler.BeattySlopeStarDim
 import Problems.Juggler.BeattySlopeLawPacking
 import Problems.Juggler.BeattySlopeIsolated
+import Problems.Juggler.BeattySlopeFrostman
 import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeGlobalLaw
 import Problems.Juggler.BeattySlopeLawContinuity
@@ -567,5 +568,8 @@ namespace Problems.Juggler
 #print axioms BeattySlope.isoDen_growth
 #print axioms BeattySlope.isoSlope_diophClass
 #print axioms BeattySlope.isoSlope_dims
+#print axioms BeattySlope.jumpRange_hausdorff_ne_zero
+#print axioms BeattySlope.jumpRange_hausdorff_ne_zero_of_cdf
+#print axioms BeattySlope.base_at_grid
 
 end Problems.Juggler

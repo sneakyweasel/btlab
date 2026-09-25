@@ -413,6 +413,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "BeattySlopeStarDim": "Hausdorff upper bound 2(sqrt(1+3nu)-1)/(3nu) for approximation exponent nu, from per-gap late masses at the next convergent",
     "BeattySlopeLawPacking": "Uniform small-ball bounds at convergent radii and packing dimension 2/3 of the limit law at every irrational slope; Hausdorff equals packing exactly at irrationality exponent 2",
     "BeattySlopeIsolated": "Slopes with isolated good levels: Diophantine class nu, law dimension 2/(2+nu) and cluster-set dimension at most s*(nu)",
+    "BeattySlopeFrostman": "Mass distribution for jump-profile cut-out sets: Frostman bounds on phase intervals, directly or through a continuous distribution function, give positive Hausdorff measure; orbit bases at the grid of a reduced approximation",
     "BeattySlopeContinuity": "Local constancy of actual counts in the boundary, l1 continuity of jump weights, weak continuity of the laws and continuity of the Minkowski content at irrational slopes",
     "BeattySlopeArithmetic": "Hausdorff dimension two-thirds for almost every slope and positive finite two-thirds measure for every quadratic irrational slope",
     "BeattyCertificateWeights": "Moving phase asymptotic and uniform two-sided three-halves bounds for actual certificate gap weights",
