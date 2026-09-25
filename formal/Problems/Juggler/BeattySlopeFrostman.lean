@@ -132,7 +132,7 @@ theorem jumpRange_hausdorff_ne_zero {φ w : ℕ → ℝ} (hw : Summable w) (hn :
 /-- **Frostman through a distribution function.** A continuous nondecreasing
 `h` with `h 0 < h 1` whose increments over phase intervals are at most `C`
 times the `s`-th power of the atom mass forces `H^s(K) > 0`. -/
-theorem jumpRange_hausdorff_ne_zero_of_cdf {φ w : ℕ → ℝ} (hw : Summable w) (hn : ∀ n, 0 ≤ w n)
+theorem frostman_cdf_hausdorff {φ w : ℕ → ℝ} (hw : Summable w) (hn : ∀ n, 0 ≤ w n)
     (hi : Function.Injective φ) (hp : ∀ n, φ n ∈ Ioo (0 : ℝ) 1) {s C : ℝ} (hs : 0 < s)
     (hC : 0 < C) (h : ℝ → ℝ) (hmono : Monotone h) (hcont : Continuous h) (hne : h 0 < h 1)
     (hfrost : ∀ u v : ℝ, 0 ≤ u → u < v → v ≤ 1 →

@@ -630,3 +630,6 @@
 'Problems.Juggler.BeattySlope.isoDen_growth' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.BeattySlope.isoSlope_diophClass' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Problems.Juggler.BeattySlope.isoSlope_dims' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.jumpRange_hausdorff_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.frostman_cdf_hausdorff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problems.Juggler.BeattySlope.base_at_grid' depends on axioms: [propext, Classical.choice, Quot.sound]

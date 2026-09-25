@@ -2595,7 +2595,7 @@
   "lean": "Problems/Juggler/BeattySlopeFrostman.lean",
   "decl": [
    "jumpRange_hausdorff_ne_zero",
-   "jumpRange_hausdorff_ne_zero_of_cdf",
+   "frostman_cdf_hausdorff",
    "base_at_grid"
   ],
   "lean_trust": "kernel",

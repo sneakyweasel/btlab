@@ -2548,6 +2548,24 @@
   "related_conjectures": []
  },
  {
+  "id": "J-beatty-slope-frostman-principle",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "For the cut-out set K of a jump profile F with injective interior atom phases, if an atomless finite measure nu on the phases with nu(0,1) > 0 satisfies nu[u,v] <= C (F(v) - F^+(u))^s for 0 <= u < v <= 1, then H^s(K) > 0; the same holds when nu is the Stieltjes measure of a continuous nondecreasing h with h(0) < h(1) and h(v) - h(u) <= C (F(v) - F^+(u))^s. For a reduced approximation p/q with |q alpha - p| < 1/q, every grid point i/q with 0 < i < q carries the orbit point {t alpha} = i/q + t(q alpha - p)/q of an index 0 < t < q. These are the first formal inputs of the isolated-level lower bound J-beatty-slope-isolated-exact.",
+  "source": "docs/theory/juggler_beatty_first_passage_note.md",
+  "lean": "Problems/Juggler/BeattySlopeFrostman.lean",
+  "decl": [
+   "jumpRange_hausdorff_ne_zero",
+   "frostman_cdf_hausdorff",
+   "base_at_grid"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
+ },
+ {
   "id": "J-beatty-slope-gamma-amplitude",
   "tag": "EXACT — LEAN VERIFIED",
   "statement": "For every irrational 0<beta<1, equivalently every irrational slope alpha=1/beta>1, with q=1-beta, a=-log q, the actual counts c_r and the exact Gamma quotient D_r=Gamma(r/beta)/(r!*Gamma(r*q/beta+1)): c_r/D_r-q^(delta_r)*F_beta(delta_r) -> 0, so the Gamma-normalized counts follow the unit-periodic amplitude q^(frac t)*F_beta(frac t). No rate is claimed. This extends the logarithmic-slope Gamma rows to the whole irrational family.",

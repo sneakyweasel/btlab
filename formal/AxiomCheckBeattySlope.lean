@@ -569,7 +569,7 @@ namespace Problems.Juggler
 #print axioms BeattySlope.isoSlope_diophClass
 #print axioms BeattySlope.isoSlope_dims
 #print axioms BeattySlope.jumpRange_hausdorff_ne_zero
-#print axioms BeattySlope.jumpRange_hausdorff_ne_zero_of_cdf
+#print axioms BeattySlope.frostman_cdf_hausdorff
 #print axioms BeattySlope.base_at_grid
 
 end Problems.Juggler
