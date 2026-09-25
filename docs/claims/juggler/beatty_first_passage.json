@@ -2508,5 +2508,27 @@
    "tests/research/juggler_sequence/test_layer_completeness.py"
   ],
   "related_conjectures": []
+ },
+ {
+  "id": "J-beatty-slope-star-upper",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "If |q alpha - p| <= q^(-nu) for arbitrarily large q, with nu > 1, then H^s(K_alpha) = 0 for every s > s*(nu) = 2(sqrt(1+3nu)-1)/(3nu), the positive root of 3nu s^2 + 4s - 4 = 0, so dim_H K_alpha <= s*(nu); this improves 2/(2+sqrt nu). Proof: take a continued-fraction level q with error |theta| and next denominator N >= 1/(2|theta|), and cut at the first E = ceil(q^a) orbit points. Gaps holding an orbit point of index in [E, N) are at most q+1 (one per chain label) and carry at most the tail mass from E; every other gap has no orbit point of index below N, so it is shorter than 4/N, and the |theta|-separation along blocks of N consecutive indices bounds its mass by 27B N^(-3/2). Both parts of the cover cost vanish for 2(1-s)/s < a < 3 nu s/2, which is possible exactly when s > s*(nu).",
+  "source": "docs/problems/juggler_winkler_phase_collapse.md",
+  "lean": "Problems/Juggler/BeattySlopeStarDim.lean",
+  "decl": [
+   "block_window_mass",
+   "star_cut_bound",
+   "starDim_quad",
+   "starDim_pos",
+   "dio_star_hausdorff",
+   "dio_star_dimH_le"
+  ],
+  "lean_trust": "kernel",
+  "tests": [
+   "tests/research/juggler_sequence/test_beatty_slope_hausdorff_interface.py",
+   "tests/tools/test_formalpedia_audits.py",
+   "tests/research/juggler_sequence/test_layer_completeness.py"
+  ],
+  "related_conjectures": []
  }
 ]

@@ -1611,6 +1611,27 @@ the Diophantine class alone, while the Hausdorff dimension of its support
 `K_alpha` is at least that value and, by the heuristic in the exact-dimension
 notes, can exceed it; the packing dimension is `2/3` throughout. **PROMOTE**.
 
+### The upper bound s*(nu) in Lean (25 September)
+
+```text
+Mathematical target     dim_H K_alpha <= s*(nu) = 2(sqrt(1+3nu)-1)/(3nu) for approximation exponent nu > 1.
+Novelty hypothesis      Per-gap late masses at the next convergent beat concavity over all gaps.
+Falsifier               A gap free of indices below N that is longer than 4/N or heavier than 27B N^(-3/2).
+Already killed by?      No; the written proof waited only for convergent facts now in Lean.
+Existing machinery      Early cuts, chain labels, convergents of every irrational, block counts, tail masses.
+Maximum Phase-0 scope   One module: block window mass, sharpened cut bound, exponent assembly.
+Promotion criterion     Lean theorem with standard axioms.
+Stop criterion          A missing classical input beyond the continued-fraction layer.
+```
+
+**EXACT — LEAN VERIFIED.** The written upper bound of the exact-dimension
+notes is now formal: if `|q alpha - p| <= q^(-nu)` for arbitrarily large `q`
+with `nu > 1`, then `dim_H K_alpha <= s*(nu)`, improving `2/(2+sqrt nu)`
+([BeattySlopeStarDim.lean](../../formal/Problems/Juggler/BeattySlopeStarDim.lean),
+claim `J-beatty-slope-star-upper`). With the law dimension,
+`2/(2+nu) <= dim_H K_alpha <= s*(nu)` for Diophantine class `nu`, and the
+lower end is attained at regular slopes. **PROMOTE**.
+
 ## Decision
 
 `PROMOTE` -- for every irrational slope above one, the actual normalized

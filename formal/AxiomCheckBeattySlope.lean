@@ -11,6 +11,7 @@ import Problems.Juggler.BeattySlopeConvergents
 import Problems.Juggler.BeattySlopeCFExpansion
 import Problems.Juggler.BeattySlopePacking
 import Problems.Juggler.BeattySlopeMeasureDim
+import Problems.Juggler.BeattySlopeStarDim
 import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeGlobalLaw
 import Problems.Juggler.BeattySlopeLawContinuity
@@ -544,5 +545,11 @@ namespace Problems.Juggler
 #print axioms BeattySlope.passageLaw_lawDimH_le
 #print axioms BeattySlope.passageLaw_lawDimH_liouville
 #print axioms BeattySlope.passageLaw_lawDimH_eq
+#print axioms BeattySlope.block_window_mass
+#print axioms BeattySlope.star_cut_bound
+#print axioms BeattySlope.starDim_quad
+#print axioms BeattySlope.starDim_pos
+#print axioms BeattySlope.dio_star_hausdorff
+#print axioms BeattySlope.dio_star_dimH_le
 
 end Problems.Juggler
