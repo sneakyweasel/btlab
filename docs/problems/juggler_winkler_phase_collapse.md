@@ -1553,6 +1553,33 @@ slopes and to the uniform law on `b` atoms at `alpha=a/b`. The slope map
 irrational slopes; the limit from below at `a/b` has an atom at `1`.
 Section 31 of the working note. **PROMOTE**.
 
+### Universal packing dimension (25 September)
+
+```text
+Mathematical target     Packing (modified upper box) dimension of K_alpha for every irrational alpha>1.
+Novelty hypothesis      Packing dimension is universal (2/3) while Hausdorff dimension is arithmetic.
+Falsifier               An interval meeting K_alpha whose tube volume is o(eps^(1/3)).
+Already killed by?      No; no packing or local box-dimension record in the lab or negative knowledge.
+Existing machinery      Tube bounds, local tail gap counts, cluster set perfect and equal to the range closure.
+Maximum Phase-0 scope   Tube-volume box dimensions, local tube bound, Baire step, one module.
+Promotion criterion     Lean theorem for every irrational slope with standard axioms.
+Stop criterion          Local positivity needing analytic input beyond the tail gap counts.
+```
+
+**EXACT — LEAN VERIFIED.** Every open interval meeting `K_alpha` contains the
+profile image of a phase window `[t_1,t_2]` (closure of the range and
+perfectness suffice). Gaps with phase in the window lie inside the interval,
+and the tail gap-count asymptotic for the two profile levels counts at least
+`c x^(-2/3)` of them of length at least `x`, so every relatively open piece
+has `vol(eps-neighbourhood) >= c eps^(1/3)`. By Baire's theorem every
+countable cover of `K_alpha` has a member whose closure contains such a
+piece, so the modified upper box dimension is `2/3` for every irrational
+slope; for compact sets this is the packing dimension (Falconer, Fractal Geometry, §3.3,
+cited, not formalized). With `J-beatty-slope-dim-irrationality-exponent`, `dim_H K_alpha < dim_P K_alpha = 2/3`
+exactly when `alpha` is `LiouvilleWith p` for some `p>2`
+([BeattySlopePacking.lean](../../formal/Problems/Juggler/BeattySlopePacking.lean),
+claim `J-beatty-slope-packing-dim`). **PROMOTE**.
+
 ## Decision
 
 `PROMOTE` -- for every irrational slope above one, the actual normalized

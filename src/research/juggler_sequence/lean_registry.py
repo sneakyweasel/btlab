@@ -408,6 +408,7 @@ AUXILIARY_MODULES: dict[str, str] = {
     "BeattySlopeRegularDim": "Exact Hausdorff dimension 2/(2+nu) for regular slopes via multi-level cell covers",
     "BeattySlopeConvergents": "Hand-built continued fractions, explicit regular slopes of every Diophantine class and the full Hausdorff dimension spectrum [0,2/3]",
     "BeattySlopeCFExpansion": "Gauss-map continued-fraction expansion of every irrational: it is the limit of its own convergents, which are good convergents, so eventually regular denominators give dimension 2/(2+nu)",
+    "BeattySlopePacking": "Tube-volume box dimensions, local cube-root tube bounds on every open piece and universal packing (modified upper box) dimension 2/3 for every irrational slope",
     "BeattySlopeContinuity": "Local constancy of actual counts in the boundary, l1 continuity of jump weights, weak continuity of the laws and continuity of the Minkowski content at irrational slopes",
     "BeattySlopeArithmetic": "Hausdorff dimension two-thirds for almost every slope and positive finite two-thirds measure for every quadratic irrational slope",
     "BeattyCertificateWeights": "Moving phase asymptotic and uniform two-sided three-halves bounds for actual certificate gap weights",

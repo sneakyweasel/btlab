@@ -9,6 +9,7 @@ import Problems.Juggler.BeattySlopeIrrExp
 import Problems.Juggler.BeattySlopeRegularDim
 import Problems.Juggler.BeattySlopeConvergents
 import Problems.Juggler.BeattySlopeCFExpansion
+import Problems.Juggler.BeattySlopePacking
 import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeGlobalLaw
 import Problems.Juggler.BeattySlopeLawContinuity
@@ -511,5 +512,17 @@ namespace Problems.Juggler
 #print axioms BeattySlope.cfDigits_den_tendsto
 #print axioms BeattySlope.GoodConvergents.shift
 #print axioms BeattySlope.cf_regular_dimH_eq
+#print axioms BeattySlope.upperBoxDim_mono
+#print axioms BeattySlope.upperBoxDim_closure
+#print axioms BeattySlope.upperBoxDim_le_of_tube
+#print axioms BeattySlope.le_upperBoxDim_of_tube
+#print axioms BeattySlope.modUpperBoxDim_le
+#print axioms BeattySlope.passageProfile_clamp
+#print axioms BeattySlope.passageGap_right_le
+#print axioms BeattySlope.exists_phase_window
+#print axioms BeattySlope.tailDensity_gap_pos
+#print axioms BeattySlope.passageCluster_local_tube
+#print axioms BeattySlope.passageCluster_modUpperBoxDim
+#print axioms BeattySlope.cluster_dim_gap_iff
 
 end Problems.Juggler

@@ -5,6 +5,7 @@ import Problems.Juggler.BeattySlopeExactDim
 import Problems.Juggler.BeattySlopeIrrExp
 import Problems.Juggler.BeattySlopeConvergents
 import Problems.Juggler.BeattySlopeCFExpansion
+import Problems.Juggler.BeattySlopePacking
 
 /-! Expanded consumers of the family Hausdorff theorems. Each statement
 concerns the set of real subsequential limits of the original integer
@@ -193,7 +194,22 @@ theorem actual_cf_regular_dim (α ν c C : ℝ) (hα1 : 1 < α) (hα : Irrationa
 #print axioms actual_exponent_dim
 #print axioms actual_dim_class_lower
 #print axioms actual_dim_two_thirds_iff
+/-- For every irrational slope above one, the actual limit set has packing
+(modified upper box) dimension two-thirds, and its Hausdorff dimension is
+strictly smaller exactly when the slope is Liouville of some exponent above two. -/
+theorem actual_packing_dim (α : ℝ) (hα1 : 1 < α) (hα : Irrational α) :
+    modUpperBoxDim {y : ℝ | MapClusterPt y atTop (fun r : ℕ => let m := ⌊α*(r : ℝ)⌋₊;
+      (r : ℝ)*(passageCount (1/α) (m+1) : ℝ)/((m-1).choose (r-1) : ℝ))} = 2/3 ∧
+    (dimH {y : ℝ | MapClusterPt y atTop (fun r : ℕ => let m := ⌊α*(r : ℝ)⌋₊;
+      (r : ℝ)*(passageCount (1/α) (m+1) : ℝ)/((m-1).choose (r-1) : ℝ))} <
+      modUpperBoxDim {y : ℝ | MapClusterPt y atTop (fun r : ℕ => let m := ⌊α*(r : ℝ)⌋₊;
+        (r : ℝ)*(passageCount (1/α) (m+1) : ℝ)/((m-1).choose (r-1) : ℝ))} ↔
+      ∃ p > (2 : ℝ), LiouvilleWith p α) := by
+  rw [cluster_eq α hα1 hα]
+  exact cluster_dim_gap_iff hα1 hα
+
 #print axioms actual_dim_spectrum
 #print axioms actual_cf_regular_dim
+#print axioms actual_packing_dim
 
 end Problems.Juggler.BeattySlopeHausdorffChecks
