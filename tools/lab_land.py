@@ -131,7 +131,8 @@ def remove_worktree(root: Path, name: str, onto: str = "main", dry_run: bool = F
     if dry_run:
         return report | {"status": "removable (dry run; nothing changed)"}
     if path is not None:
-        git(root, "worktree", "remove", str(path))
+        # A prepared worktree holds Lake packages beyond Windows' 260-character limit.
+        git(root, "-c", "core.longpaths=true", "worktree", "remove", str(path))
     git(root, "branch", "-D", branch)
     git(root, "worktree", "prune")
     return report | {"status": "removed"}

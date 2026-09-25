@@ -1,6 +1,7 @@
 """Landing: one branch at a time, shared views regenerated, main moved only by fast-forward."""
 from __future__ import annotations
 
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -14,12 +15,14 @@ import lab_land  # noqa: E402
 VIEW = "docs/theory/theorem_ledger.md"
 #: A stand-in generator: the view lists every claim file, as the real ledger lists every row.
 GENERATOR = """
+import os
 from pathlib import Path
 rows = sorted(p.read_text().strip() for p in Path('claims').glob('*.txt'))
 Path('docs/theory').mkdir(parents=True, exist_ok=True)
 Path('docs/theory/theorem_ledger.md').write_text('\\n'.join(rows) + '\\n', newline='\\n')
 """
 CHECK = """
+import os
 from pathlib import Path
 import sys
 rows = sorted(p.read_text().strip() for p in Path('claims').glob('*.txt'))
@@ -217,3 +220,21 @@ def test_worktree_listing_reports_each_agent_branch(repo):
 def test_removing_an_unknown_branch_fails(repo):
     with pytest.raises(lab_land.LandingError, match="no branch agent/none"):
         lab_land.remove_worktree(repo, "none")
+
+
+def test_a_worktree_with_paths_beyond_windows_max_path_is_removed(repo):
+    """Regression: a prepared worktree holds Lake packages deeper than 260 characters, and
+    Git for Windows without core.longpaths dropped the registration but left the tree."""
+    work = agent_worktree(repo, "deep")
+    # The extended-length prefix lets Python create what Git must then delete.
+    prefix = "\\\\?\\" if sys.platform == "win32" else ""
+    deep = work / ".build"
+    deep.mkdir()
+    for part in ("d" * 60, "e" * 60, "f" * 60, "g" * 60):
+        deep /= part
+        os.mkdir(prefix + str(deep))
+    with open(prefix + str(deep / "package.olean"), "w") as handle:
+        handle.write("ignored build output\n")
+    assert len(str(deep)) > 260
+    assert lab_land.remove_worktree(repo, "deep")["status"] == "removed"
+    assert gone(repo, work, "agent/deep")
