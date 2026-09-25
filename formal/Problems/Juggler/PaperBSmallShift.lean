@@ -1145,6 +1145,150 @@ theorem comparison_part_T {C T u hr : ℝ} (N : ℕ) (hC : 1 ≤ C) (hT : 1 ≤ 
       ≤ T ^ 24 * (2 * 4 * ((C * T / 2) * ((17 / 4) / T ^ 4))) := by gcongr
     _ = 17 * C * T ^ 21 := by field_simp
 
+/-! ## The core estimate -/
+
+/-- **Phase comparison, any cell length.** Replacing `Δ_h` of the original phase by the retained
+phase costs `N · 2π |u| ((9/4) h P^{-1/4} + 2 P^{-3/4})`. -/
+theorem comparison_wide {P a h u v w : ℝ} (N : ℕ) (hP : 0 < P) (ha : P ≤ a) (hh : 0 ≤ h) :
+    ‖(∑ n ∈ range N, phase (OOEEPhaseComparison.originalPhase u v w (a + 2 * n + 2 * h) -
+        OOEEPhaseComparison.originalPhase u v w (a + 2 * n))) -
+      ∑ n ∈ range N, phase (OOEECarryFourier.retainedPhase h u v w (a + 2 * n))‖ ≤
+      N * (2 * π * (|u| * ((9 / 4) * h * P ^ (-1 / 4 : ℝ) + 2 * P ^ (-3 / 4 : ℝ)))) := by
+  have he (n : ℕ) : ‖phase (OOEEPhaseComparison.originalPhase u v w (a + 2 * n + 2 * h) -
+      OOEEPhaseComparison.originalPhase u v w (a + 2 * n)) -
+      phase (OOEECarryFourier.retainedPhase h u v w (a + 2 * n))‖ ≤
+      2 * π * (|u| * ((9 / 4) * h * P ^ (-1 / 4 : ℝ) + 2 * P ^ (-3 / 4 : ℝ))) := by
+    refine (OOEEPhaseComparison.phase_sub_le _ _).trans ?_
+    have hd := OOEEPhaseComparison.original_difference_error hP
+      (show P ≤ a + 2 * n by linarith [Nat.cast_nonneg (α := ℝ) n]) hh u v w
+    exact mul_le_mul_of_nonneg_left hd (by positivity)
+  rw [← sum_sub_distrib]
+  refine (norm_sum_le _ _).trans ?_
+  simpa using sum_le_sum (fun n (_ : n ∈ range N) => he n)
+
+/-- `R = ⌊T^6⌋₊` satisfies `1 ≤ R`, `√R ≤ T^3` and `T^3/2 ≤ √R` for `T ≥ 2`. -/
+theorem floor_six_bounds {T : ℝ} (hT : 2 ≤ T) :
+    1 ≤ ⌊T ^ 6⌋₊ ∧ √(⌊T ^ 6⌋₊ : ℝ) ≤ T ^ 3 ∧ T ^ 3 / 2 ≤ √(⌊T ^ 6⌋₊ : ℝ) := by
+  have h6 : (64 : ℝ) ≤ T ^ 6 := by
+    calc (64 : ℝ) = 2 ^ 6 := by norm_num
+      _ ≤ T ^ 6 := pow_le_pow_left₀ (by norm_num) hT 6
+  have hT3 : 0 ≤ T ^ 3 := by positivity
+  have hle : (⌊T ^ 6⌋₊ : ℝ) ≤ T ^ 6 := Nat.floor_le (by positivity)
+  have hgt : T ^ 6 - 1 < (⌊T ^ 6⌋₊ : ℝ) := by
+    have := Nat.lt_floor_add_one (T ^ 6)
+    linarith
+  refine ⟨Nat.le_floor (by push_cast; linarith), ?_, ?_⟩
+  · rw [sqrt_le_left hT3]
+    calc (⌊T ^ 6⌋₊ : ℝ) ≤ T ^ 6 := hle
+      _ = (T ^ 3) ^ 2 := by ring
+  · rw [le_sqrt (by positivity) (by positivity)]
+    calc (T ^ 3 / 2) ^ 2 = T ^ 6 / 4 := by ring
+      _ ≤ T ^ 6 - 1 := by linarith
+      _ ≤ _ := hgt.le
+
+/-- The constant of the core estimate: the four contributions fit in `508000 C X (1 + s)`. -/
+theorem small_shift_budget {C X s : ℝ} (hC : 1 ≤ C) (hX : 0 ≤ X) (hs : 0 ≤ s) :
+    256 * C * X + 660 * s * X + (128 * X + 400 * s * X) +
+      5 * (50720 * X + 50720 * X) + 17 * C * X ≤ 508000 * C * X * (1 + s) := by
+  have h1 : 0 ≤ (C - 1) * X := mul_nonneg (by linarith) hX
+  have h2 : 0 ≤ (C - 1) * (s * X) := mul_nonneg (by linarith) (mul_nonneg hs hX)
+  have h3 : 0 ≤ s * X := mul_nonneg hs hX
+  nlinarith
+
+/-- **Lemma 4.4, core form.** Put `P = T^{24}` with `T ≥ 4096 C`. For an integer shift
+`1 ≤ h ≤ T^2`, a coefficient `1/2 ≤ u ≤ C T/2`, frequencies `|v|, |w| ≤ C T`, and `N` odd samples
+`a + 2n` with `a = 2 r₀ + 1 ≥ P` and `a + 2N + 2h ≤ 2P`,
+`‖∑ e(Δ_h originalPhase)‖ ≤ 508000 C T^{21} (1 + √h)`. -/
+theorem small_shift_core {C T u v w : ℝ} (N r₀ h : ℕ) (hC : 1 ≤ C) (hT : 4096 * C ≤ T)
+    (hh1 : 1 ≤ h) (hhT : (h : ℝ) ≤ T ^ 2) (hu1 : 1 / 2 ≤ u) (huC : u ≤ C * T / 2)
+    (hv : |v| ≤ C * T) (hw : |w| ≤ C * T)
+    (ha : T ^ 24 ≤ ((2 * r₀ + 1 : ℕ) : ℝ))
+    (hb : ((2 * r₀ + 1 : ℕ) : ℝ) + 2 * N + 2 * h ≤ 2 * T ^ 24) :
+    ‖∑ n ∈ range N, phase
+        (OOEEPhaseComparison.originalPhase u v w (((2 * r₀ + 1 : ℕ) : ℝ) + 2 * n + 2 * h) -
+          OOEEPhaseComparison.originalPhase u v w (((2 * r₀ + 1 : ℕ) : ℝ) + 2 * n))‖ ≤
+      508000 * C * T ^ 21 * (1 + √(h : ℝ)) := by
+  set a : ℝ := ((2 * r₀ + 1 : ℕ) : ℝ) with hadef
+  set hr : ℝ := (h : ℝ) with hrdef
+  have hT1 : 1 ≤ T := by nlinarith
+  have hT2 : 2 ≤ T := by nlinarith
+  have hT0 : 0 < T := by linarith
+  have hC0 : 0 < C := by linarith
+  have hhr1 : (1 : ℝ) ≤ hr := by rw [hrdef]; exact_mod_cast hh1
+  have hP1 : (1 : ℝ) ≤ T ^ 24 := one_le_pow₀ hT1
+  have hN0 : (0 : ℝ) ≤ N := Nat.cast_nonneg N
+  have hN : (N : ℝ) ≤ T ^ 24 := by linarith
+  -- regime conditions
+  have hTT : 4096 * C * T ≤ T ^ 2 := by nlinarith
+  have hhP : 1024 * hr ≤ T ^ 24 := by
+    have : T ^ 2 ≤ T ^ 22 := pow_le_pow_right₀ hT1 (by norm_num)
+    have h2 : 1024 * T ^ 2 ≤ T ^ 24 := by
+      have h1024 : (1024 : ℝ) ≤ T ^ 22 := by nlinarith
+      calc 1024 * T ^ 2 ≤ T ^ 22 * T ^ 2 := by gcongr
+        _ = T ^ 24 := by ring
+    linarith
+  have hu0 : 0 < u := by linarith
+  have h34 : (T ^ 24) ^ (3 / 4 : ℝ) = T ^ 18 := pow24_rpow_nat hT0 (by norm_num)
+  have h14 : (T ^ 24) ^ (1 / 4 : ℝ) = T ^ 6 := pow24_rpow_nat hT0 (by norm_num)
+  have hfreq : |v| + |w| ≤ u * (T ^ 24) ^ (3 / 4 : ℝ) / 1024 := by
+    rw [h34]
+    have h18 : T ^ 2 ≤ T ^ 18 := pow_le_pow_right₀ hT1 (by norm_num)
+    have : T ^ 18 / 2048 ≤ u * T ^ 18 / 1024 := by
+      have : 0 ≤ T ^ 18 := by positivity
+      nlinarith
+    linarith
+  have hdom : 32 * u * hr ≤ (T ^ 24) ^ (1 / 4 : ℝ) := by
+    rw [h14]
+    have h1 : 32 * u * hr ≤ 32 * (C * T / 2) * T ^ 2 := by gcongr
+    have h2 : 16 * C ≤ T ^ 3 := by
+      have : T ≤ T ^ 3 := by
+        calc T = T ^ 1 := (pow_one T).symm
+          _ ≤ T ^ 3 := pow_le_pow_right₀ hT1 (by norm_num)
+      linarith
+    calc 32 * u * hr ≤ 32 * (C * T / 2) * T ^ 2 := h1
+      _ = (16 * C) * T ^ 3 := by ring
+      _ ≤ T ^ 3 * T ^ 3 := by gcongr
+      _ = T ^ 6 := by ring
+  obtain ⟨hR1, hRup, hRlo⟩ := floor_six_bounds hT2
+  set R := ⌊T ^ 6⌋₊ with hRdef
+  have hret := retained_sum_wide (v := v) (w := w) N R hR1 hP1 ha hb hhr1 hhP hu0 hfreq hdom
+  rw [pow24_rpow_neg hT0 (m := 18) (by norm_num),
+    pow24_rpow_neg hT0 (m := 12) (by norm_num)] at hret
+  have hsm := smooth_part_T N hC hT1 hhr1 hhT hu1 huC hN
+  have hmo := modes_part_T N R hT1 hhr1 hhT hN hRup
+  -- the two near-integer sums
+  have hE0 : ∑ n ∈ range N, PaperBCarryExpansion.carryWeight R ((a + 2 * n + 0) ^ (3 / 2 : ℝ)) ≤
+      50720 * T ^ 21 := by
+    have hc := carryWeight_sum_odd R hR1 r₀ 0 N
+    have hX : (((r₀ + 0 + N : ℕ) : ℝ)) ≤ 2 * T ^ 24 := by
+      have : ((r₀ + 0 + N : ℕ) : ℝ) = r₀ + N := by push_cast; ring
+      rw [this]
+      have : a = 2 * r₀ + 1 := by rw [hadef]; push_cast; ring
+      linarith
+    have hn := nearint_part_T N R hT1 hR1 hN hRlo (Nat.cast_nonneg _) hX
+    refine le_trans (le_of_eq ?_) (hc.trans hn)
+    apply sum_congr rfl
+    intro n _
+    simp only [hadef, Nat.cast_zero, mul_zero]
+  have hEh : ∑ n ∈ range N, PaperBCarryExpansion.carryWeight R ((a + 2 * n + 2 * hr) ^
+      (3 / 2 : ℝ)) ≤ 50720 * T ^ 21 := by
+    have hc := carryWeight_sum_odd R hR1 r₀ h N
+    have hX : (((r₀ + h + N : ℕ) : ℝ)) ≤ 2 * T ^ 24 := by
+      have : ((r₀ + h + N : ℕ) : ℝ) = r₀ + hr + N := by rw [hrdef]; push_cast; ring
+      rw [this]
+      have : a = 2 * r₀ + 1 := by rw [hadef]; push_cast; ring
+      linarith
+    exact hc.trans (nearint_part_T N R hT1 hR1 hN hRlo (Nat.cast_nonneg _) hX)
+  have hcmp := comparison_wide (v := v) (w := w) (u := u) N (by positivity : (0 : ℝ) < T ^ 24)
+    ha (by linarith : (0 : ℝ) ≤ hr)
+  have hcmpT := comparison_part_T N hC hT1 hu0.le huC (by linarith) hhT hN
+  have htri := norm_sub_norm_le
+    (∑ n ∈ range N, phase (OOEEPhaseComparison.originalPhase u v w (a + 2 * n + 2 * hr) -
+      OOEEPhaseComparison.originalPhase u v w (a + 2 * n)))
+    (∑ n ∈ range N, phase (OOEECarryFourier.retainedPhase hr u v w (a + 2 * n)))
+  have hfin := small_shift_budget hC (show 0 ≤ T ^ 21 by positivity) (sqrt_nonneg hr)
+  linarith only [hret, hsm, hmo, hE0, hEh, hcmp, hcmpT, htri, hfin]
+
 end PaperBSmallShift
 
 end Problems.Juggler
