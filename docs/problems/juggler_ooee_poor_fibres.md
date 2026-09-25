@@ -522,6 +522,10 @@ it does not open a longer-fibre or new cycle attack.
 ## Publication assessment
 
 Status: **THEOREM**. Kernel-checked actual production and unconditional
-contagion at 5/8, with advisory statement coverage and independent review
-outstanding. No paper, computational verification floor or unconditional
-termination claim changes.
+contagion at 5/8. On 25 September 2026 the English statement of
+J-ooee-contagion-five-eighths was compared with `FateOOEEWeighted.logMass_growth`
+and found covered (closure under one-step preimages of the Juggler map, a
+positive member, K > 0 and a threshold N, the reciprocal-sum log-mass), so the
+row is EXACT — LEAN VERIFIED. Paper C 1.3.0 states the result as kernel-checked.
+Independent review is outstanding. No computational verification floor or
+unconditional termination claim changes.

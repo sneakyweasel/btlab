@@ -249,8 +249,8 @@
  },
  {
   "id": "J-ooee-contagion-five-eighths",
-  "tag": "EXACT — HUMAN PROOF",
-  "statement": "Kernel-checked unconditional contagion at 5/8; advisory statement coverage and independent mathematical review pending. For every natural predicate A closed under actual Juggler preimages and every positive member a of A, there exist K>0 and a natural N such that for every natural X>=N, logMass A X>=K*(log X)^(5/8). Both actual odd-production inequalities, including the OOEE coefficient 11/100 and its physical cutoff, are proved and are not additional analytic hypotheses. The separate conditional consequences are J-ooee-tao-rate-termination and J-ooee-pressure-rate-termination. No fate is excluded by this mass-growth theorem alone.",
+  "tag": "EXACT — LEAN VERIFIED",
+  "statement": "Kernel-checked unconditional contagion at 5/8. Statement coverage: compared with FateOOEEWeighted.logMass_growth on 25 September 2026 (BackwardClosed is closure under one-step preimages of floorPower, the Juggler map; logMass is the reciprocal sum over 1<=n<=x); independent mathematical review pending. For every natural predicate A closed under actual Juggler preimages and every positive member a of A, there exist K>0 and a natural N such that for every natural X>=N, logMass A X>=K*(log X)^(5/8). Both actual odd-production inequalities, including the OOEE coefficient 11/100 and its physical cutoff, are proved and are not additional analytic hypotheses. The separate conditional consequences are J-ooee-tao-rate-termination and J-ooee-pressure-rate-termination. No fate is excluded by this mass-growth theorem alone.",
   "source": "docs/problems/juggler_ooee_poor_fibres.md",
   "lean": "Problems/Juggler/FateOOEEWeighted.lean",
   "tests": [

@@ -4,23 +4,23 @@
   "transport": "MCP stdio via tools/arb_mcp.py",
   "scope": "Finite expression certificates and explicitly stated derived consequences; no new Lean proof or termination result.",
   "paper_source_sha256": {
-    "before": "3b1eec57fd220cddfe8849fadb7e9d65fc98602c98e981692ac2fc4808b5cf3a",
-    "after": "3b1eec57fd220cddfe8849fadb7e9d65fc98602c98e981692ac2fc4808b5cf3a"
+    "before": "202a63236aad5ca62b49c050f41e6d4919a94b452893f54fc246c02289c106be",
+    "after": "202a63236aad5ca62b49c050f41e6d4919a94b452893f54fc246c02289c106be"
   },
   "paper_unchanged_during_run": true,
   "input_source_sha256": {
-    "tools/check_papers_arb.py": "bafe29b4ab8987cbef3b4e56703433be1c69348dbd7c97474c87fee43817b387",
+    "tools/check_papers_arb.py": "1ddf156621f5cf0eaf93286c4499f724b34f0b89846c75b43d908d78f30eaf9c",
     "tools/arb_paper_audit_core/__init__.py": "60a13e62761a04350a519ddd376be7a977202f294fa7eb654e12db1c05ca9511",
     "tools/arb_paper_audit_core/beatty.py": "b85bd7f41f7c8e2cfebe75811444675ea3a274f83b8ecf7a6035cc26f07aedc5",
     "tools/arb_paper_audit_core/client.py": "797695762c4aec729c18819b67ea2f47e5905308e35a9e0d6d93e304d4c5a2b3",
     "tools/arb_paper_audit_core/paper_a.py": "7b478c1637b6a523f6b467c9e73c764ff43387516f2f1890e6e9dbee91873339",
     "tools/arb_paper_audit_core/paper_d.py": "bc218fa20dadac13ef3f95dcd3de8b57000d9dac1fa2553704095e0bd1d9d46f",
-    "tools/arb_paper_audit_core/scalars.py": "3e7a28b047f5c21cafd983b4ce6e4490054c036cf1277d5fc1861f2c7cabbc45",
-    "tools/arb_mcp.py": "ff5f1aad04c0bc953e03997bdbb466f385bd0e04db217e8d09d52fc57925ecfe",
-    "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+    "tools/arb_paper_audit_core/scalars.py": "7baacd8e55a15149d727fe69a138e8e6ef10828602cf638011f83811df334917",
+    "tools/arb_mcp.py": "4f1b8ed558147af355ca7247667a95b755f9069252d0765254b470084aef490a",
+    "tools/arb_worker.py": "23fbcca91b3e442e178d1025a79546ba309ea0eb5f24f3d1619e13c9c5392386",
     "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
     "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
-    "docs/theory/juggler_signed_collatz_note.md": "3b1eec57fd220cddfe8849fadb7e9d65fc98602c98e981692ac2fc4808b5cf3a"
+    "docs/theory/juggler_signed_collatz_note.md": "202a63236aad5ca62b49c050f41e6d4919a94b452893f54fc246c02289c106be"
   },
   "summary": {
     "growth_exponent": {
@@ -85,7 +85,7 @@
           "flint": "3.6.0"
         },
         "source_sha256": {
-          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "tools/arb_worker.py": "23fbcca91b3e442e178d1025a79546ba309ea0eb5f24f3d1619e13c9c5392386",
           "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
           "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
         },
@@ -133,7 +133,7 @@
           "flint": "3.6.0"
         },
         "source_sha256": {
-          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "tools/arb_worker.py": "23fbcca91b3e442e178d1025a79546ba309ea0eb5f24f3d1619e13c9c5392386",
           "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
           "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
         },
@@ -181,7 +181,7 @@
           "flint": "3.6.0"
         },
         "source_sha256": {
-          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "tools/arb_worker.py": "23fbcca91b3e442e178d1025a79546ba309ea0eb5f24f3d1619e13c9c5392386",
           "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
           "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
         },
@@ -233,7 +233,7 @@
           "flint": "3.6.0"
         },
         "source_sha256": {
-          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "tools/arb_worker.py": "23fbcca91b3e442e178d1025a79546ba309ea0eb5f24f3d1619e13c9c5392386",
           "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
           "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
         },
@@ -269,7 +269,7 @@
           "flint": "3.6.0"
         },
         "source_sha256": {
-          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "tools/arb_worker.py": "23fbcca91b3e442e178d1025a79546ba309ea0eb5f24f3d1619e13c9c5392386",
           "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
           "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
         },
@@ -305,7 +305,7 @@
           "flint": "3.6.0"
         },
         "source_sha256": {
-          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "tools/arb_worker.py": "23fbcca91b3e442e178d1025a79546ba309ea0eb5f24f3d1619e13c9c5392386",
           "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
           "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
         },
@@ -353,7 +353,7 @@
           "flint": "3.6.0"
         },
         "source_sha256": {
-          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "tools/arb_worker.py": "23fbcca91b3e442e178d1025a79546ba309ea0eb5f24f3d1619e13c9c5392386",
           "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
           "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
         },
@@ -401,7 +401,7 @@
           "flint": "3.6.0"
         },
         "source_sha256": {
-          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "tools/arb_worker.py": "23fbcca91b3e442e178d1025a79546ba309ea0eb5f24f3d1619e13c9c5392386",
           "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
           "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
         },
@@ -449,7 +449,7 @@
           "flint": "3.6.0"
         },
         "source_sha256": {
-          "tools/arb_worker.py": "9ec7097dd880ed40cfc60903b98ca474bd13ddcee64cba9d051c4dfbabe0d26c",
+          "tools/arb_worker.py": "23fbcca91b3e442e178d1025a79546ba309ea0eb5f24f3d1619e13c9c5392386",
           "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
           "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be"
         },

@@ -6,7 +6,7 @@
   "lean_trust": "kernel",
   "tests": [
    "tests/unit/test_theorem_ledger.py",
-   "tests/unit/test_paper_e_release.py"
+   "tests/unit/test_check_paper_e.py"
   ],
   "related_conjectures": [],
   "statement": "Kernel-checked; advisory statement coverage pending. For fixed natural a,b,M>0 with 3^a>2^(a+b), set d=2^(a-1), s=1+2*M*t, and retain the simultaneous ReturnBox parameters with s>=2^(2^(b+1)). Their density is 1/(2^(b+1)*M). Their distinct starts s^d<=X have count asymptotic to X^(1/d)/(2^(b+2)*M^2); every sufficiently large fixed relative interval contains one. Every counted start has actual word O^a E^b, never falls below its start during the word, ends strictly above it, and both endpoints are 1 modulo 2M. For any residues 0<=r_j<2M, even for j<b and r_b=1, the corresponding half-open residue box beyond the same threshold has parameter density (2M)^(-(b+1)) and yields infinitely many distinct such starts above every bound with J^(a+j)(n)=r_j modulo 2M. This counts the explicit family only. No growing-parameter, first-witness, orbit-concatenation, or cycle claim follows.",

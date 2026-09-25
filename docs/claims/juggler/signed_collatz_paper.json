@@ -15,7 +15,7 @@
   ],
   "lean_trust": "kernel",
   "tests": [
-   "tests/unit/test_paper_e_release.py",
+   "tests/unit/test_check_paper_e.py",
    "tests/research/juggler_sequence/test_layer_architecture.py"
   ],
   "related_conjectures": []
@@ -34,7 +34,7 @@
   ],
   "lean_trust": "kernel",
   "tests": [
-   "tests/unit/test_paper_e_release.py",
+   "tests/unit/test_check_paper_e.py",
    "tests/research/juggler_sequence/test_layer_architecture.py"
   ],
   "related_conjectures": []
