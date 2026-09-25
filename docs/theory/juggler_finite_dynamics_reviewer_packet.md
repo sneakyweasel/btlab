@@ -2,7 +2,7 @@
 
 **Lower Bounds for Cycle Lengths in the Juggler Map**
 
-Philippe Cochin; no affiliation. Local preprint version 1.2.1: 23 September 2026.
+Philippe Cochin; no affiliation. Local preprint version 1.2.2: 25 September 2026.
 
 This packet accompanies Paper A. Its purpose is to identify the claims,
 their evidence, and the questions requiring mathematical review. The
@@ -171,3 +171,9 @@ closure, and the dependency audit. Its README states the dependencies and
 the limits of the included computational records. The publication check
 records fresh build, archive, numerical, and layout evidence; it does not
 replace independent mathematical review or certify the paper in full.
+
+## Companion update of 25 September 2026
+
+Version 1.2.2 changes only the description of the companion Papers B and C
+and their references, now the published versions 1.2.0 and 1.3.0. No claim
+of Paper A depends on them.

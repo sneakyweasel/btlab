@@ -1697,7 +1697,7 @@ The Lean development constructs no pair \((c,\tau)\) satisfying (42) for
 this slope; the next paragraph supplies one from the literature.
 
 **Corollary at the logarithmic slope — EXACT — HUMAN PROOF.** Rhin
-[11, Proposition, p. 160, (7)] proves that for integers \(u_0,u_1,u_2\)
+[11, Proposition, p. 160] proves, in its display (7), that for integers \(u_0,u_1,u_2\)
 with \(H=\max(|u_1|,|u_2|)\ge2\),
 \[
  |u_0+u_1\log2+u_2\log3|\ge H^{-13.3},
@@ -2656,8 +2656,13 @@ holds unconditionally for it. Together with the golden ratio (dimension
  \{\dim_H K_\alpha:\ \alpha>1\ \text{irrational}\}=\Bigl[0,\frac23\Bigr].   \tag{62h}
 \]
 ([BeattySlopeConvergents.lean](../../formal/Problems/Juggler/BeattySlopeConvergents.lean)).
-That the convergents of an arbitrary irrational satisfy the hypotheses is
-classical and not formalized.
+The convergents of an arbitrary irrational satisfy the hypotheses: the Gauss
+map gives partial quotients with `alpha(x_(k+1)Q_(k+1)+Q_k)=x_(k+1)P_(k+1)+P_k`,
+so `alpha` is the limit of its own convergents, and good convergents are
+stable under an index shift. Hence (62g) holds for every irrational `alpha>1`
+whose continued-fraction denominators eventually satisfy
+`c q_n^nu <= q_(n+1) <= C q_n^nu` — EXACT — LEAN VERIFIED
+([BeattySlopeCFExpansion.lean](../../formal/Problems/Juggler/BeattySlopeCFExpansion.lean)).
 For slopes of the same class `nu` whose good levels are isolated among
 bounded partial quotients, a written sketch suggests the larger value
 `2(sqrt(1+3 nu)-1)/(3 nu)`; if so, Hausdorff dimension is not a function
@@ -2891,6 +2896,87 @@ therefore carries mass at least `1/b`, while `mu_(a/b)` gives `{1}` mass zero.
 Module: [BeattySlopeLawContinuity.lean](../../formal/Problems/Juggler/BeattySlopeLawContinuity.lean).
 No rate or uniformity in the slope is claimed. **PROMOTE** the global
 empirical-law theorem and the slope-map theorem (68).
+
+## 32. Dimensions of the law, packing, and isolated good levels
+
+**Law and packing — EXACT — LEAN VERIFIED.** Write `lawDimH(mu)` and
+`lawDimP(mu)` for the least Hausdorff, respectively modified upper box
+(packing), dimension of a set of positive `mu`-mass. For every irrational slope
+`alpha > 1` of Diophantine class `nu` (irrationality exponent `omega = 1+nu`):
+
+- `lawDimH(mu_alpha) = 2/(2+nu) = 2/(1+omega)`, and `0` at Liouville slopes
+  ([BeattySlopeMeasureDim.lean](../../formal/Problems/Juggler/BeattySlopeMeasureDim.lean));
+- `lawDimP(mu_alpha) = 2/3`
+  ([BeattySlopeLawPacking.lean](../../formal/Problems/Juggler/BeattySlopeLawPacking.lean));
+- `dim_P K_alpha = 2/3`
+  ([BeattySlopePacking.lean](../../formal/Problems/Juggler/BeattySlopePacking.lean));
+- `dim_H K_alpha <= s*(nu) = 2(sqrt(1+3nu)-1)/(3nu)`
+  ([BeattySlopeStarDim.lean](../../formal/Problems/Juggler/BeattySlopeStarDim.lean)).
+
+**Isolated good levels — EXACT — HUMAN PROOF (lower bound); LEAN VERIFIED
+(construction, class, law dimension, upper bound).** Take partial quotients
+`a_0 = 1`, `a_(g+1) = ceil(Q_g^(nu-1)) + 1` at good indices `g`, and `a_k = 1`
+otherwise. With infinitely many good indices the slope has Diophantine class
+exactly `nu`, its law has dimension `2/(2+nu)`, and its cluster set has
+dimension at most `s*(nu)`
+([BeattySlopeIsolated.lean](../../formal/Problems/Juggler/BeattySlopeIsolated.lean)).
+If the good indices are sparse, `j log Q_(g_(j-1)+1) = o(log Q_(g_j))` (for
+example `g_j = 2^(g_(j-1))`), then
+\[
+ \dim_H K_\alpha=s^*(\nu).                                               \tag{62i}
+\]
+Since regular slopes of the same class have dimension `2/(2+nu) < s*(nu)`
+(62g), `dim_H K_alpha` is not a function of the Diophantine class, while the law
+dimension is.
+
+*Proof of the lower bound.* Fix `gamma in (1, nu)` and `s` below
+`s(gamma) = min(2/(3+nu-gamma), 2(1+nu-gamma)/(3nu))`. At good level `j` let
+`q = Q_(g_j)`, `q' = Q_(g_j+1)` (so `q^nu <= q' <= 4q^nu`),
+`theta = q alpha - P_(g_j)` with `1/(2q') <= |theta| <= 1/q'`, and
+`d = q^(-gamma)`.
+
+1. *Windows.* The points `{t alpha}`, `0 <= t < q`, lie within `1/q'` of the grid
+   `i/q`, one per grid point; call them bases. Each base `b` carries an open
+   window of length `d` on the side of `sign(theta)`: `(b, b+d)` when
+   `theta > 0`, `(b-d, b)` when `theta < 0`. Phases live on the circle, so the
+   base at `0` has window `(1-d, 1)` when `theta < 0`. Since
+   `{(mq+t)alpha} = {t alpha + m theta}`, the window of `b = {t alpha}` contains
+   the chain atoms `b + m theta` of index `mq + t`.
+2. *Cantor measure.* By sparsity, each level-`j` window contains between
+   `dq_(j+1)/2` and `2dq_(j+1)` whole level-`(j+1)` windows. Split mass equally
+   among them, level by level. This defines a Borel probability `nu_*` without
+   atoms, carried by the intersection `T` of the unions of the charged windows.
+   A level-`j` window has mass `M_j <= q_j^(-1) prod_(i<j) 2q_i^(gamma-1)`, which
+   is `q_j^(-1+o(1))`. An interval `I` inside it with `|I| >= 1/(2q_(j+1))` has
+   `nu_*(I) <= 16|I| M_j/d_j`.
+3. *Frostman bound* `nu_*(I) <= C inc(I)^s`, where `inc(I)` is the atom mass
+   strictly inside `I`. Shrink `I` to the hull of the support of `nu_*|_I`.
+   Because windows are open and approach each base only from one side, the
+   endpoint of `I` on the gap side is never a base. Let `j` be the largest level
+   with `I` inside one level-`j` window, and `l = |I|`. Then `I` meets two
+   level-`(j+1)` windows, and the base next to the gap between them lies
+   strictly inside `I`. So `inc(I) >= A q_(j+1)^(-3/2)` and
+   `1/(2q_(j+1)) <= l <= d_j`.
+   - If `l <= 10/q'_j`: every partial quotient between `q'_j` and `q_(j+1)` is
+     `1`. So the many-hits bound at a convergent `Q` with `10/l <= Q <= 20/l`
+     gives `inc(I) >= c l^(3/2)`. The requirement
+     `l^(1-3s/2) <= q_j^(1-gamma-o(1))` is worst at `l = 10/q'_j` and holds
+     because `s < 2(1+nu-gamma)/(3nu)`.
+   - If `10/q'_j < l <= d_j`: `I` contains at least `l q'/2` chain atoms of one
+     base, each of index at most `3dq'q`. So
+     `inc(I) >= c l q' (dq'q)^(-3/2)`. With `l = q^(-x)`, `x in [gamma, nu)`, the
+     requirement is affine in `x`. It reduces to `s < 2/(3+nu-gamma)` at
+     `x = gamma` and to `s < 2/3` at `x = nu`.
+4. *Conclusion.* `F^(-1)` of a ball of radius `r` lies in a phase interval with
+   `inc <= 2r`. So `F_* nu_*` is `s`-Frostman, and `H^s(K_alpha) > 0`.
+
+Maximizing `s(gamma)` gives `u(u+2) = 3nu` for `u = nu - gamma + 1`. Hence
+`gamma = nu + 2 - sqrt(1+3nu) in (1, nu)` and `s(gamma) = s*(nu)`. With the
+upper bound this proves (62i). The written proof was checked by an independent
+automated referee pass. Its verdict, correct with repairs, concerned the choice
+of base for `theta < 0`, the endpoint convention, and the wrap-around window;
+the repairs are incorporated above. The proof has not been reviewed by a human
+referee, and the lower bound is not formalized.
 
 ## References
 

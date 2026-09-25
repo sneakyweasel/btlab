@@ -4,7 +4,7 @@
   "status": "local preprint revision; no new version uploaded by this build",
   "verification_scope": "File provenance only. Mathematical trust boundaries are in the manuscript and reviewer packet.",
   "tools": {
-    "pandoc": "pandoc.exe 3.6.3",
+    "pandoc": "pandoc.EXE 3.6.3",
     "xelatex": "MiKTeX-XeTeX 4.18 (MiKTeX 26.5)"
   },
   "inputs": [
@@ -51,7 +51,7 @@
     {
       "path": "docs/theory/PAPER_A_BUILD.md",
       "mode": "text",
-      "sha256": "4240fad08e8cc25568eaa39af9596006b782d59e124510df3cdd26549b56a569"
+      "sha256": "3616c2a3fbf85b8eb4eee43edc46e31fdb26f8e52f0a8458f1743fa452fada4f"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_formalization.md",
@@ -61,12 +61,12 @@
     {
       "path": "docs/theory/juggler_finite_dynamics_note.md",
       "mode": "text",
-      "sha256": "721b3b28945ae99827f74849edff0f53e1d5b7121e1463a72c66303e7d4f4919"
+      "sha256": "da435c44d70fc12eb067ca4158a0f0cc739862620f6c285a8d324570d473b537"
     },
     {
       "path": "docs/theory/juggler_finite_dynamics_reviewer_packet.md",
       "mode": "text",
-      "sha256": "d41ae7915dd170524974af54ed02fa6003664b51d58543349e1241f018e62b80"
+      "sha256": "33052f87d0a266a4b3b72a59c85c53cedb3c9762389bafe9cbf7ef044db411bf"
     },
     {
       "path": "formal/AxiomCheckPaperA.expected",
@@ -673,17 +673,17 @@
     {
       "path": "preprints/juggler_finite_dynamics_note.pdf",
       "mode": "binary",
-      "sha256": "4d135483447d47a59f6f2bbcb24d902cc82e7857e78261f5ec3ab8ba98ce6066"
+      "sha256": "7da9df6ba23804687a4ef31ff703782f97d2b66f33073ca3bdb5eedab448b5f9"
     },
     {
       "path": "docs/theory/cochin-juggler.tex",
       "mode": "text",
-      "sha256": "a16d9a798dc343cc1809b0f004d203d2879b1b850e3f7afd77304dcdc9312ab9"
+      "sha256": "6fe1eeaaa725afd7f418387530cc80ecc66ebb6d21d6cf0e85100a2b5e90a150"
     },
     {
       "path": "docs/theory/paper_a_zenodo.json",
       "mode": "text",
-      "sha256": "e9c6457862e58d36c5af4a303059b9b47729af6e691d4af9f74611ec457a13cb"
+      "sha256": "81170ed6a543f0aa25e32c7b54ba65d0f3b5a96af880151fb967eca2f444f995"
     }
   ]
 }

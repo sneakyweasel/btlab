@@ -1553,6 +1553,137 @@ slopes and to the uniform law on `b` atoms at `alpha=a/b`. The slope map
 irrational slopes; the limit from below at `a/b` has an atom at `1`.
 Section 31 of the working note. **PROMOTE**.
 
+### Universal packing dimension (25 September)
+
+```text
+Mathematical target     Packing (modified upper box) dimension of K_alpha for every irrational alpha>1.
+Novelty hypothesis      Packing dimension is universal (2/3) while Hausdorff dimension is arithmetic.
+Falsifier               An interval meeting K_alpha whose tube volume is o(eps^(1/3)).
+Already killed by?      No; no packing or local box-dimension record in the lab or negative knowledge.
+Existing machinery      Tube bounds, local tail gap counts, cluster set perfect and equal to the range closure.
+Maximum Phase-0 scope   Tube-volume box dimensions, local tube bound, Baire step, one module.
+Promotion criterion     Lean theorem for every irrational slope with standard axioms.
+Stop criterion          Local positivity needing analytic input beyond the tail gap counts.
+```
+
+**EXACT — LEAN VERIFIED.** Every open interval meeting `K_alpha` contains the
+profile image of a phase window `[t_1,t_2]` (closure of the range and
+perfectness suffice). Gaps with phase in the window lie inside the interval,
+and the tail gap-count asymptotic for the two profile levels counts at least
+`c x^(-2/3)` of them of length at least `x`, so every relatively open piece
+has `vol(eps-neighbourhood) >= c eps^(1/3)`. By Baire's theorem every
+countable cover of `K_alpha` has a member whose closure contains such a
+piece, so the modified upper box dimension is `2/3` for every irrational
+slope; for compact sets this is the packing dimension (Falconer, Fractal Geometry, §3.3,
+cited, not formalized). With `J-beatty-slope-dim-irrationality-exponent`, `dim_H K_alpha < dim_P K_alpha = 2/3`
+exactly when `alpha` is `LiouvilleWith p` for some `p>2`
+([BeattySlopePacking.lean](../../formal/Problems/Juggler/BeattySlopePacking.lean),
+claim `J-beatty-slope-packing-dim`). **PROMOTE**.
+
+### The dimension of the limit law (25 September)
+
+```text
+Mathematical target     The lower Hausdorff dimension of mu_alpha for every irrational alpha>1.
+Novelty hypothesis      Unlike dim_H K_alpha, it is a function of the Diophantine class alone.
+Falsifier               A positive-mass set of dimension below 2/(2+nu), or none reaching it.
+Already killed by?      No; section 4 of the exact-dimension notes says no formula in nu holds for the set, not the law.
+Existing machinery      Hoelder distribution function, block counts, tail masses, convergents of every irrational.
+Maximum Phase-0 scope   One module: late windows at one level, limsup over levels, lower bound, class assembly.
+Promotion criterion     Lean theorem for every Diophantine class and for Liouville slopes, standard axioms.
+Stop criterion          Window images not shrinking like q^(-1)|theta|^(1/2).
+```
+
+**EXACT — LEAN VERIFIED.** Write `lawDimH(mu)` for the least Hausdorff
+dimension of a measurable set of positive `mu`-mass. At a convergent `q` with
+`|q alpha - p| = |theta|`, the orbit fills each of the `q` cells from one side
+in steps `|theta|`, so the half reached last receives no point below index
+`N = floor(1/(2|theta|))`, and at most two points from each block of `q`
+consecutive indices. Its atom mass, the length of its profile image, is at most
+`6B/(q sqrt N)`. The `q` windows carry law mass `1/2`. Taking the limsup over
+fast good levels gives a set of mass at least `1/2` and zero `s`-measure for
+every `s > 2/(2+nu)`; the Hoelder bound of the distribution function gives the
+matching lower bound. Hence `lawDimH(mu_alpha) = 2/(2+nu) = 2/(1+omega)` for
+every irrational `alpha > 1` of Diophantine class `nu` (irrationality exponent
+`omega = 1+nu`), and `0` at Liouville slopes
+([BeattySlopeMeasureDim.lean](../../formal/Problems/Juggler/BeattySlopeMeasureDim.lean),
+claim `J-beatty-slope-law-dimension`). The law's dimension is a function of
+the Diophantine class alone, while the Hausdorff dimension of its support
+`K_alpha` is at least that value and, by the heuristic in the exact-dimension
+notes, can exceed it; the packing dimension is `2/3` throughout. **PROMOTE**.
+
+### The upper bound s*(nu) in Lean (25 September)
+
+```text
+Mathematical target     dim_H K_alpha <= s*(nu) = 2(sqrt(1+3nu)-1)/(3nu) for approximation exponent nu > 1.
+Novelty hypothesis      Per-gap late masses at the next convergent beat concavity over all gaps.
+Falsifier               A gap free of indices below N that is longer than 4/N or heavier than 27B N^(-3/2).
+Already killed by?      No; the written proof waited only for convergent facts now in Lean.
+Existing machinery      Early cuts, chain labels, convergents of every irrational, block counts, tail masses.
+Maximum Phase-0 scope   One module: block window mass, sharpened cut bound, exponent assembly.
+Promotion criterion     Lean theorem with standard axioms.
+Stop criterion          A missing classical input beyond the continued-fraction layer.
+```
+
+**EXACT — LEAN VERIFIED.** The written upper bound of the exact-dimension
+notes is now formal: if `|q alpha - p| <= q^(-nu)` for arbitrarily large `q`
+with `nu > 1`, then `dim_H K_alpha <= s*(nu)`, improving `2/(2+sqrt nu)`
+([BeattySlopeStarDim.lean](../../formal/Problems/Juggler/BeattySlopeStarDim.lean),
+claim `J-beatty-slope-star-upper`). With the law dimension,
+`2/(2+nu) <= dim_H K_alpha <= s*(nu)` for Diophantine class `nu`, and the
+lower end is attained at regular slopes. **PROMOTE**.
+
+### The packing dimension of the law (25 September)
+
+```text
+Mathematical target     The packing dimension of mu_alpha for every irrational alpha>1.
+Novelty hypothesis      Uniform small balls at convergent radii give 2/3 for every slope.
+Falsifier               A ball of radius A Q^(-3/2)/3 with law mass above 4/Q.
+Already killed by?      No; the law's dimensions were first studied in the previous entry.
+Existing machinery      gap_short_of_approx, convergents of every irrational, modified upper box dimension.
+Maximum Phase-0 scope   One module: frequent tube bound, grid counting, ball bound, assembly.
+Promotion criterion     Lean theorem for every irrational slope with standard axioms.
+Stop criterion          A uniform ball bound failing at some slope.
+```
+
+**EXACT — LEAN VERIFIED.** At a continued-fraction denominator `Q` every
+phase interval longer than `4/Q` holds an atom of index below `Q`, of weight at
+least `A Q^(-3/2)`; so every ball of radius `r = A Q^(-3/2)/3` carries law mass
+at most `4/Q`, whatever the slope. Counting grid intervals of length `r` gives
+`vol(E_r) >= c r^(1/3)` along these radii for every set of positive mass, so the
+law has packing dimension `2/3` at every irrational slope
+([BeattySlopeLawPacking.lean](../../formal/Problems/Juggler/BeattySlopeLawPacking.lean),
+claim `J-beatty-slope-law-packing`). With the law dimension, the Hausdorff and
+packing dimensions of `mu_alpha` agree exactly when the irrationality exponent
+is `2`. A two-constraint Frostman computation with windows of length
+`q^(-gamma)` at isolated good levels (not written up, not in Lean) returns
+exactly `s*(nu)` at the optimal `gamma = nu + 2 - sqrt(1+3nu)`, which supports
+the conjecture that `dim_H K_alpha = s*(nu)` for such slopes. **PROMOTE**.
+
+### Isolated good levels (25 September)
+
+```text
+Mathematical target     A slope of class nu with dim_H K_alpha > 2/(2+nu).
+Novelty hypothesis      Windows of length q^(-gamma) beside bases give an s*(nu)-Frostman measure.
+Falsifier               A scale where the Cantor measure beats inc(I)^s for every gamma.
+Already killed by?      No; section 4 of the exact-dimension notes predicted s*(nu) heuristically.
+Existing machinery      s*(nu) upper bound, class lemma, many hits, chain identity.
+Maximum Phase-0 scope   Written proof and referee pass; Lean construction, class and upper bound.
+Promotion criterion     A complete written lower-bound proof surviving review.
+Stop criterion          A fatal gap in the case analysis.
+```
+
+**EXACT — HUMAN PROOF (lower bound); LEAN VERIFIED (construction, class, law
+dimension, upper bound).** For sparse isolated good levels,
+`dim_H K_alpha = s*(nu)` (note section 32, (62i); claim
+`J-beatty-slope-isolated-exact`; Lean construction in
+[BeattySlopeIsolated.lean](../../formal/Problems/Juggler/BeattySlopeIsolated.lean),
+claim `J-beatty-slope-isolated`). With (62g), the Hausdorff dimension of the
+cluster set is not a function of the Diophantine class, while the dimension of
+the law is. An automated referee pass returned *correct with repairs*: the
+choice of base for `theta < 0`, the endpoint convention, and the wrap-around
+window. The repairs are incorporated. **PROMOTE**; formalizing the Cantor
+measure is the remaining step.
+
 ## Decision
 
 `PROMOTE` -- for every irrational slope above one, the actual normalized

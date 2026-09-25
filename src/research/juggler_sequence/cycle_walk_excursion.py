@@ -22,7 +22,10 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
+from flint import arb
 import numpy as np
+
+from research_engine.diophantine import partial_quotients_past
 
 from research.juggler_sequence.cycle_christoffel import christoffel_word
 from research.juggler_sequence.cycle_finance import (
@@ -61,30 +64,26 @@ CLASS_PARK = "WALK_EXCURSION_PARK"
 CLASS_CLOSED = "WALK_EXCURSION_CLOSED"
 
 
-def continued_fraction_terms(x: float, max_terms: int = 40) -> list[int]:
-    terms: list[int] = []
-    for _ in range(max_terms):
-        integer = int(math.floor(x))
-        terms.append(integer)
-        frac = x - integer
-        if frac < 1e-18:
-            break
-        x = 1.0 / frac
-    return terms
+def alpha_partial_quotients(max_odd: int) -> list[int]:
+    """Certified partial quotients of MU = log2(3/2), through the first denominator past max_odd.
+
+    A float expansion of MU is wrong from its sixteenth quotient on, near
+    denominator 5e7; the certified one never guesses a term.
+    """
+    expansion = partial_quotients_past(lambda: arb(3).log() / arb(2).log() - 1, max_odd)
+    if not expansion.complete:
+        raise ArithmeticError(expansion.reason or "Partial quotients of MU not certified")
+    return list(expansion.quotients)
 
 
-def semi_convergents_alpha(
-    max_odd: int = SEMI_MAX_ODD,
-    *,
-    alpha: float = MU,
-) -> list[tuple[int, int]]:
-    """Semi-convergents of alpha as (odd, even) = (q, p) for p/q.
+def semi_convergents_alpha(max_odd: int = SEMI_MAX_ODD) -> list[tuple[int, int]]:
+    """Semi-convergents of alpha = MU as (odd, even) = (q, p) for p/q.
 
     Exact 0-returns are impossible (3^a = 2^k), so these are the
     legal near-return types of the exponent walk.
     """
 
-    terms = continued_fraction_terms(alpha)
+    terms = alpha_partial_quotients(max_odd)
     p_prev2, q_prev2 = 0, 1
     p_prev1, q_prev1 = 1, 0
     pairs: list[tuple[int, int]] = []

@@ -1,7 +1,7 @@
 ---
 title: "Lower Bounds for Cycle Lengths in the Juggler Map"
 author: Philippe Cochin
-date: 23 September 2026
+date: 25 September 2026
 keywords:
   - Juggler map
   - Juggler sequence
@@ -474,9 +474,10 @@ two length-five contractors, giving the certified-descent densities
 contraction criterion of Theorem 2.2. Paper C [17] proves that every
 nonempty backward-closed set — in particular the basin of any
 nontrivial cycle, and the set of divergent starts — has logarithmic
-count \(\gg(\log x)^{\lambda}\) for \(0<\lambda\le5/8\) in its
-22 September written revision (with unconditional Lean baseline
-\(\lambda\le100/203\)), and reduces the
+count \(\gg(\log x)^{\lambda}\) for \(0<\lambda\le5/8\), a bound
+checked in Lean, and for \(0<\lambda\le37/50\) through Theorem 6.3
+of Paper B, whose AI-assisted written proof has not been
+independently reviewed; it also reduces the
 Juggler conjecture to a Tao-type almost-all statement whose bounded
 target is the certified floor of Section 5 and whose descent step is
 the power envelope of Theorem 2.2 (`power_bound_word`). Section 6.1
@@ -4606,8 +4607,8 @@ exclusions or a proof of an almost-all hypothesis.
 *A cycle's basin has a separate lower bound.* Paper C's stated contagion
 theorem gives
 \(\sum_{m\in B(C),\,m\le x}1/m\gg(\log x)^\lambda\)
-for every \(0<\lambda\le5/8\) in its 22 September written revision,
-with unconditional Lean baseline \(\lambda\le100/203\), if the basin
+for every \(0<\lambda\le5/8\), checked in Lean, and for every
+\(0<\lambda\le37/50\) through Paper B's Theorem 6.3, if the basin
 \(B(C)\) of a nontrivial cycle exists. This is a result of the companion
 manuscript, not a new theorem here. For a primitive cycle \(C\) with
 minimum \(n\) and period \(L\), the present paper instead gives
@@ -7000,11 +7001,13 @@ preprint.
 
 ## 8. Availability and version
 
-This is version 1.2.1 of Paper A, of 23 September 2026. It retains the
-asymptotic refinement in Corollary 4.11a and completes the source and
-verification supplement, publication metadata, and provenance record.
-The mathematical statements, proofs, certified floors, and numerical
-period exclusions are unchanged from version 1.2.0. It is a preprint, it has
+This is version 1.2.2 of Paper A, of 25 September 2026. It updates the
+description of the companion Papers B and C, and references [16] and
+[17], to their published versions 1.2.0 and 1.3.0. Version 1.2.1 completed
+the source and verification supplement, publication metadata, and
+provenance record, and retained the asymptotic refinement in Corollary
+4.11a. The mathematical statements, proofs, certified floors, and
+numerical period exclusions are unchanged from version 1.2.0. It is a preprint, it has
 not been refereed, and it is not deposited. The deposited versions are:
 
 - 1.0.2 of 20 September 2026,
@@ -7082,14 +7085,14 @@ The repository is
     [doi:10.1007/978-1-4757-4267-1_11](https://doi.org/10.1007/978-1-4757-4267-1_11).
 16. P. Cochin, “Five-Step Descent Certificates for the Juggler Map:
     Parity Statistics of Nested Floor Powers,” companion manuscript
-    (Paper B), revision of 20 September 2026; Zenodo version 1.0.0,
-    [doi:10.5281/zenodo.22864934](https://doi.org/10.5281/zenodo.22864934); concept DOI
+    (Paper B), revision of 24 September 2026; Zenodo version 1.2.0,
+    [doi:10.5281/zenodo.22946276](https://doi.org/10.5281/zenodo.22946276); concept DOI
     [10.5281/zenodo.22864933](https://doi.org/10.5281/zenodo.22864933) for all versions.
     [Source manuscript](https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_parity_discrepancy_note.md).
 17. P. Cochin, “Fate Contagion and Termination Criteria for the Juggler
-    Map,” companion manuscript (Paper C), revision of 21 September 2026;
-    Zenodo version 1.1.0,
-    [doi:10.5281/zenodo.22865705](https://doi.org/10.5281/zenodo.22865705); concept DOI
+    Map,” companion manuscript (Paper C), revision of 24 September 2026;
+    Zenodo version 1.3.0,
+    [doi:10.5281/zenodo.22947659](https://doi.org/10.5281/zenodo.22947659); concept DOI
     [10.5281/zenodo.22678164](https://doi.org/10.5281/zenodo.22678164) for all versions.
     [Source manuscript](https://github.com/sneakyweasel/btlab/blob/main/docs/theory/juggler_fate_almost_all_note.md).
 

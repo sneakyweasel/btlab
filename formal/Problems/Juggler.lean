@@ -138,6 +138,13 @@ import Problems.Juggler.BeattySlopeExactDim
 import Problems.Juggler.BeattySlopeIrrExp
 import Problems.Juggler.BeattySlopeRegularDim
 import Problems.Juggler.BeattySlopeConvergents
+import Problems.Juggler.BeattySlopeCFExpansion
+import Problems.Juggler.BeattySlopePacking
+import Problems.Juggler.BeattySlopeMeasureDim
+import Problems.Juggler.BeattySlopeStarDim
+import Problems.Juggler.BeattySlopeLawPacking
+import Problems.Juggler.BeattySlopeIsolated
+import Problems.Juggler.BeattySlopeFrostman
 import Problems.Juggler.BeattySlopeRationalMass
 import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeWeakCounting

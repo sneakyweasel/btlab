@@ -8,6 +8,13 @@ import Problems.Juggler.BeattySlopeExactDim
 import Problems.Juggler.BeattySlopeIrrExp
 import Problems.Juggler.BeattySlopeRegularDim
 import Problems.Juggler.BeattySlopeConvergents
+import Problems.Juggler.BeattySlopeCFExpansion
+import Problems.Juggler.BeattySlopePacking
+import Problems.Juggler.BeattySlopeMeasureDim
+import Problems.Juggler.BeattySlopeStarDim
+import Problems.Juggler.BeattySlopeLawPacking
+import Problems.Juggler.BeattySlopeIsolated
+import Problems.Juggler.BeattySlopeFrostman
 import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeGlobalLaw
 import Problems.Juggler.BeattySlopeLawContinuity
@@ -497,5 +504,72 @@ namespace Problems.Juggler
 #print axioms BeattySlope.cluster_dimH_spectrum
 #print axioms BeattySlope.regular_diophClass
 #print axioms BeattySlope.expSlope_diophClass
+#print axioms BeattySlope.gaussQuot_irrational
+#print axioms BeattySlope.fract_pos_of_irrational
+#print axioms BeattySlope.one_lt_gaussQuot
+#print axioms BeattySlope.cfDigits_succ_ge
+#print axioms BeattySlope.gaussQuot_nonneg
+#print axioms BeattySlope.gaussQuot_step
+#print axioms BeattySlope.cf_complete_identity
+#print axioms BeattySlope.cf_expansion_err_le
+#print axioms BeattySlope.cfLim_cfDigits
+#print axioms BeattySlope.irrational_goodConvergents
+#print axioms BeattySlope.cfDigits_den_tendsto
+#print axioms BeattySlope.GoodConvergents.shift
+#print axioms BeattySlope.cf_regular_dimH_eq
+#print axioms BeattySlope.upperBoxDim_mono
+#print axioms BeattySlope.upperBoxDim_closure
+#print axioms BeattySlope.upperBoxDim_le_of_tube
+#print axioms BeattySlope.le_upperBoxDim_of_tube
+#print axioms BeattySlope.modUpperBoxDim_le
+#print axioms BeattySlope.passageProfile_clamp
+#print axioms BeattySlope.passageGap_right_le
+#print axioms BeattySlope.exists_phase_window
+#print axioms BeattySlope.tailDensity_gap_pos
+#print axioms BeattySlope.passageCluster_local_tube
+#print axioms BeattySlope.passageCluster_modUpperBoxDim
+#print axioms BeattySlope.cluster_dim_gap_iff
+#print axioms BeattySlope.window_mass_le
+#print axioms BeattySlope.level_early_avoid
+#print axioms BeattySlope.levelLeft_bounds
+#print axioms BeattySlope.good_cf_level
+#print axioms BeattySlope.passageCdf_image_volume_pos
+#print axioms BeattySlope.passageLaw_dimH_ge
+#print axioms BeattySlope.passagePhase_succ_fract
+#print axioms BeattySlope.levelSet_measurable
+#print axioms BeattySlope.passage_level
+#print axioms BeattySlope.exists_fine_level
+#print axioms BeattySlope.tsum_half_tail
+#print axioms BeattySlope.passageLaw_null_set
+#print axioms BeattySlope.passageLaw_cluster
+#print axioms BeattySlope.lawDimH_le_of
+#print axioms BeattySlope.exists_pos_le_finset
+#print axioms BeattySlope.dioph_lower_of_class
+#print axioms BeattySlope.passageLaw_lawDimH_le
+#print axioms BeattySlope.passageLaw_lawDimH_liouville
+#print axioms BeattySlope.passageLaw_lawDimH_eq
+#print axioms BeattySlope.block_window_mass
+#print axioms BeattySlope.star_cut_bound
+#print axioms BeattySlope.starDim_quad
+#print axioms BeattySlope.starDim_pos
+#print axioms BeattySlope.dio_star_hausdorff
+#print axioms BeattySlope.dio_star_dimH_le
+#print axioms BeattySlope.le_upperBoxDim_of_tube_freq
+#print axioms BeattySlope.measure_mul_le_thickening
+#print axioms BeattySlope.conv_radius_identity
+#print axioms BeattySlope.passageLaw_ball_le
+#print axioms BeattySlope.passageLaw_upperBoxDim_ge
+#print axioms BeattySlope.passageLaw_lawDimP_eq
+#print axioms BeattySlope.passageLaw_dims_eq_iff
+#print axioms BeattySlope.isoQuot_succ_ge
+#print axioms BeattySlope.cfDen_isoQuot
+#print axioms BeattySlope.one_lt_isoSlope
+#print axioms BeattySlope.isoSlope_irrational
+#print axioms BeattySlope.isoDen_growth
+#print axioms BeattySlope.isoSlope_diophClass
+#print axioms BeattySlope.isoSlope_dims
+#print axioms BeattySlope.jumpRange_hausdorff_ne_zero
+#print axioms BeattySlope.frostman_cdf_hausdorff
+#print axioms BeattySlope.base_at_grid
 
 end Problems.Juggler

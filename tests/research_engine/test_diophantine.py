@@ -5,8 +5,8 @@ from flint import arb, ctx
 import pytest
 
 from research_engine.diophantine import (
-    best_approximations, certified_partial_quotients, convergents, rational_partial_quotients,
-    semiconvergents,
+    best_approximations, certified_partial_quotients, convergents, partial_quotients_past,
+    rational_partial_quotients, semiconvergents,
 )
 from research_engine.intervals import ball, bounds
 
@@ -112,6 +112,23 @@ def test_an_input_box_certifies_only_the_shared_prefix():
 def test_invalid_budgets_are_rejected(arguments):
     with pytest.raises(ValueError):
         certified_partial_quotients(log2_3, **arguments)
+
+
+@pytest.mark.parametrize("bound", [1, 2, 20000, 10**6, 10**30])
+def test_expansion_stops_at_the_first_denominator_past_the_bound(bound):
+    expansion = partial_quotients_past(log2_3, bound)
+    denominators = [q for _, q in convergents(expansion.quotients)]
+    assert expansion.complete and expansion.satisfied
+    assert denominators[-1] > bound >= denominators[-2]
+    shared = min(len(expansion.quotients), len(LOG2_3))
+    assert list(expansion.quotients)[:shared] == LOG2_3[:shared]
+
+
+def test_expansion_past_a_bound_reports_a_short_budget():
+    expansion = partial_quotients_past(log2_3, 10**40, bits=32, max_bits=64)
+    assert not expansion.complete
+    assert [q for _, q in convergents(expansion.quotients)][-1] <= 10**40
+    assert partial_quotients_past(lambda: arb(5), 10**9).terminated
 
 
 def brute_force_minimum(evaluate, max_denominator, tau):
