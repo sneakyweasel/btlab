@@ -2913,18 +2913,24 @@ empirical-law theorem and the slope-map theorem (68).
 - `dim_H K_alpha <= s*(nu) = 2(sqrt(1+3nu)-1)/(3nu)`
   ([BeattySlopeStarDim.lean](../../formal/Problems/Juggler/BeattySlopeStarDim.lean)).
 
-**Isolated good levels — EXACT — HUMAN PROOF (lower bound); LEAN VERIFIED
-(construction, class, law dimension, upper bound).** Take partial quotients
+**Isolated good levels — EXACT — LEAN VERIFIED.** Take partial quotients
 `a_0 = 1`, `a_(g+1) = ceil(Q_g^(nu-1)) + 1` at good indices `g`, and `a_k = 1`
 otherwise. With infinitely many good indices the slope has Diophantine class
 exactly `nu`, its law has dimension `2/(2+nu)`, and its cluster set has
 dimension at most `s*(nu)`
 ([BeattySlopeIsolated.lean](../../formal/Problems/Juggler/BeattySlopeIsolated.lean)).
-If the good indices are sparse, `j log Q_(g_(j-1)+1) = o(log Q_(g_j))` (for
-example `g_j = 2^(g_(j-1))`), then
+Suppose some enumeration `g_0 < g_1 < ...` of good indices, with no good index
+strictly between consecutive terms, is sparse:
+`(2Q_(g_l+1))^((l+2)^2) <= Q_(g_(l+1))` for every `l`. Then
 \[
  \dim_H K_\alpha=s^*(\nu).                                               \tag{62i}
 \]
+For every `nu > 1` the tower `g_(l+1) = g_l + 2 + (2U_(g_l+1))^((l+2)^2)`, where
+`U` are the denominators with every index good, is such an enumeration. So
+some slope of Diophantine class exactly `nu` has `dim_H K_alpha = s*(nu)`
+([BeattyIsoExact.lean](../../formal/Problems/Juggler/BeattyIsoExact.lean)).
+The written proof below also covers the weaker sparsity
+`j log Q_(g_(j-1)+1) = o(log Q_(g_j))`; that extension is not formalized.
 Since regular slopes of the same class have dimension `2/(2+nu) < s*(nu)`
 (62g), `dim_H K_alpha` is not a function of the Diophantine class, while the law
 dimension is.
@@ -2975,8 +2981,26 @@ Maximizing `s(gamma)` gives `u(u+2) = 3nu` for `u = nu - gamma + 1`. Hence
 upper bound this proves (62i). The written proof was checked by an independent
 automated referee pass. Its verdict, correct with repairs, concerned the choice
 of base for `theta < 0`, the endpoint convention, and the wrap-around window;
-the repairs are incorporated above. The proof has not been reviewed by a human
-referee, and the lower bound is not formalized.
+the repairs are incorporated above.
+
+*Lean formalization.* The Lean proof follows the written one with three
+changes of bookkeeping. Windows sit on the grid, at `i/q + 2/q'` on the side of
+`theta`, so that every base lies in the gap before its window and every chain
+of a base covers the window beside it. The measure is the limit distribution
+function `h` of the window tree, and a descent lemma reduces the Frostman bound
+`h(v) - h(u) <= C inc(u, v)^s` to intervals inside one window that meet two of
+its children
+([BeattyCantorTree.lean](../../formal/Problems/Juggler/BeattyCantorTree.lean),
+[BeattyGridTree.lean](../../formal/Problems/Juggler/BeattyGridTree.lean)).
+The mass bound `M_(j+1) <= Q_j^(-1+gamma/(j+1))` follows from the stated
+sparsity. With `eta > 0` in place of the `o(1)`, the two exponent conditions
+become `gamma - 1 + eta <= nu(1 - 3s/2)` and `s(3+nu-gamma)/2 <= 1 - eta`
+([BeattyIsoBounds.lean](../../formal/Problems/Juggler/BeattyIsoBounds.lean),
+[BeattyIsoFrostman.lean](../../formal/Problems/Juggler/BeattyIsoFrostman.lean)).
+The Frostman principle for a continuous distribution function
+([BeattySlopeFrostman.lean](../../formal/Problems/Juggler/BeattySlopeFrostman.lean))
+then gives `H^s(K_alpha) > 0`. The axiom audit of the final theorems lists
+only `propext`, `Classical.choice` and `Quot.sound`.
 
 ## References
 

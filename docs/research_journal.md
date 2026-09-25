@@ -11,6 +11,17 @@ consolidation is at `e9725762eaf028d1ace354ff20e0fc48f1a3d143`. See
 New entries should name the changed result, its evidence, remaining premise,
 decision, and canonical record. Keep the journal brief.
 
+## 2026-09-25 -- Isolated slopes attain s*(nu) in Lean
+
+**EXACT — LEAN VERIFIED:** an isolated-level slope whose good levels admit an
+enumeration with `(2Q_(g_l+1))^((l+2)^2) <= Q_(g_(l+1))` has
+`dim_H K_alpha = s*(nu)`; for every `nu > 1` an explicit tower gives such a
+slope of class exactly `nu`. So the cluster-set dimension is not a function of
+the Diophantine class. A grid-window Cantor tree, a descent lemma and three
+atom-mass bounds give the Frostman bound. Remaining premise: none; the weaker
+`o(1)` sparsity stays written. Decision: PROMOTE. Record: claim
+`J-beatty-slope-isolated-exact`, note section 32.
+
 ## 2026-09-25 -- Paper B Theorem 3.1 closed in Lean
 
 **EXACT — LEAN VERIFIED:** `|S_O(N)| ≤ 2112 N^{5/6}` for every `N`, and both

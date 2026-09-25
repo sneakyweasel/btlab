@@ -4,8 +4,8 @@
   "transport": "MCP stdio via tools/arb_mcp.py",
   "scope": "Finite expression certificates and explicitly stated derived consequences; no new Lean proof or termination result.",
   "paper_source_sha256": {
-    "before": "3b750605fca1f6777a49d83567729e6f727881e3656068483189a77cae6fc078",
-    "after": "3b750605fca1f6777a49d83567729e6f727881e3656068483189a77cae6fc078"
+    "before": "a1b0c04c477d44c690328b5131b91b02ee68556ebb3544e07ef0b06a9fa55486",
+    "after": "a1b0c04c477d44c690328b5131b91b02ee68556ebb3544e07ef0b06a9fa55486"
   },
   "paper_unchanged_during_run": true,
   "input_source_sha256": {
@@ -20,7 +20,7 @@
     "tools/arb_worker.py": "23fbcca91b3e442e178d1025a79546ba309ea0eb5f24f3d1619e13c9c5392386",
     "src/research_engine/arb_expressions.py": "2b82f7718f13e03d41a2b0e4850166771c73b910ecc55c333d1f83e6e3d14c62",
     "src/research_engine/intervals.py": "d212d2be45ed76651433261c266b554599399cacbc3ebcd9e53d41480f57b6be",
-    "docs/theory/juggler_beatty_first_passage_note.md": "3b750605fca1f6777a49d83567729e6f727881e3656068483189a77cae6fc078"
+    "docs/theory/juggler_beatty_first_passage_note.md": "a1b0c04c477d44c690328b5131b91b02ee68556ebb3544e07ef0b06a9fa55486"
   },
   "summary": {
     "orders": 256,

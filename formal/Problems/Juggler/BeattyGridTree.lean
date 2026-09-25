@@ -167,6 +167,22 @@ theorem charged_grid {l : ℕ} {a : ℝ} (ha : D.tree.Charged (l + 1) a) :
   obtain ⟨h0, -⟩ := D.charged_unit l b hb
   exact ⟨_, by omega, D.tree_child l h0 m⟩
 
+/-- Charged windows of positive level have grid index in `[2, q - 3]`. -/
+theorem charged_index {l : ℕ} {a : ℝ} (ha : D.tree.Charged (l + 1) a) :
+    ∃ i : ℕ, 2 ≤ i ∧ (i : ℝ) + 3 ≤ D.q (l + 1) ∧ a = D.leftEnd (l + 1) i := by
+  obtain ⟨b, m, hb, hm, rfl⟩ := ha
+  obtain ⟨h0, h1⟩ := D.charged_unit l b hb
+  refine ⟨_, by omega, ?_, D.tree_child l h0 m⟩
+  have hq := D.qR_pos l
+  have hfl : (⌊b * D.q (l + 1)⌋₊ : ℝ) ≤ b * D.q (l + 1) := Nat.floor_le (by positivity)
+  have hN := D.nChild_le l
+  have hm' : (m : ℝ) + 1 ≤ D.nChild l := by
+    have : m + 1 ≤ D.nChild l := hm
+    exact_mod_cast this
+  have : (b + D.d l) * D.q (l + 1) ≤ D.q (l + 1) := by nlinarith
+  push_cast
+  nlinarith
+
 end GridData
 
 end Problems.Juggler.BeattySlope

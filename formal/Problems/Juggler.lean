@@ -146,6 +146,9 @@ import Problems.Juggler.BeattyGridTree
 import Problems.Juggler.BeattyAtomBounds
 import Problems.Juggler.BeattyIsoLevels
 import Problems.Juggler.BeattyIsoGrid
+import Problems.Juggler.BeattyIsoBounds
+import Problems.Juggler.BeattyIsoFrostman
+import Problems.Juggler.BeattyIsoExact
 import Problems.Juggler.BeattySlopeRationalMass
 import Problems.Juggler.BeattySlopeRationalLimit
 import Problems.Juggler.BeattySlopeWeakCounting

@@ -1672,17 +1672,19 @@ Promotion criterion     A complete written lower-bound proof surviving review.
 Stop criterion          A fatal gap in the case analysis.
 ```
 
-**EXACT — HUMAN PROOF (lower bound); LEAN VERIFIED (construction, class, law
-dimension, upper bound).** For sparse isolated good levels,
+**EXACT — LEAN VERIFIED.** For sparse isolated good levels,
 `dim_H K_alpha = s*(nu)` (note section 32, (62i); claim
-`J-beatty-slope-isolated-exact`; Lean construction in
+`J-beatty-slope-isolated-exact`; Lean lower bound and tower example in
+[BeattyIsoExact.lean](../../formal/Problems/Juggler/BeattyIsoExact.lean);
+construction, class and upper bound in
 [BeattySlopeIsolated.lean](../../formal/Problems/Juggler/BeattySlopeIsolated.lean),
-claim `J-beatty-slope-isolated`). With (62g), the Hausdorff dimension of the
+claim `J-beatty-slope-isolated`). Lean uses the quantitative sparsity
+`(2Q_(g_l+1))^((l+2)^2) <= Q_(g_(l+1))`; the weaker `o(1)` form remains written. With (62g), the Hausdorff dimension of the
 cluster set is not a function of the Diophantine class, while the dimension of
 the law is. An automated referee pass returned *correct with repairs*: the
 choice of base for `theta < 0`, the endpoint convention, and the wrap-around
-window. The repairs are incorporated. **PROMOTE**; formalizing the Cantor
-measure is the remaining step.
+window. The repairs are incorporated. **PROMOTE**; the Cantor measure and
+the Frostman bound are now formalized.
 
 ## Decision
 

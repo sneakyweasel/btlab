@@ -9,9 +9,8 @@ For `ν > 1` and a set `G` of good indices, the partial quotients are
 many good indices the slope has Diophantine class exactly `ν`: the good levels
 give `Q_(k+1) ≥ Q_k^ν` infinitely often, and every level satisfies
 `Q_(k+1) ≤ 4 Q_k^ν`. Its limit law therefore has dimension `2/(2+ν)`, and its
-cluster set has Hausdorff dimension at most `s*(ν)`. With the good indices
-sparse (the tower `2^(2^j)`), the written argument of the working notes gives
-the matching lower bound `s*(ν)`, which is not formalized here.
+cluster set has Hausdorff dimension at most `s*(ν)`. With sparse good indices
+the matching lower bound `s*(ν)` is `iso_dimH_ge` in `BeattyIsoExact`.
 -/
 
 namespace Problems.Juggler.BeattySlope

@@ -3,8 +3,9 @@ import Problems.Juggler.BeattyAtomBounds
 /-!
 # Level structure of isolated slopes
 
-`IsoLevels ν G B` enumerates the good indices `g 0 < g 1 < …` of an isolated
-slope. The first good denominator is at least `B`, and each good denominator
+`IsoLevels ν G B` enumerates good indices `g 0 < g 1 < …` of an isolated slope,
+with no good index strictly between consecutive ones (earlier good indices may
+be skipped). The first good denominator is at least `B`, and each good denominator
 dominates a power of the previous one:
 `(2 Q_(g l + 1))^((l+2)²) ≤ Q_(g (l+1))`.
 
@@ -26,7 +27,8 @@ structure IsoLevels (ν : ℝ) (G : ℕ → Prop) [DecidablePred G] (B : ℝ) wh
   g : ℕ → ℕ
   mono : StrictMono g
   one_le : 1 ≤ g 0
-  good_iff : ∀ k, G k ↔ ∃ l, g l = k
+  good_mem : ∀ l, G (g l)
+  gap : ∀ l k, g l < k → k < g (l + 1) → ¬ G k
   big : B ≤ (isoDen ν G (g 0) : ℝ)
   sparse : ∀ l, ((2 : ℝ) * isoDen ν G (g l + 1)) ^ ((l + 2) ^ 2) ≤ isoDen ν G (g (l + 1))
 
@@ -39,15 +41,11 @@ theorem one_le_g (l : ℕ) : 1 ≤ Lv.g l :=
   Lv.one_le.trans (Lv.mono.monotone (Nat.zero_le l))
 
 /-- Enumerated indices are good. -/
-theorem good (l : ℕ) : G (Lv.g l) := (Lv.good_iff _).2 ⟨l, rfl⟩
+theorem good (l : ℕ) : G (Lv.g l) := Lv.good_mem l
 
 /-- Indices strictly between consecutive good indices are not good. -/
-theorem not_good {l k : ℕ} (h1 : Lv.g l < k) (h2 : k < Lv.g (l + 1)) : ¬ G k := by
-  rw [Lv.good_iff]
-  rintro ⟨j, rfl⟩
-  have a := Lv.mono.lt_iff_lt.1 h1
-  have b := Lv.mono.lt_iff_lt.1 h2
-  omega
+theorem not_good {l k : ℕ} (h1 : Lv.g l < k) (h2 : k < Lv.g (l + 1)) : ¬ G k :=
+  Lv.gap l k h1 h2
 
 end IsoLevels
 
